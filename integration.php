@@ -25,6 +25,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
 
 define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');
 
+/*
 global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$jomresConfig_sitename,$jomresConfig_shownoauth,$jomresConfig_useractivation,
 	$jomresConfig_uniquemail,$jomresConfig_offline_message,$jomresConfig_lifetime,$jomresConfig_MetaDesc,$jomresConfig_MetaKeys,$jomresConfig_MetaTitle,
 	$jomresConfig_MetaAuthor,$jomresConfig_debug,$jomresConfig_locale,$jomresConfig_offset,$jomresConfig_offset_user,$jomresConfig_hideAuthor,$jomresConfig_hideCreateDate,
@@ -35,8 +36,9 @@ global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$j
 	$jomresConfig_smtppass,$jomresConfig_smtphost,$jomresConfig_back_button,$jomresConfig_item_navigation,$jomresConfig_secret,$jomresConfig_pagetitles,$jomresConfig_readmore,
 	$jomresConfig_hits,$jomresConfig_icons,$jomresConfig_favicon,$jomresConfig_fileperms,$jomresConfig_dirperms,$jomresConfig_helpurl,$jomresConfig_mbf_content,$jomresConfig_editor,$jomresAdminPath;
 global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
+*/
 
-global $jomresPath,$license_key,$jomres_db_querylog,$MiniComponents,$timetracking;
+global $jomresPath,$license_key,$jomres_db_querylog,$MiniComponents,$timetracking,$jomresConfig_absolute_path;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
 global $ra1,$ra2,$convertedRAs,$lessThans; // globaled so that we don't need to initialise them every time
 global $R;
@@ -55,8 +57,6 @@ $R[gettype('')]='string';
 $R[gettype(null)]='null';
 $R[gettype(array())]='array';
 $R[gettype(new stdClass())]='object';
-
-
 
 if (!defined('JOMRESPATH_BASE'))
 	{
@@ -87,7 +87,7 @@ $jomresConfig_absolute_path= str_replace(JRDS."components".JRDS."com_jomres","",
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
 // Adding this here allows an element of interoperability between J1.x & J1.5
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."site_config.php");
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php");
 
 /**
 #
@@ -144,116 +144,19 @@ if ( !function_exists('gregoriantojd') )
 		}
 	}
 
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
+
+if (_JOMRES_DETECTED_CMS == "unknown")
+	{
+	echo "Error, cannot detect the current CMS. Exiting.";
+	exit;
+	}
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific"._JOMRES_DETECTED_CMS.JRDS."init_config_vars.php";
+
+/*
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
 	{
-	global $mainframe;
-	require_once( JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'configuration.php' );
-	$CONFIG = new JConfig();
-	$no_html = (int)$_REQUEST['no_html'];
 
-	if($CONFIG->session_handler !="none" && $no_html == 0)
-		{
-		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
-		}
-
-	$jomresConfig_offline			= $CONFIG->offline;
-	$jomresConfig_db				= $CONFIG->db;
-	/*
-
-	*/
-	if (class_exists('JURI'))
-		{
-		$jomresConfig_live_site=JURI::base();
-		}
-	else
-		{
-		if ($IIS > 0) // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-			{
-			$path_info =  $_SERVER['PATH_INFO'];
-			$_URI = explode("/", $path_info);
-			}
-		else
-			{
-
-			list($path, $args) = explode("?", $_SERVER['REQUEST_URI']);
-			$_URI = explode("/", $path);
-			}
-		array_shift($_URI);
-		$_URI=array_slice($_URI,0,count($_URI)-1);
-		array_unshift ($_URI,$_SERVER['SERVER_NAME'] );
-		$jomresConfig_live_site="http://".implode("/",$_URI);
-		}
-	$jomresConfig_live_site=str_replace("/administrator/","",$jomresConfig_live_site);
-	$jomresConfig_live_site=str_replace("/administrator","",$jomresConfig_live_site);
-	if(substr($jomresConfig_live_site, -1)=="/") $jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
-	$jomresConfig_sitename			= $CONFIG->sitename;
-	$jomresConfig_lifetime			= $CONFIG->lifetime;
-	$jomresConfig_MetaDesc			= $CONFIG->MetaDesc;
-	$jomresConfig_MetaKeys			= $CONFIG->MetaKeys;
-	$jomresConfig_MetaTitle			= $CONFIG->MetaTitle;
-	$jomresConfig_MetaAuthor		= $CONFIG->MetaAuthor;
-	$jomresConfig_debug				= $CONFIG->debug;
-	$jomresConfig_list_limit		= $CONFIG->list_limit;
-	$jomresConfig_mailer			= $CONFIG->mailer;
-	$jomresConfig_mailfrom			= $CONFIG->mailfrom;
-	$jomresConfig_fromname			= $CONFIG->fromname;
-	$jomresConfig_sendmail			= $CONFIG->sendmail;
-	$jomresConfig_smtpauth			= $CONFIG->smtpauth;
-	$jomresConfig_smtpuser			= $CONFIG->smtpuser;
-	$jomresConfig_smtppass			= $CONFIG->smtppass;
-	$jomresConfig_smtphost			= $CONFIG->smtphost;
-	$jomresConfig_secret			= $CONFIG->secret;
-	$jomresConfig_dbprefix			= $CONFIG->dbprefix;
-	$jomresConfig_user	 			= $CONFIG->user;
-	$jomresConfig_password	 		= $CONFIG->password;
-	$jomresConfig_db				= $CONFIG->db;
-	$jomresConfig_host				= $CONFIG->host;
-
-
-	//$jomresConfig_pagetitles			= $CONFIG->pagetitles;
-	//$jomresConfig_readmore			= $CONFIG->readmore;
-	//$jomresConfig_hits				= $CONFIG->hits;
-	//$jomresConfig_icons				= $CONFIG->icons;
-	//$jomresConfig_favicon				= $CONFIG->favicon;
-	//$jomresConfig_fileperms			= $CONFIG->fileperms;
-	//$jomresConfig_dirperms			= $CONFIG->dirperms;
-	//$jomresConfig_helpurl				= $CONFIG->helpurl;
-	//$jomresConfig_multilingual_content 	= $CONFIG->multilingual_content;
-	//$jomresConfig_editor				= $CONFIG->editor;
-	//$jomresConfig_locale				= $CONFIG->locale;
-	//$jomresConfig_meta_pagetitle		= $CONFIG->meta_pagetitle;
-	//$jomresConfig_back_button			= $CONFIG->back_button;
-	//$jomresConfig_item_navigation		= $CONFIG->item_navigation;
-	//$jomresConfig_caching			= $CONFIG->caching;
-	//$jomresConfig_cachepath			= $CONFIG->cachepath;
-	//$jomresConfig_cachetime			= $CONFIG->cachetime;
-	//$jomresConfig_locale				= $CONFIG->locale;
-	//$jomresConfig_offset				= $CONFIG->offset;
-	//$jomresConfig_offset_user			= $CONFIG->offset_user;
-	//$jomresConfig_hideAuthor			= $CONFIG->hideAuthor;
-	//$jomresConfig_hideCreateDate		= $CONFIG->hideCreateDate;
-	//$jomresConfig_hideModifyDate		= $CONFIG->hideModifyDate;
-	//$jomresConfig_hidePdf				= $CONFIG->hidePdf;
-	//$jomresConfig_hidePrint			= $CONFIG->hidePrint;
-	//$jomresConfig_hideEmail			= $CONFIG->hideEmail;
-	//$jomresConfig_enable_log_items		= $CONFIG->enable_log_items;
-	//$jomresConfig_enable_log_searches		= $CONFIG->enable_log_searches;
-	//$jomresConfig_enable_stats			= $CONFIG->enable_stats;
-	//$jomresConfig_sef				= $CONFIG->sef;
-	//$jomresConfig_vote				= $CONFIG->vote;
-	//$jomresConfig_gzip				= $CONFIG->gzip;
-	//$jomresConfig_allowUserRegistration	= $CONFIG->allowUserRegistration;
-	//$jomresConfig_error_reporting		= $CONFIG->error_reporting;
-	//$jomresConfig_error_message		= $CONFIG->error_message;
-	//$jomresConfig_link_titles			= $CONFIG->link_titles;
-	//$jomresConfig_shownoauth			= $CONFIG->shownoauth;
-	//$jomresConfig_useractivation		= $CONFIG->useractivation;
-	//$jomresConfig_uniquemail			= $CONFIG->uniquemail;
-	//$jomresConfig_admin_site			= $CONFIG->admin_site;
-
-	define('_JOMRES_NEWJOOMLA','1');
-	$jomresPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres";
-	$jomresAdminPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres";
 	}
 else
 	{
@@ -339,26 +242,24 @@ else
 	$jomresPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres";
 	$jomresAdminPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres';
 	}
+*/
+
 
 $jomres_db_querylog=array();
 define('JOMRES_SYSTEMLOG_PATH',JOMRESPATH_BASE.JRDS.'temp'.JRDS);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'media'.JRDS.'jomres_licensekey.php') ) // Legacy
-	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'media'.JRDS.'jomres_licensekey.php');
-else
+if (!strstr($scriptname,'install_jomres.php'))
 	{
-	if (!strstr($scriptname,'install_jomres.php'))
-		{
-		$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey' LIMIT 1";
-		$license_key=doSelectSql($query,1);
-		}
-	else  // We're running install_jomres.php
-		{
-		$license_key=$_POST['lkey'];
-		$task="showSiteConfig";
-		}
+	$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey' LIMIT 1";
+	$license_key=doSelectSql($query,1);
 	}
+else  // We're running install_jomres.php
+	{
+	$license_key=$_POST['lkey'];
+	$task="showSiteConfig";
+	}
+
 $bang=explode("-",$license_key);
 if (isset($bang[2]) )
 	$product_id=$bang[2];
@@ -366,19 +267,18 @@ if ($product_id != "20")
 	checkLicense($license_key,$scriptname);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 $jomresConfig_dbtype = 'mysql';
 if (!function_exists ('adodb_date_test_date') )
 	{
 	define('JOMRES_CMS', 'joomla' );
 	if (strstr($scriptname,'install_jomres.php'))
-		require_once(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
+		require_once(JOMRESINSTALLPATH_BASE.JRDS.'jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
 	else
 		require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
 	}
 else
 	define('JOMRES_CMS', 'elexismambo' );
-
+	
 global $_VERSION;
 if (is_null($_VERSION) )
 	{
@@ -889,7 +789,7 @@ function jomresToolTips($txt)
 	{
 	global $jomresConfig_live_site;
 	if (defined('_JOMRES_NEWJOOMLA') )
-		$ret='<a href="#" onmouseover="return overlib(\''.$txt.'\', ABOVE, RIGHT);" onmouseout="return nd();" ><img src="'.$jomresConfig_live_site."/".'components'."/".'com_jomres'."/".'images'."/".'SymbolInformation.png" height="12" width="12" border="0" alt="tooltip"/></a>';
+		$ret='<a href="#" onmouseover="return overlib(\''.$txt.'\', ABOVE, RIGHT);" onmouseout="return nd();" ><img src="'.$jomresConfig_live_site."/".'jomres'."/".'images'."/".'SymbolInformation.png" height="12" width="12" border="0" alt="tooltip"/></a>';
 	else
 		$ret=mosToolTip($txt);
 	return $ret;
@@ -1268,7 +1168,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
 					$link = $jomresConfig_live_site .'/'.$indexphp.'?option=com_jomres&task=editCustomText&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
-					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".$jomresConfig_live_site."/components/com_jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
+					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".$jomresConfig_live_site."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
 					$theText=$editingLink.$theText;
 					}
 				else
@@ -1981,7 +1881,7 @@ function outputLicenseFailureReasonMessage()
 	switch (JOMRES_LICRESULT)
 		{
 		case 0:
-			$message="<b>Unable to read key (it's possible that /media/key.php isn't readable by the web server)</b><br>";
+			$message="<b>Unable to read key (it's possible that /jomres/temp/key.php isn't readable by the web server)</b><br>";
 			$result='<center>Keyfile failed validation. Error message: '.$message.'. Please contact <a href="http://www.jomres.net">Jomres.net</a> for help in resolving this issue</center>';
 		break;
 		case 1:
@@ -2061,7 +1961,7 @@ function validateLicensekeyFile($license_key)
 	*/
 	// Home call details
 	$user_defined_string = '230a25e276da';
-	$key = new jomres_iono_keys($license_key, $user_defined_string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'media'.JRDS.'key.php');
+	$key = new jomres_iono_keys($license_key, $user_defined_string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php');
 	if (!defined('JOMRES_LICRESULT') );
 		define('JOMRES_LICRESULT',$key->result);
 	switch ($key->result)
@@ -2102,7 +2002,7 @@ function validateLicensekeyFile($license_key)
 			define('JOMRES_LICVALID',false);
 		break;
 		case 12:
-			@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'media'.JRDS.'key.php');
+			@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php');
 			define('JOMRES_LICVALID',false);
 		break;
 		case 13:
@@ -2697,7 +2597,7 @@ class jomres_getkeydata
 		$this->hostname = null;
 		$this->expires = null;
 		$this->expiry = null;
-		$key_location =	JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'media'.JRDS.'key.php';
+		$key_location =	JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php';
 		if (file_exists($key_location ) )
 			{
 			$key = file_get_contents($key_location);
