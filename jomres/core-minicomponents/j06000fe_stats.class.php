@@ -31,8 +31,8 @@ class j06000fe_stats
 			$this->template_touchable=false; return;
 			}
 		global $jomresConfig_live_site;
-		echo '<script language="javascript" type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/graphs.js"></script>';
-		echo '<script language="javascript" type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jrportal.js"></script>';
+		echo '<script language="javascript" type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/graphs.js"></script>';
+		echo '<script language="javascript" type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jrportal.js"></script>';
 		$defaultProperty=getDefaultProperty();
 		$MiniComponents->specificEvent('16000','viewproperty',array('id'=>$defaultProperty));
 		}

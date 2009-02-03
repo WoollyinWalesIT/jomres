@@ -47,7 +47,7 @@ class j00011debugging {
 		if ($thisJRUser->superPropertyManager)
 			{
 			$currentPage=urlencode($_SERVER['REQUEST_URI']);
-			$image="/components/com_jomres/images/bug_icon.png";
+			$image="/jomres/images/bug_icon.png";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->customToolbarItem("popupBug",jomresURL("index.php?option=com_jomres&task=reportbug&currentPage=$currentPage&Itemid=$Itemid"),"Report Bug",false,"",$image);

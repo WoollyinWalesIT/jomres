@@ -215,7 +215,7 @@ class j02180bookguestout {
 				else
 					{
 //					$fileLocation=checkForImage('property',$propertyUid);
-//					$output['IMAGE']=$jomresConfig_live_site."/components/com_jomres/images/jrlogo.png";
+//					$output['IMAGE']=$jomresConfig_live_site."/jomres/images/jrlogo.png";
 //					if ($fileLocation)
 //						$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
 					$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
@@ -270,7 +270,7 @@ class j02180bookguestout {
 					$tmpl->displayParsedTemplate();
 
 //					$fileLocation=checkForImage('property',$property_uid);
-//					$output['IMAGE']=$jomresConfig_live_site."/components/com_jomres/uploaded/jrlogo.png";
+//					$output['IMAGE']=$jomresConfig_live_site."/jomres/uploaded/jrlogo.png";
 //					if ($fileLocation)
 //						$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
 //

@@ -92,7 +92,7 @@ class j00015viewproperty
 				$starslink="";
 			  	for ($i=1;$i<=$stars;$i++)
 		    		{
-					$starslink.="<IMG SRC=\"".$jomresConfig_live_site."/components/com_jomres/images/star.png\" border=\"0\">";
+					$starslink.="<IMG SRC=\"".$jomresConfig_live_site."/jomres/images/star.png\" border=\"0\">";
 					}
 				}
 			$countryname=getSimpleCountry($property_country);

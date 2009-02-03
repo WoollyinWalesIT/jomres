@@ -33,7 +33,7 @@ class j16000listproperties
 		global $jomresConfig_live_site,$indexphp;
 		global $jrportalConfig,$jomresConfig_list_limit;
 		$rows=array();
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/components/com_jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		//require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/pageNavigation.php');
 
 		$crateFunctions=new jrportal_crate_functions();
@@ -92,7 +92,7 @@ class j16000listproperties
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/Save.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('saveCrates',$link,$text="Save",$submitOnClick=true,$submitTask="savecrates",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);

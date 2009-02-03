@@ -73,7 +73,7 @@ class j02220listguests {
 			$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
 			$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=editGuest&guestUid='.($guest->guests_uid);
 			$targetTask='bookGuestIn';
-			$image='/components/com_jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestEdit.png';
+			$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestEdit.png';
 			$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
 
 			$jrtb .= $jrtbar->endTable();
@@ -106,7 +106,7 @@ class j02220listguests {
 		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,$editable=false,$isLink=true) ;
 		$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=editGuest&Itemid='.$Itemid;
 		$targetTask='editGuest';
-		$image='/components/com_jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';
+		$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';
 		$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
 
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');

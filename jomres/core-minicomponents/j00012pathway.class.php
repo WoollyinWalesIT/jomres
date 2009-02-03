@@ -77,7 +77,7 @@ class j00012pathway {
 			{
 			$pathwayArray=array();
 			$pathway="";
-			$arrowImgSrc='<img src="components/com_jomres/images/arrow_right_grey.png" border="0" alt="arrow" />';  // Change this to change the arrow
+			$arrowImgSrc='<img src="jomres/images/arrow_right_grey.png" border="0" alt="arrow" />';  // Change this to change the arrow
 			$selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 			$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 			if ($thisJRUser->userIsManager==TRUE)

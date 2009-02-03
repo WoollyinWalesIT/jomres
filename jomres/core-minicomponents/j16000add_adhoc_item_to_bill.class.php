@@ -52,7 +52,7 @@ class j16000add_adhoc_item_to_bill
 
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/Save.png");
+				$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 				$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
 				$jrtb .= $jrtbar->customToolbarItem('saveCrate',$link,$text="Next",$submitOnClick=true,$submitTask="add_adhoc_item_to_bill",$image);
 				$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);
@@ -96,7 +96,7 @@ class j16000add_adhoc_item_to_bill
 				$output['MANAGER']=_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEMANAGER;
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$image = $jrtbar->makeImageValid("/components/com_jomres/images/next.png");
+				$image = $jrtbar->makeImageValid("/jomres/images/next.png");
 				$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
 				$jrtb .= $jrtbar->customToolbarItem('save',$link,$text="Next",$submitOnClick=true,$submitTask="add_adhoc_item_to_bill",$image);
 				$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);

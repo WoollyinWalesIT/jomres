@@ -36,7 +36,7 @@ class j16000showplugins
 			}
 		global $jomresConfig_live_site;
 		$installed_plugins=array();
-		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.'/components/com_jomres/remote_plugins/';
+		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/remote_plugins/';
 		if (!is_dir($jrePath) )
 			{
 			if (!@mkdir($jrePath))

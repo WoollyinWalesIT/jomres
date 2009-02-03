@@ -95,7 +95,7 @@ class j01055showroomdetails {
 //				$roomImageLocation=FALSE;
 //				$query="SELECT filelocation FROM #__jomres_room_images WHERE roomid = '".(int)$room_uid."'";
 //				$roomImageList =doSelectSql($query);
-//				$room_image=$jomresConfig_live_site."/components/com_jomres/images/noimage.gif";
+//				$room_image=$jomresConfig_live_site."/jomres/images/noimage.gif";
 //				if (count($roomImageList)>0)
 //					{
 //					foreach ($roomImageList as $imageLocation)

@@ -146,7 +146,7 @@ class j02190confirmationform {
 
 //		$fileLocation=checkForImage('property',$propertyUid);
 //		$property_image=array();
-//		$output['PROPERTYIMAGE']=$jomresConfig_live_site."/components/com_jomres/images/jrlogo.png";
+//		$output['PROPERTYIMAGE']=$jomresConfig_live_site."/jomres/images/jrlogo.png";
 //		if ($fileLocation)
 //			$output['PROPERTYIMAGE']=$jomresConfig_live_site.$fileLocation;
 		$output['PROPERTYIMAGE']=getImageForProperty("property",$propertyUid,$propertyUid);

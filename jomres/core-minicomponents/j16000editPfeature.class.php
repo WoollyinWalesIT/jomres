@@ -85,7 +85,7 @@ class j16000editPfeature
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/Save.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('savePfeature',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="savePfeature",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres&task=listPfeatures",'');

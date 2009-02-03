@@ -52,7 +52,7 @@ class j06000reportbug {
 		    $s=parseConfiguration();
 
 			$safemode=$s["PHP Core"]['safe_mode'][1];
-			$image="/components/com_jomres/images/jomresimages/small/EmailSend.png";
+			$image="/jomres/images/jomresimages/small/EmailSend.png";
 			$sitename="Site name : ".$jomresConfig_sitename;
 			$joomlaUrl="CMS url : ".$jomresConfig_live_site;
 			$jomresVersion="Jomres version : ".$mrConfig['version'];

@@ -63,7 +63,7 @@ class j16000addproperty
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/next.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/next.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('saveCrate',$link,$text="Next",$submitOnClick=true,$submitTask="addproperty2",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);

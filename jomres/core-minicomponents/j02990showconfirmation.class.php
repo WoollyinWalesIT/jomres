@@ -312,7 +312,7 @@ class j02990showconfirmation {
 		if (!$userIsManager && $mrConfig['useOnlinepayment'] !="0" )
 			{
 			$gatewaylist 	= 	array();
-			$gatewaydir		=	$jomresConfig_live_site."/administrator/components/com_jomres/plugins/gateways/";
+			$gatewaydir		=	$jomresConfig_live_site."/administrator/jomres/plugins/gateways/";
 			$query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '".(int)$property_uid."' AND setting = 'active' AND value = '1'";
 			$gatewayDeets	=	doSelectSql($query);
 			if (count($gatewayDeets)>0)
