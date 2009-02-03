@@ -1,0 +1,244 @@
+<patTemplate:tmpl name="pageoutput">
+<style>
+.REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
+td.required {color:red;}
+--></style>
+<script language="JavaScript" type="text/javascript">
+function validatePropertyRegistration()
+	{
+	valid = true;
+	missingfields = "";
+	document.regForm.property_name.className="inputbox";
+	document.regForm.property_street.className="inputbox";
+	document.regForm.property_town.className="inputbox";
+	document.regForm.property_postcode.className="inputbox";
+	document.regForm.property_tel.className="inputbox";
+	document.regForm.property_email.className="inputbox";
+	document.regForm.property_description.className="inputbox";
+	if ( document.regForm.property_name.value == "" )
+		{
+		document.regForm.property_name.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.property_street.value == "" )
+		{
+		document.regForm.property_street.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.property_town.value == "" )
+		{
+		document.regForm.property_town.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.property_street.value == "" )
+		{
+		document.regForm.property_street.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.property_postcode.value == "" )
+		{
+		document.regForm.property_postcode.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.property_tel.value == "" )
+		{
+		document.regForm.property_tel.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.property_description.value == "" )
+		{
+		document.regForm.property_description.className="REmail";
+		valid = false;
+		}
+	
+	var emailID=document.regForm.property_email
+	if ((emailID.value==null)||(emailID.value=="")){
+		document.regForm.property_email.className="REmail";
+		emailID.focus()
+		valid = false;
+		}
+	else
+		{
+		if (echeck(emailID.value)==false){
+			document.regForm.property_email.className="REmail";
+			emailID.value=""
+			emailID.focus()
+			 valid = false;
+			 }
+		}
+	if (valid)
+		{
+		document.regForm.action = "index.php?option=com_jomres&task=saveRegisterProp"
+		document.regForm.submit();
+		}
+	else
+		{
+		 alert ( "{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON}" );
+		}
+	}
+	/**
+	 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+	 */
+function echeck(str) {
+	var at="@"
+	var dot="."
+	var lat=str.indexOf(at)
+	var lstr=str.length
+	var ldot=str.indexOf(dot)
+	if (str.indexOf(at)==-1){
+		alert("Invalid E-mail ID")
+		 return false
+		}
+	if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		 alert("Invalid E-mail ID");
+		 return false;
+		}
+	if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.indexOf(at,(lat+1))!=-1){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.indexOf(dot,(lat+2))==-1){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.indexOf(" ")!=-1){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	return true
+	}
+	
+
+jQuery(document).ready(function () {
+    var select = '#mySelect';
+    jQuery(select).attr('selectedIndex', '-1');
+    jQuery(select).change(function () {
+        jQuery(select + ' option').each(function () {
+            jQuery('#' + this.value).hide();
+        });
+        jQuery(select + ' option:selected').each(function () {
+            jQuery('#' + this.value).show();
+        });
+    }).change();
+});
+</script>
+
+<form action="index.php" method="post" name="regForm">
+<input type="button" name="send2" value="Submit" class="button" onclick="validatePropertyRegistration();"/>
+<table class="jradmin_table">
+	<tr>
+		<td class="jradmin_field_ca">{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1}<br />{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</td>
+	</tr>
+	<tr>
+		<td>
+		<br />
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HPROPERTY_TYPE}</td>
+					<td colspan="2" class="jradmin_field_la">{PROPERTY_TYPE_DROPDOWN}</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{ISTHISANMRP}</td>
+					<td colspan="2" class="jradmin_field_la">{ISTHISANMRP_DROPDOWN}<br />{ISTHISANMRP_DESC}</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HNAME}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_name" value="{PROPERTY_NAME}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTREET}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_street" value="{PROPERTY_STREET}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HTOWN}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_town" value="{PROPERTY_TOWN}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="10" name="property_postcode" value="{PROPERTY_POSTCODE}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HTELEPHONE}</td>	
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_tel" value="{PROPERTY_TEL}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HFAX}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_fax" value="{PROPERTY_FAX}" /> </td>
+					<td class="required"> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HEMAIL}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="40" name="property_email" value="{PROPERTY_EMAIL}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTARS}</td>
+					<td colspan="2" class="jradmin_field_la">{STARSDROPDOWN}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HFEATURES}</td>
+					<td colspan="2" class="jradmin_field_la">{FEATURES}</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="jradmin_field_la">
+						<patTemplate:tmpl name="globalPfeatures">	
+						<input type="checkbox" name="pid[]" value="{PID}"> {FEATURE}
+						</patTemplate:tmpl>
+					</td>
+				</tr>
+				<tr>
+					<td>{HMAPPINGLINK}</td>
+					<td colspan="2"><input class="inputbox" type="text" size="40" name="property_mappinglink" value="{PROPERTY_MAPPINGLINK}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPROPDESCRIPTION}</td>
+					<td class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_description">{PROPERTY_DESCRIPTION}</textarea></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCHECKINTIMES}</td>
+					<td colspan="2" class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_checkin_times">{PROPERTY_CHECKIN_TIMES}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HAREAACTIVITIES}</td>
+					<td colspan="2" class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_area_activities">{PROPERTY_AREA_ACTIVITIES}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HDRIVINGDIRECTIONS}</td>
+					<td colspan="2" class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_driving_directions">{PROPERTY_DRIVING_DIRECTIONS}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HAIRPORTS}</td>
+					<td colspan="2" class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_airports">{PROPERTY_AIRPORTS}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HOTHERTRANSPORT}</td>
+					<td colspan="2" class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_othertransport">{PROPERTY_OTHERTRANSPORT}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPOLICIESDISCLAIMERS}</td>
+					<td colspan="2" class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">{PROPERTY_POLICIES_DISCLAIMERS}</textarea></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="property_region" value="{PROPERTY_REGION}" />
+<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="button" name="send" value="Submit" class="button" onclick="validatePropertyRegistration();"/>
+</form>
+</patTemplate:tmpl>

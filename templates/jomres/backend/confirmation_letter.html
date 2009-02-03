@@ -1,0 +1,170 @@
+<style type="text/css">
+<!--
+.style1 {font-size: 12px}
+-->
+</style>
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<table bgcolor=#ffffff width=700>
+	<tr>
+		<td>
+			<img src="{PROPERTYIMAGE}">
+		</td>
+	</tr>
+</table>
+<table width="100%" border="0">
+	<tr>
+		<td width="23%">
+			<table border="0" align="left" bgcolor=#ffffff width="100%">
+				<tr>
+					<td>{GUEST_FIRSTNAME} {GUEST_SURNAME}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_HOUSE}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_STREET}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_TOWN}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_REGION}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_COUNTRY}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_POSTCODE}</td>
+				</tr>
+			</table>
+		</td>
+		<td width="23%">&nbsp;
+		</td>
+		<td width="54%">
+			<table align="right" bgcolor=#ffffff width="20%">
+				<tr>
+					<td align="right">&nbsp;</td>
+					<td align="right"><b>{PROP_NAME}</b></td>
+				</tr>
+				<tr>
+					<td align="right">&nbsp;</td>
+					<td align="right">{PROP_STREET}</td>
+				</tr>
+				<tr>
+					<td align="right">&nbsp;</td>
+					<td align="right">{PROP_POSTCODE}</td>
+				</tr>
+				<tr>
+					<td align="right">&nbsp;</td>
+					<td align="right">{PROP_REGION}</td>
+				</tr>
+				<tr>
+					<td align="right">&nbsp;</td>
+					<td align="right">{PROP_COUNTRY}</td>
+				</tr>
+				<tr>
+					<td align="right">{HTELEPHONE}</td>
+					<td align="right">{PROP_TEL}</td>
+				</tr>
+				<tr>
+					<td align="right">{HFAX}</td>
+					<td align="right">{PROP_FAX}</td>
+				</tr>
+				<tr>
+					<td align="right">{HEMAIL}</td>
+					<td align="right">{PROP_EMAIL}</td>
+				</tr>
+				<tr>
+					<td align="right">{HWEBSITE}</td>
+					<td align="right">{PROP_URL}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<table bgcolor=#ffffff width=690 border="0">
+	<tr>
+		<td>{BL_DEAR} {GUEST_FIRSTNAME} {GUEST_SURNAME}</td>
+	</tr>
+	<tr>
+		<td>{BL_INTRO1} {PROP_NAME}{BL_INTRO2}</td>
+		</tr>
+</table>
+<table bgcolor=#ffffff width=690 border="0">
+	<tr>
+		<td colspan="1">{BL_CHECKIN}</td>
+	</tr>
+</table>
+<table bgcolor=#ffffff width=690 border="0">
+	<tr>
+		<td colspan="1">{BL_LOOKFORWARD}{ARRIVAL} {BL_HAVEAPLEASANTSTAY}</td>
+	</tr>
+</table>
+<table width=685 border="0"	bgcolor=#ffffff>
+	<tr>
+		<td colspan="4"><b>{RESV_DETAILS}</b></td>
+	</tr>
+	<tr>
+	 	<td>{HNAME}</td>
+	 	<td>{ROOM_NAME}</td>
+	 	<td>{HNUMBER}</td>
+	 	<td>{ROOM_NUMBER}</td>
+	</tr>
+	<tr>
+		<td>{HARRIVAL}</td>
+		<td>{ARRIVAL}</td>
+		<td>{HDEPARTURE}</td>
+		<td>{DEPARTURE}</td>
+	</tr>
+	<tr>
+		<td>{HBOOKINGADULTS}</td>
+		<td>{ADULTS}</td>
+		<td>{HBOOKINGCHILDREN}</td>
+		<td>{CHILDREN}</td>
+	</tr>
+	<tr>
+		<td>{HDEPOSITREQUIRED}</td>
+		<td>{DEPOSIT_REQUIRED}</td>
+		<td>{HCONTRACT_TOTAL}</td>
+		<td>{CONTRACT_TOTAL}</td>
+	</tr>
+	<tr>
+		<td>{HROOMTYPE}</td>
+		<td>{ROOMTYPE}</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<patTemplate:tmpl name="rows" unusedvars="nbsp">
+{TITLE}&nbsp;{QUANTITY}
+</patTemplate:tmpl>
+<p>&nbsp;</p>
+
+<table bgcolor=#ffffff width=690 border="0">
+	<tr>
+		<td>
+			<ol type="i">
+			<span class="style1">{SP_SMALLPRINTINTRO}
+			</li>
+			</span>
+			<li class="style1">{SP_BINDINGCONTRACT}</li>
+			<li class="style1">{SP_NOALLOWANCE}</li>
+			<li class="style1">{SP_CANCELLATIONCHARGES_INTRO}</li>
+			<ul class="style1"><li>
+			{SP_30DAYSPLUS}
+			{SP_DEPOSITONLY}
+			</li><li>
+			{SP_1530DAYS}
+			{SP_50PERCENT}
+			</li><li>
+			{SP_ARRIVALDATETO14DAYS}
+			{SP_100_PERCENT}
+			</li></ul>
+			<li class="style1">{SP_VAT}</li>
+			</ol>
+		</td>
+	</tr>
+</table>
+</patTemplate:tmpl>

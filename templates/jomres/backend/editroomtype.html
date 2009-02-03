@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="pageoutput">
+<form action="{INDEX}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table  class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title" colspan="4">{PAGETITLE}</th>
+	</tr>
+	<tr>
+		<th class="jomres_title">{HABBV}</th>
+		<th class="jomres_title">{HDESC}</th>
+		<th class="jomres_title">{HJOMRES_A_ICON}</th>
+		<th class="jomres_title">{HSRP_ONLY}</th>
+	</tr>
+	<tr>
+		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="room_class_abbv" value="{CLASSABBV}"></td>
+		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="room_class_full_desc" value="{CLASSDESC}"></td>
+		<td class="jradmin_subheader_la">
+			<patTemplate:tmpl name="rows">
+			<input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" />
+			</patTemplate:tmpl>
+		</td>
+		<td class="jradmin_subheader_la">{SRP_ONLY}</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="roomClassUid" value="{ROOMCLASSUID}">
+<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="{TASK}" />
+</form>
+<hr>
+</patTemplate:tmpl>

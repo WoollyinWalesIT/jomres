@@ -1,0 +1,235 @@
+<patTemplate:tmpl name="pageoutput">
+<script language="javascript">
+<!--
+function OnChange(dropdown)
+	{	
+	var myindex	= dropdown.selectedIndex
+	var baseURL= "{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=editProperty&Itemid={ITEMID}"
+	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
+	return true;
+	}
+//-->
+</script>
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>{DELETEWARNING}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jomres_message">{CHANGECOUNTRYWARNING}<br /></td>
+				</tr>
+			</table>
+			<table width="90%" align="center" class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HCOUNTRY}</td>
+					<td class="jradmin_field_la">{COUNTRIESDROPDOWN}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HREGION}</td>
+					<td class="jradmin_field_la">{REGIONDROPDOWN}</td>
+				</tr>
+				<tr>
+					<td colspan="2" width="10%">&nbsp;</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPROPERTY_TYPE}</td>
+					<td class="jradmin_field_la">{PROPERTY_TYPE_DROPDOWN}</td>
+				<tr>
+					<td colspan="2" width="10%">&nbsp;</td> 
+				</tr>
+					<td class="jradmin_subheader_la">{HNAME}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_name" value="{PROPERTY_NAME}" /> </td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTREET}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_street" value="{PROPERTY_STREET}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HTOWN}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_town" value="{PROPERTY_TOWN}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="10" name="property_postcode" value="{PROPERTY_POSTCODE}" /> </td>	
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HTELEPHONE}</td>	
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_tel" value="{PROPERTY_TEL}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HFAX}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_fax" value="{PROPERTY_FAX}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HEMAIL}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="30" name="property_email" value="{PROPERTY_EMAIL}" />
+				</tr>
+				<tr>
+					<td colspan="2" width="10%">&nbsp;</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTARS}</td>
+					<td class="jradmin_field_la">{STARSDROPDOWN}</td>
+				</tr>
+				<tr>
+					<td colspan="2" width="10%">&nbsp;</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HMAPPINGLINK}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="40" name="property_mappinglink" value="{PROPERTY_MAPPINGLINK}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_la">Lat: <input class="inputbox" type="text" size="40" name="lat" value="{LAT}" /> </td>
+					<td class="jradmin_field_la">Long: <input class="inputbox" type="text" size="40" name="long" value="{LONG}" /> </td>
+				</tr>
+			</table>
+			<br />
+			<table border="0" class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HFEATURES}</td>
+				</tr>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td class="jradmin_field_la">
+									<patTemplate:tmpl name="globalPfeatures">
+									{FEATURE}<input type="checkbox" name="pid[]" value="{PID}" {ISCHECKED}>{BR}
+									</patTemplate:tmpl>
+								</td>
+							</tr>
+						</table>
+						<br />
+						<table class="jradmin_table">
+							<tr>
+								<td class="jradmin_subheader_ca">{HPROPDESCRIPTION}</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca">{PROPERTY_DESCRIPTION}</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">{HCHECKINTIMES}</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca">{PROPERTY_CHECKIN_TIMES}</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">{HAREAACTIVITIES}</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca">{PROPERTY_AREA_ACTIVITIES}</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">{HDRIVINGDIRECTIONS}</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca">{PROPERTY_DRIVING_DIRECTIONS}</td>
+							</tr>
+								<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">{HAIRPORTS}</td>
+								</tr>
+								<tr>
+								<td class="jradmin_field_ca">{PROPERTY_AIRPORTS}</td>
+							</tr>
+								<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">{HOTHERTRANSPORT}</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca">{PROPERTY_OTHERTRANSPORT}</td>
+							</tr>
+								<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">{HPOLICIESDISCLAIMERS}</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca">{PROPERTY_POLICIES_DISCLAIMERS}</td>
+							</tr>
+							
+							<tr>
+								<td class="jradmin_subheader_ca">Meta title</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca"><input class="inputbox" type="text" size="70" name="metatitle" value="{METATITLE}" /></td>
+							</tr>
+							<tr>
+								<td class="jradmin_subheader_ca">Meta description</td>
+							</tr>
+							<tr>
+								<td class="jradmin_field_ca"><input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}" /></td>
+							</tr>
+							
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveProperty" />
+{TOOLBAR2}
+</form>
+
+<br />
+
+<form enctype="multipart/form-data" action="{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=uploadPropertyImage" method="post">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td colspan="2" class="jradmin_subheader_ca">{UPLOADIMAGE}</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="jomres_message">{SAVEBEFOREUPLOADWARNING}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image'/></td>
+					<td class="jradmin_field_ca"><input type="hidden" name="Itemid" value="{ITEMID}" /><input type="submit" value="{UPLOADIMAGE}" class="button" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>	
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{DELETEIMAGE}</td>
+					<td class="jradmin_field_ca">{IMAGE}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+</patTemplate:tmpl>

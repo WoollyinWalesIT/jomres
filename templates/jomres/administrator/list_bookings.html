@@ -1,0 +1,40 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<link rel="stylesheet" type="text/css" href="{LIVESITE}/components/com_jomres/css/tables.css" title="" />
+{JOMRESTOOLBAR}
+Note that only bookings taken since Jomres 2.7.5 was installed will be listed here.
+<table cellpadding="0" cellspacing="0" class="sortable-onload-3-reverse rowstyle-alt no-arrow paginate-15">
+	<thead>
+	<tr>
+	<th class="sortable-text">{HPROPERTYID}</th>
+	<th class="sortable-numeric">{HGUESTID}</th>
+	<th class="sortable-numeric">{HINVOICEID}</th>
+	<th class="sortable-numeric">{HBOOKINGTOTAL}</th>
+	<th class="sortable-numeric">{HCONTRACTID}</th>
+	<th class="sortable-text">{HCONTRACTNUMBER}</th>
+	<th class="sortable-numeric">{HCURRENCYCODE}</th>
+	<th class="sortable">{HCREATED}</th>
+	<th class="sortable-numeric">{HARCHIVED}</th>
+	<th class="sortable">{HARCHIVEDDATE}</th>
+	</tr>
+
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class="{STYLE}">
+		<td>{PROPERTY_UID}</td>
+		<td>{GUEST_ID}</td>
+		<td>{INVOICE_ID}</td>
+		<td>{BOOKING_TOTAL}</td>
+		<td>{CONTRACT_ID}</td>
+		<td>{TAG}</td>
+		<td>{CURRENCY_CODE}</td>
+		<td>{CREATED}</td>
+		<td>{ARCHIVED}</td>
+		<td>{ARCHIVED_DATE}</td>
+	</tr>
+	</patTemplate:tmpl>
+
+	</tbody>
+</table>
+
+</patTemplate:tmpl>

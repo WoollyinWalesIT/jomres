@@ -1,0 +1,50 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="nbsp">
+
+{GATEWAYNAME}
+{GATEWAYLOGO}
+<hr>
+<form action="index.php?option=com_jomres&task=savePlugin" method="post" name="adminForm">
+<table>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_ACTIVE}</td>
+         <td align="left" valign="top">{ACTIVE}</td>
+         <td align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_CURRENCYCODE}</td>
+         <td align="left" valign="top"><input type="text" class="jomres_inputbox" name="currencycode" value="{CURRENCYCODE}" /></td>
+         <td align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_SANDBOX}</td>
+         <td align="left" valign="top">{USESANDBOX}</td>
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_SANDBOX_DESC}</td>
+      </tr>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_USEIPN}</td>
+         <td align="left" valign="top">{USEIPN}</td>
+         <td align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_PENDINGOK}</td>
+         <td align="left" valign="top">{PENDINGOK}</td>
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_PENDINGOK_DESC}</td>
+      </tr>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_IPNEMAIL}</td>
+         <td align="left" valign="top">{RECEIVEIPNEMAIL}</td>
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_IPNEMAIL_DESC}</td>
+      </tr>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_PAYPAL_EMAIL}</td>
+         <td align="left" valign="top"><input type="text" class="jomres_inputbox" name="paypalemail" value="{PAYPALEMAIL}" /></td>
+         <td align="left" valign="top">&nbsp;</td>
+      </tr>   
+</table>
+{JR_GATEWAY_CONFIG_NOTES}
+{JOMRESTOKEN}
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="savePlugin" />
+<input type="submit" value="Submit" class="button" >
+</form>
+</patTemplate:tmpl>

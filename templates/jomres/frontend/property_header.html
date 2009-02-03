@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="property_header">
+<div class="panelwrapper">
+	<div class="innerwrapper">
+		<div class="header">
+			<div class="header_image">
+				<patTemplate:tmpl name="property_image">
+					<img src="{IMAGE}" alt="property_image" border="0" width="150" height="110" onmouseover="return overlib('&lt;img src={IMAGE} /&gt;', BELOW, LEFT);" onmouseout="return nd();" />
+				</patTemplate:tmpl>
+			</div>
+			<div class="header_property">
+				<b><patTemplate:tmpl name="property_name"><patTemplate:var name="property_name" /></patTemplate:tmpl></b>
+				&nbsp;
+				<patTemplate:tmpl name="stars"><patTemplate:var name="stars" /></patTemplate:tmpl>
+			</div>
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>
+

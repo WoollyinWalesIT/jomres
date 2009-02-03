@@ -1,0 +1,112 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<style type="text/css">
+.tariffinputbox {
+	padding: 1px;
+	 font-size: 9px;
+	border:solid 1px #cccccc;
+	background-color: #ffffff;
+}
+</style>
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+		</tr>
+		<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca" colspan="2">{HTARIFFTITLE}</td>
+					<td class="jradmin_field_ca" colspan="2"><input type="text" size="20" class="inputbox" name="tarifftypename" value="{TARIFFTYPENAME}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_ca">{HMINDAYS}</td>
+					<td class="jradmin_subheader_ca">{HMAXDAYS}</td>
+					<td class="jradmin_subheader_ca">{HMINPEOPLE}</td>
+					<td class="jradmin_subheader_ca">{HMAXPEOPLE}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="mindays" value="{MINDAYS}" /></input></td>
+					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="maxdays" value="{MAXDAYS}" /></input></td>
+					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="minpeople" value="{MINPEOPLE}" /></td>
+					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="maxpeople" value="{MAXPEOPLE}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_ca">{HROOMTYPEDROPDOWN}</td>
+					<td class="jradmin_subheader_ca">&nbsp;</td>
+					<td class="jradmin_subheader_ca">&nbsp;</td>
+					<td class="jradmin_subheader_ca">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca">{ROOMTYPEDROPDOWN}</input></td>
+					<td class="jradmin_field_ca">&nbsp;</input></td>
+					<td class="jradmin_field_ca">&nbsp;</td>
+					<td class="jradmin_field_ca">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+				<patTemplate:tmpl name="prefills" unusedvars="nbsp">
+					<td class="jradmin_field_ca">
+					{INPUT}
+					</td>
+				</patTemplate:tmpl>
+				</tr>
+				<tr>
+				<patTemplate:tmpl name="prefillbuttons" unusedvars="nbsp">
+					<td class="jradmin_subheader_ca">
+					{BUTTON}{JS}
+					</td>
+				</patTemplate:tmpl>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	
+</table>
+
+
+<table class="jradmin_innerwrapper">
+	<patTemplate:tmpl name="daterows" unusedvars="nbsp">
+	<tr>
+		<td class="jradmin_subheader_ca">{YEAR} {MONTH}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{DAYS1}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca">{INPUTS1}</td>
+				</tr>
+			</table>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{DAYS2}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca">{INPUTS2}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+
+{JOMRESTOKEN}
+<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveTariff" />
+</form>
+</patTemplate:tmpl>

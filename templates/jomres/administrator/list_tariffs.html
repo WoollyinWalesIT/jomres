@@ -1,0 +1,34 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+
+{JOMRESTOOLBAR}
+
+<table>
+	<tr>
+         <td>{HLINKTEXT}</td>
+         <td><b>{HROOMCLASS}</b></td>
+		 <td>{HRATETITLE}</td>         
+         <td>{HMINDAYS}</td>
+         <td>{HMAXDAYS}</td>
+         <td>{HMINPEOPLE}</td>
+         <td>{HMAXPEOPLE}</td>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+         <td>{LINKTEXT}</td>
+         <td><b>{ROOMCLASS}</b></td>
+		 <td>{RATETITLE}</td>         
+         <td>{MINDAYS}</td>
+         <td>{MAXDAYS}</td>
+         <td>{MINPEOPLE}</td>
+         <td>{MAXPEOPLE}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+
+
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveTariff" />
+</form>
+</patTemplate:tmpl>

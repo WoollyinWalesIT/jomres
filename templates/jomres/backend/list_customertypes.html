@@ -1,0 +1,51 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HEDITLINK}</td>
+					<td class="jradmin_subheader_la">{HTYPE}</td>
+					<td class="jradmin_subheader_la">{HNOTES}</td>
+					<td class="jradmin_subheader_ca">{HMAXIMUM}</td>
+					<td class="jradmin_subheader_ca">{HISPERCENTAGE}</td>
+					<td class="jradmin_subheader_ca">{HPOSNEG}</td>
+					<td class="jradmin_subheader_ca">{HVARIANCE}</td>
+					<td class="jradmin_subheader_ca">{HORDER}</td>
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_rowtoolbar">
+						<table cellspacing="0" border="0">
+							<tr>
+								<td>{EDITLINK}</td>
+								<td>{PUBLISHLINK}</td>
+							</tr>
+						</table>
+					</td>
+					<td class="jradmin_field_la">{TYPE}</td>
+					<td class="jradmin_field_la">{NOTES}</td>
+					<td class="jradmin_field_ca">{MAXIMUM}</td>
+					<td class="jradmin_field_ca">{ISPERCENTAGE}</td>
+					<td class="jradmin_field_ca">{POSNEG}</td>
+					<td class="jradmin_field_ca">{VARIANCE}</td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:center" size="3" name="order[{ID}]" value="{ORDER}"></td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="newExtra" />
+</form>
+
+</patTemplate:tmpl>

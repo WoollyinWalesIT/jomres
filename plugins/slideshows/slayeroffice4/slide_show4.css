@@ -1,0 +1,87 @@
+#mContainer {
+	position:relative;
+	display:block;
+	width:500px;
+	height:400px;
+	border:2px solid #000;
+	margin:auto;
+	background-color:#5A463C;
+	z-index:10;
+}
+
+#mContainer h1 {
+	margin:0;
+	padding:3px 15px 0 0;
+	position:absolute;
+	font:bold 14px verdana,arial;
+	color:#ffffff;
+	top:0px;
+	left:0px;
+	width:480px;
+	text-align:right;
+}
+
+#caption {
+	position:absolute;
+	top:410px;
+	width:500px;
+	text-align:center;
+	font:10px verdana;
+}
+
+#imageContainer {
+	position:relative;
+	top:20%;
+	margin:auto;
+	background-color:#ffffff;	
+	border:1px solid #5A463C;
+}
+
+#imageContainer img {
+	border:1px solid #F8F7E4;
+}
+
+#navContainer {
+	position:absolute;
+	bottom:-20px;
+	left:-5px;
+	font:10px verdana,arial;
+}
+
+#navContainer a {
+	margin:5px;
+	padding:2px;
+	text-decoration:none;
+	color:#649682;
+}
+
+/* the following styles are unrelated to the applications function */
+
+#credits {
+	position:relative;
+	margin:auto;
+	margin-top:40px;
+	width:400px; 
+	font-family:verdana;
+	font-size:9px;
+}
+
+hr {
+	width:400px;
+	height:1px;
+	text-align:left;
+	color:#000;
+	background:#000;
+	border-style:none;
+	clear:both;
+	margin:5px 0 5px 0;
+}
+
+#credits img {
+	float:left;
+	margin-right:10px;
+	margin-bottom:5px;
+	border:1px solid #000000;
+	width:80px;
+	height:79px;
+}

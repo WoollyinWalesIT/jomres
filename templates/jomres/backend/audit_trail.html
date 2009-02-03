@@ -1,0 +1,48 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="" method="post" name="adminForm">
+<table class="jradmin_table">
+	<tr>
+		<td class="jradmin_subheader_ca"><span class="small">{HDATEFILTER}</span></td>
+		<td class="jradmin_subheader_ca"><span class="small">{HUSERFILTER}</span></td>
+		<td class="jradmin_subheader_ca"><span class="small">{HOPERATIONFILTER}</span></td>
+	</tr>
+	<tr>
+		<td class="jradmin_field_ca"><span class="small">{DATEFILTER}</span></td>
+		<td class="jradmin_field_ca"><span class="small">{USERFILTER}</span></td>
+		<td class="jradmin_field_ca"><span class="small">{OPERATIONFILTER}</span></td>
+	</tr>
+</table>
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}{COUNTER}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="0" width="100%" class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca"><span class="small">{HDATE}</span></td>
+					<td class="jradmin_subheader_ca"><span class="small">{HTIME}</span></td>
+					<td class="jradmin_subheader_ca"><span class="small">{HUSER}</span></td>
+					<td class="jradmin_subheader_ca"><span class="small">{HOPERATION}</span></td>
+					<td class="jradmin_subheader_ca"><span class="small">{HVIEWSQL}</span></td>
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_field_la"><span class="small">{THEDATE}</span></td>
+					<td class="jradmin_field_la"><span class="small">{THETIME}</span></td>
+					<td class="jradmin_field_ca"><span class="small">{USER}</span></td>
+					<td class="jradmin_field_la"><span class="small">{OPERATION}</span></td>
+					<td class="jradmin_field_ca"><span class="small">{VIEWSQL}</span></td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="showAuditTrail" />
+</form>
+</patTemplate:tmpl>

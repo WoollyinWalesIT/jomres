@@ -1,0 +1,71 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script type="text/javascript">
+function toggleDetail(id,number) 
+	{
+	for (i=1;i<=number;i++) 
+		{
+		body=document.getElementById(id+i);
+		if (body) 
+			{
+			if (body.style.display == 'none') 
+				{
+				try 
+					{
+					body.style.display='table-row';
+					} 
+				catch(e) 
+					{
+					body.style.display = 'block';
+					}
+				}
+			else 
+				{
+				body.style.display = 'none';
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+.odd {
+	background-color: #f1e8e6;
+	}
+.even {
+	background-color: #f1f3f5;
+	}
+</style>
+<form action="" method="post" name="adminForm">
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td width="100%" class="sectionname"><img src="images/query.png" border="0" alt="" />{TITLE}</td>
+	</tr>
+	<tr>
+		<td align="left">{BACKLINK}</td><td align="right"><a href="{DELETELINK}"><img src="{LIVESITE}/components/com_jomres/jomresimages/small/WasteBasket.png" border="0" alt="" /></a></td>
+	</tr>
+</table>
+<div id="tbl">
+	<table cellpadding="4" cellspacing="0" border="0" width="100%" class="adminlist">
+		<tr>
+			<th class="contentheading">&nbsp;</td>
+			<th align="left" class="contentheading" id="datetime">{DATETIME}</td>
+			<th align="left" class="contentheading" id="">{TASK}</td>
+			<th align="left" class="contentheading" id="">{MESSAGE}</td>
+		</tr class="">
+		<patTemplate:tmpl name="rows">
+		<tr class={STYLE}>
+			<td scope="row"><img src="{LIVESITE}/components/com_jomres/images/info.png" border="0" onclick="toggleDetail('provider{COUNTER}_type',1)"></td>
+			<td>{DATETIME}</td>
+			<td>{TASK}</td>
+			<td>{MESSAGEFULL}</td>
+		</tr>
+		<tr style="display:none; background-color:#80fb43" id="provider{COUNTER}_type1" class="">
+			<td colspan="4">{JOMRESSESSION}&nbsp;::&nbsp;{REQUESTURI}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</table>
+</div>
+<input type="hidden" name="task" value="cpanel" />
+</form>
+</patTemplate:tmpl>
+

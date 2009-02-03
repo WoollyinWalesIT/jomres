@@ -1,0 +1,50 @@
+<patTemplate:tmpl name="pageoutput" >
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key={APIKEY}" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var map = null;
+var geocoder = null;
+
+function showAddress(address) {
+	if (geocoder) {
+		geocoder.getLatLng(
+			address,
+			function(point) {
+				if (!point) 
+					{
+					//alert(address + " not found");
+					a = 1;
+					} else {
+					map.setCenter(point, 13);
+				var marker = new GMarker(point);
+				map.addOverlay(marker);
+				}
+			}
+		);
+	}
+}
+//]]>
+</script>
+<div class="panelwrapper">
+	<table class="innerwrapper">
+		<tr>
+			<td class="header" colspan="2">
+				<div id="map" style="width: 434px; height: 300px"></div>
+			</td>
+	</table>
+</div>
+<script>
+
+jQuery(document).ready(function() {
+	if (GBrowserIsCompatible()) {
+		map = new GMap2(document.getElementById("map"));
+		//map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+		map.addControl(new GSmallMapControl());
+		map.addControl(new GMapTypeControl());
+		geocoder = new GClientGeocoder();
+		showAddress("{ADDRESS}");
+		};
+	
+	});
+</script>
+</patTemplate:tmpl>

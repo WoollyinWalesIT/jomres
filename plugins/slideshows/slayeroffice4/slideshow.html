@@ -1,0 +1,145 @@
+<patTemplate:tmpl name="pageoutput">
+<style> <!--
+#mContainer {
+	position:relative;
+	display:block;
+	width:250px;
+	height:250px;
+	border:2px solid #fff;
+	margin:auto;
+	background-color:#fff;
+	z-index:10;
+}
+
+#mContainer h1 {
+	margin:0;
+	padding:3px 15px 0 0;
+	position:absolute;
+	font:bold 14px verdana,arial;
+	top:0px;
+	left:0px;
+	width:480px;
+	text-align:right;
+}
+
+#caption {
+	position:relative;
+	top:80px;
+	width:+60px;
+	text-align:center;
+	font:10px verdana;
+}
+
+#imageContainer {
+	position:relative;
+	top:20%;
+	margin:auto;
+	background-color:#F8F7E4;	
+	border:1px solid #cccccc;
+}
+
+#imageContainer img {
+	border:1px solid #F8F7E4;
+}
+
+#navContainer {
+	position:absolute;
+	bottom:-20px;
+	left:-5px;
+	font:10px verdana,arial;
+}
+
+#navContainer a {
+	margin:5px;
+	padding:2px;
+	text-decoration:none;
+
+}
+
+/* the following styles are unrelated to the applications function */
+
+#credits {
+	position:relative;
+	margin:auto;
+	margin-top:40px;
+	width:400px; 
+	font-family:verdana;
+	font-size:9px;
+}
+
+hr {
+	width:400px;
+	height:1px;
+	text-align:left;
+	color:#000;
+	background:#000;
+	border-style:none;
+	clear:both;
+	margin:5px 0 5px 0;
+}
+
+#credits img {
+	float:left;
+	margin-right:10px;
+	margin-bottom:5px;
+	border:1px solid #000000;
+	width:80px;
+	height:79px;
+}
+--> </style>
+
+<script type="text/javascript" src="{SLIDESHOWRELPATH}slide_show4.js"></script>
+<table id="panelwrapper">
+	<tr>
+		<td >
+			<table class="innerwrapper">
+				<tr>
+					<td class="slideshow_header">
+						{PROPERTYNAME}
+					</td>
+				</tr>
+				<tr>
+					<td class="slideshow_content">
+								
+<div id="mContainer">
+
+<!-- 
+The xheight and xwidth attributes are here for MSIE's benefit. 
+It will return 0x0 for an image who's display is set to none, which makes it impossible to get the dimensions programatically. 
+This fails for getAttribute, looping over the attributes and every other way I could think of.
+-->
+	<div style="width: {CONTAINER_W}px; height: {CONTAINER_H}px;" id="imageContainer">
+		<patTemplate:tmpl name="rows">
+		<img style="display: {DISPLAY}; opacity: {OPACITY};" src="{IMAGE}" alt="{THEALT}" xwidth="{IWIDTH}" xheight="{IHEIGHT}" height="{IHEIGHT}" width="{IWIDTH}"></patTemplate:tmpl>
+	</div>
+</div>
+
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<!-- content below is unrelated to the application function -->
+<!-- 
+	<div id="credits">	
+		<hr />
+		<a href="http://slayeroffice.com"><img alt="slayeroffice" src="http://slayeroffice.com/gr/office_logo_green.gif" /></a>
+
+		Slide Show IV<br />
+		version 1.0<br />
+		last revision: 09.25.2004<br />
+		<a href="mailto:steve@slayeroffice.com">steve@slayeroffice.com</a><br />
+
+		<a href="http://slayeroffice.com">http://slayeroffice.com</a><br />
+		Photos &copy; S.G. Chipman<br />
+		Based on Flash "Resizing Slide Show" by <a href="http://www.podlob.com">Travis Beckham</a><br />
+		<a href="slide_show4.js">Javascript Source</a> | <a href="slide_show4.css">CSS</a>
+
+		<hr />
+	</div>
+-->
+<!-- end unrelated -->
+</patTemplate:tmpl>
+

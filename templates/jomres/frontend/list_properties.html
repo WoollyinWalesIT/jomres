@@ -1,0 +1,78 @@
+<patTemplate:tmpl name="list_properties">
+<patTemplate:tmpl name="nav_output_top" unusedvars="nbsp">
+<div>
+	{WRITEPAGESCOUNTER}
+</div>
+<div>
+	{WRITEPAGESLINKS}
+</div>
+</patTemplate:tmpl>
+
+<br />
+<div class="panelwrapper">
+	<patTemplate:tmpl name="property_details"  unusedvars="nbsp">
+	<div class="innerwrapper">
+		<div class="propertylist">
+			<table class="propertylist_header" border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;&nbsp;{STARS}
+					</td>
+					<td class="propertylist_headerr">
+						{PROP_TOWN}, {PROP_REGION}
+					</td>
+				</tr>
+			</table>
+			<table border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="propertylist_left" valign="top">
+						<div class="propertylist_info">
+							<div class="propertylist_desc">
+								{PROPERTYDESC}
+							</div>
+							<div>
+								{PRICESFROM}&nbsp;{LOWESTPRICE}
+							</div>
+							<div class="propertylist_discount">
+								<div class="{LASTMINUTECLASS}">
+									{LASTMINUTE}
+								</div>
+							</div>
+							<div class="propertylist_rooms">
+								{ROOMTYPES}
+							</div>
+							<div class="propertylist_features">
+								{FEATURELIST}
+							</div>
+						</div>
+					</td>
+					<td class="propertylist_right" valign="top">
+						<div class="propertylist_image">
+							<a href="{MOREINFORMATIONLINK}"><img src="{IMAGE}" border="0" width="130" height="83" alt="property_image" /></a>
+						</div>
+						<div class="propertylist_info">
+							<div class="jomres_button">
+								<a href="{MOREINFORMATIONLINK}">{MOREINFORMATION}</a>
+							</div>
+							<div class="jomres_button">
+								{LINKONLY}{BOOKTHIS_TEXT}</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</div>
+
+<patTemplate:tmpl name="nav_output_bottom" unusedvars="nbsp">
+<div>
+	{WRITEPAGESCOUNTER}
+</div>
+<div>
+	{WRITEPAGESLINKS}
+</div>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

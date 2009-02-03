@@ -1,0 +1,78 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+		</tr>
+		<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HTARIFFTITLE}</td>
+					<td class="jradmin_subheader_ca">{HTARIFFDESC}</td>
+					<td class="jradmin_subheader_ca">{HRATEPERDAY}</td>
+					</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="10" name="rate_title" value="{TARIFFTITLE}"></input></td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="30" name="rate_description" value="{TARIFFDESC}"></input></td>
+					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" style="text-align:right" size="4" name="roomrateperday" value="{RATEPERDAY}" /></td>
+				</tr>
+			</table>
+			<br />
+			<table border="0" class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HVALIDFROM}</td>
+					<td class="jradmin_field_ca">{VALIDFROM}</td>
+					<td class="jradmin_subheader_ca">{HVALIDTO}</td>
+					<td class="jradmin_field_ca">{VALIDTO}</td>
+				</tr>
+			</table>
+			<br />
+			<table border="0" class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HMINDAYS}</td>
+					<td class="jradmin_subheader_ca">{HMAXDAYS}</td>
+					<td class="jradmin_subheader_ca">{HMINPEOPLE}</td>
+					<td class="jradmin_subheader_ca">{HMAXPEOPLE}</td>
+					<td class="jradmin_subheader_ca">{HROOMTYPEDROPDOWN}</td>
+					<td class="jradmin_subheader_ca">{HIGNOREPPPNDROPDOWN}</td>
+					<td class="jradmin_subheader_ca">{HALLOWWEEKENDSDROPDOWN}</td>
+					<td class="jradmin_subheader_ca">{HWEEKENDONLY}</td>
+					<td class="jradmin_subheader_ca">{HDAYOFWEEK}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}" /></td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}" /></td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}" /></td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}" /></td>
+					<td class="jradmin_field_ca">{ROOMTYPEDROPDOWN}</td>
+					<td class="jradmin_field_ca">{IGNOREPPPNDROPDOWN}</td>
+					<td class="jradmin_field_ca">{ALLOWWEEKENDSDROPDOWN}</td>
+					<td class="jradmin_field_ca">{WEEKENDONLY}</td>
+					<td class="jradmin_field_ca">{DAYOFWEEK}</td>
+				</tr>
+			</table>
+			<table border="0" class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HMINROOMS}</td>
+					<td class="jradmin_field_ca">{MINROOMS_ALREADYSELECTED}</td>
+					<td class="jradmin_subheader_ca">{HMAXROOMS}</td>
+					<td class="jradmin_field_ca">{MAXROOMS_ALREADYSELECTED}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_ca" colspan="2" >{MINROOMS_DESC}</td>
+					<td class="jradmin_subheader_ca" colspan="2" >{MAXROOMS_DESC}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="task" value="saveTariff">
+<input type="hidden" name="tariffUid" value="{TARIFFUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+</patTemplate:tmpl>

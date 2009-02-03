@@ -1,0 +1,2 @@
+Joomla 1.5 includes a copy of mootools.js which unfortunately conflicts with jquery. To resolve this issue, copy the file mootools.js from this folder into /media/system/js. Many thanks to Fotis Evangelou from JoomlaWorks for this contribution.
+

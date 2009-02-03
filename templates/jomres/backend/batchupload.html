@@ -1,0 +1,64 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form enctype="multipart/form-data" action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image0'/></td>
+					<td class="jradmin_field_ca"><input type='file' name='image1'/></td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image2'/></td>
+					<td class="jradmin_field_ca"><input type='file' name='image3'/></td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image4'/></td>
+					<td class="jradmin_field_ca"><input type='file' name='image5'/></td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image6'/></td>
+					<td class="jradmin_field_ca"><input type='file' name='image7'/></td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image8'/></td>
+					<td class="jradmin_field_ca"><input type='file' name='image9'/></td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input type='file' name='image10'/></td>
+					<td class="jradmin_field_ca"><input type='file' name='image11'/></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="batchUploadPropertyImages" />
+</form>
+<br />
+<form action="index.php?option=com_jomres&task=delslideshowimages" method="post" name="imageList">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jradmin_subheader_ca" colspan="3">{IMAGESALREADYINDIR}</td>
+	</tr>
+	<patTemplate:tmpl name="rows">
+	<tr>
+		<td class="jradmin_field_ca">{CHECKBOX}</td>
+		<td class="jradmin_field_ca">{IMAGENAME}</td>
+		<td class="jradmin_field_ca">{IMAGEOUTPUT}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+{JOMRESTOKEN}
+<input type="submit" value="{DELETEIMAGES}" class="button" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="delslideshowimages" />
+</form>
+</patTemplate:tmpl>

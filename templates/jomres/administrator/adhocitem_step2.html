@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index2.php?option=com_jomres" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table>
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td>{PROPERTY}</td>
+					<td>{PROPERTY_DROPDOWN}</td>
+				</tr>
+				<tr>
+					<td>{VALUE}</td>
+					<td><input type="text" class="inputbox" name="nett" value="" /></td>
+				</tr>
+				<tr>
+					<td>{DESCRIPTION}</td>
+					<td><input type="text" class="inputbox" name="description" value="" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+{JOMRESTOKEN}
+<input type="hidden" name="step" value="3" />
+<input type="hidden" name="username" value="{USERNAME}" />
+<input type="hidden" name="jos_id" value="{JOS_ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="add_adhoc_item_to_bill" />
+</form>
+</patTemplate:tmpl>

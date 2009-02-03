@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td class="jradmin_subheader_ca">{HPROPERTYTYPE}</td>
+		<td class="jradmin_subheader_ca">{RATETEXT}</td>
+		<td class="jradmin_subheader_ca">{HMAXPEOPLE_TARIFF}</td>
+	</tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_field_ca">{ROOM_CLASS_RADIO}</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+		<td class="jradmin_field_ca">{ROOMRATEPERDAY}</td>
+		<td class="jradmin_field_ca">{MAX_PEOPLE}</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="save_normalmode_tariffs" />
+</form>
+</patTemplate:tmpl>

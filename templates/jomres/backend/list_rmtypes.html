@@ -1,0 +1,31 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="index2.php" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table  class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title" colspan="5">{PAGETITLE}</th>
+	</tr>
+	<tr>
+		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="checkAll({TOTALINLISTPLUSONE});" /></th>
+		<th class="jomres_title">&nbsp;</th>
+		<th class="jomres_title">{HRTTITLE}</th>
+		<th class="jomres_title">{HRTDESCRIPTION}</th>
+		<th class="jomres_title">{HJOMRES_A_ICON}</th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td class="jradmin_subheader_la" width="20">{CHECKBOX}</td>
+		<td class="jradmin_subheader_la">{LINKTEXT}</td> 
+		<td class="jradmin_subheader_la">{RTTITLE}</td>
+		<td class="jradmin_subheader_la">{RTDESCRIPTION}</td>
+		<td class="jradmin_subheader_la"><img src="{IMAGE}" /></td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="boxchecked" value="0">
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="editGlobalroomTypes" />
+</form>
+</patTemplate:tmpl>

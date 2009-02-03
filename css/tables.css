@@ -1,0 +1,259 @@
+ul.tablePaginater
+	{
+	display:block;
+	list-style:none;
+	padding:0;
+	margin:1px 0 1em 0;
+	text-align:center;
+	}
+
+ul.tablePaginater li
+	{
+	display:inline;
+	width:2.1em;
+	height:2.1em;
+	line-height:2em;
+	vertical-align:middle;
+	margin-right:4px;
+	color:#666;
+	list-style:none;
+	cursor:pointer;
+	}
+
+ul.tablePaginater li.currentPage a
+	{
+	border-color:#cccccc !important;
+	color:#000;
+	}
+
+ul.tablePaginater li a
+	{
+	display:table-cell !important;
+	display:inline-block;
+	text-align:center;
+	width:2em;
+	height:2em;
+	color:#666;
+	padding:0.2em;
+	min-width:2em;
+	min-height:2em;
+	text-decoration:none;
+	outline:none;
+	border:1px solid #ccc;
+	cursor:pointer;
+	}
+
+ul.tablePaginater li a:focus
+	{
+	color:#333;
+	text-decoration:none;
+	outline:none;
+	border-color:#aaa;
+	}
+
+td.sized1
+	{
+	width:16em;
+	text-align:left;
+	}
+
+td.sized2
+	{
+	width:10em;
+	text-align:left;
+	}
+
+td.sized3
+	{
+	width:7em;
+	text-align:left;
+	}
+
+/*
+   Add the following to your CSS file should you wish the cursor to
+   "wait" while the script is processing the sort
+
+body.sort-active *
+	{
+	cursor:wait;
+	}
+*/
+	
+.cs1
+	{
+	width: 30em;
+	}
+
+.cs2
+	{
+	width: 20em;
+	}
+
+.cs1 td,
+.cs2 td,
+caption
+	{
+	padding: 0 0 5px 0;
+	margin:0 auto;
+	width:auto;
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+	}
+
+th
+	{
+	font: bold 10px/22px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 8px 12px 4px 12px;
+	background: #CAE8EA url(../images/bg_header.jpg) no-repeat;
+	vertical-align:middle;
+	}
+
+td.total
+	{
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+	text-align:right;
+	font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	}
+
+th.sortable,
+th.sortable-text,
+th.sortable-date,
+th.sortable-keep,
+th.sortable-date-dmy,
+th.sortable-numeric,
+th.sortable-currency,
+th.sortable-sortByTwelveHourTimestamp,
+th.sortable-sortIPAddress,
+th.sortable-sortEnglishLonghandDateFormat,
+th.sortable-sortScientificNotation,
+th.sortable-sortImage,
+th.sortable-sortFileSize
+	{
+	cursor:pointer;
+	background: #CAE8EA url(../images/bg_header_sortable.jpg) no-repeat;
+	padding: 8px 8px 4px 16px;
+	}
+
+th.forwardSort
+	{
+	background:#CAE8EA url(../images/bg_header_down.jpg) no-repeat 0 0;
+	}
+
+th.reverseSort
+	{
+	background:#CAE8EA url(../images/bg_header_up.jpg) no-repeat 0 0;
+	}
+
+th.forwardSort a,
+th.reverseSort a
+	{
+	color:#000;
+	outline:0 none;
+	}
+
+/*These styles should be added when very long tables are expected*/
+th.sort-active
+	{
+	background:#CAE8EA url(../images/bg_header_sorting.jpg) no-repeat 0 0;
+	cursor:wait;
+	}
+
+th.sort-active a
+	{
+	color:#a80000 !important;
+	cursor:wait;
+	}
+
+#fd-table-1 th a
+	{
+	text-decoration:none;
+	color: #4f6b72;
+	}
+
+#fd-table-1 td a
+	{
+	text-decoration:none;
+	}
+
+#fd-table-1 td img
+	{
+	margin:0 auto;
+	border:3px solid #ddd;
+	}
+
+#fd-table-1 td a:hover
+	{
+	color:#a84444;
+	border-bottom:1px dotted #a80000;
+	}
+
+#fd-table-1 td
+	{
+	font: normal 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	padding: 6px 12px 6px 12px;
+	color: #4f6b72;
+	background:#F6F7F8;
+	}
+
+td.lft
+	{
+	text-align:left;
+	}
+
+tr.alt, #fd-table-1 tbody tr.alt td
+	{
+	background: #F6F7F8;
+	font-weight:bold;
+	color: #797268;
+	}
+
+/* Poor old Internet Explorer has a bug that means we can't use background images for the table rows
+   as it trys to download the image each and every time that it is used... */
+tr[class="alt"] td
+	{
+	background: #F5FAFA url(../images/td_alt.jpg) no-repeat;
+	}
+
+td[class~="alt"]
+	{
+	background: #fff url(../images/col_alt.jpg) no-repeat !important;
+	}
+
+/* Poor old Internet Explorer won't see the next two rules either */
+#fd-table-1 tbody tr.alt td:first-child
+	{
+	background: #F5FAFA url(../images/bullet2.gif) no-repeat;
+	font-weight:bold;
+	}
+
+#fd-table-1 tbody tr td:first-child
+	{
+	background: #fff url(../images/bullet1.gif) no-repeat;
+	font-weight:bold;
+	}
+
+tr:hover,
+tr.ieRowHover
+        {
+        /* Style for the normal (even) row hover * /
+	}
+tr.alternative:hover,
+tr.ieRowHoverAlt
+        {
+        /* Style for the alternate (odd) row hover here * /
+        }
+		

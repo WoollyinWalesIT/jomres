@@ -1,0 +1,175 @@
+<patTemplate:tmpl name="pageoutput" >
+<script type="text/javascript" src="components/com_jomres/javascript/ui.core.js"></script>
+<script type="text/javascript" src="components/com_jomres/javascript/ui.tabs.js"></script>
+<script>
+	jQuery(document).ready(function(){
+	jQuery("#jomres_nav > ul").tabs();
+	});
+</script>
+<!-- potential problem with google maps, see this link for info http://docs.jquery.com/Tabs#...my_slider.2C_Google_Map.2C_etc._not_work_when_placed_in_a_hidden_.28inactive.29_tab.3F -->
+<style>
+
+.ui-tabs-hide { display: none; }
+ 
+.property_details_tabs {
+	list-style: none
+	} 
+
+ul.property_details_tabs>li{
+	display: table-cell;
+	position: relative;
+	padding: 2px 6px;
+}
+</style>
+
+<div class="panelwrapper">
+	<div class="innerwrapper">
+		<div id="jomres_nav">
+			<ul class="property_details_tabs">
+				<li><a href="#fragment-1"><span>{TITLE_PROPERTYDETAILS}</span></a></li>
+				<li><a href="#fragment-2"><span>{TITLE_MOREINFO}</span></a></li>
+				<li><a href="#fragment-3"><span>{TITLE_AVAILABILITYCALENDAR}</span></a></li>
+				<li><a href="#fragment-4"><span>{TITLE_ROOMSLIST}</span></a></li>
+				<li><a href="#fragment-5"><span>{TITLE_SLIDESHOW}</span></a></li>
+				<li><a href="#fragment-6"><span>{TITLE_MAP}</span></a></li>
+				<li><a href="#fragment-7"><span>{TITLE_TARIFF}</span></a></li>
+			</ul>
+			<div id="fragment-1">
+				<div class="viewproperty">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="viewproperty_leftcol" valign="top">
+								<patTemplate:tmpl name="customoutput_discounts">
+								<div class="jomres_message">
+									{LASTMINUTE}
+								</div>
+								</patTemplate:tmpl>
+								<div class="rightinfo_title">
+									{COM_A_BASICTEMPLATE_SHOWADDRESS}
+								</div>
+								<div class="rightinfo_content">
+									{STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY}<br />{TELEPHONE}
+								</div>
+								<br/>
+								<div class="rightinfo_title">
+									{HRTYPES}
+								</div>
+								<div>
+									<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="feature">
+										{FEATURE}
+									</patTemplate:tmpl>
+								</div>
+								<div class="rightinfo_title">
+									{HFEATURES}
+								</div>
+								<div>
+									<patTemplate:tmpl name="feature_icons" type="simpleCondition" requiredVars="feature">
+										{FEATURE}
+									</patTemplate:tmpl>
+								</div>
+								<div>
+								{DESCRIPTION}
+								</div>
+							</td>
+							<td class="viewproperty_rightcol" valign="top">
+								<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="bookinglink">
+								<div class="jomres_button">
+									{BOOKINGLINK}
+								</div>
+								</patTemplate:tmpl>
+								<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="slideshowlink">
+								<div class="jomres_button">
+									{SLIDESHOWLINK}
+								</div>
+								</patTemplate:tmpl>
+								<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="tariffslink">
+								<div class="jomres_button">
+									{TARIFFSLINK}
+								</div>
+								</patTemplate:tmpl>
+								<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink">
+								<div class="jomres_button">
+									{GALLERYLINK}
+								</div>
+								</patTemplate:tmpl>
+								<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="roomslistlink">
+								<div class="jomres_button">
+									{ROOMSLISTLINK}
+								</div>
+								</patTemplate:tmpl>
+								<patTemplate:tmpl name="mappinglink" type="simpleCondition" requiredVars="mappinglink">
+								<div class="jomres_button">
+									{MAPPINGLINK}
+								</div>
+								</patTemplate:tmpl>
+								<div>
+									{MINICOMPONENTOUTPUT}
+								</div>
+
+
+
+							</td>
+						</tr>
+					</table>
+				</div>
+				<br/><center><div class="jomres_button">{CONTACTUS}</div></center><br/>
+				<div style="clear:both;"></div>
+			</div>
+			<div id="fragment-2">
+								<div class="leftinfo_title">
+									{HCHECKINTIMES}
+								</div>
+								<div class="rightinfo_content">
+									{CHECKINTIMES}
+								</div>
+								<div class="leftinfo_title">
+									{HDRIVINGDIRECTIONS}
+								</div>
+								<div class="rightinfo_content">
+									{DRIVINGDIRECTIONS}
+								</div>
+								<div class="leftinfo_title">
+									{HAIRPORTS}
+								</div>
+								<div class="rightinfo_content">
+									{AIRPORTS}
+								</div>
+								<div class="leftinfo_title">
+									{HOTHERTRANSPORT}
+								</div>
+								<div class="rightinfo_content">
+									{OTHERTRANSPORT}
+								</div>
+								<div class="leftinfo_title">
+									<strong>{HAREAACTIVITIES}</strong>
+								</div>
+								<div class="leftinfo_content">
+									{AREAACTIVITIES}
+								</div>
+								<div class="leftinfo_title">
+									<strong>{HPOLICIESDISCLAIMERS}</strong>
+								</div>
+								<div class="leftinfo_content">
+									{POLICIESDISCLAIMERS}
+								</div>
+			</div>
+			<div id="fragment-3">
+				{AVAILABILITY_CALENDAR}
+			</div>
+			<div id="fragment-4">
+				{ROOMS_LIST}
+			</div>
+			<div id="fragment-5">
+				{SLIDESHOW}
+			</div>
+			<div id="fragment-6">
+				{GOOGLE_MAPS}
+			</div>
+			<div id="fragment-7">
+				{INLINE_TARIFFS}
+			</div>
+
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

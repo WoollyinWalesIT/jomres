@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<form action="index2.php" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="jradmin_table" border="0">
+	<tr>
+		<th colspan="4" class="jomres_title">{PAGETITLE}</th>
+	</tr>
+	<tr>
+		<th class="jomres_title">{HTITLE}</th><th class="jomres_title">{HTYPE}</th><th class="jomres_title">{HVALUE}</th><th class="jomres_title">{HCURRENCYCODE}</th>
+	</tr>
+	<tr>
+		<td class="jradmin_field_la">
+			<input class="inputbox" type="text" size="15" name="title" value="{TITLE}" />
+		</td>
+		<td class="jradmin_field_la">
+			{TYPE}
+		</td>
+		<td class="jradmin_field_la">
+			<input class="inputbox" type="text" size="15" name="value" value="{VALUE}" />
+		</td>
+		<td class="jradmin_field_la">
+			{CURRENCYCODE}
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="savecrate" />
+</form>
+</patTemplate:tmpl>

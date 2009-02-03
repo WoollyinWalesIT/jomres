@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_field_ca">{DROPDOWNLIST}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="bookGuestOut" />
+</form>
+
+</patTemplate:tmpl>

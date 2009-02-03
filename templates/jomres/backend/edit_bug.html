@@ -1,0 +1,31 @@
+<patTemplate:tmpl name="pageoutput">
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+{SENDBUTTON}
+<table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr>
+		<td width="50%"><span>Subject</span></td>
+		<td><input type="text" name="subject" value="" size="30" /></td>
+	</tr>
+	<tr>
+		<td width="50%"><span>Full Name</span></td>
+		<td width=""><input type="text" name="fromname" value="" size="30" /></td>
+	</tr>
+	<tr>
+		<td width="50%"><span>Email</span><BR /><span></span></td>
+		<td><input type="text" name="fromemail" value="{ADMINEMAIL}" size="30" /></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" colspan="2" width="">Description</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" colspan="2" width="">Please edit the bug report to suit your issue.</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" colspan="2"><textarea style="WIDTH:100%;" name="contents"	rows="25">{DEBUGINFO}</textarea></td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="task" value="" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+</patTemplate:tmpl>

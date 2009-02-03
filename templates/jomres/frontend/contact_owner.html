@@ -1,0 +1,120 @@
+<patTemplate:tmpl name="pageoutput" >
+<style>
+.REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
+td.required {color:red;}
+--></style>
+<script language="JavaScript" type="text/javascript">
+function validateContactForm()
+	{
+	valid = true;
+	missingfields = "";
+	document.regForm.guest_name.className="inputbox";
+	document.regForm.guest_email.className="inputbox";
+	document.regForm.enquiry.className="inputbox";
+	document.regForm.hncaptcha_private_key.className="inputbox";
+
+	if ( document.regForm.guest_name.value == "" )
+		{
+		document.regForm.guest_name.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.enquiry.value == "" )
+		{
+		document.regForm.enquiry.className="REmail";
+		valid = false;
+		}
+	if ( document.regForm.hncaptcha_private_key.value == "" )
+		{
+		document.regForm.hncaptcha_private_key.className="REmail";
+		valid = false;
+		}
+	
+	var emailID=document.regForm.guest_email
+	if ((emailID.value==null)||(emailID.value=="")){
+		document.regForm.guest_email.className="REmail";
+		emailID.focus()
+		valid = false;
+		}
+	else
+		{
+		if (echeck(emailID.value)==false){
+			document.regForm.guest_email.className="REmail";
+			emailID.value=""
+			emailID.focus()
+			 valid = false;
+			 }
+		}
+	if (valid)
+		{
+		document.regForm.action = "index.php?option=com_jomres&task=contactowner"
+		document.regForm.submit()
+		}
+	else
+		{
+		alert ( "{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}" );
+		}
+	}
+	/**
+	 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+	 */
+function echeck(str) {
+	var at="@"
+	var dot="."
+	var lat=str.indexOf(at)
+	var lstr=str.length
+	var ldot=str.indexOf(dot)
+	if (str.indexOf(at)==-1){
+		alert("Invalid E-mail ID")
+		 return false
+		}
+	if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		 alert("Invalid E-mail ID");
+		 return false;
+		}
+	if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.indexOf(at,(lat+1))!=-1){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.indexOf(dot,(lat+2))==-1){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	if (str.indexOf(" ")!=-1){
+		alert("Invalid E-mail ID")
+		return false
+		}
+	return true
+	}
+</script>
+
+{FORMSTART}
+{SUBJECT}
+<table>
+<td class="jradmin_field_la"> </td> 
+	<tr>
+		<td><b>{HNAME}</b></td>
+		<td><input class="inputbox" type="text" size="25" name="guest_name" value="{GUEST_NAME}" /></td>
+	</tr>
+	<tr>
+		<td><b>{HEMAIL}</b></td>
+		<td><input class="inputbox" type="text" size="25" name="guest_email" value="{GUEST_EMAIL}" /></td>
+	</tr>
+	<tr>
+		<td><b>{HENQUIRY}</b></td>
+		<td><textarea class="inputbox" cols="40" rows="6" name="enquiry">{ENQUIRY}</textarea></td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+{CAPTCHA}
+<input type="hidden" name="property_uid" value="{PROPERTY_UID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+</patTemplate:tmpl>

@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" >
+<style>
+.odd {
+	background-color: #fff5e3;
+	}
+.even {
+	background-color: #ebd0b2;
+	}
+</style>
+
+<table>
+	<tr class="sectiontableheader">
+		<td colspan="7">{TITLE}</td>
+	</tr>
+	<tr class="sectiontableheader">
+		<td>{HPNAME}</td><td>{HARRIVAL}</td><td>{HDEPARTURE}</td><td>{HEXTRAS}</td><td>{HTOTAL}</td><td>&nbsp;</td><td>&nbsp;</td>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class="{STYLE}">
+		<td><b><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></b></td><td>{ARRIVAL}</td><td>{DEPARTURE}</td><td>{EXTRASVALUE}</td><td>{CONTRACT_TOTAL}</td><td>{IMAGE}</td><td>{VIEWLINK}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>

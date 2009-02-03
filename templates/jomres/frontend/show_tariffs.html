@@ -1,0 +1,47 @@
+<patTemplate:tmpl name="output" unusedvars="nbsp">
+<div class="panelwrapper">
+	<patTemplate:tmpl name="show_tariffs">
+	<table class="innerwrapper">
+		<tr class="tariff_header">
+			<td colspan="2">{HTITLE}</td>
+			<td colspan="2">{TITLE}</td>
+		</tr>
+		<tr class="tariff_title">
+			<td colspan="2">{HDESC}</td>
+			<td colspan="2">{DESC}</td>
+		</tr>
+		<tr class="tariff_content">
+			<td colspan="1">{HROOMTYPE}</td>
+			<td colspan="1">{ROOMCLASSABBV} </td>
+			<td colspan="2">{ROOMCLASSFULLDESC} </td>
+		</tr>
+		<tr>
+			<td>{HSTARTS}</td>
+			<td>{VALIDFROM}</td>
+			<td>{HENDS}</td>
+			<td>{VALIDTO}</td>
+		</tr>
+		<tr>
+			<td>{HMINDAYS}</td>
+			<td>{MINDAYS}</td>
+			<td>{HMAXDAYS}</td>
+			<td>{MAXDAYS}</td>
+		</tr>
+		<tr>
+			<td>{HMINPEEPS}</td>
+			<td>{MINPEOPLE}</td>
+			<td>{HMAXPEEPS}</td>
+			<td>{MAXPEOPLE}</td>
+		</tr>
+		<tr>
+			<td colspan="4"><b>{ROOMRATEPERDAY}<b></td>
+		</tr>
+		<tr>
+			<td colspan="4">{NOTWEEKENDS}</td>
+		</tr>
+		<tr><td colspan="4">{CONVERSIONBLURB}</td></tr>
+		<tr><td colspan="4">{GOOGLECURRENCYLINKS}</td></tr>
+	</table>
+	</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>

@@ -1,0 +1,41 @@
+<patTemplate:tmpl name="edit_custom_text">
+<patTemplate:tmpl name="pageoutput">
+<div id='jomresmenu_hint' style='color:red' >&nbsp;</div>
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<!--
+				<tr>
+					<td class="jradmin_subheader_la">{HCURRENTTEXT}</td>
+					<td class="jradmin_field_la">{CURRENTTEXT}</td>
+				</tr>
+				-->
+				<tr>
+					<td colspan="2">&nbsp;</td>	
+				</tr>
+				<tr>
+					<td colspan="2" class="jradmin_subheader_la">{HNEWTEXT}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca" colspan="2">{NEWTEXT}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="theConstant" value="{THECONSTANT}" />
+<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
+<input type="hidden" name="task" value="saveCustomText" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+</patTemplate:tmpl>
+</patTemplate:tmpl>

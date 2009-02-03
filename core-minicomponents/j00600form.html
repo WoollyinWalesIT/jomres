@@ -1,0 +1,77 @@
+<patTemplate:tmpl name="interrupt_outgoing">
+
+{JR_GATEWAY_INTERRUPT_INFO}
+<form action="index.php?option=com_jomres" method="post" name="bookingForm">
+
+<table>
+	<tr>
+		<td>{COM_MR_DISPGUEST_CCARDNO}</td>
+	</tr>
+	<tr>
+		<td><input type="text" class="jomres_inputbox" size="16" name="ccard_no" value="{CCARD_NO}"></td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td>{COM_MR_DISPGUEST_CCARDISS}</td>
+	</tr>
+	<tr>
+		<td>{CCARD_ISSUED}</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td>{COM_MR_DISPGUEST_CCARDEXPIRE}</td>
+	</tr>
+	<tr>
+		<td>{CCARD_EXPIRY}</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td>{COM_MR_DISPGUEST_CCARISSNO}</td>
+	</tr>
+	<tr>
+		<td>{CCARD_ISS_NO}</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td>{COM_MR_DISPGUEST_CCARDNAME}</td>
+	</tr>
+	<tr>
+		<td><input type="text" class="jomres_inputbox" size="12" name="ccard_name" value="{CCARD_NAME}"></td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td>{COM_MR_DISPGUEST_CCV}</td>
+	</tr>
+	<tr>
+		<td><input type="text" class="jomres_inputbox" size="12" name="ccv" value=""></td>
+	</tr>
+</table>
+
+<select name="type">
+  <option value="AMEX">AMEX</option>
+  <option value="Discover">Discover</option>
+  <option value="MasterCard">MasterCard</option>
+  <option value="Visa">Visa</option>
+</select>
+
+
+
+
+
+{HIDDEN}
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="processpayment" />
+<input type="hidden" name="interrupted" value="1" />
+<input type="submit" value="Submit" class="button" >
+</form>
+</patTemplate:tmpl>

@@ -1,0 +1,34 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HEDITLINK}</td>
+					<td class="jradmin_subheader_la">{HEXNAME}</td>
+					<td class="jradmin_subheader_la">{HEXDESC}</td>
+					<td class="jradmin_subheader_ca">{HEXPRICE}</td>
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
+					<td class="jradmin_field_la">{EXNAME}</td>
+					<td class="jradmin_field_la">{EXDESC}</td>
+					<td class="jradmin_field_ca">{CURRENCY} {EXPRICE}</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="newExtra" />
+</form>
+</patTemplate:tmpl>

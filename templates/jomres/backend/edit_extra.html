@@ -1,0 +1,62 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HEXNAME}</td>
+					<td class="jradmin_subheader_ca">{HEXDESC}</td>
+					<td class="jradmin_subheader_ca">{HEXPRICE}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="name" value="{EXNAME}" /></td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="desc" value="{EXDESCRIPTION}" /></td>
+					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" name="price" value="{EXPRICE}" size="7" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table border="0" width="100%">
+	<tr>
+		<td>Model</td><td>Parameters</td><td>Force</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="1" {EXTRAMODEL_PERWEEK_CHECKED} >{EXTRAMODEL_PERWEEK}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE1}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="2" {EXTRAMODEL_PERDAYS_CHECKED}>{EXTRAMODEL_PERDAYS}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE2}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="3" {EXTRAMODEL_PERBOOKING_CHECKED}>{EXTRAMODEL_PERBOOKING}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE3}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="4" {EXTRAMODEL_PERPERSONPERBOOKING_CHECKED}>{EXTRAMODEL_PERPERSONPERBOOKING}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE4}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="5" {EXTRAMODEL_PERPERSONPERDAY_CHECKED}>{EXTRAMODEL_PERPERSONPERDAY}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE5}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="6" {EXTRAMODEL_PERPERSONPERWEEK_CHECKED}>{EXTRAMODEL_PERPERSONPERWEEK}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE6}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="7" {EXTRAMODEL_PERDAYSMINDAYS_CHECKED}>{EXTRAMODEL_PERDAYSMINDAYS} </td><td>{MINDAYSDROPDOWN}</td><td>{EXTRAMODEL_FORCE7}</td>
+	</tr>
+	<tr>
+		<td><input type="radio" name="extramodel[]" value="8" {EXTRAMODEL_PERDAYSPERROOM_CHECKED}>{EXTRAMODEL_PERDAYSPERROOM} </td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE8}</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="uid" value="{EXTRAID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveExtra" />
+</form>
+</patTemplate:tmpl>

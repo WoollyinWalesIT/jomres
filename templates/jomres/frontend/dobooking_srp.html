@@ -1,0 +1,333 @@
+﻿<patTemplate:tmpl name="pageoutput">
+<style>
+.messages{
+	width: 100%;
+	background: {ERRORBACKGROUNDCOLOUR};
+	border-right: 1px solid #636363;
+	border-left: 1px solid #e7e934;
+	border-top: 1px solid #faf3e2;
+	border-bottom: 1px solid #636363;
+	text-indent: 5px;
+	}
+	
+.roomalert_on
+	{
+	background: {ERRORBACKGROUNDCOLOUR};
+	}
+	
+.errorbackground {
+	color: #000;
+	background-color: {ERRORBACKGROUNDCOLOUR};
+	background-image: none;
+	}
+
+.oktobook {
+	background-color: {INPUTOKTOBOOK_BACKGROUND};
+	}
+
+#totalinparty, #selectedRooms,#roompernight {
+	color: #ffffff;
+	}
+
+</style>
+<script type="text/javascript">
+var isSRP=true;
+var x
+var mininterval = {MININTERVAL};
+var livesite	= "{LIVESITE}";
+var ajaxurl	= "{AJAXURL}";
+
+var blockui_recheckingroomavailability		= "{BLOCKUI_RECHECKINGROOMAVAILABILITY}";
+var blockui_changingextra					= "{BLOCKUI_CHANGINGEXTRA}";
+var blockui_changingroomselection 			= "{BLOCKUI_CHANGINGROOMSELECTION}";
+var blockui_updatingaddress					= "{BLOCKUI_UPDATINGADDRESS}";
+var blockui_addressinputerror				= "{BLOCKUI_ADDRESSINPUTERROR}";
+
+var validation_firstname				= {VALIDATION_FIRSTNAME};
+var validation_surname					= {VALIDATION_SURNAME};
+var validation_houseno					= {VALIDATION_HOUSENO};
+var validation_street					= {VALIDATION_STREET};
+var validation_town						= {VALIDATION_TOWN};
+var validation_postcode					= {VALIDATION_POSTCODE};
+var validation_region					= {VALIDATION_REGION};
+var validation_country					= {VALIDATION_COUNTRY};
+var validation_landline					= {VALIDATION_LANDLINE};
+var validation_cellmobile				= {VALIDATION_CELLMOBILE};
+var validation_email					= {VALIDATION_EMAIL};
+
+var inputerrorbackground = "{ERRORBACKGROUNDCOLOUR}";
+
+function dateStatus(date) {
+	var min = new Date({EARLIESTYEAR},{EARLIESTMON},{EARLIESTDAY});
+	//var max = new Date(2050,10,05);
+	if (date.getTime() < min.getTime())
+		return true; // true says "disable"
+	else
+		return false; // leave other dates enabled
+	//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
+}
+
+</script>
+<script type="text/javascript">
+<patTemplate:tmpl name="onload">toload[{COUNT}]= "{ONLOAD}"
+</patTemplate:tmpl>
+</script>
+
+<form action="{LIVESITE}/index.php?option=com_jomres&task=confirmbooking" name="ajaxform" id="ajaxform" method="post">
+	<div class="panelwrapper">
+		<div class="innerwrapper">
+			<div class="block_ui_bookingform">
+				<table border="0" width="100%">
+					<tr>
+						<td valign="top" class="messages">
+							<div id="messages">&nbsp;</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<div id="arrivalcontainer">
+								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+									<tr>				
+										<th colspan="4">{AJAXFORM_PARTICULARS}&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib('{AJAXFORM_PARTICULARS_DESC}{EARLIESTPOSSIBLEARRIVALDATE}', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="{LIVESITE}/components/com_jomres/images/info.png" /></a></th>
+									</tr>
+									<tr>
+										<td>{HARRIVALDATE}</td>
+										<td>{ARRIVALDATE}</td>
+										<td>{HDEPARTUREDATE}</td>
+										<td>{DEPARTUREDATE}</td>
+									</tr>
+									<tr>
+										<patTemplate:tmpl name="guesttypes">
+										<td>{TEXT}</td>
+										<td>{DROPDOWN}</td>
+										</patTemplate:tmpl>
+									</tr>
+								</table>	
+								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+									<tr>				
+										<th colspan="2">
+											{BILLING_ROOMTOTAL}&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib('Please select your required accommodation from the list on the right', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="{LIVESITE}/components/com_jomres/images/info.png" /></a>
+										</th>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div id="availRooms" style="text-align:center;"><b>{AVAILABLEROOMS}</b></div>
+										</td>	
+									</tr>
+									<tr>
+										<td colspan="2">
+											<div id="discount" class="jomres_message">&nbsp;</div>
+										</td>	
+									</tr>
+									<tr>
+										<td>
+											<table border="0" width="55%">
+												<tr>
+													<td><b>{ACCOMMODATION_TOTAL}&nbsp;(</b></td>
+													<td><b><div id="staydays"></div></b></td>
+													<td><b>{STAYDAYS}</b></td>
+													<td><b>)</b></td>
+												</tr>
+											</table>
+										<td>
+											<b><div id="roomtotal" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<div id="extrascontainer">
+								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+									{EXTRAS_HEADER}
+									<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
+									<tr>
+										<td>{INPUTBOX}</td>
+										<td>{OVERLIB_DESCRIPTION}</td>
+										<td>{NAME}</td>
+										<td style="text-align:right;">{PRICE}</td>
+										<td>&nbsp;</td>
+									</tr>
+									</patTemplate:tmpl>
+									<tr>
+										<td colspan="4"><b>{EXTRAS_TOTAL}</b></td>
+										<td>
+											<b><div id="extrastotal" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<table class="bform_table_totals" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>				
+									<th colspan="6">{PRICE_SUMMARY}</th>
+								</tr>
+								<tr>
+									<td><b>{BILLING_TAX}</b></td>
+									<td>
+										<b><div id="taxtotal" style="text-align:right;"></div></b>
+									</td>
+								</tr>
+								<tr>
+									<td><b>{SINGLE_PERSON_SUPPLIMENT}</b></td>
+									<td>
+										<b><div id="single_suppliment" style="text-align:right;"></div></b>
+									</td>
+								</tr>
+								<tr>
+									<td><b>{BILLING_TOTAL}</b></td>
+									<td>
+										<b><div id="grandtotal" style="text-align:right;"></div></b>
+									</td>
+								</tr>
+								<tr>
+									<td><b>{DEPOSIT}</b></td>
+									<td>
+										<b><div id="deposit" style="text-align:right;"></div></b>
+									</td>
+								</tr>	
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div style="text-align:center">
+								<patTemplate:tmpl name="customOutput_dobooking_total" type="simpleCondition" requiredVars="total_header">
+								<b>{TOTAL_HEADER}&nbsp;{TOTAL_INPUT}</b>
+								{TOTAL_AJAXSTRING}
+								</patTemplate:tmpl>
+								<patTemplate:tmpl name="customOutput_dobooking_deposit" type="simpleCondition" requiredVars="deposit_header">
+								<b>{DEPOSIT_HEADER}&nbsp;{DEPOSIT_INPUT}</b>
+								{DEPOSIT_AJAXSTRING}
+								</patTemplate:tmpl>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top" id="bookingform_address">
+							<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr>				
+									<th colspan="6">{AJAXFORM_ADDRESS}&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib('{AJAXFORM_ADDRESS_DESC}', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="{LIVESITE}/components/com_jomres/images/info.png" /></a></th>
+								</tr>
+								<tr>
+									<td colspan="6">{GUESTDROPDOWN}</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="2">{HFIRSTNAME}</td>
+									<td>&nbsp;</td>
+									<td colspan="2">{HSURNAME}</td>
+								</tr>
+								<tr>
+									<td>{REQUIRED_FIRSTNAME}</td>
+									<td colspan="2"><input class="inputbox" type="text" size="12" name="firstname" id="firstname" value="{FIRSTNAME}"></td>
+									<td>{REQUIRED_SURNAME}</td>
+									<td colspan="2"><input  class="inputbox" type="text" size="12" name="surname" id="surname" value="{SURNAME}"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="2">{HHOUSENO}</td>
+									<td>&nbsp;</td>
+									<td colspan="2">{HSTREET}</td>
+								</tr>
+								<tr>
+									<td>{REQUIRED_HOUSENO}</td>
+									<td colspan="2"><input   class="inputbox" size="12" type="text" name="house" id="house" value="{HOUSENO}"></td>
+									<td>{REQUIRED_STREET}</td>
+									<td colspan="2"><input  class="inputbox" size="12" type="text" name="street" id="street" value="{STREET}"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="2">{HTOWN}</td>
+									<td>&nbsp;</td>
+									<td colspan="2">{HREGION}</td>
+								</tr>
+								<tr>
+									<td>{REQUIRED_TOWN}</td>
+									<td colspan="2"><input  class="inputbox" size="12" type="text" name="town" id="town" value="{TOWN}"></td>
+									<td>{REQUIRED_REGION}</td>
+									<td colspan="2"><input  class="inputbox" size="12" type="text" name="region" id="region" value="{REGION}"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="2">{HPOSTCODE}</td>
+									<td>&nbsp;</td>
+									<td colspan="2">{HCOUNTRY}</td>
+								</tr>
+								<tr>
+									<td>{REQUIRED_POSTCODE}</td>
+									<td colspan="2"><input  class="inputbox" size="12" type="text" name="postcode" id="postcode" value="{POSTCODE}"></td>
+									<td>{REQUIRED_COUNTRY}</td>
+									<td colspan="2">{COUNTRY}</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="2">{HTEL}</td>
+									<td>&nbsp;</td>
+									<td colspan="2">{HMOBILE}</td>
+								</tr>
+								<tr>
+									<td>{REQUIRED_LANDLINE}</td>
+									<td colspan="2"><input  class="inputbox" size="12" type="text" name="tel_landline" id="tel_landline" value="{TEL}"></td>
+									<td>{REQUIRED_CELLMOBILE}</td>
+									<td colspan="2"><input  class="inputbox" size="12" type="text" name="tel_mobile" id="tel_mobile" value="{MOBILE}"></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="5">{HEMAIL}</td>
+								</tr>
+								<tr>
+									<td>{REQUIRED_EMAIL}</td>
+									<td colspan="5"><input  class="inputbox" size="39" type="text" name="eemail" id="eemail" value="{EMAIL}" ></td>
+								</tr>
+								<tr>
+									<td colspan="6">{INSTRUCTIONS}</td>
+								</tr>
+								<tr>
+									<td colspan="6">{REQUIREDTEXT}</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr class="bookingform_footer" id="bookingform_footer">
+						<td valign="top" style="text-align:right;">	
+							<div id="submitbutton">
+								<input type="button" name="confirmbooking" value="{SUBMIT}" class="button" size="150px" onclick="validate();"/>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top" class="bookingform_extras">
+							&nbsp;
+						</td>
+					</tr>
+				</table>
+
+				<!--Hidden Fields-->
+				<div id="totalinparty"></div>
+				<div id="selectedRooms"></div>
+				<div id="roompernight"></div>
+			</div>	
+			<div>
+				{AJAXFORM_INSTRUCTIONS}
+			</div>	
+		</div>			
+	</div>
+	<input type="hidden" name="property_uid" value="{PROPERTYUID}">
+	<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+
+<script>
+jQuery(document).ready(function() {
+	jQuery.jheartbeat.set({
+		url: ajaxurl+"?option=com_jomres&task=handlereq&no_html=1&field=heartbeat",
+		delay: 30000
+	});
+});
+</script>
+</patTemplate:tmpl>

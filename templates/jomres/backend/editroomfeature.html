@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="editroomfeature">
+<patTemplate:tmpl name="pageoutput">
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HFEATUREDESCRIPTION}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" size="40"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="roomFeatureUid" value="{ROOMFEATUREUID}">
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveRoomFeature" />
+</form>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

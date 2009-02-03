@@ -1,0 +1,83 @@
+<patTemplate:tmpl name="pageoutput">
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HTYPE}</td>
+					<td class="jradmin_subheader_ca">{HNAME}</td> 
+					<td class="jradmin_subheader_ca">{HNUMBER}</td>
+					<td class="jradmin_subheader_ca">{HFLOOR}</td>
+					<td class="jradmin_subheader_ca">{HDISABLED}</td>
+					<td class="jradmin_subheader_ca">{HMAXPEOPLE}</td>
+					<td class="jradmin_subheader_ca">{HSMOKING}</td>
+					<td class="jradmin_subheader_ca">{HSUPPLIMENT}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca">{TYPEDROPDOWN}</td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="room_name" value="{ROOMNAME}" /> </td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="4" name="room_number" value="{ROOMNUMBER}" /> </td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="4" name="room_floor" value="{ROOMFLOOR}" /> </td>
+					<td class="jradmin_field_ca">{DISABLED} </td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="4" name="max_people" value="{MAXPEOPLE}" /> </td>
+					<td class="jradmin_field_ca">{SMOKING}</td>
+					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" size="4" name="singleperson_suppliment" value="{SUPPLIMENT}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_ca" colspan="8" >{SUPPLIMENT_DESC}</td>
+				</tr>
+			</table>
+			<br />
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HFEATURES}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_la">{FEATURES}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="roomUid" value="{ROOMUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveRoom" />
+</form>
+
+<br />
+
+<form enctype="multipart/form-data" action="index.php?option=com_jomres&task=uploadRoomImage" method="post" name="upload">
+<table border="0" class="inneradminwrapper">
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td colspan="2" class="jradmin_subheader_ca">{UPLOADIMAGE}</td>
+				</tr>
+				<tr>
+					<td><input type='file' name='image'/></td>
+					<td><input type="hidden" name="roomUid" value="{ROOMUID}" /></td>
+					<td><input type="submit" value="{UPLOADIMAGE}" class="button" ></td>
+				</tr>
+			</table>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{DELETEIMAGE}</td>
+					<td>{IMAGE}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+{JOMRESTOKEN}
+</form>
+</patTemplate:tmpl>

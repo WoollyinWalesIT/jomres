@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput">
+<script language="javascript">
+<!--
+function OnChange(dropdown)
+	{	
+	var x=document.getElementById("country")
+	var baseURL= "index2.php?option=com_jomres&task=addproperty"
+	top.location.href = baseURL + "&selectedCountry="+x.options[x.selectedIndex].value;
+	return true;
+	}
+//-->
+</script>
+<form action="index2.php?option=com_jomres&task=addproperty2" method="post" name="adminForm" >
+{JOMRESTOOLBAR}
+<table>
+	<tr>
+		<td colspan="2" class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td colspan="2">{REGISTRATION_INSTRUCTIONS_STEP1}</td>
+	</tr>
+	<tr>
+		<td>{HCOUNTRY}</td>
+		<td >{HREGION}</td> 
+	</tr>
+	<tr>
+		<td>{COUNTRIESDROPDOWN}</td>
+		<td>{REGIONDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{DEFAULTCREATE}</td>
+		<td>{CRATE_DROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HMANAGER}</td>
+		<td>{MANAGER_DROPDOWN}</td>
+	</tr>
+</table>
+
+<input type="hidden" name="task" value="addproperty2" />
+</form>
+</patTemplate:tmpl>

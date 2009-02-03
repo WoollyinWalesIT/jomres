@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="sort_order"  unusedvars="nbsp">
+<script language="JavaScript" type="text/javascript">
+function gosearch()
+	{
+    var value = document.sortForm.sortby.value;
+	var exdate=new Date();
+	var expiredays=1;
+	var c_name="jomsearch_sortby";
+	exdate.setDate(exdate.getDate()+expiredays)
+	document.cookie=c_name+ "=" +escape(value)+
+	((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+	history.go(0);
+	}
+</script>
+<div class="jomres_orderbox" style="text-align:center;">
+<form method="post" name="sortForm" action="">
+	{HORDER}&nbsp;{ORDER}
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+</form>
+</div>
+</patTemplate:tmpl>

@@ -1,0 +1,50 @@
+<patTemplate:tmpl name="interrupt_outgoing">
+
+
+
+
+<table class="panelwrapper">
+	<tr>
+		<td>
+			<table class="innerwrapper">
+				<tr class="address_title">
+					<td class="address" colspan="2"><b>{JR_GATEWAY_SENDDEPOSITTO} {DEPOSIT} {JR_GATEWAY_BELOWADDRESS} </b></td>
+				</tr>
+				<tr class="address_title">
+					<td class="address" colspan="2">{PROP_NAME},</td>
+				</tr>
+				<tr>
+					<td>{PROP_STREET},</td>
+				</tr>
+				<tr>
+					<td>{PROP_TOWN},</td>
+				</tr>
+				<tr>
+					<td>{PROP_REGION},</td>
+				</tr>
+				<tr>
+					<td>{PROP_COUNTRY},</td>
+				</tr>
+				<tr>
+					<td>{PROP_POSTCODE},</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>{JR_GATEWAY_CONTACTUS1} {PROP_TEL} {JR_GATEWAY_CONTACTUS2} {PROP_EMAIL}.</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+<form action="" method="post" name="bookingForm">
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="processpayment" />
+<input type="hidden" name="interrupted" value="1" />
+<input type="submit" value="Submit" class="button" >
+{HIDDEN}
+</form>
+</patTemplate:tmpl>

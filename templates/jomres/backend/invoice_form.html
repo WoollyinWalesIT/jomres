@@ -1,0 +1,133 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<table class="jradmin_innerwrapper" width="700px">
+	<tr>
+		<img src="{IMAGE}" border="0">
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td width="23%">
+						<table class="jradmin_table">
+							<tr>
+								<td>{GUEST_FIRSTNAME} {GUEST_SURNAME}</td>
+							</tr>
+							<tr>
+								<td>{GUEST_STREET} {GUEST_HOUSE}</td>
+							</tr>
+							<tr>
+								<td>{GUEST_POSTCODE} {GUEST_TOWN}</td>
+							</tr>
+							<tr>
+								<td>{GUEST_REGION}</td>
+							</tr>
+							<tr>
+								<td>{GUEST_COUNTRY}</td>
+							</tr>
+						</table>
+					</td>
+					<td width="23%">&nbsp;</td>
+					<td width="54%">
+						<table align="right" class="jradmin_table" width="20%">
+							<tr>
+								<td align="right">&nbsp;</td>
+								<td align="right"><b>{PROP_NAME}</b></td>
+							</tr>
+							<tr>
+								<td align="right">&nbsp;</td>
+								<td align="right">{PROP_STREET}</td>
+							</tr>
+							<tr>
+								<td align="right">&nbsp;</td>
+								<td align="right">{PROP_POSTCODE}</td>
+							</tr>
+							<tr>
+								<td align="right">&nbsp;</td>
+								<td align="right">{PROP_REGION}</td>
+							</tr>
+							<tr>
+								<td align="right">&nbsp;</td>
+								<td align="right">{PROP_COUNTRY}</td>
+							</tr>
+							<tr>
+								<td align="right">{HTELEPHONE}</td>
+								<td align="right">{PROP_TEL}</td>
+							</tr>
+							<tr>
+								<td align="right">{HFAX}</td>
+								<td align="right">{PROP_FAX}</td>
+							</tr>
+							<tr>
+								<td align="right">{HEMAIL}</td>
+								<td align="right">{PROP_EMAIL}</td>
+							</tr>
+							<tr>
+								<td align="right">{HWEBSITE}</td>
+								<td align="right">{PROP_URL}</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<p>&nbsp;</p>
+			<table bgcolor=#ffffff width=690 border="0">
+				<tr>
+					<td>{BL_DEAR} {GUEST_FIRSTNAME} {GUEST_SURNAME}</td>
+				</tr>
+				<tr>
+					<td>{BL_INTRO1} {PROP_NAME}{BL_INTRO2}</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td colspan="2">{INVOICETITLE}</td>
+				</tr>
+				<tr>
+					<td>{HSTAYNIGHTS}</td>
+					<td style="width:100px"><b>{STAYNIGHTS}</b></td>
+				</tr>
+				<tr>
+					<td>{HCONTRACTAGREED}</td>
+					<td style="width:100px"><b>{CONTRACTAGREED}</b></td>
+				</tr>
+				<tr>
+					<td>{HCOSTPERNIGHT}</td>
+					<td style="width:100px"><b>{COSTPERNIGHT}</b></td>
+				</tr>
+				<tr>
+					<td>{HSINGLEPERSON_COST}</td>
+					<td style="width:100px"><b>{SINGLEPERSON_COST}</b></td>
+				</tr>
+				<tr>
+					<td colspan="2" >{HEXTRASERVICE}</td>
+				</tr>
+				<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
+				<tr>
+					<td>{DESC}</td>
+					<td style="width:100px"><b>{VAL}</b></td>
+				</tr>
+				</patTemplate:tmpl>
+				<tr>
+					<td >{HEXTRASERVICE_TOTAL}</td>
+					<td style="width:100px"><b>{EXTRASERVICE_TOTAL}</b></td>
+				</tr>
+				<tr>
+					<td>{HGRANDTOTAL}</td>
+					<td><b>{GRANDTOTAL}</b></td>
+				</tr>
+			</table>
+			<table bgcolor=#ffffff width=690 border="0">
+				<tr>
+					<td colspan="1">{HOPEYOUENJOYEDSTAY}</td>
+				</tr>
+			</table>
+			<br/><br/><br/>
+			<table bgcolor=#ffffff width=690 border="0">
+				<tr>
+					<td colspan="1">{SIGNEDONBEHALF} {PROP_NAME}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</patTemplate:tmpl>

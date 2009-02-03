@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+
+{JOMRESTOOLBAR}
+{KEY}
+<p>{INSTRUCTIONS}</p>
+<table class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title">{HUSERNAME}</th>
+		<th class="jomres_title">{HGRANTLINK}</th>
+		<th class="jomres_title">{HLINKTEXT}</th>
+		<th class="jomres_title">{HACCESSLEVEL}</th>
+		<th class="jomres_title">{HNUMBEROFPROPERTIES}</th> 
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td class="jradmin_field_la">{USERNAME}</td>
+		<td class="jradmin_field_la">{GRANTLINK}</td>
+		<td class="jradmin_field_la">{LINKTEXT}</td>
+		<td class="jradmin_field_la">{ACCESSLEVELIMAGE}</td>
+		<td class="jradmin_field_la">{NUMBEROFPROPERTIES}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="none" />
+</form>
+</patTemplate:tmpl>
