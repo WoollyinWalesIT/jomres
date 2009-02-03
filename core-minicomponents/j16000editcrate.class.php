@@ -59,7 +59,7 @@ class j16000editcrate
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/Save.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('saveCrate',$link,$text="Save",$submitOnClick=true,$submitTask="savecrate",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres&task=listcrates",_JRPORTAL_CANCEL);

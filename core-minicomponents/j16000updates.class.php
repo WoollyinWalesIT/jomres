@@ -226,8 +226,8 @@ class j16000updates
 		{
 		global $myfiles;
 		$this->directoryScanResults=array();
-		$jomresAdminDir = JOMRESCONFIG_ABSOLUTE_PATH."/".JOMRES_ADMINISTRATORDIRECTORY."/components/com_jomres";
-		$jomresFrontDir = JOMRESCONFIG_ABSOLUTE_PATH."/components/com_jomres";
+		$jomresAdminDir = JOMRESCONFIG_ABSOLUTE_PATH."/".JOMRES_ADMINISTRATORDIRECTORY."/jomres";
+		$jomresFrontDir = JOMRESCONFIG_ABSOLUTE_PATH."/jomres";
 		$files_array = $this->recur_dir($jomresAdminDir);
 		$files_array = $this->recur_dir($jomresFrontDir);
 
@@ -339,17 +339,17 @@ class j16000updates
 		$conn_id = $this->chmod_open();
 		// CHMOD each file and echo the results
 
-		$userinfo =posix_getpwuid(fileowner($this->ftp_root."/components/com_jomres/"));
+		$userinfo =posix_getpwuid(fileowner($this->ftp_root."/jomres/"));
 		print_r($userinfo);
-		echo "<br/>File permissions ". substr(sprintf('%o', fileperms($this->ftp_root."/components/com_jomres")), -4)."<br/>";
+		echo "<br/>File permissions ". substr(sprintf('%o', fileperms($this->ftp_root."/jomres")), -4)."<br/>";
 
-		echo "Attempting to chmod ".$this->ftp_root."/components/com_jomres/<br/>";
-		echo chmod( $this->ftp_root."/components/com_jomres",0777 ) ? 'CHMODed successfully!<br/>' : 'Error<br/>';
+		echo "Attempting to chmod ".$this->ftp_root."/jomres/<br/>";
+		echo chmod( $this->ftp_root."/jomres",0777 ) ? 'CHMODed successfully!<br/>' : 'Error<br/>';
 
-		echo "Attempting to chmod ".$this->ftp_root."/".JOMRES_ADMINISTRATORDIRECTORY."/components/com_jomres/<br/>";
-		echo chmod($this->ftp_root."/".JOMRES_ADMINISTRATORDIRECTORY."/components/com_jomres" ,0777 ) ? 'CHMODed successfully!<br/>' : 'Error<br/>';
+		echo "Attempting to chmod ".$this->ftp_root."/".JOMRES_ADMINISTRATORDIRECTORY."/jomres/<br/>";
+		echo chmod($this->ftp_root."/".JOMRES_ADMINISTRATORDIRECTORY."/jomres" ,0777 ) ? 'CHMODed successfully!<br/>' : 'Error<br/>';
 
-		if (is_writable($this->ftp_root."/components/com_jomres") ) // Double blind check in case chmod says it worked, we'll make sure by creating a test file
+		if (is_writable($this->ftp_root."/jomres") ) // Double blind check in case chmod says it worked, we'll make sure by creating a test file
 			{
 			foreach ($unwritableFiles as $file)
 				{
@@ -359,7 +359,7 @@ class j16000updates
 				}
 			}
 		else
-			echo "Nope. ".$this->ftp_root."/components/com_jomres is still unwritable<br/>";
+			echo "Nope. ".$this->ftp_root."/jomres is still unwritable<br/>";
 		// Close the connection
 		$this->chmod_close($conn_id);
 		}

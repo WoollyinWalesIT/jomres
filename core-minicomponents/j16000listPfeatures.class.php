@@ -31,7 +31,7 @@ class j16000listPfeatures
 			$this->template_touchable=false; return;
 			}
 		global $jomresAdminPath,$jomresConfig_absolute_path,$mrConfig,$jomresConfig_live_site;
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/components/com_jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList=doSelectSql($query);
 		$rows=array();
@@ -61,12 +61,12 @@ class j16000listPfeatures
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/AddItem.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('editPfeature',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editPfeature",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
 		$jrtb .= $jrtbar->spacer();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/WasteBasket.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('deletePfeature',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deletePfeature",$image);
 		$jrtb .= $jrtbar->endTable();

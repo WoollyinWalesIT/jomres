@@ -54,10 +54,10 @@ class j00030search {
 
 		if (!defined(_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) )
 			{
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/components/com_jomres/language/'.$jomresConfig_lang.'.php')) {
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/components/com_jomres/language/'.$jomresConfig_lang.'.php');
-				} else if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/components/com_jomres/language/en-GB.php'))  {
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/components/com_jomres/language/en-GB.php');
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/'.$jomresConfig_lang.'.php')) {
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/'.$jomresConfig_lang.'.php');
+				} else if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/en-GB.php'))  {
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/en-GB.php');
 				}
 			}
 		init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
@@ -124,7 +124,7 @@ class j00030search {
 				}
 			}
 
-			$infoIcon="/components/com_jomres/images/information.png";
+			$infoIcon="/jomres/images/information.png";
 			$output=array();
 			$pageoutput=array();
 			$showButton=false;
@@ -304,7 +304,7 @@ class j00030search {
 				if (!defined("_JOMRES_SELECTCOMBO") )
 					{
 					define("_JOMRES_SELECTCOMBO",1);
-					echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
+					echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
 					echo "<script>
 					jQuery(function() {
 						jQuery('#search_country').selectCombo('".$jomresConfig_live_site."/index2.php?option=com_jomres&task=selectcombo&popup=1&no_html=1&tmpl=component&filter=country','#search_region');

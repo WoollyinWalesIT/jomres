@@ -31,7 +31,7 @@ class j16000listGlobalroomTypes
 			$this->template_touchable=false; return;
 			}
 		global $jomresAdminPath,$jomresConfig_absolute_path,$mrConfig,$jomresConfig_live_site;
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/components/com_jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
 		$roomtypeList=doSelectSql($query);
 		$rows=array();
@@ -60,12 +60,12 @@ class j16000listGlobalroomTypes
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/AddItem.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('editGlobalroomTypes',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editGlobalroomTypes",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
 		$jrtb .= $jrtbar->spacer();
-		$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/WasteBasket.png");
+		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
 		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 		$jrtb .= $jrtbar->customToolbarItem('deleteGlobalroomTypes',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deleteGlobalroomTypes",$image);
 		$jrtb .= $jrtbar->endTable();

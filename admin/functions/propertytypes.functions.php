@@ -33,7 +33,7 @@ function listPropertyTypes()
 	{
 	global $jomresAdminPath,$jomresConfig_live_site;
 	
-	$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/components/com_jomres/images/jomresimages/small/EditItem.png" border="0">';
+	$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 	$ptypeData=array();
 	$pList=array();
 	$pList['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE;
@@ -68,12 +68,12 @@ function listPropertyTypes()
 
 	$jrtbar = new jomres_toolbar();
 	$jrtb  = $jrtbar->startTable();
-	$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/AddItem.png");
+	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 	$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('editPropertyType',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editPropertyType",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
 	$jrtb .= $jrtbar->spacer();
-	$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/WasteBasket.png");
+	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
 	$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('deletePropertyType',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deletePropertyType",$image);
 	$jrtb .= $jrtbar->endTable();
@@ -150,7 +150,7 @@ function editPropertyType()
 
 	$jrtbar = new jomres_toolbar();
 	$jrtb  = $jrtbar->startTable();
-	$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/Save.png");
+	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('savePropertyType',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="savePropertyType",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres&task=listPropertyTypes",'');

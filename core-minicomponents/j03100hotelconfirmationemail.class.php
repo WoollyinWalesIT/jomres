@@ -150,7 +150,7 @@ class j03100hotelconfirmationemail {
 			$output['SPECIAL_REQUIREMENTS']=quote_smart($specialReqs);
 			}
 		$output['ISO']=_ISO;
-		//$output['IMAGE']=$jomresConfig_live_site."/components/com_jomres/images/jrlogo.png";
+		//$output['IMAGE']=$jomresConfig_live_site."/jomres/images/jrlogo.png";
 //		if ($fileLocation)
 //			$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);

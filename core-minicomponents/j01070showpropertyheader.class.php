@@ -65,7 +65,7 @@ class j01070showpropertyheader
 				$starslink="";
 			  	for ($i=1;$i<=$stars;$i++)
 		    		{
-					$starslink.="<img src=\"".$jomresConfig_live_site."/components/com_jomres/images/star.png\" border=\"0\" alt=\"star\" />";
+					$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
 					}
 				$starslink.="";
 				}

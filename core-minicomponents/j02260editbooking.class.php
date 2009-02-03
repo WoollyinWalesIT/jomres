@@ -257,14 +257,14 @@ class j02260editbooking {
 				$output['HAMENDBOOKING']=jr_gettext('_JOMRES_CONFIRMATION_AMEND',_JOMRES_CONFIRMATION_AMEND,$editable=false,$isLink=true) ;
 				$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=amendBooking&Itemid=$Itemid&contractUid='.$booking_contract_uid;
 				$targetTask='amendBooking';
-				$image='/components/com_jomres/images/jomresimages/'.$jrtbar->imageSize.'/HotelReservationEdit.png';
+				$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/HotelReservationEdit.png';
 				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HAMENDBOOKING'],$submitOnClick=false,$submitTask="",$image);
 				if (!$bookedin)
 					{
 					$output['HBOOKGUESTIN']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true) ;
 					$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=bookGuestIn&contract_uid='.$booking_contract_uid;
 					$targetTask='bookGuestIn';
-					$image='/components/com_jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
+					$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
 					//$jrtb .= $jrtbar->toolbarItem('bookguestin',jomresURL("index.php?option=com_jomres&task=bookGuestIn&Itemid=$Itemid&contract_uid=$booking_contract_uid"),'');
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTIN'],$submitOnClick=false,$submitTask="",$image);
 					
@@ -275,7 +275,7 @@ class j02260editbooking {
 					$output['HBOOKGUESTOUT']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,$editable=false,$isLink=true) ;
 					$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=bookGuestOut&dueDepart='.$booking_contract_uid;
 					$targetTask='bookGuestOut';
-					$image='/components/com_jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
+					$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTOUT'],$submitOnClick=false,$submitTask="",$image);
 					}
 				if (!$booking_deposit_paid)

@@ -128,8 +128,8 @@ class j00010reception {
 			}
 		else
 			$output['CLICKCOUNT']=0;
-		$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="bookGuestIn" border="0" title="'.$output['HTAGSEARCH'].'" />';
-		$output['CLICKCOUNTIMAGE']='<img src="'.$jomresConfig_live_site.'/components/com_jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
+		$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="bookGuestIn" border="0" title="'.$output['HTAGSEARCH'].'" />';
+		$output['CLICKCOUNTIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
 
 		$output['CURRENTPROPERTYNAME']=getPropertyName($property_uid).' UID: '.$property_uid;
 

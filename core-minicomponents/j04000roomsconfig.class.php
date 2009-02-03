@@ -181,7 +181,7 @@ class j04000roomsconfig {
 				if ($mrConfig['showSmoking']=="1")
 					$roomRowInfo .="<td class=\"jradmin_field_ca\">".$smokingRoom."</td>";
 				//$fileLocation=checkForImage('room',$room->room_uid);
-				//$room_image=$jomresConfig_live_site."/components/com_jomres/uploaded/jrhouse.png";
+				//$room_image=$jomresConfig_live_site."/jomres/uploaded/jrhouse.png";
 				//if ($fileLocation)
 				//	$room_image=$jomresConfig_live_site.$fileLocation;
 				$room_image=getImageForProperty("room",$defaultProperty,$room->room_uid);
@@ -243,7 +243,7 @@ class j04000roomsconfig {
 					$img = $jomresConfig_live_site."/administrator/images/publish_x.png";
 					}
 //				$fileLocation=checkForImage('property',$property->propertys_uid);
-//				$property_image=$jomresConfig_live_site."/components/com_jomres/uploaded/jrlogo.png";
+//				$property_image=$jomresConfig_live_site."/jomres/uploaded/jrlogo.png";
 //				if ($fileLocation)
 //					$property_image=$jomresConfig_live_site.$fileLocation;
 				$property_image=getImageForProperty("property",$property->propertys_uid,$property->propertys_uid);
