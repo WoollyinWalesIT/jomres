@@ -29,20 +29,16 @@ $configfile = JOMRESPATH_BASE."/jomres_config.php";  // This is just to pull in 
 include($configfile);
 
 $foldersToTestForWritability=array();
-$foldersToTestForWritability[]=JOMRESPATH_BASE.JRDS;
-$foldersToTestForWritability[]=JOMRESPATH_BASE.JRDS."sessions".JRDS;
-$foldersToTestForWritability[]=JOMRESPATH_BASE.JRDS."temp".JRDS;
-$foldersToTestForWritability[]=JOMRESPATH_BASE.JRDS."updates".JRDS;
-$foldersToTestForWritability[]=JOMRESPATH_BASE.JRDS."remote_plugins".JRDS;
-$foldersToTestForWritability[]=$jomresConfig_absolute_path.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS;
-$foldersToTestForWritability[]=$jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS;
-$foldersToTestForWritability[]=$jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."rmtypes".JRDS;
-$foldersToTestForWritability[]=$jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."pfeatures".JRDS;
-$foldersToTestForWritability[]=$jomresConfig_absolute_path.JRDS."media".JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'sessions'.JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS;
+$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS;
 
-
-$writabilityCheckPassImage=$jomresConfig_live_site."/components/com_jomres/images/writability_check_passed.png";
-$writabilityCheckFailImage=$jomresConfig_live_site."/components/com_jomres/images/writability_check_failed.png";
+$writabilityCheckPassImage=$jomresConfig_live_site."/jomres/images/writability_check_passed.png";
+$writabilityCheckFailImage=$jomresConfig_live_site."/jomres/images/writability_check_failed.png";
 
 $configSets=parseConfiguration();
 $localFopen=$configSets["PHP Core"]['allow_url_fopen'][0];
@@ -87,11 +83,11 @@ $numberOfGuestsInSystem=count(doSelectSql($query));
 					<td bgcolor="#f9f9f9">
 						<?php
 						$link = 'http://manual.jomres.net" title="Manual (Online)" target="_blank"';
-						echo _quickiconButton( $link, 'Help.png', 'Read documentation (Online)', '/components/com_jomres/images/' );
+						echo _quickiconButton( $link, 'Help.png', 'Read documentation (Online)', '/jomres/images/' );
 						$link = 'http://tickets.jomres.net/index.php?_m=knowledgebase&_a=view" title="Search (Online) knowledgebase" target="_blank"';
-						echo _quickiconButton( $link, 'FAQ.png', 'Search (Online) knowledgebase', '/components/com_jomres/images/' );
+						echo _quickiconButton( $link, 'FAQ.png', 'Search (Online) knowledgebase', '/jomres/images/' );
 						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket (Online)" target="_blank"';
-						echo _quickiconButton( $link, 'Support_IT.png', 'Submit support ticket (Online)', '/components/com_jomres/images/');
+						echo _quickiconButton( $link, 'Support_IT.png', 'Submit support ticket (Online)', '/jomres/images/');
 						?>
 					</td>
 				</tr>
@@ -107,7 +103,7 @@ $numberOfGuestsInSystem=count(doSelectSql($query));
 					<td bgcolor="#FFFFFF" colspan="2">
 						<br />
 						<div style="width=100%" align="center">
-							<a href="http://www.jomres.net" target="_blank"><img src="<?php echo $jomresConfig_live_site; ?>/components/com_jomres/images/jrlogo.png" align="middle" border="0" alt="Jomres logo"/></a>
+							<a href="http://www.jomres.net" target="_blank"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/jrlogo.png" align="middle" border="0" alt="Jomres logo"/></a>
 							<br /><br />
 						</div>
 					</td>
@@ -136,7 +132,7 @@ $numberOfGuestsInSystem=count(doSelectSql($query));
 				</tr>
 				<tr>
 					<td bgcolor="#FFFFFF" colspan="2">
-						If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /components/com_jomres and /administrator/components/com_jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and media folders <i> have </i> to be writable for the system to work.
+						If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres foldersit is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.
 					</td>
 				</tr>
 				<tr>
@@ -144,8 +140,8 @@ $numberOfGuestsInSystem=count(doSelectSql($query));
 					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007 Vince Wooll</td>
 				</tr>
 				<tr>
-					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/administrator/images/credits.png" width="48px" height="48px" align="middle" border="0" /></td>
-					<td bgcolor="#FFFFFF">Special Edition thanks to Hazel Wilson for the Northendnairn templates</td>
+					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/User_Ninja.png" width="48px" height="48px" align="middle" border="0" /></td>
+					<td bgcolor="#FFFFFF">Thanks to Hazel Wilson for your continuing support.</td>
 				</tr>
 			</table>
 		</td>

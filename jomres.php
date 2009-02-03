@@ -29,8 +29,6 @@ if ($timetracking && $_REQUEST['no_html']!="1")
 	$timekeeper = start_track("jomres_runtime", $timekeeper);
 	}
 
-define('JOMRESTMPPATH', dirname(__FILE__) );
-
 ob_start("removeBOM");
 @ini_set("memory_limit","128M");
 
@@ -47,7 +45,7 @@ global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRe
  * Various includes
 #
  */
-require_once(JOMRESTMPPATH.'/integration.php');
+require_once('integration.php');
 
 if ( $_REQUEST['no_html']!="1")
 	{

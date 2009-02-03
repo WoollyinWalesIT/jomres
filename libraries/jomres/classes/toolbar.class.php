@@ -94,7 +94,7 @@ class jomres_toolbar
 		{
 		if ( empty($text) )
 			$text=$this->standardActivityImages[$targetTask]['label'];
-		$image='/components/com_jomres/images/jomresimages/'.$this->imageSize.'/'.$this->standardActivityImages[$targetTask]['image'].'.'.$this->imageExtension;
+		$image='/jomres/images/jomresimages/'.$this->imageSize.'/'.$this->standardActivityImages[$targetTask]['image'].'.'.$this->imageExtension;
 		$output=$this->makeCell($image,$targetTask,$link,$text,$submitOnClick,$submitTask);
 		return $output;
 		}
@@ -108,7 +108,7 @@ class jomres_toolbar
 		{
 		$submitOnClick=false;
 		$submitTask="";
-		$image='/components/com_jomres/images/jomresimages/'.$this->imageSize.'/'.$this->menubarImagesArray[$targetTask].'.'.$this->imageExtension;
+		$image='/jomres/images/jomresimages/'.$this->imageSize.'/'.$this->menubarImagesArray[$targetTask].'.'.$this->imageExtension;
 		//var_dump($this->menubarImagesArray);exit;
 		$output=$this->makeCell($image,$targetTask,$link,$text,$submitOnClick,$submitTask);
 		return $output;

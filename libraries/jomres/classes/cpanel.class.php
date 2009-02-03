@@ -40,22 +40,6 @@ class cpanel
 			$icon_database=makeImageValid("ViewDatabase.png");
 			$icon_config=makeImageValid("EditConfiguration.png");
 			}
-		$Itemids = array();
-		$query = "SELECT id"
-		. "\n FROM #__menu"
-		. "\n WHERE "
-		. "\n published = 1"
-		. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
-		$itemQueryRes = doSelectSql($query);
-		if (count($itemQueryRes)>0)
-			{
-			foreach ($itemQueryRes as $i)
-				{
-				$Itemids[] = $i->id;
-				}
-			}
-		if (!in_array((int)$jrConfig['jomresItemid'],$Itemids))
-			echo '<font color="red" face="arial" size="1">Warning: Your Jomres Itemid and the Itemid stored in Site Config are different, this may result in unpredictable behaviour. It is recommended that you modify your Site Config Itemid to match that in the main menu. See <a href="http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=96&nav=0,3" target="_blank"> this article for more information</a></font>';
 		$output['PAGETITLE']=_JRPORTAL_CPANEL;
 
 		$MiniComponents->triggerEvent('10002'); // Custom task
@@ -71,17 +55,12 @@ class cpanel
 				}
 			}
 
-		//$stats=$this->getStatsPanel();
-		//$inforows['INFO']=$htmlFuncs->cpanelInfoRow(_JRPORTAL_STATS_PATETITLE,$stats);
-
 		$pageoutput[]=$output;
-		//$info[]=$inforows;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'cpanel.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
-		//$tmpl->addRows( 'info',$info);
 		$tmpl->displayParsedTemplate();
 		}
 

@@ -44,7 +44,7 @@ class j00021colourscheme
 			$this->template_touchable=false; return;
 			}
 		global $mainframe,$jomresConfig_live_site;
-		$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/components/com_jomres/css/jomrescss.css" />');
+		$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jomrescss.css" />');
 		}
 
 	/**

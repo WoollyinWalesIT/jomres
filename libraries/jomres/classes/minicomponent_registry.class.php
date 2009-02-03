@@ -168,7 +168,7 @@ class jomres_mc_registry
 	// Reads in class files from the components table and inserts them into the registeredClasses array
 	function getMiniComponentRemoteClasses()
 		{
-		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'remote_plugins'.JRDS;
+		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$d = @dir($jrePath);
 		$docs = array();
 		if($d)
@@ -206,7 +206,7 @@ class jomres_mc_registry
 	// Reads in class files from the events folder and inserts them into the registeredClasses array
 	function getMiniComponentCoreClasses()
 		{
-		$listdir=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."core-minicomponents".JRDS;
+		$listdir=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-minicomponents".JRDS;
 		$d = @dir($listdir);
 		if($d)
 			{

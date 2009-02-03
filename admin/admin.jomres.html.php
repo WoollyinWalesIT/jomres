@@ -40,9 +40,9 @@ function controlPanel($version)
 		</tr>
 		</table>
 		<?php
-		if (file_exists( JOMRESADMINPATH.JRDS."jomres_cpanel.php" ))
+		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'jomres_cpanel.php' ))
 			{
-			require JOMRESADMINPATH.JRDS."jomres_cpanel.php";
+			require JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'jomres_cpanel.php';
 			}
 	else
 		{

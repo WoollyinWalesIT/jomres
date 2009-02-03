@@ -25,7 +25,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
 #
  */
 
-$mrConfig['version']='3.4.5';
+$mrConfig['version']='4 Alpha 1';
 $mrConfig['newTariffModels'] = "1";
 $mrConfig['singlePersonSuppliment']='0';
 $mrConfig['singlePersonSupplimentCost']='10';
