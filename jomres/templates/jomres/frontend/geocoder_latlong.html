@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" >
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key={APIKEY}&hl=en" type="text/javascript"></script>
+<table class="panelwrapper">
+	<tr>
+		<td>
+			<table class="innerwrapper">
+				<tr>
+					<td class="header" colspan="2">
+						<div id="map" style="width: 434px; height: 300px"></div>
+					</td>
+			</table>
+		</td>
+	</tr>
+</table>
+<script>
+jQuery(document).ready(function() {
+	if (GBrowserIsCompatible()) {
+		var map = new GMap2(document.getElementById("map"));
+		map.addControl(new GSmallMapControl());
+		map.addControl(new GMapTypeControl());
+		map.setCenter(new GLatLng({LAT}, {LONG}), 13);
+		var point = new GLatLng({LAT}, {LONG});
+		var marker = new GMarker(point);
+		map.addOverlay(marker);
+		};
+	
+	});
+</script>
+</patTemplate:tmpl>

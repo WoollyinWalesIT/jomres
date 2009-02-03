@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index2.php?option=com_jomres" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table>
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HEXNAME}</td>
+					<td class="jradmin_subheader_ca">{HEXDESC}</td>
+					<td class="jradmin_subheader_ca">{HEXPRICE}</td>
+					<td class="jradmin_subheader_ca">{HEXCHARGEABLEDAILY}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="name" value="{EXNAME}" /></td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="desc" value="{EXDESCRIPTION}" /></td>
+					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" name="price" value="{EXPRICE}" size="7" /></td>
+					<td class="jradmin_field_ca">{EXCHARGEABLEDAILY}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="add_adhoc_item_to_bill" />
+</form>
+</patTemplate:tmpl>

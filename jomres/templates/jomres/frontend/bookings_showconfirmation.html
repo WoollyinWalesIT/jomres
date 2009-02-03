@@ -1,0 +1,213 @@
+<patTemplate:tmpl name="booking_particulars" >
+<script language="JavaScript" type="text/javascript">
+    function validate()
+		{
+		if (document.bookingForm.agreecheck.checked)
+			{
+			document.bookingForm.action = "index.php?option=com_jomres&task=processpayment"
+			return true;
+			}
+		else
+			{
+			alert ( "{ALERT} {TERMSTEXT}");
+			return false;
+			}
+		}
+	function editbooking()
+		{
+		document.bookingForm.action = "index.php?option=com_jomres&task=dobooking&Itemid={ITEMID}&selectedProperty={PROPERTY}"
+		}
+
+</script>
+<form action="index.php?option=com_jomres" method="post" name="bookingForm">
+<div class="panelwrapper">
+	<div class="innerwrapper">
+		<table width="100%" border="0" class="confirmation">
+			<tr>
+				<td><b>{HEADER}</b></td>
+			</tr>
+			<tr>
+				<td>
+					<table class="confirmation_table"  border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th colspan="4">{AJAXFORM_PARTICULARS}</th>
+						</tr>
+						<tr>
+							<td>{HARRIVAL}</td>
+							<td>{ARRIVAL}</td>
+							<td>{HDEPARTURE}</td>
+							<td>{DEPARTURE}</td>
+						</tr>
+						<tr>
+							<td>{HDAYSSTAYING}</td>
+							<td>{DAYSSTAYING}</td>
+							<td>{HTOTALINPARTY}</td>
+							<td>{TOTALINPARTY}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="confirmation_table"  border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th colspan="2">{BILLING_ROOMTOTAL}</th>
+						</tr>
+						<tr>
+							<td colspan="2"><b>{PROPERTYNAME} - {HROOMSBOOKED} - {NUMROOMS}</b></td>
+						</tr>
+						<patTemplate:tmpl name="booking_rooms">
+						<tr>
+							<td colspan="2">&nbsp;&nbsp;&nbsp;{FULLDESC}</td>
+						</tr>
+						</patTemplate:tmpl>
+						<tr>
+							<td colspan="2"><div class="jomres_message">{DISCOUNT}</div></td>
+						</tr>
+						<tr>
+							<td><b>{HSINGLEPERSON_COST}</b></td>
+							<td style="text-align:right;"><b>{SINGLEPERSON_COST}</b></td>
+						</tr>
+						<tr>
+							<td><b>{ACCOMMODATION_TOTAL}</b></td>
+							<td style="text-align:right;"><b>{ROOMTOTAL}</b></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
+			<tr>
+				<td>
+					<table class="confirmation_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th colspan="3">{AJAXFORM_EXTRAS}</th>
+						</tr>
+						<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+						<tr>
+							<td>{NAME}</td>
+							<td width="10%" valign="top">{PRICE}</td>
+							<td>&nbsp;</td>
+						</tr>
+						</patTemplate:tmpl>
+						<tr>
+							<td colspan="2"><b>{HEXTRASTOTAL}</b></td>
+							<td style="text-align:right;"><b>{EXTRASTOTAL}</b></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			</patTemplate:tmpl>
+			<tr>
+				<td>
+					<table class="confirmation_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th colspan="2">{PRICE_SUMMARY}</th>
+						</tr>
+						<tr>
+							<td><b>{HTAX}</b></td>
+							<td style="text-align: right;"><b>{TAX}</b></td>
+						</tr>
+						<tr>
+							<td><b>{HGRANDTOTAL}</b></td>
+							<td style="text-align: right;"><b>{TOTAL}</b></td>
+						</tr>
+						<tr>
+							<td><b>{HDEPOSIT}</b></td>
+							<td style="text-align: right;"><b>{DEPOSIT}</b></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="confirmation_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th colspan="2">{AJAXFORM_ADDRESS}</th>
+						</tr>
+						<tr>
+							<td width="50%">{FIRSTNAME} {SURNAME}</td>
+							<td>{HTEL}: {LANDLINE}</td>
+						</tr>
+						<tr>
+							<td>{HOUSENO} {STREET}</td>
+							<td>{HMOBILE}: {MOBILE}</td>
+						</tr>
+						<tr colspan="2">
+							<td>{TOWN}</td>
+						</tr>
+						<tr colspan="2">
+							<td>{COUNTY}</td>
+						</tr>
+						<tr colspan="2">
+							<td>{POSTCODE}</td>
+						</tr>
+						<tr colspan="2">
+							<td>{COUNTRY}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:right;">
+					{AMENDTEXT}
+					<input type="submit" value="{AMEND}" class="button" onclick="editbooking()"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table class="confirmation_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>{BOOKINGSPECIALREQ}</td>
+						</tr>
+						<tr>
+							<td>
+							{SPECIALS}
+							</td>
+						</tr>
+						<tr>
+							<td><textarea cols="60" rows="5" name="specialReqs"></textarea></td>
+						</tr>
+						<tr class="confirmation_special_req_foot">
+							<td>{DISCLAIMER}</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<table cellpadding="3" cellspacing="3" border="0" class="normal">
+					<patTemplate:tmpl name="gateways">
+						<tr>
+							<td>
+							{GWINPUT}
+							</td>
+							<td>
+							{GWIMAGE}
+							</td>
+						</tr>
+					</patTemplate:tmpl>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								<input name="agreecheck" type="checkbox" style="vertical-align: bottom;">{TERMSPRETEXT}{TERMS}
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<input type="submit" id="send" name="send" value="{THEBUTTON}" class="button" onclick="return validate()" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</form>
+
+</patTemplate:tmpl>

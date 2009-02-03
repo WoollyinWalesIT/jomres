@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<style type="text/css">
+table.jradmin_table tr.row2 {
+	background-color: #fc0000;
+	text-align: left;
+}
+</style>
+
+<form action="index2.php" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title">{PAGETITLE}</th>
+	</tr>
+</table>
+{LEGEND}
+<table class="jradmin_table">
+	<tr>
+		<td class="jradmin_subheader_la" >{HPROPERTYNAME}</td><td class="jradmin_subheader_la" >{HPROPERTYADDRESS}</td><td class="jradmin_subheader_la" >{HCRATE_DROPDOWN}</td>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class="{STYLE}">
+		<td>{VIEWLINK}{PROPERTYNAME}</a></td><td  class="jradmin_subheader_la">{PROPERTYADDRESS}</td><td  class="jradmin_field_la">{CRATE_DROPDOWN}</td>
+	</tr>		
+	</patTemplate:tmpl>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="editcrate" />
+<input type="hidden" name="boxchecked" value="0">
+</form>
+</patTemplate:tmpl>

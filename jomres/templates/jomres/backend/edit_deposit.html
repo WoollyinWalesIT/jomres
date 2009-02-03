@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HBOOKINGNUMBER}</td>
+					<td class="jradmin_subheader_ca">{HCONTRACT_TOTAL}</td>
+					<td class="jradmin_subheader_ca">{HDEPOSITREQUIRED}</td>
+					<td class="jradmin_subheader_ca">{HDEPOSIT_REF}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca">{BOOKINGNUMBER}</td>
+					<td class="jradmin_field_ca">{CONTRACT_TOTAL}</td>
+					<td class="jradmin_field_ca">{DEPOSITREQUIRED}</td>
+					<td class="jradmin_field_ca"><input type="text" class="inputbox" size="18" name="depositRef" value=""></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="jradmin_field_ca">{CREDITCARDLINK}</td> 
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="contractUid" value="{CONTRACTUID}" />
+<input type="hidden" name="guestUid" value="{GUESTUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveDeposit" />
+</form>
+</patTemplate:tmpl>

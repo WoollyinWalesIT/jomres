@@ -1,0 +1,22 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<form action="index2.php" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table  class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title" colspan="6">{PAGETITLE}</th>
+	</tr>
+	<tr>
+		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="checkAll({TOTALINLISTPLUSONE});" /></th><th  class="jomres_title">&nbsp;</th><th  class="jomres_title">{HTITLE}</th><th  class="jomres_title">{HTYPE}</th><th  class="jomres_title">{HVALUE}</th><th class="jomres_title">{HCURRENCYCODE}</th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class="{STYLE}">
+		<td class="jradmin_subheader_la" width="20">{CHECKBOX}</td><td class="jradmin_subheader_la">{EDITLINK}</td><td class="jradmin_subheader_la">{TITLE}</td><td class="jradmin_subheader_la">{TYPE}</td><td class="jradmin_subheader_la">{VALUE}</td><td class="jradmin_subheader_la">{CURRENCYCODE}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="editcrate" />
+<input type="hidden" name="boxchecked" value="0">
+</form>
+</patTemplate:tmpl>

@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput">
+<form action="{INDEX}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="jradmin_table" border="0">
+	<tr>
+		<th colspan="3" class="jomres_title">{PAGETITLE}</th>
+	</tr>
+	<tr>
+		<th class="jomres_title">{HFEATUREABBV}</th>
+		<th class="jomres_title">{HFEATUREDESCRIPTION}</th>
+		<th class="jomres_title">{PROPERTYFEATUREINFO}</th>
+	</tr>
+	<tr>
+		<td class="jradmin_field_la"><input class="inputbox" type="text" name="feature_abbv" value="{FEATURE_ABBV}" /></td>
+		<td class="jradmin_field_la"><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" /></td>
+		<td class="jradmin_field_la">
+			<patTemplate:tmpl name="rows">
+			<span style="white-space:nowrap" ><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" /></span>
+			</patTemplate:tmpl>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="propertyFeatureUid" value="{PROPERTYFEATUREUID}">
+<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="option" value="com_jomres" />	
+<input type="hidden" name="task" value="savePropertyFeature" />
+</form>
+</patTemplate:tmpl>

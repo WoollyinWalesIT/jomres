@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="list_ptypes" unusedvars="nbsp">
+<form action="index2.php" method="post" name="adminForm">
+<table cellpadding="4" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td width="100%">{PAGETITLE}</td>
+		<td nowrap>&nbsp;</td>
+		<td nowrap>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="3"></td>
+	</tr>
+</table>
+<table cellpadding="3" cellspacing="0" border="0" class="adminlist">
+	<patTemplate:tmpl name="pageheaders" unusedvars="nbsp">
+	<tr>
+		<th>{HPTYPE}</th>
+		<th>{HPTYPE_DESC}</th>
+		<th>{HPUBLISHED}</th>
+	</tr>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+	<tr>
+		<td><a href="index2.php?option=com_jomres&task=editpropertytype&id={ID}">{PTYPE}</a></td>
+		<td>{PTYPE_DESC}</td>
+		<td>{PUBLISHED}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="editcrate" />
+<input type="hidden" name="boxchecked" value="0">
+</form>
+</patTemplate:tmpl>

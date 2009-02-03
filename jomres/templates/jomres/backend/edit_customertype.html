@@ -1,0 +1,42 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">{HTYPE}</td>
+					<td class="jradmin_subheader_ca" colspan="3">{HNOTES}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10" />{HTYPE_TT}</td>
+					<td class="jradmin_field_ca" colspan="3"><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50" />{HNOTES_TT}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_ca">{HMAXIMUM}</td>
+					<td class="jradmin_subheader_ca">{HISPERCENTAGE}</td>
+					<td class="jradmin_subheader_ca">{HPOSNEG}</td>
+					<td class="jradmin_subheader_ca">{HVARIANCE}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" name="maximum" value="{MAXIMUM}" size="3" />{HMAXIMUM_TT}</td>
+					<td class="jradmin_field_ca">{ISPERCENTAGE}{HISPERCENTAGE_TT}</td>
+					<td class="jradmin_field_ca">{POSNEG}{HPOSNEG_TT}</td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" name="variance" value="{VARIANCE}" size="3" />{HVARIANCE_TT}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveCustomerType" />
+</form>
+</patTemplate:tmpl>

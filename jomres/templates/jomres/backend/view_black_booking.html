@@ -1,0 +1,48 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{BBDATE}</td>
+					<td class="jradmin_field_ra">{BBSTART}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{BBDATEENDS}</td>
+					<td class="jradmin_field_ra">{BBENDS}</td>
+				</tr>
+			</table>
+			<br />
+			<table class="jradmin_table">
+				<tr>
+					<td colspan="2" class="jradmin_subheader_ca">{INFO}</td>
+				</tr>
+				<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_field_ca"><b>{ROOMNO}</b></td>
+					<td class="jradmin_field_la">{ROOMNAME}</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+			<br />
+			<table border="0" class="jradmin_table">
+				<tr>
+					<td class="jradmin_field_ca">{REASON}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="contract_uid" value="{CONTRACTID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="deleteBlackBooking" />
+</form>
+</patTemplate:tmpl>

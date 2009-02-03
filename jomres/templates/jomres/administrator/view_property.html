@@ -1,0 +1,98 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
+<form action="index2.php" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title">{PAGETITLE}</th>
+	</tr>
+</table>
+<table class="jradmin_table">
+	<tr>
+		<th class="jomres_title">{HPROPERTYNAME}</th><th class="jomres_title">{HPROPERTYADDRESS}</th><th class="jomres_title">{HCOMMISSIONRATE}</th>
+	</tr>
+	<tr>
+		<td class="jradmin_subheader_la">
+			<h2>{PROPERTY_NAME}</h2>
+		</td>
+		<td class="jradmin_subheader_la">
+			{PROPERTY_STREET}<br/>
+			{PROPERTY_TOWN}<br/>
+			{PROPERTY_REGION}<br/>
+			{PROPERTY_COUNTRY}<br/>
+			{PROPERTY_POSTCODE}<br/>
+			{PROPERTY_TEL}<br/>
+		</td>
+		<td class="jradmin_subheader_la">
+			{HCRATE_TITLE} - {CRATE_TITLE}<br/>
+			{HCRATE_TYPE} - {CRATE_TYPE}<br/>
+			{HCRATE_VALUE} - {CRATE_VALUE}<br/>
+			{HCRATE_CURRENCYCODE} - {CRATE_CURRENCYCODE}<br/>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	function select_all(obj)
+		{ 
+		var text_val=eval(obj);
+		text_val.focus();
+		text_val.select();
+		if (!document.all) return; // IE only
+			r= text_val.createTextRange();
+		r.execCommand('copy');
+		} 
+</script>
+
+<table class="jradmin_table">
+	<tr>
+		<th class="jomres_title">APIKEY</th>
+	</tr>
+	<tr>
+		<td><center><input type="text" size="60" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this)"/></center></td>
+	</tr>
+</table>
+	
+<table class="jradmin_table">
+	<tr>
+		<th class="jomres_title">{HCOMMISSIONESTIMATE}</th>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_commissionestimate_1"></div></center></td>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_commissionestimate_2"></div></center></td>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_commissionestimate_3"></div></center></td>
+	</tr>
+	<tr>
+		<th class="jomres_title">{HVALUEOFBOOKINGS}</th>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_valueofbookings_1"></div></center></td>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_valueofbookings_2"></div></center></td>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_valueofbookings_3"></div></center></td>
+	</tr>
+	<tr>
+		<th class="jomres_title">{HNUMBEROFBOOKINGS}</th>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_numberofbookings_1"></div></center></td>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_numberofbookings_2"></div></center></td>
+	</tr>
+	<tr>
+		<td><center><div id="yearviewgraph_numberofbookings_3"></div></center></td>
+	</tr>
+</table>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="viewproperty" />
+</form>
+</patTemplate:tmpl>

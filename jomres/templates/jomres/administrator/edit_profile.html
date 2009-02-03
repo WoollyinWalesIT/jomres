@@ -1,0 +1,59 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script language="JavaScript" type="text/javascript">
+function SelectAll(CheckBoxControl)
+	{
+	if (CheckBoxControl.checked == true)
+		{
+		var i;
+		for (i=0; i < document.forms[0].elements.length; i++)
+			{
+			if ((document.forms[0].elements[i].type == 'checkbox') && (document.forms[0].elements[i].name.indexOf('chosenHotel') > -1))
+				{
+				document.forms[0].elements[i].checked = true;
+				}
+			}
+		}
+	else
+		{
+		var i;
+		for (i=0; i < document.forms[0].elements.length; i++)
+			{
+			if ((document.forms[0].elements[i].type == 'checkbox') && (document.forms[0].elements[i].name.indexOf('chosenHotel') > -1))
+				{
+				document.forms[0].elements[i].checked = false;
+				}
+			}
+		}
+	}
+</script>
+<form action="index2.php" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<p>{INSTRUCTIONS}</p>
+<table class="jradmin_table" border="0">
+	<tr>
+		<th colspan="4" class="jomres_title">{PAGETITLE}</th>
+	</tr>
+	<tr>
+		<th class="jomres_title">{HACCESSLEVEL}</th>
+		<td class="jradmin_field_la">{ACCESSLEVEL}</td>
+		<th class="jomres_title">{HSUPERPROP}</th>
+		<td class="jradmin_field_la">{SUPERPROP}</td>
+	</tr>
+	<tr align="left"><th><input type="CheckBox" name="SelectAllCheckBox" onclick="SelectAll(this)"></th><th colspan="3">&nbsp;</th></tr>
+<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	
+	<tr>
+		<td class="jradmin_field_la">{INPUT}</td>
+		<td class="jradmin_field_la">{PROPERTYNAME}</td>
+		<td class="jradmin_field_la" colspan="2">{MANAGERS}</td>
+	</tr>
+</patTemplate:tmpl>	
+</table>
+
+	
+{JOMRESTOKEN}
+<input type="hidden" name="userid" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="saveProfile" />
+</form>
+</patTemplate:tmpl>

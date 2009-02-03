@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="edit_gateway" unusedvars="nbsp">
+
+{GATEWAYNAME}
+{GATEWAYLOGO}
+<hr>
+<form action="index.php?option=com_jomres&task=savePlugin" method="post" name="adminForm">
+<table>
+      <tr align="center" valign="middle">
+         <td align="left" valign="top">{JR_GATEWAY_CONFIG_ACTIVE}</td>
+         <td align="left" valign="top">{ACTIVE}</td>
+         <td align="left" valign="top">&nbsp;</td>
+      </tr>
+</table>
+{_JR_GATEWAY_CONFIG_NOTES}
+{JOMRESTOKEN}
+<input type="hidden" name="plugin" value="{GATEWAY}" />
+<input type="hidden" name="task" value="savePlugin" />
+<input type="submit" value="Submit" class="button" >
+</form>
+</patTemplate:tmpl>

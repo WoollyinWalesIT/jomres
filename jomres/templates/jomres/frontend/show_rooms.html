@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="room_headers">
+<div class="panelwrapper">
+	<table class="innerwrapper">
+		<tr class="roomslist_header">
+			<td>{HEADER_IMAGEHEADER}</td>
+			<td>{HEADER_ROOMNUMBER}</td>
+			<td>{HEADER_ROOMTYPE}</td>
+			<td>{HEADER_SMOKING}</td>
+			<td>{HEADER_ROOMNAME}</td>
+			<td>{HEADER_AVLCALLINK}</td>
+			<td>{HEADER_ROOMFLOOR}</td>
+			<td>{HEADER_DISABLEDACCESS}</td>
+			<td>{HEADER_MAXPEOPLE}</td>
+		</tr>
+		<patTemplate:tmpl name="room_details">
+		<tr  class="roomslist_content">
+			<td><img src="{IMAGE}" border="0" width="30" height="30" onmouseover="return overlib('&lt;img src={IMAGE}&gt;',ABOVE, RIGHT);" onmouseout="return nd();"></td>
+			<td>{ROOMNUMBER}</td>
+			<td>{ROOMTYPE}</td>
+			<td>{SMOKING}</td>
+			<td>{ROOMNAME}</td>
+			<td>{AVLCALLINK}</td>
+			<td>{ROOMFLOOR}</td>
+			<td>{DISABLEDACCESS}</td>
+			<td>{MAXPEOPLE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</table>
+</div>
+</patTemplate:tmpl>

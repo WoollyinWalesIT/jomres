@@ -1,0 +1,59 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td colspan="2" class="jradmin_header_ca">{INVOICETITLE}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTAYNIGHTS}</td>
+					<td class="jradmin_field_ra" style="width:100px"><b>{STAYNIGHTS}</b></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCONTRACTAGREED}</td>
+					<td class="jradmin_field_ra" style="width:100px"><b>{CONTRACTAGREED}</b></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCOSTPERNIGHT}</td>
+					<td class="jradmin_field_ra" style="width:100px"><b>{COSTPERNIGHT}</b></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSINGLEPERSON_COST}</td>
+					<td class="jradmin_field_ra" style="width:100px"><b>{SINGLEPERSON_COST}</b></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="jradmin_header_ca">{HEXTRASERVICE}</td>
+				</tr>
+				<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
+				<tr>
+					<td class="jradmin_subheader_la">{DESC}</td>
+					<td class="jradmin_field_ra" style="width:100px"><b>{VAL}</b></td>
+				</tr>
+				</patTemplate:tmpl>
+				<tr>
+					<td class="jradmin_subheader_la">{HEXTRASERVICE_TOTAL}</td>
+					<td td class="jradmin_field_ra" style="width:100px"><b>{EXTRASERVICE_TOTAL}</b></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HGRANDTOTAL}</td>
+					<td class="jradmin_field_ra"><b>{GRANDTOTAL}</b></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="contractTotal" value="{GRANDTOTAL}" />
+<input type="hidden" name="contract_uid" value="{CONTRACTUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveBookout" />
+</form>
+</patTemplate:tmpl>

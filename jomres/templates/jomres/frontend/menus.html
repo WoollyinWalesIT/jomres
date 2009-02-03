@@ -1,0 +1,20 @@
+<patTemplate:tmpl name="pageoutput" >
+<div class="panelwrapper">
+	<table width="100%" class="innerwrapper">
+		<tr>
+			<td style="font-size: 12px;"><b>{TITLE}</b></td><td class="small" style="text-align: right;">{PUBLISHEDPROPERTIESTXT} : {PUBLISHEDPROPERTIES}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table width="100%">
+					<tr class="propertylist_header">
+						<patTemplate:tmpl name="rows" unusedvars="nbsp">
+						<td><a href="{LIVE_SITE}/index.php?option=com_jomres&task={TASK}{ARGS}">{TEXT}</a></td>
+						</patTemplate:tmpl>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+</patTemplate:tmpl>

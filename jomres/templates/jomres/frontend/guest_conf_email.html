@@ -1,0 +1,73 @@
+<patTemplate:tmpl name="pageoutput">
+
+<meta http-equiv="Content-Type" content="text/html; {ISO}" />
+
+<a href="{LINK}"><img src="{IMAGE}" border="0"></a>
+
+{LINKTOPROPERTY}
+
+<br>
+{HELLO}&nbsp;{GUESTNAME}
+<br>
+<a href="{LINK}">{THANKS}</a>
+<br>
+<br>
+{SUMMARY}
+<br>
+<table>
+	<tr>
+		<td>{HBOOKINGNO} </td>
+		<td><b>{BOOKINGNO}</b></td>
+	</tr>
+	<tr>
+		<td>{HROOM}</td>
+		<td>{ROOM}</td>
+	</tr>
+	<tr>
+		<td>{HARRIVAL}</td>
+		<td>{ARRIVAL}</td>
+	</tr>
+	<tr>
+		<td>{HDEPARTURE}</td>
+		<td>{DEPARTURE}</td>
+	</tr>
+	<tr>
+		<td>{HLANDLINE}</td>
+		<td>{LANDLINE}</td>
+	</tr>
+	<tr>
+		<td>{HMOBILE}</td>
+		<td>{MOBILE}</td>
+	</tr>
+	<tr>
+		<td>{HTARIFFTITLE}</td>
+		<td>{TARIFFINFO}</td>
+	</tr>
+	<tr>
+		<td>{HTOTAL}</td>
+		<td>{TOTAL}</td>
+	</tr>
+</table>
+
+<p>&nbsp;</p>
+{HNUMBEROFGUESTS}
+<patTemplate:tmpl name="rows" unusedvars="nbsp">
+{TITLE}&nbsp;{QUANTITY}
+</patTemplate:tmpl>
+<p>&nbsp;</p>
+<table>
+	<tr>
+		<td>{HSPECIAL_REQUIREMENTS}</td>
+		<td>{SPECIAL_REQUIREMENTS}</td>
+	</tr>
+</table>
+
+<br>
+{QUESTIONS}
+<br>
+{TELEPHONE}
+<br>
+{EMAIL}
+<br>
+
+</patTemplate:tmpl>

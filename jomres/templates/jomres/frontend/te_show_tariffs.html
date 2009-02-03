@@ -1,0 +1,33 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<!-- if you want to show min & max people and days, just uncomment the lines commented out below-->
+<div class="panelwrapper">
+	<table class="innerwrapper">
+		<tr  class="tariff_header">
+			<td>{HTITLE}</td>
+			<td>{HROOMTYPE}</td>
+			<td>{HSTARTS}</td>
+			<td>{HENDS}</td>
+			<td>&nbsp;</td>
+			<!--<td>{HMINDAYS}</td>
+			<td>{HMAXDAYS}</td>
+			<td>{HMINPEEPS}</td>
+			<td>{HMAXPEEPS}</td>-->
+			<td>{CONVERSIONBLURB}</td>
+		</tr>
+		<patTemplate:tmpl name="show_tariffs">
+		<tr>
+			<td>{TITLE}</td>
+			<td>{ROOMCLASSABBV} </td>
+			<td>{VALIDFROM}</td>
+			<td>{VALIDTO}</td>
+			<td><b>{ROOMRATEPERDAY}</b>{NOTWEEKENDS}</td>
+			<!--<td>{MINDAYS}</td>
+			<td>{MAXDAYS}</td>
+			<td>{MINPEOPLE}</td>
+			<td>{MAXPEOPLE}</td>-->
+			<td>{GOOGLECURRENCYLINKS}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</table>
+</div>
+</patTemplate:tmpl>

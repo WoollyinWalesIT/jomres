@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_field_la">{EDITLINK}</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="jradmin_field_ca"><b>{NOBLACKBOOKINGS}</b></td>
+	</tr>
+</table>
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="newBlackBooking" />
+</form>
+</patTemplate:tmpl>

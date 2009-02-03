@@ -1,0 +1,57 @@
+<patTemplate:tmpl name="new_black_booking">
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="index.php?option=com_jomres" method="post" name="adminForm"> 
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{BBDATESTARTS}</td>
+					<td class="jradmin_field_ca">{BBSTARTJSBOX}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{BBDATEENDS}</td>
+					<td class="jradmin_field_ca">{BBENDSJSBOX}</td>
+				</tr>
+			</table>
+			<br />
+			<table class="jradmin_table">
+				<tr>
+					<td colspan="2" class="jradmin_subheader_la">{REASON}</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="jradmin_field_ca"><textarea cols="30" rows="4" name="bbReason"></textarea></td>
+				</tr>
+				<tr>
+					<td>{INSTRUCTIONS}</td>
+				</tr>
+			</table>
+			<br />
+			<table class="jradmin_table">
+				<tr>
+					<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="checkAll({TOTALINLISTPLUSONE});" /></th>
+					<th class="jomres_title">&nbsp;</th>
+				</tr>
+			<patTemplate:tmpl name="bookingsrows">
+				<tr>
+					<td class="jradmin_field_la">{CHECKBOX}</td>
+					<td class="jradmin_field_la">{TEXT}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="boxchecked" value="0">
+<input type="hidden" name="Itemid"		 value="{ITEMID}" />
+<input type="hidden" name="task"		 value="newBlackBooking" />
+</form>
+</patTemplate:tmpl>
+</patTemplate:tmpl>

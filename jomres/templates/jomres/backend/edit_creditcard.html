@@ -1,0 +1,54 @@
+<patTemplate:tmpl name="pageoutput">
+<script language="JavaScript" src="{LIVESITE}/includes/js/joomla.javascript.js" type="text/javascript"></script>
+{JOMRESJS}
+<div id='jomresmenu_hint' style='color:red' >&nbsp;</div>
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HCCARDNO}</th>
+					<td class="jradmin_field_la"><input type="text" class="inputbox" size="16" name="ccard_no" value="{CCARDNO}"></td></tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCCARDNAME}</td>
+					<td class="jradmin_field_la"><input type="text" class="inputbox" size="20" name="ccard_name" value="{CCARDNAME}"></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCCARDISS}</td>
+					<td class="jradmin_field_la">{CCARDISS}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCCARDEXPIRE}</td>
+					<td class="jradmin_field_la">{CCARDEXPIRE}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCCARISSNO}</td>
+					<td class="jradmin_field_la">{CCARISSNO}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCCV}</td>
+					<td class="jradmin_field_la"><input type="text" class="inputbox" size="4" name="ccv" value="{CCV}"></td>
+				</tr>
+			</table>
+			<table border="0" class="popup_blank">
+				
+				<tr>
+					<td>{CCARDTYPE}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="guestUid" value="{GUESTUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveCreditcard" />
+</form>
+</patTemplate:tmpl>

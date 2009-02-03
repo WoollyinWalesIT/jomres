@@ -1,0 +1,1077 @@
+Jomres 3.4.5
+
+Added Wellington to NZ Regions
+Added code to switch to ssl when editing guest so that ccard popup done in ssl.
+Added single person suppliment html to srp booking form.
+Added Hazel's upgraded com_jomres.php
+Added code to paypal submission script that uses they guest's country to guess the language that paypal should be presented in.
+Modified showtariffs so that they'll show in a popup. Fixes bug introduced due to composite property details changes.
+Modified elements shown in gateways tab so that they'll always be edited/renamed in touch templates, not gateways tab in General Config.
+Added optimiation of save blackbooking data. Thanks Netized.
+Disabled editing mode for one element in contact owner that prevents form from submitting if editing mode left on.
+Modified booking engine. Fixed creation of departure dropdown when "Bookings are for a fixed period" = No so that the "Booking period" option is used (previously was hard coded to 7).
+Fixed issue where price was being calculated incorrectly when MRP used Micromanage and several diff room types were selected. 
+Removed engine=innodb declarations from install_jomres.php
+
+
+Jomres 3.4.4
+
+Fixed bug in 3.4.3 where property details wasn't being pulled properly from property description and associated fields.
+
+Jomres 3.4.3 
+
+Modified edit & save property so that entered property description and associated fields are saved to custom_text as per the current language.
+Modified jomresGetParam so that functions.php jomres_reconvertString function allows us to reconvert some sanitised data back to a appropriate html string.
+Tweak to fix Joomla pathway when showing the pathway module.
+
+Jomres 3.4.2
+
+Modified blackbooking handling to allow selectall checkbox.
+Tweaked functions.php to ensure various conversion features only use jrConfig calendar input format for javascript calendars.
+Added lang definitions for "Your enquiry" to contact booking form and lang files, removed hard coding.
+Modified front and backend addproperty features to set default country and regions.
+Added delete proprty link to super property manager's toolbar.
+Fixed issue where custom property description not translating in list propertys/property details.
+Modified avl cals so that they show in booking form when composite calendar is not enabled.
+Modified ids of search dropdown country/region/town as old id="town" was causing the town input to not show in the booking form.
+Modified search for Itemid so that it doesn't complain just because there are more than one reference to Jomres in the menus.
+Added more debugging data to dobooking engine and added a check for fixed period bookings shortbreaks so that they only kick in if fixed period bookings option is enabled.
+
+Jomres 3.4.1
+
+Restored two elements (mrConfig['errorChecking'] & mrConfig['errorCheckingShowSQL']) to jomres_config.php because they were incorrectly removed in 3.4 but they are still being used by the redirect functionality. On upgrades this isn't noticable as these values had already been saved to the db, but on new installations it caused the redirect functionality to stop working, making Jomres more difficult to use.
+Removed Jomres metadata handling. To the best of my knowledge it wasn't being used.
+Minor tweak to integration handling so that new installations aren't producing errors because Jomres was attempting to insert settings to site_settings table before it had actually been created. Not a major issue in itself but could lead to some questioning of the functionality. 
+
+Jomres 3.4
+
+Added jquerycombo feature so that geographic searching can be performed via dropdowns that autopopulate. mod_jomsearch_m1 has been tweaked to be more appropriate to a banner/syndicate type module position.
+Moved enabling of logging from jomres.php into Site Config.
+
+Moved javascript calls into functions.php so that we can ensure that both jomres.php or j00030search.class.php are calling the same javascript files if needed.
+Improved myuser's handling for listing bookings
+Fixed issue in genericOr function which wasn't allowing all propertys configured to show after a search.
+Added @ before any ini_set calls within Jomres. Some hosts are now disabling the ini_set feature of PHP, which is triggering fatal errors in PHP, the @ will supress this fatal error but Jomres might not then run as expected.
+Small changes to db handling to ensure that results are unset after handing back.
+Commented out some $mrConfig options in jomres_config.php that are no longer used.
+Added contacthotel text to touch template handling in view property minicomp
+Modified property header so that if the property's meta details are empty, then the property name is used to create the page title.
+Removed blank option from room type dropdown in edit advanced tariffs page.
+Modified touch template handling to output room type and room feature texts in touch templates. Removed same feature from property manager's Preview
+Modified how post tariffinput is access to ensure that values are set to float when saving Advanced tariffs.
+
+Jomres 3.3stable
+
+Single person suppliment added to booking form. MRPs only.
+Removed very old version notes from readme file and supplied link to the manual.
+Modified how single person suppliments are applied when the sps is defined in an individual room, previously the sps was only applied once, now it's applied for every day of the booking.
+Added optional switch email_when_done to componentArgs in guest and hotel email. Allows the email form to be called directly without actually sending it. Useful for previewing emails. See here for more info http://forum.jomres.net/index.php?topic=1087.msg4870#msg4870
+Added new optional trigger 03500 to contact owner plugin which can be called when the contact email is sent so that admins wishing to use pay per lead can have a plugin (not available from Jomres.net but the framework is here if you want it http://forum.jomres.net/index.php?topic=1099.msg4864#msg4864)
+Modified General Config so if the user is on Solo, then they're able to swap property types.
+Changed logging task to $task, instead of the called url.
+Added set memory limit to admin.jomres.php 
+Changed jomresGetParams to use filter_var if the function is available
+
+Jomres 3.3rc2
+
+Rewrote a large section of code to make rooms transparent to SRP users. Means that they no longer see rooms when in property admin, and importantly, cannot swap from SRP to MRP in General Config.
+Fixed issue where ; missing from an &nbsp; in showing room types in the property. Thanks Piranha
+Switched on display of API key in front end property admin area
+Room features tab in property admin switched off if SRP
+Renamed SRP property types in room classes table on install from 1B to 1 Bedroom etc
+
+
+Jomres 3.3rc1
+
+Added ability for guests to cancel their own bookings.
+Added an access check so that new users are prompted to log into the front end as admin. 
+Added new temp folder in /components/com_jomres. Hard coded system log path to go to /components/com_jomres/temp as input filtering was messing around with paths on Windows based servers. 
+Fixed bug in register property where it wouldn't submit if you left editing mode on.
+Small change to registered user's menu so that the menu area is shorter.
+Small improvement to new Profiles handling to list Super property managers correctly.
+Removed ref to jomresConfig_lang when payment specific stuff being found as lang no longer stored against booking info.
+Replaced / in installer with JRDS.
+Changed description in ptypes table on install from "Hotel" to Hotel/Villa/Apartment.
+Added back link to top.html
+Added note advising no bookings exist if *gasp* the registered user hasn't created any bookings yet.
+Fixed bug in upgrader.
+
+Jomres 3.3beta1
+
+By default new installations of Jomres have the minimised configuration option set to Yes. 
+Reworded black bookings instructions to make a bit more sense
+Added Joomla user name to booking details.
+Added JOMRES_PHRASE_PROCESSING to gatewaypostage function
+Fixed small issue with a css declaration in srp booking form referencing the wrong div, thereby allowing the "We have vacancies" to be come visible. Thanks Piranha
+Removed erroneous delete of images from no longer existing images tables.
+Completely rewrote the profiles handling functionality to make it simpler and more logical.
+Modified settings handling for both mrConfig and jrConfig. All mrConfig settings should now by default be saved to the database under property_uid 0 on install/upgrade. Ditto for jrConfig and both jomres_config.php and site_config.php should only be referenced during install/upgrade.
+Added new functionality to show all property details in one page (composite_property_details.html). As this is new functionality it is switched off by default, to enable it switch the site config option "Use Composite Property details" to Yes.
+Added HDEPOSIT and DEPOSIT variables to hotel and guest emails. Not changed templates.
+Fixed dodgy link for registration in J1.5.
+Added new class custom_text. Fixed bug where constant DESCRIPTION was being input filtered to DEscr<x>iptION.
+Fixed bug where the name of the default language file wasn't being found correctly in admin area.
+Added some more tweaks to remove some options if we're an SRP because those options will just confuse an SRP property manager.
+Bypassed a bug in IE where the editinplace input cannot be seen. Now IE users are stuck with using the popup input boxes, whereas firefox users will have it as editinplace.
+Modified a couple of templates so that when Jomres tries to automatically close a popup IE no longer asks the user if this is ok. When Microsoft closes that loophole, we'll find another way around it.
+Removed a stray echo from search functionality.
+Fixed bug where property features aren't saved when a new property is created.
+Set path in jomres.php for finding files to JRDS instead of /.
+
+Jomres 3.2.3stable
+
+Added check for userIsManager in feature icon generating option so that if user viewing property while manager has editing mode on, the captions and description of the features aren't listed and echoed after the icon.
+Added check for euro symbol while saving. Input filter messes around with it otherwise.
+Added simple email feature to savecancellation to advise that the booking has been cancelled.
+Added check for "script" to add installer.
+Added new word to lang file (Saving) and upgraded rc1 new editinplace functionality so that administrator no longer needs to be logged into the front end to use the editing functionality. If you're editing via touch_templates you also don't need to switch global editing on, or editing mode in one of the front end properties, it immediately assumes that you're global editing text.
+Clarified wording in plugin exception message.
+Fixed issue in unzip library where module xml files weren't getting installed on windows boxes.
+Added tweaks to save feature settings as euro symbol was getting mangled by the input filter.
+
+Jomres 3.2.3rc1
+
+Added new editinplace functionality, switch back to the old style by editing site_config.php and set $jrConfig['editinplace']="0";
+Removed an old js file that's not been used for yonks.
+Added rebuild registry to installer to ensure new minicomponents are picked up straight away.
+Fixed bug where contact form wouldn't work in IE7
+Fixed bug where EMPTY showing in modules.
+Removed a few unneeded styles in dropdowns now that jomres shadow background style has been dropped.
+Resolved one final issue in booking engine where non-registered users we being recreated if their bookings were amended.
+More small changes to delete guest functionality.
+Modified integerSelect list to show 0 before numbers < 10
+Fixed bug where wrong title for max rooms selected showing in Advanced tariff editing mode
+
+Jomres 3.2.3beta1
+
+Fixed path to BookGuestIn.png
+Fixed a critical error where property managers reusing guest details were renaming all existing users to the new user's details. You are advised to upgrade as soon as possible.
+Moved blackbooking functionality to Receptionist's menu. 
+
+Jomres 3.2.2 - Nee 3.2.1
+
+Improved deleteguest functionality to ensure room bookings are removed.
+Wrapped single person suppliment output in confirmation within an if statement to prevent it from showing if value = 0
+More admend booking tweaks. Edited checkDepartureDate function.
+
+Jomres 3.2.1
+
+Updated nl-NL lang file, thanks Ruud
+Added search by price range functionality
+Removed redundant property title output in reception bar
+Modified MRPavailability calendar so that only when all rooms are booked then the calendar shows them as booked.
+Modified search minicomponent so that title of page is changed only when option=com_jomres (eg, when a search has been performed)
+Modified search minicomponent so that room and property types can be translated via touch template functionality
+Modified deleteGuest so that all bookings are deleted if the guest's only open bookings are with the current property. If not, then the bookings will need to be cancelled for the other properties first.
+Added some defaults to edit tariffs for min and max rooms already selected functionality.
+Small modification to integration so that toolbars aren't shown on edit language popup
+Updated booking engine with Hazel's tweaks to booking amendment functionality
+Fixed bug where deposit couldn't be edited.
+Tweaked title setting in search class so that titles are only changed with country, region, town etc are part of the search criteria.
+Added check to jomresURL so if sefRelToAbs doesn't exist as a function, then to include the file that sets the function.
+
+Jomres 3.2Stable
+
+Added funky new icons.
+Date picker now popups up the calendar on click of the input, rather than the calendar icon. To restore the old "click on the calendar image" functionality please edit functions.php and dobooking.class.php and search for the functions generateDateInput. In those functions you'll see instructions on what to comment out to restore the old calendar handling.
+Removed jscalendar configuration options from front end, now only admin can change the settings.
+Added "book guest in" option from view booking page.
+Tweaked updates feature so that you only need to go offline when actually updating.
+Added fix for SSL setting switching off booking form links, and support for ssl in J1.5
+
+Jomres 3.2Beta2
+
+Renamed language files to follow xx-XX language format.
+Added functionality to autodetect the javascript language file for the javascript calendars. This is enabled by default, so if you don't want this to work in your existing installation please remember to edit the JS calendar option in Site Config and disable it.
+Created plugin registration handling to reduce startup time for Jomres, relieves need for automatic discovery of mini-components and added a manual registry rebuild icon.
+Added folder writability checks to Jomres control panel.
+Added nocurl task so that users get a message advising that CURL is not available to the server.
+Modified showplugins and updates so that the stop icon is shown if curl not available
+
+Jomres 3.2Beta1
+
+Added Plugins to new installs Joomla components dropdown menu options
+Applied Hazel's tweak to amend booking.
+Fixed j00017SRPavailabilitycalendar.class.php so that availability shown in calendar when task = remoteavailability
+Modified j00018MRPavailabilitycalendar.class.php so that definitions from language file are used instead of custom text strings.
+Modified j04910deleteproperty.class.php so that property images are deleted on property delete.
+Fixed issue where slideshow images were not being deleted
+Added error logging to drop image to log if unable to delete the image in the error log
+Modified jomres.xml file to correctly show that the script runs natively in j1.5.5.
+Added cancelled_reason to installer on installation.
+Added check for session folder being writable in tempbookinghandler.class.php
+Modified live site detection in integration (again) to get around some servers with sef enabled not finding the correct live site.
+Fixed bug in dobooking where discounts for srps not recorded correctly
+Modified list properties so that $maximumProperties is used when checking the limit of the number of properties, rather than just "100"
+Renamed jquery.cookie.js to jquery.cookee.js to get around mod_security's false positives.
+
+Jomres 3.1.15Stable
+
+Added metatitle and metadescription (change these through Edit Property in Property Admin). Whereever property header is shown, these details will be added to the page.
+Added code supplied by Hazel to correct buttons in administrator, allows them to wrap correctly.
+Changed default of maxrooms_alreadyselected from 10 in 3.1.15beta3 to 3.1.15beta4 to 100.
+Fixed issue in show_rooms.html where overlib wouldn't show room image popup.
+Added missing marker in geocoder latlong template.
+Modified number format output of total in guest email.
+Modified captcha library to improve path finding for captcha images.
+Fixed bug in Normal mode where you were unable to reduce the number of rooms of a give type.
+
+Jomres 3.1.15beta3
+
+Added Contact form link to property details template so even those properties that allow online bookings can receive emails from guests.
+Added new feature to room details. Specific rooms can have different single person suppliments, which can come into play if the General Configuration Single Person Suppliments option is not set to Yes.
+Added new feature to Advanced tariff editing mode to allow different tariffs to be offered depending on the number of rooms already selected.
+Fixed room image output in rooms list 
+Added missing define to german.php
+Fixed dropimage function that calls db query where no longer required.
+
+
+Jomres 3.1.15beta2
+
+Modified the define used in the general configuration tabs title to use a define that actually says "general configuration"
+Added mailto link for guest's email address in edit booking page.
+Added new function getImageForProperty to make calling header and room images simpler.
+Modified performance tracking in jomres.php, no longer governed by Joomla/Mambo debugging settings
+Reworked integration's db and miniComponent handling to provide more accurate tracking of queries and their calling sources
+Dashboard reworked to reduce the number of queries it performs
+classes and functions reworked to remove unwanted globals and non-used variables
+General code tidy up of integration, mainly replaced jomresConfig_absolute_path with JOMRESCONFIG_ABSOLUTE_PATH and other superfluous variables removed
+General code tidy up of minicomponents replaced jomresConfig_absolute_path with JOMRESCONFIG_ABSOLUTE_PATH & removed references to  jomresAdminPath as it's no longer used.
+Added email site manager on property delete
+Added switch in booking engine, if booker is a receptionist/manager then they will see the full list of rooms in the booking form, whereas guests will see the rooms list limited as per the booking rooms tab option "Available rooms/tariff limit".
+Enabled commented out code in list_guests.html to show link to edit creditcards.
+Added captcha protected contact form for properties that do not allow bookings online.
+Fixed bug introduced in 3.1.15beta1 where booking wouldn't complete because of a save guest error.
+Added tariff title to rooms info in Edit booking.
+Fixed bug in installer where rates table not being created.
+Finally got around to removing the echo of an integer in the dashboard
+Fixed bug introduced in beta1 where guests could not be inserted
+Added a variable to the temp booking handler to record the type and values of the discounts. Modified contracts table to add same column (discount_details)
+Tweaked property header to correctly show single and double quotes, modified getEscaped to adapt to magic quotes on and off
+Modified jomres.js to correctly show text when in IE
+
+Jomres 3.1.15beta
+
+
+Modified integration.php. Added check in language selection for file_exists($jomresConfig_absolute_path.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php") when querying state of $_COOKIE['jfcookie']. We will only use $_COOKIE['jfcookie'] if joomfish actually exists on the server because if joomfish doesn't (eg it was uninstalled) then you're stuck with whatever language was last selected via Joomfish.
+Tweaked mustregister plugin to offer Joomla 1.5 registration url
+Fixed issue in SRP calendar where _JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY text was output where it should have been _JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY
+Added special requirements to booking advisory emails
+Added createJomresPortalBookingsTable function to install phase.
+Modified contracts table. Now contracts are not deleted when they're removed, instead they're marked as cancelled so that in the future we'll be able to pull cancellation data direct from this table for statistical purposes.
+Modified Advanced mode tariffs. You can now set a specific arrival day that the tariff is valid for. 
+Modified guest handling. Jomres.php should now detect if we have an existing guest and discern the correct address details. Fixes issue where guests weren't able to list their bookings (fix applies to new bookings, not existing ones)
+Added some commented out code to list properties so that if you want to redirect to the booking form in the event that only one property is returned be a search you can uncomment the lines.
+Fixed an issue where micromanage tariffs first tariff's "valid from" was being set to 1.1.1970
+Upgraded user management so that super property managers automatically have access to all properties. If this is contrary to your existing working practices you can edit j00002usermanagement.class.php and change the line var $superPropertyManagersAreGods = TRUE;  to FALSE;
+
+
+
+Jomres 3.1.14
+Modified installer so that if com_jomres is in components table it's not reinstalled.
+Modified integration script so that new propertty buttons appear for Unlimited users
+
+
+Jomres 3.1.13
+
+Changed integration and installer to recognise IIS when figuring OS
+Added check for jfcookie & mbfcookie lang option
+Corrected check for security defines in dutch.php so that it'll work on J1.5
+Added PHP and NIS currency codes to function that edits commission rates
+Removed extraneous check for mos id in get guest query
+Fixed remote availability, brought it up to date
+Added new function to pull month name to get around strftime not handling utf8 properly. Affects MRP and SRP calendars and dashboard month names dropdown.
+Added defines for paging if j1.5
+More tweaking to "guess the absolute path" code
+
+Jomres 3.1.12
+
+Fixed installer/integration error. Fired the person responsible but then nobody was available to make coffee so I had to rehire myself. Nuts.
+
+Jomres 3.1.11
+
+Replaced some left over sefRelToAbs calls in paging with jomresURL
+Refactored the te_setAverageRate method to resolve an issue in micromanage mode where prices were being calculated incorrectly when bookings were being made and only one room type was selected.
+Changed how absolute path is detected
+Removed 00002 from the non-overridable minicomponents list, so that a plugin can be developed that allows Super Property Managers to access all properties even if they're not assigned to them.
+Fixed a typo in the english lang files
+Modified dobooking.php so that property managers aren't kicked into a redirect if then come into the booking form via one of the calendar links in dashboard or property details.
+Fixed issue where new managers were not being added to the database on creation of a new property.
+In plugin manager, replaced removeXSS with add_slashes for data passed back from upgrades server.
+Added rel="nofollow" to calendars to prevent google from following the links into the booking form.
+Added config option to misc site config tab for full path to the available logs folder
+Added option to change path to logs
+Modified MRP calendar so fixed arrival day option works in MRP calendar
+Set emailing errors off by default
+Modified logic so that if the jomres calendar scripts have already been called, they're not called again by jomres.php
+Fixed issue caused by a previous fix that preventing pending book-ins from listing.
+Modified how key.php is found. Removed preceeding slash
+Tweaked book guest in functionality
+Modified dobooking.php so that calls to domain.com and www.domain.com can be used interchangeably and should not cause an error in the browser.
+
+Jomres 3.1.10
+
+Changed how language selection is done. New option in site config to choose the language file to use, if $_REQUEST lang is set then it'll use that instead, else it'll use the lang file selected in site config
+Updated lang files for lang selection in backend and updated french.php (thanks Marc)
+Updated search.class with getSiteSettings
+Updated listproperties with getSiteSettings
+Tweaked bookguestin to not show blackbookings
+Updated favourites functionality to not show blackbookings
+Fixed dobooking.class.php so that all room features should show in booking form popup (thanks Hazel)
+Updated plugin installer so that if module/bot etc don't install, it's recorded in the error log why, although an error isn't specifically triggered because that'll throw the user out of joomla altogether.
+Fixed bug where paypal users aren't given booking completed message after booking made.
+Tweaked installer to improve creation of image folders in /images/stories/jomres
+renamed code2utf to jomres_code2utf to remove conflict with mosets tree
+Modified date input function for validation
+Modified booking form to show avl calendar underneath the form. Modified both avl calendar scripts to not show links when on booking form.
+Modified guest email to put commas after each room name/number
+Modified plugin installation functionality to perform dependencies checks if available.
+Modified updates script to show if site not offline in J1.5
+
+
+Jomres 3.1.9
+
+Modified minimised config feature so that Super Property Managers still see the full options.
+Added Edit Language manager's option to minimised config exclusion
+Added tweak for Joomla 1.5 joomfish so that if Short Code in Joomfish's language selection is set to the appropriate language, eg "english", "german" etc then Jomres will switch languages.
+Fixed jr_gettext call in languages for month translation
+Fixed a few calls to jr_gettext in confirmation script so that if editing mode is on then that doesn't break the form.
+Tweaked editbooking to show amend booking icon
+Removed some hard coded text from booking confirmation form.
+
+
+Jomres 3.1.8
+
+Upgraded plugin handling, allowing us to supply modules/mambots/minicomponents directly from the Jomres backend.
+Replaced removeXSS with add slashes, resolves issue where some site settings not saving correctly.
+Tweaked MRPavailability calendar so that link to booking room shows when half full.
+Changed number filtering in 610paypal to number_format
+Added code to detect plugin types to allow us to not show uninstall link for external plugins
+Added code to booking engine so that if the filtered Id of the extra has a number as the first char then an X is added to the beginning, and if the string is empty, then a random string is generated.
+Fixed issue in checkin times where checkin details were not showing correctly.
+
+
+Jomres 3.1.7
+
+Fixed bug where paypal tmpbooking object not available
+Improved micromanage -> averages calulation when multiple room types selected
+Now setting jomressystemlog path in jomres.php
+Fixed minor bug in j01010listpropertys.class.php where multiple SDI inserts weren't being added correctly to property list template
+Modifed j06000save_normalmode_tariffs.class.php so that in normal mode tariffs are not created when there are no rooms for that tariff
+Added strip slashes to show plugins description output
+Added check in booking insert functionality to check if a room wasn't double booked while the customer was paying. If it was, then this should trigger an error.
+
+
+Jomres v3.1.6
+
+Tweaked wording in installer to refer to Mambo/Joomla
+Returned the magical disappearing minicomponent calls to j01050 (google maps)
+Removed erroneous call to sefreltoabs from search functionaity, replaced with jomresURL
+Reset testing download variable in update script to false
+Modified functions.php dirmv function, set overwrite to be true by default
+Returned the magical disappearing lat and long inputs to the edit property template
+Added use Jomres email check to site_config
+Commented out tmpBookingHandler->tmpbooking["property_uid"]=$property_uid; which was causing incorrect guest uid report in booking form
+Modified the content tabs class so that if anchor is found to be empty after stripping out non-alphabetical text, then it uses the random string generator to create a random anchor.
+Added mysql error reporting on event of unsuccessful doInsertSql
+Added Hazel's tweak for next day property free in booking engine
+Replaced calls to mosHTML with jomresHTML in cheque gateway
+Changed session_start in list properties script
+Restored handling of zips to add plugin so that we can manage directories within plugins
+Disabled directory emptying in show plugins
+Added check to ensure that the server's offline before running the upgrade process. Because jomres.php can now remove install_jomres.php we need to tell the admin that they need to run it, if the server's online then there's a chance that a site visitor will inadvertently remove it before admin's had a chance to run it.
+Tweaked dobooking to remove property uid discovery
+fixed table errors in email templates
+
+Jomres v3.1.5
+
+Changed default chmod to 755 in the dirmv function
+Tweak license checking for IIS users 
+Changed method of selecting value of country dropdown in register property template
+Added updates folder to installer check
+Added file_get_contents to functions.php
+Updated plugin handling functionality for greater reliability
+Updated lang files with new per person per night define
+Fixed booking handler so that saveGuest works after resetting the guest details
+Added test for plugin_unisntall.php to dropplugin function
+Changed how the tmp booking hander's property uid and selectedProperty's id are compared, changed so that both are typed to an Integer during the test.
+Tweaked jomres.php so that if possible it'll try to remove out of date/installer scripts on the server if possible.
+Removed extra , in showRoomDetails check when discovering property uid
+Added processpayment to discovery of property uid from tmp booking handler 
+
+
+Jomres v3.1.4
+
+Changed method of selecting value of country dropdown in register property step 1.
+Re-enabled session method warning for Joomla 1.5
+Inserted checks for function exists curl_init to disable remote plugins and updates if curl not available
+Added section to test if task = showroomdetails then find the property uid by querying the roomuid
+
+Jomres v3.1.4beta
+
+Added extra notes to installer, enabled prefill of license key on existing installations, added installation of site_settings table
+Suppressed error notice when trying to create sessions directory
+Site config now saved to database
+Added prototype remote plugin handling
+Changed timeout (again) in session handler for J1.5
+Reformated most of lang files so that they're not recorded with BOM
+Added BOM stripper to jomres.php
+Fixed misalignment issue in dobooking.html (thx Hazel)
+Changed mailer class so that default output is utf-8
+Added webinstall script existance warning to jomres.php
+Tidied up backend Control panel, changed license server query so instead version data is pulled from updates.jomres.net
+Fixed issue in jomres.php where globals for logging settings were not properly declared.
+Added check to ensure that license key isn't being changed from the front end
+
+
+Jomres v3.1.3
+
+Added upgrade feature
+Fixed bug in srp dobooking showing noscript warning
+Moved location of setting success subject in paypal plugin
+Fixed path to noimage in room details
+Modified session_start in case server cannot start sessions without session being set to file
+Changed paidAmount in paypal to float by default.
+Fixed installer not creating data in components table
+
+Jomres v3.1.2
+
+Fixed unable to delete guests bug
+Added check for joomla 1.5, if so then minutes setting is recalculated to seconds for session file timeout
+Added Itemid to link to booking in hotel email
+Reworked logging so that path to change how path to log files is found. If you are upgrading and intend to reuse your existing site_config.php, ensure that the $jrConfig['jomres_systemLog_path'] variable in site_config.php includes the full path to your system log, eg /var/www/html/media/, not just /media/
+
+
+Jomres v3.1.1
+
+Added fix for paypal IPN not working, involved creating whole new pseudo-session management code for tmp booking handler
+
+Jomres v3.1 Northendnairn Edition
+
+Added hazel's Northennairn Edition templates and css file and tweaked minicomponents
+Added createJomresPortalBookingsTable check which resolves issues with users upgrading from pre-2.7 versions not having correct tables installed re portal
+Moved slideshow default location to show below property header. Added switch to backend site config to offer option of above or below property details.
+Enabled creation of subfolders for new property types and copying of default lang file to same folder automatically
+Modified to allow switching off of cookies in content tabs (useful if SEF or other module functionality breaks handling of the config tabs)
+Fix Added code for fading in extras 
+Fixed bug where room types named incorrectly when set to links in search modules
+Added extra code to check that lat/long isn't empty 
+
+
+Jomres v3.0.6
+
+Renamed availability calendar scripts, renumbered composite calendar call to 18 in viewproperty 
+Added detection to change JOMRESPATH_BASE so that any trailing slash is removed. 
+Removed indicator from overlib alt
+Fixed output of discount so that room type description added to text about room type being discounted 
+Tweaked some output of english.php regarding discounting in the booking form. 
+Added extras container to fade out 
+reverted to old star as it has transparent background 
+Modified for Hazel's additions to viewproperty, puts outputted data into variables for conditional output. 
+Added Center tags for SRP availability calendar
+Added calls to language files for modules
+Added strip slashes for dropdown/link outputs
+Added center tags for MRP availability calendar 
+Added hazel's conditional output so that links can show in property header 
+Changed variance from jomresGetParam so that variance can be float 
+Changed bookout extra services extraction so that they are not number formatted 
+Changed path to edit item image for amend booking 
+Minicomponentised slideshows 
+Edited geocoder_latlong.html to fix output 
+Made show smoking option No by default
+
+
+Jomres v3.0.5
+
+Fixed bug where room image isn't showing
+Removed unneeded task=
+Removed /administrator/ from path to site_config
+Enabled output of reg instructions as button so that it doesn't cause a js error if editing mode is on. 
+Added check for singleproperty so that solo users cannot create a new property 
+Added extra checks to try to detect if user is custom editing and entering nothing. 
+Modified paypal to set deposit required to float
+Modified search to resolve issues with 1.5
+Modified view property to show google maps
+Modified jomres.php to minicomponentise self registration and being inline registration. 
+Added lat and long to edit property inputs, table and geocoder output 
+Added touch template functionality 
+
+
+Jomres v3
+
+Modified how a new property is created. Functionality now uses frontend register property steps which allows use the ability to set the SRP flag from the outset.
+Encryption option in General Config removed, encryption key replaced with jomresConfig_secret (aka mosconfig_secret). If you have previously stored any creditcard data in the database it will no longer be accessible unless your mosConfig_secret is the same as that used in the old encryption option field. For this reason, you are advised to manually copy/print out any saved creditcard details that you want to retain and re-enter them manually after upgrading. If you do not, you will NOT be able to retrieve previously stored creditcard data.
+Added property specific stats to front end manager's bar
+Added email checking facility so that guest and hotel emails do not cause 500 error if one of said email addresses is invalid
+Added option to jr_gettext "2". If $jrConfig['utfHTMLdecode']='2' then text is passed back as is pulled from the db, without it being modified by either the html_entity_decode or jomres_html_entity_decode_utf8 functions
+Added feature to email errorlogs to bugs@jomres.net
+Added check in editproperty script so that if user only has one property then they are unable to delete this property. 
+Added more icons to installion process so that SRP and non-SRP specific room types are added by default. Added many more property features that are inserted on install
+Fix booking out form, added pricing for rooms, replaced invoiceform script with reuse of book guest out script, as that already has the relevant calculations in it.
+Added button in edit guest to enable emailing of confirmation form to guest (backup sent back to hotel, in case the hotel's email is different to the receptionist's)
+Added guest numbers to confirmation form and initial emails.
+Added html emails. To revert back to the old email settings uncomment the currently commented out text in the hotel and guest scripts, comment out the new code for calling the template, and set $mode=0
+Added translation of room type for super property managers
+Changed output so if no rooms available, you get a meaningful message, not just the empty list.
+Added framework for remote access (to be implemented at a later date)
+Huge rejig of file locations moving nearly all of them into the front end. Allows administrators to use .htaccess protection of administrator folder if required. All previous minicomponents no longer applicable.
+Implement new defines for template paths, use a j00001 minicomponent to over-ride the defaults.
+Minor tweaks to make Jomres work on Joomla 1.5RC4 Nightly 7th Jan
+Removed hard coded links to administrator, replaced with JOMRES_ADMINISTRATORDIRECTORY
+Added j00001start, which defines paths to templates and administrator folder, so the name of the directory can be changed and links should still ref once this file is modified
+
+
+Jomres 2.7.5.1
+
+Renamed internal function html_entity_decode_utf8 to jomres_html_entity_decode_utf8
+
+Jomres 2.7.5
+
+Integrated portal functionality into backend. Supplies some stat information on individual properties, plus overall information. Allows setting of commission and integration with forgeign account systems (currently, only nbill).
+Added jomrestoken to many areas of code to defend against CSRF (See here for more information http://forum.joomla.org/index.php/topic,248109.0.html)
+Added alternative gregoriantojd function
+Modified search functions to pull Super Property set code modified in Edit Language task 
+Fixed issue with deposits set to 3 decimal places failing paypal confirmation
+Added Itemid to hidden output of modules
+Some performance tweaks, uses thisJomresProperty instead of making independant queries 
+Commented out not logged in message 
+Added property uid to test property details function, fixes issue where property name not shown correctly 
+Switch off echoing of setting changes 
+searchAll added to countries list 
+Fixed bug with edit room feature not working 
+
+Jomres 2.7 Stable
+
+Switched off SSL in joomla. Joomla forgets the user when switching from http to https, therefore managers are unable to switch without their details being lost. Unable to perform manager bookings.
+Added more options to weekend days.
+Un-included configuration.php again.
+Fixed customer type order not being saved.
+Changed query to order guest types by Order.
+Removed duplicate define
+Added some simple debugging info .
+Tweaked amend booking functionality.
+Added note to upgradeWarning: Also note that due to the addition of the Extras models into the core code, if you are upgrading from below 2.7 you'll need to edit your optional extras to normalise them against the new tables (just go into each extra and click Save).
+Fixed favourites couldn't be added if someobody else already had a property marked as a favourite. 
+Changed buttons options so that if in popup the cancel booking button is available (so that booking can be cancelled from blackbooking)
+Changed format of jrgettext for view black booking link so that link is clickable if editing mode on. 
+Fixed genericOr call not passing "false", was stopping occupation showing in composite calendar. 
+Updated getAllBookings, fixedDaysArrivaldateDropdown, calcPeriods etc with Hazel's contributions. Modified code allows us to select historic as well as future dates in fixed arrival dates dropdown in booking form.
+
+
+
+Jomres 2.7 RC 1
+
+Added booking editing functionality. Well played Hazel!
+Added remote availability plugin to Jomres Core
+Commented out Global Features and Global Room types options in backend site config. So many features in Jomres rely on these options being set to Yes that it's best to remove the option to set them to No.
+Added option "Minimise configuration options" in site config. Allows the site manager to present a minimised set of options in the General Configuration. Means that there are less options for Property managers to play around with, and the Gen Config page renders faster in the browser.
+Integrated last minute plugin into Core code. This plugin is only available to SRPs, whilst Wiseprice is now only available to MRPs.
+Added code to output discount information to property list and view property pages
+Added option in general configuration which allows output of Verbose tariff info or a simpler list of tariffs
+Changed the conversion link from google to xe.com. xe.com offers conversion options to many more currencies and is a better interface.
+Integrated enhanced tariffs into core system as "Micromanage" tariff editing mode.
+Added warning to install_jomres.php if upgrading RE the new tariff modes.
+Change "room" types are reworded in the language file to "room/property" types.
+Change css file to show black on grey instead of white on grey.
+Change link in property details to show rooms list instead of calendar in popup.
+Change jomres.php to show full room details when room availability link clicked.
+Fixed some issues with displaying audit table
+Removed jquery interface functionality as not compatible with jQuery 1.2. Booking form rooms list behaves slightly differently, but not much.
+Added code to remove guest data from session if user is manager when going to dobooking again, add resetTempGuestData to session handler.
+Integrated cheque/payoffline plugin into the core build.
+Fixed Resolved issue with occasionally temp guest data not being passed to booking confirmation page. 
+Fixed duplicate bookings when form used in IE issue.
+Added bolds for tariffs not passing in booking form logging.
+Added file detection for three files that need to be removed after upgrade.
+Added flag to genericOr to disable (int) option if the data passed to it isn't an array of integers.
+Modified availability calendar so that the dates passed to genericOr function aren't set to integers. 
+
+Jomres 2.6.3 RC 1
+
+Added SSL switching for booking form
+Debugged installer on new install checking the license key before it has been created
+Modified default templates so that they're all set to Basic. We'll let the template override take over from now on.
+
+Jomres 2.6.3 Beta 1
+
+Added code for flash area. This is a less featured but more robust alternative to the sometimes buggy javascript editors
+Added code to enable switching manager's menus to text mode
+Added new functionality whereby default room/tariff administration is the new "Normal" mode. Provides a simpler way of administering tariffs for new users. Experienced users can switch to Advanced mode (General Config -> Tariffs and Currencies tab) to edit rooms and tariffs and create room features.
+Added option so that Room types can be designated for SRPs or not.
+Added room details list to Property details page.
+Converted booking notes functionality to work as part of Jomres Core
+Converted my user plugin to work as part of Jomres Core
+Converted Extras Models to work as part of Jomres Core
+Converted Wise Price to work as part of Jomres Core
+
+
+Added lang definition for sort order.
+Added country to property details.
+Removed incorrect description of icon sizes.
+Modified composite calendar. Changed getParam for task from "" to 0. Should stop calendars from opening the booking form in new windows.
+Modified integration.php to force inclusion of configuration.php so if Joomla's globals emulation off fails then Jomres will STILL use the local configuration.php to find various settings.
+Fixed issue where existing guest's region data wasn't being pulled from system by the manager's select guest dropdown in the booking form.
+Curl fixes.
+added image sorting.
+Fixed issue where room features not showing in room details on booking form.
+Added option to rooms config to enable translation of room features, and added same to booking engine to show changes.
+Fixed added line to allow change of the registered language when the booking form is reloaded. If users switched from lang A to lang B the overlib would continue to use the data as per lang A.
+Fixed issue with non-editor custom code only saving 1 and not the string.
+updated slovak.php Many thanks to mojeslovensko for your hard work.
+updated danish.php Many thanks to Ronny Buelund for your hard work.
+Removed reference to jrConfig Itemid in pathway minicomp as it was causing Mambo to lose the Itemid.
+Booking engine re-enable error logging.
+Removed hard coded currency format, replaced with new definition in language file.
+Corrected notes for paypal integration.
+Added code to refuse deletion if only one property on system
+Modified installer to check for NULL tables in SHOW TABLES
+Added code to pull today's date from cookie/request if possible when listing properties. Should allow us to output prices from the search dates if available.
+Added thursday/friday and thursday/friday/saturday as weekend options
+Moved some files into /components/com_jomres directory
+Converted more hardcoded elements in backend to language defines
+Moved patTemplate dump option to backend
+Removed css tab completely as dump template vars option is now in backend, and diff templates feature is replaced with template override feature. If you are upgrading it is advised that you physically remove the file j00501css.class.php as it cannot be removed by the installer. If you do not remove it you will simply find that it's settings no longer have any affect.
+Forced $mrConfig['templatePack']="basic"; in jomres.php
+Clicking Submit/Save in Edit Property page now takes you back to the edit property page so that you can continue editing.
+
+* RE flasharea: Jomres uses the file jomres.xml in components\com_jomres\libraries\flash_area\resources\FlashArea\options Documentation can be found here: http://www.tufat.com/docs/flasharea/index.html
+
+Jomres 2.6.2 Stable
+
+Added fix for bug reporter
+Added code to query number of properties to enable Single Property version
+Removed engine type from table create routines
+Removed Itemid from booking forms
+Fixed bug in BlockUI code
+Added new jquery.js 1.1.4 for improved performance
+
+Jomres 2.6.2 Beta2
+
+General tweaking of new temp booking handling.
+
+Jomres 2.6.2 Beta1
+
+Added noscript Meta tag to booking form to redirect on user having javascript disabled
+Added jQuery blockUI functionality for better feedback
+Added session handling for temp bookings plus other booking engine tweaks for performance
+Added pathway minicomponent
+Removed HTMLPurifier
+Removed AjaxRequest, replaced with jQuery's ajax handling. Much faster.
+Modified booking form. Address details are not added during the input filling stage. Instead they're added on submit.
+Modified input filtering. 
+Modified converted some of the javascript files so that they are compressed. Fullsize versions are still available.
+Modified publish function moved out into minicomponent
+Modified changed permissions so that Super Property managers can create new properties, even when backend config disallows managers from creating properties
+Two new flags in site_config: $jrConfig['disableAudit']="0"; $jrConfig['dynamicMinIntervalRecalculation']="0";
+
+
+Jomres 2.6.1 Stable
+
+Modified Numerous changes to improve validation
+Modified Numerous changes to allow functionality within Mambo 4.6.2
+
+Jomres 2.6.1beta2.1
+
+Modified Upgraded self registration functionality to work with this version of Jomres
+Modified Disabled sample data install in Cpanel. Sample data is created on install so no need for this now
+Modified Added slashes to specialReqs
+
+Jomres 2.6.1beta2
+
+Added Hazel's property list sort ordering
+Added New weekends only flag for tariffs
+Added setini memory limit to jomres.php
+Added searchAll variable to all lang files and search funcs
+Modified colour picker, was causing problems in Ie and causing the General Config panel to load slowly.
+Modified disabled requirement to enter license key when on localhost
+Modified tweaked various froms in an effort to make it so that you only need to edit the css declaration .innerwrapper to modify the overall width
+Modified added logManager functionality to core Jomres build
+Modified changed rooms list for composite availability display. To revert to the rooms list for those users who wish to keep it, remove the existing j01050showroomdetails.class.php and rename xj01050showroomdetails.class.php to j01050showroomdetails.class.php
+Modified Upgraded backend CSS handling to that contributed by Jaap.
+Modified Property header script. Now property name is added to title of page whenever property header is shown
+Modified Moved recording of error out into own func and added recording on E_ERROR_USER
+Modified license handling. If license not valid only backend functionality is affected.
+Modified Improved how all Property Managers are updated to new manager->property xref tables
+Modified added quotesmart to special requirements
+Modified Added number of guests to cpanel
+Modified Itemid selection. Now the Itemid should be pulled correctly from $_REQUEST
+Modified added Selected option to filterForm
+Modified Moved the rooms list fields to top for SRPs
+Fixed issue where super property manager dropdown wasn't offered
+Fixed issue where dates weren't filtering in audit log
+Fixed issue where some audit logs were not being moved to audit archive
+Fixed Resolved bug where both vacancies and no vacancies were showing for SRPs
+
+
+
+Jomres 2.6.1beta
+
+Added new optional event trigger 01009. This is parsed in the property list minicomponent, allows us to create minicomponents that can re-jig the property uids list order before the properties are output.
+Added bug reporting for super property managers to core of Jomres
+Added selective property manager handling. Property managers can now be specifically assigned to different properties, rather than the all or nothing method that used to happen. Admins need to edit the user's default property to set them to a Super Property Manager (new dropdown at top of page).
+Added utf-8 encode to month name output in availability calendar. Resolves issue where the wrapped function outputs in an incompatible charset. 
+Modified manager & receptionists images upgraded. Thanks to Jaap (http://www.ohmprint.nl/) for this contribution.
+Modified control panel in backend. Thanks to Jaap (http://www.ohmprint.nl/) for this contribution.
+Modified tab object so that tabs are run by jQuery. 
+Modified Moved noConflict setting for jQuery into jomres.php.
+Modified moved email to below telephone number inputs
+Modified Many changes to booking object to allow for faster querying properties with multiple rooms and tariffs
+Modified if defined statements to allow for JBASE_PATH already being defined and current framework is not J1.5
+Modified gateway handling to allow for renaming of gateway name in config tabs
+Fixed dutch javascript calendar
+Fixed description search
+
+Note, if you are using a custom/template override and upgrade to this version of Jomres you need to modify your dobooking.html & dobooking_srp.html files and add
+var ajaxurl	= "{AJAXURL}";
+under where livesite is defined. Failure to do this will result in your booking form stopping working.
+
+Jomres 2.6.0.2
+
+Added jQuery to booking form, rooms list slides up and down while changing, and guest details input hides when room needs to be selected
+Added test for pid from tmpbooking so that correct property type specific language file is called when doing bookings
+Modified rooms list, changed position of room details overlib popup from below right to above left
+Modified Added license key check to installer
+Modified added ability to edit custom text one tariffs title and description
+Modified added ability to edit rooms config: room names custom text enabled
+Modified added ability to edit guest types, custom text for name and notes
+Modified custom text editing. Edit in place removed, links now open in _blank, and custom text is identifiable by class, click on text to edit it.
+Fixed implode variances issue. More than 2 variances was causing prices to calculate incorrectly, so commented out meaningless check that was causing this.
+Fixed custom text not showing in property list when not logged in
+Fixed issue where when allowing short bookings, 7 was in dropdown but staydays was set to 4
+Fixed issue where users unable to delete properties
+
+
+Jomres 2.6.0.1
+
+Added Added align="top" to td to dobooking.html
+Added Property type language file selection.
+Added detection of the function JRHPbot. Allows to switch off certain buttons if the Jomres/Hot Property synchronisation bot is detected
+Added more property types to install script.
+Added connectivity test to integration.php and improved feedback from same in the event of license key failure
+Modified edit-in-place so that large strings of text are inserted into textareas, rather than input fields
+Modified Edit & save properties minicomp triggers moved to jomres.php
+Modified Moved language file selection into jomres.php
+Modified makefeatureimages to allow translation of property features. 
+Modified Reversed if defined check for JPATH_BASE
+Fixed install script not dropping tables
+Fixed property description not showing in property list
+
+
+Jomres v2.6 Stable
+
+Added mambot handling to property details (all textbox inputs) and list properties, property description
+Added option to make target blank if in popup for Availability calendar 
+Added property delete button to property admin, property tab 
+Added room images to booking form overlib buttons
+Added creditcard type handling to Form component
+Added index.php?option=com_jomres to various backend template files
+Added russian.php
+Added translation functionality to listproperties for property description.
+Added 05020 mcOutput functionality for adding customOutput_XXXXX to the booking form
+Added limit 1 to property details query 
+Changed the event trigger for form insert data to 05019 
+Changed the availability cookies, added / and jomresConfig_live_site to path
+Fixed inability to save black bookings (again)
+Fixed issue in form component where unregistered users were causing a fatal error
+Fixed issue where prices greater than 1000 resaved as 1 in Extras
+
+Jomres v2.6 RC4
+Added code to allow new license types
+Added html editors to edit property fields
+Disabled clone option for rooms showing when SRP
+Resolved issue where guest's details were not being stored until their second booking
+Created new trigger point 05020, which in the base install includes dobooking.php (which initially constructs the booking form).
+Created new trigger point 05010, which in the base install includes handlereq.php (which receives the ajax calls from the booking form).
+
+
+Jomres v2.6 RC3.2
+Added connectivity testing to install_jomres.php. Allows us to test connectivity to the license server and identify any possible firewall issues right at the beginning.
+
+
+Jomres v2.6 RC3.1
+Resolved date in search form/booking form sometimes vastly in the future.
+Resolved encryption key being saved but <?php not being saved to the encryption key file
+
+
+Jomres v2.6 RC3
+Modified booking form. Restored function that resets the selected rooms list as tariffs were not being reset properly when another date with a different tariff is selected
+
+Jomres v2.6 RC3
+
+Modified the mininterval functionality. Properties using flat rates will find the min interval set to the lowest min days found, average rate the opposite.
+Tweaked the jomres hint menu output to resolve issues with ' (apostrophes, eg in french lang).
+Added room_total, discount & currency code columns to contracts table, this info is now passed from the temp booking to the contracts table.
+Added 00050 event trigger for non-authorised, registered users so that they can see menu options.
+Added extended indexs for Jomres tables.
+Added global currency code & symbol. Preperation for portal functionality, allows for a global currency code if required.
+Added metatitle to property description page.
+Added isInIframe config option, allows users to use Jomres within iframes.
+Fixed annoying message about mysql when changing a user's default property/access level.
+
+
+Jomres v2.6 RC2
+Number formatting. Added the option to choose your number formatting style, go into General Configuration -> Tariffs and Currencies to choose your number output style.
+Booking form minimum-interval calculation. While searching for tariffs the booking process will remember all of the minimum days in the tariffs found and set the internal mininterval flag to the lowest figure found. This is expected to be useful for those properties that want to set the mininterval flag (IE the minimum number of days in a booking) to 1 for most of the time, but make it longer, eg over specific holiday periods by reacting to the tariffs found for a given period.
+Modified the key generation code. For some reason, during keygeneration the http:// was being retained when the key is first generated for the hostname binding, but then it was being tested against the domain without the http://, consequentially installation was often failing. I've modified this by stripping out any occurances of http:// during the key gen process. 
+Added code to stop already selected and still available rooms from being removed when a booking particular (eg date, guest numbers) has been changed.
+Added xml logging. There are 3 types of logging: request (everything from $_REQUEST), system (various ad hoc values, as needed during dev/testing), gateway (logging for gateway calls), and booking (various booking log data is recorded). Logging files are currently written to the /media folder, this will probably be expended in the future. If you want to switch loggin on, edit jomres.php  and change $loggingEnabled to 'true';
+Fixed a bug in insert booking function where jomressession wasn't always being passed to the script, therefore the booking wouldn't insert
+Modifed functions.php getCurrentBookingData so that it would simply return, rather than exit, if jomressession is not set.
+Fixed paging, starts on page 1 now.
+Removed number_format from dobooking_functions, except from the overlib generation and extras output code.
+
+
+
+Jomres v2.6 RC1
+Fixed IPN not being confirmed correctly
+Fixed unable to cancel booking
+Added query to beginning of admin.jomres.net to check for the length of the license key, if it isn't set then task is set to showSiteConfig. 
+Added Jomres control panel tabs object
+Added departure date cookie
+Major changes to allow operation in both Joomla 1.0.x & Joomla 1.5. Whilst Jomres now appears to work with Joomla 1.5Beta 1, none of the plugins do (need to create new 1.5 compatible installers)
+Major changes to database query functionality to improve performance
+Major changes to the basic template
+Reworked dashboard calendar to improve performance
+Reworked list propertys mini-component to improve performance
+Reworked all of the front end templates so that their colours can be edited through a css file
+Fixed users entering ' into booking form causing javascript error (Gratz Hamish)
+Fixed installing sample data query bug
+Fixed paging in search results
+Fixed US room tax functionality
+Modified search functionality: If the availability search is used in combination with the room type search then properties without an available room of requested room type are excluded from the results.
+The non-basic templates aren't getting updated and the template overrides are a better method of creating your own template. They have been removed, if you want your own look for the Jomres then it is highly advised that you install the basic template override pack and edit that.
+Removed the css config option introduced in v2.0. 
+Room list generation output split into two to allow rooms list to be presented side by side if required (Gratz Hazel)
+
+
+Jomres v2.5.0.1
+
+Changed jr_gettext function to return data html_entity_decode'd so that html can be used in various input fields
+Changed Extras ajax call from getResponse to getResponse_guest to prevent the rooms field from being hidden after an extra is selected.
+Changed how special requirements are handled.
+Changed booking out page. As Jomres' main focus is on the taking of bookings, rather than the hotel admin side of things, I felt it was wise to not spend too much time on something that's rarely used, so reduced the amount of information stored there.
+Changed dashboard cookie expiry to 1 hour
+Changed added guest numbers check to average rate method
+Changed allowed super property managers to make bookings on properties different to their currently active property (switches active property then redirects them)
+Ensured that booking engine uses the jr_gettext function, rather than the built in function.
+Removed show_log that was appearing twice in jomres.js, causing the log output to be triggered twice in the booking form when some elements were selected
+Removed a couple of information elements from certain pages as they are now covered by the Context Sensitive Help mini-component.
+Fixed listproperties, wasn't finding the property image
+Fixed savehotelsettings wasn't updating new settings 
+
+Jomres 2.5
+
+// Stable
+Various bug fixes
+Changed how general config is displayed and updated to speed up update time. General config still slow in IE due to IE not rendering the javascript colour pickers quickly enough.
+Function to get property specific settings modified to import mrConfig 
+from jomres_config.php. This is because imported properties will not 
+have a complete set of settings imported. It also allows us to only 
+insert settings that are pertinent to this property in the settings table, 
+allowing us to set a given setting as the default in jomres_config.php.
+Only applies to properties created after install of this version of Jomres.
+Improved averaging model method in booking form.
+Modified jomres.php so that in the event that no property data exists it will 
+search for a trigger 06000 so that an import function can be used.
+Added option to override "task" with "task2" if required in jomres.php. Not currently used, 
+but gives us possible future extendability.
+
+
+
+Added jomres_toolbar class - very pretty
+Added phpDocumenter tags
+Added lowest tariff price to listproperties
+Added more property details to listproperties
+Added mini-component collision detection
+Added module 0 to module pack - Allows for searching within the component area
+Added wildcard searching on dropdowns
+Added new image uploading class - Image Fullsize image width is set in backend, as are the slideshow choice and popup sizes, gives webmaster more chance of attaining a consistent look to their site. 
+Added if errorchecking on then output to text file in /media/ with logs
+Added CURL to license communication routines. This is for users who don't have access to fopen to use Jomres.
+Changed moved averaging and flatrate calculation methods into dobooking_functions and added config option so that property managers can choose their tariff model
+Changed tariff handling so that template overrides can be provided in one file instead of seperate files. Important, see readme.
+Changed Put averaging & flat rate methods into jomres_booking object, added configuration option to Tariffs config panel to choose one of these models
+Changed refactored the search functionality so that it's one of the mini-components. The search modules as a result have had to be rewritten, if you use the search modules then you'll need to download and install the new m1 -> m4 modules. To get searching in the content panel install the m0 module (READ THE NOTES!) 
+Changed room & tariff editing functionality to mini-components
+Changed booking confirmation, insert and completion to mini-components
+Change paypal insert of booking. The insert of the booking is now performed at the IPN stage, as the payment is confirmed here anyway. It saves users who navigate away from the paypal payment screen without returning to the jomres site from loosing their bookings. Now returning to the jomres site simply takes them to the booking confirmation page.
+Change managers can now search while logged in. If they are a super property manager then when they click to view a property then their active property will be changed to that property
+Redesigned the listpropertys template a little
+
+
+Jomres 2.4
+Fixed Tariffs showing tariffs stored as weekly charges if you have pre-v2 multiplier set
+Fixed 1.0.10 forcing tariffs to be stored as integer
+
+Jomres 2.3
+Some changes to harden against XSS attacks
+Some changes to ISO handling.
+Fixed hardcoded message in booking form
+Fixed core minicomponent gateway icon not showing
+Fixed unable to confirm paypal payments
+Optomised the availability calendar
+
+Jomres 2.2
+Fixed wrong file name in warning when saving config.
+Fixed Joomla 1.0.10 bug where clicking on a date don't provide correct date in booking form.
+Fixed Black booking not saving
+Added livesite variable to booking confirmation template variables
+Fixed list bookings showing Black bookings
+fixed email not showing rooms
+Fixed paypal currency code being sent incorrectly
+Fixed jomres.php calling wrong javascript calendar
+Improved messages from installer
+
+
+Jomres v2.1
+Fixed unable to view any properties when all properties unpublished
+Fixed various license number issues
+Moved property header into it's own mini-component
+Added option to override show tariff template
+Fixed Single person suppliments
+
+
+
+Jomres v2
+Added: Subversion
+Added: Completely new booking process
+Added: Customer/guest types
+Added: Option to put rooms lists/availability in a new page/popup
+Added: Css styling
+
+Change: Guest types can be ordered
+
+Removed: Adult/Kids numbers, replaced by Guest type functionality
+
+Jomres v1.4i
+
+Added: Created new functionality option: Show detailed room information? 
+Added: Functionality to show available tariffs, instead of rooms.
+Added: New template file: bookings_showavailability.
+Added: Completely rewrote the search functionality.
+Added: Google currency conversion links to tariff popup/page.
+
+Change: Moved Tariff admin into the Property Admin tabs
+Change: Reordered Property Admin tabs to make Room type relationships more logical
+Change: Bolded Room types to make them more obvious
+
+
+Jomres v1.4h
+
+Added: Form input validation for booking form
+Added: Bulk language modification script
+Added: Default country for booking form. Setting: Misc in General configuration
+Added: Code to change basic text (eg property description) to allow translation thru Jomres Editing Mode.
+Added: Self registration
+Added: Meta keywords generated by site content
+Added: Global Room types
+Added: Site help code
+Added: Functionality to charge for extras by the day, as well as flat rate.
+Added: Option to show calendar from beginning of year, as opposed to current month.
+
+Change: Definitions for constants. All now preceeded with _JOMRES
+Change: Various changes to allow modules easier access to some Jomres functions.
+Change: Moved some stuff around and added most of the includes to the integration.php to let scripts like the portal use the already existing Jomres functionality
+
+
+Fix: Overlib & mosTabs conflicting in IE 
+Fix: tab javascript loading when tabs not defined, causing javascript errors. Guest numbers not showing on confirmation page in basic template. 
+Fix: Extras not remaining checked in basic template.
+Fix: GMT dates not handled correctly by datediff function
+Fix: Availability search function
+
+Jomres v1.4g
+
+Fixed bug introduced in Joomla 1.0.7 where certain sections of the code incorrectly assigned manager rights to unauthorised users.
+New config option: Daily rate multiplier.
+Javascript calendars: Departure date is now aware of the date set in the arrival date and adjusts according
+Slideshow popup width & Slideshow popup height options in config
+Edited basic template to reduce screen usage
+Added room names to black bookings
+Added room names & tariff info to customer/staff email
+
+
+Jomres v1.4f
+
+Nice new basic template
+
+Jomres v1.4e
+
+Added config option: Show departure date input? Option
+
+Jomres v1.4d
+
+Added George Hageman's Averaging system for calculating tariff prices
+
+Jomres v1.4c
+
+Added country dropdown list to the booking screen.
+Some templates changed to accomodate this change
+
+Jomres v1.4b
+
+Fixed bug where multiple tariff users of apartment renters were unable to process bookings
+
+
+Jomres v1.4a 
+
+Niced up the property configuration/booking room tab a bit. Changed the wording from "Is this a single room property" to "is this an apartment/cottage/villa.
+Improved the booking process for apartments, got rid of the silly confirm radio button.
+Fixed a bug where the property_uid wasn't being found when going to processpayment.
+
+Jomres v1.4
+
+Added: Gateway handling code
+Added: warning that advises if Joomla has logged users out due to inactivity.
+Added: index.html to subdirs
+Added: templated most of the backend functionality
+Added: to property editing funcs. When new property added some basic data is set up.
+Added: error checking during install to check that all tables have been created
+Added: new option in property settings page: Gallery link. Put a link to your properties photo gallery here. It will show on the main property description page when filled
+Added: Encryption options for storing creditcard details
+Added: creditcard popup box
+Added: A popup option for the property description screen where you can popup to the gallery of your choice. I intend to make all popups optional in a future release.
+Added: Link to slideshows. Switchable in property config
+Added: Tariffs link is switchable
+Added: Batch uploading
+
+
+
+Changed: Virtually every admin screen has been modified in one form or another to take advantage of toolbar buttons, and particularly the edit property functionality has seen a major code tidy-up .
+Change: Modified the location of the uploaded images. Now images are stored in images/stories/jomres. This solves the problem of an uninstall/reinstall trashing our image locations.
+Change: Tweaked user object handling. Now first time super managers are immediately assigned to the first property in the database
+
+Removed: Public holiday settings. To the best of my knowlege nobody is using them, and they create unnecessary complications.
+
+Jomres v1.3
+
+Important! If you have installed previous versions of Jomres you much check the readme.txt for updates to your tables to bring them into line with this version. This applies even if you have uninstalled a previous version of Jomres, because the uninstallation of Mosres/Jomres is non-database destructive. If you have previously installed Jomres be aware that v1.2 onwards uses different table names (xxx_jomres_xxxxxx as opposed to xxx_mosres_xxxxxx) so if you want to retain your data then you will need to rename your tables. There is a file in the docs subdir called "upgrade tables 1.1 - 1.3.txt" which should help you with this, but use it at your own risk.
+
+If you are using the Super Manager mode the first thing you need to do is click Change Properties (which you will see if you have more than one property on the system) to properly set your user up.
+
+Changelog for v1.3:
+
+Added: Property switching. Previously Super Property Managers would view all the elements for all the properties. This could cause confusion, and sometimes Jomres just wouldn't work right because it didn't know which property it was working against. The first time you visit your property as property manager after upgrading to v1.3, if you have more than one property listed then click Change Property to initialise your user properly.
+Added: Our tariffs link. There's a new template show_tariffs.tmpl to work with this functionality.
+Added: Editing mode. See the tutorials on jomres.net for a demonstration.
+Added: Property types. Configured at the back end of the system. Not configurable by Property Managers
+Added: Ability to search the current country/region/property type when there are more than one property in said region/property type.
+Added: Book guest out option to Display booking tabbed page (providing that they are currently booked in)
+Added: "Remainder to pay" label to the display booking page. Shows the grand total minus the deposit paid, if the deposit has been paid (duh).
+Added: search.tmpl. This template contains the dropdown boxes that allow a visitor to choose from a number of different properties. If there's only one property on the system, then naturally this option isn't shown.
+Added: bottom.tmpl. This doesn't actually have any info presented to it from a script, it's just there in case you want a footer.
+Added: Item ids.
+Added: Sef.
+
+
+
+Fixed: Guests are now unique to a property. Property managers/receptionists can only admin their own guests
+Fixed: Where varying types of tariffs weren't being offered for each room. Only one tariff for each room was being offered. Bug introduced by templating func, so versions prior to 1.2 not affected. A fixed version of 1.2 is available at http://upgrades.jomres.net for license holders.
+Fixed: Paypal playing up again. Thanks Graham.
+Change: If "Limit advance bookings" is on, then the availability calendars no longer offer dates later than the end of the chosen period. This is not yet true for the javascript calendars.
+Change: Added option to settings to change the number of months of the availability calendar is shown.
+Change: Added option to Tariffs & Currencies. Amount charged at booking time. You can now select to charge the full amount or a smaller deposit
+Change: Modified links on bookings/showroom details. Links now pop up. Room details are shown without the avl cal and the avl cal is shown without room details.
+Change: Modified how the user is authorised to cut down on database access.
+Change: Added templating functionality to booking cancellation
+Change: Added code to remember active tabs. 

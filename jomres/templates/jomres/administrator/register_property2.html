@@ -1,0 +1,117 @@
+<patTemplate:tmpl name="pageoutput">
+<script language="Javascript" src="{MOSCONFIGLIVESITE}/includes/js/overlib_mini.js"></script>
+<form action="index2.php?option=com_jomres&task=saveregisterprop" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table>
+	<tr>
+		<td>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1}</td>
+		<td>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</td>
+	</tr>
+	<tr>
+		<td>
+		<br />
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la" >{HPROPERTY_TYPE}</td>
+					<td colspan="2">{PROPERTY_TYPE_DROPDOWN}</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HNAME}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_name" value="{PROPERTY_NAME}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTREET}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_street" value="{PROPERTY_STREET}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HTOWN}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_town" value="{PROPERTY_TOWN}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="10" name="property_postcode" value="{PROPERTY_POSTCODE}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HTELEPHONE}</td>	
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_tel" value="{PROPERTY_TEL}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HFAX}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_fax" value="{PROPERTY_FAX}" /> </td>
+					<td class="required"> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HEMAIL}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="40" name="property_email" value="{PROPERTY_EMAIL}" /></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTARS}</td>
+					<td colspan="2">{STARSDROPDOWN}</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="jradmin_subheader_la">{HFEATURES}</td>
+				</tr>
+				<tr>
+					<td colspan="2">{FEATURES}</td>
+				</tr>
+				<tr>
+					<td  class="jradmin_field_la">
+						<patTemplate:tmpl name="globalPfeatures">	
+						<input type="checkbox" name="pid[]" value="{PID}"> {FEATURE}
+						</patTemplate:tmpl>
+					</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HMAPPINGLINK}</td>
+					<td class="jradmin_field_la"><input class="inputbox" type="text" size="40" name="property_mappinglink" value="{PROPERTY_MAPPINGLINK}" /> </td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPROPDESCRIPTION}</td>
+					<td class="jradmin_field_la"><textarea class="inputbox" cols="40" rows="3" name="property_description">{PROPERTY_DESCRIPTION}</textarea></td>
+					<td class="required">*</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HCHECKINTIMES}</td>
+					<td class="jradmin_field_la" colspan="2"><textarea class="inputbox" cols="40" rows="3" name="property_checkin_times">{PROPERTY_CHECKIN_TIMES}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HAREAACTIVITIES}</td>
+					<td class="jradmin_field_la" colspan="2"><textarea class="inputbox" cols="40" rows="3" name="property_area_activities">{PROPERTY_AREA_ACTIVITIES}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HDRIVINGDIRECTIONS}</td>
+					<td class="jradmin_field_la" colspan="2"><textarea class="inputbox" cols="40" rows="3" name="property_driving_directions">{PROPERTY_DRIVING_DIRECTIONS}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HAIRPORTS}</td>
+					<td class="jradmin_field_la" colspan="2"><textarea class="inputbox" cols="40" rows="3" name="property_airports">{PROPERTY_AIRPORTS}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HOTHERTRANSPORT}</td>
+					<td class="jradmin_field_la" colspan="2"><textarea class="inputbox" cols="40" rows="3" name="property_othertransport">{PROPERTY_OTHERTRANSPORT}</textarea></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPOLICIESDISCLAIMERS}</td>
+					<td class="jradmin_field_la" colspan="2"><textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">{PROPERTY_POLICIES_DISCLAIMERS}</textarea></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOOLBAR}
+{JOMRESTOKEN}
+<input type="hidden" name="crate" value="{CRATE}" />
+<input type="hidden" name="userid" value="{USERID}" />
+<input type="hidden" name="property_region" value="{PROPERTY_REGION}" />
+<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}" />
+<input type="hidden" name="task" value="saveregisterprop" />
+
+
+</form>
+</patTemplate:tmpl>

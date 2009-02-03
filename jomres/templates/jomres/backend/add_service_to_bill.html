@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$language);?></td>
+				</tr>
+			</table>
+			<table border="0"	class="admin_v_table">
+				<tr>
+					<th width="80%" class="jradmin_subheader_la">{HSERVICEDESCRIPTION}</th>
+					<th width="15%" class="jradmin_subheader_ca">{HSERVICEVALUE}</th>
+				</tr>
+				<tr>
+					<td width="80%" class="jradmin_field_la"><input class="inputbox" type="text" size="50" name="service_description" value="" ></td>
+					<td width="15%" class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" size="6" name="service_value" value="" ></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="contract_uid" value="{CONTRACTUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="addServiceToBill" />
+</form>
+</patTemplate:tmpl>

@@ -1,0 +1,61 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HFIRSTNAME}</b></td>
+					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="firstname" value="{FIRSTNAME}" /></td>
+					<td class="jradmin_subheader_la">{HSURNAME}</td>
+					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="surname" value="{SURNAME}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HSTREET}</td>
+					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="house" value="{HOUSE}" /></td>
+					<td class="jradmin_subheader_la">{HHOUSE}</td>
+					<td class="jradmin_field_la"><input type="text" size="6" style="text-align:right" class="inputbox" name="street" value="{STREET}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
+					<td class="jradmin_field_la"><input type="text" size="10" class="inputbox" name="postcode" value="{POSTCODE}" /></td>	
+					<td class="jradmin_subheader_la">{HTOWN}</td>
+					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="town" value="{TOWN}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HREGION}</td>
+					<td class="jradmin_field_la"><input type="text" size="12" class="inputbox" name="region" value="{REGION}" /></td>
+					<td class="jradmin_subheader_la">{HCOUNTRY}</td>
+					<td class="jradmin_field_la">{COUNTRY}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HLANDLINE}</td>
+					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="landline" value="{LANDLINE}" /></td>
+					<td class="jradmin_subheader_la">{HMOBILE}</td>
+					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="mobile" value="{MOBILE}" /></td>
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{HFAX}</td>
+					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="fax" value="{FAX}" /></td>
+					<td class="jradmin_subheader_la">{HEMAIL}</td>
+					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="email" value="{EMAIL}" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<br />
+{CREDITCARDLINK}
+{JOMRESTOKEN}
+<input type="hidden" name="guestUid" value="{GUESTUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="task" value="saveGuest" />
+</form>
+
+</patTemplate:tmpl>

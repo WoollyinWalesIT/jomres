@@ -1,0 +1,51 @@
+#mContainer {
+	position:relative;
+	width:200px;
+	height:124px;
+	border:2px solid #000;
+	margin:auto;
+	overflow:hidden;
+}
+
+#mContainer img {
+	position:absolute;
+	top:0px;
+	-moz-opacity:1;
+	filter:alpha(opacity=100);
+	opacity:1;
+}
+
+#mContainer .leftImage {
+	left:202px;
+}
+
+#mContainer .rightImage {
+	left:-202px;
+}
+
+#mContainer .topImage {
+	top:-124px;
+}
+
+#mContainer .bottomImage {
+	top:124px;
+}
+
+#controls,#caption {
+	font:1em "century gothic",arial,verdana;
+	position:relative;
+	width:250px;
+	height:32px;
+	text-align:center;
+	margin:auto;
+}
+
+#controls span {
+	padding:5px;
+	cursor:pointer;
+}
+
+#controls span:hover {
+	color:#D297BE;
+	font-weight:bold;
+}

@@ -1,0 +1,53 @@
+<patTemplate:tmpl name="pageoutput">
+
+<link rel="stylesheet" type="text/css" href="{SLIDESHOWRELPATH}slide_show2.css" media="all">
+<script language="javascript" type="text/javascript" src="{SLIDESHOWRELPATH}slide_show2.js"></script>
+
+<table id="panelwrapper">
+	<tr>
+		<td >
+			<table class="innerwrapper">
+				<tr>
+					<td class="slideshow_header">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td class="slideshow_content">
+					
+<center>
+	<div id="mContainer">
+	<patTemplate:tmpl name="rows">
+		<img style="left: -202px;" class="rightImage" src="{IMAGE}" alt="{THECAPTION}" height="124" width="200"></patTemplate:tmpl>
+	</div>
+	<div id="controls"></div>
+	<div id="caption"></div>
+	
+	
+	<!-- content below is unrelated to the applications function -->
+	<!--
+		<div id="credits">	
+		<a href="http://slayeroffice.com/"><img alt="slayeroffice" src="slayeroffice%20_%20code%20_%20slide%20show%20II_files/office_logo_green.gif"></a>
+		Slide Show II<br>
+		version 1.0<br>
+		last revision: 06.25.2004<br>
+		<a href="mailto:steve@slayeroffice.com">steve@slayeroffice.com</a><br>
+		<a href="http://slayeroffice.com/">http://slayeroffice.com</a>
+		</div>
+		<div id="links">
+		photos © <a href="http://centricle.com/">Kevin C. Smith</a><br>
+		<a href="http://slayeroffice.com/code/slide_show2/slide_show2.js">Javascript Source</a><br>
+		<a href="http://slayeroffice.com/code/slide_show2/slide_show2.css">CSS</a>
+		</div>
+	-->
+	<!-- end unrelated -->
+</center>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</patTemplate:tmpl>
+
