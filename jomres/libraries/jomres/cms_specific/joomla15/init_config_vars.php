@@ -21,6 +21,8 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
 		}
 
+
+			
 	$jomresConfig_offline			= $CONFIG->offline;
 	$jomresConfig_db				= $CONFIG->db;
 	/*
@@ -120,3 +122,19 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	$jomresPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres";
 	$jomresAdminPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres";
 	
+	$Itemids = array();
+	$query = "SELECT id"
+	. "\n FROM #__menu"
+	. "\n WHERE "
+	. "\n published = 1"
+	. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
+	$itemQueryRes = doSelectSql($query);
+	if (count($itemQueryRes)>0)
+		{
+		foreach ($itemQueryRes as $i)
+			{
+			$Itemids[] = $i->id;
+			}
+		}
+	if (!in_array((int)$jrConfig['jomresItemid'],$Itemids))
+		echo '<font color="red" face="arial" size="1">Warning: Your Jomres Itemid and the Itemid stored in Site Config are different, this may result in unpredictable behaviour. It is recommended that you modify your Site Config Itemid to match that in the main menu. See <a href="http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=96&nav=0,3" target="_blank"> this article for more information</a></font>';

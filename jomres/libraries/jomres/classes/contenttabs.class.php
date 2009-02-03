@@ -55,13 +55,13 @@ class jomres_contentTabs
 		global $jomresConfig_live_site;
 		$currentTab=jomresGetParam( $_COOKIE,'jomres_content_tab', '' );
 		echo '
-		<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquerytabs/jquery.tabs.pack.js"></script>';
+		<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquerytabs/jquery.tabs.pack.js"></script>';
 		echo '
-		<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquerytabs/jquery.history_remote.pack.js"></script>';
+		<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquerytabs/jquery.history_remote.pack.js"></script>';
 		echo '
-		<link rel="stylesheet" href="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquerytabs/jquery.tabs.css" type="text/css" media="print, projection, screen">';
+		<link rel="stylesheet" href="'.$jomresConfig_live_site.'/jomres/javascript/jquerytabs/jquery.tabs.css" type="text/css" media="print, projection, screen">';
 		echo '
-		<!--[if lte IE 7]><link rel="stylesheet" href="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquerytabs/jquery.tabs-ie.css" type="text/css" media="print, projection, screen"><![endif]-->';
+		<!--[if lte IE 7]><link rel="stylesheet" href="'.$jomresConfig_live_site.'/jomres/javascript/jquerytabs/jquery.tabs-ie.css" type="text/css" media="print, projection, screen"><![endif]-->';
 
 		if ($this->useCookies)
 			{

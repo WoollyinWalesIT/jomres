@@ -44,6 +44,7 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
 
 
+
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
@@ -66,24 +67,24 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 		if ((strstr( $version, "Mambo" ) && $popup == 1) || $option != "com_jomres")
 			{
 			// The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
-			//echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-			echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/calendar.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/calendar-setup.js"></script>';
-			//echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.js"></script>';
+			//echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
+			echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>';
+			//echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
 			echo '<script type="text/javascript">jQuery.noConflict();</script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jomres.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/interface.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.cookee.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.blockUI.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/heartbeat.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>';
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.jeditable.pack.js"></script>';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>';
 			if ($thisJRUser->userIsManager)
 				{
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/MiniColorPicker.js"></script>';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>';
 				}
 			}
 		else
@@ -92,26 +93,26 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 				{
 				define ('JOMRES_CALENDARJSCALLED',1);
 				// The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
-				//$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
-				$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/calendar.js"></script>');
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/calendar-setup.js"></script>');
-				//$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>');
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>');
+				//$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
+				$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
+				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>');
+				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>');
+				//$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>');
+				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>');
 				}
 
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.js"></script>');
+			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>');
 			$mainframe->addCustomHeadTag('<script type="text/javascript">jQuery.noConflict();</script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jomres.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/interface.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.cookee.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.blockUI.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/heartbeat.js"></script>');
+			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>');
+			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>');
+			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>');
+			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>');
+			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>');
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/jquery.jeditable.pack.js"></script>');
+				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>');
 			if ($thisJRUser->userIsManager)
 				{
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/components/com_jomres/javascript/MiniColorPicker.js"></script>');
+				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>');
 				}
 			}
 		}
@@ -171,7 +172,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			$query="INSERT INTO #__components
 			(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`".$extraClause.")
 			VALUES
-			('".$plugin_name."','','0','0','','".$plugin_name."','".$component_full_name."','0','../components/com_jomres/images/jricon.png','0',' '".$extraClausePara.")";
+			('".$plugin_name."','','0','0','','".$plugin_name."','".$component_full_name."','0','../jomres/images/jricon.png','0',' '".$extraClausePara.")";
 
 			$result=doInsertSql($query,"");
 
@@ -1476,13 +1477,13 @@ function jomres_makeColourPickerInput($setting,$value)
 */
 function userHasBeenLoggedOut() {
 	global $jomresConfig_live_site;
-	echo '<center><img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Restricted.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Secured.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
+	echo '<center><img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" />';
+	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Secured.png" align="middle" border="0" />';
+	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
 	echo '<h2>'.jr_gettext('_JOMRES_JR_NOTLOGGEDIN',_JOMRES_JR_NOTLOGGEDIN).'</h2>';
-	echo '<center><img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Restricted.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Secured.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/components/com_jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
+	echo '<center><img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" />';
+	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Secured.png" align="middle" border="0" />';
+	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
 
 
 	//global $my;
@@ -1535,7 +1536,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		// Popup on image click
 		/*
 		$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-		<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/components/com_jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
+		<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
 		<script type=\"text/javascript\">
 		Calendar.setup({
 			inputField	 :	\"x".$randomID."\",			//*
@@ -1550,7 +1551,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 
 		// Popup on input click
 		$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-		<img src=\"".$jomresConfig_live_site."/components/com_jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" />
+		<img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" />
 		<script type=\"text/javascript\">
 		Calendar.setup({
 			inputField	 :	\"x".$randomID."\",			//*
@@ -2061,7 +2062,7 @@ function savePlugin($plugin)
 */
 function listGateways()
 	{
-	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/administrator/components/com_jomres/plugins/gateways/";
+	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/administrator/jomres/plugins/gateways/";
 	$d = @dir($listdir);
 	$folders=array();
 	if($d)
@@ -2090,7 +2091,7 @@ function listGateways()
 function listSlideshows()
 	{
 
-	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/components/com_jomres/plugins/slideshows/";
+	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/jomres/plugins/slideshows/";
 	// get list of templates
 	$d = @dir($listdir);
 	if($d)
@@ -2124,7 +2125,7 @@ function saveKey ( $mykey )
 	//Add code to check if config file is writeable.
 	if (isset($mykey) && !empty($mykey) )
 		{
-		$keyFile = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/components/com_jomres/tmp/'.$defaultProperty.'_key.php';
+		$keyFile = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/jomres/tmp/'.$defaultProperty.'_key.php';
 		@chmod ($keyFile, 0700);
 		if (is_file($keyFile) && !is_writable($keyFile))
 				{
@@ -2216,7 +2217,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	if ($defaultProperty=="0")
 		$defaultProperty="%";
 	$today = date("Y/m/d");
-	$pathToImages=$jomresConfig_live_site."/components/com_jomres/images";
+	$pathToImages=$jomresConfig_live_site."/jomres/images";
 	$img_pending=$pathToImages."/pending.gif";
 	$img_arrivetoday=$pathToImages."/arrivetoday.gif";
 	$img_resident=$pathToImages."/resident.gif";
@@ -2777,14 +2778,14 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 	switch ($imageType)
 		{
 		case 'property':
-			$default_image = $jomresConfig_live_site."/components/com_jomres/images/jrlogo.png";
+			$default_image = $jomresConfig_live_site."/jomres/images/jrlogo.png";
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."images".JRDS."stories".JRDS."jomres".JRDS.$property_uid."_property_".$itemUid.".jpg"))
 				$fileLocation = $jomresConfig_live_site."/images/stories/jomres/".$property_uid."_property_".$property_uid.".jpg";
 			else
 				$fileLocation = $default_image;
 			break;
 		case 'room':
-			$default_image = $jomresConfig_live_site."/components/com_jomres/images/noimage.gif";
+			$default_image = $jomresConfig_live_site."/jomres/images/noimage.gif";
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."images".JRDS."stories".JRDS."jomres".JRDS.$property_uid."_room_".$itemUid.".jpg"))
 				$fileLocation = $jomresConfig_live_site."/images/stories/jomres/".$property_uid."_room_".$itemUid.".jpg";
 			else
@@ -3398,36 +3399,6 @@ function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $
 	return $ret;
 	}
 
-
-function flashArea($name, $content)
-	{
-	$ret="";
-	if (!defined("FLASH_AREAJS_SHOWN"))
-		{
-		$ret.='
-		<script type="text/javascript">
-	  		_editor_url = "components/com_jomres/libraries/flash_area/";// relative path to FlashArea
-		</script>
-		<script type="text/javascript" src="components/com_jomres/libraries/flash_area/flasharea.js"></script>
-		';
-
-		define("FLASH_AREAJS_SHOWN",1);
-		}
-	$ret.='
-		<textarea name="'.$name.'" id="'.$name.'" cols="2" rows="1" >
-		'.$content.'
-		</textarea>
-		<script>
-		fa = new FlashArea(\''.$name.'\');
-		cnf = fa.config;
-		cnf.configFile = "jomres.xml";
-		fa.generate();
-		</script>
-	<input class="jomres_message" type="Submit" value="Submit" >
-
-	';
-	return $ret;
-	}
 /**
 #
  * Triggers the search functionality, set's "$randomSearch" to true

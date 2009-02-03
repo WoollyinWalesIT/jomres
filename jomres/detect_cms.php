@@ -1,5 +1,4 @@
 <?php
-<?php
 /**
 #
  * Attempts to detect the current CMS

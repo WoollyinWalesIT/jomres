@@ -23,11 +23,11 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
 
 class html_functions
 	{
-	function cpanelButton( $link, $image, $text, $path='/components/com_jomres/images/jomresimages/large/' ) 
+	function cpanelButton( $link, $image, $text, $path='/jomres/images/jomresimages/large/' ) 
 		{
 		global $jomresConfig_live_site,$task;
 		global $ePointFilepath,$eLiveSite;
-		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS.$image) )
+		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS.$image) )
 			$path=$eLiveSite.$image;
 		else
 			$path=$jomresConfig_live_site.$path.$image;

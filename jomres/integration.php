@@ -82,8 +82,14 @@ if (!defined('JOMRESPATH_BASE'))
 
 	define('JOMRESPATH_BASE', $dir_path );
 	}
+	
 
-$jomresConfig_absolute_path= str_replace(JRDS."components".JRDS."com_jomres","",JOMRESPATH_BASE);
+$jomresConfig_absolute_path= str_replace(JRDS."jomres","",JOMRESPATH_BASE);
+if (strstr($jomresConfig_absolute_path,"jomres") )
+	{
+	echo "Oops, you shouldn't have the string 'jomres' in the url";
+	exit;
+	}
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
 // Adding this here allows an element of interoperability between J1.x & J1.5
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
@@ -151,7 +157,7 @@ if (_JOMRES_DETECTED_CMS == "unknown")
 	echo "Error, cannot detect the current CMS. Exiting.";
 	exit;
 	}
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific"._JOMRES_DETECTED_CMS.JRDS."init_config_vars.php";
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."init_config_vars.php");
 
 /*
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
@@ -391,7 +397,6 @@ define('JOMRES_SYSTEMLOG_PATH',$jrConfig['jomres_systemLog_path']);
 set_error_handler('errorHandler');
 jomres_parseRequest();
 
-
 if ( JOMRES_CMS == 'elexismambo')
 	$database = new database( $jomresConfig_host, $jomresConfig_user, $jomresConfig_password, $jomresConfig_db, $jomresConfig_dbprefix, $jomresConfig_dbtype );
 
@@ -402,7 +407,6 @@ if ($product_id != "20" )
 // In case somebody removes the above liines, we still need to set this define otherwise folks will not be able to create new properties
 if (!defined('JOMRES_SINGLEPROPERTY'))
 	define('JOMRES_SINGLEPROPERTY',false);
-
 // Stops here
 
 function jomresURL($link, $ssl=2)
