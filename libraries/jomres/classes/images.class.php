@@ -36,7 +36,7 @@ JOMRES_JOMRES_IMAGE_UPLOAD_PATH - where you will save the images (remember to se
 */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 /**
 #

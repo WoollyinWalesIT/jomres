@@ -4,7 +4,7 @@
  * Copyright Woollyinwales IT 2009
  */
 
-defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JEXEC' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 
 // ------------------  standard plugin initialize function - don't change ---------------------------
 global $sh_LANG, $sefConfig;

@@ -17,7 +17,7 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 /**
@@ -68,13 +68,13 @@ class j00015viewproperty
 			$property_tel=stripslashes($pproperty->property_tel);
 			$property_fax=stripslashes($pproperty->property_fax);
 
-			$property_description=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($pproperty->property_description))));
-			$property_checkintimes=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($pproperty->property_checkin_times))));
-			$property_areaactivities=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($pproperty->property_area_activities))));
-			$property_drivingdirections=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($pproperty->property_driving_directions))));
-			$property_airports=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS',trim(stripslashes($pproperty->property_airports))));
-			$property_othertransport=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($pproperty->property_othertransport))));
-			$property_policiesdisclaimers=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($pproperty->property_policies_disclaimers))));
+			$property_description=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($pproperty->property_description))));
+			$property_checkintimes=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($pproperty->property_checkin_times))));
+			$property_areaactivities=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($pproperty->property_area_activities))));
+			$property_drivingdirections=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($pproperty->property_driving_directions))));
+			$property_airports=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS',trim(stripslashes($pproperty->property_airports))));
+			$property_othertransport=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($pproperty->property_othertransport))));
+			$property_policiesdisclaimers=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($pproperty->property_policies_disclaimers))));
 
 			$mappinglink=$pproperty->property_mappinglink;
 			$propertyFeaturesArray=explode(",",($pproperty->property_features));

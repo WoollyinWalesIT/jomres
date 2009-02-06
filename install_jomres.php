@@ -15,6 +15,8 @@
  
 global $my,$database,$jomresConfig_absolute_path;
 
+define('_JOMRES_INITCHECK', 1 );
+
 if (!defined('JRDS'))
 	{
 	$detect_os = strtoupper($_SERVER["SERVER_SOFTWARE"]); // converted to uppercase
@@ -54,8 +56,8 @@ if ( strpos($path,"/",1) && JRDS == "\\" )  // If the first element in the path 
 
 define('JOMRESINSTALLPATH_BASE',$path);
 
-define('JOMRESPATH_BASE',JOMRESINSTALLPATH_BASE.JRDS."components".JRDS."com_jomres");
-
+define('JOMRESPATH_BASE',JOMRESINSTALLPATH_BASE.JRDS."jomres");
+/*
 if (@file_exists(JOMRESINSTALLPATH_BASE .JRDS.'includes'.JRDS.'defines.php') )
 	{
 	define( '_JEXEC', 1 );
@@ -65,18 +67,20 @@ else
 	define( '_VALID_MOS', 1 );
 	}
 define( '_JOMRESEXEC', 1 );
-
+*/
 define ('_JOM_COMPONENTNAME',"com_jomres");
-
+/*
 if (!file_exists(JOMRESINSTALLPATH_BASE.JRDS.'configuration.php') )
 	{
 	showheader();
 	echo "<h1>Error. Cannot detect ".JOMRESINSTALLPATH_BASE.JRDS.'configuration.php'."</h1>";
-	echo "Please ensure that you are installing Jomres into the root of your Joomla/Mambo installation, and that indeed Joomla or Mambo is installed.";
+	echo "Please ensure that you are installing Jomres into the root of your CMS installation, and that indeed a CMS is installed.";
 	showfooter();
 	exit;
 	}
+*/
 
+/*
 if (file_exists(JOMRESINSTALLPATH_BASE .JRDS.'includes'.JRDS.'defines.php') )
 	{
 	define('JPATH_BASE', dirname(__FILE__) );
@@ -93,79 +97,83 @@ else
 		//require_once( JOMRESPATH_BASE.'/includes/mambo.php' );
 		}
 	}
+*/
 
+/*
 if (!is_writable(JOMRESINSTALLPATH_BASE.JRDS.'media') )
 	{
 	echo "<h1>Error. The /media folder is not writable. Please correct this and reload this page. </h1><br>";
 	exit;
 	}
+*/
+
 //copySiteConfig(JOMRESPATH_BASE."/administrator/components/com_jomres");  // Doesn't work because /com_jomres/ folder isn't writable by the web server. Left in in case I want to revisit this in the future.
-require_once( JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'integration.php' );
+require_once( 'integration.php' );
 
 global $jomres_systemLog_path,$jomresConfig_absolute_path,$jrConfig,$lkey;
 $jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
 
 showheader();
 $folderChecksPassed=true;
-if (!is_dir(JOMRESPATH_BASE.JRDS."sessions".JRDS) )
+if (!is_dir("sessions".JRDS) )
 	{
-	if (!@mkdir(JOMRESPATH_BASE.JRDS."sessions".JRDS)) 
+	if (!@mkdir("sessions".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESPATH_BASE.JRDS."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 
-if (!is_dir(JOMRESPATH_BASE.JRDS."temp".JRDS) )
+if (!is_dir("temp".JRDS) )
 	{
-	if (!@mkdir(JOMRESPATH_BASE.JRDS."temp".JRDS)) 
+	if (!@mkdir("temp".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESPATH_BASE.JRDS."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 
 	
-	if (!is_dir(JOMRESPATH_BASE.JRDS."updates".JRDS) )
+	if (!is_dir("updates".JRDS) )
 	{
-	if (!@mkdir(JOMRESPATH_BASE.JRDS."updates".JRDS)) 
+	if (!@mkdir("updates".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESPATH_BASE.JRDS."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 	
-if (!is_dir(JOMRESPATH_BASE.JRDS."remote_plugins".JRDS) )
+if (!is_dir("remote_plugins".JRDS) )
 	{
-	if (!@mkdir(JOMRESPATH_BASE.JRDS."remote_plugins".JRDS)) 
+	if (!@mkdir("remote_plugins".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESPATH_BASE.JRDS."remote_plugins".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		}
-	}
-	
-if (!is_dir($jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres") )
-	{
-	if (!@mkdir($jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS)) 
-		{
-		echo "<h1>Error, unable to make folder ".$jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
+		echo "<h1>Error, unable to make folder "."remote_plugins".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		}
 	}
 
-if (!is_dir($jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."rmtypes") )
+if (!is_dir("uploadedimages") )
 	{
-	if (!@mkdir($jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."rmtypes")) 
+	if (!@mkdir("uploadedimages")) 
 		{
-		echo "<h1>Error, unable to make folder ".$jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 	
-if (!is_dir($jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."pfeatures") )
+if (!is_dir("uploadedimages".JRDS."rmtypes") )
 	{
-	if (!@mkdir($jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."pfeatures")) 
+	if (!@mkdir("uploadedimages".JRDS."rmtypes")) 
 		{
-		echo "<h1>Error, unable to make folder ".$jomresConfig_absolute_path.JRDS."images".JRDS."stories".JRDS."jomres".JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."uploadedimages".JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		$folderChecksPassed=false;
+		}
+	}
+	
+if (!is_dir("uploadedimages".JRDS."pfeatures") )
+	{
+	if (!@mkdir("uploadedimages".JRDS."pfeatures")) 
+		{
+		echo "<h1>Error, unable to make folder "."uploadedimages".JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
@@ -350,7 +358,7 @@ function alterContractsUsernameCol()
 	
 function updateMrConfig()
 	{
-	include(JOMRESPATH_BASE.JRDS.'jomres_config.php' );
+	include('jomres_config.php' );
 	$tempConfigArr=$mrConfig;
 	$mrConfig=array();
 	$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = 0";
@@ -2672,7 +2680,7 @@ function showheader()
 	  <p align="center">&nbsp;</p>
 	<div class= "panel">
 
-	  <p><img src="<?php echo $jomresConfig_live_site ;?>/components/com_jomres/images/jrlogo.png" width="287" height="70"></p>
+	  <p><img src="<?php echo $jomresConfig_live_site ;?>images/jrlogo.png" width="287" height="70"></p>
 	  <p><h1>Jomres installation</h1></p>
 	  <p>&nbsp;</p>
 	<?php

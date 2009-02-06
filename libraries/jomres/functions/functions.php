@@ -16,7 +16,7 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
@@ -48,31 +48,31 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
-		if (defined('_JOMRES_NEWJOOMLA') )
-			{
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/includes/js/overlib_mini.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/includes/js/overlib_hideform_mini.js"></script>');
-			}
-		else
-			mosCommonHTML::loadOverlib();
+		// if (defined('_JOMRES_NEWJOOMLA') )
+			// {
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/includes/js/overlib_mini.js"></script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/includes/js/overlib_hideform_mini.js"></script>');
+			// }
+		// else
+			// mosCommonHTML::loadOverlib();
 
 		if ($jrConfig['autoDetectJSCalendarLang'] == "1")
 			{
 			$calfileSought="calendar-".$jomresConfig_lang.".js";
-			if (file_exists(JOMRESPATH_BASE.JRDS.'javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
+			if (file_exists('javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
 				$jrConfig['jscalendarLangfile']=$calfileSought;
 			}
 
-		$option = $_REQUEST['option'];
-		if ((strstr( $version, "Mambo" ) && $popup == 1) || $option != "com_jomres")
+		if (!defined(JOMRES_NOHTML) )
 			{
-			// The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
-			//echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-			echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>';
-			//echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
+			if (!defined("JOMRES_CALENDARJSCALLED") )
+				 {
+				 define ('JOMRES_CALENDARJSCALLED',1);
+				echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
+				}
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
 			echo '<script type="text/javascript">jQuery.noConflict();</script>';
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>';
@@ -80,6 +80,9 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>';
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>';
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/excanvas-compressed.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.bt.min.js"></script>';
+
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>';
 			if ($thisJRUser->userIsManager)
@@ -87,34 +90,59 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>';
 				}
 			}
-		else
-			{
-			if (!defined("JOMRES_CALENDARJSCALLED") )
-				{
-				define ('JOMRES_CALENDARJSCALLED',1);
-				// The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
-				//$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
-				$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>');
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>');
-				//$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>');
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>');
-				}
+			
+		// $option = $_REQUEST['option'];
+		// if ((strstr( $version, "Mambo" ) && $popup == 1) || $option != "com_jomres")
+			// {
+			// // The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
+			// //echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
+			// echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>';
+			// //echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
+			// echo '<script type="text/javascript">jQuery.noConflict();</script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>';
+			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>';
+			// if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
+				// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>';
+			// if ($thisJRUser->userIsManager)
+				// {
+				// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>';
+				// }
+			// }
+		// else
+			// {
+			// if (!defined("JOMRES_CALENDARJSCALLED") )
+				// {
+				// define ('JOMRES_CALENDARJSCALLED',1);
+				// // The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
+				// //$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
+				// $mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
+				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>');
+				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>');
+				// //$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>');
+				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>');
+				// }
 
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript">jQuery.noConflict();</script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>');
-			$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>');
-			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>');
-			if ($thisJRUser->userIsManager)
-				{
-				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>');
-				}
-			}
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript">jQuery.noConflict();</script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>');
+			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>');
+			// if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
+				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>');
+			// if ($thisJRUser->userIsManager)
+				// {
+				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>');
+				// }
+			// }
 		}
 
 
@@ -2132,9 +2160,9 @@ function saveKey ( $mykey )
 				jomresRedirect("index.php?option=com_jomres", "FATAL ERROR: Key File Not writeable" );
 				}
 			$txt = "<?php if (defined('JPATH_BASE'))";
-			$txt .= "	defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );\n";
+			$txt .= "	defined( '_JEXEC' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );\n";
 			$txt .= "else";
-			$txt .= "	defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );\n";
+			$txt .= "	defined( '_VALID_MOS' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );\n";
 			$txt.='$mykey="'.$mykey.'";?>';
 
 		if ($fp = fopen( $keyFile, "w"))
@@ -2316,8 +2344,8 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 function getPropertyAddressForPrint($propertyUid)
 	{
 	//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
-	global $mainframe;
-	$liveSite=$mainframe->getCfg( 'live_site' );
+	global $jomresConfig_live_site;
+
 	$query="SELECT property_name,property_street,property_town,property_postcode,property_tel,property_fax,property_email,property_features,property_country,property_region,published,ptype_id,stars,
 		property_description,property_checkin_times,property_area_activities,property_driving_directions,property_airports,property_othertransport,property_policies_disclaimers,`lat`,`long`,metatitle,metadescription FROM #__jomres_propertys WHERE propertys_uid = '".(int)$propertyUid."'";
 	$propertyData=doSelectSql($query);
@@ -2391,7 +2419,7 @@ function getPropertyAddressForPrint($propertyUid)
 
 		}
 	$propertyAddress=array($property_name,$property_street,$property_town,$property_postcode,$property_region,$property_country);
-	$propertyContact=array($property_tel,$property_fax,$property_email,$liveSite);
+	$propertyContact=array($property_tel,$property_fax,$property_email,$jomresConfig_live_site);
 	$propertyDataArray=array($property_name,$propertyAddress,$propertyContact,$indexedPropertyDetails);
 	return $propertyDataArray;
 	}

@@ -15,7 +15,7 @@
 * All rights reserved.
  */
 
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 
 global $timetracking;
 $timetracking = false;
@@ -90,13 +90,8 @@ $plugin 			= jomresGetParam( $_REQUEST, 'plugin', "" );
 $task 				= jomresGetParam( $_REQUEST, 'task', "" );
 $Itemid				= intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
 
-if (!defined('_JOMRES_NEWJOOMLA') && !strstr( $version, "Mambo" ) && $no_html != 1) // Mambo doesn't seem to use the language file until after the component has done it's thing, so we wont check for it here. As of v2.6.1 this really only amounts to an advisory anyway.
-	{
-	//header('Content-type: text/html; ' . _ISO);
-	$iso=_ISO;
-	if (_ISO != "charset=utf-8" )
-		echo "<font color=\"red\">Warning, your charset is not set to utf-8 therefore you will experience problems with currency symbols and non-latin characters being stored incorrectly in the database, and these characters breaking the booking form. You need to use a utf-8 characterset/language file to use Jomres. <a href=\"http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=12&nav=0,7\" target=\"_blank\">See this knowledgebase article for more information. </a>.</font><br>";
-	}
+if ($no_html == 1)
+	define ("JOMRES_NOHTML",1);
 
 if(!$Itemid || $Itemid == 99999999)
 	{
