@@ -21,8 +21,6 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
 		}
 
-
-			
 	$jomresConfig_offline			= $CONFIG->offline;
 	$jomresConfig_db				= $CONFIG->db;
 	/*
@@ -142,3 +140,9 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	$iso=_ISO;
 	if (_ISO != "charset=utf-8" )
 		echo "<font color=\"red\">Warning, your charset is not set to utf-8 therefore you will experience problems with currency symbols and non-latin characters being stored incorrectly in the database, and these characters breaking the booking form. You need to use a utf-8 characterset/language file to use Jomres. <a href=\"http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=12&nav=0,7\" target=\"_blank\">See this knowledgebase article for more information. </a>.</font><br>";
+
+		$sslink	= str_replace("https://","http://",$jomresConfig_live_site);
+		
+define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."index.php?option=com_jomres&");
+define("JOMRES_SITEPAGE_URL_SSL",$sslink."index.php?option=com_jomres&");
+define("JOMRES_SITEPAGE_URL_NOTHML",$jomresConfig_live_site."index.php?option=com_jomres&tmpl=component&");

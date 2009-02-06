@@ -33,7 +33,7 @@ $userIsManager=checkUserIsManager();
 if ($userIsManager && in_array(intval($_REQUEST['selectedProperty']),$thisJRUser->authorisedProperties) && (int) $_REQUEST['selectedProperty'] > 0 && $thisJRUser->currentproperty != (int) $_REQUEST['selectedProperty'] )
 	{
 	$thisJRUser->set_currentproperty((int) $_REQUEST['selectedProperty']);
-	jomresRedirect( jomresURL("index.php?option=com_jomres&task=dobooking&Itemid=$Itemid&selectedProperty=$selectedProperty"), "" );
+	jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."task=dobooking&Itemid=$Itemid&selectedProperty=$selectedProperty"), "" );
 	}
 	
 $selectedProperty  =$property_uid;
