@@ -143,9 +143,9 @@ class j16000addproperty2
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('Save',$link,$text="Save",$submitOnClick=true,$submitTask="saveregisterprop",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN.,_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

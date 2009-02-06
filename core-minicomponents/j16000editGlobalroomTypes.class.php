@@ -84,7 +84,7 @@ class j16000editGlobalroomTypes
 		$output['PROPERTYFEATUREINFO']=_JOMRES_A_GLOBALROOMTYPES_INFO;
 		$output['ROOMCLASSUID']=$rmTypeUid;
 
-		$output['INDEX']="index2.php";
+		$output['INDEX']=JOMRES_SITEPAGE_URL_ADMIN;
 		$output['TASK']='saveGlobalRoomClass';
 		$output['HLINKTEXT']=_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT;
 		$output['HLINKTEXTCLONE']=_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE;
@@ -98,9 +98,9 @@ class j16000editGlobalroomTypes
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('saveGlobalRoomClass',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveGlobalRoomClass",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres&task=listGlobalroomTypes",'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."task=listGlobalroomTypes",'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

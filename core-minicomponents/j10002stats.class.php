@@ -31,7 +31,7 @@ class j10002stats
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=showstats', 'ChartBarTrend.png', _JRPORTAL_STATS_PATETITLE);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=showstats', 'ChartBarTrend.png', _JRPORTAL_STATS_PATETITLE);
 		}
 	
 	

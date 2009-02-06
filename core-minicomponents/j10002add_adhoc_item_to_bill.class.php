@@ -33,7 +33,7 @@ class j10002add_adhoc_item_to_bill
 		global $htmlFuncs,$indexphp;
 		$this->cpanelButton="";
 		if ($MiniComponents->eventSpecificlyExistsCheck('00100',"nbill"))  // Check that at least one jrportal -> billing system plugin exists. If it does, we can show the button
-			$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=add_adhoc_item_to_bill', 'AddItem.png', _JRPORTAL_CPANEL_ADD_ADHOC_ITEM);
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=add_adhoc_item_to_bill', 'AddItem.png', _JRPORTAL_CPANEL_ADD_ADHOC_ITEM);
 		}
 	
 	

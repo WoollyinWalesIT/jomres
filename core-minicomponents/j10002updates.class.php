@@ -33,10 +33,10 @@ class j10002updates
 		global $htmlFuncs,$indexphp;
 		if (function_exists("curl_init"))
 			{
-			$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=updates', 'upgrades.png', "Upgrades");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=updates', 'upgrades.png', "Upgrades");
 			}
 		else
-			$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=nocurl', 'DownloadDisabled.png', "Upgrades");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=nocurl', 'DownloadDisabled.png', "Upgrades");
 		}
 	
 	

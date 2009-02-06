@@ -69,7 +69,7 @@ class cpanel
 		{
 		global $MiniComponents;
 		$pageoutput=array();
-		$ajaxUrl="index3.php?option=com_jomres&task=getstats&no_html=1";
+		$ajaxUrl=JOMRES_SITEPAGE_URL_ADMIN."task=getstats&no_html=1";
 
 		$functionStr=",
 			function(data){

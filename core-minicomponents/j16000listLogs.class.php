@@ -34,7 +34,7 @@ class j16000listLogs
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 		$jrtb .= $jrtbar->endTable();
 		
 		$output['JOMRESTOOLBAR']=$jrtb;
@@ -51,7 +51,7 @@ class j16000listLogs
 				{
 				if (file_exists(JOMRES_SYSTEMLOG_PATH.$file))
 					{
-					$r=array("LOGFILELINK"=>'<a href="index2.php?option=com_jomres&task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");
+					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");
 					$rows[]=$r;
 					$counter++;
 					}

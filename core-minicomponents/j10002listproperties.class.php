@@ -31,7 +31,7 @@ class j10002listproperties
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=listproperties', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listproperties', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES);
 		}
 	
 	

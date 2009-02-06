@@ -38,10 +38,10 @@ function showSiteConfig(  )
 	$jrtbar = new jomres_toolbar();
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
-	$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+	$link = JOMRES_SITEPAGE_URL_ADMIN;
 	$jrtb .= $jrtbar->customToolbarItem('saveSiteConfig',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveSiteConfig",$image);
 	
-	$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 	$jrtb .= $jrtbar->endTable();
 
 	$lists = array();
@@ -184,7 +184,7 @@ function saveSiteConfig (  )
 				}
 			}
 		}
-	jomresRedirect( "index2.php?option=com_jomres&task=showSiteConfig", "Configuration saved" );
+	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=showSiteConfig", "Configuration saved" );
 	}
 
 function getJomresLanguagesDropdown()

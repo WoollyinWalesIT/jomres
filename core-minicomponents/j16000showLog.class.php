@@ -45,7 +45,7 @@ class j16000showLog
 		$output['REQUESTURI']='requesturi';
 		$output['MESSAGE']=JOMRES_COM_A_MESSAGE;
 		$output['DELETE']=_JOMRES_COM_MR_ROOM_DELETE;
-		$output['DELETELINK']='index2.php?option=com_jomres&task=clearLog&logfile='.$logfile;
+		$output['DELETELINK']=JOMRES_SITEPAGE_URL_ADMIN.'task=clearLog&logfile='.$logfile;
 		$output['LIVESITE']=$jomresConfig_live_site;
 		$output['BACKLINK']='<a href="javascript:submitbutton(\'listLogs\')">'._JOMRES_COM_MR_BACK.'</a>';
 
@@ -85,7 +85,7 @@ class j16000showLog
 			}
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres&task=listLogs",'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."task=listLogs",'');
 		$jrtb .= $jrtbar->endTable();
 		$output['{JOMRESTOOLBAR}']=$jrtb;
 

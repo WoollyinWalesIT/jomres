@@ -39,7 +39,7 @@ class j16000archivecrates
 			$crateFunctions->batchArchive($idArray,&$tr);
 			$result=$tr->commit($tr);
 			if ($result)
-				jomresRedirect( $indexphp."?option=com_jomres&task=listcrates", '');
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listcrates", '');
 			}
 		}
 

@@ -56,7 +56,7 @@ class j16000listcrates
 			else
 				$r['STYLE'] ="row1";
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$crate['id'].'" onClick="isChecked(this.checked);">';
-			$r['EDITLINK']='<a href="'.$indexphp.'?option=com_jomres&task=editcrate&id='.$crate['id'].'">'.$editIcon.'</a>';
+			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editcrate&id='.$crate['id'].'">'.$editIcon.'</a>';
 			$r['TITLE']=$crate['title'];
 			$crateType = new crateTypes();
 			$crateType->id=$crate['type'];
@@ -72,12 +72,12 @@ class j16000listcrates
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('editCrate',$link,$text="Add",$submitOnClick=true,$submitTask="editcrate",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/".$indexphp."?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('archiveCrates',$link,$text="Delete",$submitOnClick=true,$submitTask="archivecrates",$image);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;

@@ -61,7 +61,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	global $jomresConfig_live_site,$version;
 		$contentPanel = new jomres_contentTabs();
 		?>
-		<form action="" method="post" name="adminForm">
+		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 		<table cellpadding="4" cellspacing="0" border="0" width="100%">
 		<tr>
 			<td width="100%" class="sectionname">Jomres <?php echo _JOMRES_A; ?></td>
@@ -561,7 +561,7 @@ function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 		echo $jrtb;
 		//$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/administrator/images/edit_f2.png" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'">';
 		?>
-		<form action="index2.php" method="POST" name="adminForm">
+		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
 		<input type="hidden" name="jomrestoken" value="<?php echo jomresSetToken();?>">
 		<table  class="jradmin_table" border="0">
 			<tr>
@@ -591,7 +591,7 @@ function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 function editpropertyType_html($pList,$rowInfo,$hidden,$jrtb)
 		{
 		?>
-	<form action="index2.php" method="POST" name="adminForm">
+	<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
 	<?php echo $jrtb;?>
 	<table class="jradmin_table" border="0">
 		<tr>
@@ -628,7 +628,7 @@ function listMosUsers_html($userRowInfo,$option)
 		r= text_val.createTextRange();
 		r.execCommand('copy');
 		} </script>
-		<form action="index2.php" method="POST" name="adminForm">
+		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
 		<table  class="jradmin_table" border="0">
 		<tr>
 			<th class="jomres_title" colspan="9"><?php echo _JOMRES_COM_MR_ASSIGNUSER_TITLE; ?></th>

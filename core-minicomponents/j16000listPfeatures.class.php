@@ -49,8 +49,8 @@ class j16000listPfeatures
 		foreach($propertyFeaturesList as $propertyFeature)
 			{
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$propertyFeature->hotel_features_uid.'" onClick="isChecked(this.checked);">';
-			$r['LINKTEXT']='<a href="index2.php?option=com_jomres&task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'">'.$editIcon.'</a>';
-			$r['LINKTEXTCLONE']='<a href="index2.php?option=com_jomres&task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'&clone=1">'.$cloneIcon.'</a>';
+			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'">'.$editIcon.'</a>';
+			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['PFEATURETITLE']=$propertyFeature->hotel_feature_abbv;
 			$r['PFEATUREDESCRIPTION']=$propertyFeature->hotel_feature_full_desc;
 			$r['IMAGE']=$jomresConfig_live_site.'/'.$propertyFeature->image;
@@ -62,12 +62,12 @@ class j16000listPfeatures
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('editPfeature',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editPfeature",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('deletePfeature',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deletePfeature",$image);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;

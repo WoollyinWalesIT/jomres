@@ -54,7 +54,7 @@ class j16000deleteGlobalroomTypes
 					}
 				}
 			if ($success)
-				jomresRedirect( "index2.php?option=com_jomres&task=listGlobalroomTypes",$saveMessage);
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listGlobalroomTypes",$saveMessage);
 			}
 		}
 		

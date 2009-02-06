@@ -43,14 +43,14 @@ class j16000showstats
 			foreach ($mcOutput as $key=>$val)
 				{
 				$r=array();
-				$r['STAT']='<a href="index2.php?option=com_jomres&task=getstats&statoption='.$val['task'].'">'.$val['text'].'</a><br/>';
+				$r['STAT']='<a href='.JOMRES_SITEPAGE_URL_ADMIN.'"task=getstats&statoption='.$val['task'].'">'.$val['text'].'</a><br/>';
 				$rows[]=$r;
 				}
 			}
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres",_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
