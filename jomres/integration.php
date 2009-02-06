@@ -13,7 +13,7 @@
 * All rights reserved.
  */
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 //global $mainframe,$task,$config;
@@ -252,7 +252,7 @@ else
 
 
 $jomres_db_querylog=array();
-define('JOMRES_SYSTEMLOG_PATH',JOMRESPATH_BASE.JRDS.'temp'.JRDS);
+define('JOMRES_SYSTEMLOG_PATH','temp'.JRDS);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if (!strstr($scriptname,'install_jomres.php'))
@@ -276,14 +276,14 @@ if ($product_id != "20")
 $jomresConfig_dbtype = 'mysql';
 if (!function_exists ('adodb_date_test_date') )
 	{
-	define('JOMRES_CMS', 'joomla' );
-	if (strstr($scriptname,'install_jomres.php'))
-		require_once(JOMRESINSTALLPATH_BASE.JRDS.'jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
-	else
-		require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
+	//define('JOMRES_CMS', 'joomla' );
+	//if (strstr($scriptname,'install_jomres.php'))
+		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
+	//else
+	//	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
 	}
-else
-	define('JOMRES_CMS', 'elexismambo' );
+//else
+//	define('JOMRES_CMS', 'elexismambo' );
 	
 global $_VERSION;
 if (is_null($_VERSION) )
@@ -310,42 +310,45 @@ if ($timetracking)
 	}
 
 if (!class_exists('patTemplate') )
-	require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'phptools'.JRDS.'patTemplate.php');
+	require_once('libraries'.JRDS.'phptools'.JRDS.'patTemplate.php');
 if (!class_exists('patErrorManager') )
-	require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php');
+	require_once('libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php');
 
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
+require_once('libraries'.JRDS.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
 
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
 
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'tempbookinghandler.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'currencyformat.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'contenttabs.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'configpanel.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'toolbar.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'images.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'paging.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'booking.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'crate.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'general.classes.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomresxmlparser.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'tempbookinghandler.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'currencyformat.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'contenttabs.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'configpanel.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'toolbar.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'images.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'paging.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'booking.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'crate.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'general.classes.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomresxmlparser.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
 
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'general.functions.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'crate.functions.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'booking.functions.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'property.functions.php');
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'user.functions.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'general.functions.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'crate.functions.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'booking.functions.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'property.functions.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'user.functions.php');
+
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."functions".JRDS."cms_specific_functions.php");
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_functions.php");
 
 if ($timetracking)
 	{
@@ -384,14 +387,14 @@ if ($jomresConfig_lang=='')
 $MiniComponents = new mcHandler();
 $MiniComponents->triggerEvent('00001'); // Start
 
-require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
 
 if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
-	define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend");
+	define('JOMRES_TEMPLATEPATH_FRONTEND',"templates".JRDS."jomres".JRDS."frontend");
 if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
-	define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."backend");
+	define('JOMRES_TEMPLATEPATH_BACKEND',"templates".JRDS."jomres".JRDS."backend");
 if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
-	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."administrator");
+	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
 
 define('JOMRES_SYSTEMLOG_PATH',$jrConfig['jomres_systemLog_path']);
 set_error_handler('errorHandler');
@@ -412,26 +415,14 @@ if (!defined('JOMRES_SINGLEPROPERTY'))
 function jomresURL($link, $ssl=2)
 	{
 	global $jrConfig;
+	
 	if (!$jrConfig['isInIframe'] )
 		{
-		if (!defined('_JOMRES_NEWJOOMLA') )
-			{
-			if (!function_exists('sefRelToAbs') )
-				require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."includes".JRDS."sef.php");
-			$link=sefRelToAbs($link);
-			if ($ssl == 1)
-				$link	= str_replace("http://","https://",$link);
-			else
-				$link	= str_replace("https://","http://",$link);
-			}
+		$link=jomres_cmsspecific_makeSEF_URL($link);
+		if ($ssl == 1)
+			$link	= str_replace("http://","https://",$link);
 		else
-			{
-			jimport('joomla.application.helper');
-			if (class_exists('JRoute') )
-				{
-				$link	=  JRoute::_( $link, $xhtml = true, $ssl );
-				}
-			}
+			$link	= str_replace("https://","http://",$link);
 		}
 	else
 		{
@@ -799,33 +790,6 @@ function jomresToolTips($txt)
 	return $ret;
 	}
 
-function parseByBots($str)
-	{
-	$output="";
-	if (defined('_JOMRES_NEWJOOMLA') )
-		{
-		$limitstart = 0;
-		$dispatcher	=& JDispatcher::getInstance();
-		JPluginHelper::importPlugin('content');
-		$obj = new stdClass;
-		$obj->text=$str;
-		$output = $dispatcher->trigger('onPrepareContent', array (&$obj, & $params, $limitstart));
-		$output= $obj->text;
-		}
-	else
-		{
-		global $_MAMBOTS;
-		$page = 0;
-		$_MAMBOTS->loadBotGroup( 'content' );
-		$obj = new stdClass;
-		$obj->text=$str;
-		$params =	new dummy_params_class();
-		$_MAMBOTS->trigger( 'onPrepareContent', array( &$obj, &$params, $page ), true );
-		$output= $obj->text;
-		}
-	return $output;
-	}
-
 class dummy_params_class
 	{
 	function get()
@@ -965,7 +929,7 @@ function doInsertSql($query,$op)
 
 		$thisID=mysql_insert_id();
 		if ($op!="")
-			audit($query,$op);
+			jomres_audit($query,$op);
 		if ($thisID)
 			return $thisID;
 		else
@@ -1058,7 +1022,7 @@ class jomres_database
 	}
 
 
-function audit($query,$op)
+function jomres_audit($query,$op)
 	{
 	global $thisJRUser;
 	global $jrConfig;
@@ -1549,7 +1513,7 @@ class mcHandler {
 		$this->log = array();
 		$this->currentEvent = "";
 
-		$this->remote_plugin_directory = JOMRESPATH_BASE.JRDS."remote_plugins".JRDS;
+		$this->remote_plugin_directory = "remote_plugins".JRDS;
 		if (!is_dir($this->remote_plugin_directory) )
 			{
 			if (!@mkdir($this->remote_plugin_directory))
@@ -1767,7 +1731,7 @@ function getSiteSettings()
 	{
 	global $jrConfig;
 	$mrConfig=getPropertySpecificSettings(0);
-	include(JOMRESPATH_BASE.JRDS.'site_config.php' );
+	include('site_config.php' );
 	$tempConfigArr=$jrConfig;
 	$jrConfig=array();
 	$query="SELECT akey,value FROM #__jomres_site_settings";
@@ -1791,7 +1755,7 @@ function getSiteSettings()
 			doInsertSql($query,'');
 			}
 		}
-	//$jrConfig['jomres_systemLog_path']=JOMRESPATH_BASE.JRDS.'temp'.JRDS;
+	//$jrConfig['jomres_systemLog_path']='temp'.JRDS;
 	return $jrConfig;
 	}
 

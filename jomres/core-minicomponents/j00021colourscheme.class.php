@@ -17,7 +17,7 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 
@@ -44,7 +44,7 @@ class j00021colourscheme
 			$this->template_touchable=false; return;
 			}
 		global $mainframe,$jomresConfig_live_site;
-		$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jomrescss.css" />');
+		echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jomrescss.css" />';
 		}
 
 	/**

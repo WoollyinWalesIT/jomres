@@ -16,11 +16,14 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
 	define("_JOMRES_DETECTED_CMS","joomla15");
 
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'moduleinterface.php') )
+	define("_JOMRES_DETECTED_CMS","cmsms152");
+	
 if (!defined('_JOMRES_DETECTED_CMS') )
 	define("_JOMRES_DETECTED_CMS","unknown");

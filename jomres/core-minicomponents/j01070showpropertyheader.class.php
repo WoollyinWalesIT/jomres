@@ -17,7 +17,7 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 /**
@@ -42,7 +42,7 @@ class j01070showpropertyheader
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$mainframe,$jrConfig,$task;
+		global $mrConfig,$jomresConfig_live_site,$jrConfig,$task;
 		global $thisJomresPropertyDetails;
 		$property_uid=(int)$componentArgs['property_uid'];
 
@@ -79,13 +79,15 @@ class j01070showpropertyheader
 			//$propertyname=str_replace("&#39;","'",$propertyname);
 			//$propertyname=str_replace('&quot;','"',$propertyname);
 			
+			
+			
 			if (strlen($thisJomresPropertyDetails['metatitle'])>0)
-				$mainframe->setPageTitle(stripslashes($thisJomresPropertyDetails['metatitle']));
+				jomres_setPageTitle(stripslashes($thisJomresPropertyDetails['metatitle']));
 			else
-				$mainframe->setPageTitle(stripslashes($thisJomresPropertyDetails['property_name']));
-				
-			$mainframe->appendMetaTag( 'description', stripslashes($thisJomresPropertyDetails['metadescription']) );
-			$mainframe->appendMetaTag( 'keywords', stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])) );
+				jomres_setPageTitle(stripslashes($thisJomresPropertyDetails['property_name']));
+
+			jomres_setPageMetatags( 'description', stripslashes($thisJomresPropertyDetails['metadescription']) );
+			jomres_setPageMetatags( 'keywords', stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])) );
 
 			if ($task=="viewproperty" || $task == "preview")
 				{

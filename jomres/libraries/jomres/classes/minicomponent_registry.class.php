@@ -16,7 +16,7 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 /**
 #
@@ -34,8 +34,8 @@ class minicomponent_registry
 		$this->nonOverridableEventClasses=array();
 		$this->error_detected=false;
 		$this->unWantedFolderContents=array('.','..','cvs','.svn','registry.php');
-		$this->remote_plugin_directory = JOMRESPATH_BASE.JRDS."remote_plugins".JRDS;
-		$this->registry_file= JOMRESPATH_BASE.JRDS."remote_plugins".JRDS."registry.php";
+		$this->remote_plugin_directory = "remote_plugins".JRDS;
+		$this->registry_file= "remote_plugins".JRDS."registry.php";
 		$this->now = time();
 		$this->force_reload_allowed=$force_reload_allowed;
 		$original_filesize=@filesize($this->registry_file); // @to prevent notices when the file doesn't exist at all
@@ -89,15 +89,7 @@ class minicomponent_registry
 		
 		$safety_string="<?php
 // ################################################################
-if (!defined('JPATH_BASE'))
-	defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-else
-	{
-	if (file_exists(JPATH_BASE .'/includes/defines.php') ) 
-		defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
-	else
-		defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-	}
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 		";
 		$registered_classes = serialize($this->registeredClasses);

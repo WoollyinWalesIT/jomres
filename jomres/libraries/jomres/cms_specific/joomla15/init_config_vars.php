@@ -138,3 +138,7 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 		}
 	if (!in_array((int)$jrConfig['jomresItemid'],$Itemids))
 		echo '<font color="red" face="arial" size="1">Warning: Your Jomres Itemid and the Itemid stored in Site Config are different, this may result in unpredictable behaviour. It is recommended that you modify your Site Config Itemid to match that in the main menu. See <a href="http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=96&nav=0,3" target="_blank"> this article for more information</a></font>';
+
+	$iso=_ISO;
+	if (_ISO != "charset=utf-8" )
+		echo "<font color=\"red\">Warning, your charset is not set to utf-8 therefore you will experience problems with currency symbols and non-latin characters being stored incorrectly in the database, and these characters breaking the booking form. You need to use a utf-8 characterset/language file to use Jomres. <a href=\"http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=12&nav=0,7\" target=\"_blank\">See this knowledgebase article for more information. </a>.</font><br>";

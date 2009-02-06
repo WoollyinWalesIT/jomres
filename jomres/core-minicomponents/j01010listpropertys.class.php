@@ -17,7 +17,7 @@
  */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 /**
@@ -225,7 +225,7 @@ class j01010listpropertys {
 				$featureList=array();
 				$ptown=stripslashes($property->property_town);
 				$stars=$property->stars;
-				$propertyDesc=parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
+				$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
 
 				$property_image=$jomresConfig_live_site."/jomres/images/jrlogo.png";
 				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )

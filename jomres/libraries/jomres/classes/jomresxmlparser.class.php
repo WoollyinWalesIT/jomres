@@ -17,7 +17,7 @@
 // http://uk2.php.net/manual/en/function.xml-parse-into-struct.php#79922
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 class jomresXMLParser

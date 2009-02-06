@@ -8,15 +8,7 @@
  */
 
 // ################################################################
-if (!defined('JPATH_BASE'))
-	defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-else
-	{
-	if (file_exists(JPATH_BASE .'/includes/defines.php') )
-		defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
-	else
-		defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.' );
-	}
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
 /**
