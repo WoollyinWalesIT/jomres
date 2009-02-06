@@ -33,7 +33,7 @@ class j16000getstats
 		
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',$indexphp."?option=com_jomres&task=showstats",_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."task=showstats",_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->endTable();
 		echo $jrtb;
 		

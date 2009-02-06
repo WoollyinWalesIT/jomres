@@ -137,7 +137,7 @@ class j16000saveregisterprop
 		$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$userObj->username;
 		sendAdminEmail($subject,$message);
-		jomresRedirect( "index2.php?option=com_jomres&task=listproperties","");
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listproperties","");
 		$url=$url."&mosmsg=". urlencode( $msg );
 		echo "<script>document.location.href='$url';</script>\n";
 		exit();

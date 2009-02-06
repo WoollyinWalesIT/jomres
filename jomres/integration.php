@@ -396,6 +396,8 @@ if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
 if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
 
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_urls.php");
+
 define('JOMRES_SYSTEMLOG_PATH',$jrConfig['jomres_systemLog_path']);
 set_error_handler('errorHandler');
 jomres_parseRequest();

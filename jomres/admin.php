@@ -16,6 +16,7 @@
  */
 
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to '.__FILE__.' is not allowed.' );
 
 @ini_set("memory_limit","64M");
 
@@ -23,6 +24,8 @@ global $xmlelements;
 global $MiniComponents,$indexphp,$logFiles,$jrConfig;
 
 require_once('integration.php');
+
+$task = jomresGetParam( $_REQUEST, 'task', "" );
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'jomresxml.functions.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'siteconfig.functions.php');

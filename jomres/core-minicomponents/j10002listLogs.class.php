@@ -31,7 +31,7 @@ class j10002listLogs
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=listLogs', 'logs.png', JOMRES_COM_A_AVAILABLELOGS);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listLogs', 'logs.png', JOMRES_COM_A_AVAILABLELOGS);
 		}
 	
 	

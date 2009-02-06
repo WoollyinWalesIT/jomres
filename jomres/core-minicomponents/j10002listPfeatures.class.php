@@ -31,7 +31,7 @@ class j10002listPfeatures
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=listPfeatures', 'propertyFeatures.png', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listPfeatures', 'propertyFeatures.png', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK);
 		}
 	
 	

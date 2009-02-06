@@ -53,7 +53,7 @@ class j16000savecrate
 			$crateObj->commitNewCrate(&$tr);
 		$result=$tr->commit($tr);
 		if ($result)
-			jomresRedirect( "index2.php?option=com_jomres&task=listcrates", '');
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listcrates", '');
 		}
 
 	// This must be included in every Event/Mini-component

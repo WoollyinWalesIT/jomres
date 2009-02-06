@@ -143,6 +143,4 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 
 		$sslink	= str_replace("https://","http://",$jomresConfig_live_site);
 		
-define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."index.php?option=com_jomres&");
-define("JOMRES_SITEPAGE_URL_SSL",$sslink."index.php?option=com_jomres&");
-define("JOMRES_SITEPAGE_URL_NOTHML",$jomresConfig_live_site."index.php?option=com_jomres&tmpl=component&");
+

@@ -43,7 +43,7 @@ class j16000removeplugin
 		$registry = new minicomponent_registry(false);
 		$registry->regenerate_registry();
 		
-		if (!$debugging) jomresRedirect($jomresConfig_live_site.'/'.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres&task=showplugins");
+		if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."task=showplugins");
 		}
 
 

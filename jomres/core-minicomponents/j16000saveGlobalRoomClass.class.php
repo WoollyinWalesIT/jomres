@@ -42,13 +42,13 @@ class j16000saveGlobalRoomClass
 			{
 			$query="INSERT INTO #__jomres_room_classes (`room_class_abbv`,`room_class_full_desc`,`image`,`property_uid`,`srp_only` )VALUES ('$room_class_abbv','$room_class_full_desc','$image','0','".(int)$srp_only."')";
 			if (doInsertSql($query,''))
-				jomresRedirect( "index2.php?option=com_jomres&task=listGlobalroomTypes",_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT);
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listGlobalroomTypes",_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT);
 			}
 		else
 			{
 			$query="UPDATE #__jomres_room_classes SET `image`='$image',`room_class_abbv`='$room_class_abbv',`room_class_full_desc`='$room_class_full_desc',`srp_only`='".(int)$srp_only."' WHERE room_classes_uid='".(int)$roomClassUid."' AND property_uid = '0'";
 			if (doInsertSql($query,''))
-				jomresRedirect( "index2.php?option=com_jomres&task=listGlobalroomTypes",_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE);
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listGlobalroomTypes",_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE);
 			}
 		}
 		

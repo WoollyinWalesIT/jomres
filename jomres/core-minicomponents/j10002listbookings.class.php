@@ -31,7 +31,7 @@ class j10002listbookings
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=listbookings', 'ListBookings.png', _JRPORTAL_CPANEL_LISTBOOKINGS);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listbookings', 'ListBookings.png', _JRPORTAL_CPANEL_LISTBOOKINGS);
 		}
 	
 	

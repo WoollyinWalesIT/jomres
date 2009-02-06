@@ -31,7 +31,7 @@ class j10002listcrates
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=listcrates', 'commissionRates.png', _JRPORTAL_CPANEL_LISTCRATES);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listcrates', 'commissionRates.png', _JRPORTAL_CPANEL_LISTCRATES);
 		}
 	
 	

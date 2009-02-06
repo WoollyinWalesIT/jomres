@@ -31,7 +31,7 @@ class j10002rebuildregistry
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton($indexphp.'?option=com_jomres&task=rebuildregistry', 'rebuildregistry.png', "Rebuild Registry");
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=rebuildregistry', 'rebuildregistry.png', "Rebuild Registry");
 		}
 	
 	

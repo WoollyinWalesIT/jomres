@@ -44,7 +44,7 @@ class j00001start {
 			$this->template_touchable=false; return;
 			}
 
-		define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
+		
 		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
 			define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend");
 		if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))

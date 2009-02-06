@@ -48,8 +48,8 @@ class j16000listGlobalroomTypes
 		foreach($roomtypeList as $roomtype)
 			{
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$roomtype->room_classes_uid.'" onClick="isChecked(this.checked);">';
-			$r['LINKTEXT']='<a href="index2.php?option=com_jomres&task=editGlobalroomTypes&rmTypeUid='.$roomtype->room_classes_uid.'">'.$editIcon.'</a>';
-			$r['LINKTEXTCLONE']='<a href="index2.php?option=com_jomres&task=editGlobalroomTypes&$rmTypeUid='.$roomtype->room_classes_uid.'&clone=1">'.$cloneIcon.'</a>';
+			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editGlobalroomTypes&rmTypeUid='.$roomtype->room_classes_uid.'">'.$editIcon.'</a>';
+			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editGlobalroomTypes&$rmTypeUid='.$roomtype->room_classes_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['RTTITLE']=$roomtype->room_class_abbv;
 			$r['RTDESCRIPTION']=$roomtype->room_class_full_desc;
 			$r['IMAGE']=$jomresConfig_live_site.'/'.$roomtype->image;
@@ -61,12 +61,12 @@ class j16000listGlobalroomTypes
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('editGlobalroomTypes',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editGlobalroomTypes",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres",'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
-		$link = $jomresConfig_live_site.JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('deleteGlobalroomTypes',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deleteGlobalroomTypes",$image);
 		$jrtb .= $jrtbar->endTable();
 
