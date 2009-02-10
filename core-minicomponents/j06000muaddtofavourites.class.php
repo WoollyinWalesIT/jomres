@@ -52,7 +52,7 @@ class j06000muaddtofavourites {
 						}
 					}
 				}
-			jomresRedirect( jomresURL("index.php?option=com_jomres&task=muviewfavourites&Itemid=$Itemid"), '' );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=muviewfavourites&Itemid=$Itemid"), '' );
 			}
 		}
 

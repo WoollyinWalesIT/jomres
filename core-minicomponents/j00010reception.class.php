@@ -68,10 +68,10 @@ class j00010reception {
 					{
 					foreach ($initials as $initl )
 						{
-						$link=jomresURL('index.php?option=com_jomres&propertyInitialFilter='.$initl.'&Itemid='.$Itemid);
+						$link=jomresURL(JOMRES_SITEPAGE_URL.'&propertyInitialFilter='.$initl.'&Itemid='.$Itemid);
 						$initialsOptions[]=jomresHTML::makeOption( $link, $initl );
 						}
-					$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL("index.php?option=com_jomres&Itemid=$Itemid&propertyInitialFilter=".$propertyInitialFilter) );
+					$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid&propertyInitialFilter=".$propertyInitialFilter) );
 					}
 
 /*				$query="SELECT propertys_uid,property_name,property_othertransport FROM #__jomres_propertys WHERE property_name LIKE '$propertyInitialFilter%' ORDER BY property_name";
@@ -102,15 +102,15 @@ class j00010reception {
 						$thisProperty=$property->propertys_uid;
 					$counter++;
 					$pname=$property->property_name.' '.$property->propertys_uid;
-					$link=jomresURL('index.php?option=com_jomres&thisProperty='.$property->propertys_uid.'&Itemid='.$Itemid);
+					$link=jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid.'&Itemid='.$Itemid);
 					$propertyOptions[]=jomresHTML::makeOption( $link, stripslashes($pname) );
 					}
 				if ( $propertyInitialFilter && $numberOfPropertiesInSystem > 1 )
 					{
 					$thisJRUser->set_currentproperty($thisProperty);
-					jomresRedirect( jomresURL("index.php?option=com_jomres&Itemid=".$Itemid),"");
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."Itemid=".$Itemid),"");
 					}
-				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL('index.php?option=com_jomres&thisProperty='.$property_uid.'&Itemid='.$Itemid) );
+				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid.'&Itemid='.$Itemid) );
 				if (!JOMRES_SINGLEPROPERTY)
 					$output['PROPERTYDROPDOWN']=''.$propertyDropdown.$filterDropdown.'';
 				}
@@ -133,29 +133,29 @@ class j00010reception {
 
 		$output['CURRENTPROPERTYNAME']=getPropertyName($property_uid).' UID: '.$property_uid;
 
-		$output['HOMELINK']=jomresURL("index.php?option=com_jomres&Itemid=$Itemid");
+		$output['HOMELINK']=jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid");
 		$output['HHOME']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME',_JOMRES_FRONT_MR_MENU_ADMIN_HOME,false,true);
-		$output['PREVIEWLINK']=jomresURL("index.php?option=com_jomres&task=preview&Itemid=$Itemid");
+		$output['PREVIEWLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=preview&Itemid=$Itemid");
 		$output['HPREVIEW']=jr_gettext('_JOMRES_FRONT_PREVIEW',_JOMRES_FRONT_PREVIEW,false,true);
 		
-		$output['BOOKAROOMLINK']="index.php?option=com_jomres&task=dobooking&Itemid=$Itemid";
+		$output['BOOKAROOMLINK']=JOMRES_SITEPAGE_URL."&task=dobooking&Itemid=$Itemid";
 		if ( $jrConfig['useSSLinBookingform'] == "1" )
 			$output['BOOKAROOMLINK']=jomresURL($output['BOOKAROOMLINK'],1);
 		else
 			$output['BOOKAROOMLINK']=jomresURL($output['BOOKAROOMLINK']);
 			
 		$output['HBOOKAROOM']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,true) ;
-		$output['BOOKAGUESTINLINK']=jomresURL("index.php?option=com_jomres&task=bookGuestIn&Itemid=$Itemid");
+		$output['BOOKAGUESTINLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=bookGuestIn&Itemid=$Itemid");
 		$output['HBOOKAGUESTIN']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,false,true) ;
-		$output['BOOKGUESTOUTLINK']=jomresURL("index.php?option=com_jomres&task=bookGuestOut&Itemid=$Itemid");
+		$output['BOOKGUESTOUTLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=bookGuestOut&Itemid=$Itemid");
 		$output['HBOOKGUESTOUT']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,false,true) ;
-		$output['LISTLIVEBOOKINGSLINK']=jomresURL("index.php?option=com_jomres&task=listLiveBookings&Itemid=$Itemid");
+		$output['LISTLIVEBOOKINGSLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings&Itemid=$Itemid");
 		$output['HLISTLIVEBOOKINGS']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS,false,true) ;
-		$output['LISTNEWBOOKINGSLINK']=jomresURL("index.php?option=com_jomres&task=listNewBookings&Itemid=$Itemid");
+		$output['LISTNEWBOOKINGSLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings&Itemid=$Itemid");
 		$output['HLISTNEWBOOKINGS']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS,false,true) ;
-		$output['LISTGUESTSLINK']=jomresURL("index.php?option=com_jomres&task=listguests&Itemid=$Itemid");
+		$output['LISTGUESTSLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&Itemid=$Itemid");
 		$output['HLISTGUESTS']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN,false,true) ;
-		$output['LISTBLACKBOOKINGSLINK']=jomresURL("index.php?option=com_jomres&task=listBlackBookings&Itemid=$Itemid");
+		$output['LISTBLACKBOOKINGSLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=$Itemid");
 		$output['HLISTBLACKBOOKINGS']	=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS,false,true);
 		
 		if ($jrConfig['menusAsImages']=="1")

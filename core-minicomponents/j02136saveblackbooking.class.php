@@ -134,7 +134,7 @@ class j02136saveblackbooking {
 							if (!doInsertSql($query,''))
 								trigger_error ("Unable to insert into room bookings table, mysql db failure", E_USER_ERROR);
 							}
-						jomresRedirect( jomresURL("index.php?option=com_jomres&task=listBlackBookings&Itemid=".$Itemid) ,"" );
+						jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=".$Itemid) ,"" );
 						}
 					else
 						trigger_error ("Error after inserting to contracts table, no contract uid returned.", E_USER_ERROR);

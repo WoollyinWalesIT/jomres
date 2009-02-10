@@ -96,9 +96,9 @@ class j02116editcustomertype {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCustomerType');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=listCustomerTypes&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=$Itemid"),'');
 		if ($id != 0 )
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteCustomerType".jomresURLToken()."&no_html=1&id=$id&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteCustomerType".jomresURLToken()."&no_html=1&id=$id&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

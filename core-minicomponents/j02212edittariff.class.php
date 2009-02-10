@@ -210,10 +210,10 @@ class j02212edittariff {
 			$deleteText=jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE,FALSE);
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('save',jomresURL("index.php?option=com_jomres&task=saveTariff&amp;Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveTariff');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveTariff&amp;Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveTariff');
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
 			if (!$clone && $tariffUid)
-				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteTariff".jomresURLToken()."&tariffUid=".$tariffUid."Itemid=$Itemid"),$deleteText);
+				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteTariff".jomresURLToken()."&tariffUid=".$tariffUid."Itemid=$Itemid"),$deleteText);
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 

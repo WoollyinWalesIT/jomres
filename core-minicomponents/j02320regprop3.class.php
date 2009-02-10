@@ -132,7 +132,7 @@ class j02320regprop3 {
 		$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
 		sendAdminEmail($subject,$message);
-		jomresRedirect( "index.php?option=com_jomres&task=propertyadmin&thisProperty=".$newPropId."&Itemid=".$Itemid,"");
+		jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId."&Itemid=".$Itemid,"");
 		}
 
 	/**

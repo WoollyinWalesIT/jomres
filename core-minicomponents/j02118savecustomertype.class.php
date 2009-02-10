@@ -66,7 +66,7 @@ class j02118savecustomertype {
 		if (!doInsertSql($query,$auditMessage))
 			trigger_error ("Unable to create customer type, mysql db failure", E_USER_ERROR);
 		else
-			jomresRedirect( jomresURL("index.php?option=com_jomres&task=listCustomerTypes&Itemid=$Itemid"), $saveMessage );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=$Itemid"), $saveMessage );
 		}
 
 	/**

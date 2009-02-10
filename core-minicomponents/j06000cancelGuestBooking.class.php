@@ -250,7 +250,7 @@ class j06000cancelGuestBooking {
 			{
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL("index2.php?option=com_jomres&task=cancelGuestBooking&popup=1&Itemid=$Itemid&contract_uid=$booking_contract_uid"),'');
+			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&Itemid=$Itemid&contract_uid=$booking_contract_uid"),'');
 			$jrtb .= $jrtbar->endTable();
 			echo $jrtb;
 			}

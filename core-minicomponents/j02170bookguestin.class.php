@@ -88,7 +88,7 @@ class j02170bookguestin {
 					}
 				$dropDownList.="</select>";
 				$output['ITEMID']=$Itemid;
-				$output['VALIDATELINK']=jomresURL("index.php?option=com_jomres&task=bookGuestIn&Itemid=$Itemid");
+				$output['VALIDATELINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=bookGuestIn&Itemid=$Itemid");
 				$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_BOOKIN_TITLE',_JOMRES_FRONT_MR_BOOKIN_TITLE);
 				$output['SAVEBUTTON']=jr_gettext('_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON',_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON,false);
 				$output['DROPDOWNLIST']=$dropDownList;
@@ -98,7 +98,7 @@ class j02170bookguestin {
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('save','','',true,'bookGuestIn');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -126,7 +126,7 @@ class j02170bookguestin {
 				else
 					{
 					addBookingNote($contractUid,$defaultProperty,_JOMRES_MR_AUDIT_BOOKEDGUESTIN);
-					jomresRedirect( jomresURL("index.php?option=com_jomres&task=editBooking&contract_uid=$contractUid&Itemid=$Itemid"),  jr_gettext('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN',_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN,false ) );
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contractUid&Itemid=$Itemid"),  jr_gettext('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN',_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN,false ) );
 					}
 				}
 			}

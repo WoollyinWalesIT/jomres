@@ -115,7 +115,7 @@ class j04005roomsconfig {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_normalmode_tariffs');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -220,11 +220,11 @@ class j04005roomsconfig {
 			$propertyRowInfo .="<tr>";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL("index.php?option=com_jomres&task=editProperty&amp;Itemid=$Itemid&amp;propertyUid=".$property->propertys_uid),'');
+			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;Itemid=$Itemid&amp;propertyUid=".$property->propertys_uid),'');
 			if (!$published)
-				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL('index.php?option=com_jomres&task=publishProperty'.jomresURLToken().'&Itemid='.$Itemid),jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false));
+				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken().'&Itemid='.$Itemid),jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false));
 			else
-				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL('index.php?option=com_jomres&task=publishProperty'.jomresURLToken().'&Itemid='.$Itemid),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
+				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken().'&Itemid='.$Itemid),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
 			$jrtb .= $jrtbar->endTable();
 			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
 			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(($property->property_street ))."</td>";

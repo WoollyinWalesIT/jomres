@@ -72,8 +72,8 @@ class j02211listtariffs {
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL("index.php?option=com_jomres&task=editTariff&Itemid=$Itemid&tarifftypeid=".($tariff->id) ),'');
-			$jrtb .= $jrtbar->toolbarItem('copy',jomresURL("index.php?option=com_jomres&task=editTariff&Itemid=$Itemid&tarifftypeid=".($tariff->id)."&clone=1"),'');
+			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&Itemid=$Itemid&tarifftypeid=".($tariff->id) ),'');
+			$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&Itemid=$Itemid&tarifftypeid=".($tariff->id)."&clone=1"),'');
 			$jrtb .= $jrtbar->endTable();
 			$rw['LINKTEXT']=$jrtb;
 
@@ -96,8 +96,8 @@ class j02211listtariffs {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL("index.php?option=com_jomres&task=editTariff&amp;Itemid=$Itemid"),'');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&amp;Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

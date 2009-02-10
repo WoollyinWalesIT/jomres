@@ -59,7 +59,7 @@ class j02150addservicetobill {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'addServiceToBill');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=editBooking&contract_uid=$contract_uid&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid&Itemid=$Itemid"),'');
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -84,7 +84,7 @@ class j02150addservicetobill {
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_ADDSERVICE',_JOMRES_MR_AUDIT_ADDSERVICE,FALSE)))
 					trigger_error ("Unable to insert into extraServices table, mysql db failure", E_USER_ERROR);
 				else
-					jomresRedirect( jomresURL("index.php?option=com_jomres&task=editBooking&contract_uid=$contract_uid&Itemid=$Itemid"), $saveMessage );
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid&Itemid=$Itemid"), $saveMessage );
 				}
 			else
 				{

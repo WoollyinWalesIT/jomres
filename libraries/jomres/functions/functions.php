@@ -19,6 +19,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+
 // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
 // The string will already have been cleaned by filter var sanitize string.
 function jomres_reconvertString($clean)
@@ -932,7 +933,7 @@ function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 		}
 	session_unset();
 	session_destroy();
-	jomresRedirect("index.php?option=com_jomres&task=error", "FATAL ERROR" );
+	jomresRedirect(JOMRES_SITEPAGE_URL."&task=error", "FATAL ERROR" );
 	}
 
 /**
@@ -1326,7 +1327,7 @@ function hotelSettings()
 	// The following javascript is for selecting currency codes
 	?>
 
-	 	<form action="index.php?option=com_jomres" method="post" name="adminForm">
+	 	<form action=JOMRES_SITEPAGE_URL."" method="post" name="adminForm">
 	 	<table cellpadding="4" cellspacing="0" border="0" width="100%">
 		<tr>
 		 <td width="100%" class="sectionname"><?php echo _JOMRES_COM_MR_GENERALCONFIGDESC; ?></td>
@@ -1337,7 +1338,7 @@ function hotelSettings()
 	$jrtbar = new jomres_toolbar();
 	$jrtb	= $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveHotelSettings');
-	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -1468,9 +1469,9 @@ function saveHotelSettings()
 	*/
 	//var_dump($tariffmodeChange);exit;
 	if ( $tariffmodeChange)
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"), '' );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"), '' );
 	else
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=hotelSettings&Itemid=$Itemid&property_uid=$property_uid"), '' );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=hotelSettings&Itemid=$Itemid&property_uid=$property_uid"), '' );
 	}
 
 function removeAllPropertyEnhanceTariffsXref($property_uid)
@@ -1605,7 +1606,7 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
 	if ($contract_total == 0.00)
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
 	$userIsManager=checkUserIsManager();
 	$componentArgs=array('jomressession'=>$jomressession,'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
@@ -1620,10 +1621,10 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 			if ($userIsManager)
 				{
 				echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
-				//echo "<a href=\"".jomresURL("index.php?option=com_jomres&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
+				//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
 				$jrtbar = new jomres_toolbar();
 				$jrtb	= $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL("index.php?option=com_jomres&task=editDeposit&contractUid=".$result['contract_uid']),'');
+				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$result['contract_uid']),'');
 				$jrtb .= $jrtbar->endTable();
 				echo $jrtb;
 				}
@@ -2157,7 +2158,7 @@ function saveKey ( $mykey )
 		@chmod ($keyFile, 0700);
 		if (is_file($keyFile) && !is_writable($keyFile))
 				{
-				jomresRedirect("index.php?option=com_jomres", "FATAL ERROR: Key File Not writeable" );
+				jomresRedirect(JOMRES_SITEPAGE_URL."", "FATAL ERROR: Key File Not writeable" );
 				}
 			$txt = "<?php if (defined('JPATH_BASE'))";
 			$txt .= "	defined( '_JEXEC' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );\n";
@@ -2210,7 +2211,7 @@ function filterForm($selectname,$value,$format,$task="")
 	global $Itemid,$task;
 	$defaultValue=$_REQUEST[$selectname];
 	$javascript = "onchange=\"this.form.submit();\"";
-	$selecthtml="\n<form action=\"index.php?option=com_jomres\" method=\"GET\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
+	$selecthtml="\n<form action=\JOMRES_SITEPAGE_URL."\" method=\"GET\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
 	$selecthtml .= "\n<option value=\"%\"></option>";
 	$selecthtml .= "\n<option value=\"%\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
 	if (count($value)>0)
@@ -2313,7 +2314,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb	= $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL("index.php?option=com_jomres&task=editBooking&Itemid=$Itemid&contract_uid=".$row->contract_uid ),'');
+		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=".$row->contract_uid ),'');
 		$jrtb .= $jrtbar->endTable();
 		//$rw=$jrtb;
 
@@ -2321,7 +2322,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 			<tr>
 			<td width="20" class="jradmin_field_ca"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
 
-			<td  class="jradmin_field_ca"width="25%"><a href="<?php echo jomresURL("index.php?option=com_jomres&task=editBooking&Itemid=$Itemid&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
+			<td  class="jradmin_field_ca"width="25%"><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
 			<td class="jradmin_field_ca"><?php echo $row->tag; ?></td>
 			<td class="jradmin_field_ca"><?php echo outputDate($row->arrival); ?></td>
 			<td class="jradmin_field_ca"><?php echo outputDate($row->departure); ?></td>
@@ -2483,7 +2484,7 @@ function dropImage($defaultProperty,$imageType="",$itemUid="")
 		error_logging("Error, couldn't delete ".$fileFullPath);
 		}
 	else
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=$returnTask&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask&Itemid=$Itemid"), $saveMessage );
 	}
 
 /**
@@ -2521,7 +2522,7 @@ function uploadPropertyImage()
 			$query="INSERT INTO #__jomres_property_images (`propertyid`,`filelocation`) VALUES ('".(int)$defaultProperty."','".$checkedImage."')";
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE',_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE,FALSE))) exit;
 			}
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=editProperty&Itemid=$Itemid&propertyUid=$defaultProperty"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&Itemid=$Itemid&propertyUid=$defaultProperty"), $saveMessage );
 		}
 	else
 		echo "Error";
@@ -2574,7 +2575,7 @@ function uploadRoomImage()
 				$query="INSERT INTO #__jomres_room_images (`roomid`,`filelocation`) VALUES ('".(int)$roomUid."','".$checkedImage."')";
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE',_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE,FALSE))) exit;
 				}
-			jomresRedirect(jomresURL("index.php?option=com_jomres&task=editRoom&Itemid=$Itemid&roomUid=$roomUid"), $saveMessage );
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&Itemid=$Itemid&roomUid=$roomUid"), $saveMessage );
 			}
 		}
 	else
@@ -3135,7 +3136,7 @@ function saveRegisterProp()
 	$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 	$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
 	sendAdminEmail($subject,$message);
-	jomresRedirect( "index.php?option=com_jomres&task=propertyadmin&thisProperty=".$newPropId."&Itemid=".$Itemid,"");
+	jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId."&Itemid=".$Itemid,"");
 	}
 
 /**
@@ -3354,7 +3355,7 @@ function returnToPropertyConfig($saveMessage="")
 	{
 	global $mrConfig,$Itemid;
 	if ($mrConfig['errorCheckingShowSQL']=="0")
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=".$Itemid), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=".$Itemid), $saveMessage );
 	}
 
 /**
@@ -3640,7 +3641,7 @@ function showCalandarMonthDropdown()
 	echo "<table><tr>";
 	for ($i=1;$i<=16;$i++)
 		{
-		$link="<td><a href=\"".sefRelToAbs("index.php?option=com_jomres&Itemid=$Itemid&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
+		$link="<td><a href=\"".sefRelToAbs(JOMRES_SITEPAGE_URL."&Itemid=$Itemid&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
 		echo $link;
 		$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
 		$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);

@@ -164,8 +164,8 @@ class j02250showaudit {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('archive',jomresURL("index.php?option=com_jomres&task=archiveAudit".jomresURLToken()."&Itemid=$Itemid&no_html=1"),'');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('archive',jomresURL(JOMRES_SITEPAGE_URL."&task=archiveAudit".jomresURLToken()."&Itemid=$Itemid&no_html=1"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

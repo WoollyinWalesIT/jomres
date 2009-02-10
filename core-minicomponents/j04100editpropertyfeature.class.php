@@ -73,9 +73,9 @@ class j04100editpropertyfeature {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'savePropertyFeature');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
 		if (!$clone)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deletePropertyFeature".jomresURLToken()."&propertyFeatureUid=".$propertyFeatureUid."&Itemid=$Itemid"),$deleteText);
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deletePropertyFeature".jomresURLToken()."&propertyFeatureUid=".$propertyFeatureUid."&Itemid=$Itemid"),$deleteText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

@@ -72,7 +72,7 @@ class j02224saveguest {
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST',_JOMRES_MR_AUDIT_INSERT_GUEST,FALSE))) trigger_error ("Unable to insert guest details, mysql db failure", E_USER_ERROR);
 
 			}
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=listguests&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&Itemid=$Itemid"), $saveMessage );
 		}
 
 	/**

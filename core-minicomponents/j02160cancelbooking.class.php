@@ -44,7 +44,7 @@ class j02160cancelbooking {
 		global $mrConfig,$Itemid,$jomresConfig_live_site;
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 
-		$jsLink=jomresURL("index.php?option=com_jomres&task=saveCancellation&contract_uid=$contract_uid");
+		$jsLink=jomresURL(JOMRES_SITEPAGE_URL."&task=saveCancellation&contract_uid=$contract_uid");
 		$defaultProperty=getDefaultProperty();
 		$today = date("Y/m/d");
 		$query="SELECT arrival,deposit_paid,contract_total,deposit_required,booked_in,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
@@ -91,7 +91,7 @@ class j02160cancelbooking {
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCancellation');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -105,7 +105,7 @@ class j02160cancelbooking {
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->displayParsedTemplate();
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=710,directories=no,location=no';
-				$link = $jomresConfig_live_site ."/index2.php?option=com_jomres&task=invoiceForm&Itemid=".$Itemid."&contract_uid=".$contract_uid;
+				$link = JOMRES_SITEPAGE_URL."&task=invoiceForm&Itemid=".$Itemid."&contract_uid=".$contract_uid;
 				}
 			else
 				echo jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN',_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN);

@@ -134,7 +134,7 @@ function batchUploadForm()
 	$jrtbar = new jomres_toolbar();
 	$jrtb  = $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'bUpload');
-	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 

@@ -86,8 +86,8 @@ class j06000mulistbookings {
 							$r['IMAGE']='<img src="'.$jomresConfig_live_site.$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg" width="40">';
 						else
 							$r['IMAGE']='&nbsp;';
-						$r['VIEWLINK']=makePopupLink("?option=com_jomres&task=muviewbooking&popup=1&contract_uid=".$c->contract_uid,jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,$editable=false,$isLink=true));
-						$r['PROPERTYDETAILSLINK']=$jomresConfig_live_site.'/index.php?option=com_jomres&task=viewproperty&Itemid'.$Itemid.'=&property_uid='.$c->property_uid;
+						$r['VIEWLINK']=makePopupLink(JOMRES_SITEPAGE_URL."&task=muviewbooking&popup=1&contract_uid=".$c->contract_uid,jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,$editable=false,$isLink=true));
+						$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&Itemid'.$Itemid.'=&property_uid='.$c->property_uid;
 						$rows[]=$r;
 						}
 

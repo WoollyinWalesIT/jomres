@@ -54,7 +54,7 @@ class j02200editdeposit {
 			$depositRequired=$depositList['deposit_required'];
 			$tag=$depositList['tag'];
 			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-			$link =$jomresConfig_live_site."/index2.php?option=com_jomres&task=editCreditcard&popup=1&guestUid=$guestUid";
+			$link =JOMRES_SITEPAGE_URL."&task=editCreditcard&popup=1&guestUid=$guestUid";
 			$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
 			$output['CREDITCARDLINK']=$link;
 			$output['HBOOKINGNUMBER']		=jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER);
@@ -69,7 +69,7 @@ class j02200editdeposit {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveDeposit');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=listNewBookings&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings&Itemid=$Itemid"),'');
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 

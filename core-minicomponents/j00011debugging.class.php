@@ -50,7 +50,7 @@ class j00011debugging {
 			$image="/jomres/images/bug_icon.png";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->customToolbarItem("popupBug",jomresURL("index.php?option=com_jomres&task=reportbug&currentPage=$currentPage&Itemid=$Itemid"),"Report Bug",false,"",$image);
+			$jrtb .= $jrtbar->customToolbarItem("popupBug",jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=$currentPage&Itemid=$Itemid"),"Report Bug",false,"",$image);
 			$jrtb .= $jrtbar->endTable();
 			$this->returnValue=array('BUGREPORT_LINK'=>$jrtb);
 			}

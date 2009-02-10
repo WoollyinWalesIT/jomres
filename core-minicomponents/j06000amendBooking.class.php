@@ -50,7 +50,7 @@ class j06000amendBooking
 				}
 			$propertysList =$tmpArray;
 			if (count($propertysList == 1))
-				jomresRedirect("index.php?option=com_jomres&task=dobooking&Itemid=".$Itemid."&amend=1&contractuid=".$contract_uid."&selectedProperty=".$defaultProperty);
+				jomresRedirect(JOMRES_SITEPAGE_URL."&task=dobooking&Itemid=".$Itemid."&amend=1&contractuid=".$contract_uid."&selectedProperty=".$defaultProperty);
 			$counter=0;
 			foreach ($propertysList as $property)
 				{
@@ -68,7 +68,7 @@ class j06000amendBooking
 			$cancelText					= jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 			$jrtbar 					= new jomres_toolbar();
 			$jrtb  						= $jrtbar->startTable();
-			$jrtb 						.= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb 						.= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
 			$jrtb 						.= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']	= $jrtb;
 

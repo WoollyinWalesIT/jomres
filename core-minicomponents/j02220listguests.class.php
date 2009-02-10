@@ -61,17 +61,17 @@ class j02220listguests {
 			$query="SELECT guests_uid,firstname,surname,house,street,town  FROM #__jomres_guests  WHERE property_uid = '".(int)$defaultProperty."' ORDER BY surname";
 		$guestList =doSelectSql($query);
 		$surnameFirstCharArray=array();
-		$editIcon='<IMG SRC="'.$jomresConfig_live_site.'/administrator/images/edit_f2.png" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'">';
+		$editIcon='<IMG SRC="'.JOMRES_SITEPAGE_URL.'/administrator/images/edit_f2.png" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'">';
 
 		foreach($guestList as $guest)
 			{
-			//$rw['EDITLINK']="<a href=\"".jomresURL("index.php?option=com_jomres&task=editGuest&Itemid=$Itemid&guestUid=".($guest->guests_uid) )."\">".$editIcon."</a>";
+			//$rw['EDITLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editGuest&Itemid=$Itemid&guestUid=".($guest->guests_uid) )."\">".$editIcon."</a>";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			
 			
 			$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
-			$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=editGuest&guestUid='.($guest->guests_uid);
+			$link=JOMRES_SITEPAGE_URL.'&task=editGuest&guestUid='.($guest->guests_uid);
 			$targetTask='bookGuestIn';
 			$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestEdit.png';
 			$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
@@ -85,7 +85,7 @@ class j02220listguests {
 			$rw['STREET']=$guest->street;
 			$rw['TOWN']=$guest->town;
 			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-			$link =makePopupLink("?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
+			$link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
 			$rw['CREDITCARDLINK']=$link;
 
 			$rows[]=$rw;
@@ -104,12 +104,12 @@ class j02220listguests {
 		$jrtb  = $jrtbar->startTable();
 		
 		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,$editable=false,$isLink=true) ;
-		$link=$jomresConfig_live_site .'/index.php?option=com_jomres&task=editGuest&Itemid='.$Itemid;
+		$link=JOMRES_SITEPAGE_URL.'&task=editGuest&Itemid='.$Itemid;
 		$targetTask='editGuest';
 		$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';
 		$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
 
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
