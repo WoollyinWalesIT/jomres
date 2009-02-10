@@ -68,7 +68,7 @@ else
 	}
 define( '_JOMRESEXEC', 1 );
 */
-define ('_JOM_COMPONENTNAME',"com_jomres");
+//define ('_JOM_COMPONENTNAME',"com_jomres");
 /*
 if (!file_exists(JOMRESINSTALLPATH_BASE.JRDS.'configuration.php') )
 	{
@@ -115,65 +115,65 @@ $jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_p
 
 showheader();
 $folderChecksPassed=true;
-if (!is_dir("sessions".JRDS) )
+if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS) )
 	{
-	if (!@mkdir("sessions".JRDS)) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder "."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 
-if (!is_dir("temp".JRDS) )
+if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS) )
 	{
-	if (!@mkdir("temp".JRDS)) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder "."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 
 	
-	if (!is_dir("updates".JRDS) )
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS) )
 	{
-	if (!@mkdir("updates".JRDS)) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder "."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 	
-if (!is_dir("remote_plugins".JRDS) )
+if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS) )
 	{
-	if (!@mkdir("remote_plugins".JRDS)) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS)) 
 		{
-		echo "<h1>Error, unable to make folder "."remote_plugins".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."remote_plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		}
 	}
 
-if (!is_dir("uploadedimages") )
+if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages") )
 	{
-	if (!@mkdir("uploadedimages")) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages")) 
 		{
-		echo "<h1>Error, unable to make folder "."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 	
-if (!is_dir("uploadedimages".JRDS."rmtypes") )
+if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes") )
 	{
-	if (!@mkdir("uploadedimages".JRDS."rmtypes")) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes")) 
 		{
-		echo "<h1>Error, unable to make folder "."uploadedimages".JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
 	
-if (!is_dir("uploadedimages".JRDS."pfeatures") )
+if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures") )
 	{
-	if (!@mkdir("uploadedimages".JRDS."pfeatures")) 
+	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures")) 
 		{
-		echo "<h1>Error, unable to make folder "."uploadedimages".JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 		$folderChecksPassed=false;
 		}
 	}
@@ -222,14 +222,11 @@ if ($folderChecksPassed)
 				
 				if (!defined("ACTION") )
 					checkPropertyTableExists();
-				createComponentTableData();
 
 				if (ACTION == "Install")   // Installing
 					{
 					echo "Creating Jomres tables if they don't already exist.<br>";
 					createJomresTables();
-					createJomresPortalBookingsTable();
-					createPropertyToManagersTable();
 					echo "Inserting sample data<br>";
 					insertSampleData();
 					echo "Importing configuration settings to database<br>";
@@ -239,90 +236,28 @@ if ($folderChecksPassed)
 					echo "Creating images folders<br>";
 					copyImages();
 					saveKey2db($lkey);
-					if (checkIfNewIndexRequired())
-						createExtraIndexs();
+					//if (checkIfNewIndexRequired())
+					//	createExtraIndexs();
 					//insertIntoMainMenu();
-					updatePropertyManagersToSuperAdmins();
+					//updatePropertyManagersToSuperAdmins();
 					if (!checkTariffsTimeStampColsExists() )
 						alterTariffsTimeStampCols();
 					insertPortalTables();
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_installation.php");
 					showCompletedText();
 					}
 				elseif (ACTION == "Upgrade") // Upgrading
 					{
 					define('ACTION',"Upgrade");
-					updateEditIconConfigSetting();
-					if (!checkContractsCurrencyCodeColExists() )
-						alterContractsCurrencyCodeCol();
-					if (!checkContractsRoomTotalColExists() )
-						alterContractsRoomTotalCol();
-					if (!checkContractsDiscountColExists() )
-						alterContractsDiscountCol();
-					if (!checkContractsCancellationColExists() )
-						alterContractsCancellationCodeCol();
-					if (!checkContractsRoomstariffsColExists() )
-						alterContractsRoomstariffsCol();
-					if (!checkTariffsWeekendOnlyColExists() )
-						alterTariffsWeekendOnlyCol();
-					if (!checkTariffsDayOfWeekColExists() )
-						alterTariffsDayOfWeekCol();
-					if (!checkPropertyToManagersTableExists())
-						{
-						createPropertyToManagersTable();
-						updatePropertyManagersToSuperAdmins();
-						}
-					if (checkIfNewIndexRequired())
-						createExtraIndexs();
-					if (!checkTariffsTimeStampColsExists() )
-						alterTariffsTimeStampCols();
-					if (!checkRoomtypesSRPonlyColExists() )
-						alterRoomtypesSRPonlyCol();
-					if (!checkContractNotesTableExists())
-						createContractNotesTable();
-					if (!checkMyUserTableExists())
-						createMyUserTable();
-					if (!checkExtraModelExists())
-						createExtraModelTable();
-					if (!checkTariffTypesXREFExists())
-						createTariffTypesXREFTable();
-					if (!checkTariffTypesExists())
-						createTariffTypesTable();
-					if (!checkExtramodelForceColExists() )
-						alterExtramodelForceCol();
-					if (!checkUserAPIKEYColExists() )
-						alterUserAPIKEYCol();
-					if (!checkUserAPIKEYColExists() )
-						alterUserAPIKEYCol();
-					if (!checkPropertyAPIKEYColExists() )
-						alterPropertyAPIKEYCol();
-					if (!checkPropertyLatLongColExists() )
-						alterPropertyLatLongCol();
-					if (!checkJomresPortalBookingsExists() )
-						createJomresPortalBookingsTable();
-					if (!checkSiteSettingsExists() )
-						createSiteSettingsTable();
-					if (!checkContractsDiscountDetailsColExists() )
-						alterContractsDiscountDetailsCol();
-					if (!checkTariffsMinMaxRoomsColsExist() )
-						alterTariffsMinMaxRoomsCols();
-					if (!checkRoomsSupplimentsColExists() )
-						alterRoomsSupplimentsCol();
-					if (!checkPropertysMetadataColsExists() )
-						alterPropertysMetadataCols();
-					if (!checkContractsUsernameColExists() )
-						alterContractsUsernameCol();
-						
-						
+
 					$registry = new minicomponent_registry(true);
 					$registry->regenerate_registry();
-					alterCurrencyCodeToChar3();
-					insertPortalTables();
-					// upgradeWarning();
 
 					echo "Data already installed, no need to re-create it<br>";
 					echo "Saving key<br>";
 					saveKey2db($lkey);
 
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_upgrade.php");
 					showCompletedText();
 					}
 				updateMrConfig();
@@ -331,750 +266,7 @@ if ($folderChecksPassed)
 		}
 	}
 showfooter();
-// Script stops here
-// ALTER TABLE `jos_jomres_contracts`  DROP `cot_required`;
- //
 
-function checkContractsUsernameColExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'username'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterContractsUsernameCol()
-	{
-	echo "Editing __jomres_contracts table adding username column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `username` VARCHAR(50) NULL ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts username</b><br>";
-	}
-	
-	
-function updateMrConfig()
-	{
-	include('jomres_config.php' );
-	$tempConfigArr=$mrConfig;
-	$mrConfig=array();
-	$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = 0";
-	$settingsList=doSelectSql($query);
-	if (count($settingsList)>0)
-		{
-		foreach ($settingsList as $setting)
-			{
-			$akey=$setting->akey;
-			$value=$setting->value;
-			$mrConfig[$akey]=$value;
-			}
-		}
-	foreach ($tempConfigArr as $k=>$v)
-		{
-		if (!array_key_exists($k,$mrConfig) )
-			{
-			
-			$query="INSERT INTO #__jomres_settings (akey,value) VALUES ('".$k."','".$v."')";
-			echo $query."<br>";
-			doInsertSql($query,'');
-			}
-		}
-	}
-
-function checkPropertysMetadataColsExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'metatitle'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterPropertysMetadataCols()
-	{
-	echo "Editing __jomres_propertys table adding metatitle column<br>";
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `metatitle` VARCHAR(150) NOT NULL AFTER `long`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_propertys metatitle</b><br>";
-	echo "Editing __jomres_propertys table adding metadescription column<br>";
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `metadescription` VARCHAR(150) NOT NULL AFTER `metatitle`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_propertys metadescription</b><br>";
-	}
-	
-	
-function checkRoomsSupplimentsColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_rooms LIKE 'singleperson_suppliment'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterRoomsSupplimentsCol()
-	{
-	echo "Editing __jomres_rooms table adding singleperson_suppliment column<br>";
-	$query = "ALTER TABLE `#__jomres_rooms` ADD `singleperson_suppliment` DOUBLE DEFAULT '0' AFTER `smoking`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rooms singleperson_suppliment</b><br>";
-	}
-	
-function checkTariffsMinMaxRoomsColsExist()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'minrooms_alreadyselected'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTariffsMinMaxRoomsCols()
-	{
-	echo "Editing __jomres_rates table adding minrooms_alreadyselected column<br>";
-	$query = "ALTER TABLE `#__jomres_rates` ADD `minrooms_alreadyselected` INT( 3 ) NOT NULL DEFAULT '0' AFTER `dayofweek`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates minrooms_alreadyselected</b><br>";
-	$query = "ALTER TABLE `#__jomres_rates` ADD `maxrooms_alreadyselected` INT( 3 ) NOT NULL DEFAULT '100' AFTER `minrooms_alreadyselected`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates maxrooms_alreadyselected</b><br>";
-	}
-
-function checkContractsDiscountDetailsColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'discount_details'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterContractsDiscountDetailsCol()
-	{
-	echo "Editing __jomres_contracts table adding discount_details column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `discount_details` TEXT AFTER `cancelled_timestamp`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts discount_details</b><br>";
-	}
-
-function checkContractsRoomstariffsColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'rooms_tariffs'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterContractsRoomstariffsCol()
-	{
-	echo "Editing __jomres_contracts table adding rooms_tariffs column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `rooms_tariffs` VARCHAR( 255 ) AFTER `rate_rules`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts rooms_tariffs</b><br>";
-	}
-	
-function checkContractsCancellationColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'cancelled'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterContractsCancellationCodeCol()
-	{
-	echo "Editing __jomres_contracts table adding cancelled column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `cancelled` TINYINT DEFAULT '0' AFTER `currency_code`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts cancelled</b><br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `cancelled_timestamp` datetime AFTER `cancelled`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts cancelled_timestamp</b><br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `cancelled_reason` CHAR( 255 ) NULL DEFAULT NULL AFTER `cancelled_timestamp`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts cancelled_timestamp</b><br>";
-	}
-	
-function checkTariffsDayOfWeekColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'dayofweek'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTariffsDayOfWeekCol()
-	{
-	echo "Editing __jomres_rates table adding dayofweek column<br>";
-	$query = "ALTER TABLE `#__jomres_rates` ADD `dayofweek` INT( 1 ) NOT NULL DEFAULT '7' AFTER `weekendonly`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates dayofweek</b><br>";
-	}
-
-
- function createSiteSettingsTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_site_settings` (
-		`id` int(11) auto_increment,
-		`akey`	VARCHAR(255),
-		`value`	VARCHAR(255),
-		PRIMARY KEY	(`id`)
-		) ";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkSiteSettingsExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomres_site_settings') )
-			return true;
-		}
-	return false;
-	}
-	
-function createJomresPortalBookingsTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
-		`id` int(11) auto_increment,
-		`property_uid` int,
-		`guest_id` int,
-		`affiliate_id` varchar(255),
-		`invoice_id` int DEFAULT 0,
-		`booking_total` float,
-		`contract_id` int,
-		`tag` varchar(255),
-		`currency_code` char(3),
-		`created` datetime,
-		`archived` bool DEFAULT 0,
-		`archived_date` datetime,
-		PRIMARY KEY(`id`)
-	)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
-	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
-		`id` int(11) AUTO_INCREMENT,
-		`manager_uid` INTEGER NOT NULL,
-		`jos_id` INTEGER NOT NULL,
-		`portal_booking_id` INTEGER NOT NULL,
-		`username` varchar(255),
-		`email` varchar(255),
-		`created` datetime,
-		PRIMARY KEY(id)
-		)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
-	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_c_rates (
-		`id` int(11) AUTO_INCREMENT,
-		`title` varchar(255),
-		`type` int,
-		`value` float,
-		`currencycode` CHAR( 3 ) NOT NULL DEFAULT 'GBP',
-		`created` datetime,
-		`archived` bool DEFAULT 0,
-		`archived_date` datetime,
-		PRIMARY KEY(id)
-		)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
-	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_properties_crates_xref (
-		`id` int(11) AUTO_INCREMENT,
-		`property_id` int UNIQUE,
-		`crate_id` int,
-		PRIMARY KEY(id)
-		)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
-	return true;
-	}
-
-function checkJomresPortalBookingsExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomresportal_bookings') )
-			return true;
-		}
-	return false;
-	}
-	
-	
-function checkPropertyLatLongColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'lat'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterPropertyLatLongCol()
-	{
-	echo "Editing __jomres_propertys table adding lat long columns<br>";
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `lat` float NULL";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_propertys lat</b><br>";
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `long` float NULL";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_propertys long</b><br>";
-	}
- 
-function checkPropertyAPIKEYColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'apikey'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterPropertyAPIKEYCol()
-	{
-	echo "Editing __jomres_propertys table adding apikey column<br>";
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `apikey` CHAR( 255 ) NULL DEFAULT NULL";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_propertys apikey</b><br>";
-	upgradeCreatePropertyAPIKeys();
-	}
-
-function upgradeCreatePropertyAPIKeys()
-	{
-	$query="SELECT propertys_uid FROM #__jomres_propertys";
-	$propertysList=doSelectSql($query);
-	if (count($propertysList)  >0)
-		{
-		echo "Upgrading properties, creating API keys.<br>";
-		foreach ($propertysList as $p)
-			{
-			$apikey=createNewAPIKey();
-			$query="UPDATE #__jomres_propertys SET `apikey`= '".$apikey."' WHERE `propertys_uid` = ".$p->propertys_uid;
-			doInsertSql($query,'Updated Property setting apikey to '.$apikey);
-			}
-		}
-	}
-	
-function checkUserAPIKEYColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_managers LIKE 'apikey'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterUserAPIKEYCol()
-	{
-	echo "Editing __jomres_managers table adding apikey column<br>";
-	$query = "ALTER TABLE `#__jomres_managers` ADD `apikey` CHAR( 255 ) NULL DEFAULT NULL";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_managers apikey</b><br>";
-	upgradeCreateManagersAPIKeys();
-	}
-
-function upgradeCreateManagersAPIKeys()
-	{
-	$query="SELECT userid FROM #__jomres_managers";
-	$managerList=doSelectSql($query);
-	if (count($managerList)  >0)
-		{
-		echo "Upgrading managers, creating API keys.<br>";
-		foreach ($managerList as $m)
-			{
-			$apikey=createNewAPIKey();
-			$query="UPDATE #__jomres_managers SET `apikey`= '".$apikey."' WHERE `userid` = ".$m->userid;
-			doInsertSql($query,'Updated Property Manager setting apikey to '.$apikey);
-			}
-		}
-	}
-	
-function alterCurrencyCodeToChar3()
-	{
-	$query="ALTER TABLE `#__jomres_contracts` CHANGE `currency_code` `currency_code` CHAR( 3 ) NULL DEFAULT NULL";
-	//echo $query;
-	doInsertSql($query,'');
-	}
- 
-function checkExtramodelForceColExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomcomp_extrasmodels_models LIKE 'force'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterExtramodelForceCol()
-	{
-	echo "Editing __jomcomp_extrasmodels_models table adding force column<br>";
-	$query = "ALTER TABLE `#__jomcomp_extrasmodels_models` ADD `force` BOOL NOT NULL DEFAULT '0'";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomcomp_extrasmodels_models force</b><br>";
-	}
-
-function createTariffTypesXREFTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftype_rate_xref` (
-		`id` INT NOT NULL AUTO_INCREMENT,
-		`tarifftype_id` INT NOT NULL,
-		`tariff_id` INT NOT NULL,
-		`roomclass_uid` INT NOT NULL,
-		`property_uid` INT NOT NULL,
-		PRIMARY KEY (`id`)
-		)";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkTariffTypesXREFExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomcomp_tarifftype_rate_xref') )
-			return true;
-		}
-	return false;
-	}
-
-function createTariffTypesTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftypes` (
-		`id` INT NOT NULL AUTO_INCREMENT,
-		`name` CHAR(255),
-		`property_uid` INT NOT NULL,
-		PRIMARY KEY (`id`)
-		)";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkTariffTypesExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomcomp_tarifftypes') )
-			return true;
-		}
-	return false;
-	}
-
-
-function createExtraModelTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_extrasmodels_models` (
-		`id` INT NOT NULL AUTO_INCREMENT,
-		`extra_id` INT NOT NULL,
-		`model` INT NOT NULL,
-		`params` varchar(255),
-		`force` BOOL NOT NULL DEFAULT '0',
-		`property_uid` INT NOT NULL,
-		PRIMARY KEY (`id`)
-		)";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkExtraModelExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomcomp_extrasmodels_models') )
-			return true;
-		}
-	return false;
-	}
-
-function createMyUserTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_mufavourites` (
-		`id` INT NOT NULL AUTO_INCREMENT,
-		`my_id` INT NOT NULL,
-		`property_uid` INT NOT NULL,
-		PRIMARY KEY (`id`)
-		) ";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkMyUserTableExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomcomp_mufavourites') )
-			return true;
-		}
-	return false;
-	}
-
-function createContractNotesTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_notes` (
-		`id` INT NOT NULL AUTO_INCREMENT,
-		`contract_uid` INT NOT NULL,
-		`note` TEXT,
-		`timestamp` datetime,
-		`property_uid` INT NOT NULL,
-		PRIMARY KEY (`id`)
-		) ";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkContractNotesTableExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		if (strstr($r->$string, '__jomcomp_notes') )
-			return true;
-		}
-	return false;
-	}
-
-function checkRoomtypesSRPonlyColExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_room_classes LIKE 'srp_only'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterRoomtypesSRPonlyCol()
-	{
-	echo "Editing __jomres_room_classes table adding srp_only column<br>";
-	$query = "ALTER TABLE `#__jomres_room_classes` ADD `srp_only` BOOL NOT NULL DEFAULT '0'";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_room_classes srp_only</b><br>";
-	}
-
-
-function checkTariffsTimeStampColsExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'validfrom_ts'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTariffsTimeStampCols()
-	{
-	echo "Editing __jomres_rates table adding timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_rates` ADD `validfrom_ts` DATE AFTER `weekendonly` , ADD `validto_ts` DATE AFTER `validfrom_ts`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates weekendonly</b><br>";
-	$query = "SELECT rates_uid,validfrom,validto FROM #__jomres_rates";
-	$allRates=doSelectSql($query);
-	foreach ($allRates as $r)
-		{
-		$validfrom_ts=str_replace("/","-",$r->validfrom);
-		$validto_ts=str_replace("/","-",$r->validto);
-		$query="UPDATE #__jomres_rates SET `validfrom_ts`='$validfrom_ts',`validto_ts`='$validto_ts' WHERE rates_uid='$r->rates_uid'";
-		doInsertSql($query,'');
-		}
-	}
-
-function copySiteConfig($adminPath) // Allows us to copy site_config-dist.php to the adminpath, makes it easily writable
-	{
-	if (!file_exists($adminPath.JRDS."site_config.php") )
-		{
-		if (is_readable($adminPath.JRDS."site_config-dist.php") )
-			echo "It's readable";
-		else
-			echo "It's not readable";
-		touch($adminPath.JRDS."site_config.php");
-		copy ($adminPath.JRDS."site_config-dist.php",$adminPath.JRDS."site_config.php");
-		}
-	else
-		{
-		echo "It's already here";
-		}
-	}
-
-
-function updatePropertyManagersToSuperAdmins()
-	{
-	// This distinction will tell us if the database has already been upgraded for the new user handling. If pu has been set any where, then users have already been converted to the new user handling
-	$query="SELECT userid FROM #__jomres_managers WHERE pu = '1'";
-	$supermanagersList=doSelectSql($query);
-	if (count($supermanagersList)  <1)
-		{
-		$query="SELECT propertys_uid FROM #__jomres_propertys";
-		$propertysList=doSelectSql($query);
-		$numberOfProperties=count($propertysList);
-		$query="SELECT userid,username,currentproperty,property_uid FROM #__jomres_managers";
-		$managersList=doSelectSql($query);
-		$managersArray=array();
-		foreach ($managersList as $m)
-			{
-			$isSuperManager=false;
-			foreach ($propertysList as $p)
-				{
-				$query="INSERT INTO #__jomres_managers_propertys_xref (`manager_id`,`property_uid`) VALUES ('".$m->userid."','".$p->propertys_uid."')";
-				doInsertSql($query,'');
-				if ($m->property_uid == "0")
-					$isSuperManager=true;
-				}
-			if ($isSuperManager)
-				{
-				echo "Upgrading ".$m->username." to Super Property Manager<br>";
-				$query = "UPDATE #__jomres_managers SET `pu` = '1' WHERE userid = '".$m->userid."'";
-				doInsertSql($query,'Updated Super Property Manager setting to '.$isSuperPropertyManager);
-				}
-			}
-		}
-	}
-
-
-	
-function checkTariffsWeekendOnlyColExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'weekendonly'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTariffsWeekendOnlyCol()
-	{
-	echo "Editing __jomres_rates table adding weekendonly column<br>";
-	$query = "ALTER TABLE `#__jomres_rates` ADD `weekendonly` BOOL NOT NULL DEFAULT '0' AFTER `allow_we`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates weekendonly</b><br>";
-	}
-
-function createPropertyToManagersTable()
-	{
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
-		`id` int(11) NOT NULL auto_increment,
-		`manager_id` int(11) NOT NULL,
-		`property_uid` int(11) NOT NULL,
-		PRIMARY KEY(`id`)
-		)";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
-
-function checkPropertyToManagersTableExists()
-	{
-	global $jomresConfig_db;
-	$tablesFound=false;
-	$query="SHOW TABLES";
-	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".$jomresConfig_db;
-	foreach ($result as $r)
-		{
-		//echo $string;
-		//echo $r->$string."<br>";
-		if (strstr($r->$string, 'jomres_managers_propertys_xref') )
-			return true;
-		}
-	return false;
-	}
-
-function makeLicenseKeyfile($license_key)
-	{
-	$user_defined_string = '230a25e276da';
-	validateLicensekeyFile($license_key);
-	}
-
-function insertIntoMainMenu()
-	{
-	echo "Adding Jomres to mainmenu<br>";
-	$query="INSERT INTO #__menu (
-	`menutype`,`name`,`link`,`type`,`published`,`parent`,`componentid`,`sublevel`,`ordering`,`checked_out`,`checked_out_time`,`pollid`,`browserNav`,`access`,`utaccess`
-	)
-	VALUES
-	(
-	'mainmenu','Jomres','index.php?option=com_jomres','components','1','0','19','0','2','0','0000-00-00 00:00:00','0','0','0','0'
-	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add Jomres to main menu".$errno."</b><br>";
-	}
 
 function trashTables()
 	{
@@ -1099,300 +291,192 @@ function trashTables()
 	return false;
 	}
 
-function checkContractsCurrencyCodeColExists()
+function makeLicenseKeyfile($license_key)
 	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'currency_code'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
+	$user_defined_string = '230a25e276da';
+	validateLicensekeyFile($license_key);
+	}
+	
+function updateMrConfig()
+	{
+	include('jomres_config.php' );
+	$tempConfigArr=$mrConfig;
+	$mrConfig=array();
+	$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = 0";
+	$settingsList=doSelectSql($query);
+	if (count($settingsList)>0)
 		{
-		return true;
+		foreach ($settingsList as $setting)
+			{
+			$akey=$setting->akey;
+			$value=$setting->value;
+			$mrConfig[$akey]=$value;
+			}
 		}
-	return false;
-	}
-
-function alterContractsCurrencyCodeCol()
-	{
-	echo "Editing __jomres_contracts table adding currency_code column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `currency_code` float";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts currency_code</b><br>";
-	}
-
-function checkContractsRoomTotalColExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'room_total'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
+	foreach ($tempConfigArr as $k=>$v)
 		{
-		return true;
+		if (!array_key_exists($k,$mrConfig) )
+			{
+			
+			$query="INSERT INTO #__jomres_settings (akey,value) VALUES ('".$k."','".$v."')";
+			//echo $query."<br>";
+			doInsertSql($query,'');
+			}
 		}
-	return false;
 	}
 
-function alterContractsRoomTotalCol()
+function copySiteConfig($adminPath) // Allows us to copy site_config-dist.php to the adminpath, makes it easily writable
 	{
-	echo "Editing __jomres_contracts table adding room_total column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `room_total` float";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts room_total</b><br>";
-	}
-
-function  checkContractsDiscountColExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'discount'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
+	if (!file_exists($adminPath.JRDS."site_config.php") )
 		{
-		return true;
+		if (is_readable($adminPath.JRDS."site_config-dist.php") )
+			echo "It's readable";
+		else
+			echo "It's not readable";
+		touch($adminPath.JRDS."site_config.php");
+		copy ($adminPath.JRDS."site_config-dist.php",$adminPath.JRDS."site_config.php");
 		}
-	return false;
-	}
-
-function alterContractsDiscountCol()
-	{
-	echo "Editing __jomres_contracts table adding discount column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `discount` float";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts discount</b><br>";
-	}
-
-/*
-function checkminintervalColExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_tmpbooking LIKE 'mininterval'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
+	else
 		{
-		return true;
+		echo "It's already here";
 		}
-	return false;
 	}
-
-function alterminintervalCol()
-	{
-	echo "Editing _jomres_tmpbooking table adding mininterval column<br>";
-	$query = "ALTER TABLE `#__jomres_tmpbooking` ADD `mininterval` int(3)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add tmpbooking mininterval</b><br>";
-	}
-*/
-/*
-function checkTmpGuestsTimeStampExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_tmpguests LIKE 'timestamp'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTmpGuestsAddTimeStamp()
-	{
-	echo "Adding tmpguests table adding timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_tmpguests` ADD `timestamp` datetime ON UPDATE CURRENT_TIMESTAMP";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add tmpguests timestamp</b><br>";
-	}
-*/
-/*
-function checkTmpBookingTimeStampExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_tmpbooking LIKE 'timestamp'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTmpBookingAddTimeStamp()
-	{
-	echo "Adding tmpbooking table adding timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_tmpbooking` ADD `timestamp` datetime ON UPDATE CURRENT_TIMESTAMP";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add tmpbooking timestamp</b><br>";
-	}
-*/
-/*
-function checkContractsTimeStampExists()
-	{
-	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'timestamp'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterContractsAddTimeStamp()
-	{
-	echo "Adding contracts table adding timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `timestamp` datetime ON UPDATE CURRENT_TIMESTAMP";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add contracts timestamp</b><br>";
-	}
-*/
-
-function updateEditIconConfigSetting()
-	{
-	/*
-	$query="SELECT value FROM #__jomres_settings WHERE akey = 'editiconsize' LIMIT 1";
-	$result=doSelectSql($query,1);
-	if ($result=="small" || $result=="large")
-		return;
-	$query="UPDATE #__jomres_settings SET `value` = 'small' WHERE akey = 'editiconsize'";
-	doInsertSql($query,'');
-	return;
-	*/
-	}
-
 
 function copyImages()
 	{
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Disabled_Access.png', JOMRESINSTALLPATH_BASE.'/images/stories/jomres/pfeatures/'.JRDS.'facilities_Disabled_Access.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Disabled_Facilities.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'facilities_Disabled_Facilities.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Dogs_Not_Permitted.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'facilities_Dogs_Not_Permitted.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Dogs_Permitted.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'facilities_Dogs_Permitted.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Information.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'facilities_Information.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Internet.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'facilities_Internet.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Disabled_Access.png', JOMRESINSTALLPATH_BASE.'/images/stories/uploadedimages/pfeatures/'.JRDS.'facilities_Disabled_Access.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Disabled_Facilities.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'facilities_Disabled_Facilities.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Dogs_Not_Permitted.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'facilities_Dogs_Not_Permitted.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Dogs_Permitted.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'facilities_Dogs_Permitted.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Information.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'facilities_Information.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'facilities_Internet.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'facilities_Internet.png');
 
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'24hour.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'24hour.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'air_conditioning.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'air_conditioning.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'24hour.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'24hour.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'air_conditioning.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'air_conditioning.png');
 
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'airport_nearby.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'airport_nearby.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'allinc.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'allinc.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'baby_friendly.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'baby_friendly.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'xmas_partys.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'xmas_partys.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'world_heritage.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'world_heritage.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'wildlife.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'wildlife.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'wifi.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'wifi.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'whalewatching.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'whalewatching.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'weddings.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'weddings.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'wc.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'wc.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'walking.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'walking.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'visitor_centre.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'visitor_centre.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'valet_parking.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'valet_parking.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'tv_in_room.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'tv_in_room.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'toilets.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'toilets.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'tennis.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'tennis.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'telephone.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'telephone.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'sunbed.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'sunbed.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'snorkelling.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'snorkelling.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'smokers_welcome.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'smokers_welcome.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'Skionsite.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'Skionsite.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'shuttle_service.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'shuttle_service.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'shower_only.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'shower_only.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'scuba.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'scuba.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'scenicviews.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'scenicviews.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'sailing.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'sailing.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'room_telephone.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'room_telephone.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'room_service.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'room_service.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'riding.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'riding.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'restraunt.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'restraunt.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'restraunt2.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'restraunt2.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'ranger.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'ranger.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'quietlocation.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'quietlocation.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'pool.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'pool.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'play_area.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'play_area.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'picnic_area.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'picnic_area.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'pets_welcome.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'pets_welcome.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'parking.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'parking.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'Ownermanaged.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'Ownermanaged.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'other_accommodation.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'other_accommodation.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'no_smoking.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'no_smoking.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'nationaltrust.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'nationaltrust.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'mountain_bike.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'mountain_bike.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'meeting_room.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'meeting_room.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'medicare.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'medicare.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'laundry_service.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'laundry_service.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'language.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'language.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'jacuzzi.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'jacuzzi.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'iron.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'iron.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'internet.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'internet.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'information.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'information.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'info2.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'info2.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'in_room_teacoffee.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'in_room_teacoffee.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'hotel_safe.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'hotel_safe.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'honeymoon_friendly.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'honeymoon_friendly.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'historichouses.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'historichouses.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'hiking.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'hiking.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'helicopterpad.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'helicopterpad.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'haunted.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'haunted.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'hairdryer.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'hairdryer.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'hairdresser.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'hairdresser.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'gym.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'gym.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'gym2.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'gym2.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'guided_tours.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'guided_tours.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'groups.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'groups.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'golf.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'golf.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'giftshop.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'giftshop.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'gastronomicrestaurant.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'gastronomicrestaurant.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'gardens.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'gardens.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fridge.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fridge.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fourwd_access.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fourwd_access.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'forrest_nearby.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'forrest_nearby.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fishing.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fishing.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fishing2.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fishing2.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fireplace.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fireplace.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fees_pound.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fees_pound.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fees_euro.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fees_euro.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fees.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'fees.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'entrance_fees.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'entrance_fees.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'englishheritage.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'englishheritage.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'elevator.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'elevator.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'DVDVideo.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'DVDVideo.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'drinking_water.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'drinking_water.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'dogs_permitted.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'dogs_permitted.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'dogs_not_permitted.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'dogs_not_permitted.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'disco.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'disco.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'disabled_facilities.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'disabled_facilities.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'disabled_access.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'disabled_access.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'cycle_paths.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'cycle_paths.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'croquet.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'croquet.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'conference_facilities.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'conference_facilities.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'concierge.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'concierge.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'cinema.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'cinema.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'CDplayer.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'CDplayer.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'casino.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'casino.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'caravan.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'caravan.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'car_rental.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'canoeing.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'canoeing.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_fees.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'camping_fees.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_area.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'camping_area.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'campfire.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'campfire.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'board_walk.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'board_walk.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'bird_hide.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'bird_hide.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'beach.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'beach.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'beach2.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'beach2.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'bbq_facilities.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'bbq_facilities.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'bath_tub.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'bath_tub.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'bar.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'bar.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'bar2.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'bar2.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'balcony.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'balcony.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'zodiacexcursions.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'pfeatures'.JRDS.'zodiacexcursions.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'airport_nearby.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'airport_nearby.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'allinc.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'allinc.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'baby_friendly.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'baby_friendly.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'xmas_partys.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'xmas_partys.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'world_heritage.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'world_heritage.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'wildlife.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'wildlife.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'wifi.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'wifi.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'whalewatching.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'whalewatching.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'weddings.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'weddings.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'wc.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'wc.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'walking.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'walking.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'visitor_centre.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'visitor_centre.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'valet_parking.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'valet_parking.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'tv_in_room.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'tv_in_room.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'toilets.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'toilets.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'tennis.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'tennis.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'telephone.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'telephone.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'sunbed.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'sunbed.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'snorkelling.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'snorkelling.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'smokers_welcome.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'smokers_welcome.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'Skionsite.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'Skionsite.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'shuttle_service.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'shuttle_service.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'shower_only.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'shower_only.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'scuba.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'scuba.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'scenicviews.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'scenicviews.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'sailing.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'sailing.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'room_telephone.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'room_telephone.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'room_service.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'room_service.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'riding.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'riding.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'restraunt.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'restraunt.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'restraunt2.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'restraunt2.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'ranger.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'ranger.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'quietlocation.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'quietlocation.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'pool.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'pool.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'play_area.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'play_area.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'picnic_area.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'picnic_area.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'pets_welcome.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'pets_welcome.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'parking.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'parking.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'Ownermanaged.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'Ownermanaged.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'other_accommodation.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'other_accommodation.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'no_smoking.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'no_smoking.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'nationaltrust.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'nationaltrust.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'mountain_bike.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'mountain_bike.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'meeting_room.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'meeting_room.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'medicare.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'medicare.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'laundry_service.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'laundry_service.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'language.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'language.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'jacuzzi.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'jacuzzi.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'iron.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'iron.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'internet.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'internet.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'information.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'information.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'info2.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'info2.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'in_room_teacoffee.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'in_room_teacoffee.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'hotel_safe.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'hotel_safe.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'honeymoon_friendly.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'honeymoon_friendly.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'historichouses.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'historichouses.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'hiking.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'hiking.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'helicopterpad.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'helicopterpad.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'haunted.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'haunted.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'hairdryer.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'hairdryer.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'hairdresser.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'hairdresser.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'gym.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'gym.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'gym2.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'gym2.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'guided_tours.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'guided_tours.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'groups.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'groups.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'golf.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'golf.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'giftshop.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'giftshop.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'gastronomicrestaurant.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'gastronomicrestaurant.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'gardens.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'gardens.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fridge.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fridge.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fourwd_access.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fourwd_access.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'forrest_nearby.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'forrest_nearby.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fishing.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fishing.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fishing2.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fishing2.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fireplace.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fireplace.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fees_pound.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fees_pound.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fees_euro.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fees_euro.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fees.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'fees.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'entrance_fees.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'entrance_fees.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'englishheritage.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'englishheritage.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'elevator.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'elevator.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'DVDVideo.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'DVDVideo.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'drinking_water.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'drinking_water.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'dogs_permitted.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'dogs_permitted.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'dogs_not_permitted.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'dogs_not_permitted.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'disco.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'disco.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'disabled_facilities.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'disabled_facilities.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'disabled_access.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'disabled_access.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'cycle_paths.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'cycle_paths.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'croquet.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'croquet.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'conference_facilities.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'conference_facilities.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'concierge.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'concierge.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'cinema.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'cinema.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'CDplayer.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'CDplayer.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'casino.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'casino.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'caravan.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'caravan.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'car_rental.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'car_rental.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'canoeing.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'canoeing.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'camping_fees.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'camping_fees.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'camping_area.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'camping_area.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'campfire.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'campfire.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'board_walk.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'board_walk.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'bird_hide.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'bird_hide.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'beach.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'beach.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'beach2.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'beach2.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'bbq_facilities.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'bbq_facilities.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'bath_tub.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'bath_tub.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'bar.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'bar.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'bar2.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'bar2.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'balcony.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'balcony.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'zodiacexcursions.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'zodiacexcursions.png');
 
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'double.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'double.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fourposter.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'fourposter.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'single.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'single.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'twin.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'twin.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'double.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'double.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'fourposter.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'fourposter.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'single.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'single.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'twin.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'twin.png');
 
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'1bedroom.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'1bedroom.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'2bedrooms.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'2bedrooms.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'3bedrooms.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'3bedrooms.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'4bedrooms.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'4bedrooms.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'5bedrooms.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'5bedrooms.png');
-	$result=copy(JOMRESINSTALLPATH_BASE.JRDS.'components'.JRDS.'com_jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'6plusbedrooms.png', JOMRESINSTALLPATH_BASE.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS.'rmtypes'.JRDS.'6plusbedrooms.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'1bedroom.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'1bedroom.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'2bedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'2bedrooms.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'3bedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'3bedrooms.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'4bedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'4bedrooms.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'5bedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'5bedrooms.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'images'.JRDS.'icons'.JRDS.'6plusbedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'6plusbedrooms.png');
 	}
 
 
@@ -1526,81 +610,112 @@ function deleteCurrentLicenseFiles()
 		return false;
 	}
 
-function createComponentTableData()
+function checkTariffsTimeStampColsExists()
 	{
-	$query="SELECT name FROM #__components WHERE `name` = 'Jomres' AND `link` = 'option=com_jomres'";
+	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'validfrom_ts'";
 	$result=doSelectSql($query);
-	if (count($result)==1)
+	if (count($result)>0)
+		{
 		return true;
-	
-	$query="DELETE FROM #__components WHERE `option` = 'com_jomres'";
-	$result=doInsertSql($query,"");
-	$extraClause="";
-	$extraClausePara="";
-	if (_JOMRES_NEWJOOMLA == 1)
-		{
-		$extraClause=",`enabled`";
-		$extraClausePara=",'1'";
 		}
-	$query="INSERT INTO #__components
-	(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`".$extraClause.")
-	VALUES
-	('Jomres','option=com_jomres','0','0','option=com_jomres','Jomres','com_jomres','0','../components/com_jomres/images/jricon.png','0',' '".$extraClausePara.")
-	";
-	$result=doInsertSql($query,"");
-	if ($result)
+	return false;
+	}
+
+function alterTariffsTimeStampCols()
+	{
+	echo "Editing __jomres_rates table adding timestamp column<br>";
+	$query = "ALTER TABLE `#__jomres_rates` ADD `validfrom_ts` DATE AFTER `weekendonly` , ADD `validto_ts` DATE AFTER `validfrom_ts`";
+	//echo $query;
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_rates weekendonly</b><br>";
+	$query = "SELECT rates_uid,validfrom,validto FROM #__jomres_rates";
+	$allRates=doSelectSql($query);
+	foreach ($allRates as $r)
 		{
-		$parent=$result;
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Show Global Room types','','0','$parent','option=com_jomres&task=listGlobalroomTypes','Show Global Room types','com_jomres','4','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Show Global Property Features','','0','$parent','option=com_jomres&task=listPfeatures','Show Global Property Features','com_jomres','3','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Show Property types','','0','$parent','option=com_jomres&task=listPropertyTypes','Show Property types','com_jomres','2','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Show Profiles','','0','$parent','option=com_jomres&task=listMosUsers','Show Profiles','com_jomres','1','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Edit Site Configuration','','0','$parent','option=com_jomres&task=showSiteConfig','Edit Site Configuration','com_jomres','0','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Logs','','0','$parent','option=com_jomres&task=listLogs','Logs','com_jomres','0','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
-		
-		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
-		VALUES
-		('Plugins','','0','$parent','option=com_jomres&task=showplugins','Plugins','com_jomres','0','../components/com_jomres/images/jricon.png','0')
-		";
-		$result=doInsertSql($query,"");
+		$validfrom_ts=str_replace("/","-",$r->validfrom);
+		$validto_ts=str_replace("/","-",$r->validto);
+		$query="UPDATE #__jomres_rates SET `validfrom_ts`='$validfrom_ts',`validto_ts`='$validto_ts' WHERE rates_uid='$r->rates_uid'";
+		doInsertSql($query,'');
 		}
-	else
-		echo "Unable to create main Jomres admin menu option<br>";
 	}
 
 function createJomresTables()
 	{
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
+		`id` int(11) NOT NULL auto_increment,
+		`manager_id` int(11) NOT NULL,
+		`property_uid` int(11) NOT NULL,
+		PRIMARY KEY(`id`)
+		)";
+	if (!doInsertSql($query,'') )
+		{
+		echo $query;
+		return false;
+		}
+	
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
+		`id` int(11) auto_increment,
+		`property_uid` int,
+		`guest_id` int,
+		`affiliate_id` varchar(255),
+		`invoice_id` int DEFAULT 0,
+		`booking_total` float,
+		`contract_id` int,
+		`tag` varchar(255),
+		`currency_code` char(3),
+		`created` datetime,
+		`archived` bool DEFAULT 0,
+		`archived_date` datetime,
+		PRIMARY KEY(`id`)
+	)";
+	if (!doInsertSql($query,'') )
+		{
+		echo $query;
+		return false;
+		}
+	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
+		`id` int(11) AUTO_INCREMENT,
+		`manager_uid` INTEGER NOT NULL,
+		`jos_id` INTEGER NOT NULL,
+		`portal_booking_id` INTEGER NOT NULL,
+		`username` varchar(255),
+		`email` varchar(255),
+		`created` datetime,
+		PRIMARY KEY(id)
+		)";
+	if (!doInsertSql($query,'') )
+		{
+		echo $query;
+		return false;
+		}
+	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_c_rates (
+		`id` int(11) AUTO_INCREMENT,
+		`title` varchar(255),
+		`type` int,
+		`value` float,
+		`currencycode` CHAR( 3 ) NOT NULL DEFAULT 'GBP',
+		`created` datetime,
+		`archived` bool DEFAULT 0,
+		`archived_date` datetime,
+		PRIMARY KEY(id)
+		)";
+	if (!doInsertSql($query,'') )
+		{
+		echo $query;
+		return false;
+		}
+	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_properties_crates_xref (
+		`id` int(11) AUTO_INCREMENT,
+		`property_id` int UNIQUE,
+		`crate_id` int,
+		PRIMARY KEY(id)
+		)";
+	if (!doInsertSql($query,'') )
+		{
+		echo $query;
+		return false;
+		}
+		
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_site_settings` (
 		`id` int(11) auto_increment,
 		`akey`	VARCHAR(255),
@@ -2680,7 +1795,7 @@ function showheader()
 	  <p align="center">&nbsp;</p>
 	<div class= "panel">
 
-	  <p><img src="<?php echo $jomresConfig_live_site ;?>images/jrlogo.png" width="287" height="70"></p>
+	  <p><img src="<?php echo $jomresConfig_live_site ;?>/jomres/images/jrlogo.png" width="287" height="70"></p>
 	  <p><h1>Jomres installation</h1></p>
 	  <p>&nbsp;</p>
 	<?php
