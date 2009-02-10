@@ -49,10 +49,10 @@ class j02130listblackbookings {
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL("index.php?option=com_jomres&task=newBlackBooking&Itemid=$Itemid"),jr_gettext('_JOMRES_FRONT_BLACKBOOKING_NEW',_JOMRES_FRONT_BLACKBOOKING_NEW,FALSE));
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking&Itemid=$Itemid"),jr_gettext('_JOMRES_FRONT_BLACKBOOKING_NEW',_JOMRES_FRONT_BLACKBOOKING_NEW,FALSE));
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),$cancelText);
 		//if (!$clone && $tariffUid)
-		//	$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteTariff&tariffUid=".$tariffUid."Itemid=$Itemid"),$deleteText);
+		//	$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteTariff&tariffUid=".$tariffUid."Itemid=$Itemid"),$deleteText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -78,7 +78,7 @@ class j02130listblackbookings {
 			$counter=0;
 			foreach ($bbList as $bb)
 				{
-				$bbrow['editlink']='<a href="'.jomresURL("index.php?option=com_jomres&task=viewBlackBooking&Itemid=$Itemid&contract_uid=".($bb->contract_uid) ).'">'.jr_gettext('_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING',_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING,true,true).'  '.outputDate($bb->arrival).' - '.outputDate($bb->departure).' '.$bb->special_reqs.'</a>';
+				$bbrow['editlink']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=viewBlackBooking&Itemid=$Itemid&contract_uid=".($bb->contract_uid) ).'">'.jr_gettext('_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING',_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING,true,true).'  '.outputDate($bb->arrival).' - '.outputDate($bb->departure).' '.$bb->special_reqs.'</a>';
 				$bookingsrows[]=$bbrow;
 				}
 			}

@@ -60,8 +60,8 @@ class j02265viewbookingnotes {
 				{
 				$r['NOTE']=$d->note;
 				$r['DATETIME']=$d->timestamp;
-				$r['EDITLINK']=makePopupLink("?option=com_jomres&task=editnote&popup=1&note_id=".$d->id,jr_gettext('_JOMCOMP_BOOKINGNOTES_EDIT',_JOMCOMP_BOOKINGNOTES_EDIT,$editable=false,$isLink=true));
-				$r['DELETELINK']='<a href='.$jomresConfig_live_site.'/index.php?option=com_jomres&task=deletenote&popup=1&note_id='.$d->id.'&contract_uid='.$contract_uid.'>'.jr_gettext('_JOMCOMP_BOOKINGNOTES_DELETE',_JOMCOMP_BOOKINGNOTES_DELETE,$editable=false,$isLink=true).'</a>';
+				$r['EDITLINK']=makePopupLink(JOMRES_SITEPAGE_URL."&task=editnote&popup=1&note_id=".$d->id,jr_gettext('_JOMCOMP_BOOKINGNOTES_EDIT',_JOMCOMP_BOOKINGNOTES_EDIT,$editable=false,$isLink=true));
+				$r['DELETELINK']='<a href='.JOMRES_SITEPAGE_URL.'&task=deletenote&popup=1&note_id='.$d->id.'&contract_uid='.$contract_uid.'>'.jr_gettext('_JOMCOMP_BOOKINGNOTES_DELETE',_JOMCOMP_BOOKINGNOTES_DELETE,$editable=false,$isLink=true).'</a>';
 				$rows[]=$r;
 				}
 			$tmpl = new patTemplate();

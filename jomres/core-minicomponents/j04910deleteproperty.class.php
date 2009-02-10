@@ -88,7 +88,7 @@ class j04910deleteproperty {
 				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_PROPERTY',_JOMRES_MR_AUDIT_DELETE_PROPERTY,FALSE)))
 					{
 					$thisJRUser->check_currentproperty();
-					jomresRedirect( jomresURL("index.php?option=com_jomres&Itemid=$Itemid", '' ));
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid", '' ));
 					}
 				else
 					trigger_error ("Unable to delete from propertys table, mysql db failure", E_USER_ERROR);
@@ -111,9 +111,9 @@ class j04910deleteproperty {
 				<!--
 				var answer = confirm ("<?php  echo _JOMRES_AREYOUSURE ?>")
 				if (answer)
-					window.location="<?php  echo $jomresConfig_live_site.'/index.php?option=com_jomres&task=deleteProperty'.jomresURLToken().'&Itemid='.$Itemid.'&property_uid='.$property_uid.'&sure=1'; ?>"
+					window.location="<?php  echo JOMRES_SITEPAGE_URL.'&task=deleteProperty'.jomresURLToken().'&Itemid='.$Itemid.'&property_uid='.$property_uid.'&sure=1'; ?>"
 				else
-					window.location="<?php  echo $jomresConfig_live_site.'/index.php?option=com_jomres&task=propertyadmin&Itemid='.$Itemid; ?>"
+					window.location="<?php  echo JOMRES_SITEPAGE_URL.'&task=propertyadmin&Itemid='.$Itemid; ?>"
 				// -->
 				</script>
 				<?php

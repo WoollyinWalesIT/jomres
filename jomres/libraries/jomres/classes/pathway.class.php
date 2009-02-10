@@ -37,7 +37,7 @@ class jomres_pathway
 			$this->joomlaPathway    =& $mainframe->getPathWay();
 			$this->pathWayItems = array();
 			$this->pathWayLinks = array();
-			$query="SELECT name,link FROM #__menu WHERE `link` LIKE 'index.php?option=com_jomres%' LIMIT 1";
+			$query="SELECT name,link FROM #__menu WHERE `link` LIKE JOMRES_SITEPAGE_URL.'%' LIMIT 1";
 			$menuNames =doSelectSql($query);
 			if (count($menuNames) > 0)
 				{
@@ -58,7 +58,7 @@ class jomres_pathway
 		global $itemId;
 		if (defined('_JOMRES_NEWJOOMLA') )
 			{
-			$link="index.php?option=com_jomres";
+			$link=JOMRES_SITEPAGE_URL."";
 			if ($task != "")
 				$link.="&task=".$task.$options."&itemId=".$itemId;
 			$link=jomresUrl($link);

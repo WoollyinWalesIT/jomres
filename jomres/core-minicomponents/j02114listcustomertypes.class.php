@@ -73,10 +73,10 @@ class j02114listcustomertypes {
 				$img = "administrator/images/publish_x.png";
 			$rw['PUBLISHIMAGE']=$img;
 			$rw['ID']=$ex->id;
-			//$rw['EDITLINK']="<a href=\"".jomresURL("index.php?option=com_jomres&task=editCustomerType&Itemid=$Itemid&id=".$ex->id)."\">".jr_gettext('_JOMRES_COM_MR_EXTRA_LINKTEXT',_JOMRES_COM_MR_EXTRA_LINKTEXT)."</a>";
+			//$rw['EDITLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomerType&Itemid=$Itemid&id=".$ex->id)."\">".jr_gettext('_JOMRES_COM_MR_EXTRA_LINKTEXT',_JOMRES_COM_MR_EXTRA_LINKTEXT)."</a>";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL("index.php?option=com_jomres&task=editCustomerType&Itemid=$Itemid&id=".$ex->id ),'');
+			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomerType&Itemid=$Itemid&id=".$ex->id ),'');
 			$jrtb .= $jrtbar->endTable();
 			$rw['EDITLINK']=$jrtb;
 
@@ -92,14 +92,14 @@ class j02114listcustomertypes {
 			else
 				$rw['POSNEG']="-";
 			$rw['VARIANCE']=number_format($ex->variance,2);
-			$rw['PUBLISHLINK']='<a href="'.jomresURL("index.php?option=com_jomres&task=publishCustomerType&no_html=1&Itemid=$Itemid&id=".($ex->id) ).'"><img src="'.$img.'" border="0"></a>';
+			$rw['PUBLISHLINK']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=publishCustomerType&no_html=1&Itemid=$Itemid&id=".($ex->id) ).'"><img src="'.$img.'" border="0"></a>';
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			if ($published)
-				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL("index.php?option=com_jomres&task=publishCustomerType&no_html=1&Itemid=$Itemid&id=".$ex->id ),'');
+				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL."&task=publishCustomerType&no_html=1&Itemid=$Itemid&id=".$ex->id ),'');
 			else
-				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL("index.php?option=com_jomres&task=publishCustomerType&no_html=1&Itemid=$Itemid&id=".$ex->id ),'');
+				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL."&task=publishCustomerType&no_html=1&Itemid=$Itemid&id=".$ex->id ),'');
 			$jrtb .= $jrtbar->endTable();
 			$rw['PUBLISHLINK']=$jrtb;
 
@@ -116,9 +116,9 @@ class j02114listcustomertypes {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL("index.php?option=com_jomres&task=editCustomerType&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomerType&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->toolbarItem('save','',jr_gettext('_JOMRES_ORDER',_JOMRES_ORDER,false,true),true,'saveCustomerTypeOrder');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

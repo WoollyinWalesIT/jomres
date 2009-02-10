@@ -55,7 +55,7 @@ class j02112publishcustomertype {
 		else
 			$query="UPDATE #__jomres_customertypes SET `published`='1' WHERE id = '".(int)$id."' AND property_uid = '".(int)$defaultProperty."'";
 		if (doInsertSql($query,_JOMRES_MR_AUDIT_PUBLISH_CUSTOMERTYPE))
-			jomresRedirect( $jomresConfig_live_site."/index.php?option=com_jomres&task=listCustomerTypes&Itemid=".$Itemid,"" );
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=".$Itemid,"" );
 		trigger_error ("Unable to publish customer type, mysql db failure", E_USER_ERROR);
 		}
 

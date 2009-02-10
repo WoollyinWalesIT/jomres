@@ -67,7 +67,7 @@ class j02252archiveaudit {
 			$counter++;
 			}
 		audit(jr_gettext('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT',_JOMRES_MR_AUDIT_ARCHIVED_AUDIT,FALSE),$counter.$saveMessage);
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=showAuditTrail&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=showAuditTrail&Itemid=$Itemid"), $saveMessage );
 		}
 
 	/**

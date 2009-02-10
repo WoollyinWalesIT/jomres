@@ -52,7 +52,7 @@ class j00605form {
 			$settingArray[$set->setting]=$set->value;
 			}
 
-		$outgoingURL=$jomresConfig_live_site.'/index.php?option=com_jomres&task=completebk&Itemid='.$Itemid;
+		$outgoingURL=JOMRES_SITEPAGE_URL.'&task=completebk&Itemid='.$Itemid;
 
 		$iss_mon            = intval( jomresGetParam( $_POST, 'iss_mon', 0 ) );
 		$iss_year           = intval( jomresGetParam( $_POST, 'iss_year', 0 ) );

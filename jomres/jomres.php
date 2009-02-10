@@ -99,7 +99,7 @@ if(!$Itemid || $Itemid == 99999999)
 		. "\n FROM #__menu"
 		. "\n WHERE "
 		. "\n published = 1"
-		. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
+		. "\n AND link LIKE JOMRES_SITEPAGE_URL.'' LIMIT 1";
 	$itemQueryRes = doSelectSql($query);
 	if (count($itemQueryRes)>0)
 		{
@@ -1085,7 +1085,7 @@ if ($numberOfPropertiesInSystem>0)
 				{
 				$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 				$thisJRUser->set_currentproperty($property_uid);
-				jomresRedirect( jomresURL("index.php?option=com_jomres&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
 				}
 			if ($jrConfig['composite_property_details']!="1")
 				{

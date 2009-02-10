@@ -154,7 +154,7 @@ class j04010editroom {
 
 			$output['IMAGE']=$roomImageLocation;
 			if ($roomImageLocation!="")
-				$output['DELETEIMAGE']	='<a href="'. jomresURL("index.php?option=com_jomres&task=dropImage&imageType=room&itemUid=$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
+				$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=room&itemUid=$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
 
 			$output['UPLOADIMAGE']		=jr_gettext('_JOMRES_UPLOAD_IMAGE',_JOMRES_UPLOAD_IMAGE,FALSE);
 			$output['PAGETITLE']			=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM',_JOMRES_COM_MR_VRCT_TAB_ROOM);
@@ -166,9 +166,9 @@ class j04010editroom {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
 			if ($clone<1)
-				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteRoom".jomresURLToken()."&roomUid=".$roomUid."Itemid=$Itemid"),$deleteText);
+				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteRoom".jomresURLToken()."&roomUid=".$roomUid."Itemid=$Itemid"),$deleteText);
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 		
@@ -185,7 +185,7 @@ class j04010editroom {
 			{
 			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
 			$original_room_classes_uid =doSelectSql($query,1);
-			echo '<form action="index.php?option=com_jomres" method="post" name="adminForm">';
+			echo '<form action=JOMRES_SITEPAGE_URL."" method="post" name="adminForm">';
 			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";
 			$roomClasses=doSelectSql($query);
 			$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
@@ -203,7 +203,7 @@ class j04010editroom {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
 			$jrtb .= $jrtbar->endTable();
 			
 			echo $jrtb." "._JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO." ".$dropDownList;

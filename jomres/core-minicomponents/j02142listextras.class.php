@@ -62,18 +62,18 @@ class j02142listextras {
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL("index.php?option=com_jomres&task=editExtra&Itemid=$Itemid&uid=".$ex->uid ),'');
+			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editExtra&Itemid=$Itemid&uid=".$ex->uid ),'');
 			if ($published)
-				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL("index.php?option=com_jomres&task=publishExtra".jomresURLToken()."&no_html=1&Itemid=$Itemid&uid=".$ex->uid ),'');
+				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL."&task=publishExtra".jomresURLToken()."&no_html=1&Itemid=$Itemid&uid=".$ex->uid ),'');
 			else
-				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL("index.php?option=com_jomres&task=publishExtra".jomresURLToken()."&no_html=1&Itemid=$Itemid&uid=".$ex->uid ),'');
+				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL."&task=publishExtra".jomresURLToken()."&no_html=1&Itemid=$Itemid&uid=".$ex->uid ),'');
 			$jrtb .= $jrtbar->endTable();
 			$rw['EDITLINK']=$jrtb;
 
 			$rw['EXNAME']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) );
 			$rw['EXDESC']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES) );
 			$rw['EXPRICE']=number_format($ex->price,2);
-			//$rw['PUBLISHLINK']='<a href="'.jomresURL("index.php?option=com_jomres&task=publishExtra&Itemid=$Itemid&uid=".($ex->uid) ).'"><img src="'.$img.'" border="0"></a>';
+			//$rw['PUBLISHLINK']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=publishExtra&Itemid=$Itemid&uid=".($ex->uid) ).'"><img src="'.$img.'" border="0"></a>';
 			$rw['CURRENCY']=$mrConfig['currency'];
 			$rows[]=$rw;
 			}
@@ -82,8 +82,8 @@ class j02142listextras {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL("index.php?option=com_jomres&task=editExtra&Itemid=$Itemid"),'');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=listBlackBookings&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editExtra&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

@@ -48,7 +48,7 @@ class j06000deletenote {
 		$query="DELETE FROM #__jomcomp_notes WHERE `id`='".(int)$note_id."' AND `property_uid`='".(int)$defaultProperty."' LIMIT 1";
 		if (doInsertSql($query,$auditMessage))
 			{
-			jomresRedirect( jomresURL("index.php?option=com_jomres&task=editBooking&Itemid=$Itemid&contract_uid=$contract_uid"), '' );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=$contract_uid"), '' );
 			}
 		else
 			echo "Error deleting note";

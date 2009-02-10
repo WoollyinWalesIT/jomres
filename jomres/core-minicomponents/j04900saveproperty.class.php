@@ -231,7 +231,7 @@ class j04900saveproperty {
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS",$property_airports,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT",$property_othertransport,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS",$property_policies_disclaimers,TRUE);
-			jomresRedirect("index.php?option=com_jomres&task=editProperty&Itemid=".$Itemid."&propertyUid=".$propertyUid);
+			jomresRedirect(JOMRES_SITEPAGE_URL."&task=editProperty&Itemid=".$Itemid."&propertyUid=".$propertyUid);
 			}
 
 		}

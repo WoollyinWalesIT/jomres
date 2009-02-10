@@ -485,7 +485,7 @@ function showCompletedText()
 	global $jomresConfig_live_site;
 	echo '<br>Thank you for installing Jomres. <a href="'.$jomresConfig_live_site.'/administrator/" target="_blank" >You may now go to your Joomla/Mambo backend and configure Jomres</a><br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your root folder<br>';
-	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$jomresConfig_live_site.'/index.php?option=com_jomres" target="_blank" >To enable the property manager functionality simply log in as "admin"</a><br>';
+	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$jomresConfig_live_site.'/'.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality simply log in as "admin"</a><br>';
 	}
 
 

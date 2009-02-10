@@ -1137,7 +1137,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				if ($isLink)
 					{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-					$link = $jomresConfig_live_site .'/'.$indexphp.'?option=com_jomres&task=editCustomText&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
+					$link = $jomresConfig_live_site .'/'.JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
 					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".$jomresConfig_live_site."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
 					$theText=$editingLink.$theText;
 					}
@@ -1153,9 +1153,9 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 								<script type="text/javascript">
 							jQuery(document).ready(function() {';
 							if ($_REQUEST['task']=="touch_templates")
-								echo 'jQuery(".jqueryeditable").editable("'.$jomresConfig_live_site.'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?option=com_jomres&task=editinplace&no_html=1", ';
+								echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editinplace&no_html=1", ';
 							else
-								echo 'jQuery(".jqueryeditable").editable("'.$jomresConfig_live_site.'/index.php?option=com_jomres&task=editinplace&no_html=1", ';
+								echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL.'&task=editinplace&no_html=1", ';
 							echo "	{
 								indicator : '".JOMRES_WORD_SAVING."',
 								id			: 'theConstant',
@@ -1175,7 +1175,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					else
 						{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-						$link = $jomresConfig_live_site .'/'.$indexphp.'?option=com_jomres&task=editCustomText&popup=1&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
+						$link = JOMRES_SITEPAGE_URL_NOHTML.'&task=editCustomText&popup=1&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
 						$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" >$theText</a>";
 						$theText=$editingLink.$br;
 						}
@@ -1801,7 +1801,7 @@ function checkLicense($license_key,$scriptname)
 		{
 		global $jomresConfig_live_site;
 		$message="ERROR: Your license is not valid. Backend functionality is severely limited until this is resolved.<br>";
-		$str='<SCRIPT LANGUAGE="JavaScript">window.location="'.$jomresConfig_live_site.'/administrator/index2.php?option=com_jomres&task=showSiteConfig&mosmsg='.$message.'";</script>';
+		$str='<SCRIPT LANGUAGE="JavaScript">window.location="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig&mosmsg='.$message.'";</script>';
 		echo $str;
 		}
 

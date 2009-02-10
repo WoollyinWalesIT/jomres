@@ -71,7 +71,7 @@ class j06000delslideshowimages {
 				}
 			}
 		if ($success)
-			jomresRedirect( "index.php?option=com_jomres&task=bUploadForm&Itemid=".$Itemid, _JOMRES_FILE_DELETED );
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm&Itemid=".$Itemid, _JOMRES_FILE_DELETED );
 		}
 
 	function touch_template_language()

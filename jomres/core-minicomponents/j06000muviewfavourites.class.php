@@ -77,7 +77,7 @@ class j06000muviewfavourites {
 						$r['IMAGE']='<img src="'.$jomresConfig_live_site.$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg" width="40">';
 					else
 						$r['IMAGE']='&nbsp;';
-					$r['PROPERTYDETAILSLINK']=$jomresConfig_live_site.'/index.php?option=com_jomres&task=viewproperty&Itemid'.$Itemid.'=&property_uid='.$f->property_uid;
+					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&Itemid'.$Itemid.'=&property_uid='.$f->property_uid;
 					$rows[]=$r;
 					}
 

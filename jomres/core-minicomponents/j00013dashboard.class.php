@@ -312,8 +312,8 @@ class j00013dashboard extends jomres_dashboard
 		{
 		global $mrConfig,$Itemid;
 		$output="";
-		$bookinglink='index.php?option=com_jomres&task=dobooking&Itemid='.$Itemid.'&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.$sqlDate2;
-		$viewbookinglink='index.php?option=com_jomres&task=editBooking&Itemid='.$Itemid.'&contract_uid='.$contract_uid;
+		$bookinglink=JOMRES_SITEPAGE_URL.'&task=dobooking&Itemid='.$Itemid.'&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.$sqlDate2;
+		$viewbookinglink=JOMRES_SITEPAGE_URL.'&task=editBooking&Itemid='.$Itemid.'&contract_uid='.$contract_uid;
 		$basicFont='<FONT style="style=color:'.$fcolor.'; '.$border.' ">';
 
 		$output.='<td align="center" valign="middle" bgcolor="'.$bgcolor.'" >';
@@ -410,14 +410,14 @@ class j00013dashboard extends jomres_dashboard
 		$nm= mktime(12, 0, 0,$dateElements[1],1,$dateElements[0]);
 		for ($i=1;$i<=$this->monthsToShow;$i++)
 			{
-			$link=jomresURL('index.php?option=com_jomres&requestedMonth='.$nm.'&Itemid='.$Itemid);
+			$link=jomresURL(JOMRES_SITEPAGE_URL.'&requestedMonth='.$nm.'&Itemid='.$Itemid);
 			$monthsArray[]=jomresHTML::makeOption($link,$nextMonth);
 			//$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
 			$year=strftime("%Y", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
 			$nextMonth= getThisMonthName(strftime("%m", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0])),false)." ".$year;
 			$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
 			}
-		$dropdown=jomresHTML::selectList( $monthsArray, 'requestedMonth', 'size="1" class="inputbox" OnChange="location.href=dashboardmonthdropdown.requestedMonth.options[selectedIndex].value" ', 'value', 'text', jomresURL('index.php?option=com_jomres&requestedMonth='.$this->requestedMonth.'&Itemid='.$Itemid ) );
+		$dropdown=jomresHTML::selectList( $monthsArray, 'requestedMonth', 'size="1" class="inputbox" OnChange="location.href=dashboardmonthdropdown.requestedMonth.options[selectedIndex].value" ', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&requestedMonth='.$this->requestedMonth.'&Itemid='.$Itemid ) );
 		$output='<form name="dashboardmonthdropdown">';
 		$output.=$dropdown;
 		$output.='</form>';
@@ -437,7 +437,7 @@ class j00013dashboard extends jomres_dashboard
 			$output .= "<table><tr>";
 			for ($i=1;$i<=$this->monthsToShow;$i++)
 				{
-				$link="<td><a href=\"".sefRelToAbs("index.php?option=com_jomres&Itemid=$Itemid&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
+				$link="<td><a href=\"".sefRelToAbs(JOMRES_SITEPAGE_URL."&Itemid=$Itemid&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
 				if ($orientation !="horizontal" ) // Let's add some br's to the end to make columns of months
 					$link = $link."<br>";
 				$output.= $link;

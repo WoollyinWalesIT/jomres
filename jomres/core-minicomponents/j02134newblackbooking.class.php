@@ -88,7 +88,7 @@ class j02134newblackbooking {
 			$roomsList = doSelectSql($query);
 			$counter=0;
 			$totalRooms=count($roomsList);
-			$link=jomresURL("index2.php?option=com_jomres&task=editBooking&Itemid=$Itemid&popup=1&contract_uid=");
+			$link=jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=editBooking&Itemid=$Itemid&popup=1&contract_uid=");
 			foreach ($roomsList as $room)
 				{
 				$links="";
@@ -116,7 +116,7 @@ class j02134newblackbooking {
 					foreach ($contractUidArray as $contract)
 						{
 						$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-						$link =$jomresConfig_live_site."/index2.php?option=com_jomres&task=editBooking&popup=1&contract_uid=".$contract;
+						$link =JOMRES_SITEPAGE_URL_NOHTML."&task=editBooking&popup=1&contract_uid=".$contract;
 						$links.='<a href="javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');" title=""> '.jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER).' '.$contract.' </a>';
 						}
 					$rmcounter++;
@@ -141,9 +141,9 @@ class j02134newblackbooking {
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('apply',jomresURL("index.php?option=com_jomres&task=newBlackBooking&Itemid=$Itemid"),'Apply',true,'newBlackBooking');
-		$jrtb .= $jrtbar->toolbarItem('save',jomresURL("index.php?option=com_jomres&task=saveBBooking&Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveBBooking');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=listBlackBookings&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('apply',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking&Itemid=$Itemid"),'Apply',true,'newBlackBooking');
+		$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveBBooking&Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveBBooking');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=$Itemid"),$cancelText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

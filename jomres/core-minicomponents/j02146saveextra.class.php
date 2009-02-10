@@ -71,7 +71,7 @@ class j02146saveextra {
 		$query="INSERT INTO #__jomcomp_extrasmodels_models (`extra_id`,`model`,`params`,`force`,`property_uid`) VALUES ('".(int)$uid."','$model','".(int)$mindays."','".(int)$f."','".(int)$defaultProperty."')";
 		doInsertSql($query,'');
 
-		jomresRedirect( jomresURL("index.php?option=com_jomres&task=listExtras&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listExtras&Itemid=$Itemid"), $saveMessage );
 		}
 	
 	// This must be included in every Event/Mini-component

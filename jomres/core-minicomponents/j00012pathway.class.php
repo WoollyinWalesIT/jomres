@@ -87,10 +87,10 @@ class j00012pathway {
 				$property_uid=(int)$selectedProperty;
 
 			$tasks =array();
-			$tasks['XXXXXX']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>'index.php?option=com_jomres&Itemid='.$Itemid);
-			$tasks['listProperties']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>'index.php?option=com_jomres&Itemid='.$Itemid);
-			$tasks['viewproperty']=array('text'=>_JOMRES_PATHWAY_PROPERTYDETAILS.getPropertyName($property_uid),'url'=>'index.php?option=com_jomres&task=viewproperty&property_uid='.$property_uid.'&Itemid='.$Itemid);
-			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>'index.php?option=com_jomres&task=dobooking&selectedProperty'.$property_uid.'&Itemid='.$Itemid);
+			$tasks['XXXXXX']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL.'&Itemid='.$Itemid);
+			$tasks['listProperties']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL.'&Itemid='.$Itemid);
+			$tasks['viewproperty']=array('text'=>_JOMRES_PATHWAY_PROPERTYDETAILS.getPropertyName($property_uid),'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.'&Itemid='.$Itemid);
+			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty'.$property_uid.'&Itemid='.$Itemid);
 
 			switch ($task)
 				{

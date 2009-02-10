@@ -364,7 +364,7 @@ class j00017SRPavailabilitycalendar {
 								if ($mrConfig['fixedArrivalDay']==date("w",$currdate) )
 									if ($mrConfig['visitorscanbookonline'] && $this->showlinks)
 										{
-										$link='index.php?option=com_jomres&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+										$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 										if (!$mrConfig['singleRoomProperty'])
 											$link.='&remus='.$roomUid;
 										if ( $jrConfig['useSSLinBookingform'] == "1" )
@@ -387,7 +387,7 @@ class j00017SRPavailabilitycalendar {
 							{
 							if (!$noshowroom && $bgcolor !=$outbgcolor && $mrConfig['visitorscanbookonline'] && $this->showlinks)
 								{
-								$link='index.php?option=com_jomres&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 								if (!$mrConfig['singleRoomProperty'])
 									$link.='&remus='.$roomUid;
 								if ( $jrConfig['useSSLinBookingform'] == "1" )
@@ -408,7 +408,7 @@ class j00017SRPavailabilitycalendar {
 							{
 							if ($contract_uid!="")
 								{
-								$link="<a $target href=\"".jomresURL("index.php?option=com_jomres&task=editBooking&amp;Itemid=$Itemid&amp;contract_uid=$contract_uid")."\" class=rescal >".(date ("j",$currdate))."</a>";
+								$link="<a $target href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&amp;Itemid=$Itemid&amp;contract_uid=$contract_uid")."\" class=rescal >".(date ("j",$currdate))."</a>";
 								$this->retVals.=$link;
 								}
 							else

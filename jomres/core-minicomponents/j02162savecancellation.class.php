@@ -81,7 +81,7 @@ class j02162savecancellation {
 				error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				
 			
-			jomresRedirect( jomresURL("index.php?option=com_jomres&task=listLiveBookings&Itemid=$Itemid"), $saveMessage );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings&Itemid=$Itemid"), $saveMessage );
 			}
 		else
 			{

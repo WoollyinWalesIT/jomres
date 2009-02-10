@@ -138,7 +138,7 @@ class j03100hotelconfirmationemail {
 		$text .= _JOMRES_FRONT_TARIFFS_TITLE." ".$currency.$rateOutput." \t\n";
 		$text .= _JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ." ".stripslashes($specialReqs)." \t\n\t\n";
 
-		$text .= $jomresConfig_live_site."/index.php?option=com_jomres&task=editBooking&Itemid=53&contract_uid=".$componentArgs['contract_uid']." \t\n";
+		$text .= JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=53&contract_uid=".$componentArgs['contract_uid']." \t\n";
 		$text .= $clientIP;
 		*/
 
@@ -174,7 +174,7 @@ class j03100hotelconfirmationemail {
 		$output['TOTAL']=$currency.number_format($contract_total, 2, '.', '');
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
-		$output['LINKTOBOOKING']="<a href=\"".$jomresConfig_live_site."/index.php?option=com_jomres&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
+		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
 
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);

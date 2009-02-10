@@ -50,7 +50,7 @@ class j02222editguest {
 			{
 
 			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-			$link =makePopupLink("?option=com_jomres&task=editCreditcard&popup=1&guestUid=$guestUid",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
+			$link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=editCreditcard&popup=1&guestUid=$guestUid",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
 			//$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
 			$output['CREDITCARDLINK']=$link;
 			$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name,email FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$defaultProperty."'";
@@ -96,9 +96,9 @@ class j02222editguest {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveGuest');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=listguests&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&Itemid=$Itemid"),'');
 		if ($guestUid != 0)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteGuest".jomresURLToken()."&guestUid=$guestUid&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteGuest".jomresURLToken()."&guestUid=$guestUid&Itemid=$Itemid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

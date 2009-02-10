@@ -50,9 +50,9 @@ class j02132blackbooking {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL("index.php?option=com_jomres&task=newBlackBooking&Itemid=$Itemid"),$newText );
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=listBlackBookings&Itemid=$Itemid"),$cancelText);
-		$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteBlackBooking".jomresURLToken()."&contract_uid=$contract_uid&Itemid=$Itemid"),$deleteText);
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking&Itemid=$Itemid"),$newText );
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteBlackBooking".jomresURLToken()."&contract_uid=$contract_uid&Itemid=$Itemid"),$deleteText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

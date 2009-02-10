@@ -315,11 +315,11 @@ class j04200editproperty {
 		$jrtb  = $jrtbar->startTable();
 		if ($jrConfig['allowHTMLeditor']!="2" && $jrConfig['allowHTMLeditor'] != "3")
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveProperty');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=propertyadmin&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),'');
 		$usersProperties=$thisJRUser->authorisedPropertyDetails;
 
 		if (!function_exists('botJRHP') && !JOMRES_SINGLEPROPERTY && count($usersProperties) > 1)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL("index.php?option=com_jomres&task=deleteProperty".jomresURLToken()."&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken()."&Itemid=$Itemid"),'');
 		else
 			{
 			if (JOMRES_GUESTLIMIT==50)
@@ -333,7 +333,7 @@ class j04200editproperty {
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
 		$output['IMAGE']=$propertyImageLocation;
 		if ($propertyImageLocation!="")
-			$output['DELETEIMAGE']	='<a href="'. jomresURL("index.php?option=com_jomres&task=dropImage&imageType=property&itemUid=".$propertyUid."$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
+			$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=property&itemUid=".$propertyUid."$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
 		$output['UPLOADIMAGE']=jr_gettext('_JOMRES_UPLOAD_IMAGE',_JOMRES_UPLOAD_IMAGE,FALSE);
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';

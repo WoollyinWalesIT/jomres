@@ -87,7 +87,7 @@ class j02180bookguestout {
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('save','','',true,'bookGuestOut');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -189,7 +189,7 @@ class j02180bookguestout {
 				$output['GRANDTOTAL']=$mrConfig['currency'].$currfmt->get_formatted($grandTotal);
 
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
-				$link = $jomresConfig_live_site."/index2.php?option=com_jomres&task=bookGuestOut&Itemid=".$Itemid."&contract_uid=".$contractUid."&popup=1&dueDepart=".$contractUid;
+				$link = JOMRES_SITEPAGE_URL."&task=bookGuestOut&Itemid=".$Itemid."&contract_uid=".$contractUid."&popup=1&dueDepart=".$contractUid;
 				$output['INVOICEFORMLINK']="<a href=\"javascript:void window.open('".jomresURL($link)."', 'win2', '$status');\" title=\""._JOMRES_COM_CONFIRMATION_TITLE."\">".jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT)."</a>";
 
 				if ($popup ==0)
@@ -197,7 +197,7 @@ class j02180bookguestout {
 					$jrtbar = new jomres_toolbar();
 					$jrtb  = $jrtbar->startTable();
 					$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveBookout');
-					$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL("index.php?option=com_jomres&task=editBooking&contract_uid=$contractUid&Itemid=$Itemid"),'');
+					$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contractUid&Itemid=$Itemid"),'');
 					$jrtb .= $jrtbar->toolbarItem('printer','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT,$editable=false,$isLink=false));
 					$jrtb .= $jrtbar->endTable();
 					$output['JOMRESTOOLBAR']=$jrtb;
