@@ -2211,7 +2211,7 @@ function filterForm($selectname,$value,$format,$task="")
 	global $Itemid,$task;
 	$defaultValue=$_REQUEST[$selectname];
 	$javascript = "onchange=\"this.form.submit();\"";
-	$selecthtml="\n<form action=\JOMRES_SITEPAGE_URL."\" method=\"GET\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
+	$selecthtml="\n<form action=\"".JOMRES_SITEPAGE_URL."\" method=\"GET\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
 	$selecthtml .= "\n<option value=\"%\"></option>";
 	$selecthtml .= "\n<option value=\"%\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
 	if (count($value)>0)
@@ -3566,9 +3566,22 @@ function quote_smart($value)
 function makePopupLink($link,$text,$isLocalPage=TRUE,$width=550,$height=500)
 	{
 	global $mrConfig,$jomresConfig_live_site,$jomresConfig_sef;
-	//$popupButton= new JButtonPopup();
-	//var_dump($popupButton);exit;
 
+	$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width='.$width.',height='.$height.',directories=no,location=no';
+	$format="";
+	if (defined('_JOMRES_NEWJOOMLA') )
+		$format="&tmpl=component";
+		
+	if ( $jrConfig['useSSLinBookingform'] == 1 && $_REQUEST['task'] == "editGuest" )
+		{
+		$jomresConfig_live_site = str_replace("http://","https://",$link);
+		}
+		
+	$thelink="<a href=\"javascript:void window.open('".$link.$format."', 'win2', '".$status."');\" rel=\"nofollow\" title=\"\">".$text."</a>";
+	
+	
+	
+	/*
 	if ($mrConfig['popupsAllowed'])
 		{
 		$format="";
@@ -3584,7 +3597,7 @@ function makePopupLink($link,$text,$isLocalPage=TRUE,$width=550,$height=500)
 				if ($jomresConfig_sef=="1")
 					$indexphp=$jomresConfig_live_site."/index2.php";
 				else
-					$indexphp="index2.php";
+					$indexphp="";
 				}
 			}
 		else
@@ -3604,6 +3617,9 @@ function makePopupLink($link,$text,$isLocalPage=TRUE,$width=550,$height=500)
 			$indexphp=$jomresConfig_live_site."/index.php";
 		$thelink='<a href="'.jomresURL($indexphp.$link).'">'.$text.'</a>';
 		}
+	*/
+	
+	
 	$thelink=str_replace("&amp;","&",$thelink);
 	$thelink=str_replace("&","&amp;",$thelink);
 	return $thelink;

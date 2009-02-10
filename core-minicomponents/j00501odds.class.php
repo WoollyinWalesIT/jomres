@@ -97,10 +97,13 @@ class j00501odds {
 			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
+			// Disabled for v4 as the full url is passed to the make popup function
+			/*
 			$configurationPanel->setleft(_JOMRES_COM_A_POPUPSALLOWED);
 			$configurationPanel->setmiddle($lists['popupsAllowed']);
 			$configurationPanel->setright(_JOMRES_COM_A_POPUPSALLOWED_DESC);
 			$configurationPanel->insertSetting();
+			*/
 			
 			$configurationPanel->setleft(_JOMRES_COM_A_VISITORSCANBOOKONLINE);
 			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
