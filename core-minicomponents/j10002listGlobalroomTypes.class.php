@@ -31,7 +31,7 @@ class j10002listGlobalroomTypes
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listGlobalroomTypes', 'roomTypes.png', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes', 'roomTypes.png', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK);
 		}
 	
 	

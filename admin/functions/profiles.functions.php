@@ -107,9 +107,9 @@ function listMosUsers()
  			}
 		
 		$r['ACCESSLEVELIMAGE']=$accesslevel_img;
-		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=grantMosUser&userid='.$user->id.'&grantAct='.$authorise.'&username='.($user->username).'">'.$authorise_img.'</a>';
+		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&userid='.$user->id.'&grantAct='.$authorise.'&username='.($user->username).'">'.$authorise_img.'</a>';
 		if ($access_level>0)
-			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editProfile&id='.$user->id.'">'.$editIcon.'</a>';
+			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editProfile&id='.$user->id.'">'.$editIcon.'</a>';
 		else
 			$r['LINKTEXT']="&nbsp;";
 		$r['USERNAME']=$user->username;
@@ -263,9 +263,9 @@ function saveProfile()
 			$property_uid = doSelectSql($query,1);
 			$query="UPDATE #__jomres_managers SET `currentproperty`='$property_uid' WHERE userid = '".$userid."'";
 			if (!doInsertSql($query,FALSE)) trigger_error ("Unable to set current property, mysql db failure", E_USER_ERROR);
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 			}
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 		}
 		
 	
@@ -296,9 +296,9 @@ function grantMosUser()
 	if (doInsertSql($query,'') )
 		{
 		if ($grantAct=="y")
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=editProfile&id=".(int)$userid,_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=editProfile&id=".(int)$userid,_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 		else
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 		}
 	}
 

@@ -27,6 +27,7 @@ require_once('integration.php');
 
 $task = jomresGetParam( $_REQUEST, 'task', "" );
 
+
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'jomresxml.functions.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'siteconfig.functions.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'propertyfeatures.functions.php');
@@ -177,9 +178,9 @@ switch ($task) {
 	case "changeUserAccessLevel":
 		changeUserAccessLevel();
 		break;
-	//case "listMosUsers":
-	//	listMosUsers($option);
-	//	break;
+	case "listMosUsers":
+		listMosUsers($option);
+		break;
 	case "editProfile":
 		editProfile();
 		break;

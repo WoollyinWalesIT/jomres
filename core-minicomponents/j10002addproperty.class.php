@@ -32,7 +32,7 @@ class j10002addproperty
 			}
 		global $htmlFuncs,$indexphp;
 		if (!JOMRES_SINGLEPROPERTY )
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=addproperty', 'AddProperty.png', _JRPORTAL_CPANEL_ADDPROPERTY);
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=addproperty', 'AddProperty.png', _JRPORTAL_CPANEL_ADDPROPERTY);
 		}
 	
 	

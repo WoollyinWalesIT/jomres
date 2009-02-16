@@ -207,7 +207,7 @@ class j16000addplugin
 					define ("JOMRES_INSTALLER",1);
 					require_once ($pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
-				if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."task=showplugins");
+				if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
 				}
 			else
 				echo "There was an error while unpacking and moving the plugin";

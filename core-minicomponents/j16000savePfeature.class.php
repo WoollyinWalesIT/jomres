@@ -40,13 +40,13 @@ class j16000savePfeature
 			{
 			$query="INSERT INTO #__jomres_hotel_features (`hotel_feature_abbv`,`hotel_feature_full_desc`,`image`,`property_uid` )VALUES ('$hotel_feature_abbv','$hotel_feature_full_desc','$image','0')";
 			if (doInsertSql($query,''))
-				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listPfeatures",_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT);
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPfeatures",_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT);
 			}
 		else
 			{
 			$query="UPDATE #__jomres_hotel_features SET `image`='$image',`hotel_feature_abbv`='$hotel_feature_abbv',`hotel_feature_full_desc`='$hotel_feature_full_desc' WHERE hotel_features_uid='".(int)$propertyFeatureUid."' AND property_uid = '0'";
 			if (doInsertSql($query,''))
-				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listPfeatures",_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE);
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPfeatures",_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE);
 			}
 		}
 		

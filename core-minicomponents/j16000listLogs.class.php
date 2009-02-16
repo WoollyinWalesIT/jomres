@@ -51,7 +51,7 @@ class j16000listLogs
 				{
 				if (file_exists(JOMRES_SYSTEMLOG_PATH.$file))
 					{
-					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");
+					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");
 					$rows[]=$r;
 					$counter++;
 					}

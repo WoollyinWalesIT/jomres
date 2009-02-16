@@ -56,7 +56,7 @@ class j16000listcrates
 			else
 				$r['STYLE'] ="row1";
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$crate['id'].'" onClick="isChecked(this.checked);">';
-			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'task=editcrate&id='.$crate['id'].'">'.$editIcon.'</a>';
+			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editcrate&id='.$crate['id'].'">'.$editIcon.'</a>';
 			$r['TITLE']=$crate['title'];
 			$crateType = new crateTypes();
 			$crateType->id=$crate['type'];

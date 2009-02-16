@@ -31,7 +31,7 @@ class j10002listMosUsers
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listMosUsers', 'Vendors.png', _JOMRES_COM_MR_SHOWPROFILES);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listMosUsers', 'Vendors.png', _JOMRES_COM_MR_SHOWPROFILES);
 		}
 	
 	
