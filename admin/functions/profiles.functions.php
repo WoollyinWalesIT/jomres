@@ -32,8 +32,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
 function listMosUsers()
 	{
 	global $jomresConfig_live_site;
-	$query="SELECT id,name,username FROM #__users";
-	$userList = doSelectSql($query);
+	$userList = jomres_cmsspecific_getCMSUsers();
 	$userRowInfo="";
 	$tickIcon	= '<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/Tick.png" border="0">';
 	$crossIcon	= '<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/Cancel.png" border="0">';
@@ -83,7 +82,7 @@ function listMosUsers()
 		if (count($managers)>0 )
 			{
 			$access_level=0;
-			if (array_key_exists($user->id,$managers) )
+			if (array_key_exists($user['id'],$managers) )
 				{
 				$authorise="n";
 				$authorise_img=$tickIcon;
@@ -92,27 +91,27 @@ function listMosUsers()
 					$access_level= $userdeets->access_level;
 					$pu = $userdeets->pu;// Pu, flag that defines if a user is a super property manager.
 					}
-				if ($managers[$user->id]['access_level']=="1")
+				if ($managers[$user['id']]['access_level']=="1")
 					$accesslevel_img =$img_output_reception;
 				else
 					$accesslevel_img =$img_output_manager;
 					
-				if ($managers[$user->id]['pu'] == "1")
+				if ($managers[$user['id']]['pu'] == "1")
 					$accesslevel_img =$img_output_superpropertymanager;
 
-				$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '".(int)$user->id."'";
+				$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '".(int)$user['id']."'";
 				$propertyList= doSelectSql($query);
 				$numberOfProperties=count($propertyList);
 				}
  			}
 		
 		$r['ACCESSLEVELIMAGE']=$accesslevel_img;
-		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&userid='.$user->id.'&grantAct='.$authorise.'&username='.($user->username).'">'.$authorise_img.'</a>';
+		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&userid='.$user['id'].'&grantAct='.$authorise.'">'.$authorise_img.'</a>';
 		if ($access_level>0)
-			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editProfile&id='.$user->id.'">'.$editIcon.'</a>';
+			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editProfile&id='.$user['id'].'">'.$editIcon.'</a>';
 		else
 			$r['LINKTEXT']="&nbsp;";
-		$r['USERNAME']=$user->username;
+		$r['USERNAME']=$user['username'];
 		$r['NUMBEROFPROPERTIES']=$numberOfProperties;
 		$rows[]=$r;
 		}
@@ -217,9 +216,11 @@ function editProfile()
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = '.JOMRES_SITEPAGE_URL_ADMIN.';
 	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveProfile",$image);
-	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."task=listMosUsers",'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
+	
+	$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
@@ -278,28 +279,32 @@ function saveProfile()
  */
 function grantMosUser()
 	{
-	$userid = jomresGetParam( $_GET, 'userid', '' );
+	$userid = (int)jomresGetParam( $_GET, 'userid', 0 );
 	$grantAct = jomresGetParam( $_GET, 'grantAct', '' );
-	
-	$query="SELECT id,name,username FROM #__users";
-	$userList = doSelectSql($query);
-	foreach ($userList as $u)
+	if ($userid>0)
 		{
-		if ($u->id == $userid)
-			$username=$u->username;
-		}
-	$apikey=createNewAPIKey();
-	if ($grantAct=="y")
-		$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`apikey`)VALUES ('".(int)$userid."','$username','-1','1','-1','$apikey')";
-	else
-		$query="DELETE FROM #__jomres_managers WHERE userid = '".(int)$userid."'";
-	if (doInsertSql($query,'') )
-		{
+		$userList = jomres_cmsspecific_getCMSUsers();
+
+		foreach ($userList as $u)
+			{
+			if ($u['id'] == $userid)
+				$username=$u['username'];
+			}
+		$apikey=createNewAPIKey();
 		if ($grantAct=="y")
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=editProfile&id=".(int)$userid,_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`apikey`)VALUES ('".(int)$userid."','$username','-1','1','-1','$apikey')";
 		else
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			$query="DELETE FROM #__jomres_managers WHERE userid = '".(int)$userid."'";
+		if (doInsertSql($query,'') )
+			{
+			if ($grantAct=="y")
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=editProfile&id=".(int)$userid,_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			else
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			}
 		}
+	else
+		echo "Hmm, that userid is 0";
 	}
 
 ?>

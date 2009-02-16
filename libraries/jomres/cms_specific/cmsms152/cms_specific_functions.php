@@ -8,13 +8,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 function jomres_cmsspecific_getCMSUsers()
 	{
 	$users=array();
-	$query="SELECT id,name,username FROM #__users";
+	$query="SELECT user_id,username FROM #__users";
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{
 		foreach ($userList as $u)
 			{
-			$users[$id]=array("id"=>$u->id,"username"=>$u->username);
+			$users[$id]=array("id"=>$u->user_id,"username"=>$u->username);
 			}
 		}
 	return $users;
