@@ -31,7 +31,7 @@ class j10002touch_templates
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=touch_templates', 'EditText.png', "Touch templates");
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=touch_templates', 'EditText.png', "Touch templates");
 		}
 	
 	

@@ -31,7 +31,7 @@ class j10002showSiteConfig
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=showSiteConfig', 'GlobalConfiguration.png', _JOMRES_A);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig', 'GlobalConfiguration.png', _JOMRES_A);
 		}
 	
 	

@@ -58,10 +58,10 @@ function listPropertyTypes()
 		$rowInfo.="
 			<tr>
 				<td class=\"jradmin_subheader_la\" width=\"20\"><input type=\"checkbox\" id=\"cb".$counter."\" name=\"idarray[]\" value=\"".$ptypeData['id']."\" onClick=\"isChecked(this.checked);\"></td>
-				<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."task=editPropertyType&id=".$ptypeData['id']."\">".$editIcon."</a></td>
+				<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=editPropertyType&id=".$ptypeData['id']."\">".$editIcon."</a></td>
 				<td class=\"jradmin_subheader_la\">".$ptypeData['ptype']."</td>
 				<td class=\"jradmin_subheader_la\">".$ptypeData['ptype_desc']."</td>
-				<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."task=publishPropertyType&id=".$ptypeData['id']."\"><img src=\"".$ptypeData['published']."\" border=\"0\" /></a></td>
+				<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=publishPropertyType&id=".$ptypeData['id']."\"><img src=\"".$ptypeData['published']."\" border=\"0\" /></a></td>
 			</tr>
 			";
 		}
@@ -99,7 +99,7 @@ function publishPropertyType()
 		$query="UPDATE #__jomres_ptypes SET `published`='0' WHERE id = '$id'";
 	else
 		$query="UPDATE #__jomres_ptypes SET `published`='1' WHERE id = '$id'";
-	if (doInsertSql($query, FALSE)) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listPropertyTypes",_JOMRES_COM_PTYPES_SAVED) ;
+	if (doInsertSql($query, FALSE)) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",_JOMRES_COM_PTYPES_SAVED) ;
 	}
 
 /**
@@ -153,7 +153,7 @@ function editPropertyType()
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
 	$jrtb .= $jrtbar->customToolbarItem('savePropertyType',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="savePropertyType",$image);
-	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."task=listPropertyTypes",'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",'');
 	$jrtb .= $jrtbar->endTable();
 
 
@@ -185,7 +185,7 @@ function savePropertyType()
 		$query="INSERT INTO #__jomres_ptypes (`ptype`,`ptype_desc`) VALUES ('$ptype','$ptype_desc')";
 
 	if (!doInsertSql($query,FALSE)) echo "Nope";
-	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listPropertyTypes",_JOMRES_COM_PTYPES_SAVED);
+	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",_JOMRES_COM_PTYPES_SAVED);
 	}
 
 /**
@@ -217,7 +217,7 @@ function deletePropertyType()
 			}
 		}
 	if ($success)
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."task=listPropertyTypes",_JOMRES_COM_PTYPES_DELETED);
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",_JOMRES_COM_PTYPES_DELETED);
 	}
 
 ?>

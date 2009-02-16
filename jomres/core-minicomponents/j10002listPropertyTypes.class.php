@@ -31,7 +31,7 @@ class j10002listPropertyTypes
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs,$indexphp;
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=listPropertyTypes', 'propertyTypes.png', _JOMRES_COM_PTYPES_LIST_TITLE);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPropertyTypes', 'propertyTypes.png', _JOMRES_COM_PTYPES_LIST_TITLE);
 		}
 	
 	

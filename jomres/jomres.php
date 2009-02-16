@@ -55,6 +55,8 @@ if ( $_REQUEST['no_html']!="1")
 
 $customTextObj = new custom_text();
 
+//$allDefinedContants=get_defined_vars();
+//print_r($GLOBALS );
 
 // Logging needs to be enabled before the specific log will be created
 // Depreciated as of 3.3.1

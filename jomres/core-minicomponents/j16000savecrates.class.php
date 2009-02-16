@@ -71,7 +71,7 @@ class j16000savecrates
 			}
 		$result=$tr->commit($tr);
 		if ($result)
-			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."task=listproperties", '');
+			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=listproperties", '');
 		}
 
 

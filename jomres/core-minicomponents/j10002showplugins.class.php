@@ -33,10 +33,10 @@ class j10002showplugins
 		global $htmlFuncs,$indexphp;
 		if (function_exists("curl_init"))
 			{
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=showplugins', 'plugin_button.png', "Plugin Manager");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins', 'plugin_button.png', "Plugin Manager");
 			}
 		else
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'task=nocurl', 'pluginManagerDisabled.png', "Plugin Manager");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=nocurl', 'pluginManagerDisabled.png', "Plugin Manager");
 		}
 	
 	
