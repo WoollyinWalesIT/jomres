@@ -59,6 +59,8 @@ class j16000add_adhoc_item_to_bill
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
+				$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -103,6 +105,8 @@ class j16000add_adhoc_item_to_bill
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
+				$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );

@@ -58,6 +58,8 @@ class j16000showstats
 		$output['LIVESITE']=$jomresConfig_live_site;
 		$output['PAGETITLE']	= _JRPORTAL_STATS_PATETITLE;
 
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
