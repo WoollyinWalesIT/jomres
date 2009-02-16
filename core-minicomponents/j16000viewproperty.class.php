@@ -155,6 +155,8 @@ class j16000viewproperty
 			$yearviewgraphs_commissionEstimates[]=makeJsGraphOutput($graphLabels,$graphValues_commission,"vBar",$y,"yearviewgraph_commissionestimate_".$yearnumbercounter);
 			}
 
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+			
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );

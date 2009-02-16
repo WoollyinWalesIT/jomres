@@ -71,6 +71,7 @@ class j16000addproperty
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
