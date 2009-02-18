@@ -47,7 +47,8 @@ class jomSearch {
 
 		if (!isset($calledByModule) || empty($calledByModule) )
 			$calledByModule=jomresGetParam( $_REQUEST, 'calledByModule',"" );
-		if (!empty($calledByModule) )
+			
+		if (strlen($calledByModule)>0 )
 			{
 			$calledByModule=mysql_real_escape_string($calledByModule);
 			$this->calledByModule=$calledByModule;
@@ -55,11 +56,32 @@ class jomSearch {
 				$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.'/modules/'.$calledByModule.'/'.$calledByModule.'/';
 			else
 				$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.'/modules/'.$calledByModule.'/';
-			if (strlen($calledByModule)>0 )
-				{
-				$query="SELECT params FROM #__modules WHERE module = '$calledByModule'";
-				$p=doSelectSql($query,1);
-				}
+				
+			$vals = jomres_cmsspecific_getSearchModuleParameters($calledByModule);
+				
+			$moduleclass_sfx 	= $vals['moduleclass_sfx'];
+			//$useoverlibLabels 	= $params->get( 'useoverlibLabels',0 );
+			$useCols 			= $vals['useCols'];
+			$featurecols 		= $vals['featurecols'];
+			$geosearchtype 		= $vals['geosearchtype'];
+			$pn					= $vals['propertyname'];
+			$ptype 				= $vals['ptype'];
+			$room_type 			= $vals['room_type'];
+			$features 			= $vals['features'];
+			$description 		= $vals['description'];
+			$availability 		= $vals['availability'];
+
+			$geosearch_dropdown 	= $vals['geosearch_dropdown'];
+			$propertyname_dropdown 	= $vals['propertyname_dropdown'];
+			$ptype_dropdown 		= $vals['ptype_dropdown'];
+			$room_type_dropdown 	= $vals['room_type_dropdown'];
+			$features_dropdown 		= $vals['features_dropdown'];
+				
+			$priceranges			= $vals['priceranges'];
+			$pricerange_increments	= $vals['pricerange_increments'];
+			$selectcombo			= $vals['selectcombo'];
+			
+			/*
 			if (defined('_JOMRES_NEWJOOMLA'))
 				{
 				$vals=array();
@@ -123,6 +145,7 @@ class jomSearch {
 				
 				$selectcombo 			= $params->get( 'selectcombo',0 );
 				}
+			*/
 			}
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		if ($option!="com_jomres" && !JOMRES_OVERLIB_CALLED)

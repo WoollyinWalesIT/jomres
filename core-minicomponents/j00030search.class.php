@@ -43,7 +43,10 @@ class j00030search {
 			}
 		global $Itemid,$jomresConfig_live_site,$jomresConfig_lang,$mainframe,$jrConfig;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$Itemid,$version,$thisJRUser;
+		
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
+		
+		
 		$jrConfig=getSiteSettings();
 		unset ($sch);
 		$doSearch=false;
@@ -52,6 +55,7 @@ class j00030search {
 		$searchRestarted=false;
 		$showSearchOptions=true;
 
+		
 		if (!defined(_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) )
 			{
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/'.$jomresConfig_lang.'.php')) {
@@ -70,6 +74,7 @@ class j00030search {
 			$includedInModule=$componentArgs['includedInModule'];
 		if (isset($componentArgs['calledByModule']) )
 			$calledByModule=$componentArgs['calledByModule'];
+			
 		if ($option=="com_jomres" && !$includedInModule )
 			{
 			$doSearch=true;
@@ -700,6 +705,8 @@ class j00030search {
 
 			//if ($option=="com_jomres" && !$includedInModule)
 			//	var_dump($sch);
+			//var_dump($doSearch);exit;
+			/*
 			if (!$doSearch)
 				{
 				$stmpl = new patTemplate();
@@ -708,7 +715,8 @@ class j00030search {
 				$stmpl->addRows( 'search', $pageoutput );
 				$stmpl->displayParsedTemplate();
 				}
-			if ($doSearch )
+			*/
+			//if ($doSearch )
 				$sch->jomSearch_showresults();
 			unset ($sch);
 		}
