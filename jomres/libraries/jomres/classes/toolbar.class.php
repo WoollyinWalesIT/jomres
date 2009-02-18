@@ -51,7 +51,7 @@ class jomres_toolbar
 	*/
 	function spacer($width=40)
 		{
-		$image=$this->livesite.'/images/blank.png';
+		$image=$this->livesite.'/jomres/images/blank.png';
 		$link="";
 		$submit="";
 		$output='
