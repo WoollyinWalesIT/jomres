@@ -1,6 +1,30 @@
 /* CSS Document */
 
-.jomres_bt_tooltip
+.jomres_bt_tooltip_mainbody
+	{
+	width: 80px;
+	text-align: center;
+	border: 2px solid #666666;
+	padding: 5px;
+	background-color: #00FFFF;
+	height: 45px;
+	display: block;
+	float: left;
+	}
+	
+.jomres_bt_tooltip_hover_title
+	{
+	width: 80px;
+	text-align: center;
+	border: 2px solid #666666;
+	padding: 5px;
+	background-color: #00FFFF;
+	height: 45px;
+	display: block;
+	float: left;
+	}
+	
+.jomres_bt_tooltip_hover_content
 	{
 	width: 80px;
 	text-align: center;

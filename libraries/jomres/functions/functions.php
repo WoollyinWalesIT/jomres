@@ -19,14 +19,14 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-function jomres_makeTooltip($div,$hover_content="",$div_content="",$class="",$type="")
+function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
 	{
 	global $jomres_tooltips;
 	if (is_null($jomres_tooltips))
 		{
 		$jomres_tooltips = new jomres_tooltips();
 		}
-	return $jomres_tooltips->generate_tooltip($div,$hover_content,$div_content,$class,$type);
+	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
 	}
 
 // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
@@ -62,6 +62,8 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 			$calfileSought="calendar-".$jomresConfig_lang.".js";
 			if (file_exists('javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
 				$jrConfig['jscalendarLangfile']=$calfileSought;
+			else
+				$jrConfig['jscalendarLangfile']="calendar-en-GB.js";
 			}
 
 		if (!defined(JOMRES_NOHTML) )

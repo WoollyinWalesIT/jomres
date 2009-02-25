@@ -359,7 +359,7 @@ if ( $jrConfig['useSSLinBookingform'] == 1 && !_JOMRES_NEWJOOMLA )
 
 init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
 
-//echo jomres_makeTooltip("FRED","This is FRED's popup","I am the content of the div",$class="",$type="");
+//echo jomres_makeTooltip("FRED","<h1>This is FRED's popup</h1>","I am the content of the div",$class="",$type="");
 
 
 if (!$no_html)

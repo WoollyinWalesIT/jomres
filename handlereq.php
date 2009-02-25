@@ -27,6 +27,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Call 3: Calculates new room prices and constructs any warnings. Sets background colours of the messages field and returns the calculated prices, the messages when are in turn parsed by javascript in the booking form and displayed
 #
  */
+ 
 header('Content-type: text/html; utf-8');
 
 global $mrConfig,$jomressession,$property_uid;

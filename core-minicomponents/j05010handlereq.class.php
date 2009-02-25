@@ -41,8 +41,8 @@ class j05010handlereq {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresPath;
-		include($jomresPath.JRDS."handlereq.php");
+			
+		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'handlereq.php');
 		}
 
 	/**
