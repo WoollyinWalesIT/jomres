@@ -43,7 +43,7 @@ class jomres_temp_booking_handler
 			$this->timeout = $jomresConfig_lifetime*60;
 		else
 			$this->timeout = $jomresConfig_lifetime;
-	
+
 		$this->session_directory = JOMRESPATH_BASE."/sessions/";
 		if (!is_dir($this->session_directory) )
 			{

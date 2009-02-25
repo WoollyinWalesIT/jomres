@@ -740,7 +740,7 @@ class jomres_booking
 					$extra_deets['PERNIGHT']="";
 				$extra_deets['DESCRIPTION']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES) ));
 				$descriptionForOverlib=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES),false,true);
-				$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.$jomresConfig_live_site.'/components/com_jomres/images/info.png" />';
+				$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.$jomresConfig_live_site.'/jomres/images/info.png" />';
 				$checked="";
 				if ($this->extraAlreadySelected($ex->uid))
 					{
@@ -2020,7 +2020,7 @@ class jomres_booking
 			// Popup on image click
 			/*
 			$output.=" value=\"".$dateValue."\" id=\"a".$randomID."\"/>
-			<a class=\"dateinput_button\" href=\"#\"  id=\"a".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/components/com_jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
+			<a class=\"dateinput_button\" href=\"#\"  id=\"a".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
 			<script type=\"text/javascript\">
 			Calendar.setup({
 				inputField	 :	\"a".$randomID."\",		   //*
@@ -2034,7 +2034,7 @@ class jomres_booking
 			";
 			*/
 			$output.=" value=\"".$dateValue."\" id=\"a".$randomID."\"/>
-			<img src=\"".$jomresConfig_live_site."/components/com_jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" >
+			<img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" >
 			<script type=\"text/javascript\">
 			Calendar.setup({
 				inputField	 :	\"a".$randomID."\",		   //*
