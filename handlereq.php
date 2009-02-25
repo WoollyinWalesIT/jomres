@@ -63,6 +63,7 @@ $bkg =$MiniComponents->triggerEvent('05000'); // Create the new booking object
 $isSingleRoomProperty=$bkg->getSingleRoomPropertyStatus();
 $bkg->rebuildIgnoreList=$doNotRebuildRoomsListOnTheseFieldsArray;
 $bkg->currentField=$field;
+
 ob_start();
 switch ($field)
 	{

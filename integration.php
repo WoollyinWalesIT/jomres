@@ -338,6 +338,7 @@ require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php'
 require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomresxmlparser.class.php');
 require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
 require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
+require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_tooltips.class.php');
 
 require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
 require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');

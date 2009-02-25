@@ -19,6 +19,15 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+function jomres_makeTooltip($div,$hover_content="",$div_content="",$class="",$type="")
+	{
+	global $jomres_tooltips;
+	if (is_null($jomres_tooltips))
+		{
+		$jomres_tooltips = new jomres_tooltips();
+		}
+	return $jomres_tooltips->generate_tooltip($div,$hover_content,$div_content,$class,$type);
+	}
 
 // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
 // The string will already have been cleaned by filter var sanitize string.
@@ -45,18 +54,9 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
 
 
-
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
-		// if (defined('_JOMRES_NEWJOOMLA') )
-			// {
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/includes/js/overlib_mini.js"></script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/includes/js/overlib_hideform_mini.js"></script>');
-			// }
-		// else
-			// mosCommonHTML::loadOverlib();
-
 		if ($jrConfig['autoDetectJSCalendarLang'] == "1")
 			{
 			$calfileSought="calendar-".$jomresConfig_lang.".js";
@@ -69,26 +69,41 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 			if (!defined("JOMRES_CALENDARJSCALLED") )
 				 {
 				 define ('JOMRES_CALENDARJSCALLED',1);
-				echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>';
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>';
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
+				echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />
+				';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>
+				';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>
+				';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>
+				';
 				}
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
-			echo '<script type="text/javascript">jQuery.noConflict();</script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/excanvas-compressed.js"></script>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.bt.min.js"></script>';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>
+			';
+			echo '<script type="text/javascript">jQuery.noConflict();</script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/excanvas-compressed.js"></script>
+			';
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.bt.js"></script>
+			';
 
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>
+				';
 			if ($thisJRUser->userIsManager)
 				{
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>';
+				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>
+				';
 				}
 			}
 			

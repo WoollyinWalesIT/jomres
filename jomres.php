@@ -40,6 +40,8 @@ global $thisJomresPropertyDetails,$customTextObj;
 
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
+
+
 /**
 #
  * Various includes
@@ -54,6 +56,8 @@ if ( $_REQUEST['no_html']!="1")
 	}
 
 $customTextObj = new custom_text();
+
+
 
 //$allDefinedContants=get_defined_vars();
 //print_r($GLOBALS );
@@ -354,6 +358,9 @@ if ( $jrConfig['useSSLinBookingform'] == 1 && !_JOMRES_NEWJOOMLA )
 	}
 
 init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
+
+//echo jomres_makeTooltip("FRED","This is FRED's popup","I am the content of the div",$class="",$type="");
+
 
 if (!$no_html)
 	{
@@ -1163,8 +1170,17 @@ if ($numberOfPropertiesInSystem>0)
 
 	if (!$no_html)
 		{
+		global $jomres_tooltips;
+		
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		/*
+		if (!is_null($jomres_tooltips))
+			{
+			$pageoutput=array(array('javascript'=>$jomres_tooltips->get_javascript()));
+			$tmpl->addRows( 'bottom',$pageoutput);
+			}
+		*/
 		$tmpl->readTemplatesFromInput( 'bottom.html');
 		$tmpl->displayParsedTemplate();
 		}
