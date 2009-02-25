@@ -156,7 +156,7 @@ function getResponse_particulars(field,value)
 	{
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: field, 'value': value },
 		function(data)
 			{
@@ -170,7 +170,7 @@ function getResponse_guesttype(typeid,value)
 	{
 	HideRoomsList();
 	blockInterface('guesttype',200);
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: 'guesttype', 'typeid': typeid ,'value': value },
 		function(data)
 			{
@@ -183,7 +183,7 @@ function getResponse_guesttype(typeid,value)
 function getResponse_rooms(field,value) {
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -194,7 +194,7 @@ function getResponse_rooms(field,value) {
 }
 function getResponse_extras(field,value,theId) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -205,7 +205,7 @@ function getResponse_extras(field,value,theId) {
 }
 function getResponse(field,value) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -216,7 +216,7 @@ function getResponse(field,value) {
 
 function getResponse_existing(field,value) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -243,7 +243,7 @@ function getResponse_guest()
 	var tel_mobile 		=jQuery('#tel_mobile').val();
 	var eemail 			=jQuery('#eemail').val();
 
-	url = ajaxurl+'?option=com_jomres&task=handlereq&no_html=1';
+	url = ajaxurl+'&task=handlereq&no_html=1';
 	result =checkaddressfields();
 
 	if (result)
@@ -262,7 +262,7 @@ function getResponse_guest()
 	}
 
 function show_log(lastfield) {
-	jQuery.get(ajaxurl+'?option=com_jomres&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
 		{ field: 'show_log','lastfield': lastfield },
 		function(data)
 			{
@@ -643,7 +643,7 @@ function validate()
 
 function submitBooking()
 	{
-	document.ajaxform.action = livesite+"/index.php?option=com_jomres&task=confirmbooking"
+	document.ajaxform.action = livesite+"&task=confirmbooking"
 	document.ajaxform.submit();	
 	}
 	
