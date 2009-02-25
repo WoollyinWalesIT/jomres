@@ -41,7 +41,8 @@ class j05020dobooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		require_once(JOMRESPATH_BASE.JRDS."dobooking.php");
+		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'dobooking.php');
+		
 		global $mrConfig,$property_uid;
 		if ( $mrConfig['singleRoomProperty'] || $mrConfig['fixedPeriodBookings'] == "1" )
 			{

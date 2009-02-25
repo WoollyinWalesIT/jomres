@@ -328,7 +328,7 @@ function blockInterface(field,fadetime)
 
 	if (field == "")
 		message = blockui_recheckingroomavailability;
-	jQuery('div.block_ui_bookingform').block('<img src="'+livesite+'/components/com_jomres/images/31.gif" /> <h3>'+message+'</h3>',{ border:'1px solid #016191'}); 
+	jQuery('div.block_ui_bookingform').block('<img src="'+livesite+'/jomres/images/31.gif" /> <h3>'+message+'</h3>',{ border:'1px solid #016191'}); 
 	}
 
 	

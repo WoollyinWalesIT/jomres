@@ -130,6 +130,49 @@ function dateStatus(date) {
 									</div>
 								</td>
 							</tr>
+			<tr>
+				<td class="bformrightcol2" valign="top">
+					<table border="0" width="100%">
+						<tr id="roomalert_top" class="roomalert_off">
+							<td>
+								<div id="roomalert_top">
+									<div>&nbsp;</div>
+								</div>
+							</td>
+						</tr>
+						
+						
+						
+						<tr class="roomslist_header">
+							<td valign="top">
+								<div class="roomsListWrapper">
+									<div class="roomsListInnerWrapper">
+										{AJAXFORM_AVAILABLE_DESC}
+										<div id="selectedRooms" class="roomslist">
+											{SELECTEDROOM}
+										</div>
+										<div id="availRooms" class="roomslist">
+											{AVAILABLEROOMS}
+										</div>
+									</div>
+								 </div>
+							</td>
+						</tr>
+						<tr id="roomalert_bottom">
+							<td>
+								<div id="roomalert_bottom">&nbsp;</div>
+							</td>
+						</tr>
+						<patTemplate:tmpl name="horiz_messages">
+						<tr>
+							<td>
+								<div class="small">{ESTIMATEWARNING}</div>
+							<td>
+						</td>
+						</patTemplate:tmpl>
+					</table>
+				</td>
+			</tr>
 							<tr>
 								<td valign="top">
 									<div id="extrascontainer">
@@ -305,38 +348,6 @@ function dateStatus(date) {
 						<!--Hidden Fields-->
 						<div id="totalinparty"></div>
 					</div>
-				</td>
-				<td class="bformrightcol" valign="top">
-					<table width="150" border="0">
-						<tr id="roomalert_top" class="roomalert_off">
-							<td>
-								<div id="roomalert_top">
-									<div>&nbsp;</div>
-								</div>
-							</td>
-						</tr>
-
-						<tr class="roomslist_header">
-							<td valign="top">
-								<div class="roomsListWrapper">
-									<div class="roomsListInnerWrapper">
-										{AJAXFORM_AVAILABLE_DESC}
-										<div id="selectedRooms" class="roomslist">
-											{SELECTEDROOM}
-										</div>
-										<div id="availRooms" class="roomslist">
-											{AVAILABLEROOMS}
-										</div>
-									</div>
-								 </div>
-							</td>
-						</tr>
-						<tr id="roomalert_bottom">
-							<td>
-								<div id="roomalert_bottom">&nbsp;</div>
-							</td>
-						</tr>
-					</table>
 				</td>
 			</tr>
 		</table>

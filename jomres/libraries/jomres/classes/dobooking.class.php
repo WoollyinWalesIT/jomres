@@ -2861,9 +2861,11 @@ class jomres_booking
 		{
 		$return_output="";
 		$this->setErrorLog("listCurrentlySelectedRooms::Requested rooms: ".gettype($this->requestedRoom)  );
+		
 		if (!empty($this->requestedRoom) )
 			{
-			$return_output='<div id="roombuttoncontainer_selected"><div id="roombutton_selected"><dl>';
+			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected"><dl><table class="bformleftcol" valign="top" width="100%">';
+			$return_output .= $this->makeTariffHeaders();
 			foreach ($this->requestedRoom as $rr)
 				{
 				$currentUids=explode("^",$rr);
@@ -2874,9 +2876,9 @@ class jomres_booking
 				}
 			foreach ($roomDeets as $rm)
 				{
-				$return_output .= '<dt>'.$rm.'</dt>';
+				$return_output .= $rm;
 				}
-			$return_output .='</dl></div></div>';
+			$return_output .='</table></dl></div></div>';
 			}
 		return $return_output;
 		}
@@ -3479,10 +3481,12 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	 */
 	function generateRoomsList($roomAndTariffArray)
 		{
-		$return_output='<div id="roombuttoncontainer"><div id="roombutton"><dl>';
+		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><dl><table class="bformleftcol" valign="top" width="100%">';
 		if ($this->cfg_returnRoomsLimit!="0" && $this->cfg_returnRoomsLimit!="")
 			$roomAndTariffArray=$this->limitRoomsList($roomAndTariffArray);
 		$this->setErrorLog("generateRoomsList::Generating rooms list");
+		$return_output .= $this->makeTariffHeaders();
+		
 		if ($this->checkArrivalDate($this->arrivalDate) )
 			{
 			if (count($roomAndTariffArray)>0 )
@@ -3504,24 +3508,21 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 						$roomTariffOutputText=$result['roomandtariffinfo'];
 						$roomUidArray[]=$roomuid;
 						$tariffUidArray[]=$tariffuid;
-						//$roomDeets[] = jomresHTML::makeOption( $roomTariffOutputId, $roomTariffOutputText );
 						$roomDeets[] = $this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
-						//$return_output = jomresHTML::selectList( $roomDeets, 'requestedRoom', 'size="20" class="inputbox" multiple="true" onMouseDown="GetCurrentListValues(this);" onchange="FillListValues(this); getResponse(\'requestedRoom\',this.value );" ', 'value', 'text', "" );
 						foreach ($roomDeets as $rm)
 							{
-							$return_output .= jr_gettext('_JOMRES_BOOKITNOW',_JOMRES_BOOKITNOW,false,false).'<dt>'.$rm.'</dt>';
+							$return_output .= jr_gettext('_JOMRES_BOOKITNOW',_JOMRES_BOOKITNOW,false,false).$rm;
 							}
 						}
 					else
 						{
-						//$this->setErrorLog( "generateRoomsList::".var_dump($result) );
 						$return_output=jr_gettext('_JOMRES_SRP_WEHAVEVACANCIES',_JOMRES_SRP_WEHAVEVACANCIES,false,false).'<font color="white">~</font><div id="availRooms" class="roomslist"></div>';
 						$this->addToSelectedRooms($result['requestedRoom']);
 						}
 					$counter++;
 					}
 				if ($this->cfg_singleRoomProperty == "0" )
-					$return_output .='</dl></div></div>';
+					$return_output .='</table></dl></div></div>';
 				}
 			else
 				{
@@ -3589,27 +3590,16 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		$tariffTitle=$this->allPropertyTariffs[$tariffuid]['rate_title'];
 		$roomTariffOutputId=$roomuid."^".$tariffuid;
 		$roomTariffOutputText="";
-		/*
-		if (!isset($this->cfg_showRoomImageInBookingFormOverlib))
-			$this->cfg_showRoomImageInBookingFormOverlib = "1";
-		if ($this->cfg_showRoomImageInBookingFormOverlib == "1")
-			$roomTariffOutputText.='<img src="'.$this->roomImagePath.'" border="0" width="20" height="20"><br/>';
-		*/
-		//echo "<img src=".$roomStuff['ROOMTYPEIMAGE']." />";exit;
+
 		$classId=$this->allPropertyRooms[$roomuid]['room_classes_uid'];
 
 		$typeImage =$this->allRoomClasses[$classId]['image'];
 
 		if ($this->cfg_bookingform_roomlist_showroomno ==  "1")
-			$roomTariffOutputText.=$room_number." "."<img src=\"".$typeImage."\" />";
-		if ($this->cfg_bookingform_roomlist_showroomname  ==  "1")
-			$roomTariffOutputText.=$room_name." ";
-		if ($this->cfg_bookingform_roomlist_showtarifftitle ==  "1")
-			$roomTariffOutputText.=$tariffTitle." ";
+			$roomTariffOutputText.="<img src=\"".$typeImage."\" />";
+
 		return array('requestedRoom'=>$roomTariffOutputId, 'roomandtariffinfo'=>$roomTariffOutputText);
 		}
-
-
 
 	/**
 	#
@@ -3618,6 +3608,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	 */
 	function makeRoomOverlibdata($roomUid,$tariffUid,$roomTariffOutputId,$roomTariffOutputText,$removing=false)
 		{
+		
 		$tariffStuff=$this->GetTariffDetails($tariffUid);
 		$roomStuff=$this->GetRoomDetails($roomUid);
 		if (!$removing)
@@ -3625,12 +3616,9 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		else
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE',_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE,false,false));
 
-		//echo $caption;
-		//$caption=str_replace("'","&acute;",$caption);
-		//$caption=htmlentities($caption,ENT_QUOTES);
-		//$caption=addslashes($caption);
-
+		/*
 		$tariffText="";
+		
 		$roomheader="";
 		$roomheader.="<b>".$roomStuff['HEADER_ROOMTYPE']."&nbsp;".$roomStuff['ROOMTYPE']."</b>";
 
@@ -3678,7 +3666,31 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 			$data="<table><tr><td colspan=2><center><img src=".$this->roomImagePath." width=100 height=100 border=1 ></center></td></tr><tr><td colspan=2><center>$roomheader</center></td></tr><tr><td>$roomText</td><td>$tariffText</td></tr></table>";
 		else
 			$data="<table><tr><td>$roomText</td><td>$tariffText</td></tr></table>";
-		$overlib='<a href="javascript:void(0);" onmouseover="return overlib(\''.$data.'\', CAPTION, \''.$caption.'\', WIDTH, 300, ABOVE, RIGHT );" onmouseout="return nd(0);"  onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomTariffOutputText.'</a><br/>';
+		*/
+
+		//$overlib='<a href="javascript:void(0);" onmouseover="return overlib(\'&nbsp\', CAPTION, \''.$caption.'\', WIDTH, 300, ABOVE, RIGHT );" onmouseout="return nd(0);"  onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomTariffOutputText.'</a>'.$data.'<br/>';
+
+		$currfmt = new jomres_currency_format();
+		
+		if ($this->tariffModel == "2")
+			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
+
+		if ($roomStuff['DISABLEDACCESS'] == 1)
+			$disabledAccess= jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
+		else
+			$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO) ;
+					
+		$overlib='<tr>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomTariffOutputText.'</a></td>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomStuff['ROOMNUMBER'].'</a></td>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomStuff['ROOMNAME'].'</a></td>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomStuff['ROOMTYPE'].'</a></td>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$tariffStuff['TITLE'].'</a></td>
+			<td>'.$this->cfg_currency.$currfmt->get_formatted($tariffStuff['RATEPERNIGHT']).'</td>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomStuff['DISABLEDACCESS'].'</a></td>
+			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomStuff['MAXPEOPLE'].'</a></td>
+			</tr>';
+
 		return $overlib;
 		}
 
@@ -3799,6 +3811,127 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		return $output;
 		}
 
+		
+	/**
+	#
+	 * We will estimate the averate rate over the booking period using this modified and cut down version of the average calculation function
+	#
+	 */
+	function estimate_AverageRate($roomUid,$tariffUid)
+		{
+		global $mrConfig,$tmpBookingHandler;
+		$this->setErrorLog("estimate_AverageRate:: Started");
+		$dateRangeArray=explode(",",$this->dateRangeString);
+		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
+		$total=0.00;
+		$stayDays=$this->stayDays;
+
+		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
+		$roomsOfType=array();
+		$roomsOfType[$room_type]=1;
+		$tariffsArray = array($tariffUid);
+		$gor=genericOr($tariffsArray,'tariff_id');
+		$query = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE ".$gor;
+		$tarifftypeids = doSelectSql($query);
+
+		if (count($tarifftypeids)>0)
+			{
+			
+			foreach ($tarifftypeids as $t)
+				{
+				$query="SELECT tariff_id FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id ='".$t->tarifftype_id."'";
+				$allTariffIds = doSelectSql($query);
+				$xreffed=array();
+				foreach ($allTariffIds as $xref)
+					{
+					$xreffed[]=$xref->tariff_id;
+					}
+				$gor=genericOr($xreffed,'rates_uid');
+				$query="SELECT `rates_uid`,`validfrom` ,`validto`,`mindays`,`maxdays`,minpeople,maxpeople,`roomrateperday`,roomclass_uid FROM #__jomres_rates WHERE ".$gor;
+				$rateList = doSelectSql($query);
+				
+				foreach ($rateList as $rate)
+					{
+					$date_elements  = explode("/",$rate->validfrom);
+					$unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+					$date_elements  = explode("/",$rate->validto);
+					$unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+					foreach ($dateRangeArray as $date )
+						{
+						$pass=false;
+						$date_elements  = explode("/",$date);
+						$unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+
+						if (count($numberOfGuestTypes) >0)
+							{
+							if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) && ($this->total_in_party >= $rate->minpeople &&  $this->total_in_party <= $rate->maxpeople ) )
+								$pass=true;
+							}
+						else
+							{
+							if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) )
+								$pass=true;
+							}
+						
+						if($pass)
+							{
+							$tmp_rate=$rate->roomrateperday;
+							$total+=$tmp_rate ;
+							}
+						else
+							$this->setErrorLog("estimate_AverageRate::Tariff id failed to pass checks ".$total);
+						}
+					}
+				}
+			}
+		$rpn=($total)/$stayDays;
+		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
+			{
+			$rpn=$rpn/7;
+			}
+		return $rpn;
+		}
+		
+	function makeTariffHeaders()
+		{
+		$return_output="";
+		if ($this->cfg_singleRoomProperty == "1" )
+			return $return_output;
+			
+		$tariffStuff['HTITLE']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,false,false));
+	 	$tariffStuff['HDESC']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_DESC',_JOMRES_FRONT_TARIFFS_DESC,false,false));
+	 	$tariffStuff['HSTARTS']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_STARTS',_JOMRES_FRONT_TARIFFS_STARTS,false,false));
+	 	$tariffStuff['HENDS']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_ENDS',_JOMRES_FRONT_TARIFFS_ENDS,false,false));
+	 	$tariffStuff['HMINDAYS']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_MINDAYS',_JOMRES_FRONT_TARIFFS_MINDAYS,false,false));
+	 	$tariffStuff['HMAXDAYS']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_MAXDAYS',_JOMRES_FRONT_TARIFFS_MAXDAYS,false,false));
+	 	$tariffStuff['HMINPEEPS']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS',_JOMRES_FRONT_TARIFFS_MINPEEPS,false,false));
+	 	$tariffStuff['HMAXPEEPS']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS',_JOMRES_FRONT_TARIFFS_MAXPEEPS,false,false));
+		if ($this->cfg_tariffChargesStoredWeeklyYesNo!="1")
+			$tariffStuff['HRATEPERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY,false,false) );
+		else
+			$tariffStuff['HRATEPERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK,false,false) );
+		
+		$roomRow['HEADER_ROOMNUMBER']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER,false,false) );
+		$roomRow['HEADER_ROOMTYPE']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE,false,false) );
+		$roomRow['HEADER_SMOKING']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING,false,false) );
+		$roomRow['HEADER_ROOMNAME']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME,false,false) );
+		$roomRow['HEADER_ROOMFLOOR']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR,false,false) );
+		$roomRow['HEADER_DISABLEDACCESS']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS,false,false) );
+		$roomRow['HEADER_MAXPEOPLE']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE,false,false) );
+		$roomRow['HEADER_FEATURES']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST',_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST,false,false) );
+
+		$return_output='<tr>
+			<th>&nbsp;</th><th>'.$roomRow['HEADER_ROOMNUMBER'].'</th>
+			<th>'.$roomRow['HEADER_ROOMNAME'].'</th>
+			<th>'.$roomRow['HEADER_ROOMTYPE'].'</th>
+			<th>'.$tariffStuff['HTITLE'].'</th>
+			<th>'.$tariffStuff['HRATEPERNIGHT'].'</th>
+			<th>'.$roomRow['HEADER_DISABLEDACCESS'].'</th>
+			<th>'.$roomRow['HEADER_MAXPEOPLE'].'</th>
+			</tr>';
+		
+		return $return_output;
+		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
