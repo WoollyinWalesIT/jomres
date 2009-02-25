@@ -1,4 +1,17 @@
 /* CSS Document */
+
+.jomres_bt_tooltip
+	{
+	width: 80px;
+	text-align: center;
+	border: 2px solid #666666;
+	padding: 5px;
+	background-color: #00FFFF;
+	height: 45px;
+	display: block;
+	float: left;
+	}
+	
 .panelwrapper 
 	{
 	text-align: left;

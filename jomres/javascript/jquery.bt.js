@@ -21,6 +21,8 @@
  *
  */
 
+// Modified by Vince Wooll (Woollyinwales IT) to enable it to work properly with jQuery noconflict
+ 
 /**
  * @credit Inspired by Karl Swedberg's ClueTip
  *    (http://plugins.learningjquery.com/cluetip/), which in turn was inspired
@@ -102,9 +104,9 @@ jQuery.fn.bt = function(content, options) {
      */
 
     if (opts.killTitle) {
-      $(this).find('[title]').andSelf().each(function() {
-        if (!$(this).attr('bt-xTitle')) {
-          $(this).attr('bt-xTitle', $(this).attr('title')).attr('title', '');
+      jQuery(this).find('[title]').andSelf().each(function() {
+        if (!jQuery(this).attr('bt-xTitle')) {
+          jQuery(this).attr('bt-xTitle', jQuery(this).attr('title')).attr('title', '');
         }
       });
     }    
@@ -120,11 +122,11 @@ jQuery.fn.bt = function(content, options) {
         out: function() {
           this.btOff();
         }});
-      $(this).hoverIntent(hoverOpts);
+      jQuery(this).hoverIntent(hoverOpts);
     
     }
     else if (opts.trigger[0] == 'hover') {
-      $(this).hover(
+      jQuery(this).hover(
         function() {
           this.btOn();
         },
@@ -136,7 +138,7 @@ jQuery.fn.bt = function(content, options) {
     else if (opts.trigger[0] == 'now') {
       // toggle the on/off right now
       // note that 'none' gives more control (see below)
-      if ($(this).hasClass('bt-active')) {
+      if (jQuery(this).hasClass('bt-active')) {
         this.btOff();
       }
       else {
@@ -150,7 +152,7 @@ jQuery.fn.bt = function(content, options) {
       // $('#selector').btOff();
     }
     else if (opts.trigger.length > 1 && opts.trigger[0] != opts.trigger[1]) {
-      $(this)
+      jQuery(this)
         .bind(opts.trigger[0], function() {
           this.btOn();
         })
@@ -160,8 +162,8 @@ jQuery.fn.bt = function(content, options) {
     }
     else {
       // toggle using the same event
-      $(this).bind(opts.trigger[0], function() {
-        if ($(this).hasClass('bt-active')) {
+      jQuery(this).bind(opts.trigger[0], function() {
+        if (jQuery(this).hasClass('bt-active')) {
           this.btOff();
         }
         else {
@@ -176,7 +178,7 @@ jQuery.fn.bt = function(content, options) {
      *  Any element that has been initiated
      */
     this.btOn = function () {
-      if (typeof $(this).data('bt-box') == 'object') {
+      if (typeof jQuery(this).data('bt-box') == 'object') {
         // if there's already a popup, remove it before creating a new one.
         this.btOff();
       }
@@ -185,23 +187,23 @@ jQuery.fn.bt = function(content, options) {
       opts.preShow.apply(this);
       
       // turn off other tips
-      $(jQuery.bt.vars.closeWhenOpenStack).btOff();
+      jQuery(jQuery.bt.vars.closeWhenOpenStack).btOff();
       
       // add the class to the target element (for hilighting, for example)
       // bt-active is always applied to all, but activeClass can apply another
-      $(this).addClass('bt-active ' + opts.activeClass);
+      jQuery(this).addClass('bt-active ' + opts.activeClass);
 
       if (contentSelect && typeof opts.ajaxPath != 'string') {
         // bizarre, I know
         if (opts.killTitle) {
           // if we've killed the title attribute, it's been stored in 'bt-xTitle' so get it..
-          $(this).attr('title', $(this).attr('bt-xTitle'));
+          jQuery(this).attr('title', jQuery(this).attr('bt-xTitle'));
         }
         // then evaluate the selector... title is now in place
         content = eval(opts.contentSelector);
         if (opts.killTitle) {
           // now remove the title again, so we don't get double tips
-          $(this).attr('title', '');
+          jQuery(this).attr('title', '');
         }
       }
       
@@ -275,13 +277,13 @@ jQuery.fn.bt = function(content, options) {
 
       // now we start actually figuring out where to place the tip
       
-      var offsetParent = $(this).offsetParent();
-      var pos = $(this).btPosition();
+      var offsetParent = jQuery(this).offsetParent();
+      var pos = jQuery(this).btPosition();
       // top, left, width, and height values of the target element
-      var top = numb(pos.top) + numb($(this).css('margin-top')); // IE can return 'auto' for margins
-      var left = numb(pos.left) + numb($(this).css('margin-left'));
-      var width = $(this).outerWidth();
-      var height = $(this).outerHeight();
+      var top = numb(pos.top) + numb(jQuery(this).css('margin-top')); // IE can return 'auto' for margins
+      var left = numb(pos.left) + numb(jQuery(this).css('margin-left'));
+      var width = jQuery(this).outerWidth();
+      var height = jQuery(this).outerHeight();
       
       if (typeof content == 'object') {
         // if content is a DOM object (as opposed to text)
@@ -292,32 +294,32 @@ jQuery.fn.bt = function(content, options) {
       }
       
       // create the tip content div, populate it, and style it
-      var $text = $('<div class="bt-content"></div>').append(content).css({padding: opts.padding, position: 'absolute', width: opts.width, zIndex: opts.textzIndex}).css(opts.cssStyles);
+      var $text = jQuery('<div class="bt-content"></div>').append(content).css({padding: opts.padding, position: 'absolute', width: opts.width, zIndex: opts.textzIndex}).css(opts.cssStyles);
       // create the wrapping box which contains text and canvas
       // put the content in it, style it, and append it to the same offset parent as the target
-      var $box = $('<div class="bt-wrapper"></div>').append($text).addClass(opts.cssClass).css({position: 'absolute', width: opts.width, zIndex: opts.wrapperzIndex}).appendTo(offsetParent);
+      var $box = jQuery('<div class="bt-wrapper"></div>').append($text).addClass(opts.cssClass).css({position: 'absolute', width: opts.width, zIndex: opts.wrapperzIndex}).appendTo(offsetParent);
       
       // use bgiframe to get around z-index problems in IE6
       // http://plugins.jquery.com/project/bgiframe
-      if ($.fn.bgiframe) {
+      if (jQuery.fn.bgiframe) {
         $text.bgiframe();
         $box.bgiframe();  
       }
 
-      $(this).data('bt-box', $box);
+      jQuery(this).data('bt-box', $box);
 
       // see if the text box will fit in the various positions
-      var scrollTop = numb($(document).scrollTop());
-      var scrollLeft = numb($(document).scrollLeft());
-      var docWidth = numb($(window).width());
-      var docHeight = numb($(window).height());
+      var scrollTop = numb(jQuery(document).scrollTop());
+      var scrollLeft = numb(jQuery(document).scrollLeft());
+      var docWidth = numb(jQuery(window).width());
+      var docHeight = numb(jQuery(window).height());
       var winRight = scrollLeft + docWidth;
       var winBottom = scrollTop + docHeight;
       var space = new Object();
-      space.top = $(this).offset().top - scrollTop;
-      space.bottom = docHeight - (($(this).offset().top + height) - scrollTop);
-      space.left = $(this).offset().left - scrollLeft;
-      space.right = docWidth - (($(this).offset().left + width) - scrollLeft);
+      space.top = jQuery(this).offset().top - scrollTop;
+      space.bottom = docHeight - ((jQuery(this).offset().top + height) - scrollTop);
+      space.left = jQuery(this).offset().left - scrollLeft;
+      space.right = docWidth - ((jQuery(this).offset().left + width) - scrollLeft);
       var textOutHeight = numb($text.outerHeight());
       var textOutWidth = numb($text.outerWidth());
       if (opts.positions.constructor == String) {
@@ -504,7 +506,7 @@ jQuery.fn.bt = function(content, options) {
           break;
       } // </ switch >
 
-      var canvas = $('<canvas width="'+ (numb($text.outerWidth(true)) + opts.strokeWidth*2) +'" height="'+ (numb($text.outerHeight(true)) + opts.strokeWidth*2) +'"></canvas>').appendTo($box).css({position: 'absolute', top: $text.btPosition().top, left: $text.btPosition().left, zIndex: opts.boxzIndex}).get(0);
+      var canvas = jQuery('<canvas width="'+ (numb($text.outerWidth(true)) + opts.strokeWidth*2) +'" height="'+ (numb($text.outerHeight(true)) + opts.strokeWidth*2) +'"></canvas>').appendTo($box).css({position: 'absolute', top: $text.btPosition().top, left: $text.btPosition().left, zIndex: opts.boxzIndex}).get(0);
 
       // if excanvas is set up, we need to initialize the new canvas element
       if (typeof G_vmlCanvasManager != 'undefined') {
@@ -576,7 +578,7 @@ jQuery.fn.bt = function(content, options) {
             height: height,
             opacity: '.2'
           }).appendTo(offsetParent);
-        $(this).data('overlay', overlay);
+        jQuery(this).data('overlay', overlay);
       }
 
       var animParams = {opacity: 1};
@@ -607,7 +609,7 @@ jQuery.fn.bt = function(content, options) {
       // stick this element into the clickAnywhereToClose stack
       if (opts.clickAnywhereToClose) {
         jQuery.bt.vars.clickAnywhereStack.push(this);
-        $(document).click(jQuery.bt.docClick);
+        jQuery(document).click(jQuery.bt.docClick);
       }
       
       // stick this element into the closeWhenOthersOpen stack
@@ -626,15 +628,15 @@ jQuery.fn.bt = function(content, options) {
       // trigger preHide function
       opts.preHide.apply(this);
 
-      var box = $(this).data('bt-box');
-      var overlay = $(this).data('bt-overlay');
+      var box = jQuery(this).data('bt-box');
+      var overlay = jQuery(this).data('bt-overlay');
       if (typeof box == 'object') {
-        $(box).remove();
-        $(this).removeData('bt-box');
+        jQuery(box).remove();
+        jQuery(this).removeData('bt-box');
       }
       if (typeof overlay == 'object') {
-        $(overlay).remove();
-        $(this).removeData('bt-overlay');
+        jQuery(overlay).remove();
+        jQuery(this).removeData('bt-overlay');
       }
       
       // remove this from the stacks
@@ -645,7 +647,7 @@ jQuery.fn.bt = function(content, options) {
       opts.postHide.apply(this);
       
       // remove the 'bt-active' and activeClass classes from target
-      $(this).removeClass('bt-active ' + opts.activeClass);
+      jQuery(this).removeClass('bt-active ' + opts.activeClass);
 
     }; // </ turnOff() >
 
@@ -872,7 +874,7 @@ jQuery.fn.btPosition = function() {
  */
 jQuery.fn.btOn = function() {
   return this.each(function(index){
-    if ($.isFunction(this.btOn)) {
+    if (jQuery.isFunction(this.btOn)) {
       this.btOn();
     }
   });
@@ -885,7 +887,7 @@ jQuery.fn.btOn = function() {
  */
 jQuery.fn.btOff = function() {
   return this.each(function(index){
-    if ($.isFunction(this.btOff)) {
+    if (jQuery.isFunction(this.btOff)) {
       this.btOff();
     }
   });
@@ -902,10 +904,10 @@ jQuery.bt.docClick = function(e) {
   if (!e) {
     var e = window.event;
   };  
-  if (!$(e.target).parents().andSelf().filter('.bt-wrapper, .bt-active').length) {
+  if (!jQuery(e.target).parents().andSelf().filter('.bt-wrapper, .bt-active').length) {
     // if clicked element isn't inside tip, close tips in stack
-    $(jQuery.bt.vars.clickAnywhereStack).btOff();
-    $(document).unbind('click', jQuery.bt.docClick);
+    jQuery(jQuery.bt.vars.clickAnywhereStack).btOff();
+    jQuery(document).unbind('click', jQuery.bt.docClick);
   }
 }; // </ docClick() >
 
@@ -988,7 +990,7 @@ jQuery.bt.defaults = {
                                                
   activeClass:      'bt-active',           // class added to TARGET element when its BeautyTip is active
 
-  contentSelector:  "$(this).attr('title')", // if there is no content argument, use this selector to retrieve the title
+  contentSelector:  "jQuery(this).attr('title')", // if there is no content argument, use this selector to retrieve the title
 
   ajaxPath:         null,                  // if using ajax request for content, this contains url and (opt) selector
                                            // this will override content and contentSelector
