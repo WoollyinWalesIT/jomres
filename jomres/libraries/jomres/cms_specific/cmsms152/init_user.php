@@ -37,7 +37,6 @@ class jr_user
 	 */
 	function jr_user()
 		{
-		global $my;
 		$this->id 								= 0;
 		$this->userid 							= FALSE;
 		$this->username 						= FALSE;
@@ -49,11 +48,16 @@ class jr_user
 		$this->authorisedPropertyDetails 		= array();
 		$this->superPropertyManager 			= FALSE;
 		$this->superPropertyManagersAreGods 	= TRUE;   // Change this to false to prevent super property managers from having rights to ALL properties
-
-
-		$this->userIsManager=FALSE;
-		$this->userIsRegistered=FALSE;
+		$this->userIsRegistered					= FALSE;
 		
+		$sessionid = session_id();
+		if( $sessionid == "" )
+			{
+			return false;
+			}
+		$query="SELECT userid FROM ".cms_db_prefix()."module_feusers_loggedin WHERE sessionid=.".$sessionid.'"';
+		$this->id=doSelectSql($query,1);
+
 		if (!isset($_SESSION['cms_admin_user_id']))
 			$this->id = 0;
 		else
