@@ -43,7 +43,7 @@ class j04020saveroom {
 			}
 		global $mrConfig;
 		
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		
 		if ($mrConfig['singleRoomProperty'] == "0")

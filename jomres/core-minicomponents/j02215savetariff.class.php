@@ -41,7 +41,7 @@ class j02215savetariff {
 			{
 			$this->template_touchable=false; return;
 			}
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$tariffinput		= $_POST['tariffinput'];
 		$tarifftypeid		=intval(jomresGetParam( $_POST, 'tarifftypeid', 0 ));
