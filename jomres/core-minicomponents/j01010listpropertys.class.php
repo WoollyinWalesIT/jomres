@@ -41,7 +41,7 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$Itemid,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray;
+		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray;
 		global $customTextObj;
 		global $_MAMBOTS;
 		$jrConfig=getSiteSettings();
@@ -101,7 +101,7 @@ class j01010listpropertys {
 
 		// Enable the following two lines if you want to do a search and be taken direct to a booking form if only one property is returned.
 		//if (count($propertys_uids) == 1)
-		//	jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&Itemid=$Itemid&selectedProperty=".$propertys_uids[0]), "" );
+		//	jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );
 
 		if (count($propertys_uids) >0)
 			{
@@ -126,8 +126,7 @@ class j01010listpropertys {
 			$nav_output=array();
 			$url=JOMRES_SITEPAGE_URL."";
 
-			if ($Itemid > 0)
-				$url= "Itemid=$Itemid";
+			$url= "";
 			$page->set_qry_string($url);
 			$paging=$page->get_page_nav();
 			$nav['WRITEPAGESLINKS'] = $paging;
@@ -336,9 +335,9 @@ class j01010listpropertys {
 				if ($mrConfig['visitorscanbookonline'] == "1")
 					{
 					if ( $jrConfig['useSSLinBookingform'] == "1" )
-						$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;Itemid=$Itemid&amp;selectedProperty=".$property->propertys_uid,1);
+						$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
 					else
-						$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;Itemid=$Itemid&amp;selectedProperty=".$property->propertys_uid);
+						$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
 						
 					$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\">";
 					if ($mrConfig['singleRoomProperty'] =="1")
@@ -356,7 +355,7 @@ class j01010listpropertys {
 					}
 				else
 					{
-					$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;Itemid=$Itemid&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,$editable=true,$isLink=true)."</a>";
+					$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,$editable=true,$isLink=true)."</a>";
 					$bookinglink[]		= 	$link;
 					}
 
@@ -370,7 +369,7 @@ class j01010listpropertys {
 				$property_deets['LIVESITE']=$jomresConfig_live_site;
 				$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 				$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,$editable=true,true) ;
-				$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&Itemid=$Itemid&property_uid=".$property->propertys_uid) ;
+				$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
 				$property_deets['PROPERTYNAME']= stripslashes($propertyContactArray[0]);
 				$property_deets['PROPERTYTOWN']= $ptown;
 				$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";

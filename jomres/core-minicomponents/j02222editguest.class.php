@@ -42,7 +42,7 @@ class j02222editguest {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $database,$mrConfig,$jomresConfig_live_site,$Itemid;
+		global $database,$mrConfig,$jomresConfig_live_site;
 		$guestUid= intval(jomresGetParam( $_REQUEST, 'guestUid', 0 ) );
 		$defaultProperty=getDefaultProperty();
 
@@ -96,14 +96,13 @@ class j02222editguest {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveGuest');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"),'');
 		if ($guestUid != 0)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteGuest".jomresURLToken()."&guestUid=$guestUid&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteGuest".jomresURLToken()."&guestUid=$guestUid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
-		$output['ITEMID']=$Itemid;
 		$output['GUESTUID']=$guestUid;
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';

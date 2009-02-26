@@ -41,7 +41,7 @@ class j04010editroom {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$Itemid,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$jrConfig;
 		$defaultProperty=getDefaultProperty();
 		$output=array();
 		if ($mrConfig['singleRoomProperty'] == "0")
@@ -158,7 +158,6 @@ class j04010editroom {
 
 			$output['UPLOADIMAGE']		=jr_gettext('_JOMRES_UPLOAD_IMAGE',_JOMRES_UPLOAD_IMAGE,FALSE);
 			$output['PAGETITLE']			=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM',_JOMRES_COM_MR_VRCT_TAB_ROOM);
-			$output['ITEMID']				=$Itemid;
 
 			$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 			$deleteText=jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE,FALSE);
@@ -166,9 +165,9 @@ class j04010editroom {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 			if ($clone<1)
-				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteRoom".jomresURLToken()."&roomUid=".$roomUid."Itemid=$Itemid"),$deleteText);
+				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteRoom".jomresURLToken()."&roomUid=".$roomUid),$deleteText);
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 		
@@ -203,11 +202,10 @@ class j04010editroom {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 			$jrtb .= $jrtbar->endTable();
 			
 			echo $jrtb." "._JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO." ".$dropDownList;
-			echo '<input type="hidden" name="Itemid" value="'.$Itemid.'" />';
 			echo '<input type="hidden" name="task" value="saveRoom" />';
 			echo '</form>';
 			}

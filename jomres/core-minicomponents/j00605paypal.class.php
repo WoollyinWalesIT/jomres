@@ -41,7 +41,7 @@ class j00605paypal {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$jomressession,$Itemid,$jomresConfig_sitename,$Itemid,$jrConfig,$tmpBookingHandler;
+		global $jomresConfig_live_site,$jomressession,$jomresConfig_sitename,$jrConfig,$tmpBookingHandler;
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		gateway_log(serialize($bookingdata));
 		$bookingdata=$componentArgs['bookingdata'];
@@ -68,7 +68,7 @@ class j00605paypal {
 				$this->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';
 				}
 
-			$this_script = JOMRES_SITEPAGE_URL.'&task=completebk&Itemid='.$Itemid.'&plugin='.$plugin.'&jsid='.$jomressession;
+			$this_script = JOMRES_SITEPAGE_URL.'&task=completebk&plugin='.$plugin.'&jsid='.$jomressession;
 
 			$bookingDeets=gettempBookingdata();
 			

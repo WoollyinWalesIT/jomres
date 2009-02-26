@@ -42,7 +42,7 @@ class j06000sendbug {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid,$thisJRUser;
+		global $thisJRUser;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		if ($thisJRUser->superPropertyManager)
 			{
@@ -58,7 +58,7 @@ class j06000sendbug {
 			else
 				$result=mosMail( $fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
 			if ($result)
-				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&Itemid=".$Itemid),"Bug report sent.");
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"Bug report sent.");
 			else
 				{
 				echo "There was a problem with sending your email. Is emailing available to this server? Possibly not if you're on localhost<br>";

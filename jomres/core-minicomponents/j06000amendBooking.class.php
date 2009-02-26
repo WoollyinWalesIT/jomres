@@ -35,7 +35,7 @@ class j06000amendBooking
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$Itemid,$jomresConfig_live_site,$jrConfig,$thisJRUser;
+		global $mrConfig,$jomresConfig_live_site,$jrConfig,$thisJRUser;
 		$defaultProperty=getDefaultProperty();
 		$contract_uid		= intval(jomresGetParam( $_REQUEST, 'contractUid', 0 ) );
 		if ($contract_uid>0)
@@ -50,7 +50,7 @@ class j06000amendBooking
 				}
 			$propertysList =$tmpArray;
 			if (count($propertysList == 1))
-				jomresRedirect(JOMRES_SITEPAGE_URL."&task=dobooking&Itemid=".$Itemid."&amend=1&contractuid=".$contract_uid."&selectedProperty=".$defaultProperty);
+				jomresRedirect(JOMRES_SITEPAGE_URL."&task=dobooking&amend=1&contractuid=".$contract_uid."&selectedProperty=".$defaultProperty);
 			$counter=0;
 			foreach ($propertysList as $property)
 				{
@@ -68,12 +68,11 @@ class j06000amendBooking
 			$cancelText					= jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 			$jrtbar 					= new jomres_toolbar();
 			$jrtb  						= $jrtbar->startTable();
-			$jrtb 						.= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+			$jrtb 						.= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 			$jrtb 						.= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']	= $jrtb;
 
 			$output['PAGETITLE']		= jr_gettext('_JOMCOMP_AMEND',_JOMCOMP_AMEND);
-			$output['ITEMID']			= $Itemid;
 			$output['SELECTPROPERTY']	= jr_gettext('_JOMCOMP_AMEND_SELECTPROPERTY',_JOMCOMP_AMEND_SELECTPROPERTY);
 			$output['CONTRACTUID']		= $contract_uid;
 

@@ -96,7 +96,7 @@ class j06000reportbug {
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->customToolbarItem("SEND",jomresURL(JOMRES_SITEPAGE_URL."&task=sendbug&currentPage=$currentPage&Itemid=$Itemid"),$text="Send Bug",$submitOnClick=true,$submitTask="sendbug",$image);
+			$jrtb .= $jrtbar->customToolbarItem("SEND",jomresURL(JOMRES_SITEPAGE_URL."&task=sendbug&currentPage=$currentPage"),$text="Send Bug",$submitOnClick=true,$submitTask="sendbug",$image);
 			$jrtb .= $jrtbar->endTable();
 
 			$output['SENDBUTTON']=$jrtb;

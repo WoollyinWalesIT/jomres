@@ -30,7 +30,7 @@ class j16000savePfeature
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid;
+		global $mrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$propertyFeatureUid			= jomresGetParam( $_POST, 'propertyFeatureUid', 0 );
 		$hotel_feature_abbv			= jomresGetParam( $_POST, 'feature_abbv', "" );

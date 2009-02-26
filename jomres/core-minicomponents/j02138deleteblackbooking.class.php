@@ -41,7 +41,6 @@ class j02138deleteblackbooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$uid=jomresGetParam( $_REQUEST, 'contract_uid', 0 );
@@ -53,7 +52,7 @@ class j02138deleteblackbooking {
 			$query="DELETE FROM #__jomres_contracts WHERE contract_uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE',_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE,FALSE)))
 				trigger_error ("Unable to delete from contracts table, mysql db failure", E_USER_ERROR);
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=".$Itemid),jr_gettext('_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE',_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE,FALSE) );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings"),jr_gettext('_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE',_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE,FALSE) );
 			}
 		else
 			trigger_error ("Error: Uid for black booking not found (hack attempt?)", E_USER_ERROR);

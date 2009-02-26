@@ -42,7 +42,7 @@ class j02990showconfirmation {
 			$this->template_touchable=true; return;
 			}
 
-		global $mrConfig,$Itemid,$jomresConfig_live_site,$tmpBookingHandler,$thisJRUser;
+		global $mrConfig,$jomresConfig_live_site,$tmpBookingHandler,$thisJRUser;
 		$booking_parts=array();
 		if ( !isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )
 			$tmpBookingHandler->addNewBookingField("confirmationSeen");
@@ -68,7 +68,7 @@ class j02990showconfirmation {
 		property_header($property_uid);
 
 		if (!$bookingDeets['ok_to_book'])
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']."&Itemid=".$Itemid), '' );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']), '' );
 
 		$query			=	"SELECT property_name FROM #__jomres_propertys WHERE `propertys_uid` = '".(int)$property_uid."' LIMIT 1";
 		$propertyList	=	doSelectSql($query);
@@ -298,7 +298,6 @@ class j02990showconfirmation {
 		$booking_parts['HTEL']				= 	jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL);
 		$booking_parts['HMOBILE']			=	jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL);
 		$booking_parts['HEMAIL']			= 	jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
-		$booking_parts['ITEMID']			=	$Itemid;
 		if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo']=="1")
 			$booking_parts['HTAX']			=	jr_gettext('_JOMRES_COM_FRONT_ROOMTAX',_JOMRES_COM_FRONT_ROOMTAX);
 		else
@@ -356,6 +355,8 @@ class j02990showconfirmation {
 				}
 			}
 
+		$booking_parts['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+			
 		$booking_particulars[]	=	$booking_parts;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'booking_particulars', $booking_particulars );

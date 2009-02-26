@@ -41,7 +41,7 @@ class j03100hotelconfirmationemail {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$Itemid;
+		global $jomresConfig_live_site;
 		$currfmt = new jomres_currency_format();
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
@@ -123,26 +123,7 @@ class j03100hotelconfirmationemail {
 			$useremail=stripslashes($email->email);
 			}
 		$subject=_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE.stripslashes($propertyName);
-		/*
-		$name=stripslashes($propertyName);
-			$text =  " "."\t\n\t\n";
-		if ($mrConfig['singleRoomProperty'] != "1")
-			$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_ROOM." ".$roomNumber." ".stripslashes($room_name)." \t\n";
-		$text .= _JOMRES_BOOKING_NUMBER.' '.$cartnumber." \t\n";
-		$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL.outputDate($arrivalDate)." \t\n";
-		$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE.outputDate($departureDate). "\t\n";
-		$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_NAME.stripslashes($firstname)." ".stripslashes($surname)." \t\n";
-		$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_LANDLINE.$landline." \t\n";
-		$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE.$mobile." \t\n";
-		$text .= _JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL.$currency.$currfmt->get_formatted($contract_total)." \t\n";
-		$text .= _JOMRES_FRONT_TARIFFS_TITLE." ".$currency.$rateOutput." \t\n";
-		$text .= _JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ." ".stripslashes($specialReqs)." \t\n\t\n";
 
-		$text .= JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=53&contract_uid=".$componentArgs['contract_uid']." \t\n";
-		$text .= $clientIP;
-		*/
-
-//		$fileLocation=checkForImage('property',$property_uid);
 		$output=array();
 		if (strlen($specialReqs)>0)
 			{
@@ -150,9 +131,7 @@ class j03100hotelconfirmationemail {
 			$output['SPECIAL_REQUIREMENTS']=quote_smart($specialReqs);
 			}
 		$output['ISO']=_ISO;
-		//$output['IMAGE']=$jomresConfig_live_site."/jomres/images/jrlogo.png";
-//		if ($fileLocation)
-//			$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
+
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 		$output['HROOM']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM',_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM,FALSE,FALSE);
@@ -174,7 +153,7 @@ class j03100hotelconfirmationemail {
 		$output['TOTAL']=$currency.number_format($contract_total, 2, '.', '');
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
-		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
+		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
 
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);

@@ -41,11 +41,10 @@ class j02134newblackbooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$Itemid;
+		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING',_JOMRES_FRONT_BLACKBOOKING);
-		$output['ITEMID']=$Itemid;
 		$output['INSTRUCTIONS']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING_DESC',_JOMRES_FRONT_BLACKBOOKING_DESC);
 		$rmcounter=0;
 
@@ -88,7 +87,7 @@ class j02134newblackbooking {
 			$roomsList = doSelectSql($query);
 			$counter=0;
 			$totalRooms=count($roomsList);
-			$link=jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=editBooking&Itemid=$Itemid&popup=1&contract_uid=");
+			$link=jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=editBooking&popup=1&contract_uid=");
 			foreach ($roomsList as $room)
 				{
 				$links="";
@@ -141,12 +140,13 @@ class j02134newblackbooking {
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('apply',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking&Itemid=$Itemid"),'Apply',true,'newBlackBooking');
-		$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveBBooking&Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveBBooking');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('apply',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking"),'Apply',true,'newBlackBooking');
+		$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveBBooking"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveBBooking');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings"),$cancelText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

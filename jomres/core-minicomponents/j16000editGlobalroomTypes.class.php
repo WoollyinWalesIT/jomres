@@ -30,7 +30,7 @@ class j16000editGlobalroomTypes
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresAdminPath,$jomresConfig_live_site,$Itemid,$jomresConfig_absolute_path;
+		global $mrConfig,$jomresAdminPath,$jomresConfig_live_site,$jomresConfig_absolute_path;
 		$rmTypeUid 			= intval(jomresGetParam( $_REQUEST, 'rmTypeUid',	0 ));
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
 		$yesno = array();
@@ -92,7 +92,6 @@ class j16000editGlobalroomTypes
 		$output['HDESC']=_JOMRES_COM_MR_EB_ROOM_CLASS_DESC;
 		$output['HSRP_ONLY']=JOMRES_COM_A_SRPONLY;
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
-		$output['ITEMID']=$Itemid;
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK;
 
 		$jrtbar = new jomres_toolbar();
@@ -104,6 +103,8 @@ class j16000editGlobalroomTypes
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+		
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
 		
 		$pageoutput[]=$output;

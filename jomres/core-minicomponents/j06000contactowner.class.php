@@ -42,7 +42,7 @@ class j06000contactowner {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_secret,$thisJomresPropertyDetails,$tmpBookingHandler,$Itemid,$mrConfig,$jomresConfig_live_site;
+		global $jomresConfig_secret,$thisJomresPropertyDetails,$tmpBookingHandler,$mrConfig,$jomresConfig_live_site;
 
 		require_once(JOMRESPATH_BASE.'/libraries/hn_captcha/hn_captcha.class.php');
 
@@ -93,7 +93,6 @@ class j06000contactowner {
 
 		$output['GUEST_NAME'] = stripslashes(jomresGetParam( $_REQUEST, 'guest_name', '' ));
 		$output['PROPERTY_UID'] = $property_uid;
-		$output['ITEMID']				=$Itemid;
 
 		if (isset($_REQUEST['guest_email']) )
 			$output['GUEST_EMAIL'] = stripslashes(jomresGetParam( $_REQUEST, 'guest_email', '' ));
@@ -126,8 +125,8 @@ class j06000contactowner {
 
 				$output['BACKTOPROPERTY']=jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK',_JOMRES_BACKTOPROPERTYDETAILSLINK);
 				$output['PROPERTYUID']=$property_uid;
-				$output['ITEMID']=$Itemid;
-				$output['LIVESITE']=$jomresConfig_live_site;
+
+				$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 				break;
 
 			// was submitted with no matching keys, but has not reached the maximum try's

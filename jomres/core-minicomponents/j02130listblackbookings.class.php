@@ -41,7 +41,7 @@ class j02130listblackbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$Itemid;
+		global $mrConfig,$jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		$bookingsrows=array();
 		$txt="";
@@ -49,17 +49,14 @@ class j02130listblackbookings {
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking&Itemid=$Itemid"),jr_gettext('_JOMRES_FRONT_BLACKBOOKING_NEW',_JOMRES_FRONT_BLACKBOOKING_NEW,FALSE));
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),$cancelText);
-		//if (!$clone && $tariffUid)
-		//	$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteTariff&tariffUid=".$tariffUid."Itemid=$Itemid"),$deleteText);
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking"),jr_gettext('_JOMRES_FRONT_BLACKBOOKING_NEW',_JOMRES_FRONT_BLACKBOOKING_NEW,FALSE));
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),$cancelText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$query="SELECT contract_uid FROM #__jomres_room_bookings WHERE black_booking = '1' AND property_uid = '".(int)$defaultProperty."' GROUP BY contract_uid";
 		$bookingsList = doSelectSql($query);
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING',_JOMRES_FRONT_BLACKBOOKING);
-		$output['ITEMID']=$Itemid;
 		if (count($bookingsList)>0)
 			{
 			foreach ($bookingsList as $booking)
@@ -78,7 +75,7 @@ class j02130listblackbookings {
 			$counter=0;
 			foreach ($bbList as $bb)
 				{
-				$bbrow['editlink']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=viewBlackBooking&Itemid=$Itemid&contract_uid=".($bb->contract_uid) ).'">'.jr_gettext('_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING',_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING,true,true).'  '.outputDate($bb->arrival).' - '.outputDate($bb->departure).' '.$bb->special_reqs.'</a>';
+				$bbrow['editlink']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=viewBlackBooking&contract_uid=".($bb->contract_uid) ).'">'.jr_gettext('_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING',_JOMRES_COM_MR_BLACKBOOKINGS_VIEWBLACKBOOKING,true,true).'  '.outputDate($bb->arrival).' - '.outputDate($bb->departure).' '.$bb->special_reqs.'</a>';
 				$bookingsrows[]=$bbrow;
 				}
 			}

@@ -41,7 +41,7 @@ class j02265viewbookingnotes {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $task,$Itemid,$thisJRUser,$jomresConfig_live_site;
+		global $task,$thisJRUser;
 
 		if ($task=="editBooking" && $thisJRUser->userIsManager )
 			{

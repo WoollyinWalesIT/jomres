@@ -30,7 +30,6 @@ class j16000deleteGlobalroomTypes
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$success=true;
 		$idarray = jomresGetParam( $_POST, 'idarray', array() );

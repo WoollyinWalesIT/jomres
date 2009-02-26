@@ -35,7 +35,7 @@ class j00101amendBooking
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$Itemid,$jomresConfig_live_site,$jrConfig,$thisJRUser;
+		global $mrConfig,$jomresConfig_live_site,$jrConfig,$thisJRUser;
 		global $tmpBookingHandler;
 
 		$amend					= intval(jomresGetParam( $_REQUEST, 'amend', 0 ) );

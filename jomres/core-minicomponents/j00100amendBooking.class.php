@@ -35,7 +35,7 @@ class j00100amendBooking
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid,$thisJRUser,$tmpBookingHandler;
+		global $thisJRUser,$tmpBookingHandler;
 
 		$userIsManager	= checkUserIsManager();
 

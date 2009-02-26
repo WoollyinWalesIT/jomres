@@ -35,7 +35,7 @@ class j06000muviewbooking {
 	 */
 	function j06000muviewbooking()
 		{
-		global $ePointFilepath,$jomresConfig_lang,$Itemid,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
+		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		global $MiniComponents;
 		if ($MiniComponents->template_touch)
@@ -134,7 +134,7 @@ class j06000muviewbooking {
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
 			global $database;
-			global $mrConfig,$jomresConfig_live_site,$Itemid,$popup;
+			global $mrConfig,$jomresConfig_live_site,$popup;
 			$guest_firstname="N/A";
 			$guest_surname="N/A";
 			$guest_uid="N/A";
@@ -263,7 +263,7 @@ class j06000muviewbooking {
 					$jrtbar = new jomres_toolbar();
 					$jrtb  = $jrtbar->startTable();
 					echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
-					$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&Itemid=$Itemid&contract_uid=$booking_contract_uid"),'');
+					$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&contract_uid=$booking_contract_uid"),'');
 					$jrtb .= $jrtbar->endTable();
 					echo $jrtb;
 					}

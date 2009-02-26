@@ -42,7 +42,7 @@ class j02200editdeposit {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$Itemid;
+		global $mrConfig,$jomresConfig_live_site;
 		$contractUid=jomresGetParam( $_REQUEST, 'contractUid',0 );
 		if ($contractUid>0)
 			{
@@ -69,7 +69,7 @@ class j02200editdeposit {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveDeposit');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings"),'');
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 

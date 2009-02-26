@@ -42,7 +42,6 @@ class j00020tagsearch {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid;
 		$defaultProperty=getDefaultProperty();
 		$tag=$componentArgs['tag'];
 		$query="SELECT contract_uid FROM #__jomres_contracts WHERE tag = '$tag' AND property_uid = '".(int)$defaultProperty."'";
@@ -52,7 +51,7 @@ class j00020tagsearch {
 			$contract_uid=$c->contract_uid;
 			}
 		if (count($contractList)==1)
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=".$contract_uid), "" );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$contract_uid), "" );
 		else
 			{
 			$query="SELECT c.contract_uid,c.tag, c.arrival, c.departure,c.booked_in,  g.guests_uid, g.firstname, g.surname, g.contracts_contract_uid, g.mos_userid

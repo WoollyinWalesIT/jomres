@@ -41,7 +41,7 @@ class j02110savecustomertypeorder {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid,$jomresConfig_live_site;
+		global $jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$order      = jomresGetParam( $_POST, 'order', array() );
@@ -52,7 +52,7 @@ class j02110savecustomertypeorder {
 			if (!doInsertSql($query,_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE))
 				trigger_error ("Unable to customer type order, mysql db failure", E_USER_ERROR);
 			}
-		jomresRedirect( JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=".$Itemid,"" );
+		jomresRedirect( JOMRES_SITEPAGE_URL."&task=listCustomerTypes","" );
 		}
 
 	/**

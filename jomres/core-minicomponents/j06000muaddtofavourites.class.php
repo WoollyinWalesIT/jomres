@@ -30,7 +30,7 @@ class j06000muaddtofavourites {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_lang,$Itemid,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
+		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
 		if ($thisJRUser->userIsRegistered)
 			{
 			$property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );
@@ -52,7 +52,7 @@ class j06000muaddtofavourites {
 						}
 					}
 				}
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=muviewfavourites&Itemid=$Itemid"), '' );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=muviewfavourites"), '' );
 			}
 		}
 

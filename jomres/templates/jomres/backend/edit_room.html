@@ -1,5 +1,5 @@
 <patTemplate:tmpl name="pageoutput">
-<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 <table class="jradmin_innerwrapper">
 	<tr>
 		<td class="jomres_title">{PAGETITLE}</td>
@@ -48,7 +48,6 @@
 </table>
 {JOMRESTOKEN}
 <input type="hidden" name="roomUid" value="{ROOMUID}" />
-<input type="hidden" name="Itemid" value="{ITEMID}" />
 <input type="hidden" name="task" value="saveRoom" />
 </form>
 
@@ -77,7 +76,6 @@
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="Itemid" value="{ITEMID}" />
 {JOMRESTOKEN}
 </form>
 </patTemplate:tmpl>

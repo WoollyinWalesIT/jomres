@@ -42,7 +42,7 @@ class j04900saveproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$thisJRUser,$jrConfig,$Itemid;
+		global $mrConfig,$thisJRUser,$jrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$this->newpropertyId	= 0;
 		$propertyUid  = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
@@ -231,7 +231,7 @@ class j04900saveproperty {
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS",$property_airports,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT",$property_othertransport,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS",$property_policies_disclaimers,TRUE);
-			jomresRedirect(JOMRES_SITEPAGE_URL."&task=editProperty&Itemid=".$Itemid."&propertyUid=".$propertyUid);
+			jomresRedirect(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=".$propertyUid);
 			}
 
 		}

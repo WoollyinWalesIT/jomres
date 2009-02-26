@@ -74,7 +74,7 @@ class j02182savebookout {
 		$query="DELETE FROM #__jomres_extraServices WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 		doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_BOOKEDGUESTOUT',_JOMRES_MR_AUDIT_BOOKEDGUESTOUT,FALSE));
 
-		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), $saveMessage );
 		}
 
 	/**

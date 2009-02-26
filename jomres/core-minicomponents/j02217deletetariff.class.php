@@ -41,7 +41,6 @@ class j02217deletetariff {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $database,$delete,$tariffUid,$mrConfig,$jomresConfig_live_site,$Itemid;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$tarifftypeid		=intval(jomresGetParam( $_REQUEST, 'tarifftypeid', 0 ));

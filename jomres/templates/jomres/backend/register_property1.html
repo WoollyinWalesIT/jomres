@@ -4,12 +4,12 @@
 function OnChange(dropdown)
 	{	
 	cty=jQuery("select#country").val();
-	var baseURL= "{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=registerProp_step1&Itemid={ITEMID}"
+	var baseURL= "{JOMRES_SITEPAGE_URL}&task=registerProp_step1"
 	location.href = baseURL + "&selectedCountry="+cty;
 	return true;
 	}
 function submitCountry(){
-	document.regForm.action = "index.php?option=com_jomres&task=registerProp_step2"
+	document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=registerProp_step2"
 	document.regForm.submit();
 	return true;
 	}
@@ -37,7 +37,6 @@ function submitCountry(){
 	</tr>
 </table>
 <input type="hidden" name="task" value="registerProp_step2" />
-<input type="hidden" name="Itemid"		 value="{ITEMID}" />
 <input type="button" name="send" value="Submit" class="button" onclick="submitCountry();" />
 </form>
 </patTemplate:tmpl>

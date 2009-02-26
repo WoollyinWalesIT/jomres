@@ -43,7 +43,7 @@ class j02202savedeposit {
 			$this->template_touchable=false; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-		global $jomresConfig_live_site,$Itemid;
+		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		$contractUid        = intval(jomresGetParam( $_POST, 'contractUid', 0 ) );
 		$depositRef         = getEscaped(  jomresGetParam( $_POST, 'depositRef', "" ) );
@@ -52,7 +52,7 @@ class j02202savedeposit {
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE',_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE,FALSE);
 			$query="UPDATE #__jomres_contracts SET `deposit_paid`='1',`deposit_ref`='$depositRef' WHERE contract_uid='".(int)$contractUid."' AND property_uid = '".(int)$defaultProperty."'";
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT',_JOMRES_MR_AUDIT_ENTEREDDEPOSIT,FALSE))) trigger_error ("Unable to update deposit entry, mysql db failure", E_USER_ERROR);
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings&Itemid=$Itemid"), $saveMessage );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings"), $saveMessage );
 			}
 		else
 			trigger_error ("Incorrect contract uid when saving deposit", E_USER_ERROR);

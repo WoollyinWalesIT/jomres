@@ -189,7 +189,7 @@ class  j00018MRPavailabilitycalendar {
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		global $mrConfig,$jomresConfig_locale,$Itemid;
+		global $mrConfig,$jomresConfig_locale;
 		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset,$jrConfig;
 		$userIsManager=checkUserIsManager();
 		setlocale(LC_ALL, $jomresConfig_locale);
@@ -375,7 +375,7 @@ class  j00018MRPavailabilitycalendar {
 								
 							if ($validDayOfWeek)
 								{
-								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 								if (!$mrConfig['singleRoomProperty'])
 									$link.='&remus='.$roomUid;
 								/*

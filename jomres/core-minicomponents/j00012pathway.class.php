@@ -59,7 +59,7 @@ class j00012pathway {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$jomresConfig_live_site,$thisJRUser,$Itemid,$numberOfPropertiesInSystem;
+		global $jrConfig,$jomresConfig_live_site,$thisJRUser,$numberOfPropertiesInSystem;
 		
 		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
 		
@@ -87,10 +87,10 @@ class j00012pathway {
 				$property_uid=(int)$selectedProperty;
 
 			$tasks =array();
-			$tasks['XXXXXX']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL.'&Itemid='.$Itemid);
-			$tasks['listProperties']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL.'&Itemid='.$Itemid);
-			$tasks['viewproperty']=array('text'=>_JOMRES_PATHWAY_PROPERTYDETAILS.getPropertyName($property_uid),'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid.'&Itemid='.$Itemid);
-			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty'.$property_uid.'&Itemid='.$Itemid);
+			$tasks['XXXXXX']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL);
+			$tasks['listProperties']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL);
+			$tasks['viewproperty']=array('text'=>_JOMRES_PATHWAY_PROPERTYDETAILS.getPropertyName($property_uid),'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
+			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty'.$property_uid);
 
 			switch ($task)
 				{

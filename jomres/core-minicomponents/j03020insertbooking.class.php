@@ -43,7 +43,7 @@ class j03020insertbooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid,$jrConfig,$jomresConfig_live_site,$jomresProccessingBookingObject,$tmpBookingHandler;
+		global $mrConfig,$jrConfig,$jomresConfig_live_site,$jomresProccessingBookingObject,$tmpBookingHandler;
 		$jomressession=$componentArgs['jomressession'];
 		$depositPaid=$componentArgs['depositPaid'];
 		if (isset($componentArgs['usejomressessionasCartid']) )

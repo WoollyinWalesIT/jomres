@@ -37,7 +37,7 @@ class j01009filterproperties
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid,$jomresConfig_live_site;
+		global $jomresConfig_live_site;
 		$propertys_uids=$componentArgs['propertys_uids'];
 		// get sroting value
 		$sortid = intval(jomresGetParam( $_COOKIE, 'jomsearch_sortby', 1));

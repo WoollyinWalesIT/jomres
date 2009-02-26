@@ -191,7 +191,7 @@ class j00017SRPavailabilitycalendar {
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		global $mrConfig,$jomresConfig_locale,$Itemid,$jrConfig;
+		global $mrConfig,$jomresConfig_locale,$jrConfig;
 		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
 		$userIsManager=checkUserIsManager();
 		setlocale(LC_ALL, $jomresConfig_locale);
@@ -364,7 +364,7 @@ class j00017SRPavailabilitycalendar {
 								if ($mrConfig['fixedArrivalDay']==date("w",$currdate) )
 									if ($mrConfig['visitorscanbookonline'] && $this->showlinks)
 										{
-										$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+										$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 										if (!$mrConfig['singleRoomProperty'])
 											$link.='&remus='.$roomUid;
 										if ( $jrConfig['useSSLinBookingform'] == "1" )
@@ -387,7 +387,7 @@ class j00017SRPavailabilitycalendar {
 							{
 							if (!$noshowroom && $bgcolor !=$outbgcolor && $mrConfig['visitorscanbookonline'] && $this->showlinks)
 								{
-								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;Itemid='.$Itemid.'&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
+								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 								if (!$mrConfig['singleRoomProperty'])
 									$link.='&remus='.$roomUid;
 								if ( $jrConfig['useSSLinBookingform'] == "1" )
@@ -408,7 +408,7 @@ class j00017SRPavailabilitycalendar {
 							{
 							if ($contract_uid!="")
 								{
-								$link="<a $target href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&amp;Itemid=$Itemid&amp;contract_uid=$contract_uid")."\" class=rescal >".(date ("j",$currdate))."</a>";
+								$link="<a $target href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&amp;contract_uid=$contract_uid")."\" class=rescal >".(date ("j",$currdate))."</a>";
 								$this->retVals.=$link;
 								}
 							else

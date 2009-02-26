@@ -41,7 +41,6 @@ class j02224saveguest {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $database,$mrConfig,$jomresConfig_live_site,$delete,$Itemid;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$guests_uid=jomresGetParam( $_REQUEST, 'guestUid', 0 );
 		if ($guests_uid=="0")
@@ -72,7 +71,7 @@ class j02224saveguest {
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_GUEST',_JOMRES_MR_AUDIT_INSERT_GUEST,FALSE))) trigger_error ("Unable to insert guest details, mysql db failure", E_USER_ERROR);
 
 			}
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), $saveMessage );
 		}
 
 	/**

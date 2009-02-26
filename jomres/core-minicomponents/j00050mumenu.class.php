@@ -41,7 +41,7 @@ class j00050mumenu {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$Itemid,$popup,$task;
+		global $jomresConfig_live_site,$popup,$task;
 		global $jomresConfig_lang;
 		$thisJRUser=$componentArgs['thisJRUser'];
 		$no_html			= jomresGetParam( $_REQUEST, 'no_html', 0 );

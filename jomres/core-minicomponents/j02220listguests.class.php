@@ -41,7 +41,7 @@ class j02220listguests {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$guests_uid,$Itemid,$jomresConfig_live_site;
+		global $mrConfig,$guests_uid,$jomresConfig_live_site;
 		$rows=array();
 		$surnameFirstChars         = jomresGetParam( $_POST, 'surnameFirstChars', '' );
 		$defaultProperty=getDefaultProperty();
@@ -65,7 +65,6 @@ class j02220listguests {
 
 		foreach($guestList as $guest)
 			{
-			//$rw['EDITLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editGuest&Itemid=$Itemid&guestUid=".($guest->guests_uid) )."\">".$editIcon."</a>";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			
@@ -104,18 +103,16 @@ class j02220listguests {
 		$jrtb  = $jrtbar->startTable();
 		
 		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,$editable=false,$isLink=true) ;
-		$link=JOMRES_SITEPAGE_URL.'&task=editGuest&Itemid='.$Itemid;
+		$link=JOMRES_SITEPAGE_URL.'&task=editGuest';
 		$targetTask='editGuest';
 		$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';
 		$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
 
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
-		$output['ITEMID']=$Itemid;
-
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
