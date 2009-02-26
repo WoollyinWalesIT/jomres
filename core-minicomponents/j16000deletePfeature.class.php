@@ -30,7 +30,6 @@ class j16000deletePfeature
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$idarray = jomresGetParam( $_POST, 'idarray', array() );
 		if (count($idarray)>0)

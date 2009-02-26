@@ -30,7 +30,6 @@ class j06000addnote {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid;
 		$pageoutput=array();
 		$output=array();
 		$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );

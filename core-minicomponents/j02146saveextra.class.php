@@ -34,7 +34,7 @@ class j02146saveextra {
 
 	function saveExtra()
 		{
-		global $mrConfig,$jomresConfig_live_site,$Itemid;
+		global $mrConfig,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$uid		= intval(jomresGetParam( $_POST, 'uid', "" ));
@@ -71,7 +71,7 @@ class j02146saveextra {
 		$query="INSERT INTO #__jomcomp_extrasmodels_models (`extra_id`,`model`,`params`,`force`,`property_uid`) VALUES ('".(int)$uid."','$model','".(int)$mindays."','".(int)$f."','".(int)$defaultProperty."')";
 		doInsertSql($query,'');
 
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listExtras&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listExtras"), $saveMessage );
 		}
 	
 	// This must be included in every Event/Mini-component

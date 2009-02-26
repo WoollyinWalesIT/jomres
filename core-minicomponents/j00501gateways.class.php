@@ -43,7 +43,6 @@ class j00501gateways {
 			}
 		global $configurationPanel;
 		$lists=$componentArgs['lists'];
-		$Itemid=$componentArgs['Itemid'];
 		$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
 		$gatewayNames=$componentArgs['gatewayNames'];
 

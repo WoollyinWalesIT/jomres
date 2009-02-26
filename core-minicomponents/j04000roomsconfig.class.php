@@ -41,7 +41,7 @@ class j04000roomsconfig {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jrConfig,$Itemid,$jomresConfig_live_site,$thisJRUser,$roomCount;
+		global $mrConfig,$jrConfig,$jomresConfig_live_site,$thisJRUser,$roomCount;
 		if ( $mrConfig['tariffmode']=="0")
 			$MiniComponents->triggerEvent('04005'); //
 		else
@@ -74,9 +74,9 @@ class j04000roomsconfig {
 				{
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;Itemid=$Itemid"),'');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
-				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');
+				$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty"),'');
 				$jrtb .= $jrtbar->endTable();
 				$newPropertyButton=$jrtb;
 				}
@@ -85,8 +85,8 @@ class j04000roomsconfig {
 				{
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;Itemid=$Itemid"),'');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&"),'');
 				$jrtb .= $jrtbar->endTable();
 				$newRoomButton=$jrtb;
 				}
@@ -94,16 +94,16 @@ class j04000roomsconfig {
 				{
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;Itemid=$Itemid"),'');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&"),'');
 				$jrtb .= $jrtbar->endTable();
 				$newRoomButton=$jrtb;
 				}
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;Itemid=$Itemid"),'');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&"),'');
 			$jrtb .= $jrtbar->endTable();
 			$newRoomFeatureButton=$jrtb;
 
@@ -112,8 +112,8 @@ class j04000roomsconfig {
 				{
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass&amp;Itemid=$Itemid"),'' );
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass"),'' );
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
 				$jrtb .= $jrtbar->endTable();
 				$newRoomClassButton=$jrtb;
 				}
@@ -122,8 +122,8 @@ class j04000roomsconfig {
 				if ($jrConfig['useGlobalRoomTypes']!="1")
 					{
 					$jrtb  = $jrtbar->startTable();
-					$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass&amp;Itemid=$Itemid"),'');
-					$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+					$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass"),'');
+					$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');
 					$jrtb .= $jrtbar->endTable();
 					$newRoomClassButton=$jrtb;
 					}
@@ -132,8 +132,8 @@ class j04000roomsconfig {
 			if ($jrConfig['useGlobalPFeatures']!="1")
 				{
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature&amp;Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_NEWPROPERTYFEATURE',_JOMRES_COM_MR_NEWPROPERTYFEATURE,FALSE) );
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature"),jr_gettext('_JOMRES_COM_MR_NEWPROPERTYFEATURE',_JOMRES_COM_MR_NEWPROPERTYFEATURE,FALSE) );
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
 				$jrtb .= $jrtbar->endTable();
 				$newPropertyFeatureButton=$jrtb;
 				}
@@ -144,11 +144,11 @@ class j04000roomsconfig {
 				$roomRowInfo .="<tr>";
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;Itemid=$Itemid&amp;roomUid=".$room->room_uid),'');
+				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;roomUid=".$room->room_uid),'');
 				if ($mrConfig['singleRoomProperty'] ==  '1' && count($roomsList)< 1)
-					$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;Itemid=$Itemid&amp;roomUid=".($room->room_uid)."&clone=1"),'');
+					$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;roomUid=".($room->room_uid)."&clone=1"),'');
 				elseif ($mrConfig['singleRoomProperty'] ==  '0')
-					$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;Itemid=$Itemid&amp;roomUid=".($room->room_uid)."&clone=1"),'');
+					$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;roomUid=".($room->room_uid)."&clone=1"),'');
 
 				$jrtb .= $jrtbar->endTable();
 				$roomRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
@@ -208,8 +208,8 @@ class j04000roomsconfig {
 				$roomFeaturesRowInfo .="<tr>";
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;Itemid=$Itemid&amp;featureUid=".($roomFeature->room_features_uid)),'');
-				$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;Itemid=$Itemid&amp;featureUid=".($roomFeature->room_features_uid)."&clone=1"),'');
+				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;featureUid=".($roomFeature->room_features_uid)),'');
+				$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;featureUid=".($roomFeature->room_features_uid)."&clone=1"),'');
 				$jrtb .= $jrtbar->endTable();
 				$roomFeaturesRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
 				$roomFeaturesRowInfo .="<td class=\"jradmin_field_ca\">".(jr_gettext(_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION.$roomFeature->room_features_uid,$roomFeature->feature_description))."</td></tr>";
@@ -220,8 +220,8 @@ class j04000roomsconfig {
 				$roomTypesRowInfo .="<tr>";
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass&amp;Itemid=$Itemid&amp;classUid=".($roomClass->room_classes_uid)),'');
-				$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass&amp;Itemid=$Itemid&amp;classUid=".($roomClass->room_classes_uid)."&clone=1"),'');
+				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass&amp;classUid=".($roomClass->room_classes_uid)),'');
+				$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomClass&amp;classUid=".($roomClass->room_classes_uid)."&clone=1"),'');
 				$jrtb .= $jrtbar->endTable();
 				$roomTypesRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
 				$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomClass->room_classes_uid,$roomClass->room_class_abbv);
@@ -251,11 +251,11 @@ class j04000roomsconfig {
 				$propertyRowInfo .="<tr>";
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;Itemid=$Itemid&amp;propertyUid=".$property->propertys_uid),'');
+				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;propertyUid=".$property->propertys_uid),'');
 				if (!$published)
-					$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken().'&Itemid='.$Itemid),jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false));
+					$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken()),jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false));
 				else
-					$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken().'&Itemid='.$Itemid),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
+					$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken()),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
 				$jrtb .= $jrtbar->endTable();
 				$propertyRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
 
@@ -265,7 +265,7 @@ class j04000roomsconfig {
 				$propertyRowInfo .="<td class=\"jradmin_field_ca\">".($property->property_country )."</td>";
 				$propertyRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(($property->property_postcode))."</td></tr>";
 				$propertyRowInfo .='<tr><td colspan="6" class=\"jradmin_field_ca\"><img src="'.$property_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'"></td>';
-				//$propertyRowInfo .="<td><a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=publishProperty&amp;Itemid=$Itemid&amp;propertyUid=".($property->propertys_uid))."\"><img src=\"".$img."\" border=\"0\"></a></td>";
+				//$propertyRowInfo .="<td><a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=publishProperty&amp;propertyUid=".($property->propertys_uid))."\"><img src=\"".$img."\" border=\"0\"></a></td>";
 
 				$propertyFeaturesString=$property->property_features;
 				$propertyFeaturesArray=explode(",",$propertyFeaturesString);
@@ -291,8 +291,8 @@ class j04000roomsconfig {
 
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature&amp;Itemid=$Itemid&amp;propertyFeatureUid=".$propertyFeature->hotel_features_uid),'');
-				$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature&amp;Itemid=$Itemid&amp;propertyFeatureUid=".$propertyFeature->hotel_features_uid."&clone=1"),'');
+				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature&amp;propertyFeatureUid=".$propertyFeature->hotel_features_uid),'');
+				$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature&amp;propertyFeatureUid=".$propertyFeature->hotel_features_uid."&clone=1"),'');
 				$jrtb .= $jrtbar->endTable();
 				$propertyFeaturesRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
 				$propertyFeaturesRowInfo .="<td class=\"jradmin_field_ca\">".($propertyFeature->hotel_feature_abbv)."</td>";
@@ -304,7 +304,7 @@ class j04000roomsconfig {
 
 	function roomPropertyConfig_html( $newPropertyButton,$newRoomButton,$newRoomFeatureButton,$newRoomClassButton,$newPropertyFeatureButton, $roomRowInfo,$roomFeaturesRowInfo,$roomTypesRowInfo,$propertyRowInfo,$propertyFeaturesRowInfo,$option,$roomCount,$roomTypeCount )
 		{
-		global $mrConfig,$thisJRUser,$Itemid,$jrConfig,$MiniComponents;
+		global $mrConfig,$thisJRUser,$jrConfig,$MiniComponents;
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
 		echo jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE);
@@ -344,7 +344,7 @@ class j04000roomsconfig {
 			$room_class_abbv=doSelectSql($query,1);
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;Itemid=$Itemid&amp;roomUid=".$room->room_uid),'');
+			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&amp;roomUid=".$room->room_uid),'');
 			$jrtb .= $jrtbar->endTable();
 			$contentPanel->setcontent('<table><tr><td>');
 			$contentPanel->setcontent(_JOMRES_COM_MR_VRCT_PROPERTY_TYPE.$jrtb." ".$room_class_abbv);

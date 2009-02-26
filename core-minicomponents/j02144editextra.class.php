@@ -34,7 +34,7 @@ class j02144editextra {
 
 	function editExtra()
 		{
-		global $mrConfig,$Itemid;
+		global $mrConfig;
 		global $ePointFilepath,$eLiveSite;
 
 		$uid		= intval(jomresGetParam( $_REQUEST, 'uid', "" ));
@@ -46,7 +46,6 @@ class j02144editextra {
 		$yesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE',_JOMRES_COM_MR_EXTRA_TITLE);
-		$output['ITEMID']=$Itemid;
 		$output['HEXNAME']=jr_gettext('_JOMRES_COM_MR_EXTRA_NAME',_JOMRES_COM_MR_EXTRA_NAME);
 		$output['HEXDESC']=jr_gettext('_JOMRES_COM_MR_EXTRA_DESC',_JOMRES_COM_MR_EXTRA_DESC);
 		$output['HEXPRICE']=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
@@ -54,8 +53,8 @@ class j02144editextra {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveExtra');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listExtras&Itemid=$Itemid"),'');
-		$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteExtra".jomresURLToken()."&no_html=1&uid=$uid&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listExtras"),'');
+		$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteExtra".jomresURLToken()."&no_html=1&uid=$uid"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

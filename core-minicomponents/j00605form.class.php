@@ -41,7 +41,7 @@ class j00605form {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$Itemid,$tmpBookingHandler;
+		global $jomresConfig_live_site,$tmpBookingHandler;
 		$validCCtypes=array('AMEX','Discover','MasterCard','Visa');
 		$bookingdata=$componentArgs['bookingdata'];
 		$plugin="form";
@@ -52,7 +52,7 @@ class j00605form {
 			$settingArray[$set->setting]=$set->value;
 			}
 
-		$outgoingURL=JOMRES_SITEPAGE_URL.'&task=completebk&Itemid='.$Itemid;
+		$outgoingURL=JOMRES_SITEPAGE_URL.'&task=completebk';
 
 		$iss_mon            = intval( jomresGetParam( $_POST, 'iss_mon', 0 ) );
 		$iss_year           = intval( jomresGetParam( $_POST, 'iss_year', 0 ) );

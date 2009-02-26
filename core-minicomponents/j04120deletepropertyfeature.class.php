@@ -41,7 +41,7 @@ class j04120deletepropertyfeature {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid;
+		global $mrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$propertyFeatureUid = intval(jomresGetParam( $_REQUEST, 'propertyFeatureUid', 0 ) );
 		$defaultProperty=getDefaultProperty();

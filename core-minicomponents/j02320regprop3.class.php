@@ -42,7 +42,7 @@ class j02320regprop3 {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $my,$thisJRUser,$jrConfig,$MiniComponents,$Itemid;
+		global $my,$thisJRUser,$jrConfig,$MiniComponents;
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
 			return;
 			
@@ -132,7 +132,7 @@ class j02320regprop3 {
 		$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
 		sendAdminEmail($subject,$message);
-		jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId."&Itemid=".$Itemid,"");
+		jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
 		}
 
 	/**

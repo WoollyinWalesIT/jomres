@@ -30,7 +30,7 @@ class j06000mulistbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
+		global $thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
 
 		if ($thisJRUser->userIsRegistered)
 			{
@@ -87,7 +87,7 @@ class j06000mulistbookings {
 						else
 							$r['IMAGE']='&nbsp;';
 						$r['VIEWLINK']=makePopupLink(JOMRES_SITEPAGE_URL."&task=muviewbooking&popup=1&contract_uid=".$c->contract_uid,jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,$editable=false,$isLink=true));
-						$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&Itemid'.$Itemid.'=&property_uid='.$c->property_uid;
+						$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$c->property_uid;
 						$rows[]=$r;
 						}
 

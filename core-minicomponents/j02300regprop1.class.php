@@ -42,7 +42,7 @@ class j02300regprop1 {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$thisJRUser,$Itemid,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$thisJRUser,$jrConfig;
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
 			return;
 		if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))
@@ -59,7 +59,6 @@ class j02300regprop1 {
 		$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
-		$output['ITEMID']	=$Itemid;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

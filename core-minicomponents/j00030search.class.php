@@ -41,8 +41,8 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid,$jomresConfig_live_site,$jomresConfig_lang,$mainframe,$jrConfig;
-		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$Itemid,$version,$thisJRUser;
+		global $jomresConfig_live_site,$jomresConfig_lang,$mainframe,$jrConfig;
+		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
 		
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		
@@ -101,23 +101,7 @@ class j00030search {
 				}
 			}
 		$calledByModule=mysql_real_escape_string($calledByModule);
-		if ($calledByModule != "")
-			{
-			$query = "SELECT id"
-			. "\n FROM #__menu"
-			. "\n WHERE type = 'component'"
-			. "\n AND published = 1"
-			. "\n AND link = JOMRES_SITEPAGE_URL.'' LIMIT 1";
-			$itemQueryRes = doSelectSql($query);
-			if (count($itemQueryRes)>0)
-				{
-				foreach ($itemQueryRes as $i)
-					{
-					$Itemid = (int)$i->id;
-					}
-				}
-			else $Itemid = $jrConfig['jomresItemid'];
-			}
+
 		$customTextArray=array();
 		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '$jomresConfig_lang'";
 		$customTextList=doSelectSql($query);
@@ -137,7 +121,7 @@ class j00030search {
 			$sch = new jomSearch($calledByModule);
 			$sch->searchAll=$searchAll;
 			$searchOptions=$sch->searchOptions;
-			$h='<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/>'.'<input type="hidden" name="Itemid" value="'.$Itemid.'"/>';
+			$h='<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/>';
 			$output['HIDDEN']	= $h;
 			$jomresSearchFormname=$sch->formname;
 			$searchOutput=$sch->searchOutput;
@@ -290,12 +274,7 @@ class j00030search {
 				else
 					$output['JOMRES_SEARCH_PRICERANGES']				=jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES,false);
 				}
-			/*
-			$output['ITEMID']=$Itemid;
-			$output['LIVESITE']=$jomresConfig_live_site;
-			$output['FORMNAME']=$jomresSearchFormname;
-			*/
-			$output['ITEMID']=$Itemid;
+		
 			$output['LIVESITE']=$jomresConfig_live_site;
 			$nossl			  = str_replace("https://","http://",$jomresConfig_live_site);
 			$output['LIVESITELINK'] =  $nossl;
@@ -362,8 +341,8 @@ class j00030search {
 						$r="";
 						foreach ($sch->prep['propertyname'] as $property)
 							{
-							//$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&Itemid='.$Itemid.'&propertyname='.$property['pn']);
-							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&Itemid='.$Itemid.'&property_uid='.$property['puid']);
+							// you need to use special chars here otherwise the url will not work for non latin searches
+							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property['puid']);
 							$link=jomresURL($l);
 
 							$r.='<a href="'.$link.'">'.stripslashes($property['pn']).'</a>&nbsp;';
@@ -401,7 +380,7 @@ class j00030search {
 						$r="";
 						foreach ($sch->prep['country'] as $country)
 							{
-							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&Itemid='.$Itemid.'&country='.$country['countrycode']);
+							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&country='.$country['countrycode']);
 							$link=jomresURL($l);
 							$r.='<a href="'.$link.'">'.stripslashes($country['countryname']).'</a>&nbsp;';
 							if ($sch->cols=="1")
@@ -440,7 +419,7 @@ class j00030search {
 						foreach ($sch->prep['region'] as $region)
 							{
 							$t = str_replace("&#39;","'",$region['region']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&Itemid='.$Itemid.'&region='.$t);
+							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&region='.$t);
 							$link=jomresURL($l);
 							$r.='<a href="'.$link.'">'.stripslashes($region['region']).'</a>&nbsp;';
 							if ($sch->cols=="1")
@@ -481,7 +460,7 @@ class j00030search {
 						foreach ($ta as $town)
 							{
 							$t = str_replace("&#39;","'",$town['town']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&Itemid='.$Itemid.'&town='.$t);
+							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&town='.$t);
 							$link=jomresURL($l);
 							$r.='<a href="'.$link.'">'.stripslashes($town['town']).'</a>';
 							if ($sch->cols=="1")
@@ -579,7 +558,7 @@ class j00030search {
 						foreach ($sch->prep['rtypes'] as $room_type)
 							{
 							$roomClassAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$room_type['id'],stripslashes($room_type['title']));
-							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&Itemid='.$Itemid.'&room_type='.$room_type['id']);
+							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&room_type='.$room_type['id']);
 							$link=jomresURL($l);
 							$r.='<a href="'.$link.'">'.$roomClassAbbv.'</a>&nbsp;';
 							if ($sch->cols=="1")
@@ -619,7 +598,7 @@ class j00030search {
 						{
 						$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],stripslashes($ptype['ptype']),true,true);
 						//echo $ptypeAbbv;
-						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&Itemid='.$Itemid.'&ptype='.$ptype['id']);
+						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&ptype='.$ptype['id']);
 						$link=jomresURL($l);
 						$r.='<a href="'.$link.'">'.$ptypeAbbv.'</a>';
 							if ($sch->cols=="1")
@@ -673,7 +652,7 @@ class j00030search {
 					{
 					if (in_array("propertyname",$searchOptions) && !empty($sch->filter['propertyname']) )
 						{
-						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&Itemid='.$Itemid.'&property_uid='.$sch->filter['propertyname']);
+						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$sch->filter['propertyname']);
 						jomresRedirect( jomresURL($l), $saveMessage );
 						}
 					if (in_array("country",$searchOptions) && !empty($sch->filter['country']) )

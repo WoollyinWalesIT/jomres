@@ -41,7 +41,7 @@ class j02112publishcustomertype {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$database,$jomresConfig_live_site,$Itemid;
+		global $mrConfig,$database,$jomresConfig_live_site;
 		$id       = jomresGetParam( $_REQUEST, 'id', 0 );
 		$defaultProperty=getDefaultProperty();
 		$query="SELECT published FROM #__jomres_customertypes WHERE id = '".(int)$id."'";
@@ -55,7 +55,7 @@ class j02112publishcustomertype {
 		else
 			$query="UPDATE #__jomres_customertypes SET `published`='1' WHERE id = '".(int)$id."' AND property_uid = '".(int)$defaultProperty."'";
 		if (doInsertSql($query,_JOMRES_MR_AUDIT_PUBLISH_CUSTOMERTYPE))
-			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=".$Itemid,"" );
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listCustomerTypes","" );
 		trigger_error ("Unable to publish customer type, mysql db failure", E_USER_ERROR);
 		}
 

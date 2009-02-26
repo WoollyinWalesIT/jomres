@@ -41,7 +41,7 @@ class j04200editproperty {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $database,$selectedCountry,$mrConfig,$jomresConfig_live_site,$thisJRUser,$Itemid,$jrConfig;
+		global $database,$selectedCountry,$mrConfig,$jomresConfig_live_site,$thisJRUser,$jrConfig;
 		$defaultText="Change Me!";
 		$propertyRights=$thisJRUser->defaultproperty;
 		$propertyUid  = intval( jomresGetParam( $_REQUEST, 'propertyUid', 0 ) );
@@ -308,18 +308,17 @@ class j04200editproperty {
 
 
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
-		$output['ITEMID']=$Itemid;
 		$output['PROPERTYUID']=$propertyUid;
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		if ($jrConfig['allowHTMLeditor']!="2" && $jrConfig['allowHTMLeditor'] != "3")
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveProperty');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),'');
 		$usersProperties=$thisJRUser->authorisedPropertyDetails;
 
 		if (!function_exists('botJRHP') && !JOMRES_SINGLEPROPERTY && count($usersProperties) > 1)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken()."&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken().""),'');
 		else
 			{
 			if (JOMRES_GUESTLIMIT==50)

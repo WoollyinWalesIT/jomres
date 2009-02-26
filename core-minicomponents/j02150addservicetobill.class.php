@@ -41,7 +41,7 @@ class j02150addservicetobill {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $contract_uid,$mrConfig,$jomresConfig_live_site,$Itemid;
+		global $contract_uid,$mrConfig,$jomresConfig_live_site;
 		$saveMessage=_JOMRES_COM_ADDSERVICE_SAVEMESSAGE;
 
 		$contract_uid	=	jomresGetParam( $_REQUEST, 'contract_uid', 0 );
@@ -49,7 +49,6 @@ class j02150addservicetobill {
 		if (!isset($_POST['service_description']) )
 			{
 			$output['PAGETITLE']=jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE);
-			$output['ITEMID']=$Itemid;
 
 			$output['HSERVICEDESCRIPTION']=jr_gettext('_JOMRES_COM_ADDSERVICE_DESCRIPTION',_JOMRES_COM_ADDSERVICE_DESCRIPTION);
 			$output['HSERVICEVALUE']=jr_gettext('_JOMRES_COM_ADDSERVICE_VALUE',_JOMRES_COM_ADDSERVICE_VALUE);
@@ -59,7 +58,7 @@ class j02150addservicetobill {
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'addServiceToBill');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"),'');
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -84,7 +83,7 @@ class j02150addservicetobill {
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_ADDSERVICE',_JOMRES_MR_AUDIT_ADDSERVICE,FALSE)))
 					trigger_error ("Unable to insert into extraServices table, mysql db failure", E_USER_ERROR);
 				else
-					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid&Itemid=$Itemid"), $saveMessage );
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), $saveMessage );
 				}
 			else
 				{

@@ -41,7 +41,7 @@ class j02162savecancellation {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $database,$my,$forfeit,$mrConfig,$property_uid,$jomresConfig_live_site,$Itemid;
+		global $database,$my,$forfeit,$mrConfig,$property_uid,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$contract_uid = jomresGetParam( $_POST, 'contract_uid', 0 );
 		$reason = jomresGetParam( $_POST, 'reason', "" );
@@ -81,7 +81,7 @@ class j02162savecancellation {
 				error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				
 			
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings&Itemid=$Itemid"), $saveMessage );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), $saveMessage );
 			}
 		else
 			{

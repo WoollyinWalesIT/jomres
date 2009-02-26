@@ -41,7 +41,7 @@ class j02116editcustomertype {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$Itemid;
+		global $mrConfig;
 		$defaultProperty=getDefaultProperty();
 		$id       = jomresGetParam( $_REQUEST, 'id', 0 );
 		$yesno = array();
@@ -65,7 +65,6 @@ class j02116editcustomertype {
 		$output['HPOSNEG_TT']=jomresToolTips( jr_gettext('_JOMRES_VARIANCES_POSNEG_TT',_JOMRES_VARIANCES_POSNEG_TT,false ) );
 		$output['HVARIANCE']=jr_gettext('_JOMRES_VARIANCES_VARIANCE',_JOMRES_VARIANCES_VARIANCE);
 		$output['HVARIANCE_TT']=jomresToolTips( jr_gettext('_JOMRES_VARIANCES_VARIANCE_TT',_JOMRES_VARIANCES_VARIANCE_TT,false ) );
-		$output['ITEMID']=$Itemid;
 		$output['ID']= $id;
 
 		if ( $id!="" )
@@ -96,9 +95,9 @@ class j02116editcustomertype {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCustomerType');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listCustomerTypes"),'');
 		if ($id != 0 )
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteCustomerType".jomresURLToken()."&no_html=1&id=$id&Itemid=$Itemid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteCustomerType".jomresURLToken()."&no_html=1&id=$id"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

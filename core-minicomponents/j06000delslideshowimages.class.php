@@ -42,7 +42,7 @@ class j06000delslideshowimages {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid,$thisJRUser,$jrConfig,$Itemid;
+		global $thisJRUser,$jrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$success=true;
 		$defaultProperty=getDefaultProperty();
@@ -71,7 +71,7 @@ class j06000delslideshowimages {
 				}
 			}
 		if ($success)
-			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm&Itemid=".$Itemid, _JOMRES_FILE_DELETED );
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm", _JOMRES_FILE_DELETED );
 		}
 
 	function touch_template_language()

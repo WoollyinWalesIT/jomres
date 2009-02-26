@@ -42,7 +42,7 @@ class j02310regprop2 {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$thisJRUser,$Itemid,$jrConfig,$mrConfig;
+		global $jomresConfig_live_site,$thisJRUser,$jrConfig,$mrConfig;
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
 			return;
 
@@ -151,7 +151,6 @@ class j02310regprop2 {
 		$output['HOTHERTRANSPORT']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT);
 		$output['HPOLICIESDISCLAIMERS']	=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
 		$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;
-		$output['ITEMID']				=$Itemid;
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
 

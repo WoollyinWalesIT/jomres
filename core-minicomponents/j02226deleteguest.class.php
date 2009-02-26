@@ -41,8 +41,7 @@ class j02226deleteguest {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid;
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$guestUid=jomresGetParam( $_REQUEST, 'guestUid', 0 );
 		$defaultProperty=getDefaultProperty();
 		$saveMessage=jr_gettext('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED',_JOMRES_FRONT_DELETEGUEST_GUESTDELETED,FALSE);
@@ -74,7 +73,7 @@ class j02226deleteguest {
 			$query="DELETE FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."' AND property_uid = '".(int)$defaultProperty."'";
 			echo $query;
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_GUEST',_JOMRES_MR_AUDIT_DELETE_GUEST,FALSE))) trigger_error (_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST, E_USER_ERROR);
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&Itemid=$Itemid"), $saveMessage );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), $saveMessage );
 			}
 		else
 			{

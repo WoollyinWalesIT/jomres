@@ -30,7 +30,7 @@ class j16000editPfeature
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresAdminPath,$jomresConfig_live_site,$Itemid,$jomresConfig_absolute_path;
+		global $mrConfig,$jomresAdminPath,$jomresConfig_live_site,$jomresConfig_absolute_path;
 		$propertyFeatureUid = jomresGetParam( $_REQUEST, 'propertyFeatureUid',	0 );
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	false ) );
 		if ($propertyFeatureUid >0)
@@ -79,7 +79,6 @@ class j16000editPfeature
 		$output['HFEATUREABBV']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
 		$output['HFEATUREDESCRIPTION']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC;
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
-		$output['ITEMID']=$Itemid;
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
 		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'._JOMRES_COM_MR_BACK.'</a>';
 

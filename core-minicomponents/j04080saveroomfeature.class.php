@@ -41,7 +41,7 @@ class j04080saveroomfeature {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid;
+		global $mrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$roomFeatureUid	= intval( jomresGetParam( $_POST, 'roomFeatureUid', 0 ) );
 		$feature_description = getEscaped(  jomresGetParam( $_POST, 'feature_description', '' ) );

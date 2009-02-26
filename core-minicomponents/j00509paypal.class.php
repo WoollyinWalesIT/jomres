@@ -47,7 +47,6 @@ class j00509paypal {
 		$plugin="paypal";
 
 		$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
-		$Itemid=$componentArgs['Itemid'];
 		$defaultProperty=getDefaultProperty();
 		$query="SELECT value FROM #__jomres_pluginsettings WHERE prid LIKE '".(int)$defaultProperty."' AND plugin LIKE '$plugin' AND setting LIKE 'active' AND value LIKE '1'";
 		$activeList =doSelectSql($query);
@@ -56,7 +55,7 @@ class j00509paypal {
 		else
 			$active=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 		$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=750,height=500,directories=no,location=no';
-		$link = JOMRES_SITEPAGE_URL."&task=editGateway&Itemid=$Itemid&popup=1&plugin=$plugin";
+		$link = JOMRES_SITEPAGE_URL."&task=editGateway&popup=1&plugin=$plugin";
 		$gatewayname=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'.$plugin,ucwords($plugin),false,false);
 		$pluginLink="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"".$plugin."\">".$gatewayname."</a>";
 		$button="<IMG SRC=\"".$eLiveSite."/j00510".$plugin.".gif"."\" border=\"0\">";

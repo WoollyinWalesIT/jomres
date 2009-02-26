@@ -44,7 +44,7 @@ class j01055showroomdetails {
 		$all=$componentArgs['all'];
 		if ($all)
 			$property_uid=(int)$componentArgs['property_uid'];
-		global $mrConfig,$jomresConfig_live_site,$noshowavlcal,$noshowroom,$Itemid,$MiniComponents,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$noshowavlcal,$noshowroom,$MiniComponents,$jrConfig;
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();
@@ -107,7 +107,7 @@ class j01055showroomdetails {
 //					}
 				$room_image=getImageForProperty("room",$property_uid,$room->room_uid);
 
-				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&Itemid=$Itemid&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,$editable=true,$isLink=true)."</a>";
+				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,$editable=true,$isLink=true)."</a>";
 				$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$room_classes_uid."'";
 				$roomsClassList =doSelectSql($query);
 				foreach ($roomsClassList as $roomClass)

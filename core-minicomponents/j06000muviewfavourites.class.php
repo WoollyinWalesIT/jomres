@@ -30,7 +30,7 @@ class j06000muviewfavourites {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
+		global $thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
 		if ($thisJRUser->userIsRegistered)
 			{
 			$pageoutput=array();
@@ -77,7 +77,7 @@ class j06000muviewfavourites {
 						$r['IMAGE']='<img src="'.$jomresConfig_live_site.$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg" width="40">';
 					else
 						$r['IMAGE']='&nbsp;';
-					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&Itemid'.$Itemid.'=&property_uid='.$f->property_uid;
+					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$f->property_uid;
 					$rows[]=$r;
 					}
 

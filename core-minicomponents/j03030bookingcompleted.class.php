@@ -41,7 +41,7 @@ class j03030bookingcompleted {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$Itemid,$mrConfig,$tmpBookingHandler,$jrConfig;
+		global $jomresConfig_live_site,$mrConfig,$tmpBookingHandler,$jrConfig;
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 
 		$save_deets=array();
@@ -54,7 +54,7 @@ class j03030bookingcompleted {
 			if (!isset($jrConfig['useSSLinBookingform']) )
 				$jrConfig['useSSLinBookingform']=0;
 			if ( $jrConfig['useSSLinBookingform'] == 1 )
-				$save_deets['LIVESITE'] = str_replace("https://","http://",$jomresConfig_live_site);
+				$save_deets['LIVESITE'] = str_replace("https://","http://",JOMRES_SITEPAGE_URL);
 			}
 		else
 			$save_deets['LIVESITE'] = $jomresConfig_live_site;
@@ -62,7 +62,6 @@ class j03030bookingcompleted {
 		if (defined('_JR_GATEWAY_AFTERWORD') )
 			$save_deets['JR_GATEWAY_AFTERWORD']=jr_gettext('_JR_GATEWAY_AFTERWORD',_JR_GATEWAY_AFTERWORD);
 		$save_deets['SAVEDMESSAGE']=jr_gettext('_JOMRES_FRONT_MR_BOOKINGMADE',_JOMRES_FRONT_MR_BOOKINGMADE);
-		$save_deets['ITEMID']=$Itemid;
 		$save_deets['PROPERTYUID']=$property_uid;
 		$save_deets['BACKTOPROPERTY']=jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK',_JOMRES_BACKTOPROPERTYDETAILSLINK);
 		$save_details[]=$save_deets;

@@ -30,7 +30,6 @@ class j06000editnote {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid;
 
 		$defaultProperty=getDefaultProperty();
 		$pageoutput=array();

@@ -42,7 +42,7 @@ class j02211listtariffs {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig, $Itemid,$jomresConfig_live_site,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$jrConfig;
 		$defaultProperty=getDefaultProperty();
 	 	if ($jrConfig['useGlobalRoomTypes']=="1")
 			$roomTypeSearchParameter="0";
@@ -72,8 +72,8 @@ class j02211listtariffs {
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&Itemid=$Itemid&tarifftypeid=".($tariff->id) ),'');
-			$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&Itemid=$Itemid&tarifftypeid=".($tariff->id)."&clone=1"),'');
+			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&tarifftypeid=".($tariff->id) ),'');
+			$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&tarifftypeid=".($tariff->id)."&clone=1"),'');
 			$jrtb .= $jrtbar->endTable();
 			$rw['LINKTEXT']=$jrtb;
 
@@ -96,13 +96,12 @@ class j02211listtariffs {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&amp;Itemid=$Itemid"),'');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['pagetitle']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE);
-		$output['ITEMID']=$Itemid;
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		
 		$pageoutput[]=$output;

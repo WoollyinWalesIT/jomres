@@ -72,6 +72,8 @@ class j16000listGlobalroomTypes
 
 		$output['JOMRESTOOLBAR']= $jrtb;
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+		
 		$pageoutput[]=$output;
 
 		$tmpl = new patTemplate();

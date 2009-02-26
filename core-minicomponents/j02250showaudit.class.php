@@ -41,7 +41,6 @@ class j02250showaudit {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$dates,$owner,$operations,$Itemid;
 		$rows=array();
 		$query="";
 		$dates		=	jomresGetParam( $_REQUEST, 'auditdates', "%" );
@@ -160,12 +159,11 @@ class j02250showaudit {
 		$output['OPERATIONFILTER']=$operationDropdown;
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_A_AUDITING_SHOWING',_JOMRES_COM_A_AUDITING_SHOWING);
-		$output['ITEMID']=$Itemid;
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('archive',jomresURL(JOMRES_SITEPAGE_URL."&task=archiveAudit".jomresURLToken()."&Itemid=$Itemid&no_html=1"),'');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+		$jrtb .= $jrtbar->toolbarItem('archive',jomresURL(JOMRES_SITEPAGE_URL."&task=archiveAudit".jomresURLToken()."&no_html=1"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

@@ -41,7 +41,7 @@ class j02140publishextra {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$uid,$database,$jomresConfig_live_site,$Itemid;
+		global $mrConfig,$uid,$database,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$uid		= intval(jomresGetParam( $_REQUEST, 'uid', "" ));
 		$defaultProperty=getDefaultProperty();
@@ -56,7 +56,7 @@ class j02140publishextra {
 		else
 			$query="UPDATE #__jomres_extras SET `published`='1' WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 		if (doInsertSql($query,_JOMRES_MR_AUDIT_PUBLISH_EXTRA))
-			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listExtras&Itemid=".$Itemid,"" );
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listExtras","" );
 		trigger_error ("Unable to publish extra, mysql db failure", E_USER_ERROR);
 		}
 

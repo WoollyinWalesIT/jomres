@@ -41,7 +41,7 @@ class j02213edittariff {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $Itemid,$jrConfig,$mrConfig;
+		global $jrConfig,$mrConfig;
 		$defaultProperty=getDefaultProperty();
 	 	if ($jrConfig['useGlobalRoomTypes']=="1")
 			$roomTypeSearchParameter="0";
@@ -75,7 +75,6 @@ class j02213edittariff {
 		$output['HROOMTYPEDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS);
 		$output['HIGNOREPPPNDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN',_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN);
 		$output['HALLOWWEEKENDSDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ALLOWWE',_JOMRES_COM_MR_LISTTARIFF_ALLOWWE);
-		$output['ITEMID']=$Itemid;
 
 		$def_mindays=1;
 		$def_maxdays=100;
@@ -322,10 +321,10 @@ class j02213edittariff {
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveTariff&amp;Itemid=$Itemid"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveTariff');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveTariff"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveTariff');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 		if (!$clone && $tarifftypeid>0)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteTariff".jomresURLToken()."&tarifftypeid=".$tarifftypeid."Itemid=$Itemid"),$deleteText);
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteTariff".jomresURLToken()."&tarifftypeid=".$tarifftypeid),$deleteText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

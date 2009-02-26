@@ -42,7 +42,7 @@ class j00011debugging {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$Itemid;
+		global $thisJRUser;
 
 		if ($thisJRUser->superPropertyManager)
 			{
@@ -50,7 +50,7 @@ class j00011debugging {
 			$image="/jomres/images/bug_icon.png";
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->customToolbarItem("popupBug",jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=$currentPage&Itemid=$Itemid"),"Report Bug",false,"",$image);
+			$jrtb .= $jrtbar->customToolbarItem("popupBug",jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=$currentPage"),"Report Bug",false,"",$image);
 			$jrtb .= $jrtbar->endTable();
 			$this->returnValue=array('BUGREPORT_LINK'=>$jrtb);
 			}

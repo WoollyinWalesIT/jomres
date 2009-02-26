@@ -41,7 +41,7 @@ class j02118savecustomertype {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$Itemid;
+		global $mrConfig,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$id			= intval(jomresGetParam( $_POST, 'id', "" ));
@@ -66,7 +66,7 @@ class j02118savecustomertype {
 		if (!doInsertSql($query,$auditMessage))
 			trigger_error ("Unable to create customer type, mysql db failure", E_USER_ERROR);
 		else
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listCustomerTypes&Itemid=$Itemid"), $saveMessage );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listCustomerTypes"), $saveMessage );
 		}
 
 	/**

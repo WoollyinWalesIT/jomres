@@ -41,7 +41,7 @@ class j04100editpropertyfeature {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$Itemid,$my;
+		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		$propertyFeatureUid = intval( jomresGetParam( $_REQUEST, 'propertyFeatureUid',	0 ) );
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
@@ -63,7 +63,6 @@ class j04100editpropertyfeature {
 		$output['HFEATUREABBV']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV);
 		$output['HFEATUREDESCRIPTION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC);
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
-		$output['ITEMID']=$Itemid;
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES',_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES);
 
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
@@ -73,9 +72,9 @@ class j04100editpropertyfeature {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'savePropertyFeature');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"),$cancelText);
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 		if (!$clone)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deletePropertyFeature".jomresURLToken()."&propertyFeatureUid=".$propertyFeatureUid."&Itemid=$Itemid"),$deleteText);
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deletePropertyFeature".jomresURLToken()."&propertyFeatureUid=".$propertyFeatureUid.""),$deleteText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

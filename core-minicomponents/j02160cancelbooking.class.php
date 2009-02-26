@@ -41,7 +41,7 @@ class j02160cancelbooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$Itemid,$jomresConfig_live_site;
+		global $mrConfig,$jomresConfig_live_site;
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 
 		$jsLink=jomresURL(JOMRES_SITEPAGE_URL."&task=saveCancellation&contract_uid=$contract_uid");
@@ -63,7 +63,6 @@ class j02160cancelbooking {
 
 			if ($booked_in !="1")
 				{
-				$output['ITEMID']=$Itemid;
 				$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING);
 				$output['SAVEBUTTON']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON',_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON,false);
 				$output['HREASON']=jr_gettext('_JOMRES_JR_BLACKBOOKING_REASON',_JOMRES_JR_BLACKBOOKING_REASON);
@@ -91,7 +90,7 @@ class j02160cancelbooking {
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCancellation');
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -105,7 +104,7 @@ class j02160cancelbooking {
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->displayParsedTemplate();
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=710,directories=no,location=no';
-				$link = JOMRES_SITEPAGE_URL."&task=invoiceForm&Itemid=".$Itemid."&contract_uid=".$contract_uid;
+				$link = JOMRES_SITEPAGE_URL."&task=invoiceForm&contract_uid=".$contract_uid;
 				}
 			else
 				echo jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN',_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN);

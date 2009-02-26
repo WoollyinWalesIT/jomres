@@ -41,7 +41,7 @@ class j04090deleteroomfeature {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$Itemid;
+		global $mrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$roomFeatureUid		= intval( jomresGetParam( $_REQUEST, 'roomFeatureUid', '' ) );
 		$defaultProperty=getDefaultProperty();

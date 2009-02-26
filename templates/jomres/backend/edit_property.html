@@ -4,13 +4,13 @@
 function OnChange(dropdown)
 	{	
 	var myindex	= dropdown.selectedIndex
-	var baseURL= "{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=editProperty&Itemid={ITEMID}"
+	var baseURL= "{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=editProperty"
 	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
 	return true;
 	}
 //-->
 </script>
-<form action="index.php?option=com_jomres" method="post" name="adminForm">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 <table class="jradmin_innerwrapper">
 	<tr>
 		<td class="jomres_title">{PAGETITLE}</td>
@@ -193,7 +193,6 @@ function OnChange(dropdown)
 </table>
 {JOMRESTOKEN}
 <input type="hidden" name="property_uid" value="{PROPERTYUID}" />
-<input type="hidden" name="Itemid" value="{ITEMID}" />
 <input type="hidden" name="task" value="saveProperty" />
 {TOOLBAR2}
 </form>
@@ -213,7 +212,7 @@ function OnChange(dropdown)
 				</tr>
 				<tr>
 					<td class="jradmin_field_ca"><input type='file' name='image'/></td>
-					<td class="jradmin_field_ca"><input type="hidden" name="Itemid" value="{ITEMID}" /><input type="submit" value="{UPLOADIMAGE}" class="button" /></td>
+					<td class="jradmin_field_ca"><input type="submit" value="{UPLOADIMAGE}" class="button" /></td>
 				</tr>
 			</table>
 		</td>
@@ -230,6 +229,5 @@ function OnChange(dropdown)
 	</tr>
 </table>
 {JOMRESTOKEN}
-<input type="hidden" name="Itemid" value="{ITEMID}" />
 </form>
 </patTemplate:tmpl>
