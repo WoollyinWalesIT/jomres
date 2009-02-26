@@ -55,8 +55,11 @@ class jr_user
 			{
 			return false;
 			}
-		$query="SELECT userid FROM ".cms_db_prefix()."module_feusers_loggedin WHERE sessionid=.".$sessionid.'"';
-		$this->id=doSelectSql($query,1);
+			
+		$query="SELECT userid FROM #__module_feusers_loggedin WHERE sessionid='".$sessionid."'";
+		$this->id=(int)doSelectSql($query,1);
+		if (!$this->id)
+			return false;
 
 		if (!isset($_SESSION['cms_admin_user_id']))
 			$this->id = 0;
