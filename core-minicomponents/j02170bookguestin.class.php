@@ -41,12 +41,9 @@ class j02170bookguestin {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $database,$mrConfig;
 		$defaultProperty=getDefaultProperty();
-		
 		if (!isset($_REQUEST['dueContract']))
 			{
-			global $database,$mrConfig,$jomresConfig_live_site,;
 			$defaultProperty=getDefaultProperty();
 			
 			

@@ -35,7 +35,7 @@ class j06000handlereq_total
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomressession,$property_uid,$tmpBookingHandler;
+		global $jomressession,$property_uid,$tmpBookingHandler;
 		
 		$inputName						= "overtotal";
 

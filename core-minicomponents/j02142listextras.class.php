@@ -41,7 +41,7 @@ class j02142listextras {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
+		global $mrConfig;
 		$defaultProperty=getDefaultProperty();
 		$output['HEDITLINK']=jr_gettext('_JOMRES_COM_MR_EXTRA_LINKTEXT',_JOMRES_COM_MR_EXTRA_LINKTEXT,$editable=false,$isLink=true);
 		$output['HEXNAME']=jr_gettext('_JOMRES_COM_MR_EXTRA_NAME',_JOMRES_COM_MR_EXTRA_NAME);

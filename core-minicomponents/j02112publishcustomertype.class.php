@@ -41,7 +41,6 @@ class j02112publishcustomertype {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$database,$jomresConfig_live_site;
 		$id       = jomresGetParam( $_REQUEST, 'id', 0 );
 		$defaultProperty=getDefaultProperty();
 		$query="SELECT published FROM #__jomres_customertypes WHERE id = '".(int)$id."'";

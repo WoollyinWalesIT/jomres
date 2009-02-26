@@ -118,7 +118,6 @@ class j06000cancelGuestBooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
-			global $database;
 			global $mrConfig,$jomresConfig_live_site,$popup;
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")

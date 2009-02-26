@@ -41,7 +41,6 @@ class j04110savepropertyfeature {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$propertyFeatureUid			= intval(jomresGetParam( $_POST, 'propertyFeatureUid', "" ) );

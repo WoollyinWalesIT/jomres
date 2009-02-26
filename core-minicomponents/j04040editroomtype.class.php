@@ -41,7 +41,6 @@ class j04040editroomtype {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig;
 		$classUid	= jomresGetParam( $_REQUEST, 'classUid',	"" );
 		$clone		= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
 		$defaultProperty=getDefaultProperty();

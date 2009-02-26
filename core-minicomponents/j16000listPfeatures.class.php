@@ -30,7 +30,7 @@ class j16000listPfeatures
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresAdminPath,$jomresConfig_absolute_path,$mrConfig,$jomresConfig_live_site;
+		global $jomresAdminPath,$jomresConfig_live_site;
 		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList=doSelectSql($query);

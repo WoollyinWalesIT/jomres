@@ -41,7 +41,6 @@ class j02132blackbooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		$contract_uid=jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);

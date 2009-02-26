@@ -42,7 +42,7 @@ class j02300regprop1 {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$thisJRUser,$jrConfig;
+		global $thisJRUser,$jrConfig;
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
 			return;
 		if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))

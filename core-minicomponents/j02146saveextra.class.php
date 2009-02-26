@@ -34,7 +34,6 @@ class j02146saveextra {
 
 	function saveExtra()
 		{
-		global $mrConfig,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$uid		= intval(jomresGetParam( $_POST, 'uid', "" ));

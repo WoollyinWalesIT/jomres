@@ -41,7 +41,7 @@ class j02162savecancellation {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $database,$my,$forfeit,$mrConfig,$property_uid,$jomresConfig_live_site;
+		global $mrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$contract_uid = jomresGetParam( $_POST, 'contract_uid', 0 );
 		$reason = jomresGetParam( $_POST, 'reason', "" );

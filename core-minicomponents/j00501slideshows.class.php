@@ -44,7 +44,6 @@ class j00501slideshows {
 		global $configurationPanel,$jrConfig,$thisJRUser;
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$mrConfig=$componentArgs['mrConfig'];
 			$lists=$componentArgs['lists'];
 			$configurationPanel->startPanel(_JOMRES_COM_A_SLIDESHOWS);
 

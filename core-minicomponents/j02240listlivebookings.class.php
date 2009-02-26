@@ -41,7 +41,6 @@ class j02240listlivebookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $database,$mrConfig;
 		$arrivalDates=jomresGetParam( $_REQUEST, 'arrivalDates', '');
 		if ($arrivalDates=='%') unset($arrivalDates);
 		$defaultProperty=getDefaultProperty();

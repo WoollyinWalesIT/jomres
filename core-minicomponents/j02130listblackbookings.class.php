@@ -41,7 +41,6 @@ class j02130listblackbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		$bookingsrows=array();
 		$txt="";

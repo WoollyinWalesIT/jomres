@@ -30,7 +30,7 @@ class j16000editPfeature
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresAdminPath,$jomresConfig_live_site,$jomresConfig_absolute_path;
+		global $jomresAdminPath,$jomresConfig_live_site;
 		$propertyFeatureUid = jomresGetParam( $_REQUEST, 'propertyFeatureUid',	0 );
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	false ) );
 		if ($propertyFeatureUid >0)
@@ -47,7 +47,7 @@ class j16000editPfeature
 		if ($clone)
 			$propertyFeatureUid=0;
 
-		$map=$jomresConfig_absolute_path.'/images/stories/jomres/pfeatures/';
+		$map=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS;
 		$mrp=$jomresConfig_live_site.'/images/stories/jomres/pfeatures/';
 		$d = @dir($map);
 		$docs = array();
