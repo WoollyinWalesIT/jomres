@@ -3735,37 +3735,13 @@ function sendAdminEmail($subject,$message)
 		}
 	$message .= "\n\n\nPost details follow (may not be applicable to email) ";
 	foreach ($_POST as $key => $value) { $message .= "\n$key: $value"; }
-	if ($jomresConfig_mailfrom != "" && $jomresConfig_fromname != "")
-		{
-		$adminName2 = $jomresConfig_fromname;
-		$adminEmail2 = $jomresConfig_mailfrom;
-		}
-	else
-		{
-		$query = "SELECT name, email FROM #__users WHERE LOWER( usertype ) = 'superadministrator' OR LOWER( usertype ) = 'super administrator'";
-		$rows=doSelectSql($query);
+	$adminName = $jomresConfig_fromname;
+	$adminEmail = $jomresConfig_mailfrom;
 
-		$row2			= $rows[0];
-		$adminName2		= $row2->name;
-		$adminEmail2	= $row2->email;
-		}
-	// get superadministrators id
-	if (defined('_JOMRES_NEWJOOMLA') )
+	$admins=jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id);
+	foreach ( $admins AS $admin )
 		{
-		$authorize =& JFactory::getACL();
-		$admins = $authorize->get_group_objects( 25, 'ARO' );
-		}
-	else
-		$admins = $acl->get_group_objects( 25, 'ARO' );
-	foreach ( $admins['users'] AS $id )
-		{
-		$query = "SELECT email, sendEmail FROM #__users WHERE id = ".(int)$id."" ;
-		$rows=doSelectSql($query);
-		$row = $rows[0];
-		if ($row->sendEmail)
-			{
-			jomresMailer($adminEmail2, $adminName2, $row->email, $subject, $message);
-			}
+		jomresMailer($adminEmail, $adminName, $admin['email'], $subject, $message);
 		}
 	}
 
