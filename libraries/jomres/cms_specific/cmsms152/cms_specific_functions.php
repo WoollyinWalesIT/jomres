@@ -4,6 +4,72 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+// As per the function name
+function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
+	{
+	$user=array();
+	$query="SELECT id,username FROM #__module_feusers_users WHERE id=".(int)$id;
+	$userList = doSelectSql($query);
+	if (count($userList)>0)
+		{
+		foreach ($userList as $u)
+			{
+			$user[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->username);
+			}
+		}
+	return $user;
+	}
+
+// As per the function name
+function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($username)
+	{
+	$user=array();
+	$query="SELECT id,username FROM #__module_feusers_users WHERE username='".(string)$username."'";
+	$userList = doSelectSql($query);
+	if (count($userList)>0)
+		{
+		foreach ($userList as $u)
+			{
+			$user[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->username);
+			}
+		}
+	return $user;
+	}
+	
+// As per the function name
+function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
+	{
+	$user=array();
+	$query="SELECT id,username,email FROM #__users WHERE id=".(int)$id;
+	$userList = doSelectSql($query);
+	if (count($userList)>0)
+		{
+		foreach ($userList as $u)
+			{
+			$user[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->email);
+			}
+		}
+	return $user;
+	}
+	
+// As per the function name
+function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id)
+	{
+	$users=array();
+	$query="SELECT id,username,email FROM #__users WHERE admin_access=1";
+	$userList = doSelectSql($query);
+	if (count($userList)>0)
+		{
+		foreach ($userList as $u)
+			{
+			$users[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->email);
+			}
+		}
+	return $users;
+	}
+
+
+
 // Todo, this currently has the Joomla module search 
 function jomres_cmsspecific_getSearchModuleParameters($moduleName)
 	{

@@ -76,12 +76,15 @@ class j02250showaudit {
 					$ownerArray2=explode(")",$ownerArray[1]);
 					$username=$ownerArray2[0];
 					// Now we need to scan the mos_users tables for this user's userid
-					$query="SELECT id FROM #__users WHERE username = '$username'";
-					$userList=doSelectSql($query);
-					foreach ($userList as $user)
-						{
-						$userid = $user->id;
-						}
+					// Updated for Jomres v4
+					$userDetails=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($username);
+					//$query="SELECT id FROM #__users WHERE username = '$username'";
+					//$userList=doSelectSql($query);
+					//foreach ($userList as $user)
+					//	{
+					//	$userid = $user->id;
+					//	}
+					$userid = $userDetails[0]['id'];
 					}
 				}
 			else
@@ -115,18 +118,24 @@ class j02250showaudit {
 		foreach ($auditList as $activity)
 			{
 			$username=$activity->owner;
-			$query="SELECT name,username FROM #__users WHERE id = '".(int)$activity->owner."'";
-
-			$userList =doSelectSql($query);
-			if (count($userList)>0)
-				{
-				foreach ($userList as $user)
-					{
-					$rw['USER']=$user->name." (".$user->username.") ";
-					}
-				}
+			$userDetails=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($activity->owner);
+			if (count($userDetails)==1)
+				$rw['USER']=$userDetails[0]['username'];
 			else
 				$rw['USER']=jr_gettext('_JOMRES_MR_AUDIT_UNKNOWNUSER',_JOMRES_MR_AUDIT_UNKNOWNUSER,FALSE);
+
+			//$query="SELECT name,username FROM #__users WHERE id = '".(int)$activity->owner."'";
+			
+			//$userList =doSelectSql($query);
+			//if (count($userList)>0)
+			//	{
+			//	foreach ($userList as $user)
+			//		{
+					$rw['USER']=$user->name." (".$user->username.") ";
+			//		}
+			//	}
+			//else
+				//$rw['USER']=jr_gettext('_JOMRES_MR_AUDIT_UNKNOWNUSER',_JOMRES_MR_AUDIT_UNKNOWNUSER,FALSE);
 			$thedate=str_replace("-","/",($activity->date));
 			$rw['THEDATE']=outputDate($thedate);
 			$rw['THETIME']=$activity->time;
