@@ -41,7 +41,6 @@ class j02140publishextra {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$uid,$database,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$uid		= intval(jomresGetParam( $_REQUEST, 'uid', "" ));
 		$defaultProperty=getDefaultProperty();

@@ -30,7 +30,7 @@ class j16000editGlobalroomTypes
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresAdminPath,$jomresConfig_live_site,$jomresConfig_absolute_path;
+		global $jomresAdminPath,$jomresConfig_live_site;
 		$rmTypeUid 			= intval(jomresGetParam( $_REQUEST, 'rmTypeUid',	0 ));
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
 		$yesno = array();
@@ -58,8 +58,8 @@ class j16000editGlobalroomTypes
 		if ($clone)
 			$propertyFeatureUid=FALSE;
 
-		$map=$jomresConfig_absolute_path.'/images/stories/jomres/rmtypes/';
-		$mrp=$jomresConfig_live_site.'/images/stories/jomres/rmtypes/';
+		$map=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS;
+		$mrp=$jomresConfig_live_site.'/jomres/uploadedimages/rmtypes/';
 		$d = @dir($map);
 		$docs = array();
 		$rows=array();
@@ -72,7 +72,7 @@ class j16000editGlobalroomTypes
 					{
 					$docs=array();
 					$docs['ISCHECKED'] ="";
-					$docs['IMAGEPATH'] ='images/stories/jomres/rmtypes/'.$filename;
+					$docs['IMAGEPATH'] =$map.$filename;
 					$docs['IMAGE'] =$mrp.$filename;
 					if (isset($image) && $docs['IMAGEPATH']==$image)
 						$docs['ISCHECKED'] ="checked";

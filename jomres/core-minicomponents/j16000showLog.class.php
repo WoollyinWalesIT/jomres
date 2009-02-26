@@ -30,7 +30,7 @@ class j16000showLog
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$jomresConfig_absolute_path,$logFiles,$xmlelements,$jomresConfig_live_site;
+		global $jrConfig,$logFiles,$xmlelements,$jomresConfig_live_site;
 		global $xml_entry_key,$rows,$jomresAdminPath,$counter,$lastdata,$xmlelements;
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
 		$pageoutput=array();

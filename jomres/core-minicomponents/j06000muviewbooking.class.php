@@ -133,7 +133,6 @@ class j06000muviewbooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
-			global $database;
 			global $mrConfig,$jomresConfig_live_site,$popup;
 			$guest_firstname="N/A";
 			$guest_surname="N/A";

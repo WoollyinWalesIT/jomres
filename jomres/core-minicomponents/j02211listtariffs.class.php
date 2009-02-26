@@ -42,7 +42,7 @@ class j02211listtariffs {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jrConfig;
+		global $jrConfig;
 		$defaultProperty=getDefaultProperty();
 	 	if ($jrConfig['useGlobalRoomTypes']=="1")
 			$roomTypeSearchParameter="0";

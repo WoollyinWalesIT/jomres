@@ -42,7 +42,6 @@ class j02272publishprop {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$database;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid LIKE '".(int)$defaultProperty."'";

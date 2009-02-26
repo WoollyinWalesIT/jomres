@@ -42,7 +42,6 @@ class j00501required {
 			$this->template_touchable=false; return;
 			}
 		global $configurationPanel;
-		$mrConfig=$componentArgs['mrConfig'];
 		$lists=$componentArgs['lists'];
 		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) )
 			{

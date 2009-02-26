@@ -35,7 +35,7 @@ class j06000amendBooking
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jrConfig,$thisJRUser;
+		global $jomresConfig_live_site,$jrConfig,$thisJRUser;
 		$defaultProperty=getDefaultProperty();
 		$contract_uid		= intval(jomresGetParam( $_REQUEST, 'contractUid', 0 ) );
 		if ($contract_uid>0)

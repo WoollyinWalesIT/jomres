@@ -42,7 +42,6 @@ class j02222editguest {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $database,$mrConfig,$jomresConfig_live_site;
 		$guestUid= intval(jomresGetParam( $_REQUEST, 'guestUid', 0 ) );
 		$defaultProperty=getDefaultProperty();
 

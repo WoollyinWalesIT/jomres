@@ -45,7 +45,6 @@ class j00501editingmode {
 		global $configurationPanel,$jrConfig,$thisJRUser;
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$mrConfig=$componentArgs['mrConfig'];
 			$lists=$componentArgs['lists'];
 			$editIconSize=$componentArgs['editIconSize'];
 			$configurationPanel->startPanel(_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE);

@@ -42,7 +42,7 @@ class j04900saveproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$thisJRUser,$jrConfig;
+		global $thisJRUser,$jrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$this->newpropertyId	= 0;
 		$propertyUid  = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );

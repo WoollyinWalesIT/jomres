@@ -41,7 +41,7 @@ class j02260editbooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $database,$mrConfig,$thisJRUser;
+		global $mrConfig,$thisJRUser;
 		$defaultProperty=getDefaultProperty();
 		$contract_uid	=	jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		if ($contract_uid == 0)
@@ -102,7 +102,7 @@ class j02260editbooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures,$bookersUsername)
 			{
-			global $database,$MiniComponents;
+			global $MiniComponents;
 			global $mrConfig,$jomresConfig_live_site,$popup,$thisJRUser;
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")

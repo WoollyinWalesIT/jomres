@@ -41,7 +41,6 @@ class j02116editcustomertype {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
 		$defaultProperty=getDefaultProperty();
 		$id       = jomresGetParam( $_REQUEST, 'id', 0 );
 		$yesno = array();

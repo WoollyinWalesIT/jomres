@@ -30,8 +30,8 @@ class j16000clearLog
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$jomresConfig_absolute_path,$jomresConfig_absolute_path,$logFiles;
-		$jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
+		global $jrConfig,$logFiles;
+		$jomres_systemLog_path=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['jomres_systemLog_path'];
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
 		if (file_exists($jomres_systemLog_path.$logFiles[$logfile]) && is_writable($jomres_systemLog_path.$logFiles[$logfile]) )
 			{

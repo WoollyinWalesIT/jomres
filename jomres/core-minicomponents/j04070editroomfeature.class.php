@@ -41,7 +41,6 @@ class j04070editroomfeature {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
 		$featureUid = jomresGetParam( $_REQUEST, 'featureUid',	"" );
 		$clone		= intval( jomresGetParam( $_REQUEST, 'clone',	FALSE ) );
 		$defaultProperty=getDefaultProperty();

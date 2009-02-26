@@ -41,7 +41,6 @@ class j02118savecustomertype {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$id			= intval(jomresGetParam( $_POST, 'id', "" ));
