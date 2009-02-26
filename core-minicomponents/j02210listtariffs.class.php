@@ -141,7 +141,8 @@ class j02210listtariffs {
 
 			$output['pagetitle']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE);
 			$output['ITEMID']=$Itemid;
-
+			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );

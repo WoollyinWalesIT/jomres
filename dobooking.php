@@ -359,7 +359,8 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$load['COUNT']=4;
 		$toload[]=$load;
 		}
-
+	$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
  	$tmpl->addRows( 'pageoutput',$pageoutput);
