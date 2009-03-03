@@ -10,6 +10,7 @@ function jomres_cmsspecific_setmetadata($meta,$data)
 	
 	}
 
+	
 // As per the function name
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 	{

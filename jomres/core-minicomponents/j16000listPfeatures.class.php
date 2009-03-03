@@ -48,7 +48,7 @@ class j16000listPfeatures
 
 		foreach($propertyFeaturesList as $propertyFeature)
 			{
-			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$propertyFeature->hotel_features_uid.'" onClick="isChecked(this.checked);">';
+			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$propertyFeature->hotel_features_uid.'" onClick="jomres_isChecked(this.checked);">';
 			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'">'.$editIcon.'</a>';
 			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['PFEATURETITLE']=$propertyFeature->hotel_feature_abbv;
@@ -73,11 +73,12 @@ class j16000listPfeatures
 		$output['JOMRESTOOLBAR']=$jrtb;
 		
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 		
 		$pageoutput[]=$output;
 
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'list_pfeatures.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);

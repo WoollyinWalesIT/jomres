@@ -109,8 +109,8 @@ class j16000editGlobalroomTypes
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'editroomtype.html');
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'edit_room_type.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();

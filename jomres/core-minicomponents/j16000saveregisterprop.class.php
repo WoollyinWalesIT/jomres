@@ -32,8 +32,9 @@ class j16000saveregisterprop
 			}
 		global $indexphp,$jomresConfig_live_site,$jrportalConfig,$mrConfig;
 
-		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 
+		$roomClass						= jomresGetParam( $_POST, 'roomClass', 0 );
 		$property_name					= jomresGetParam( $_POST, 'property_name', "New Property" );
 		$property_street				= jomresGetParam( $_POST, 'property_street', "Street" );
 		$property_town					= jomresGetParam( $_POST, 'property_town', "Town" );
@@ -79,6 +80,25 @@ class j16000saveregisterprop
 			'$property_policies_disclaimers','$property_stars','$property_type','$apikey'
 			)";
 		$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
+		
+		if ($roomClass == 0)
+			$singleRoomProperty="0";
+		else
+			{
+			$singleRoomProperty="1";
+			$query="INSERT INTO #__jomres_rooms (
+				`room_classes_uid`,
+				`propertys_uid`,
+				`max_people`
+				)VALUES (
+				'".$roomClass."',
+				".(int)$newPropId.",
+				'100'
+				)";
+			if (!doInsertSql($query)) 
+				trigger_error ("Sql error when saving new room", E_USER_ERROR);
+			}
+		
 		$today = date("Y/m/d");
 		$validfrom=$today;
 		$validto=date("Y/m/d",mktime(0, 0, 0, date("m")	, date("d"), date("Y")+1));
@@ -95,23 +115,30 @@ class j16000saveregisterprop
 			$query="SELECT room_classes_uid FROM #__jomres_room_classes WHERE property_uid = '0' LIMIT 1";
 			$rmTypeId=doSelectSql($query,1);
 			}
-		$query="INSERT INTO #__jomres_rates (
-			`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,
-			`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,`ignore_pppn`,
-			`allow_we`,`property_uid`)
-			VALUES
-			('CHANGE ME','CHANGE ME','$validfrom','$validto','100',
-			'1','100','1','10','$rmTypeId','0',
-			'1','$newPropId')";
-		$tariffid=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE));
-		$query="INSERT INTO #__jomres_rooms (
-			`room_classes_uid`,`propertys_uid`,`room_name`,`room_number`,
-			`room_floor`,`room_disabled_access`,`max_people`,`smoking`)
-			VALUES
-			('$rmTypeId','$newPropId','CHANGE ME','N/A',
-			'N/A','0','10','0')";
-		doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM);
-
+		if ($singleRoomProperty==0)
+			{
+			$query="INSERT INTO #__jomres_rates (
+				`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,
+				`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,`ignore_pppn`,
+				`allow_we`,`property_uid`)
+				VALUES
+				('CHANGE ME','CHANGE ME','$validfrom','$validto','100',
+				'1','100','1','10','$rmTypeId','0',
+				'1','$newPropId')";
+			$tariffid=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE));
+			$query="INSERT INTO #__jomres_rooms (
+				`room_classes_uid`,`propertys_uid`,`room_name`,`room_number`,
+				`room_floor`,`room_disabled_access`,`max_people`,`smoking`)
+				VALUES
+				('$rmTypeId','$newPropId','CHANGE ME','N/A',
+				'N/A','0','10','0')";
+				
+			doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM);
+			}
+		
+		$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','singleRoomProperty','".$singleRoomProperty."')";
+		doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
+		
 		// Let's find all of this manager's property uids, then we can add the new Id to that list. If we didn't create the whole id array, any item NOT in that array would be removed from the manager's properties by the updateManagerIdToPropertyXrefTable function
 		$query="SELECT property_uid FROM #__jomres_managers_propertys_xref  WHERE manager_id = '".$userid."'";
 		$managersToPropertyList = doSelectSql($query);

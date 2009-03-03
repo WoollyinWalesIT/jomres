@@ -40,6 +40,30 @@ class j16000addproperty2
 		$crate=$crates[0];
 		$propertyFeatures="";
 
+		$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";
+		$roomClasses=doSelectSql($query);
+		$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
+		$dropDownList .= "<option value=\"\"></option>";
+		foreach ($roomClasses as $roomClass)
+			{
+			$selected="";
+			$room_classes_uid=$roomClass->room_classes_uid;
+			$room_class_abbv=$roomClass->room_class_abbv;
+			$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
+			}
+		$dropDownList.="</select>";
+
+		$output['ISTHISANMRP_DROPDOWN']='<select id="mySelect">
+			<option value="2" selected>MRP</option>
+			<option value="showIfClicked">SRP</option>
+			</select>
+		<div id="showIfClicked">
+			'.$dropDownList.'
+		</div>';
+		
+		$output['ISTHISANMRP']=jr_gettext('_JOMRES_COM_ISTHISANMRP',_JOMRES_COM_ISTHISANMRP);
+		$output['ISTHISANMRP_DESC']=jr_gettext('_JOMRES_COM_ISTHISANMRP_DESC',_JOMRES_COM_ISTHISANMRP_DESC);
+		
 		$starsDropDownList="<select class=\"inputbox\" name=\"stars\">";
 		for ($i=0, $n=5; $i <= $n; $i++)
 			{

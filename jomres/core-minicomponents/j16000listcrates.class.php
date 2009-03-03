@@ -55,7 +55,7 @@ class j16000listcrates
 				$r['STYLE'] ="row0";
 			else
 				$r['STYLE'] ="row1";
-			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$crate['id'].'" onClick="isChecked(this.checked);">';
+			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$crate['id'].'" onClick="jomres_isChecked(this.checked);">';
 			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editcrate&id='.$crate['id'].'">'.$editIcon.'</a>';
 			$r['TITLE']=$crate['title'];
 			$crateType = new crateTypes();
@@ -81,6 +81,8 @@ class j16000listcrates
 		$jrtb .= $jrtbar->customToolbarItem('archiveCrates',$link,$text="Delete",$submitOnClick=true,$submitTask="archivecrates",$image);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
+		
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

@@ -68,7 +68,10 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	$jomresConfig_secret			= 'ABC123';
 	
 
-
+if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt'))
+	{
+	echo '<font color="red" face="arial" size="2">Note, you haven\'t yet logged into the front end as "admin". Virtually all property configuration is performed from the front end so you should add Jomres to the main menu if you haven\'t already and log in to the front end now.</font><br/>';
+	}
 	/*
 	$CONFIG = new JConfig();
 	$no_html = (int)$_REQUEST['no_html'];
