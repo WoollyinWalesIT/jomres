@@ -48,7 +48,7 @@ class j16000editPfeature
 			$propertyFeatureUid=0;
 
 		$map=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS;
-		$mrp=$jomresConfig_live_site.'/images/stories/jomres/pfeatures/';
+		$mrp=$jomresConfig_live_site.'/jomres/uploadedimages/pfeatures/';
 		$d = @dir($map);
 		$docs = array();
 		$rows=array();
@@ -61,7 +61,7 @@ class j16000editPfeature
 					{
 					$docs=array();
 					$docs['ISCHECKED'] ="";
-					$docs['IMAGEPATH'] ='images/stories/jomres/pfeatures/'.$filename;
+					$docs['IMAGEPATH'] ='jomres/uploadedimages/pfeatures/'.$filename;
 					$docs['IMAGE'] =$mrp.$filename;
 					if (isset($image) && $docs['IMAGEPATH']==$image)
 						$docs['ISCHECKED'] ="checked";
@@ -73,7 +73,8 @@ class j16000editPfeature
 		$output['PROPERTYFEATUREINFO']=_JOMRES_A_GLOBALPFEATURES_INFO;
 		$output['PROPERTYFEATUREUID']=$propertyFeatureUid;
 
-		$output['INDEX']="index2.php";
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+		
 		$output['HLINKTEXT']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
 		$output['HLINKTEXTCLONE']=_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE;
 		$output['HFEATUREABBV']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;

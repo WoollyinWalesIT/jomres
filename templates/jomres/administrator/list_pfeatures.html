@@ -1,12 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="index2.php" method="post" name="adminForm">
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
 <table  class="jradmin_table" border="0">
 	<tr>
 		<th class="jomres_title" colspan="5">{PAGETITLE}</td>
 	</tr>
 	<tr>
-		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="checkAll({TOTALINLISTPLUSONE});" /></th>
+		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
 		<th class="jomres_title">&nbsp;</th>
 		<th class="jomres_title">{HPFEATURETITLE}</th>
 		<th class="jomres_title">{HPFEATUREDESCRIPTION}</th>

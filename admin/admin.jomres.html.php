@@ -544,8 +544,8 @@ function editPfeature_html($output,$rows)
 	$pageoutput=array();
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
-	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-	$tmpl->readTemplatesFromInput( 'editpropertyfeature.html');
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+	$tmpl->readTemplatesFromInput( 'edit_property_feature.html');
 	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'rows',$rows);
 	$tmpl->displayParsedTemplate();
@@ -568,7 +568,7 @@ function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 				<th class="jomres_title" colspan="5"><?php echo $pList['PAGETITLE']; ?></td>
 			</tr>
 			<tr>
-				<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo $counter+1; ?>);" /></th>
+				<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll(<?php echo $counter+1; ?>);" /></th>
 				<th class="jomres_title">&nbsp;</th>
 				<th class="jomres_title"><?php echo $pList['HPTYPE']; ?></th>
 				<th class="jomres_title"><?php echo $pList['HPTYPE_DESC']; ?></th>

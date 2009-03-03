@@ -1,5 +1,18 @@
 <patTemplate:tmpl name="pageoutput">
-<script language="Javascript" src="{MOSCONFIGLIVESITE}/includes/js/overlib_mini.js"></script>
+<script>
+jQuery(document).ready(function () {
+    var select = '#mySelect';
+    jQuery(select).attr('selectedIndex', '-1');
+    jQuery(select).change(function () {
+        jQuery(select + ' option').each(function () {
+            jQuery('#' + this.value).hide();
+        });
+        jQuery(select + ' option:selected').each(function () {
+            jQuery('#' + this.value).show();
+        });
+    }).change();
+});
+</script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}&task=saveregisterprop" method="post" name="adminForm">
 {JOMRESTOOLBAR}
 <table>
@@ -14,6 +27,10 @@
 				<tr>
 					<td class="jradmin_subheader_la" >{HPROPERTY_TYPE}</td>
 					<td colspan="2">{PROPERTY_TYPE_DROPDOWN}</td> 
+				</tr>
+				<tr>
+					<td class="jradmin_subheader_la">{ISTHISANMRP}</td>
+					<td colspan="2" class="jradmin_field_la">{ISTHISANMRP_DROPDOWN}<br />{ISTHISANMRP_DESC}</td> 
 				</tr>
 				<tr>
 					<td class="jradmin_subheader_la">{HNAME}</td>
