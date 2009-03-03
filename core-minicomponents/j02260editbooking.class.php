@@ -564,6 +564,7 @@ class j02260editbooking {
 
 		$componentArgs = null;
 		$notes=$MiniComponents->triggerEvent('02265',$componentArgs);
+		
 		$contentPanel->startPanel(jr_gettext('_JOMCOMP_BOOKINGNOTES_VIEW',_JOMCOMP_BOOKINGNOTES_VIEW,FALSE));
 		$contentPanel->setcontent($notes);
 		$contentPanel->insertContent();

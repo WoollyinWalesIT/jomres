@@ -356,7 +356,9 @@ class j02990showconfirmation {
 			}
 
 		$booking_parts['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
-			
+		$booking_parts['PROCESSURL']=JOMRES_SITEPAGE_URL.'&task=processpayment';
+		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
+		
 		$booking_particulars[]	=	$booking_parts;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'booking_particulars', $booking_particulars );

@@ -124,7 +124,7 @@ class j02134newblackbooking {
 					}
 				else
 					{
-					$row['CHECKBOX']='<input type="checkbox" id="cb'.$counter.'" name="idarray[]" value="'.$room->room_uid.'" onClick="isChecked(this.checked);">';
+					$row['CHECKBOX']='<input type="checkbox" id="cb'.$counter.'" name="idarray[]" value="'.$room->room_uid.'" onClick="jomres_isChecked(this.checked);">';
 					//$row['TEXT']='<input type=checkbox name=row['.$counter.'] value="'.$room->room_uid.'" '.$checked.'>'.$text;
 					$row['TEXT']=$text;
 					}

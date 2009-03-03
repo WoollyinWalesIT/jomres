@@ -41,7 +41,7 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$jomresConfig_lang,$mainframe,$jrConfig;
+		global $jomresConfig_live_site,$jomresConfig_lang,$jrConfig;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
 		
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
@@ -64,7 +64,7 @@ class j00030search {
 					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/en-GB.php');
 				}
 			}
-		init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
+		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
 
 		global $MiniComponents;
 
@@ -224,8 +224,10 @@ class j00030search {
 				}
 				
 			if ($option == "com_jomres" && (!empty($_REQUEST['propertyname']) || !empty($_REQUEST['country'] ) || !empty($_REQUEST['region']) || !empty($_REQUEST['town'])) )
-				$mainframe->setPageTitle(stripslashes($metaTitle));
-
+				{
+				//$mainframe->setPageTitle(stripslashes($metaTitle));
+				jomres_cmsspecific_setmetadata("title",$metaTitle);
+				}
 			//var_dump($sch->searchOptions);
 			if (!empty($_REQUEST['arrivalDate']) && in_array('availability',$sch->searchOptions) )
 				{

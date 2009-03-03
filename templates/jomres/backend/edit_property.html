@@ -4,7 +4,7 @@
 function OnChange(dropdown)
 	{	
 	var myindex	= dropdown.selectedIndex
-	var baseURL= "{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=editProperty"
+	var baseURL= "{JOMRES_SITEPAGE_URL}&task=editProperty"
 	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
 	return true;
 	}
@@ -199,7 +199,7 @@ function OnChange(dropdown)
 
 <br />
 
-<form enctype="multipart/form-data" action="{MOSCONFIGLIVESITE}/index.php?option=com_jomres&task=uploadPropertyImage" method="post">
+<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&task=uploadPropertyImage" method="post">
 <table class="jradmin_innerwrapper">
 	<tr>
 		<td>

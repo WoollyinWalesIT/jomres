@@ -99,38 +99,15 @@ class j00015viewproperty
 
 			if (count($propertyFeaturesArray)>0)
 				{
-				if ($jrConfig['useGlobalPFeatures']!="1")
+				$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+				$propertyFeaturesList= doSelectSql($query);
+				foreach($propertyFeaturesList as $propertyFeature)
 					{
-					$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid = '".(int)$property_uid."' ORDER BY hotel_feature_abbv ";
-					$propertyFeaturesList= doSelectSql($query);
-
-					foreach($propertyFeaturesList as $propertyFeature)
+					if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
 						{
-						if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-							{
-							$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-							$featureList[]=$propertyFeatureDescriptionsArray;
-							}
-						}
-					}
-				else
-					{
-					$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-					$propertyFeaturesList= doSelectSql($query);
-					$counter=1;
-					foreach($propertyFeaturesList as $propertyFeature)
-						{
-						$br="";
-						$f=array();
-						if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-							{
-							if ( fmod($counter,10) ==0.0 && $counter!=1)
-								$br="<br />";
-							$f=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc);
-							$f['BR']=$br;
-							$featureList[]=$f;
-							$counter++;
-							}
+						//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
+						$propertyFeatureDescriptionsArray['FEATURE']=jomres_makeTooltip($propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$propertyFeature->image,"","property_feature",array());
+						$featureList[]=$propertyFeatureDescriptionsArray;
 						}
 					}
 				}
@@ -140,7 +117,7 @@ class j00015viewproperty
 				$property['HFEATURES']	=	"";
 
 			$rtRows=array();
-			if ($jrConfig['useGlobalRoomTypes']=="1" && $mrConfig['singleRoomProperty'] != "1")
+			if ($mrConfig['singleRoomProperty'] != "1")
 				{
 				$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 				$roomtypes= doSelectSql($query);
@@ -153,22 +130,25 @@ class j00015viewproperty
 						}
 					if (count($roomTypeArray)>1)
 						$roomTypeArray=array_unique($roomTypeArray);
-					if ($roomTypeArray[0]=="0")
-						$rtRows[]['feature']="Error, rooms found but not linked to room types. You will not be able to book a room from this property";
-					else
+					if (count($roomTypeArray)>0)
 						{
 						foreach ($roomTypeArray as $type)
 							{
 							$query="SELECT room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$type."'";
 							$rtdeets= doSelectSql($query,2);
-							$rtRows[]=makeFeatureImages($rtdeets['image'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc']);
+							//$rtRows[]=makeFeatureImages($rtdeets['image'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc']);
+							$rtRows['ROOM_TYPE']=jomres_makeTooltip($rtdeets['room_class_abbv'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc'],$rtdeets['image'],"","room_type",array());
 							}
 						}
 					}
 				}
 
 			if (count($rtRows) > 0)
+				{
 				$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
+				$roomtypes=array();
+				$roomtypes[]=$rtRows;
+				}
 			else
 				$property['HRTYPES']	=	"";
 
@@ -329,7 +309,7 @@ class j00015viewproperty
 				$tmpl = new patTemplate();
 				$tmpl->addRows( 'property_deets', $property_deets );
 				$tmpl->addRows( 'featurelist', $featureList);
-				$tmpl->addRows( 'roomtypes', $rtRows);
+				$tmpl->addRows( 'roomtypes', $roomtypes);
 				$tmpl->addRows( 'bookinglink', $bookinglink);
 				$tmpl->addRows( 'slideshowlink', $slideshowlink);
 				$tmpl->addRows( 'tariffslink', $tariffslink);
@@ -364,7 +344,7 @@ class j00015viewproperty
 						
 						$this->retVals['property_deets']=$property_deets;
 						$this->retVals['featurelist']=$featureList;
-						$this->retVals['roomtypes']=$rtRows;
+						$this->retVals['roomtypes']=$roomtypes;
 						$this->retVals['bookinglink']=$bookinglink;
 						$this->retVals['slideshowlink']=$slideshowlink;
 						$this->retVals['tariffslink']=$tariffslink;

@@ -35,6 +35,9 @@ class jomres_tooltips
 		{
 		$keeplooking=true;
 		// Just in the off-chance that we supply the same div name twice
+		$div=ereg_replace("[^A-Za-z0-9]", "", $div);
+		if (strlen($div)==0)
+			$div=generateJomresRandomString(10);
 		while ($keeplooking):
 			if (is_null($this->divs[$div]))
 				$keeplooking=false;
@@ -47,17 +50,45 @@ class jomres_tooltips
 		// We'll leave this as a switch case for now in case we want to use the types option at a later time.
 		switch ($type) 
 			{
-			case "ajaxlinked":
-				$url=$type_arguments['url'];
-				$onClick=$type_arguments['onClick'];
-				$div_string.='<a id="'.$div.'"';
+			case "imageonly":
+				$width=$type_arguments["width"];
+				$height=$type_arguments["height"];
+				$border=$type_arguments["border"];
+				$div_string.='<div id="'.$div.'"';
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip" ';
-					
-				$div_string.=' href="'.$url.'" title="'.$hover_content.'" '.$onClick.'>'.$div_content.'</a>
-					<script>jQuery("#'.$div.'").bt("'.$hover_content.'",{contentSelector: "jQuery(this).attr(\'href\')"});</script>
+				$div_string.=' ><img src="'.$div_content.'" width="'.$width.'" height="'.$height.'" border="'.$border.'"></div>
+					<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" width="'.($width*2).'" height="'.($height*2).'">\', 
+						{
+						  width: '.($width*2).', 
+						  fill: "white", 
+						  cornerRadius: 20, 
+						  padding: 20,
+						  strokeWidth: 1
+						});
+					</script>
+					';
+			break;
+			case "room_type":
+				$div_string.='<div id="'.$div.'"';
+				if (strlen($class)>0)
+					$div_string.=' class="'.$class.'" ';
+				else
+					$div_string.=' class="jomres_bt_tooltip" ';
+				$div_string.=' title="<b>'.$hover_title.'</b><br/>'.$hover_content.'"><img src="'.$div_content.'"></div>
+					<script>jQuery("#'.$div.'").bt();</script>
+					';
+			break;
+			case "property_feature":
+				$div_string.='<div id="'.$div.'"';
+				if (strlen($class)>0)
+					$div_string.=' class="'.$class.'" ';
+				else
+					$div_string.=' class="jomres_bt_tooltip" ';
+				$div_string.=' title="<b>'.$hover_title.'</b><br/>'.$hover_content.'"><img src="'.$div_content.'"></div>
+					<script>jQuery("#'.$div.'").bt();</script>
 					';
 			break;
 			default:
