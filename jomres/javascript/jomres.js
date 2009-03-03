@@ -1,3 +1,30 @@
+function jomres_isChecked(ischecked){
+	if (ischecked == true){
+		document.adminForm.boxchecked.value++;
+	}
+	else {
+		document.adminForm.boxchecked.value--;
+	}
+}
+
+function jomres_checkAll( n ) {
+	var f = document.adminForm;
+	var c = f.toggle.checked;
+	var n2 = 0;
+	for (i=0; i < n; i++) {
+		cb = eval( 'f.cb' + i );
+		if (cb) {
+			cb.checked = c;
+			n2++;
+		}
+	}
+	if (c) {
+		document.adminForm.boxchecked.value = n2;
+	} else {
+		document.adminForm.boxchecked.value = 0;
+	}
+}
+
 function jomres_submitbutton(pressbutton) {
 	document.adminForm.task.value=pressbutton;
 	try {

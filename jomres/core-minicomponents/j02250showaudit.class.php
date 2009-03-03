@@ -131,7 +131,7 @@ class j02250showaudit {
 			//	{
 			//	foreach ($userList as $user)
 			//		{
-					$rw['USER']=$user->name." (".$user->username.") ";
+					//$rw['USER']=$user->name." (".$user->username.") ";
 			//		}
 			//	}
 			//else

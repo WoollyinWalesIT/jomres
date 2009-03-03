@@ -4,6 +4,26 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+// set our meta data
+function jomres_cmsspecific_setmetadata($meta,$data)
+	{
+	global $mainframe;
+	switch ($meta) 
+		{
+		case "title":
+			$mainframe->setPageTitle(stripslashes($data));
+		break;
+		case "description":
+			$mainframe->appendMetaTag( "description",stripslashes($data));
+		break;
+		case "keywords":
+			$mainframe->appendMetaTag( "keywords", stripslashes($data));
+		break;
+		default:
+			
+		break;
+		}
+	}
 
 // As per the function name
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
@@ -122,17 +142,6 @@ function jomres_cmsspecific_parseByBots($str)
 	return $str;
 	}
 
-function jomres_cmsspecific_setPageTitle($title)
-	{
-	// Need to figure out how to do this
-	}
-	
-function jomres_cmsspecific_setPageMetatags($metaTag)
-	{
-	// Need to figure out how to do this
-	}
-	
-	
 ?>
 
 

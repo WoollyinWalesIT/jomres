@@ -230,42 +230,28 @@ class j04200editproperty {
 		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
 		$propertyFeaturesArray=explode(",",$propertyFeatures);
 
-		if ($jrConfig['useGlobalPFeatures']=="1")
-			{
-			$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid LIKE '0' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList=doSelectSql($query);
-			$counter=1;
-			foreach($propertyFeaturesList as $propertyFeature)
-				{
-				$r=array();
 
-				$r['PID']=$propertyFeature->hotel_features_uid;
-				if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
-					$r['ischecked']="checked";
-				$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
-				$r['BR']="";
-				if ($counter==8)
-					{
-					$r['BR']="<br />";
-					$counter=0;
-					}
-				$counter++;
-				$globalPfeatures[]=$r;
-				}
-			}
-		else
+		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid LIKE '0' ORDER BY hotel_feature_abbv ";
+		$propertyFeaturesList=doSelectSql($query);
+		$counter=1;
+		foreach($propertyFeaturesList as $propertyFeature)
 			{
-			$listTxt="";
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid LIKE '".(int)$propertyUid."' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList =doSelectSql($query);
-			foreach($propertyFeaturesList as $propertyFeature)
+			$r=array();
+			$r['PID']=$propertyFeature->hotel_features_uid;
+			if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
+				$r['ischecked']="checked";
+			$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+			$r['FEATURE']=jomres_makeTooltip($propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$propertyFeature->image,"","property_feature",array());
+			$r['BR']="";
+			if ($counter==8)
 				{
-				$checked="";
-				if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-					$checked="checked";
-				$listTxt.="<input type=\"checkbox\" name=\"features_list[]\" value=\"".($propertyFeature->hotel_features_uid)."\" ".$checked." >".($propertyFeature->hotel_feature_abbv)."<br>";
+				$r['BR']="<br />";
+				$counter=0;
 				}
+			$counter++;
+			$globalPfeatures[]=$r;
 			}
+
 		if (isset($listTxt))
 			$output['FEATURES']=$listTxt;
 		$propertyImageLocation="";
@@ -337,10 +323,12 @@ class j04200editproperty {
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
 
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'editproperty.html');
+		$tmpl->readTemplatesFromInput( 'edit_property.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		if ($jrConfig['useGlobalPFeatures']=="1")
 			$tmpl->addRows( 'globalPfeatures',$globalPfeatures);

@@ -32,7 +32,7 @@ if ($timetracking && $_REQUEST['no_html']!="1")
 ob_start("removeBOM");
 @ini_set("memory_limit","128M");
 
-global $mainframe,$MiniComponents,$thisJRUser,$cssStyle,$task,$jomresPathway, $jrConfig;
+global $MiniComponents,$thisJRUser,$cssStyle,$task,$jomresPathway, $jrConfig;
 global $property_uid,$Itemid,$jomressession,$jomresConfig_absolute_path;
 global $popup,$numberOfPropertiesInSystem,$loggingEnabled,$customTextArray;
 global $version,$tmpBookingHandler,$jomresConfig_live_site;
@@ -41,7 +41,7 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 
-
+//var_dump($_REQUEST);exit;
 /**
 #
  * Various includes
@@ -357,7 +357,7 @@ if ( $jrConfig['useSSLinBookingform'] == 1 && !_JOMRES_NEWJOOMLA )
 		}
 	}
 
-init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
+init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
 
 //echo jomres_makeTooltip("FRED","<h1>This is FRED's popup</h1>","I am the content of the div",$class="",$type="");
 

@@ -50,14 +50,6 @@ class j01070showpropertyheader
 			$property_uid		= intval(jomresGetParam( $_REQUEST, 'property_uid', 0 ));
 		if ($property_uid>0)
 			{
-			/*
-			$query="SELECT stars FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."'";
-			$starsList =doSelectSql($query);
-			foreach ($starsList as $st)
-				{
-				$stars=$st->stars;
-				}
-			*/
 			$stars=$thisJomresPropertyDetails['stars'];
 			$starslink="<img src=\"".$jomresConfig_live_site."/images/M_images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"star\" />";
 			if ($stars!="0")
@@ -73,7 +65,8 @@ class j01070showpropertyheader
 
 			$property_image['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 			$property_image_ar[]=$property_image;
-
+			$tooltip_property_image=jomres_makeTooltip("property_image","",$property_image['IMAGE'],$property_image['IMAGE'],"","imageonly",$type_arguments=array("width"=>150,"height"=>110,"border"=>0));
+			
 			$propertyname= stripslashes($thisJomresPropertyDetails['property_name']);
 			//$propertyname=str_replace("&amp;","&",$propertyname);
 			//$propertyname=str_replace("&#39;","'",$propertyname);
@@ -82,13 +75,13 @@ class j01070showpropertyheader
 			
 			
 			if (strlen($thisJomresPropertyDetails['metatitle'])>0)
-				jomres_setPageTitle(stripslashes($thisJomresPropertyDetails['metatitle']));
+				jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['metatitle']));
 			else
-				jomres_setPageTitle(stripslashes($thisJomresPropertyDetails['property_name']));
+				jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['property_name']));
 
-			jomres_setPageMetatags( 'description', stripslashes($thisJomresPropertyDetails['metadescription']) );
-			jomres_setPageMetatags( 'keywords', stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])) );
-
+			jomres_cmsspecific_setmetadata('description',stripslashes($thisJomresPropertyDetails['metadescription']));
+			jomres_cmsspecific_setmetadata('keywords',stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])));
+			
 			if ($task=="viewproperty" || $task == "preview")
 				{
 				if ($mrConfig['showTariffsLink']=="1")
@@ -157,7 +150,8 @@ class j01070showpropertyheader
 		    $tmpl->addVar( 'stars', 'stars', $starslink);
 			$tmpl->addVar( 'property_name', 'property_name',$propertyname);
 			$tmpl->addRows( 'property_image', $property_image_ar );
-
+			$tmpl->addVar( 'tooltip_property_image', 'tooltip_property_image',$tooltip_property_image);
+			
 			$tmpl->addRows( 'featurelist', $featureList);
 			$tmpl->addRows( 'roomtypes', $rtRows);
 			$tmpl->addRows( 'bookinglink', $bookinglink);

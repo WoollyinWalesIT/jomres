@@ -41,7 +41,7 @@ function jomres_reconvertString($clean)
 
 
 
-function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang)
+function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang)
 	{
 	if (!defined("JOMRES_JSCALLED") )
 		{
@@ -108,62 +108,7 @@ function init_javascript($mainframe,$jrConfig,$thisJRUser,$version,$jomresConfig
 				';
 				}
 			}
-			
-		// $option = $_REQUEST['option'];
-		// if ((strstr( $version, "Mambo" ) && $popup == 1) || $option != "com_jomres")
-			// {
-			// // The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
-			// //echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-			// echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>';
-			// //echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
-			// echo '<script type="text/javascript">jQuery.noConflict();</script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>';
-			// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>';
-			// if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>';
-			// if ($thisJRUser->userIsManager)
-				// {
-				// echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>';
-				// }
-			// }
-		// else
-			// {
-			// if (!defined("JOMRES_CALENDARJSCALLED") )
-				// {
-				// define ('JOMRES_CALENDARJSCALLED',1);
-				// // The javascript calendar has been removed from frontend activation as it's confusing for many users. To re-enable it, uncomment the following code and see the generateDateInput functions in dobookings.class.php, and functions.php, and several lines in jomres.php
-				// //$mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$mrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
-				// $mainframe->addCustomHeadTag('<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />');
-				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>');
-				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>');
-				// //$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$mrConfig['jscalendarLangfile'].'"></script>');
-				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>');
-				// }
-
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript">jQuery.noConflict();</script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>');
-			// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>');
-			// if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>');
-			// if ($thisJRUser->userIsManager)
-				// {
-				// $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>');
-				// }
-			// }
 		}
-
-
 	}
 
 function getThisMonthName($monthNumber,$editable=true)
@@ -2487,11 +2432,11 @@ function dropImage($defaultProperty,$imageType="",$itemUid="")
 	switch ($imageType)
 		{
 		case 'property':
-			$fileFullPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."images".JRDS."stories".JRDS."jomres".JRDS.$defaultProperty."_property_".$defaultProperty.".jpg";
+			$fileFullPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$defaultProperty."_property_".$defaultProperty.".jpg";
 			$returnTask="editProperty&propertyUid=".$itemUid;
 		break;
 		case 'room':
-			$fileFullPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."images".JRDS."stories".JRDS."jomres".JRDS.$defaultProperty."_room_".$itemUid.".jpg";
+			$fileFullPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$defaultProperty."_room_".$itemUid.".jpg";
 			$returnTask="editRoom&roomUid=".$itemUid;
 		break;
 		}
@@ -2527,6 +2472,8 @@ function uploadPropertyImage()
 		$checkedImage=uploadImageFromPost('image',$newFileName,$jrConfig['ss_imageLocation']);
 	if ($checkedImage)
 		{
+		// Removed for v4, iirc it has no purpose
+		/*
 		$query="SELECT propertyid FROM #__jomres_property_images WHERE propertyid = '".(int)$defaultProperty."'";
 		$propertyList =doSelectSql($query);
 		if (count($propertyList)>0)
@@ -2539,6 +2486,7 @@ function uploadPropertyImage()
 			$query="INSERT INTO #__jomres_property_images (`propertyid`,`filelocation`) VALUES ('".(int)$defaultProperty."','".$checkedImage."')";
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE',_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE,FALSE))) exit;
 			}
+		*/
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&Itemid=$Itemid&propertyUid=$defaultProperty"), $saveMessage );
 		}
 	else

@@ -4,6 +4,12 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+// set our meta data
+function jomres_cmsspecific_setmetadata($meta,$data)
+	{
+	
+	}
+
 // As per the function name
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 	{

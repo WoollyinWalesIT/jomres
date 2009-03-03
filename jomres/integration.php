@@ -348,7 +348,6 @@ require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'booking.functions.
 require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'property.functions.php');
 require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'user.functions.php');
 
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."functions".JRDS."cms_specific_functions.php");
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_functions.php");
 
 if ($timetracking)

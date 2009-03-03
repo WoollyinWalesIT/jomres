@@ -90,7 +90,7 @@ class j02180bookguestout {
 				$jrtb .= $jrtbar->endTable();
 				$output['JOMRESTOOLBAR']=$jrtb;
 
-
+				$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
@@ -201,6 +201,8 @@ class j02180bookguestout {
 					$output['JOMRESTOOLBAR']=$jrtb;
 					$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
 
+					$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+					
 					$pageoutput[]=$output;
 
 					$tmpl = new patTemplate();
@@ -258,6 +260,9 @@ class j02180bookguestout {
 					$output['GUEST_POSTCODE']=$guestDetailsArray[5];
 					$output['GUEST_REGION']=ucfirst($guestDetailsArray[6]);
 					$output['GUEST_COUNTRY']=ucfirst($guestDetailsArray[7]);
+					
+					$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+					
 					$pageoutput[]=$output;
 
 					$tmpl = new patTemplate();

@@ -41,8 +41,9 @@ class j02265viewbookingnotes {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $task,$thisJRUser;
-
+		global $thisJRUser;
+		
+		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
 		if ($task=="editBooking" && $thisJRUser->userIsManager )
 			{
 			$pageoutput=array();
@@ -53,6 +54,7 @@ class j02265viewbookingnotes {
 			if ($contract_uid == 0)
 				return;
 			$query="SELECT id,timestamp,note FROM #__jomcomp_notes WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
+			
 			$bookingData  = doSelectSql($query);
 			if (count($bookingData)==0)
 				return;
@@ -65,11 +67,13 @@ class j02265viewbookingnotes {
 				$rows[]=$r;
 				}
 			$tmpl = new patTemplate();
+			
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->addRows( 'rows', $rows );
 			$tmpl->readTemplatesFromInput( 'view_notes.html' );
 			$this->notesoutput = $tmpl->getParsedTemplate();
+			
 			}
 		}
 
