@@ -220,11 +220,12 @@ class j02212edittariff {
 			$output['pagetitle']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE_EDIT',_JOMRES_COM_MR_LISTTARIFF_TITLE_EDIT);
 
 			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
-
+			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			$tmpl->readTemplatesFromInput( 'edittariff.html');
+			$tmpl->readTemplatesFromInput( 'edit_advanced_tariff.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->displayParsedTemplate();
 			}
