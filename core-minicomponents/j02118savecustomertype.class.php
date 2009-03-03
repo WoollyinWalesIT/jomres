@@ -41,9 +41,10 @@ class j02118savecustomertype {
 			{
 			$this->template_touchable=false; return;
 			}
+			
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
-		$id			= intval(jomresGetParam( $_POST, 'id', "" ));
+		$id			= intval(jomresGetParam( $_POST, 'typeidid', "" ));
 		$type       = getEscaped( jomresGetParam( $_POST, 'type', "" ) );
 		$notes      = getEscaped( jomresGetParam( $_POST, 'notes', "" ) );
 		$maximum	= getEscaped( jomresGetParam( $_POST, 'maximum', "" ) );

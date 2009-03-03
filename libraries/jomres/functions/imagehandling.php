@@ -141,6 +141,7 @@ function batchUploadForm()
 	$output['DELETEIMAGES']=jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE,false,false);
 
 	$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+	$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
@@ -162,6 +163,7 @@ function batchUploadPropertyImages()
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
 	$mrp=$jrConfig['ss_imageLocation'].$defaultProperty.'/';
+	
 	$defaultProperty=getDefaultProperty();
 	//$saveMessage=_JOMRES_FILE_UPDATED;
 	$uploadedImagesArray=array();
@@ -179,7 +181,8 @@ function batchUploadPropertyImages()
 	   		}
 		}
 	if (count($uploadedImagesArray) > 0)
-		echo _JOMRES_FILE_UPLOADED;
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=bUploadForm"), '' );
+	
 	}
 
 /**

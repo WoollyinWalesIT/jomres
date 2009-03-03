@@ -252,7 +252,7 @@ else
 
 
 $jomres_db_querylog=array();
-define('JOMRES_SYSTEMLOG_PATH','temp'.JRDS);
+define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if (!strstr($scriptname,'install_jomres.php'))
@@ -782,15 +782,6 @@ function strip_tags_except($text,$strip=TRUE)
 	return $text;
 	}
 
-function jomresToolTips($txt)
-	{
-	global $jomresConfig_live_site;
-	if (defined('_JOMRES_NEWJOOMLA') )
-		$ret='<a href="#" onmouseover="return overlib(\''.$txt.'\', ABOVE, RIGHT);" onmouseout="return nd();" ><img src="'.$jomresConfig_live_site."/".'jomres'."/".'images'."/".'SymbolInformation.png" height="12" width="12" border="0" alt="tooltip"/></a>';
-	else
-		$ret=mosToolTip($txt);
-	return $ret;
-	}
 
 class dummy_params_class
 	{

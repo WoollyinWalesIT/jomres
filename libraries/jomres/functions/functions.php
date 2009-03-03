@@ -994,11 +994,10 @@ function gateway_log($message)
 function writexml($logfile,$rootelement,$entry,$newlines)
 	{
 	global $jomressession;
-
 	$task 				= jomresGetParam( $_REQUEST, 'task', "" );
 
-	if ($_REQUEST['option'] == "com_jomres")
-		{
+	//if ($_REQUEST['option'] == "com_jomres")
+	//	{
 		$dt = date("Y-m-d H:i:s (T)");
 		$rootElementStart="<".$rootelement.">\n";
 		$entryStart="\t<".$entry.">\n";
@@ -1037,7 +1036,7 @@ function writexml($logfile,$rootelement,$entry,$newlines)
 			flock($fp, LOCK_UN);
 		//	}
 		fclose($fp);  // close file
-		}
+		//}
 	}
 /**
 #
@@ -1049,6 +1048,7 @@ function jomresRedirect( $url, $msg='' )
 	global $mainframe,$jrConfig;
 
 	$url=str_replace("&amp;","&",$url);
+
 	if ($jrConfig['errorChecking']!="1")
 		{
 		if (!defined('_JOMRES_NEWJOOMLA') )
@@ -1431,9 +1431,9 @@ function saveHotelSettings()
 	*/
 	//var_dump($tariffmodeChange);exit;
 	if ( $tariffmodeChange)
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=$Itemid"), '' );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"), '' );
 	else
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=hotelSettings&Itemid=$Itemid&property_uid=$property_uid"), '' );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=hotelSettings&property_uid=$property_uid"), '' );
 	}
 
 function removeAllPropertyEnhanceTariffsXref($property_uid)
@@ -1568,7 +1568,7 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
 	if ($contract_total == 0.00)
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
 	$userIsManager=checkUserIsManager();
 	$componentArgs=array('jomressession'=>$jomressession,'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
@@ -2443,7 +2443,7 @@ function dropImage($defaultProperty,$imageType="",$itemUid="")
 		error_logging("Error, couldn't delete ".$fileFullPath);
 		}
 	else
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask&Itemid=$Itemid"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), $saveMessage );
 	}
 
 /**
@@ -2484,7 +2484,7 @@ function uploadPropertyImage()
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE',_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE,FALSE))) exit;
 			}
 		*/
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&Itemid=$Itemid&propertyUid=$defaultProperty"), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), $saveMessage );
 		}
 	else
 		echo "Error";
@@ -2537,7 +2537,7 @@ function uploadRoomImage()
 				$query="INSERT INTO #__jomres_room_images (`roomid`,`filelocation`) VALUES ('".(int)$roomUid."','".$checkedImage."')";
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE',_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE,FALSE))) exit;
 				}
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&Itemid=$Itemid&roomUid=$roomUid"), $saveMessage );
+			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&roomUid=$roomUid"), $saveMessage );
 			}
 		}
 	else
@@ -2554,6 +2554,7 @@ function uploadRoomImage()
 function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	{
 	global $jrConfig,$thisJRUser;
+	
 	$elementsToRemove=array(" ","\\","'",);
 	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
 	if (isset($formelement) && isset($newName) && isset($saveToPath) )
@@ -2590,6 +2591,7 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 			// add a red stroke of 2 pixels to the image
 			//$img->strokeImage(2,"FF0000");
 			// save the image
+			//var_dump(JOMRES_IMAGE_UPLOAD_PATH.$newName);exit;
 			if (!$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$newName) )
 				{
 				echo "Unable to save file ".JOMRES_IMAGE_UPLOAD_PATH.$newName." ";
@@ -3098,7 +3100,7 @@ function saveRegisterProp()
 	$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 	$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
 	sendAdminEmail($subject,$message);
-	jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId."&Itemid=".$Itemid,"");
+	jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
 	}
 
 /**
@@ -3317,7 +3319,7 @@ function returnToPropertyConfig($saveMessage="")
 	{
 	global $mrConfig,$Itemid;
 	if ($mrConfig['errorCheckingShowSQL']=="0")
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin&Itemid=".$Itemid), $saveMessage );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"), $saveMessage );
 	}
 
 /**
