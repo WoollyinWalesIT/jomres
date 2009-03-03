@@ -356,7 +356,7 @@ class j04000roomsconfig {
 
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE,FALSE));
 		$contentPanel->setcontent('<table><tr>');
-		var_dump($MiniComponents);exit;
+		
 		$contentPanel->setcontent($MiniComponents->triggerEvent('02210'));	//listTariffs($option);
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();

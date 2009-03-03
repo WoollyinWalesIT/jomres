@@ -263,7 +263,7 @@ class j02213edittariff_micromanage {
 			</script>';
 			$pb["BUTTON"]='<input type="button" id="set_'.$dia['class'].'" value="'.$dia['text'].'"  />';
 			$p["DOW"]=$dia['text'];
-			$p["INPUT"]='<input class="'.$dia['class'].'" type="text" '.$styleinfo.' size="2"  id="'.$dia['text'].'" value="'.$defaultTariffValue.'" />';
+			$p["INPUT"]='<input class="'.$dia['class'].'" type="text" '.$styleinfo.' size="8"  id="'.$dia['text'].'" value="'.$defaultTariffValue.'" />';
 			$p["CLASS"]=$dia['class'];
 			//$p["DEFALTVAL"]=$defaultTariffValue;
 			$prefills[]=$p;
