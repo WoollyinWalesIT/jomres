@@ -41,7 +41,7 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 
-//var_dump($_REQUEST);exit;
+
 /**
 #
  * Various includes
@@ -557,6 +557,7 @@ if ($numberOfPropertiesInSystem>0)
 		break;
 		#########################################################################################
 		case 'saveCustomerType':
+		
 			if ($thisJRUser->userIsManager && $accessLevel ==2 )
 				$MiniComponents->triggerEvent('02118'); //saveCustomerType();
 			else

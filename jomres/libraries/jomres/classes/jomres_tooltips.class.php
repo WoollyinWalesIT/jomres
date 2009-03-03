@@ -50,6 +50,18 @@ class jomres_tooltips
 		// We'll leave this as a switch case for now in case we want to use the types option at a later time.
 		switch ($type) 
 			{
+			case "infoimage":
+				global $jomresConfig_live_site;
+				$div_string.='<div id="'.$div.'"';
+				if (strlen($class)>0)
+					$div_string.=' class="'.$class.'" ';
+				else
+					$div_string.=' class="jomres_bt_tooltip" ';
+					
+				$div_string.=' title="'.$hover_content.'"><img src="'.$jomresConfig_live_site.'/jomres/images/SymbolInformation.png" border="0"></div>
+					<script>jQuery("#'.$div.'").bt();</script>
+					';
+			break;
 			case "imageonly":
 				$width=$type_arguments["width"];
 				$height=$type_arguments["height"];

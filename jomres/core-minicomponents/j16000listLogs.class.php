@@ -31,7 +31,7 @@ class j16000listLogs
 			$this->template_touchable=false; return;
 			}
 		global $jrConfig,$logFiles,$jomresAdminPath;
-
+		
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
@@ -49,6 +49,7 @@ class j16000listLogs
 			{
 			foreach ($logFiles as $key=>$file)
 				{
+				echo JOMRES_SYSTEMLOG_PATH.$file;
 				if (file_exists(JOMRES_SYSTEMLOG_PATH.$file))
 					{
 					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");
