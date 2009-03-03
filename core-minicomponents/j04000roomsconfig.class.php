@@ -353,23 +353,10 @@ class j04000roomsconfig {
 		
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
-		if ($jrConfig['useGlobalRoomTypes']!="1")
-			{
-			$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES',_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES,FALSE));
-			$contentPanel->setcontent($newRoomClassButton);
-			$contentPanel->setcontent('<table>
-				<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK).'</td>
-				<td><b>'.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS).'</b></td>
-				<td>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC).'</td>');
-			$contentPanel->setcontent('</tr>');
-			$contentPanel->setcontent($roomTypesRowInfo);
-			$contentPanel->setcontent('</table>');
-			$contentPanel->insertContent();
-			$contentPanel->endPanel();
-			}
+
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE,FALSE));
 		$contentPanel->setcontent('<table><tr>');
+		var_dump($MiniComponents);exit;
 		$contentPanel->setcontent($MiniComponents->triggerEvent('02210'));	//listTariffs($option);
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();

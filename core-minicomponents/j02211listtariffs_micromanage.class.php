@@ -28,13 +28,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j02211listtariffs {
+class j02211listtariffs_micromanage {
 	/**
 	#
 	 * Constructor: Constructs and displays tariff list - admin side
 	#
 	 */
-	function j02211listtariffs()
+	function j02211listtariffs_micromanage()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		global $MiniComponents;
