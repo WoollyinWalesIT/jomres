@@ -107,7 +107,7 @@ class j02211listtariffs {
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'te_list_tariffs.html');
+		$tmpl->readTemplatesFromInput( 'list_micromanage_tariffs.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows', $rows );
 		$this->tpl=$tmpl->getParsedTemplate();
