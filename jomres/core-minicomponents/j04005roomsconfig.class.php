@@ -155,6 +155,9 @@ class j04005roomsconfig {
 				$r['existingrooms']='<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.$existingrooms.'" />';
 				$rows[]=$r;
 				}
+				
+			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+				
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
@@ -190,6 +193,8 @@ class j04005roomsconfig {
 				$rows[]=$r;
 				}
 
+			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+				
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
