@@ -14,8 +14,9 @@ function jomres_cmsspecific_setmetadata($meta,$data)
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 	{
 	$user=array();
-	$query="SELECT id,username FROM #__module_feusers_users WHERE id=".(int)$id;
+	$query="SELECT id,username FROM #__module_feusers_users WHERE id=".(int)$id. " LIMIT 1";
 	$userList = doSelectSql($query);
+	
 	if (count($userList)>0)
 		{
 		foreach ($userList as $u)
@@ -29,14 +30,13 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 // As per the function name
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($username)
 	{
-	$user=array();
-	$query="SELECT id,username FROM #__module_feusers_users WHERE username='".(string)$username."'";
+	$query="SELECT id,username FROM #__module_feusers_users WHERE username='".(string)$username."' LIMIT 1";
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{
 		foreach ($userList as $u)
 			{
-			$user[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->username);
+			$user=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->username);
 			}
 		}
 	return $user;
@@ -46,7 +46,7 @@ function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($usern
 function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
 	{
 	$user=array();
-	$query="SELECT id,username,email FROM #__users WHERE id=".(int)$id;
+	$query="SELECT id,username,email FROM #__users WHERE id=".(int)$id. " LIMIT 1";
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{

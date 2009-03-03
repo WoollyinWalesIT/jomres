@@ -2173,7 +2173,7 @@ function filterForm($selectname,$value,$format,$task="")
 	global $Itemid,$task;
 	$defaultValue=$_REQUEST[$selectname];
 	$javascript = "onchange=\"this.form.submit();\"";
-	$selecthtml="\n<form action=\"".JOMRES_SITEPAGE_URL."\" method=\"GET\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
+	$selecthtml="\n<form action=\"".JOMRES_SITEPAGE_URL."&task=".$task."\" method=\"POST\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
 	$selecthtml .= "\n<option value=\"%\"></option>";
 	$selecthtml .= "\n<option value=\"%\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
 	if (count($value)>0)
@@ -2190,9 +2190,6 @@ function filterForm($selectname,$value,$format,$task="")
 			}
 		}
 	$selecthtml.="\n</select></span>
-	<input type=\"hidden\" name=\"option\" value=\"com_jomres\" />
-	<input type=\"hidden\" name=\"Itemid\" value=\"".$Itemid."\" />
-	<input type=\"hidden\" name=\"task\" value=\"".$task."\" />
 	</form>";
 	return $selecthtml;
 	}

@@ -56,7 +56,8 @@ class j02250showaudit {
 		$showSQLdata=TRUE;
 		if ($dates!="%")
 			{
-			$thedate=str_replace("/","-",$dates);
+			//$thedate=str_replace("/","-",$dates);
+			$thedate=$dates;
 			$query="SELECT date,time,owner,op,";
 			if ($showSQLdata)
 				$query.="args,";
@@ -67,24 +68,13 @@ class j02250showaudit {
 			{
 			if ($owner!="%")
 				{
+				
 				if ($owner==_JOMRES_MR_AUDIT_UNKNOWNUSER)
 					$userid = '0';
 				else
 					{
-					// First let's get their real username
-					$ownerArray=explode("(",$owner);
-					$ownerArray2=explode(")",$ownerArray[1]);
-					$username=$ownerArray2[0];
-					// Now we need to scan the mos_users tables for this user's userid
-					// Updated for Jomres v4
-					$userDetails=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($username);
-					//$query="SELECT id FROM #__users WHERE username = '$username'";
-					//$userList=doSelectSql($query);
-					//foreach ($userList as $user)
-					//	{
-					//	$userid = $user->id;
-					//	}
-					$userid = $userDetails[0]['id'];
+					$userDetails=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_username($owner);
+					$userid = $userDetails['id'];
 					}
 				}
 			else
@@ -117,33 +107,23 @@ class j02250showaudit {
 		$output['COUNTER']= count($auditList);
 		foreach ($auditList as $activity)
 			{
-			$username=$activity->owner;
-			$userDetails=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($activity->owner);
+			$id=$activity->owner;
+			
+			$userDetails=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id);
 			if (count($userDetails)==1)
-				$rw['USER']=$userDetails[0]['username'];
+				$rw['USER']=$userDetails[$id]['username'];
 			else
 				$rw['USER']=jr_gettext('_JOMRES_MR_AUDIT_UNKNOWNUSER',_JOMRES_MR_AUDIT_UNKNOWNUSER,FALSE);
 
-			//$query="SELECT name,username FROM #__users WHERE id = '".(int)$activity->owner."'";
-			
-			//$userList =doSelectSql($query);
-			//if (count($userList)>0)
-			//	{
-			//	foreach ($userList as $user)
-			//		{
-					//$rw['USER']=$user->name." (".$user->username.") ";
-			//		}
-			//	}
-			//else
-				//$rw['USER']=jr_gettext('_JOMRES_MR_AUDIT_UNKNOWNUSER',_JOMRES_MR_AUDIT_UNKNOWNUSER,FALSE);
-			$thedate=str_replace("-","/",($activity->date));
+			//$thedate=str_replace("-","/",($activity->date));
+			$thedate=$activity->date;
 			$rw['THEDATE']=outputDate($thedate);
 			$rw['THETIME']=$activity->time;
 			$rw['OPERATION']=$activity->op;
 
 			$rw['VIEWSQL']='<A href="javascript: alert(\''.htmlentities($activity->args).'\')">'.jr_gettext('_JOMRES_MR_AUDIT_LISTING_VIEWSQL',_JOMRES_MR_AUDIT_LISTING_VIEWSQL,FALSE).'</A>';
 			$rows[]=$rw;
-			$dateArray[]=$thedate;
+			$dateArray[]=htmlspecialchars($thedate);
 			$userArray[]=$rw['USER'];
 			$operationArray[]=$activity->op;
 			}

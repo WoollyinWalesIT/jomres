@@ -100,7 +100,8 @@ class j02310regprop2 {
 				$r['PID']=$propertyFeature->hotel_features_uid;
 				if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
 					$r['ischecked']="checked";
-				$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+				//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+				$r['FEATURE']=jomres_makeTooltip($propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$propertyFeature->image,"","property_feature",array());
 				$globalPfeatures[]=$r;
 				}
 			}
@@ -154,6 +155,7 @@ class j02310regprop2 {
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
 
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
