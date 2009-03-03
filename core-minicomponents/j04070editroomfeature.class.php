@@ -83,11 +83,12 @@ class j04070editroomfeature {
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES',_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES);
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
-
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'editroomfeature.html');
+		$tmpl->readTemplatesFromInput( 'edit_room_feature.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->displayParsedTemplate();
 		}
