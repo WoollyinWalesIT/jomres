@@ -28,13 +28,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j02210listtariffs {
+class j02210listtariffs_advanced {
 	/**
 	#
 	 * Constructor: Constructs and displays tariff list - admin side
 	#
 	 */
-	function j02210listtariffs()
+	function j02210listtariffs_advanced()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		global $MiniComponents;
@@ -43,6 +43,7 @@ class j02210listtariffs {
 			$this->template_touchable=true; return;
 			}
 		global $mrConfig,$jrConfig;
+		
 		if ( $mrConfig['tariffmode']=="2")
 			$this->tpl=$MiniComponents->triggerEvent('02211'); //
 		else
@@ -145,7 +146,7 @@ class j02210listtariffs {
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			$tmpl->readTemplatesFromInput( 'list_tariffs.html');
+			$tmpl->readTemplatesFromInput( 'list_advanced_tariffs.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->addRows( 'rows', $rows );
 			$this->tpl=$tmpl->getParsedTemplate();
