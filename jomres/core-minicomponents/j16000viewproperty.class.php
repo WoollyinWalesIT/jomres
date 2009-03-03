@@ -59,7 +59,7 @@ class j16000viewproperty
 		$output['PROPERTY_REGION']=stripslashes($propertyDetails[$id]['property_region']);
 		$output['PROPERTY_COUNTRY']=stripslashes($propertyDetails[$id]['property_country']);
 		$output['PROPERTY_POSTCODE']=stripslashes($propertyDetails[$id]['property_postcode']);
-		$output['PROPERTY_TEL']=stripslashes($propertyDetails[$id]['property_tel']), ENT_QUOTES);
+		$output['PROPERTY_TEL']=stripslashes($propertyDetails[$id]['property_tel'], ENT_QUOTES);
 
 		if (is_null($componentArgs['id']))
 			{
