@@ -84,7 +84,7 @@ $jrConfig['sef_default_ptype']		="hotels";
 // Hidden options. Switches editinplace on and off. Default is 1 (on)  
 $jrConfig['editinplace']="1";
 
-$jrConfig['composite_property_details']="0";
+$jrConfig['composite_property_details']="1";
 
 $jrConfig['loggingBooking']		='0';
 $jrConfig['loggingGateway']		='0';
