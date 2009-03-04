@@ -157,99 +157,7 @@ if (_JOMRES_DETECTED_CMS == "unknown")
 	echo "Error, cannot detect the current CMS. Exiting.";
 	exit;
 	}
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."init_config_vars.php");
-
-/*
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
-	{
-
-	}
-else
-	{
-	global $mosConfig_db,$mosConfig_lang,$mosConfig_absolute_path,$mosConfig_live_site,$mosConfig_sitename,$mosConfig_shownoauth,$mosConfig_useractivation,
-		$mosConfig_uniquemail,$mosConfig_offline_message,$mosConfig_lifetime,$mosConfig_MetaDesc,$mosConfig_MetaKeys,$mosConfig_MetaTitle,
-		$mosConfig_MetaAuthor,$mosConfig_debug,$mosConfig_locale,$mosConfig_offset,$mosConfig_offset_user,$mosConfig_hideAuthor,$mosConfig_hideCreateDate,
-		$mosConfig_hideModifyDate,$mosConfig_hidePdf,$mosConfig_hidePrint,$mosConfig_hideEmail,$mosConfig_enable_log_items,$mosConfig_enable_log_searches,
-		$mosConfig_enable_stats,$mosConfig_sef,$mosConfig_vote,$mosConfig_gzip,$mosConfig_multipage_toc,$mosConfig_allowUserRegistration,
-		$mosConfig_error_reporting,$mosConfig_error_message,$mosConfig_link_titles,$mosConfig_list_limit,$mosConfig_caching,$mosConfig_cachepath,
-		$mosConfig_cachetime,$mosConfig_mailer,$mosConfig_mailfrom,$mosConfig_fromname,$mosConfig_sendmail,$mosConfig_smtpauth,$mosConfig_smtpuser,
-		$mosConfig_smtppass,$mosConfig_smtphost,$mosConfig_back_button,$mosConfig_item_navigation,$mosConfig_secret,$mosConfig_pagetitles,$mosConfig_readmore,
-		$mosConfig_hits,$mosConfig_icons,$mosConfig_favicon,$mosConfig_fileperms,$mosConfig_dirperms,$mosConfig_helpurl,$mosConfig_mbf_content,$mosConfig_editor;
-	global $mosConfig_user,$mosConfig_password,$mosConfig_dbprefix,$mosConfig_host,$mosConfig_offline;
-
-	$jomresConfig_lang = $mosConfig_lang;
-
-	$jomresConfig_offline			= $mosConfig_offline;
-	$jomresConfig_db				= $mosConfig_db;
-//	$jomresConfig_absolute_path 	= $mosConfig_absolute_path;
-	$jomresConfig_live_site 		= $mosConfig_live_site;
-	$jomresConfig_sitename 			= $mosConfig_sitename;
-	$jomresConfig_shownoauth 		= $mosConfig_shownoauth;
-	$jomresConfig_useractivation 	= $mosConfig_useractivation;
-	$jomresConfig_uniquemail 		= $mosConfig_uniquemail;
-	$jomresConfig_offline_message 	= $mosConfig_offline_message;
-	$jomresConfig_lifetime 			= $mosConfig_lifetime;
-	$jomresConfig_MetaDesc 			= $mosConfig_MetaDesc;
-	$jomresConfig_MetaKeys 			= $mosConfig_MetaKeys;
-	$jomresConfig_MetaTitle 		= $mosConfig_MetaTitle;
-	$jomresConfig_MetaAuthor 		= $mosConfig_MetaAuthor;
-	$jomresConfig_debug 			= $mosConfig_debug;
-	$jomresConfig_locale 			= $mosConfig_locale;
-	$jomresConfig_offset 			= $mosConfig_offset;
-	$jomresConfig_offset_user 		= $mosConfig_offset_user;
-	$jomresConfig_hideAuthor 		= $mosConfig_hideAuthor;
-	$jomresConfig_hideCreateDate 	= $mosConfig_hideCreateDate;
-	$jomresConfig_hideModifyDate 	= $mosConfig_hideModifyDate;
-	$jomresConfig_hidePdf 			= $mosConfig_hidePdf;
-	$jomresConfig_hidePrint 		= $mosConfig_hidePrint;
-	$jomresConfig_hideEmail 		= $mosConfig_hideEmail;
-	$jomresConfig_enable_log_items 	= $mosConfig_enable_log_items;
-	$jomresConfig_enable_log_searches = $mosConfig_enable_log_searches;
-	$jomresConfig_enable_stats 		= $mosConfig_enable_stats;
-	$jomresConfig_sef 				= $mosConfig_sef;
-	$jomresConfig_vote 				= $mosConfig_vote;
-	$jomresConfig_gzip 				= $mosConfig_gzip;
-	$jomresConfig_multipage_toc 	= $mosConfig_multipage_toc;
-	$jomresConfig_allowUserRegistration = $mosConfig_allowUserRegistration;
-	$jomresConfig_error_reporting 	= $mosConfig_error_reporting;
-	$jomresConfig_error_message 	= $mosConfig_error_message;
-	$jomresConfig_link_titles 		= $mosConfig_link_titles;
-	$jomresConfig_list_limit 		= (int)$mosConfig_list_limit;
-	$jomresConfig_caching 			= $mosConfig_caching;
-	$jomresConfig_cachepath 		= $mosConfig_cachepath;
-	$jomresConfig_cachetime 		= $mosConfig_cachetime;
-	$jomresConfig_mailer 			= $mosConfig_mailer;
-	$jomresConfig_mailfrom 			= $mosConfig_mailfrom;
-	$jomresConfig_fromname 			= $mosConfig_fromname;
-	$jomresConfig_sendmail 			= $mosConfig_sendmail;
-	$jomresConfig_smtpauth 			= $mosConfig_smtpauth;
-	$jomresConfig_smtpuser 			= $mosConfig_smtpuser;
-	$jomresConfig_smtppass 			= $mosConfig_smtppass;
-	$jomresConfig_smtphost 			= $mosConfig_smtphost;
-	$jomresConfig_back_button 		= $mosConfig_back_button;
-	$jomresConfig_item_navigation 	= $mosConfig_item_navigation;
-	$jomresConfig_secret 			= $mosConfig_secret;
-	$jomresConfig_pagetitles 		= $mosConfig_pagetitles;
-	$jomresConfig_readmore 			= $mosConfig_readmore;
-	$jomresConfig_hits 				= $mosConfig_hits;
-	$jomresConfig_icons 			= $mosConfig_icons;
-	$jomresConfig_favicon 			= $mosConfig_favicon;
-	$jomresConfig_fileperms 		= $mosConfig_fileperms;
-	$jomresConfig_dirperms 			= $mosConfig_dirperms;
-	$jomresConfig_helpurl 			= $mosConfig_helpurl;
-	$jomresConfig_mbf_content 		= $mosConfig_mbf_content;
-	$jomresConfig_editor 			= $mosConfig_editor;
-	$jomresConfig_user	 			= $mosConfig_user;
-	$jomresConfig_password	 		= $mosConfig_password;
-	$jomresConfig_dbprefix			= $mosConfig_dbprefix;
-	$jomresConfig_host				= $mosConfig_host;
-	//$jomresConfig_CMSVERSION		= "J1.0.10";
-
-	$jomresPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres";
-	$jomresAdminPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres';
-	}
-*/
-
+require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
 
 $jomres_db_querylog=array();
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
@@ -314,41 +222,44 @@ if (!class_exists('patTemplate') )
 if (!class_exists('patErrorManager') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php');
 
-require_once('libraries'.JRDS.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
 
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
 
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'tempbookinghandler.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'currencyformat.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'contenttabs.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'configpanel.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'toolbar.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'images.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'paging.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'booking.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'crate.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'general.classes.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomresxmlparser.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_tooltips.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'tempbookinghandler.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'currencyformat.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'contenttabs.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'configpanel.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'toolbar.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'images.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'paging.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'booking.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'crate.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'general.classes.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
+$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+if ($task == "handlereq" || $task = "dobooking")
+	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomresxmlparser.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_tooltips.class.php');
 
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'general.functions.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'crate.functions.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'booking.functions.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'property.functions.php');
-require_once('libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'user.functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'general.functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'crate.functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'booking.functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'property.functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'user.functions.php');
 
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_functions.php");
+require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_functions.php");
+
 
 if ($timetracking)
 	{
@@ -379,6 +290,7 @@ else
 			$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
 		}
 	}
+
 // loads en language file by default
 if ($jomresConfig_lang=='')
 	$jomresConfig_lang = 'en-GB';
@@ -396,7 +308,7 @@ if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
 if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
 
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_urls.php");
+require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
 define('JOMRES_SYSTEMLOG_PATH',$jrConfig['jomres_systemLog_path']);
 set_error_handler('errorHandler');
