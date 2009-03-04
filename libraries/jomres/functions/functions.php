@@ -364,7 +364,7 @@ Does what it says on the tin
 */
 function queryUpdateServer($script,$queryString)
 	{
-	$updateServer="http://updates.jomres.net";
+	$updateServer="http://plugins.jomres4.net";
 	if (strlen($script)==0)
 		$script="index.php";
 	$curl_handle=curl_init();

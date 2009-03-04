@@ -113,7 +113,7 @@ class j16000addplugin
 			//$pluginName=str_replace(" ","_",$pluginName);
 			if ($debugging) echo "Attempting download of ".$pluginName."<br>";
 			$newfilename=$updateDirPath.JRDS.$pluginName.".vnw";
-			$queryServer="http://updates.jomres.net/index.php?r=gp&vnw=".$getVNW."&plugin=".$pluginName;
+			$queryServer="http://plugins.jomres4.net/index.php?r=gp&vnw=".$getVNW."&plugin=".$pluginName;
 			if ($debugging) echo $queryServer;
 
 			$out = fopen($newfilename, 'wb');
