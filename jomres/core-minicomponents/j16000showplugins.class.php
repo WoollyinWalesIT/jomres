@@ -47,7 +47,7 @@ class j16000showplugins
 			}
 
 		$remote_plugins=array();
-		$remote_plugins_data=queryUpdateServer("","r=dp");
+		$remote_plugins_data=queryUpdateServer("","r=dp&cms="._JOMRES_DETECTED_CMS);
 		$rp_array=explode("<br/>",$remote_plugins_data);
 		foreach ($rp_array as $rp)
 			{
