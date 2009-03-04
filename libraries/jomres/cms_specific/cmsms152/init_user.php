@@ -29,7 +29,6 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  */
 class jr_user
 	{
-
 	/**
 	#
 	 * Constructor. Sets the user up based on the $my variable
