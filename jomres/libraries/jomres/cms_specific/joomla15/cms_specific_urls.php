@@ -5,6 +5,10 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 global $jomresConfig_live_site;
+
+$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+if (strstr($scriptname,'install_jomres.php'))
+	$jomresConfig_live_site=str_replace("/jomres","",$jomresConfig_live_site);
 $ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");

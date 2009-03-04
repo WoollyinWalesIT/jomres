@@ -108,6 +108,7 @@ if (!is_writable(JOMRESINSTALLPATH_BASE.JRDS.'media') )
 */
 
 //copySiteConfig(JOMRESPATH_BASE."/administrator/components/com_jomres");  // Doesn't work because /com_jomres/ folder isn't writable by the web server. Left in in case I want to revisit this in the future.
+
 require_once( 'integration.php' );
 
 global $jomres_systemLog_path,$jomresConfig_absolute_path,$jrConfig,$lkey;
@@ -483,9 +484,9 @@ function copyImages()
 function showCompletedText()
 	{
 	global $jomresConfig_live_site;
-	echo '<br>Thank you for installing Jomres. <a href="'.$jomresConfig_live_site.'/administrator/" target="_blank" >You may now go to your Joomla/Mambo backend and configure Jomres</a><br>';
-	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your root folder<br>';
-	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$jomresConfig_live_site.'/'.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality simply log in as "admin"</a><br>';
+	echo '<br>Thank you for installing Jomres. <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'" target="_blank" >You may now go to your CMS\'s administrator area and configure Jomres</a><br>';
+	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
+	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality simply log in as "admin"</a><br>';
 	}
 
 
