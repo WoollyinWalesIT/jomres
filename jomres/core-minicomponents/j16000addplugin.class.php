@@ -41,14 +41,21 @@ class j16000addplugin
 		}
 
 		$debugging=false;
-		$getVNW=1;
-		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
-		$pluginName=str_replace("<x>","",$pluginName);
-		//$pluginName=str_replace(" ","_",$pluginName);
-		if ($debugging) echo "Attempting download of ".$pluginName."<br>";
-		$pluginsDirPath=JOMRESPATH_BASE.JRDS.'remote_plugins'.JRDS;
-		$updateDirPath=JOMRESPATH_BASE.JRDS.'updates'.JRDS;
 
+		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
+
+		$pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
+		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
+
+		if (!is_dir($pluginsDirPath) )
+			{
+			if (!mkdir($pluginsDirPath))
+				{
+				echo "Couldn't make $pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
+				return false;
+				}
+			}
+		
 		if (is_dir($pluginsDirPath.$pluginName) )
 			{
 			emptyDir($pluginsDirPath.$pluginName);
@@ -61,24 +68,67 @@ class j16000addplugin
 			emptyDir($updateDirPath."unpacked");
 			rmdir($updateDirPath."unpacked");
 			}
+			
 		emptyDir($updateDirPath);
+		
+		
+		if ($thirdparty)
+			{
+			$error=false;
+			
+			$formElement=$_FILES['pluginfile'];
 
-		$queryServer="http://updates.jomres.net/index.php?r=gp&vnw=".$getVNW."&plugin=".$pluginName;
-		if ($debugging) echo $queryServer;
+			if ($formElement['name']!="")
+				{
+				$newfilename=$updateDirPath.$formElement['name'].".vnw";
+				if( strtolower($formElement['type']) != "application/zip" )
+					{
+					$error=true;
+					$errorDesc="<br>Filename: ".$formElement['name']." Wrong type of file. Only .zip files allowed";
+					} 
+				else 
+					{
+					if (is_uploaded_file ($formElement['tmp_name'])  )
+						{
+						$plugin_tmp			= $formElement['tmp_name'];
+						echo "Copying ".$img_destination."<br>";
+						if (!move_uploaded_file ($plugin_tmp,$newfilename) )
+							{
+							$error=true;
+							$errorDesc="<b>move_uploaded_file failed</b>";
+							}
+						}
+					}
+				}
+			if ($error)
+				{
+				echo $errorDesc;
+				return false;
+				}
+			}
+		else
+			{
+			$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
+			$pluginName=str_replace("<x>","",$pluginName);
+			//$pluginName=str_replace(" ","_",$pluginName);
+			if ($debugging) echo "Attempting download of ".$pluginName."<br>";
+			$newfilename=$updateDirPath.JRDS.$pluginName.".vnw";
+			$queryServer="http://updates.jomres.net/index.php?r=gp&vnw=".$getVNW."&plugin=".$pluginName;
+			if ($debugging) echo $queryServer;
 
-		$newfilename=JOMRESPATH_BASE.JRDS."updates".JRDS.$pluginName.".vnw";
-		$out = fopen($newfilename, 'wb');
-		if ($out == FALSE)
-			{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
-		$curl_handle = curl_init($queryServer);
-		curl_setopt($curl_handle, CURLOPT_FILE, $out);
-		curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-		curl_setopt($curl_handle, CURLOPT_URL, $queryServer);
-		curl_setopt($curl_handle, CURLOPT_FORBID_REUSE, 1);
-		curl_setopt($curl_handle, CURLOPT_FRESH_CONNECT, 1);
-		curl_exec($curl_handle);
-		curl_close($curl_handle);
-		fclose($out);
+			$out = fopen($newfilename, 'wb');
+			if ($out == FALSE)
+				{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
+			$curl_handle = curl_init($queryServer);
+			curl_setopt($curl_handle, CURLOPT_FILE, $out);
+			curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+			curl_setopt($curl_handle, CURLOPT_URL, $queryServer);
+			curl_setopt($curl_handle, CURLOPT_FORBID_REUSE, 1);
+			curl_setopt($curl_handle, CURLOPT_FRESH_CONNECT, 1);
+			curl_exec($curl_handle);
+			curl_close($curl_handle);
+			fclose($out);
+			}
 
 		if (!file_exists($newfilename) || filesize($newfilename)==0 )
 			{
@@ -93,75 +143,24 @@ class j16000addplugin
 			if ($debugging) echo "<br>Starting extraction of $newfilename<br>";
 			clearstatcache() ;
 
-			if ($getVNW == 1)
+			if (!class_exists("dUnzip2"))
+				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
+			//var_dump($newfilename);exit;
+			$zip = new dUnzip2($newfilename);
+			// Activate debug
+			$zip->debug = $debugging;
+			// Unzip all the contents of the zipped file to this folder
+			$zip->getList();
+			$result=$zip->unZipAll($updateDirPath."unpacked");
+			if ($result['result']==false)
 				{
-				if (!class_exists("dUnzip2"))
-					require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
-				//var_dump($newfilename);exit;
-				$zip = new dUnzip2($newfilename);
-				// Activate debug
-				$zip->debug = $debugging;
-				// Unzip all the contents of the zipped file to this folder
-				$zip->getList();
-				$result=$zip->unZipAll($updateDirPath."unpacked");
-				if ($result['result']==false)
-					{
-					echo "Emptying ".$updateDirPath."unpacked"."<br>";
-					emptyDir($updateDirPath."unpacked");
-					rmdir($updateDirPath."unpacked");
-					echo $result['msg'];
-					return false;
-					}
-				$zip->close();
+				echo "Emptying ".$updateDirPath."unpacked"."<br>";
+				emptyDir($updateDirPath."unpacked");
+				rmdir($updateDirPath."unpacked");
+				echo $result['msg'];
+				return false;
 				}
-			else
-				{
-				$filestats=stat($newfilename);
-				$remote_plugin_contents_string=file_get_contents($newfilename);
-				$remote_plugin_contents=explode( "<~~~~~~~>",$remote_plugin_contents_string);
-				$totalStringSize=strlen($remote_plugin_contents[1]);
-				if ((int) $totalStringSize != (int) $remote_plugin_contents[0])
-					{
-					echo "File type: ".filetype($newfilename)."<br>";
-
-					echo "Downloaded file size reported by PHP ".filesize($newfilename)."<br>";
-					echo "File size error. Expected ".$remote_plugin_contents[0]." but got ".$totalStringSize." <br>";
-					echo "Last 50 chars ".substr($remote_plugin_contents[1], -50, 50)."<br><br><br><br><br>";
-					echo "Memory usage: ".memory_get_usage  (TRUE );
-					echo "<br>";
-					echo "Peak usage: ".memory_get_peak_usage  ( TRUE  );
-					echo "<br>";
-					var_dump($filestats);
-					exit;
-					}
-				$files=explode( "<~~~~~>",$remote_plugin_contents[1]);
-				foreach ($files as $remote_plugin_file)
-					{
-					$contents=explode("<~~~>",$remote_plugin_file);
-					$plugin_filename=$contents[0];
-					$plugin_filesize=$contents[1];
-					$plugin_contents=$contents[2];
-					//echo $plugin_filename. " - ".$plugin_filesize."<br>";
-					if (mb_strlen($plugin_filename)>0 && mb_strlen($plugin_contents)>0)
-						{
-						echo mb_strlen  ($plugin_contents)."<br>";
-						if (strlen($plugin_contents) == $plugin_filesize)
-							{
-							$filename=$updateDirPath."unpacked".JRDS.$plugin_filename;
-							$fh=fopen($filename,"wb");
-							if (fwrite($fh, $plugin_contents) === FALSE)
-								{
-								echo "Cannot write to file ($filename)";
-								exit;
-								}
-							else echo "Created ".$filename."<br/>";
-							fclose($fh);
-							}
-					else
-							echo "Filesize error. Expected a string of ".$plugin_filesize." length, but got a string of ".strlen($plugin_contents)." length.<br/>";
-						}
-					}
-				}
+			$zip->close();
 
 			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
 			mkdir($pluginsDirPath.$pluginName);
