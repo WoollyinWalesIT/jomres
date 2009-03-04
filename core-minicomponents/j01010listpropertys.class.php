@@ -241,52 +241,36 @@ class j01010listpropertys {
 					}
 
 				$propertyFeaturesArray=explode(",",($property->property_features));
-				if ($jrConfig['useGlobalRoomTypes']=="1")
-					{
-					$rtRows="";
-					$rArr=$rtArray[$property->propertys_uid];
-					if (count($rArr)<1)
-						$rtRows[]['feature']="Error, rooms found but not linked to room types. You will not be able to book a room from this property";
-					else
-						{
-						foreach ($rArr as $rtd)
-							{
 
-							$rtRows.=makeFeatureImages($rtDetailsArray[$rtd]['image'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$retString=true)."&nbsp;";
-							}
+				$rtRows="";
+				$rArr=$rtArray[$property->propertys_uid];
+				if (count($rArr)<1)
+					$rtRows[]['feature']="Error, rooms found but not linked to room types. You will not be able to book a room from this property";
+				else
+					{
+					foreach ($rArr as $rtd)
+						{
+						//$rtRows.=makeFeatureImages($rtDetailsArray[$rtd]['image'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$retString=true)."&nbsp;";
+						$rtRows.=jomres_makeTooltip($rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$rtDetailsArray[$rtd]['image'],"","room_type",array());
+							
 						}
-					$property_deets['ROOMTYPES']=$rtRows;
 					}
+				$property_deets['ROOMTYPES']=$rtRows;
+
 
 				if (count($propertyFeaturesArray)>0)
 					{
 					$featureList="";
-					if ($jrConfig['useGlobalPFeatures']!="1")
+					$counter=0;
+					foreach ($featuresArray as $k=>$v)
 						{
-						$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid = '".(int)$property->propertys_uid."' ORDER BY hotel_feature_abbv ";
-						$propertyFeaturesList= doSelectSql($query);
-						foreach($propertyFeaturesList as $propertyFeature)
+						if (in_array($k,$propertyFeaturesArray ) )
 							{
-							if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-								{
-								$propertyFeatureDescriptionsArray=array();
-								$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-								$featureList.=$propertyFeatureDescriptionsArray;
-								}
-							}
-						}
-					else
-						{
-						$counter=0;
-						foreach ($featuresArray as $k=>$v)
-							{
-							if (in_array($k,$propertyFeaturesArray ) )
-								{
-								if ( ($counter/10 )==0)
-									$br="<br />";
-								$featureList.=makeFeatureImages($featuresArray[$k]['image'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$retString=true)."&nbsp;";
-								$counter++;
-								}
+							if ( ($counter/10 )==0)
+								$br="<br />";
+							//$featureList.=makeFeatureImages($featuresArray[$k]['image'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$retString=true)."&nbsp;";
+							$featureList.=jomres_makeTooltip($featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$featuresArray[$k]['image'],"","property_feature",array());
+							$counter++;
 							}
 						}
 					$property_deets['FEATURELIST']=$featureList;

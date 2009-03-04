@@ -70,7 +70,7 @@ class jomres_tooltips
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
 				else
-					$div_string.=' class="jomres_bt_tooltip" ';
+					$div_string.=' class="jomres_bt_tooltip_imageonly" ';
 				$div_string.=' ><img src="'.$div_content.'" width="'.$width.'" height="'.$height.'" border="'.$border.'"></div>
 					<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" width="'.($width*2).'" height="'.($height*2).'">\', 
 						{
@@ -88,7 +88,7 @@ class jomres_tooltips
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
 				else
-					$div_string.=' class="jomres_bt_tooltip" ';
+					$div_string.=' class="jomres_bt_tooltip_room_type" ';
 				$div_string.=' title="<b>'.$hover_title.'</b><br/>'.$hover_content.'"><img src="'.$div_content.'"></div>
 					<script>jQuery("#'.$div.'").bt();</script>
 					';
@@ -98,7 +98,7 @@ class jomres_tooltips
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
 				else
-					$div_string.=' class="jomres_bt_tooltip" ';
+					$div_string.=' class="jomres_bt_tooltip_features" ';
 				$div_string.=' title="<b>'.$hover_title.'</b><br/>'.$hover_content.'"><img src="'.$div_content.'"></div>
 					<script>jQuery("#'.$div.'").bt();</script>
 					';
