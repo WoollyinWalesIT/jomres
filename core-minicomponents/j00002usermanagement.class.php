@@ -42,7 +42,6 @@ class j00002usermanagement {
 			{
 			$this->template_touchable=false; return;
 			}
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."init_user.php");
 
 		$thisJRUser= new jr_user();
 		if ($thisJRUser->userIsManager==TRUE)
