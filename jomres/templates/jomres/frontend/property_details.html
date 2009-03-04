@@ -10,6 +10,22 @@
 							{LASTMINUTE}
 						</div>
 						</patTemplate:tmpl>
+						<div class="rightinfo_title">
+							{HRTYPES}
+						</div>
+						<div>
+							<patTemplate:tmpl name="roomtypes">
+								{ROOM_TYPE}
+							</patTemplate:tmpl>
+						</div>
+						<div class="rightinfo_title">
+							{HFEATURES}
+						</div>
+						<div>
+							<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">
+							{FEATURE}
+							</patTemplate:tmpl>
+						</div>
 						<div>
 						{DESCRIPTION}
 						</div>
@@ -60,22 +76,7 @@
 						<div>
 							{MINICOMPONENTOUTPUT}
 						</div>
-						<div class="rightinfo_title">
-							{HRTYPES}
-						</div>
-						<div>
-							<patTemplate:tmpl name="roomtypes">
-								{ROOM_TYPE}
-							</patTemplate:tmpl>
-						</div>
-						<div class="rightinfo_title">
-							{HFEATURES}
-						</div>
-						<div>
-							<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">
-							{FEATURE}
-							</patTemplate:tmpl>
-						</div>
+
 						<div class="rightinfo_title">
 							{COM_A_BASICTEMPLATE_SHOWADDRESS}
 						</div>
