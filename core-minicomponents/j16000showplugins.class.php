@@ -110,7 +110,6 @@ class j16000showplugins
 					$third_party_plugins[$key]=$val;
 					}
 				}
-			
 			}
 		
 		////////////////////////////////////////////////////// Third party plugins
@@ -218,49 +217,6 @@ class j16000showplugins
 		$upgrade_text="Upgrade";
 		$uninstall_text="Uninstall";
 		$externalPluginTypes=array("component","module","mambot");
-		
-		
-		foreach ($remote_plugins as $rp)
-			{
-			$type=$rp['type'];
-			$n=$rp['name'];
-			$row_class='availablefordownload';
-			$installAction=$install_text;
-			$uninstallAction=" ";
-			if (array_key_exists($n,$installed_plugins ) )
-				{
-				$uninstallAction=$uninstall_text;
-				$installAction=$reinstall_text;
-				$row_class='alreadyinstalled';
-				$action="Reinstall";
-				$uninstall="<a href=\"".$uninstallLink."\">".$uninstallText."</a>";
-				if ($rp['version'] > $installed_plugins[$n]['version'])
-					{
-					$installAction=$upgrade_text;
-					$row_class='upgradeavailable';
-					}
-				}
-
-			$installLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&plugin='.$n.'">'.$installAction.'</a>';
-
-			$uninstallLink="";
-			if (!in_array($rp['type'],$externalPluginTypes) )
-				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&plugin='.$n.'">'.$uninstallAction.'</a>';
-
-			$local_version=$installed_plugins[$n]['version'];
-			if (!array_key_exists($n,$installed_plugins ) )
-				$local_version="N/A";
-			echo
-			"<tr class=\"".$row_class."\">
-				<td>".$rp['name']."</td>
-				<td>".$local_version."</td>
-				<td>".$rp['version']."</td>
-				<td>".$rp['lastupdate']."</td>
-				<td>".stripslashes($rp['description'])."</td>
-				<td>".$installLink."</td>
-				<td>".$uninstallLink."</td>
-			</tr>";
-			}
 
 		foreach ($remote_plugins as $rp)
 			{

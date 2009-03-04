@@ -49,7 +49,7 @@ class j16000listLogs
 			{
 			foreach ($logFiles as $key=>$file)
 				{
-				echo JOMRES_SYSTEMLOG_PATH.$file;
+				//echo JOMRES_SYSTEMLOG_PATH.$file;
 				if (file_exists(JOMRES_SYSTEMLOG_PATH.$file))
 					{
 					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");

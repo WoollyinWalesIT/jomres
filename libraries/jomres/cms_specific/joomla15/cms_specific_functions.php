@@ -8,11 +8,11 @@ function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id=0;
 	if (!defined('_JOMRES_NEWJOOMLA') )
-		$this->id=$my->id;
+		$id=$my->id;
 	else
 		{
 		$user =& JFactory::getUser();
-		$this->id=$user->get('id');
+		$id=$user->get('id');
 		}
 	return $id;
 	}

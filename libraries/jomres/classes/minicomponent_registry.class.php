@@ -29,27 +29,31 @@ class minicomponent_registry
 	
 	function minicomponent_registry($force_reload_allowed=false)
 		{
-		$this->registeredClasses = array();
-		$this->eventPoints = array();
-		$this->nonOverridableEventClasses=array();
-		$this->error_detected=false;
-		$this->unWantedFolderContents=array('.','..','cvs','.svn','registry.php');
-		$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS;
-		$this->registry_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php";
-		$this->now = time();
-		$this->force_reload_allowed=$force_reload_allowed;
-		$original_filesize=@filesize($this->registry_file); // @to prevent notices when the file doesn't exist at all
-		if (!file_exists($this->registry_file) )
+		$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+		if (!strstr($scriptname,'install_jomres.php'))
 			{
-			$this->regenerate_registry();
-			}
-		require_once($this->registry_file);
-		$registry = new jomres_mc_registry();
-		$lastGenerated = $registry->mcRegistry_now;
-		$this->registeredClasses = unserialize($registry->mcRegistry_registry_serialized);
-		unset($registry);
+			$this->registeredClasses = array();
+			$this->eventPoints = array();
+			$this->nonOverridableEventClasses=array();
+			$this->error_detected=false;
+			$this->unWantedFolderContents=array('.','..','cvs','.svn','registry.php');
+			$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS;
+			$this->registry_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php";
+			$this->now = time();
+			$this->force_reload_allowed=$force_reload_allowed;
+			$original_filesize=@filesize($this->registry_file); // @to prevent notices when the file doesn't exist at all
+			if (!file_exists($this->registry_file) )
+				{
+				$this->regenerate_registry();
+				}
+			require_once($this->registry_file);
+			$registry = new jomres_mc_registry();
+			$lastGenerated = $registry->mcRegistry_now;
+			$this->registeredClasses = unserialize($registry->mcRegistry_registry_serialized);
+			unset($registry);
 
-		$new_filesize=filesize($this->registry_file);
+			$new_filesize=filesize($this->registry_file);
+			}
 		}
 
 	function get_registered_classes()
