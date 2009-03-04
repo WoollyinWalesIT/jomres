@@ -4,6 +4,19 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+function jomres_cmsspecific_getcurrentusers_id()
+	{
+	$id=0;
+	if (!defined('_JOMRES_NEWJOOMLA') )
+		$this->id=$my->id;
+	else
+		{
+		$user =& JFactory::getUser();
+		$this->id=$user->get('id');
+		}
+	return $id;
+	}
+
 // set our meta data
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
