@@ -4,6 +4,21 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+function jomres_cmsspecific_getcurrentusers_id()
+	{
+	$id=0;
+	$query="SELECT userid FROM #__module_feusers_loggedin WHERE sessionid='".$sessionid."'";
+	$id=(int)doSelectSql($query,1);
+	if (!$id)
+		return 0;
+
+	// if (!isset($_SESSION['cms_admin_user_id']))
+		// $id = 0;
+	// else
+		// $id = (int)$_SESSION['cms_admin_user_id'];
+	return $id;
+	}
+
 // set our meta data
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
