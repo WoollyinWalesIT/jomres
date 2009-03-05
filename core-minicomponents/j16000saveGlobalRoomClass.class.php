@@ -37,6 +37,7 @@ class j16000saveGlobalRoomClass
 		$srp_only					= jomresGetParam( $_POST, 'srp_only', 0 );
 		
 		$image						= jomresGetParam( $_POST, 'image', "" );
+
 		if (empty($roomClassUid) )
 			{
 			$query="INSERT INTO #__jomres_room_classes (`room_class_abbv`,`room_class_full_desc`,`image`,`property_uid`,`srp_only` )VALUES ('$room_class_abbv','$room_class_full_desc','$image','0','".(int)$srp_only."')";

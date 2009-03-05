@@ -72,7 +72,7 @@ class j16000editGlobalroomTypes
 					{
 					$docs=array();
 					$docs['ISCHECKED'] ="";
-					$docs['IMAGEPATH'] =$map.$filename;
+					$docs['IMAGEPATH'] =$mrp.$filename;
 					$docs['IMAGE'] =$mrp.$filename;
 					if (isset($image) && $docs['IMAGEPATH']==$image)
 						$docs['ISCHECKED'] ="checked";
@@ -81,6 +81,8 @@ class j16000editGlobalroomTypes
 				}
 			$d->close();
 			}
+			//var_dump($rows);exit;
+			
 		$output['PROPERTYFEATUREINFO']=_JOMRES_A_GLOBALROOMTYPES_INFO;
 		$output['ROOMCLASSUID']=$rmTypeUid;
 

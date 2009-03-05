@@ -58,6 +58,12 @@ class j00501bookings2 {
 			$configurationPanel->setmiddle($lists['showRoomImageInBookingFormOverlib']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE);
+			$configurationPanel->setmiddle($lists['showRoomTypeImageInBookingForm']);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
 
 			$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO);
 			$configurationPanel->setmiddle($lists['bookingform_roomlist_showroomno']);
