@@ -44,7 +44,7 @@ class j01055showroomdetails {
 		$all=$componentArgs['all'];
 		if ($all)
 			$property_uid=(int)$componentArgs['property_uid'];
-		global $mrConfig,$jomresConfig_live_site,$noshowavlcal,$noshowroom,$MiniComponents,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$noshowroom,$MiniComponents,$jrConfig;
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();
@@ -139,7 +139,8 @@ class j01055showroomdetails {
 						$featurelist[]=$roomFeatureDescriptionsArray;
 						}
 					}
-				$roomRow['IMAGE']= $room_image;
+				$roomRow['IMAGE']=jomres_makeTooltip($room_image,"",$room_image,$room_image,"","imageonly",$type_arguments=array("width"=>30,"height"=>30,"border"=>0));
+			
 				$roomRow['ROOMNUMBER']= $room_number;
 				$roomRow['ROOMTYPE']= $classAbbv;
 				$roomRow['SMOKING']= $smoking;
@@ -195,16 +196,18 @@ class j01055showroomdetails {
 						{
 					    $tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 						$tmpl->readTemplatesFromInput( 'show_rooms.html' );
-						if ($jrConfig['composite_property_details']!="1")
+						$output_now=(bool)jomresGetParam( $_REQUEST, 'op', false );
+						if ($output_now)
 							$tmpl->displayParsedTemplate();
 						else
 							$this->retVals=$tmpl->getParsedTemplate();
 						}
 					}
 				}
-	    	if (!$all && !$noshowavlcal)  // This shows the room and it's availability if the user clicks on the availability link in the rooms list template. 
+				
+			if (!$all && $mrConfig['showAvailabilityCalendar'] != "0")  // This shows the room and it's availability if the user clicks on the availability link in the rooms list template. 
 				{
-				showAvailability($room_uid,"",$propertys_uid,6);
+				showAvailability($room_uid,"",$propertys_uid,6,$room_avl_enquiry=true);
 				}
 			if ($mrConfig['dumpTemplate']=="1")
 				$tmpl->dump();

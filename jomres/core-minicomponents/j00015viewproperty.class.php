@@ -203,40 +203,51 @@ class j00015viewproperty
 			$mappinglink		=	array();
 			$bookinglink		=	array();
 			$roomslistlink		=	array();
-
+			
+			$output_now="&op=1";
+			
 			if ($mrConfig['showTariffsLink']=="1")
 				{
 				$link				=	array();
-				$link['TARIFFSLINK']=	makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=showTariffs&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=true,$isLink=true));
+				$pagelink =	JOMRES_SITEPAGE_URL."&task=showTariffs&property_uid=$property_uid".$output_now;
+				$link['TARIFFSLINK']=	jomres_makeTooltip('_JOMRES_FRONT_TARIFFS','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=showTariffs&popup=1&property_uid=$property_uid".$output_now));
+						
 				$tariffslink[]		= 	$link;
 				}
 			if ($mrConfig['showSlideshowLink']=="1")
 				{
-				if (isset($jrConfig['ss_popup_width']) and !empty($jrConfig['ss_popup_width']) && isset($jrConfig['ss_popup_height']) and !empty($jrConfig['ss_popup_height']) )
-					{
-					$w=$jrConfig['ss_popup_width'];
-					$h=$jrConfig['ss_popup_height'];
-					}
-				else
-					{
-					$w=550;
-					$h=500;
-					}
 				$link				=	array();
-				$link['SLIDESHOWLINK']=makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=slideshow&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=true,$isLink=true),TRUE,$w,$h);
+				$pagelink =	JOMRES_SITEPAGE_URL."&task=slideshow&popup=1&property_uid=$property_uid".$output_now;
+				$link['SLIDESHOWLINK']=	jomres_makeTooltip('_JOMRES_FRONT_SLIDESHOW','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=slideshow&popup=1&property_uid=$property_uid".$output_now));
 				$slideshowlink[]	= 	$link;
 				}
 			if ($mrConfig['galleryLink']!="")
 				{
 				$link				=	array();
-				$link['GALLERYLINK']=	makePopupLink($mrConfig['galleryLink'],jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=true,$isLink=true),FALSE );
+				// if(filter_var($mrConfig['galleryLink'], FILTER_VALIDATE_URL) === TRUE) Not using this as it doesn't seem to work
+				$mrConfig['galleryLink'] = filter_var($mrConfig['galleryLink'], FILTER_SANITIZE_URL);
+
+				$link['GALLERYLINK']= preg_replace("
+					#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie",
+					"'<a href=\"$1\" target=\"_blank\">$3</a>$4'",
+					$mrConfig['galleryLink']
+					);
+				
+				//$pagelink =	$mrConfig['galleryLink'];
+				//$link['GALLERYLINK']=	jomres_makeTooltip('_JOMRES_FRONT_GALLERYLINK','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>$mrConfig['galleryLink']));
+				//$link['GALLERYLINK']=.$mrConfig['galleryLink'].'">'.jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=false,$isLink=false).'</a>';
 				$gallerylink[]		= 	$link;
 				}
 			if (!empty($mappinglink))
 				{
 				$link				=	array();
-				$link['MAPPINGLINK']=makePopupLink($mappinglink,jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=true,$isLink=true),FALSE );
-				$mappinglink[]		= 	$link;
+				if(filter_var($mappinglink, FILTER_VALIDATE_URL) === TRUE)
+					{
+					//$link['MAPPINGLINK']=makePopupLink($mappinglink,jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=true,$isLink=true),FALSE );
+					$pagelink =	$mappinglink;
+					$link['MAPPINGLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>$mappinglink));
+					$mappinglink[]		= 	$link;
+					}
 				}
 
 			$bookinglink = array();
@@ -268,7 +279,10 @@ class j00015viewproperty
 			if ( $mrConfig['showRoomsListingLink']=="1")
 				{
 				$link				=	array();
-				$link['ROOMSLISTLINK']=makePopupLink(JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=true,$isLink=true));
+				//$link['ROOMSLISTLINK']=makePopupLink(JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=true,$isLink=true));
+				$pagelink =	JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid".$output_now;
+				$link['ROOMSLISTLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=showRoomsListing&popup=1&property_uid=$property_uid".$output_now));
+
 				$roomslistlink[]	= 	$link;
 				}
 
