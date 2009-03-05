@@ -137,7 +137,7 @@ $numberOfGuestsInSystem=count(doSelectSql($query));
 				</tr>
 				<tr>
 					<td style="text-align:center" bgcolor="#FFFFFF"><strong><em>Copyright:</em></strong></td>
-					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007 Vince Wooll</td>
+					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007, 2008, 2009 Vince Wooll</td>
 				</tr>
 				<tr>
 					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/User_Ninja.png" width="48px" height="48px" align="middle" border="0" /></td>

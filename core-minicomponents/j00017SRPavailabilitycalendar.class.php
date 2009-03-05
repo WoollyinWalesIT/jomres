@@ -75,7 +75,8 @@ class j00017SRPavailabilitycalendar {
 			property_header($property_uid);
 		
 		$requestedDate=$componentArgs['requestedDate'];
-
+		$room_avl_enquiry=$componentArgs['room_avl_enquiry'];   // This is passed so that an MRP can use the SRPs calendar if we're requesting information about just one room. If so, well echo the output now.
+		
 		$showFullYear=$componentArgs['showFullYear'];
 		if (isset($mrConfig['CalendarMonthsToShow']))
 			$showFullYear=$mrConfig['CalendarMonthsToShow'];
@@ -153,7 +154,8 @@ class j00017SRPavailabilitycalendar {
 			</center>
 			';
 			}
-		if ($jrConfig['composite_property_details']!="1" || (jomresGetParam( $_REQUEST, 'task', '' )=="dobooking"))
+			
+		if ( $room_avl_enquiry || $jrConfig['composite_property_details']!="1" || (jomresGetParam( $_REQUEST, 'task', '' )=="dobooking"))
 			{
 			echo $this->retVals;
 			unset($this->retVals);

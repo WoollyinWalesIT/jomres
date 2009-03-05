@@ -183,7 +183,8 @@ class j01020showtariffs {
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 				$tmpl->readTemplatesFromInput( 'show_tariffs.html' );
 				
-				if ($jrConfig['composite_property_details']!="1"  || $pop == "1")
+				$output_now=(bool)jomresGetParam( $_REQUEST, 'op', false );
+				if ($output_now)
 					$tmpl->displayParsedTemplate();
 				else
 					$this->retVals=$tmpl->getParsedTemplate();

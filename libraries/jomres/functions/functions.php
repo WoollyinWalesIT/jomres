@@ -1202,7 +1202,7 @@ function hotelSettings()
 	$lists['roomTaxYesNo'] = jomresHTML::selectList( $yesno, 'cfg_roomTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['roomTaxYesNo'] );
 	$lists['euroTaxYesNo'] = jomresHTML::selectList( $yesno, 'cfg_euroTaxYesNo', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['euroTaxYesNo'] );
 	$lists['editingOn'] = jomresHTML::selectList( $yesno, 'cfg_editingOn', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['editingOn'] );
-	$lists['popupsAllowed'] = jomresHTML::selectList( $yesno, 'cfg_popupsAllowed', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['popupsAllowed'] );
+	//$lists['popupsAllowed'] = jomresHTML::selectList( $yesno, 'cfg_popupsAllowed', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['popupsAllowed'] );
 	$lists['showSlideshowLink'] = jomresHTML::selectList( $yesno, 'cfg_showSlideshowLink', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['showSlideshowLink'] );
 	$lists['showSlideshowInline'] = jomresHTML::selectList( $yesno, 'cfg_showSlideshowInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['showSlideshowInline'] );
 	$lists['showTariffsInline'] = jomresHTML::selectList( $yesno, 'cfg_showTariffsInline', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['showTariffsInline'] );
@@ -3636,7 +3636,7 @@ function showCalandarMonthDropdown()
  * Called by showSingleRoomPropAvl. Shows property availability calendars
 #
  */
-function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear=12)
+function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear=12,$room_avl_enquiry=false)
 	{
 	global $MiniComponents;
 	$componentArgs=array();
@@ -3644,6 +3644,7 @@ function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear
 	$componentArgs['requestedDate']=$requestedDate;
 	$componentArgs['property_uid']=$property_uid;
 	$componentArgs['showFullYear']=$showFullYear;
+	$componentArgs['room_avl_enquiry']=$room_avl_enquiry;
 	$MiniComponents->triggerEvent('0017',$componentArgs); // Availability calendar
 	}
 

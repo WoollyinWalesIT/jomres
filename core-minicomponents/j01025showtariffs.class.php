@@ -44,6 +44,9 @@ class j01025showtariffs {
 		global $property_uid,$mrConfig,$jomresConfig_live_site,$ePointFilepath,$jrConfig;
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		$pop=jomresGetParam( $_REQUEST, 'popup', '0' );
+		
+		$output_now=(bool)jomresGetParam( $_REQUEST, 'op', false );
+		
 		$ccodes= currencyCodesArray();
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
@@ -152,7 +155,8 @@ class j01025showtariffs {
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'te_show_tariffs.html' );
 		$result='';
-		if ($jrConfig['composite_property_details']!="1")
+		
+		if ($output_now)
 			$tmpl->displayParsedTemplate();
 		else
 			$this->retVals=$tmpl->getParsedTemplate();

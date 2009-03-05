@@ -50,6 +50,25 @@ class jomres_tooltips
 		// We'll leave this as a switch case for now in case we want to use the types option at a later time.
 		switch ($type) 
 			{
+			case "ajaxpage":
+				global $jomresConfig_live_site;
+				$url=$type_arguments["url"];
+				$div_string.='<div id="'.$div.'"';
+				if (strlen($class)>0)
+					$div_string.=' class="'.$class.'" ';
+				else
+					$div_string.=' class="" ';
+					
+				$div_string.=' type="text">'.$div_content.'</div>
+					<script>jQuery("#'.$div.'").bt({
+						ajaxPath: \''.$url.'\',
+						width: 500,
+						trigger: [\'mouseover\', \'click\'],
+						hoverIntentOpts: {interval: 1000,timeout: 2000},
+						closeWhenOthersOpen: true,
+						});</script>
+					';
+			break;
 			case "infoimage":
 				global $jomresConfig_live_site;
 				$div_string.='<div id="'.$div.'"';
@@ -63,16 +82,27 @@ class jomres_tooltips
 					';
 			break;
 			case "imageonly":
-				$width=$type_arguments["width"];
+				if (isset($type_arguments["width"]))
+					$width=$type_arguments["width"];
+				if (isset($type_arguments["height"]))
 				$height=$type_arguments["height"];
+				if (isset($type_arguments["border"]))
 				$border=$type_arguments["border"];
 				$div_string.='<div id="'.$div.'"';
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_imageonly" ';
-				$div_string.=' ><img src="'.$div_content.'" width="'.$width.'" height="'.$height.'" border="'.$border.'"></div>
-					<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" width="'.($width*2).'" height="'.($height*2).'">\', 
+				$div_string.=' ><img src="'.$div_content.'" ';
+				if (isset($type_arguments["width"]))
+					$div_string.='width="'.$width.'" ';
+				if (isset($type_arguments["height"]))
+					$div_string.='height="'.$height.'" ';
+				if (isset($type_arguments["border"]))
+					$div_string.='border="'.$border.'">';
+					
+					$div_string.='</div>';
+					$div_string.='<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" width="'.($width*2).'" height="'.($height*2).'">\', 
 						{
 						  width: '.($width*2).', 
 						  fill: "white", 

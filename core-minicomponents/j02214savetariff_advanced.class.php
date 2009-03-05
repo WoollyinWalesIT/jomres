@@ -27,13 +27,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j02214savetariff {
+class j02214savetariff_advanced {
 	/**
 	#
 	 * Constructor: Saves a tariff
 	#
 	 */
-	function j02214savetariff()
+	function j02214savetariff_advanced()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;

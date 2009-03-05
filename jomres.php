@@ -179,9 +179,9 @@ else
 	}
 
 // The admins_first_login.txt file in the temp folder is used as a check to remind new users that they need to log into the Jomres front end
-if (!file_exists($jomresConfig_absolute_path.JRDS.'components'.JRDS.'com_jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && $thisJRUser->username == "admin")
+if (!file_exists($jomresConfig_absolute_path.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && $thisJRUser->username == "admin")
 	{
-	touch($jomresConfig_absolute_path.JRDS.'components'.JRDS.'com_jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt');
+	touch($jomresConfig_absolute_path.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt');
 	}
 
 // Finding the property uid
@@ -394,10 +394,12 @@ if ($thisJRUser->userIsManager)
 		$componentArgs=array();
 		if ($accessLevel=="2")
 			{ // Show the manager's memu
+			
 			$componentArgs=array();
 			$componentArgs['published']=$published;
 			$MiniComponents->triggerEvent('00011',$componentArgs);
 			$componentArgs=array();
+			
 			}
 		}
 	}
@@ -521,7 +523,6 @@ if ($numberOfPropertiesInSystem>0)
 			$componentArgs=array('all'=>"all",'property_uid'=>$property_uid);
 			$MiniComponents->triggerEvent('01055',$componentArgs);
 			$componentArgs=array();
-			//showRoomDetails("all",$property_uid);
 		break;
 		#########################################################################################
 		case 'saveCustomerTypeOrder':

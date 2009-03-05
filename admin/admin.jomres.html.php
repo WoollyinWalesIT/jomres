@@ -175,12 +175,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_cal_output" value="'.$jrConfig['cal_output'].'" /></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAROUTPUT_DESC.'</td>
 		</tr>
-
+		<!--
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_COMPOSITE_PROPERTY_DETAILS.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['composite_property_details'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_COMPOSITE_PROPERTY_DETAILS_DESC.'</td>
 		</tr>
+		-->
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JOMRESEMAILCHECK.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['useJomresEmailCheck'].'</td>

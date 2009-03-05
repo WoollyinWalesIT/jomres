@@ -219,7 +219,7 @@ jQuery.fn.bt = function(content, options) {
     		}
       
         // load any data cached for the given ajax path
-        var cacheData = opts.ajaxCache ? $(document.body).data('btCache-' + url.replace(/\./g, '')) : null;
+        var cacheData = opts.ajaxCache ? jQuery(document.body).data('btCache-' + url.replace(/\./g, '')) : null;
         if (typeof cacheData == 'string') {
           content = selector ? jQuery("<div/>").append(cacheData.replace(/<script(.|\s)*?\/script>/g, "")).find(selector) : cacheData;
         }
@@ -236,7 +236,7 @@ jQuery.fn.bt = function(content, options) {
             complete: function(XMLHttpRequest, textStatus) {
               if (textStatus == 'success' || textStatus == 'notmodified') {
                 if (opts.ajaxCache) {
-                  $(document.body).data('btCache-' + url.replace(/\./g, ''), XMLHttpRequest.responseText);
+                  jQuery(document.body).data('btCache-' + url.replace(/\./g, ''), XMLHttpRequest.responseText);
                 }
                 ajaxTimeout = false;
                 content = selector ?
@@ -261,13 +261,13 @@ jQuery.fn.bt = function(content, options) {
                 content = opts.ajaxError.replace(/%error/g, XMLHttpRequest.statusText);
               }
               // if the user rolls out of the target element before the ajax request comes back, don't show it
-              if ($(target).hasClass('bt-active')) {
+              if (jQuery(target).hasClass('bt-active')) {
                 target.btOn();
               }
             }
           }, opts.ajaxData);
           // do the ajax request
-          $.ajax(ajaxOpts);
+          jQuery.ajax(ajaxOpts);
           // load the throbber while the magic happens
           content = opts.ajaxLoading;
         }

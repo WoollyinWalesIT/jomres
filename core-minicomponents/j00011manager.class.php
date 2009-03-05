@@ -74,6 +74,7 @@ class j00011manager {
 		$output['SETTINGSLINK']			='<a href="'.JOMRES_SITEPAGE_URL.'&task=hotelSettings" TITLE="'.jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC',_JOMRES_COM_MR_GENERALCONFIGDESC,FALSE).'"><img src="'.$jomresConfig_live_site.'/administrator/images/config.png" border="0" width="14" height="14" ></a>';
 		$output['SETLINK']			= jomresURL(JOMRES_SITEPAGE_URL.'&task=hotelSettings');
 		$output['SETTEXT']			= jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC',_JOMRES_COM_MR_GENERALCONFIGDESC,FALSE);
+		
    		if ( !function_exists('botJRHP') && ($jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager) )
    			{
    			$output['NEWPROPERTYLINK']	= '<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1").'" TITLE="'.jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,FALSE).'"><img src="'.$jomresConfig_live_site.'/administrator/images/new_f2.png" border="0" width="14" height="14" alt="'.jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,FALSE).'" ></a>';
@@ -82,8 +83,10 @@ class j00011manager {
 			$output['PROPDELETETEXT']=jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE',_JOMRES_COM_MR_PROPERTY_DELETE,FALSE);
 			$output['PROPDELETELINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken()."");
    			}
+			
 		$output['PUBLINK']=jomresURL(JOMRES_SITEPAGE_URL.'&no_html=1&task=publishProperty'.jomresURLToken());
 		$output['PUBTEXT']=$pubmsg;
+		
 		if ($jrConfig['menusAsImages']=="1")
 			{
 			$jrtbar = new jomres_toolbar();

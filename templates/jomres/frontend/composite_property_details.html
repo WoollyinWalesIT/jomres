@@ -42,21 +42,14 @@
 							{TARIFFSLINK}
 						</div>
 						</patTemplate:tmpl>
-						<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink">
-						<div class="jomres_button">
-							{GALLERYLINK}
-						</div>
-						</patTemplate:tmpl>
+
+						
 						<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="roomslistlink">
 						<div class="jomres_button">
 							{ROOMSLISTLINK}
 						</div>
 						</patTemplate:tmpl>
-						<patTemplate:tmpl name="mappinglink" type="simpleCondition" requiredVars="mappinglink">
-						<div class="jomres_button">
-							{MAPPINGLINK}
-						</div>
-						</patTemplate:tmpl>
+
 						<div>
 							{MINICOMPONENTOUTPUT}
 						</div>
@@ -76,9 +69,16 @@
 								{FEATURE}
 							</patTemplate:tmpl>
 						</div>
+
 						<div class="rightinfo_title">
 							{COM_A_BASICTEMPLATE_SHOWADDRESS}
 						</div>
+						<!-- This gallery link has now been reused and renamed to the external link -->
+						<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink">
+						<div class="rightinfo_title">
+							{GALLERYLINK}
+						</div>
+						</patTemplate:tmpl>
 						<div class="rightinfo_content">
 							{STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY}<br />{TELEPHONE}
 						</div>

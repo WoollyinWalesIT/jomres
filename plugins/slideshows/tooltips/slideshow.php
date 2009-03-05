@@ -100,7 +100,9 @@ function constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$sli
 		$tmpl->readTemplatesFromInput( 'slideshow.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows', $rows );
-		if ($jrConfig['composite_property_details']!="1")
+		$output_now=(bool)jomresGetParam( $_REQUEST, 'op', false );
+		
+		if ($output_now)
 			$tmpl->displayParsedTemplate();
 		else
 			$result=$tmpl->getParsedTemplate();

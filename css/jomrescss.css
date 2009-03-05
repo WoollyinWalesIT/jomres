@@ -1,4 +1,15 @@
 /* CSS Document */
+
+.jomres_bt_tooltip_ajaxpage
+	{
+	text-align: center;
+	border: 1px solid #dddddd;
+	padding: 5px;
+	background-color: #f1f1f1;
+	display: inline;
+	float: left;
+	}
+
 .jomres_bt_tooltip_imageonly
 	{
 	text-align: center;
