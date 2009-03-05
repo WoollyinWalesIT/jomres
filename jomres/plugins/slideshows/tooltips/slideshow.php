@@ -68,6 +68,7 @@ function constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$sli
 			$title=htmlentities($title);
 			//$description=htmlentities($description);
 			$showimage='&lt;img src='.$image.'&gt;';
+			
 			if ($popup=="1")
 				return '<IMG SRC="'.$image.'" border="0" width="50" height="50" onMouseOver="return overlib(\''.$showimage.'\', CAPTION, \''.$title.'\',BELOW,CENTER);" onMouseOut="return nd();">';
 			else
@@ -87,7 +88,9 @@ function constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$sli
 			$cap=str_replace($captionElementsToReplace," ",$cap);
 			$cap=strtolower($cap);
 			$cap=ucwords($cap);
-			$r['IMAGE']=JomresOverlibImages($slideshowImgs_RelPath.$imageData[$i]['filename'],$cap);
+			//$r['IMAGE']=JomresOverlibImages($slideshowImgs_RelPath.$imageData[$i]['filename'],$cap);
+			$r['IMAGE']=jomres_makeTooltip($cap,"",$slideshowImgs_RelPath.$imageData[$i]['filename'],$slideshowImgs_RelPath.$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>150,"height"=>110,"border"=>0));
+			
 			$rows[]=$r;
 			}
 		global $jrConfig;	
