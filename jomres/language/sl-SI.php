@@ -3329,16 +3329,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Nastavitev vtičnika vnesena');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Prikaz fotografij objekta');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Povezava z Galerijo');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Tukaj vnesite povezavo z albumom fotografij objekta. Prikazana bo na strani z opisom objekta.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Šifriranje');

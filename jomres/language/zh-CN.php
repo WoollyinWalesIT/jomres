@@ -3324,16 +3324,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','插入的插件设定');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','查看此寓所图片');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','图库连接');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','请为此寓所增加一个链接用以访问您的相册. 它将在寓所描述页面中显示.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','加密');

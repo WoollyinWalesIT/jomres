@@ -3329,16 +3329,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Indsat plugin indstilling');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Vis fotos af denne ejendom');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Gallerilink');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Placer et link til fotoalbummet for denne ejendom her. Det vil vises på beskrivelsessiden for ejendommen, når det er udfyldt.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Kryptering');

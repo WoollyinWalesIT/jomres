@@ -3338,15 +3338,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Lagt til plugin instillinger');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Se bilder av hotell/motell/rom');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Galleri lenke');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Legg til en link til ditt fotoalbum for hotell/motell/rom her. Den vil vises på hotell/motell/rom beskrivelse siden, når den eksisterer.');
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');
 /**
 * @ignore
 */

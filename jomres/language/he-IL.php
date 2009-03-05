@@ -3320,16 +3320,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','הגדרות פלגים משובצות
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','ראה תמונות של הנכס');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','קישור לשער');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','הוסף קישור לאלבום תמונות של הנכס פו. זה יוצג בדף תאור הנכס');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','קידוד');

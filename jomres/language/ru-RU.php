@@ -3326,16 +3326,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Вставленное урегули�
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Рассмотрите фотографии этой собственности');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Связь галереи');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Поместите связь в ваш альбом фотографии для этой собственности здесь. Это покажет на странице описания собственности, когда заполнено.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Шифрование');

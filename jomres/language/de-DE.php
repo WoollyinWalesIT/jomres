@@ -91,16 +91,8 @@ define('_JOMRES_COM_A_GATEWAY_ENABLED','Zahlung aktiviert?');/**
 define('_JOMRES_MR_AUDIT_PLUGINS_UPDATE','Plugin-Einstellung geändert');/**
 * @ignore
 */
-define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Plugin-Einstellung eingefügt');  	/**
-* @ignore
-*/
-define('_JOMRES_FRONT_GALLERYLINK','Zeige Fotos von diesm Unterkunft');/**
-* @ignore
-*/
-define('_JOMRES_COM_A_GALLERYLINK','Galerie Link');/**
-* @ignore
-*/
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Geben Sie einen Link zum Fotoalbum fü diese Unterkunft ein. Wenn ausgefüllt, wird auf der Beschreibungsseite für dieses Unterkunft der Link angezeigt.');/**
+define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Plugin-Einstellung eingefügt');
+/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Verschlüsselung');/**
@@ -2614,16 +2606,20 @@ define('_JOMRES_COM_A_GATEWAY_ENABLED','Zahlung aktiviert?');/**
 define('_JOMRES_MR_AUDIT_PLUGINS_UPDATE','Plugin Einstellung geändert');/**
 * @ignore
 */
-define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Plugin Einstellung eingefügt');  	/**
+define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Plugin Einstellung eingefügt');
+/**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Unterkunftbilder betrachten');/**
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
+/**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Galerie link');/**
+define('_JOMRES_COM_A_GALLERYLINK','External link');
+/**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Setzen Sie ein Link zum Fotoalbum für dieses Unterkunft. Es wird in der Unterkunftbeschreibung angezeigt, sofern es ausgefüllt ist.');/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');
+/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Verschlüsselung');/**

@@ -3345,16 +3345,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Plugin insertado');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Vea fotos de esta propiedad');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Enlace a la galería');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Ponga una conexión a su álbum de fotografías para esta propiedad aquí. Se mostrará en la página de la descripción de la propiedad, cuando este llenada.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Codificación');
