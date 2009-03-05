@@ -2872,7 +2872,7 @@ class jomres_booking
 		
 		if (!empty($this->requestedRoom) )
 			{
-			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected"><dl><table class="bformleftcol" valign="top" width="100%">';
+			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected"><table class="bformleftcol" valign="top" width="100%">';
 			$return_output .= $this->makeTariffHeaders();
 			foreach ($this->requestedRoom as $rr)
 				{
@@ -2886,7 +2886,7 @@ class jomres_booking
 				{
 				$return_output .= $rm;
 				}
-			$return_output .='</table></dl></div></div>';
+			$return_output .='</table></div></div>';
 			}
 		return $return_output;
 		}
@@ -3489,7 +3489,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	 */
 	function generateRoomsList($roomAndTariffArray)
 		{
-		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><dl><table class="bformleftcol" valign="top" width="100%">';
+		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table class="bformleftcol" valign="top" width="100%">';
 		if ($this->cfg_returnRoomsLimit!="0" && $this->cfg_returnRoomsLimit!="")
 			$roomAndTariffArray=$this->limitRoomsList($roomAndTariffArray);
 		$this->setErrorLog("generateRoomsList::Generating rooms list");
@@ -3530,7 +3530,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 					$counter++;
 					}
 				if ($this->cfg_singleRoomProperty == "0" )
-					$return_output .='</table></dl></div></div>';
+					$return_output .='</table></div></div>';
 				}
 			else
 				{
