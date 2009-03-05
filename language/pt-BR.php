@@ -3360,16 +3360,15 @@ define('_JOMRES_COM_A_USESSL_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Ver fotos desta propriedade');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Album');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Coloque um link para o album de fotos aqui. Este será mostrado na página do MH.');
-
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');
 /**
 * @ignore
 */

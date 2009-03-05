@@ -3328,16 +3328,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Vložení nastavení plugins');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Zobrazit snímky této kapacity');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Odkaz na fotogalerii');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Zde vložte odkaz na fotogalerii kapacity. Pokud bude hodnota vyplněna, bude odkaz na galerii zobrazen také v popisu kapacity.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','šifrování');

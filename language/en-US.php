@@ -3324,15 +3324,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Inserted plugin setting');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','View photos of this property');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Gallery link');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your photo album for this property here. It will show on the property description page, when filled.');
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');
 /**
 * @ignore
 */

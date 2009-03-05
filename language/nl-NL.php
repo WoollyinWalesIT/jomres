@@ -3340,16 +3340,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Plugin instelling toegevoegd');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Toon fotos');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Gallerij link');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Plaats een link naar uw fotoalbum voor dit huis hier. Het zal worden getoond op de beschrijvingspagina als hij is ingevuld.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Encryptie');

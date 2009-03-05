@@ -3328,19 +3328,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Vložené nastavenie plug-inu');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Zobraziť obrázky ubytovacieho zariadenia');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Linka na fotogalériu');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Sem vložte linku na fotogalériu ubyt. zariadenia. Zobrazí sa v popise ubyt. zariadenia.');
-/**
-* @ignore
-*/
-define('_JOMRES_COM_ENCRYPTION','Šifrovanie');
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');define('_JOMRES_COM_ENCRYPTION','Šifrovanie');
 /**
 * @ignore
 */

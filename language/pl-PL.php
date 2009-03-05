@@ -3341,16 +3341,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Ustawienie wtyczek dodane');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Zobacz zdjęcia tego obiektu');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Odsyłacz do galerii');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Wprowadź odsyłacz do albumu zdjęć tego obiektu. Będzie on prowadził do strony informacyjnej tego obiektu.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Szyfrowanie');

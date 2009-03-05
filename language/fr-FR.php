@@ -3322,16 +3322,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Insérer les paramétres des plugins '
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK',"Afficher les photos de l'établissement");
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Lien vers la galerie');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC',"Appliquer ici un lien vers votre galerie de photos pour cet établissement. Il s'affichera sur la page de description de l'établissement, une fois remplie.");
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','cryptage');

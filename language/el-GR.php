@@ -3347,16 +3347,15 @@ define('_JOMRES_MR_AUDIT_PLUGINS_INSERT','Καταχωρήθηκαν ρυθμί�
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_GALLERYLINK','Φωτογραφίες της Ιδιοκτησίας');
+define('_JOMRES_FRONT_GALLERYLINK','View this property\'s website');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK','Link Φωτογραφιών');
+define('_JOMRES_COM_A_GALLERYLINK','External link');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_GALLERYLINK_DESC','Βάλτε ένα link στο φωτογραφικό άλμπουμ της ιδιοκτησίας εδώ. Θα εμφανίζεται στη σελίδα περιγραφής της ιδιοκτησίας μόλις συμπληρωθεί.');
-/**
+define('_JOMRES_COM_A_GALLERYLINK_DESC','Put a link to your website here.');/**
 * @ignore
 */
 define('_JOMRES_COM_ENCRYPTION','Κρυπτογράφηση');
