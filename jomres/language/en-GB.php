@@ -3453,7 +3453,7 @@ define('_JOMRES_FRONT_IMAGEUPLOADS','Upload slideshow images');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Use this form to upload multiple images of this property.<br/><b>Note</b> that any images with the same name will be overwritten. Also note that this form does not upload room specific images or the property header image, you will need to upload them from the Property Admin section.<br/><b>Note</b> Images uploaded here will be written to the /images/stories/jomres/*property_uid* folder. If this folder does not exist, it will be created, unless of course an alternative directory has been specified in the configuration.');
+define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Use this form to upload multiple images of this property.<br/><b>Note</b> that any images with the same name will be overwritten. Also note that this form does not upload room specific images or the property header image, you will need to upload them from the Property Admin section.<br/><b>Note</b> Images uploaded here will be written to the /jomres/uploadedimages/*property_uid* folder. If this folder does not exist, it will be created, unless of course an alternative directory has been specified in the configuration.');
 /**
 * @ignore
 */
@@ -3473,7 +3473,7 @@ define('_JOMRES_A_GLOBALPFEATURES_DESC','Set this to Yes if you want to force al
 /**
 * @ignore
 */
-define('_JOMRES_A_GLOBALPFEATURES_INFO','To assign an image to this feature you first need to upload your property feature images to the /images/stories/jomres/pfeatures/ folder. ');
+define('_JOMRES_A_GLOBALPFEATURES_INFO','To assign an image to this feature you first need to upload your property feature images to the /jomres/uploadedimages/pfeatures/ folder. ');
 /**
 * @ignore
 */
@@ -5778,4 +5778,10 @@ define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (mainly for recording commissio
 * @ignore
 */
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Your enquiry...');
+
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Booking form room list show room type image');
+
 ?>

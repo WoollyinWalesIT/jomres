@@ -1182,6 +1182,7 @@ function hotelSettings()
 
 	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
 
+	$lists['showRoomTypeImageInBookingForm'] = jomresHTML::selectList( $yesno, 'cfg_showRoomTypeImageInBookingForm', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['showRoomTypeImageInBookingForm'] );
 	$lists['showRoomImageInBookingFormOverlib'] = jomresHTML::selectList( $yesno, 'cfg_showRoomImageInBookingFormOverlib', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['showRoomImageInBookingFormOverlib'] );
 	$lists['singlePersonSuppliment'] = jomresHTML::selectList( $yesno, 'cfg_singlePersonSuppliment', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['singlePersonSuppliment'] );
 	$lists['perPersonPerNight'] = jomresHTML::selectList( $yesno, 'cfg_perPersonPerNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['perPersonPerNight'] );

@@ -55,6 +55,8 @@ class j06000save_normalmode_tariffs {
 		$rate_description="";
 		$validfrom=date("Y/m/d");
 		$validto=date("Y/m/d",strtotime("+10 years"));
+		$validfrom_ts=str_replace("/","-",$validfrom);
+		$validto_ts=str_replace("/","-",$validto);
 		$mindays=1;
 		$maxdays=1000;
 		$minpeople=1;
