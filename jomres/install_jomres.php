@@ -1123,9 +1123,12 @@ function createJomresTables()
 		`allow_ph`BOOL DEFAULT '1' NOT NULL,
 		`allow_we`BOOL DEFAULT '1' NOT NULL,
 		`weekendonly`BOOL DEFAULT '0' NOT NULL,
+		`validfrom_ts` DATE,
+		`validto_ts` DATE,
 		`dayofweek` INT( 1 ) DEFAULT '7' NOT NULL,
 		`minrooms_alreadyselected` INT( 3 ) DEFAULT '0' NOT NULL,
 		`maxrooms_alreadyselected` INT( 3 ) DEFAULT '100' NOT NULL,
+		
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY(`rates_uid`)
 		) ";

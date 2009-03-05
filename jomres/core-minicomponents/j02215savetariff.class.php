@@ -132,15 +132,19 @@ class j02215savetariff {
 
 		// and create new ones based on the new details
 		$newRateIds=array();
+		
 		foreach ($newTariffsArray as $t)
 			{
 			// We need all of the new rate ids, so can't use multiple insert here, instead we'll insert each at a time
+			$validfrom_ts=str_replace("/","-",$t['start']);
+			$validto_ts=str_replace("/","-",$t['end']);
 			$query="INSERT INTO #__jomres_rates (
 			`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,`mindays`,`maxdays`,
-			`minpeople`,`maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid`)
+			`minpeople`,`maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`validfrom_ts`,`validto_ts`,`property_uid`)
 			VALUES
 			('$tarifftypename','','".$t['start']."','".$t['end']."','".$t['value']."','".(int)$mindays."','".(int)$maxdays."',
-			'".(int)$minpeople."','".(int)$maxpeople."','".(int)$roomClass."','".(int)$ignore_pppn."','0','".(int)$allow_we."','".(int)$defaultProperty."')";
+			'".(int)$minpeople."','".(int)$maxpeople."','".(int)$roomClass."','".(int)$ignore_pppn."','0','".(int)$allow_we."','".$validfrom_ts."',
+			'".$validto_ts."','".(int)$defaultProperty."')";
 			//echo $query."<br>";
 			$newRateIds[]=doInsertSql($query,'');
 			}

@@ -461,11 +461,14 @@ class jomres_booking
 	function getAllTariffsData()
 		{
 		//$arrival_ts=str_replace("/","-",$this->arrivalDate);
+		$arrivalDate_ts  = str_replace("/","-",$this->arrivalDate);
+		$departureDate_ts = str_replace("/","-",$this->departureDate);
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
-			FROM #__jomres_rates WHERE property_uid = '$this->property_uid'";
-		// FROM #__jomres_rates WHERE property_uid = '$this->property_uid' AND `validfrom_ts`>$arrival_ts";
+			FROM #__jomres_rates WHERE property_uid = '$this->property_uid'
+			AND `validfrom_ts`<='$departureDate_ts' 
+			AND `validto_ts`>='$arrivalDate_ts'";
 		$tariffs =doSelectSql($query);
 		foreach ($tariffs as $t)
 			{
