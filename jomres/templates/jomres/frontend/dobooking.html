@@ -67,6 +67,11 @@ function dateStatus(date) {
 	//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
 }
 
+jQuery(".bformleftcol tr").hover(
+	function() {jQuery(this).find("td").css('background-color', '#aaa')},
+	function() {jQuery(this).find("td").css('background-color', '')}
+	);
+
 </script>
 <script type="text/javascript">
 <patTemplate:tmpl name="onload">toload[{COUNT}]= "{ONLOAD}"
@@ -90,7 +95,13 @@ function dateStatus(date) {
 									<div id="arrivalcontainer">
 										<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 											<tr>
-												<th colspan="4">{AJAXFORM_PARTICULARS}&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib('{AJAXFORM_PARTICULARS_DESC}{EARLIESTPOSSIBLEARRIVALDATE}', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="{LIVESITE}/components/com_jomres/images/info.png" /></a></th>
+												<th colspan="4"><img border="0" style="vertical-align:top;" src="jomres/images/number1.png" /></th>
+											</tr>
+											<tr>
+												<th colspan="4">{AJAXFORM_PARTICULARS}</th>
+											</tr>
+											<tr>
+												<th class="bform_small" colspan="4">{AJAXFORM_PARTICULARS_DESC} {EARLIESTPOSSIBLEARRIVALDATE}</th>
 											</tr>
 											<tr>
 												<td>{HARRIVALDATE}</td>
@@ -107,9 +118,7 @@ function dateStatus(date) {
 										</table>
 										<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 											<tr>
-												<th colspan="4">
-													{BILLING_ROOMTOTAL}&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib('{LOOKRIGHT}', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="{LIVESITE}/components/com_jomres/images/info.png" /></a>
-												</th>
+												<th colspan="4">{BILLING_ROOMTOTAL}</th>
 											</tr>
 											<tr>
 												<td><div id="staydays" style="font-weight: bold;"></div></td><td>{ACCOMMODATION_NIGHTS}</td>
@@ -130,49 +139,57 @@ function dateStatus(date) {
 									</div>
 								</td>
 							</tr>
-			<tr>
-				<td class="bformrightcol2" valign="top">
-					<table border="0" width="100%">
-						<tr id="roomalert_top" class="roomalert_off">
-							<td>
-								<div id="roomalert_top">
-									<div>&nbsp;</div>
-								</div>
-							</td>
-						</tr>
-						
-						
-						
-						<tr class="roomslist_header">
-							<td valign="top">
-								<div class="roomsListWrapper">
-									<div class="roomsListInnerWrapper">
-										{AJAXFORM_AVAILABLE_DESC}
-										<div id="selectedRooms" class="roomslist">
-											{SELECTEDROOM}
-										</div>
-										<div id="availRooms" class="roomslist">
-											{AVAILABLEROOMS}
-										</div>
-									</div>
-								 </div>
-							</td>
-						</tr>
-						<tr id="roomalert_bottom">
-							<td>
-								<div id="roomalert_bottom">&nbsp;</div>
-							</td>
-						</tr>
-						<patTemplate:tmpl name="horiz_messages">
-						<tr>
-							<td>
-								<div class="small">{ESTIMATEWARNING}</div>
-							<td>
-						</td>
-						</patTemplate:tmpl>
-					</table>
-				</td>
-			</tr>
+							<tr>
+								<td class="bformrightcol2" valign="top">
+									<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+										<tr id="roomalert_top" class="roomalert_off">
+											<td>
+												<div id="roomalert_top">
+													<div>&nbsp;</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number2.png" /></th>
+										</tr>
+										<tr>
+											<th>{AJAXFORM_AVAILABLE_DESC}</th>
+										</tr>
+										<tr>
+											<th class="bform_small">{LOOKRIGHT}</th>
+										</tr>
+										<tr class="roomslist_header">
+											<td valign="top">
+											
+											
+												<div class="roomsListWrapper">
+													<div class="roomsListInnerWrapper">
+														
+														<div id="selectedRooms" class="roomslist">
+															{SELECTEDROOM}
+														</div>
+														<div id="availRooms" class="roomslist">
+															{AVAILABLEROOMS}
+														</div>
+													</div>
+												 </div>
+											</td>
+										</tr>
+										<tr id="roomalert_bottom">
+											<td>
+												<div id="roomalert_bottom">&nbsp;</div>
+											</td>
+										</tr>
+										<patTemplate:tmpl name="horiz_messages">
+										<tr>
+											<td>
+												<div class="small">{ESTIMATEWARNING}</div>
+											<td>
+										</td>
+										</patTemplate:tmpl>
+									</table>
+								</td>
+							</tr>
 							<tr>
 								<td valign="top">
 									<div id="extrascontainer">
@@ -249,7 +266,13 @@ function dateStatus(date) {
 								<td valign="top" id="bookingform_address">
 									<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 										<tr>
-											<th colspan="6">{AJAXFORM_ADDRESS}&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib('{AJAXFORM_ADDRESS_DESC}', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="{LIVESITE}/components/com_jomres/images/info.png" /></a></th>
+											<th colspan="6" class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number3.png" /></th>
+										</tr>
+										<tr>
+											<th colspan="6">{AJAXFORM_ADDRESS}</th>
+										</tr>
+										<tr>
+											<th colspan="6" class="bform_small">{AJAXFORM_ADDRESS_DESC}</th>
 										</tr>
 										<tr>
 											<td colspan="6">{GUESTDROPDOWN}</td>
@@ -331,12 +354,19 @@ function dateStatus(date) {
 									</table>
 								</td>
 							</tr>
-							<tr class="bookingform_footer" id="bookingform_footer">
-								<td valign="top" style="text-align:right;">
-									<div id="submitbutton">
-										<input type="button" name="confirmbooking" value="{SUBMIT}" class="button" size="150px" onclick="validate();"/>
-									</div>
-								</td>
+							<tr>
+								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+									<tr class="bookingform_footer" id="bookingform_footer">
+										<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" /> </th>
+									</tr>
+									<tr> 
+										<td valign="top" style="text-align:right;">
+											<div id="submitbutton">
+												<input type="button" name="confirmbooking" value="{SUBMIT}" class="button" size="150px" onclick="validate();"/>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</tr>
 							<tr>
 								<td valign="top" class="bookingform_extras">

@@ -71,23 +71,36 @@ class jomres_tooltips
 			break;
 			case "infoimage":
 				global $jomresConfig_live_site;
+				if (isset($type_arguments["width"]))
+					$width=$type_arguments["width"];
+				if (isset($type_arguments["height"]))
+					$height=$type_arguments["height"];
+				if (isset($type_arguments["border"]))
+					$border=$type_arguments["border"];
 				$div_string.='<div id="'.$div.'"';
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip" ';
 					
-				$div_string.=' title="'.$hover_content.'"><img src="'.$jomresConfig_live_site.'/jomres/images/SymbolInformation.png" border="0"></div>
-					<script>jQuery("#'.$div.'").bt();</script>
+				$div_string.=' title="'.$hover_content.'"><img src="'.$jomresConfig_live_site.'/jomres/images/SymbolInformation.png" ';
+				if (isset($type_arguments["width"]))
+					$div_string.='width="'.$width.'" ';
+				if (isset($type_arguments["height"]))
+					$div_string.='height="'.$height.'" ';
+				if (isset($type_arguments["border"]))
+					$div_string.='border="'.$border.'">';
+				$div_string.='></div>';
+				$div_string.='<script>jQuery("#'.$div.'").bt();</script>
 					';
 			break;
 			case "imageonly":
 				if (isset($type_arguments["width"]))
 					$width=$type_arguments["width"];
 				if (isset($type_arguments["height"]))
-				$height=$type_arguments["height"];
+					$height=$type_arguments["height"];
 				if (isset($type_arguments["border"]))
-				$border=$type_arguments["border"];
+					$border=$type_arguments["border"];
 				$div_string.='<div id="'.$div.'"';
 				if (strlen($class)>0)
 					$div_string.=' class="'.$class.'" ';
