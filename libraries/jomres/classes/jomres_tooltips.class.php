@@ -115,9 +115,8 @@ class jomres_tooltips
 					$div_string.='border="'.$border.'">';
 					
 					$div_string.='</div>';
-					$div_string.='<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" width="'.($width*2).'" height="'.($height*2).'">\', 
+					$div_string.='<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" >\', 
 						{
-						  width: '.($width*2).', 
 						  fill: "white", 
 						  cornerRadius: 20, 
 						  padding: 20,

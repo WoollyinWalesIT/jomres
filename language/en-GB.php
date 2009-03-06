@@ -2055,7 +2055,7 @@ define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_MEDIUM','Medium thumbnail image width
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Fullsize image width');
+define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Image width after Jomres resizes uploaded images');
 
 /**
 * @ignore
