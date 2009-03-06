@@ -861,7 +861,7 @@ define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_LINKTEXT','Edit item');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK','Room types');
+define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK','Room type');
 /**
 * @ignore
 */
@@ -3872,7 +3872,7 @@ define('_JOMRES_AJAXFORM_ADDRESS','Your Details');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ADDRESS_DESC','Please enter your details. Note that all fields are required except your mobile number');
+define('_JOMRES_AJAXFORM_ADDRESS_DESC','Please enter your details. Note that all fields with a red star are required.');
 
 /**
 * @ignore
@@ -3885,7 +3885,7 @@ define('_JOMRES_AJAXFORM_SELECTEDROOMS','Selected rooms');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE','<br>The earliest possible arrival date is: ');
+define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE','The earliest possible arrival date is: ');
 
 /**
 * @ignore
@@ -5451,7 +5451,7 @@ define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Enquiry');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Please select your required accommodation from the list on the right');
+define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Please select your required accommodation from the list below by clicking on the room.');
 
 /**
 * @ignore

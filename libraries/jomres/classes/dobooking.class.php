@@ -280,27 +280,27 @@ class jomres_booking
 		if (!isset($mrConfig['cfg_weekenddays']))
 			$mrConfig['cfg_weekenddays']					= "5,6";
 		$this->cfg_weekenddays								= explode(",",$mrConfig['weekenddays']);
-		$this->cfg_bookingform_roomlist_showroomno 			= $mrConfig['bookingform_roomlist_showroomno'];
-		$this->cfg_bookingform_roomlist_showroomname 		= $mrConfig['bookingform_roomlist_showroomname'];
-		$this->cfg_bookingform_roomlist_showtarifftitle 	= $mrConfig['bookingform_roomlist_showtarifftitle'];
+		//$this->cfg_bookingform_roomlist_showroomno 			= $mrConfig['bookingform_roomlist_showroomno'];
+		//$this->cfg_bookingform_roomlist_showroomname 		= $mrConfig['bookingform_roomlist_showroomname'];
+		//$this->cfg_bookingform_roomlist_showtarifftitle 	= $mrConfig['bookingform_roomlist_showtarifftitle'];
 
-		$this->cfg_bookingform_overlib_tariff_title_show 	= $mrConfig['bookingform_overlib_tariff_title_show'];
-		$this->cfg_bookingform_overlib_tariff_desc_show 	= $mrConfig['bookingform_overlib_tariff_desc_show'];
-		$this->cfg_bookingform_overlib_tariff_rate_show 	= $mrConfig['bookingform_overlib_tariff_rate_show'];
-		$this->cfg_bookingform_overlib_tariff_starts_show	= $mrConfig['bookingform_overlib_tariff_starts_show'];
-		$this->cfg_bookingform_overlib_tariff_ends_show 	= $mrConfig['bookingform_overlib_tariff_ends_show'];
-		$this->cfg_bookingform_overlib_tariff_mindays_show	= $mrConfig['bookingform_overlib_tariff_mindays_show'];
-		$this->cfg_bookingform_overlib_tariff_maxdays_show	= $mrConfig['bookingform_overlib_tariff_maxdays_show'];
-		$this->cfg_bookingform_overlib_tariff_minpeeps_show	= $mrConfig['bookingform_overlib_tariff_minpeeps_show'];
-		$this->cfg_bookingform_overlib_tariff_maxpeeps_show	= $mrConfig['bookingform_overlib_tariff_maxpeeps_show'];
-		$this->cfg_bookingform_overlib_room_number_show 	= $mrConfig['bookingform_overlib_room_number_show'];
-		$this->cfg_bookingform_overlib_room_name_show 		= $mrConfig['bookingform_overlib_room_name_show'];
-		$this->cfg_bookingform_overlib_room_type_show 		= $mrConfig['bookingform_overlib_room_type_show'];
-		$this->cfg_bookingform_overlib_room_smoking_show 	= $mrConfig['bookingform_overlib_room_smoking_show'];
-		$this->cfg_bookingform_overlib_room_disabledaccess_show = $mrConfig['bookingform_overlib_room_disabledaccess_show'];
-		$this->cfg_bookingform_overlib_room_floor_show 		= $mrConfig['bookingform_overlib_room_floor_show'];
-		$this->cfg_bookingform_overlib_room_maxpeople_show 	= $mrConfig['bookingform_overlib_room_maxpeople_show'];
-		$this->cfg_bookingform_overlib_room_features_show 	= $mrConfig['bookingform_overlib_room_features_show'];
+		// $this->cfg_bookingform_overlib_tariff_title_show 	= $mrConfig['bookingform_overlib_tariff_title_show'];
+		// $this->cfg_bookingform_overlib_tariff_desc_show 	= $mrConfig['bookingform_overlib_tariff_desc_show'];
+		// $this->cfg_bookingform_overlib_tariff_rate_show 	= $mrConfig['bookingform_overlib_tariff_rate_show'];
+		// $this->cfg_bookingform_overlib_tariff_starts_show	= $mrConfig['bookingform_overlib_tariff_starts_show'];
+		// $this->cfg_bookingform_overlib_tariff_ends_show 	= $mrConfig['bookingform_overlib_tariff_ends_show'];
+		// $this->cfg_bookingform_overlib_tariff_mindays_show	= $mrConfig['bookingform_overlib_tariff_mindays_show'];
+		// $this->cfg_bookingform_overlib_tariff_maxdays_show	= $mrConfig['bookingform_overlib_tariff_maxdays_show'];
+		// $this->cfg_bookingform_overlib_tariff_minpeeps_show	= $mrConfig['bookingform_overlib_tariff_minpeeps_show'];
+		// $this->cfg_bookingform_overlib_tariff_maxpeeps_show	= $mrConfig['bookingform_overlib_tariff_maxpeeps_show'];
+		// $this->cfg_bookingform_overlib_room_number_show 	= $mrConfig['bookingform_overlib_room_number_show'];
+		// $this->cfg_bookingform_overlib_room_name_show 		= $mrConfig['bookingform_overlib_room_name_show'];
+		// $this->cfg_bookingform_overlib_room_type_show 		= $mrConfig['bookingform_overlib_room_type_show'];
+		// $this->cfg_bookingform_overlib_room_smoking_show 	= $mrConfig['bookingform_overlib_room_smoking_show'];
+		// $this->cfg_bookingform_overlib_room_disabledaccess_show = $mrConfig['bookingform_overlib_room_disabledaccess_show'];
+		// $this->cfg_bookingform_overlib_room_floor_show 		= $mrConfig['bookingform_overlib_room_floor_show'];
+		// $this->cfg_bookingform_overlib_room_maxpeople_show 	= $mrConfig['bookingform_overlib_room_maxpeople_show'];
+		// $this->cfg_bookingform_overlib_room_features_show 	= $mrConfig['bookingform_overlib_room_features_show'];
 
 		$this->cfg_bookingform_requiredfields_name			= $mrConfig['bookingform_requiredfields_name'];
 		$this->cfg_bookingform_requiredfields_surname		= $mrConfig['bookingform_requiredfields_surname'];
@@ -823,6 +823,7 @@ class jomres_booking
 			$output['BILLING_TOTALINPARTY']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY',_JOMRES_AJAXFORM_BILLING_TOTALINPARTY));
 			$output['AJAXFORM_PARTICULARS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS',_JOMRES_AJAXFORM_PARTICULARS));
 			$output['AJAXFORM_PARTICULARS_DESC']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS_DESC',_JOMRES_AJAXFORM_PARTICULARS_DESC,false));
+
 			$output['AJAXFORM_AVAILABLE']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLE',_JOMRES_AJAXFORM_AVAILABLE));
 
 			$output['AJAXFORM_ADDRESS']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ADDRESS',_JOMRES_AJAXFORM_ADDRESS));
@@ -3603,8 +3604,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 		$this->typeImage =$this->allRoomClasses[$classId]['image'];
 
-		if ($this->cfg_bookingform_roomlist_showroomno ==  "1")
-			$roomTariffOutputText.="<img src=\"".$typeImage."\" />";
+		//if ($this->cfg_bookingform_roomlist_showroomno ==  "1")
+		//	$roomTariffOutputText.="<img src=\"".$typeImage."\" />";
 
 		return array('requestedRoom'=>$roomTariffOutputId, 'roomandtariffinfo'=>$roomTariffOutputText);
 		}
@@ -3697,8 +3698,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30"></td>';
 		
-		$overlib='<tr>
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomTariffOutputText.'</a></td>
+		$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">
 			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>
 			'.$room_imagetd.'
 			'.$room_imagetypetd.'
@@ -3941,15 +3941,15 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 		$room_imageTH="";
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
-			$room_imageTH="<th>&nbsp;</th>";
+			$room_imageTH="<th>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) )."</th>";
 		$room_imagetypeTH="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypeTH="<th>&nbsp;</th>";
+			$room_imagetypeTH="<th>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</th>";
 			
 		
 			
 		$return_output='<tr>
-			<th>&nbsp;</th><th>'.$roomRow['HEADER_ROOMNUMBER'].'</th>
+			<th>'.$roomRow['HEADER_ROOMNUMBER'].'</th>
 			'.$room_imageTH.'
 			'.$room_imagetypeTH.'
 			<th>'.$roomRow['HEADER_ROOMNAME'].'</th>

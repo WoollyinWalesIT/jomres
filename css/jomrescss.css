@@ -326,6 +326,13 @@
 	line-height: 20px;
 	}
 	
+.bform_small {
+	font-size: .90em;
+	color: #f1f1f1;
+	font-weight: normal;
+	text-align: left;
+}
+
 .bform_table td 
 	{
 	padding: 3px;

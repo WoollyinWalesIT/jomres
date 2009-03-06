@@ -73,6 +73,16 @@ class j00501bookings1 {
 		$configurationPanel->insertSetting();
 		if ( $mrConfig['singleRoomProperty'] != "1" )
 			{
+			$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE);
+			$configurationPanel->setmiddle($lists['showRoomImageInBookingFormOverlib']);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE);
+			$configurationPanel->setmiddle($lists['showRoomTypeImageInBookingForm']);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			
 			$configurationPanel->setleft(_JOMRES_COM_A_SMOKING);
 			$configurationPanel->setmiddle($lists['showSmoking']);
 			$configurationPanel->setright(_JOMRES_COM_A_SMOKING_DESC);
