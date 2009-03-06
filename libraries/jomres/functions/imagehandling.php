@@ -58,7 +58,7 @@ function getSlideshow($property_uid)
 			}
 		}
 	$propertyName=getPropertyNameNoTables($property_uid);
-	include($slideshowBasepath."slideshow.php");
+	require_once($slideshowBasepath."slideshow.php");
 	$result=constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$slideshowRelpath);
 	return $result;
 	}

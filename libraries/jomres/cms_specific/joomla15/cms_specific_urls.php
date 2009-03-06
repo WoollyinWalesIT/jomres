@@ -13,6 +13,9 @@ $ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
+$Itemid = (int)jomresGetParam( $_REQUEST, 'Itemid', (int)$_REQUEST['Itemid']);
+
+/*
 $query = "SELECT id"
 	. "\n FROM #__menu"
 	. "\n WHERE type = 'component'"
@@ -27,7 +30,8 @@ $query = "SELECT id"
 			}
 		}
 	else $Itemid =(int) $jrConfig['jomresItemid'];
-			
+*/
+
 define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site.'/'."index.php?option=com_jomres&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink.'/'."index.php?option=com_jomres&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/'."index.php?option=com_jomres&tmpl=component&no_html=1&Itemid=".$Itemid."");

@@ -12,7 +12,7 @@ global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$j
 global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 
 	//global $mainframe;
-	global $config;
+	global $config,$jrConfig;
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'config.php' );
 	
 	
@@ -68,7 +68,8 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	$jomresConfig_secret			= 'ABC123';
 	
 
-
+	$jomresConfig_list_limit		= $jrConfig['property_list_limit'];
+	
 	/*
 	$CONFIG = new JConfig();
 	$no_html = (int)$_REQUEST['no_html'];

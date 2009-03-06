@@ -56,7 +56,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$slideshowLocationDropdown,$langDropdown)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown)
 	{
 	global $jomresConfig_live_site,$version;
 		$contentPanel = new jomres_contentTabs();
@@ -124,11 +124,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MAPSKEY.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_google_maps_api_key" value="'.$jrConfig['google_maps_api_key'].'" /></td>
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MAPSKEY_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">Jomres itemid</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_jomresItemid" value="'.$jrConfig['jomresItemid'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
 		</tr>
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MINIMALCONFIG.'</td>
@@ -273,9 +268,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 
+	/*
 	$slideshowNames=listSlideshows();
 	$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['slideshow']);
-
+	*/
+	
 	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JOMRES_FILE_UPLOADS',_JOMRES_COM_A_JOMRES_FILE_UPLOADS,FALSE));
 	$contentPanel->setcontent('
 		<table  class="jradmin_table" border="0">
@@ -294,37 +291,8 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_fileSize" value="'.$jrConfig['fileSize'].'"></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE_DESC.'</td>
 		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOWS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$slideshowDropdownList.'</td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOW_POPUPWIDTH.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="4" name="cfg_ss_popup_width" value="'.$jrConfig['ss_popup_width'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-			<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOW_POPUPHEIGHT.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="4" name="cfg_ss_popup_height" value="'.$jrConfig['ss_popup_height'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		</tr>
-			<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SLIDESHOW_LOCATION.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$slideshowLocationDropdown.'</td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-
 		<tr>');
-	if (!isset( $jrConfig['ss_imageLocation']) ||  $jrConfig['ss_imageLocation']=="" )
-		$jrConfig['ss_imageLocation']="/images/stories/jomres/";
 	$contentPanel->setcontent('
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOWSIMAGELOCATION.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_ss_imageLocation" value="'.$jrConfig['ss_imageLocation'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOWSIMAGELOCATION_DESC.'</td>
-		</tr>
-
 		<tr align="center" valign="middle">
 			<th colspan="3">&nbsp;</th>
 		</tr>
