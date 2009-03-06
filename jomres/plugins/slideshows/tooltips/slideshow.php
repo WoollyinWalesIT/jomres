@@ -89,7 +89,7 @@ function constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$sli
 			$cap=strtolower($cap);
 			$cap=ucwords($cap);
 			//$r['IMAGE']=JomresOverlibImages($slideshowImgs_RelPath.$imageData[$i]['filename'],$cap);
-			$r['IMAGE']=jomres_makeTooltip($cap,"",$slideshowImgs_RelPath.$imageData[$i]['filename'],$slideshowImgs_RelPath.$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>150,"height"=>110,"border"=>0));
+			$r['IMAGE']=jomres_makeTooltip($cap,"",$slideshowImgs_RelPath.$imageData[$i]['filename'],$slideshowImgs_RelPath.$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>50,"height"=>50,"border"=>0));
 			
 			$rows[]=$r;
 			}
