@@ -65,8 +65,7 @@ class j04900saveproperty {
 		
 		$lat							=jomresGetParam( $_POST, 'lat', 0.00 );
 		$long							= jomresGetParam( $_POST, 'long', 0.00 );
-		
-		$property_mappinglink			= jomresGetParam( $_POST, 'property_mappinglink', "" );
+
 		if ($jrConfig['allowHTMLeditor'] == "0")
 			{
 			$property_description			= jomresGetParam( $_POST, 'property_description', "" );
@@ -108,22 +107,20 @@ class j04900saveproperty {
 			}
 		$featuresList=",".$featuresList.",";
 
-		$property_mappinglink=validateURL($property_mappinglink);
-
 		if ($propertyUid==0)
 			{
 			$apikey=createNewAPIKey();
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT,FALSE);
 			$query="INSERT INTO #__jomres_propertys (`property_name`,`property_street`,`property_town`,
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
-					`property_email`,`property_features`,`property_mappinglink`,
+					`property_email`,`property_features`,
 					`property_description`,`property_checkin_times`,`property_area_activities`,
 					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,stars,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`)
 					VALUES
 					('$property_name','$property_street',
 					'$property_town','$property_region','$property_country','$property_postcode','$property_tel',
 					'$property_fax','$property_email','$featuresList',
-					'$property_mappinglink','$property_description','$property_checkin_times','$property_area_activities',
+					'$property_description','$property_checkin_times','$property_area_activities',
 					'$property_driving_directions','$property_airports','$property_othertransport',
 					'$property_policies_disclaimers','".(int)$property_stars."','".(int)$property_type."','$apikey','".$lat."','".$long."','".$metatitle."','".$metadescription."'
 					)";

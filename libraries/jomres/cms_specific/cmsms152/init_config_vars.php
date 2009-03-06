@@ -66,50 +66,12 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	$jomresConfig_smtppass			= $tmpConfig['CMSMailer_mapi_pref_password'];
 	$jomresConfig_smtphost			= $tmpConfig['CMSMailer_mapi_pref_host'];
 	$jomresConfig_secret			= 'ABC123';
-	
+	$jomresConfig_lifetime			= 1500;
 
 	$jomresConfig_list_limit		= $jrConfig['property_list_limit'];
 	
 	/*
-	$CONFIG = new JConfig();
-	$no_html = (int)$_REQUEST['no_html'];
-
-	if($CONFIG->session_handler !="none" && $no_html == 0)
-		{
-		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
-		}
-
-	$jomresConfig_offline			= $CONFIG->offline;
-	$jomresConfig_db				= $CONFIG->db;
-	/*
-
-	*/
-	
-	// if (class_exists('JURI'))
-		// {
-		// $jomresConfig_live_site=JURI::base();
-		// }
-	// else
-		// {
-		// if ($IIS > 0) // Win NT, therefore $_SERVER['REQUEST_URI'] == null
-			// {
-			// $path_info =  $_SERVER['PATH_INFO'];
-			// $_URI = explode("/", $path_info);
-			// }
-		// else
-			// {
-
-			// list($path, $args) = explode("?", $_SERVER['REQUEST_URI']);
-			// $_URI = explode("/", $path);
-			// }
-		// array_shift($_URI);
-		// $_URI=array_slice($_URI,0,count($_URI)-1);
-		// array_unshift ($_URI,$_SERVER['SERVER_NAME'] );
-		// $jomresConfig_live_site="http://".implode("/",$_URI);
-		// }
-	// $jomresConfig_live_site=str_replace("/administrator/","",$jomresConfig_live_site);
-	// $jomresConfig_live_site=str_replace("/administrator","",$jomresConfig_live_site);
-	// if(substr($jomresConfig_live_site, -1)=="/") $jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
+	Old Joomla settings, we can use them to copy into the new cms specific inti config vars files
 	// $jomresConfig_sitename			= $CONFIG->sitename;
 	// $jomresConfig_lifetime			= $CONFIG->lifetime;
 	// $jomresConfig_MetaDesc			= $CONFIG->MetaDesc;
