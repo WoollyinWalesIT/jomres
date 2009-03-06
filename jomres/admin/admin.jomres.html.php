@@ -454,7 +454,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_randomsearchlimit" value="'.$jrConfig['randomsearchlimit'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_LISTLIMIT.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_property_list_limit" value="'.$jrConfig['property_list_limit'].'" /></td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_LISTLIMIT_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
 			<th colspan="3">&nbsp;</th>
