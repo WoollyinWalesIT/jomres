@@ -661,7 +661,7 @@ class hn_captcha
 
             // generate Keys
             $this->key = md5($this->secretstring);
-            $this->public_key = substr(md5(uniqid(rand(),true)), 0, $this->chars);
+            $this->public_key = "captcha_".substr(md5(uniqid(rand(),true)), 0, $this->chars);
             if($this->debug) echo "\n<br>-Captcha-Debug: Generate Keys, public key is: (".$this->public_key.")";
 
         }
@@ -839,7 +839,7 @@ class hn_captcha
 		global $jomresConfig_live_site;
             $this->make_captcha();
             $is = getimagesize($this->get_filename());
-            $ret = "\n".'<img class="captchapict" src="'.$jomresConfig_live_site."/media/".$this->public_key.'.jpg" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
+            $ret = "\n".'<img class="captchapict" src="'.$jomresConfig_live_site."/jomres/temp/".$this->public_key.'.jpg" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
             return $onlyTheImage ? $ret : $this->public_key_input().$ret;
         }
 
