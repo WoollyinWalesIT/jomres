@@ -3,12 +3,13 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 
 global $jomresConfig_absolute_path;
+$jrConfig['property_list_limit']	='5';
 $jrConfig['useGlobalCurrency']		='0';
 $jrConfig['globalCurrency']			='€';
 $jrConfig['globalCurrencyCode']		='EUR';
 $jrConfig['menusAsImages']			='1';
 $jrConfig['google_maps_api_key']	='';
-$jrConfig['jomresItemid']			='40';
+//$jrConfig['jomresItemid']			='40'; Removed for v4
 $jrConfig['minimalconfiguration']	='1';
 $jrConfig['useSSLinBookingform']	='0';
 $jrConfig['editingModeAffectsAllProperties']='0';
@@ -23,7 +24,7 @@ $jrConfig['jscalendarLangfile']		='calendar-en.js';
 $jrConfig['jscalendarCSSfile']		='calendar-blue.css';
 $jrConfig['maxwidth']				='150';
 $jrConfig['fileSize']				='2000';
-$jrConfig['slideshow']				='tooltips';
+//$jrConfig['slideshow']				='tooltips';
 $jrConfig['ss_popup_width']			='550';
 $jrConfig['ss_popup_height']		='500';
 $jrConfig['ss_imageLocation']		='/jomres/uploadedimages/';
@@ -37,7 +38,7 @@ $jrConfig['allowedTags']			='<h2>|<h3>|<h4>|<h5>|<b>|<i>|<a>|<ul>|<li>|<pre>|<hr
 $jrConfig['utfHTMLdecode']			='0';
 //$jrConfig['jomres_systemLog_path']	=$jomresConfig_absolute_path.JRDS.'media'.JRDS;
 $jrConfig['emailErrors']			='0';
-$jrConfig['slideshowLocation']		='1';
+//$jrConfig['slideshowLocation']		='1';  // Removed in v4
 $jrConfig['useJomresEmailCheck']	='0';
 $jrConfig['siteLang']				='en-GB.php';
 $jrConfig['autoDetectJSCalendarLang']='1';

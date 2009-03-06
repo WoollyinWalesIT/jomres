@@ -14,7 +14,7 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
 
-	global $mainframe;
+	global $mainframe,$jrConfig;
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'configuration.php' );
 	$CONFIG = new JConfig();
 	$no_html = (int)$_REQUEST['no_html'];
@@ -54,7 +54,7 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 	$jomresConfig_MetaTitle			= $CONFIG->MetaTitle;
 	$jomresConfig_MetaAuthor		= $CONFIG->MetaAuthor;
 	$jomresConfig_debug				= $CONFIG->debug;
-	$jomresConfig_list_limit		= $CONFIG->list_limit;
+	$jomresConfig_list_limit		= $jrConfig['property_list_limit'];
 	$jomresConfig_mailer			= $CONFIG->mailer;
 	$jomresConfig_mailfrom			= $CONFIG->mailfrom;
 	$jomresConfig_fromname			= $CONFIG->fromname;
@@ -120,6 +120,7 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 		
 	if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 		{
+		/*
 		$Itemids = array();
 		$query = "SELECT id"
 		. "\n FROM #__menu"
@@ -136,7 +137,8 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 			}
 		if (!in_array((int)$jrConfig['jomresItemid'],$Itemids) )
 			echo '<font color="red" face="arial" size="1">Warning: Your Jomres Itemid and the Itemid stored in Site Config are different, this may result in unpredictable behaviour. It is recommended that you modify your Site Config Itemid to match that in the main menu. See <a href="http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=96&nav=0,3" target="_blank"> this article for more information</a></font>';
-
+		*/
+		
 		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && !strstr($scriptname,'install_jomres.php') )
 			{
 			echo '<font color="red" face="arial" size="2">Note, you haven\'t yet logged into the front end as "admin". Virtually all property configuration is performed from the front end so you should add Jomres to the main menu if you haven\'t already and log in to the front end now.</font><br/>';

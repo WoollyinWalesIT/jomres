@@ -53,12 +53,14 @@ function showSiteConfig(  )
 
 	$langDropdown=getJomresLanguagesDropdown();
 
+	/*
 	$slideshowLocation = array();
 	$slideshowLocation[] = jomresHTML::makeOption( '1', _JOMRES_SLIDESHOW_LOCATION_TOP );
 	$slideshowLocation[] = jomresHTML::makeOption( '2', _JOMRES_SLIDESHOW_LOCATION_BOTTOM );
 	$slideshowLocation[] = jomresHTML::makeOption( '3', _JOMRES_SLIDESHOW_LOCATION_BOTH );
 	$slideshowLocationDropdown = jomresHTML::selectList($slideshowLocation, 'cfg_slideshowLocation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['slideshowLocation']);
-
+	*/
+	
 	$editoryesno = array();
 	$editoryesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
 	$editoryesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
@@ -122,7 +124,7 @@ function showSiteConfig(  )
 	$lists['loggingRequest']		= jomresHTML::selectList( $yesno, 'cfg_loggingRequest', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingRequest'] );
 	$lists['loggingPortal']			= jomresHTML::selectList( $yesno, 'cfg_loggingPortal', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingPortal'] );
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$slideshowLocationDropdown,$langDropdown);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown);
 	}
 
 /**
