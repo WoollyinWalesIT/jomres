@@ -89,15 +89,15 @@ class j00030search {
 			}
 		if ($calledByModule == "" && !isset($_REQUEST['next'])  )
 			{
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/modules/mod_jomsearch_m0/srch.html') )
+			if ($jrConfig['integratedSearch_enable'] =='1')
 				{
 				$calledByModule="mod_jomsearch_m0";
-				$doSearch=true;
-				$searchRestarted=true;
-				//var_dump($doSearch);exit;
-				$includedInModule=true;
-				$componentArgs=array('doSearch'=>$doSearch,'includedInModule'=>$includedInModule,'calledByModule'=>$calledByModule);
-				$MiniComponents->triggerEvent('00030',$componentArgs);
+				// $doSearch=true;
+				// $searchRestarted=true;
+				// //var_dump($doSearch);exit;
+				// $includedInModule=true;
+				// $componentArgs=array('doSearch'=>$doSearch,'includedInModule'=>$includedInModule,'calledByModule'=>$calledByModule);
+				// $MiniComponents->triggerEvent('00030',$componentArgs);
 				}
 			}
 		$calledByModule=mysql_real_escape_string($calledByModule);
@@ -445,7 +445,6 @@ class j00030search {
 						$selectOption=$ta[0]['town'];
 					else
 						$selectOption=$sch->filter['town'];
-					
 					if ($searchOutput['town']=="dropdown")
 						{
 						foreach ($ta as $town)
@@ -464,7 +463,7 @@ class j00030search {
 							$t = str_replace("&#39;","'",$town['town']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&town='.$t);
 							$link=jomresURL($l);
-							$r.='<a href="'.$link.'">'.stripslashes($town['town']).'</a>';
+							$r.='<a href="'.$link.'">'.stripslashes($town['town']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
 							}
@@ -684,11 +683,7 @@ class j00030search {
 				}
 			$pageoutput[]=$output;
 
-			//if ($option=="com_jomres" && !$includedInModule)
-			//	var_dump($sch);
-			//var_dump($doSearch);exit;
-			/*
-			if (!$doSearch)
+			if (!$doSearch || ($calledByModule="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1') )
 				{
 				$stmpl = new patTemplate();
 				$stmpl->setRoot( $sch->templateFilePath );
@@ -696,7 +691,7 @@ class j00030search {
 				$stmpl->addRows( 'search', $pageoutput );
 				$stmpl->displayParsedTemplate();
 				}
-			*/
+
 			//if ($doSearch )
 				$sch->jomSearch_showresults();
 			unset ($sch);

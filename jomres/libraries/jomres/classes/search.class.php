@@ -56,9 +56,12 @@ class jomSearch {
 				$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.'/modules/'.$calledByModule.'/'.$calledByModule.'/';
 			else
 				$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.'/modules/'.$calledByModule.'/';
-				
+			
+			if ($calledByModule="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1')
+				$this->templateFilePath=JOMRES_TEMPLATEPATH_FRONTEND;
+			
 			$vals = jomres_cmsspecific_getSearchModuleParameters($calledByModule);
-				
+
 			$moduleclass_sfx 	= $vals['moduleclass_sfx'];
 			//$useoverlibLabels 	= $params->get( 'useoverlibLabels',0 );
 			$useCols 			= $vals['useCols'];
@@ -80,7 +83,7 @@ class jomSearch {
 			$priceranges			= $vals['priceranges'];
 			$pricerange_increments	= $vals['pricerange_increments'];
 			$selectcombo			= $vals['selectcombo'];
-			
+
 			/*
 			if (defined('_JOMRES_NEWJOOMLA'))
 				{

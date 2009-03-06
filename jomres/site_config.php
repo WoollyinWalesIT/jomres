@@ -93,4 +93,23 @@ $jrConfig['loggingSystem']		='0';
 $jrConfig['loggingRequest']		='0';
 $jrConfig['loggingPortal']		='0';
 
+$jrConfig['integratedSearch_enable']		='1';
+$jrConfig['integratedSearch_useCols']		='0';
+$jrConfig['integratedSearch_featurecols']		='3';
+$jrConfig['integratedSearch_selectcombo']		='0';
+$jrConfig['integratedSearch_propertyname']		='0';
+$jrConfig['integratedSearch_propertyname_dropdown']		='1';
+$jrConfig['integratedSearch_geosearchtype']		='';
+$jrConfig['integratedSearch_geosearchtype_dropdown']		='1';
+$jrConfig['integratedSearch_ptype']		='0';
+$jrConfig['integratedSearch_ptype_dropdown']		='1';
+$jrConfig['integratedSearch_room_type']		='0';
+$jrConfig['integratedSearch_room_type_dropdown']		='1';
+$jrConfig['integratedSearch_features']		='0';
+$jrConfig['integratedSearch_features_dropdown']		='1';
+$jrConfig['integratedSearch_description']		='0';
+$jrConfig['integratedSearch_availability']		='0';
+$jrConfig['integratedSearch_priceranges']		='0';
+$jrConfig['integratedSearch_pricerange_increments']		='20';
+
 ?>

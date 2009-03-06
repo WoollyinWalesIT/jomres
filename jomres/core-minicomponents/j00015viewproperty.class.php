@@ -256,7 +256,10 @@ class j00015viewproperty
 				{
 				$link				=	array();
 				$url=JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid";
-				
+				if ($mrConfig['fixedArrivalDateYesNo']=='1') // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
+					$url.="arrivalDate=2009-01-01";
+					
+					
 				//if ( $jrConfig['useSSLinBookingform'] == "1" )
 				//	$link['BOOKINGLINK'] = str_replace("http://","https://",$property['BOOKINGLINK']);
 				if ( $jrConfig['useSSLinBookingform'] == "1" )
@@ -349,13 +352,14 @@ class j00015viewproperty
 					}
 				else
 					{
-					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-					$tmpl->readTemplatesFromInput( 'property_details.html');
 					if ($jrConfig['composite_property_details']!="1")
+						{
+						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+						$tmpl->readTemplatesFromInput( 'property_details.html');
 						$tmpl->displayParsedTemplate();
+						}
 					else
 						{
-						
 						$this->retVals['property_deets']=$property_deets;
 						$this->retVals['featurelist']=$featureList;
 						$this->retVals['roomtypes']=$roomtypes;

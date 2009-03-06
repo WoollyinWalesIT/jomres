@@ -19,6 +19,32 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+function getIntegratedSearchModuleVals()
+	{
+	global $jrConfig;
+	$vals = array();
+	$vals['useCols']				= $jrConfig['integratedSearch_useCols'] ;
+	$vals['featurecols']			= $jrConfig['integratedSearch_featurecols'] ;
+	$vals['geosearchtype']			= $jrConfig['integratedSearch_geosearchtype'] ;
+	$vals['propertyname']			= $jrConfig['integratedSearch_propertyname'] ;
+	$vals['ptype']					= $jrConfig['integratedSearch_ptype'] ;
+	$vals['room_type']				= $jrConfig['integratedSearch_room_type'] ;
+	
+	$vals['description']			= $jrConfig['integratedSearch_description'] ;
+	$vals['availability']			= $jrConfig['integratedSearch_availability'] ;
+	$vals['geosearch_dropdown']		= $jrConfig['integratedSearch_geosearchtype_dropdown'] ;
+	$vals['propertyname_dropdown']	= $jrConfig['integratedSearch_propertyname_dropdown'] ;
+	$vals['ptype_dropdown']			= $jrConfig['integratedSearch_ptype_dropdown'] ;
+	$vals['room_type_dropdown']		= $jrConfig['integratedSearch_room_type_dropdown'] ;
+	$vals['features']				= $jrConfig['integratedSearch_features'] ;
+	$vals['features_dropdown']		= $jrConfig['integratedSearch_features_dropdown'] ;
+	$vals['priceranges']			= $jrConfig['integratedSearch_priceranges'] ;
+	$vals['pricerange_increments']	= $jrConfig['integratedSearch_pricerange_increments'] ;
+	$vals['selectcombo']			= $jrConfig['integratedSearch_selectcombo'] ;
+	return $vals;
+	}
+
+
 function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
 	{
 	global $jomres_tooltips;
