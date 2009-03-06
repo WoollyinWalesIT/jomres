@@ -124,7 +124,32 @@ function showSiteConfig(  )
 	$lists['loggingRequest']		= jomresHTML::selectList( $yesno, 'cfg_loggingRequest', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingRequest'] );
 	$lists['loggingPortal']			= jomresHTML::selectList( $yesno, 'cfg_loggingPortal', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingPortal'] );
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown);
+	$geosearchList = array();
+	$geosearchList[] = jomresHTML::makeOption( '', '' );
+	$geosearchList[] = jomresHTML::makeOption( 'town', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
+	$geosearchList[] = jomresHTML::makeOption( 'region', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
+	$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_geosearchtype']);
+
+	$lists['integratedSearch_enable']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_enable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_enable'] );
+	$lists['integratedSearch_useCols']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_useCols', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_useCols'] );
+	$lists['integratedSearch_selectcombo']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_selectcombo', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_selectcombo'] );
+	$lists['integratedSearch_propertyname']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_propertyname', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_propertyname'] );
+	$lists['integratedSearch_propertyname_dropdown']= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_propertyname_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_propertyname_dropdown'] );
+	$lists['integratedSearch_ptype']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_ptype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_ptype'] );
+	$lists['integratedSearch_ptype_dropdown']		= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_ptype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_ptype_dropdown'] );
+	$lists['integratedSearch_geosearchtype_dropdown']= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_geosearchtype_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_geosearchtype_dropdown'] );
+	$lists['integratedSearch_town']					= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_town', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_town'] );
+	$lists['integratedSearch_town_dropdown']		= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_town_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_town_dropdown'] );
+	
+	$lists['integratedSearch_room_type']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_room_type', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_room_type'] );
+	$lists['integratedSearch_room_type_dropdown']	= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_room_type_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_room_type_dropdown'] );
+	$lists['integratedSearch_features']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_features', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_features'] );
+	$lists['integratedSearch_features_dropdown']	= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_features_dropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_features_dropdown'] );
+	$lists['integratedSearch_description']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_description', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_description'] );
+	$lists['integratedSearch_availability']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_availability', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_availability'] );
+	$lists['integratedSearch_priceranges']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_priceranges', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_priceranges'] );
+		
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
 	}
 
 /**

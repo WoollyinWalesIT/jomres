@@ -56,7 +56,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList)
 	{
 	global $jomresConfig_live_site,$version;
 		$contentPanel = new jomres_contentTabs();
@@ -272,6 +272,144 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$slideshowNames=listSlideshows();
 	$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['slideshow']);
 	*/
+	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE',_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE,FALSE));
+	$contentPanel->setcontent('
+		<table  class="jradmin_table" border="0">
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">'._JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<th width="20%" class="jomres_title">&nbsp;</th>
+			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_enable'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_useCols'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_selectcombo'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_propertyname'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_propertyname_dropdown'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$geosearchDropdownList.'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_geosearchtype_dropdown'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_ptype'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_ptype_dropdown'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_room_type'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_room_type_dropdown'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_integratedSearch_pricerange_increments" value="'.$jrConfig['integratedSearch_featurecols'].'"></td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features_dropdown'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_description'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_availability'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_priceranges'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_integratedSearch_pricerange_increments" value="'.$jrConfig['integratedSearch_pricerange_increments'].'"></td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC.'</td>
+		<tr>');
+	$contentPanel->setcontent('
+		<tr align="center" valign="middle">
+			<th colspan="3">&nbsp;</th>
+		</tr>
+		</table>');
+	$contentPanel->insertContent();
+	$contentPanel->endPanel();
 	
 	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JOMRES_FILE_UPLOADS',_JOMRES_COM_A_JOMRES_FILE_UPLOADS,FALSE));
 	$contentPanel->setcontent('

@@ -95,24 +95,7 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id)
 // Todo, this currently has the Joomla module search 
 function jomres_cmsspecific_getSearchModuleParameters($moduleName)
 	{
-	if (strlen($moduleName)>0 )
-		{
-		$query="SELECT params FROM #__modules WHERE module = '$moduleName'";
-		$p=doSelectSql($query,1);
-		}
-	$vals=array();
-	$arr=explode("\n",$p);
-	if (count($arr)>0)
-		{
-		foreach ($arr as $str)
-			{
-			$dat=explode("=",$str);
-			$key = $dat[0];
-			$val = $dat[1];
-			if (strlen($key)>0)
-				$vals[$key]=$val;
-			}
-		}
+	return getIntegratedSearchModuleVals();
 	return $vals;
 	}
 
