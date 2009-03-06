@@ -43,7 +43,7 @@ class j06000contactowner {
 			$this->template_touchable=true; return;
 			}
 		global $jomresConfig_secret,$thisJomresPropertyDetails,$tmpBookingHandler,$mrConfig,$jomresConfig_live_site;
-
+		$this->_remove_old_captcha_files();
 		require_once(JOMRESPATH_BASE.'/libraries/hn_captcha/hn_captcha.class.php');
 
 		$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
@@ -60,7 +60,7 @@ class j06000contactowner {
 
 		$CAPTCHA_INIT = array(
 			// string: absolute path (with trailing slash!) to a php-writeable tempfolder which is also accessible via HTTP!
-			'tempfolder'		=> JOMRESCONFIG_ABSOLUTE_PATH.JRDS."media".JRDS,
+			'tempfolder'		=> JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS,
 			// string: absolute path (in filesystem, with trailing slash!) to folder which contain your TrueType-Fontfiles.
 			'TTF_folder'		=> JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'hn_captcha'.JRDS.'fonts'.JRDS,
 			// mixed (array or string): basename(s) of TrueType-Fontfiles, OR the string 'AUTO'. AUTO scanns the TTF_folder for files ending with '.ttf' and include them in an Array.
@@ -181,6 +181,42 @@ class j06000contactowner {
 			echo "<br/>";
 			}
 		}
+		
+	// We'll remove old capcha images if they're older than X
+	function _remove_old_captcha_files()
+		{
+		global $jomresConfig_lifetime;
+		$this->timeout = $jomresConfig_lifetime*60;
+		// $this->timeout = 60; // For testing
+		$d = @dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
+		$docs = array();
+		if($d)
+			{
+			while (FALSE !== ($entry = $d->read()))
+				{
+				$filename = $entry;
+				if(is_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
+					{
+					$docs[] =$filename;
+					}
+				}
+			$d->close();
+			if (count($docs)>0)
+				{
+				foreach ($docs as $f)
+					{
+					if (substr($f,0,8) == 'captcha_')
+						{
+						$last_modified = filemtime  ( JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."/".$f);
+						$seconds_timediff = time() - $last_modified;
+						//echo $seconds_timediff;
+						if ($seconds_timediff>$this->timeout)
+							unlink  (JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."/".$f);
+						}
+					}
+				}
+			}
+		}
 	/**
 	#
 	 * Must be included in every mini-component
@@ -194,4 +230,7 @@ class j06000contactowner {
 		return null;
 		}
 	}
+	
+	
+
 ?>
