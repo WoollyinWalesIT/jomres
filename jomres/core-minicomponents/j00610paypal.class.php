@@ -63,7 +63,23 @@ class j00610paypal {
 			{
 			$settingArray[$set->setting]=$set->value;
 			}
-
+		$this->messagelog 	= array();
+		
+		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings->get_paypal_settings();
+		
+		if ($paypal_settings->paypalConfigOptions['override'] == "1")
+			{
+			$this->messagelog[]="<b>Overriding old paypal settings</b>";
+			$settingArray['usesandbox']=$paypal_settings->paypalConfigOptions['usesandbox'];
+			$settingArray['currencycode']=$paypal_settings->paypalConfigOptions['currencycode'];
+			$settingArray['paypalemail']=$paypal_settings->paypalConfigOptions['email'];
+			$settingArray['pendingok'] = "0";
+			$settingArray['receiveIPNemail'] = "1";
+			}
+		else
+			$this->messagelog[]="<b>Paypal settings not overridden</b>";
+			
 		if ($settingArray['usesandbox']=="1")
 			$this->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';	// testing paypal url
 		else

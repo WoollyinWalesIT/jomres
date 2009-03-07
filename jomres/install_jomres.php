@@ -238,7 +238,7 @@ if ($folderChecksPassed)
 					copyImages();
 					saveKey2db($lkey);
 					insertPortalTables();
-					installOptimiseCronjob();
+					installCronjobs();
 					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_installation.php");
 					showCompletedText();
 					}
@@ -258,17 +258,20 @@ if ($folderChecksPassed)
 					}
 				updateMrConfig();
 				updatePluginSettings();
+				installCronjobs();
 				}
 			}
 		}
 	}
 showfooter();
 
-function installOptimiseCronjob()
+
+function installCronjobs()
 	{
-	echo "Installing optimise cron job<br/>";
+	echo "Installing cron jobs<br/>";
 	$cron = new jomres_cron();
 	$cron->addJob("optimise","D","");
+	$cron->addJob("invoice","M","");
 	}
 
 function trashTables()
@@ -647,6 +650,89 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices_transactions` (
+	  id int(10) NOT NULL auto_increment,
+	  invoice_id int(10) NOT NULL default '0',
+	  transaction_id int(10) NOT NULL default '0',
+	  time_added datetime NOT NULL,
+	  gateway_id varchar(20) NOT NULL default '',
+	  payment_result text NOT NULL,
+	  payment_currency varchar(20) NOT NULL default '',
+	  payment_amount float NOT NULL default '0',
+	  payment_fees float NOT NULL default '0',
+	  payment_ref varchar(100) NOT NULL default '',
+	  notes text NOT NULL,
+	  PRIMARY KEY  (id)
+	)";
+	doInsertSql($query,"");
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
+	  `id` int(11) NOT NULL auto_increment,
+	  `cms_user_id` int(11) NOT NULL default '0',
+	  `name` varchar(20) NOT NULL,
+	  `description` varchar(255) NOT NULL,
+	  `init_price` float NOT NULL default '0',
+	  `init_qty` int(11) NOT NULL default '0',
+	  `init_discount` float NOT NULL default '0',
+	  `recur_price` float NOT NULL default '0',
+	  `recur_qty` int(11) NOT NULL default '0',
+	  `recur_discount` float NOT NULL default '0',
+	  `tax_code_id` int(11) NOT NULL,
+	  PRIMARY KEY  (`id`)
+	)";
+	doInsertSql($query,"");
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
+	  `id` int(11) NOT NULL auto_increment,
+	  `name` varchar(20) NOT NULL,
+	  `description` varchar(255) NOT NULL,
+	  `init_price` float NOT NULL default '0',
+	  `init_qty` int(11) NOT NULL default '0',
+	  `init_discount` float NOT NULL default '0',
+	  `init_total` float NOT NULL default '0',
+	  `recur_price` float NOT NULL default '0',
+	  `recur_qty` int(11) NOT NULL default '0',
+	  `recur_discount` float NOT NULL default '0',
+	  `recur_total` float NOT NULL default '0',
+	  `tax_code` char(10) NOT NULL,
+	  `tax_description` char(200) NOT NULL,
+	  `tax_rate` float NOT NULL default '0',
+	  `inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
+	  PRIMARY KEY  (`id`)
+	)";
+	doInsertSql($query,"");
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
+	  `id` int(11) NOT NULL auto_increment,
+	  `cms_user_id` int(11) NOT NULL default '0',
+	  `status` tinyint(4) NOT NULL default '0',
+	  `raised_date` datetime NOT NULL,
+	  `due_date` datetime NOT NULL,
+	  `paid` datetime NOT NULL,
+	  `subscription` tinyint(1) NOT NULL default '0',
+	  `init_total` float NOT NULL default '0',
+	  `recur_total` float NOT NULL default '0',
+	  `recur_frequency` tinyint(4) NOT NULL default '0',
+	  `recur_dayofmonth` tinyint(4) NOT NULL default '1',
+	  `currencycode` char(3) NOT NULL,
+	  `subscription_id` int(11) NOT NULL default '0',
+	  `contract_id` int(11) NOT NULL,
+	  PRIMARY KEY  (`id`)
+	)";
+	doInsertSql($query,"");
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_taxrates` (
+	  `id` int(11) NOT NULL auto_increment,
+	  `code` char(20) NOT NULL,
+	  `description` varchar(255) NOT NULL,
+	  `rate` float NOT NULL default '0',
+	  PRIMARY KEY  (`id`)
+	)";
+	doInsertSql($query,"");
+
+	
+	
 	$query="
 	CREATE TABLE IF NOT EXISTS `#__jomcomp_cron` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1471,7 +1557,8 @@ function insertSampleData()
 
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('4', 'Camp Site', 'campsite', '1')","");
 
-
+		$query="INSERT INTO `#__jomresportal_taxrates` (`id`, `code`, `description`, `rate`) VALUES (1, '01', 'VAT', 17.5)";
+		doInsertSql($query,"");
 		}
 
 

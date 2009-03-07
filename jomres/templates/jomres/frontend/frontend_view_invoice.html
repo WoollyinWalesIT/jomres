@@ -1,0 +1,95 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HSTATUS}</td>
+					<td class="jradmin_subheader_la">{HRAISED}</td>
+					<td class="jradmin_subheader_la">{HDUE}</td>
+					<td class="jradmin_subheader_la">{HSUBSCRIPTION}</td>
+					<td class="jradmin_subheader_la">{HCURRENCYCODE}</td>
+					<td class="jradmin_subheader_la">{HINITTOTAL}</td>
+					<td class="jradmin_subheader_la">{HRECURTOTAL}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_la">{STATUS}</td>
+					<td class="jradmin_field_la">{RAISED}</td>
+					<td class="jradmin_field_la">{DUE}</td>
+					<td class="jradmin_field_la">{SUBSCRIPTION}</td>
+					<td class="jradmin_field_la">{CURRENCYCODE}</td>
+					<td class="jradmin_field_la"><div id="init_grand_total">{INITTOTAL}</div></td>
+					<td class="jradmin_field_la"><div id="recur_grand_total">{RECURTOTAL}</div></td>
+				</tr>
+			</table>
+			
+
+		</td>
+	</tr>
+</table>
+<patTemplate:tmpl name="immediate_pay" type="simpleCondition" requiredVars="IMMEDIATE">
+<center>
+<br/>
+{IMMEDIATE}<br/>
+<a href="index.php?option=com_jomres&task=immediatepay&id={INV_ID}"><img src = "components/com_jomres/remote_plugins/invoices/btn_paynowCC_LG.gif" /></a>
+<br/>
+</center>
+</patTemplate:tmpl>
+						
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{LIPAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">&nbsp;</td>
+					<td class="jradmin_subheader_la">{HLI_NAME}</td>
+					<td class="jradmin_subheader_la">{HLI_DESCRIPTION}</td>
+					
+					<td class="jradmin_subheader_la">{HLI_INIT_PRICE}</td>
+					<td class="jradmin_subheader_la">{HLI_INIT_QTY}</td>
+					<td class="jradmin_subheader_la">{HLI_INIT_DISCOUNT}</td>
+					<td class="jradmin_subheader_la">{HLI_INIT_TOTAL}</td>
+					<td class="jradmin_subheader_la">{HLI_RECUR_PRICE}</td>
+					<td class="jradmin_subheader_la">{HLI_RECUR_QTY}</td>
+					<td class="jradmin_subheader_la">{HLI_RECUR_DISCOUNT}</td>
+					<td class="jradmin_subheader_la">{HLI_RECUR_TOTAL}</td>
+					<td class="jradmin_subheader_la">{HLI_TAX_DESCRIPTION}</td>
+					<td class="jradmin_subheader_la">{HLI_TAX_RATE}</td>
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_rowtoolbar">{ID}</td>
+					<td class="jradmin_field_la">{LI_NAME}</td>
+					<td class="jradmin_field_la">{LI_DESCRIPTION}</td>
+					
+					<td class="jradmin_field_la">{LI_INIT_PRICE}</td>
+					<td class="jradmin_field_la">{LI_INIT_QTY}</td>
+					<td class="jradmin_field_la">{LI_INIT_DISCOUNT}</td>
+					<td class="jradmin_field_la">{LI_INIT_TOTAL}</td>
+					<td class="jradmin_field_la">{LI_RECUR_PRICE}</td>
+					<td class="jradmin_field_la">{LI_RECUR_QTY}</td>
+					<td class="jradmin_field_la">{LI_RECUR_DISCOUNT}</td>
+					<td class="jradmin_field_la">{LI_RECUR_TOTAL}</td>
+					<td class="jradmin_field_la">{LI_TAX_DESCRIPTION}</td>
+					<td class="jradmin_field_la">{LI_TAX_RATE}%</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+			
+
+				
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="" />
+</form>
+</patTemplate:tmpl>

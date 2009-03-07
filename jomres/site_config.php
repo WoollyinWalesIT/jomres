@@ -93,31 +93,37 @@ $jrConfig['loggingSystem']		='0';
 $jrConfig['loggingRequest']		='0';
 $jrConfig['loggingPortal']		='0';
 
-$jrConfig['integratedSearch_enable']		='1';
-$jrConfig['integratedSearch_useCols']		='0';
-$jrConfig['integratedSearch_featurecols']		='3';
-$jrConfig['integratedSearch_selectcombo']		='0';
-$jrConfig['integratedSearch_propertyname']		='0';
-$jrConfig['integratedSearch_propertyname_dropdown']		='1';
-$jrConfig['integratedSearch_geosearchtype']		='';
-$jrConfig['integratedSearch_geosearchtype_dropdown']		='1';
-$jrConfig['integratedSearch_ptype']		='0';
+$jrConfig['integratedSearch_enable']				='1';
+$jrConfig['integratedSearch_useCols']				='0';
+$jrConfig['integratedSearch_featurecols']			='3';
+$jrConfig['integratedSearch_selectcombo']			='0';
+$jrConfig['integratedSearch_propertyname']			='0';
+$jrConfig['integratedSearch_propertyname_dropdown']	='1';
+$jrConfig['integratedSearch_geosearchtype']			='';
+$jrConfig['integratedSearch_geosearchtype_dropdown']='1';
+$jrConfig['integratedSearch_ptype']					='0';
 $jrConfig['integratedSearch_ptype_dropdown']		='1';
-$jrConfig['integratedSearch_room_type']		='0';
-$jrConfig['integratedSearch_room_type_dropdown']		='1';
-$jrConfig['integratedSearch_features']		='0';
+$jrConfig['integratedSearch_room_type']				='0';
+$jrConfig['integratedSearch_room_type_dropdown']	='1';
+$jrConfig['integratedSearch_features']				='0';
 $jrConfig['integratedSearch_features_dropdown']		='1';
-$jrConfig['integratedSearch_description']		='0';
-$jrConfig['integratedSearch_availability']		='0';
-$jrConfig['integratedSearch_priceranges']		='0';
-$jrConfig['integratedSearch_pricerange_increments']		='20';
+$jrConfig['integratedSearch_description']			='0';
+$jrConfig['integratedSearch_availability']			='0';
+$jrConfig['integratedSearch_priceranges']			='0';
+$jrConfig['integratedSearch_pricerange_increments']	='20';
+
+// Plugin settings
 
 // Pseudocron settings
 $pluginConfig['jomcompcronjobs']['method']			='0';
 $pluginConfig['jomcompcronjobs']['displaylogging']	='0';
-$pluginConfig['jomcompcronjobs']['logging']		='0';
-$pluginConfig['jomcompcronjobs']['verbose']		='0';
+$pluginConfig['jomcompcronjobs']['logging']			='0';
+$pluginConfig['jomcompcronjobs']['verbose']			='0';
 
-
+// Invoices backend paypal settings
+$pluginConfig['backend_paypal_settings']['usesandbox']	='1';
+$pluginConfig['backend_paypal_settings']['currencycode']='EUR';
+$pluginConfig['backend_paypal_settings']['email']		='';
+$pluginConfig['backend_paypal_settings']['override']	='0';
 
 ?>

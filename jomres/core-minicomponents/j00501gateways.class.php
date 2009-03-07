@@ -42,33 +42,39 @@ class j00501gateways {
 			$this->template_touchable=false; return;
 			}
 		global $configurationPanel;
-		$lists=$componentArgs['lists'];
-		$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
-		$gatewayNames=$componentArgs['gatewayNames'];
-
-		$configurationPanel->startPanel(_JOMRES_COM_A_GATEWAYLIST);
-
-		$configurationPanel->setleft(_JOMRES_COM_A_GATEWAY_USEGATEWAYS);
-		$configurationPanel->setmiddle($lists['useOnlinepayment']);
-		$configurationPanel->setright(_JOMRES_COM_A_GATEWAY_USEGATEWAYS_DESC);
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft();
-		$configurationPanel->setmiddle();
-		$configurationPanel->setright(_JOMRES_COM_A_GATEWAY_ENABLED);
-		$configurationPanel->insertSetting();
-
-		$MiniComponents->triggerEvent('00509',$componentArgs);
-
-		$outputArray=$MiniComponents->miniComponentData['00509'];
-		foreach ($outputArray as $gw)
+		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings->get_paypal_settings();
+		
+		if ($paypal_settings->paypalConfigOptions['override'] == "0")
 			{
-			$configurationPanel->setleft($gw['button']);
-			$configurationPanel->setmiddle($gw['link']);
-			$configurationPanel->setright($gw['active']);
+			$lists=$componentArgs['lists'];
+			$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
+			$gatewayNames=$componentArgs['gatewayNames'];
+
+			$configurationPanel->startPanel(_JOMRES_COM_A_GATEWAYLIST);
+
+			$configurationPanel->setleft(_JOMRES_COM_A_GATEWAY_USEGATEWAYS);
+			$configurationPanel->setmiddle($lists['useOnlinepayment']);
+			$configurationPanel->setright(_JOMRES_COM_A_GATEWAY_USEGATEWAYS_DESC);
 			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft();
+			$configurationPanel->setmiddle();
+			$configurationPanel->setright(_JOMRES_COM_A_GATEWAY_ENABLED);
+			$configurationPanel->insertSetting();
+
+			$MiniComponents->triggerEvent('00509',$componentArgs);
+
+			$outputArray=$MiniComponents->miniComponentData['00509'];
+			foreach ($outputArray as $gw)
+				{
+				$configurationPanel->setleft($gw['button']);
+				$configurationPanel->setmiddle($gw['link']);
+				$configurationPanel->setright($gw['active']);
+				$configurationPanel->insertSetting();
+				}
+			$configurationPanel->endPanel();
 			}
-		$configurationPanel->endPanel();
 		}
 
 	/**
