@@ -112,4 +112,12 @@ $jrConfig['integratedSearch_availability']		='0';
 $jrConfig['integratedSearch_priceranges']		='0';
 $jrConfig['integratedSearch_pricerange_increments']		='20';
 
+// Pseudocron settings
+$pluginConfig['jomcompcronjobs']['method']			='0';
+$pluginConfig['jomcompcronjobs']['displaylogging']	='0';
+$pluginConfig['jomcompcronjobs']['logging']		='0';
+$pluginConfig['jomcompcronjobs']['verbose']		='0';
+
+
+
 ?>

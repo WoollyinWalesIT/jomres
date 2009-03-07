@@ -41,12 +41,6 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 
-
-/**
-#
- * Various includes
-#
- */
 require_once('integration.php');
 
 if ( $_REQUEST['no_html']!="1")
@@ -57,7 +51,12 @@ if ( $_REQUEST['no_html']!="1")
 
 $customTextObj = new custom_text();
 
-
+$cron = new jomres_cron($displayLog);
+if ($cron->method == "Minicomponent")
+	{
+	$cron->triggerJobs();
+	$cron->displayDebug();
+	}
 
 //$allDefinedContants=get_defined_vars();
 //print_r($GLOBALS );
