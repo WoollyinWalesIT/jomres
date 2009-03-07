@@ -237,13 +237,8 @@ if ($folderChecksPassed)
 					echo "Creating images folders<br>";
 					copyImages();
 					saveKey2db($lkey);
-					//if (checkIfNewIndexRequired())
-					//	createExtraIndexs();
-					//insertIntoMainMenu();
-					//updatePropertyManagersToSuperAdmins();
-					if (!checkTariffsTimeStampColsExists() )
-						alterTariffsTimeStampCols();
 					insertPortalTables();
+					installOptimiseCronjob();
 					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_installation.php");
 					showCompletedText();
 					}
@@ -262,12 +257,19 @@ if ($folderChecksPassed)
 					showCompletedText();
 					}
 				updateMrConfig();
+				updatePluginSettings();
 				}
 			}
 		}
 	}
 showfooter();
 
+function installOptimiseCronjob()
+	{
+	echo "Installing optimise cron job<br/>";
+	$cron = new jomres_cron();
+	$cron->addJob("optimise","D","");
+	}
 
 function trashTables()
 	{
@@ -322,6 +324,37 @@ function updateMrConfig()
 			$query="INSERT INTO #__jomres_settings (akey,value) VALUES ('".$k."','".$v."')";
 			//echo $query."<br>";
 			doInsertSql($query,'');
+			}
+		}
+	}
+
+function updatePluginSettings()
+	{
+	include('site_config.php' );
+	$tempConfigArr=$pluginConfig;
+	$pluginConfig=array();
+	$query="SELECT plugin,setting,value FROM #__jomres_pluginsettings WHERE prid = 0";
+	$settingsList=doSelectSql($query);
+	if (count($settingsList)>0)
+		{
+		foreach ($settingsList as $settings)
+			{
+			$plugin=$settings->plugin;
+			$setting=$settings->setting;
+			$value=$settings->value;
+			$pluginConfig[$plugin][$setting]=$value;
+			}
+		}
+	foreach ($tempConfigArr as $k=>$v)
+		{
+		if (!array_key_exists($k,$pluginConfig) )
+			{
+			foreach ($v as $sett=>$settVal)
+				{
+				$query="INSERT INTO #__jomres_pluginsettings (prid,plugin,setting,value) VALUES (0,'".$k."','".$sett."','".$settVal."')";
+				//echo $query."<br>";
+				doInsertSql($query,'');
+				}
 			}
 		}
 	}
@@ -611,37 +644,33 @@ function deleteCurrentLicenseFiles()
 		return false;
 	}
 
-function checkTariffsTimeStampColsExists()
-	{
-	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'validfrom_ts'";
-	$result=doSelectSql($query);
-	if (count($result)>0)
-		{
-		return true;
-		}
-	return false;
-	}
-
-function alterTariffsTimeStampCols()
-	{
-	echo "Editing __jomres_rates table adding timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_rates` ADD `validfrom_ts` DATE AFTER `weekendonly` , ADD `validto_ts` DATE AFTER `validfrom_ts`";
-	//echo $query;
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates weekendonly</b><br>";
-	$query = "SELECT rates_uid,validfrom,validto FROM #__jomres_rates";
-	$allRates=doSelectSql($query);
-	foreach ($allRates as $r)
-		{
-		$validfrom_ts=str_replace("/","-",$r->validfrom);
-		$validto_ts=str_replace("/","-",$r->validto);
-		$query="UPDATE #__jomres_rates SET `validfrom_ts`='$validfrom_ts',`validto_ts`='$validto_ts' WHERE rates_uid='$r->rates_uid'";
-		doInsertSql($query,'');
-		}
-	}
 
 function createJomresTables()
 	{
+	$query="
+	CREATE TABLE IF NOT EXISTS `#__jomcomp_cron` (
+		`id` INT NOT NULL AUTO_INCREMENT,
+		`job` char( 100 ) ,
+		`schedule` char(2) not null ,
+		`last_ran` int(12) not null ,
+		`parameters` varchar(255) null,
+		`locked` BOOL NOT NULL DEFAULT '0',
+		PRIMARY KEY ( `id` )
+		);
+		";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+	
+	$query="
+	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
+		`id` int NOT NULL AUTO_INCREMENT ,
+		`log_details` text null,
+		PRIMARY KEY ( `id` )
+		);
+	";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
 		`id` int(11) NOT NULL auto_increment,
 		`manager_id` int(11) NOT NULL,
@@ -802,86 +831,6 @@ function createJomresTables()
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_customertypes </b><br>";
-	/*
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_tmpguests` (
-		`id` int(11) NOT NULL auto_increment,
-		`guests_uid` INT( 11 ) NOT NULL DEFAULT '0',
-		`mos_userid` INT( 11 ) NOT NULL DEFAULT '0',
-		`existing_id` VARCHAR(255) NULL,
-		`firstname` VARCHAR(255) NULL,
-		`surname` VARCHAR(255) NULL,
-		`house` VARCHAR(255) NULL,
-		`street` VARCHAR(255) NULL,
-		`town` VARCHAR(255) NULL,
-		`region` VARCHAR(255) NULL,
-		`country` VARCHAR(255) NULL,
-		`postcode` VARCHAR(45) NULL,
-		`tel_landline` VARCHAR(255) NULL,
-		`tel_mobile` VARCHAR(255) NULL,
-		`tel_fax` VARCHAR(255) NULL,
-		`ccard_no`VARCHAR(45) NULL,
-		`ccard_issued` VARCHAR(45) NULL,
-		`ccard_expiry` VARCHAR(45) NULL,
-		`ccard_iss_no` VARCHAR(45) NULL,
-		`ccard_name` VARCHAR(45) NULL,
-		`ccv` VARCHAR(45) NULL,
-		`type` VARCHAR(45) NULL,
-		`property_uid` VARCHAR(11),
-		`email` VARCHAR(100) NULL,
-		`tag` VARCHAR(255),
-		`timestamp` datetime,
-		PRIMARY KEY(id),
-		INDEX(`tag`)
-		) ";
-	$result=doInsertSql($query,"");
-	*/
-
-	/*
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_tmpbooking` (
-		`id` int(11) auto_increment,
-		`requestedRoom` VARCHAR(255),
-		`rate_pernight` DOUBLE NOT NULL,
-		`variancetypes`	MEDIUMTEXT NULL,
-		`varianceuids`	MEDIUMTEXT NULL,
-		`varianceqty` TEXT NULL,
-		`variancevals` TEXT NULL,
-		`coupon_id` VARCHAR(11),
-		`coupon` TEXT NULL,
-		`lastminute_id` VARCHAR(11),
-		`agent_booking` INT(1),
-		`arrivalDate` VARCHAR(255),
-		`departureDate` VARCHAR(255),
-		`stayDays` VARCHAR(255),
-		`dateRangeString`MEDIUMTEXT NULL,
-		`guests_uid` VARCHAR(255),
-		`property_uid` VARCHAR(11),
-		`rates_uid` VARCHAR(255),
-		`tag` CHAR(255),
-		`resource` VARCHAR(255),
-		`single_person_suppliment` DOUBLE NOT NULL,
-		`deposit_required` VARCHAR(6),
-		`contract_total` DOUBLE NOT NULL,
-		`smoking` INT(1) DEFAULT '0',
-		`extrasvalue` DOUBLE NOT NULL,
-		`extras` TEXT NULL,
-		`total_discount` DOUBLE NOT NULL,
-		`depositpaidsuccessfully` TINYINT DEFAULT '0',
-		`tax` DOUBLE( 11, 2 ) DEFAULT '0' NOT NULL,
-		`booker_class` VARCHAR(3),
-		`ok_to_book`INT(1),
-		`beds_available`int(11),
-		`referrer` VARCHAR(255),
-		`error_log` TEXT NULL,
-		`total_in_party` int(11),
-		`room_total` DOUBLE NOT NULL,
-		`lang` VARCHAR(255),
-		`timestamp` datetime,
-		`mininterval` int(3),
-		PRIMARY KEY	(`id`),
-		INDEX(`tag`)
-		) ";
-	$result=doInsertSql($query,"");
-	*/
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_pcounter` (
 		`count` int ,

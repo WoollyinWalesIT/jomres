@@ -5833,4 +5833,20 @@ define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC',"Jomres will look a
 * @ignore
 */
 define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC','By default, if a property is not selected in Jomres it will perform a search. If this search was not triggered by a search module then that search will produce random results (deliberately). This option allows you to limit the number of returns in that random search.');
+
+
+define('_JOMRES_COM_A_CRON_TITLE','Cron job settings and logs');
+define('_JOMRES_COM_A_CRON_DESC','Pseudocron job information. The pseudocron functionality is needed by invoicing and commission handling.');
+
+define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Installed cron minicomponents. To run an individual cron job use the links specified below. Note that the cron jobs do not produce any output so you will not see any information on the page. Instead, refer to the job log below.');
+global $jomresConfig_secret;
+define('_JOMRES_COM_A_CRON_METHOD','Method');
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s http://".JOMRES_SITEPAGE_URL_ADMIN."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_LOGGING','Display logging in the browser');
+define('_JOMRES_COM_A_CRON_LOGGING_DESC','Only works if the method is set to Minicomponent.');
+define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Logging enabled');
+define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC','Set this to Yes for logging to be enabled. The results of the logs will be output below.');
+define('_JOMRES_COM_A_CRON_VERBOSELOGS','Verbose logging');
+define('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC','Lots of logging output');
+
 ?>
