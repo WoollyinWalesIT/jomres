@@ -2333,8 +2333,7 @@ function getPropertyAddressForPrint($propertyUid)
 	//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
 	global $jomresConfig_live_site;
 
-	$query="SELECT property_name,property_street,property_town,property_postcode,property_tel,property_fax,property_email,property_features,property_country,property_region,published,ptype_id,stars,
-		property_description,property_checkin_times,property_area_activities,property_driving_directions,property_airports,property_othertransport,property_policies_disclaimers,`lat`,`long`,metatitle,metadescription FROM #__jomres_propertys WHERE propertys_uid = '".(int)$propertyUid."'";
+	$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".(int)$propertyUid."' LIMIT 1";
 	$propertyData=doSelectSql($query);
 	foreach ($propertyData as $data)
 		{

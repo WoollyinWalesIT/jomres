@@ -681,6 +681,9 @@ class j00030search {
 				$output['SEARCHBLURB']	=jr_gettext('_JOMRES_FRONT_MR_SEARCH_HERE',_JOMRES_FRONT_MR_SEARCH_HERE);
 				$output['THEBUTTON']='<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false).'" class="button" />';
 				}
+				
+			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+			
 			$pageoutput[]=$output;
 
 			if (!$doSearch || ($calledByModule="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1') )
