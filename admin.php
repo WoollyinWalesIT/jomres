@@ -70,23 +70,12 @@ if (count($customTextList))
 		}
 	}
 
-if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['siteLang']))
-	{
-	require_once(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['siteLang']);
-	$jomresLangFile=JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['siteLang'];
-	}
-else
-	{
-	if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
-		{
-		require_once(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
-		$jomresLangFile=JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php';
-		} //else no language file available... don't include it either...
-	}
-
+$jomreslang= new jomres_language();
+$jomreslang->get_language($propertytype);
 
 if (!JRPORTAL_AJAXCALL)
 	{
+	echo $jomreslang->get_languageselection_dropdown()."<br/>";
 	?>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.js"></script>
 	<script language="javascript">jQuery.noConflict();</script>
