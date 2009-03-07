@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+// ################################################################
 
 global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$jomresConfig_sitename,$jomresConfig_shownoauth,$jomresConfig_useractivation,
 	$jomresConfig_uniquemail,$jomresConfig_offline_message,$jomresConfig_lifetime,$jomresConfig_MetaDesc,$jomresConfig_MetaKeys,$jomresConfig_MetaTitle,
@@ -11,24 +15,8 @@ global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$j
 	$jomresConfig_hits,$jomresConfig_icons,$jomresConfig_favicon,$jomresConfig_fileperms,$jomresConfig_dirperms,$jomresConfig_helpurl,$jomresConfig_mbf_content,$jomresConfig_editor,$jomresAdminPath;
 global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 
-	//global $mainframe;
 	global $config,$jrConfig;
 	require_once( JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'config.php' );
-	
-	
-//$config['db_hostname'] = 'localhost';
-//$config['db_username'] = 'root';
-//$config['db_password'] = '';
-//$config['db_name'] = 'cmsms';
-#Change this param only if you know what you are doing
-//$config["db_port"] = '';
-
-
-#If app needs to coexist with other tables in the same db,
-#put a prefix here.  e.g. "cms_"
-//$config['db_prefix'] = 'cms_';
-	
-	
 
 	$jomresConfig_dbprefix			= $config['db_prefix'];
 	$jomresConfig_user	 			= $config['db_username'];
@@ -47,15 +35,8 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 		{
 		$tmpConfig[$r->sitepref_name]=$r->sitepref_value;
 		}
-		
-	//var_dump($tmpConfig);exit;
-	
+
 	$jomresConfig_sitename			= $tmpConfig['sitename'];
-	//$jomresConfig_lifetime			= $tmpConfig[''];
-	//$jomresConfig_MetaDesc			= $tmpConfig[''];
-	//$jomresConfig_MetaKeys			= $tmpConfig[''];
-	//$jomresConfig_MetaTitle			= $tmpConfig[''];
-	//$jomresConfig_MetaAuthor			= $tmpConfig[''];
 	$jomresConfig_list_limit		= 10;
 	$jomresConfig_mailer			= $tmpConfig['CMSMailer_mapi_pref_mailer'];
 	$jomresConfig_mailfrom			= $tmpConfig['CMSMailer_mapi_pref_from'];
@@ -70,6 +51,7 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 
 	$jomresConfig_list_limit		= $jrConfig['property_list_limit'];
 	
+
 	/*
 	Old Joomla settings, we can use them to copy into the new cms specific inti config vars files
 	// $jomresConfig_sitename			= $CONFIG->sitename;
@@ -78,8 +60,8 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	// $jomresConfig_MetaKeys			= $CONFIG->MetaKeys;
 	// $jomresConfig_MetaTitle			= $CONFIG->MetaTitle;
 	// $jomresConfig_MetaAuthor		= $CONFIG->MetaAuthor;
-	// $jomresConfig_debug				= $CONFIG->debug;
-	// $jomresConfig_list_limit		= $CONFIG->list_limit;
+	// $jomresConfig_debug			= $CONFIG->debug;
+	// $jomresConfig_list_limit			= $CONFIG->list_limit;
 	// $jomresConfig_mailer			= $CONFIG->mailer;
 	// $jomresConfig_mailfrom			= $CONFIG->mailfrom;
 	// $jomresConfig_fromname			= $CONFIG->fromname;
@@ -95,36 +77,35 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	// $jomresConfig_db				= $CONFIG->db;
 	// $jomresConfig_host				= $CONFIG->host;
 
-
 	//$jomresConfig_pagetitles			= $CONFIG->pagetitles;
 	//$jomresConfig_readmore			= $CONFIG->readmore;
 	//$jomresConfig_hits				= $CONFIG->hits;
 	//$jomresConfig_icons				= $CONFIG->icons;
-	//$jomresConfig_favicon				= $CONFIG->favicon;
+	//$jomresConfig_favicon			= $CONFIG->favicon;
 	//$jomresConfig_fileperms			= $CONFIG->fileperms;
 	//$jomresConfig_dirperms			= $CONFIG->dirperms;
-	//$jomresConfig_helpurl				= $CONFIG->helpurl;
+	//$jomresConfig_helpurl			= $CONFIG->helpurl;
 	//$jomresConfig_multilingual_content 	= $CONFIG->multilingual_content;
-	//$jomresConfig_editor				= $CONFIG->editor;
-	//$jomresConfig_locale				= $CONFIG->locale;
+	//$jomresConfig_editor			= $CONFIG->editor;
+	//$jomresConfig_locale			= $CONFIG->locale;
 	//$jomresConfig_meta_pagetitle		= $CONFIG->meta_pagetitle;
-	//$jomresConfig_back_button			= $CONFIG->back_button;
+	//$jomresConfig_back_button		= $CONFIG->back_button;
 	//$jomresConfig_item_navigation		= $CONFIG->item_navigation;
 	//$jomresConfig_caching			= $CONFIG->caching;
 	//$jomresConfig_cachepath			= $CONFIG->cachepath;
 	//$jomresConfig_cachetime			= $CONFIG->cachetime;
-	//$jomresConfig_locale				= $CONFIG->locale;
-	//$jomresConfig_offset				= $CONFIG->offset;
-	//$jomresConfig_offset_user			= $CONFIG->offset_user;
+	//$jomresConfig_locale			= $CONFIG->locale;
+	//$jomresConfig_offset			= $CONFIG->offset;
+	//$jomresConfig_offset_user		= $CONFIG->offset_user;
 	//$jomresConfig_hideAuthor			= $CONFIG->hideAuthor;
 	//$jomresConfig_hideCreateDate		= $CONFIG->hideCreateDate;
 	//$jomresConfig_hideModifyDate		= $CONFIG->hideModifyDate;
-	//$jomresConfig_hidePdf				= $CONFIG->hidePdf;
+	//$jomresConfig_hidePdf			= $CONFIG->hidePdf;
 	//$jomresConfig_hidePrint			= $CONFIG->hidePrint;
 	//$jomresConfig_hideEmail			= $CONFIG->hideEmail;
 	//$jomresConfig_enable_log_items		= $CONFIG->enable_log_items;
-	//$jomresConfig_enable_log_searches		= $CONFIG->enable_log_searches;
-	//$jomresConfig_enable_stats			= $CONFIG->enable_stats;
+	//$jomresConfig_enable_log_searches	= $CONFIG->enable_log_searches;
+	//$jomresConfig_enable_stats		= $CONFIG->enable_stats;
 	//$jomresConfig_sef				= $CONFIG->sef;
 	//$jomresConfig_vote				= $CONFIG->vote;
 	//$jomresConfig_gzip				= $CONFIG->gzip;
@@ -136,32 +117,6 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 	//$jomresConfig_useractivation		= $CONFIG->useractivation;
 	//$jomresConfig_uniquemail			= $CONFIG->uniquemail;
 	//$jomresConfig_admin_site			= $CONFIG->admin_site;
-
-	// define('_JOMRES_NEWJOOMLA','1');
-	// $jomresPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres";
-	// $jomresAdminPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres";
+	*/
 	
-	// $Itemids = array();
-	// $query = "SELECT id"
-	// . "\n FROM #__menu"
-	// . "\n WHERE "
-	// . "\n published = 1"
-	// . "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
-	// $itemQueryRes = doSelectSql($query);
-	// if (count($itemQueryRes)>0)
-		// {
-		// foreach ($itemQueryRes as $i)
-			// {
-			// $Itemids[] = $i->id;
-			// }
-		// }
-	// if (!in_array((int)$jrConfig['jomresItemid'],$Itemids))
-		// echo '<font color="red" face="arial" size="1">Warning: Your Jomres Itemid and the Itemid stored in Site Config are different, this may result in unpredictable behaviour. It is recommended that you modify your Site Config Itemid to match that in the main menu. See <a href="http://tickets.jomres.net/index.php?_m=knowledgebase&_a=viewarticle&kbarticleid=96&nav=0,3" target="_blank"> this article for more information</a></font>';
-
-
-
-
-
-
-
-
+?>

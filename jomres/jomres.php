@@ -309,26 +309,9 @@ if (!empty($property_uid))
 else
 	$propertytype="";
 
-if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$jomresConfig_lang.'.php'))
-	{
-	require_once(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$jomresConfig_lang.'.php');
-	}
-else
-	{
-	if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jomresConfig_lang.'.php'))
-		{
-		require_once(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jomresConfig_lang.'.php');
-		$jomresLangFile=JOMRESPATH_BASE.JRDS.'language'.JRDS.$jomresConfig_lang.'.php';
-		}
-	else
-		{
-		if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
-			{
-			require_once(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
-			$jomresLangFile=JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php';
-			} //else no language file available... don't include it either...
-		}
-	}
+$jomreslang= new jomres_language();
+$jomreslang->get_language($propertytype);
+
 
 // This little routine sets the custom text for an individual property.
 if (!empty($property_uid))
@@ -364,8 +347,12 @@ init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresCo
 
 if (!$no_html)
 	{
+	
 	// Now we can show top.html
 	$output=array();
+
+	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
+	
 	$output['BACKLINK']='<a href="javascript: history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 
 	$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;

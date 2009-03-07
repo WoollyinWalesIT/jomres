@@ -239,8 +239,7 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jom
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
-$task 				= jomresGetParam( $_REQUEST, 'task', "" );
-if ($task == "handlereq" || $task = "dobooking")
+if ($_REQUEST['task'] == "handlereq" || $_REQUEST['dobooking'] = "dobooking")
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
@@ -249,6 +248,7 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jom
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_tooltips.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_language.class.php');
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
@@ -275,21 +275,6 @@ define('LOGGINGGATEWAY',$jrConfig['loggingGateway']);
 define('LOGGINGSYSTEM',$jrConfig['loggingSystem']);
 define('LOGGINGREQUEST',$jrConfig['loggingRequest']);
 define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
-
-if (isset($_REQUEST['lang']) )
-	$jomresConfig_lang				=(string)jomresGetParam( $_REQUEST, 'lang', "" );
-else
-	{
-	if (isset($_COOKIE['mbfcookie']) )
-		$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['mbfcookie']['lang']);
-	else
-		{
-		if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php")  )
-			$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
-		else
-			$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
-		}
-	}
 
 // loads en language file by default
 if ($jomresConfig_lang=='')
@@ -321,7 +306,7 @@ if ( JOMRES_CMS == 'elexismambo')
 if ($product_id != "20" )
 	checkPropertyNumbers($license_key);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// In case somebody removes the above liines, we still need to set this define otherwise folks will not be able to create new properties
+// In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
 if (!defined('JOMRES_SINGLEPROPERTY'))
 	define('JOMRES_SINGLEPROPERTY',false);
 // Stops here
@@ -738,11 +723,11 @@ function stripUnwanted($text)
 #
 */
 function checkUserIsManager()
-		{
-		global $thisJRUser;
-		$userIsManager=$thisJRUser->userIsManager;
-		return $userIsManager;
-		}
+	{
+	global $thisJRUser;
+	$userIsManager=$thisJRUser->userIsManager;
+	return $userIsManager;
+	}
 
 function doSelectSql($query,$mode=FALSE)
 	{
@@ -1211,7 +1196,14 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	$testStr= trim(strip_tags_except($theValue));
 	$crsEtc=array("\t","\n","\r");
 	$testStr=str_replace($crsEtc,"",$testStr);
-	if (strlen($testStr)==0)
+	if (strlen($testStr)==0 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS" )
 		return false;
 	if (!isset($property_uid))
 		{
