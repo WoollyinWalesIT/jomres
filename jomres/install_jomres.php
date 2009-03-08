@@ -239,7 +239,7 @@ if ($folderChecksPassed)
 					saveKey2db($lkey);
 					insertPortalTables();
 					installCronjobs();
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_installation.php");
+					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
 					showCompletedText();
 					}
 				elseif (ACTION == "Upgrade") // Upgrading
@@ -253,7 +253,7 @@ if ($folderChecksPassed)
 					echo "Saving key<br>";
 					saveKey2db($lkey);
 
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS."cms_specific_upgrade.php");
+					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
 					showCompletedText();
 					}
 				updateMrConfig();
