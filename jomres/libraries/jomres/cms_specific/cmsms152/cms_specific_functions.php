@@ -22,6 +22,7 @@ function jomres_cmsspecific_setlanguage($lang)
 function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id=0;
+	$sessionid = session_id();
 	$query="SELECT userid FROM #__module_feusers_loggedin WHERE sessionid='".$sessionid."'";
 	$id=(int)doSelectSql($query,1);
 	if (!$id)
