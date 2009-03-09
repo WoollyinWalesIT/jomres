@@ -66,8 +66,8 @@ class j02310regprop2 {
 			}
 		$dropDownList.="</select>";
 
-		$output['ISTHISANMRP_DROPDOWN']='<select id="mySelect">
-			<option value="2" selected>MRP</option>
+		$output['ISTHISANMRP_DROPDOWN']='<select id="mySelect" name="mrpsrp">
+			<option value="MRP" selected>MRP</option>
 			<option value="showIfClicked">SRP</option>
 			</select>
 		<div id="showIfClicked">
