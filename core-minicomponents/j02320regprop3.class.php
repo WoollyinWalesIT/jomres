@@ -47,7 +47,9 @@ class j02320regprop3 {
 			return;
 			
 		
-		$roomClass					= jomresGetParam( $_POST, 'roomClass', 0 );
+		$roomClass						= jomresGetParam( $_POST, 'roomClass', 0 );
+		$mrpsrp							= jomresGetParam( $_POST, 'mrpsrp', "" );
+
 		$property_name					= jomresGetParam( $_POST, 'property_name', "" );
 		$property_street				= jomresGetParam( $_POST, 'property_street', "" );
 		$property_town					= jomresGetParam( $_POST, 'property_town', "" );
@@ -97,7 +99,7 @@ class j02320regprop3 {
 			)";
 		$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
 
-		if ($roomClass == 0)
+		if ($mrpsrp == "MRP")
 			$singleRoomProperty="0";
 		else
 			{
