@@ -43,7 +43,7 @@ class j06000save_normalmode_tariffs {
 			$this->template_touchable=false; return;
 			}
 		global $mrConfig;
-		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		
 		// New Room defaults
@@ -181,8 +181,10 @@ class j06000save_normalmode_tariffs {
 				$roomsAndRateData[$key]['max_people_intariff']=intval($max_peopleTariffArray[$key]);
 				}
 			// We could probably do this in the previous loop, but keeping it outside makes it a little easier to follow
+			
 			foreach ($roomsAndRateData as $d)
 				{
+				
 				$revisedExistingRooms=$d['existingrooms'];  // We will add or remove room uids to this array so that we can update max people after adding/removing rooms
 				$validRoomTypesForProperty[]=$d['roomtype_uid'];
 				if ($d['numberOfRooms'] > count($d['existingrooms']) ) // Let's add some rooms
@@ -207,6 +209,12 @@ class j06000save_normalmode_tariffs {
 					for ($i=0;$i<$numberToAdd;$i++)
 						{
 						$roomNumber=count($d['existingrooms'])+$i+1;
+						
+						if ($nextRoomNumber < 10)
+							$nextRoomNumberStr = "0".(string)$nextRoomNumber;
+						else
+							$nextRoomNumberStr = (string)$nextRoomNumber;
+						
 						$query="INSERT INTO #__jomres_rooms (
 							`room_classes_uid`,
 							`propertys_uid`,
@@ -222,12 +230,13 @@ class j06000save_normalmode_tariffs {
 							 ".(int)$defaultProperty.",
 							'',
 							'',
-							'$nextRoomNumber',
+							'$nextRoomNumberStr',
 							'$room_floor',
 							'$room_disabled_access',
 							'".(int)$d['max_people']."',
 							'$smoking'
 						)";
+						//var_dump($query);echo "<br>";
 						$result=doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM);
 						if ($result)
 							$revisedExistingRooms[]=$result;
