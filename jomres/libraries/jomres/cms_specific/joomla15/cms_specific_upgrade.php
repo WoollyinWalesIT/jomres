@@ -9,7 +9,6 @@ That said, the files in the /jomres/libraries/jomres/cms_specific/*** directorie
 I'm hard working, I'm not a genius there are lots of CMSs out there I'm not familiar with and if you can modify this code to make Jomres work on the CMS of your choice then more power to your elbow.
 
 */
-
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
