@@ -158,7 +158,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link="["._PN_START."]&nbsp;";
 		if(!$this->is_first_page()&& $this->show_first_last)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&page=0'.$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage=0'.$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_first_last && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -172,7 +172,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link="["._PN_END."]" ;
 		if(!$this->is_last_page()&& $this->show_first_last)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&page='.($this->total_page-1).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->total_page-1).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_first_last && $this->show_disabled_links)
 			$txt.='&nbsp;'.$user_link;
 		return $txt;
@@ -186,7 +186,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link=_PN_NEXT." &gt;&gt;&nbsp;";
 		if(!$this->is_last_page()&& $this->show_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&page='.($this->page+1).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+1).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_prev_next && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -200,7 +200,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link="&lt;&lt; "._PN_PREVIOUS."&nbsp;";
 		if(!$this->is_first_page()&& $this->show_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&page='.($this->page-1).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-1).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_prev_next && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -214,7 +214,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link=_PN_PREVIOUS."[$this->scroll_page]&nbsp;";
 		if($this->page>$this->scroll_page &&$this->show_scroll_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&page='.($this->page-$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_scroll_prev_next && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -228,7 +228,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link=_PN_NEXT."[$this->scroll_page]&nbsp;";
 		if($this->total_page>$this->page+$this->scroll_page &&$this->show_scroll_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&page='.($this->page+$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_scroll_prev_next && $this->show_disabled_links)
 			$txt.='&nbsp;'.$user_link;
 		return $txt;
@@ -254,7 +254,7 @@ class JomresPage
 			if($i==$this->page)
 				$txt.='&nbsp;'.($i+1).'&nbsp;';
 			else
-				$txt.=' <a href="'.jomresURL($this->page_name.'&page='.$i.$this->qry_str).'">'.($i+1).'</a>&nbsp;';
+				$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.$i.$this->qry_str).'">'.($i+1).'</a>&nbsp;';
 			}
 		return $txt;
 		}

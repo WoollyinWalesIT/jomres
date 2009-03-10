@@ -1123,7 +1123,7 @@ if ($numberOfPropertiesInSystem>0)
 				}
 			else
 				{
-				if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['page'])) && $thisJRUser->userIsManager)
+				if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
 					{
 					$jomresPathway->addItem("Search","listProperties","");
 					jomresShowSearch();

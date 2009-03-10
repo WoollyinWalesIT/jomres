@@ -51,7 +51,7 @@ class j01010listpropertys {
 		$newSearch=false;
 		if ($propertys_uids=="")
 			$propertys_uids=array();
-		if ( !isset($_REQUEST['page']) )
+		if ( !isset($_REQUEST['plistpage']) )
 			$newSearch=true;
 			
 		$limit = jomresGetParam( $_REQUEST, 'limit', (int)$jomresConfig_list_limit);
@@ -111,7 +111,7 @@ class j01010listpropertys {
 			$total_records=count($propertys_uids);
 			$record_per_page=$limit;
 			$scroll=5;
-			$start=jomresGetParam( $_REQUEST, 'page', 0 );
+			$start=jomresGetParam( $_REQUEST, 'plistpage', 0 );
 			if (count($propertys_uids) <= $scroll)
 				$start=0;
 			$page=new JomresPage(); ///creating new instance of Class Page
