@@ -175,8 +175,8 @@ function editProfile()
 	$propertyList = doSelectSql($query);
 	foreach ($propertyList as $property)
 		{
-		$propertyIdArray[]=$property->propertys_uid;
-		$propertynameArray[]=$property->property_name;
+		$propertyIdArray[$property->propertys_uid]=$property->propertys_uid;
+		$propertynameArray[$property->propertys_uid]=$property->property_name;
 		}
 		
 	$query="SELECT userid,username FROM #__jomres_managers";
@@ -187,7 +187,7 @@ function editProfile()
 		$managersArray[$m->userid]=$m->username;
 		}
 	$n=count($propertyIdArray);
-	for ($i = 0; $i < $n; $i++)
+	foreach ($propertyIdArray as $i)
 		{
 		$r=array();
 		$propertyManagers="";
@@ -196,8 +196,9 @@ function editProfile()
 			{
 			foreach ($managers as $m)
 				{
-				$propertyManagers = $managersArray[$m].", ";
+				$propertyManagers .= $managersArray[$m].", ";
 				}
+			$propertyManagers = substr( $propertyManagers , 0, -2 );
 			}
 		$row="0";
 		if ($i % 2)
@@ -213,10 +214,10 @@ function editProfile()
 
 	$jrtbar = new jomres_toolbar();
 	$jrtb  = $jrtbar->startTable();
-	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
-	$link = '.JOMRES_SITEPAGE_URL_ADMIN.';
+	$image = $jrtbar->makeImageValid("/components/com_jomres/images/jomresimages/small/Save.png");
+	$link = $jomresConfig_live_site."/".JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveProfile",$image);
-	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres&task=listMosUsers",'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 	
@@ -230,7 +231,7 @@ function editProfile()
 	$tmpl->addRows( 'rows',$rows);
 	$tmpl->displayParsedTemplate();
 	}
-	
+
 	
 function saveProfile()
 	{
