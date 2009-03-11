@@ -1217,7 +1217,16 @@ if ($timetracking && $_REQUEST['no_html']!="1")
 		echo "<br>";
 		}
 	}
-ob_end_flush();
+	
+// Untested. The idea here is to decide if we're going to output the data here (at the end of jomres.php runing) or dump out data into a define that the bridging script can then use to pass back to the cms
+// Don't know if it's going to be needed, but it seems to work as it stands so for now I'll not make any more changes.
+if (defined("JOMRES_RETURNDATA") )
+	{
+	define("JOMRES_RETURNDATA_CONTENT", ob_get_contents() ) ;
+	ob_end_clean();
+	}
+else
+	ob_end_flush();
 
 // Script stops here
 
