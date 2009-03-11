@@ -35,7 +35,7 @@ class j16000updates
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->updateServer="http://updates.jomres.net";
+		$this->updateServer="http://updates.jomres4.net";
 		$this->updateFolder=JOMRESPATH_BASE."/updates";
 		$this->overwriteAllowed = true;
 		$this->movedFileLog = array();
