@@ -388,9 +388,13 @@ function dropPlugin($pluginName)
 /*
 Does what it says on the tin
 */
-function queryUpdateServer($script,$queryString)
+function queryUpdateServer($script,$queryString,$serverType="plugin")
 	{
-	$updateServer="http://plugins.jomres4.net";
+	if ($serverType == "plugin")
+		$updateServer="http://plugins.jomres4.net";
+	else
+		$updateServer="http://updates.jomres4.net";
+		
 	if (strlen($script)==0)
 		$script="index.php";
 	$curl_handle=curl_init();
