@@ -51,7 +51,7 @@ class j01070showpropertyheader
 		if ($property_uid>0)
 			{
 			$stars=$thisJomresPropertyDetails['stars'];
-			$starslink="<img src=\"".$jomresConfig_live_site."/images/M_images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"star\" />";
+			$starslink="<img src=\"".$jomresConfig_live_site."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
 			if ($stars!="0")
 				{
 				$starslink="";
