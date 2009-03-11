@@ -187,7 +187,7 @@ jQuery.fn.bt = function(content, options) {
       opts.preShow.apply(this);
       
       // turn off other tips
-      jQuery($.bt.vars.closeWhenOpenStack).btOff();
+      jQuery(jQuery.bt.vars.closeWhenOpenStack).btOff();
       
       // add the class to the target element (for hilighting, for example)
       // bt-active is always applied to all, but activeClass can apply another
