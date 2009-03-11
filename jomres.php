@@ -42,6 +42,7 @@ global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRe
 
 
 require_once('integration.php');
+$jrConfig['slideshow']				='overlib';
 
 if ( $_REQUEST['no_html']!="1")
 	{
