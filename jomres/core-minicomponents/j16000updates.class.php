@@ -218,7 +218,7 @@ class j16000updates
 
 	function getUpdateInfo()
 		{
-		print queryUpdateServer("updates_available.php","");
+		print queryUpdateServer("updates_available.php","","updates");
 
 		}
 
@@ -226,9 +226,9 @@ class j16000updates
 		{
 		global $myfiles;
 		$this->directoryScanResults=array();
-		$jomresAdminDir = JOMRESCONFIG_ABSOLUTE_PATH."/".JOMRES_ADMINISTRATORDIRECTORY."/jomres";
-		$jomresFrontDir = JOMRESCONFIG_ABSOLUTE_PATH."/jomres";
-		$files_array = $this->recur_dir($jomresAdminDir);
+		//$jomresAdminDir = JOMRESCONFIG_ABSOLUTE_PATH."/".JOMRES_ADMINISTRATORDIRECTORY."/jomres";
+		$jomresFrontDir = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres";
+		//$files_array = $this->recur_dir($jomresAdminDir);
 		$files_array = $this->recur_dir($jomresFrontDir);
 
 		//var_dump($this->is_removeable($jomresAdminDir));exit;
@@ -272,25 +272,28 @@ class j16000updates
 					$this->directoryScanResults[] = $dir.'/'.$file;
 				}
 			$level = explode('/',$newpath);
-			if (is_dir($newpath))
+			if (!strstr($newpath,".svn" ) )
 				{
-				$mod_array[] = array(
-						'level'=>count($level)-1,
-						'path'=>$newpath,
-						'name'=>end($level),
-						'kind'=>'dir',
-						'mod_time'=>filemtime($newpath),
-						'content'=>$this->recur_dir($newpath));
-				}
-			else
-				{
-				$mod_array[] = array(
-						'level'=>count($level)-1,
-						'path'=>$newpath,
-						'name'=>end($level),
-						'kind'=>'file',
-						'mod_time'=>filemtime($newpath),
-						'size'=>filesize($newpath));
+				if (is_dir($newpath) )
+					{
+					$mod_array[] = array(
+							'level'=>count($level)-1,
+							'path'=>$newpath,
+							'name'=>end($level),
+							'kind'=>'dir',
+							'mod_time'=>filemtime($newpath),
+							'content'=>$this->recur_dir($newpath));
+					}
+				else
+					{
+					$mod_array[] = array(
+							'level'=>count($level)-1,
+							'path'=>$newpath,
+							'name'=>end($level),
+							'kind'=>'file',
+							'mod_time'=>filemtime($newpath),
+							'size'=>filesize($newpath));
+					}
 				}
 			}
 		}
