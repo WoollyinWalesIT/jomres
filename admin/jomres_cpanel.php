@@ -51,7 +51,7 @@ echo "This Jomres version: $thisVersion<br />";
 if (function_exists("curl_init"))
 	{
 	$curl_handle=curl_init();
-	curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres.net/versions.php");
+	curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres4.net/versions.php");
 	curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
 	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
 	$buffer = curl_exec($curl_handle);
@@ -62,8 +62,8 @@ if (function_exists("curl_init"))
 		print $buffer;
 	}
 	
-$query = "SELECT `guests_uid` FROM #__jomres_guests";
-$numberOfGuestsInSystem=count(doSelectSql($query));
+//$query = "SELECT `guests_uid` FROM #__jomres_guests";
+//$numberOfGuestsInSystem=count(doSelectSql($query));
 
 ?>
 

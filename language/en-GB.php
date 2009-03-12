@@ -5849,6 +5849,13 @@ define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC','Set this to Yes for logging to 
 define('_JOMRES_COM_A_CRON_VERBOSELOGS','Verbose logging');
 define('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC','Lots of logging output');
 
+
+define('_JOMRES_COM_TEMPLATEEDITING_TITLE','Template Editing');
+define('_JOMRES_COM_TEMPLATEEDITING_DESC','This functionality allows us to edit Jomres frontend templates on the server, saving the results to the database. Advanced feature, be careful with it.');
+
+define('_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME','Template Name');
+define('_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED','Template has been customised?');
+
 /**
 * @ignore
 */
@@ -6031,4 +6038,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal setting
 * @ignore
 */
 define('_JRPORTAL_INVOICES_SHOWINVOICES',"Show my invoices");
+
+
+
 ?>
