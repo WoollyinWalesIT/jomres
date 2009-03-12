@@ -41,7 +41,6 @@ class cpanel
 			$icon_config=makeImageValid("EditConfiguration.png");
 			}
 		$output['PAGETITLE']=_JRPORTAL_CPANEL;
-
 		$MiniComponents->triggerEvent('10002'); // Custom task
 		$mcOutput=$MiniComponents->getAllEventPointsData('10002');
 

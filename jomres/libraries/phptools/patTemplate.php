@@ -1052,7 +1052,7 @@ class patTemplate
 	*					calls.
 	* @return	boolean	true, if the template could be parsed, false otherwise
 	*/
-	function readTemplatesFromInput( $input, $reader = 'File', $options = null, $parseInto = null )
+	function readTemplatesFromInput( $input, $reader = 'Jomres', $options = null, $parseInto = null )
 	{
 		if ((string)$input === '') {
 			return patErrorManager::raiseError(PATTEMPLATE_ERROR_NO_INPUT, 'No input to read has been passed.');

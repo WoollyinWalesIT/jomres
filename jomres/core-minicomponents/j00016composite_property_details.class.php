@@ -115,7 +115,7 @@ class j00016composite_property_details {
 		$tmpl->addRows( 'gallerylink', $gallerylink);
 		$tmpl->addRows( 'roomslistlink', $roomslistlink);
 		$tmpl->addRows( 'mappinglink', $mappinglink);
-		
+
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'composite_property_details.html');
 

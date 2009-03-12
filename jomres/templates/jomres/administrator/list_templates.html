@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+{JOMRESTOOLBAR}
+<p>{TITLE}</p>
+<p>{INSTRUCTIONS}</p>
+<table class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title">{HTEMPLATENAME}</th>
+		<th class="jomres_title">{HCUSTOMISED}</th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td class="jradmin_field_la">{EDITLINK}</td>
+		<td class="jradmin_field_la">{EDITED}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>

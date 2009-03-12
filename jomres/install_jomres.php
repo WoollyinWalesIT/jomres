@@ -650,7 +650,17 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
-
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_templates` (
+		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+		`template_name` VARCHAR( 255 ) ,
+		`value` TEXT NULL,
+		PRIMARY KEY ( `uid` )
+		) ";
+	$result=doInsertSql($query,"");
+	if (!$result )
+		echo "<b>Error creating table table __jomres_custom_text </b><br>";
+		
+		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices_transactions` (
 	  id int(10) NOT NULL auto_increment,
 	  invoice_id int(10) NOT NULL default '0',
