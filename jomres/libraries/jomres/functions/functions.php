@@ -406,6 +406,7 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 	return $response;
 	}
 
+	
 // http://www.php.net/manual/en/function.rename.php#61152
 // Moves the contents of source dir to destination dir
 	function dirmv($source, $dest, $overwrite = true, $funcloc = NULL)

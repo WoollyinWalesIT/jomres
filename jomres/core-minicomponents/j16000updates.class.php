@@ -39,7 +39,7 @@ class j16000updates
 		$this->updateFolder=JOMRESPATH_BASE."/updates";
 		$this->overwriteAllowed = true;
 		$this->movedFileLog = array();
-		$this->debugging = false;
+		$this->debugging = true;
 		$this->test_download = false;
 		// Use your own FTP info
 		$this->ftp_user_name = 'userid';
@@ -119,6 +119,7 @@ class j16000updates
 				echo "<h2>Error, your server is still online. This may interfere with the upgrade process so you are need to take it offline for the duration of the upgrade. Once you've finished the upgrade run install_jomres.php to make any table changes needed then you can put the server back online.<br/>To take the server offline you need to go to <a href='index2.php?option=com_config'>Global Configuration</a> and set Site Offline to Yes.</h2>";
 				return;
 				}
+
 			$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey'";
 			$settingsList=doSelectSql($query);
 			if (count($settingsList) >0)
@@ -152,18 +153,16 @@ class j16000updates
 				return;
 				}
 			*/
-			$updateFile = queryUpdateServer("","encoding=".$requiredEncoding."&version=".$requiredVersion."&keyhash=".$license_key_hash.$liveSite);
-
-
+			$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion."&keyhash=".$license_key_hash.$liveSite;
 			$newfilename=$this->updateFolder."/jomres.zip";
-			echo "<br>starting download of $updateFile<br>";
+
+			
 			$out = fopen($newfilename, 'wb');
 			if ($out == FALSE)
 				{
 				print "Couldn't create new file $newfilename. Possible file permission problem?<br/>";
 				exit;
 				}
-
 			$curl_handle = curl_init($updateFile);
 			curl_setopt($curl_handle, CURLOPT_FILE, $out);
 			curl_setopt($curl_handle, CURLOPT_HEADER, 0);
@@ -190,7 +189,7 @@ class j16000updates
 
 			$zip = new dUnzip2($newfilename);
 			// Activate debug
-			$zip->debug = false;
+			$zip->debug = $this->debugging;
 			// Unzip all the contents of the zipped file to this folder
 			$zip->getList();
 			if (mkdir($this->updateFolder."/unpacked"))
@@ -207,7 +206,7 @@ class j16000updates
 					foreach ($this->movedFileLog as $record)
 						echo $record;
 					}
-				jomresRedirect($jomresConfig_live_site."/install_jomres.php", '');
+				jomresRedirect($jomresConfig_live_site."/jomres/install_jomres.php", '');
 				}
 			else
 				echo "Error creating unpack folder";
@@ -219,7 +218,6 @@ class j16000updates
 	function getUpdateInfo()
 		{
 		print queryUpdateServer("updates_available.php","","updates");
-
 		}
 
 	function checkJomresDirectories()
@@ -300,7 +298,6 @@ class j16000updates
 		closedir($dirlist);
 		return $mod_array;
 		}
-
 
 	function checkUpdateDirectory()
 		{
