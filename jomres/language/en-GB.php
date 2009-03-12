@@ -5856,6 +5856,16 @@ define('_JOMRES_COM_TEMPLATEEDITING_DESC','This functionality allows us to edit 
 define('_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME','Template Name');
 define('_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED','Template has been customised?');
 
+
+define('_JOMRES_COM_CUSTOMFIELDS_TITLE','Custom fields');
+define('_JOMRES_COM_CUSTOMFIELDS_DESC','Here you can define simple custom fields that will be shown in the booking form.');
+
+define('_JOMRES_COM_CUSTOMFIELDS_FIELDNAME','Fieldname (no spaces)');
+define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE','Default value');
+define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION','Description');
+define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED','Required');
+
+
 /**
 * @ignore
 */

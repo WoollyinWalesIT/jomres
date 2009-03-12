@@ -904,9 +904,9 @@ function errorHandler ($errno, $errstr, $errfile, $errline, $errcontext)
 
 function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 	{
-	global $my;
+	global $jrUser;
 	$errorstring = "Fatal Error: $errstr (# $errno).";
-	$errorstring .= "User id '$my->id - $my->username'&nbsp;&nbsp;.";
+	$errorstring .= "User id '$jrUser->username'&nbsp;&nbsp;.";
 	$errorstring .= "Error in line $errline of file '$errfile'.";
 	$errorstring .= "Script: '{$_SERVER['PHP_SELF']}'";
 	if (isset($errcontext['this']))
