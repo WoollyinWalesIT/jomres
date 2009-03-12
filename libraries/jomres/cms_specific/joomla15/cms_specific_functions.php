@@ -26,13 +26,8 @@ function jomres_cmsspecific_setlanguage($lang)
 function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id=0;
-	if (!defined('_JOMRES_NEWJOOMLA') )
-		$id=$my->id;
-	else
-		{
-		$user =& JFactory::getUser();
-		$id=$user->get('id');
-		}
+	$user =& JFactory::getUser();
+	$id=$user->get('id');
 	return $id;
 	}
 

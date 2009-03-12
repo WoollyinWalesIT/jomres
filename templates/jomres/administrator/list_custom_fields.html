@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<p>{TITLE}</p>
+<p>{INSTRUCTIONS}</p>
+<table class="jradmin_table" border="0">
+	<tr>
+		<th class="jomres_title">{HFIELDNAME}</th>
+		<th class="jomres_title">{HDEFAULTVALUE}</th>
+		<th class="jomres_title">{HDESCRIPTION}</th>
+		<th class="jomres_title">{HREQUIRED}</th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td class="jradmin_field_la">{EDITLINK}</td>
+		<td class="jradmin_field_la">{DEFAULT_VALUE}</td>
+		<td class="jradmin_field_la">{DESCRIPTION}</td>
+		<td class="jradmin_field_la">{REQUIRED}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="task" value="edit_custom_field" />
+</form>
+</patTemplate:tmpl>
