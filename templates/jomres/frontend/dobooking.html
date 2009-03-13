@@ -345,6 +345,16 @@ jQuery(".bformleftcol tr").hover(
 											<td>{REQUIRED_EMAIL}</td>
 											<td colspan="5"><input  class="inputbox" size="39" type="text" name="eemail" id="eemail" value="{EMAIL}" ></td>
 										</tr>
+										{CUSTOMFIELD_JAVASCRIPT}
+										<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="fieldname">
+										
+										<tr>
+											<td>{REQUIRED}</td>
+											<td colspan="2">{DESCRIPTION}</td>
+											<td>&nbsp;</td>
+											<td colspan="2"><input class="inputbox" size="{SIZE}" type="text" name="{FIELDNAME}" id="{FIELDNAME}" value="{DEFAULT_VALUE}"></td>
+										</tr>
+										</patTemplate:tmpl>
 										<tr>
 											<td colspan="6">{INSTRUCTIONS}</td>
 										</tr>

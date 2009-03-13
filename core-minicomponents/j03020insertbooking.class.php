@@ -173,7 +173,7 @@ class j03020insertbooking {
 					$this->insertSuccessful =false;
 					}
 
-				audit($jomressession,"Amend booking - contract updated ".$amend_contractuid);
+				jomres_audit($jomressession,"Amend booking - contract updated ".$amend_contractuid);
 				$dt=date("Y-m-d H-i-s");
 				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".RemoveXSS("Amend booking - contract updated ".$amend_contractuid)."','$dt','".(int)$property_uid."')";
 				doInsertSql($query,"");
@@ -206,7 +206,7 @@ class j03020insertbooking {
 						}
 					}
 
-				audit($jomressession,"Amend booking - updated room booking ".$amend_contractuid);
+				jomres_audit($jomressession,"Amend booking - updated room booking ".$amend_contractuid);
 
 				if (count($rates_uids)>1)
 					$rates_uids			= array_unique($rates_uids);
@@ -389,13 +389,13 @@ class j03020insertbooking {
 							trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
 							$this->insertSuccessful =false;
 							}
-						audit($jomressession,"Booked room ".$cartnumber);
+						jomres_audit($jomressession,"Booked room ".$cartnumber);
 						}
 					}
 
 				if (count($rates_uids)>1)
 					$rates_uids=array_unique($rates_uids);
-				audit($cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+				jomres_audit($cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
 				$componentArgs=array();
 				$componentArgs['cartnumber']=$cartnumber;
 				$componentArgs['tempBookingDataList']=$tempBookingDataList;
@@ -420,7 +420,7 @@ class j03020insertbooking {
 					$MiniComponents->triggerEvent('03110',$componentArgs); // Generate guest confirmation email
 					$MiniComponents->triggerEvent('03200',$componentArgs); // post insert booking functionality
 					}
-				audit("Cart number ".$cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+				jomres_audit("Cart number ".$cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
 				$this->insertBookingEventValues['cartnumber']=$cartnumber;
 				$this->insertBookingEventValues['tempBookingDataList']=$tempBookingDataList;
 				$this->insertBookingEventValues['guestDetails']=$guestDetails;
@@ -437,6 +437,19 @@ class j03020insertbooking {
 					system_log("Booking insert Successful ");
 				else
 					system_log("Booking insert failed ");
+				}
+			$custom_fields = new jomres_custom_field_handler();
+			$allCustomFields = $custom_fields->getAllCustomFields();
+			if (count($allCustomFields)>0)
+				{
+				$note="";
+				foreach ($allCustomFields as $f)
+					{
+					$formfieldname = $f['fieldname']."_".$f['uid'];
+					$note .= $f['description']." ".$tmpBookingHandler->tmpbooking[$formfieldname]."<br/>";
+					}
+				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$note."','$dt','".(int)$property_uid."')";
+				doInsertSql($query,"");
 				}
 			}
 		}

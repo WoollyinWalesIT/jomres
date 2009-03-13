@@ -52,7 +52,7 @@ class j02990showconfirmation {
 		if ( !isset($tmpBookingHandler->tmpbooking["bookersUsername"]) )
 			$tmpBookingHandler->addNewBookingField("bookersUsername");
 		$tmpBookingHandler->updateBookingField("bookersUsername",$thisJRUser->username);
-		$tmpBookingHandler->saveBookingData();
+
 		
 		$currfmt 		= 	new jomres_currency_format();
 
@@ -70,6 +70,22 @@ class j02990showconfirmation {
 		if (!$bookingDeets['ok_to_book'])
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']), '' );
 
+		$custom_fields = new jomres_custom_field_handler();
+		$allCustomFields = $custom_fields->getAllCustomFields();
+		if (count($allCustomFields)>0)
+			{
+			foreach ($allCustomFields as $f)
+				{
+				$required = $f['required'];
+				$fieldname = $f['fieldname'];
+				$formfieldname = $f['fieldname']."_".$f['uid'];
+				$tmpBookingHandler->saveCustomFields($allCustomFields);
+				if ($required == "1" && strlen($_POST[$formfieldname])== 0)
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']), '' );
+				}
+			}
+		$tmpBookingHandler->saveBookingData();
+			
 		$query			=	"SELECT property_name FROM #__jomres_propertys WHERE `propertys_uid` = '".(int)$property_uid."' LIMIT 1";
 		$propertyList	=	doSelectSql($query);
 		foreach ($propertyList as $property)

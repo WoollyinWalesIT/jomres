@@ -2025,9 +2025,9 @@ class jomres_booking
 				$output.=' onchange="getResponse_particulars(\'departureDate\',this.value);" ';
 			$output.=' onchange="getResponse(\'departureDate\',this.value);" ';
 			// For version 3.2 we've changed how the calendar is implemented. Now, you need to click on the input to make the calendar popup. To revert to the older style of input, uncomment the following section and comment out the "popup on input click" section.
+			// For v4 I've switched this back to click on the icon to make the date come up. The 3.2 way of doing things was a silly idea.
 			
 			// Popup on image click
-			/*
 			$output.=" value=\"".$dateValue."\" id=\"a".$randomID."\"/>
 			<a class=\"dateinput_button\" href=\"#\"  id=\"a".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
 			<script type=\"text/javascript\">
@@ -2041,7 +2041,10 @@ class jomres_booking
 				});
 			</script>
 			";
-			*/
+
+			
+			/*
+			// Popup on form input click
 			$output.=" value=\"".$dateValue."\" id=\"a".$randomID."\"/>
 			<img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" >
 			<script type=\"text/javascript\">
@@ -2055,6 +2058,7 @@ class jomres_booking
 				});
 			</script>
 			";
+			*/
 		return $output;
 		}
 
@@ -3698,7 +3702,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30"></td>';
 		
-		$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">
+		//$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">   // Disabled because it causes the rooms list to load twice (thereby making the room deselect itself
+		$overlib='<tr>
 			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>
 			'.$room_imagetd.'
 			'.$room_imagetypetd.'

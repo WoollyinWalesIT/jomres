@@ -133,8 +133,36 @@ class jomres_temp_booking_handler
 			"tag"=>"",
 			"timestamp"=>""
 			);
+			
+		$this->customFieldValues = array();
 		}
 	
+	function initCustomFields($allCustomFields)
+		{
+		$data = array();
+		foreach ($allCustomFields as $f)
+			{
+			$uid = $f['uid'];
+			$newBookingfieldName = $f['fieldname']."_".$uid;
+			if ( !isset($this->tmpbooking[$newBookingfieldName]) )
+				$this->addNewBookingField($newBookingfieldName);
+			}
+		}
+		
+	function saveCustomFields($allCustomFields)
+		{
+		$data = array();
+		foreach ($allCustomFields as $f)
+			{
+			$uid = $f['uid'];
+			$newBookingfieldName = $f['fieldname']."_".$uid;
+			$data = jomresGetParam( $_POST, $f['fieldname']."_".$uid, '' );
+			if ( !isset($this->tmpbooking[$newBookingfieldName]) )
+				$this->addNewBookingField($newBookingfieldName);
+			$this->updateBookingField($newBookingfieldName,$data);
+			}
+		}
+
 	function initBookingSession($jomressession)
 		{
 		if (strlen($jomressession)>0)
@@ -145,7 +173,11 @@ class jomres_temp_booking_handler
 			session_start();
 			}
 		$this->jomressession=$jomressession=session_id();
+		//echo $jomressession=session_id()." ";
 		$this->sessionfile=$this->session_directory.$this->jomressession.".txt";
+		$custom_fields = new jomres_custom_field_handler();
+		$allCustomFields = $custom_fields->getAllCustomFields();
+		$this->initCustomFields($allCustomFields);
 		$this->session_jomres_start();
 		}
 
