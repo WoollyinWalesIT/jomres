@@ -106,7 +106,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>
 				';
 				}
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>
+			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery-1.3.2.min.js"></script>
 			';
 			echo '<script type="text/javascript">jQuery.noConflict();</script>
 			';
@@ -906,7 +906,7 @@ function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 	{
 	global $jrUser;
 	$errorstring = "Fatal Error: $errstr (# $errno).";
-	$errorstring .= "User id '$jrUser->username'&nbsp;&nbsp;.";
+	//$errorstring .= "User id '$jrUser->username'&nbsp;&nbsp;.";
 	$errorstring .= "Error in line $errline of file '$errfile'.";
 	$errorstring .= "Script: '{$_SERVER['PHP_SELF']}'";
 	if (isset($errcontext['this']))

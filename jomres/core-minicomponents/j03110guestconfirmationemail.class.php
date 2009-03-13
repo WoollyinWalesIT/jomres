@@ -215,7 +215,7 @@ class j03110guestconfirmationemail {
 		if ($email_when_done)
 			{
 			$text=$tmpl->getParsedTemplate();
-			audit($text,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+			jomres_audit($text,_JOMRES_MR_AUDIT_BOOKED_ROOM);
 			$query="SELECT email FROM #__jomres_guests WHERE guests_uid = '".(int)$guests_uid."' LIMIT 1";
 			if ($mrConfig['errorCheckingShowSQL']) echo $query."<br>";
 			$userEmail =doSelectSql($query);

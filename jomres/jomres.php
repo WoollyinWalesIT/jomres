@@ -99,24 +99,6 @@ $Itemid				= intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
 if ($no_html == 1)
 	define ("JOMRES_NOHTML",1);
 
-if(!$Itemid || $Itemid == 99999999)
-	{
-	$query = "SELECT id"
-		. "\n FROM #__menu"
-		. "\n WHERE "
-		. "\n published = 1"
-		. "\n AND link LIKE JOMRES_SITEPAGE_URL.'' LIMIT 1";
-	$itemQueryRes = doSelectSql($query);
-	if (count($itemQueryRes)>0)
-		{
-		foreach ($itemQueryRes as $i)
-			{
-			$Itemid = $i->id;
-			}
-		}
-	else $Itemid = $jrConfig['jomresItemid'];
-	}
-
 //var_dump($_REQUEST);exit;
 
 $propertyNamesArray=array();

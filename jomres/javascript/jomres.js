@@ -644,6 +644,9 @@ function checkaddressfields()
 		pass = false;
 		}
 	
+	if (pass)
+		pass = checkCustomFields();
+	
 	if (!pass)
 		{
 		jQuery('div.recheckaddress').show(); 

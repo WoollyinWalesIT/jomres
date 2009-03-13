@@ -24,7 +24,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Get some basic data before beginning construction of the booking form
 #
  */
-global $mrConfig,$jomresAdminPath,$my,$jomresConfig_lang,$MiniComponents,$Itemid,$jomressession,$thisJRUser ;
+global $MiniComponents,$jomressession,$thisJRUser ;
 global $tmpBookingHandler,$property_uid;
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
@@ -33,7 +33,7 @@ $userIsManager=checkUserIsManager();
 if ($userIsManager && in_array(intval($_REQUEST['selectedProperty']),$thisJRUser->authorisedProperties) && (int) $_REQUEST['selectedProperty'] > 0 && $thisJRUser->currentproperty != (int) $_REQUEST['selectedProperty'] )
 	{
 	$thisJRUser->set_currentproperty((int) $_REQUEST['selectedProperty']);
-	jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."task=dobooking&Itemid=$Itemid&selectedProperty=$selectedProperty"), "" );
+	jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."task=dobooking&selectedProperty=$selectedProperty"), "" );
 	}
 	
 $selectedProperty  =$property_uid;
@@ -100,8 +100,8 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$tmpBookingHandler->resetTempBookingData();
 	$tmpBookingHandler->tmpbooking["property_uid"]=(int)$selectedProperty;
 	$tmpBookingHandler->tmpbooking["total_discount"]="";
-
-	$tmpBookingHandler->saveBookingData();
+	//$tmpBookingHandler->saveBookingData();
+	
 
 	$today = date("Y/m/d");
 	$date_elements  	= explode("/",$today);
@@ -361,8 +361,39 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		}
 	$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 	
+	$custom_fields = new jomres_custom_field_handler();
+	$allCustomFields = $custom_fields->getAllCustomFields();
+	if (count($allCustomFields)>0)
+		{
+		$icon="*";
+		foreach ($allCustomFields as $f)
+			{
+			$tempHandlerFieldName = $f['fieldname']."_".$f['uid'];
+			$fielddata = array();
+			$fielddata['FIELDNAME'] 		= $f['fieldname']."_".$f['uid'];
+			if (isset($tmpBookingHandler->tmpbooking[$tempHandlerFieldName]))
+				$fielddata['DEFAULT_VALUE']	= $tmpBookingHandler->tmpbooking[$tempHandlerFieldName];
+			else
+				$fielddata['DEFAULT_VALUE']	= $f['default_value'];
+			$fielddata['UID'] 				= $f['uid'];
+			$fielddata['DESCRIPTION']		= $f['description'];
+			
+			$fielddata['REQUIRED']			= "&nbsp;";
+			if ($f['required'] =="1")
+				$fielddata['REQUIRED']='<font color="red">'.$icon.'</font>';
+			$fielddata['SIZE']				= 12;
+			if (strlen($f['default_value'])>12)
+				$fielddata['SIZE']			= strlen($f['default_value']);
+			$customFields[] 				= $fielddata;
+			}
+		$output['CUSTOMFIELD_JAVASCRIPT']=generateCustomFieldsJavascript($customFields);
+		}
+		
+	
+	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
+	$tmpl->addRows( 'customfields',$customFields);
  	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'guesttypes',$guestTypes);
 	$tmpl->addRows( 'onload',$toload);
@@ -403,5 +434,51 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 
 	if ($jrConfig['dumpTemplate']=="1")
 		$tmpl->dump();
+	}
+	
+	
+function generateCustomFieldsJavascript($customFields)
+	{
+	$someRequired=false;
+	foreach ($customFields as $c)
+		{
+		if ($c['REQUIRED'] != "&nbsp;")
+			$someRequired = true;
+		}
+		
+	if (!$someRequired)
+		{
+		$js.="<script>";
+		$js.='function checkCustomFields()
+			{
+			return true;
+			}';
+		$js.="</script>";
+		}
+	else
+		{
+		$js="<script>";
+		$js.='function checkCustomFields()
+			{
+			var pass			= true;
+			';
+		foreach ($customFields as $c)
+			{
+			$js.='				var '.$c['FIELDNAME'].' 		=jQuery.trim(jQuery(\'#'.$c['FIELDNAME'].'\').val());
+							setInputFillToOkColour(\'#'.$c['FIELDNAME'].'\');
+							if ('.$c['FIELDNAME'].'.length == 0 )
+								{
+								setInputFillToErrorColour("#'.$c['FIELDNAME'].'");
+								pass = false;
+								}
+			';
+			}
+		$js.='
+						return pass;
+						}
+						</script>
+						';
+		}
+	return $js;
 	}
 ?>
