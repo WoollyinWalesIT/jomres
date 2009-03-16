@@ -99,12 +99,31 @@ class j03020insertbooking {
 					$deposit_required			= $tempBookingData->deposit_required;
 					$contract_total				= $tempBookingData->contract_total;
 					$extras						= $tempBookingData->extras;
+					$extrasquantities			= $tempBookingData->extrasquantities;
 					$extrasValue				= $tempBookingData->extrasvalue;
 					$specialReqs				= addslashes($tempBookingData->error_log);
 					$discount					= $tempBookingData->discount;
 					$room_total					= $tempBookingData->room_total;
 					$tax						= $tempBookingData->tax;
 
+					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
+					$tmpextrasquantities = array();
+					$currentExtras=explode(",",$extras);
+					if (count($currentExtras) > 0)
+						{
+						foreach ($extrasquantities as $id=>$quan)
+							{
+							if (in_array($id,$currentExtras) )
+								{
+								$tmpextrasquantities[$id]=$quan;
+								}
+							}
+						$extrasquantities=serialize($tmpextrasquantities);
+						}
+					else
+						$extrasquantities="";
+					
+					
 					$discount=$tempBookingData->discounts;
 					if (count($discount)>0)
 						{
@@ -159,6 +178,7 @@ class j03020insertbooking {
 					`property_uid`				= '$property_uid',
 					`single_person_suppliment`	= '$single_person_suppliment',
 					`extras`					= '$extras',
+					`extrasquantities`			= '$extrasquantities',
 					`extrasvalue`				= '$extrasValue',
 					`tax`						= '$tax',
 					`room_total`				= '$room_total',
@@ -263,6 +283,7 @@ class j03020insertbooking {
 					$deposit_required=$tempBookingData->deposit_required;
 					$contract_total=$tempBookingData->contract_total;
 					$extras=$tempBookingData->extras;
+					$extrasquantities=$tempBookingData->extrasquantities;
 					$extrasValue=$tempBookingData->extrasvalue;
 					$specialReqs=addslashes($tempBookingData->error_log);
 					$discount=$tempBookingData->discounts;
@@ -272,6 +293,23 @@ class j03020insertbooking {
 					if (strlen($bookersUsername) == 0)
 						$bookersUsername="ANONYMOUS";
 					
+					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
+					$tmpextrasquantities = array();
+					$currentExtras=explode(",",$extras);
+					if (count($currentExtras) > 0)
+						{
+						foreach ($extrasquantities as $id=>$quan)
+							{
+							if (in_array($id,$currentExtras) )
+								{
+								$tmpextrasquantities[$id]=$quan;
+								}
+							}
+						$extrasquantities=serialize($tmpextrasquantities);
+						}
+					else
+						$extrasquantities="";
+						
 					$resource=$tempBookingData->resource;
 					if ($resource=="1")
 						$depositPaid=1;
@@ -340,13 +378,13 @@ class j03020insertbooking {
 					`guest_uid`,`rate_rules`,`rooms_tariffs`,`contract_total`,`special_reqs`,
 					`deposit_paid`,`deposit_required`,
 					`date_range_string`,`booked_in`,`booked_out`,
-					`property_uid`,`single_person_suppliment`,`extras`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`)
+					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`)
 					VALUES (
 					'$arrivalDate','$departureDate','".(int)$rates_uid."',
 					'".(int)$guests_uid."','$rateRules','".(string)$requestedRoom."', '".(float)$contract_total."','$specialReqs',
 					'".(int)$depositPaid."','".(float)$deposit_required."',
 					'$dateRangeString','0','0',
-					'".(int)$property_uid."','".(float)$single_person_suppliment."','$extras','".(float)$extrasValue."','".(float)$tax."','$cartnumber','$datetime','".(float)$room_total."','".(float)$discount."','$ccode','".$discount_details."','".$bookersUsername."')";
+					'".(int)$property_uid."','".(float)$single_person_suppliment."','$extras','".(string)$extrasquantities."','".(float)$extrasValue."','".(float)$tax."','$cartnumber','$datetime','".(float)$room_total."','".(float)$discount."','$ccode','".$discount_details."','".$bookersUsername."')";
 				$contract_uid=doInsertSql($query,"");
 
 				if ($mrConfig['singleRoomProperty']==1)
@@ -420,6 +458,7 @@ class j03020insertbooking {
 					$MiniComponents->triggerEvent('03110',$componentArgs); // Generate guest confirmation email
 					$MiniComponents->triggerEvent('03200',$componentArgs); // post insert booking functionality
 					}
+				
 				jomres_audit("Cart number ".$cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
 				$this->insertBookingEventValues['cartnumber']=$cartnumber;
 				$this->insertBookingEventValues['tempBookingDataList']=$tempBookingDataList;
@@ -432,7 +471,9 @@ class j03020insertbooking {
 				$this->insertBookingEventValues['rates_uids']=$rates_uids;
 				$this->insertBookingEventValues['requestedRoom']=$roomsRequested;
 				$this->insertBookingEventValues['contract_uid']=$contract_uid;
+				
 				$this->insertBookingEventValues['insertSuccessful']=$this->insertSuccessful;
+				
 				if ($this->insertSuccessful)
 					system_log("Booking insert Successful ");
 				else

@@ -173,6 +173,7 @@ class j02260editbooking {
 				//$booking_cot_suppliment=$booking->cot_suppliment;
 				$single_person_suppliment=$booking->single_person_suppliment;
 				$extraOptionsList=$booking->extras;
+				$extrasquantities=unserialize($booking->extrasquantities);
 				$extrasOptionsValue=$booking->extrasvalue;
 				$tax=$booking->tax;
 				$bookedin=$booking->booked_in;
@@ -509,10 +510,11 @@ class j02260editbooking {
 			$extrasList= doSelectSql($query);
 			foreach ($extrasList as $theExtras)
 				{
+				$quantity = $extrasquantities[$extraUid];
 				$contentPanel->setcontent('
 					<tr>
 						<td>&nbsp;</td>
-						<td>'.($theExtras->name).",  ".$mrConfig['currency'].number_format($theExtras->price,2).'</td>
+						<td>'.($theExtras->name)."  ".$mrConfig['currency'].number_format($theExtras->price,2).' X '.$quantity.'</td>
 					</tr>');
 				}
 			}

@@ -37,7 +37,7 @@ class j02144editextra {
 		global $mrConfig;
 		global $ePointFilepath,$eLiveSite;
 
-		$uid		= intval(jomresGetParam( $_REQUEST, 'uid', "" ));
+		$uid		= intval(jomresGetParam( $_REQUEST, 'uid', 0 ));
 
 		$defaultProperty=getDefaultProperty();
 
@@ -49,6 +49,9 @@ class j02144editextra {
 		$output['HEXNAME']=jr_gettext('_JOMRES_COM_MR_EXTRA_NAME',_JOMRES_COM_MR_EXTRA_NAME);
 		$output['HEXDESC']=jr_gettext('_JOMRES_COM_MR_EXTRA_DESC',_JOMRES_COM_MR_EXTRA_DESC);
 		$output['HEXPRICE']=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
+		$output['HMAXQUANTITY']=jr_gettext('_JOMRES_COM_MR_EXTRA_QUANTITY',_JOMRES_COM_MR_EXTRA_QUANTITY);
+		
+		$output['HMAXQUANTITYINFO']=jr_gettext('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC',_JOMRES_COM_MR_EXTRA_QUANTITY_DESC);
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
@@ -70,19 +73,21 @@ class j02144editextra {
 		$output['EXTRAMODEL_PERDAYSMINDAYS_CHECKED']="";
 		$output['EXTRAMODEL_PERDAYSPERROOM_CHECKED']="";
 		
+		$force=0;
+		$output['EXTRAMODEL_FORCE1']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE2']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE3']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE4']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE5']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE6']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE7']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		$output['EXTRAMODEL_FORCE8']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+
+		
 		$mindays = 1;
-		if (isset($uid))
+		if ($uid>0)
 			{
-			$force=0;
-			$output['EXTRAMODEL_FORCE1']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE2']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE3']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE4']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE5']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE6']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE7']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			$output['EXTRAMODEL_FORCE8']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-			
+
 			$query="SELECT model,params,`force` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '".(int)$uid."' LIMIT 1";
 			$model=doSelectSql($query,2);
 			if (!isset($model['model']))
@@ -124,18 +129,60 @@ class j02144editextra {
 				break;
 				}
 
-			$query = $query="SELECT `name`,`desc`,`price` FROM `#__jomres_extras` WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
+			$query = $query="SELECT `name`,`desc`,`price`,`maxquantity` FROM `#__jomres_extras` WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 			$exList =doSelectSql($query);
 			foreach($exList as $ex)
 				{
 				$output['EXDESCRIPTION']= stripslashes($ex->desc);
 				$output['EXNAME']= stripslashes($ex->name);
 				$output['EXPRICE']= number_format($ex->price,2);
+				$output['MAXQUANTITYDROPDOWN'] = jomresHTML::integerSelectList( 01, 1000, 1, "maxquantity", 'size="1" class="inputbox"', $ex->maxquantity, "%02d" );
+
 				}
 			}
 		else
 			{
 			$output['EXTRAMODEL_PERWEEK_CHECKED']="checked";
+			$output['MAXQUANTITYDROPDOWN'] = jomresHTML::integerSelectList( 01, 1000, 1, "maxquantity", 'size="1" class="inputbox"', 1, "%02d" );
+			$model['model']=2;
+			$model['force']=0;
+			switch ($model['model'])
+				{
+				case '1':
+					$output['EXTRAMODEL_PERWEEK_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE1']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '2':
+					$output['EXTRAMODEL_PERDAYS_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE2']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '3':
+					$output['EXTRAMODEL_PERBOOKING_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE3']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '4':
+					$output['EXTRAMODEL_PERPERSONPERBOOKING_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE4']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '5':
+					$output['EXTRAMODEL_PERPERSONPERDAY_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE5']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '6':
+					$output['EXTRAMODEL_PERPERSONPERWEEK_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE6']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '7':
+					$output['EXTRAMODEL_PERDAYSMINDAYS_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE7']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+					$mindays=$model['params'];
+				break;
+				case '8':
+					$output['EXTRAMODEL_PERDAYSPERROOM_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE8']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				}
+			
 			}
 
 

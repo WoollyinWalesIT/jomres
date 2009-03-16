@@ -49,6 +49,7 @@ class j03200insertbooking_invoice {
 		$single_person_suppliment		= $tmpBookingHandler->getBookingFieldVal("single_person_suppliment");
 		$deposit_required				= $tmpBookingHandler->getBookingFieldVal("deposit_required");
 		$extras							= $tmpBookingHandler->getBookingFieldVal("extras");
+		$extrasquantities				= $tmpBookingHandler->getBookingFieldVal("extrasquantities");
 		$room_total						= $tmpBookingHandler->getBookingFieldVal("room_total");
 		$tax							= $tmpBookingHandler->getBookingFieldVal("tax");
 		$discounts						= $tmpBookingHandler->getBookingFieldVal("discounts");
@@ -150,11 +151,11 @@ class j03200insertbooking_invoice {
 			foreach ($extrasList as $theExtras)
 				{
 				$line_item_data = array (
-					'tax_code_id'=>0,
+					'tax_code_id'=>1,
 					'name'=>$theExtras->name,
 					'description'=>'',
 					'init_price'=>number_format($theExtras->price,2),
-					'init_qty'=>"1",
+					'init_qty'=>$extrasquantities[$extraUid],
 					'init_discount'=>"0",
 					'recur_price'=>"0.00",
 					'recur_qty'=>"0",

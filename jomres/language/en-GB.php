@@ -5865,6 +5865,14 @@ define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE','Default value');
 define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION','Description');
 define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED','Required');
 
+/**
+* @ignore
+*/
+define('_JOMRES_COM_MR_EXTRA_QUANTITY','Maximum Quantity');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC','If Maximum quantity is set to greater than 1 then guests will be offered a dropdown to choose the quantiy of the extras that they require.');
 
 /**
 * @ignore

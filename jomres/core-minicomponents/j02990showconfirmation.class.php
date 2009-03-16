@@ -196,8 +196,9 @@ class j02990showconfirmation {
 
 		if ($mrConfig['showExtras']=="1")
 			{
-			$extras 		= 	$bookingDeets['extras'];
-			$extrasArray	=	explode(",",$extras);
+			$extras 			= 	$bookingDeets['extras'];
+			$extrasquantities	=	$bookingDeets['extrasquantities'];
+			$extrasArray		=	explode(",",$extras);
 			foreach ($extrasArray as $extraAll)
 				{
 				if (!empty($extraAll))
@@ -241,7 +242,7 @@ class j02990showconfirmation {
 						break;
 						}
 
-					$extra_parts['NAME'] 		= 	$thisPrice['name'];
+					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra];
 					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($thisPrice['price']);
 					$booking_extras[]			=	$extra_parts;
 					}
