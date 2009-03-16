@@ -3,8 +3,13 @@ Jomres 4alpha1
 
 Major restructuring of Jomres to allow it to reference CMS Specific functions, which are include on start and are different depending on the CMS detected. Allows Jomres to be used in more than just Joomla. Jomres v4 is not backwardly compatible with previous installations of Jomres v3.
 Replaced overlib calls. We'll now use jquery's beauty tips library instead.
+Added custom fields for the booking form.
+Added administrator area template editing, details are saved to the DB instead of to a file, so there shouldn't be problems with upgrading.
+Added quantity selection for optional extras.
 
 
+
+Disabled show only availability calendar option as it's N/A for v4.
 Added check for a define JOMRES_RETURNDATA. If defined, we'll add the contents of the output buffer to JOMRES_RETURNDATA_CONTENT instead of just flushing (echoing) what Jomres has generated.
 Modified property list page variable to plistpage because "page" was interfering with CMSMSs default "page" and not showing the dashboard.
 Fixed an issue where manager names weren't being correctly listed in edit profile associated with their property. The managers were correctly associated, just not listed correctly in the page.
@@ -40,7 +45,7 @@ Images optimised for size, Jomres zip is roughly 1Mb smaller now.
 Third party plugin installer written. Dummy plugin example to follow.
 Removed old tabbed composite property details. Whilst it was ok, it didn't work in IE.
 Added detected CMS to showplugins script for when it calls the updates server.
-Added horizontal rooms to booking form, doing away with the old "rooms list on the righthandside" of Jomres v3. 
+Added horizontal rooms to booking form, doing away with the old "rooms list on the righthandside" of Jomres v2 & v3. 
 
 
 
