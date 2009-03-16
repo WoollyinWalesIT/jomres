@@ -61,6 +61,7 @@ class j00501srps {
 		$configurationPanel->setmiddle($lists['tariffChargesStoredWeeklyYesNo']);
 		$configurationPanel->setright(_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC);
 		$configurationPanel->insertSetting();
+		/*
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
 			$configurationPanel->setleft(_JOMRES_COM_A_SHOWONLYAVLCAL);
@@ -68,6 +69,7 @@ class j00501srps {
 			$configurationPanel->setright(_JOMRES_COM_A_SHOWONLYAVLCAL_DESC);
 			$configurationPanel->insertSetting();
 			}
+		*/
 		$configurationPanel->setleft(_JOMRES_COM_A_FIXEDPERIODBOOKINGS);
 		$configurationPanel->setmiddle($lists['fixedPeriodBookings']);
 		$configurationPanel->setright(_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC);
