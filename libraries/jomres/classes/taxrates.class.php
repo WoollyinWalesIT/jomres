@@ -67,7 +67,7 @@ class jrportal_taxrate
 			}
 		else
 			{
-			error_logging(  "ID of Tax Rate rate not available");
+			//error_logging(  "ID of Tax Rate rate not available");
 			return false;
 			}
 

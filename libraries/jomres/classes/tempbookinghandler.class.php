@@ -86,6 +86,7 @@ class jomres_temp_booking_handler
 			"smoking"=>"",
 			"extrasvalue"=>"",
 			"extras"=>"",
+			"extrasquantities"=>array(),
 			"total_discount"=>"",
 			"booking_discounted"=>false,
 			"depositpaidsuccessfully"=>"",
@@ -103,7 +104,8 @@ class jomres_temp_booking_handler
 			"lastminutediscount"=>"",
 			"confirmationSeen"=>false,
 			"mininterval"=>"",
-			"discounts"=>array()
+			"discounts"=>array(),
+			
 			);
 			
 		$this->tmpguest = array(
@@ -388,6 +390,7 @@ class jomres_temp_booking_handler
 			"smoking"=>"",
 			"extrasvalue"=>"",
 			"extras"=>"",
+			"extrasquantities"=>array(),
 			"total_discount"=>"",
 			"booking_discounted"=>false,
 			"depositpaidsuccessfully"=>"",

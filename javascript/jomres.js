@@ -183,7 +183,7 @@ function getResponse_particulars(field,value)
 	{
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: field, 'value': value },
 		function(data)
 			{
@@ -197,7 +197,7 @@ function getResponse_guesttype(typeid,value)
 	{
 	HideRoomsList();
 	blockInterface('guesttype',200);
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: 'guesttype', 'typeid': typeid ,'value': value },
 		function(data)
 			{
@@ -210,7 +210,7 @@ function getResponse_guesttype(typeid,value)
 function getResponse_rooms(field,value) {
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -221,7 +221,7 @@ function getResponse_rooms(field,value) {
 }
 function getResponse_extras(field,value,theId) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -230,9 +230,23 @@ function getResponse_extras(field,value,theId) {
 			}
 	);
 }
+
+function getResponse_extrasquantity(field,value,theId) {
+	blockInterface(field,200);
+	jQuery.get(ajaxurl+'&task=handlereq',
+		{ field: field,'value': value,'theId': theId },
+		function(data)
+			{
+			eval(data); 
+			show_log(field);
+			}
+	);
+}
+
+
 function getResponse(field,value) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -243,7 +257,7 @@ function getResponse(field,value) {
 
 function getResponse_existing(field,value) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: field,'value': value },
 		function(data)
 			{
@@ -270,7 +284,7 @@ function getResponse_guest()
 	var tel_mobile 		=jQuery('#tel_mobile').val();
 	var eemail 			=jQuery('#eemail').val();
 
-	url = ajaxurl+'&task=handlereq&no_html=1';
+	url = ajaxurl+'&task=handlereq';
 	result =checkaddressfields();
 
 	if (result)
@@ -289,7 +303,7 @@ function getResponse_guest()
 	}
 
 function show_log(lastfield) {
-	jQuery.get(ajaxurl+'&task=handlereq&no_html=1',
+	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: 'show_log','lastfield': lastfield },
 		function(data)
 			{
@@ -319,6 +333,8 @@ function blockInterface(field,fadetime)
 	if (field == "smoking")
 		message = blockui_recheckingroomavailability;
 	if (field == "extras")
+		message = blockui_changingextra;
+	if (field == "extrasquantity")
 		message = blockui_changingextra;
 	if (field == "requestedRoom")
 		message = blockui_changingroomselection;

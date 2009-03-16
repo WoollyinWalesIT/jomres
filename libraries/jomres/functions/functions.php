@@ -978,7 +978,7 @@ function request_log($loggingRequest)
 function system_log($message)
 	{
 	global $loggingEnabled,$loggingSystem;
-	if ($loggingEnabled && $loggingSystem)
+	if (LOGGINGSYSTEM)
 		{
 		$logfile=JOMRES_SYSTEMLOG_PATH.'jomres_system_log.xml';
 		$log = "<![CDATA[\n".$message . "]]>";
@@ -1605,10 +1605,11 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 	$componentArgs=array('jomressession'=>$jomressession,'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
 
-	if ($result)
+	if ($MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
 		{
 		if ($confirmationPageRequired)
 			{
+			
 			$componentArgs=array('property_uid'=>$property_uid);
 			$componentArgs=array('customText'=>$customTextForConfirmationForm);
 			$MiniComponents->triggerEvent('03030',$componentArgs); // Booking completed message

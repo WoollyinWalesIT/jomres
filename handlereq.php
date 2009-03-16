@@ -193,6 +193,23 @@ switch ($field)
 			echo 'jQuery(theId).attr("checked", true);';
 			}
 	break;
+	case "extrasquantity":
+		$ajrq="ajrq:::extrasquantity";
+		$bkg->setOkToBook(false);
+		$value=$bkg->sanitiseInput("int",$value);
+		$theId= jomresGetParam( $_GET, 'theId', 1 );
+		$theId= getEscaped( $theId );
+		$bkg->writeToLogfile("Starting extra quantity input : Value = ".$value. "Extra id =".$theId);
+		if ( $bkg->extraAlreadySelected($theId) )
+			{
+			$retText="Extra added to booking";
+			$bkg->setExtras($theId);
+			echo 'jQuery(theId).attr("checked", true);';
+			$bkg->modifyExtraQuantity($value,$theId);
+			}
+		
+			
+	break;
 	case "existingCustomers":
 		$ajrq="ajrq:::existingCustomers";
 		$value=$bkg->sanitiseInput("int",$value);
@@ -305,7 +322,7 @@ switch ($field)
 	}
 
 
-if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) && !empty($field) && $field != "show_log" && $field != "extras" && $field != "heartbeat")
+if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) && !empty($field) && $field != "show_log" && $field != "extras" && $field != "heartbeat" && $field != "extrasquantity")
 	{
 	bookingformlistRooms($isSingleRoomProperty,$bkg);
 	}

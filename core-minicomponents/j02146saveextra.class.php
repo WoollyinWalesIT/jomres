@@ -41,7 +41,9 @@ class j02146saveextra {
 		$name       = jomresGetParam( $_POST, 'name', "" );
 		$price      = jomresGetParam( $_POST, 'price', '' );
 		$price=str_replace(",","",$price);
-
+		$maxquantity      = jomresGetParam( $_POST, 'maxquantity', 1 );
+		if ($maxquantity < 1 || $maxquantity > 1000)
+			$maxquantity = 1;
 		$mindays		= jomresGetParam( $_POST, 'mindays', 1 );
 		$extramodel		= jomresGetParam( $_POST, 'extramodel', array() );
 		$force			= jomresGetParam( $_POST, 'force', array() );
@@ -54,13 +56,13 @@ class j02146saveextra {
 		if ($uid=="")
 			{
 			$auditMessage=jr_gettext('_JOMRES_MR_AUDIT_INSERT_EXTRA',_JOMRES_MR_AUDIT_INSERT_EXTRA,FALSE);
-			$query="INSERT INTO #__jomres_extras (`name`,`desc`,`price`,`chargabledaily`,`property_uid`)VALUES('$name','$desc','".(float)$price."','".(int)$chargeabledaily."','".(int)$defaultProperty."')";
+			$query="INSERT INTO #__jomres_extras (`name`,`desc`,`price`,`maxquantity`,`chargabledaily`,`property_uid`)VALUES('$name','$desc','".(float)$price."','".(int)$maxquantity."','".(int)$chargeabledaily."','".(int)$defaultProperty."')";
 			$uid=doInsertSql($query,$auditMessage);
 			}
 		else
 			{
 			$auditMessage=jr_gettext('_JOMRES_MR_AUDIT_UPDATE_EXTRA',_JOMRES_MR_AUDIT_UPDATE_EXTRA,FALSE);
-			$query="UPDATE #__jomres_extras SET `name`='$name',`desc`='$desc',`price`='".(float)$price."',`chargabledaily`='".(int)$chargeabledaily."' WHERE uid = '".(int)$uid."' AND property_uid='".(int)$defaultProperty."'";
+			$query="UPDATE #__jomres_extras SET `name`='$name',`desc`='$desc',`maxquantity`=".(int)$maxquantity.",`price`='".(float)$price."',`chargabledaily`='".(int)$chargeabledaily."' WHERE uid = '".(int)$uid."' AND property_uid='".(int)$defaultProperty."'";
 			doInsertSql($query,$auditMessage);
 			}
 

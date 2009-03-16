@@ -164,6 +164,7 @@ class jomres_booking
 			$this->extrasvalue 				= $bookingDeets['extrasvalue'];
 			$this->tax 						= $bookingDeets['tax'];
 			$this->extras 					= $bookingDeets['extras'];
+			$this->extrasquantities			= $bookingDeets['extrasquantities'];
 			$this->total_discount			= $bookingDeets['total_discount'];
 			$this->depositpaidsuccessfully 	= $bookingDeets['depositpaidsuccessfully'];
 			$this->booker_class				= $bookingDeets['booker_class'];
@@ -410,6 +411,7 @@ class jomres_booking
 		$tmpBookingHandler->tmpbooking["smoking"]						= $this->smoking;
 		$tmpBookingHandler->tmpbooking["extrasvalue"]					= $this->extrasvalue;
 		$tmpBookingHandler->tmpbooking["extras"]						= $this->extras;
+		$tmpBookingHandler->tmpbooking["extrasquantities"]				= $this->extrasquantities;
 		$tmpBookingHandler->tmpbooking["total_discount"] 				= $this->total_discount;
 		$tmpBookingHandler->tmpbooking["depositpaidsuccessfully"] 		= $this->depositpaidsuccessfully;
 		$tmpBookingHandler->tmpbooking["tax"]							= $this->tax;
@@ -705,7 +707,7 @@ class jomres_booking
 		$currfmt = new jomres_currency_format();
 		if ($mrConfig['showExtras']=="1")
 			{
-		 	$query="SELECT `uid`,`name`,`desc`,`price`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
+		 	$query="SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
 			$exList =doSelectSql($query);
 			foreach($exList as $ex)
 				{
@@ -739,7 +741,7 @@ class jomres_booking
 						$model_text=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM));
 					break;
 					}
-				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) )).". ".$model_text;
+				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) ));
 				$extra_deets['PRICE']=$mrConfig['currency'].$currfmt->get_formatted($ex->price);
 				if ($ex->chargabledaily=="1")
 					$extra_deets['PERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_PERDAY',_JOMRES_COM_PERDAY,false,true));
@@ -747,14 +749,18 @@ class jomres_booking
 					$extra_deets['PERNIGHT']="";
 				$extra_deets['DESCRIPTION']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES) ));
 				$descriptionForOverlib=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES),false,true);
-				$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.$jomresConfig_live_site.'/jomres/images/info.png" />';
-				
+				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.$jomresConfig_live_site.'/jomres/images/info.png" />';
+				$extra_deets['OVERLIB_DESCRIPTION']=jomres_makeTooltip('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid,$extra_deets['PERNIGHT'],$descriptionForOverlib,$model_text." ".$descriptionForOverlib,$class="",$type="infoimage",array("width"=>20,"height"=>20) );
+		
 				$checked="";
 				if ($this->extraAlreadySelected($ex->uid))
 					{
 					$checked=" checked ";
 					$this->setExtras($ex->uid);
+					$extraDefaultQuantity = $this->extrasquantities[$ex->uid];
 					}
+				else
+					$extraDefaultQuantity = 1;
 				$inputId=ereg_replace("[^A-Za-z0-9]", "", $ex->name);
 				if (strlen($inputId)==0)
 					$inputId=generateJomresRandomString(10);
@@ -762,14 +768,21 @@ class jomres_booking
 				if ( $firstChar == "0" || $firstChar == "1" ||$firstChar == "2" ||$firstChar == "3" ||$firstChar == "4" ||$firstChar == "5" ||$firstChar == "6" ||$firstChar == "7" ||$firstChar == "8" ||$firstChar == "9" )
 					$inputId = "X".$inputId;
 
+				$clickUnlock="";
+				//  Doesn't  work.
+				//if ($ex->maxquantity > 1)
+				//	$clickUnlock='jQuery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
 				if ($model['force']!="1")
-					$extra_deets['INPUTBOX']='<input id="'.$inputId.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' onClick="getResponse_extras(\'extras\',this.value,'.$inputId.')"; >';
+					$extra_deets['INPUTBOX']='<input id="'.$inputId.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');"; >';
 		   		else
 					{
 					$this->forcedExtras[] =$ex->uid;
 					$this->setExtras($ex->uid);
 					$extra_deets['INPUTBOX']='<input id="'.stripslashes($ex->name).'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" >';
 					}
+				if ($ex->maxquantity > 1)
+					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="inputbox"  AUTOCOMPLETE="OFF" onChange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.')";', $extraDefaultQuantity, "%02d" );
+
 				$extra_deets['AJAXFORM_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 				$extra_deets['AJAXFORM_EXTRAS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));
 				$extra_deets['EXTRAS_TOTAL']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL));
@@ -1148,6 +1161,7 @@ class jomres_booking
 			}
 		else
 			$this->extras=$extra.",";
+		$this->extrasquantities[$extra]=1;
 		}
 
 	/**
@@ -1204,6 +1218,22 @@ class jomres_booking
 		if (in_array($extra,$currentExtras) )
 			return true;
 		return false;
+		}
+		
+		
+	/**
+	#
+	 * Receives an extra's uid and an integer and modifys the extra's quantity
+	#
+	 */
+	function modifyExtraQuantity($value,$extraID)
+		{
+		$this->setErrorLog("modifyExtraQuantity::Starting");
+		$currentExtras=explode(",",$this->extras);
+		if (!in_array($extra,$currentExtras) )
+			return false;
+		$this->extrasquantities[$extraID]=$value;
+		$this->setErrorLog("modifyExtraQuantity::Extras quantities = ".serialize($this->extrasquantities) );
 		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4462,7 +4492,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 							$calc=($this->stayDays*$thisPrice)*$this->numberOfCurrentlySelectedRooms();
 						break;
 						}
-					$extrasTotal=$extrasTotal+$calc;
+					$quantity=$this->extrasquantities[$extra];
+					$extrasTotal=$extrasTotal+($quantity*$calc);
 					$this->setErrorLog("calcExtras: Extras totals: ".$extrasTotal );
 					}
 				}
