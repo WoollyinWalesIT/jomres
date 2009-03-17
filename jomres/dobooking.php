@@ -145,10 +145,8 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$output['ISMANAGER']="false";
 	$output['PID']=$selectedProperty;
 	$output['ITEMID']=$Itemid;
-	if (defined('_JOMRES_NEWJOOMLA') )
-		$output['AJAXURL']=JOMRES_SITEPAGE_URL;
-	else
-		$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
+	
+	$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
 	$output['LIVESITE']=JOMRES_SITEPAGE_URL;
 	if (!$thisJRUser->userIsManager)
 		$bkg->setBookerClass("000");
@@ -388,7 +386,8 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 			}
 		$output['CUSTOMFIELD_JAVASCRIPT']=generateCustomFieldsJavascript($customFields);
 		}
-		
+	else
+		$output['CUSTOMFIELD_JAVASCRIPT']="<script>function checkCustomFields(){return true}</script>";
 	
 	
 	$pageoutput[]=$output;

@@ -47,18 +47,14 @@ class j03030bookingcompleted {
 		$save_deets=array();
 		$save_details=array();
 
-		$save_deets['LIVESITE']=$jomresConfig_live_site;
+		//$save_deets['LIVESITE']=JOMRES_SITEPAGE_URL;
 		
-		if (!defined('_JOMRES_NEWJOOMLA') )
-			{
-			if (!isset($jrConfig['useSSLinBookingform']) )
-				$jrConfig['useSSLinBookingform']=0;
-			if ( $jrConfig['useSSLinBookingform'] == 1 )
-				$save_deets['LIVESITE'] = str_replace("https://","http://",JOMRES_SITEPAGE_URL);
-			}
+
+		if ( $jrConfig['useSSLinBookingform'] == 1 )
+			$save_deets['LIVESITE'] = str_replace("https://","http://",JOMRES_SITEPAGE_URL);
 		else
 			$save_deets['LIVESITE'] = JOMRES_SITEPAGE_URL;
-			
+
 		if (defined('_JR_GATEWAY_AFTERWORD') )
 			$save_deets['JR_GATEWAY_AFTERWORD']=jr_gettext('_JR_GATEWAY_AFTERWORD',_JR_GATEWAY_AFTERWORD);
 		$save_deets['SAVEDMESSAGE']=jr_gettext('_JOMRES_FRONT_MR_BOOKINGMADE',_JOMRES_FRONT_MR_BOOKINGMADE);
