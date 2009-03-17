@@ -146,14 +146,14 @@ class invoicehandler extends jrportal_invoice
 		$line_item->recur_discount		= $line_item_data['recur_discount'];
 
 		$i_total = ((float)$line_item->init_price*(int)$line_item->init_qty)-(float)$line_item->init_discount;
-		$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2);
+		$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2, '.', '');
 		$line_item->init_total = $i_total + $init_toal_tax;
-		$this->init_total = number_format($this->init_total + $line_item->init_total,2);
+		$this->init_total = number_format($this->init_total + $line_item->init_total,2, '.', '');
 		
 		$r_total = ((float)$line_item->recur_price*(int)$line_item->recur_qty)-(float)$line_item->recur_discount;
-		$recur_toal_tax=number_format(($r_total/100)*$line_item->tax_rate,2);
+		$recur_toal_tax=number_format(($r_total/100)*$line_item->tax_rate,2, '.', '');
 		$line_item->recur_total = $r_total + $recur_toal_tax;
-		$this->recur_total = number_format($this->recur_total + $line_item->recur_total,2);
+		$this->recur_total = number_format($this->recur_total + $line_item->recur_total,2, '.', '');
 		
 		$line_item->commitUpdateLineItem();
 		
@@ -194,13 +194,13 @@ class invoicehandler extends jrportal_invoice
 			$line_item->inv_id				= $this->id;
 
 			$i_total = ((float)$line_item->init_price*(int)$line_item->init_qty)-(float)$line_item->init_discount;
-			$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2);
+			$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2, '.', '');
 			$line_item->init_total = $i_total + $init_toal_tax;
 
 			$this->init_total = $this->init_total + $line_item->init_total;
 
 			$r_total = ((float)$line_item->recur_price*(int)$line_item->recur_qty)-(float)$line_item->recur_discount;
-			$recur_total_tax=number_format(($r_total/100)*$line_item->tax_rate,2);
+			$recur_total_tax=number_format(($r_total/100)*$line_item->tax_rate,2, '.', '');
 			$line_item->recur_total = $r_total + $recur_total_tax;
 
 			$this->recur_total = $this->recur_total + $line_item->recur_total;
