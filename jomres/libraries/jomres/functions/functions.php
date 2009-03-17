@@ -1441,12 +1441,12 @@ function saveHotelSettings()
 				if ($oldSettingVal!=$v)
 					{
 					//echo $oldSettingKey. ' '.$oldSettingVal.'<br>';
-					$query="SELECT uid FROM #__jomres_settings WHERE property_uid LIKE '".(int)$property_uid."' and akey LIKE '".substr( $k, 4 )."'";
+					$query="SELECT uid FROM #__jomres_settings WHERE property_uid = '".(int)$property_uid."' and akey = '".substr( $k, 4 )."'";
 					$result=doSelectSql($query);
 					if (count($result)==0)
 						$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$property_uid."','".substr( $k, 4 )."','".$v."')";
 					else
-						$query="UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid LIKE '".(int)$property_uid."' and akey LIKE '".substr( $k, 4 )."'";
+						$query="UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int)$property_uid."' and akey = '".substr( $k, 4 )."'";
 					//echo $query."<br>";
 					doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
 					}
@@ -1457,7 +1457,7 @@ function saveHotelSettings()
 	/*
 	if (!isset($_POST['cfg_currencyCodes']) || empty($_POST['cfg_currencyCodes'])	) // The currency codes list is empty, update the value field with an empty string
 		{
-		$query="UPDATE #__jomres_settings SET `value`='' WHERE property_uid LIKE '".(int)$property_uid."' and akey LIKE 'currencyCodes'";
+		$query="UPDATE #__jomres_settings SET `value`='' WHERE property_uid = '".(int)$property_uid."' and akey = 'currencyCodes'";
 		doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
 		}
 	*/
@@ -2005,7 +2005,7 @@ function importSettings($property_uid,$source_property_uid=0)
 		}
 	else  // We have created a new property and are inserting their default settings into the db by pulling the default settings from the 0 property uid list
 		{
-		$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = ".$source_property_uid." AND akey LIKE '".$k."'";
+		$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = ".$source_property_uid." AND akey = '".$k."'";
 		$settingsList=doSelectSql($query);
 		foreach ($settingsList as $set)
 			{
@@ -2019,12 +2019,12 @@ function importSettings($property_uid,$source_property_uid=0)
 // Companion to the importSettings function above
 function insertSetting($property_uid,$k,$v)
 	{
-	$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '".(int)$property_uid."' AND akey LIKE '".$k."'";
+	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '".(int)$property_uid."' AND akey = '".$k."'";
 	$settingsList=doSelectSql($query);
 	if (count($settingsList)==0)
 		$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$property_uid."','".$k."','".$v."')";
 	else
-		$query="UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid LIKE '".(int)$property_uid."' and akey LIKE '".$k."'";
+		$query="UPDATE #__jomres_settings SET `value`='".$v."' WHERE property_uid = '".(int)$property_uid."' and akey = '".$k."'";
 	return doInsertSql($query,'');
 	}
 
@@ -2943,7 +2943,7 @@ function registerProp_step2()
 	$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
 	$propertyFeaturesArray=explode(",",$propertyFeatures);
 
-	$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid LIKE '0' ORDER BY hotel_feature_abbv ";
+	$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 	$propertyFeaturesList=doSelectSql($query);
 	if (count($propertyFeaturesList)>0)
 		{

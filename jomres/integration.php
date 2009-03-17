@@ -165,7 +165,7 @@ define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'te
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if (!strstr($scriptname,'install_jomres.php'))
 	{
-	$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey' LIMIT 1";
+	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey' LIMIT 1";
 	$license_key=doSelectSql($query,1);
 	}
 else  // We're running install_jomres.php

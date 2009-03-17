@@ -44,12 +44,12 @@ class j02272publishprop {
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
-		$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+		$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid = '".(int)$defaultProperty."'";
 		$published = doSelectSql($query,1);
 		if ($published)
-			$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+			$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = '".(int)$defaultProperty."'";
 		else
-			$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+			$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '".(int)$defaultProperty."'";
 		if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) returnToPropertyConfig("");
 		}
 

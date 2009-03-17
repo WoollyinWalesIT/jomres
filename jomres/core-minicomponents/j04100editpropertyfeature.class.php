@@ -47,7 +47,7 @@ class j04100editpropertyfeature {
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
 		if ($propertyFeatureUid)
 			{
-			$query = "SELECT hotel_feature_abbv,hotel_feature_full_desc,property_uid FROM #__jomres_hotel_features WHERE hotel_features_uid  LIKE '".(int)$propertyFeatureUid."' AND property_uid LIKE '".(int)$defaultProperty."'";
+			$query = "SELECT hotel_feature_abbv,hotel_feature_full_desc,property_uid FROM #__jomres_hotel_features WHERE hotel_features_uid  = '".(int)$propertyFeatureUid."' AND property_uid = '".(int)$defaultProperty."'";
 			$pFeatureList =doSelectSql($query);
 			foreach($pFeatureList as $pFeature)
 				{

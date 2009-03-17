@@ -47,7 +47,7 @@ class j04090deleteroomfeature {
 		//Lets delete this room feature
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOMFEATURE_DELETED',_JOMRES_COM_MR_ROOMFEATURE_DELETED,FALSE);
 		// First we need to check that the feature isn't recorded against any rooms. If it is, we can't move forward
-		$query="SELECT room_features_uid,propertys_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+		$query="SELECT room_features_uid,propertys_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 		$roomFeaturesList =doSelectSql($query);
 		$safeToDelete=TRUE;
 		foreach($roomFeaturesList as $roomFeature)

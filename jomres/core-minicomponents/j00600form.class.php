@@ -49,7 +49,7 @@ class j00600form {
 
 		//$specialReqs=jomresGetParam( $_POST, 'specialReqs', "" );
 		//$output['HIDDEN']='<input type="hidden" name="specialReqs" value="'.$specialReqs.'">';
-		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid LIKE '".(int)$bookingdata['property_uid']."' AND plugin LIKE '$plugin' ";
+		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$bookingdata['property_uid']."' AND plugin = '$plugin' ";
 		$settingsList=doSelectSql($query);
 		foreach ($settingsList as $set)
 			{

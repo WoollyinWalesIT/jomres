@@ -47,7 +47,7 @@ class j04060deleteroomtype {
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOMCLASS_DELETED',_JOMRES_COM_MR_ROOMCLASS_DELETED,FALSE);
 		// First we need to check that the room type isn't recorded against any rooms or tariffs. If it is, we can't move forward
 		$safeToDelete=TRUE;
-		$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE room_classes_uid LIKE '".(int)$roomClassUid."' AND propertys_uid LIKE '".(int)$defaultProperty."' LIMIT 1";
+		$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE room_classes_uid = '".(int)$roomClassUid."' AND propertys_uid = '".(int)$defaultProperty."' LIMIT 1";
 		$propertyFeaturesList =doSelectSql($query);
 		if (count($propertyFeaturesList))
 			{
@@ -55,7 +55,7 @@ class j04060deleteroomtype {
 			trigger_error (_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS, E_USER_ERROR);
 			echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS',_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS,FALSE)."'); ; </script>\n";
 			}
-		$query="SELECT roomclass_uid FROM #__jomres_rates WHERE roomclass_uid LIKE '".(int)$roomClassUid."' AND property_uid LIKE '".(int)$defaultProperty."' LIMIT 1";
+		$query="SELECT roomclass_uid FROM #__jomres_rates WHERE roomclass_uid = '".(int)$roomClassUid."' AND property_uid = '".(int)$defaultProperty."' LIMIT 1";
 		$propertyFeaturesList =doSelectSql($query);
 		if (count($propertyFeaturesList))
 			{
@@ -65,7 +65,7 @@ class j04060deleteroomtype {
 			}
 	 	if ($safeToDelete)
 	 		{
-			$query="DELETE FROM #__jomres_room_classes  WHERE room_classes_uid LIKE '".(int)$roomClassUid."' AND property_uid LIKE '".(int)$defaultProperty."'";
+			$query="DELETE FROM #__jomres_room_classes  WHERE room_classes_uid = '".(int)$roomClassUid."' AND property_uid = '".(int)$defaultProperty."'";
 			if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_ROOM_TYPE',_JOMRES_MR_AUDIT_DELETE_ROOM_TYPE,FALSE)))
 				returnToPropertyConfig($saveMessage);
 			trigger_error ("Unable to delete from room classes table, mysql db failure", E_USER_ERROR);

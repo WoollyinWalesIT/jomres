@@ -90,7 +90,7 @@ class j02310regprop2 {
 		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
 		$propertyFeaturesArray=explode(",",$propertyFeatures);
 
-		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid LIKE '0' ORDER BY hotel_feature_abbv ";
+		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList=doSelectSql($query);
 		if (count($propertyFeaturesList)>0)
 			{

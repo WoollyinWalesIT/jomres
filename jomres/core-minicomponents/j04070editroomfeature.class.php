@@ -46,7 +46,7 @@ class j04070editroomfeature {
 		$defaultProperty=getDefaultProperty();
 		if ($featureUid!="")
 			{
-			$query = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE room_features_uid LIKE '".(int)$featureUid."' AND property_uid LIKE '".(int)$defaultProperty."'";
+			$query = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE room_features_uid = '".(int)$featureUid."' AND property_uid = '".(int)$defaultProperty."'";
 			$roomFeatureList =doSelectSql($query);
 			foreach($roomFeatureList as $roomFeature)
 				{

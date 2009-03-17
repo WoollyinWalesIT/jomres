@@ -120,7 +120,7 @@ class j16000updates
 				return;
 				}
 
-			$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey'";
+			$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 			$settingsList=doSelectSql($query);
 			if (count($settingsList) >0)
 				{

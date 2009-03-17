@@ -46,7 +46,7 @@ class j04040editroomtype {
 		$defaultProperty=getDefaultProperty();
 		if ($classUid!="")
 			{
-			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc FROM #__jomres_room_classes WHERE room_classes_uid LIKE '".(int)$classUid."' AND property_uid LIKE '".(int)$defaultProperty."'";
+			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$classUid."' AND property_uid = '".(int)$defaultProperty."'";
 			$roomClassList =doSelectSql($query);
 			foreach($roomClassList as $roomClass)
 				{

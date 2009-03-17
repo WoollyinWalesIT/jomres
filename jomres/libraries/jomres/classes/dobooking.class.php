@@ -1530,7 +1530,7 @@ class jomres_booking
 					{
 					if (!$this->amend_contract)
 						{
-						$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date LIKE '$eachDate' AND property_uid = '$this->property_uid'";
+						$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date = '$eachDate' AND property_uid = '$this->property_uid'";
 						$datelist=doSelectSql($query);
 						if (count($datelist)>0)
 							{
@@ -1616,7 +1616,7 @@ class jomres_booking
 				{
 				if (!$amend_contract)
 				{
-				$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date LIKE '$eachDate' AND property_uid = '$this->property_uid'";
+				$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date = '$eachDate' AND property_uid = '$this->property_uid'";
 				$datelist=doSelectSql($query);
 				if (count($datelist)>0)
 					{
@@ -2677,7 +2677,7 @@ class jomres_booking
 		{
 		global $property_uid;
 		$dropDownList="";
-		$query = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid LIKE '$property_uid' ORDER BY surname";
+		$query = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid = '$property_uid' ORDER BY surname";
 		$existingCustomers=doSelectSql($query);
 		$ec=array();
 		if (count($existingCustomers)>0 )
@@ -2873,13 +2873,13 @@ class jomres_booking
 		{
 		$room=$rtArray[0];
 		/*
-		$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE room_uid LIKE '".$room."'";
+		$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE room_uid = '".$room."'";
 		$roomsList=doSelectSql($query);
 		foreach ($roomsList as $roomClass)
 			{
 			$room_class=$roomClass->room_classes_uid;
 			}
-		$query="SELECT rates_uid FROM #__jomres_rates WHERE rates_uid LIKE '".$rtArray[1]."' AND roomclass_uid LIKE '".$room_class."' AND property_uid = '$this->property_uid' ";
+		$query="SELECT rates_uid FROM #__jomres_rates WHERE rates_uid = '".$rtArray[1]."' AND roomclass_uid = '".$room_class."' AND property_uid = '$this->property_uid' ";
 		$ratesList=doSelectSql($query);
 		*/
 		$ratesList=array();
@@ -2942,7 +2942,7 @@ class jomres_booking
 	function getAllRoomUidsForProperty()
 		{
 		$room_uidsArray=array();
-		$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '$this->property_uid'";
+		$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '$this->property_uid'";
 		$roomsList=doSelectSql($query);
 		foreach ($roomsList as $rooms)
 			{
