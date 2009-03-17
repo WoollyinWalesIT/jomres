@@ -58,8 +58,11 @@ class j00011manager {
 		$output['HLISTEXTRAS']			=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS',_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS,false,true);
 		$output['LISTBLACKBOOKINGSLINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings");
 		$output['HLISTBLACKBOOKINGS']	=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS,false,true);
-		$output['EDITLANGLINK']			=jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomTextAll");
-		$output['HEDITLANG']			=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE',_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE,false,true);
+		//$output['EDITLANGLINK']			=jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomTextAll");
+		//$output['HEDITLANG']			=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE',_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE,false,true);
+		
+		
+		
 		$output['HBATCHUPLOADS']		=jr_gettext('_JOMRES_FRONT_IMAGEUPLOADS',_JOMRES_FRONT_IMAGEUPLOADS,false,true);
 		$output['BATCHUPLOADSLINK']		=jomresURL(JOMRES_SITEPAGE_URL."&task=bUploadForm");
 		$output['HSTATS']				=jr_gettext('_JRPORTAL_STATS_PATETITLE',_JRPORTAL_STATS_PATETITLE,false,true);
@@ -95,8 +98,8 @@ class j00011manager {
 			$jrtb .= $jrtbar->menubarItem('audittrail',$output['SHOWAUDITTRAILLINK'],$output['HSHOWAUDITTRAIL']);
 			$jrtb .= $jrtbar->menubarItem('guesttypes',$output['CUSTOMERTYPEADMINLINK'],$output['HCUSTOMERTYPEADMIN']);
 			$jrtb .= $jrtbar->menubarItem('extras',$output['LISTEXTRASLINK'],$output['HLISTEXTRAS']);
-			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-				$jrtb .= $jrtbar->menubarItem('editlanguage',$output['EDITLANGLINK'],$output['HEDITLANG']);
+			//if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+			//	$jrtb .= $jrtbar->menubarItem('editlanguage',$output['EDITLANGLINK'],$output['HEDITLANG']);
 			$jrtb .= $jrtbar->menubarItem('slidwshowimages',$output['BATCHUPLOADSLINK'],$output['HBATCHUPLOADS']);
 			$jrtb .= $jrtbar->menubarItem('stats',$output['STATSLINK'],$output['HSTATS']);
 			$jrtb .= $jrtbar->spacer(32);

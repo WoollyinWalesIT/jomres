@@ -98,7 +98,7 @@ class j02114listcustomertypes {
 				$rw['POSNEG']="+";
 			else
 				$rw['POSNEG']="-";
-			$rw['VARIANCE']=number_format($ex->variance,2);
+			$rw['VARIANCE']=number_format($ex->variance,2, '.', '');
 			$rw['PUBLISHLINK']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=publishCustomerType&no_html=1&id=".($ex->id) ).'"><img src="'.$img.'" border="0"></a>';
 
 			$jrtbar = new jomres_toolbar();

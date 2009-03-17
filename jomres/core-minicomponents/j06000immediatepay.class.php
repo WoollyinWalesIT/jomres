@@ -66,7 +66,7 @@ class j06000immediatepay
 		$this->add_field('custom', $invoice_id);
 		//$this->add_field('image_url', "https://www.yoursite.com/logo.gif");
 		$this->add_field('no_shipping', "1");
-		$this->add_field('amount', number_format($invoice->init_total,2));
+		$this->add_field('amount', number_format($invoice->init_total,2, '.', ''));
 		$this->add_field('return', JOMRES_SITEPAGE_URL);
 		//$this->add_field('cancel_return', JOMRES_SITEPAGE_URL.'&task=canc_subscribed&Itemid='.$Itemid);
 		$this->add_field('notify_url', $ourCallbackURL.'&action=ipn');
