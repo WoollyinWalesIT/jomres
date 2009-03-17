@@ -347,12 +347,16 @@ class j00013dashboard extends jomres_dashboard
 		   	{
 			if ($contract_uid!="")
 				{
+				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
+				/*
 				if (!$blackBookingLink)
 					$overlib=$this->getOverlibBookingDeets($contract_uid);
 				else
 					$overlib="";
-				$link='<a href="'.jomresURL($viewbookinglink).'" class="rescal_dashboard" '.$overlib.' style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>';
-				$output.=$link;
+				*/
+				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
+
+				$output.=jomres_makeTooltip(date ("j",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.$viewbookinglink.'">'.(date ("j",$currdate)).'</a>',"");
 		   		}
 		   	else
 				{
