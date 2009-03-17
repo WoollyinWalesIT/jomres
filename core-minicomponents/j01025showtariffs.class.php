@@ -127,7 +127,7 @@ class j01025showtariffs {
 
 					if ($tariff->allow_we=="0")
 						$r['NOTWEEKENDS']=jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND',_JOMRES_FRONT_TARIFFS_NOTWEEKEND);
-					$theRate=number_format(($mrConfig['ratemultiplier']*$tariff->roomrateperday),2);
+					$theRate=number_format(($mrConfig['ratemultiplier']*$tariff->roomrateperday),2, '.', '');
 
 					if ($mrConfig['showGoogleCurrencyLink']=="1")
 						{

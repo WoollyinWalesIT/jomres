@@ -146,7 +146,7 @@ class j01020showtariffs {
 
 						if ($tariff->allow_we=="0")
 							$output['NOTWEEKENDS']=jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND',_JOMRES_FRONT_TARIFFS_NOTWEEKEND);
-						$theRate=number_format(($mrConfig['ratemultiplier']*$tariff->roomrateperday),2);
+						$theRate=number_format(($mrConfig['ratemultiplier']*$tariff->roomrateperday),2, '.', '');
 						if ($mrConfig['showGoogleCurrencyLink']=="1")
 							{
 							$theLink='http://www.xe.com/pca/input.cgi?From='.$mrConfig['currencyCode'].'&Amount='.$theRate;

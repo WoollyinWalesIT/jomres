@@ -1,33 +1,32 @@
 
 Jomres 4alpha1
 
-Major restructuring of Jomres to allow it to reference CMS Specific functions, which are include on start and are different depending on the CMS detected. Allows Jomres to be used in more than just Joomla. Jomres v4 is not backwardly compatible with previous installations of Jomres v3.
+Major restructuring of Jomres to allow it to reference CMS Specific functions, which are included on start and are different depending on the CMS detected. Allows Jomres to be used in more than just Joomla. Jomres v4 is not backwardly compatible with previous installations of Jomres v3.
 Replaced overlib calls. We'll now use jquery's beauty tips library instead.
 Added custom fields for the booking form.
 Added administrator area template editing, details are saved to the DB instead of to a file, so there shouldn't be problems with upgrading.
 Added quantity selection for optional extras.
+Added invoice plugin to core minicomponents
+Added cronjobs and optimise plugin to core minicomponents
+Added jomres language switching feature. 
+Added on hover to property details page so that slideshow, rooms list and tariffs list don't need to be clicked to see them.
+Added integrated search feature for non-Joomla users so that they've got a search function until such time as modules can be written for them. Joomla users can also use this feature.
+Added Third party plugin installer to the Jomres plugin manager. Dummy plugin example to follow.
 
-
-
+Deleted old php4 captcha file. PHP4 no longer supported by jomres.
 Disabled show only availability calendar option as it's N/A for v4.
 Added check for a define JOMRES_RETURNDATA. If defined, we'll add the contents of the output buffer to JOMRES_RETURNDATA_CONTENT instead of just flushing (echoing) what Jomres has generated.
 Modified property list page variable to plistpage because "page" was interfering with CMSMSs default "page" and not showing the dashboard.
 Fixed an issue where manager names weren't being correctly listed in edit profile associated with their property. The managers were correctly associated, just not listed correctly in the page.
 Tweaked save normal mode tariffs so that single digit rooms are renumbered to 01, 02 etc.
 Modified reg prop handling as using web dev toolbar to auto populate fields resulted in SRP always being selected as property type.
-Added invoice plugin to core minicomponents
-Added cronjobs and optimise plugin to core minicomponents
-Added jomres language switching feature. 
 Tidied up some css (switched off that jomres_button)
 Tidied up some code in the cms_specific_functions.php files
 Removed the "loading" word from jquery beauty tips.
-Added on hover to property details page so that slideshow, rooms list and tariffs list don't need to be clicked to see them.
 Added list limit config option to site config, and added a random search limit description to the language file.
-Added integrated search feature for non-Joomla users so that they've got a search function until such time as modules can be written for them.
 Removed mapping link code from various scripts. 
 Tweaked layout of property details a little. 
 Removed old property_details html file.
-Deleted old php4 captcha file. PHP4 no longer supported by jomres.
 Modified captcha minicomponent to remove old captcha images after session timeout.
 Moved slideshow to top in composite property details.
 Removed size limiting on popup images in tooltops
@@ -42,11 +41,9 @@ Added hazel's changes to remove dl/dt
 Gallery link renamed to website link in lang files
 Hazel's timestamp col changes for dobooking.
 Images optimised for size, Jomres zip is roughly 1Mb smaller now.
-Third party plugin installer written. Dummy plugin example to follow.
 Removed old tabbed composite property details. Whilst it was ok, it didn't work in IE.
 Added detected CMS to showplugins script for when it calls the updates server.
 Added horizontal rooms to booking form, doing away with the old "rooms list on the righthandside" of Jomres v2 & v3. 
-
 
 
 <hr>

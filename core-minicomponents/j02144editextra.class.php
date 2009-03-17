@@ -135,7 +135,7 @@ class j02144editextra {
 				{
 				$output['EXDESCRIPTION']= stripslashes($ex->desc);
 				$output['EXNAME']= stripslashes($ex->name);
-				$output['EXPRICE']= number_format($ex->price,2);
+				$output['EXPRICE']= number_format($ex->price,2, '.', '');
 				$output['MAXQUANTITYDROPDOWN'] = jomresHTML::integerSelectList( 01, 1000, 1, "maxquantity", 'size="1" class="inputbox"', $ex->maxquantity, "%02d" );
 
 				}

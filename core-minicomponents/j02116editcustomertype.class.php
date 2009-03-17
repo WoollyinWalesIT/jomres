@@ -83,7 +83,7 @@ class j02116editcustomertype {
 
 			$output['ISPERCENTAGE']=jomresHTML::selectList( $yesno, 'is_percentage','class="inputbox" size="1"', 'value', 'text', $ex['is_percentage']);
 			$output['POSNEG']=jomresHTML::selectList( $posneg, 'posneg','class="inputbox" size="1"', 'value', 'text', $ex['posneg']);
-			$output['VARIANCE']=number_format($ex['variance'],2);
+			$output['VARIANCE']=number_format($ex['variance'],2, '.', '');
 			}
 		else
 			{

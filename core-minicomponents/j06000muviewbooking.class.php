@@ -405,7 +405,7 @@ class j06000muviewbooking {
 			</tr>
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED).'</td>
-				<td>'.$mrConfig['currency'].number_format($booking_deposit_required,2).'</td>
+				<td>'.$mrConfig['currency'].number_format($booking_deposit_required,2, '.', '').'</td>
 			</tr>
 			<tr>
 			<td>'.jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL',_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL).'</td>
@@ -421,7 +421,7 @@ class j06000muviewbooking {
 			</tr>
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON).'</td>
-				<td>'.$mrConfig['currency'].number_format($single_person_suppliment,2).'</td>
+				<td>'.$mrConfig['currency'].number_format($single_person_suppliment,2, '.', '').'</td>
 			</tr>
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_FRONT_ROOMTAX',_JOMRES_COM_FRONT_ROOMTAX).'</td>
@@ -459,14 +459,14 @@ class j06000muviewbooking {
 				$contentPanel->setcontent('
 					<tr>
 						<td>&nbsp;</td>
-						<td>'.($theExtras->name).",  ".$mrConfig['currency'].number_format($theExtras->price,2).'</td>
+						<td>'.($theExtras->name).",  ".$mrConfig['currency'].number_format($theExtras->price,2, '.', '').'</td>
 					</tr>');
 					}
 			}
 		$contentPanel->setcontent('
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE',_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE).'</td>
-				<td>'.$mrConfig['currency'].number_format($extrasOptionsValue,2).'</td>
+				<td>'.$mrConfig['currency'].number_format($extrasOptionsValue,2, '.', '').'</td>
 			</tr>
 			<tr>
 				<td><hr></td>
@@ -481,7 +481,7 @@ class j06000muviewbooking {
 				{
 				$service_description=$extras->service_description;
 				$service_value=$extras->service_value;
-				$contentPanel->setcontent($service_description.' '.$mrConfig['currency'].number_format($service_value,2).'<br>');
+				$contentPanel->setcontent($service_description.' '.$mrConfig['currency'].number_format($service_value,2, '.', '').'<br>');
 				$otherServiceTotal=$otherServiceTotal+$service_value;
 				}
 			}
@@ -494,12 +494,12 @@ class j06000muviewbooking {
 			</tr>
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL',_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL).'</td>
-				<td>'.$mrConfig['currency'].number_format($otherServiceTotal+$booking_contract_total,2).'</td>
+				<td>'.$mrConfig['currency'].number_format($otherServiceTotal+$booking_contract_total,2, '.', '').'</td>
 			</tr>');
 			if ($booking_deposit_paid=="1")
-				$remaindertopay=number_format(($otherServiceTotal+$booking_contract_total)-$booking_deposit_required,2);
+				$remaindertopay=number_format(($otherServiceTotal+$booking_contract_total)-$booking_deposit_required,2, '.', '');
 			else
-				$remaindertopay=number_format($otherServiceTotal+$booking_contract_total,2);
+				$remaindertopay=number_format($otherServiceTotal+$booking_contract_total,2, '.', '');
 			$contentPanel->setcontent('
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY',_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY).'</td>

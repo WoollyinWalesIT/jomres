@@ -113,7 +113,7 @@ if ($task!="error")
 	{
 	$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
 	$defaultProperty=(int)$thisJRUser->currentproperty;
-	$thisJRUser->userIsManager=$thisJRUser->userIsManager;
+	//$thisJRUser->userIsManager=$thisJRUser->userIsManager;
 	$accessLevel=$thisJRUser->accesslevel;
 	$usersProperty=$thisJRUser->defaultproperty;
 	if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered)
@@ -389,7 +389,7 @@ else
 
 $option="com_jomres";
 $componentArgs=array();
-$MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done. Probably not required.
+$MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done.
 $componentArgs=array();
 
 if (!isset($jrConfig['cssColourScheme']) )
@@ -610,12 +610,14 @@ if ($numberOfPropertiesInSystem>0)
 				userHasBeenLoggedOut();
 		break;
 		#########################################################################################
+		/*
 		case 'editCustomTextAll':
 			if ($thisJRUser->userIsManager  && $accessLevel ==2 )
 				editCustomTextAll();
 			else
 				userHasBeenLoggedOut();
 		break;
+		*/
 		#########################################################################################
 		case 'editCustomText':
 			if ($thisJRUser->userIsManager  && $accessLevel ==2 )
