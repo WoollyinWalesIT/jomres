@@ -321,8 +321,8 @@ class j00015viewproperty
 				$property['HPOLICIESDISCLAIMERS']="";
 
 			$property_deets[]=$property;
-			if ($mrConfig['showOnlyAvailabilityCalendar']=="0")
-				{
+			//if ($mrConfig['showOnlyAvailabilityCalendar']=="0")
+			//	{
 				$tmpl = new patTemplate();
 				$tmpl->addRows( 'property_deets', $property_deets );
 				$tmpl->addRows( 'featurelist', $featureList);
@@ -352,6 +352,7 @@ class j00015viewproperty
 					}
 				else
 					{
+					
 					if ($jrConfig['composite_property_details']!="1")
 						{
 						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -394,7 +395,7 @@ class j00015viewproperty
 					$componentArgs=array('showheader'=>false);
 					$MiniComponents->triggerEvent('01020',$componentArgs); //showTariffs();
 					}
-				}
+			//	}
 
 			if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
 				showSingleRoomPropAvl($property_uid);

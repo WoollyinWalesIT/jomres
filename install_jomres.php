@@ -232,8 +232,7 @@ if ($folderChecksPassed)
 					insertSampleData();
 					echo "Importing configuration settings to database<br>";
 					importSettings(0);
-					echo "Making <i>admin</i> a super property manager<br>";
-					makeAdminPropertyManager();
+
 					echo "Creating images folders<br>";
 					copyImages();
 					saveKey2db($lkey);
@@ -522,7 +521,7 @@ function showCompletedText()
 	global $jomresConfig_live_site;
 	echo '<br>Thank you for installing Jomres. <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'" target="_blank" >You may now go to your CMS\'s administrator area and configure Jomres</a><br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
-	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality simply log in as "admin"</a><br>';
+	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality log in as "admin" and go to your site profiles and assign a frontend user as a property manager.</a><br>';
 	}
 
 
