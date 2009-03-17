@@ -110,6 +110,9 @@ if ($folderChecksPassed)
 	else
 		echo "Unable to create main Jomres admin menu option<br>";
 		
+echo "Making <i>admin</i> a super property manager<br>";
+makeAdminPropertyManager();
+
 ?>
 
 
