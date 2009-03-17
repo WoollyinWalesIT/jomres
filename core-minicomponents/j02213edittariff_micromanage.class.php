@@ -165,7 +165,7 @@ class j02213edittariff_micromanage {
 				}
 			else
 				{
-				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 				$original_room_classes_uid =doSelectSql($query,1);
 				
 				$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE `room_classes_uid` = '".$original_room_classes_uid."' ORDER BY room_class_abbv ";

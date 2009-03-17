@@ -84,7 +84,7 @@ class j04020saveroom {
 			$roomClass					= jomresGetParam( $_POST, 'roomClass', 0 );
 			if ($roomClass > 0)
 				{
-				$query = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+				$query = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 				$room_uid =doSelectSql($query,1);
 				$query="UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClass' WHERE room_uid='".(int)$room_uid."' AND propertys_uid='".(int)$defaultProperty."'";
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_ROOM',_JOMRES_MR_AUDIT_UPDATE_ROOM,FALSE))) 

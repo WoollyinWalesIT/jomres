@@ -46,7 +46,7 @@ class j00605paypal {
 		gateway_log(serialize($bookingdata));
 		$bookingdata=$componentArgs['bookingdata'];
 		$plugin="paypal";
-		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid LIKE '".(int)$bookingdata['property_uid']."' AND plugin LIKE '".$plugin."' ";
+		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$bookingdata['property_uid']."' AND plugin = '".$plugin."' ";
 		$settingsList=doSelectSql($query);
 		foreach ($settingsList as $set)
 			{

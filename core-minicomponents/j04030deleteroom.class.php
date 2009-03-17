@@ -47,7 +47,7 @@ class j04030deleteroom {
 		$defaultProperty=getDefaultProperty();
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOM_DELETED',_JOMRES_COM_MR_ROOM_DELETED,FALSE);
 		// First we need to check that the room isn't booked, if it is, we can't move forward
-		$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE room_uid LIKE '".(int)$roomUid."' AND property_uid LIKE '".(int)$defaultProperty."' LIMIT 1";
+		$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$roomUid."' AND property_uid = '".(int)$defaultProperty."' LIMIT 1";
 		$roomList =doSelectSql($query);
 		if (count($roomList)>0)
 			{
@@ -57,11 +57,11 @@ class j04030deleteroom {
 			}
 		else
 			{
-			$query="SELECT property_uid FROM #__jomres_room_images WHERE roomid LIKE '".(int)$roomUid."' AND property_uid LIKE '".(int)$defaultProperty."'";
+			$query="SELECT property_uid FROM #__jomres_room_images WHERE roomid = '".(int)$roomUid."' AND property_uid = '".(int)$defaultProperty."'";
 			$resultList =doSelectSql($query);
 			if (count($resultList)>0)
 			dropImage($defaultProperty,"room",$roomUid);
-			$query="DELETE FROM #__jomres_rooms WHERE room_uid LIKE '".(int)$roomUid."' AND propertys_uid LIKE '".(int)$defaultProperty."'";
+			$query="DELETE FROM #__jomres_rooms WHERE room_uid = '".(int)$roomUid."' AND propertys_uid = '".(int)$defaultProperty."'";
 			if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_ROOM',_JOMRES_MR_AUDIT_DELETE_ROOM,FALSE))) returnToPropertyConfig($saveMessage);
 			trigger_error ("Sql error when deleting room", E_USER_ERROR);
 			}

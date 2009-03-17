@@ -45,7 +45,7 @@ class j00605form {
 		$validCCtypes=array('AMEX','Discover','MasterCard','Visa');
 		$bookingdata=$componentArgs['bookingdata'];
 		$plugin="form";
-		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid LIKE '".(int)$bookingdata['requestedProperty']."' AND plugin LIKE '$plugin' ";
+		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$bookingdata['requestedProperty']."' AND plugin = '$plugin' ";
 		$settingsList=doSelectSql($query);
 		foreach ($settingsList as $set)
 			{

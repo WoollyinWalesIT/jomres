@@ -173,12 +173,12 @@ function saveSiteConfig (  )
 			if ($k=="cfg_licensekey")
 				{
 				$lkey = trim($v);
-				$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey'";
+				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 				$settingsList=doSelectSql($query);
 				if (count($settingsList)==0)
 					$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('0','jomres_licensekey','$lkey')";
 				else
-					$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid LIKE '0' and akey LIKE 'jomres_licensekey'";
+					$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
 				$result=doInsertSql($query,'');
 				$result=unlink($jomresConfig_absolute_path.'/media/key.php');
 				}
@@ -200,12 +200,12 @@ function saveSiteConfig (  )
 						}
 					}
 
-				$query="SELECT id FROM #__jomres_site_settings WHERE akey LIKE '".substr( $k, 4 )."'";
+				$query="SELECT id FROM #__jomres_site_settings WHERE akey = '".substr( $k, 4 )."'";
 				$result=doSelectSql($query);
 				if (count($result)==0)
 					$query="INSERT INTO #__jomres_site_settings (akey,value) VALUES ('".substr( $k, 4 )."','".$v."')";
 				else
-					$query="UPDATE #__jomres_site_settings SET `value`='".$v."' WHERE akey LIKE '".substr( $k, 4 )."'";
+					$query="UPDATE #__jomres_site_settings SET `value`='".$v."' WHERE akey = '".substr( $k, 4 )."'";
 				//echo $query."<br>";
 				doInsertSql($query,"");
 				}

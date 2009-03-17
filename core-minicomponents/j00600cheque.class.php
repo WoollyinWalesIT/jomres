@@ -42,7 +42,7 @@ class j00600cheque {
 		$plugin="cheque";
 		$bookingdata=$componentArgs['bookingdata'];
 		$output=array();
-		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid LIKE '".(int)$bookingdata['property_uid']."' AND plugin LIKE '$plugin' ";
+		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$bookingdata['property_uid']."' AND plugin = '$plugin' ";
 		$settingsList=doSelectSql($query);
 		foreach ($settingsList as $set)
 			{

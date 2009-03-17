@@ -39,7 +39,7 @@ class j00510cheque {
 		$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,$language,FALSE) );
 		$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,$language,FALSE) );
 
-		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid LIKE '$defaultProperty' AND plugin LIKE '$plugin' ";
+		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '$defaultProperty' AND plugin = '$plugin' ";
 		$settingsList=doSelectSql($query);
 		foreach ($settingsList as $set)
 			{

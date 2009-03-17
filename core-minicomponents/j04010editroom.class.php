@@ -64,7 +64,7 @@ class j04010editroom {
 			if ($roomUid)
 				{
 
-				$query = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment  FROM #__jomres_rooms WHERE  room_uid  LIKE '".(int)$roomUid."' AND propertys_uid LIKE '".(int)$defaultProperty."'";
+				$query = "SELECT room_classes_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking,singleperson_suppliment  FROM #__jomres_rooms WHERE  room_uid  = '".(int)$roomUid."' AND propertys_uid = '".(int)$defaultProperty."'";
 				$roomList =doSelectSql($query);
 				foreach ($roomList as $room)
 					{
@@ -106,7 +106,7 @@ class j04010editroom {
 			else
 				$roomFeaturesArray=array();
 			$featureListTxt="";
-			$query = "SELECT  room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid LIKE '".(int)$defaultProperty."' ORDER BY feature_description ";
+			$query = "SELECT  room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '".(int)$defaultProperty."' ORDER BY feature_description ";
 			$roomFeaturesList =doSelectSql($query);
 			foreach($roomFeaturesList as $roomFeature)
 				{
@@ -117,7 +117,7 @@ class j04010editroom {
 				}
 			// Now to find the property image
 			$roomImageLocation="";
-			$query="SELECT filelocation FROM #__jomres_room_images WHERE roomid LIKE '".(int)$roomUid."'";
+			$query="SELECT filelocation FROM #__jomres_room_images WHERE roomid = '".(int)$roomUid."'";
 			$roomImageList =doSelectSql($query);
 			if (count($roomImageList)>0)
 				{
@@ -184,7 +184,7 @@ class j04010editroom {
 			}
 		else
 			{
-			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 			$original_room_classes_uid =doSelectSql($query,1);
 			echo '<form action=JOMRES_SITEPAGE_URL."" method="post" name="adminForm">';
 			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";

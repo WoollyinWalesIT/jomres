@@ -63,7 +63,7 @@ class j04200editproperty {
 			property_description,property_checkin_times,
 			property_area_activities,property_driving_directions,property_airports,
 			property_othertransport,property_policies_disclaimers,stars,ptype_id,`lat`,`long`,`metatitle`,`metadescription`
-			FROM #__jomres_propertys WHERE  propertys_uid  LIKE '".(int)$propertyUid."' LIMIT 1";
+			FROM #__jomres_propertys WHERE  propertys_uid  = '".(int)$propertyUid."' LIMIT 1";
 			$propertyList =doSelectSql($query);
 			foreach($propertyList as $property)
 				{
@@ -229,7 +229,7 @@ class j04200editproperty {
 		$propertyFeaturesArray=explode(",",$propertyFeatures);
 
 
-		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid LIKE '0' ORDER BY hotel_feature_abbv ";
+		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList=doSelectSql($query);
 		$counter=1;
 		foreach($propertyFeaturesList as $propertyFeature)
@@ -253,7 +253,7 @@ class j04200editproperty {
 		if (isset($listTxt))
 			$output['FEATURES']=$listTxt;
 		$propertyImageLocation="";
-		$query="SELECT filelocation FROM #__jomres_property_images WHERE propertyid LIKE '".(int)$propertyUid."'";
+		$query="SELECT filelocation FROM #__jomres_property_images WHERE propertyid = '".(int)$propertyUid."'";
 		$propertyImageList =doSelectSql($query);
 		if (count($propertyImageList)>0)
 			{

@@ -46,7 +46,7 @@ class j04120deletepropertyfeature {
 		$defaultProperty=getDefaultProperty();
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_PROPERTYFEATURE_DELETED',_JOMRES_COM_MR_PROPERTYFEATURE_DELETED,FALSE);
 		// First we need to check that the feature isn't recorded against any propertys. If it is, we can't move forward
-		$query="SELECT property_features FROM #__jomres_propertys WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+		$query="SELECT property_features FROM #__jomres_propertys WHERE propertys_uid = '".(int)$defaultProperty."'";
 		$propertyFeaturesList =doSelectSql($query);
 		$safeToDelete=TRUE;
 		foreach($propertyFeaturesList as $feature)

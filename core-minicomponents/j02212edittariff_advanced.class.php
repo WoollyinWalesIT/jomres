@@ -145,7 +145,7 @@ class j02212edittariff_advanced {
 				}
 			else
 				{
-				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 				
 				$original_room_classes_uid =doSelectSql($query,1);
 

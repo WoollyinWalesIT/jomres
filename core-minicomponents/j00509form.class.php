@@ -47,7 +47,7 @@ class j00509form {
 
 		$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
 		$defaultProperty=getDefaultProperty();
-		$query="SELECT value FROM #__jomres_pluginsettings WHERE prid LIKE '".(int)$defaultProperty."' AND plugin LIKE '$plugin' AND setting LIKE 'active' AND value LIKE '1'";
+		$query="SELECT value FROM #__jomres_pluginsettings WHERE prid = '".(int)$defaultProperty."' AND plugin = '$plugin' AND setting = 'active' AND value = '1'";
 		$activeList =doSelectSql($query);
 		if (count($activeList)>0)
 			$active=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);

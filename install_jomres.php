@@ -529,12 +529,12 @@ function showCompletedText()
 function saveKey2db($lkey)
 	{
 	$lkey = trim($lkey);
-	$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey'";
+	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 	$settingsList=doSelectSql($query);
 	if (count($settingsList)==0)
 		$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('0','jomres_licensekey','$lkey')";
 	else
-		$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid LIKE '0' and akey LIKE 'jomres_licensekey'";
+		$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
 	$result=doInsertSql($query,'');
 	return $result;
 	}
@@ -1772,7 +1772,7 @@ function showGetKeyInput($lkey)
 	global $mrConfig,$lkey;
 	if (!isset($lkey) || strlen($lkey)==0 || $lkey=="X-XXXX-11-XXXXXXXXXX-XXXXXXXX" )
 		{
-		$query="SELECT value FROM #__jomres_settings WHERE property_uid LIKE '0' AND akey LIKE 'jomres_licensekey'";
+		$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 		$settingsList=doSelectSql($query);
 		if (count($settingsList) >0)
 			{
