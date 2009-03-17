@@ -46,6 +46,7 @@ class j00016composite_property_details {
 		global $mrConfig,$jrConfig;
 		
 		$property_uid=(int)$componentArgs['property_uid'];  
+		property_header($property_uid);
 		$componentArgs['property_uid']=$property_uid;
 		
 		// We will pass some of the old templates back as generated templates, whereas some of the data will be passed back as arrays to be processed into the new template.

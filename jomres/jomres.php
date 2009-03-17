@@ -1069,13 +1069,7 @@ if ($numberOfPropertiesInSystem>0)
 				$thisJRUser->set_currentproperty($property_uid);
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
 				}
-			if ($jrConfig['composite_property_details']!="1")
-				{
-				//$MiniComponents->triggerEvent('00014',$componentArgs); // Pre-View property
-				$MiniComponents->triggerEvent('00015',$componentArgs); // View property
-				}
-			else
-				$MiniComponents->triggerEvent('00016',$componentArgs);
+			$MiniComponents->triggerEvent('00016',$componentArgs);
 
 		break;
 		#########################################################################################
@@ -1084,13 +1078,7 @@ if ($numberOfPropertiesInSystem>0)
 				{
 				$componentArgs=array();
 				$componentArgs['property_uid']=$property_uid;
-				if ($jrConfig['composite_property_details']!="1")
-					{
-					//$MiniComponents->triggerEvent('00014',$componentArgs); // Pre-View property
-					$MiniComponents->triggerEvent('00015',$componentArgs); // View property
-					}
-				else
-					$MiniComponents->triggerEvent('00016',$componentArgs);
+				$MiniComponents->triggerEvent('00016',$componentArgs);
 				}
 			else
 				userHasBeenLoggedOut();
@@ -1123,13 +1111,7 @@ if ($numberOfPropertiesInSystem>0)
 						$task="viewproperty";
 						$componentArgs=array();
 						$componentArgs['property_uid']=$property_uid;
-						if ($jrConfig['composite_property_details']!="1")
-							{
-							//$MiniComponents->triggerEvent('00014',$componentArgs); // Pre-View property
-							$MiniComponents->triggerEvent('00015',$componentArgs); // View property
-							}
-						else
-							$MiniComponents->triggerEvent('00016',$componentArgs);
+						$MiniComponents->triggerEvent('00016',$componentArgs);
 						}
 					else
 						{
