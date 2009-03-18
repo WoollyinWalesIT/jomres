@@ -126,7 +126,7 @@ $jomresConfig_admin_site			= $CONFIG->admin_site;
 
 if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 	{
-	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && !strstr($scriptname,'install_jomres.php') )
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') )
 		{
 		echo '<font color="red" face="arial" size="2">Note, you haven\'t yet logged into the front end as "admin". Virtually all property configuration is performed from the front end so you should add Jomres to the main menu if you haven\'t already and log in to the front end now.</font><br/>';
 		}
