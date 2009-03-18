@@ -5825,4 +5825,446 @@ define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (mainly for recording commissio
 * @ignore
 */
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Your enquiry...');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Booking form room list show room type image');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_LISTLIMIT','Property List limit');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_LISTLIMIT_DESC','The number of propertys to show on a page after a search');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE','Integrated search feature');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','The Jomres integrated search feature allows your users to search through Jomres propertys according to a set of functions. If you have already used the search features of Jomres in Joomla you will be familiar with these settings.<br/>This feature allows us to offer search handling within Jomres for those users who don\'t want to use Joomla search modules, or for other CMS users who\'s CMS doesn\'t have it\'s own Jomres search modules.<br/>Just remember that if you choose to search for something via a link (ie not a dropdown) then other search options will not be implemented, only the element that corresponds with the link that you clicked.<br/>Note that by default the layout of this integrated search isn\'t very pretty. That\'s because the template file that performs the layout has to include all possible options, some of which are incompatible. To improve the layout and achieve the look you desire, you will need to edit <b>srch.html</b> in the folder <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b> ');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE','Activate this feature?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC','If this feature is enabled, then any call to Jomres that shows the property list will mean that the search options are also shown.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS','Use columns');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC',"Any search option that you have defined as link type (where pertinent) will be shown as columns (IE br put on the end of the link)");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS',"Feature columns");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS_DESC',"The number of feature icons that can be shown before a br is inserted to go to next row.");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO',"Search region by select combo dropdown");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC',"Offer a search dropdown to filter through countries/regions/towns. If you are going to use this feature then you're best off not using the region/town searches below.");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME',"Search by property name");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC',"Show the search by property name input.");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN',"Show as dropdown?");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION',"Search by town/region");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC',"Show the search by region input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN',"Show as dropdown?");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE',"Search by property type");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC',"Show the search by property type input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN',"Show as dropdown?");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE',"Search by room type");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC',"Show the search by room type input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN',"Show as dropdown?");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES',"Search by features");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC',"Show the search by feature input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN',"Show as dropdown?");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC',"Set this to no to show the list as tooltip images and checkboxes");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION',"Search by description");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC',"Show the search by description input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY',"Search by availability");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC',"Show the search by availability input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES',"Search by price ranges");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC',"Show the search by price ranges input");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS',"Price range increments");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC',"Jomres will look at all the values in the tariffs then work out a series of price ranges based on the increments value you set here.");
+/**
+* @ignore
+*/
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC','By default, if a property is not selected in Jomres it will perform a search. If this search was not triggered by a search module then that search will produce random results (deliberately). This option allows you to limit the number of returns in that random search.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_TITLE','Cron job settings and logs');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_DESC','Pseudocron job information. The pseudocron functionality is needed by invoicing and commission handling.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Installed cron minicomponents. To run an individual cron job use the links specified below. Note that the cron jobs do not produce any output so you will not see any information on the page. Instead, refer to the job log below.');
+/**
+* @ignore
+*/
+global $jomresConfig_secret;
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_METHOD','Method');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s http://".JOMRES_SITEPAGE_URL_ADMIN."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_LOGGING','Display logging in the browser');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_LOGGING_DESC','Only works if the method is set to Minicomponent.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Logging enabled');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC','Set this to Yes for logging to be enabled. The results of the logs will be output below.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_VERBOSELOGS','Verbose logging');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC','Lots of logging output');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_TEMPLATEEDITING_TITLE','Template Editing');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_TEMPLATEEDITING_DESC','This functionality allows us to edit Jomres frontend templates on the server, saving the results to the database. Advanced feature, be careful with it.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME','Template Name');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED','Template has been customised?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CUSTOMFIELDS_TITLE','Custom fields');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CUSTOMFIELDS_DESC','Here you can define simple custom fields that will be shown in the booking form.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CUSTOMFIELDS_FIELDNAME','Fieldname (no spaces)');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE','Default value');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION','Description');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED','Required');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_MR_EXTRA_QUANTITY','Maximum Quantity');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC','If Maximum quantity is set to greater than 1 then guests will be offered a dropdown to choose the quantiy of the extras that they require.');
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_ISSUE',"Issue invoices");
+/**
+* @ignore
+*/
+define('_JRPORTAL_TAXRATES_TITLE',"Tax rates");
+/**
+* @ignore
+*/
+define('_JRPORTAL_TAXRATES_CODE',"Tax code");
+/**
+* @ignore
+*/
+define('_JRPORTAL_TAXRATES_DESCRIPTION',"Rate description");
+/**
+* @ignore
+*/
+define('_JRPORTAL_TAXRATES_CANNOTDELETE',"You cannot delete this tax rate.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_TAXRATES_RATE',"Rate");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_TITLE',"Invoices");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_STATUS_UNPAID',"Unpaid");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_STATUS_PAID',"Paid");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_STATUS_CANCELLED',"Cancelled");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_STATUS_PENDING',"Pending");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_USER',"User");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_STATUS',"Status");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_RAISED',"Raised");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_DUE',"Due");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_SUBSCRIPTION',"Subscription");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_INITTOTAL',"Outstanding total");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_RECUR_TOTAL',"Recurring total");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_RECUR_FREQUENCY',"Recurring frequency");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_RECUR_DOMONTH',"Recurring day of month");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_CURRENCYCODE',"Currency code");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS',"Line items");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_NAME',"Name");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION',"Description");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE',"Initial Price");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY',"Initial Quantity");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT',"Initial Discount");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL',"Initial Total");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE',"Recurring Price");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY',"Recurring quantity");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT',"Recurring discount");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL',"Recurring total");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE',"Tax code");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION',"Tax description");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',"Tax rate");
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Paypal settings");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Currency code (eg EUR)");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Use sandbox?");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Your paypal email address");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Note: To use paypal you must go to your paypal account & disable Autoreturn. (Profile/Website Payment Preferences), and set IPN (Profile/Instant Payment Notification Preferences)to on URL of:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=ospayment");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"This invoice is now due. Please click the button to be taken to paypal.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Override standard Jomres gateway settings?");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal settings override option is set to Yes then several things happen: General Configuration no longer shows any gateway settings, and two, when a booking is made the settings used here are used so that payment is sent to the address entered here, not that previously configured in General Configuration.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_INVOICES_SHOWINVOICES',"Show my invoices");
+
 ?>
