@@ -1,6 +1,7 @@
 
 Jomres 4alpha1
 
+
 Major restructuring of Jomres to allow it to reference CMS Specific functions, which are included on start and are different depending on the CMS detected. Allows Jomres to be used in more than just Joomla. Jomres v4 is not backwardly compatible with previous installations of Jomres v3.
 Replaced overlib calls. We'll now use jquery's beauty tips library instead.
 Added custom fields for the booking form.
