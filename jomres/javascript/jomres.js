@@ -315,7 +315,11 @@ function show_log(lastfield) {
 
 function blockInterface(field,fadetime)
 	{
-	jQuery.extend(jQuery.blockUI.defaults.overlayCSS, { backgroundColor: '#fff', opacity: '0.5'  });
+	//jQuery.extend(jQuery.blockUI.defaults.overlayCSS, { backgroundColor: '#fff', opacity: '0.5'  });
+	
+	jQuery.blockUI.defaults.overlayCSS.backgroundColor = '#fff';
+	jQuery.blockUI.defaults.overlayCSS.opacity = '0.5';
+	
 	jQuery.blockUI.defaults.pageMessage = "Please be patient...";
 	jQuery.blockUI.defaults.fadeTime = fadetime;
 	jQuery.unblockUI({ fadeOut:true });
