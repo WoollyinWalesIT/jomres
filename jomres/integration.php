@@ -1426,7 +1426,7 @@ class mcHandler {
 		$this->log = array();
 		$this->currentEvent = "";
 
-		$this->remote_plugin_directory = "remote_plugins".JRDS;
+		$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS;
 		if (!is_dir($this->remote_plugin_directory) )
 			{
 			if (!@mkdir($this->remote_plugin_directory))
