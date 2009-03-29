@@ -1038,6 +1038,8 @@ function createJomresTables()
 	if (!$result )
 		echo "<b>Error creating table table __jomres_settings </b><br>";
 
+	// Depreciated?
+	/*
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_images` (
 		`uid` int(11) auto_increment,
 		`roomid` int( 11 ) NOT NULL ,
@@ -1049,6 +1051,7 @@ function createJomresTables()
 	if (!$result )
 		echo "<b>Error creating table table __jomres_room_images </b><br>";
 
+		
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_property_images` (
 		`uid` int(11) auto_increment,
 		`propertyid` int( 11 ) NOT NULL ,
@@ -1059,7 +1062,7 @@ function createJomresTables()
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_property_images </b><br>";
-
+	*/
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_tempBookingOut` (
 		`uid` int(11) auto_increment,
 		`contract_uid` int(11) NOT NULL,
