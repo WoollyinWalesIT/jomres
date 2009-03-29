@@ -120,7 +120,8 @@ class jomres_tooltips
 						  fill: "white", 
 						  cornerRadius: 20, 
 						  padding: 20,
-						  strokeWidth: 1
+						  strokeWidth: 1,
+						  width:            \''.$width.'\'
 						});
 					</script>
 					';
