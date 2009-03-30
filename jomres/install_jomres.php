@@ -13,7 +13,7 @@
 * All rights reserved.
  */
  
-global $my,$database,$jomresConfig_absolute_path;
+global $jomresConfig_absolute_path;
 
 define('_JOMRES_INITCHECK', 1 );
 
@@ -35,79 +35,10 @@ if (!defined('JRDS'))
 			define("JRDS" , "\\");
 		}
 	}
-/*
-echo dirname(realpath(__FILE__)) ;
-echo "<br>";
-echo JRDS;
-exit;
-*/
-$path =  str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) ) ;
-/*
-//define('JOMRESINSTALLPATH_BASE', str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) )).JRDS ;
 
-if ( strpos($path,"/",1) && JRDS == "\\" )  // If the first element in the path is /, but JRDS is \\
-	{
-	//echo "Substituting / in $path<br/>";
-	$path=str_replace(JRDS,"/",$path);
-	//$path=str_replace("/",JRDS,$path);
-	}
-*/
-//echo JRDS;exit;
+$path =  str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) ) ;
 
 define('JOMRESINSTALLPATH_BASE',$path);
-
-define('JOMRESPATH_BASE',JOMRESINSTALLPATH_BASE.JRDS."jomres");
-/*
-if (@file_exists(JOMRESINSTALLPATH_BASE .JRDS.'includes'.JRDS.'defines.php') )
-	{
-	define( '_JEXEC', 1 );
-	}
-else
-	{
-	define( '_VALID_MOS', 1 );
-	}
-define( '_JOMRESEXEC', 1 );
-*/
-//define ('_JOM_COMPONENTNAME',"com_jomres");
-/*
-if (!file_exists(JOMRESINSTALLPATH_BASE.JRDS.'configuration.php') )
-	{
-	showheader();
-	echo "<h1>Error. Cannot detect ".JOMRESINSTALLPATH_BASE.JRDS.'configuration.php'."</h1>";
-	echo "Please ensure that you are installing Jomres into the root of your CMS installation, and that indeed a CMS is installed.";
-	showfooter();
-	exit;
-	}
-*/
-
-/*
-if (file_exists(JOMRESINSTALLPATH_BASE .JRDS.'includes'.JRDS.'defines.php') )
-	{
-	define('JPATH_BASE', dirname(__FILE__) );
-	}
-else
-	{
-	if (is_readable(JOMRESINSTALLPATH_BASE.JRDS.'globals.php') )
-		include_once( JOMRESINSTALLPATH_BASE.JRDS.'globals.php' );
-	require_once( JOMRESINSTALLPATH_BASE.JRDS.'configuration.php' );
-	if (is_readable(JOMRESINSTALLPATH_BASE .JRDS.'includes/joomla.php') )
-		require_once( JOMRESINSTALLPATH_BASE.JRDS.'includes/joomla.php' );
-	else
-		{
-		//require_once( JOMRESPATH_BASE.'/includes/mambo.php' );
-		}
-	}
-*/
-
-/*
-if (!is_writable(JOMRESINSTALLPATH_BASE.JRDS.'media') )
-	{
-	echo "<h1>Error. The /media folder is not writable. Please correct this and reload this page. </h1><br>";
-	exit;
-	}
-*/
-
-//copySiteConfig(JOMRESPATH_BASE."/administrator/components/com_jomres");  // Doesn't work because /com_jomres/ folder isn't writable by the web server. Left in in case I want to revisit this in the future.
 
 require_once( 'integration.php' );
 

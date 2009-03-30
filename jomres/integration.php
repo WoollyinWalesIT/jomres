@@ -58,6 +58,8 @@ $R[gettype(null)]='null';
 $R[gettype(array())]='array';
 $R[gettype(new stdClass())]='object';
 
+
+
 if (!defined('JOMRESPATH_BASE'))
 	{
 	if (!defined('JRDS'))
@@ -79,20 +81,15 @@ if (!defined('JOMRESPATH_BASE'))
 			}
 		}
 	$dir_path = str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) ) ;
-
 	define('JOMRESPATH_BASE', $dir_path );
 	}
-	
 
-$jomresConfig_absolute_path= str_replace(JRDS."jomres","",JOMRESPATH_BASE);
-if (strstr($jomresConfig_absolute_path,"jomres") )
-	{
-	echo "Oops, you shouldn't have the string 'jomres' in the url";
-	exit;
-	}
+$jomresConfig_absolute_path = substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE)-7);
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
-// Adding this here allows an element of interoperability between J1.x & J1.5
+
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+echo JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php";exit;
+
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php");
 
 /**

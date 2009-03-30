@@ -41,7 +41,9 @@ class j16000listproperties
 
 		$crateList=$crateFunctions->getAllUnarchivedCrates();
 		$jomresPropertyList=$propertyFunctions->getAllJomresProperties();
+		
 		$portalPropertyList=$propertyFunctions->getAllPortalProperties();
+		
 		$portalXREFPropertyIds=array_keys($portalPropertyList);
 		$portalPropertyIds=array();
 		foreach ($portalPropertyList as $p)
@@ -55,6 +57,7 @@ class j16000listproperties
 		$output['HCRATE_DROPDOWN']=_JRPORTAL_CRATE_VALUE;
 		$output['LEGEND']=_JRPORTAL_PROPERTIES_LEGEND;
 		$counter=0;
+		
 		foreach($jomresPropertyList as $k=>$p)
 			{
 			$r=array();
@@ -102,11 +105,11 @@ class j16000listproperties
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
 		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
-		
+		echo JOMRES_TEMPLATEPATH_ADMINISTRATOR;
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'list_properties.html');
+		$tmpl->readTemplatesFromInput( 'admin_list_properties.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();
