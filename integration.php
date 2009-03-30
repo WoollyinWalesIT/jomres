@@ -88,7 +88,6 @@ $jomresConfig_absolute_path = substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE)
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
-echo JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php";exit;
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php");
 
