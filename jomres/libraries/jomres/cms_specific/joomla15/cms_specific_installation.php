@@ -111,7 +111,16 @@ if ($folderChecksPassed)
 		echo "Unable to create main Jomres admin menu option<br>";
 		
 echo "Making <i>admin</i> a super property manager<br>";
-makeAdminPropertyManager();
+$query="INSERT INTO #__jomres_managers
+(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`)
+VALUES
+('62','admin','0','2','1')";
+$result=doInsertSql($query,"");
+
+if ($result)
+	echo "Inserted admin as manager<br>";
+else
+	echo "Could not create admin as manager<br>";
 
 ?>
 
