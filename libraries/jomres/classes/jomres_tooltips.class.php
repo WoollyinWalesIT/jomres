@@ -132,7 +132,7 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_room_type" ';
-				$div_string.=' title="<b>'.$hover_title.'</b><br/>'.$hover_content.'"><img src="'.$div_content.'"></div>
+				$div_string.=' title="<b>'.$hover_title.'</b>'.$hover_content.'"><img src="'.$div_content.'"></div>
 					<script>jQuery("#'.$div.'").bt();</script>
 					';
 			break;
@@ -142,7 +142,7 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_features" ';
-				$div_string.=' title="<b>'.$hover_title.'</b><br/>'.$hover_content.'"><img src="'.$div_content.'"></div>
+				$div_string.=' title="<b>'.$hover_title.'</b>'.$hover_content.'"><img src="'.$div_content.'"></div>
 					<script>jQuery("#'.$div.'").bt();</script>
 					';
 			break;
