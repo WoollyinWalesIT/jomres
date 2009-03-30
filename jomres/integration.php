@@ -1431,7 +1431,7 @@ class mcHandler {
 			{
 			if (!@mkdir($this->remote_plugin_directory))
 				{
-				echo "Error, unable to make folder ".$this->remote_plugin_directory." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
+				echo "Error, unable to make folder ".$this->remote_plugin_directory." automatically therefore cannot store minicomponent path data. Please create the folder manually and ensure that it's writable by the web server";
 				exit;
 				}
 			}
