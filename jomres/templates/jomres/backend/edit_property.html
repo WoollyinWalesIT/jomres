@@ -99,7 +99,9 @@ function OnChange(dropdown)
 							<tr>
 								<td class="jradmin_field_la">
 									<patTemplate:tmpl name="globalPfeatures">
-									{FEATURE}<input type="checkbox" name="pid[]" value="{PID}" {ISCHECKED}>{BR}
+										<div style="float:left;">
+										{FEATURE}<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" {ISCHECKED}>{BR}
+										</div>
 									</patTemplate:tmpl>
 								</td>
 							</tr>
