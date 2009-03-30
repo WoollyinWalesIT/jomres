@@ -126,7 +126,7 @@ function jomres_cmsspecific_getCMSUsers()
 		{
 		foreach ($userList as $u)
 			{
-			$users[$id]=array("id"=>$u->id,"username"=>$u->username);
+			$users[$u->id]=array("id"=>$u->id,"username"=>$u->username);
 			}
 		}
 	return $users;
