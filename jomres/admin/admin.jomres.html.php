@@ -468,7 +468,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 
-		if (defined('_JOMRES_NEWJOOMLA') )
+		if (_JOMRES_DETECTED_CMS == "joomla15")
 			{
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext'.JRDS.'com_jomres.php'))
 				{
