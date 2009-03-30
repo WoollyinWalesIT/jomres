@@ -71,3 +71,9 @@ if (!defined('_JOMRES_DETECTED_CMS') )
 
 if (!defined('_JOMRES_DETECTED_CMS') )
 	define("_JOMRES_DETECTED_CMS","unknown");
+	
+if (_JOMRES_DETECTED_CMS == "unknown")
+	{
+	echo "Error, cannot detect the current CMS. Exiting.";
+	exit;
+	}

@@ -148,11 +148,7 @@ if ( !function_exists('gregoriantojd') )
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
 
-if (_JOMRES_DETECTED_CMS == "unknown")
-	{
-	echo "Error, cannot detect the current CMS. Exiting.";
-	exit;
-	}
+
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
 
 $jomres_db_querylog=array();
