@@ -1652,14 +1652,39 @@ function getSiteSettings()
 			}
 		}
 	// Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
+	if (count($settingsList)==0)
+		{
+		global $jomresConfig_dbprefix,$jomresConfig_db;
+		// Jomres probably hasn't been installed yet, does the site settings table exist yet?
+		$tablesFound=false;
+		$query="SHOW TABLES";
+		$result=doSelectSql($query,$mode=FALSE);
+		$string="Tables_in_".strtolower($jomresConfig_db);
+		foreach ($result as $r)
+			{
+			//var_dump($r->$string);echo "<br>";
+			if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings') )
+				{
+				$tablesFound=true;
+				}
+			}
+		if (!$tablesFound)
+			{
+			// The site settings table doesn't exist yet, we'll dump out for now.
+			return;
+			}
+		}
+
 	foreach ($tempConfigArr as $k=>$v)
 		{
 		if (!array_key_exists($k,$jrConfig) )
 			{
 			$query="INSERT INTO #__jomres_site_settings (akey,value) VALUES ('".$k."','".$v."')";
+			//echo $query."<br>";
 			doInsertSql($query,'');
 			}
 		}
+
 	//$jrConfig['jomres_systemLog_path']='temp'.JRDS;
 	return $jrConfig;
 	}
