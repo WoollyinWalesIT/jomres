@@ -40,6 +40,9 @@ if ($folderChecksPassed)
 	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres.php",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."jomres.php");
 	}
 	
+	
+	
+	
 	$query="SELECT name FROM #__components WHERE `name` = 'Jomres' AND `link` = 'option=com_jomres'";
 	$result=doSelectSql($query);
 	if (count($result)==1)
@@ -112,15 +115,17 @@ if ($folderChecksPassed)
 		
 echo "Making <i>admin</i> a super property manager<br>";
 $query="INSERT INTO #__jomres_managers
-(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`)
+(`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`pu`)
 VALUES
-('62','admin','0','2','1')";
+('62','admin','0','2','1','1')";
 $result=doInsertSql($query,"");
+echo $query;
 
 if ($result)
 	echo "Inserted admin as manager<br>";
 else
 	echo "Could not create admin as manager<br>";
+
 
 ?>
 

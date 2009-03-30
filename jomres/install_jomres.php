@@ -224,6 +224,9 @@ function trashTables()
 			}
 		//	return true;
 		}
+	$query = "DELETE FROM #__components WHERE `option` = 'com_jomres'";
+	doInsertSql($query,'');
+	
 	return false;
 	}
 
@@ -969,8 +972,6 @@ function createJomresTables()
 	if (!$result )
 		echo "<b>Error creating table table __jomres_settings </b><br>";
 
-	// Depreciated?
-	/*
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_images` (
 		`uid` int(11) auto_increment,
 		`roomid` int( 11 ) NOT NULL ,
@@ -982,7 +983,8 @@ function createJomresTables()
 	if (!$result )
 		echo "<b>Error creating table table __jomres_room_images </b><br>";
 
-		
+	// Depreciated?
+	/*
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_property_images` (
 		`uid` int(11) auto_increment,
 		`propertyid` int( 11 ) NOT NULL ,
@@ -1312,7 +1314,7 @@ function insertSampleData()
 		$result=doInsertSql("delete FROM `#__jomres_room_images`","");
 
 
-		$result=doInsertSql("delete FROM `#__jomres_property_images`","");
+		//$result=doInsertSql("delete FROM `#__jomres_property_images`","");
 
 
 		$result=doInsertSql("delete FROM `#__jomres_tempBookingOut`","");
