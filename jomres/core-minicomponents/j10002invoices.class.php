@@ -39,6 +39,6 @@ class j10002invoices
 	function getRetVals()
 		{
 		return $this->cpanelButton;
-		}	
+		}
 	}
 ?>

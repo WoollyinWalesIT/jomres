@@ -1,0 +1,56 @@
+<?php
+/**
+#
+ * Mini-component core file: Constructs and displays the receptionist's menu
+#
+ * @author Vince Wooll <sales@jomres.net>
+#
+ * @version Jomres 4
+#
+* @package Jomres
+* @subpackage mini-components
+#
+* @copyright	2005-2009 Vince Wooll
+#
+* This is not free software, please do not distribute it. For licencing information, please visit http://www.jomres.net/
+* All rights reserved.
+ */
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+// ################################################################
+
+/**
+#
+ * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ #
+* @package Jomres
+#
+ */
+class j00011manager_option_10_audittrail {
+
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00011manager_option_10_audittrail($componentArgs)
+		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
+		global $MiniComponents;
+		if ($MiniComponents->template_touch)
+			{
+			$this->template_touchable=false; return;
+			}
+		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=showAuditTrail"), 'auditLog.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_AUDITTRAIL',_JOMRES_FRONT_MR_MENU_ADMIN_AUDITTRAIL,false,false));
+		}
+	
+	
+	// This must be included in every Event/Mini-component
+	function getRetVals()
+		{
+		return $this->cpanelButton;
+		}
+	}
+?>
