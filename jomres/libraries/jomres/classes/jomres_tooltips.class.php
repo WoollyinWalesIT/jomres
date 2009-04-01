@@ -65,7 +65,7 @@ class jomres_tooltips
 						width: 500,
 						trigger: [\'mouseover\', \'click\'],
 						hoverIntentOpts: {interval: 1000,timeout: 2000},
-						closeWhenOthersOpen: true,
+						closeWhenOthersOpen: true
 						});</script>
 					';
 			break;
