@@ -19,6 +19,58 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+
+function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/' ) 
+	{
+	global $jomresConfig_live_site,$task;
+	global $ePointFilepath,$eLiveSite,$jrConfig;
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
+		$path=$eLiveSite.$image;
+	else
+		{
+		if (!strstr($image,"Blank.png"))
+			{
+			if ($jrConfig['menusAsImages']=="1")
+				{
+				$path=$jomresConfig_live_site.$path.$image;
+				return '
+				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
+					<div class="icon" align="center">
+						<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
+						<img src="'.$path.'" border="0">
+						</a>
+					</div>
+				</div>
+				';
+				}
+			else
+				{
+				return '<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
+						'.$text.'
+						</a>';
+				
+				}
+			}
+		else
+			{
+			if ($text != "<br/>")
+				{
+				$path=$jomresConfig_live_site.$path.$image;
+				return '
+				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
+					<div class="icon" align="center">
+						<img src="'.$path.'" border="0">
+					</div>
+				</div>
+				';
+				}
+			else
+				return "<br/>";
+			}
+		}
+	}
+
+
 function getIntegratedSearchModuleVals()
 	{
 	global $jrConfig;
