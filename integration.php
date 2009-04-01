@@ -390,6 +390,10 @@ function jomres_parseRequest()  // A simple request parser to check that mosConf
 		$ex_base64 = base64_decode($val);
 		if (gettype($val)=="string")
 			{
+			if (strstr($key,"php://") || strstr($val,"php://") || strstr($ex_base64,"php://") )
+				{
+				trigger_error ("Hack attempt", E_USER_ERROR);
+				}
 			if (strstr($key,"mosConf") || strstr($val,"mosConf") || strstr($ex_base64,"mosConf") || stristr($val,"%6D%6F%73%43%6F%6E%66" ))
 				{
 				trigger_error ("Hack attempt", E_USER_ERROR);
