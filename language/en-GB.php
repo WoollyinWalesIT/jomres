@@ -54,7 +54,7 @@ define('_JOMRES_COM_MR_LANG_DESC','Languages');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_GENERALCONFIGDESC','General Configuration');
+define('_JOMRES_COM_MR_GENERALCONFIGDESC','Property Configuration');
 /**
 * @ignore
 */
