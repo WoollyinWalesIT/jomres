@@ -53,7 +53,7 @@ class jomres_language
 				else
 					{
 					if (isset($_REQUEST['lang']) )
-						$jomresConfig_lang				=(string)jomresGetParam( $_REQUEST, 'lang', "" );
+						$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_REQUEST, 'lang', "" ));
 					else
 						{
 						if (isset($_COOKIE['mbfcookie']) )
