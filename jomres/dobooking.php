@@ -137,7 +137,6 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$output['BLOCKUI_CHANGINGROOMSELECTION']		=$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION',_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION,false,false));
 	$output['BLOCKUI_UPDATINGADDRESS']				=$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS',_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS,false,false));
 	$output['BLOCKUI_ADDRESSINPUTERROR']			=$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR',_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR,false,false));
-
 	
 	if ($thisJRUser->userIsManager)
 		$output['ISMANAGER']="true";
@@ -153,6 +152,8 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	else
 		$bkg->setBookerClass("100");
 
+	$bkg-> initCoupons();
+		
 	if ($bkg->cfg_singleRoomProperty != "1")
 		$output['SELECTROOMMESSAGE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM',_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM,false,false));
 	else

@@ -68,6 +68,14 @@ $bkg->currentField=$field;
 ob_start();
 switch ($field)
 	{
+	case "coupon":
+		$ajrq="ajrq:::coupon";
+		$value=$bkg->sanitiseInput("string",$value);
+		$bkg->writeToLogfile("Starting coupon input");
+		$response=$bkg->saveCoupon($value);
+		echo '; document.getElementById("coupon_response").innerHTML = "'.$response.'" ; fadeIn("deposit",1000);';
+				
+	break;
 	case "addressstring":
 		$ajrq="ajrq:::addressstring";
 		$addressString=explode("~",$value);
@@ -282,7 +290,11 @@ switch ($field)
 				if ($showDeposit=="1")
 					echo '; document.getElementById("deposit").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'" ; fadeIn("deposit",1000);';
 				if ($bkg->singlePersonSupplimentCalculated)
-					echo '; document.getElementById("single_suppliment").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'" ; fadeIn("deposit",1000);';
+					echo '; document.getElementById("single_suppliment").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'" ; fadeIn("single_suppliment",1000);';
+				
+				if ($bkg->coupon_code != "")
+					echo '; document.getElementById("coupon_discount_value").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'" ; fadeIn("coupon_discount_value",1000);';
+				
 				}
 			else
 				$bkg->setErrorLog("handlereq:: Field ".$lastfield." exempt from pricing rebuild");
@@ -322,7 +334,7 @@ switch ($field)
 	}
 
 
-if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) && !empty($field) && $field != "show_log" && $field != "extras" && $field != "heartbeat" && $field != "extrasquantity")
+if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) && !empty($field) && $field != "show_log" && $field != "extras" && $field != "heartbeat" && $field != "extrasquantity" && $field != "coupon")
 	{
 	bookingformlistRooms($isSingleRoomProperty,$bkg);
 	}

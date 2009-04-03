@@ -118,6 +118,23 @@ jQuery(".bformleftcol tr").hover(
 										</table>
 										<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 											<tr>
+												<th colspan="2">{COUPON_TITLE}</th>
+											</tr>
+											<tr>
+												<td colspan="2">{COUPON_INSTRUCTIONS}</td>
+											</tr>
+											<tr>
+												<td><input class="inputbox" size="15" type="text" name="coupon" id="coupon" value="" ></td>
+												<td><a href ="javascript:void(0);" onclick="getResponse('coupon',jQuery('#coupon').val())" >{COUPON_BUTTON}</a></td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<div id="coupon_response" class="jomres_message">&nbsp;</div>
+												</td>
+											</tr>
+										</table>
+										<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+											<tr>
 												<th colspan="4">{BILLING_ROOMTOTAL}</th>
 											</tr>
 											<tr>
@@ -224,6 +241,12 @@ jQuery(".bformleftcol tr").hover(
 											<td><b>{BILLING_TAX}</b></td>
 											<td>
 												<b><div id="taxtotal" style="text-align:right;"></div></b>
+											</td>
+										</tr>
+										<tr>
+											<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
+											<td>
+												<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
 											</td>
 										</tr>
 										<tr>

@@ -105,7 +105,10 @@ class jomres_temp_booking_handler
 			"confirmationSeen"=>false,
 			"mininterval"=>"",
 			"discounts"=>array(),
-			
+			"coupon_code"=>"",
+			"coupon_details"=>array(),
+			"coupon_discount_value"=>"",
+			"booking_notes"=>array()
 			);
 			
 		$this->tmpguest = array(
@@ -407,7 +410,12 @@ class jomres_temp_booking_handler
 			"wisepricediscount"=>"",
 			"lastminutediscount"=>"",
 			"confirmationSeen"=>false,
-			"mininterval"=>""
+			"mininterval"=>"",
+			"discounts"=>array(),
+			"coupon_code"=>"",
+			"coupon_details"=>array(),
+			"coupon_discount_value"=>"",
+			"booking_notes"=>array()
 			);
 		$this->saveBookingData();
 		}

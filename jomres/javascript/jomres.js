@@ -245,11 +245,11 @@ function getResponse_extrasquantity(field,value,theId) {
 
 
 function getResponse(field,value) {
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',
 		{ field: field,'value': value },
 		function(data)
 			{
+			eval(data); 
 			show_log(field);
 			}
 	);
@@ -694,7 +694,7 @@ function validate()
 function submitBooking()
 	{
 	document.ajaxform.action = livesite+"&task=confirmbooking"
-	document.ajaxform.submit();	
+	document.ajaxform.submit();
 	}
 	
 function setInputFillToOkColour(field)
