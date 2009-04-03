@@ -4837,7 +4837,7 @@ define('_JOMCOMP_WISEPRICE_TO',' to ');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',' Room price not discounted ');
+define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',' Wiseprice discount not applied ');
 /**
 * @ignore
 */
@@ -6228,7 +6228,7 @@ define('_JRPORTAL_COUPONS_TITLE',"Discount coupons");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_DESC',"Discount codes can be generated and passed onto guests as an incentive to make bookings.");
+define('_JRPORTAL_COUPONS_DESC',"Discount codes can be generated and passed onto guests as an incentive to make bookings. Valid from and to dates refer to the dates that a booking can be made on, not the dates of the booking itself.");
 /**
 * @ignore
 */
@@ -6261,4 +6261,29 @@ define('_JRPORTAL_COUPONS_ROOMONLY_DESC',"Discount is only applied to the cost o
 * @ignore
 */
 define('_JRPORTAL_COUPONS_SQLERROR',"Sql error when trying to delete/insert a coupon");
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','If you have a coupon code, please enter it into the box and click the "Save coupon" link to save the coupon details against your booking.');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Save coupon');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED','Coupon saved against booking');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND','Coupon number not found');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Coupon discount value');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Booking discounted. Coupon code/discount value/coupon settings : ');
+
 ?>

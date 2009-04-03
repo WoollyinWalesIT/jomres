@@ -65,8 +65,8 @@ class jomres_booking
 		$this->varianceuids				= array();
 		$this->varianceqty				= array();
 		$this->variancevals				= array();
-		$this->coupon_id				= "";
-		$this->coupon					= "";
+		//$this->coupon_id				= "";
+		//$this->coupon					= "";
 		$this->lastminute_id			= "";
 		$this->arrivalDate 				= "";
 		$this->departureDate 			= "";
@@ -146,8 +146,8 @@ class jomres_booking
 			$this->vu						= $bookingDeets['varianceuids'];
 			$this->vq						= $bookingDeets['varianceqty'];
 			$this->vv						= $bookingDeets['variancevals'];
-			$this->coupon_id				= $bookingDeets['coupon_id'];
-			$this->coupon					= $bookingDeets['coupon'];
+			//$this->coupon_id				= $bookingDeets['coupon_id'];
+			//$this->coupon					= $bookingDeets['coupon'];
 			$this->lastminute_id			= $bookingDeets['lastminute_id'];
 			$this->arrivalDate 				= $bookingDeets['arrivalDate'];
 			$this->departureDate 			= $bookingDeets['departureDate'];
@@ -176,6 +176,10 @@ class jomres_booking
 			$this->total_in_party			= $bookingDeets['total_in_party'];
 			$this->mininterval				= $bookingDeets['mininterval'];
 			$this->amend_contract			= $bookingDeets['amend_contract'];
+			$this->coupon_code				= $bookingDeets['coupon_code'];
+			$this->coupon_details			= $bookingDeets['coupon_details'];
+			$this->coupon_discount_value	= $bookingDeets['coupon_discount_value'];
+			$this->booking_notes			= $bookingDeets['booking_notes'];
 			}
 
 		$dbdata=serialize($bookingDeets);
@@ -394,8 +398,8 @@ class jomres_booking
 		$tmpBookingHandler->tmpbooking["varianceuids"]					= $this->vu;
 		$tmpBookingHandler->tmpbooking["varianceqty"]					= $this->vq;
 		$tmpBookingHandler->tmpbooking["variancevals"]					= $this->vv;
-		$tmpBookingHandler->tmpbooking["coupon_id"]						= $this->coupon_id;
-		$tmpBookingHandler->tmpbooking["coupon"] 						= $this->coupon;
+		//$tmpBookingHandler->tmpbooking["coupon_id"]						= $this->coupon_id;
+		//$tmpBookingHandler->tmpbooking["coupon"] 						= $this->coupon;
 		$tmpBookingHandler->tmpbooking["lastminute_id"] 				= $this->lastminute_id;
 		$tmpBookingHandler->tmpbooking["arrivalDate"] 					= $this->arrivalDate;
 		$tmpBookingHandler->tmpbooking["departureDate"]					= $this->departureDate;
@@ -424,6 +428,11 @@ class jomres_booking
 		$tmpBookingHandler->tmpbooking["room_total"] 					= $this->room_total;
 		$tmpBookingHandler->tmpbooking["timestamp"]						= date("Y-m-d H:i:s");
 		$tmpBookingHandler->tmpbooking["mininterval"]					= $this->mininterval;
+		$tmpBookingHandler->tmpbooking["coupon_code"]					= $this->coupon_code;
+		$tmpBookingHandler->tmpbooking["coupon_details"]				= $this->coupon_details;
+		$tmpBookingHandler->tmpbooking["coupon_discount_value"]			= $this->coupon_discount_value;
+		$tmpBookingHandler->tmpbooking["booking_notes"]					= $this->booking_notes;
+
 		$tmpBookingHandler->saveBookingData();
 		}
 
@@ -877,6 +886,11 @@ class jomres_booking
 			$output['LOOKRIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_LOOKRIGHT',_JOMRES_BOOKINGFORM_LOOKRIGHT,false,false));
 			$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
 			
+			$output['COUPON_TITLE']=$this->sanitiseOutput(jr_gettext('_JRPORTAL_COUPONS_CODE',_JRPORTAL_COUPONS_CODE,false,false));
+			$output['COUPON_BUTTON']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON',_JOMRES_AJAXFORM_COUPON_APPLYBUTTON,false,false));
+			$output['COUPON_INSTRUCTIONS']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS',_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS));
+			$output['COUPON_DISCOUNT_VALUE']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
+
 			return $output;
 			}
 	/**
@@ -986,7 +1000,51 @@ class jomres_booking
 			}
 		return $tmpArray;
 		}
-
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	Coupons
+	//
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	#
+	* Coupons saveCoupon and return a success/failure message
+	#
+	*/
+	function initCoupons()
+		{
+		$this->coupon_code = "";
+		$this->coupon_details = array();
+		$this->coupon_discount_value = "";
+		$this->addBookingNote("Coupon","");
+		}
+	/**
+	#
+	* Coupons saveCoupon and return a success/failure message
+	#
+	*/
+	function saveCoupon($coupon_code)
+		{
+		$today = date("Y-m-d");
+		$query="SELECT `amount`,`is_percentage`,`rooms_only` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
+		$response = doSelectSql($query,2);
+		if ($response)
+			{
+			$this->coupon_code = $coupon_code;
+			$this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'rooms_only'=>$response['rooms_only']);
+			return $this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_COUPONSAVED', _JOMRES_AJAXFORM_COUPON_COUPONSAVED));
+			}
+		else
+			{
+			$this->coupon_code = "";
+			$this->coupon_details = array();
+			$this->coupon_discount_value = "";
+			return $this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND', _JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND));
+			}
+		}
+	
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -4156,6 +4214,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		if ($this->cfg_showDeposit=="1")
 			echo '; document.getElementById("deposit").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("deposit",1000);';
 		echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",1000);';
+		echo '; document.getElementById("coupon_discount_value").innerHTML = "" ; fadeIn("coupon_discount_value",1000);';
 		}
 	/**
 	#
@@ -4431,10 +4490,54 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	 * $this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment
 	#
 	 */
+	 // $this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'rooms_only'=>$response['rooms_only']);
+			
 	function calcTotals()
 		{
 		$this->setErrorLog("calcTotals:: Started");
-		$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+		if ($this->coupon_code != "")
+			{
+			if ( $this->coupon_details['rooms_only']=="1")
+				{
+				if ($this->coupon_details['is_percentage']=="1")
+					{
+					$this->coupon_discount_value = ($this->room_total/100)*(float)$this->coupon_details['amount'];
+					$discountedRoomsTotal = $this->room_total-$this->coupon_discount_value;
+					}
+				else
+					{
+					$this->coupon_discount_value = $this->room_total-(float)$this->coupon_details['amount'];
+					$discountedRoomsTotal = $this->room_total-$discountedRoomsTotal;
+					}
+				$this->billing_grandtotal=($discountedRoomsTotal+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+				}
+			else
+				{
+				$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+				if ($this->coupon_details['is_percentage']=="1")
+					{
+					$this->coupon_discount_value = ($this->billing_grandtotal/100)*(float)$this->coupon_details['amount'];
+					$this->billing_grandtotal=$this->billing_grandtotal-$this->coupon_discount_value;
+					}
+				else
+					{
+					$this->coupon_discount_value = (float)$this->coupon_details['amount'];
+					$this->billing_grandtotal=$this->billing_grandtotal-$this->coupon_discount_value;
+					}
+				}
+			$note = _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE.$this->coupon_code." / "._JRPORTAL_COUPONS_AMOUNT." ".$this->coupon_discount_value." / ";
+			foreach ($this->coupon_details as $k=>$v)
+				{
+				$note .= $k." - ".$v." :: ";
+				}
+			$this->addBookingNote("Coupon",$note);
+			}
+		else
+			{
+			$note =_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." N/A ";
+			$this->addBookingNote($note);
+			$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+			}
 		$this->setErrorLog("calcTotals::Total: ".$this->billing_grandtotal );
 		$this->contract_total=$this->billing_grandtotal;
 		$this->setErrorLog("calcTotals:: Ended");
@@ -5307,6 +5410,10 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		$this->setErrorLog("generateBilling:: Ending");
 		}
 
+	function addBookingNote($context,$note)
+		{
+		$this->booking_notes[$context]=$note;
+		}
 
 	}
 ?>

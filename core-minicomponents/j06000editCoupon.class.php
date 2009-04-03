@@ -49,7 +49,6 @@ class j06000editCoupon {
 			{
 			$output['COUPON_ID']=0;
 			$output['COUPONCODE']=generateJomresRandomString(15);
-			
 			$output['VALIDFROM']=generateDateInput("valid_from",str_replace("-","/",date("Y-m-d")) );
 			$output['VALIDTO']=generateDateInput("valid_to",str_replace("-","/",date("Y-m-d")));
 			$output['AMOUNT']=10.00;
