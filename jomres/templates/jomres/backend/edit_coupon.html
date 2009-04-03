@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_la">{HCOUPONCODE}</td>
+					<td class="jradmin_subheader_la">{HVALIDFROM}</td>
+					<td class="jradmin_subheader_ca">{HVALIDTO}</td>
+					<td class="jradmin_subheader_la">{HAMOUNT}</td>
+					<td class="jradmin_subheader_ca">{HISPERCENTAGE}</td>
+					<td class="jradmin_subheader_ca">{HROOMONLY}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="coupon_code" value="{COUPONCODE}" /></td>
+					<td class="jradmin_field_ca">{VALIDFROM}</td>
+					<td class="jradmin_field_ca">{VALIDTO}</td>
+					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="amount" value="{AMOUNT}" size="7" /></td>
+					<td class="jradmin_field_ca">{ISPERCENTAGE}</td>
+					<td class="jradmin_field_ca">{ROOMONLY}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+{JOMRESTOKEN}
+<input type="hidden" name="coupon_id" value="{COUPON_ID}" />
+<input type="hidden" name="task" value="saveCoupon" />
+</form>
+</patTemplate:tmpl>

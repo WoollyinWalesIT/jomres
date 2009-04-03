@@ -27,14 +27,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j00010reception_option_03_dobooking {
+class j00011manager_option_05_couponadmin {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00010reception_option_03_dobooking($componentArgs)
+	function j00011manager_option_05_couponadmin($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
@@ -42,14 +42,7 @@ class j00010reception_option_03_dobooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig;
-		$output['BOOKAROOMLINK']="index.php?option=com_jomres&task=dobooking&Itemid=$Itemid";
-		if ( $jrConfig['useSSLinBookingform'] == "1" )
-			$link=jomresURL($output['BOOKAROOMLINK'],1);
-		else
-			$link=jomresURL($output['BOOKAROOMLINK']);
-			
-		$this->cpanelButton=jomres_mainmenu_option($link, 'NewBooking.png', jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listCoupons", 'couponAdmin.png', jr_gettext('_JRPORTAL_COUPONS_TITLE',_JRPORTAL_COUPONS_TITLE,false,false));
 		}
 	
 	

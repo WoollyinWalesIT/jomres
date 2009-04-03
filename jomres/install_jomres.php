@@ -531,7 +531,7 @@ function checkPropertyTableExists()
 		}
 	}
 
-
+/*
 function makeAdminPropertyManager()
 	{
 	$query="INSERT INTO #__jomres_managers
@@ -549,6 +549,7 @@ function makeAdminPropertyManager()
 	else
 		return false;
 	}
+*/
 
 function deleteCurrentLicenseFiles()
 	{
@@ -583,6 +584,22 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
+		`coupon_id` INT NOT NULL AUTO_INCREMENT ,
+		`property_uid` INT,
+		`coupon_code` VARCHAR( 255 ) NOT NULL ,
+		`valid_from` DATE NOT NULL ,
+		`valid_to` DATE NOT NULL ,
+		`amount` FLOAT NOT NULL ,
+		`is_percentage` BOOL NOT NULL ,
+		`rooms_only` BOOL NOT NULL ,
+		PRIMARY KEY ( `coupon_id` )
+		)";
+	$result=doInsertSql($query,"");
+	if (!$result )
+		echo "<b>Error creating table table __jomres_coupons </b><br>";
+
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_fields` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`field` VARCHAR( 255 ) ,
@@ -607,82 +624,82 @@ function createJomresTables()
 		
 		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices_transactions` (
-	  id int(10) NOT NULL auto_increment,
-	  invoice_id int(10) NOT NULL default '0',
-	  transaction_id int(10) NOT NULL default '0',
-	  time_added datetime NOT NULL,
-	  gateway_id varchar(20) NOT NULL default '',
-	  payment_result text NOT NULL,
-	  payment_currency varchar(20) NOT NULL default '',
-	  payment_amount float NOT NULL default '0',
-	  payment_fees float NOT NULL default '0',
-	  payment_ref varchar(100) NOT NULL default '',
-	  notes text NOT NULL,
-	  PRIMARY KEY  (id)
+		id int(10) NOT NULL auto_increment,
+		invoice_id int(10) NOT NULL default '0',
+		transaction_id int(10) NOT NULL default '0',
+		time_added datetime NOT NULL,
+		gateway_id varchar(20) NOT NULL default '',
+		payment_result text NOT NULL,
+		payment_currency varchar(20) NOT NULL default '',
+		payment_amount float NOT NULL default '0',
+		payment_fees float NOT NULL default '0',
+		payment_ref varchar(100) NOT NULL default '',
+		notes text NOT NULL,
+		PRIMARY KEY  (id)
 	)";
 	doInsertSql($query,"");
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
-	  `id` int(11) NOT NULL auto_increment,
-	  `cms_user_id` int(11) NOT NULL default '0',
-	  `name` varchar(20) NOT NULL,
-	  `description` varchar(255) NOT NULL,
-	  `init_price` float NOT NULL default '0',
-	  `init_qty` int(11) NOT NULL default '0',
-	  `init_discount` float NOT NULL default '0',
-	  `recur_price` float NOT NULL default '0',
-	  `recur_qty` int(11) NOT NULL default '0',
-	  `recur_discount` float NOT NULL default '0',
-	  `tax_code_id` int(11) NOT NULL,
-	  PRIMARY KEY  (`id`)
+		`id` int(11) NOT NULL auto_increment,
+		`cms_user_id` int(11) NOT NULL default '0',
+		`name` varchar(20) NOT NULL,
+		`description` varchar(255) NOT NULL,
+		`init_price` float NOT NULL default '0',
+		`init_qty` int(11) NOT NULL default '0',
+		`init_discount` float NOT NULL default '0',
+		`recur_price` float NOT NULL default '0',
+		`recur_qty` int(11) NOT NULL default '0',
+		`recur_discount` float NOT NULL default '0',
+		`tax_code_id` int(11) NOT NULL,
+		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
-	  `id` int(11) NOT NULL auto_increment,
-	  `name` varchar(20) NOT NULL,
-	  `description` varchar(255) NOT NULL,
-	  `init_price` float NOT NULL default '0',
-	  `init_qty` int(11) NOT NULL default '0',
-	  `init_discount` float NOT NULL default '0',
-	  `init_total` float NOT NULL default '0',
-	  `recur_price` float NOT NULL default '0',
-	  `recur_qty` int(11) NOT NULL default '0',
-	  `recur_discount` float NOT NULL default '0',
-	  `recur_total` float NOT NULL default '0',
-	  `tax_code` char(10) NOT NULL,
-	  `tax_description` char(200) NOT NULL,
-	  `tax_rate` float NOT NULL default '0',
-	  `inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
-	  PRIMARY KEY  (`id`)
+		`id` int(11) NOT NULL auto_increment,
+		`name` varchar(20) NOT NULL,
+		`description` varchar(255) NOT NULL,
+		`init_price` float NOT NULL default '0',
+		`init_qty` int(11) NOT NULL default '0',
+		`init_discount` float NOT NULL default '0',
+		`init_total` float NOT NULL default '0',
+		`recur_price` float NOT NULL default '0',
+		`recur_qty` int(11) NOT NULL default '0',
+		`recur_discount` float NOT NULL default '0',
+		`recur_total` float NOT NULL default '0',
+		`tax_code` char(10) NOT NULL,
+		`tax_description` char(200) NOT NULL,
+		`tax_rate` float NOT NULL default '0',
+		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
+		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
-	  `id` int(11) NOT NULL auto_increment,
-	  `cms_user_id` int(11) NOT NULL default '0',
-	  `status` tinyint(4) NOT NULL default '0',
-	  `raised_date` datetime NOT NULL,
-	  `due_date` datetime NOT NULL,
-	  `paid` datetime NOT NULL,
-	  `subscription` tinyint(1) NOT NULL default '0',
-	  `init_total` float NOT NULL default '0',
-	  `recur_total` float NOT NULL default '0',
-	  `recur_frequency` tinyint(4) NOT NULL default '0',
-	  `recur_dayofmonth` tinyint(4) NOT NULL default '1',
-	  `currencycode` char(3) NOT NULL,
-	  `subscription_id` int(11) NOT NULL default '0',
-	  `contract_id` int(11) NOT NULL,
-	  PRIMARY KEY  (`id`)
+		`id` int(11) NOT NULL auto_increment,
+		`cms_user_id` int(11) NOT NULL default '0',
+		`status` tinyint(4) NOT NULL default '0',
+		`raised_date` datetime NOT NULL,
+		`due_date` datetime NOT NULL,
+		`paid` datetime NOT NULL,
+		`subscription` tinyint(1) NOT NULL default '0',
+		`init_total` float NOT NULL default '0',
+		`recur_total` float NOT NULL default '0',
+		`recur_frequency` tinyint(4) NOT NULL default '0',
+		`recur_dayofmonth` tinyint(4) NOT NULL default '1',
+		`currencycode` char(3) NOT NULL,
+		`subscription_id` int(11) NOT NULL default '0',
+		`contract_id` int(11) NOT NULL,
+		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_taxrates` (
-	  `id` int(11) NOT NULL auto_increment,
-	  `code` char(20) NOT NULL,
-	  `description` varchar(255) NOT NULL,
-	  `rate` float NOT NULL default '0',
-	  PRIMARY KEY  (`id`)
+		`id` int(11) NOT NULL auto_increment,
+		`code` char(20) NOT NULL,
+		`description` varchar(255) NOT NULL,
+		`rate` float NOT NULL default '0',
+		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
 
@@ -1791,12 +1808,12 @@ function showheader()
 	-->
 	</style>
 	<div class="pagebackground">
-	  <p align="center">&nbsp;</p>
+		<p align="center">&nbsp;</p>
 	<div class= "panel">
 
-	  <p><img src="<?php echo $jomresConfig_live_site ;?>/jomres/images/jrlogo.png" width="287" height="70"></p>
-	  <p><h1>Jomres installation</h1></p>
-	  <p>&nbsp;</p>
+		<p><img src="<?php echo $jomresConfig_live_site ;?>/jomres/images/jrlogo.png" width="287" height="70"></p>
+		<p><h1>Jomres installation</h1></p>
+		<p>&nbsp;</p>
 	<?php
 	}
 
