@@ -43,6 +43,8 @@ class j02142listextras {
 			}
 		global $mrConfig;
 		$defaultProperty=getDefaultProperty();
+		$output=array();
+		
 		$output['HEDITLINK']=jr_gettext('_JOMRES_COM_MR_EXTRA_LINKTEXT',_JOMRES_COM_MR_EXTRA_LINKTEXT,$editable=false,$isLink=true);
 		$output['HEXNAME']=jr_gettext('_JOMRES_COM_MR_EXTRA_NAME',_JOMRES_COM_MR_EXTRA_NAME);
 		$output['HEXDESC']=jr_gettext('_JOMRES_COM_MR_EXTRA_DESC',_JOMRES_COM_MR_EXTRA_DESC);
@@ -82,7 +84,7 @@ class j02142listextras {
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editExtra"),'');
-		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings"),'');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

@@ -6220,4 +6220,45 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal setting
 */
 define('_JRPORTAL_INVOICES_SHOWINVOICES',"Show my invoices");
 
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_TITLE',"Discount coupons");
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_DESC',"Discount codes can be generated and passed onto guests as an incentive to make bookings.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_CODE',"Coupon code");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_VALIDFROM',"Valid from");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_VALIDTO',"Valid to");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_AMOUNT',"Discount amount");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_ISPERCENTAGE',"Discount is a percentage");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_ROOMONLY',"Room only");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_ROOMONLY_DESC',"Discount is only applied to the cost of the room. If No, then the discount is applied to the entire cost of the booking.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_SQLERROR',"Sql error when trying to delete/insert a coupon");
 ?>
