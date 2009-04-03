@@ -4616,8 +4616,10 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		{
 		// Calculate deposit
 		$depositValue=0;
-		if ($this->cfg_chargeDepositYesNo=="1")
-			{
+		// Depreciating this next if, but leaving the stuff inside on. This is because a few folks are setting the show deposit to No, but still sending the deposit value to
+		// paypal/gateway. Commenting out this if will mean that the deposit is still calculated.
+		//if ($this->cfg_chargeDepositYesNo=="1")
+		//	{
 			$depositValue=$this->cfg_depositValue;
 			$totalBooking=$this->contract_total;
 			if ($this->cfg_depAmount=="1")
@@ -4639,7 +4641,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 						$depositValue=$depositValue;
 					}
 				}
-			}
+			//}
 		$this->deposit_required = $depositValue;
 		}
 
