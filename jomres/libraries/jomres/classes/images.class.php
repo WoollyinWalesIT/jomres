@@ -128,6 +128,7 @@ class images{
 								{
 								$error=true;
 								$errorDesc="<b>move_uploaded_file failed</b>";
+								echo $errorDesc;
 								}
 							$this->fileToBeDeletedAtEnd=$img_destination;
 							}

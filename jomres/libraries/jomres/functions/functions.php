@@ -2553,21 +2553,6 @@ function uploadPropertyImage()
 		$checkedImage=uploadImageFromPost('image',$newFileName,$jrConfig['ss_imageLocation']);
 	if ($checkedImage)
 		{
-		// Removed for v4, iirc it has no purpose
-		/*
-		$query="SELECT propertyid FROM #__jomres_property_images WHERE propertyid = '".(int)$defaultProperty."'";
-		$propertyList =doSelectSql($query);
-		if (count($propertyList)>0)
-			{
-			$query="UPDATE #__jomres_property_images SET `filelocation`='".$checkedImage."' WHERE propertyid = '".(int)$defaultProperty."'";
-			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_PROPERTY_IMAGE',_JOMRES_MR_AUDIT_UPDATE_PROPERTY_IMAGE,FALSE))) exit;
-			}
-		else
-			{
-			$query="INSERT INTO #__jomres_property_images (`propertyid`,`filelocation`) VALUES ('".(int)$defaultProperty."','".$checkedImage."')";
-			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE',_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE,FALSE))) exit;
-			}
-		*/
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), $saveMessage );
 		}
 	else
@@ -2587,10 +2572,11 @@ function uploadRoomImage()
 	$defaultProperty=getDefaultProperty();
 	$saveMessage=_JOMRES_FILE_UPDATED;
 	$roomUid = intval(jomresGetParam( $_POST, 'roomUid', 0 ));
+	/*
 	$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = ".(int)$defaultProperty."";
 	$roomsList =doSelectSql($query);
 	$propertysRooms=array();
-
+	*/
 	foreach ($roomsList as $r)
 		{
 		$propertysRooms[]=$r->room_uid;
@@ -2609,18 +2595,6 @@ function uploadRoomImage()
 
 		if ($checkedImage)
 			{
-			$query="SELECT roomid FROM #__jomres_room_images WHERE roomid = '".(int)$roomUid."'";
-			$roomList =doSelectSql($query);
-			if (count($roomList)>0)
-				{
-				$query="UPDATE #__jomres_room_images SET `filelocation`='".$checkedImage."' WHERE roomid = '".(int)$roomUid."'";
-				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_ROOM_IMAGE',_JOMRES_MR_AUDIT_UPDATE_ROOM_IMAGE,FALSE))) exit;
-				}
-			else
-				{
-				$query="INSERT INTO #__jomres_room_images (`roomid`,`filelocation`) VALUES ('".(int)$roomUid."','".$checkedImage."')";
-				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE',_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE,FALSE))) exit;
-				}
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&roomUid=$roomUid"), $saveMessage );
 			}
 		}
@@ -2816,6 +2790,7 @@ function showImage($imageLocation,$target)
  * Checks for the existance of an image when passed an image type (eg property, room) and returns the file location
 #
 */
+/*  Depreciated
 function checkForImage($imageType,$itemUid)
 	{
 	global $mrConfig;
@@ -2847,6 +2822,7 @@ function checkForImage($imageType,$itemUid)
 		 }
 	return $fileLocation;
 	}
+*/
 
 function getImageForProperty($imageType,$property_uid,$itemUid)
 	{
@@ -2856,15 +2832,15 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 		{
 		case 'property':
 			$default_image = $jomresConfig_live_site."/jomres/images/jrlogo.png";
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."images".JRDS."stories".JRDS."jomres".JRDS.$property_uid."_property_".$itemUid.".jpg"))
-				$fileLocation = $jomresConfig_live_site."/images/stories/jomres/".$property_uid."_property_".$property_uid.".jpg";
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$itemUid.".jpg"))
+				$fileLocation = $jomresConfig_live_site."/jomres/uploadedimages/".$property_uid."_property_".$property_uid.".jpg";
 			else
 				$fileLocation = $default_image;
 			break;
 		case 'room':
 			$default_image = $jomresConfig_live_site."/jomres/images/noimage.gif";
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."images".JRDS."stories".JRDS."jomres".JRDS.$property_uid."_room_".$itemUid.".jpg"))
-				$fileLocation = $jomresConfig_live_site."/images/stories/jomres/".$property_uid."_room_".$itemUid.".jpg";
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_room_".$itemUid.".jpg"))
+				$fileLocation = $jomresConfig_live_site."/jomres/uploadedimages/".$property_uid."_room_".$itemUid.".jpg";
 			else
 				$fileLocation = $default_image;
 			break;

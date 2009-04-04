@@ -42,7 +42,7 @@ class jomres_contentTabs
 		$this->counter=1;
 		$this->panelNames=array();
 		$this->randomString ="";
-		$this->useCookies=true;
+		$this->useCookies=false;
 		}
 
 	/**
