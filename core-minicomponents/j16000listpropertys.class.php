@@ -20,9 +20,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j16000listproperties
+class j16000listpropertys
 	{
-	function j16000listproperties()
+	function j16000listpropertys()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		global $MiniComponents;
@@ -109,7 +109,7 @@ class j16000listproperties
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'admin_list_properties.html');
+		$tmpl->readTemplatesFromInput( 'admin_list_property.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();
