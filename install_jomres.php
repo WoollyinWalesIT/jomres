@@ -1086,6 +1086,7 @@ function createJomresTables()
 		`cancelled_reason` CHAR( 255 ) NULL DEFAULT NULL,
 		`discount_details` TEXT NULL,
 		`username` VARCHAR(50) NULL,
+		`coupon_id` INTEGER NULL,
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	$result=doInsertSql($query,"");

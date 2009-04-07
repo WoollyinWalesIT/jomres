@@ -176,6 +176,7 @@ class jomres_booking
 			$this->total_in_party			= $bookingDeets['total_in_party'];
 			$this->mininterval				= $bookingDeets['mininterval'];
 			$this->amend_contract			= $bookingDeets['amend_contract'];
+			$this->coupon_id				= $bookingDeets['coupon_id'];
 			$this->coupon_code				= $bookingDeets['coupon_code'];
 			$this->coupon_details			= $bookingDeets['coupon_details'];
 			$this->coupon_discount_value	= $bookingDeets['coupon_discount_value'];
@@ -428,6 +429,7 @@ class jomres_booking
 		$tmpBookingHandler->tmpbooking["room_total"] 					= $this->room_total;
 		$tmpBookingHandler->tmpbooking["timestamp"]						= date("Y-m-d H:i:s");
 		$tmpBookingHandler->tmpbooking["mininterval"]					= $this->mininterval;
+		$tmpBookingHandler->tmpbooking["coupon_id"]						= $this->coupon_id;
 		$tmpBookingHandler->tmpbooking["coupon_code"]					= $this->coupon_code;
 		$tmpBookingHandler->tmpbooking["coupon_details"]				= $this->coupon_details;
 		$tmpBookingHandler->tmpbooking["coupon_discount_value"]			= $this->coupon_discount_value;
@@ -1014,6 +1016,7 @@ class jomres_booking
 	*/
 	function initCoupons()
 		{
+		$this->coupon_id = "";
 		$this->coupon_code = "";
 		$this->coupon_details = array();
 		$this->coupon_discount_value = "";
@@ -1027,16 +1030,18 @@ class jomres_booking
 	function saveCoupon($coupon_code)
 		{
 		$today = date("Y-m-d");
-		$query="SELECT `amount`,`is_percentage`,`rooms_only` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
+		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
 		$response = doSelectSql($query,2);
 		if ($response)
 			{
+			$this->coupon_id = $response['coupon_id'];
 			$this->coupon_code = $coupon_code;
-			$this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'rooms_only'=>$response['rooms_only']);
+			$this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'coupon_id'=>$response['coupon_id']);
 			return $this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_COUPONSAVED', _JOMRES_AJAXFORM_COUPON_COUPONSAVED));
 			}
 		else
 			{
+			$this->coupon_id = 0;
 			$this->coupon_code = "";
 			$this->coupon_details = array();
 			$this->coupon_discount_value = "";
@@ -4479,6 +4484,34 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 			else
 				$this->room_total=($this->rate_pernight*$this->stayDays)*count ($this->requestedRoom);
 			}
+			
+			
+			
+		if ($this->coupon_code != "")
+			{
+			//$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+			if ($this->coupon_details['is_percentage']=="1")
+				{
+				$this->coupon_discount_value = ($this->room_total/100)*(float)$this->coupon_details['amount'];
+				$this->room_total=$this->room_total-$this->coupon_discount_value;
+				}
+			else
+				{
+				$this->coupon_discount_value = (float)$this->coupon_details['amount'];
+				$this->room_total=$this->room_total-$this->coupon_discount_value;
+				}
+			$note = _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." ".$this->coupon_id." / ".$this->coupon_code." / "._JRPORTAL_COUPONS_AMOUNT." ".$this->coupon_discount_value." / ";
+			foreach ($this->coupon_details as $k=>$v)
+				{
+				$note .= $k." - ".$v." :: ";
+				}
+			$this->addBookingNote("Coupon",$note);
+			}
+		else
+			{
+			$note =_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." N/A ";
+			$this->addBookingNote($note);
+			}
 		$this->setErrorLog("makeNightlyRoomCharges::Room total calculated as ".$this->room_total);
 		$this->setErrorLog("makeNightlyRoomCharges:: Ended");
 		return true;
@@ -4495,49 +4528,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	function calcTotals()
 		{
 		$this->setErrorLog("calcTotals:: Started");
-		if ($this->coupon_code != "")
-			{
-			if ( $this->coupon_details['rooms_only']=="1")
-				{
-				if ($this->coupon_details['is_percentage']=="1")
-					{
-					$this->coupon_discount_value = ($this->room_total/100)*(float)$this->coupon_details['amount'];
-					$discountedRoomsTotal = $this->room_total-$this->coupon_discount_value;
-					}
-				else
-					{
-					$this->coupon_discount_value = $this->room_total-(float)$this->coupon_details['amount'];
-					$discountedRoomsTotal = $this->room_total-$discountedRoomsTotal;
-					}
-				$this->billing_grandtotal=($discountedRoomsTotal+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
-				}
-			else
-				{
-				$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
-				if ($this->coupon_details['is_percentage']=="1")
-					{
-					$this->coupon_discount_value = ($this->billing_grandtotal/100)*(float)$this->coupon_details['amount'];
-					$this->billing_grandtotal=$this->billing_grandtotal-$this->coupon_discount_value;
-					}
-				else
-					{
-					$this->coupon_discount_value = (float)$this->coupon_details['amount'];
-					$this->billing_grandtotal=$this->billing_grandtotal-$this->coupon_discount_value;
-					}
-				}
-			$note = _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE.$this->coupon_code." / "._JRPORTAL_COUPONS_AMOUNT." ".$this->coupon_discount_value." / ";
-			foreach ($this->coupon_details as $k=>$v)
-				{
-				$note .= $k." - ".$v." :: ";
-				}
-			$this->addBookingNote("Coupon",$note);
-			}
-		else
-			{
-			$note =_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." N/A ";
-			$this->addBookingNote($note);
-			$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
-			}
+		$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
 		$this->setErrorLog("calcTotals::Total: ".$this->billing_grandtotal );
 		$this->contract_total=$this->billing_grandtotal;
 		$this->setErrorLog("calcTotals:: Ended");
@@ -4856,6 +4847,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 				$result=$this->setAverageRate();
 				}
 			}
+		
+
 		return $result;
 		}
 

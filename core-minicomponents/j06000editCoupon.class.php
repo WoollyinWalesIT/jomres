@@ -43,7 +43,7 @@ class j06000editCoupon {
 		$output['HVALIDTO']=jr_gettext('_JRPORTAL_COUPONS_VALIDTO',_JRPORTAL_COUPONS_VALIDTO);
 		$output['HAMOUNT']=jr_gettext('_JRPORTAL_COUPONS_AMOUNT',_JRPORTAL_COUPONS_AMOUNT);
 		$output['HISPERCENTAGE']=jr_gettext('_JRPORTAL_COUPONS_ISPERCENTAGE',_JRPORTAL_COUPONS_ISPERCENTAGE);
-		$output['HROOMONLY']=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
+		//$output['HROOMONLY']=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
 		
 		if ($coupon_id == 0)
 			{
@@ -55,10 +55,12 @@ class j06000editCoupon {
 			$percentageOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 			$percentageOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 			$output['ISPERCENTAGE']=jomresHTML::selectList($percentageOptions, 'is_percentage', 'class="inputbox" size="1"', 'value', 'text', 1);
-
+			
+			/*
 			$roomOnlyOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 			$roomOnlyOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 			$output['ROOMONLY']=jomresHTML::selectList($roomOnlyOptions, 'rooms_only', 'class="inputbox" size="1"', 'value', 'text', 0);
+			*/
 			}
 		else
 			{
@@ -76,10 +78,12 @@ class j06000editCoupon {
 				$percentageOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 				$percentageOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 				$output['ISPERCENTAGE']=jomresHTML::selectList($percentageOptions, 'is_percentage', 'class="inputbox" size="1"', 'value', 'text', $result['is_percentage']);
-
+				
+				/*
 				$roomOnlyOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 				$roomOnlyOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 				$output['ROOMONLY']=jomresHTML::selectList($roomOnlyOptions, 'rooms_only', 'class="inputbox" size="1"', 'value', 'text', $result['rooms_only']);
+				*/
 				}
 			}
 			
@@ -113,8 +117,8 @@ class j06000editCoupon {
 		$output[]	=jr_gettext('_JRPORTAL_COUPONS_VALIDTO',_JRPORTAL_COUPONS_VALIDTO);
 		$output[]	=jr_gettext('_JRPORTAL_COUPONS_AMOUNT',_JRPORTAL_COUPONS_AMOUNT);
 		$output[]	=jr_gettext('_JRPORTAL_COUPONS_ISPERCENTAGE',_JRPORTAL_COUPONS_ISPERCENTAGE);
-		$output[]	=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
-		$output[]	=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY_DESC',_JRPORTAL_COUPONS_ROOMONLY_DESC);
+		//$output[]	=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
+		//$output[]	=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY_DESC',_JRPORTAL_COUPONS_ROOMONLY_DESC);
 
 		foreach ($output as $o)
 			{
