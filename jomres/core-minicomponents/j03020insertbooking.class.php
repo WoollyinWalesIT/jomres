@@ -290,6 +290,7 @@ class j03020insertbooking {
 					$room_total=$tempBookingData->room_total;
 					$tax=$tempBookingData->tax;
 					$bookersUsername=$tempBookingData->bookersUsername;
+					$coupon_id=$tempBookingData->coupon_id;
 					if (strlen($bookersUsername) == 0)
 						$bookersUsername="ANONYMOUS";
 					
@@ -378,13 +379,13 @@ class j03020insertbooking {
 					`guest_uid`,`rate_rules`,`rooms_tariffs`,`contract_total`,`special_reqs`,
 					`deposit_paid`,`deposit_required`,
 					`date_range_string`,`booked_in`,`booked_out`,
-					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`)
+					`property_uid`,`single_person_suppliment`,`extras`,`extrasquantities`,`extrasvalue`,`tax`,`tag`,`timestamp`,`room_total`,`discount`,`currency_code`,`discount_details`,`username`,`coupon_id`)
 					VALUES (
 					'$arrivalDate','$departureDate','".(int)$rates_uid."',
 					'".(int)$guests_uid."','$rateRules','".(string)$requestedRoom."', '".(float)$contract_total."','$specialReqs',
 					'".(int)$depositPaid."','".(float)$deposit_required."',
 					'$dateRangeString','0','0',
-					'".(int)$property_uid."','".(float)$single_person_suppliment."','$extras','".(string)$extrasquantities."','".(float)$extrasValue."','".(float)$tax."','$cartnumber','$datetime','".(float)$room_total."','".(float)$discount."','$ccode','".$discount_details."','".$bookersUsername."')";
+					'".(int)$property_uid."','".(float)$single_person_suppliment."','$extras','".(string)$extrasquantities."','".(float)$extrasValue."','".(float)$tax."','$cartnumber','$datetime','".(float)$room_total."','".(float)$discount."','$ccode','".$discount_details."','".$bookersUsername."',".(int)$coupon_id.")";
 				$contract_uid=doInsertSql($query,"");
 
 				if ($mrConfig['singleRoomProperty']==1)

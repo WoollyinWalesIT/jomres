@@ -101,7 +101,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$tmpBookingHandler->tmpbooking["property_uid"]=(int)$selectedProperty;
 	$tmpBookingHandler->tmpbooking["total_discount"]="";
 	//$tmpBookingHandler->saveBookingData();
-	
+	$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 
 	$today = date("Y/m/d");
 	$date_elements  	= explode("/",$today);
@@ -153,6 +153,19 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$bkg->setBookerClass("100");
 
 	$bkg-> initCoupons();
+	$output['COUPON_CODE']="";
+	if ($amend_contract && isset($_REQUEST['contractuid']) && $thisJRUser->userIsManager && in_array( (int)$selectedProperty,$thisJRUser->authorisedProperties) )
+		{
+		$query = "SELECT coupon_id FROM #__jomres_contracts WHERE contract_uid = ".(int)$_REQUEST['contractuid']."";
+		$coupon_id = doSelectSql($query,1);
+		if ($coupon_id>0)
+			{
+			$query="SELECT `coupon_code` FROM #__jomres_coupons WHERE coupon_id = ".(int)$coupon_id." AND property_uid = ".(int)$selectedProperty."";
+			$coupon_code = doSelectSql($query,1);
+			$bkg->saveCoupon($coupon_code);
+			$output['COUPON_CODE']=$coupon_code;
+			}
+		}
 		
 	if ($bkg->cfg_singleRoomProperty != "1")
 		$output['SELECTROOMMESSAGE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM',_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM,false,false));
@@ -229,7 +242,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$output['EARLIESTPOSSIBLEARRIVALDATE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE',_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE,false)).$bkg->JSCalmakeInputDates($arrivalDate);
 
 	$explodedEarliest=explode("/",$today);
-	$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
+	
 	$output['EARLIESTDAY']=$explodedEarliest[2]+$bkg->cfg_mindaysbeforearrival;
 	$output['EARLIESTMON']=$explodedEarliest[1]-1;
 	$output['EARLIESTYEAR']=$explodedEarliest[0];
@@ -244,22 +257,20 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$smoking=$bkg->initSmoking();
 		$output['SMOKING']=$bkg->makeSmokingOutput($smoking);
 		}
-//var_dump($bkg->variancetypes);exit;
 
-		$counter=0;
-		foreach ($guestTypes as $gst)
+	$counter=0;
+	foreach ($guestTypes as $gst)
+		{
+		$current=$bkg->getGuestVariantDetails($gst['ID']);
+		if ($current==false)
 			{
-			
-			$current=$bkg->getGuestVariantDetails($gst['ID']);
-			if ($current==false)
-				{
-				if ($counter==0)
-					$bkg->initGuestVariant($gst['ID'],$mrConfig['defaultNumberOfFirstGuesttype']);
-				else
-					$bkg->initGuestVariant($gst['ID'],0);
-				}
-			$counter++;
+			if ($counter==0)
+				$bkg->initGuestVariant($gst['ID'],$mrConfig['defaultNumberOfFirstGuesttype']);
+			else
+				$bkg->initGuestVariant($gst['ID'],0);
 			}
+		$counter++;
+		}
 			
 	if (count($guestTypes)==0)
 		$output['BILLING_TOTALINPARTY']="";
@@ -282,9 +293,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$dateRangeIncludesWeekend=$bkg->dateRangeIncludesWeekends();
 	$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
 	$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
-	
 	$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
-	//var_dump($freeRoomsArray);exit;
 	$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
 	$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
 	$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
