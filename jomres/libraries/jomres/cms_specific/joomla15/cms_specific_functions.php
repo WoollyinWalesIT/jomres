@@ -15,6 +15,17 @@ I'm hard working, I'm not a genius there are lots of CMSs out there I'm not fami
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+
+function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
+	{
+	global $mainframe, $_MAMBOTS;
+	include( JOMRESCONFIG_ABSOLUTE_PATH."/editor/editor.php");
+	$ret = "";
+	$editor =& JFactory::getEditor();
+	$ret =$editor->display($name, $content, $width, $height, $col, $row);
+	return $ret;
+	}
+
 // This is called by the jomres_language class. If the jomres language chooser dropdown is used, then this function is called so that we can set the current cms's language too.
 function jomres_cmsspecific_setlanguage($lang)
 	{

@@ -216,6 +216,7 @@ class j16000addplugin
 
 		$registry = new minicomponent_registry(false);
 		$registry->regenerate_registry();
+		emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
 		}
 
 	// This must be included in every Event/Mini-component

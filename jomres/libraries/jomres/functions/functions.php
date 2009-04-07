@@ -3423,33 +3423,7 @@ function validateURL($url)
 // Returns the editor area as a text string for inclusion in a template
 function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $row )
 	{
-	global $mainframe, $_MAMBOTS;
-	include( JOMRESCONFIG_ABSOLUTE_PATH."/editor/editor.php");
-	$ret = "";
-	if (defined('_JOMRES_NEWJOOMLA') )
-		{
-		$editor =& JFactory::getEditor();
-		$ret =$editor->display($name, $content, $width, $height, $col, $row);
-		}
-	else
-		{
-		if (!defined( '_JOS_EDITORXTD_INCLUDED' ))
-			{
-			define( '_JOS_EDITORXTD_INCLUDED', 1 );
-			$_MAMBOTS->loadBotGroup( 'editors-xtd' );
-			}
-		if ( method_exists($mainframe,'set') )
-			$mainframe->set( 'loadEditor', true );
-		$results = $_MAMBOTS->trigger( 'onEditorArea', array( $name, $content, $hiddenField, $width, $height, $col, $row ) );
-		foreach ($results as $result)
-			{
-			if (trim($result))
-				{
-				$ret .= $result;
-				}
-			}
-		}
-	return $ret;
+	return jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row);
 	}
 
 /**
