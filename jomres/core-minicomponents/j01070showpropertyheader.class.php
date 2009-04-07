@@ -45,151 +45,158 @@ class j01070showpropertyheader
 		global $mrConfig,$jomresConfig_live_site,$jrConfig,$task;
 		global $thisJomresPropertyDetails;
 		$property_uid=(int)$componentArgs['property_uid'];
-
-		if (is_null($property_uid))
-			$property_uid		= intval(jomresGetParam( $_REQUEST, 'property_uid', 0 ));
-		if ($property_uid>0)
-			{
-			$stars=$thisJomresPropertyDetails['stars'];
-			$starslink="<img src=\"".$jomresConfig_live_site."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
-			if ($stars!="0")
-				{
-				$starslink="";
-			  	for ($i=1;$i<=$stars;$i++)
-		    		{
-					$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
-					}
-				$starslink.="";
-				}
-			$property_image['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
-
-			$property_image['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
-			$property_image_ar[]=$property_image;
-			$tooltip_property_image=jomres_makeTooltip("property_image","",$property_image['IMAGE'],$property_image['IMAGE'],"","imageonly",$type_arguments=array("width"=>150,"height"=>110,"border"=>0));
-			
-			$propertyname= stripslashes($thisJomresPropertyDetails['property_name']);
-			//$propertyname=str_replace("&amp;","&",$propertyname);
-			//$propertyname=str_replace("&#39;","'",$propertyname);
-			//$propertyname=str_replace('&quot;','"',$propertyname);
-			
-			
-			
-			if (strlen($thisJomresPropertyDetails['metatitle'])>0)
-				jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['metatitle']));
-			else
-				jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['property_name']));
-
-			jomres_cmsspecific_setmetadata('description',stripslashes($thisJomresPropertyDetails['metadescription']));
-			jomres_cmsspecific_setmetadata('keywords',stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])));
-			
-			if ($task=="viewproperty" || $task == "preview")
-				{
-				if ($mrConfig['showTariffsLink']=="1")
-					{
-					$link				=	array();
-					$link['TARIFFSLINK']=	makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=showTariffs&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=true,$isLink=true));
-					$tariffslink[]		= 	$link;
-					}
-				if ($mrConfig['showSlideshowLink']=="1")
-					{
-					if (isset($jrConfig['ss_popup_width']) and !empty($jrConfig['ss_popup_width']) && isset($jrConfig['ss_popup_height']) and !empty($jrConfig['ss_popup_height']) )
-						{
-						$w=$jrConfig['ss_popup_width'];
-						$h=$jrConfig['ss_popup_height'];
-						}
-					else
-						{
-						$w=550;
-						$h=500;
-						}
-					$link				=	array();
-					$link['SLIDESHOWLINK']=makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=slideshow&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=true,$isLink=true),TRUE,$w,$h);
-					$slideshowlink[]	= 	$link;
-					}
-				if ($mrConfig['galleryLink']!="")
-					{
-					$link				=	array();
-					$link['GALLERYLINK']=	makePopupLink($mrConfig['galleryLink'],jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=true,$isLink=true),FALSE );
-					$gallerylink[]		= 	$link;
-					}
-				if (!empty($mappinglink))
-					{
-					$link				=	array();
-					$link['MAPPINGLINK']=makePopupLink($mappinglink,jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=true,$isLink=true),FALSE );
-					$mappinglink[]		= 	$link;
-					}
-
-				if ($mrConfig['visitorscanbookonline']=='1')
-					{
-					$link				=	array();
-					$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=true,$isLink=true)."</a>";
-
-					if ($mrConfig['singleRoomProperty'] ==  '1')
-						$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,$editable=true,$isLink=true)."</a>";
-					/*
-					if ( $jrConfig['useSSLinBookingform'] == "1" )
-						$link['BOOKINGLINK'] = str_replace("http://","https://",$property['BOOKINGLINK']);
-					*/
-					if ( $jrConfig['useSSLinBookingform'] == "1" )
-						$link['BOOKINGLINK'] =jomresURL($property['BOOKINGLINK'],1);
-					else
-						$link['BOOKINGLINK'] =jomresURL($property['BOOKINGLINK']);
-					$bookinglink[]		= 	$link;
-					}
-
-				if ( $mrConfig['showRoomsListingLink']=="1")
-					{
-					$link				=	array();
-					$link['ROOMSLISTLINK']=makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=showRoomsListing&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=true,$isLink=true));
-					$roomslistlink[]	= 	$link;
-					}
-				}
-
-			$tmpl = new patTemplate();
-			//$tmpl->addVar( 'templatepath', 'templatepath',$templatepath);
-		    $tmpl->addVar( 'stars', 'stars', $starslink);
-			$tmpl->addVar( 'property_name', 'property_name',$propertyname);
-			$tmpl->addRows( 'property_image', $property_image_ar );
-			$tmpl->addVar( 'tooltip_property_image', 'tooltip_property_image',$tooltip_property_image);
-			
-			$tmpl->addRows( 'featurelist', $featureList);
-			$tmpl->addRows( 'roomtypes', $rtRows);
-			$tmpl->addRows( 'bookinglink', $bookinglink);
-			$tmpl->addRows( 'slideshowlink', $slideshowlink);
-			$tmpl->addRows( 'tariffslink', $tariffslink);
-			$tmpl->addRows( 'gallerylink', $gallerylink);
-			$tmpl->addRows( 'roomslistlink', $roomslistlink);
-			$tmpl->addRows( 'mappinglink', $mappinklink);
-			$mcOutput=$MiniComponents->getAllEventPointsData('01070');
-			if (count($mcOutput)>0)
-				{
-				foreach ($mcOutput as $key=>$val)
-					{
-					$tmpl->addRows( 'customOutput_'.$key, array($val) );
-					}
-				}
-			$componentArgs=array('tmpl'=>$tmpl);
-
-			if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00220') )
-				{
-				$templatePath=$MiniComponents->triggerEvent('00220',$componentArgs); //
-				}
-			elseif ($MiniComponents->eventFileExistsCheck('00222') )
-				{
-				$templatePath=$MiniComponents->triggerEvent('00222',$componentArgs); //
-				}
-			else
-				{
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'property_header.html');
-			    $tmpl->displayParsedTemplate();
-				}
-
-			if ($jrConfig['dumpTemplate']=="1")
-				$tmpl->dump();
-			}
+		$cache = new jomres_cache("property_header",$property_uid,false);
+		$cacheContent = $cache->readCache();
+		if ($cacheContent)
+			echo $cacheContent;
 		else
-			echo "Property uid not set";
+			{
+			if (is_null($property_uid))
+				$property_uid		= intval(jomresGetParam( $_REQUEST, 'property_uid', 0 ));
+			if ($property_uid>0)
+				{
+				$stars=$thisJomresPropertyDetails['stars'];
+				$starslink="<img src=\"".$jomresConfig_live_site."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
+				if ($stars!="0")
+					{
+					$starslink="";
+				  	for ($i=1;$i<=$stars;$i++)
+			    		{
+						$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
+						}
+					$starslink.="";
+					}
+				$property_image['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
+
+				$property_image['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+				$property_image_ar[]=$property_image;
+				$tooltip_property_image=jomres_makeTooltip("property_image","",$property_image['IMAGE'],$property_image['IMAGE'],"","imageonly",$type_arguments=array("width"=>150,"height"=>110,"border"=>0));
+				
+				$propertyname= stripslashes($thisJomresPropertyDetails['property_name']);
+				//$propertyname=str_replace("&amp;","&",$propertyname);
+				//$propertyname=str_replace("&#39;","'",$propertyname);
+				//$propertyname=str_replace('&quot;','"',$propertyname);
+				
+				
+				
+				if (strlen($thisJomresPropertyDetails['metatitle'])>0)
+					jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['metatitle']));
+				else
+					jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['property_name']));
+
+				jomres_cmsspecific_setmetadata('description',stripslashes($thisJomresPropertyDetails['metadescription']));
+				jomres_cmsspecific_setmetadata('keywords',stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])));
+				
+				if ($task=="viewproperty" || $task == "preview")
+					{
+					if ($mrConfig['showTariffsLink']=="1")
+						{
+						$link				=	array();
+						$link['TARIFFSLINK']=	makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=showTariffs&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=true,$isLink=true));
+						$tariffslink[]		= 	$link;
+						}
+					if ($mrConfig['showSlideshowLink']=="1")
+						{
+						if (isset($jrConfig['ss_popup_width']) and !empty($jrConfig['ss_popup_width']) && isset($jrConfig['ss_popup_height']) and !empty($jrConfig['ss_popup_height']) )
+							{
+							$w=$jrConfig['ss_popup_width'];
+							$h=$jrConfig['ss_popup_height'];
+							}
+						else
+							{
+							$w=550;
+							$h=500;
+							}
+						$link				=	array();
+						$link['SLIDESHOWLINK']=makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=slideshow&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=true,$isLink=true),TRUE,$w,$h);
+						$slideshowlink[]	= 	$link;
+						}
+					if ($mrConfig['galleryLink']!="")
+						{
+						$link				=	array();
+						$link['GALLERYLINK']=	makePopupLink($mrConfig['galleryLink'],jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=true,$isLink=true),FALSE );
+						$gallerylink[]		= 	$link;
+						}
+					if (!empty($mappinglink))
+						{
+						$link				=	array();
+						$link['MAPPINGLINK']=makePopupLink($mappinglink,jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=true,$isLink=true),FALSE );
+						$mappinglink[]		= 	$link;
+						}
+
+					if ($mrConfig['visitorscanbookonline']=='1')
+						{
+						$link				=	array();
+						$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=true,$isLink=true)."</a>";
+
+						if ($mrConfig['singleRoomProperty'] ==  '1')
+							$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,$editable=true,$isLink=true)."</a>";
+						/*
+						if ( $jrConfig['useSSLinBookingform'] == "1" )
+							$link['BOOKINGLINK'] = str_replace("http://","https://",$property['BOOKINGLINK']);
+						*/
+						if ( $jrConfig['useSSLinBookingform'] == "1" )
+							$link['BOOKINGLINK'] =jomresURL($property['BOOKINGLINK'],1);
+						else
+							$link['BOOKINGLINK'] =jomresURL($property['BOOKINGLINK']);
+						$bookinglink[]		= 	$link;
+						}
+
+					if ( $mrConfig['showRoomsListingLink']=="1")
+						{
+						$link				=	array();
+						$link['ROOMSLISTLINK']=makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=showRoomsListing&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=true,$isLink=true));
+						$roomslistlink[]	= 	$link;
+						}
+					}
+
+				$tmpl = new patTemplate();
+				//$tmpl->addVar( 'templatepath', 'templatepath',$templatepath);
+			    $tmpl->addVar( 'stars', 'stars', $starslink);
+				$tmpl->addVar( 'property_name', 'property_name',$propertyname);
+				$tmpl->addRows( 'property_image', $property_image_ar );
+				$tmpl->addVar( 'tooltip_property_image', 'tooltip_property_image',$tooltip_property_image);
+				
+				$tmpl->addRows( 'featurelist', $featureList);
+				$tmpl->addRows( 'roomtypes', $rtRows);
+				$tmpl->addRows( 'bookinglink', $bookinglink);
+				$tmpl->addRows( 'slideshowlink', $slideshowlink);
+				$tmpl->addRows( 'tariffslink', $tariffslink);
+				$tmpl->addRows( 'gallerylink', $gallerylink);
+				$tmpl->addRows( 'roomslistlink', $roomslistlink);
+				$tmpl->addRows( 'mappinglink', $mappinklink);
+				$mcOutput=$MiniComponents->getAllEventPointsData('01070');
+				if (count($mcOutput)>0)
+					{
+					foreach ($mcOutput as $key=>$val)
+						{
+						$tmpl->addRows( 'customOutput_'.$key, array($val) );
+						}
+					}
+				$componentArgs=array('tmpl'=>$tmpl);
+
+				if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00220') )
+					{
+					$templatePath=$MiniComponents->triggerEvent('00220',$componentArgs); //
+					}
+				elseif ($MiniComponents->eventFileExistsCheck('00222') )
+					{
+					$templatePath=$MiniComponents->triggerEvent('00222',$componentArgs); //
+					}
+				else
+					{
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'property_header.html');
+					$cachableContent = $tmpl->getParsedTemplate();
+					$cache->setCache($cachableContent);
+					unset($cache);
+					echo $cachableContent;
+					}
+
+				if ($jrConfig['dumpTemplate']=="1")
+					$tmpl->dump();
+				}
+			}
 		}
 
 	/**

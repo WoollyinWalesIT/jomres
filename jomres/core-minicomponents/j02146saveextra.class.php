@@ -36,6 +36,8 @@ class j02146saveextra {
 		{
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
 		$uid		= intval(jomresGetParam( $_POST, 'uid', "" ));
 		$desc       = jomresGetParam( $_POST, 'desc', "" );
 		$name       = jomresGetParam( $_POST, 'name', "" );

@@ -45,6 +45,8 @@ class j02202savedeposit {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
 		$contractUid        = intval(jomresGetParam( $_POST, 'contractUid', 0 ) );
 		$depositRef         = getEscaped(  jomresGetParam( $_POST, 'depositRef', "" ) );
 		if ($contractUid>0)

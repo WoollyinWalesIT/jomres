@@ -46,7 +46,7 @@ class j00016composite_property_details {
 		global $mrConfig,$jrConfig;
 		
 		$property_uid=(int)$componentArgs['property_uid'];  
-		property_header($property_uid);
+		
 		$componentArgs['property_uid']=$property_uid;
 		
 		// We will pass some of the old templates back as generated templates, whereas some of the data will be passed back as arrays to be processed into the new template.
@@ -120,7 +120,12 @@ class j00016composite_property_details {
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'composite_property_details.html');
 
-		$tmpl->displayParsedTemplate();
+		$cachableContent = $tmpl->getParsedTemplate();
+		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+		$cache = new jomres_cache($task,$property_uid,false);
+		$cache->setCache($cachableContent);
+		unset($cache);
+		echo $cachableContent;
 		
 		if ($jrConfig['dumpTemplate']=="1" && isset($tmpl) )
 			$tmpl->dump();

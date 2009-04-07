@@ -48,6 +48,8 @@ class j02162savecancellation {
 		if ($contract_uid != 0 )
 			{
 			$defaultProperty=getDefaultProperty();
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($defaultProperty);
 			$today = date("Y/m/d");
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
 			$forfeit_retained="0";

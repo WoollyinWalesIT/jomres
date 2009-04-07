@@ -501,7 +501,11 @@ class j03020insertbooking {
 				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$note."','$dt','".(int)$property_uid."')";
 				doInsertSql($query,"");
 				}
+				
+			
 			}
+		$cache = new jomres_cache("",$property_uid);
+		$cache->trashCacheForProperty($property_uid);
 		}
 
 	/**

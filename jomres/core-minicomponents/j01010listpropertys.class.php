@@ -216,160 +216,171 @@ class j01010listpropertys {
 			$property_details=array();
 			foreach ($propertyDeets as $property)
 				{
-				$customTextArray=$customTextObj->get_custom_text_for_property($property->propertys_uid);
-
-				$property_deets=array();
-				$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
-				$mrConfig=getPropertySpecificSettings($property->propertys_uid);
-				$featureList=array();
-				$ptown=stripslashes($property->property_town);
-				$stars=$property->stars;
-				$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
-
-				$property_image=$jomresConfig_live_site."/jomres/images/jrlogo.png";
-				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
-					$property_image=$jomresConfig_live_site."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
-				$starslink="<img src=\"".$jomresConfig_live_site."/images/M_images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
-				if ($stars!="0")
+				$cache = new jomres_cache("propertylist",$property->propertys_uid);
+				$cacheContent = $cache->readCache();
+				if ($cacheContent)
 					{
-					$starslink="";
-						for ($i=1;$i<=$stars;$i++)
-			    		{
-						$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
-						}
-					$starslink.="";
+					$property_deets = $cacheContent;
 					}
-
-				$propertyFeaturesArray=explode(",",($property->property_features));
-
-				$rtRows="";
-				$rArr=$rtArray[$property->propertys_uid];
-				if (count($rArr)<1)
-					$rtRows[]['feature']="Error, rooms found but not linked to room types. You will not be able to book a room from this property";
 				else
 					{
-					foreach ($rArr as $rtd)
+					$customTextArray=$customTextObj->get_custom_text_for_property($property->propertys_uid);
+
+					$property_deets=array();
+					$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
+					$mrConfig=getPropertySpecificSettings($property->propertys_uid);
+					$featureList=array();
+					$ptown=stripslashes($property->property_town);
+					$stars=$property->stars;
+					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
+
+					$property_image=$jomresConfig_live_site."/jomres/images/jrlogo.png";
+					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
+						$property_image=$jomresConfig_live_site."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
+					$starslink="<img src=\"".$jomresConfig_live_site."/images/M_images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
+					if ($stars!="0")
 						{
-						//$rtRows.=makeFeatureImages($rtDetailsArray[$rtd]['image'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$retString=true)."&nbsp;";
-						$rtRows.=jomres_makeTooltip($rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$rtDetailsArray[$rtd]['image'],"","room_type",array());
-							
+						$starslink="";
+							for ($i=1;$i<=$stars;$i++)
+				    		{
+							$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+							}
+						$starslink.="";
 						}
-					}
-				$property_deets['ROOMTYPES']=$rtRows;
 
+					$propertyFeaturesArray=explode(",",($property->property_features));
 
-				if (count($propertyFeaturesArray)>0)
-					{
-					$featureList="";
-					$counter=0;
-					foreach ($featuresArray as $k=>$v)
+					$rtRows="";
+					$rArr=$rtArray[$property->propertys_uid];
+					if (count($rArr)<1)
+						$rtRows[]['feature']="Error, rooms found but not linked to room types. You will not be able to book a room from this property";
+					else
 						{
-						if (in_array($k,$propertyFeaturesArray ) )
+						foreach ($rArr as $rtd)
 							{
-							if ( ($counter/10 )==0)
-								$br="<br />";
-							//$featureList.=makeFeatureImages($featuresArray[$k]['image'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$retString=true)."&nbsp;";
-							$featureList.=jomres_makeTooltip($featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$featuresArray[$k]['image'],"","property_feature",array());
-							$counter++;
+							//$rtRows.=makeFeatureImages($rtDetailsArray[$rtd]['image'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$retString=true)."&nbsp;";
+							$rtRows.=jomres_makeTooltip($rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$rtDetailsArray[$rtd]['image'],"","room_type",array());
+								
 							}
 						}
-					$property_deets['FEATURELIST']=$featureList;
-					}
+					$property_deets['ROOMTYPES']=$rtRows;
 
-				$tArr=array();
-				$ratesArray=array();
 
-				foreach ($tariffsArray as $k=>$v)
-					{
-					$key=key($v);
-					$val=$tariffsArray[$k][$key];
-					if (key($v)==intval($property->propertys_uid))
-						$tArr[]=$val;
-					}
-				foreach ($tArr as $t)
-					{
-					$date_elements	 = explode("/",$t['validfrom']);
-					$unixValidfrom= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					$date_elements	 = explode("/",$t['validto']);
-					$unixValidto= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					if ( $unixValidfrom <= $unixTodaysDate && $unixValidto >= $unixTodaysDate )
+					if (count($propertyFeaturesArray)>0)
 						{
-						$ratesArray[]=$t['roomrateperday'];
+						$featureList="";
+						$counter=0;
+						foreach ($featuresArray as $k=>$v)
+							{
+							if (in_array($k,$propertyFeaturesArray ) )
+								{
+								if ( ($counter/10 )==0)
+									$br="<br />";
+								//$featureList.=makeFeatureImages($featuresArray[$k]['image'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$retString=true)."&nbsp;";
+								$featureList.=jomres_makeTooltip($featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_abbv'],$featuresArray[$k]['hotel_feature_full_desc'],$featuresArray[$k]['image'],"","property_feature",array());
+								$counter++;
+								}
+							}
+						$property_deets['FEATURELIST']=$featureList;
 						}
-					}
-				if (count($ratesArray) >0)
-					{
-					sort($ratesArray,SORT_NUMERIC);
-					$lowestPrice=$ratesArray[0];
-					}
-				else
-					$lowestPrice="-";
 
-				$currfmt = new jomres_currency_format();
-				$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
+					$tArr=array();
+					$ratesArray=array();
 
-				$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
-				$propertyContactArray=$propertyAddressArray[1];
-				$propertyAddyArray=$propertyAddressArray[2];
-
-				$property_deets['COUNTER']=$templateCounter;
-				$templateCounter++;
-				//$property_deets['PROP_TYPE']=$propertyAddressArray[3];
-
-				if ($mrConfig['visitorscanbookonline'] == "1")
-					{
-					if ( $jrConfig['useSSLinBookingform'] == "1" )
-						$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
+					foreach ($tariffsArray as $k=>$v)
+						{
+						$key=key($v);
+						$val=$tariffsArray[$k][$key];
+						if (key($v)==intval($property->propertys_uid))
+							$tArr[]=$val;
+						}
+					foreach ($tArr as $t)
+						{
+						$date_elements	 = explode("/",$t['validfrom']);
+						$unixValidfrom= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+						$date_elements	 = explode("/",$t['validto']);
+						$unixValidto= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+						if ( $unixValidfrom <= $unixTodaysDate && $unixValidto >= $unixTodaysDate )
+							{
+							$ratesArray[]=$t['roomrateperday'];
+							}
+						}
+					if (count($ratesArray) >0)
+						{
+						sort($ratesArray,SORT_NUMERIC);
+						$lowestPrice=$ratesArray[0];
+						}
 					else
-						$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
+						$lowestPrice="-";
+
+					$currfmt = new jomres_currency_format();
+					$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
+
+					$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
+					$propertyContactArray=$propertyAddressArray[1];
+					$propertyAddyArray=$propertyAddressArray[2];
+
+					$property_deets['COUNTER']=$templateCounter;
+					$templateCounter++;
+					//$property_deets['PROP_TYPE']=$propertyAddressArray[3];
+
+					if ($mrConfig['visitorscanbookonline'] == "1")
+						{
+						if ( $jrConfig['useSSLinBookingform'] == "1" )
+							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
+						else
+							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
+							
+						$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\">";
+						if ($mrConfig['singleRoomProperty'] =="1")
+							$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
+						else
+							$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false) ;
+						/*
+						if ( $jrConfig['useSSLinBookingform'] == "1" )
+							{
+							$property_deets['LINKONLY'] = str_replace("http://","https://",$property_deets['LINKONLY']);
+							}
+						*/
 						
-					$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\">";
-					if ($mrConfig['singleRoomProperty'] =="1")
-						$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
+
+						}
 					else
-						$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false) ;
-					/*
-					if ( $jrConfig['useSSLinBookingform'] == "1" )
 						{
-						$property_deets['LINKONLY'] = str_replace("http://","https://",$property_deets['LINKONLY']);
+						$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,$editable=true,$isLink=true)."</a>";
+						$bookinglink[]		= 	$link;
 						}
-					*/
-					
 
-					}
-				else
-					{
-					$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,$editable=true,$isLink=true)."</a>";
-					$bookinglink[]		= 	$link;
-					}
+					$property_deets['PROP_NAME']=stripslashes($propertyContactArray[0]);
+					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
+					$property_deets['PROP_TOWN']=stripslashes($propertyContactArray[2]);
+					$property_deets['PROP_POSTCODE']=stripslashes($propertyContactArray[3]);
+					$property_deets['PROP_REGION']=stripslashes($propertyContactArray[4]);
+					$property_deets['PROP_COUNTRY']=stripslashes(getSimpleCountry($propertyContactArray[5]));
 
-				$property_deets['PROP_NAME']=stripslashes($propertyContactArray[0]);
-				$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
-				$property_deets['PROP_TOWN']=stripslashes($propertyContactArray[2]);
-				$property_deets['PROP_POSTCODE']=stripslashes($propertyContactArray[3]);
-				$property_deets['PROP_REGION']=stripslashes($propertyContactArray[4]);
-				$property_deets['PROP_COUNTRY']=stripslashes(getSimpleCountry($propertyContactArray[5]));
-
-				$property_deets['LIVESITE']=$jomresConfig_live_site;
-				$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
-				$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,$editable=true,true) ;
-				$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
-				$property_deets['PROPERTYNAME']= stripslashes($propertyContactArray[0]);
-				$property_deets['PROPERTYTOWN']= $ptown;
-				$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
-				$property_deets['IMAGE']=$property_image;
-				$property_deets['LOWESTPRICE']=$price;
-				$property_deets['STARS']=$starslink;
-				//$property_deets['TEMPLATEPATH']=$templatepath;
-				$MiniComponents->triggerEvent('001011',array('property_uid'=>$property->propertys_uid) ); // Optional
-				$mcOutput=$MiniComponents->getAllEventPointsData('01011');
-				if (count($mcOutput)>0)
-					{
-					foreach ($mcOutput as $key=>$val)
+					$property_deets['LIVESITE']=$jomresConfig_live_site;
+					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
+					$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,$editable=true,true) ;
+					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
+					$property_deets['PROPERTYNAME']= stripslashes($propertyContactArray[0]);
+					$property_deets['PROPERTYTOWN']= $ptown;
+					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
+					$property_deets['IMAGE']=$property_image;
+					$property_deets['LOWESTPRICE']=$price;
+					$property_deets['STARS']=$starslink;
+					//$property_deets['TEMPLATEPATH']=$templatepath;
+					$MiniComponents->triggerEvent('001011',array('property_uid'=>$property->propertys_uid) ); // Optional
+					$mcOutput=$MiniComponents->getAllEventPointsData('01011');
+					if (count($mcOutput)>0)
 						{
-						$result=array_merge($property_deets,$val);
-						$property_deets=$result;
+						foreach ($mcOutput as $key=>$val)
+							{
+							$result=array_merge($property_deets,$val);
+							$property_deets=$result;
+							}
 						}
+					$cache->setCache($property_deets);
+					unset($cache);
 					}
 				$property_details[]=$property_deets;
 				}

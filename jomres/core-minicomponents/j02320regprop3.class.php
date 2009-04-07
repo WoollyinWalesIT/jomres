@@ -134,6 +134,8 @@ class j02320regprop3 {
 		$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
 		sendAdminEmail($subject,$message);
+		$cache = new jomres_cache();
+		$cache->trashCacheForUser($thisJRUser->userid);
 		jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
 		}
 

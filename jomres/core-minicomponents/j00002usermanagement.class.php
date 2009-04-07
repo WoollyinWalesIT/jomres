@@ -49,6 +49,8 @@ class j00002usermanagement {
 		$thisProperty = trim( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );
 		if (in_array($thisProperty,$thisJRUser->authorisedProperties) && $thisProperty != $thisJRUser->currentproperty)
 			{
+			$cache = new jomres_cache();
+			$cache->trashCacheForUser($thisJRUser->userid);
 			if ($thisJRUser->userIsManager==TRUE && $thisProperty>0)
 				{
 				$thisJRUser->set_currentproperty($thisProperty);

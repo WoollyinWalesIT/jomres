@@ -44,6 +44,8 @@ class j04090deleteroomfeature {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$roomFeatureUid		= intval( jomresGetParam( $_REQUEST, 'roomFeatureUid', '' ) );
 		$defaultProperty=getDefaultProperty();
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
 		//Lets delete this room feature
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOMFEATURE_DELETED',_JOMRES_COM_MR_ROOMFEATURE_DELETED,FALSE);
 		// First we need to check that the feature isn't recorded against any rooms. If it is, we can't move forward

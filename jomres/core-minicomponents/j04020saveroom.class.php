@@ -48,6 +48,8 @@ class j04020saveroom {
 		
 		if ($mrConfig['singleRoomProperty'] == "0")
 			{
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($defaultProperty);
 			$roomUid         = intval( jomresGetParam( $_POST, 'roomUid', 0 ) );
 			$roomClasses     = intval( jomresGetParam( $_POST, 'roomClasses', 0 ) );
 			$disabledAccess  = intval( jomresGetParam( $_POST, 'disabledAccess', 0 ) );

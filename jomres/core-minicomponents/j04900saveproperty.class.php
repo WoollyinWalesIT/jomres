@@ -46,6 +46,8 @@ class j04900saveproperty {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$this->newpropertyId	= 0;
 		$propertyUid  = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($propertyUid);
 		if ($propertyUid > 0 && !in_array($propertyUid,$jrConfig->authorisedProperties) )
 			$propertyUid=getDefaultProperty();
 		if ($jrConfig['selfRegistrationAllowed']=="0" && $propertyUid == 0)

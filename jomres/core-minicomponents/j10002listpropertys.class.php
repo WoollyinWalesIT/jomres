@@ -20,9 +20,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j10002listproperties
+class j10002listpropertys
 	{
-	function j10002listproperties()
+	function j10002listpropertys()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
