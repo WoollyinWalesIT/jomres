@@ -48,6 +48,8 @@ class j02214savetariff_advanced {
 			{
 			if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 			$defaultProperty=getDefaultProperty();
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($defaultProperty);
 			$tariffUid         = intval( jomresGetParam( $_POST, 'tariffUid', 0 ) );
 			$rate_title        = getEscaped( jomresGetParam( $_POST, 'rate_title', "" ) );
 			$rate_description  = getEscaped( jomresGetParam( $_POST, 'rate_description', "" ) );

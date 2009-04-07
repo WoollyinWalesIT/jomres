@@ -45,6 +45,8 @@ class j04080saveroomfeature {
 		$roomFeatureUid	= intval( jomresGetParam( $_POST, 'roomFeatureUid', 0 ) );
 		$feature_description = getEscaped(  jomresGetParam( $_POST, 'feature_description', '' ) );
 		$defaultProperty=getDefaultProperty();
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
 		if ($roomFeatureUid==0)
 			{
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT',_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT,FALSE);

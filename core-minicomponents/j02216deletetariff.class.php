@@ -50,6 +50,8 @@ class j02216deletetariff {
 			if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 			$tariffUid	= intval(jomresGetParam( $_REQUEST, 'tariffUid', 0 ) );
 			$defaultProperty=getDefaultProperty();
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($defaultProperty);
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_DELETED',_JOMRES_COM_MR_LISTTARIFF_DELETED,FALSE);
 			if ($tariffUid != 0)
 				{

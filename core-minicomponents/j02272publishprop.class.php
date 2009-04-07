@@ -42,8 +42,12 @@ class j02272publishprop {
 			{
 			$this->template_touchable=false; return;
 			}
+		global $thisJRUser;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
+		$cache->trashCacheForUser($thisJRUser->userid);
 		$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid = '".(int)$defaultProperty."'";
 		$published = doSelectSql($query,1);
 		if ($published)

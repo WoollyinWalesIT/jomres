@@ -242,6 +242,7 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jom
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_tooltips.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_language.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cron.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_cache.class.php');
 
 // Invoices plugin
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'gateway.class.php');
@@ -372,7 +373,9 @@ function jomresCheckToken()
 		{
 		$t=$_REQUEST['jomrestoken'];
 		$idx=array_search($t,$_SESSION['jomresValidTokens']);
-		unset($_SESSION['jomresValidTokens'][$idx]);
+		// Caching can cause problems with tokens being reused, so we'll only trash the token if it's not in $_GET
+		if (!isset($_REQUEST['jomrestoken']) )
+			unset($_SESSION['jomresValidTokens'][$idx]);
 		session_write_close();
 		return true;
 		}

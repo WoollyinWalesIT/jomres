@@ -43,6 +43,8 @@ class j02215savetariff_micromanage {
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
 		$tariffinput		= $_POST['tariffinput'];
 		$tarifftypeid		=intval(jomresGetParam( $_POST, 'tarifftypeid', 0 ));
 		$tarifftypename		=jomresGetParam( $_POST, 'tarifftypename', "" );

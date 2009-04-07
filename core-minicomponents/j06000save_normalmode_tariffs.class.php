@@ -45,7 +45,8 @@ class j06000save_normalmode_tariffs {
 		global $mrConfig;
 		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
-		
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
 		// New Room defaults
 		$room_floor ="N/A";
 		$room_disabled_access=0;

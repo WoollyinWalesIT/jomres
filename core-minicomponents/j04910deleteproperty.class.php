@@ -47,7 +47,8 @@ class j04910deleteproperty {
 		if ($sure)
 			{
 			$property_uid=(int)getDefaultProperty();
-			
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($property_uid);
 			if (in_array($property_uid,$thisJRUser->authorisedProperties) && !JOMRES_SINGLEPROPERTY)
 		 		{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED',_JOMRES_COM_MR_PROPERTY_DELETED,FALSE);

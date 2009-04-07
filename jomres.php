@@ -242,7 +242,9 @@ if ($task=="completebk" || $task=="processpayment" || $task=="confirmbooking")
 	}
 // Finish finding the property uid
 
-
+		//$cache = new jomres_cache("",$property_uid);
+		//$cache->trashCacheForProperty($property_uid);
+		
 // Getting the property specific settings
 if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProperty) && !empty($selectedProperty) ) || ( isset($defaultProperty) && $defaultProperty!="%" ) )
 	{
@@ -358,117 +360,96 @@ if ($thisJRUser->userIsManager)
 		{
 		// Show the reception menu
 		//$MiniComponents->triggerEvent('00010'); // Depreciated in v4a2
-		$rows		=array();
-		$pageoutput	=array();
-		$output=array();
-		if ($task != "invoiceForm" && $task != "confirmationForm" && $task != "showRoomDetails" && $task != "editCustomText" && $task != "saveCustomText" && !$popup)
+		$cache = new jomres_cache("reception_menu",0,true);
+		$cacheContent = $cache->readCache();
+		if ($cacheContent && !isset($_REQUEST['thisProperty']))
 			{
-			$propertyOptions=array();
-			$initialsOptions=array();
-			$propertyInitialFilter	= jomresGetParam( $_REQUEST, 'propertyInitialFilter', '' );
-			foreach ($thisJRUser->authorisedPropertyDetails as $pn)
-				{
-				$initials[]=strtoupper(substr($pn['property_name'],0,1) );
-				}
-			if (count($initials) > 1)
-				$initials=array_unique($initials);
-			if (count($initials) >0)
-				asort($initials);
-			$initialsOptions[]=jomresHTML::makeOption( '', "&nbsp;" );
-			if (count($initials) >0)
-				{
-				foreach ($initials as $initl )
-					{
-					$link=jomresURL(JOMRES_SITEPAGE_URL.'&propertyInitialFilter='.$initl.'');
-					$initialsOptions[]=jomresHTML::makeOption( $link, $initl );
-					}
-				$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL."&propertyInitialFilter=".$propertyInitialFilter) );
-				}
-			if (strlen($propertyInitialFilter)>0)
-				{
-				$query="SELECT propertys_uid,property_name,property_othertransport FROM #__jomres_propertys WHERE property_name LIKE '$propertyInitialFilter%' ORDER BY property_name";
-				$propertysList =doSelectSql($query);
-				}
-			else
-				{
-				// Rather than rewriting a whole bunch of the following code, we will make use of new data provided by the thisJRUser class, then refactor it to look like it came from a db query. v2.6.1
-				$tmpArray = array();
-				foreach ($thisJRUser->authorisedPropertyDetails as $key=>$val)
-					{
-					$obj = new stdClass();
-					$obj->propertys_uid=$key;
-					$obj->property_name=$val['property_name'];
-					$tmpArray[]=$obj;
-					}
-				$propertysList =$tmpArray;
-				}
-			$counter=0;
-			foreach ($propertysList as $property)
-				{
-				if ($counter==0)
-					$thisProperty=$property->propertys_uid;
-				$counter++;
-				$pname=$property->property_name.' '.$property->propertys_uid;
-				$link=jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid);
-				$propertyOptions[]=jomresHTML::makeOption( $link, stripslashes($pname) );
-				}
-			if ( $propertyInitialFilter && $numberOfPropertiesInSystem > 1 )
-				{
-				$thisJRUser->set_currentproperty($thisProperty);
-				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");
-				}
-			$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid) );
-			if (!JOMRES_SINGLEPROPERTY)
-				$output['PROPERTYDROPDOWN']=''.$propertyDropdown.$filterDropdown.'';
-			}
-
-		$output['HTAGSEARCH']= jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,false);
-		$query="SELECT count FROM #__jomres_pcounter WHERE `p_uid` = '".(int)$property_uid."' LIMIT 1 ";
-		$clickList= doSelectSql($query);
-		if (count($clickList)>0)
-			{
-			foreach ($clickList as $click)
-				{
-				$output['CLICKCOUNT']=$click->count;
-				}
+			echo $cacheContent;
 			}
 		else
-			$output['CLICKCOUNT']=0;
-		$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="bookGuestIn" border="0" title="'.$output['HTAGSEARCH'].'" />';
-		$output['CLICKCOUNTIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
-
-		$componentArgs=array();
-		$MiniComponents->triggerEvent('00010'); // 
-		$mcOutput=$MiniComponents->getAllEventPointsData('00010');
-		if (count($mcOutput)>0)
 			{
-			foreach ($mcOutput as $key=>$val)
-				{
-				$r=array();
-				$r["OPTIONS"]=$val;
-				$rows[]=$r;
-				}
-			}
-			
-
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'toolbar_reception.html');
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->addRows( 'rows',$rows);
-		$tmpl->displayParsedTemplate();
-		$componentArgs=array();
-			
-		if ($accessLevel=="2")
-			{ 
 			$rows		=array();
 			$pageoutput	=array();
 			$output=array();
-			$componentArgs['published']=$published;
-			$componentArgs['property_uid']=$property_uid;
-			$MiniComponents->triggerEvent('00011',$componentArgs); // 
-			$mcOutput=$MiniComponents->getAllEventPointsData('00011');
+			if ($task != "invoiceForm" && $task != "confirmationForm" && $task != "showRoomDetails" && $task != "editCustomText" && $task != "saveCustomText" && !$popup)
+				{
+				$propertyOptions=array();
+				$initialsOptions=array();
+				$propertyInitialFilter	= jomresGetParam( $_REQUEST, 'propertyInitialFilter', '' );
+				foreach ($thisJRUser->authorisedPropertyDetails as $pn)
+					{
+					$initials[]=strtoupper(substr($pn['property_name'],0,1) );
+					}
+				if (count($initials) > 1)
+					$initials=array_unique($initials);
+				if (count($initials) >0)
+					asort($initials);
+				$initialsOptions[]=jomresHTML::makeOption( '', "&nbsp;" );
+				if (count($initials) >0)
+					{
+					foreach ($initials as $initl )
+						{
+						$link=jomresURL(JOMRES_SITEPAGE_URL.'&propertyInitialFilter='.$initl.'');
+						$initialsOptions[]=jomresHTML::makeOption( $link, $initl );
+						}
+					$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL."&propertyInitialFilter=".$propertyInitialFilter) );
+					}
+				if (strlen($propertyInitialFilter)>0)
+					{
+					$query="SELECT propertys_uid,property_name,property_othertransport FROM #__jomres_propertys WHERE property_name LIKE '$propertyInitialFilter%' ORDER BY property_name";
+					$propertysList =doSelectSql($query);
+					}
+				else
+					{
+					// Rather than rewriting a whole bunch of the following code, we will make use of new data provided by the thisJRUser class, then refactor it to look like it came from a db query. v2.6.1
+					$tmpArray = array();
+					foreach ($thisJRUser->authorisedPropertyDetails as $key=>$val)
+						{
+						$obj = new stdClass();
+						$obj->propertys_uid=$key;
+						$obj->property_name=$val['property_name'];
+						$tmpArray[]=$obj;
+						}
+					$propertysList =$tmpArray;
+					}
+				$counter=0;
+				foreach ($propertysList as $property)
+					{
+					if ($counter==0)
+						$thisProperty=$property->propertys_uid;
+					$counter++;
+					$pname=$property->property_name.' '.$property->propertys_uid;
+					$link=jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid);
+					$propertyOptions[]=jomresHTML::makeOption( $link, stripslashes($pname) );
+					}
+				if ( $propertyInitialFilter && $numberOfPropertiesInSystem > 1 )
+					{
+					$thisJRUser->set_currentproperty($thisProperty);
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");
+					}
+				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid) );
+				if (!JOMRES_SINGLEPROPERTY)
+					$output['PROPERTYDROPDOWN']=''.$propertyDropdown.$filterDropdown.'';
+				}
+
+			$output['HTAGSEARCH']= jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,false);
+			$query="SELECT count FROM #__jomres_pcounter WHERE `p_uid` = '".(int)$property_uid."' LIMIT 1 ";
+			$clickList= doSelectSql($query);
+			if (count($clickList)>0)
+				{
+				foreach ($clickList as $click)
+					{
+					$output['CLICKCOUNT']=$click->count;
+					}
+				}
+			else
+				$output['CLICKCOUNT']=0;
+			$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="bookGuestIn" border="0" title="'.$output['HTAGSEARCH'].'" />';
+			$output['CLICKCOUNTIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
+
+			$componentArgs=array();
+			$MiniComponents->triggerEvent('00010'); // 
+			$mcOutput=$MiniComponents->getAllEventPointsData('00010');
 			if (count($mcOutput)>0)
 				{
 				foreach ($mcOutput as $key=>$val)
@@ -483,17 +464,59 @@ if ($thisJRUser->userIsManager)
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			$tmpl->readTemplatesFromInput( 'toolbar_manager.html');
+			$tmpl->readTemplatesFromInput( 'toolbar_reception.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->addRows( 'rows',$rows);
-			$tmpl->displayParsedTemplate();
-			// Show the manager's memu
-			/*
+			$cachableContent = $tmpl->getParsedTemplate();
+			$cache->setCache($cachableContent);
+			unset($cache);
+			echo $cachableContent;
 			$componentArgs=array();
-			$componentArgs['published']=$published;
-			$MiniComponents->triggerEvent('00011',$componentArgs); // Depreciated in v4a2
-			$componentArgs=array();
-			*/
+			}
+		if ($accessLevel=="2")
+			{
+			$cache = new jomres_cache("manager_menu",0,true);
+			$cacheContent = $cache->readCache();
+			if ($cacheContent)
+				echo $cacheContent;
+			else
+				{
+				$rows		=array();
+				$pageoutput	=array();
+				$output=array();
+				$componentArgs['published']=$published;
+				$componentArgs['property_uid']=$property_uid;
+				$MiniComponents->triggerEvent('00011',$componentArgs); // 
+				$mcOutput=$MiniComponents->getAllEventPointsData('00011');
+				if (count($mcOutput)>0)
+					{
+					foreach ($mcOutput as $key=>$val)
+						{
+						$r=array();
+						$r["OPTIONS"]=$val;
+						$rows[]=$r;
+						}
+					}
+					
+
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				$tmpl->readTemplatesFromInput( 'toolbar_manager.html');
+				$tmpl->addRows( 'pageoutput',$pageoutput);
+				$tmpl->addRows( 'rows',$rows);
+				$cachableContent = $tmpl->getParsedTemplate();
+				$cache->setCache($cachableContent);
+				unset($cache);
+				echo $cachableContent;
+				// Show the manager's memu
+				/*
+				$componentArgs=array();
+				$componentArgs['published']=$published;
+				$MiniComponents->triggerEvent('00011',$componentArgs); // Depreciated in v4a2
+				$componentArgs=array();
+				*/
+				}
 			}
 		}
 	}
@@ -1215,6 +1238,7 @@ if ($numberOfPropertiesInSystem>0)
 				$thisJRUser->set_currentproperty($property_uid);
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&Itemid=$Itemid&property_uid=$property_uid"), "" );
 				}
+			property_header($property_uid);
 			$MiniComponents->triggerEvent('00016',$componentArgs);
 
 		break;
@@ -1222,9 +1246,17 @@ if ($numberOfPropertiesInSystem>0)
 		case 'preview':
 			if ($thisJRUser->userIsManager )
 				{
-				$componentArgs=array();
-				$componentArgs['property_uid']=$property_uid;
-				$MiniComponents->triggerEvent('00016',$componentArgs);
+				property_header($property_uid);
+				$cache = new jomres_cache("preview",$property_uid,false);
+				$cacheContent = $cache->readCache();
+				if ($cacheContent)
+					echo $cacheContent;
+				else
+					{
+					$componentArgs=array();
+					$componentArgs['property_uid']=$property_uid;
+					$MiniComponents->triggerEvent('00016',$componentArgs);
+					}
 				}
 			else
 				userHasBeenLoggedOut();
