@@ -27,14 +27,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j00010reception_option_07_listnewbookings {
+class j00010reception_option_05_01_blank {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00010reception_option_07_listnewbookings($componentArgs)
+	function j00010reception_option_05_01_blank($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
@@ -42,8 +42,7 @@ class j00010reception_option_07_listnewbookings {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs;
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listNewBookings", 'ListNewBookings.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS,false,false));
+		$this->cpanelButton=jomres_mainmenu_option("", 'Blank.png',"");
 		}
 	
 	
