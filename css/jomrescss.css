@@ -33,11 +33,12 @@
 
 .jomres_bt_tooltip_features
 	{
-	width: 30px;
-	text-align: center;
+	width: 25px;
+	text-align: center !important;
 	padding: 2px;
+	margin: 0;
 	background-color: #f1f1f1;
-	height: 30px;
+	height: 25px;
 	display: inline;
 	float: left;
 	}
