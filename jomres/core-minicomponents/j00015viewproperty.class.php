@@ -117,8 +117,10 @@ class j00015viewproperty
 				$property['HFEATURES']	=	"";
 
 			$rtRows=array();
+			$roomtypes=array();
 			if ($mrConfig['singleRoomProperty'] != "1")
 				{
+				$property['HRTYPES']	=	"";
 				$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 				$roomtypes= doSelectSql($query);
 				if (count($roomtypes)>0)
@@ -128,29 +130,23 @@ class j00015viewproperty
 						{
 						$roomTypeArray[]=$roomtype->room_classes_uid;
 						}
+									
 					if (count($roomTypeArray)>1)
 						$roomTypeArray=array_unique($roomTypeArray);
 					if (count($roomTypeArray)>0)
 						{
+						$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
 						foreach ($roomTypeArray as $type)
 							{
 							$query="SELECT room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$type."'";
 							$rtdeets= doSelectSql($query,2);
 							//$rtRows[]=makeFeatureImages($rtdeets['image'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc']);
 							$rtRows['ROOM_TYPE']=jomres_makeTooltip($rtdeets['room_class_abbv'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc'],$rtdeets['image'],"","room_type",array());
+							$roomtypes[]=$rtRows;
 							}
 						}
 					}
 				}
-
-			if (count($rtRows) > 0)
-				{
-				$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
-				$roomtypes=array();
-				$roomtypes[]=$rtRows;
-				}
-			else
-				$property['HRTYPES']	=	"";
 
 			if ($mrConfig['showOnlyAvailabilityCalendar']=="0")
 				property_header($property_uid);
