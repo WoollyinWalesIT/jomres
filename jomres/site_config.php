@@ -126,4 +126,6 @@ $pluginConfig['backend_paypal_settings']['currencycode']='EUR';
 $pluginConfig['backend_paypal_settings']['email']		='';
 $pluginConfig['backend_paypal_settings']['override']	='0';
 
+$jrConfig['useCaching']		='0';
+
 ?>

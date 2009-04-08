@@ -139,6 +139,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		-->
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CACHING.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['useCaching'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CACHING_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_CONFIG_DEFAULT_CRATE.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['defaultCrate'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_CONFIG_DEFAULT_CRATE_DESC.'</td>

@@ -6285,5 +6285,12 @@ define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Coupon discount value');
 * @ignore
 */
 define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Booking discounted. Coupon code/discount value/coupon settings : ');
-
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CACHING','Use the Jomres caching feature?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CACHING_DESC','Set this to No to disable the Jomres caching feature.');
 ?>
