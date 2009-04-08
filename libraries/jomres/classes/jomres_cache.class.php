@@ -28,9 +28,11 @@ class jomres_cache
 	 */
 	function jomres_cache($key="",$property_uid=0,$userSpecific=false)
 		{
+		global $jrConfig;
+		$this->useCaching = $jrConfig['useCaching'];
 		$this->cache_folder=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS;
 		$this->expiration = 3600;
-		if (strlen($key)>0)
+		if (strlen($key)>0 && $this->useCaching == "1")
 			{
 			$this->setKey($key);
 			$this->setPropertyUid($property_uid);
@@ -92,20 +94,22 @@ class jomres_cache
 
 	function readCache()  
 		{
+		if ($this->useCaching == "0")
+			return false;
 		if ( !is_dir($this->cache_folder) OR !is_writable($this->cache_folder))
-			return FALSE;
+			return false;
 
 		$cache_path = $this->cache_folder.$this->filename;
 
 		if (!@file_exists($cache_path))
-			return FALSE;
+			return false;
 
 		if (filemtime($cache_path) < (time() - $this->expiration))
-			return FALSE;
+			return false;
 
 
 		if (!$fp = @fopen($cache_path, 'rb'))
-			return FALSE;
+			return false;
 
 		flock($fp, LOCK_SH);
 
@@ -125,12 +129,12 @@ class jomres_cache
 	function setCache($data)
 		{
 		if ( !is_dir($this->cache_folder) OR !is_writable($this->cache_folder))
-			return FALSE;
+			return false;
 
 		$cache_path = $this->cache_folder.$this->filename;
 		//echo "Writing ".$cache_path;
 		if ( ! $fp = fopen($cache_path, 'wb'))
-			return FALSE;
+			return false;
 
 		if (flock($fp, LOCK_EX))
 			{
@@ -139,10 +143,10 @@ class jomres_cache
 			}
 		else
 			{
-			return FALSE;
+			return false;
 			}
 		fclose($fp);
-		return TRUE;
+		return true;
 		}
 
 		
@@ -150,7 +154,7 @@ class jomres_cache
 		{
 		global $jomresConfig_secret;
 		if ( !is_dir($this->cache_folder) OR !is_writable($this->cache_folder))
-			return FALSE;
+			return false;
 		$searchElement = md5($jomresConfig_secret.$property_uid);
 		//echo $searchElement."<br>";
 		$dirContents = $this->getCacheDirectoryContents();
@@ -171,7 +175,7 @@ class jomres_cache
 		{
 		global $jomresConfig_secret;
 		if ( !is_dir($this->cache_folder) OR !is_writable($this->cache_folder))
-			return FALSE;
+			return false;
 					
 		$searchElement = md5($jomresConfig_secret.$user_id);
 		//$searchElement = $jomresConfig_secret.$user_id;
@@ -194,7 +198,7 @@ class jomres_cache
 		$docs = array();
 		if($d)
 			{
-			while (FALSE !== ($entry = $d->read()))
+			while (false !== ($entry = $d->read()))
 				{
 				$filename = $entry;
 				if( substr($entry,0,1) != '.' )

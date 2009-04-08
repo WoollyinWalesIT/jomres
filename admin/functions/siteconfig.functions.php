@@ -149,6 +149,8 @@ function showSiteConfig(  )
 	$lists['integratedSearch_availability']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_availability', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_availability'] );
 	$lists['integratedSearch_priceranges']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_priceranges', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_priceranges'] );
 		
+	$lists['useCaching']							= jomresHTML::selectList( $yesno, 'cfg_useCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useCaching'] );
+		
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
 	}
 
