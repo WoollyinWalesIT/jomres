@@ -28,10 +28,12 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 		$path=$eLiveSite.$image;
 	else
 		{
-		if (!strstr($image,"Blank.png"))
+		if (!strstr($image,"blank.png"))
 			{
+			
 			if ($jrConfig['menusAsImages']=="1")
 				{
+				
 				$path=$jomresConfig_live_site.$path.$image;
 				return '
 				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
