@@ -1609,7 +1609,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		// For version 3.2 we've changed how the calendar is implemented. Now, you need to click on the input to make the calendar popup. To revert to the older style of input, uncomment the following section and comment out the "popup on input click" section.
 
 		// Popup on image click
-		/*
+
 		$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
 		<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
 		<script type=\"text/javascript\">
@@ -1622,9 +1622,10 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		});
 		</script>
 		";
-		*/
+
 
 		// Popup on input click
+		/*
 		$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
 		<img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" />
 		<script type=\"text/javascript\">
@@ -1637,6 +1638,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		});
 		</script>
 		";
+		*/
 	return $output;
 	}
 
