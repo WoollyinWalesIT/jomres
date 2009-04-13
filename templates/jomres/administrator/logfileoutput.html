@@ -35,13 +35,13 @@ function toggleDetail(id,number)
 	background-color: #f1f3f5;
 	}
 </style>
-<form action="" method="post" name="adminForm">
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 <table cellpadding="4" cellspacing="0" border="0" width="100%">
 	<tr>
-		<td width="100%" class="sectionname"><img src="images/query.png" border="0" alt="" />{TITLE}</td>
+		<td width="100%" class="sectionname">{TITLE}</td>
 	</tr>
 	<tr>
-		<td align="left">{BACKLINK}</td><td align="right"><a href="{DELETELINK}"><img src="{LIVESITE}/components/com_jomres/jomresimages/small/WasteBasket.png" border="0" alt="" /></a></td>
+		<td align="left">{BACKLINK}</td><td align="right"><a href="{DELETELINK}"><img src="{LIVESITE}/jomres/images/jomresimages/small/WasteBasket.png" border="0" alt="" /></a></td>
 	</tr>
 </table>
 <div id="tbl">
@@ -54,7 +54,7 @@ function toggleDetail(id,number)
 		</tr class="">
 		<patTemplate:tmpl name="rows">
 		<tr class={STYLE}>
-			<td scope="row"><img src="{LIVESITE}/components/com_jomres/images/info.png" border="0" onclick="toggleDetail('provider{COUNTER}_type',1)"></td>
+			<td scope="row"><img src="{LIVESITE}/jomres/images/info.png" border="0" onclick="toggleDetail('provider{COUNTER}_type',1)"></td>
 			<td>{DATETIME}</td>
 			<td>{TASK}</td>
 			<td>{MESSAGEFULL}</td>
