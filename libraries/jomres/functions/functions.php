@@ -176,7 +176,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 			';
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.bt.js"></script>
 			';
-
+	
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>
 				';
@@ -2255,10 +2255,31 @@ function getPropertyTypeDropdown($propertyType="")
 */
 function filterForm($selectname,$value,$format,$task="")
 	{
+	global $task;
+	$selecthtml="\n<form action=\"\" method=\"get\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
+	$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."\"></option>";
+	$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
+	if (count($value)>0)
+		{
+		foreach ($value as $v)
+			{
+			$v_output=$v;
+			$selected="";
+			if ($format=="date")
+				$v_output=outputDate($v_output);
+			if ($v==$defaultValue)
+				$selected="selected";
+			$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."&".$selectname."=".urlencode($v)."\" ".$selected.">".$v_output."</option>";
+			}
+		}
+	$selecthtml.="\n</select></span>
+	</form>";
+	
+	/*
 	global $Itemid,$task;
 	$defaultValue=$_REQUEST[$selectname];
-	$javascript = "onchange=\"this.form.submit();\"";
-	$selecthtml="\n<form action=\"".JOMRES_SITEPAGE_URL."&task=".$task."\" method=\"POST\" name=\"$selectname\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
+	$javascript = 'OnChange="location.href=jomresFilter'.$selectname.'.'.$selectname.'.options[selectedIndex].value"';
+	$selecthtml="\n<form action=\"\" method=\"post\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
 	$selecthtml .= "\n<option value=\"%\"></option>";
 	$selecthtml .= "\n<option value=\"%\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
 	if (count($value)>0)
@@ -2271,11 +2292,12 @@ function filterForm($selectname,$value,$format,$task="")
 				$v_output=outputDate($v_output);
 			if ($v==$defaultValue)
 				$selected="selected";
-			$selecthtml .= "\n<option value=\"$v\" ".$selected.">".$v_output."</option>";
+			$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."&".$selectname."=".$v."\"".$selected.">".$v_output."</option>";
 			}
 		}
 	$selecthtml.="\n</select></span>
 	</form>";
+	*/
 	return $selecthtml;
 	}
 /**
