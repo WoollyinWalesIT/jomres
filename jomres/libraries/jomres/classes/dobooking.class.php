@@ -174,7 +174,10 @@ class jomres_booking
 			$this->error					= $bookingDeets['error_log'];
 			$this->room_total				= $bookingDeets['room_total'];
 			$this->total_in_party			= $bookingDeets['total_in_party'];
-			$this->mininterval				= $bookingDeets['mininterval'];
+			if ($this->booker_class == "100")
+				$this->mininterval				= 1;
+			else
+				$this->mininterval				= $bookingDeets['mininterval'];
 			$this->amend_contract			= $bookingDeets['amend_contract'];
 			$this->coupon_id				= $bookingDeets['coupon_id'];
 			$this->coupon_code				= $bookingDeets['coupon_code'];
@@ -267,7 +270,10 @@ class jomres_booking
 		//$this->cfg_inputBoxErrorBorder 						= $mrConfig['inputBoxErrorBorder'];
 		$this->cfg_inputBoxErrorBackground 					= $mrConfig['inputBoxErrorBackground'];
 		$this->cfg_defaultcountry 							= $mrConfig['defaultcountry'];
-		$this->cfg_minimuminterval 							= $mrConfig['minimuminterval'];
+		if ($this->booker_class == "100")
+			$this->cfg_mindaysbeforearrival					= 0;
+		else
+			$this->cfg_mindaysbeforearrival					= $mrConfig['mindaysbeforearrival'];
 		$this->cfg_showDeposit								= $mrConfig['chargeDepositYesNo'];
 		$this->cfg_showRoomImageInBookingFormOverlib		= $mrConfig['showRoomImageInBookingFormOverlib'];
 		$this->cfg_showRoomTypeImageInBookingForm			= $mrConfig['showRoomTypeImageInBookingForm'];
