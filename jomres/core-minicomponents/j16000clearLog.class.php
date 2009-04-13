@@ -31,15 +31,16 @@ class j16000clearLog
 			$this->template_touchable=false; return;
 			}
 		global $jrConfig,$logFiles;
-		$jomres_systemLog_path=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['jomres_systemLog_path'];
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
-		if (file_exists($jomres_systemLog_path.$logFiles[$logfile]) && is_writable($jomres_systemLog_path.$logFiles[$logfile]) )
+		echo "Attempting to delete ".JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]."<br/>";
+		if (file_exists(JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]) && is_writable(JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]) )
 			{
-			if (unlink ($jomres_systemLog_path.$logFiles[$logfile]) )
+			if (unlink (JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]) )
 				$msg= "Deleted";
 			else
 				$msg= "Not deleted. Check that the web server can has write access";
 			}
+		echo $msg;
 		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listLogs", $msg);
 		}
 		
