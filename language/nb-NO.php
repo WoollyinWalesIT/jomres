@@ -6253,4 +6253,8 @@ define('_JOMRES_COM_CHOOSELANGUAGES','Choose languages');
 * @ignore
 */
 define('_JOMRES_COM_CHOOSELANGUAGES_INFO','Choose the language options to be shown in the language switch dropdown.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN','Show the language selection dropdown?');
 ?>

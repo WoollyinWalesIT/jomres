@@ -116,6 +116,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
 		</tr>
 		<tr align="center" valign="middle">
+			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
+			 <td class="jradmin_subheader_la" valign="top">'.$lists['showLangDropdown'].'</td>
+			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_MANAGEROPTIONSASIMAGES.'</td>
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['menusAsImages'].'</td>
 			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
