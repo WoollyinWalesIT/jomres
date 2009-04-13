@@ -37,8 +37,8 @@ function showAddress(address) {
 
 jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
-		map = new GMap2(document.getElementById("map"));
-		//map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+		var size = new GSize(573, 300);
+		var map = new GMap2(document.getElementById("map"), {size: size});
 		map.addControl(new GSmallMapControl());
 		map.addControl(new GMapTypeControl());
 		geocoder = new GClientGeocoder();

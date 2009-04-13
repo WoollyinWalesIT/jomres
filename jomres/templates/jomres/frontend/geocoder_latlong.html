@@ -15,7 +15,8 @@
 <script>
 jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
-		var map = new GMap2(document.getElementById("map"));
+		var size = new GSize(573, 300);
+		var map = new GMap2(document.getElementById("map"), {size: size});
 		map.addControl(new GSmallMapControl());
 		map.addControl(new GMapTypeControl());
 		map.setCenter(new GLatLng({LAT}, {LONG}), 13);

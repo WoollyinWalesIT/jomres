@@ -92,7 +92,6 @@ class jomres_language
 					} //else no language file available... don't include it either...
 				}
 			}
-		
 		}
 		
 	function get_current_lang_files()
@@ -117,19 +116,32 @@ class jomres_language
 		
 	function get_languageselection_dropdown()
 		{
-		$langfile_options = array();
+		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();
-		$langfiles = $this->get_current_lang_files();
-		if (count($langfiles)==0)
-			return false;
+		if (file_exists($langDropdownFile) )
+			{
+			include ($langDropdownFile);
+			$langfiles = getLangDropdownString();
+			}
+		else
+			{
+			$langfile_options = array();
+			$langfiles = $this->get_current_lang_files();
+			if (count($langfiles)==0)
+				return false;
+			}
 			
 		foreach ($langfiles as $filename)
 			{
 			$langfileexplode=explode(".",$filename);
 			$langshortcode =  $langfileexplode[0];
-			$langfile_options[] = jomresHTML::makeOption( $langshortcode , $langfile_crossref[$langshortcode]  );
+			$langlong=$langfile_crossref[$langshortcode];
+			//if (!array_key_exists($langshortcode, $langfile_crossref))
+			//	$langlong = $langshortcode;
+			$langfile_options[] = jomresHTML::makeOption( $langshortcode , $langlong );
 			}
-			$javascript = "onchange=\"this.form.submit();\"";
+		
+		$javascript = "onchange=\"this.form.submit();\"";
 		$dropdown = jomresHTML::selectList( $langfile_options, 'jomreslang','class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->lang);
 		
 		$selecthtml = '<form action="" method="POST" name="jomreslang">';
@@ -140,7 +152,7 @@ class jomres_language
 		
 	function define_langfile_to_languages_array()
 		{
-		// Some of these will be wrong. If you can advise me of the correct language string, please email vince and support@jomres.net and I'll correct this.
+		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
 		$langs=array();
 		$langs['en-GB']="English";
 		$langs['cs-CZ']="Czech";

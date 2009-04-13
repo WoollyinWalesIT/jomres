@@ -6217,4 +6217,86 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal setting
 */
 define('_JRPORTAL_INVOICES_SHOWINVOICES',"Show my invoices");
 
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_TITLE',"Discount coupons");
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_DESC',"Discount codes can be generated and passed onto guests as an incentive to make bookings. Valid from and to dates refer to the dates that a booking can be made on, not the dates of the booking itself.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_CODE',"Coupon code");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_VALIDFROM',"Valid from");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_VALIDTO',"Valid to");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_AMOUNT',"Discount amount");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_ISPERCENTAGE',"Discount is a percentage");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_ROOMONLY',"Room only");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_ROOMONLY_DESC',"Discount is only applied to the cost of the room. If No, then the discount is applied to the entire cost of the booking.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_COUPONS_SQLERROR',"Sql error when trying to delete/insert a coupon");
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','If you have a coupon code, please enter it into the box and click the "Save coupon" link to save the coupon details against your booking.');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Save coupon');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED','Coupon saved against booking');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND','Coupon number not found');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Coupon discount value');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Booking discounted. Coupon code/discount value/coupon settings : ');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CACHING','Use the Jomres caching feature?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CACHING_DESC','Set this to No to disable the Jomres caching feature.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CHOOSELANGUAGES','Choose languages');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CHOOSELANGUAGES_INFO','Choose the language options to be shown in the language switch dropdown.');
 ?>

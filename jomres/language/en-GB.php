@@ -6293,4 +6293,12 @@ define('_JOMRES_COM_CACHING','Use the Jomres caching feature?');
 * @ignore
 */
 define('_JOMRES_COM_CACHING_DESC','Set this to No to disable the Jomres caching feature.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CHOOSELANGUAGES','Choose languages');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_CHOOSELANGUAGES_INFO','Choose the language options to be shown in the language switch dropdown.');
 ?>
