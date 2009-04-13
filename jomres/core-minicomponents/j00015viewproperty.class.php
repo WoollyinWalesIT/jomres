@@ -377,7 +377,7 @@ class j00015viewproperty
 						}
 					}
 
-				if ($mrConfig['showSlideshowInline']=="1" && ($jrConfig['slideshowLocation'] == 2 || $jrConfig['slideshowLocation'] == 3 ))
+				if ($mrConfig['showSlideshowInline']=="1")
 					{
 					$componentArgs=array('property_uid'=>$property_uid );
 					$MiniComponents->triggerEvent('01060',$componentArgs); //showSlideshows
