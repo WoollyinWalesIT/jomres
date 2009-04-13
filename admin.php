@@ -53,15 +53,19 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php') && $nohtml
 		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
 	}
 
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') && $nohtml == 0)
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') && $nohtml == 0)
 	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') )
+	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') )
 		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php install_jomres.php still exists. Please delete it.</font><br/>';
 	}
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php') && $nohtml == 0)
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php') && $nohtml == 0)
 	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'j00010reception.class.php') )
+	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php') )
 		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php install_jomres.php still exists. Please delete it.</font><br/>';
+	$registry = new minicomponent_registry(false);
+	$registry->regenerate_registry();
+	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
+	jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN);
 	}
 
 	
