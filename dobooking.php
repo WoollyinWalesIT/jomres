@@ -145,6 +145,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$output['PID']=$selectedProperty;
 	$output['ITEMID']=$Itemid;
 	
+	$output['RELPATH']=$jomresConfig_live_site;
 	$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
 	$output['LIVESITE']=JOMRES_SITEPAGE_URL;
 	if (!$thisJRUser->userIsManager)
@@ -284,7 +285,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$output['EXTRAS_TOTAL']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL));
 		$output['EXTRAS_HEADER']='
 											<tr>
-												<th colspan="5">'.$output['AJAXFORM_EXTRAS'].'&nbsp;&nbsp;<a href="javascript:void(0);" onmouseover="return overlib(\''.$output['AJAXFORM_EXTRAS_DESC'].'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img border="0" style="vertical-align:top;" src="'.$output['LIVESITE'].'/components/com_jomres/images/info.png" /></a></th>
+												<th colspan="5">'.jomres_makeTooltip($output['AJAXFORM_EXTRAS'],$output['AJAXFORM_EXTRAS'],$output['AJAXFORM_EXTRAS_DESC'],$output['AJAXFORM_EXTRAS_DESC'],$class="",$type="infoimage").'</th>
 											</tr>
 			';
 		}
