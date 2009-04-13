@@ -65,7 +65,7 @@ class j02252archiveaudit {
 				trigger_error ("Archive audit, unable to delete archived logs", E_USER_ERROR);
 			$counter++;
 			}
-		audit(jr_gettext('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT',_JOMRES_MR_AUDIT_ARCHIVED_AUDIT,FALSE),$counter.$saveMessage);
+		jomres_audit(jr_gettext('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT',_JOMRES_MR_AUDIT_ARCHIVED_AUDIT,FALSE),$counter.$saveMessage);
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=showAuditTrail"), $saveMessage );
 		}
 
