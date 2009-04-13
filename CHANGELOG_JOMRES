@@ -1,3 +1,33 @@
+Jomres 4alpha2
+
+Added option to show or not show the language switcher
+Modified viewproperty so that booking a room link deliberately points to an invalid date when no date selected, this forces the booking engine to set the arrival date to today's date. Fixed period and fixed arrival dates propertys will see the benefit of this.
+Modified admin area urls to use index.php instead of index2.php in Joomla.
+Fixed logfile deletion functionality
+Fixed filterform not working
+Fixed bug where multiple room types weren't showing in property details.
+Added caching feature, and Hazel's ssl tweak.
+Added option to disable caching feature.
+Added Hazel's checkbox borders.
+Added jomres_cmsspecific_getTextEditor function to handle text editors
+Fixed backend typo listproperties/listpropertys
+Fixed image upload issue
+Disabled a clause in the booking engine where if charge deposit is set to No, then the deposit wasn't being calculated. This is because a few folks are setting the show deposit to No, but still sending the deposit value to paypal/gateway. Commenting out this if out will mean that the deposit is still calculated, but not shown.
+Added code to create/edit/delete coupons
+General config renamed to property config
+Minicomponentised the reception and manager options, and added the ability to have a user's minicomponent bar as well (needs testing).
+Added extra checking to jomres_parseRequest for php://
+Removed no_html from links to rooms, tariffs etc.
+Added Hazel's changes to beauty tips
+Improved the installer to create admin as a super property manager, and the drop tables feature to drop from the joomla components folder.
+Moved exit if current cms not detected from integration.php to detect_cms.php, this will help when developing solutions for new cms.
+Renamed admin's list_propertys to admin_list_properties.html as there's a conflict in the patTemplate jomres reader, the frontend template was being called because it has the same name.
+Fixed (both Joomla and CMSMS) cms_specific handling, the users list wasn't returning the complete array but just the last person in the table.
+Modified how the jomresConfig_absolute_path is detected.
+Modified site config so that if detected cms = joomla then show the 404sef config panel.
+Added a width element to imageonly popups to prevent flashing.
+Upgraded blockui to resolve ie8 problem with the booking form.
+
 
 Jomres 4alpha1
 
