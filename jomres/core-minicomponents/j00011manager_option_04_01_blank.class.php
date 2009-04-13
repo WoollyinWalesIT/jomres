@@ -42,7 +42,7 @@ class j00011manager_option_04_01_blank {
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option("", 'Blank.png',"");
+		$this->cpanelButton=jomres_mainmenu_option("", 'blank.png',"");
 		}
 	
 	
