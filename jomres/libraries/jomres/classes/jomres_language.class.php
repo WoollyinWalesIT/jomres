@@ -29,7 +29,8 @@ class jomres_language
 	function jomres_language()
 		{
 		global $jomresConfig_lang,$jrConfig;
-		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang
+		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
+		$this->showLangDropdown =$jrConfig['showLangDropdown'];
 		if (isset($_POST['jomreslang']) )
 			{
 			$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_POST, 'jomreslang', "" ) );
@@ -116,6 +117,8 @@ class jomres_language
 		
 	function get_languageselection_dropdown()
 		{
+		if ($this->showLangDropdown != "1")
+			return "";
 		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		if (file_exists($langDropdownFile) )

@@ -150,6 +150,7 @@ function showSiteConfig(  )
 	$lists['integratedSearch_priceranges']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_priceranges', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_priceranges'] );
 		
 	$lists['useCaching']							= jomresHTML::selectList( $yesno, 'cfg_useCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useCaching'] );
+	$lists['showLangDropdown']						= jomresHTML::selectList( $yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['showLangDropdown'] );
 		
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
 	}
@@ -186,7 +187,7 @@ function saveSiteConfig (  )
 				}
 			else
 				{
-				echo "K: ".$k." & V: ".$v."<br>";
+				//echo "K: ".$k." & V: ".$v."<br>";
 				$v=jomresGetParam( $_POST, $k, "" );
 				if ($k=="cfg_globalCurrency" && $_POST[$k]=='&#8364;') // We'll add this here because the input filter doesn't like euro currency entities.
 					{
