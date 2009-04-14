@@ -5151,7 +5151,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Deine paypal email adre
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Note: Bei Verwendung von PayPal m&uuml;ssen Sie in Ihrem PayPal-Konto das Autoreturn deaktivieren (Profile/Website Payment Preferences), und die IPN (Profile/Instant Payment Notification Preferences)zur der URL of:<br/><b>&nbsp;".$jomresConfig_live_site."/index.php?option=com_jomres&task=ospayment&Itemid=".$jrConfig['jomresItemid']."&no_html=1");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Note: Bei Verwendung von PayPal m&uuml;ssen Sie in Ihrem PayPal-Konto das Autoreturn deaktivieren (Profile/Website Payment Preferences), und die IPN (Profile/Instant Payment Notification Preferences)zur der URL of:<br/><b>&nbsp;".$jomresConfig_live_site."/index.php?option=com_jomres&task=completebk&Itemid=".$jrConfig['jomresItemid']."&no_html=1");
 
 /**
 * @ignore
