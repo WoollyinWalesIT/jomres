@@ -41,7 +41,7 @@ class j16000clearLog
 				$msg= "Not deleted. Check that the web server can has write access";
 			}
 		echo $msg;
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listLogs", $msg);
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=showLog&logfile=".$logfile, $msg);
 		}
 		
 	// This must be included in every Event/Mini-component
