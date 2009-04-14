@@ -1,5 +1,8 @@
 Jomres 4alpha2
 
+Fixed issue where Jomres reported that the paypal booking hadn't been inserted when it had.
+Added auto update of log files so that they're refreshed virtually in realtime.
+Improved minimum interval handling in the booking engine.
 Added option to show or not show the language switcher
 Modified viewproperty so that booking a room link deliberately points to an invalid date when no date selected, this forces the booking engine to set the arrival date to today's date. Fixed period and fixed arrival dates propertys will see the benefit of this.
 Modified admin area urls to use index.php instead of index2.php in Joomla.
