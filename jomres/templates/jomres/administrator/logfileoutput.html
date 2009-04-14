@@ -46,19 +46,11 @@ function toggleDetail(id,number)
 </table>
 <div id="tbl">
 	
-		<div id="logfileresult"></div>
+		<div id="logfileresult">{LOGFILEDATA}</div>
 
 </div>
 <input type="hidden" name="task" value="cpanel" />
 </form>
-<script>
-jQuery(document).ready(function() {
-	jQuery.jheartbeat.set({
-		url: "{HEARTBEAT}",
-		delay: 5000,
-		div_id: "logfileresult"
-	});
-});
-</script>
+{HEARTBEAT}
 </patTemplate:tmpl>
 

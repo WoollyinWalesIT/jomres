@@ -52,7 +52,7 @@ class j16000listLogs
 				//echo JOMRES_SYSTEMLOG_PATH.$file;
 				if (file_exists(JOMRES_SYSTEMLOG_PATH.$file))
 					{
-					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&logfile='.$key.'">'.ucwords($key)."</a>");
+					$r=array("LOGFILELINK"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&logfile='.$key.'">'.ucwords($key)."</a>","LOGFILELINK_NOUPDATE"=>'<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&no_update=1&logfile='.$key.'">'.ucwords($key)." noupdate"."</a>");
 					$rows[]=$r;
 					$counter++;
 					}
