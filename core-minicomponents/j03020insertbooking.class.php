@@ -55,7 +55,7 @@ class j03020insertbooking {
 		$jomresProccessingBookingObject=getCurrentBookingData($jomressession);
 		$guestDetails 			=$jomresProccessingBookingObject->guestDetails;
 		$tempBookingDataList 	=$jomresProccessingBookingObject->tempBookingDataList;
-		system_log("Attempting to insert booking jsid: ".$jomressession);
+		gateway_log("j03020insertbooking :: Attempting to insert booking jsid: ".$jomressession);
 
 		if (count($guestDetails)==0)
 			{
@@ -64,7 +64,7 @@ class j03020insertbooking {
 			}
 		if (count($tempBookingDataList)==0)
 			{
-			system_log("Failed to insert booking: Booking data not found. Probably already booking inserted. ".$jomressession);
+			gateway_log("j03020insertbooking :: Failed to insert booking: Booking data not found. Probably already booking inserted. ".$jomressession);
 			$this->insertSuccessful = false;
 			echo "Booking already made";
 			}
@@ -83,7 +83,7 @@ class j03020insertbooking {
 				{
 
 				//Booking amendment code
-				system_log("Amending contract. ".$amend_contractuid ." for ".$jomressession);
+				gateway_log("j03020insertbooking :: Amending contract. ".$amend_contractuid ." for ".$jomressession);
 
 				$guests_uid		= insertGuestDeets($jomressession);
 
@@ -244,9 +244,9 @@ class j03020insertbooking {
 				$this->insertBookingEventValues['contract_uid']			= $amend_contractuid;
 				$this->insertBookingEventValues['insertSuccessful']		= $this->insertSuccessful;
 				if ($this->insertSuccessful)
-					system_log("Booking amendment successful ");
+					gateway_log("j03020insertbooking :: Booking amendment successful ");
 				else
-					system_log("Booking amendment failed ");
+					gateway_log("j03020insertbooking :: Booking amendment failed ");
 				}
 			else
 				{
@@ -267,7 +267,7 @@ class j03020insertbooking {
 					}
 				else
 					$cartnumber=$jomressession;
-				system_log("Setting cart number. ".$cartnumber ." for ".$jomressession);
+				gateway_log("j03020insertbooking :: Setting cart number. ".$cartnumber ." for ".$jomressession);
 
 				$guests_uid=insertGuestDeets($jomressession);
 				foreach ($tempBookingDataList as $tempBookingData)
@@ -474,11 +474,12 @@ class j03020insertbooking {
 				$this->insertBookingEventValues['contract_uid']=$contract_uid;
 				
 				$this->insertBookingEventValues['insertSuccessful']=$this->insertSuccessful;
+				gateway_log("j03020insertbooking insertBookingEventValues :: ".serialize($this->insertBookingEventValues) );
 				
 				if ($this->insertSuccessful)
-					system_log("Booking insert Successful ");
+					gateway_log("j03020insertbooking :: Booking insert Successful ");
 				else
-					system_log("Booking insert failed ");
+					gateway_log("j03020insertbooking :: Booking insert failed ");
 				}
 				
 			$bookingNotes = $tempBookingData->booking_notes;
@@ -502,8 +503,6 @@ class j03020insertbooking {
 				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$note."','$dt','".(int)$property_uid."')";
 				doInsertSql($query,"");
 				}
-				
-			
 			}
 		$cache = new jomres_cache("",$property_uid);
 		$cache->trashCacheForProperty($property_uid);

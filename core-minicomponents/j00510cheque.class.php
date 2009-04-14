@@ -32,7 +32,7 @@ class j00510cheque {
 			}
 		global $ePointFilepath,$eLiveSite;
 		$plugin="cheque";
-		$button="<IMG SRC=\"".$eLiveSite."/j00510".$plugin.".gif\" border=\"0\">";
+		$button="<IMG SRC=\"".$eLiveSite."j00510".$plugin.".gif\" border=\"0\">";
 		$defaultProperty=getDefaultProperty();
 
 		$yesno = array();

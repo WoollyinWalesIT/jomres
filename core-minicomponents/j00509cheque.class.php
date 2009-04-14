@@ -44,7 +44,7 @@ class j00509cheque {
 		$link = JOMRES_SITEPAGE_URL_NOHTML."&task=editGateway&popup=1&plugin=$plugin";
 		$gatewayname=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'.$plugin,ucwords($plugin),false,false);
 		$pluginLink="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"".$plugin."\">".$gatewayname."</a>";
-		$button="<IMG SRC=\"".$eLiveSite."/j00510".$plugin.".gif"."\" border=\"0\">";
+		$button="<IMG SRC=\"".$eLiveSite."j00510".$plugin.".gif"."\" border=\"0\">";
 	    $this->outputArray=array('button'=>$button,'link'=>$pluginLink,'active'=>$active);
 		}
 

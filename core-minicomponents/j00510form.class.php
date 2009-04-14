@@ -43,7 +43,7 @@ class j00510form {
 			}
 		global $ePointFilepath,$eLiveSite;
 		$gateway="form";
-		$button="<IMG SRC=\"".$eLiveSite."/j00510".$gateway.".gif\" border=\"0\">";
+		$button="<IMG SRC=\"".$eLiveSite."j00510".$gateway.".gif\" border=\"0\">";
 		$defaultProperty=getDefaultProperty();
 
 		$yesno = array();

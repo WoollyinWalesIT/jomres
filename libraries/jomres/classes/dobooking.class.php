@@ -174,9 +174,9 @@ class jomres_booking
 			$this->error					= $bookingDeets['error_log'];
 			$this->room_total				= $bookingDeets['room_total'];
 			$this->total_in_party			= $bookingDeets['total_in_party'];
-			if ($this->booker_class == "100")
-				$this->mininterval				= 1;
-			else
+			//if ($this->booker_class == "100")
+			//	$this->mininterval				= 1;
+			//else
 				$this->mininterval				= $bookingDeets['mininterval'];
 			if ($this->mininterval == 0)
 				$this->mininterval = 1;
@@ -272,9 +272,9 @@ class jomres_booking
 		//$this->cfg_inputBoxErrorBorder 						= $mrConfig['inputBoxErrorBorder'];
 		$this->cfg_inputBoxErrorBackground 					= $mrConfig['inputBoxErrorBackground'];
 		$this->cfg_defaultcountry 							= $mrConfig['defaultcountry'];
-		if ($this->booker_class == "100")
-			$this->cfg_minimuminterval						= 1;
-		else
+		//if ($this->booker_class == "100")
+		//	$this->cfg_minimuminterval						= 1;
+		//else
 			$this->cfg_minimuminterval						= $mrConfig['minimuminterval'];
 		$this->cfg_showDeposit								= $mrConfig['chargeDepositYesNo'];
 		$this->cfg_showRoomImageInBookingFormOverlib		= $mrConfig['showRoomImageInBookingFormOverlib'];
@@ -1549,87 +1549,6 @@ class jomres_booking
 	 * Make the arrival date dropdown for properties that have a fixed arrival day (eg Saturday). Finds only those dates that match AND have a slot available after them.
 	#
 	 */
-	/*
-	function fixedDaysArrivaldateDropdown($arrivalDate)
-		{
-		$date_elements  = explode("/",$arrivalDate);
-		$day=$date_elements[2];
-		$month=$date_elements[1];
-		$year=$date_elements[0];
-		//$day=$day-14;
-		$requiredDay=$this->cfg_fixedArrivalDay;
-		if (!$requiredDay)
-			$requiredDay="0";
-		for ($i=0, $n=7; $i < $n; $i++)
-			{
-			$unixArrivalDate= mktime(0,0,0,$month,$day,$year);
-			$currentDoW=date("w",$unixArrivalDate);
-			if ($currentDoW==$requiredDay)
-				{
-				$arrivalDate=date("Y/m/d",mktime(0,0,0,$month,$day,$year));
-				break;
-				}
-			else
-				$day++;
-			}
-		$datesListArray=$this->calcPeriods($arrivalDate);
-		$fixedPeriodDropdown='<select class="inputbox" name="arrivalDate" onchange="getResponse_particulars(\'arrival_period\',this.value)";>';
-		$counter=0;
-		$selectedDateisNthDate=1;
-		foreach ($datesListArray as $thisDate)
-			{
-			$selected="";
-			$okToAddDate=TRUE;
-			// If fixed period bookings are used, we need to ensure that all dates within a period are free
-			if ($this->cfg_fixedPeriodBookings=="1" && $this->cfg_singleRoomProperty=="1")
-				{
-				$stayDays=$this->cfg_fixedPeriodBookingsNumberOfDays;
-				$dateRangeArray=array();
-				$arrivalDate=$thisDate;
-				$date_elements  = explode("/",$arrivalDate);
-				$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-				$secondsInDay = 86400;
-				$currentUnixDay=$unixCurrentDate;
-				$currentDay=$arrivalDate;
-				for ($i=0, $n=$stayDays; $i < $n; $i++)
-					{
-					$currentDay=date("Y/m/d",$unixCurrentDate);
-					$dateRangeArray[]=$currentDay;
-					$unixCurrentDate=$unixCurrentDate+$secondsInDay;
-					}
-				foreach ($dateRangeArray as $eachDate)
-					{
-					if (!$this->amend_contract)
-						{
-						$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date = '$eachDate' AND property_uid = '$this->property_uid'";
-						$datelist=doSelectSql($query);
-						if (count($datelist)>0)
-							{
-							$okToAddDate=FALSE;
-							}
-						}
-					else
-						{
-						if (isset($this->allBookings[$eachDate][$this->allPropertyRoomUids[0]]))
-							{
-							$okToAddDate=FALSE;
-							}
-						}
-					}
-				}
-			if ($okToAddDate)
-				{
-				$counter++;
-				if ($counter==$selectedDateisNthDate)
-					$selected="selected";
-				$fixedPeriodDropdown.= "<option value=\"".$this->JSCalmakeInputDates($thisDate)."\" ".$selected." >".$this->JSCalmakeInputDates($thisDate)."</option>";
-				}
-			}
-		$fixedPeriodDropdown.="</select>";
-		return $fixedPeriodDropdown;
-		}
-	*/
-
 	function fixedDaysArrivaldateDropdown($arrivalDate)
 		{
 		global $tmpBookingHandler;
@@ -1769,7 +1688,8 @@ class jomres_booking
 		{
 		global $tmpBookingHandler;
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
-		
+		if ($this->booker_class == "100")
+			return true;
 		$fixedPeriodMin=$this->cfg_fixedPeriodBookingsNumberOfDays;
 		$fixedPeriodMax=$this->cfg_fixedPeriodBookingsNumberOfDays*$this->cfg_numberofFixedPeriods;
 		$shortDays=$this->cfg_fixedPeriodBookingsShortNumberOfDays;
@@ -4090,7 +4010,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 		// Let's see if the form is ready to be booked.
 		
-		if ($this->stayDays < $this->mininterval && !$amend_contract)
+		if ($this->stayDays < $this->mininterval && !$amend_contract && $this->booker_class != "100")
 			{
 			$this->resetPricingOutput=true;
 			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2).' '.$this->stayDays));

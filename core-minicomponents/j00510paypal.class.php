@@ -43,7 +43,7 @@ class j00510paypal {
 			}
 		global $ePointFilepath,$eLiveSite,$jomresConfig_live_site;
 		$plugin="paypal";
-		$button="<IMG SRC=\"".$eLiveSite."/j00510".$plugin.".gif\" border=\"0\">";
+		$button="<IMG SRC=\"".$eLiveSite."j00510".$plugin.".gif\" border=\"0\">";
 		$defaultProperty=getDefaultProperty();
 
 		// Default settings
