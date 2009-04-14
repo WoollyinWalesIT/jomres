@@ -628,12 +628,17 @@ if ($numberOfPropertiesInSystem>0)
 		case 'processpayment':
 			$bookingdata = gettempBookingdata();
 			$MiniComponents->triggerEvent('00599',array ('bookingdata'=> $bookingdata) ); // Optional
-			if (!$thisJRUser->userIsManager && $mrConfig['useOnlinepayment']=="1" )
+			$paypal_settings = new jrportal_paypal_settings();
+			$paypal_settings->get_paypal_settings();
+			
+			if (!$thisJRUser->userIsManager && $mrConfig['useOnlinepayment']=="1" || $paypal_settings->paypalConfigOptions['override'] == "1")
 				{
 				$query="SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = ".(int)$property_uid." AND `plugin` = '".(string)$plugin."' AND setting = 'active' AND value = '1'";
 				$gatewayDeets=doSelectSql($query);
-				if (count($gatewayDeets)>0)
+				if (count($gatewayDeets)>0 || $paypal_settings->paypalConfigOptions['override'] == "1")
 					{
+					if ($paypal_settings->paypalConfigOptions['override'] == "1")
+						$plugin = "paypal";
 					$interrupted = intval( jomresGetParam( $_POST, 'interrupted', 0 ) );
 					$interruptOutgoingFile	= false;
 					if ($MiniComponents->eventFileLocate('00600',$plugin))
