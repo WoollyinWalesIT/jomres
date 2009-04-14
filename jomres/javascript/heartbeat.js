@@ -1,15 +1,15 @@
 /*
- * JHeartbeat 0.1.1 Beta
- * By Jason Levine (http://www.jasons-toolbox.com)
- * A heartbeat plugin for the jquery library to help keep sessions alive.
+ * jHeartbeat 0.3.0
+ * (C)Alex Richards - http://www.ajtrichards.co.uk/
  */
  
  jQuery.jheartbeat = {
 
-	options: {
+    options: {
 		url: "heartbeat_default.asp",
-		delay: 10000
-	},
+		delay: 10000,
+		div_id: "test_div"
+    },
 	
 	beatfunction:  function(){
 	
@@ -19,25 +19,35 @@
 		id: -1
 	},
 
-	set: function(options, onbeatfunction) {
+    set: function(options, onbeatfunction) {
 		if (this.timeoutobj.id > -1) {
 			clearTimeout(this.timeoutobj);
 		}
-		if (options) {
-			jQuery.extend(this.options, options);
-		}
-		if (onbeatfunction) {
-			this.beatfunction = onbeatfunction;
-		}
+        if (options) {
+            jQuery.extend(this.options, options);
+        }
+        if (onbeatfunction) {
+            this.beatfunction = onbeatfunction;
+        }
 
 		// Add the HeartBeatDIV to the page
-		jQuery("body").append("<div id=\"HeartBeatDIV\" style=\"display: none;\"></div>");
+		jQuery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
 		this.timeoutobj.id = setTimeout("jQuery.jheartbeat.beat();", this.options.delay);
-	},
+    },
 
-	beat: function() {
-		jQuery("#HeartBeatDIV").load(this.options.url);
+    beat: function() {
+		jQuery.ajax({
+				url: this.options.url,
+				dataType: "html",
+				type: "GET",
+				error: function(e)   { 
+					jQuery('#'+ jQuery.jheartbeat.options.div_id).append("Error Requesting Data"); 
+				},
+				success: function(data){ 
+					jQuery('#'+ jQuery.jheartbeat.options.div_id).html(data); 
+				}
+			   });
 		this.timeoutobj.id = setTimeout("jQuery.jheartbeat.beat();", this.options.delay);
-		this.beatfunction();
-	}
+        this.beatfunction();
+    }
 };

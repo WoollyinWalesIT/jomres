@@ -45,27 +45,20 @@ function toggleDetail(id,number)
 	</tr>
 </table>
 <div id="tbl">
-	<table cellpadding="4" cellspacing="0" border="0" width="100%" class="adminlist">
-		<tr>
-			<th class="contentheading">&nbsp;</td>
-			<th align="left" class="contentheading" id="datetime">{DATETIME}</td>
-			<th align="left" class="contentheading" id="">{TASK}</td>
-			<th align="left" class="contentheading" id="">{MESSAGE}</td>
-		</tr class="">
-		<patTemplate:tmpl name="rows">
-		<tr class={STYLE}>
-			<td scope="row"><img src="{LIVESITE}/jomres/images/info.png" border="0" onclick="toggleDetail('provider{COUNTER}_type',1)"></td>
-			<td>{DATETIME}</td>
-			<td>{TASK}</td>
-			<td>{MESSAGEFULL}</td>
-		</tr>
-		<tr style="display:none; background-color:#80fb43" id="provider{COUNTER}_type1" class="">
-			<td colspan="4">{JOMRESSESSION}&nbsp;::&nbsp;{REQUESTURI}</td>
-		</tr>
-		</patTemplate:tmpl>
-	</table>
+	
+		<div id="logfileresult"></div>
+
 </div>
 <input type="hidden" name="task" value="cpanel" />
 </form>
+<script>
+jQuery(document).ready(function() {
+	jQuery.jheartbeat.set({
+		url: "{HEARTBEAT}",
+		delay: 5000,
+		div_id: "logfileresult"
+	});
+});
+</script>
 </patTemplate:tmpl>
 
