@@ -339,10 +339,11 @@ if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) 
 	bookingformlistRooms($isSingleRoomProperty,$bkg);
 	}
 
-	
-$bkg->setErrorLogFirst($ajrq);
-$bkg->storeBookingDetails();
-
+if ($field != "heartbeat")
+	{
+	$bkg->setErrorLogFirst($ajrq);
+	$bkg->storeBookingDetails();
+	}
 ob_end_flush();
 
 // End run

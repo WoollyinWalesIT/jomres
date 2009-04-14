@@ -74,7 +74,7 @@ class j00610paypal {
 			$settingArray['usesandbox']=$paypal_settings->paypalConfigOptions['usesandbox'];
 			$settingArray['currencycode']=$paypal_settings->paypalConfigOptions['currencycode'];
 			$settingArray['paypalemail']=$paypal_settings->paypalConfigOptions['email'];
-			$settingArray['pendingok'] = "1";
+			$settingArray['pendingok'] = "0";
 			$settingArray['receiveIPNemail'] = "1";
 			}
 		else
@@ -109,7 +109,7 @@ class j00610paypal {
 							$paymentSuccessful=true;
 						if (!$paymentSuccessful)
 							{
-							$this->messagelog[]="Paypal payment could NOT be confirmed, recorded as provisional booking. Payment status : ".$_POST['payment_status']. " Our pending ok setting = ".$settingArray['pendingok'];
+							$this->messagelog[]="Paypal payment could NOT be confirmed, recorded as provisional booking";
 							$subject = 'Paypal payment could NOT be confirmed, recorded as provisional booking.';
 							}
 						if ($depositrequired == $amountPaid && strtolower($settingArray['paypalemail']) == strtolower($business) && strtoupper($settingArray['currencycode']) == $mc_currency)

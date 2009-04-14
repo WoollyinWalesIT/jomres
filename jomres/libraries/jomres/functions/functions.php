@@ -1071,6 +1071,7 @@ function gateway_log($message)
 		}
 	}
 
+
 /**
 #
  * Writes the xml file. Reads the data in, resorts it so that the most recent entry is at the top
@@ -1083,13 +1084,14 @@ function writexml($logfile,$rootelement,$entry,$newlines)
 
 	//if ($_REQUEST['option'] == "com_jomres")
 	//	{
+		$host=gethostbyaddr($_SERVER['REMOTE_ADDR']);
 		$dt = date("Y-m-d H:i:s (T)");
 		$rootElementStart="<".$rootelement.">\n";
 		$entryStart="\t<".$entry.">\n";
 		$datetime = "\t\t<datetime>" . $dt . "</datetime>\n";
 		$session = "\t\t<jomressession>" . $jomressession . "</jomressession>\n";
 		$taskEntry = "\t\t<task>" . $task . "</task>\n";
-		$request = "\t\t<requesturi><![CDATA[" . $task . "]]></requesturi>\n";
+		$request = "\t\t<requesturi><![CDATA[" . $task." ".$ipstuff=getEscaped($_SERVER['REMOTE_ADDR'])." ".$host. "]]></requesturi>\n";
 		$message="\t\t\t<message>".$newlines."</message>\n";
 		$entryEnd="\t</".$entry.">\n";
 		$rootElementEnd="</".$rootelement.">\n";
@@ -1652,7 +1654,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="",$usejomressessionasCartid=false)
 	{
 	global $MiniComponents,$tmpBookingHandler,$Itemid;
-	system_log("insertInternetBooking: Attempting to insert booking jsid: ".$jomressession);
+	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".$jomressession);
 	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
 	if ($contract_total == 0.00)
@@ -1660,12 +1662,13 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 	$userIsManager=checkUserIsManager();
 	$componentArgs=array('jomressession'=>$jomressession,'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
-
+	gateway_log("insertInternetBooking: ".serialize($MiniComponents->miniComponentData['03020']) );
 	if ($MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
 		{
+		gateway_log("insertInternetBooking: Insert successful ");
 		if ($confirmationPageRequired)
 			{
-			
+			gateway_log("insertInternetBooking:Outputting confirmation page ");
 			$componentArgs=array('property_uid'=>$property_uid);
 			$componentArgs=array('customText'=>$customTextForConfirmationForm);
 			$MiniComponents->triggerEvent('03030',$componentArgs); // Booking completed message
@@ -1680,14 +1683,15 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 				echo $jrtb;
 				}
 			}
+		
 		gateway_log("<h2>Resetting temp booking data</h2>");
 		$tmpBookingHandler->resetTempBookingData();
-		return $result;
+		return $MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'];
 		}
 	else // If there's a failure at this point it shouldn't be because the guest cancelled at any stage. This is intended to trap errors that shouldn't be passed to the guest on the site
 		{
 		$subject =	"Insert of booking failed. Likely caused by a database insert function failure.\n\n";
-		system_log($subject);
+		gateway_log($subject);
 		}
 	return false;
 	}
