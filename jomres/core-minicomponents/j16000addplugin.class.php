@@ -32,34 +32,33 @@ class j16000addplugin
 			}
 		global $jomresConfig_live_site;
 
-		$detect_os = strtoupper($_SERVER["SERVER_SOFTWARE"]); // converted to uppercase
-		$pos = strpos($detect_os, "WIN32");
-		if ($pos === false) {
-		      define("JRDS" , "/");
-		} else {
-		      define("JRDS" , "\\");
-		}
-
-		$debugging=false;
+		$debugging=true;
 
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
+		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
+		$pluginName=str_replace("<x>","",$pluginName);
 
-		$pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
+		$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
 
-		if (!is_dir($pluginsDirPath) )
+		if (!is_dir($remote_pluginsDirPath) )
 			{
-			if (!mkdir($pluginsDirPath))
+			if (!mkdir($remote_pluginsDirPath))
 				{
-				echo "Couldn't make $pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
+				echo "Couldn't make $remote_pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
 				return false;
 				}
+			else
+				echo "Made ".$remote_pluginsDirPath."<br>";
 			}
-		
-		if (is_dir($pluginsDirPath.$pluginName) )
+		else
+			echo "No need to make ".$remote_pluginsDirPath."<br>";
+
+		if (is_dir($remote_pluginsDirPath.$pluginName) )
 			{
-			emptyDir($pluginsDirPath.$pluginName);
-			@rmdir($pluginsDirPath.$pluginName);
+			emptyDir($remote_pluginsDirPath.$pluginName);
+			echo "Removing ".$remote_pluginsDirPath.$pluginName."<br>";
+			@rmdir($remote_pluginsDirPath.$pluginName);
 			}
 
 		if (is_dir($updateDirPath."unpacked") )
@@ -70,8 +69,7 @@ class j16000addplugin
 			}
 			
 		emptyDir($updateDirPath);
-		
-		
+
 		if ($thirdparty)
 			{
 			$error=false;
@@ -108,12 +106,18 @@ class j16000addplugin
 			}
 		else
 			{
-			$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
-			$pluginName=str_replace("<x>","",$pluginName);
+
+			
+			if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
+				{
+				echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting";
+				return false;
+				}
+			
 			//$pluginName=str_replace(" ","_",$pluginName);
 			if ($debugging) echo "Attempting download of ".$pluginName."<br>";
-			$newfilename=$updateDirPath.JRDS.$pluginName.".vnw";
-			$queryServer="http://plugins.jomres4.net/index.php?r=gp&vnw=".$getVNW."&plugin=".$pluginName;
+			$newfilename=$updateDirPath.$pluginName.".vnw";
+			$queryServer="http://plugins.jomres4.net/index.php?r=gp&vnw=1&plugin=".$pluginName;
 			if ($debugging) echo $queryServer;
 
 			$out = fopen($newfilename, 'wb');
@@ -163,9 +167,11 @@ class j16000addplugin
 			$zip->close();
 
 			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
-			mkdir($pluginsDirPath.$pluginName);
+			
+
+			
 			if ($debugging) echo "<br>Completed extract of $newfilename<br>";
-			if ($debugging) echo "<br>Moving contents of ".$updateDirPath."unpacked to ".$pluginsDirPath.$pluginName."<br>";
+			if ($debugging) echo "<br>Moving contents of ".$updateDirPath."unpacked to ".$remote_pluginsDirPath.$pluginName."<br>";
 
 			if (file_exists($updateDirPath."unpacked".JRDS."plugin_dependencies_check.php") )
 				{
@@ -196,15 +202,15 @@ class j16000addplugin
 					return;
 					}
 				}
-			$result=dirmv($updateDirPath."unpacked", $pluginsDirPath.$pluginName, true, $funcloc = "/");
+			$result=dirmv($updateDirPath."unpacked", $remote_pluginsDirPath.$pluginName, true, $funcloc = "/");
 			if ($result['success'])
 				{
-				if ($debugging) echo "<br>Moved contents of $newfilename to ".$pluginsDirPath.$pluginName."<br>";
+				if ($debugging) echo "<br>Moved contents of $newfilename to ".$remote_pluginsDirPath.$pluginName."<br>";
 				if(!rmdir($updateDirPath."unpacked")) echo "Error removing $updateDirPath/unpacked<br/>";
-				if (file_exists($pluginsDirPath.$pluginName.JRDS."plugin_install.php") )
+				if (file_exists($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php") )
 					{
 					define ("JOMRES_INSTALLER",1);
-					require_once ($pluginsDirPath.$pluginName.JRDS."plugin_install.php");
+					require_once ($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
 				if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
 				}
