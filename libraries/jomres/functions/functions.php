@@ -174,11 +174,12 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 			';
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>
 			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/excanvas-compressed.js"></script>
+			echo '<!--[if IE]><script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/excanvas-compressed.js"></script><![endif]--> 
 			';
 			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.bt.js"></script>
 			';
-	
+			echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jquery.bt.css" title="jquery beautytips css" />
+			';
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>
 				';

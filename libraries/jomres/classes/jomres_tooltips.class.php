@@ -117,11 +117,11 @@ class jomres_tooltips
 					$div_string.='</div>';
 					$div_string.='<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" >\', 
 						{
-						  fill: "white", 
-						  cornerRadius: 20, 
-						  padding: 20,
-						  strokeWidth: 1,
-						  width:            \''.$width.'\'
+						fill: "white", 
+						cornerRadius: 20, 
+						padding: 20,
+						strokeWidth: 1,
+						width:            \''.$width.'\'
 						});
 					</script>
 					';
