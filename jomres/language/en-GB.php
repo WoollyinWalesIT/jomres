@@ -2060,7 +2060,7 @@ define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Image width after Jomres resi
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Click for a map');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Map');
 /**
 * @ignore
 */
@@ -2356,7 +2356,7 @@ define('_JOMRES_FRONT_MR_FIXEDPRIOD1','Stay period (days)');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR','Show availability calendars?');
+define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR','Show availability calendar inline?');
 /**
 * @ignore
 */
@@ -4006,20 +4006,20 @@ define('_JOMRES_COM_MR_CUSTOMERTYPE_UPDATED','Updated customer type');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SHOWROOMINPROPERTYDETAILS','Show availability calendar in property details page?');
+define('_JOMRES_COM_A_SHOWROOMINPROPERTYDETAILS','Show rooms in property details page?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SHOWROOMSLISTLINK','Show link to availability calendar in property details page?');
+define('_JOMRES_COM_A_SHOWROOMSLISTLINK','Show link to rooms list page in property details page?');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SHOWONLYAVLCAL','Show <b>only</b> Availability calendar/Rooms list?');
+define('_JOMRES_COM_A_SHOWONLYAVLCAL','Show <b>only</b> Availability calendar?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC','Switch this to Yes to disable display of the property header and details, so that only the rooms list/availability calendar is viewable in the property details section. Only really intended for users renting out single room properties (eg apartments, cottages etc).');
+define('_JOMRES_COM_A_SHOWONLYAVLCAL_DESC','Switch this to Yes to disable display of the property header and details, so that only the availability calendar is viewable in the property details section. Only really intended for users renting out single room properties (eg apartments, cottages etc).');
 /**
 * @ignore
 */

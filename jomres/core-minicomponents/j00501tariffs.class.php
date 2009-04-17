@@ -121,18 +121,12 @@ class j00501tariffs {
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK);
-			$configurationPanel->setmiddle($lists['showTariffsLink']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+
 			}
 			
 
 
-		$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE);
-		$configurationPanel->setmiddle($lists['showTariffsInline']);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+
 		
 		$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
 		$configurationPanel->setmiddle($lists['verbosetariffinfo']);

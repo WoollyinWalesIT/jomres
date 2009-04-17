@@ -73,30 +73,6 @@ class j00501odds {
 			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_SHOWROOMINPROPERTYDETAILS);
-			$configurationPanel->setmiddle($lists['showRoomsInPropertyDetails']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			}
-			
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-			{
-			$configurationPanel->setleft(_JOMRES_COM_A_SHOWROOMSLISTLINK);
-			$configurationPanel->setmiddle($lists['showRoomsListingLink']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			}
-			
-		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) && $mrConfig['singleRoomProperty'] != "1" )
-			{
-			$configurationPanel->setleft(_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS);
-			$configurationPanel->setmiddle($lists['roomslistinpropertydetails']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			}
-			
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-			{
 			// Disabled for v4 as the full url is passed to the make popup function
 			/*
 			$configurationPanel->setleft(_JOMRES_COM_A_POPUPSALLOWED);
