@@ -48,7 +48,7 @@ class j02230editcreditcard {
 
 		if ($guestUid)
 			{
-			audit("",_JOMRES_MR_AUDIT_CREDITCARD_VIEWED);
+			jomres_audit("",_JOMRES_MR_AUDIT_CREDITCARD_VIEWED);
 			$defaultProperty=getDefaultProperty();
 			//$query="SELECT ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."' AND property_uid = '".(int)$defaultProperty."'";
 			$query="SELECT
