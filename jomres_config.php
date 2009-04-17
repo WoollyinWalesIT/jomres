@@ -106,8 +106,8 @@ $mrConfig['ratemultiplier']="1";
 $mrConfig['dateFormatStyle']="1";
 
 $mrConfig['showSlideshowLink']="1";
-$mrConfig['showSlideshowInline']="0";
-$mrConfig['showTariffsInline']="0";
+$mrConfig['showSlideshowInline']="1";
+$mrConfig['showTariffsInline']="1";
 $mrConfig['inputBoxErrorBackground']="#fce31d";
 $mrConfig['defaultcountry']="GB";
 $mrConfig['calstartfrombeginningofyear']="0";

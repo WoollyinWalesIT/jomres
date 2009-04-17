@@ -106,15 +106,7 @@ class j00501bookings1 {
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			}
-			
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-			{
-			$configurationPanel->setleft(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR);
-			$configurationPanel->setmiddle($lists['showAvailabilityCalendar']);
-			$configurationPanel->setright(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC);
-			$configurationPanel->insertSetting();
-			}
-			
+
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
 			$configurationPanel->setleft(_JOMRES_COM_A_SHOWDEPARTUREINPUT);

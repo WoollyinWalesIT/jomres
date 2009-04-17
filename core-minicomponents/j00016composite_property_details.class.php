@@ -64,7 +64,6 @@ class j00016composite_property_details {
 		// j00017 SRP avl cal
 		// j00018 MRP avl cal
 		
-		
 		$MiniComponents->triggerEvent('00015',$componentArgs);
 		$output				=$MiniComponents->miniComponentData['00015']['viewproperty']['property_deets'][0];
 		$featureList		=$MiniComponents->miniComponentData['00015']['viewproperty']['featurelist'];
@@ -78,25 +77,52 @@ class j00016composite_property_details {
 
 		// j01060 slideshows
 		if ($mrConfig['showSlideshowInline']=="1")
-			$output['SLIDESHOW']=$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'];
-
+			{
+			$slideshowcontent[]=array('SLIDESHOW_TITLE'=>$output['TITLE_SLIDESHOW'],'SLIDESHOW'=>$MiniComponents->miniComponentData['01060']['slideshow']['slideshow']);
+			}
 		// j01050 geocoder (google maps)
-		$output['GOOGLE_MAPS']=$MiniComponents->miniComponentData['01050']['x_geocoder'];
-
+		
+		if (strlen($MiniComponents->miniComponentData['01050']['x_geocoder'])>0)
+			{
+			$mapcontent[]=array('MAP_TITLE'=>$output['TITLE_MAP'],'GOOGLE_MAPS'=>$MiniComponents->miniComponentData['01050']['x_geocoder']);
+			$output['GOOGLE_MAPS']=$MiniComponents->miniComponentData['01050']['x_geocoder'];
+			}
 		// j01020 tariffs (either the verbose or the compact view, depending on General Config)
 		if ($mrConfig['showTariffsInline']=="1")
+			{
+			$tariffslist[] = array('tariffs_list_title'=>$output['TITLE_TARIFF'],'INLINE_TARIFFS'=>$MiniComponents->miniComponentData['01020']['showtariffs']);
 			$output['INLINE_TARIFFS']=$MiniComponents->miniComponentData['01020']['showtariffs'];
+			}
 		
 		// j00017 SRP avl cal
 		// j00018 MRP avl cal
+		if ($mrConfig['showOnlyAvailabilityCalendar'])
+			{
+			if ($mrConfig['singleRoomProperty'])
+				{
+				echo $MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
+				}
+			else
+				{
+				echo $MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
+				}
+			return;
+			}
+			
 		if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
+			{
+			$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar']);
 			$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
-		elseif ($mrConfig['showRoomsInPropertyDetails'])
+			}
+		elseif ($mrConfig['showAvailabilityCalendar'])
+			{
+			$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar']);
 			$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
+			}
 
 		// j01055 Rooms list
 		if ($mrConfig['roomslistinpropertydetails']=="1")
-			$output['ROOMS_LIST']=$MiniComponents->miniComponentData['01055']['showroomdetails'];
+			$roomslist[]=array('ROOMS_LIST_TITLE'=>$output['TITLE_ROOMSLIST'],'ROOMS_LIST'=>$MiniComponents->miniComponentData['01055']['showroomdetails']);
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$mcOutput=$MiniComponents->getAllEventPointsData('00015');
@@ -107,6 +133,12 @@ class j00016composite_property_details {
 				$tmpl->addRows( 'customOutput_'.$key, array($val) );
 				}
 			}
+			
+		$tmpl->addRows( 'mapcontent', $mapcontent );
+		$tmpl->addRows( 'tariffslist', $tariffslist );
+		$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
+		$tmpl->addRows( 'slideshowcontent', $slideshowcontent );
+		$tmpl->addRows( 'roomslist', $roomslist );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'feature_icons', $featureList);
 		$tmpl->addRows( 'roomtype_icons', $rtRows);
