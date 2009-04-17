@@ -43,7 +43,7 @@ class j00010reception_option_03_dobooking {
 			$this->template_touchable=false; return;
 			}
 		global $jrConfig;
-		$output['BOOKAROOMLINK']="index.php?option=com_jomres&task=dobooking&Itemid=$Itemid";
+		$output['BOOKAROOMLINK']=JOMRES_SITEPAGE_URL."&task=dobooking";
 		if ( $jrConfig['useSSLinBookingform'] == "1" )
 			$link=jomresURL($output['BOOKAROOMLINK'],1);
 		else
