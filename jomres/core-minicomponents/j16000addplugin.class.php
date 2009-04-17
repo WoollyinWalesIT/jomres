@@ -41,6 +41,12 @@ class j16000addplugin
 		$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
 
+		if (strlen($pluginName)==0 && !$thirdparty)
+			{
+			echo "Error, no plugin name passed";
+			return false;
+			}
+
 		if (!is_dir($remote_pluginsDirPath) )
 			{
 			if (!mkdir($remote_pluginsDirPath))
@@ -49,18 +55,21 @@ class j16000addplugin
 				return false;
 				}
 			else
-				echo "Made ".$remote_pluginsDirPath."<br>";
+				if ($debugging) echo "Made ".$remote_pluginsDirPath."<br>";
 			}
 		else
-			echo "No need to make ".$remote_pluginsDirPath."<br>";
+			if ($debugging) echo "No need to make ".$remote_pluginsDirPath."<br>";
 
-		if (is_dir($remote_pluginsDirPath.$pluginName) )
+		if (strlen($pluginName)>0)
 			{
-			emptyDir($remote_pluginsDirPath.$pluginName);
-			echo "Removing ".$remote_pluginsDirPath.$pluginName."<br>";
-			@rmdir($remote_pluginsDirPath.$pluginName);
+			if (is_dir($remote_pluginsDirPath.$pluginName) )
+				{
+				emptyDir($remote_pluginsDirPath.$pluginName);
+				if ($debugging) echo "Removing ".$remote_pluginsDirPath.$pluginName."<br>";
+				@rmdir($remote_pluginsDirPath.$pluginName);
+				}
 			}
-
+			
 		if (is_dir($updateDirPath."unpacked") )
 			{
 			if ($debugging) echo "<br>Removing ".$updateDirPath."unpacked<br>";
@@ -75,10 +84,12 @@ class j16000addplugin
 			$error=false;
 			
 			$formElement=$_FILES['pluginfile'];
-
+			//$blowdedUp = explode(".",$formElement['name']);
+			//$pluginName = $blowdedUp[0];
 			if ($formElement['name']!="")
 				{
 				$newfilename=$updateDirPath.$formElement['name'].".vnw";
+
 				if( strtolower($formElement['type']) != "application/zip" )
 					{
 					$error=true;
@@ -89,8 +100,7 @@ class j16000addplugin
 					if (is_uploaded_file ($formElement['tmp_name'])  )
 						{
 						$plugin_tmp			= $formElement['tmp_name'];
-						echo "Copying ".$img_destination."<br>";
-						if (!move_uploaded_file ($plugin_tmp,$newfilename) )
+						if (!copy ($plugin_tmp,$newfilename) )
 							{
 							$error=true;
 							$errorDesc="<b>move_uploaded_file failed</b>";
