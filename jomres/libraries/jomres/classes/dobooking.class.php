@@ -1664,7 +1664,20 @@ class jomres_booking
 		$this->setErrorLog("initDepartureDate::Initialising Departure date to ".$departureDate);
 		return $departureDate;
 		}
-
+		
+	/**
+	#
+	 * Set the departure date
+	#
+	 */
+	function setDepartureDate($departureDate)
+		{
+		$this->setErrorLog("setDepartureDate::Setting Departure date to ".$departureDate);
+		$this->departureDate=$departureDate;
+		$date_elements  = explode("/",$departureDate);
+		$this->unixDepartureDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+		}
+		
 	/**
 	#
 	 * Sets the departure date to the day after the passed arrival date
@@ -1687,9 +1700,18 @@ class jomres_booking
 	function checkDepartureDate($departureDate)
 		{
 		global $tmpBookingHandler;
+		$this->setErrorLog("checkDepartureDate::Checking Departure date ".$departureDate);
+		$this->setErrorLog("checkDepartureDate::Booker class ".$this->booker_class);
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
+		/*
 		if ($this->booker_class == "100")
-			return true;
+			{
+			$date_elements  = explode("/",$departureDate);
+			$this->unixDepartureDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+			if ($this->unixDepartureDate > $this->unixArrivalDate) 
+				return true;
+			}
+		*/
 		$fixedPeriodMin=$this->cfg_fixedPeriodBookingsNumberOfDays;
 		$fixedPeriodMax=$this->cfg_fixedPeriodBookingsNumberOfDays*$this->cfg_numberofFixedPeriods;
 		$shortDays=$this->cfg_fixedPeriodBookingsShortNumberOfDays;
@@ -1765,18 +1787,7 @@ class jomres_booking
 		return $departureDate;
 		}
 
-	/**
-	#
-	 * Set the departure date
-	#
-	 */
-	function setDepartureDate($departureDate)
-		{
-		$this->setErrorLog("setDepartureDate::Setting Departure date to ".$departureDate);
-		$this->departureDate=$departureDate;
-		$date_elements  = explode("/",$departureDate);
-		$this->unixDepartureDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-		}
+
 
 	/**
 	#
