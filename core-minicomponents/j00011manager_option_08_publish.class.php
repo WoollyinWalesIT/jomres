@@ -46,12 +46,12 @@ class j00011manager_option_08_publish {
 		if ($published)
 			{
 			$pubmsg = jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false);
-			$image = 'UnpublishProperty';
+			$image = 'PublishProperty';
 			}
 		else
 			{
 			$pubmsg = jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false);
-			$image = 'PublishProperty';
+			$image = 'UnpublishProperty';
 			}
 		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL.'&no_html=1&task=publishProperty'.jomresURLToken()), $image.".png", $pubmsg);
 		}
