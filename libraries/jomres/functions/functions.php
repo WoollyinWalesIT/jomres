@@ -1679,7 +1679,7 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 				//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
 				$jrtbar = new jomres_toolbar();
 				$jrtb	= $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$result['contract_uid']),'');
+				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$MiniComponents->miniComponentData['03020']['insertbooking']['contract_uid']),'');
 				$jrtb .= $jrtbar->endTable();
 				echo $jrtb;
 				}
