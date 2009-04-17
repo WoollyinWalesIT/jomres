@@ -32,7 +32,7 @@ class j16000addplugin
 			}
 		global $jomresConfig_live_site;
 
-		$debugging=true;
+		$debugging=false;
 
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
