@@ -866,6 +866,7 @@ class jomres_database
 		$this->result=null;
 		mysql_connect($jomresConfig_host,$jomresConfig_user,$jomresConfig_password) or die('Could not connect ' . mysql_error());
 		mysql_select_db($jomresConfig_db) or die('Could not select database');
+		mysql_query("SET NAMES 'UTF8'");
 		$this->db_prefix=$jomresConfig_dbprefix;
 		}
 
