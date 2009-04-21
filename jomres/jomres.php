@@ -336,7 +336,7 @@ if (!$no_html)
 
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 	
-	$output['BACKLINK']='<a href="javascript: history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
+	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 
 	$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 	$pageoutput[]=$output;
@@ -391,7 +391,7 @@ if ($thisJRUser->userIsManager)
 						$link=jomresURL(JOMRES_SITEPAGE_URL.'&propertyInitialFilter='.$initl.'');
 						$initialsOptions[]=jomresHTML::makeOption( $link, $initl );
 						}
-					$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL."&propertyInitialFilter=".$propertyInitialFilter) );
+					$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL."&propertyInitialFilter=".$propertyInitialFilter) );
 					}
 				if (strlen($propertyInitialFilter)>0)
 					{
@@ -426,7 +426,7 @@ if ($thisJRUser->userIsManager)
 					$thisJRUser->set_currentproperty($thisProperty);
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");
 					}
-				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'class="inputbox" size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid) );
+				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid) );
 				if (!JOMRES_SINGLEPROPERTY)
 					$output['PROPERTYDROPDOWN']=''.$propertyDropdown.$filterDropdown.'';
 				}
@@ -443,7 +443,7 @@ if ($thisJRUser->userIsManager)
 				}
 			else
 				$output['CLICKCOUNT']=0;
-			$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="bookGuestIn" border="0" title="'.$output['HTAGSEARCH'].'" />';
+			$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="Find" border="0" title="'.$output['HTAGSEARCH'].'" />';
 			$output['CLICKCOUNTIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
 
 			$componentArgs=array();

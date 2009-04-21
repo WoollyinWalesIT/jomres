@@ -133,7 +133,7 @@ class j01025showtariffs {
 						{
 						$theLink='http://www.xe.com/pca/input.cgi?From='.$mrConfig['currencyCode'].'&Amount='.$theRate;
 						$theText=jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT',_JOMRES_CURRENCYCONVERSIONTEXT);
-						$r['GOOGLECURRENCYLINKS']=makePopupLink($theLink,$theText,FALSE,620,250)."<br>";
+						$r['GOOGLECURRENCYLINKS']='<a href='.$theLink.' target="_blank">'.$theText.'</a><br />';
 						}
 					$tariff_deets[]=$r;
 					}

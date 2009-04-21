@@ -24,6 +24,7 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 	{
 	global $jomresConfig_live_site,$task;
 	global $ePointFilepath,$eLiveSite,$jrConfig;
+	$link = jomresURL($link);
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
 		$path=$eLiveSite.$image;
 	else
@@ -39,7 +40,7 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
 					<div class="icon" align="center">
 						<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
-						<img src="'.$path.'" border="0">
+						<img src="'.$path.'" border="0" />
 						</a>
 					</div>
 				</div>
@@ -61,7 +62,7 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 				return '
 				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
 					<div class="icon" align="center">
-						<img src="'.$path.'" border="0">
+						<img src="'.$path.'" border="0" />
 					</div>
 				</div>
 				';
@@ -116,6 +117,8 @@ function jomres_reconvertString($clean)
 	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
 	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
 	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
+	$clean = str_replace(" &amp; ", " & ", $clean);
+	//var_dump($clean);
 	return $clean;
 	}
 

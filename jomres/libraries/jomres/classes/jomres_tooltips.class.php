@@ -35,7 +35,7 @@ class jomres_tooltips
 		{
 		$keeplooking=true;
 		// Just in the off-chance that we supply the same div name twice
-		$div=ereg_replace("[^A-Za-z0-9]", "", $div);
+		$div="jrTooltip".ereg_replace("[^A-Za-z0-9]", "", $div);
 		if (strlen($div)==0)
 			$div=generateJomresRandomString(10);
 		while ($keeplooking):
@@ -59,8 +59,8 @@ class jomres_tooltips
 				else
 					$div_string.=' class="" ';
 					
-				$div_string.=' type="text">'.$div_content.'</div>
-					<script>jQuery("#'.$div.'").bt({
+				$div_string.='>'.$div_content.'</div>
+					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						ajaxPath: \''.$url.'\',
 						width: 500,
 						trigger: [\'mouseover\', \'click\'],
@@ -89,9 +89,9 @@ class jomres_tooltips
 				if (isset($type_arguments["height"]))
 					$div_string.='height="'.$height.'" ';
 				if (isset($type_arguments["border"]))
-					$div_string.='border="'.$border.'">';
-				$div_string.='></div>';
-				$div_string.='<script>jQuery("#'.$div.'").bt();</script>
+					$div_string.='border="'.$border.'"';
+				$div_string.=' /></div>';
+				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
 					';
 			break;
 			case "imageonly":
@@ -112,10 +112,10 @@ class jomres_tooltips
 				if (isset($type_arguments["height"]))
 					$div_string.='height="'.$height.'" ';
 				if (isset($type_arguments["border"]))
-					$div_string.='border="'.$border.'">';
+					$div_string.='border="'.$border.'"';
 					
-					$div_string.='</div>';
-					$div_string.='<script>jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" >\', 
+					$div_string.='/></div>';
+					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" >\', 
 						{
 						fill: "white", 
 						cornerRadius: 20, 
@@ -132,8 +132,8 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_room_type" ';
-				$div_string.=' title="<b>'.$hover_title.'</b><br />'.$hover_content.'"><img src="'.$div_content.'"></div>
-					<script>jQuery("#'.$div.'").bt();</script>
+				$div_string.=' title="<b>'.$hover_title.'</b><br />'.$hover_content.'"><img src="'.$div_content.'" /></div>
+					<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
 					';
 			break;
 			case "property_feature":
@@ -142,8 +142,8 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_features" ';
-				$div_string.=' title="<b>'.$hover_title.'</b><br />'.$hover_content.'"><img src="'.$div_content.'"></div>
-					<script>jQuery("#'.$div.'").bt();</script>
+				$div_string.=' title="<b>'.$hover_title.'</b><br />'.$hover_content.'"><img src="'.$div_content.'" /></div>
+					<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
 					';
 			break;
 			default:
@@ -154,7 +154,7 @@ class jomres_tooltips
 					$div_string.=' class="jomres_bt_tooltip" ';
 					
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
-					<script>jQuery("#'.$div.'").bt();</script>
+					<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
 					';
 			break;
 			}

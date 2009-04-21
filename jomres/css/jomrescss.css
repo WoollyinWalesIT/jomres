@@ -801,3 +801,11 @@ div.block_ui_bookingform h3
 	text-align: center;
 	padding-top: 10px;
 	}
+	
+a.rescal:link, a.rescal:visited, tr.rescal, td.rescal {
+	display : block;
+	}
+a.rescal:hover {
+	background-color : grey;
+	color : black;
+	}

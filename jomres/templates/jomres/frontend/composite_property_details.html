@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" >
 <script type="text/javascript" src="{LIVE_SITE}/jomres/javascript/tabber-minimized.js"></script>
-<link rel="stylesheet" href="{LIVE_SITE}/jomres/css/tabber.css" TYPE="text/css" MEDIA="screen">
+<link rel="stylesheet" href="{LIVE_SITE}/jomres/css/tabber.css" TYPE="text/css" MEDIA="screen" />
 
 <script type="text/javascript">
 
@@ -145,7 +145,7 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 							<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
 							<div class="tabbertab">
 								<h2>{SLIDESHOW_TITLE}</h2>
-								<p>{SLIDESHOW}</p>
+								{SLIDESHOW}
 							</div>
 							</patTemplate:tmpl>
 						

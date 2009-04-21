@@ -135,7 +135,7 @@ class j00013dashboard extends jomres_dashboard
 			// Uncomment the next line to show the current dashboard month & year in a table
 			//$cachableContent .= $this->getMonthAndYearOutput();
 
-			$cachableContent .=$this->getCss();
+			//$cachableContent .=$this->getCss();
 			$cachableContent .=$this->viewRoomsHorizontal();
 			$cachableContent .=$this->getLegend();
 			
@@ -252,7 +252,7 @@ class j00013dashboard extends jomres_dashboard
 			$blackBookingLink 	= false;
 			$showDate			= true;
 			$pastDate			= false;
-		   	$contract_uid="";
+			$contract_uid="";
 			$bgcolor=$this->cfg_inbgcolor;
 			$fcolor =$this->cfg_inmonthface;
 			$sqlDate=date("Y/m/d",$currdate);
@@ -263,7 +263,7 @@ class j00013dashboard extends jomres_dashboard
 				{
 				if (array_key_exists(date("Y/m/d",$currdate),$bookingsArray) )
 					{
-				   	$bgcolor = $this->cfg_occupiedcolour;
+					$bgcolor = $this->cfg_occupiedcolour;
 					$fcolor=$this->cfg_booking;
 					$viewbookingLink = true;
 					$d=date("Y/m/d",$currdate);
@@ -273,20 +273,20 @@ class j00013dashboard extends jomres_dashboard
 					if ($black_booking!="1")
 						{
 						/*
-				   		$query="SELECT deposit_paid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' LIMIT 1";
+						$query="SELECT deposit_paid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' LIMIT 1";
 						//echo $query;
-				   		$contractList = doSelectSql($query);
+						$contractList = doSelectSql($query);
 
 						foreach ($contractList as $contract)
 							{
 				  			$deposit_paid=$contract->deposit_paid;
-		   					if (!$deposit_paid)
-				   				$bgcolor=$this->cfg_provisionalcolour;
-				   			}
-				   		*/
+							if (!$deposit_paid)
+								$bgcolor=$this->cfg_provisionalcolour;
+							}
+						*/
 						$deposit_paid=$this->contracts[$contract_uid]["deposit_paid"];
-		   				if (!$deposit_paid)
-				   			$bgcolor=$this->cfg_provisionalcolour;
+						if (!$deposit_paid)
+							$bgcolor=$this->cfg_provisionalcolour;
 						}
 					else
 						{
@@ -328,7 +328,7 @@ class j00013dashboard extends jomres_dashboard
 		$output="";
 		$bookinglink=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.$sqlDate2;
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid;
-		$basicFont='<FONT style="style=color:'.$fcolor.'; '.$border.' ">';
+		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 
 		$output.='<td align="center" valign="middle" bgcolor="'.$bgcolor.'" >';
 		if ($dobookingLink && !$pastDate)
@@ -341,10 +341,11 @@ class j00013dashboard extends jomres_dashboard
 					if ($mrConfig['visitorscanbookonline'])
 						{
 						if (!$mrConfig['singleRoomProperty'])
-						   	$bookinglink.='&remus='.$room_id;
-						$output.= '<a href="'.jomresURL($bookinglink).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>';
-			   	   		}
-		   		   	else
+							$bookinglink.='&remus='.$room_id;
+						$output.= '<a href="'.jomresURL($bookinglink).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</div></td>
+						';
+						}
+					else
 						$output.= date ("j",$currdate);
 					}
 				else
@@ -354,30 +355,26 @@ class j00013dashboard extends jomres_dashboard
 				{
 				if (!$mrConfig['singleRoomProperty'])
 					$bookinglink.='&remus='.$room_id;
-				$output.='<a href="'.jomresURL($bookinglink).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>';
+				$output.='<a href="'.jomresURL($bookinglink).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</td>
+				';
 				}
 			}
 		else
-		   	{
+			{
 			if ($contract_uid!="")
 				{
 				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
-				/*
-				if (!$blackBookingLink)
-					$overlib=$this->getOverlibBookingDeets($contract_uid);
-				else
-					$overlib="";
-				*/
 				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
 
-				$output.=jomres_makeTooltip(date ("j",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.$viewbookinglink.'">'.(date ("j",$currdate)).'</a>',"");
-		   		}
-		   	else
+				$output.=jomres_makeTooltip(date ("j",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresURL($viewbookinglink).'">'.(date ("j",$currdate)).'</a>',"")."</td>
+				";
+				}
+			else
 				{
-				$output.=$basicFont.date ("j",$currdate);
+				$output.=$basicFont.date ("j",$currdate)."</div></td>
+				";
 				}
 			}
-		$output.="</font></td>\n";
 		return $output;
 		}
 
@@ -435,8 +432,8 @@ class j00013dashboard extends jomres_dashboard
 			$nextMonth= getThisMonthName(strftime("%m", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0])),false)." ".$year;
 			$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
 			}
-		$dropdown=jomresHTML::selectList( $monthsArray, 'requestedMonth', 'size="1" class="inputbox" OnChange="location.href=dashboardmonthdropdown.requestedMonth.options[selectedIndex].value" ', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&requestedMonth='.$this->requestedMonth ) );
-		$output='<form name="dashboardmonthdropdown">';
+		$dropdown=jomresHTML::selectList( $monthsArray, 'requestedMonth', 'size="1" OnChange="location.href=dashboardmonthdropdown.requestedMonth.options[selectedIndex].value" ', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&requestedMonth='.$this->requestedMonth ) );
+		$output='<form action="'.jomresURL(JOMRES_SITEPAGE_URL).'" name="dashboardmonthdropdown">';
 		$output.=$dropdown;
 		$output.='</form>';
 		return $output;
@@ -462,7 +459,7 @@ class j00013dashboard extends jomres_dashboard
 				$nextMonth=strftime("%B %Y", mktime(12, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
 				$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
 				if ($i%8==0 and $i<16)
-				   	$output.="</tr><tr>";
+					$output.="</tr><tr>";
 				}
 			$output.="</tr></table>";
 			return $output;
@@ -487,28 +484,6 @@ class j00013dashboard extends jomres_dashboard
 		$output.='</table>';
 		return $output;
 		}
-
-
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function getCss()
-		{
-		$output='
-		<style>
-		a.rescal:link, a.rescal:visited, tr.rescal, td.rescal {
-		display : block;
-		}
-		a.rescal:hover {
-		background-color : grey;
-		color : black;
-		}
-		</style>';
-		return $output;
-		}
-
 
 	function touch_template_language()
 		{
