@@ -1,5 +1,6 @@
 Jomres 4alpha3
 
+
 Added mysql_query("SET NAMES 'UTF8'"); to integration.php to tell mysql that all incoming data is in utf8 format.
 Fixed redirect in save register property to redirect to the new listpropertys link
 Fixed template name in list propertys for administrator list propertys feature.
