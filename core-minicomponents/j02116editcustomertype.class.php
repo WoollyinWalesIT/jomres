@@ -95,7 +95,7 @@ class j02116editcustomertype {
 			$output['VARIANCE']=number_format(0,2);
 			}
 
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();

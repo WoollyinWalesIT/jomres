@@ -39,7 +39,7 @@ class html_functions
 			return '
 			<div style="text-align:center;vertical-align:middle;float:left;width:80px;height:65px;">
 				<a href="'.$link.'" style="text-decoration:none;border:none;">
-					<img src="'.$path.'" style="border:none;" border="0" height="35px" width="35px" /><br/>
+					<img src="'.$path.'" style="border:none;" border="0" height="35" width="35" /><br/>
 					<span>'.$text.'</span>
 				</a>
 			</div>

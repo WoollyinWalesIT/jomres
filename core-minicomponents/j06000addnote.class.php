@@ -46,7 +46,7 @@ class j06000addnote {
 		$output['HNEWTEXT']=jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD);
 		$output['CONTRACT_UID']=$contract_uid;
 
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

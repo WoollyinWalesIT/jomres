@@ -1,16 +1,16 @@
 <patTemplate:tmpl name="pageoutput">
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 <!--
 function OnChange(dropdown)
 	{	
 	var x=document.getElementById("country")
-	var baseURL= "{JOMRES_SITEPAGE_URL_ADMIN}&task=addproperty"
-	top.location.href = baseURL + "&selectedCountry="+x.options[x.selectedIndex].value;
+	var baseURL= "{JOMRES_SITEPAGE_URL_ADMIN}&amp;task=addproperty"
+	top.location.href = baseURL + "&amp;selectedCountry="+x.options[x.selectedIndex].value;
 	return true;
 	}
 //-->
 </script>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}&task=addproperty2" method="post" name="adminForm" >
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}&amp;task=addproperty2" method="post" name="adminForm" >
 {JOMRESTOOLBAR}
 <table>
 	<tr>

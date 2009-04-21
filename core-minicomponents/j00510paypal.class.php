@@ -93,7 +93,7 @@ class j00510paypal {
 		$output['RECEIVEIPNEMAIL'] = jomresHTML::selectList( $yesno, 'receiveIPNemail', 'class="inputbox" size="1"', 'value', 'text', $settingArray['receiveIPNemail'] );
 		$output['CURRENCYCODE'] = $settingArray['currencycode'] ;
 
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

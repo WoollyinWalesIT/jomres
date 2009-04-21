@@ -199,7 +199,7 @@ class j02180bookguestout {
 					$jrtb .= $jrtbar->toolbarItem('printer','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT,$editable=false,$isLink=false));
 					$jrtb .= $jrtbar->endTable();
 					$output['JOMRESTOOLBAR']=$jrtb;
-					$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+					$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 					$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 					

@@ -89,7 +89,7 @@ class j02170bookguestin {
 				$output['SAVEBUTTON']=jr_gettext('_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON',_JOMRES_FRONT_MR_BOOKIN_SELECTBUTTON,false);
 				$output['DROPDOWNLIST']=$dropDownList;
 
-				$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+				$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 				$jrtbar = new jomres_toolbar();
 				$jrtb  = $jrtbar->startTable();
