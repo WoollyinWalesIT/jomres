@@ -77,7 +77,7 @@ class j02200editdeposit {
 			$output['GUESTUID']=$guestUid;
 			$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE);
 
-			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();

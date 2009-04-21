@@ -197,7 +197,7 @@ class j02144editextra {
 		$output['EXTRAMODEL_PERDAYSMINDAYS']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS);
 		$output['EXTRAMODEL_PERDAYSPERROOM']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM);
 		
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		
 		$pageoutput[]=$output;

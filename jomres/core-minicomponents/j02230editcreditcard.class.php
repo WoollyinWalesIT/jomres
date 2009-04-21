@@ -123,7 +123,7 @@ class j02230editcreditcard {
 			if (CMSVER == "Mambo4.6")
 				$output['JOMRESJS']='<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/ajax/jomres.js"></script>';
 
-			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 			$jrtbar = new jomres_toolbar();
 			$jrtb  = $jrtbar->startTable();

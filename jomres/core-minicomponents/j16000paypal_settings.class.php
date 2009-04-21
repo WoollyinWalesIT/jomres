@@ -64,7 +64,7 @@ class j16000paypal_settings {
 		$output['USESANDBOX'] = jomresHTML::selectList( $yesno, 'usesandbox', 'class="inputbox" size="1"', 'value', 'text', $paypal_settings->paypalConfigOptions['usesandbox'] );
 		$output['PAYPALEMAIL'] = $paypal_settings->paypalConfigOptions['email'];
 		$output['CURRENCYCODE'] = $paypal_settings->paypalConfigOptions['currencycode'];
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		$output['OVERRIDE'] = jomresHTML::selectList( $yesno, 'override', 'class="inputbox" size="1"', 'value', 'text', $paypal_settings->paypalConfigOptions['override'] );
 		
 		$jrtbar = new jomres_toolbar();

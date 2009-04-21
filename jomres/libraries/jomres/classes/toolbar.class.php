@@ -122,29 +122,9 @@ class jomres_toolbar
 	function startTable()
 		{
 		$output='';
-		if (!defined('TOOLBARCSS_DONE') )
-			{
-			$output.='
-			<style type="text/css">
-			#jomresmenu a{
-				text-decoration:none;
-				border-color: #fff;
-				}
-
-			#jomresmenu a:hover {
-				text-decoration:none;
-				border-color: #feff04;
-				}
-			</style>';
-			}
-
 		$output.='
-
 		<table cellpadding="0" cellspacing="3" border="0" id="jomresmenu">
 		<tr valign="bottom" align="center">';
-
-		if (!defined('TOOLBARCSS_DONE') )
-			define( 'TOOLBARCSS_DONE', 1 );
 		return $output;
 		}
 
@@ -169,6 +149,8 @@ class jomres_toolbar
 	*/
 	function makeCell($image,$targetTask,$link,$text,$submitOnClick=false,$submitTask="")
 		{
+		$clean = str_replace("&amp;","&" , $clean);
+		$clean = str_replace("&","&amp;" , $clean);
 		$image = urlencode($image);
 		$image = str_replace('+' , '%20' , $image);
 		$image = str_replace('%2F' , '/' , $image);
@@ -178,9 +160,9 @@ class jomres_toolbar
 		$t=str_replace("&#39;","\'", $t);
 		$title= 'title="'.$t.'"';
 		if ($submitOnClick)
-			$submit='<a class="jomresmenu" href="javascript:jomres_submitbutton(\''.$submitTask.'\');" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$t.'\'";><img src="'.$image.'" alt="'.$text.'" title="'.$text.'" border="0" /></a>';
+			$submit='<a class="jomresmenu" href="javascript:jomres_submitbutton(\''.$submitTask.'\');" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$t.'\';"><img src="'.$image.'" alt="'.$text.'" title="'.$text.'" border="0" /></a>';
 		else
-			$submit='<a class="jomresmenu" href="'.$link.'" onMouseOver=" javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$t.'\'  ";><img src="'.$image.'" align="bottom" alt="'.$text.'"	border="0" title="'.$text.'" /></a>';
+			$submit='<a class="jomresmenu" href="'.$link.'" onMouseOver=" javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$t.'\';"><img src="'.$image.'" align="bottom" alt="'.$text.'"	border="0" title="'.$text.'" /></a>';
 		$output='<td>'.$submit.'</td>';
 		return $output;
 		}

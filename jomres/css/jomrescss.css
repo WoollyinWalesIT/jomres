@@ -809,3 +809,14 @@ a.rescal:hover {
 	background-color : grey;
 	color : black;
 	}
+	
+#jomresmenu a{
+	text-decoration:none;
+	border-color: #fff;
+	}
+
+#jomresmenu a:hover {
+	text-decoration:none;
+	border-color: #feff04;
+	}
+	

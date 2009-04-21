@@ -41,7 +41,7 @@ class j16000add_adhoc_item_to_bill
 				$userid=jomresGetParam($_POST,"userid",0);
 				$propertyFunctions=new jrportal_property_functions();
 				$userFunctions=new jrportal_user_functions();
-				$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+				$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 				$manager=$userFunctions->getJoomlaUserDetailsForJoomlaId($userid);
 				$output['USERNAME']=$manager['username'];
 				$output['PROPERTY_DROPDOWN']=$propertyFunctions->makePropertyDropdownForManagerId(array($userid));
