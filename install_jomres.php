@@ -610,7 +610,7 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_fields` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
-		`field` VARCHAR( 255 ) ,
+		`fieldname` VARCHAR( 255 ) ,
 		`default_value` VARCHAR( 255 ) ,
 		`description` VARCHAR( 255 ) ,
 		`required` BOOL NOT NULL DEFAULT '0',
