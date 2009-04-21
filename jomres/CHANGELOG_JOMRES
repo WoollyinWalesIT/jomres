@@ -1,3 +1,17 @@
+Jomres 4alpha3
+
+Added mysql_query("SET NAMES 'UTF8'"); to integration.php to tell mysql that all incoming data is in utf8 format.
+Fixed redirect in save register property to redirect to the new listpropertys link
+Fixed template name in list propertys for administrator list propertys feature.
+Fixed bug in addplugin (and on plugins server) so plugins weren't being installed.
+Adopted tabber for property details tabs
+Reworked Property Config options to put all options for what to show in their own tab.
+Undid mininterval changes as they're naffing up init departure dates for managers. I'll revisit this issue at a later point.
+Swapped published and unpublished images around.
+Corrected link in receptionist menu to dobooking page.
+Fixed incorrect call to jomres_audit in edit creditcard.
+Fixed editbooking link after completion as with paypal fix for A2 the contract uid wasn't being passed to the calling function.
+
 Jomres 4alpha2
 
 Fixed issue where Jomres reported that the paypal booking hadn't been inserted when it had.
