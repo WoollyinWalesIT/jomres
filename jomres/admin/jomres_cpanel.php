@@ -83,11 +83,11 @@ if (function_exists("curl_init"))
 				<tr>
 					<td bgcolor="#f9f9f9">
 						<?php
-						$link = 'http://manual.jomres.net" title="Manual (Online)" target="_blank"';
+						$link = 'http://manual.jomres.net" title="Manual (Online)" target="_blank';
 						echo _quickiconButton( $link, 'Help.png', 'Read documentation (Online)', '/jomres/images/' );
-						$link = 'http://tickets.jomres.net/index.php?_m=knowledgebase&_a=view" title="Search (Online) knowledgebase" target="_blank"';
+						$link = 'http://tickets.jomres.net/index.php?_m=knowledgebase&amp;_a=view" title="Search (Online) knowledgebase" target="_blank';
 						echo _quickiconButton( $link, 'FAQ.png', 'Search (Online) knowledgebase', '/jomres/images/' );
-						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket (Online)" target="_blank"';
+						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket (Online)" target="_blank';
 						echo _quickiconButton( $link, 'Support_IT.png', 'Submit support ticket (Online)', '/jomres/images/');
 						?>
 					</td>
@@ -120,9 +120,9 @@ if (function_exists("curl_init"))
 							$result=jomresStatusTestFolderIsWritable($folder);
 							$message=$result['message'];
 							if ($result['result'])
-								$image='<img src="'.$writabilityCheckPassImage.'" border="0" alt="Pass">';
+								$image='<img src="'.$writabilityCheckPassImage.'" border="0" alt="Pass" />';
 							else
-								$image='<img src="'.$writabilityCheckFailImage.'" border="0" alt="'.$result['message'].'">';
+								$image='<img src="'.$writabilityCheckFailImage.'" border="0" alt="'.$result['message'].'" />';
 								
 							echo $image." ".$folder."<br/>";
 							if ($result['message']!="Pass")
@@ -141,7 +141,7 @@ if (function_exists("curl_init"))
 					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007, 2008, 2009 Vince Wooll</td>
 				</tr>
 				<tr>
-					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/User_Ninja.png" width="48px" height="48px" align="middle" border="0" /></td>
+					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/User_Ninja.png" width="48" height="48" align="middle" border="0" /></td>
 					<td bgcolor="#FFFFFF">Thanks to Hazel Wilson for your continuing support.</td>
 				</tr>
 			</table>
