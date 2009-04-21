@@ -94,7 +94,7 @@ if (!JRPORTAL_AJAXCALL)
 	echo $jomreslang->get_languageselection_dropdown()."<br/>";
 	?>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery-1.3.2.min.js"></script>
-	<script language="javascript">jQuery.noConflict();</script>
+	<script language="javascript" type="text/javascript">jQuery.noConflict();</script>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.cookee.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jomres.js"></script>
 	<script language="javascript"type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/tablesort.js"></script>

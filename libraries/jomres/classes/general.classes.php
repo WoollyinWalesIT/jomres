@@ -27,6 +27,9 @@ class html_functions
 		{
 		global $jomresConfig_live_site,$task;
 		global $ePointFilepath,$eLiveSite;
+		$link = str_replace("&amp;", "&", $link);
+		$link = str_replace("&", "&amp;", $link);
+		
 		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS.$image) )
 			$path=$eLiveSite.$image;
 		else
@@ -36,7 +39,7 @@ class html_functions
 			return '
 			<div style="text-align:center;vertical-align:middle;float:left;width:80px;height:65px;">
 				<a href="'.$link.'" style="text-decoration:none;border:none;">
-					<img src="'.$path.'" style="border:none;" border="0" height="35px" width="35px"><br/>
+					<img src="'.$path.'" style="border:none;" border="0" height="35px" width="35px" /><br/>
 					<span>'.$text.'</span>
 				</a>
 			</div>
@@ -48,7 +51,7 @@ class html_functions
 			<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:120px;height:100px;">
 				<div class="icon" align="center">
 					<a href="'.$link.'" style="text-decoration:none;">
-					<img src="'.$path.'" border="0"><br/>
+					<img src="'.$path.'" border="0" /><br/>
 					<span>'.$text.'</span>
 					</a>
 				</div>

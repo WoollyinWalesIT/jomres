@@ -117,7 +117,7 @@ function jomres_reconvertString($clean)
 	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
 	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
 	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
-	$clean = str_replace(" &amp; ", " & ", $clean);
+	$clean = str_replace(" & "," &amp; " , $clean);
 	//var_dump($clean);
 	return $clean;
 	}
@@ -3821,7 +3821,7 @@ function createJSCSSDropdown()
 		<div style="padding:0 2px 0 0;text-align:center;vertical-align:middle;float:left;width:120px;height:110px;">
 			<div class="icon" align="center">
 				<a href="<?php echo $link; ?>" style="text-decoration:none;">
-				<img src="<?php echo $jomresConfig_live_site.$path.$image;?>" border="0"><br />
+				<img src="<?php echo $jomresConfig_live_site.$path.$image;?>" border="0" /><br />
 				<span><?php echo $text; ?></span>
 				</a>
 			</div>
