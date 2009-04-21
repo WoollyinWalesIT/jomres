@@ -1020,6 +1020,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$defaultText=$theValue;
 			}
 		}
+	$theText=jomres_reconvertString($theText);
 	if (isset($thisJRUser))
 		{
 		if ($_REQUEST['task']=="touch_templates" && $thisJRUser->userIsManager)
@@ -1086,7 +1087,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					}
 				}
 		}
-
+	
 	switch ($jrConfig['utfHTMLdecode'])
 		{
 		case 0:
