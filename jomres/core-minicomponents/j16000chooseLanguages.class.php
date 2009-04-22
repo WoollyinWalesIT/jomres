@@ -34,7 +34,15 @@ class j16000chooseLanguages
 		$output['PAGETITLE']=_JOMRES_COM_CHOOSELANGUAGES;
 		$output['INFO']=_JOMRES_COM_CHOOSELANGUAGES_INFO;
 		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
-		
+		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
+		if (file_exists($langDropdownFile) )
+			{
+			include ($langDropdownFile);
+			$langfiles = getLangDropdownString();
+			}
+		else
+			$langfiles = array();
+
 		$jomreslang= new jomres_language();
 		$languagesArray = $jomreslang->define_langfile_to_languages_array();
 	
@@ -42,9 +50,12 @@ class j16000chooseLanguages
 		foreach ($languagesArray as $key=>$val)
 			{
 			$r=array();
+			$selected="";
+			if (in_array($key,$langfiles))
+				$selected=' checked="yes" ';
 			$r['SHORTCODE']=$key;
 			$r['LONGCODE']=$val;
-			$r['CHECKBOX']='<input type="checkbox" id="cb'.$key.'" name="idarray[]" value="'.$key.'">';
+			$r['CHECKBOX']='<input type="checkbox" id="cb'.$key.'" name="idarray[]" value="'.$key.'" '.$selected.'>';
 			$rows[]=$r;
 			}
 		
