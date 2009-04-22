@@ -127,7 +127,8 @@ class j16000addplugin
 			//$pluginName=str_replace(" ","_",$pluginName);
 			if ($debugging) echo "Attempting download of ".$pluginName."<br>";
 			$newfilename=$updateDirPath.$pluginName.".vnw";
-			$queryServer="http://plugins.jomres4.net/index.php?r=gp&vnw=1&plugin=".$pluginName;
+			$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&plugin=".$pluginName;
+			//echo $queryServer;exit;
 			if ($debugging) echo $queryServer;
 
 			$out = fopen($newfilename, 'wb');
@@ -215,6 +216,7 @@ class j16000addplugin
 			$result=dirmv($updateDirPath."unpacked", $remote_pluginsDirPath.$pluginName, true, $funcloc = "/");
 			if ($result['success'])
 				{
+				//echo $remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php";exit;
 				if ($debugging) echo "<br>Moved contents of $newfilename to ".$remote_pluginsDirPath.$pluginName."<br>";
 				if(!rmdir($updateDirPath."unpacked")) echo "Error removing $updateDirPath/unpacked<br/>";
 				if (file_exists($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php") )

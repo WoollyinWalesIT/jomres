@@ -303,9 +303,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			break;
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
-			$table="#__mambots";
-			if (_JOMRES_NEWJOOMLA == 1)
-				$table="#__plugins";
+			$table="#__plugins";
 
 			$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
 			$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
