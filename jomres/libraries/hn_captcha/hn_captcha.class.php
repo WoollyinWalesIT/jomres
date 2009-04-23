@@ -19,6 +19,3 @@
         include_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'hn_captcha'.JRDS.'hn_captcha.class.php4');
 
     }
-
-
-?>
