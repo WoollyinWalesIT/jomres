@@ -37,8 +37,8 @@ class j16000listbookings
 
 		$property_uid_array=array();
 
-		$bookingFunctions=new jrportal_booking_functions();
-		$bookings=$bookingFunctions->getBookings("");
+		//$bookingFunctions=new jrportal_booking_functions();
+		//$bookings=$bookingFunctions->getBookings("");
 		$output['LIVESITE']=$jomresConfig_live_site;
 		$output['HPROPERTYID']=_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID;
 		$output['HGUESTID']=_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID;

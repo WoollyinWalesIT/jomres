@@ -43,7 +43,7 @@ class j00030search {
 			}
 		global $jomresConfig_live_site,$jomresConfig_lang,$jrConfig;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
-		
+		global $customTextObj;
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		
 		
@@ -55,13 +55,14 @@ class j00030search {
 		$searchRestarted=false;
 		$showSearchOptions=true;
 
+		//
 		
 		if (!defined(_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) )
 			{
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/'.$jomresConfig_lang.'.php')) {
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/'.$jomresConfig_lang.'.php');
-				} else if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/en-GB.php'))  {
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/language/en-GB.php');
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.$jomresConfig_lang.'.php')) {
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.$jomresConfig_lang.'.php');
+				} else if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.'en-GB.php'))  {
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.'en-GB.php');
 				}
 			}
 		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
@@ -80,13 +81,16 @@ class j00030search {
 			$doSearch=true;
 			}
 		else
+			{
+			$customTextObj = new custom_text();
 			$showSearchOptions=true;
-
-		$runningMiniComp=false;
+			}
+		//$runningMiniComp=false;
 		if ($calledByModule == "" && isset($_REQUEST['calledByModule']) )
 			{
 			$calledByModule=jomresGetParam( $_REQUEST, 'calledByModule',"" );
 			}
+
 		if ($calledByModule == "" && !isset($_REQUEST['next'])  )
 			{
 			if ($jrConfig['integratedSearch_enable'] =='1')
@@ -293,8 +297,8 @@ class j00030search {
 					echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
 					echo "<script>
 					jQuery(function() {
-						jQuery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&popup=1&no_html=1&tmpl=component&filter=country','#search_region');
-						jQuery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&popup=1&no_html=1&tmpl=component&filter=region','#search_town');
+						jQuery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
+						jQuery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=region','#search_town');
 						});
 					</script>";
 					}
@@ -686,7 +690,7 @@ class j00030search {
 			
 			$pageoutput[]=$output;
 
-			if (!$doSearch || ($calledByModule="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1') )
+			if (!$doSearch || ($calledByModule=="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1') )
 				{
 				$stmpl = new patTemplate();
 				$stmpl->setRoot( $sch->templateFilePath );
