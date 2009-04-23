@@ -36,9 +36,9 @@ class j16000getstats
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=showstats",_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->endTable();
 		echo $jrtb;
-		
-		
+
 		$statoption 	= jomresGetParam( $_GET, 'statoption', "");
+
 		if ($MiniComponents->eventSpecificlyExistsCheck('16020',$statoption) )
 			{
 			$MiniComponents->specificEvent('16020',$statoption); // Custom task
