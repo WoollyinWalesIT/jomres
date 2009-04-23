@@ -259,33 +259,40 @@ class j02260editbooking {
 				$link=JOMRES_SITEPAGE_URL.'&task=amendBooking&contractUid='.$booking_contract_uid;
 				$targetTask='amendBooking';
 				$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/HotelReservationEdit.png';
-				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HAMENDBOOKING'],$submitOnClick=false,$submitTask="",$image);
-				if (!$bookedin)
+				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
+					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HAMENDBOOKING'],$submitOnClick=false,$submitTask="",$image);
+				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
-					$output['HBOOKGUESTIN']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true) ;
-					$link=JOMRES_SITEPAGE_URL.'&task=bookGuestIn&contract_uid='.$booking_contract_uid;
-					$targetTask='bookGuestIn';
-					$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
-					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTIN'],$submitOnClick=false,$submitTask="",$image);
-					
-					$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelBooking&contract_uid=$booking_contract_uid"),'');
+					if (!$bookedin)
+						{
+						$output['HBOOKGUESTIN']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true) ;
+						$link=JOMRES_SITEPAGE_URL.'&task=bookGuestIn&contract_uid='.$booking_contract_uid;
+						$targetTask='bookGuestIn';
+						$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
+						$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTIN'],$submitOnClick=false,$submitTask="",$image);
+						
+						$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelBooking&contract_uid=$booking_contract_uid"),'');
+						}
+					else
+						{
+						$output['HBOOKGUESTOUT']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,$editable=false,$isLink=true) ;
+						$link=JOMRES_SITEPAGE_URL.'&task=bookGuestOut&dueDepart='.$booking_contract_uid;
+						$targetTask='bookGuestOut';
+						$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
+						$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTOUT'],$submitOnClick=false,$submitTask="",$image);
+						}
 					}
-				else
-					{
-					$output['HBOOKGUESTOUT']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,$editable=false,$isLink=true) ;
-					$link=JOMRES_SITEPAGE_URL.'&task=bookGuestOut&dueDepart='.$booking_contract_uid;
-					$targetTask='bookGuestOut';
-					$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
-					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTOUT'],$submitOnClick=false,$submitTask="",$image);
-					}
-				if (!$booking_deposit_paid)
+				if (!$booking_deposit_paid && $bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('enterdeposit',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$booking_contract_uid"),'');
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
 				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&contract_uid='.$booking_contract_uid;
-				$jrtb .= $jrtbar->toolbarItem('addservice',jomresURL(JOMRES_SITEPAGE_URL."&task=addServiceToBill&contract_uid=$booking_contract_uid"),jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=false));
-				$jrtb .= $jrtbar->toolbarItem('printer','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_CONFIRMATION_PRINT',_JOMRES_COM_CONFIRMATION_PRINT,$editable=false,$isLink=false));
+				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
+					$jrtb .= $jrtbar->toolbarItem('addservice',jomresURL(JOMRES_SITEPAGE_URL."&task=addServiceToBill&contract_uid=$booking_contract_uid"),jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=false));
+				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
+					$jrtb .= $jrtbar->toolbarItem('printer','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_CONFIRMATION_PRINT',_JOMRES_COM_CONFIRMATION_PRINT,$editable=false,$isLink=false));
 				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&contract_uid='.$booking_contract_uid.'&sendemail=1';
-				$jrtb .= $jrtbar->toolbarItem('emailsend','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=false));
+				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
+					$jrtb .= $jrtbar->toolbarItem('emailsend','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=false));
 				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&popup=1&contract_uid='.$booking_contract_uid;
 				$jrtb .= $jrtbar->toolbarItem('note','javascript:void window.open(\''.$notesLink.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=false));
 				}

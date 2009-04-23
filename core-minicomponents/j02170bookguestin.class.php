@@ -48,7 +48,7 @@ class j02170bookguestin {
 			
 			
 			$today = date("Y/m/d");
-			$query="SELECT contract_uid,guest_uid,arrival FROM #__jomres_contracts WHERE booked_in != '1' AND guest_uid != '0' AND property_uid = '".(int)$defaultProperty."' ORDER BY arrival";
+			$query="SELECT contract_uid,guest_uid,arrival FROM #__jomres_contracts WHERE booked_in != '1' AND guest_uid != '0' AND cancelled = 0 AND bookedout = 0 AND property_uid = '".(int)$defaultProperty."' ORDER BY arrival";
 			$dueContracts =doSelectSql($query);
 			if (count($dueContracts)>0)
 				{

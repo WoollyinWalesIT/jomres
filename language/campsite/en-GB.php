@@ -6281,4 +6281,8 @@ define('_JOMRES_COM_CHOOSELANGUAGES_INFO','Choose the language options to be sho
 * @ignore
 */
 define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN','Show the language selection dropdown?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS','Booked out and Cancelled bookings');
 ?>

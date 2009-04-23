@@ -49,9 +49,32 @@ class j02182savebookout {
 		$contract_uid         = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		$items="";
 		$saveMessage= jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT',_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT,FALSE);
-		$today = date("Y/m/d");
 		$query="SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 		$contractData =doSelectSql($query);
+
+		if (count($contractData)>0)
+			{
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($defaultProperty);
+
+			$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
+			if (!doInsertSql($query,""))
+				trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
+			
+			$query="UPDATE #__jomres_contracts SET `bookedout`='1', `bookedout_timestamp`='".date( 'Y-m-d H:i:s' )."' WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
+			if (!doInsertSql($query,""))
+				trigger_error ("Unable to update booking out data for contract". (int)$contract_uid.", mysql db failure", E_USER_ERROR);
+			
+			$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$saveMessage."','".date( 'Y-m-d H:i:s' )."','".(int)$defaultProperty."')";
+			doInsertSql($query,"");
+			
+			}
+		else
+			trigger_error ("Error, cannot reconcile contract uid ".(int)$contract_uid." with property uid ".(int)$defaultProperty, E_USER_ERROR);
+
+		
+		// Depreciated in v4, replaced with changing the new bookedout out flag to true.
+		/*
 		foreach ($contractData as $cancellation)
 			{
 			$guest_uid=$cancellation->guest_uid;
@@ -75,7 +98,8 @@ class j02182savebookout {
 
 		$query="DELETE FROM #__jomres_extraServices WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 		doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_BOOKEDGUESTOUT',_JOMRES_MR_AUDIT_BOOKEDGUESTOUT,FALSE));
-
+		*/
+		
 		jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), $saveMessage );
 		}
 

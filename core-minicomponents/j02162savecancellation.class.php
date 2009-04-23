@@ -82,6 +82,8 @@ class j02162savecancellation {
 			if (!jomresMailer( $thisJomresPropertyDetails['property_email'], $thisJomresPropertyDetails['property_name'].' - '.$thisJomresPropertyDetails['property_town'], $guestData['email'], $saveMessage, $text,$mode=1))
 				error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				
+			$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$saveMessage."','".date( 'Y-m-d H:i:s' )."','".(int)$defaultProperty."')";
+			doInsertSql($query,"");
 			
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), $saveMessage );
 			}
