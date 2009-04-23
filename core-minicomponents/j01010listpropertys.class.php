@@ -235,9 +235,9 @@ class j01010listpropertys {
 					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
 
 					$property_image=$jomresConfig_live_site."/jomres/images/jrlogo.png";
-					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
-						$property_image=$jomresConfig_live_site."/images/stories/jomres/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
-					$starslink="<img src=\"".$jomresConfig_live_site."/images/M_images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
+					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
+						$property_image=$jomresConfig_live_site."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
+					$starslink="<img src=\"".$jomresConfig_live_site."/jomres/images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
 					if ($stars!="0")
 						{
 						$starslink="";
