@@ -13,7 +13,7 @@ I'm hard working, I'm not a genius there are lots of CMSs out there I'm not fami
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-global $jomresConfig_live_site;
+global $jomresConfig_live_site,$Itemid;
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (strstr($scriptname,'install_jomres.php'))
@@ -23,6 +23,24 @@ $ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
 $Itemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
+
+if ($Itemid == 0)
+	{
+	$query = "SELECT id"
+		. "\n FROM #__menu"
+		. "\n WHERE "
+		. "\n published = 1"
+		. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
+	$itemQueryRes = doSelectSql($query);
+	if (count($itemQueryRes)>0)
+		{
+		foreach ($itemQueryRes as $i)
+			{
+			$Itemid = $i->id;
+			}
+		}
+	}
+
 define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/index.php?option=com_jomres&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$Itemid."");
