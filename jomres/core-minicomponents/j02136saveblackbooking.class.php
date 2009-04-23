@@ -102,7 +102,7 @@ class j02136saveblackbooking {
 				else
 					{
 					$contract_uid=mysql_insert_id();
-					audit($query,jr_gettext('_JOMRES_MR_AUDIT_BLACKBOOKING',_JOMRES_MR_AUDIT_BLACKBOOKING,FALSE));
+					jomres_audit($query,jr_gettext('_JOMRES_MR_AUDIT_BLACKBOOKING',_JOMRES_MR_AUDIT_BLACKBOOKING,FALSE));
 					if ($contract_uid)
 						{
 						foreach ($row as $room_uid)
