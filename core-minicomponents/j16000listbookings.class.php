@@ -85,11 +85,10 @@ class j16000listbookings
 			$rw['ARCHIVED_DATE']=$r['archived_date'];
 			$rows[]=$rw;
 			}
-
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'list_bookings.html');
+		$tmpl->readTemplatesFromInput( 'admin_list_bookings.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
 

@@ -1592,6 +1592,7 @@ class mcHandler {
 			{
 			foreach ( $eventClasses as $eClass)
 				{
+				//echo $eClass['eventPoint'].$eClass['eventName']." || " .$eventPoint.$eventName."<br>";
 				if ($eClass['eventPoint']==$eventPoint && $eClass['eventName']==$eventName)
 					{
 					return true;
