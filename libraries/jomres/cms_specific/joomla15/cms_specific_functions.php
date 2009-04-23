@@ -42,6 +42,23 @@ function jomres_cmsspecific_getcurrentusers_id()
 	return $id;
 	}
 
+function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="")
+	{
+	switch ($type) 
+		{
+		case "javascript":
+			JHTML::script($filename, $path, false);
+		break;
+		case "css":
+			JHTML::stylesheet($filename, $path);
+		break;
+		default:
+			
+		break;
+		}
+	}
+	
+	
 // set our meta data
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
