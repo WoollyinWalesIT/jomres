@@ -49,7 +49,7 @@ class j02180bookguestout {
 			$defaultProperty=getDefaultProperty();
 			$today = date("Y/m/d");
 			$dropDownList ="<select name=\"dueDepart\">";
-			$query="SELECT contract_uid,guest_uid FROM #__jomres_contracts WHERE  booked_in = '1' AND property_uid = '".(int)$defaultProperty."'";
+			$query="SELECT contract_uid,guest_uid FROM #__jomres_contracts WHERE  booked_in = '1' AND cancelled = 0 AND bookedout = 0 AND property_uid = '".(int)$defaultProperty."'";
 			$dueContracts =doSelectSql($query);
 			$numberOfContractsDue=count($dueContracts);
 			if ($numberOfContractsDue>0)

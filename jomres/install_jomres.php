@@ -1020,7 +1020,7 @@ function createJomresTables()
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_property_images </b><br>";
-	*/
+	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_tempBookingOut` (
 		`uid` int(11) auto_increment,
 		`contract_uid` int(11) NOT NULL,
@@ -1032,7 +1032,8 @@ function createJomresTables()
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_tempBookingOut </b><br>";
-
+	*/
+	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
 		`extraservice_uid` int(11) auto_increment,
 		`service_description` VARCHAR(255),
@@ -1087,12 +1088,15 @@ function createJomresTables()
 		`discount_details` TEXT NULL,
 		`username` VARCHAR(50) NULL,
 		`coupon_id` INTEGER NULL,
+		`bookedout` BOOL NOT NULL DEFAULT '0',
+		`bookedout_timestamp` DATETIME NOT NULL,
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_contracts </b><br>";
 
+	/*
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_cancellations` (
 		`cancellation_uid` int(11) NOT NULL auto_increment,
 		`guest_uid` VARCHAR( 40 ) NOT NULL ,
@@ -1123,10 +1127,12 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY(`bookout_uid`)
 		) ";
+		
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_bookedout </b><br>";
-
+	*/
+	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_rates` (
 		`rates_uid` int(11) NOT NULL auto_increment,
 		`rate_title` VARCHAR(255) NOT NULL,
@@ -1343,7 +1349,7 @@ function insertSampleData()
 		//$result=doInsertSql("delete FROM `#__jomres_property_images`","");
 
 
-		$result=doInsertSql("delete FROM `#__jomres_tempBookingOut`","");
+		//$result=doInsertSql("delete FROM `#__jomres_tempBookingOut`","");
 
 
 		$result=doInsertSql("delete FROM `#__jomres_extraServices`","");
@@ -1352,10 +1358,10 @@ function insertSampleData()
 		$result=doInsertSql("delete FROM `#__jomres_contracts`","");
 
 
-		$result=doInsertSql("delete FROM `#__jomres_cancellations`","");
+		//$result=doInsertSql("delete FROM `#__jomres_cancellations`","");
 
 
-		$result=doInsertSql("delete FROM `#__jomres_bookedout`","");
+		//$result=doInsertSql("delete FROM `#__jomres_bookedout`","");
 
 
 		$result=doInsertSql("delete FROM `#__jomres_rates`","");

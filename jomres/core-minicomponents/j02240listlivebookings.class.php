@@ -48,14 +48,14 @@ class j02240listlivebookings {
 			{
 			$query="SELECT c.contract_uid,c.tag, c.arrival, c.departure,c.booked_in,  g.guests_uid, g.firstname, g.surname, g.contracts_contract_uid, g.mos_userid
 			FROM #__jomres_contracts c, #__jomres_guests g
-			WHERE (c.guest_uid = g.guests_uid)  AND c.property_uid = '".(int)$defaultProperty."' AND c.arrival = '$arrivalDates' AND c.cancelled = 0
+			WHERE (c.guest_uid = g.guests_uid)  AND c.property_uid = '".(int)$defaultProperty."' AND c.arrival = '$arrivalDates' AND c.cancelled = 0 AND c.bookedout = 0
 			ORDER BY c.arrival";
 			}
 		else
 			{
 			$query="SELECT c.contract_uid,c.tag, c.arrival, c.departure,c.booked_in,  g.guests_uid, g.firstname, g.surname, g.contracts_contract_uid, g.mos_userid
 			FROM #__jomres_contracts c, #__jomres_guests g
-			WHERE (c.guest_uid = g.guests_uid) AND c.property_uid = '".(int)$defaultProperty."' AND c.cancelled = 0
+			WHERE (c.guest_uid = g.guests_uid) AND c.property_uid = '".(int)$defaultProperty."' AND c.cancelled = 0 AND c.bookedout = 0
 			ORDER BY c.arrival";
 			}
 
