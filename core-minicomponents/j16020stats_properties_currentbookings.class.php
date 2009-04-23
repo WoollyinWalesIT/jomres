@@ -38,7 +38,7 @@ class j16020stats_properties_currentbookings
 			{
 			$propertys[$r->propertys_uid]=array('property_name'=>$r->property_name,'count'=>0);
 			}
-		$query="SELECT contract_uid,property_uid FROM #__jomres_contracts WHERE `cancelled` = 0 ";
+		$query="SELECT contract_uid,property_uid FROM #__jomres_contracts WHERE `cancelled` = 0 AND bookedout = 0";
 		$result=doSelectSql($query);
 		if (count($result)>0)
 			{

@@ -43,7 +43,7 @@ class j16000showstats
 			foreach ($mcOutput as $key=>$val)
 				{
 				$r=array();
-				$r['STAT']='<a href='.JOMRES_SITEPAGE_URL_ADMIN.'"&task=getstats&statoption='.$val['task'].'">'.$val['text'].'</a><br/>';
+				$r['STAT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=getstats&statoption='.$val['task'].'">'.$val['text'].'</a><br/>';
 				$rows[]=$r;
 				}
 			}
