@@ -39,6 +39,8 @@ class j16000listTemplates
 		$output['HTEMPLATENAME']=_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME;
 		$output['HCUSTOMISED']=_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED;
 		
+		
+		
 		$custom_templates = new jomres_custom_template_handler();
 		
 		$frontendTemplatesFolder=JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend";
@@ -59,15 +61,26 @@ class j16000listTemplates
 			if (count($docs)>0)
 				{
 				natsort($docs);
+				$r=array();
+				
+				$r['EDITED']=_JOMRES_COM_MR_NO;
+				if ($custom_templates->hasThisTemplateBeenCustomised("jomrescss.css"))
+					$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
+				$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
+				$rows[]=$r;
+				
 				foreach ($docs as $doc)
 					{
-					$r=array();
-					$r['EDITED']=_JOMRES_COM_MR_NO;
-					if ($custom_templates->hasThisTemplateBeenCustomised($doc))
-						$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
-			
-					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
-					$rows[]=$r;
+					if ($doc != "jomrescss.css")
+						{
+						$r=array();
+						$r['EDITED']=_JOMRES_COM_MR_NO;
+						if ($custom_templates->hasThisTemplateBeenCustomised($doc))
+							$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
+				
+						$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
+						$rows[]=$r;
+						}
 					}
 				}
 			}

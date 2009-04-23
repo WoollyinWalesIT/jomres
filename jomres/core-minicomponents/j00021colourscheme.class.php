@@ -44,7 +44,11 @@ class j00021colourscheme
 			$this->template_touchable=false; return;
 			}
 		global $mainframe,$jomresConfig_live_site;
-		echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jomrescss.css" />';
+		if (file_exists(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss.css") )
+			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/temp/',"jomrescss.css");
+		else
+			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jomrescss.css");
+		//echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jomrescss.css" />';
 		}
 
 	/**

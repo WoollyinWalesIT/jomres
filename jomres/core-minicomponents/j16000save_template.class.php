@@ -42,6 +42,13 @@ class j16000save_template
 			$query = "INSERT INTO #__jomres_custom_templates (`template_name`,`value`) VALUES ( '".$templatename."','".$templateData."')";
 		$result = doInsertSql($query,'');
 		
+		if ($templatename == "jomrescss.css")
+			{
+			$fp=fopen(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss.css",'w');
+			fwrite($fp, $templateData);
+			fclose($fp);
+			}
+		
 		emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$templatename), "" );
 		}
