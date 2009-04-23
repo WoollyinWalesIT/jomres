@@ -35,7 +35,6 @@ class j16000listGlobalroomTypes
 		$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
 		$roomtypeList=doSelectSql($query);
 		$rows=array();
-
 		$output['INDEX']="index2.php";
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK;
 		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'._JOMRES_COM_MR_BACK.'</a>';
@@ -52,7 +51,7 @@ class j16000listGlobalroomTypes
 			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editGlobalroomTypes&$rmTypeUid='.$roomtype->room_classes_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['RTTITLE']=$roomtype->room_class_abbv;
 			$r['RTDESCRIPTION']=$roomtype->room_class_full_desc;
-			$r['IMAGE']=$roomtype->image;
+			$r['IMAGE']=$jomresConfig_live_site."/".$roomtype->image;
 			$rows[]=$r;
 			}
 		$output['COUNTER']=count($rows);
