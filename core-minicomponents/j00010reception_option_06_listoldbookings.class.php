@@ -1,16 +1,16 @@
 <?php
 /**
 #
- * Mini-component core file: 
+ * Mini-component core file: Constructs and displays the receptionist's menu
 #
  * @author Vince Wooll <sales@jomres.net>
 #
- * @version Jomres 3
+ * @version Jomres 4
 #
 * @package Jomres
 * @subpackage mini-components
 #
-* @copyright	2005-2008 Vince Wooll
+* @copyright	2005-2009 Vince Wooll
 #
 * This is not free software, please do not distribute it. For licencing information, please visit http://www.jomres.net/
 * All rights reserved.
@@ -20,9 +20,21 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j16000delete_template 
-	{
-	function j16000delete_template()
+/**
+#
+ * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ #
+* @package Jomres
+#
+ */
+class j00010reception_option_06_listoldbookings {
+
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00010reception_option_06_listoldbookings($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
@@ -30,23 +42,15 @@ class j16000delete_template
 			{
 			$this->template_touchable=false; return;
 			}
-		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-		
-		$templatename		= jomresGetParam( $_REQUEST, 'templatename', '' );
-
-		$query = "DELETE FROM  #__jomres_custom_templates WHERE `template_name`= '".$templatename."'";
-		$result = doInsertSql($query,'');
-		
-		if ($templatename=="jomrescss.css")
-			unlink(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss.css");
-		
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN.'&task=listTemplates'), "" );
+		global $htmlFuncs;
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listoldbookings", 'ReservationsHistoric.png', jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS',_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS,false,false));
 		}
-
+	
+	
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->cpanelButton;
 		}
 	}
 ?>

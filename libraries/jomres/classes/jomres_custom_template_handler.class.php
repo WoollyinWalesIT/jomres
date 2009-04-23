@@ -80,7 +80,10 @@ class jomres_custom_template_handler
 			}
 		else  // We need to read in from the file itself
 			{
-			return file_get_contents($this->default_template_files_folder.JRDS.$templatename );
+			if ($templatename == "jomrescss.css")
+				return file_get_contents(JOMRESPATH_BASE.JRDS."css".JRDS."jomrescss.css" );
+			else
+				return file_get_contents($this->default_template_files_folder.JRDS.$templatename );
 			}
 		}
 	
