@@ -2056,41 +2056,33 @@ class jomres_booking
 			else
 				$output.=' onchange="getResponse_particulars(\'departureDate\',this.value);" ';
 			$output.=' onchange="getResponse(\'departureDate\',this.value);" ';
-			// For version 3.2 we've changed how the calendar is implemented. Now, you need to click on the input to make the calendar popup. To revert to the older style of input, uncomment the following section and comment out the "popup on input click" section.
-			// For v4 I've switched this back to click on the icon to make the date come up. The 3.2 way of doing things was a silly idea.
 			
-			// Popup on image click
-			$output.=" value=\"".$dateValue."\" id=\"a".$randomID."\"/>
-			<a class=\"dateinput_button\" href=\"#\"  id=\"a".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
-			<script type=\"text/javascript\">
-			Calendar.setup({
-				inputField	 :	\"a".$randomID."\",		   //*
-				ifFormat	   :	\"".$dateFormat."\",
-				//  showsTime	  :	TRUE,
-				button		 :	\"a".$randomID2."\",		//*
-				".$dateStatus."
-				step		   :	1
-				});
-			</script>
-			";
+			// Popup on both input and image click
+			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
+				<script type=\"text/javascript\">
+					Calendar.setup({
+					inputField    :   \"x".$randomID."\",
+					ifFormat      :   \"".$dateFormat."\",
+					//   showsTime      :   TRUE,
+					button		:   \"x".$randomID2."\",
+					step		   :   1
+					});
+				</script>
+				";
+				$output.="
+				<script type=\"text/javascript\">
+					Calendar.setup({
+					   inputField    :   \"x".$randomID."\",
+					ifFormat		:   \"".$dateFormat."\",
+					//   showsTime		:   TRUE,
+					button		:   \"x".$randomID."\",
+					step		   :   1
+					});
+				</script>
+				";
+			return $output;
 
-			
-			/*
-			// Popup on form input click
-			$output.=" value=\"".$dateValue."\" id=\"a".$randomID."\"/>
-			<img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" >
-			<script type=\"text/javascript\">
-			Calendar.setup({
-				inputField	 :	\"a".$randomID."\",		   //*
-				ifFormat	   :	\"".$dateFormat."\",
-				//  showsTime	  :	TRUE,
-				button		 :	\"a".$randomID."\",		//*
-				".$dateStatus."
-				step		   :	1
-				});
-			</script>
-			";
-			*/
 		return $output;
 		}
 
