@@ -1,3 +1,18 @@
+Jomres 4beta1
+
+Small change to functions.php to enable installation of mambots.
+Improved chooseLanguages feature by setting previously selected lang files checkboxes to checked.
+Improved javascript & css inclusion by calling Joomla's own head setting functions where applicable.
+Minor tweaks to ensure that calling modules works ok.
+Fixed property image not showing in property list.
+Fixed bug where room type icon not showing in room type list.
+Tweaked joomla specific code to find Itemid from menus table if Itemid = 0
+Added display booked out and cancelled bookings feature.
+Added jomrescss.css to template editing feature.
+Fixed bug where stats weren't showing in admin area
+Fixed bug where list bookings wasn't showing results in admin area
+Fixed bug when saving blackbooking, audit function has been renamed. 
+
 Jomres 4alpha3
 
 
