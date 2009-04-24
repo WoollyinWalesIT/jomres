@@ -1,6 +1,6 @@
 Jomres 4beta1
 
-
+Late addition of Piranha's image/input click js for date inputs.
 Small change to functions.php to enable installation of mambots.
 Improved chooseLanguages feature by setting previously selected lang files checkboxes to checked.
 Improved javascript & css inclusion by calling Joomla's own head setting functions where applicable.
