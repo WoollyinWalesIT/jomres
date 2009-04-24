@@ -1628,35 +1628,29 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 
 		// Popup on image click
 
-		$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-		<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
-		<script type=\"text/javascript\">
-		Calendar.setup({
-			inputField	 :	\"x".$randomID."\",			//*
-		ifFormat		:	\"".$dateFormat."\",
-		//	showsTime		:	TRUE,
-		button		:	\"x".$randomID2."\",		//*
-		step			:	1
-		});
-		</script>
-		";
-
-
-		// Popup on input click
-		/*
-		$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-		<img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" />
-		<script type=\"text/javascript\">
-		Calendar.setup({
-			inputField	 :	\"x".$randomID."\",			//*
-		ifFormat		:	\"".$dateFormat."\",
-		//	showsTime		:	TRUE,
-		button		:	\"x".$randomID."\",		//*
-		step			:	1
-		});
-		</script>
-		";
-		*/
+			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
+				<script type=\"text/javascript\">
+					Calendar.setup({
+					inputField    :   \"x".$randomID."\",
+					ifFormat      :   \"".$dateFormat."\",
+					//   showsTime      :   TRUE,
+					button		:   \"x".$randomID2."\",
+					step		   :   1
+					});
+				</script>
+				";
+				$output.="
+				<script type=\"text/javascript\">
+					Calendar.setup({
+					   inputField    :   \"x".$randomID."\",
+					ifFormat		:   \"".$dateFormat."\",
+					//   showsTime		:   TRUE,
+					button		:   \"x".$randomID."\",
+					step		   :   1
+					});
+				</script>
+				";
 	return $output;
 	}
 
