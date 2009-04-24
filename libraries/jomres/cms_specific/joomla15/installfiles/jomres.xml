@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<install type="component">
+<?xml version="1.0" encoding="utf-8"?>
+
+<install type="component" version="1.5.0">
 	<name>Jomres</name>
-	<creationDate>19/01/2009</creationDate>
 	<author>Vince Wooll</author>
+	<creationDate>24/04/2009</creationDate>
 	<copyright>This component is copyright Vince Wooll 2009</copyright>
+	<license>http://www.jomres.net/license.html</license>
 	<authorEmail>support@jomres.net</authorEmail>
 	<authorUrl>www.jomres.net</authorUrl>
-	<version>3.4.5</version>
-	<description>Jomres component for Joomla 1.x/1.5 and Mambo 4.6.2/4.6.3</description>
+	<version>4</version>
+	<description>Jomres component</description>
 	<uninstallfile>uninstall.jomres.php</uninstallfile>
 	<administration>
 	<menu>Jomres</menu>
