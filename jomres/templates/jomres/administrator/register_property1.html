@@ -4,8 +4,8 @@
 function OnChange(dropdown)
 	{	
 	var x=document.getElementById("country")
-	var baseURL= "{JOMRES_SITEPAGE_URL_ADMIN}&amp;task=addproperty"
-	top.location.href = baseURL + "&amp;selectedCountry="+x.options[x.selectedIndex].value;
+	var baseURL= "{JOMRES_SITEPAGE_URL_ADMIN}&task=addproperty"
+	top.location.href = baseURL + "&selectedCountry="+x.options[x.selectedIndex].value;
 	return true;
 	}
 //-->
