@@ -172,7 +172,6 @@ class j03020insertbooking {
 					`rooms_tariffs`				= '$requestedRoom',
 					`contract_total`			= '$contract_total',
 					`special_reqs`				= '$specialReqs',
-					`deposit_paid`				= '$depositPaid',
 					`deposit_required`			= '$deposit_required',
 					`date_range_string`			= '$dateRangeString',
 					`property_uid`				= '$property_uid',
