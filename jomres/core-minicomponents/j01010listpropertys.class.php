@@ -327,9 +327,9 @@ class j01010listpropertys {
 					if ($mrConfig['visitorscanbookonline'] == "1")
 						{
 						if ( $jrConfig['useSSLinBookingform'] == "1" )
-							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
+							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid."&amp;arrivalDate=2009-01-01",1);
 						else
-							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
+							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid."&amp;arrivalDate=2009-01-01");
 							
 						$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\">";
 						if ($mrConfig['singleRoomProperty'] =="1")
