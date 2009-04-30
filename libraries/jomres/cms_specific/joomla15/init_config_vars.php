@@ -59,7 +59,11 @@ else
 $jomresConfig_live_site=str_replace("/administrator/","",$jomresConfig_live_site);
 $jomresConfig_live_site=str_replace("/administrator","",$jomresConfig_live_site);
 if(substr($jomresConfig_live_site, -1)=="/") $jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
-	
+
+$lang			=& JFactory::getLanguage();
+$jomresConfig_lang = $lang->_lang;
+
+
 $jomresConfig_sitename			= $CONFIG->sitename;
 $jomresConfig_lifetime			= $CONFIG->lifetime;
 $jomresConfig_MetaDesc			= $CONFIG->MetaDesc;

@@ -64,7 +64,10 @@ class jomres_language
 							if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php")  )
 								$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
 							else
-								$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
+								{
+								if (strlen($jomresConfig_lang)==0)
+									$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
+								}
 							}
 						}
 					}
