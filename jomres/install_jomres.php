@@ -40,84 +40,101 @@ $path =  str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) )
 
 define('JOMRESINSTALLPATH_BASE',$path);
 
+if (!file_exists('integration.php') )
+	{
+	echo "Error, cannot find the new Jomres integration script, you might not have downloaded Jomres v4 yet.";
+	exit;
+	}
+	
 require_once( 'integration.php' );
+
+
 
 global $jomres_systemLog_path,$jomresConfig_absolute_path,$jrConfig,$lkey;
 $jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
 
 showheader();
-$folderChecksPassed=true;
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS) )
+if (componentsIntegrationExists())
 	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS)) 
-		{
-		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
-		}
+	migrate();
 	}
+	
+if (ACTION != "Migration") 
+	{
+	$folderChecksPassed=true;
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS) )
+		{
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS)) 
+			{
+			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
+		}
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS) )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS)) 
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS) )
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS)) 
+			{
+			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
 		}
-	}
-	
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS) )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS)) 
+		
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS) )
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS)) 
+			{
+			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
 		}
-	}
-	
-	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS) )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS)) 
+		
+		if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS) )
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS)) 
+			{
+			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
 		}
-	}
-	
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS) )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS)) 
+		
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS) )
 		{
-		echo "<h1>Error, unable to make folder "."remote_plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS)) 
+			{
+			echo "<h1>Error, unable to make folder "."remote_plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			}
 		}
-	}
 
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages") )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages")) 
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages") )
 		{
-		echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages")) 
+			{
+			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
+		}
+		
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes") )
+		{
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes")) 
+			{
+			echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
+		}
+		
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures") )
+		{
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures")) 
+			{
+			echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			$folderChecksPassed=false;
+			}
 		}
 	}
 	
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes") )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes")) 
-		{
-		echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
-		}
-	}
-	
-if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures") )
-	{
-	if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures")) 
-		{
-		echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
-		$folderChecksPassed=false;
-		}
-	}
-if ($folderChecksPassed) 
+if ($folderChecksPassed && ACTION != "Migration") 
 	{
 	$lkey=jomresGetParam($_POST,'lkey','','string');
 	$trashtables=jomresGetParam($_POST,'trashtables',0,'integer');
@@ -1947,4 +1964,553 @@ function insertPortalTables()
 		return false;
 		}
 	}
+	
+///////////////////////////////////////////////////////////////////////////////////////////// Migratiion //////////////////////////////////////////////////////////////
+
+function migrate()
+	{
+	define('ACTION',"Migration");
+	if (basicTemplatesExist())
+		{
+		exit;
+		}
+
+	echo "<b>Migration under way. Once completed, please check for any errors and if everything looks ok you can go to your administrator area.</b><br/> Remember that this migrator will not import any of your remote plugins as all the plugins need to be checked before they can be passed as working in v4. If you have any Jomres modules installed you must uninstall them using the Joomla extension manager (back up any copies of srch.html you may have customised before doing this) then use the Jomres Plugin manager to install updated versions of those modules.<br/><br/>";
+	define(OLD_IMAGES_PATH,JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS);
+	define(NEW_IMAGES_PATH,JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
+
+	define(OLD_ROOMTYPES_IMAGES_PATH,'images/stories/jomres/rmtypes/');
+	define(NEW_ROOMTYPES_IMAGES_PATH,'jomres/uploadedimages/rmtypes/');
+	define(OLD_PROPERTYFEATURE_IMAGES_PATH,'images/stories/jomres/pfeatures/');
+	define(NEW_PROPERTYFEATURE_IMAGES_PATH,'jomres/uploadedimages/pfeatures/');
+	
+	updateRoomTypeImagePaths();
+	updatePropertyFeaturePaths();
+	
+	copyImagesToNewPath();
+	
+	removepreV4JomresFiles();
+	reinstallJomresJoomlaFiles();
+	addNewTables();
+	alterTables();
+	dropOldTables();
+	resetMRConfigSettings();
+	resetJRConfigSettings();
+	insertNewJRConfigSettings();
+	insertPluginSettings();
+	}
+
+
+	
+	
+function updateRoomTypeImagePaths()
+	{
+	echo "Updating room type image paths in the __jomres_room_classes table.";echo "<br>";
+	$query = "SELECT * FROM #__jomres_room_classes";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $room_class)
+			{
+			$explodedPath = explode("/",$room_class->image);
+			$ndx = count($explodedPath)-1;
+			$fileName = $explodedPath[$ndx];
+			$query = "UPDATE #__jomres_room_classes SET `image` = '".NEW_ROOMTYPES_IMAGES_PATH.$fileName."' WHERE `room_classes_uid`=". $room_class->room_classes_uid;
+			//echo $query."<br/>";
+			if (!doInsertSql($query,'') )
+				echo "<b>Error, unable to run query $query</b><br>";
+			}
+		}
+	}
+
+function updatePropertyFeaturePaths()
+	{
+	echo "Updating property feature image paths in the __jomres_hotel_features table.";echo "<br>";
+	$query = "SELECT * FROM #__jomres_hotel_features";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $hotel_feature)
+			{
+			$explodedPath = explode("/",$hotel_feature->image);
+			$ndx = count($explodedPath)-1;
+			$fileName = $explodedPath[$ndx];
+			$query = "UPDATE #__jomres_hotel_features SET `image` = '".NEW_PROPERTYFEATURE_IMAGES_PATH.$fileName."' WHERE `hotel_features_uid`=". $hotel_feature->hotel_features_uid;
+			//echo $query."<br/>";
+			if (!doInsertSql($query,'') )
+				echo "<b>Error, unable to run query $query</b><br>";
+			}
+		}
+	}
+	
+	
+function componentsIntegrationExists()
+	{
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'integration.php') )
+		{
+		return true;
+		}
+	return false;
+	}
+
+
+function basicTemplatesExist()
+	{
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomcompbasictemplates'.JRDS.'j00001start.class.php') )
+		{
+		echo "Sorry, before we can upgrade you must first uninstall the basic templates plugin as this is no longer compatible with Jomres. Please use the Joomla Extension manager to uninstall the basic templates plugin (back up any customised templates you have before doing so) then rerun this script. <br/>Once you've migrated Jomres, you'll need to go through any of your customised templates (those are the ones that you backed up) and use the new Jomres template editing feature to make any changes you need.";
+		return true;
+		}
+	return false;
+	}
+	
+// Table changes
+function alterTables()
+	{
+	echo "Altering tables.";echo "<br>";
+	
+	//echo "Editing __jomres_extras table adding maxquantity column<br>";
+	$query = "ALTER TABLE `#__jomres_extras` ADD `maxquantity` INT( 5 ) DEFAULT '1' AFTER `price`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_extras maxquantity</b><br>";
+	
+	
+	//echo "Editing __jomres_contracts __jomres_contracts adding extrasquantities column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `extrasquantities` VARCHAR( 255 ) AFTER `extras`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_contracts extrasquantities</b><br>";
+		
+	//echo "Editing __jomres_contracts table adding coupon_id column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `coupon_id` INTEGER NULL";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_contracts coupon_id</b><br>";
+		
+	//echo "Editing __jomres_contracts table adding bookedout column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `bookedout` BOOL NOT NULL DEFAULT '0' ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_contracts bookedout</b><br>";
+		
+	//echo "Editing __jomres_contracts table adding bookedout_timestamp column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `bookedout_timestamp` DATETIME NOT NULL";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_contracts bookedout_timestamp</b><br>";
+		
+		
+	if (!checkTariffsTimeStampColsExists() )
+		alterTariffsTimeStampCols();
+	}
+
+function checkTariffsTimeStampColsExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_rates LIKE 'validfrom_ts'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterTariffsTimeStampCols()
+	{
+	//echo "Editing __jomres_rates table adding timestamp column<br>";
+	$query = "ALTER TABLE `#__jomres_rates` ADD `validfrom_ts` DATE AFTER `weekendonly` , ADD `validto_ts` DATE AFTER `validfrom_ts`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_rates weekendonly</b><br>";
+	$query = "SELECT rates_uid,validfrom,validto FROM #__jomres_rates";
+	$allRates=doSelectSql($query);
+	foreach ($allRates as $r)
+		{
+		$validfrom_ts=str_replace("/","-",$r->validfrom);
+		$validto_ts=str_replace("/","-",$r->validto);
+		$query="UPDATE #__jomres_rates SET `validfrom_ts`='$validfrom_ts',`validto_ts`='$validto_ts' WHERE rates_uid='$r->rates_uid'";
+		doInsertSql($query,'');
+		}
+	}
+	
+function dropOldTables()
+	{
+	echo "Dropping old tables.";echo "<br>";
+	
+	//echo "Dropping __jomres_tmpguests table<br>";
+	$query = "DROP TABLE IF EXISTS `#__jomres_tmpguests`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to drop __jomres_tmpguests </b><br>";
+	
+	//echo "Dropping __jomres_tmpbooking table<br>";
+	$query = "DROP TABLE IF EXISTS `#__jomres_tmpbooking`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to drop __jomres_tmpbooking </b><br>";
+		
+	//echo "Dropping __jomres_property_images table<br>";
+	$query = "DROP TABLE IF EXISTS `#__jomres_property_images`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to drop __jomres_property_images </b><br>";
+		
+	//echo "Dropping __jomres_tempBookingOut table<br>";
+	$query = "DROP TABLE IF EXISTS `#__jomres_tempBookingOut`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to drop __jomres_tempBookingOut </b><br>";
+		
+	//echo "Dropping __jomres_cancellations table<br>";
+	$query = "DROP TABLE IF EXISTS `#__jomres_cancellations`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to drop __jomres_cancellations </b><br>";
+	}
+
+
+function resetMRConfigSettings()
+	{
+	echo "Resetting some mrConfig values to the Jomres v4 defaults.";echo "<br>";
+	$mrConfig = array();
+	
+	//$mrConfig['showSlideshowInline']="1";
+	//$mrConfig['showTariffsInline']="1";
+	$mrConfig['returnRoomsLimit']="1";
+	
+	foreach ($mrConfig as $key=>$val)
+		{
+		$query = "UPDATE #__jomres_settings SET `value`='".$val."' WHERE `akey` = '".$key."'";
+		echo "Updating $key to $val";echo "<br>";
+		$result=doInsertSql($query,'');
+		}
+	
+	}
+
+function resetJRConfigSettings()
+	{
+	echo "Resetting some jrConfig values to the Jomres v4 defaults.";echo "<br>";
+	$jrConfig = array();
+	
+	$jrConfig['maxwidth']				='300';
+	$jrConfig['slideshow']				='tooltips';
+	$jrConfig['ss_imageLocation']		='/jomres/uploadedimages/';
+	$jrConfig['composite_property_details']="1";
+
+	foreach ($jrConfig as $key=>$val)
+		{
+		$query = "UPDATE #__jomres_site_settings SET `value`='".$val."' WHERE `akey` = '".$key."'";
+		echo "Updating $key to $val";echo "<br>";
+		$result=doInsertSql($query,'');
+		}
+	}
+
+
+function insertNewJRConfigSettings()
+	{
+	
+	echo "Inserting new site settings";echo "<br>";
+	
+	$jrConfig['property_list_limit']					='5';
+	$jrConfig['integratedSearch_enable']				='1';
+	$jrConfig['integratedSearch_useCols']				='0';
+	$jrConfig['integratedSearch_featurecols']			='3';
+	$jrConfig['integratedSearch_selectcombo']			='1';
+	$jrConfig['integratedSearch_propertyname']			='0';
+	$jrConfig['integratedSearch_propertyname_dropdown']	='1';
+	$jrConfig['integratedSearch_geosearchtype']			='';
+	$jrConfig['integratedSearch_geosearchtype_dropdown']='1';
+	$jrConfig['integratedSearch_ptype']					='0';
+	$jrConfig['integratedSearch_ptype_dropdown']		='1';
+	$jrConfig['integratedSearch_room_type']				='0';
+	$jrConfig['integratedSearch_room_type_dropdown']	='1';
+	$jrConfig['integratedSearch_features']				='0';
+	$jrConfig['integratedSearch_features_dropdown']		='1';
+	$jrConfig['integratedSearch_description']			='0';
+	$jrConfig['integratedSearch_availability']			='0';
+	$jrConfig['integratedSearch_priceranges']			='0';
+	$jrConfig['integratedSearch_pricerange_increments']	='20';
+	$jrConfig['useCaching']		='0';
+	$jrConfig['showLangDropdown']		='1';
+	
+	foreach ($jrConfig as $key=>$val)
+		{
+		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('".$val."','".$key."')";
+		echo "Setting $key to $val";echo "<br>";
+		$result=doInsertSql($query,'');
+		}
+	}
+
+function insertPluginSettings()
+	{
+	echo "Inserting new plugin settings if required.";echo "<br>";
+	// Pseudocron settings
+	$pluginConfig['jomcompcronjobs']['method']			='0';
+	$pluginConfig['jomcompcronjobs']['displaylogging']	='0';
+	$pluginConfig['jomcompcronjobs']['logging']			='0';
+	$pluginConfig['jomcompcronjobs']['verbose']			='0';
+
+	// Invoices backend paypal settings
+	$pluginConfig['backend_paypal_settings']['usesandbox']	='1';
+	$pluginConfig['backend_paypal_settings']['currencycode']='EUR';
+	$pluginConfig['backend_paypal_settings']['email']		='';
+	$pluginConfig['backend_paypal_settings']['override']	='0';
+
+	$tempConfigArr=$pluginConfig;
+	$pluginConfig=array();
+	$query="SELECT plugin,setting,value FROM #__jomres_pluginsettings WHERE prid = 0";
+	$settingsList=doSelectSql($query);
+	if (count($settingsList)>0)
+		{
+		foreach ($settingsList as $settings)
+			{
+			$plugin=$settings->plugin;
+			$setting=$settings->setting;
+			$value=$settings->value;
+			$pluginConfig[$plugin][$setting]=$value;
+			}
+		}
+	foreach ($tempConfigArr as $k=>$v)
+		{
+		if (!array_key_exists($k,$pluginConfig) )
+			{
+			foreach ($v as $sett=>$settVal)
+				{
+				$query="INSERT INTO #__jomres_pluginsettings (prid,plugin,setting,value) VALUES (0,'".$k."','".$sett."','".$settVal."')";
+				//echo $query."<br>";
+				doInsertSql($query,'');
+				}
+			}
+		}
+	}
+
+// Added tables
+function addNewTables()
+	{
+	echo "Adding new tables if required.";echo "<br>";
+	
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
+		`coupon_id` INT NOT NULL AUTO_INCREMENT ,
+		`property_uid` INT,
+		`coupon_code` VARCHAR( 255 ) NOT NULL ,
+		`valid_from` DATE NOT NULL ,
+		`valid_to` DATE NOT NULL ,
+		`amount` FLOAT NOT NULL ,
+		`is_percentage` BOOL NOT NULL ,
+		`rooms_only` BOOL NOT NULL ,
+		PRIMARY KEY ( `coupon_id` )
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_fields` (
+		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+		`fieldname` VARCHAR( 255 ) ,
+		`default_value` VARCHAR( 255 ) ,
+		`description` VARCHAR( 255 ) ,
+		`required` BOOL NOT NULL DEFAULT '0',
+		PRIMARY KEY ( `uid` )
+		) ";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_templates` (
+		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+		`template_name` VARCHAR( 255 ) ,
+		`value` TEXT NULL,
+		PRIMARY KEY ( `uid` )
+		) ";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+		
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices_transactions` (
+		id int(10) NOT NULL auto_increment,
+		invoice_id int(10) NOT NULL default '0',
+		transaction_id int(10) NOT NULL default '0',
+		time_added datetime NOT NULL,
+		gateway_id varchar(20) NOT NULL default '',
+		payment_result text NOT NULL,
+		payment_currency varchar(20) NOT NULL default '',
+		payment_amount float NOT NULL default '0',
+		payment_fees float NOT NULL default '0',
+		payment_ref varchar(100) NOT NULL default '',
+		notes text NOT NULL,
+		PRIMARY KEY  (id)
+	)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_user_id` int(11) NOT NULL default '0',
+		`name` varchar(20) NOT NULL,
+		`description` varchar(255) NOT NULL,
+		`init_price` float NOT NULL default '0',
+		`init_qty` int(11) NOT NULL default '0',
+		`init_discount` float NOT NULL default '0',
+		`recur_price` float NOT NULL default '0',
+		`recur_qty` int(11) NOT NULL default '0',
+		`recur_discount` float NOT NULL default '0',
+		`tax_code_id` int(11) NOT NULL,
+		PRIMARY KEY  (`id`)
+	)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
+		`id` int(11) NOT NULL auto_increment,
+		`name` varchar(20) NOT NULL,
+		`description` varchar(255) NOT NULL,
+		`init_price` float NOT NULL default '0',
+		`init_qty` int(11) NOT NULL default '0',
+		`init_discount` float NOT NULL default '0',
+		`init_total` float NOT NULL default '0',
+		`recur_price` float NOT NULL default '0',
+		`recur_qty` int(11) NOT NULL default '0',
+		`recur_discount` float NOT NULL default '0',
+		`recur_total` float NOT NULL default '0',
+		`tax_code` char(10) NOT NULL,
+		`tax_description` char(200) NOT NULL,
+		`tax_rate` float NOT NULL default '0',
+		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
+		PRIMARY KEY  (`id`)
+	)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+		
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_user_id` int(11) NOT NULL default '0',
+		`status` tinyint(4) NOT NULL default '0',
+		`raised_date` datetime NOT NULL,
+		`due_date` datetime NOT NULL,
+		`paid` datetime NOT NULL,
+		`subscription` tinyint(1) NOT NULL default '0',
+		`init_total` float NOT NULL default '0',
+		`recur_total` float NOT NULL default '0',
+		`recur_frequency` tinyint(4) NOT NULL default '0',
+		`recur_dayofmonth` tinyint(4) NOT NULL default '1',
+		`currencycode` char(3) NOT NULL,
+		`subscription_id` int(11) NOT NULL default '0',
+		`contract_id` int(11) NOT NULL,
+		PRIMARY KEY  (`id`)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_taxrates` (
+		`id` int(11) NOT NULL auto_increment,
+		`code` char(20) NOT NULL,
+		`description` varchar(255) NOT NULL,
+		`rate` float NOT NULL default '0',
+		PRIMARY KEY  (`id`)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="
+	CREATE TABLE IF NOT EXISTS `#__jomcomp_cron` (
+		`id` INT NOT NULL AUTO_INCREMENT,
+		`job` char( 100 ) ,
+		`schedule` char(2) not null ,
+		`last_ran` int(12) not null ,
+		`parameters` varchar(255) null,
+		`locked` BOOL NOT NULL DEFAULT '0',
+		PRIMARY KEY ( `id` )
+		);";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+	
+	$query="
+	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
+		`id` int NOT NULL AUTO_INCREMENT ,
+		`log_details` text null,
+		PRIMARY KEY ( `id` )
+		);";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
+		`id` int(11) NOT NULL auto_increment,
+		`manager_id` int(11) NOT NULL,
+		`property_uid` int(11) NOT NULL,
+		PRIMARY KEY(`id`)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+	
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
+		`id` int(11) auto_increment,
+		`property_uid` int,
+		`guest_id` int,
+		`affiliate_id` varchar(255),
+		`invoice_id` int DEFAULT 0,
+		`booking_total` float,
+		`contract_id` int,
+		`tag` varchar(255),
+		`currency_code` char(3),
+		`created` datetime,
+		`archived` bool DEFAULT 0,
+		`archived_date` datetime,
+		PRIMARY KEY(`id`)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+		
+	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
+		`id` int(11) AUTO_INCREMENT,
+		`manager_uid` INTEGER NOT NULL,
+		`jos_id` INTEGER NOT NULL,
+		`portal_booking_id` INTEGER NOT NULL,
+		`username` varchar(255),
+		`email` varchar(255),
+		`created` datetime,
+		PRIMARY KEY(id)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+		
+	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_c_rates (
+		`id` int(11) AUTO_INCREMENT,
+		`title` varchar(255),
+		`type` int,
+		`value` float,
+		`currencycode` CHAR( 3 ) NOT NULL DEFAULT 'GBP',
+		`created` datetime,
+		`archived` bool DEFAULT 0,
+		`archived_date` datetime,
+		PRIMARY KEY(id)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+		
+	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_properties_crates_xref (
+		`id` int(11) AUTO_INCREMENT,
+		`property_id` int UNIQUE,
+		`crate_id` int,
+		PRIMARY KEY(id)
+		)";
+	if (!doInsertSql($query))
+		echo "Failed to run query: ".$query."<br/>";
+
+		
+	return true;
+	}
+
+function removepreV4JomresFiles()
+	{
+	echo "Removing old /components/com_jomres and /administrator/components/com_jomres files.";echo "<br>";
+	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS);
+	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS);
+	//echo "Pretending to empty dir ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."<br/>";
+	//echo "Pretending to empty dir ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."<br/>";
+	}
+	
+function reinstallJomresJoomlaFiles()
+	{
+	echo "Copying Jomres v4 /components/com_jomres and /administrator/components/com_jomres files.";echo "<br>";
+	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php", 	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."admin.jomres.php");
+	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres.xml",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.xml");
+	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."uninstall.jomres.php",	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."uninstall.jomres.php");
+	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres.php",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."jomres.php");
+	}
+
+function copyImagesToNewPath()
+	{
+	echo "Copying image files from ".OLD_IMAGES_PATH." to ".NEW_IMAGES_PATH."<br/>";
+	$result=dirmv(OLD_IMAGES_PATH,NEW_IMAGES_PATH);
+	}
+
+	
 ?>
