@@ -1447,6 +1447,13 @@ class mcHandler {
 
 		$registry = new minicomponent_registry();
 		$this->registeredClasses=$registry->get_registered_classes();
+		
+		$startPath = $registry->registeredClasses["00001start"]["filepath"];
+		if (!file_exists($startPath."j00001start.class.php") )
+			{
+			$registry->regenerate_registry();
+			$this->registeredClasses=$registry->get_registered_classes();
+			}
 		}
 
 	function touch_templates()
