@@ -13,7 +13,7 @@ I'm hard working, I'm not a genius there are lots of CMSs out there I'm not fami
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-global $jomresConfig_live_site,$Itemid;
+global $jomresConfig_live_site,$Itemid,$jrConfig;
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (strstr($scriptname,'install_jomres.php'))
@@ -41,7 +41,11 @@ if ($Itemid == 0)
 		}
 	}
 
-define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/index.php?option=com_jomres&Itemid=".$Itemid."");
+$index = "index.php";
+if ($jrConfig['isInIframe'] == "1")
+	$index = "index2.php";
+	
+define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/".$index."?option=com_jomres&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$Itemid."");
 define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres");
