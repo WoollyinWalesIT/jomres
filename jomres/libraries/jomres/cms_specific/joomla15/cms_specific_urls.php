@@ -22,9 +22,9 @@ $ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
-$Itemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
+$jomresItemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
 
-if ($Itemid == 0)
+if ($jomresItemid == 0)
 	{
 	$query = "SELECT id"
 		. "\n FROM #__menu"
@@ -36,7 +36,7 @@ if ($Itemid == 0)
 		{
 		foreach ($itemQueryRes as $i)
 			{
-			$Itemid = $i->id;
+			$jomresItemid = $i->id;
 			}
 		}
 	}
@@ -45,9 +45,9 @@ $index = "index.php";
 if ($jrConfig['isInIframe'] == "1")
 	$index = "index2.php";
 	
-define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/".$index."?option=com_jomres&Itemid=".$Itemid."");
-define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$Itemid."");
-define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$Itemid."");
+define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/".$index."?option=com_jomres&Itemid=".$jomresItemid."");
+define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$jomresItemid."");
+define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
 define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres");
 
 
