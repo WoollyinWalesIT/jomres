@@ -53,6 +53,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
+			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas-compressed.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery-1.3.2.min.js");
 			echo '<script type="text/javascript">jQuery.noConflict();</script>
 			';
@@ -61,7 +62,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.blockUI.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"heartbeat.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas-compressed.js");
+			
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt.js");
 			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jquery.bt.css");
 
