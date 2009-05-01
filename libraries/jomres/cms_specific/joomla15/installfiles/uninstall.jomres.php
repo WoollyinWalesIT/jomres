@@ -1,13 +1,21 @@
 <?php
-/*
-This file licensed DILLYGAF. I care so much that I haven't even bothered to write a license.
+/**
+ * Mini-component core file
+ * @author Vince Wooll <sales@jomres.net>
+ * @version Jomres 4
+* @package Jomres
+* @subpackage mini-components
+* @copyright	2005-2009 Vince Wooll
 
-The Jomres package is proprietary licensed, which means you can't be naughty and give it away, otherwise I'd never be able to make any money to keep developing it.
+Jomres is distributed as a mix of two licenses (excepting other files in the libraries folder, which are independantly licensed). 
 
-That said, the files in the /jomres/libraries/jomres/cms_specific/*** directories are licensed under a dillygaf license (just google "dillygaf"), which means I don't care what you do with them, if you want to copy my files and adapt them to make your own and license them solely for your use you can. Even better, you could re-write them to work with X CMS and release them for other people to use.  The only thing you can't do is claim copyright of the original files otherwise you could stop me from using and distributing my own files, and that would be silly. 
+The first, proprietary license, refers to Jomres as a package. You cannot share it, period. You can see the full license here http://www.jomres.net/license.html. There are some exceptions, and these files are independantly licensed (see the /jomres/libraries/phptools folder for example)
+The files in the /jomres/core-minicomponents,  /jomres/libraries/jomres/cms_specific and the /jomres/templates folders, whilst copyright Vince Wooll, are licensed differently to allow those users who wish, to develop and distribute their own third party plugins for Jomres. Those files are licensed under the MIT license, which allows third party vendors to modify them to suit their own requirements and if so desired, distribute them for free or cost. 
 
-I'm hard working, I'm not a genius there are lots of CMSs out there I'm not familiar with and if you can modify this code to make Jomres work on the CMS of your choice then more power to your elbow.
-
+################################################################
+This file is subject to The MIT License. For licencing information, please visit 
+http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 and http://www.jomres.net/license.html
+################################################################
 */
 
 // ################################################################
