@@ -39,7 +39,7 @@ class j16000chooseLanguages
 		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
 		if (file_exists($langDropdownFile) )
 			{
-			include ($langDropdownFile);
+			require_once ($langDropdownFile);
 			$langfiles = getLangDropdownString();
 			}
 		else

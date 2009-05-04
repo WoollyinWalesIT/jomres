@@ -128,7 +128,7 @@ class jomres_language
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		if (file_exists($langDropdownFile) )
 			{
-			include ($langDropdownFile);
+			require_once ($langDropdownFile);
 			$langfiles = getLangDropdownString();
 			}
 		else
