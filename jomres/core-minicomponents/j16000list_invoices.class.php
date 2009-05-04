@@ -53,7 +53,7 @@ class j16000list_invoices
 				$stat=3;
 			break;
 			default:
-				$stat=3;
+				$stat=null;
 			break;
 			}
 
@@ -89,9 +89,13 @@ class j16000list_invoices
 			$r['ID']=$invoice['id'];
 			
 			$user_obj = new jrportal_user_functions();
+			
 			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
 			
-			$r['USER']='<a href="index2.php?option=com_jomres&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
+			if (strlen($user_deets['name'])==0)
+				$r['USER']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
+			else
+				$r['USER']='<a href="index2.php?option=com_jomres&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
 			if ($invoice['status'] == "0")
 				$r['STATUS']=_JRPORTAL_INVOICES_STATUS_UNPAID;
 			elseif ($invoice['status'] == "1")

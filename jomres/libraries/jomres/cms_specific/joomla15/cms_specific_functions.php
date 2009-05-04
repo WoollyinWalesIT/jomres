@@ -91,13 +91,13 @@ function jomres_cmsspecific_setmetadata($meta,$data)
 function jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id)
 	{
 	$user=array();
-	$query="SELECT id,username FROM #__users WHERE id=".(int)$id;
+	$query="SELECT id,name,username,email FROM #__users WHERE id=".(int)$id;
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{
 		foreach ($userList as $u)
 			{
-			$user[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->username);
+			$user[$id]=array("id"=>$u->id,"name"=>$u->name,"username"=>$u->username,"email"=>$u->email);
 			}
 		}
 	return $user;
