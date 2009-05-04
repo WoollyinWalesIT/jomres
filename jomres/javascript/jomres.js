@@ -317,7 +317,7 @@ function blockInterface(field,fadetime)
 	{
 	//jQuery.extend(jQuery.blockUI.defaults.overlayCSS, { backgroundColor: '#fff', opacity: '0.5'  });
 	
-	jQuery.blockUI.defaults.overlayCSS.backgroundColor = '#fff';
+	jQuery.blockUI.defaults.overlayCSS.backgroundColor = '#000';
 	jQuery.blockUI.defaults.overlayCSS.opacity = '0.5';
 	
 	jQuery.blockUI.defaults.pageMessage = "Please be patient...";
@@ -375,7 +375,17 @@ function blockInterface(field,fadetime)
 
 	if (field == "")
 		message = blockui_recheckingroomavailability;
-	jQuery('div.block_ui_bookingform').block('<img src="jomres/images/31.gif" /> <h3>'+message+'</h3>',{ border:'1px solid #016191'}); 
+	//jQuery('div.block_ui_bookingform').block('<img src="'+rel_path+'/jomres/images/31.gif" /> <h3>'+message+'</h3>',{ border:'1px solid #016191'}); 
+
+	jQuery('div.block_ui_bookingform').block({
+	message: '<img src="'+rel_path+'/jomres/images/31.gif" /> <h3>'+message+'</h3>', 
+	css: { 
+            padding: '15px', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+		
+        } });
+
 	}
 
 	

@@ -1,6 +1,6 @@
 ﻿/*
  * jQuery blockUI plugin
- * Version 2.15 (1-MAR-2009)
+ * Version 2.18 (16-APR-2009)
  * @requires jQuery v1.2.3 or later
  *
  * Examples at: http://malsup.com/jquery/block/
@@ -40,7 +40,7 @@ $.growlUI = function(title, message, timeout) {
 
 // plugin method for blocking element content
 $.fn.block = function(opts) {
-    return this.each(function() {
+    return this.unblock({ fadeOut: 0 }).each(function() {
         if ($.css(this,'position') == 'static')
             this.style.position = 'relative';
         if ($.browser.msie)
@@ -56,7 +56,7 @@ $.fn.unblock = function(opts) {
     });
 };
 
-$.blockUI.version = 2.14; // 2nd generation blocking at no extra cost!
+$.blockUI.version = 2.18; // 2nd generation blocking at no extra cost!
 
 // override these in your code to change the default behavior and style
 $.blockUI.defaults = {
@@ -100,6 +100,11 @@ $.blockUI.defaults = {
 	    '-webkit-border-radius': '10px',
 	    '-moz-border-radius':    '10px'
 	},
+	
+	iframeSrc: 'javascript:false', // 'about:blank' fails on HTTPS
+
+	// force usage of iframe in non-IE browsers (handy for blocking over objects and applets)
+	forceIframe: false,
 
     // z-index for the blocking overlay
     baseZ: 1000,
@@ -146,7 +151,8 @@ $.blockUI.defaults = {
 
 // private data and functions follow...
 
-var ie6 = $.browser.msie && /MSIE 6.0/.test(navigator.userAgent);
+//var ie6 = $.browser.msie && /MSIE 6.0/.test(navigator.userAgent);
+var ie6 = $.browser.msie && /MSIE 6.0/.test(navigator.userAgent) && !(/MSIE 8.0/.test(navigator.userAgent)); 
 var pageBlock = null;
 var pageBlockEls = [];
 
@@ -184,7 +190,7 @@ function install(el, opts) {
     // layer2 is the overlay layer which has opacity and a wait cursor
     // layer3 is the message content that is displayed while blocking
 
-    var lyr1 = ($.browser.msie) ? $('<iframe class="blockUI" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="about:blank"></iframe>')
+    var lyr1 = ($.browser.msie) ? $('<iframe class="blockUI" style="z-index:'+ (z++) +';display:none;border:none;margin:0;padding:0;position:absolute;width:100%;height:100%;top:0;left:0" src="'+opts.iframeSrc+'"></iframe>')
                                 : $('<div class="blockUI" style="display:none"></div>');
     var lyr2 = $('<div class="blockUI blockOverlay" style="z-index:'+ (z++) +';display:none;cursor:wait;border:none;margin:0;padding:0;width:100%;height:100%;top:0;left:0"></div>');
     var lyr3 = full ? $('<div class="blockUI blockMsg blockPage" style="z-index:'+z+';display:none;position:fixed"></div>')
@@ -206,8 +212,8 @@ function install(el, opts) {
     $([lyr1[0],lyr2[0],lyr3[0]]).appendTo(full ? 'body' : el);
 
     // ie7 must use absolute positioning in quirks mode and to account for activex issues (when scrolling)
-    var expr = $.browser.msie && (!$.boxModel || $('object,embed', full ? null : el).length > 0);
-    if (ie6 || expr && lyr3[0].style.setExpression) {
+    var expr = $.browser.msie && ($.browser.version < 8 || !$.boxModel) && (!$.boxModel || $('object,embed', full ? null : el).length > 0);
+    if (ie6 || (expr && lyr3[0].style.setExpression)) {
         // give body 100% height
         if (full && opts.allowBodyStretch && $.boxModel)
             $('html,body').css('height','100%');
