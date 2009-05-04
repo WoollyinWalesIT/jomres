@@ -33,7 +33,7 @@ class j10002invoices
 			$this->template_touchable=false; return;
 			}
 		global $htmlFuncs;
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=pending', 'Invoice.png', _JRPORTAL_INVOICES_TITLE);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices', 'Invoice.png', _JRPORTAL_INVOICES_TITLE);
 		}
 	
 	

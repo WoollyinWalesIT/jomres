@@ -28,19 +28,16 @@ class jrportal_user_functions
 	function getJoomlaUserDetailsForJoomlaId($id)
 		{
 		$userArray=array();
-
-		//$query = "SELECT id,name,username,email FROM #__users WHERE id = '$id' LIMIT 1";
-		//$result=doSelectSql($query);
-
 		$result=jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($id);
+		
 		if (count($result)>0)
 			{
 			foreach ($result as $r)
 				{
-				$userArray['id']		= $r->id;
-				$userArray['name']		= $r->name; 
-				$userArray['username']	= $r->username; 
-				$userArray['email']		= $r->email;
+				$userArray['id']		= $r['id'];
+				$userArray['name']		= $r['name']; 
+				$userArray['username']	= $r['username']; 
+				$userArray['email']		= $r['email'];
 				}
 			}
 		return $userArray;

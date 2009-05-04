@@ -62,6 +62,7 @@ function invoices_getallinvoices($dec,$status=null)
 	if ($dec)
 		$clause.=" ORDER BY raised_date DESC";
 	$query="SELECT * FROM #__jomresportal_invoices".$clause;
+	//echo $query;exit;
 	$result=doSelectSql($query);
 	if (count($result)>0)
 		{
