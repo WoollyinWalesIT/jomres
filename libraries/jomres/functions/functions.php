@@ -55,7 +55,8 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas-compressed.js");
+				
+
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery-1.3.2.min.js");
 			echo '<script type="text/javascript">jQuery.noConflict();</script>
 			';
@@ -65,7 +66,8 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.blockUI.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"heartbeat.js");
 			
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt.js");
+			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt-0-9-3.js");
+			//jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt-0-9.js");
 			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jquery.bt.css");
 
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
@@ -73,6 +75,8 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 
 			if ($thisJRUser->userIsManager)
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"MiniColorPicker.js");
+			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas.compiled.js");
+			//jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas-compressed.js");
 		/*
 		if (!defined(JOMRES_NOHTML) )
 			{

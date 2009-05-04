@@ -550,19 +550,6 @@ if (!defined('JOMRES_NOHTML'))
 			$tmpl->addRows( 'rows',$rows);
 			$tmpl->displayParsedTemplate();
 			}
-		
-		/*
-		$showSearchOption=FALSE;
-		if ( ($task=="listproperties" || $task=="" || $task=="doSearch" || $task=="search") && $numberOfPropertiesInSystem>1 && $popup!=1)
-			$showSearchOption=TRUE;
-		if ( $task=="viewproperty" ||  $task=="" )
-			{
-			$componentArgs=array();
-			$componentArgs['thisJRUser']=$thisJRUser;
-			$MiniComponents->triggerEvent('00050',$componentArgs);
-			$componentArgs=array();
-			}
-		*/
 		}
 	}
 
