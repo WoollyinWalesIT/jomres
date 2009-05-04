@@ -123,7 +123,7 @@ class jomres_tooltips
 						cornerRadius: 20, 
 						padding: 20,
 						strokeWidth: 1,
-						width:            \''.$width.'\',
+						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
 						});
 					</script>
