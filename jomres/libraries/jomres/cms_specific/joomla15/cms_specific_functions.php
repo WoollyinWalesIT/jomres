@@ -22,7 +22,12 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-
+function jomres_cmsspecific_getRegistrationURL()
+	{
+	
+	
+	}
+	
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 	{
 	global $mainframe, $_MAMBOTS;
