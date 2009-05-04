@@ -56,6 +56,8 @@ class j03200insertbooking_invoice {
 		$tax							= $tmpBookingHandler->getBookingFieldVal("tax");
 		$discounts						= $tmpBookingHandler->getBookingFieldVal("discounts");
 		$resource						= $tmpBookingHandler->getBookingFieldVal("resource");
+		$property_uid					= $tmpBookingHandler->getBookingFieldVal("property_uid");
+		
 		if ($resource=="1")
 			$depositPaid=true;
 		else
@@ -189,6 +191,7 @@ class j03200insertbooking_invoice {
 
 		$invoice_handler = new invoicehandler();
 		$invoice_handler->contract_id=$contract_uid;
+		$invoice_handler->property_uid=$property_uid;
 		$invoice_handler->create_new_invoice($invoice_data,$line_items);
 		$invoice_handler->mark_invoice_pending();
 		$this->results=array("invoice_id"=>$invoice_handler->id);

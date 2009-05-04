@@ -1,8 +1,24 @@
 <patTemplate:tmpl name="pageoutput">
-<div class="cpanel" style="padding-top:5px;margin-bottom:10px;">
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-		{OPTIONS}
-	</patTemplate:tmpl>
+<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
+<div class="panelwrapper">
+	<table width="100%" class="innerwrapper">
+		<tr>
+			<td style="font-size: 12px;"><b>{TITLE}</b></td><td class="small" style="text-align: right;">{PUBLISHEDPROPERTIESTXT} : {PUBLISHEDPROPERTIES}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="cpanel" style="padding-top:5px;margin-bottom:10px;">
+				<table width="100%">
+					<tr class="propertylist_header">
+						<patTemplate:tmpl name="rows" unusedvars="nbsp" requiredVars="options">
+							{OPTIONS}
+						</patTemplate:tmpl>
+					</tr>
+				</table>
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
 <div style="clear:both;"></div>
 </patTemplate:tmpl>

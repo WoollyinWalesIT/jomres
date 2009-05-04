@@ -522,8 +522,16 @@ if (!defined('JOMRES_NOHTML'))
 		}
 	else
 		{ // User is not a manager. We can check that it's valid to show search options
+		$componentArgs=array();
+		$output=array();
+		$query="SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
+		$publishedProperties = count(doSelectSql($query));
+		$output['PUBLISHEDPROPERTIESTXT']=jr_gettext('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES',_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES,$editable=false,$isLink=false);
+		$output['PUBLISHEDPROPERTIES']=$publishedProperties;
+		$output['TITLE']=jr_gettext('_JOMCOMP_MYUSER_MENUTITLE',_JOMCOMP_MYUSER_MENUTITLE,$editable=false,$isLink=false);
 		
-		$MiniComponents->triggerEvent('00009'); // 
+		$componentArgs['thisJRUser']=$thisJRUser;
+		$MiniComponents->triggerEvent('00009',$componentArgs); // 
 		$mcOutput=$MiniComponents->getAllEventPointsData('00009');
 		if (count($mcOutput)>0)
 			{
@@ -543,6 +551,7 @@ if (!defined('JOMRES_NOHTML'))
 			$tmpl->displayParsedTemplate();
 			}
 		
+		/*
 		$showSearchOption=FALSE;
 		if ( ($task=="listproperties" || $task=="" || $task=="doSearch" || $task=="search") && $numberOfPropertiesInSystem>1 && $popup!=1)
 			$showSearchOption=TRUE;
@@ -553,6 +562,7 @@ if (!defined('JOMRES_NOHTML'))
 			$MiniComponents->triggerEvent('00050',$componentArgs);
 			$componentArgs=array();
 			}
+		*/
 		}
 	}
 

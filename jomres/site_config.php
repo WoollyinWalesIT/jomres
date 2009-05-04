@@ -20,6 +20,8 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 
 global $jomresConfig_absolute_path;
+
+$jrConfig['defaultCrate']	='default';
 $jrConfig['property_list_limit']	='5';
 $jrConfig['useGlobalCurrency']		='0';
 $jrConfig['globalCurrency']			='€';

@@ -205,6 +205,9 @@ if ($folderChecksPassed && ACTION != "Migration")
 					{
 					define('ACTION',"Upgrade");
 
+					if (!checkInvoicesPropertyuidColExists() )
+						alterInvoicesPropertyuidCol();
+					
 					$registry = new minicomponent_registry(true);
 					$registry->regenerate_registry();
 
@@ -224,6 +227,26 @@ if ($folderChecksPassed && ACTION != "Migration")
 	}
 showfooter();
 
+function checkInvoicesPropertyuidColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'property_uid'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterInvoicesPropertyuidCol()
+	{
+	echo "Editing __jomresportal_invoices table adding property_uid column<br>";
+	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `property_uid` INT NULL DEFAULT '0' ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_invoices property_uid</b><br>";
+	}
+	
 
 function installCronjobs()
 	{
@@ -719,6 +742,7 @@ function createJomresTables()
 		`currencycode` char(3) NOT NULL,
 		`subscription_id` int(11) NOT NULL default '0',
 		`contract_id` int(11) NOT NULL,
+		`property_uid` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
@@ -1387,6 +1411,7 @@ function insertSampleData()
 
 		$result=doInsertSql("delete FROM `#__jomres_rates`","");
 
+		$result=doInsertSql("delete FROM `#__jomres_c_rates`","");
 
 		$result=doInsertSql("delete FROM `#__jomres_guests`","");
 
@@ -1408,6 +1433,7 @@ function insertSampleData()
 
 		$result=doInsertSql("delete FROM `#__jomres_propertys`","");
 
+		$result=doInsertSql("INSERT INTO `#__jomres_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00')","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (1, 'Sky', 'Sky TV in every room', NULL, '1')","");
 		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (2, 'Disabled access', 'Disabled access available', 'jomres/uploadedimages/pfeatures/facilities_Disabled_Access.png', '1')","");
@@ -2002,6 +2028,9 @@ function migrate()
 	resetJRConfigSettings();
 	insertNewJRConfigSettings();
 	insertPluginSettings();
+	
+	if (!checkInvoicesPropertyuidColExists() )
+		alterInvoicesPropertyuidCol();
 	}
 
 
@@ -2388,7 +2417,7 @@ function addNewTables()
 		`currencycode` char(3) NOT NULL,
 		`subscription_id` int(11) NOT NULL default '0',
 		`contract_id` int(11) NOT NULL,
-		PRIMARY KEY  (`id`)
+		`property_uid` INT NULL DEFAULT '0',
 		)";
 	if (!doInsertSql($query))
 		echo "Failed to run query: ".$query."<br/>";

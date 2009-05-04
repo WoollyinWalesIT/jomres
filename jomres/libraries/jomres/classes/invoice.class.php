@@ -37,8 +37,9 @@ class jrportal_invoice
 		$this->recur_frequency		= '';
 		$this->recur_dayofmonth		= 0;
 		$this->currencycode			= "GBP";
-		$this->subscription_id			= 0;
+		$this->subscription_id		= 0;
 		$this->contract_id			= 0;
+		$this->property_uid			= 0;
 		}
 
 	function getInvoice()
@@ -47,7 +48,7 @@ class jrportal_invoice
 			{
 			$query = "SELECT
 				`id`,`cms_user_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
-				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`
+				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`,`property_uid`
 				FROM #__jomresportal_invoices WHERE `id`='$this->id' LIMIT 1";
 
 			$result=doSelectSql($query);
@@ -69,6 +70,7 @@ class jrportal_invoice
 					$this->currencycode			= $r->currencycode;
 					$this->subscription_id		= $r->subscription_id;
 					$this->contract_id			= $r->contract_id;
+					$this->property_uid			= $r->property_uid;
 					}
 				return true;
 				}
@@ -112,7 +114,8 @@ class jrportal_invoice
 				`recur_dayofmonth`,
 				`currencycode`,
 				`subscription_id`,
-				`contract_id`
+				`contract_id`,
+				`property_uid`
 				)
 				VALUES
 				(
@@ -128,7 +131,8 @@ class jrportal_invoice
 				'$this->recur_dayofmonth',
 				'$this->currencycode',
 				'$this->subscription_id',
-				'$this->contract_id'
+				'$this->contract_id',
+				'$this->property_uid'
 				)";
 			$id=doInsertSql($query,"");
 			if ($id)
@@ -163,7 +167,8 @@ class jrportal_invoice
 				`recur_dayofmonth`	= '$this->recur_dayofmonth',
 				`currencycode` 		= '$this->currencycode',
 				`subscription_id` 	= '$this->subscription_id',
-				`contract_id` 		= '$this->contract_id'
+				`contract_id` 		= '$this->contract_id',
+				`property_uid` 		= '$this->property_uid'
 				WHERE `id`='$this->id'";
 				//echo $query;
 			
