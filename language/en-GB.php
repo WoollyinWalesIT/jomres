@@ -5017,7 +5017,7 @@ define('_JRPORTAL_CRATE_CURRENCYCODE','Currency code');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_LISTPROPERTIES','List Properties');
+define('_JRPORTAL_CPANEL_LISTPROPERTIES','List Propertys');
 /**
 * @ignore
 */
