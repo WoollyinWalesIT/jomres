@@ -122,7 +122,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 		}
 	}
 
-function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/' ) 
+function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/') 
 	{
 	global $jomresConfig_live_site,$task;
 	global $ePointFilepath,$eLiveSite,$jrConfig;
@@ -134,7 +134,7 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 		if (!strstr($image,"blank.png"))
 			{
 			
-			if ($jrConfig['menusAsImages']=="1")
+			if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
 				{
 				
 				$path=$jomresConfig_live_site.$path.$image;
@@ -152,7 +152,7 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 				{
 				return '<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
 						'.$text.'
-						</a>';
+						</a>&nbsp;&nbsp;';
 				
 				}
 			}

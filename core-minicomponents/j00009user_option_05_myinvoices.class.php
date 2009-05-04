@@ -21,39 +21,55 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j00012invoices_link
-	{
-	function j00012invoices_link()
+/**
+#
+ * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ #
+* @package Jomres
+#
+ */
+class j00009user_option_05_myinvoices {
+
+	/**
+	#
+	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	#
+	 */
+	function j00009user_option_05_myinvoices($componentArgs)
 		{
+		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser,$task;
-		$id= $thisJRUser->id;
-		$task			= jomresGetParam( $_REQUEST, 'task', "" );
-		if ($id > 0 && $task == "" )
+		$thisJRUser=$componentArgs['thisJRUser'];
+		if ($thisJRUser->userIsRegistered)
 			{
-			$invoices=invoices_getinvoicesfor_juser($id,$stat);
-			if (count($invoices)>0 && strlen($task)==0)
+			
+			$invoices=invoices_getinvoicesfor_juser((int)$thisJRUser->id);
+			if (count($invoices)>0)
 				{
-				$output['LINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices">'.jr_gettext(_JRPORTAL_INVOICES_SHOWINVOICES,_JRPORTAL_INVOICES_SHOWINVOICES,true,true).'</a>';
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'invoices_link.html');
-				$tmpl->addRows( 'pageoutput',$pageoutput);
-				$tmpl->addRows( 'rows',$rows);
-				$tmpl->displayParsedTemplate();
+				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=list_usersinvoices", '', jr_gettext('_JRPORTAL_INVOICES_SHOWINVOICES',_JRPORTAL_INVOICES_SHOWINVOICES,true,true) );
 				}
 			}
 		}
 	
+	function touch_template_language()
+		{
+		$output=array();
+		$output[]		=jr_gettext('_JRPORTAL_INVOICES_SHOWINVOICES',_JRPORTAL_INVOICES_SHOWINVOICES);
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
-		}	
+		return $this->cpanelButton;
+		}
 	}
+?>
