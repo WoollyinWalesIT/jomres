@@ -56,8 +56,6 @@ class j00030search {
 		$searchRestarted=false;
 		$showSearchOptions=true;
 
-		//
-		
 		if (!defined(_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) )
 			{
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.$jomresConfig_lang.'.php')) {
@@ -105,6 +103,7 @@ class j00030search {
 				// $MiniComponents->triggerEvent('00030',$componentArgs);
 				}
 			}
+
 		$calledByModule=mysql_real_escape_string($calledByModule);
 
 		$customTextArray=array();
@@ -700,7 +699,7 @@ class j00030search {
 				$stmpl->displayParsedTemplate();
 				}
 
-			//if ($doSearch )
+			if ($doSearch )
 				$sch->jomSearch_showresults();
 			unset ($sch);
 		}

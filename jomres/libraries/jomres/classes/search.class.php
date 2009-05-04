@@ -54,12 +54,10 @@ class jomSearch {
 			{
 			$calledByModule=mysql_real_escape_string($calledByModule);
 			$this->calledByModule=$calledByModule;
-			if (defined('_JOMRES_NEWJOOMLA'))
-				$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.'/modules/'.$calledByModule.'/'.$calledByModule.'/';
-			else
-				$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.'/modules/'.$calledByModule.'/';
-			
-			if ($calledByModule="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1')
+
+			$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'module'.JRDS.$calledByModule.JRDS.$calledByModule.'/';
+
+			if ($calledByModule=="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1')
 				$this->templateFilePath=JOMRES_TEMPLATEPATH_FRONTEND;
 			
 			$vals = jomres_cmsspecific_getSearchModuleParameters($calledByModule);

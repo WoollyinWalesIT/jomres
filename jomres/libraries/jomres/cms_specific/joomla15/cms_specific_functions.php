@@ -158,7 +158,7 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName="")
 	{
 	if (strlen($moduleName)>0 )
 		{
-		if ($moduleName == "mos_jomsearch_m0")
+		if ($moduleName == "mod_jomsearch_m0")
 			{
 			return getIntegratedSearchModuleVals();
 			}
