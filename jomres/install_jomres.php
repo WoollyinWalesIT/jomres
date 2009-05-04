@@ -197,7 +197,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 					copyImages();
 					saveKey2db($lkey);
 					insertPortalTables();
-					installCronjobs();
+					//installCronjobs();
 					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
 					showCompletedText();
 					}
@@ -230,7 +230,7 @@ function installCronjobs()
 	echo "Installing cron jobs<br/>";
 	$cron = new jomres_cron();
 	$cron->addJob("optimise","D","");
-	$cron->addJob("invoice","M","");
+	$cron->addJob("invoice","D","");
 	}
 
 function trashTables()
