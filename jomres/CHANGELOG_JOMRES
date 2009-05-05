@@ -1,3 +1,27 @@
+Jomres 4beta2
+
+Removed an element from the amend booking functionality that updates the deposit paid status.
+Fixed the javascript in the register property page as &amp; wasn't being parsed properly by the js and so countries couldn't be selected during backend add a property.
+Added a simple check for j00001start.class.php to try to resolve the file move/no cpanel or any other scripts running issue.
+Added migration handling to install_jomres.php
+Added isInIframe check to cms_specific_urls.php to change the call from index.php to index2.php.
+Extracted jomres_database to it's own class file.
+Modified language detection in Joomla so that the current language can be detected from Joomla if Joomfish isn't used.
+Solved the case of the mysteriously disappearing admin menu (renamed Itemid to jomresItemid in cms_specific url handling script.
+Modified how imageonly image beautytip popup is called, allows the image to go left, right, top, bottom then "most". Stops some flickering when showing the slideshow.
+Licenses updated for clarity
+Changed the include to the languages array file from "include" to "require_once".
+Disabled the site config for the default language file, I don't think we need this any more.
+Fixed incorrect redirect to listproperties in administrator if commission rates are saved.
+Added a default commission rate to installation sample data.
+Changed default trigger of orphaned commission line items from every minute to every day.
+Added commission line item addition script to core.
+Improved v4 functionality to correctly show link to allow admins to view a user's invoices in backend.
+Modified list own bookings to not show the booking info in a popup any more, instead we go to a new page.
+Minicomponentised non-manager's options inc show bookings/favorites etc, removed a bunch of files that have been made redundant as a result.
+Fixed searching, stopped search results from showing in module area.
+
+
 Jomres 4beta1
 
 Late addition of Piranha's image/input click js for date inputs.
