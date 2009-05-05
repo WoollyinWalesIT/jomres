@@ -251,7 +251,8 @@ class j04005roomsconfig {
 				if (!document.all) return; // IE only
 					r= text_val.createTextRange();
 				r.execCommand(\'copy\');
-				} </script>';
+				} </script>
+				';
 			$propertyRowInfo .='<tr><td class=\"jradmin_subheader_la\" colspan=\"6\">APIKEY: <input type="text" size="50" class="inputbox" name="apikey'.$id.'" value="'.$property->apikey.'" READONLY onclick="select_all(this)"/></td></tr>';
 			}
 

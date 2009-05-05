@@ -56,6 +56,11 @@ class jomres_contentTabs
 		{
 		global $jomresConfig_live_site;
 		$currentTab=jomresGetParam( $_COOKIE,'jomres_content_tab', '' );
+		#### Not currently working, jquery ui tabs #####
+		//echo '
+		//<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery-ui-1.7.1.custom.min.js"></script>';
+		
+
 		echo '
 		<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquerytabs/jquery.tabs.pack.js"></script>';
 		echo '
@@ -77,16 +82,34 @@ class jomres_contentTabs
 			}
 		else
 			{
-			{
+			#### Not currently working, jquery ui tabs #####
+			/*
+			echo '
+				<script type="text/javascript">
+					jQuery(function(){
+						// Tabs
+						jQuery(\'#content_tabs\').tabs();
+						
+						//hover states on the static widgets
+						jQuery(\'#dialog_link, ul#icons li\').hover(
+							function() { jQuery(this).addClass(\'ui-state-hover\'); }, 
+							function() { jQuery(this).removeClass(\'ui-state-hover\'); }
+						);
+						
+					});
+				</script>
+				';
+			*/
+
 			echo "<script type=\"text/javascript\" defer=\"true\">
 			jQuery(document).ready(function() {
-				jQuery('#content_tabs').tabs({ fxFade: true, fxSpeed: 'fast', fxAutoHeight: true});
+				jQuery('#content_tabs').tabs();
 				});
 			</script>
 			";
+
 			}
-			}
-		echo "<div id=\"content_tabs\">";
+		echo "<div id=\"content_tabs\"> <!-- start tabs panel -->";
 		}
 
 	/**
@@ -108,7 +131,7 @@ class jomres_contentTabs
 			<a href="'.$_SERVER["REQUEST_URI"]."#".$anchor.'" '.$tabCookieString.'>'.$tabpage.'</a>
 		</li>
 		';
-		$this->panes[]='<div id="'.$anchor.'">';
+		$this->panes[]='<div id="'.$anchor.'"><!-- start content tab panel -->';
 		}
 
 
@@ -131,7 +154,7 @@ class jomres_contentTabs
 	*/
 	function endPanel()
 		{
-		$this->panes[]='</div>
+		$this->panes[]='</div> <!-- end content tab panel -->
 		';
 		}
 
@@ -142,18 +165,20 @@ class jomres_contentTabs
 	*/
 	function endTabs()
 		{
-		echo '<ul>';
+		echo '<ul>
+		';
 		foreach ($this->paneLink as $pane)
 			{
 			echo $pane;
 			}
-		echo '</ul>';
+		echo '</ul>
+		';
 		foreach ($this->panes as $pane)
 			{
 			echo $pane;
 			}
 
-		echo "</div>";
+		echo "</div> <!-- end tabs panel -->";
 		}
 
 	/**
