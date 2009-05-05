@@ -125,8 +125,7 @@ class jomres_toolbar
 		{
 		$output='';
 		$output.='
-		<table cellpadding="0" cellspacing="3" border="0" id="jomresmenu">
-		<tr valign="bottom" align="center">';
+		<table cellpadding="0" cellspacing="3" border="0" id="jomresmenu"><tr valign="bottom" align="center">';
 		return $output;
 		}
 
@@ -137,9 +136,7 @@ class jomres_toolbar
 	*/
 	function endTable()
 		{
-		$output='
-		</tr>
-		</table>
+		$output='</tr></table>
 		';
 		return $output;
 		}
