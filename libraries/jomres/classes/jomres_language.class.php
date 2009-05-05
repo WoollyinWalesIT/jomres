@@ -49,26 +49,34 @@ class jomres_language
 				}
 			else
 				{
-				if (isset($_COOKIE['jomreslang']) )
+				if ( isset($_REQUEST['lang']) )
 					{
-					$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_COOKIE, 'jomreslang', "" ) );
+					$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_REQUEST, 'lang', "" ) );
 					}
 				else
 					{
-					if (isset($_REQUEST['lang']) )
-						$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_REQUEST, 'lang', "" ));
+					if ( isset($_COOKIE['jomreslang']))
+						{
+						$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_COOKIE, 'jomreslang', "" ));
+						}
 					else
 						{
 						if (isset($_COOKIE['mbfcookie']) )
+							{
 							$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['mbfcookie']['lang']);
+							}
 						else
 							{
 							if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php")  )
+								{
 								$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
+								}
 							else
 								{
 								if (strlen($jomresConfig_lang)==0)
+									{
 									$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
+									}
 								}
 							}
 						}
