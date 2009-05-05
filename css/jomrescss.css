@@ -207,7 +207,7 @@ div.blockMsg {
 	background: #f1f1f1;
 	margin-top: 5px;
 	border-top: 1px solid #aaaaaa;
-	border-left: 1px solid #dddddd;
+	border-left: 1px solid #aaaaaa;
 	}
 
 .header_property 	
@@ -610,7 +610,7 @@ a.rescal:hover
 .tariff_header 
 	{
 	background: #f1f1f1;
-	color : #000;
+	color : #fff;
 	}
 
 
@@ -641,7 +641,7 @@ a.rescal:hover
 .roomslist_header 
 	{
 	background: #f1f1f1;
-	color : #000;
+	color : #fff;
 	}
 
 .jradmin_rowtoolbar 	
