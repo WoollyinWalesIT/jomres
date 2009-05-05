@@ -473,14 +473,14 @@ class hn_captcha
                             'refreshbuttontext'=>jr_gettext('_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT',_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT,false,false)
                             ),
                 'de'=>array(
-                            'msg1'=>'Bitte tragen Sie die <b>'.$this->chars.' Zeichen</b> in das Feld ein. Zeichen von <b>0..9</b> und <b>'.$usedchars.'</b> sind mÃ¶glich.',
+                            'msg1'=>'Bitte tragen Sie die <b>'.$this->chars.' Zeichen</b> in das Feld ein. Zeichen von <b>0..9</b> und <b>'.$usedchars.'</b> sind möglich.',
                             'msg2'=>'Die Zeichen im Bild sind unleserlich. Generiere eine ',
                             'buttontext'=>'abschicken',
                             'refreshbuttontext'=>'neue ID'
                             ),
                 'fr'=>array(
-                            'msg1'=>'Vous devez lire et saisir les <b>'.$this->chars.' caratÃ¨res</b> prÃ©sent dans l\'image ci-dessus (<b>0..9</b> et <b>'.$usedchars.'</b>), dans le champ ci-dessous <br> et valider le formulaire.',
-                            'msg2'=>'Les caractÃ¨res sont illisibles, merci de gÃ©nÃ©rer une nouvelle image.',
+                            'msg1'=>'Vous devez lire et saisir les <b>'.$this->chars.' caratères</b> présent dans l\'image ci-dessus (<b>0..9</b> et <b>'.$usedchars.'</b>), dans le champ ci-dessous <br> et valider le formulaire.',
+                            'msg2'=>'Les caractères sont illisibles, merci de générer une nouvelle image.',
                             'buttontext'=>'valider',
                             'refreshbuttontext'=>'nouvelle ID'
                             ),
@@ -491,9 +491,9 @@ class hn_captcha
                             'refreshbuttontext'=>'nuovo ID'
                             ),
                 'fi'=>array(
-                            'msg1'=>'Kirjoita laatikossa lukeva varmistuskoodi (<b>'.$this->chars.' merkkiÃ¤</b>). Koodi sisÃ¤ltÃ¤Ã¤ merkkejÃ¤ <b>0..9</b> ja <b>'.$usedchars.'</b>.',
+                            'msg1'=>'Kirjoita laatikossa lukeva varmistuskoodi (<b>'.$this->chars.' merkkiä</b>). Koodi sisältää merkkejä <b>0..9</b> ja <b>'.$usedchars.'</b>.',
                             'msg2'=>'En pysty lukemaan tuota. Generoi uusi ',
-                            'buttontext'=>'LÃ¤hetÃ¤',
+                            'buttontext'=>'Lähetä',
                             'refreshbuttontext'=>'uusi ID'
                              ),
                 'nl'=>array(
@@ -661,7 +661,7 @@ class hn_captcha
 
             // generate Keys
             $this->key = md5($this->secretstring);
-            $this->public_key = "captcha_".substr(md5(uniqid(rand(),true)), 0, $this->chars);
+            $this->public_key = substr(md5(uniqid(rand(),true)), 0, $this->chars);
             if($this->debug) echo "\n<br>-Captcha-Debug: Generate Keys, public key is: (".$this->public_key.")";
 
         }
@@ -839,7 +839,7 @@ class hn_captcha
 		global $jomresConfig_live_site;
             $this->make_captcha();
             $is = getimagesize($this->get_filename());
-            $ret = "\n".'<img class="captchapict" src="'.$jomresConfig_live_site."/jomres/temp/".$this->public_key.'.jpg" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
+            $ret = "\n".'<img class="captchapict" src="'.$jomresConfig_live_site."/media/".$this->public_key.'.jpg" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
             return $onlyTheImage ? $ret : $this->public_key_input().$ret;
         }
 
@@ -1150,12 +1150,12 @@ class hn_captcha
             if($this->lang == "de" && $this->current_try >= 2) return $this->sanitized_output('Die Eingabe war nicht korrekt. Bitte noch einmal versuchen:<br>&nbsp;');
 
             // invalid try's: fr
-            if($this->lang == "fr" && $this->current_try > 2 && $this->refreshlink) return $this->sanitized_output('Saisie non valide. Veuillez essayer Ã  nouveau:<br>Astuce: Si vous ne parvenez pas Ã  lire les caractÃ¨res, vous pouvez gÃ©nÃ©rer une nouvelle image!');
-            if($this->lang == "fr" && $this->current_try >= 2) return $this->sanitized_output('Saisie non valide. Veuillez essayer Ã  nouveau:<br>&nbsp;');
+            if($this->lang == "fr" && $this->current_try > 2 && $this->refreshlink) return $this->sanitized_output('Saisie non valide. Veuillez essayer à nouveau:<br>Astuce: Si vous ne parvenez pas à lire les caractères, vous pouvez générer une nouvelle image!');
+            if($this->lang == "fr" && $this->current_try >= 2) return $this->sanitized_output('Saisie non valide. Veuillez essayer à nouveau:<br>&nbsp;');
 
             // invalid try's: fi
-            if($this->lang == "fi" && $this->current_try > 2 && $this->refreshlink) return $this->sanitized_output('EpÃ¤kelpo syÃ¶te. YritÃ¤ uudestaan:<br>Vihje: Jos et saa merkeistÃ¤ selvÃ¤Ã¤, generoi uusi koodi!');
-            if($this->lang == "fi" && $this->current_try >= 2) return $this->sanitized_output('EpÃ¤kelpo syÃ¶te. YritÃ¤ uudestaan:<br>&nbsp;');
+            if($this->lang == "fi" && $this->current_try > 2 && $this->refreshlink) return $this->sanitized_output('Epäkelpo syöte. Yritä uudestaan:<br>Vihje: Jos et saa merkeistä selvää, generoi uusi koodi!');
+            if($this->lang == "fi" && $this->current_try >= 2) return $this->sanitized_output('Epäkelpo syöte. Yritä uudestaan:<br>&nbsp;');
 
             // invalid try's: nl
             if($this->lang == "nl" && $this->current_try > 2 && $this->refreshlink) return $this->sanitized_output('De ingevoerde code was onjuist. Probeer aub opnieuw:<br>Tip: Wanneer u de tekens niet kan lezen, kan u een nieuwe afbeelding genereren!');
@@ -1170,3 +1170,5 @@ class hn_captcha
 
 
 } // END CLASS hn_CAPTCHA
+
+?>

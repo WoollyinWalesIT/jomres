@@ -7,7 +7,7 @@
 
         error_reporting(E_ALL + E_STRICT);      // use this for Debugging only !
 
-        include_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'hn_captcha'.JRDS.'hn_captcha.class.php5');
+        include_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'hn_captcha'.JRDS.'hn_captcha.class-php5.php');
 
     }
     else
