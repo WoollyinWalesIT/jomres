@@ -53,8 +53,7 @@ class j03200jrportal {
 		$booking->currency_code			= $currency_code;
 		$booking->created				= date("Y-m-d H-i-s");
 
-		$tr= new jrportal_transaction();
-		$booking->commitNewBooking($tr);
+		$booking->commitNewBooking();
 
 		$userFunctions = new jrportal_user_functions();
 		$usersArray=$userFunctions->getManagerIdsForProperty($property_uid);
@@ -72,13 +71,12 @@ class j03200jrportal {
 				$user->portal_booking_id	= $booking->id;
 				$user->username				= $userDeets['username'];
 				$user->email				= $userDeets['email'];
-				$user->commitNewUser($tr);
+				$user->commitNewUser();
 
 				$userObjsArray[]=$user;
 				}
 			}
 
-		$result=$tr->commit($tr);
 		if ($MiniComponents->eventFileExistsCheck('07010') )
 			{
 			$property = new jrportal_property_functions();

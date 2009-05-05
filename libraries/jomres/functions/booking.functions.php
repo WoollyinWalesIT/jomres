@@ -107,7 +107,7 @@ class jrportal_booking_functions // Functions supplied as a class so that they c
 		$g_ids = genericOr($idArray,'id');
 		$d=date("Y-m-d H-i-s");
 		$query="UPDATE #__jomresportal_bookings SET `archived`='1',`archived_date`='$d' WHERE ".$g_ids;
-		return $tr->insertQuery($query);
+		return doInsertSql($query,'');
 		}
 
 	function getContractsForMonth($month=0,$year=0,$property_uid=0) // Month is an integer, from 0-11. Year should be in nnnn format.

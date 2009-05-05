@@ -48,14 +48,11 @@ class j16000savecrate
 		$crateObj->type=$type;
 		$crateObj->value=$value;
 		$crateObj->currencycode=$currencycode;
-		$tr= new jrportal_transaction();
 		if ($id>0)
-			$crateObj->commitUpdateCrate(&$tr);
+			$crateObj->commitUpdateCrate();
 		else
-			$crateObj->commitNewCrate(&$tr);
-		$result=$tr->commit($tr);
-		if ($result)
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listcrates", '');
+			$crateObj->commitNewCrate();
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listcrates", '');
 		}
 
 	// This must be included in every Event/Mini-component

@@ -84,7 +84,7 @@ class jrportal_crate
 
 		}
 
-	function commitNewCrate(&$tr)
+	function commitNewCrate()
 		{
 		if ($this->id < 1 )
 			{
@@ -108,10 +108,10 @@ class jrportal_crate
 				'0',
 				'$this->archived_date'
 				)";
-			$tr->insertQuery($query);
-			if ($tr->success)
+			$result = doInsertSql($query,'');
+			if ($result)
 				{
-				$this->id=$tr->insertedId;
+				$this->id=$result;
 				return true;
 				}
 			else
@@ -124,11 +124,10 @@ class jrportal_crate
 		return false;
 		}
 
-	function commitUpdateCrate(&$tr)
+	function commitUpdateCrate()
 		{
 		if ($this->id > 0 )
 			{
-
 			$query="UPDATE #__jomresportal_c_rates SET
 				`title` 			= '$this->title',
 				`type` 				= '$this->type',
@@ -138,31 +137,31 @@ class jrportal_crate
 				`archived` 			= '$this->archived',
 				`archived_date` 	= '$this->archived_date'
 				WHERE `id`='$this->id'";
-			return $tr->insertQuery($query);
+			return doInsertSql($query,'');
 			}
 		$this->error = "ID of Commission rate not available";
 		return false;
 		}
 
-	function commitArchiveCrate(&$tr)
+	function commitArchiveCrate()
 		{
 		if ($this->id > 0 )
 			{
 			$this->archived_date=date("Y-m-d H-i-s");
 			$this->archived=1;
-			return commitUpdateCrate(&$tr);
+			return commitUpdateCrate();
 			}
 		$this->error = "ID of Commission rate not available";
 		return false;
 		}
 
-	function commitUnArchiveCrate(&$tr)
+	function commitUnArchiveCrate()
 		{
 		if ($this->id > 0 )
 			{
 			$this->archived_date=date("Y-m-d H-i-s");
 			$this->archived=0;
-			return commitUpdateCrate(&$tr);
+			return commitUpdateCrate();
 			}
 		$this->error = "ID of Commission rate not available";
 		return false;

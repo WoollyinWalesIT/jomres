@@ -40,9 +40,7 @@ class j04901jrportal {
 		$property->property_id=$property_uid;
 		$property->crate_id=$defaultCrate;
 
-		$tr= new jrportal_transaction();
-		$property->commitNewProperty($tr);
-		$result=$tr->commit($tr);
+		$property->commitNewProperty();
 		}
 
 	// This must be included in every Event/Mini-component

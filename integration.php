@@ -22,9 +22,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 //global $mainframe,$task,$config;
-@ini_set("max_execution_time","480");
-@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
-//error_reporting(E_ALL);
+
 
 // @ini_set("register_globals", 1); // not set yet, resisting the temptation
 
@@ -237,8 +235,11 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jom
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
-if ($_REQUEST['task'] == "handlereq" || $_REQUEST['dobooking'] = "dobooking")
-	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
+if (isset($_REQUEST['task']) || isset($_REQUEST['dobooking']) )
+	{
+	if ($_REQUEST['task'] == "handlereq" || $_REQUEST['dobooking'] = "dobooking")
+		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
+	}
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php');
@@ -310,7 +311,7 @@ if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
-define('JOMRES_SYSTEMLOG_PATH',$jrConfig['jomres_systemLog_path']);
+
 set_error_handler('errorHandler');
 jomres_parseRequest();
 
@@ -752,7 +753,7 @@ function checkUserIsManager()
 
 function doSelectSql($query,$mode=FALSE)
 	{
-	global $jomres_db,$mrConfig;
+	global $jomres_db,$jrConfig;
 	global $jomres_db_querylog;
 	global $MiniComponents;
 	if (isset($MiniComponents->currentEvent) )
@@ -762,7 +763,7 @@ function doSelectSql($query,$mode=FALSE)
 	$jomres_db->setQuery($query);
 	$result = $jomres_db->loadObjectList();
 	$num=count($result);
-	if ($mrConfig['errorCheckingShowSQL']) echo $query."<br>";
+	if (isset($jrConfig['errorChecking'])) {if ($jrConfig['errorChecking']) echo $query."<br>";}
 	switch ($mode)
 		{
 		case 1:
@@ -801,7 +802,7 @@ function doSelectSql($query,$mode=FALSE)
 		break;
 		default:
 			// Yer bog standard query
-			if ($mrConfig['errorCheckingShowSQLvardump']) echo "<br /><b>".var_dump($result)."</b><br />";
+			if (isset($jrConfig['errorChecking'])) {if ($jrConfig['errorChecking']) echo $query."<br>";}
 		break;
 		}
 	$jomres_db->unsetResult();
@@ -814,7 +815,7 @@ function doSelectSql($query,$mode=FALSE)
 
 function doInsertSql($query,$op)
 	{
-	global $jomres_db,$mrConfig;
+	global $jomres_db,$jrConfig;
 	global $jomres_db_querylog;
 	global $MiniComponents;
 	$jomres_db_querylog[]="<font size=\"-3\"  color=\"red\">".$query."</font><br/><font size=\"-5\">".$MiniComponents->currentEvent."</font>";
@@ -827,7 +828,7 @@ function doInsertSql($query,$op)
 		{
 		$jomres_db = new jomres_database();
 		}
-	if ($mrConfig['errorCheckingShowSQL']) echo $query."<br>";
+	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
 	//echo $query;echo "<br>";
 	if (!$jomres_db->query())
@@ -850,10 +851,10 @@ function doInsertSql($query,$op)
 
 function doSql($query)
 	{
-	global $jomres_db,$mrConfig;
+	global $jomres_db,$jrConfig;
 	if ( is_null($jomres_db) )
 		$jomres_db = new jomres_database();
-	if ($mrConfig['errorCheckingShowSQL']) echo $query."<br>";
+	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
 	if (!$jomres_db->query())
 		return FALSE;

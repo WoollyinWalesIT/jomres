@@ -76,9 +76,7 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 		$query = "SELECT `id`,`title`,`type`,`value`,`currencycode`,
 				`created`,`archived`,`archived_date`
 				FROM #__jomresportal_c_rates ".$clause;
-				//echo $query;exit;
 		$result=doSelectSql($query);
-		//var_dump($result);exit;
 		if (count($result)>0)
 			{
 			foreach ($result as $r)
@@ -96,12 +94,12 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 		return $retResult;
 		}
 
-	function batchArchive($idArray,&$tr)
+	function batchArchive($idArray)
 		{
 		$g_ids = genericOr($idArray,'id');
 		$d=date("Y-m-d H-i-s");
 		$query="UPDATE #__jomresportal_c_rates SET `archived`='1',`archived_date`='$d' WHERE ".$g_ids;
-		return $tr->insertQuery($query);
+		return doInsertSql($query,'');
 		}
 
 	function makeCrateDropdown($id,$idx=null)

@@ -37,11 +37,8 @@ class j16000archivecrates
 		$crateFunctions=new jrportal_crate_functions();
 		if (count($idArray)>0)
 			{
-			$tr= new jrportal_transaction();
-			$crateFunctions->batchArchive($idArray,&$tr);
-			$result=$tr->commit($tr);
-			if ($result)
-				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listcrates", '');
+			$crateFunctions->batchArchive($idArray);
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listcrates", '');
 			}
 		}
 

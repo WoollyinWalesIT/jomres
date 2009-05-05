@@ -93,7 +93,7 @@ class jrportal_booking
 
 		}
 
-	function commitNewBooking(&$tr)
+	function commitNewBooking()
 		{
 		if ($this->id < 1 )
 			{
@@ -125,12 +125,11 @@ class jrportal_booking
 				'0',
 				'$this->archived_date'
 				)";
-			$tr->insertQuery($query);
-
-			if ($tr->success)
+			$result = doInsertSql($query,'');
+			if ($result)
 				{
 				jrportalquery_log($query);
-				$this->id=$tr->insertedId;
+				$this->id=$result;
 				return true;
 				}
 			else
@@ -145,7 +144,7 @@ class jrportal_booking
 		return false;
 		}
 
-	function commitUpdateBooking(&$tr)
+	function commitUpdateBooking()
 		{
 		if ($this->id > 0 )
 			{
@@ -162,33 +161,33 @@ class jrportal_booking
 				`archived` 			= '$this->archived',
 				`archived_date` 	= '$this->archived_date'
 				WHERE `id`='$this->id'";
-			return $tr->insertQuery($query);
+			return doInsertSql($query,'');
 			}
 		$this->error = "ID of booking not available";
 		jrportalquery_log("Update booking failed ".$this->error);
 		return false;
 		}
 
-	function commitArchiveBooking(&$tr)
+	function commitArchiveBooking()
 		{
 		if ($this->id > 0 )
 			{
 			$this->archived_date=date("Y-m-d H-i-s");
 			$this->archived=1;
-			return commitUpdateBooking(&$tr);
+			return commitUpdateBooking();
 			}
 		$this->error = "ID of booking not available";
 		jrportalquery_log("Archive booking failed ".$this->error);
 		return false;
 		}
 
-	function commitUnArchiveBooking(&$tr)
+	function commitUnArchiveBooking()
 		{
 		if ($this->id > 0 )
 			{
 			$this->archived_date=date("Y-m-d H-i-s");
 			$this->archived=0;
-			return commitUpdateBooking(&$tr);
+			return commitUpdateBooking();
 			}
 		$this->error = "ID of booking not available";
 		jrportalquery_log("Unarchive booking failed ".$this->error);
