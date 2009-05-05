@@ -520,15 +520,19 @@ class j00030search {
 									$ischecked="checked";
 								}
 							$image = '/'.$feature['image'];
-							$tmp=makeFeatureImages($image,$feature['title'],$feature['description'],$retString=TRUE);
-							$rowbreak="";
-							if ($counter==$featurecols)
+							//$tmp=makeFeatureImages($image,$feature['title'],$feature['description'],$retString=TRUE);
+							$tmp=jomres_makeTooltip($feature['title'],$feature['title'],$feature['description'],$jomresConfig_live_site.$image,"","property_feature",array());
+
+							/*
+							$rowbreak='style="float : left;"';
+							if ($counter>$featurecols)
 								{
-								$rowbreak="<br>";
+								$rowbreak='style="clear: both;"';
 								$counter=0;
 								}
+							*/
 							$rows[]=$r;
-							$r.=$tmp.'<input type="checkbox" name="feature_uids[]" value="'.$pid.'" '.$ischecked.'>'.$rowbreak;
+							$r.='<div style="float : left;" >'.$tmp.'<input type="checkbox" name="feature_uids[]" value="'.$pid.'" '.$ischecked.' /></div>';
 							}
 						$output['feature']=$r;
 						}

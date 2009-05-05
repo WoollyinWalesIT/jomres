@@ -379,11 +379,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_integratedSearch_pricerange_increments" value="'.$jrConfig['integratedSearch_featurecols'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features_dropdown'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC.'</td>
