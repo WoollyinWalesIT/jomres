@@ -36,16 +36,16 @@ class jomres_language
 		if (isset($_POST['jomreslang']) )
 			{
 			$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_POST, 'jomreslang', "" ) );
-			SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
-			jomres_cmsspecific_setlanguage($jomresConfig_lang);
+			//SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
+			//jomres_cmsspecific_setlanguage($jomresConfig_lang);
 			}
 		else
 			{
 			if (isset($_GET['jomreslang']) )
 				{
 				$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_GET, 'jomreslang', "" ) );
-				SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
-				jomres_cmsspecific_setlanguage($jomresConfig_lang);
+				//SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
+				//jomres_cmsspecific_setlanguage($jomresConfig_lang);
 				}
 			else
 				{
@@ -83,6 +83,8 @@ class jomres_language
 					}
 				}
 			}
+		SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
+		jomres_cmsspecific_setlanguage($jomresConfig_lang);
 		$this->lang=$jomresConfig_lang;
 		}
 		
