@@ -48,8 +48,7 @@ class jomres_tooltips
 		endwhile;
 		
 		$this->divs[$div]=$div;
-		
-		// We'll leave this as a switch case for now in case we want to use the types option at a later time.
+
 		switch ($type) 
 			{
 			case "ajaxpage":
@@ -64,10 +63,17 @@ class jomres_tooltips
 				$div_string.='>'.$div_content.'</div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						ajaxPath: \''.$url.'\',
-						width: 500,
-						trigger: [\'mouseover\', \'click\'],
-						hoverIntentOpts: {interval: 1000,timeout: 2000},
-						closeWhenOthersOpen: true
+						width: \'auto\',
+						closeWhenOthersOpen: true,
+						fill: "rgba(0, 0, 0, .7)",
+						cssStyles: 
+							{
+							color: \'#FFF\'
+							},
+						hoverIntentOpts: {
+							interval: 500,
+							timeout: 1000
+							}
 						});</script>
 					';
 			break;
@@ -93,7 +99,12 @@ class jomres_tooltips
 				if (isset($type_arguments["border"]))
 					$div_string.='border="'.$border.'"';
 				$div_string.=' /></div>';
-				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
+				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt({
+						width: \'auto\',
+						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
+						fill: "rgba(0, 0, 0, .5)"
+						});
+					</script>
 					';
 			break;
 			case "imageonly":
@@ -119,12 +130,9 @@ class jomres_tooltips
 					$div_string.='/></div>';
 					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" >\', 
 						{
-						fill: "white", 
-						cornerRadius: 20, 
-						padding: 20,
-						strokeWidth: 1,
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
+						fill: "rgba(0, 0, 0, .5)"
 						});
 					</script>
 					';
@@ -135,8 +143,15 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_room_type" ';
-				$div_string.=' title="<b>'.$hover_title.'</b><br />'.$hover_content.'"><img src="'.$div_content.'" /></div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
+				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
+					<script type="text/javascript">jQuery("#'.$div.'").bt({
+						width: \'100\',
+						fill: "rgba(0, 0, 0, .6)",
+						cssStyles: 
+							{
+							color: \'#F9FB61\'
+							}
+						});</script>
 					';
 			break;
 			case "property_feature":
@@ -145,8 +160,15 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_features" ';
-				$div_string.=' title="<b>'.$hover_title.'</b><br />'.$hover_content.'"><img src="'.$div_content.'" /></div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
+				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
+					<script type="text/javascript">jQuery("#'.$div.'").bt({
+						width: \'200\',
+						fill: "rgba(0, 0, 0, .6)",
+						cssStyles: 
+							{
+							color: \'#F9FB61\'
+							}
+						});</script>
 					';
 			break;
 			default:
@@ -157,7 +179,14 @@ class jomres_tooltips
 					$div_string.=' class="jomres_bt_tooltip" ';
 					
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt();</script>
+					<script type="text/javascript">jQuery("#'.$div.'").bt({
+							width: \'auto\',
+							fill: "rgba(0, 0, 0, .6)",
+							cssStyles: 
+								{
+								color: \'#F9FB61\'
+								}
+						});</script>
 					';
 			break;
 			}

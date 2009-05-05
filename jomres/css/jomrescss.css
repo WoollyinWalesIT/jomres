@@ -3,86 +3,44 @@
 
 
 div.blockMsg {
-    width:  40%;
-    top:    30%;
-    left:   30%;
-    text-align: center;
-    background-color: #000;
-    border: 1px solid #fff;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+	width:  40%;
+	top:	30%;
+	left:   30%;
+	text-align: center;
+	background-color: #000;
+	border: 1px solid #fff;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; 
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); 
-    -moz-opacity:.70;
-    opacity:.70;
-    padding: 15px;
-    color: #fff;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); 
+	-moz-opacity:.70;
+	opacity:.70;
+	padding: 15px;
+	color: #fff;
 }
 
 .jomres_bt_tooltip_ajaxpage
 	{
-	text-align: center;
-	border: 1px solid #dddddd;
-	padding: 5px;
-	background-color: #f1f1f1;
-	display: inline;
 	float: left;
 	}
 
 .jomres_bt_tooltip_imageonly
 	{
-	text-align: center;
-	border: 1px solid #dddddd;
-	padding: 5px;
-	background-color: #f1f1f1;
-	display: inline;
 	float: left;
 	}
 	
 .jomres_bt_tooltip_room_type
 	{
-	width: 30px;
-	text-align: center;
-	padding: 2px;
-	background-color: #f1f1f1;
-	height: 30px;
-	display: inline;
 	float: left;
 	}
 
 .jomres_bt_tooltip_features
 	{
-	width: 25px;
-	text-align: center !important;
-	padding: 2px;
-	margin: 0;
-	background-color: #f1f1f1;
-	height: 25px;
-	display: inline;
-	float: left;
-	}
-
-.jomres_bt_tooltip_mainbody
-	{
-	width: 80px;
-	text-align: center;
-	border: 2px solid #666666;
-	padding: 5px;
-	background-color: #00FFFF;
-	height: 45px;
-	display: block;
 	float: left;
 	}
 	
-.jomres_bt_tooltip_hover_title
+.jomres_bt_tooltip
 	{
-	width: 80px;
-	text-align: center;
-	border: 2px solid #666666;
-	padding: 5px;
-	background-color: #00FFFF;
-	height: 45px;
-	display: block;
 	float: left;
 	}
 	
@@ -652,20 +610,9 @@ a.rescal:hover
 .tariff_header 
 	{
 	background: #f1f1f1;
-	font-size: 11px;
+	color : #000;
 	}
 
-.tariff_title 
-	{
-	background: #f1f1f1;
-	font-size: 11px;
-	}
-
-.tariff_content 
-	{
-	background: #fff;
-	font-size: 11px;
-	}
 
 /* Slideshows */	
 .slideshow 
@@ -697,15 +644,6 @@ a.rescal:hover
 	color : #000;
 	}
 
-.roomslist_content 
-	{
-	background: #fff;
-	}
-
-/**
-/* NEW CLASSES FOR THE CONSISTENT WAY CONTENT IS DISPLAYED 
-/*
-*/
 .jradmin_rowtoolbar 	
 	{
 	width: 74px;	
