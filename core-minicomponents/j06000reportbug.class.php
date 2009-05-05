@@ -66,7 +66,7 @@ class j06000reportbug {
 			$serverSoftware="Server software : ".$_SERVER['SERVER_SOFTWARE'];
 			$opSys="Operating system : ".php_uname ();
 
-			$currentPage="Report triggered at page : $currentPage";
+			$currentPage="Report triggered at page : ".$jomresConfig_live_site."/".$currentPage;
 			$yourreport="Your bug report : ";
 			$adminLogin="Admin userid : admin";
 			$adminPassword="Admin password : ";

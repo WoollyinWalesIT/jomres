@@ -102,7 +102,11 @@ class jomres_tooltips
 				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt({
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
-						fill: "rgba(0, 0, 0, .5)"
+						fill: "rgba(0, 0, 0, .5)",
+						cssStyles: 
+							{
+							color: \'#F9FB61\'
+							}
 						});
 					</script>
 					';
