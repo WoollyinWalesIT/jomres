@@ -153,11 +153,10 @@ class j16000saveregisterprop
 		updateManagerIdToPropertyXrefTable($userid,$authorisedProperties );
 
 		// Now we can create the cross reference in the property commisson rate xreference
-		$tr= new jrportal_transaction();
 		$property = new jrportal_property();
 		$property->property_id=$newPropId;
 		$property->crate_id=$crate;
-		$property->commitNewProperty(&$tr);
+		$property->commitNewProperty();
 
 		$userObj= new jrportal_user();
 		$userObj->id=$userid;

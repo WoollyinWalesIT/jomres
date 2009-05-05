@@ -52,7 +52,7 @@ class j16000savecrates
 			{
 			$portalPropertyIds[]=$p['property_id'];
 			}
-		$tr= new jrportal_transaction();
+
 		foreach ($crates as $k=>$v)
 			{
 			$crate_id=$v;
@@ -61,19 +61,18 @@ class j16000savecrates
 				{
 				$property->property_id=$k;
 				$property->crate_id=$v;
-				$property->commitNewProperty(&$tr);
+				$property->commitNewProperty();
 				}
 			else
 				{
 				$property->getProperty();
 				$property->property_id=$k;
 				$property->crate_id=$v;
-				$property->commitUpdatePropertyByPropertyid(&$tr);
+				$property->commitUpdatePropertyByPropertyid();
 				}
 			}
-		$result=$tr->commit($tr);
-		if ($result)
-			jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=listpropertys", '');
+
+		jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=listpropertys", '');
 		}
 
 

@@ -37,14 +37,17 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 global $jrConfig;
 require_once( JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'configuration.php' );
 $CONFIG = new JConfig();
-$no_html = (int)$_REQUEST['no_html'];
+if (isset($_REQUEST['no_html']) )
+	$no_html = (int)$_REQUEST['no_html'];
+else
+	$no_html = 0;
 
 $jomresConfig_offline			= $CONFIG->offline;
 $jomresConfig_db				= $CONFIG->db;
 
 if (class_exists('JURI'))
 	{
-	$jomresConfig_live_site=JURI::base();
+	$jomresConfig_live_site=@JURI::base();
 	}
 else
 	{
@@ -68,7 +71,7 @@ $jomresConfig_live_site=str_replace("/administrator/","",$jomresConfig_live_site
 $jomresConfig_live_site=str_replace("/administrator","",$jomresConfig_live_site);
 if(substr($jomresConfig_live_site, -1)=="/") $jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
 
-$lang			=& JFactory::getLanguage();
+$lang			= @ JFactory::getLanguage();
 $jomresConfig_lang = $lang->_lang;
 
 
@@ -95,46 +98,46 @@ $jomresConfig_password			= $CONFIG->password;
 $jomresConfig_db				= $CONFIG->db;
 $jomresConfig_host				= $CONFIG->host;
 
-$jomresConfig_pagetitles			= $CONFIG->pagetitles;
-$jomresConfig_readmore				= $CONFIG->readmore;
-$jomresConfig_hits					= $CONFIG->hits;
-$jomresConfig_icons					= $CONFIG->icons;
-$jomresConfig_favicon				= $CONFIG->favicon;
-$jomresConfig_fileperms				= $CONFIG->fileperms;
-$jomresConfig_dirperms				= $CONFIG->dirperms;
+//$jomresConfig_pagetitles					= $CONFIG->pagetitles;
+//$jomresConfig_readmore					= $CONFIG->readmore;
+//$jomresConfig_hits						= $CONFIG->hits;
+//$jomresConfig_icons						= $CONFIG->icons;
+//$jomresConfig_favicon					= $CONFIG->favicon;
+//$jomresConfig_fileperms					= $CONFIG->fileperms;
+//$jomresConfig_dirperms					= $CONFIG->dirperms;
 $jomresConfig_helpurl				= $CONFIG->helpurl;
-$jomresConfig_multilingual_content 	= $CONFIG->multilingual_content;
+//$jomresConfig_multilingual_content			= $CONFIG->multilingual_content;
 $jomresConfig_editor				= $CONFIG->editor;
-$jomresConfig_locale				= $CONFIG->locale;
-$jomresConfig_meta_pagetitle		= $CONFIG->meta_pagetitle;
-$jomresConfig_back_button			= $CONFIG->back_button;
-$jomresConfig_item_navigation		= $CONFIG->item_navigation;
+//$jomresConfig_locale					= $CONFIG->locale;
+//$jomresConfig_meta_pagetitle				= $CONFIG->meta_pagetitle;
+//$jomresConfig_back_button				= $CONFIG->back_button;
+//$jomresConfig_item_navigation				= $CONFIG->item_navigation;
 $jomresConfig_caching				= $CONFIG->caching;
-$jomresConfig_cachepath				= $CONFIG->cachepath;
+//$jomresConfig_cachepath					= $CONFIG->cachepath;
 $jomresConfig_cachetime				= $CONFIG->cachetime;
-$jomresConfig_locale				= $CONFIG->locale;
+//$jomresConfig_locale					= $CONFIG->locale;
 $jomresConfig_offset				= $CONFIG->offset;
-$jomresConfig_offset_user			= $CONFIG->offset_user;
-$jomresConfig_hideAuthor			= $CONFIG->hideAuthor;
-$jomresConfig_hideCreateDate		= $CONFIG->hideCreateDate;
-$jomresConfig_hideModifyDate		= $CONFIG->hideModifyDate;
-$jomresConfig_hidePdf				= $CONFIG->hidePdf;
-$jomresConfig_hidePrint				= $CONFIG->hidePrint;
-$jomresConfig_hideEmail				= $CONFIG->hideEmail;
-$jomresConfig_enable_log_items		= $CONFIG->enable_log_items;
-$jomresConfig_enable_log_searches	= $CONFIG->enable_log_searches;
-$jomresConfig_enable_stats			= $CONFIG->enable_stats;
+//$jomresConfig_offset_user				= $CONFIG->offset_user;
+//$jomresConfig_hideAuthor					= $CONFIG->hideAuthor;
+//$jomresConfig_hideCreateDate				= $CONFIG->hideCreateDate;
+//$jomresConfig_hideModifyDate				= $CONFIG->hideModifyDate;
+//$jomresConfig_hidePdf					= $CONFIG->hidePdf;
+//$jomresConfig_hidePrint					= $CONFIG->hidePrint;
+//$jomresConfig_hideEmail					= $CONFIG->hideEmail;
+//$jomresConfig_enable_log_items				= $CONFIG->enable_log_items;
+//$jomresConfig_enable_log_searches			= $CONFIG->enable_log_searches;
+//$jomresConfig_enable_stats				= $CONFIG->enable_stats;
 $jomresConfig_sef					= $CONFIG->sef;
-$jomresConfig_vote					= $CONFIG->vote;
+//$jomresConfig_vote						= $CONFIG->vote;
 $jomresConfig_gzip					= $CONFIG->gzip;
-$jomresConfig_allowUserRegistration	= $CONFIG->allowUserRegistration;
+//$jomresConfig_allowUserRegistration			= $CONFIG->allowUserRegistration;
 $jomresConfig_error_reporting		= $CONFIG->error_reporting;
-$jomresConfig_error_message			= $CONFIG->error_message;
-$jomresConfig_link_titles			= $CONFIG->link_titles;
-$jomresConfig_shownoauth			= $CONFIG->shownoauth;
-$jomresConfig_useractivation		= $CONFIG->useractivation;
-$jomresConfig_uniquemail			= $CONFIG->uniquemail;
-$jomresConfig_admin_site			= $CONFIG->admin_site;
+//$jomresConfig_error_message				= $CONFIG->error_message;
+//$jomresConfig_link_titles					= $CONFIG->link_titles;
+//$jomresConfig_shownoauth					= $CONFIG->shownoauth;
+//$jomresConfig_useractivation				= $CONFIG->useractivation;
+//$jomresConfig_uniquemail					= $CONFIG->uniquemail;
+//$jomresConfig_admin_site					= $CONFIG->admin_site;
 
 if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 	{
