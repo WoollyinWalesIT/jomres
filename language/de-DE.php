@@ -5256,6 +5256,7 @@ define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN','Show the language selection d
 * @ignore
 */
 define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS','Booked out and Cancelled bookings');
+/*
 * @ignore
 */
 define('_JRPORTAL_NEWUSER_DEAR',"Dear");
