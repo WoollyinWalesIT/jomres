@@ -63,7 +63,7 @@ class j01055showroomdetails {
 					$property_uid=(int)$room->propertys_uid;
 					}
 				getPropertySpecificSettings($property_uid);
-				property_header($property_uid);
+				//property_header($property_uid);
 				}
 			$headersList['HIMAGEHEADER']="";
 			$headersList['COM_A_BASICTEMPLATE_SHOWROOMS']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS',_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS);
@@ -157,7 +157,7 @@ class j01055showroomdetails {
 				$rows[]=$roomRow;
 				}
 			$headers[]=$headersList;
-
+//var_dump($headers);exit;
 			$tmpl = new patTemplate();
 			if ($featurelist[0])
 				$tmpl->addRows( 'room_features',$featurelist );
