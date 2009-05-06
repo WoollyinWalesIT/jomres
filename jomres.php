@@ -332,7 +332,7 @@ if ( $jrConfig['useSSLinBookingform'] == 1 && !_JOMRES_NEWJOOMLA )
 
 init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
 
-if (!defined('JOMRES_NOHTML'))
+if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{
 	// Now we can show top.html
 	$output=array();
@@ -526,33 +526,36 @@ if (!defined('JOMRES_NOHTML'))
 		}
 	else
 		{ // User is not a manager. We can check that it's valid to show search options
-		$componentArgs=array();
-		$output=array();
-		$query="SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
-		$publishedProperties = count(doSelectSql($query));
-		$output['PUBLISHEDPROPERTIESTXT']=jr_gettext('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES',_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES,$editable=false,$isLink=false);
-		$output['PUBLISHEDPROPERTIES']=$publishedProperties;
-		$output['TITLE']=jr_gettext('_JOMCOMP_MYUSER_MENUTITLE',_JOMCOMP_MYUSER_MENUTITLE,$editable=false,$isLink=false);
-		
-		$componentArgs['thisJRUser']=$thisJRUser;
-		$MiniComponents->triggerEvent('00009',$componentArgs); // 
-		$mcOutput=$MiniComponents->getAllEventPointsData('00009');
-		if (count($mcOutput)>0)
+		if ( JOMRES_WRAPPED != 1)
 			{
-			foreach ($mcOutput as $key=>$val)
+			$componentArgs=array();
+			$output=array();
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
+			$publishedProperties = count(doSelectSql($query));
+			$output['PUBLISHEDPROPERTIESTXT']=jr_gettext('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES',_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES,$editable=false,$isLink=false);
+			$output['PUBLISHEDPROPERTIES']=$publishedProperties;
+			$output['TITLE']=jr_gettext('_JOMCOMP_MYUSER_MENUTITLE',_JOMCOMP_MYUSER_MENUTITLE,$editable=false,$isLink=false);
+			
+			$componentArgs['thisJRUser']=$thisJRUser;
+			$MiniComponents->triggerEvent('00009',$componentArgs); // 
+			$mcOutput=$MiniComponents->getAllEventPointsData('00009');
+			if (count($mcOutput)>0)
 				{
-				$r=array();
-				$r["OPTIONS"]=$val;
-				$rows[]=$r;
-				}
+				foreach ($mcOutput as $key=>$val)
+					{
+					$r=array();
+					$r["OPTIONS"]=$val;
+					$rows[]=$r;
+					}
 
-			$pageoutput[]=$output;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'toolbar_guest.html');
-			$tmpl->addRows( 'pageoutput',$pageoutput);
-			$tmpl->addRows( 'rows',$rows);
-			$tmpl->displayParsedTemplate();
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'toolbar_guest.html');
+				$tmpl->addRows( 'pageoutput',$pageoutput);
+				$tmpl->addRows( 'rows',$rows);
+				$tmpl->displayParsedTemplate();
+				}
 			}
 		}
 	}
@@ -1051,6 +1054,7 @@ if ($numberOfPropertiesInSystem>0)
 		break;
 		#########################################################################################
 		case 'showRoomDetails':
+			property_header($property_uid);
 			$componentArgs['all']=false;
 			$MiniComponents->triggerEvent('01055',$componentArgs); //showRoomDetails();
 
