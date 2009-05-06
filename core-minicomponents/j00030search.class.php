@@ -75,7 +75,7 @@ class j00030search {
 		if (isset($componentArgs['calledByModule']) )
 			$calledByModule=$componentArgs['calledByModule'];
 			
-		if ($option=="com_jomres" && !$includedInModule )
+		if (!$includedInModule )
 			{
 			$doSearch=true;
 			}
@@ -703,7 +703,7 @@ class j00030search {
 				$stmpl->displayParsedTemplate();
 				}
 
-			if ($doSearch )
+			if ($doSearch && !isset($_GET['srchOnly']) )
 				$sch->jomSearch_showresults();
 			unset ($sch);
 		}
