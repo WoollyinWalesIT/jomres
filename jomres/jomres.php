@@ -36,8 +36,8 @@ ob_start("removeBOM");
 @ini_set("memory_limit","128M");
 @ini_set("max_execution_time","480");
 ini_set("display_errors",1);
-error_reporting(E_ALL);
-//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+//error_reporting(E_ALL);
+@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
 global $MiniComponents,$thisJRUser,$cssStyle,$task,$jomresPathway, $jrConfig;
 global $property_uid,$Itemid,$jomressession,$jomresConfig_absolute_path;

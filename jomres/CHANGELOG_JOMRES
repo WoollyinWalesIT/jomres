@@ -1,5 +1,6 @@
 Jomres 4beta2
 
+
 Removed an element from the amend booking functionality that updates the deposit paid status.
 Fixed the javascript in the register property page as &amp; wasn't being parsed properly by the js and so countries couldn't be selected during backend add a property.
 Added a simple check for j00001start.class.php to try to resolve the file move/no cpanel or any other scripts running issue.
@@ -20,6 +21,22 @@ Improved v4 functionality to correctly show link to allow admins to view a user'
 Modified list own bookings to not show the booking info in a popup any more, instead we go to a new page.
 Minicomponentised non-manager's options inc show bookings/favorites etc, removed a bunch of files that have been made redundant as a result.
 Fixed searching, stopped search results from showing in module area.
+Updated blockui, added css to jomrescss.css so fixed bug in IE8 (wouldn't ya know it?)
+Finally got excanvas to work so that beautytips have a background in IE8.
+Fine tuning styles on property details page.
+Added hover intent to slow popup of ajaxurls.
+Changed tabber's background tab colour to grey.
+Modified info image text to yellow
+Modified report bug message to provide full path to the Jomres page.
+Reverting to older jomres version of captcha class to fix a bug.
+Fixed search feature icons to show as tooltips, not overlib.
+Reordered language detection.
+General code tidy up to remove remaining $tr references and other assorted warnings.
+Tweak to jomres_language.class.php to ensure that jomreslang cookie is always set.
+Added feature to set popup=1 on all links if $_GET['tmpl'] = 1, effectively forces into wrapped mode even if it's not explicitely set in site config.
+Added a check for $_GET['srchOnly'] to j00030search.class.php, if this option is set, Jomres will not show search results. Instead, it'll just show the search module's options. In short, it will allow us to call Jomres within an iframe and show a search module.
+Enabled editinplace for internet explorer
+Integrated new user handling into v4.
 
 
 Jomres 4beta1
