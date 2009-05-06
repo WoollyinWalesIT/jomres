@@ -965,7 +965,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$jrConfig['editingModeAffectsAllProperties'] = "1";
 			$mrConfig['editingOn'] = 1;
 			}
-
 		if ($thisJRUser->userIsManager && ($mrConfig['editingOn'] || ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ($accessLevel ==2))
 			{
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
@@ -977,14 +976,14 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				if ($isLink)
 					{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-					$link = $jomresConfig_live_site .'/'.JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
+					$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
 					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".$jomresConfig_live_site."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
 					$theText=$editingLink.$theText;
 					}
 				else
 					{
-					$b = new browser();
-					if ($jrConfig['editinplace']==1 && !$b->is_ie() )
+					//$b = new browser();  //  Disabled now that IE seems to run editinplace ok.
+					if ($jrConfig['editinplace']==1  )
 						{
 						if (!defined('JOMRESJQUERY_EDITINPLACE'))
 							{
