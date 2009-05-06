@@ -21,7 +21,96 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
-
+function jomres_cmsspecific_createNewUserOnBooking()
+	{
+	global $thisJRUser,$tmpBookingHandler,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site;
+	$id = 0;
+	if (!$thisJRUser->userIsRegistered )
+		{
+		require_once( JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'user'.JRDS.'helper.php' );
+		$guestDeets = $tmpBookingHandler->getGuestData();
+		$valid=false;
+		while (!$valid)
+			{
+			$username = $guestDeets['firstname']."_".$guestDeets['surname'].rand(0, 1000);
+			$query="SELECT FROM #__users WHERE username = '".$username."'";
+			$users=doSelectSql($query);
+			if (count($users)==0)
+				$valid=true;
+			}
+		$name = $guestDeets['firstname']." ".$guestDeets['surname'];
+		$usertype="Registered";
+		$block = "0";
+		
+		$password = JUserHelper::genRandomPassword();
+		$encryptedPassword=JUserHelper::getCryptedPassword($password);
+		
+		$query = "INSERT INTO #__users (
+			`name`,
+			`username`,
+			`email`,
+			`password`,
+			`usertype`,
+			`gid`,
+			`registerDate`
+			) VALUES (
+			'".$name."',
+			'".$username."',
+			'".$guestDeets['email']."',
+			'".$encryptedPassword."',
+			'".$usertype."',
+			18,
+			'".date( 'Y-m-d H:i:s' )."'
+			) ";
+		$id=doInsertSql($query);
+		if (!$id)
+			{
+			trigger_error ("Failed insert new user ".$query, E_USER_ERROR);
+			$this->insertSuccessful =false;
+			}
+		else 
+			{
+			
+			$query = "INSERT INTO #__core_acl_aro (
+				`section_value`,
+				`value`,
+				`name`
+				) VALUES (
+				'users',
+				'".$id."',
+				'".$name."'
+				) ";
+			$aro=doInsertSql($query);
+			$query = "INSERT INTO #__core_acl_groups_aro_map (
+				`group_id`,
+				`aro_id`
+				) VALUES (
+				18,
+				".$aro."
+				) ";
+			$map=doInsertSql($query);
+				
+				
+			$thisJRUser->userIsRegistered=true;
+			$thisJRUser->id=$id;
+			$tmpBookingHandler->updateGuestField('mos_userid',$id);
+			$tmpBookingHandler->saveGuestData();
+			
+			$subject = jr_gettext('_JRPORTAL_NEWUSER_SUBJECT',_JRPORTAL_NEWUSER_SUBJECT,false,false);
+			
+			$text = jr_gettext('_JRPORTAL_NEWUSER_DEAR',_JRPORTAL_NEWUSER_DEAR,false,false)." ".stripslashes($guestDeets['firstname'])." ".stripslashes($guestDeets['surname'])." \t\n";
+			$text .= jr_gettext('_JRPORTAL_NEWUSER_THANKYOU',_JRPORTAL_NEWUSER_THANKYOU,false,false)." \t\n";
+			$text .= jr_gettext('_JRPORTAL_NEWUSER_USERNAME',_JRPORTAL_NEWUSER_USERNAME,false,false)." ".$username." \t\n";
+			$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD',_JRPORTAL_NEWUSER_PASSWORD,false,false)." ".$password." \t\n";
+			$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN',_JRPORTAL_NEWUSER_LOG_IN,false,false)." ".$jomresConfig_live_site."\t\n\t\n";
+			
+			if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $guestDeets['email'], $subject, $text,$mode=0))
+				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
+			}
+		}
+	return $id;
+	}
+	
 function jomres_cmsspecific_getRegistrationURL()
 	{
 	
