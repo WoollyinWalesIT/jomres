@@ -58,7 +58,7 @@ class j06000contactowner {
 		$output=array();
 		$output['FORMSTART']='<form name="regForm" action="'.$_SERVER['PHP_SELF'].$this->QUERY_STRING.'" method="POST">'."\n";
 		// ConfigArray
-		$captchaDebugging = true;
+		$captchaDebugging = false;
 
 		$CAPTCHA_INIT = array(
 			// string: absolute path (with trailing slash!) to a php-writeable tempfolder which is also accessible via HTTP!

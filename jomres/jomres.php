@@ -50,6 +50,7 @@ global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRe
 
 require_once('integration.php');
 
+
 if ( $_REQUEST['no_html']!="1")
 	{
 	error_reporting(E_ALL);
@@ -106,7 +107,10 @@ if ($no_html == 1)
 	define ("JOMRES_NOHTML",1);
 
 //var_dump($_REQUEST);exit;
-
+/*
+jomres_cmsspecific_createNewUserOnBooking();
+exit;
+*/
 $propertyNamesArray=array();
 
 

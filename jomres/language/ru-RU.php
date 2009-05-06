@@ -6281,4 +6281,23 @@ define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN','Show the language selection d
 * @ignore
 */
 define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS','Booked out and Cancelled bookings');
+* @ignore
+*/
+define('_JRPORTAL_NEWUSER_DEAR',"Dear");
+/**
+* @ignore
+*/
+define('_JRPORTAL_NEWUSER_THANKYOU',"Thank you for registering ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_NEWUSER_USERNAME',"Your user name is : ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_NEWUSER_PASSWORD',"Your password is : ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_NEWUSER_LOG_IN',"Please log in to view your bookings ");
 ?>
