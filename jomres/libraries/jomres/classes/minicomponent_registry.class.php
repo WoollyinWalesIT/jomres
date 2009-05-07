@@ -114,13 +114,16 @@ class jomres_mc_registry
 		$this->mcRegistry_registry_serialized=\''.$registered_classes.'\';';
 		
 		$fileText=$safety_string.$class_structure_start.$nowVar.$registryVar.$class_structure_end;
-		
-		$fp=fopen($this->registry_file,'w');
-		fwrite($fp, $fileText);
-		if (!fclose($fp))
+		$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+		if (!strstr($scriptname,'install_jomres.php'))
 			{
-			$this->error_detected = true;
-			error_logging("Could not save minicomponent registry file :: ".$this->registry_file);
+			$fp=fopen($this->registry_file,'w');
+			fwrite($fp, $fileText);
+			if (!fclose($fp))
+				{
+				$this->error_detected = true;
+				error_logging("Could not save minicomponent registry file :: ".$this->registry_file);
+				}
 			}
 		}
 		
@@ -229,26 +232,29 @@ class jomres_mc_registry
 		$path_parts = pathinfo($filePath.$filename);
 		if (isset($path_parts['extension']) )
 			$extension = $path_parts['extension'];
-		if(is_file($filePath.$filename) && !in_array( strtolower($filename),$this->unWantedFolderContents) && ($epi > 0 && $epi < 100000) && (strtolower($extension) == 'php')  )
+		if (is_array($this->unWantedFolderContents))
 			{
-			if ($eventType!="core" && in_array( $classfileEventPoint.$classfileEventName,$this->nonOverridableEventClasses) )
-				return;
-			else
+			if(is_file($filePath.$filename) && !in_array( strtolower($filename),$this->unWantedFolderContents) && ($epi > 0 && $epi < 100000) && (strtolower($extension) == 'php')  )
 				{
-				if (array_key_exists($classfileEventPoint.$classfileEventName,$this->registeredClasses) && ($this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='component' || $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='remotecomponent') )
+				if ($eventType!="core" && in_array( $classfileEventPoint.$classfileEventName,$this->nonOverridableEventClasses) )
+					return;
+				else
 					{
-					$text="";
-					$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'."</font><br>";
-					$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventName']."</b><br>";
-					$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['filepath']."</b><br>";
-					$text .= 'Collides with this and possibly more mini-components: '."<br>";
-					$text .= '<b>'.$classfileEventName."</b><br>";
-					$text .= '<b>'.$filePath."</b><br>";
-					echo $text;
-					$this->error_detected = true;
-					error_logging("Minicomponent collision :: ".$text);
+					if (array_key_exists($classfileEventPoint.$classfileEventName,$this->registeredClasses) && ($this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='component' || $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='remotecomponent') )
+						{
+						$text="";
+						$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'."</font><br>";
+						$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventName']."</b><br>";
+						$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['filepath']."</b><br>";
+						$text .= 'Collides with this and possibly more mini-components: '."<br>";
+						$text .= '<b>'.$classfileEventName."</b><br>";
+						$text .= '<b>'.$filePath."</b><br>";
+						echo $text;
+						$this->error_detected = true;
+						error_logging("Minicomponent collision :: ".$text);
+						}
+					$this->registeredClasses[$classfileEventPoint.$classfileEventName]=array('eventPoint'=>$classfileEventPoint, 'eventName'=>$classfileEventName,'filepath'=>$filePath,'eventtype'=>$eventType);
 					}
-				$this->registeredClasses[$classfileEventPoint.$classfileEventName]=array('eventPoint'=>$classfileEventPoint, 'eventName'=>$classfileEventName,'filepath'=>$filePath,'eventtype'=>$eventType);
 				}
 			}
 		}
