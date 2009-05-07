@@ -158,25 +158,6 @@ $jomres_db_querylog=array();
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-if (!strstr($scriptname,'install_jomres.php'))
-	{
-	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey' LIMIT 1";
-	$license_key=doSelectSql($query,1);
-	}
-else  // We're running install_jomres.php
-	{
-	$license_key=$_POST['lkey'];
-	$task="showSiteConfig";
-	}
-
-$bang=explode("-",$license_key);
-if (isset($bang[2]) )
-	$product_id=$bang[2];
-if ($product_id != "20")
-	checkLicense($license_key,$scriptname);
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 $jomresConfig_dbtype = 'mysql';
 if (!function_exists ('adodb_date_test_date') )
 	{
@@ -312,6 +293,7 @@ if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
 
+
 set_error_handler('errorHandler');
 jomres_parseRequest();
 
@@ -319,9 +301,29 @@ if ( JOMRES_CMS == 'elexismambo')
 	$database = new database( $jomresConfig_host, $jomresConfig_user, $jomresConfig_password, $jomresConfig_db, $jomresConfig_dbprefix, $jomresConfig_dbtype );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+if (!strstr($scriptname,'install_jomres.php'))
+	{
+	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey' LIMIT 1";
+	$license_key=doSelectSql($query,1);
+	}
+else  // We're running install_jomres.php
+	{
+	$license_key=$_POST['lkey'];
+	$task="showSiteConfig";
+	}
+
+$bang=explode("-",$license_key);
+if (isset($bang[2]) )
+	$product_id=$bang[2];
+
+if ($product_id != "20")
+	checkLicense($license_key,$scriptname);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if ($product_id != "20" )
 	checkPropertyNumbers($license_key);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
 if (!defined('JOMRES_SINGLEPROPERTY'))
 	define('JOMRES_SINGLEPROPERTY',false);
@@ -1666,12 +1668,9 @@ function checkLicense($license_key,$scriptname)
 		echo "Error, JOMRES_ISADMINCALLED already defined. Exiting";
 		exit;
 		}
-	if (defined('_JOMRES_NEWJOOMLA'))
-		$indexphp="index.php";
-	else
-		$indexphp="index2.php";
+
 	$request_uri=$_SERVER['REQUEST_URI'];
-	$testUri='/administrator/'.$indexphp;
+	$testUri='/administrator/';
 	if (strstr($request_uri,$testUri) )
 		define('JOMRES_ISADMINCALLED',true);
 	else
@@ -1681,7 +1680,7 @@ function checkLicense($license_key,$scriptname)
 		{
 		global $jomresConfig_live_site;
 		$message="ERROR: Your license is not valid. Backend functionality is severely limited until this is resolved.<br>";
-		$str='<SCRIPT LANGUAGE="JavaScript">window.location="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig&mosmsg='.$message.'";</script>';
+		$str='<SCRIPT LANGUAGE="JavaScript">document.location.href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig&mosmsg='.$message.'";</script>';
 		echo $str;
 		}
 
@@ -1814,6 +1813,7 @@ function validateLicensekeyFile($license_key)
 	$key = new jomres_iono_keys($license_key, $user_defined_string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php');
 	if (!defined('JOMRES_LICRESULT') );
 		define('JOMRES_LICRESULT',$key->result);
+
 	switch ($key->result)
 		{
 		case 0:
