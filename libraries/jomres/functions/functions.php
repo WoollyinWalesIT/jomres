@@ -487,6 +487,61 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 	
 // http://www.php.net/manual/en/function.rename.php#61152
 // Moves the contents of source dir to destination dir
+	function dircopy($source, $dest, $overwrite = true, $funcloc = NULL)
+		{
+		global $copiedFileLog;
+		$debugging=true;
+		$copiedFileLog=array();
+		//$success=true;
+		/*
+		if(is_null($funcloc))
+			{
+			$dest .= '/' . strrev(substr(strrev($source), 0, strpos(strrev($source), null)));
+			$funcloc = '/';
+			}
+		*/
+		if(!is_dir( $dest . $funcloc))
+			mkdir( $dest . $funcloc); // make subdirectory before subdirectory is copied
+		//echo "Opening " . $source . $funcloc."<br/>";
+		if($handle = opendir( $source . $funcloc))
+			{ // if the folder exploration is sucsessful, continue
+			//echo "Opened ". $source . $funcloc."<br/>";
+			while(false !== ($file = readdir($handle)))
+				{ // as long as storing the next file to $file is successful, continue
+				if($file != '.' && $file != '..')
+					{
+					$path  = $source . $funcloc . $file;
+					$path2 = $dest . $funcloc . $file;
+
+					if(is_file( $path))
+						{
+						if(!@copy( $path,  $path2))
+							{
+							echo 'File ('.$path.') could not be copied, likely a permissions problem.';
+							return array("success"=>false,"errormsg"=>'File ('.$path.') could not be copied, likely a permissions problem.');
+							}
+						}
+					elseif(is_dir( $path))
+						{
+						dircopy($source, $dest, $overwrite, $funcloc . $file . JRDS); //recurse!
+						//rmdir( $path);
+						}
+					}
+				}
+			closedir($handle);
+			}
+		if ($debugging)
+			{
+			foreach ($copiedFileLog as $m)
+				echo $m."<br/>";
+			}
+		return array("success"=>true,"errormsg"=>'');
+		//echo "Finished upgrade <br/>";
+		} // end of dircopy()
+
+		
+// http://www.php.net/manual/en/function.rename.php#61152
+// Moves the contents of source dir to destination dir
 	function dirmv($source, $dest, $overwrite = true, $funcloc = NULL)
 		{
 		global $movedFileLog;

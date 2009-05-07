@@ -63,8 +63,7 @@ if (componentsIntegrationExists())
 	migrate();
 	}
 	
-if (ACTION != "Migration") 
-	{
+
 	$folderChecksPassed=true;
 	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS) )
 		{
@@ -136,8 +135,7 @@ if (ACTION != "Migration")
 			$folderChecksPassed=false;
 			}
 		}
-	}
-	
+
 if ($folderChecksPassed && ACTION != "Migration") 
 	{
 	$lkey=jomresGetParam($_POST,'lkey','','string');
@@ -2079,6 +2077,7 @@ function updatePropertyFeaturePaths()
 	
 function componentsIntegrationExists()
 	{
+	return true;
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'integration.php') )
 		{
 		return true;
@@ -2418,6 +2417,7 @@ function addNewTables()
 		`subscription_id` int(11) NOT NULL default '0',
 		`contract_id` int(11) NOT NULL,
 		`property_uid` INT NULL DEFAULT '0',
+		PRIMARY KEY  (`id`)
 		)";
 	if (!doInsertSql($query))
 		echo "Failed to run query: ".$query."<br/>";
@@ -2542,7 +2542,7 @@ function reinstallJomresJoomlaFiles()
 function copyImagesToNewPath()
 	{
 	echo "Copying image files from ".OLD_IMAGES_PATH." to ".NEW_IMAGES_PATH."<br/>";
-	$result=dirmv(OLD_IMAGES_PATH,NEW_IMAGES_PATH);
+	$result=dircopy(OLD_IMAGES_PATH,NEW_IMAGES_PATH);
 	}
 
 	
