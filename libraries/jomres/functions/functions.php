@@ -70,7 +70,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 			//jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt-0-9.js");
 			
 			
-			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jquery.bt.css");
+			//jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jquery.bt.css");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.hoverIntent.minified.js");
 			
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
