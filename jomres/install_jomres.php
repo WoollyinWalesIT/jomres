@@ -58,6 +58,12 @@ global $jomres_systemLog_path,$jomresConfig_absolute_path,$jrConfig,$lkey;
 $jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
 
 showheader();
+
+if ($_GET['forceMigrate'] == '1' )
+	{
+	migrate();
+	}
+
 if (componentsIntegrationExists())
 	{
 	migrate();
@@ -190,7 +196,6 @@ if ($folderChecksPassed && ACTION != "Migration")
 					insertSampleData();
 					echo "Importing configuration settings to database<br>";
 					importSettings(0);
-
 					echo "Creating images folders<br>";
 					copyImages();
 					saveKey2db($lkey);
@@ -202,17 +207,12 @@ if ($folderChecksPassed && ACTION != "Migration")
 				elseif (ACTION == "Upgrade") // Upgrading
 					{
 					define('ACTION',"Upgrade");
-
-					if (!checkInvoicesPropertyuidColExists() )
-						alterInvoicesPropertyuidCol();
-					
 					$registry = new minicomponent_registry(true);
 					$registry->regenerate_registry();
-
 					echo "Data already installed, no need to re-create it<br>";
 					echo "Saving key<br>";
 					saveKey2db($lkey);
-
+					doTableUpdates();
 					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
 					showCompletedText();
 					}
@@ -224,6 +224,35 @@ if ($folderChecksPassed && ACTION != "Migration")
 		}
 	}
 showfooter();
+
+function doTableUpdates()
+	{
+	if (!checkInvoicesPropertyuidColExists() )
+		alterInvoicesPropertyuidCol();
+	if (!checkInvoicesContractuidColExists() )
+		alterInvoicesContractuidCol();
+	}
+
+function checkInvoicesContractuidColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'contract_id'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterInvoicesContractuidCol()
+	{
+	echo "Editing __jomresportal_invoices table adding contract_id column<br>";
+	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `contract_id` INT NULL DEFAULT '0' AFTER `subscription_id` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_invoices contract_id</b><br>";
+	}
+
 
 function checkInvoicesPropertyuidColExists()
 	{
@@ -1997,7 +2026,8 @@ function insertPortalTables()
 
 function migrate()
 	{
-	define('ACTION',"Migration");
+	if (!defined('ACTION') )
+		define('ACTION',"Migration");
 	if (basicTemplatesExist())
 		{
 		exit;
@@ -2029,8 +2059,8 @@ function migrate()
 	
 	updateRatesTimestamps();
 	
-	if (!checkInvoicesPropertyuidColExists() )
-		alterInvoicesPropertyuidCol();
+	doTableUpdates();
+	
 	}
 
 function updateRatesTimestamps()

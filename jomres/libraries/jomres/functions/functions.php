@@ -705,7 +705,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 
 	if(!$mail->Send())
 		{
-		error_logging("Error sending mail. Error caught by mailer was : ".$mail->ErrorInfo);
+		error_logging("Error sending mail. Error caught by mailer was : ".$mail->ErrorInfo,false);
 		return false;
 		}
 	return true;
@@ -1067,13 +1067,13 @@ function recordError($errno, $errstr, $errfile, $errline, $errcontext)
  * Creates the error log settings, calls writexml
 #
  */
-function error_logging($message)
+function error_logging($message,$emailMessage=true)
 	{
 	global $jrConfig;
 	$logfile=JOMRES_SYSTEMLOG_PATH.'jomres_error_log.xml';
 
 	$log = "<![CDATA[".$message . "]]>";
-	if ($jrConfig['emailErrors']=='1')
+	if ($jrConfig['emailErrors']=='1' && $emailMessage)
 		mailJomresdotnet($message);
 	writexml($logfile,"errorlog","errorlogentry",$log);
 	}
