@@ -2027,13 +2027,43 @@ function migrate()
 	insertNewJRConfigSettings();
 	insertPluginSettings();
 	
+	updateRatesTimestamps();
+	
 	if (!checkInvoicesPropertyuidColExists() )
 		alterInvoicesPropertyuidCol();
 	}
 
+function updateRatesTimestamps()
+	{
+	$query = "SELECT rates_uid,validfrom,validto FROM #__jomres_rates";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $rate)
+			{
+			$validfrom_ts=str_replace("/","-",$rate->validfrom);
+			$validto_ts=str_replace("/","-",$rate->validto);
+			$uid = (int)$rate->rates_uid;
+			$query = "UPDATE #__jomres_rates SET 
+					`validfrom_ts`='$validfrom_ts',
+					`validto_ts`='$validto_ts' 
+					WHERE rates_uid='".(int)$uid."'";
+			if (!doInsertSql($query,'') )
+				echo "<b>Error, unable to run query $query</b><br>";
+			}
+		}
+	}
+	
+function componentsIntegrationExists()
+	{
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'integration.php') )
+		{
+		return true;
+		}
+	return false;
+	}
 
-	
-	
+
 function updateRoomTypeImagePaths()
 	{
 	echo "Updating room type image paths in the __jomres_room_classes table.";echo "<br>";
@@ -2075,15 +2105,7 @@ function updatePropertyFeaturePaths()
 	}
 	
 	
-function componentsIntegrationExists()
-	{
-	return true;
-	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'integration.php') )
-		{
-		return true;
-		}
-	return false;
-	}
+
 
 
 function basicTemplatesExist()
