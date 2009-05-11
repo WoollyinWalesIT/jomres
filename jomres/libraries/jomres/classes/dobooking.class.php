@@ -3884,7 +3884,6 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 		if (count($tarifftypeids)>0)
 			{
-			
 			foreach ($tarifftypeids as $t)
 				{
 				$query="SELECT tariff_id FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id ='".$t->tarifftype_id."'";
@@ -3932,6 +3931,42 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 					}
 				}
 			}
+		else
+			{
+			$dateRangeArray=explode(",",$this->dateRangeString);
+			$rclass=$this->allPropertyRooms[$roomUid]['room_classes_uid'];
+			$rateList = $this->getTariffsForRoomClass($rclass);
+			
+			foreach ($rateList as $rate)
+				{
+				$date_elements  = explode("/",$rate->validfrom);
+				$unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+				$date_elements  = explode("/",$rate->validto);
+				$unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+				foreach ($dateRangeArray as $date )
+					{
+					$pass=false;
+					$this->setErrorLog("estimate_AverageRate::Searching date ".$date.' on current tariff uid: '.$rate->rates_uid);
+					$date_elements  = explode("/",$date);
+					$unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+					if (count($numberOfGuestTypes) >0)
+						{
+						if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) && ($this->total_in_party >= $rate->minpeople &&  $this->total_in_party <= $rate->maxpeople ) )
+							$pass=true;
+						}
+					else
+						{
+						if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) )
+							$pass=true;
+						}
+					if($pass)
+						{
+						$total+=$rate->roomrateperday ;
+						}
+					}
+				}
+			}
+			
 		$rpn=($total)/$stayDays;
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
 			{
