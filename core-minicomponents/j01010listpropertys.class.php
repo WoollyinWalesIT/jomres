@@ -267,7 +267,6 @@ class j01010listpropertys {
 						}
 					$property_deets['ROOMTYPES']=$rtRows;
 
-
 					if (count($propertyFeaturesArray)>0)
 						{
 						$featureList="";
@@ -368,6 +367,12 @@ class j01010listpropertys {
 					$property_deets['PROPERTYTOWN']= $ptown;
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
+
+					$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
+					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
+						$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
+
+					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 					$property_deets['LOWESTPRICE']=$price;
 					$property_deets['STARS']=$starslink;
 					//$property_deets['TEMPLATEPATH']=$templatepath;
