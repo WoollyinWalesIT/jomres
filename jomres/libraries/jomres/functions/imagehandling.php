@@ -26,6 +26,9 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Finds the configured slideshow finds the images then includes the required slideshow.php file
 #
  */
+ /*
+ Depreciated in v4
+ 
 function getSlideshow($property_uid)
 	{
 	global $jrConfig,$jomresConfig_live_site;
@@ -64,7 +67,7 @@ function getSlideshow($property_uid)
 	$result=constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$slideshowRelpath);
 	return $result;
 	}
-
+*/
 /**
 #
  * Gets the image sizes, refactored to the jrConfig max width value, then returns them. Allows us to return a set of sizes so that the image proportions remain valid
