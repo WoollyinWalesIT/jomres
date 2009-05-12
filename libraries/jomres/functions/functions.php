@@ -55,77 +55,26 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
-				
-
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery-1.3.2.min.js");
-			//echo '<script type="text/javascript">jQuery.noConflict();</script>
-			//';
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/','jomres.js');
+			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"interface.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.blockUI.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"heartbeat.js");
-			
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt-0-9-3.js");
-			//jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt-0-9.js");
-			
-			
-			//jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jquery.bt.css");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.hoverIntent.minified.js");
 			
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.jeditable.pack.js");
 
 			if ($thisJRUser->userIsManager)
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"MiniColorPicker.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas.compiled.js");
-			//jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas-compressed.js");
-		/*
-		if (!defined(JOMRES_NOHTML) )
-			{
-			if (!defined("JOMRES_CALENDARJSCALLED") )
-				 {
-				 define ('JOMRES_CALENDARJSCALLED',1);
-				echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/javascript/cal/css/'.$jrConfig['jscalendarCSSfile'].'" title="win2k-cold-1" />
-				';
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar.js"></script>
-				';
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/calendar-setup.js"></script>
-				';
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/cal/lang/'.$jrConfig['jscalendarLangfile'].'"></script>
-				';
-				}
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery-1.3.2.min.js"></script>
-			';
-			echo '<script type="text/javascript">jQuery.noConflict();</script>
-			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jomres.js"></script>
-			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/interface.js"></script>
-			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.cookee.js"></script>
-			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.blockUI.js"></script>
-			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>
-			';
-			echo '<!--[if IE]><script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/excanvas-compressed.js"></script><![endif]--> 
-			';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.bt.js"></script>
-			';
-			echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jquery.bt.css" title="jquery beautytips css" />
-			';
-			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.jeditable.pack.js"></script>
-				';
-			if ($thisJRUser->userIsManager)
 				{
-				echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/MiniColorPicker.js"></script>
-				';
+				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"MiniColorPicker.js");
+				jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/','jquery.jgrowl.css');
+				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.jgrowl.js");
 				}
-				*/
+			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas.compiled.js");
 			}
-		
 		}
 	}
 

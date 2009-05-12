@@ -72,7 +72,11 @@ class j01070showpropertyheader
 
 				$property_image['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 				$property_image_ar[]=$property_image;
-				$tooltip_property_image=jomres_makeTooltip("property_image","",$property_image['IMAGE'],$property_image['IMAGE'],"","imageonly",$type_arguments=array("width"=>150,"height"=>110,"border"=>0));
+				$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
+				if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_property_".$property_uid.".jpg"))
+					$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_property_".$property_uid.".jpg");
+
+				$tooltip_property_image=jomres_makeTooltip("property_image","",$property_image['IMAGE'],$property_image['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 				
 				$propertyname= stripslashes($thisJomresPropertyDetails['property_name']);
 				//$propertyname=str_replace("&amp;","&",$propertyname);
@@ -88,7 +92,7 @@ class j01070showpropertyheader
 
 				jomres_cmsspecific_setmetadata('description',stripslashes($thisJomresPropertyDetails['metadescription']));
 				jomres_cmsspecific_setmetadata('keywords',stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])));
-				
+/*
 				if ($task=="viewproperty" || $task == "preview")
 					{
 					if ($mrConfig['showTariffsLink']=="1")
@@ -133,10 +137,8 @@ class j01070showpropertyheader
 
 						if ($mrConfig['singleRoomProperty'] ==  '1')
 							$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,$editable=true,$isLink=true)."</a>";
-						/*
 						if ( $jrConfig['useSSLinBookingform'] == "1" )
 							$link['BOOKINGLINK'] = str_replace("http://","https://",$property['BOOKINGLINK']);
-						*/
 						if ( $jrConfig['useSSLinBookingform'] == "1" )
 							$link['BOOKINGLINK'] =jomresURL($property['BOOKINGLINK'],1);
 						else
@@ -151,6 +153,7 @@ class j01070showpropertyheader
 						$roomslistlink[]	= 	$link;
 						}
 					}
+*/
 
 				$tmpl = new patTemplate();
 				//$tmpl->addVar( 'templatepath', 'templatepath',$templatepath);

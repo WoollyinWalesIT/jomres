@@ -6330,4 +6330,10 @@ define('_JRPORTAL_NEWUSER_PASSWORD',"Your password is : ");
 * @ignore
 */
 define('_JRPORTAL_NEWUSER_LOG_IN',"Please log in to view your bookings ");
+
+/**
+* @ignore
+*/
+define('_JOMRES_MENUHELPER_DASHBOARD','This is your dashboard, here you can see a general overview of your property\'s availability. ');
+
 ?>

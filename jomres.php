@@ -327,15 +327,40 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$output=array();
 
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
-	
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
+	$output['LIVESITE']=$jomresConfig_live_site;
 
-	$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+	$jomres_messaging = new jomres_messages();
+	//$jomres_messaging->set_message("HELLO");
+	$messages = $jomres_messaging->get_messages();
+	$messaging = array();
+	if (count($messages)>0)
+		{
+		foreach ($messages as $mes)
+			{
+			$m['MESSAGE']=$mes;
+			$messaging[] = $m;
+			}
+		}
+	$jomres_sticky_messaging = new jomres_sticky_messages();
+	//$jomres_sticky_messaging->set_message("HELLO");
+	$sticky_messages = $jomres_sticky_messaging->get_messages();
+	$sticky_messaging = array();
+	if (count($sticky_messages)>0)
+		{
+		foreach ($sticky_messages as $mes)
+			{
+			$m['MESSAGE']=$mes;
+			$sticky_messaging[] = $m;
+			}
+		}
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->readTemplatesFromInput( 'top.html');
 	$tmpl->addRows( 'pageoutput',$pageoutput);
+	$tmpl->addRows( 'messages',$messaging);
+	$tmpl->addRows( 'sticky_messages',$sticky_messaging);
 	$tmpl->displayParsedTemplate();
 	$pageoutput=array();
 	$output=array();
