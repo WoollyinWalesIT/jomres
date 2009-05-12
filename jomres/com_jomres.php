@@ -22,7 +22,8 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
  */
 
 defined( '_JEXEC' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
-
+if (!defined('_JOMRES_INITCHECK') )
+	define('_JOMRES_INITCHECK', 1 );
 // ------------------  standard plugin initialize function - don't change ---------------------------
 global $sh_LANG, $sefConfig;
 
@@ -57,7 +58,7 @@ if ($task != 'search' && $task != "dobooking" && $task != "viewproperty")
 	}
 
 //Include the jomres stuff
-require_once('components/com_jomres/integration.php');
+require_once('jomres/integration.php');
 $jrConfig					=	getSiteSettings();
 	
 // remove common URL from GET vars list, so that they don't show up as query string in the URL
