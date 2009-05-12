@@ -1,3 +1,5 @@
+jQuery.noConflict();
+
 function jomres_isChecked(ischecked){
 	if (ischecked == true){
 		document.adminForm.boxchecked.value++;
