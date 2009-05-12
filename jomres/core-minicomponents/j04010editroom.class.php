@@ -117,7 +117,8 @@ class j04010editroom {
 				$featureListTxt.="<input type=\"checkbox\" name=\"features_list[]\" value=\"".($roomFeature->room_features_uid)."\" ".$checked." >".($roomFeature->feature_description)."<br>";
 				}
 			// Now to find the property image
-			$roomImageLocation="";
+			//$roomImageLocation="";
+			/*
 			$query="SELECT filelocation FROM #__jomres_room_images WHERE roomid = '".(int)$roomUid."'";
 			$roomImageList =doSelectSql($query);
 			if (count($roomImageList)>0)
@@ -127,6 +128,8 @@ class j04010editroom {
 					$roomImageLocation='<img src="'.$jomresConfig_live_site.'/'.$imageLocation->filelocation.'">';
 					}
 				}
+			*/
+			$roomImageLocation='<img src="'.getImageForProperty("room",$defaultProperty,(int)$roomUid).'">';
 
 			$output['ROOMUID']			=$roomUid;
 			$output['TYPEDROPDOWN']		=$classDropDownList;

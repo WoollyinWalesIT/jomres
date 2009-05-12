@@ -28,13 +28,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  */
 function getSlideshow($property_uid)
 	{
-	global $jrConfig,$jomresConfig_live_site,$property_uid;
+	global $jrConfig,$jomresConfig_live_site;
 
-	$slideshowImgs_AbPath=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$property_uid.JRDS;
-	$slideshowImgs_RelPath=$jomresConfig_live_site.$jrConfig['ss_imageLocation'].$property_uid.'/';
+	$slideshowImgs_AbPath=JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS;
+	$slideshowImgs_RelPath=JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/';
 	$slideshowBasepath=JOMRESPATH_BASE.JRDS.'plugins'.JRDS.'slideshows'.JRDS.$jrConfig['slideshow'].JRDS;
 	$slideshowRelpath='/plugins/slideshows/'.$jrConfig['slideshow'].'/';
-	$imagesArray=listImages();
+	$imagesArray=listImages($property_uid);
 
 	if (count($imagesArray) >0)
 		{
@@ -72,9 +72,9 @@ function getSlideshow($property_uid)
  */
 function getImagesSize($imageLocation)
 	{
-	global $property_uid,$jrConfig;
-	$imagesPath=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$property_uid.'/';
-	$mysock = getimagesize($imagesPath.$imageLocation);
+	global $jrConfig;
+	$thumbnail_width=$jrConfig['thumbnail_width'];
+	$mysock = getimagesize($imageLocation);
 	if ($mysock)
 		{
 		// http://www.sitepoint.com/article/image-resizing-php
@@ -93,9 +93,9 @@ function getImagesSize($imageLocation)
 		$image['fullheight'] = round($height * $percentage);
 
 		if ($width > $height)
-			$percentage = ($jrConfig['maxwidth']/ $width);
+			$percentage = ($thumbnail_width/ $width);
 		else
-			$percentage = ($jrConfig['maxwidth'] / $height);
+			$percentage = ($thumbnail_width / $height);
 
 		$image['thwidth'] = round($width * $percentage);
 		$image['thheight'] = round($height * $percentage);
@@ -119,14 +119,14 @@ function batchUploadForm()
 	$output['INFO']					=jr_gettext('_JOMRES_FRONT_IMAGEUPLOADS_INFO',_JOMRES_FRONT_IMAGEUPLOADS_INFO);
 	$output['IMAGESALREADYINDIR']	=jr_gettext('_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR',_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR);
 
-	$imagesAlreadyInDirectory=listImages();
+	$imagesAlreadyInDirectory=listImages($defaultProperty);
 	$rows=array();
 	if (count($imagesAlreadyInDirectory)>0)
 		{
 		foreach ($imagesAlreadyInDirectory as $image)
 			{
 			$r['IMAGENAME']=$image;
-			$r['IMAGEPATH']=$jomresConfig_live_site.$jrConfig['ss_imageLocation'].$defaultProperty.'/';
+			$r['IMAGEPATH']=JOMRES_IMAGELOCATION_RELPATH.$defaultProperty.'/';
 			$r['IMAGEOUTPUT']='<img src="'.$r['IMAGEPATH'].$r['IMAGENAME'].'" alt="'.$r['IMAGENAME'].'" border="0" />';
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['IMAGENAME'].'">';
 			$rows[]=$r;
@@ -144,6 +144,7 @@ function batchUploadForm()
 
 	$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
 	$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+	$output['JOMRES_SITEPAGE_URL_DELIMAGES']=JOMRES_SITEPAGE_URL."&task=delslideshowimages";
 
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
@@ -164,8 +165,7 @@ function batchUploadPropertyImages()
 	global $jrConfig;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
-	$mrp=$jrConfig['ss_imageLocation'].$defaultProperty.'/';
-	
+
 	$defaultProperty=getDefaultProperty();
 	//$saveMessage=_JOMRES_FILE_UPDATED;
 	$uploadedImagesArray=array();
@@ -176,7 +176,7 @@ function batchUploadPropertyImages()
 		//$uploadedSize		=	$_FILES['image'.$i]['size'];
 		//$uploadedTemp		=	$_FILES['image'.$i]['tmp_name'];
 		if (!empty($uploadedFilename))
-			$checkedImage=uploadImageFromPost('image'.$i,$uploadedFilename,$mrp);
+			$checkedImage=uploadImageFromPost('image'.$i,$uploadedFilename,JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.JRDS);
 	   	if ($checkedImage)
 	   		{
 	   		$uploadedImagesArray[]=$uploadedFilename;
@@ -192,18 +192,17 @@ function batchUploadPropertyImages()
  * Gets a list of filenames from the slideshow folder for this property
 #
  */
-function listImages()
+function listImages($property_uid)
 	{
-	global $jrConfig,$property_uid;
-	$mrp=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$property_uid.'/';
-	$d = @dir($mrp);
+	$abs=JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS;
+	$d = @dir($abs);
 	$docs = array();
 	if($d)
 		{
 		while (FALSE !== ($entry = $d->read()))
 			{
 			$filename = $entry;
-			if(is_file($mrp.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
+			if(is_file($abs.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
 				{
 				$docs[] =$filename;
 				}
@@ -225,7 +224,7 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 	{
 	global $mrConfig,$jrConfig;
 	$saveMessage=jr_gettext('_JOMRES_FILE_UPDATED',_JOMRES_FILE_UPDATED,FALSE);
-	$mrp=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$property_uid.'/';
+	$mrp=JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'/';
    	$rc=1; //reset return code
 	if (!is_dir($mrp) )
 		{
@@ -323,7 +322,7 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 //							$message=str_replace("[file]",$code,$message);
 //						else
 //							$message=$message.' '.$code;
-						$uploadedFileLocation=$jrConfig['ss_imageLocation'].$property_uid.'/'.$newFileName;
+						$uploadedFileLocation=JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'/'.$newFileName;
 						}
 					}
 				}

@@ -43,7 +43,79 @@ class j01060slideshow {
 			$this->template_touchable=false; return;
 			}
 		$property_uid=$componentArgs['property_uid'];
-		$this->retVals['slideshow']=getSlideshow($property_uid);
+		$thumbnail_width = 50;
+		if (!isset($property_uid))
+			$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
+		if ($property_uid == 0 )
+			return;
+		$imagesArray=listImages($property_uid);
+		if (count($imagesArray) >0)
+			{
+			$filecount=0;
+			for ($i = 0; $i <count($imagesArray); $i++)
+				{
+			 	$filename= split("\.",$imagesArray[$i]);
+				$numExtensions=count($filename)-1;
+				$fileExt=strtoupper($filename[$numExtensions]);
+				if ($fileExt== "JPG" || $fileExt== "JPEG")
+					{
+					$imageData[$i]['filename']=$imagesArray[$i];
+					$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS.$imagesArray[$i]);
+					$imageData[$i]['actualwidth'] = $sizes['actualwidth'];
+					$imageData[$i]['actualheight'] = $sizes['actualheight'];
+					$imageData[$i]['fullwidth'] = $sizes['fullwidth'];
+					$imageData[$i]['fullheight'] = $sizes['fullheight'];
+					$imageData[$i]['thwidth'] = $sizes['thwidth'];
+					$imageData[$i]['thheight'] = $sizes['thheight'];
+					$imageData[$i]['imagelocation'] = JOMRES_IMAGELOCATION_RELPATH.$property_uid."/";
+					$filecount++;
+					}
+				}
+			}
+		$propertyName=getPropertyNameNoTables($property_uid);
+		if (isset($imageData))
+			$numberOfImages=count($imageData);
+		else
+			$numberOfImages=0;
+
+		if ($numberOfImages>0)
+			{
+			for ($i = 0; $i <$numberOfImages; $i++)
+				{
+				$r=array();
+				$r['COUNTER']=$i;
+				$cap=$imageData[$i]['filename'];
+				$capAr=explode(".",$cap);
+				$cap=$capAr[0];
+				$cap=str_replace($captionElementsToReplace," ",$cap);
+				$cap=strtolower($cap);
+				$cap=ucwords($cap);
+				$r['IMAGE']=jomres_makeTooltip($cap,"",$imageData[$i]['imagelocation'].$imageData[$i]['filename'],$imageData[$i]['imagelocation'].$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>$imageData[$i]['thwidth'],"height"=>$imageData[$i]['thheight'],"border"=>0));
+				
+				$rows[]=$r;
+				}
+			global $jrConfig;	
+			$pageoutput[]=$output;
+			$tmpl    =    new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'slideshow.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'rows', $rows );
+			$output_now=(bool)jomresGetParam( $_REQUEST, 'op', false );
+			
+			if ($output_now)
+				$tmpl->displayParsedTemplate();
+			else
+				$this->retVals['slideshow']=$tmpl->getParsedTemplate();
+			}
+		else
+			{
+			echo jr_gettext('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES',_JOMRES_COM_A_SLIDESHOWS_NOIMAGES,'');
+			echo "<br />";
+			}
+		
+		
+		//$this->retVals['slideshow']=getSlideshow($property_uid);
 		}
 
 	/**
