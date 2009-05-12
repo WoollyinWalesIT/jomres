@@ -58,8 +58,8 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 				
 
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery-1.3.2.min.js");
-			echo '<script type="text/javascript">jQuery.noConflict();</script>
-			';
+			//echo '<script type="text/javascript">jQuery.noConflict();</script>
+			//';
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/','jomres.js');
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"interface.js");
 			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.cookee.js");
