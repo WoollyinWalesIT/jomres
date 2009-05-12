@@ -44,7 +44,7 @@ class jomres_sticky_messages
 		{
 		$counter = count( $this->jomres_sticky_messages);
 		$index = "jomres_sticky_messages[".$counter."]";
-		setcookie($index, $message);
+		setcookie($index, htmlspecialchars($message));
 		}
 	}
 
