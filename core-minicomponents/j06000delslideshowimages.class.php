@@ -45,32 +45,40 @@ class j06000delslideshowimages {
 			$this->template_touchable=true; return;
 			}
 		global $thisJRUser,$jrConfig;
-		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$success=true;
 		$defaultProperty=getDefaultProperty();
 		$imageNameArray =  $_POST['idarray'];
-		$mrp=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$defaultProperty.'/';
+		$mrp=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.JRDS;
 		foreach ($imageNameArray as $imageName)
 			{
-			$imageName = (string)$imageName;
-			$pos = strpos($imageName, ".jpg");
-			if ($pos === false)
+			$filename= split("\.",$imageName);
+			$numExtensions=count($filename)-1;
+			$fileExt=strtoupper($filename[$numExtensions]);
+			if (!$fileExt== "JPG" || !$fileExt== "JPEG")
 				{
-				error_logging("Error, couldn't validate filename ".$imageName);
-				return;
+				trigger_error("Error, User tried to delete image ".$imageName, E_USER_ERROR);
 				}
+				
 			if (file_exists($mrp.$imageName) )
 				{
 				if (is_writable($mrp.$imageName) )
-					if (unlink($mrp.$imageName) )
-						echo $imageName. ' '.jr_gettext('_JOMRES_FILE_DELETED',_JOMRES_FILE_DELETED);
-					else
+					if (!unlink($mrp.$imageName) )
 						{
 						$success=false;
-						echo "Unable to delete image. Please check your file permissions and try again";
+						error_logging( "Error, unable to delete ".$mrp.$imageName);
 						}
+					else
+						echo $imageName. ' '.jr_gettext('_JOMRES_FILE_DELETED',_JOMRES_FILE_DELETED);
+					else
 				echo "<br>";
 				}
+			else
+				{
+				error_logging( "Error, file does not exist ".$mrp.$imageName);
+				return false;
+				}
+				
 			}
 		if ($success)
 			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm", _JOMRES_FILE_DELETED );

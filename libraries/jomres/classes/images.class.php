@@ -125,7 +125,7 @@ class images{
 							$img_tmp			= $_FILES[$formElement]['tmp_name'];
 							$cleanedImg			= strtolower(str_replace(" ","-",$img_name));
 							$img_destination	= JOMRES_IMAGE_UPLOAD_PATH . (int)$defaultProperty.'_'.$cleanedImg;
-							echo "Copying ".$img_destination."<br>";
+							//echo "Copying ".$img_destination."<br>";
 							if (!move_uploaded_file ($img_tmp,$img_destination) )
 								{
 								$error=true;

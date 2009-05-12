@@ -157,5 +157,3 @@ if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 
 
 
-
-

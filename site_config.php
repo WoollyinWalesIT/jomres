@@ -46,7 +46,7 @@ $jrConfig['fileSize']				='2000';
 $jrConfig['slideshow']				='tooltips';
 //$jrConfig['ss_popup_width']			='550';
 //$jrConfig['ss_popup_height']		='500';
-$jrConfig['ss_imageLocation']		='/jomres/uploadedimages/';
+//$jrConfig['ss_imageLocation']		='/jomres/uploadedimages/';
 $jrConfig['propertyListDescriptionLimit']='200';
 $jrConfig['randomsearchlimit']		='10';
 $jrConfig['useGlobalPFeatures']		='1';
@@ -147,5 +147,6 @@ $pluginConfig['backend_paypal_settings']['override']	='0';
 
 $jrConfig['useCaching']		='0';
 $jrConfig['showLangDropdown']		='1';
+$jrConfig['thumbnail_width']			='50';
 
 ?>

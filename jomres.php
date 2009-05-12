@@ -50,6 +50,11 @@ global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRe
 
 require_once('integration.php');
 
+if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
+	{
+	define('JOMRES_IMAGELOCATION_ABSPATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
+	define('JOMRES_IMAGELOCATION_RELPATH',$jomresConfig_live_site.'/jomres/uploadedimages/');
+	}
 
 if ( $_REQUEST['no_html']!="1")
 	{
@@ -65,21 +70,6 @@ if ($cron->method == "Minicomponent")
 	$cron->triggerJobs();
 	$cron->displayDebug();
 	}
-
-//$allDefinedContants=get_defined_vars();
-//print_r($GLOBALS );
-
-// Logging needs to be enabled before the specific log will be created
-// Depreciated as of 3.3.1
-
-/*
-$loggingEnabled=false;
-$loggingBooking=true;
-$loggingGateway=true;
-$loggingSystem=true;
-$loggingRequest=true;
-$loggingPortal=true;
-*/
 
 request_log($loggingRequest);
 $jomressession  = "";
@@ -106,11 +96,6 @@ $Itemid				= intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
 if ($no_html == 1)
 	define ("JOMRES_NOHTML",1);
 
-//var_dump($_REQUEST);exit;
-/*
-jomres_cmsspecific_createNewUserOnBooking();
-exit;
-*/
 $propertyNamesArray=array();
 
 

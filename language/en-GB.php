@@ -3410,7 +3410,7 @@ define('_JOMRES_COM_A_SLIDESHOW_FULLSIZE','Slideshow full height');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SLIDESHOW_THUMBSIZE','Slideshow thumbnail target height');
+define('_JOMRES_COM_A_SLIDESHOW_THUMBSIZE','Slideshow thumbnail target width');
 /**
 * @ignore
 */

@@ -429,6 +429,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOW_THUMBSIZE.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_width" value="'.$jrConfig['thumbnail_width'].'"></td>
+			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_maxwidth" value="'.$jrConfig['maxwidth'].'"></td>
 			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>

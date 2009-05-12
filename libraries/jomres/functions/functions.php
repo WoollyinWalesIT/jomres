@@ -2653,7 +2653,7 @@ function uploadPropertyImage()
 	$newFileName=$defaultProperty."_property_".(int)$defaultProperty.".".$fileExt;
 
 	if ($uploadedImage)
-		$checkedImage=uploadImageFromPost('image',$newFileName,$jrConfig['ss_imageLocation']);
+		$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
 	if ($checkedImage)
 		{
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), $saveMessage );
@@ -2675,11 +2675,11 @@ function uploadRoomImage()
 	$defaultProperty=getDefaultProperty();
 	$saveMessage=_JOMRES_FILE_UPDATED;
 	$roomUid = intval(jomresGetParam( $_POST, 'roomUid', 0 ));
-	/*
+
 	$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = ".(int)$defaultProperty."";
 	$roomsList =doSelectSql($query);
 	$propertysRooms=array();
-	*/
+
 	foreach ($roomsList as $r)
 		{
 		$propertysRooms[]=$r->room_uid;
@@ -2694,7 +2694,7 @@ function uploadRoomImage()
 		$newFileName=$defaultProperty."_room_".$roomUid.".".$fileExt;
 
 		if ($uploadedImage)
-			$checkedImage=uploadImageFromPost('image',$newFileName,$jrConfig['ss_imageLocation']);
+			$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
 
 		if ($checkedImage)
 			{
@@ -2720,9 +2720,9 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
 	if (isset($formelement) && isset($newName) && isset($saveToPath) )
 		{
-		if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.$saveToPath) )
+		if (!is_dir($saveToPath) )
 			{
-			if (!mkdir(JOMRESCONFIG_ABSOLUTE_PATH.$saveToPath) )
+			if (!mkdir($saveToPath) )
 				{
 				echo "Unable to make dir ".$saveToPath."<br>";
 				return false;
@@ -2731,7 +2731,7 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 		if (!defined("JOMRES_IMAGE_MAX_SIZE")||!defined("JOMRES_IMAGE_UPLOAD_PATH"))
 			{
 			define("JOMRES_IMAGE_MAX_SIZE",$jrConfig['fileSize']);
-			define("JOMRES_IMAGE_UPLOAD_PATH",JOMRESCONFIG_ABSOLUTE_PATH.$saveToPath,"/");
+			define("JOMRES_IMAGE_UPLOAD_PATH",$saveToPath);
 			}
 		$maxwidth = $jrConfig['maxwidth'];
 		$maxHeight = $jrConfig['maxwidth'];
@@ -2935,15 +2935,15 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 		{
 		case 'property':
 			$default_image = $jomresConfig_live_site."/jomres/images/jrlogo.png";
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$itemUid.".jpg"))
-				$fileLocation = $jomresConfig_live_site."/jomres/uploadedimages/".$property_uid."_property_".$property_uid.".jpg";
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_property_".$itemUid.".jpg"))
+				$fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid.".jpg";
 			else
 				$fileLocation = $default_image;
 			break;
 		case 'room':
 			$default_image = $jomresConfig_live_site."/jomres/images/noimage.gif";
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_room_".$itemUid.".jpg"))
-				$fileLocation = $jomresConfig_live_site."/jomres/uploadedimages/".$property_uid."_room_".$itemUid.".jpg";
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_room_".$itemUid.".jpg"))
+				$fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid."_room_".$itemUid.".jpg";
 			else
 				$fileLocation = $default_image;
 			break;
