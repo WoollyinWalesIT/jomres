@@ -1,3 +1,24 @@
+Jomres 4beta3
+
+Changed many files to add Jomres messaging on updates/inserts etc
+fixed broken paths in 404sef com_jomres.php since update to v4.
+Modified list propertys so that tooltips are used for property images, and the thumbnails are displayed respecting the aspect ratios of the images.
+Added Growl messaging to Jomres library, and added sticky messages.
+Added resizing option to show property image thumbnail with aspect ratio preserved.
+Fixed room image uploading not working.
+Using defined constants for image abs and rel paths.
+Minicomponentised slideshows.
+Deleted old plugins folder.
+Moved slideshow.html to frontend/slideshow.html.
+Added admin option to define thumbnail sizes.
+Modified image output of thumbs to show correct aspect ratios.
+Fixed jquery/mootools conflict issue.
+Fixed issue in horiz rooms list where room price not calculated if you're not using micromanage mode.
+Added check for task in language selector, if it's set to touch_templates, then the lang selector is always shown, allows for easier changing of languages when translating.
+Added a check for contract_uid col in installer
+Fixed infinate recursion problem on emailing.
+Removed redundant call to jquery.bt.css
+
 Jomres 4beta2
 
 

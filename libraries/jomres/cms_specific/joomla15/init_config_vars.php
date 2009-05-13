@@ -45,28 +45,32 @@ else
 $jomresConfig_offline			= $CONFIG->offline;
 $jomresConfig_db				= $CONFIG->db;
 
-if (class_exists('JURI'))
+if (!strstr($scriptname,'install_jomres.php'))
 	{
-	$jomresConfig_live_site=@JURI::base();
-	}
-else
-	{
-	if ($IIS > 0) // Win NT, therefore $_SERVER['REQUEST_URI'] == null
+	if (class_exists('JURI'))
 		{
-		$path_info =  $_SERVER['PATH_INFO'];
-		$_URI = explode("/", $path_info);
+		$jomresConfig_live_site=@JURI::base();
 		}
 	else
 		{
-		list($path, $args) = explode("?", $_SERVER['REQUEST_URI']);
-		$_URI = explode("/", $path);
+		if ($IIS > 0) // Win NT, therefore $_SERVER['REQUEST_URI'] == null
+			{
+			$path_info =  $_SERVER['PATH_INFO'];
+			$_URI = explode("/", $path_info);
+			}
+		else
+			{
+			list($path, $args) = explode("?", $_SERVER['REQUEST_URI']);
+			$_URI = explode("/", $path);
+			}
+		array_shift($_URI);
+		$_URI=array_slice($_URI,0,count($_URI)-1);
+		array_unshift ($_URI,$_SERVER['SERVER_NAME'] );
+		
+		$jomresConfig_live_site="http://".implode("/",$_URI);
 		}
-	array_shift($_URI);
-	$_URI=array_slice($_URI,0,count($_URI)-1);
-	array_unshift ($_URI,$_SERVER['SERVER_NAME'] );
-	$jomresConfig_live_site="http://".implode("/",$_URI);
 	}
-
+	
 $jomresConfig_live_site=str_replace("/administrator/","",$jomresConfig_live_site);
 $jomresConfig_live_site=str_replace("/administrator","",$jomresConfig_live_site);
 if(substr($jomresConfig_live_site, -1)=="/") $jomresConfig_live_site = substr($jomresConfig_live_site, 0, -1);
