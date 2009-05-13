@@ -115,6 +115,8 @@ class j04900saveproperty {
 			{
 			$apikey=createNewAPIKey();
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT,FALSE);
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message($saveMessage);
 			$query="INSERT INTO #__jomres_propertys (`property_name`,`property_street`,`property_town`,
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
 					`property_email`,`property_features`,
@@ -196,6 +198,9 @@ class j04900saveproperty {
 				$apiclause="`apikey`='".$apikey."',";
 				}
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE,FALSE);
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message($saveMessage);
+			
 			$query="UPDATE #__jomres_propertys SET
 				`property_name`='$property_name',
 				`property_street`='$property_street',

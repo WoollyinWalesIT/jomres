@@ -51,6 +51,8 @@ class j02182savebookout {
 		$contract_uid         = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		$items="";
 		$saveMessage= jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT',_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT,FALSE);
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($saveMessage);
 		$query="SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 		$contractData =doSelectSql($query);
 

@@ -69,6 +69,9 @@ class j02146saveextra {
 			$query="UPDATE #__jomres_extras SET `name`='$name',`desc`='$desc',`maxquantity`=".(int)$maxquantity.",`price`='".(float)$price."',`chargabledaily`='".(int)$chargeabledaily."' WHERE uid = '".(int)$uid."' AND property_uid='".(int)$defaultProperty."'";
 			doInsertSql($query,$auditMessage);
 			}
+		
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($auditMessage);
 
 		$model=$extramodel[0];
 		$query="DELETE FROM #__jomcomp_extrasmodels_models WHERE extra_id = '".(int)$uid."'";

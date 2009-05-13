@@ -64,6 +64,10 @@ class j02118savecustomertype {
 			$auditMessage=jr_gettext('_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE',_JOMRES_MR_AUDIT_UPDATE_CUSTOMERTYPE,FALSE);
 			$query="UPDATE #__jomres_customertypes SET `type`='$type',`notes`='$notes',`maximum`='".(int)$maximum."',`is_percentage`='".(int)$is_percentage."',`posneg`='$posneg',`variance`='$variance' WHERE id = '$id' AND property_uid='$defaultProperty'";
 			}
+		
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($saveMessage);
+		
 		if (!doInsertSql($query,$auditMessage))
 			trigger_error ("Unable to create customer type, mysql db failure", E_USER_ERROR);
 		else

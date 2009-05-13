@@ -116,7 +116,8 @@ class j02180bookguestout {
 					$contractUid=$contract_uid;
 				$today = date("Y/m/d");
 				$saveMessage=jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT',_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT,FALSE);
-
+				$jomres_messaging = new jomres_messages();
+				$jomres_messaging->set_message($saveMessage);
 				$currfmt = new jomres_currency_format();
 
 				// It's time to generate our invoice

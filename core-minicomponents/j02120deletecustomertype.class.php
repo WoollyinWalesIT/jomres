@@ -46,6 +46,8 @@ class j02120deletecustomertype {
 		$id=jomresGetParam( $_REQUEST, 'id', 0 );
 		$defaultProperty=getDefaultProperty();
 		$saveMessage=jr_gettext('_JOMRES_MR_AUDIT_DELETE_CUSTOMERTYPE',_JOMRES_MR_AUDIT_DELETE_CUSTOMERTYPE,FALSE);
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($saveMessage);
 		$query="DELETE FROM #__jomres_customertypes WHERE id = '".(int)$id."' AND property_uid = '".(int)$defaultProperty."'";
 		if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_EXTRA',_JOMRES_MR_AUDIT_DELETE_EXTRA,FALSE)))
 			trigger_error ("Unable to delete from customertypes table, mysql db failure", E_USER_ERROR);

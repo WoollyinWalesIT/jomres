@@ -86,6 +86,8 @@ class j02214savetariff_advanced {
 			if ($tariffUid=="")
 				{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_SAVE_INSERT',_JOMRES_COM_MR_LISTTARIFF_SAVE_INSERT,FALSE);
+				$jomres_messaging = new jomres_messages();
+				$jomres_messaging->set_message($saveMessage);
 				$query="INSERT INTO #__jomres_rates (
 					`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,
 					`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
@@ -102,6 +104,8 @@ class j02214savetariff_advanced {
 			else
 				{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_SAVE_UPDATE',_JOMRES_COM_MR_LISTTARIFF_SAVE_UPDATE,FALSE);
+				$jomres_messaging = new jomres_messages();
+				$jomres_messaging->set_message($saveMessage);
 				$query="UPDATE #__jomres_rates SET 
 					`rate_title`='$rate_title',
 					`rate_description`='$rate_description',
