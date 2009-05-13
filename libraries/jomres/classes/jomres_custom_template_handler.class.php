@@ -48,15 +48,22 @@ class jomres_custom_template_handler
 
 	function getAllCustomTemplates()
 		{
-		$query = "SELECT template_name,value FROM #__jomres_custom_templates";
-		$templates = doSelectSql($query);
-		if (count($templates)>0)
+		global $jomres_custom_templates;
+		if (!isset($jomres_custom_templates))
 			{
-			foreach ($templates as $t)
+			$query = "SELECT template_name,value FROM #__jomres_custom_templates";
+			$templates = doSelectSql($query);
+			if (count($templates)>0)
 				{
-				$this->custom_templates[$t->template_name]=array('template_name'=>$t->template_name);
+				foreach ($templates as $t)
+					{
+					$this->custom_templates[$t->template_name]=array('template_name'=>$t->template_name);
+					}
 				}
 			}
+		else
+			$this->custom_templates=$jomres_custom_templates;
+		$jomres_custom_templates=$this->custom_templates;
 		}
 
 	function hasThisTemplateBeenCustomised($templatename)
