@@ -68,6 +68,8 @@ class j02252archiveaudit {
 			$counter++;
 			}
 		jomres_audit(jr_gettext('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT',_JOMRES_MR_AUDIT_ARCHIVED_AUDIT,FALSE),$counter.$saveMessage);
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($counter.$saveMessage);
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=showAuditTrail"), $saveMessage );
 		}
 

@@ -51,6 +51,8 @@ class j02217deletetariff {
 		if ($tarifftypeid > 0)
 			{
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_DELETED',_JOMRES_COM_MR_LISTTARIFF_DELETED,FALSE);
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message($saveMessage);
 			// we need to find all the tariff uids that are associated with this tariff type
 			$query="SELECT tariff_id FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id = '$tarifftypeid' AND property_uid = '$defaultProperty'";
 			$rateIds=doSelectSql($query);

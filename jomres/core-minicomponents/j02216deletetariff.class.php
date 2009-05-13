@@ -55,6 +55,8 @@ class j02216deletetariff {
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_DELETED',_JOMRES_COM_MR_LISTTARIFF_DELETED,FALSE);
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message($saveMessage);
 			if ($tariffUid != 0)
 				{
 				$query="DELETE FROM #__jomres_rates WHERE rates_uid='".(int)$tariffUid."' AND property_uid = '".(int)$defaultProperty."'";

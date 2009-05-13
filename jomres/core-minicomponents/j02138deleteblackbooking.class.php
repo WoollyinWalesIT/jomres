@@ -45,6 +45,8 @@ class j02138deleteblackbooking {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$uid=jomresGetParam( $_REQUEST, 'contract_uid', 0 );
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE',_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE,FALSE));
 		if ($uid != 0)
 			{
 			$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";

@@ -175,6 +175,8 @@ class j02215savetariff_micromanage {
 				$newRateStr.=",";
 			$counter++;
 			}
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE));
 		$query="INSERT INTO #__jomcomp_tarifftype_rate_xref (`tarifftype_id`,`tariff_id`,`roomclass_uid`,`property_uid`) VALUES".$newRateStr;
 		if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE))) returnToPropertyConfig($saveMessage);
 		trigger_error ("Unable to update tariff details, mysql db failure", E_USER_ERROR);

@@ -59,8 +59,13 @@ class j06000sendbug {
 				}
 			else
 				$result=mosMail( $fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
+			
 			if ($result)
-				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"Bug report sent.");
+				{
+				$jomres_messaging = new jomres_messages();
+				$jomres_messaging->set_message("Bug report sent.");
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL));
+				}
 			else
 				{
 				echo "There was a problem with sending your email. Is emailing available to this server? Possibly not if you're on localhost<br>";

@@ -81,7 +81,11 @@ class j06000delslideshowimages {
 				
 			}
 		if ($success)
-			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm", _JOMRES_FILE_DELETED );
+			{
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message(_JOMRES_FILE_DELETED);
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
+			}
 		}
 
 	function touch_template_language()

@@ -56,6 +56,8 @@ class j02140publishextra {
 			$query="UPDATE #__jomres_extras SET `published`='0' WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 		else
 			$query="UPDATE #__jomres_extras SET `published`='1' WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message(_JOMRES_MR_AUDIT_PUBLISH_EXTRA);
 		if (doInsertSql($query,_JOMRES_MR_AUDIT_PUBLISH_EXTRA))
 			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listExtras","" );
 		trigger_error ("Unable to publish extra, mysql db failure", E_USER_ERROR);

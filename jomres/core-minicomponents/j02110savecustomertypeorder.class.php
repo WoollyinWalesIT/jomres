@@ -54,6 +54,9 @@ class j02110savecustomertypeorder {
 			if (!doInsertSql($query,_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE))
 				trigger_error ("Unable to customer type order, mysql db failure", E_USER_ERROR);
 			}
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message(_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE);
+			
 		jomresRedirect( JOMRES_SITEPAGE_URL."&task=listCustomerTypes","" );
 		}
 

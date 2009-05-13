@@ -49,6 +49,7 @@ class j06000saveCoupon {
 		
 		$defaultProperty=getDefaultProperty();
 
+		$auditMessage=jr_gettext('_JOMRES_MR_AUDIT_UPDATE_COUPON',_JOMRES_MR_AUDIT_UPDATE_COUPON,FALSE);
 		if ($coupon_id > 0)
 			{
 			$query="UPDATE #__jomres_coupons SET `coupon_code`='$coupon_code',`valid_from`='$valid_from',
@@ -62,8 +63,11 @@ class j06000saveCoupon {
 			VALUES 
 			($defaultProperty,'$coupon_code','$valid_from','$valid_to','$amount','$is_percentage')";
 			if (!doInsertSql($query)) trigger_error ("Unable to insert coupon details, mysql db failure", E_USER_ERROR);
-
 			}
+
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($auditMessage);
+			
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listCoupons"), '' );
 		}
 

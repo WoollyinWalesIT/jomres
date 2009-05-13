@@ -47,6 +47,8 @@ class j02148deleteextra {
 		$uid=jomresGetParam( $_REQUEST, 'uid', 0 );
 		$defaultProperty=getDefaultProperty();
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_EXTRA_DELETED',_JOMRES_COM_MR_EXTRA_DELETED,FALSE);
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($saveMessage);
 		$query="DELETE FROM #__jomres_extras WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 		if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_EXTRA',_JOMRES_MR_AUDIT_DELETE_EXTRA,FALSE)))
 			trigger_error ("Unable to delete from extras table, mysql db failure", E_USER_ERROR);

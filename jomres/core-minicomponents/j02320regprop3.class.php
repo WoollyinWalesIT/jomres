@@ -129,6 +129,8 @@ class j02320regprop3 {
 			$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`)VALUES (".(int)$userdeets['id'].",'".(string)$userdeets['username']."','".(int)$newPropId."','2')";
 			$managerId=doInsertSql($query,_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY);
 			}
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message(_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY);
 		$thisJRUser->authorisedProperties[]=$newPropId;
 		updateManagerIdToPropertyXrefTable($thisJRUser->id,$thisJRUser->authorisedProperties );
 		$componentArgs=array('property_uid'=>(int)$newPropId);

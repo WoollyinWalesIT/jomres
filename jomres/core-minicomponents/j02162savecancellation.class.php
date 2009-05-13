@@ -54,6 +54,8 @@ class j02162savecancellation {
 			$cache->trashCacheForProperty($defaultProperty);
 			$today = date("Y/m/d");
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message($saveMessage);
 			$forfeit_retained="0";
 			if ($mrConfig['cancellationPolicyReserveDeposits']=="1")
 				$forfeit_retained="1";

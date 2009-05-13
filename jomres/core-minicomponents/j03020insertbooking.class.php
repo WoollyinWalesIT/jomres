@@ -228,7 +228,8 @@ class j03020insertbooking {
 					}
 
 				jomres_audit($jomressession,"Amend booking - updated room booking ".$amend_contractuid);
-
+				$jomres_messaging = new jomres_messages();
+				$jomres_messaging->set_message("Amend booking - updated room booking ".$amend_contractuid);
 				if (count($rates_uids)>1)
 					$rates_uids			= array_unique($rates_uids);
 

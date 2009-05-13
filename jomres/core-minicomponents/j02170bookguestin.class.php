@@ -124,6 +124,8 @@ class j02170bookguestin {
 				else
 					{
 					addBookingNote($contractUid,$defaultProperty,_JOMRES_MR_AUDIT_BOOKEDGUESTIN);
+					$jomres_messaging = new jomres_messages();
+					$jomres_messaging->set_message(_JOMRES_MR_AUDIT_BOOKEDGUESTIN);
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contractUid"),  jr_gettext('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN',_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN,false ) );
 					}
 				}

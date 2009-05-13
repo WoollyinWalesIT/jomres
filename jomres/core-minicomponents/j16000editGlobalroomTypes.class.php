@@ -60,9 +60,8 @@ class j16000editGlobalroomTypes
 		if ($clone)
 			$propertyFeatureUid=FALSE;
 
-		$map=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS;
-		$mrp=$jomresConfig_live_site.'/jomres/uploadedimages/rmtypes/';
-		$d = @dir($map);
+		$d = @dir(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS);
+
 		$docs = array();
 		$rows=array();
 		if($d)
@@ -70,12 +69,12 @@ class j16000editGlobalroomTypes
 			while (FALSE !== ($entry = $d->read()))
 				{
 				$filename = $entry;
-				if(is_file($map.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
+				if(is_file(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
 					{
 					$docs=array();
 					$docs['ISCHECKED'] ="";
-					$docs['IMAGEPATH'] =$mrp.$filename;
-					$docs['IMAGE'] =$mrp.$filename;
+					$docs['IMAGEPATH'] ='jomres/uploadedimages/rmtypes/'.$filename;
+					$docs['IMAGE'] =JOMRES_IMAGELOCATION_RELPATH.'rmtypes/'.$filename;
 					if (isset($image) && $docs['IMAGEPATH']==$image)
 						$docs['ISCHECKED'] ="checked";
 					$rows[]=$docs;
