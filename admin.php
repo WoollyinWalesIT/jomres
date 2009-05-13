@@ -31,7 +31,11 @@ global $xmlelements;
 global $MiniComponents,$indexphp,$logFiles,$jrConfig;
 
 require_once('integration.php');
-
+if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
+	{
+	define('JOMRES_IMAGELOCATION_ABSPATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
+	define('JOMRES_IMAGELOCATION_RELPATH',$jomresConfig_live_site.'/jomres/uploadedimages/');
+	}
 $task = jomresGetParam( $_REQUEST, 'task', "" );
 
 
