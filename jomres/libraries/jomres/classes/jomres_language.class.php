@@ -83,7 +83,7 @@ class jomres_language
 					}
 				}
 			}
-		SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
+		SetCookie("jomreslang", $jomresConfig_lang, time()+(60*60*24*365));
 		jomres_cmsspecific_setlanguage($jomresConfig_lang);
 		$this->lang=$jomresConfig_lang;
 		}
