@@ -343,7 +343,7 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 			}
 		}
 	$jomres_sticky_messaging = new jomres_sticky_messages();
-	//$jomres_sticky_messaging->set_message("HELLO");
+	//$jomres_sticky_messaging->set_message("HE\"LLO");
 	$sticky_messages = $jomres_sticky_messaging->get_messages();
 	$sticky_messaging = array();
 	if (count($sticky_messages)>0)
