@@ -153,6 +153,7 @@ function showSiteConfig(  )
 		
 	$lists['useCaching']							= jomresHTML::selectList( $yesno, 'cfg_useCaching', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useCaching'] );
 	$lists['showLangDropdown']						= jomresHTML::selectList( $yesno, 'cfg_showLangDropdown', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['showLangDropdown'] );
+	$lists['useJomresMessaging']					= jomresHTML::selectList( $yesno, 'cfg_useJomresMessaging', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useJomresMessaging'] );
 		
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
 	}

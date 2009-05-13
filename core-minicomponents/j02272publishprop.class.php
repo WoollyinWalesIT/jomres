@@ -56,6 +56,8 @@ class j02272publishprop {
 			$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = '".(int)$defaultProperty."'";
 		else
 			$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '".(int)$defaultProperty."'";
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE));
 		if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) returnToPropertyConfig("");
 		}
 

@@ -145,8 +145,8 @@ $pluginConfig['backend_paypal_settings']['currencycode']='EUR';
 $pluginConfig['backend_paypal_settings']['email']		='';
 $pluginConfig['backend_paypal_settings']['override']	='0';
 
-$jrConfig['useCaching']		='0';
-$jrConfig['showLangDropdown']		='1';
-$jrConfig['thumbnail_width']			='50';
-
+$jrConfig['useCaching']			='0';
+$jrConfig['showLangDropdown']	='1';
+$jrConfig['thumbnail_width']	='50';
+$jrConfig['useJomresMessaging'] = '1';
 ?>
