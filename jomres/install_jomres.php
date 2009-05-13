@@ -1900,7 +1900,7 @@ function showheader()
 		<p align="center">&nbsp;</p>
 	<div class= "panel">
 
-		<p><img src="<?php echo $jomresConfig_live_site ;?>/jomres/images/jrlogo.png" width="287" height="70"></p>
+		<p><img src="images/jrlogo.png" width="287" height="70"></p>
 		<p><h1>Jomres installation</h1></p>
 		<p>&nbsp;</p>
 	<?php

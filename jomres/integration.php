@@ -1355,7 +1355,9 @@ class mcHandler {
 	function mcHandler()
 		{
 		$this->registeredClasses = array();
-
+		$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+		if (strstr($scriptname,'install_jomres.php'))
+			return;
 		// Following commented out functionality superceeded by Jomres minicomponent registry introduced in 3.2beta2
 		//$this->eventPoints = array();
 		//$this->nonOverridableEventClasses=array();
