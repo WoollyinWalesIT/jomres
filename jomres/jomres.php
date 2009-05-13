@@ -330,28 +330,33 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 	$output['LIVESITE']=$jomresConfig_live_site;
 
-	$jomres_messaging = new jomres_messages();
-	//$jomres_messaging->set_message("HELLO");
-	$messages = $jomres_messaging->get_messages();
 	$messaging = array();
-	if (count($messages)>0)
-		{
-		foreach ($messages as $mes)
-			{
-			$m['MESSAGE']=$mes;
-			$messaging[] = $m;
-			}
-		}
-	$jomres_sticky_messaging = new jomres_sticky_messages();
-	//$jomres_sticky_messaging->set_message("HE\"LLO");
-	$sticky_messages = $jomres_sticky_messaging->get_messages();
 	$sticky_messaging = array();
-	if (count($sticky_messages)>0)
+	if ($jrConfig['useJomresMessaging'] == '1')
 		{
-		foreach ($sticky_messages as $mes)
+		$jomres_messaging = new jomres_messages();
+		//$jomres_messaging->set_message("HELLO");
+		$messages = $jomres_messaging->get_messages();
+		
+		if (count($messages)>0)
 			{
-			$m['MESSAGE']=$mes;
-			$sticky_messaging[] = $m;
+			foreach ($messages as $mes)
+				{
+				$m['MESSAGE']=$mes;
+				$messaging[] = $m;
+				}
+			}
+		$jomres_sticky_messaging = new jomres_sticky_messages();
+		//$jomres_sticky_messaging->set_message("HE\"LLO");
+		$sticky_messages = $jomres_sticky_messaging->get_messages();
+		
+		if (count($sticky_messages)>0)
+			{
+			foreach ($sticky_messages as $mes)
+				{
+				$m['MESSAGE']=$mes;
+				$sticky_messaging[] = $m;
+				}
 			}
 		}
 	$pageoutput[]=$output;

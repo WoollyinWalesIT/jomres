@@ -6302,4 +6302,27 @@ define('_JRPORTAL_NEWUSER_PASSWORD',"Your password is : ");
 * @ignore
 */
 define('_JRPORTAL_NEWUSER_LOG_IN',"Please log in to view your bookings ");
+/**
+* @ignore
+*/
+define('_JOMRES_MR_AUDIT_UPDATE_COUPON','Coupon saved');
+/**
+* @ignore
+*/
+define('_JOMRES_MR_AUDIT_DELETE_COUPON','Coupon deleted');
+
+// Not used yet
+/**
+* @ignore
+*/
+define('_JOMRES_MENUHELPER_DASHBOARD','This is your dashboard, here you can see a general overview of your property\'s availability. ');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_GROWL','Use Jomres messaging');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_GROWL_DESC','Many manager updates provide feedback in the form of a javascript message when the page is reloaded, use this option to enable/disable that feature.');
+
 ?>
