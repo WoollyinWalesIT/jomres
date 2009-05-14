@@ -255,6 +255,7 @@ class j04200editproperty {
 		if (isset($listTxt))
 			$output['FEATURES']=$listTxt;
 		$propertyImageLocation="";
+		/*
 		$query="SELECT filelocation FROM #__jomres_property_images WHERE propertyid = '".(int)$propertyUid."'";
 		$propertyImageList =doSelectSql($query);
 		if (count($propertyImageList)>0)
@@ -264,7 +265,11 @@ class j04200editproperty {
 				$propertyImageLocation='<img src="'.$jomresConfig_live_site.'/'.$imageLocation->filelocation.'">';
 				}
 			}
-
+		*/
+		
+		$propImage = getImageForProperty("property",(int)$propertyUid,(int)$propertyUid);
+		$propertyImageLocation='<img src="'.$propImage.'" />';
+		
 		$output['STARSDROPDOWN']=$starsDropDownList;
 		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
 		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
@@ -317,7 +322,7 @@ class j04200editproperty {
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
 		$output['IMAGE']=$propertyImageLocation;
 		if ($propertyImageLocation!="")
-			$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=property&itemUid=".$propertyUid."$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
+			$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=property&no_html=1&itemUid=".$propertyUid."$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
 		$output['UPLOADIMAGE']=jr_gettext('_JOMRES_UPLOAD_IMAGE',_JOMRES_UPLOAD_IMAGE,FALSE);
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
