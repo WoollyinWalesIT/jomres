@@ -1006,14 +1006,14 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 								type		: 'textarea',
 								cancel		: 'x',
 								submit		: 'OK',
-								tooltip		: '"._JOMRES_COM_MR_VRCT_ROOM_LINKTEXT."',
+								tooltip		: '".htmlspecialchars(_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT)."',
 								style		: 'inherit'
 								});
 							});
 							</script>
 							";
 							}
-						$theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.$theText.'</div></span>';
+						$theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.htmlspecialchars($theText).'</div></span>';
 						}
 					else
 						{
