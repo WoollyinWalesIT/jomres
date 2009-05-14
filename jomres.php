@@ -62,8 +62,6 @@ if ( $_REQUEST['no_html']!="1")
 	@ini_set("display_errors", 1);
 	}
 
-$customTextObj = new custom_text();
-
 $cron = new jomres_cron($displayLog);
 if ($cron->method == "Minicomponent")
 	{
@@ -290,13 +288,14 @@ else
 
 $jomreslang= new jomres_language();
 $jomreslang->get_language($propertytype);
-
+$customTextObj = new custom_text();
 
 // This little routine sets the custom text for an individual property.
 if (!empty($property_uid))
 	{
 	$customTextArray=$customTextObj->get_custom_text_for_property($property_uid);
 	}
+
 
 if (!isset($jrConfig['useSSLinBookingform']) )
 	$jrConfig['useSSLinBookingform']=0;
