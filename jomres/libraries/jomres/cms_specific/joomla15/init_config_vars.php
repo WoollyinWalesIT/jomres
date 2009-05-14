@@ -89,7 +89,6 @@ $jomresConfig_MetaKeys			= $CONFIG->MetaKeys;
 $jomresConfig_MetaTitle			= $CONFIG->MetaTitle;
 $jomresConfig_MetaAuthor		= $CONFIG->MetaAuthor;
 $jomresConfig_debug				= $CONFIG->debug;
-$jomresConfig_list_limit		= $jrConfig['property_list_limit'];
 $jomresConfig_mailer			= $CONFIG->mailer;
 $jomresConfig_mailfrom			= $CONFIG->mailfrom;
 $jomresConfig_fromname			= $CONFIG->fromname;
