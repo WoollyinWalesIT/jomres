@@ -227,7 +227,6 @@ class j01010listpropertys {
 				else
 					{
 					$customTextArray=$customTextObj->get_custom_text_for_property($property->propertys_uid);
-
 					$property_deets=array();
 					$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
 					$mrConfig=getPropertySpecificSettings($property->propertys_uid);
