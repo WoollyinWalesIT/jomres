@@ -31,22 +31,18 @@ class jomres_language
 	function jomres_language()
 		{
 		global $jomresConfig_lang,$jrConfig;
-		
 		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
 		$this->showLangDropdown =$jrConfig['showLangDropdown'];
+		
 		if (isset($_POST['jomreslang']) )
 			{
 			$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_POST, 'jomreslang', "" ) );
-			//SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
-			//jomres_cmsspecific_setlanguage($jomresConfig_lang);
 			}
 		else
 			{
 			if (isset($_GET['jomreslang']) )
 				{
 				$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_GET, 'jomreslang', "" ) );
-				//SetCookie("jomreslang", $jomresConfig_lang, time()+60*60);
-				//jomres_cmsspecific_setlanguage($jomresConfig_lang);
 				}
 			else
 				{
@@ -84,7 +80,12 @@ class jomres_language
 					}
 				}
 			}
-		SetCookie("jomreslang", $jomresConfig_lang, time()+(60*60*24*365));
+			
+		$langfile_crossref = $this->define_langfile_to_languages_array();
+		if ( !array_key_exists($jomresConfig_lang,$langfile_crossref) )
+			$jomresConfig_lang				= $this->get_shortcode_to_longcode($jomresConfig_lang);
+
+		SetCookie("jomreslang", $jomresConfig_lang, time()+(60*60*24*365),"/");
 		jomres_cmsspecific_setlanguage($jomresConfig_lang);
 		$this->lang=$jomresConfig_lang;
 		}
@@ -199,6 +200,36 @@ class jomres_language
 		$langs['sr-YU']="Yugslav";
 		$langs['zh-CN']="Chinese";
 		return $langs;
+		}
+		
+	function get_shortcode_to_longcode($lang)
+		{
+		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
+		$langs=array();
+		$langs['en']='en-GB';
+		$langs['cs']='cs-CZ';
+		$langs['da']='da-DK';
+		$langs['de']='de-DE';
+		$langs['el']='el-GR';
+		$langs['es']='es-ES';
+		$langs['fr']='fr-FR';
+		$langs['he']='he-IL';
+		$langs['hu']='hu-HU';
+		$langs['it']='it-IT';
+		$langs['nb']='nb-NO';
+		$langs['nl']='nl-NL';
+		$langs['pl']='pl-PL';
+		$langs['pt']='pt-BR';
+		$langs['pt']='pt-PT';
+		$langs['ro']='ro-RO';
+		$langs['ru']='ru-RU';
+		$langs['sk']='sk-SK';
+		$langs['sl']='sl-SI';
+		$langs['sr']='sr-YU';
+		$langs['zh']='zh-CN';
+		if (array_key_exists($lang,$langs) )
+			return $langs[$lang];
+		return "en-GB";
 		}
 	}
 
