@@ -42,7 +42,6 @@ class custom_text
 				$this->global_custom_text[$theConstant]=stripslashes($text->customtext);
 				}
 			}
-
 		}
 		
 	function get_custom_text_for_property($property_uid)
@@ -59,6 +58,7 @@ class custom_text
 				$current_custom_text[$theConstant]=stripslashes($text->customtext);
 				}
 			}
+			
 		return $current_custom_text;
 		}
 		
