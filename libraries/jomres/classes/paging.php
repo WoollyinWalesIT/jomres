@@ -296,7 +296,7 @@ class JomresPage
 
 	function calculate()
 		{
-		$this->page = intval(jomresGetParam( $_REQUEST, 'page', 0));
+		$this->page = intval(jomresGetParam( $_REQUEST, 'plistpage', 0));
 		$this->start=$this->page*$this->records_per_page;
 		$this->total_page=@intval($this->total_records/$this->records_per_page);
 		if($this->total_records%$this->records_per_page!=0)

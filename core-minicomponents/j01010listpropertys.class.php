@@ -56,7 +56,7 @@ class j01010listpropertys {
 		if ( !isset($_REQUEST['plistpage']) )
 			$newSearch=true;
 			
-		$limit = jomresGetParam( $_REQUEST, 'limit', (int)$jomresConfig_list_limit);
+		$limit = jomresGetParam( $_REQUEST, 'limit', (int)$jrConfig['property_list_limit']);
 
 		if (!@session_start())
 			{
