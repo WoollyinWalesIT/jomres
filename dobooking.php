@@ -205,7 +205,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 			else
 				$arrivalDate=$defaultArrivalDate;
 			}
-		else if (isset($thisdate) )
+		else if ($thisdate)
 			{
 			$arrivalDate=$thisdate;
 			$bkg->setArrivalDate($arrivalDate);
