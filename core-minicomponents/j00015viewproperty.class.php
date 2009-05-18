@@ -70,6 +70,7 @@ class j00015viewproperty
 			$property_fax=stripslashes($pproperty->property_fax);
 
 			$property_description=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($pproperty->property_description))));
+
 			$property_checkintimes=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($pproperty->property_checkin_times))));
 			$property_areaactivities=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($pproperty->property_area_activities))));
 			$property_drivingdirections=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($pproperty->property_driving_directions))));
