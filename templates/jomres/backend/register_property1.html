@@ -4,12 +4,12 @@
 function OnChange(dropdown)
 	{	
 	cty=jQuery("select#country").val();
-	var baseURL= "{JOMRES_SITEPAGE_URL}&amp;task=registerProp_step1"
-	location.href = baseURL + "&amp;selectedCountry="+cty;
+	var baseURL= "{JOMRES_SITEPAGE_URL}&task=registerProp_step1"
+	location.href = baseURL + "&selectedCountry="+cty;
 	return true;
 	}
 function submitCountry(){
-	document.regForm.action = "{JOMRES_SITEPAGE_URL}&amp;task=registerProp_step2"
+	document.regForm.action = "{JOMRES_SITEPAGE_URL}&task=registerProp_step2"
 	document.regForm.submit();
 	return true;
 	}
