@@ -832,7 +832,7 @@ define('_JOMRES_COM_MR_VRCT_ROOM_CLICKTOEDIT',"Cliquez sur l'id de la chambre po
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',"Editer l'élément");
+define('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',"Editer l\'élément");
 
 /**
 * @ignore
