@@ -116,7 +116,10 @@ class jomres_booking
 		$this->tel_mobile		= "";
 		$this->email			= "";
 
-		$this->today					= date("Y/m/d");
+		//$this->today					= date("Y/m/d");
+		// Should be better at detecting today's date subject DST
+		$this->today					= date("Y/m/d", mktime(0, 0, 0, date("m"), date("d"),   date("Y")));
+		
 		$this->error					= "";
 		$this->error_code				= "";
 		$this->billing_roomtotal		= 0.00;
@@ -485,12 +488,22 @@ class jomres_booking
 		//$arrival_ts=str_replace("/","-",$this->arrivalDate);
 		$arrivalDate_ts  = str_replace("/","-",$this->arrivalDate);
 		$departureDate_ts = str_replace("/","-",$this->departureDate);
+		
+		// Commented this out as initialising the arrival dates doesn't work and validfrom_ts and validto_ts aren't initially set. Means the booking form opens to an invalid date message, even if it's valid, and consequentially the rooms list isn't populated right off the bat.
+		/*
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
 			FROM #__jomres_rates WHERE property_uid = '$this->property_uid'
 			AND `validfrom_ts`<='$departureDate_ts' 
 			AND `validto_ts`>='$arrivalDate_ts'";
+		*/
+		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
+			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
+			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
+			FROM #__jomres_rates WHERE property_uid = '$this->property_uid'
+			";
+		//$this->setErrorLog("getAllTariffsData:: ".$query );
 		$tariffs =doSelectSql($query);
 		//$this->setErrorLog("Finding tariffs");
 		//$this->setErrorLog($query);
@@ -1398,6 +1411,7 @@ class jomres_booking
 		$this->unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$this->cfg_mindaysbeforearrival,$date_elements[0]);
 		$arrivalDate=date( "Y/m/d",$this->unixArrivalDate);
 		$arrivalDate=$this->nextDatePropertyHasRoomFree($arrivalDate);
+		
 		$this->setArrivalDate($arrivalDate);
 		$this->setErrorLog("initArrivalDate::Initialising Arrival date to ".$arrivalDate);
 		return $this->arrivalDate;
