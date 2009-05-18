@@ -49,7 +49,7 @@ class j06000deleteCoupon {
 		if ($coupon_id>0)
 			{
 			$query="DELETE FROM #__jomres_coupons WHERE coupon_id = '".(int)$coupon_id."' AND property_uid = '".(int)$defaultProperty."'";
-			if (!doInsertSql($query,jr_gettext('_JRPORTAL_COUPONS_SQLERROR',_JRPORTAL_COUPONS_SQLERROR,FALSE)),_JOMRES_MR_AUDIT_DELETE_COUPON)
+			if (!doInsertSql($query,jr_gettext('_JRPORTAL_COUPONS_SQLERROR',_JRPORTAL_COUPONS_SQLERROR,FALSE),_JOMRES_MR_AUDIT_DELETE_COUPON))
 				trigger_error ("Unable to delete from coupons table, mysql db failure", E_USER_ERROR);
 			
 			$jomres_messaging = new jomres_messages();
