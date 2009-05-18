@@ -347,8 +347,8 @@ function jomresURL($link, $ssl=2)
 		{
 		$link=str_replace("index.php","index2.php",$link);
 		}
-	$link=str_replace("&amp;","&",$link);
-	$link=str_replace("&","&amp;",$link);
+	//$link=str_replace("&amp;","&",$link);
+	//$link=str_replace("&","&amp;",$link);
 	return $link;
 	}
 
