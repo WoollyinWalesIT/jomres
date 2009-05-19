@@ -234,7 +234,32 @@ function doTableUpdates()
 	if (!checkInvoicesContractuidColExists() )
 		alterInvoicesContractuidCol();
 	createClickatellMessagesTable();
+	if (!checkPropertysTimestampColExists() )
+		alterPropertysTimestampCol();
 	}
+
+
+function alterPropertysTimestampCol()
+	{
+	echo "Editing __jomres_propertys table adding timestamp column<br>";
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `timestamp` DATETIME NOT NULL AFTER `metadescription` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_propertys timestamp</b><br>";
+	}
+
+
+function checkPropertysTimestampColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'timestamp'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
 
 function createClickatellMessagesTable()
 	{
@@ -1411,6 +1436,7 @@ function createJomresTables()
 		`long` float NULL,
 		`metatitle` VARCHAR(150) NOT NULL,
 		`metadescription` VARCHAR(150) NOT NULL,
+		`timestamp` DATETIME NOT NULL,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
 	$result=doInsertSql($query,"");
