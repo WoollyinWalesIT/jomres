@@ -117,6 +117,8 @@ function batchUploadForm()
 	{
 	global $Itemid,$jomresConfig_live_site,$jrConfig;
 	$defaultProperty=getDefaultProperty();
+	$cache = new jomres_cache();
+	$cache->trashCacheForProperty($defaultProperty);
 	$output['PAGETITLE']			=jr_gettext('_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD',_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD);
 	$output['ITEMID']				=$Itemid;
 	$output['INFO']					=jr_gettext('_JOMRES_FRONT_IMAGEUPLOADS_INFO',_JOMRES_FRONT_IMAGEUPLOADS_INFO);
@@ -169,7 +171,9 @@ function batchUploadPropertyImages()
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
 
-	$defaultProperty=getDefaultProperty();
+	$cache = new jomres_cache();
+	$cache->trashCacheForProperty($defaultProperty);
+	
 	//$saveMessage=_JOMRES_FILE_UPDATED;
 	$uploadedImagesArray=array();
 	for ($i = 0; $i < 12; $i++)
