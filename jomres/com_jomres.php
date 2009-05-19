@@ -69,13 +69,16 @@ if (isset($Itemid))
 	shRemoveFromGETVarsList('Itemid');
 if (!empty($limitstart)) 
 	shRemoveFromGETVarsList('limitstart');
+if (!empty($popup)) 
+	shRemoveFromGETVarsList('popup');
 
 if ($task != 'search')
 	{
+	
 	if (!empty($limit)) 
 		shRemoveFromGETVarsList('limit');
-	if (!empty($page)) 
-		shRemoveFromGETVarsList('page');
+	if (!empty($plistpage)) 
+		shRemoveFromGETVarsList('plistpage');
 	}	
 
 // Set defaults if set to blank
