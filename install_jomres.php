@@ -1860,7 +1860,7 @@ function showGetKeyInput($lkey)
 	?>
 	<form action="" method="post" name="adminForm">
 
-	<h3><font="red">Please enter the license key for this installation in the field below and click Save Key to continue the installation:<br></font></h3>
+	<h3><font="red">Please enter the license key for this copy of Jomres in the field below and click Save Key to continue the installation or upgrade:<br></font></h3>
 
 	<input class="inputbox" type="text" name="lkey" value="<?php echo $lkey; ?>" size="50" />
 	<input type="hidden" name="option" value="com_jomres" />
