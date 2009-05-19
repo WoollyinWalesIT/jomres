@@ -27,16 +27,19 @@ div.blockMsg {
 .jomres_bt_tooltip_imageonly
 	{
 	float: left;
+	padding: 5px;
 	}
 	
 .jomres_bt_tooltip_room_type
 	{
 	float: left;
+	padding: 5px;
 	}
 
 .jomres_bt_tooltip_features
 	{
 	float: left;
+	padding: 5px;
 	}
 	
 .jomres_bt_tooltip
