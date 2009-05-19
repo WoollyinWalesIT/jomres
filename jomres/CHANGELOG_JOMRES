@@ -1,6 +1,5 @@
 Jomres 4beta3
 
-
 Added the Jomres -> Clickatell plugin to the core code.
 Changed many files to add Jomres messaging on updates/inserts etc
 fixed broken paths in 404sef com_jomres.php since update to v4.
