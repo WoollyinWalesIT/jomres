@@ -30,8 +30,9 @@ class jomres_cache
 	 */
 	function jomres_cache($key="",$property_uid=0,$userSpecific=false)
 		{
-		global $jrConfig;
+		global $jrConfig,$jomresConfig_lang;
 		$this->useCaching = $jrConfig['useCaching'];
+		$this->lang = $jomresConfig_lang;
 		$this->cache_folder=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS;
 		$this->expiration = 3600;
 		if (strlen($key)>0 && $this->useCaching == "1")
@@ -91,7 +92,7 @@ class jomres_cache
 		else
 			$prefix = $jomresConfig_secret.$this->property_uid;
 		*/
-		$this->filename =$prefix."-"."-".$this->key.$registeredFlag."-".$receptionistFlag."-".$managerFlag."-".$superPropertyManagerFlag.".txt";
+		$this->filename =$prefix."-"."-".$this->key.$registeredFlag."-".$receptionistFlag."-".$managerFlag."-".$superPropertyManagerFlag."-".$this->lang.".txt";
 		}
 
 	function readCache()  
