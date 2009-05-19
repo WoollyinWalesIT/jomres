@@ -31,10 +31,15 @@ class html_functions
 		$link = str_replace("&amp;", "&", $link);
 		$link = str_replace("&", "&amp;", $link);
 		
-		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS.$image) )
-			$path=$eLiveSite.$image;
+		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.$image) )
+			{
+			if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS.$image) )
+				$path=$eLiveSite.$image;
+			else
+				$path=$jomresConfig_live_site.$path.$image;
+			}
 		else
-			$path=$jomresConfig_live_site.$path.$image;
+			$path=$jomresConfig_live_site.'/jomres/images/'.$image;
 		if (strlen( jomresGetParam( $_REQUEST, 'task', "" ))>0)
 			{
 			return '
