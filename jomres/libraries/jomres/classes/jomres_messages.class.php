@@ -32,6 +32,7 @@ class jomres_messages
 
 	function get_messages()
 		{
+		
 		foreach ($this->jomres_messages as $key => $val)
 			{
 			$index = "jomres_messages[".$key."]";
@@ -42,9 +43,9 @@ class jomres_messages
 
 	function set_message($message)
 		{
-		$counter = count( $this->jomres_messages);
+		$counter = count( $this->jomres_messages)+1;
 		$index = "jomres_messages[".$counter."]";
-		setcookie($index, htmlspecialchars($message));
+		setcookie($index, htmlspecialchars($message), time()+5 );
 		}
 	}
 

@@ -54,11 +54,11 @@ class j04910deleteproperty {
 			if (in_array($property_uid,$thisJRUser->authorisedProperties) && !JOMRES_SINGLEPROPERTY)
 		 		{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETED',_JOMRES_COM_MR_PROPERTY_DELETED,FALSE);
-				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$property_uid.'/');
-				rmdir(JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['ss_imageLocation'].$property_uid.'/');
-				dropImage($property_uid,"property");
+				emptyDir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
+				rmdir(JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS);
+				dropImage($property_uid,"property",0,false);
 
-				$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
+				$subject=_JOMRES_MR_AUDIT_DELETE_PROPERTY.$property_name;
 				sendAdminEmail(getPropertyName($property_uid),$saveMessage);
 
 				$query="DELETE FROM #__jomres_extraServices WHERE property_uid = '".$property_uid."'";
@@ -90,8 +90,11 @@ class j04910deleteproperty {
 				$query="DELETE FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."'";
 				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_PROPERTY',_JOMRES_MR_AUDIT_DELETE_PROPERTY,FALSE)))
 					{
-					$thisJRUser->check_currentproperty();
-					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."", '' ));
+					$resetProperty = $thisJRUser->check_currentproperty();
+					$jomres_messaging = new jomres_messages();
+					$jomres_messaging->set_message($saveMessage);
+					
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&thisProperty=".$resetProperty, '' ));
 					}
 				else
 					trigger_error ("Unable to delete from propertys table, mysql db failure", E_USER_ERROR);

@@ -2551,7 +2551,7 @@ function getGuestForPrint($guestUid)
  * Deletes an image
 #
 */
-function dropImage($defaultProperty,$imageType="",$itemUid="")
+function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = true)
 	{
 	global $Itemid;
 	$imageType		= getEscaped( jomresGetParam( $_REQUEST, 'imageType', '' ) );
@@ -2559,27 +2559,56 @@ function dropImage($defaultProperty,$imageType="",$itemUid="")
 
 	$defaultProperty=getDefaultProperty();
 	$saveMessage =jr_gettext('_JOMRES_FILE_DELETED',_JOMRES_FILE_DELETED,FALSE);
-	// Delete from the database and the file itself.
-	// image type is a check. Depending on the image type will depend on if the item is removed from
-	// the property database, the rooms or the resources
+	$fileFullPath="";
+	$returnTask="editProperty&propertyUid=".$defaultProperty;
+
 	switch ($imageType)
 		{
 		case 'property':
-			$fileFullPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$defaultProperty."_property_".$defaultProperty.".jpg";
-			$returnTask="editProperty&propertyUid=".$itemUid;
+			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty.".jpg";
+			$returnTask="editProperty&propertyUid=".$defaultProperty;
 		break;
 		case 'room':
-			$fileFullPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$defaultProperty."_room_".$itemUid.".jpg";
+			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid.".jpg";
 			$returnTask="editRoom&roomUid=".$itemUid;
 		break;
 		}
-	if (!unlink($fileFullPath))
+	if (strlen($fileFullPath)>0)
 		{
-		echo "Error, couldn't delete ".$fileFullPath;
-		error_logging("Error, couldn't delete ".$fileFullPath);
+		if (file_exists($fileFullPath) )
+			{
+			if (!unlink($fileFullPath))
+				{
+				error_logging("Error, couldn't delete ".$fileFullPath);
+				return false;
+				}
+			else
+				{
+				$jomres_messaging = new jomres_messages();
+				$jomres_messaging->set_message($saveMessage);
+				if ($redirectOnDone)
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), $saveMessage );
+				else
+					return true;
+				}
+			}
+		else
+			{
+			if ($redirectOnDone)
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), $saveMessage );
+			else
+				return false;
+			}
 		}
 	else
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), $saveMessage );
+		{
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message("Could not discerne filename");
+		if ($redirectOnDone)
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), '' );
+		else
+			return false;
+		}
 	}
 
 /**
@@ -2605,7 +2634,11 @@ function uploadPropertyImage()
 		$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
 	if ($checkedImage)
 		{
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), $saveMessage );
+		$cache = new jomres_cache();
+		$cache->trashCacheForProperty($defaultProperty);
+		$jomres_messaging = new jomres_messages();
+		$jomres_messaging->set_message($saveMessage);
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), "" );
 		}
 	else
 		echo "Error";
@@ -2647,6 +2680,10 @@ function uploadRoomImage()
 
 		if ($checkedImage)
 			{
+			$cache = new jomres_cache();
+			$cache->trashCacheForProperty($defaultProperty);
+			$jomres_messaging = new jomres_messages();
+			$jomres_messaging->set_message($saveMessage);
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&roomUid=$roomUid"), $saveMessage );
 			}
 		}

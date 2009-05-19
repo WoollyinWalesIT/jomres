@@ -370,6 +370,7 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$output=array();
 	}
 
+	
 
 // Manager specific tasks
 if (!defined('JOMRES_NOHTML'))
