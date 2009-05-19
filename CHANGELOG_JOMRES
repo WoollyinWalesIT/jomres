@@ -1,5 +1,7 @@
 Jomres 4beta3
 
+
+Added the Jomres -> Clickatell plugin to the core code.
 Changed many files to add Jomres messaging on updates/inserts etc
 fixed broken paths in 404sef com_jomres.php since update to v4.
 Modified list propertys so that tooltips are used for property images, and the thumbnails are displayed respecting the aspect ratios of the images.
@@ -18,6 +20,14 @@ Added check for task in language selector, if it's set to touch_templates, then 
 Added a check for contract_uid col in installer
 Fixed infinate recursion problem on emailing.
 Removed redundant call to jquery.bt.css
+Fixed issue where uploaded image wasn't showing in edit property page
+Fixed bug where current language not being detected properly so custom text wasn't being used.
+Fixed bug created in v4 preventing paging from working, caused by renaming "page" to "plistpage".
+Added htmlspecialchars to jr_gettext to try to prevent ' etc in strings from breaking the editinplace javascript.
+Added get_shortcode_to_longcode method to jomres lang class to try to associate shortcodes with long codes when detecting the current language.
+Modified the booking engine to remove the reliance on validto_ts and validfrom_ts as on first initialisation the arrival and departure dates aren't set, therefore you always get the message that the arrival date is incorrect, even if it's not. I'll revisit this again at a later date.
+Minor fix to the french lang file.
+Removed some &amp; s that broke the register property page
 
 Jomres 4beta2
 
