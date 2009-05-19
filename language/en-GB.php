@@ -3289,7 +3289,7 @@ define('_JOMRES_COM_A_CANCEL','Cancel');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_BLACKBOOKING_DESC','Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the "apply" button to re-check room availability. <br/> 
+define('_JOMRES_FRONT_BLACKBOOKING_DESC','Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
 <br/> 
 Choose the room(s) you wish to take out of service. <br>If a room does not have a check mark against it, it cannot be included in the black booking until any outstanding bookings have been completed/cancelled.<br/> ');
 /**
@@ -6414,6 +6414,5 @@ Use your userid, password and api_id to populate the fields above.<br/>
 
 <br/>
 ");
-
 
 ?>
