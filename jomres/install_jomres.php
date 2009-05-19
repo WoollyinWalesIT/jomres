@@ -52,8 +52,10 @@ if (!file_exists('integration.php') )
 	
 require_once( 'integration.php' );
 
-
-
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php") )
+	@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php");
+	
+	
 global $jomres_systemLog_path,$jomresConfig_absolute_path,$jrConfig,$lkey;
 $jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
 
@@ -231,6 +233,24 @@ function doTableUpdates()
 		alterInvoicesPropertyuidCol();
 	if (!checkInvoicesContractuidColExists() )
 		alterInvoicesContractuidCol();
+	createClickatellMessagesTable();
+	}
+
+function createClickatellMessagesTable()
+	{
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_sms_clickatell_messages` (
+	  id int(10) NOT NULL auto_increment,
+	  username  varchar(20) NOT NULL default '',
+	  number varchar(25) NOT NULL default '',
+	  message varchar(160) NOT NULL default '',
+	  property_uid int(10) NOT NULL default '0',
+	  send_time datetime NOT NULL,
+	  ack INT( 3 ) NULL DEFAULT '0',
+	  apiMsgid VARCHAR( 255 ) NOT NULL,
+	  PRIMARY KEY  (id)
+	)";
+	$result=doInsertSql($query,'');
+	return $result;
 	}
 
 function checkInvoicesContractuidColExists()
@@ -663,6 +683,19 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_sms_clickatell_messages` (
+		id int(10) NOT NULL auto_increment,
+		username  varchar(20) NOT NULL default '',
+		number varchar(25) NOT NULL default '',
+		message varchar(160) NOT NULL default '',
+		property_uid int(10) NOT NULL default '0',
+		send_time datetime NOT NULL,
+		ack INT( 3 ) NULL DEFAULT '0',
+		apiMsgid VARCHAR( 255 ) NOT NULL,
+		PRIMARY KEY  (id)
+	)";
+	doInsertSql($query,"");
+
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
 		`coupon_id` INT NOT NULL AUTO_INCREMENT ,
