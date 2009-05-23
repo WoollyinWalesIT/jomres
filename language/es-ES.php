@@ -6378,6 +6378,13 @@ Use your userid, password and api_id to populate the fields above.<br/>
 
 <br/>
 ");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO','Use global currency?');
 
-
+/**
+* @ignore
+*/
+define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC','Set this to yes to force all properties to use the same currency (e.g. & # 8 3 6 4 ;) ');
 ?>
