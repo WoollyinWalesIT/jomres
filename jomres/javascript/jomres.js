@@ -381,13 +381,12 @@ function blockInterface(field,fadetime)
 
 	jQuery('div.block_ui_bookingform').block({
 	message: '<img src="'+rel_path+'/jomres/images/31.gif" /> <h3>'+message+'</h3>', 
-	css: { 
+	css:	{
             padding: '15px', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-		
-        } });
-
+			'-webkit-border-radius': '10px', 
+			'-moz-border-radius': '10px'
+			}
+		});
 	}
 
 	
