@@ -53,7 +53,6 @@ class jrportal_sms_clickatellhandler
 			}
 		else
 			{
-			
 			return false;
 			}
 		//open connection
