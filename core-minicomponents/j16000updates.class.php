@@ -41,7 +41,7 @@ class j16000updates
 		$this->updateFolder=JOMRESPATH_BASE."/updates";
 		$this->overwriteAllowed = true;
 		$this->movedFileLog = array();
-		$this->debugging = true;
+		$this->debugging = false;
 		$this->test_download = false;
 		// Use your own FTP info
 		$this->ftp_user_name = 'userid';
