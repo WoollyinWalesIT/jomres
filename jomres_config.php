@@ -170,5 +170,6 @@ $mrConfig['bookingform_requiredfields_tel'] ="1";
 $mrConfig['bookingform_requiredfields_mobile'] ="1";
 $mrConfig['bookingform_requiredfields_email'] ="1";
 
-
+$mrConfig['bookingform_roomlist_showdisabled'] ="1";
+$mrConfig['bookingform_roomlist_showmaxpeople'] ="1";
 ?>

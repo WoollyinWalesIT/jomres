@@ -1384,6 +1384,10 @@ function hotelSettings()
 	$lists['dtv_dow_saturday_is_percentage'] 	= jomresHTML::selectList( $yesno, 'cfg_dtv_dow_saturday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['dtv_dow_saturday_is_percentage'] );
 	$lists['dtv_dow_sunday_is_percentage'] 		= jomresHTML::selectList( $yesno, 'cfg_dtv_dow_sunday_is_percentage', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['dtv_dow_sunday_is_percentage'] );
 
+	$lists['bookingform_roomlist_showdisabled'] 		= jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showdisabled', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['bookingform_roomlist_showdisabled'] );
+	$lists['bookingform_roomlist_showmaxpeople'] 	= jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showmaxpeople', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['bookingform_roomlist_showmaxpeople'] );
+
+	
 	$componentArgs=array();
 	$componentArgs['mrConfig']=$mrConfig;
 	$componentArgs['lists']=$lists;
