@@ -3920,11 +3920,11 @@ define('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY','Guests');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_CLICKHERECAPTION','Click now to add this room to your selection');
+define('_JOMRES_AJAXFORM_CLICKHERECAPTION','Add to your selection');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE','Click now to remove this room from your selection');
+define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE','Remove from your selection');
 /**
 * @ignore
 */
@@ -6415,4 +6415,15 @@ Use your userid, password and api_id to populate the fields above.<br/>
 <br/>
 ");
 
-?>
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED','Booking form room list show disabled access');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show max people');
+/**
+* @ignore
+*/
+define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");

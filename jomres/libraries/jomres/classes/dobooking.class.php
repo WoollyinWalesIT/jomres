@@ -297,8 +297,12 @@ class jomres_booking
 		if (!isset($mrConfig['cfg_weekenddays']))
 			$mrConfig['cfg_weekenddays']					= "5,6";
 		$this->cfg_weekenddays								= explode(",",$mrConfig['weekenddays']);
-		//$this->cfg_bookingform_roomlist_showroomno 			= $mrConfig['bookingform_roomlist_showroomno'];
-		//$this->cfg_bookingform_roomlist_showroomname 		= $mrConfig['bookingform_roomlist_showroomname'];
+		$this->cfg_bookingform_roomlist_showroomno 			= $mrConfig['bookingform_roomlist_showroomno'];
+		$this->cfg_bookingform_roomlist_showroomname 		= $mrConfig['bookingform_roomlist_showroomname'];
+		
+		$this->cfg_bookingform_roomlist_showdisabled 		= $mrConfig['bookingform_roomlist_showdisabled'];
+		$this->cfg_bookingform_roomlist_showmaxpeople 		= $mrConfig['bookingform_roomlist_showmaxpeople'];
+		
 		//$this->cfg_bookingform_roomlist_showtarifftitle 	= $mrConfig['bookingform_roomlist_showtarifftitle'];
 
 		// $this->cfg_bookingform_overlib_tariff_title_show 	= $mrConfig['bookingform_overlib_tariff_title_show'];
@@ -913,6 +917,8 @@ class jomres_booking
 			$output['COUPON_BUTTON']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON',_JOMRES_AJAXFORM_COUPON_APPLYBUTTON,false,false));
 			$output['COUPON_INSTRUCTIONS']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS',_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS));
 			$output['COUPON_DISCOUNT_VALUE']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
+
+			$output['ESTIMATEWARNING']=$this->sanitiseOutput(jr_gettext('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING));
 
 			return $output;
 			}
@@ -3502,7 +3508,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		{
 		if ($this->booker_class == "100")
 			return $roomAndTariffArray;
-		$returnRoomsLimit=$this->cfg_returnRoomsLimit;
+		$returnRoomsLimit=(int)$this->cfg_returnRoomsLimit;
 		$tmpArray=array();
 		$tariffsArray=array();
 		foreach ($roomAndTariffArray as $rt)
@@ -3515,6 +3521,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		foreach ($tariffsArray as $key=>$val)
 			{
 			$tariffuid=$key;
+			
 			for ($i=0;$i<$returnRoomsLimit;$i++)
 				{
 				$roomuid=@$val[$i];
@@ -3533,8 +3540,11 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	function generateRoomsList($roomAndTariffArray)
 		{
 		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table class="bformleftcol" valign="top" width="100%">';
-		if ($this->cfg_returnRoomsLimit!="0" && $this->cfg_returnRoomsLimit!="")
+		if ((int)$this->cfg_returnRoomsLimit > 0 )
+			{
+			$this->setErrorLog("generateRoomsList:: Limiting rooms list ");
 			$roomAndTariffArray=$this->limitRoomsList($roomAndTariffArray);
+			}
 		$this->setErrorLog("generateRoomsList::Generating rooms list");
 		$return_output .= $this->makeTariffHeaders();
 		
@@ -3632,8 +3642,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 	function makeRoomTariffDetails($roomuid,$tariffuid)
 		{
 		global $jomresConfig_live_site;
-		if (file_exists( JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.$this->property_uid.'_room_'.$roomuid.'.jpg' ) )
-			$this->roomImagePath=$jomresConfig_live_site.'/jomres/uploadedimages/'.$this->property_uid.'_room_'.$roomuid.'.jpg';
+		if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$this->property_uid.'_room_'.$roomuid.'.jpg' ) )
+			$this->roomImagePath=JOMRES_IMAGELOCATION_RELPATH.$this->property_uid.'_room_'.$roomuid.'.jpg';
 		else
 			$this->roomImagePath=$jomresConfig_live_site."/jomres/images/noimage.gif";
 		$room_number=$this->allPropertyRooms[$roomuid]['room_number'];
@@ -3735,23 +3745,30 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		$room_imagetd="";
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
 			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30"></td>';
-			
+
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30"></td>';
 		
-		//$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">   // Disabled because it causes the rooms list to load twice (thereby making the room deselect itself
-		$overlib='<tr>
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>
-			'.$room_imagetd.'
-			'.$room_imagetypetd.'
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNAME'].'</a></td>
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMTYPE'].'</a></td>
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>
-			<td>'.$this->cfg_currency.$currfmt->get_formatted($tariffStuff['RATEPERNIGHT']).'</td>
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>
-			<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['MAXPEOPLE'].'</a></td>
-			</tr>';
+		//$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">   // Disabled because it causes the rooms list to load twice (thereby making the room deselect itself)
+		$overlib='<tr>';
+
+		
+		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$caption.'</a></td>';
+		if ($this->cfg_bookingform_roomlist_showroomno == "1")
+			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>';
+		$overlib.=$room_imagetd;
+		$overlib.=$room_imagetypetd;
+		if ($this->cfg_bookingform_roomlist_showroomname == "1")
+			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNAME'].'</a></td>';
+		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMTYPE'].'</a></td>';
+		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
+		$overlib.='<td>'.$this->cfg_currency.$currfmt->get_formatted($tariffStuff['RATEPERNIGHT']).'</td>';
+		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
+			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
+		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
+			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['MAXPEOPLE'].'</a></td>';
+		$overlib.='</tr>';
 
 		return $overlib;
 		}
@@ -4024,22 +4041,26 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypeTH="<th>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</th>";
 			
-		
-			
-		$return_output='<tr>
-			<th>'.$roomRow['HEADER_ROOMNUMBER'].'</th>
-			'.$room_imageTH.'
-			'.$room_imagetypeTH.'
-			<th>'.$roomRow['HEADER_ROOMNAME'].'</th>
-			<th>'.$roomRow['HEADER_ROOMTYPE'].'</th>
-			<th>'.$tariffStuff['HTITLE'].'</th>
-			<th>'.$tariffStuff['HRATEPERNIGHT'].'</th>
-			<th>'.$roomRow['HEADER_DISABLEDACCESS'].'</th>
-			<th>'.$roomRow['HEADER_MAXPEOPLE'].'</th>
-			</tr>';
+		$return_output='<tr>';
+			$return_output.='<th>&nbsp;</th>';
+			if ($this->cfg_bookingform_roomlist_showroomno == "1")
+				$return_output.='<th>'.$roomRow['HEADER_ROOMNUMBER'].'</th>';
+			$return_output.=''.$room_imageTH.'';
+			$return_output.=''.$room_imagetypeTH.'';
+			if ($this->cfg_bookingform_roomlist_showroomname == "1")
+				$return_output.='<th>'.$roomRow['HEADER_ROOMNAME'].'</th>';
+			$return_output.='<th>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
+			$return_output.='<th>'.$tariffStuff['HTITLE'].'</th>';
+			$return_output.='<th>'.$tariffStuff['HRATEPERNIGHT'].'</th>';
+			if ($this->cfg_bookingform_roomlist_showdisabled == "1")
+				$return_output.='<th>'.$roomRow['HEADER_DISABLEDACCESS'].'</th>';
+			if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
+				$return_output.='<th>'.$roomRow['HEADER_MAXPEOPLE'].'</th>';
+			$return_output.='</tr>';
 		
 		return $return_output;
 		}
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//

@@ -73,29 +73,60 @@ class j00501bookings1 {
 		$configurationPanel->setmiddle($lists['showExtras']);
 		$configurationPanel->setright(_JOMRES_COM_A_EXTRAS_DESC);
 		$configurationPanel->insertSetting();
-		if ( $mrConfig['singleRoomProperty'] != "1" )
+		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE);
-			$configurationPanel->setmiddle($lists['showRoomImageInBookingFormOverlib']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE);
-			$configurationPanel->setmiddle($lists['showRoomTypeImageInBookingForm']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_SMOKING);
-			$configurationPanel->setmiddle($lists['showSmoking']);
-			$configurationPanel->setright(_JOMRES_COM_A_SMOKING_DESC);
-			$configurationPanel->insertSetting();
+			if ( $mrConfig['singleRoomProperty'] != "1" )
+				{
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE);
+				$configurationPanel->setmiddle($lists['showRoomImageInBookingFormOverlib']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE);
+				$configurationPanel->setmiddle($lists['showRoomTypeImageInBookingForm']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO);
+				$configurationPanel->setmiddle($lists['bookingform_roomlist_showroomno']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_SMOKING_OPTION);
-			$configurationPanel->setmiddle($smokingOptionDropdownList);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME);
+				$configurationPanel->setmiddle($lists['bookingform_roomlist_showroomname']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED);
+				$configurationPanel->setmiddle($lists['bookingform_roomlist_showdisabled']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE);
+				$configurationPanel->setmiddle($lists['bookingform_roomlist_showmaxpeople']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				
+				/*
+				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE);
+				$configurationPanel->setmiddle($lists['bookingform_roomlist_showtarifftitle']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				*/
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_SMOKING);
+				$configurationPanel->setmiddle($lists['showSmoking']);
+				$configurationPanel->setright(_JOMRES_COM_A_SMOKING_DESC);
+				$configurationPanel->insertSetting();
+				
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_SMOKING_OPTION);
+				$configurationPanel->setmiddle($smokingOptionDropdownList);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				}
 			}
-			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
 			$configurationPanel->setleft(_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO);

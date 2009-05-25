@@ -6364,5 +6364,15 @@ Use your userid, password and api_id to populate the fields above.<br/>
 <br/>
 ");
 
-
-?>
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED','Booking form room list show disabled access');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show max people');
+/**
+* @ignore
+*/
+define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
