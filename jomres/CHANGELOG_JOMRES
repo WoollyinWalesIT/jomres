@@ -1,3 +1,13 @@
+Jomres 4stable
+
+Fixed google map bug
+Added more options to allow greater configuration of the rooms list in the booking form.
+Switched off debugging in updater
+Modified check for jomres_availability cookie before setting the arrival date to 01-01-2009
+Added missing declarations to spanish lang file
+Fixed ie7 js error bug
+
+
 Jomres 4beta3
 
 Added the Jomres -> Clickatell plugin to the core code.
