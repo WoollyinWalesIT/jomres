@@ -112,10 +112,12 @@ class j02990showconfirmation {
 			$booking_parts['TAX']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['tax']);
 		else
 			$booking_parts['TAX']		=	"";
-		
-		
-		$booking_parts['HCOUPON_DISCOUNTVALUE']	=	jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE);
-		$booking_parts['COUPON_DISCOUNT_VALUE']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['coupon_discount_value']);
+
+		if ((float)$bookingDeets['coupon_discount_value'] > 0.0)
+			{
+			$booking_parts['HCOUPON_DISCOUNTVALUE']	=	jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE);
+			$booking_parts['COUPON_DISCOUNT_VALUE']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['coupon_discount_value']);
+			}
 
 		if ($bookingDeets['booking_discounted'] == true)
 			{

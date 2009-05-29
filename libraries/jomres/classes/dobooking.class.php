@@ -913,10 +913,6 @@ class jomres_booking
 			$output['LOOKRIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_LOOKRIGHT',_JOMRES_BOOKINGFORM_LOOKRIGHT,false,false));
 			$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
 			
-			$output['COUPON_TITLE']=$this->sanitiseOutput(jr_gettext('_JRPORTAL_COUPONS_CODE',_JRPORTAL_COUPONS_CODE,false,false));
-			$output['COUPON_BUTTON']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON',_JOMRES_AJAXFORM_COUPON_APPLYBUTTON,false,false));
-			$output['COUPON_INSTRUCTIONS']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS',_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS));
-			$output['COUPON_DISCOUNT_VALUE']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
 
 			$output['ESTIMATEWARNING']=$this->sanitiseOutput(jr_gettext('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING));
 
@@ -1043,6 +1039,16 @@ class jomres_booking
 	*/
 	function initCoupons()
 		{
+		$this->use_coupons = false;
+		$query="SELECT `coupon_id` FROM #__jomres_coupons WHERE property_uid = $this->property_uid";
+		$result = doSelectSql($query);
+		if (count($result)>0)
+			{
+			$this->setErrorLog("initCoupons:: Found ".count($result)." coupons for property uid ".$this->property_uid.". Enabling coupon output");
+			$this->use_coupons = true;
+			}
+		else
+			$this->setErrorLog("initCoupons:: No coupons found for ".$this->property_uid." property ");
 		$this->coupon_id = "";
 		$this->coupon_code = "";
 		$this->coupon_details = array();
