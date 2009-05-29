@@ -49,24 +49,34 @@ class j16000edit_template {
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 		
+		//$onDisk = file_get_contents($custom_templates->default_template_files_folder.JRDS.$templatename );
+		/*
+		<!-- <td>
+			<textarea class="inputbox" cols="75" rows="100" name="templatedata" readonly="yes" disabled="yes">'.$output['TEMPLATEHTML'].'</textarea>
+		</td> -->
+		*/
+		
+		
 		// We can't use patTemplate to output the template data here because.....it tries to parse the data from the template file _as_ it's own template data. No biggie
 		// Back to good ol' "echo" in this script.
 		$outputString = '
 		<form action="'.JOMRES_SITEPAGE_URL_ADMIN.'" method="post" name="adminForm">
 		<table class="jradmin_innerwrapper">
 			<tr>
-				<td class="jomres_title">'.$output['PAGETITLE'].'</td>
+				<td class="jomres_title" colspan = "2" >'.$output['PAGETITLE'].'</td>
 			</tr>
 			<tr>
-				<td>'.$output['JOMRESTOOLBAR'].'</td>
+				<td colspan = "2" >'.$output['JOMRESTOOLBAR'].'</td>
 			</tr>
 			<tr>
-				<td>'.$output['TEMPLATENAME'].'</td>
+				<td colspan = "2" >'.$output['TEMPLATENAME'].'</td>
 			</tr>
 			<tr>
-				<td>
-					<textarea class="inputbox" cols="100" rows="100" name="templatedata">'.$output['TEMPLATEHTML'].'</textarea>
+				<td colspan = "2" >
+					<textarea class="inputbox" cols="150" rows="100" name="templatedata">'.$output['TEMPLATEHTML'].'</textarea>
 				</td>
+
+				
 			</tr>
 		</table>
 

@@ -6427,3 +6427,24 @@ define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show ma
 * @ignore
 */
 define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
+
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_DB','Database template Last edited');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_DISK','Disk template Last edited');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_WARNINGICON','Database template warning');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_WARNINGICON_TEXT','Database template may be out of date');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_WARNING','If there is an icon against a template, then Jomres has detected that the template stored in the database <strong><i>may</i></strong> be older than that stored on disk, in which case it is possible that the template has been updated in a newer version of Jomres. If this is the case, then it is possible that your template may not be benefiting from a new feature in Jomres, or that existing functionality may no longer work as expected, and you should compare the file on disk to your customisations to ensure that you are not missing out on new features.');

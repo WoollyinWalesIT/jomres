@@ -32,7 +32,7 @@ class j16000listTemplates
 			{
 			$this->template_touchable=false; return;
 			}
-
+		global $jomresConfig_live_site;
 		$output=array();
 
 		$output['TITLE']=_JOMRES_COM_TEMPLATEEDITING_TITLE;
@@ -40,8 +40,10 @@ class j16000listTemplates
 		
 		$output['HTEMPLATENAME']=_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME;
 		$output['HCUSTOMISED']=_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED;
-		
-		
+		$output['HLAST_EDITED_DB']=_JOMRES_LASTEDITED_DB;
+		$output['HLAST_EDITED_DISK']=_JOMRES_LASTEDITED_DISK;
+		$output['HLAST_WARNINGICON']=_JOMRES_LASTEDITED_WARNINGICON;
+		$output['EDITWARNINGNOTE']=_JOMRES_LASTEDITED_WARNING;
 		
 		$custom_templates = new jomres_custom_template_handler();
 		
@@ -78,8 +80,21 @@ class j16000listTemplates
 						$r=array();
 						$r['EDITED']=_JOMRES_COM_MR_NO;
 						if ($custom_templates->hasThisTemplateBeenCustomised($doc))
+							{
+							$r['WARNINGICON']="";
+							$r['LAST_EDITED_DISK'] = date ("Y-m-d H:i:s", filemtime($frontendTemplatesFolder.JRDS.$doc));
+							
+							$query = "SELECT last_edited FROM #__jomres_custom_templates WHERE `template_name` = '".$doc."'";
+							$r['LAST_EDITED_DB'] = doSelectSql($query,1);
+							if ($r['LAST_EDITED_DB'] != "0000-00-00 00:00:00")
+								{
+								if ($r['LAST_EDITED_DISK'] > $r['LAST_EDITED_DB'])
+									$r['WARNINGICON']=_JOMRES_LASTEDITED_WARNINGICON_TEXT;
+								}
+							else
+								$r['LAST_EDITED_DB'] = _JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE;
 							$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
-				
+							}
 						$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
 						$rows[]=$r;
 						}
