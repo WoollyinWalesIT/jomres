@@ -56,6 +56,7 @@ class j00030search {
 		$searchRestarted=false;
 		$showSearchOptions=true;
 
+		/*
 		if (!defined(_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) )
 			{
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.$jomresConfig_lang.'.php')) {
@@ -64,7 +65,9 @@ class j00030search {
 					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.'en-GB.php');
 				}
 			}
-		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
+		*/
+		
+		
 
 		global $MiniComponents;
 
@@ -81,9 +84,14 @@ class j00030search {
 			}
 		else
 			{
-			$customTextObj = new custom_text();
+			//$customTextObj = new custom_text();
 			$showSearchOptions=true;
+			$jomreslang= new jomres_language();
+			$jomreslang->get_language('xx');
+			$customTextObj = new custom_text();
 			}
+			
+		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
 		//$runningMiniComp=false;
 		if ($calledByModule == "" && isset($_REQUEST['calledByModule']) )
 			{
