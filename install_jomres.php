@@ -236,9 +236,32 @@ function doTableUpdates()
 	createClickatellMessagesTable();
 	if (!checkPropertysTimestampColExists() )
 		alterPropertysTimestampCol();
+	if (!checkCustomTemplatesTimestampColExists() )
+		alterCustomTemplatesTimestampCol();
 	}
 
 
+function alterCustomTemplatesTimestampCol()
+	{
+	echo "Editing __jomres_custom_templates table adding timestamp column<br>";
+	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `last_edited` DATETIME NOT NULL AFTER `value` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_custom_templates timestamp</b><br>";
+	}
+
+function checkCustomTemplatesTimestampColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomres_custom_templates LIKE 'timestamp'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+	
+	
 function alterPropertysTimestampCol()
 	{
 	echo "Editing __jomres_propertys table adding timestamp column<br>";
@@ -753,6 +776,7 @@ function createJomresTables()
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`template_name` VARCHAR( 255 ) ,
 		`value` TEXT NULL,
+		`last_edited` datetime NOT NULL,
 		PRIMARY KEY ( `uid` )
 		) ";
 	$result=doInsertSql($query,"");
