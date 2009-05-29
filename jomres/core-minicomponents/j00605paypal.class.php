@@ -43,6 +43,7 @@ class j00605paypal {
 			{
 			$this->template_touchable=false; return;
 			}
+
 		global $jomresConfig_live_site,$jomressession,$jomresConfig_sitename,$jrConfig,$tmpBookingHandler;
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		gateway_log(serialize($bookingdata));
@@ -50,6 +51,7 @@ class j00605paypal {
 		$plugin="paypal";
 		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$bookingdata['property_uid']."' AND plugin = '".$plugin."' ";
 		$settingsList=doSelectSql($query);
+
 		foreach ($settingsList as $set)
 			{
 			$settingArray[$set->setting]=$set->value;
@@ -58,7 +60,21 @@ class j00605paypal {
 			{
 			$settingArray['currencycode']=$jrConfig['globalCurrencyCode'];
 			}
-		if (count($settingsList)>0)
+			
+		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings->get_paypal_settings();
+		
+		if ($paypal_settings->paypalConfigOptions['override'] == "1")
+			{
+			$this->messagelog[]="<b>Overriding old paypal settings</b>";
+			$settingArray['usesandbox']=$paypal_settings->paypalConfigOptions['usesandbox'];
+			$settingArray['currencycode']=$paypal_settings->paypalConfigOptions['currencycode'];
+			$settingArray['paypalemail']=$paypal_settings->paypalConfigOptions['email'];
+			$settingArray['pendingok'] = "0";
+			$settingArray['receiveIPNemail'] = "1";
+			}
+			
+		if (count($settingArray)>0)
 			{
 			$this->ipn_log_file=JOMRESCONFIG_ABSOLUTE_PATH.'/media/ipn_log_file.txt';
 			if ($settingArray['usesandbox']=="1")
@@ -73,7 +89,6 @@ class j00605paypal {
 			$this_script = JOMRES_SITEPAGE_URL.'&task=completebk&plugin='.$plugin.'&jsid='.$jomressession;
 
 			$bookingDeets=gettempBookingdata();
-			
 
 			$guestDeets=getbookingguestdata();
 			$guestCountry=$guestDeets['country'];
@@ -137,6 +152,7 @@ class j00605paypal {
 
 
 			}
+		
 		}
 
 
