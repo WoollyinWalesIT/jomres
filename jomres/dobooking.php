@@ -155,18 +155,28 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$bkg->setBookerClass("100");
 
 	$bkg-> initCoupons();
-	$output['COUPON_CODE']="";
-	if ($amend_contract && isset($_REQUEST['contractuid']) && $thisJRUser->userIsManager && in_array( (int)$selectedProperty,$thisJRUser->authorisedProperties) )
+	$coupons=array();
+	if ($bkg->use_coupons)
 		{
-		$query = "SELECT coupon_id FROM #__jomres_contracts WHERE contract_uid = ".(int)$_REQUEST['contractuid']."";
-		$coupon_id = doSelectSql($query,1);
-		if ($coupon_id>0)
+		$coupon_output['COUPON_TITLE']=$bkg->sanitiseOutput(jr_gettext('_JRPORTAL_COUPONS_CODE',_JRPORTAL_COUPONS_CODE,false,false));
+		$coupon_output['COUPON_BUTTON']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON',_JOMRES_AJAXFORM_COUPON_APPLYBUTTON,false,false));
+		$coupon_output['COUPON_INSTRUCTIONS']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS',_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS));
+		$coupon_output['COUPON_DISCOUNT_VALUE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
+		
+		$coupon_output['COUPON_CODE']="";
+		if ($amend_contract && isset($_REQUEST['contractuid']) && $thisJRUser->userIsManager && in_array( (int)$selectedProperty,$thisJRUser->authorisedProperties) )
 			{
-			$query="SELECT `coupon_code` FROM #__jomres_coupons WHERE coupon_id = ".(int)$coupon_id." AND property_uid = ".(int)$selectedProperty."";
-			$coupon_code = doSelectSql($query,1);
-			$bkg->saveCoupon($coupon_code);
-			$output['COUPON_CODE']=$coupon_code;
+			$query = "SELECT coupon_id FROM #__jomres_contracts WHERE contract_uid = ".(int)$_REQUEST['contractuid']."";
+			$coupon_id = doSelectSql($query,1);
+			if ($coupon_id>0)
+				{
+				$query="SELECT `coupon_code` FROM #__jomres_coupons WHERE coupon_id = ".(int)$coupon_id." AND property_uid = ".(int)$selectedProperty."";
+				$coupon_code = doSelectSql($query,1);
+				$bkg->saveCoupon($coupon_code);
+				$coupon_output['COUPON_CODE']=$coupon_code;
+				}
 			}
+		$coupons[] = $coupon_output;
 		}
 		
 	if ($bkg->cfg_singleRoomProperty != "1")
@@ -404,6 +414,9 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
+	
+	$tmpl->addRows( 'coupons',$coupons);
+	
 	$tmpl->addRows( 'customfields',$customFields);
  	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'guesttypes',$guestTypes);
