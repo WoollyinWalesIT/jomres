@@ -3,15 +3,24 @@
 {JOMRESTOOLBAR}
 <p>{TITLE}</p>
 <p>{INSTRUCTIONS}</p>
+<p>{EDITWARNINGNOTE}</p>
 <table class="jradmin_table" border="0">
 	<tr>
 		<th class="jomres_title">{HTEMPLATENAME}</th>
 		<th class="jomres_title">{HCUSTOMISED}</th>
+		<th class="jomres_title">{HLAST_EDITED_DISK}</th>
+		<th class="jomres_title">{HLAST_EDITED_DB}</th>
+		<th class="jomres_title">{HLAST_WARNINGICON}</th>
+		
+		
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
 		<td class="jradmin_field_la">{EDITLINK}</td>
 		<td class="jradmin_field_la">{EDITED}</td>
+		<td class="jradmin_field_la">{LAST_EDITED_DISK}</td>
+		<td class="jradmin_field_la">{LAST_EDITED_DB}</td>
+		<td class="jradmin_field_la">{WARNINGICON}</td>
 	</tr>
 	</patTemplate:tmpl>
 </table>

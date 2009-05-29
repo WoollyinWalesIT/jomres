@@ -36,12 +36,13 @@ class j16000save_template
 		
 		$templatename		= jomresGetParam( $_REQUEST, 'templatename', '' );
 		$templateData		= $_REQUEST['templatedata'];
-
+		$last_edited		= date( 'Y-m-d H:i:s' );
+		
 		$custom_templates = new jomres_custom_template_handler();
 		if ($custom_templates->hasThisTemplateBeenCustomised($templatename))
-			$query = "UPDATE #__jomres_custom_templates SET `value`='".$templateData."' WHERE template_name = '".$templatename."'";
+			$query = "UPDATE #__jomres_custom_templates SET `value`='".$templateData."',`last_edited`='".$last_edited."' WHERE template_name = '".$templatename."'";
 		else
-			$query = "INSERT INTO #__jomres_custom_templates (`template_name`,`value`) VALUES ( '".$templatename."','".$templateData."')";
+			$query = "INSERT INTO #__jomres_custom_templates (`template_name`,`value`,`last_edited`) VALUES ( '".$templatename."','".$templateData."','".$last_edited."')";
 		$result = doInsertSql($query,'');
 		
 		if ($templatename == "jomrescss.css")

@@ -243,16 +243,16 @@ function doTableUpdates()
 
 function alterCustomTemplatesTimestampCol()
 	{
-	echo "Editing __jomres_custom_templates table adding timestamp column<br>";
+	echo "Editing __jomres_custom_templates table adding last_edited column<br>";
 	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `last_edited` DATETIME NOT NULL AFTER `value` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_custom_templates timestamp</b><br>";
+		echo "<b>Error, unable to add __jomres_custom_templates last_edited</b><br>";
 	}
 
 function checkCustomTemplatesTimestampColExists()
 	{
 	$guestsTimestampInstalled=true;
-	$query="SHOW COLUMNS FROM #__jomres_custom_templates LIKE 'timestamp'";
+	$query="SHOW COLUMNS FROM #__jomres_custom_templates LIKE 'last_edited'";
 	$result=doSelectSql($query);
 	if (count($result)>0)
 		{
