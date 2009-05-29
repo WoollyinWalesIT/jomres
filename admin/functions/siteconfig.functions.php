@@ -186,7 +186,7 @@ function saveSiteConfig (  )
 				else
 					$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
 				$result=doInsertSql($query,'');
-				$result=unlink($jomresConfig_absolute_path.'/media/key.php');
+				$result=unlink($jomresConfig_absolute_path.'/jomres/temp/key.php');
 				}
 			else
 				{
