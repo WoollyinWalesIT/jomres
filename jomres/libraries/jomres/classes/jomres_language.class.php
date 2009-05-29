@@ -80,18 +80,21 @@ class jomres_language
 					}
 				}
 			}
-			
+
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		if ( !array_key_exists($jomresConfig_lang,$langfile_crossref) )
 			$jomresConfig_lang				= $this->get_shortcode_to_longcode($jomresConfig_lang);
-
+		//setcookie ('jomreslang', "", time() - 3600);
+		//var_dump($jomresConfig_lang);			exit;
+		//
 		SetCookie("jomreslang", $jomresConfig_lang, time()+(60*60*24*365),"/");
 		jomres_cmsspecific_setlanguage($jomresConfig_lang);
 		$this->lang=$jomresConfig_lang;
 		}
 		
-	function get_language($propertytype)
+	function get_language($propertytype = "")
 		{
+		
 		if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php'))
 			{
 			require(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php');
@@ -104,6 +107,7 @@ class jomres_language
 				}
 			else
 				{
+				
 				if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
 					{
 					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
@@ -227,6 +231,7 @@ class jomres_language
 		$langs['sl']='sl-SI';
 		$langs['sr']='sr-YU';
 		$langs['zh']='zh-CN';
+		$langs['no']='nb-NO';
 		if (array_key_exists($lang,$langs) )
 			return $langs[$lang];
 		return "en-GB";
