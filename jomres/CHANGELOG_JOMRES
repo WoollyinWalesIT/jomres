@@ -1,3 +1,14 @@
+Jomres 4.0.1
+
+Added ability for Jomres to detect when a template on disk is newer than the last time the template in the db was edited and warn that it may have been updated.
+Added code to detect usage of coupon codes. If there are no codes for the property, then the coupon input isn't shown in the booking form. Note that the booking form templates (dobooking.html and dobooking_srp.html have changed as a result).
+Modified site config to remove key file on save, previous path was incorrect.
+Tweaks to multilanguage handling to correctly pull and use the language file appropriate when calling a module but not showing Jomres proper.
+Removed default date settings from list propertys book now link as no longer required as validto and from timestamps no longer used in booking engine.
+Fixed issue in paypal gateway where settings overridden weren't being pulled from the db correctly.
+
+
+
 Jomres 4stable
 
 Fixed google map bug
