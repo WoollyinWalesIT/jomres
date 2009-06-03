@@ -1,5 +1,5 @@
 ﻿<patTemplate:tmpl name="pageoutput">
-<style>
+<style type="text/css">
 .messages{
 	width: 100%;
 	background: {ERRORBACKGROUNDCOLOUR};
@@ -9,12 +9,12 @@
 	border-bottom: 1px solid #636363;
 	text-indent: 5px;
 	}
-	
+
 .roomalert_on
 	{
 	background: {ERRORBACKGROUNDCOLOUR};
 	}
-	
+
 .errorbackground {
 	color: #000;
 	background-color: {ERRORBACKGROUNDCOLOUR};
@@ -130,20 +130,20 @@ function dateStatus(date) {
 								</table>
 								</patTemplate:tmpl>
 								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
-									<tr>				
+									<tr>
 										<th colspan="2">
 											{BILLING_ROOMTOTAL}
 										</th>
 									</tr>
 									<tr>
 										<td colspan="2">
-											<div id="availRooms" style="text-align:center;"><b>{AVAILABLEROOMS}</b></div>
-										</td>	
+											<div id="availRooms" style="text-align:center;">{AVAILABLEROOMS}</div>
+										</td>
 									</tr>
 									<tr>
 										<td colspan="2">
 											<div id="discount" class="jomres_message">&nbsp;</div>
-										</td>	
+										</td>
 									</tr>
 									<tr>
 										<td>
@@ -190,7 +190,7 @@ function dateStatus(date) {
 					<tr>
 						<td valign="top">
 							<table class="bform_table_totals" border="0" width="100%" cellpadding="0" cellspacing="0">
-								<tr>				
+								<tr>
 									<th colspan="6">{PRICE_SUMMARY}</th>
 								</tr>
 								<tr>
@@ -222,7 +222,7 @@ function dateStatus(date) {
 									<td>
 										<b><div id="deposit" style="text-align:right;"></div></b>
 									</td>
-								</tr>	
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -325,7 +325,7 @@ function dateStatus(date) {
 								</tr>
 								{CUSTOMFIELD_JAVASCRIPT}
 								<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="fieldname">
-								
+
 								<tr>
 									<td>{REQUIRED}</td>
 									<td colspan="2">{DESCRIPTION}</td>
@@ -343,18 +343,20 @@ function dateStatus(date) {
 						</td>
 					</tr>
 					<tr>
-						<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
-							<tr class="bookingform_footer" id="bookingform_footer">
-								<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" /> </th>
-							</tr>
-							<tr> 
-								<td valign="top" style="text-align:right;">
-									<div id="submitbutton">
-										<input type="button" name="confirmbooking" value="{SUBMIT}" class="button" size="150px" onclick="validate();"/>
-									</div>
-								</td>
-							</tr>
-						</table>
+						<td>
+							<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr class="bookingform_footer" id="bookingform_footer">
+									<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" /> </th>
+								</tr>
+								<tr>
+									<td valign="top" style="text-align:right;">
+										<div id="submitbutton">
+											<input type="button" name="confirmbooking" value="{SUBMIT}" class="button" size="150px" onclick="validate();"/>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<td valign="top" class="bookingform_extras">
@@ -367,11 +369,11 @@ function dateStatus(date) {
 				<div id="totalinparty"></div>
 				<div id="selectedRooms"></div>
 				<div id="roompernight"></div>
-			</div>	
+			</div>
 			<div>
 				{AJAXFORM_INSTRUCTIONS}
-			</div>	
-		</div>			
+			</div>
+		</div>
 	</div>
 	<input type="hidden" name="property_uid" value="{PROPERTYUID}">
 </form>

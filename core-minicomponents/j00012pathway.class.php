@@ -116,7 +116,7 @@ class j00012pathway {
 				if (defined('_JOMRES_NEWJOOMLA') )
 					$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
 				if ($counter<count($pathwayArray))
-					$pathway.='<a href="'.jomresURL(''.$p['url']).'" class="pathway">'.$p['text'].'</a>';
+					$pathway.='<a href="'.jomresValidateUrl(jomresURL(''.$p['url'])).'" class="pathway">'.$p['text'].'</a>';
 				else
 					$pathway.=$p['text'];
 				$pathway=str_replace("https://","http://",$pathway);  

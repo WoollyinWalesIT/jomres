@@ -2085,7 +2085,7 @@ class jomres_booking
 			
 			// Popup on both input and image click
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
 				<script type=\"text/javascript\">
 					Calendar.setup({
 					inputField    :   \"x".$randomID."\",
@@ -3750,11 +3750,11 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		
 		$room_imagetd="";
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
-			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30"></td>';
+			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30" /></td>';
 
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30"></td>';
+			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30" /></td>';
 		
 		//$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">   // Disabled because it causes the rooms list to load twice (thereby making the room deselect itself)
 		$overlib='<tr>';

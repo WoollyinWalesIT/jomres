@@ -379,7 +379,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$load['COUNT']=4;
 		$toload[]=$load;
 		}
-	$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+	$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
 	
 	$custom_fields = new jomres_custom_field_handler();
 	$allCustomFields = $custom_fields->getAllCustomFields();

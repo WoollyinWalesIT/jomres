@@ -343,7 +343,7 @@ class j00013dashboard extends jomres_dashboard
 						{
 						if (!$mrConfig['singleRoomProperty'])
 							$bookinglink.='&remus='.$room_id;
-						$output.= '<a href="'.jomresURL($bookinglink).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</div></td>
+						$output.= '<a href="'.jomresValidateUrl(jomresURL($bookinglink)).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</div></td>
 						';
 						}
 					else
@@ -356,7 +356,7 @@ class j00013dashboard extends jomres_dashboard
 				{
 				if (!$mrConfig['singleRoomProperty'])
 					$bookinglink.='&remus='.$room_id;
-				$output.='<a href="'.jomresURL($bookinglink).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</td>
+				$output.='<a href="'.jomresValidateUrl(jomresURL($bookinglink)).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</td>
 				';
 				}
 			}
@@ -367,7 +367,7 @@ class j00013dashboard extends jomres_dashboard
 				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
 				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
 
-				$output.=jomres_makeTooltip(date ("j",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresURL($viewbookinglink).'">'.(date ("j",$currdate)).'</a>',"")."</td>
+				$output.=jomres_makeTooltip(date ("j",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresValidateUrl(jomresURL($viewbookinglink)).'">'.(date ("j",$currdate)).'</a>',"")."</td>
 				";
 				}
 			else

@@ -389,8 +389,8 @@ class  j00018MRPavailabilitycalendar {
 									$link=jomresURL($link,1);
 								else
 									$link=jomresURL($link);
-	
-								$thelink='<a '.$target.' href="'.jomresURL($link).'" class="rescal" rel="nofollow">'.date ("j",$currdate).'</a>';
+								$link = jomresValidateUrl($link);
+								$thelink='<a '.$target.' href="'.$link.'" class="rescal" rel="nofollow">'.date ("j",$currdate).'</a>';
 								$this->retVals.= $thelink;
 								}
 							else
