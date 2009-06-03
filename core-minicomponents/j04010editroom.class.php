@@ -190,7 +190,7 @@ class j04010editroom {
 			{
 			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 			$original_room_classes_uid =doSelectSql($query,1);
-			echo '<form action=JOMRES_SITEPAGE_URL."" method="post" name="adminForm">';
+			echo '<form action="'.JOMRES_SITEPAGE_URL.'" method="post" name="adminForm">';
 			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";
 			$roomClasses=doSelectSql($query);
 			$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
@@ -212,6 +212,7 @@ class j04010editroom {
 			$jrtb .= $jrtbar->endTable();
 			
 			echo $jrtb." "._JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO." ".$dropDownList;
+			echo '<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 			echo '<input type="hidden" name="task" value="saveRoom" />';
 			echo '</form>';
 			}
