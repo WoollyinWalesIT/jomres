@@ -358,7 +358,7 @@ class j00030search {
 							// you need to use special chars here otherwise the url will not work for non latin searches
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property['puid']);
 							$link=jomresURL($l);
-
+							$link = jomresValidateUrl($link);
 							$r.='<a href="'.$link.'">'.stripslashes($property['pn']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
@@ -396,6 +396,7 @@ class j00030search {
 							{
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&country='.$country['countrycode']);
 							$link=jomresURL($l);
+							$link = jomresValidateUrl($link);
 							$r.='<a href="'.$link.'">'.stripslashes($country['countryname']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
@@ -435,6 +436,7 @@ class j00030search {
 							$t = str_replace("&#39;","'",$region['region']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&region='.$t);
 							$link=jomresURL($l);
+							$link = jomresValidateUrl($link);
 							$r.='<a href="'.$link.'">'.stripslashes($region['region']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
@@ -475,6 +477,7 @@ class j00030search {
 							$t = str_replace("&#39;","'",$town['town']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&town='.$t);
 							$link=jomresURL($l);
+							$link = jomresValidateUrl($link);
 							$r.='<a href="'.$link.'">'.stripslashes($town['town']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
@@ -577,6 +580,7 @@ class j00030search {
 							$roomClassAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$room_type['id'],stripslashes($room_type['title']));
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&room_type='.$room_type['id']);
 							$link=jomresURL($l);
+							$link = jomresValidateUrl($link);
 							$r.='<a href="'.$link.'">'.$roomClassAbbv.'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
@@ -617,6 +621,7 @@ class j00030search {
 						//echo $ptypeAbbv;
 						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&ptype='.$ptype['id']);
 						$link=jomresURL($l);
+						$link = jomresValidateUrl($link);
 						$r.='<a href="'.$link.'">'.$ptypeAbbv.'</a>';
 							if ($sch->cols=="1")
 							$r.="<br>";
@@ -697,8 +702,8 @@ class j00030search {
 				$output['SEARCHBLURB']	=jr_gettext('_JOMRES_FRONT_MR_SEARCH_HERE',_JOMRES_FRONT_MR_SEARCH_HERE);
 				$output['THEBUTTON']='<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false).'" class="button" />';
 				}
-				
-			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+
+			$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
 			
 			$pageoutput[]=$output;
 

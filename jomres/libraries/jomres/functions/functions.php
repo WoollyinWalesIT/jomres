@@ -78,11 +78,21 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 		}
 	}
 
+function jomresValidateUrl($url)
+	{
+	$url=str_replace("&amp;","&",$url);
+	$url=str_replace("&","&amp;",$url);
+	return $url;
+	}
+	
+	
+	
 function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/') 
 	{
 	global $jomresConfig_live_site,$task;
 	global $ePointFilepath,$eLiveSite,$jrConfig;
 	$link = jomresURL($link);
+	$link = jomresValidateUrl($link);
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
 		$path=$eLiveSite.$image;
 	else
@@ -1647,7 +1657,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		// Popup on image click
 
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" ></a>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
 				<script type=\"text/javascript\">
 					Calendar.setup({
 					inputField    :   \"x".$randomID."\",

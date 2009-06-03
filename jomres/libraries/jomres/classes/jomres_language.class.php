@@ -170,7 +170,7 @@ class jomres_language
 		$javascript = "onchange=\"this.form.submit();\"";
 		$dropdown = jomresHTML::selectList( $langfile_options, 'jomreslang','class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->lang);
 		
-		$selecthtml = '<form action="" method="POST" name="jomreslang">';
+		$selecthtml = '<form action="" method="post" name="jomreslang">';
 		$selecthtml.= $dropdown;
 		$selecthtml.= '</form>';
 		return $selecthtml;

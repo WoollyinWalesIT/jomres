@@ -239,21 +239,21 @@ class j00017SRPavailabilitycalendar {
 		$thisMonthName= getThisMonthName(date("n",$stdate));
 		
 		$this->retVals.="\n<table class=rescal cellspacing=0>\n";
-		$this->retVals.="<tr class=\"availability_calendar_months\" >\n<th colspan=7 height=\"$height\"><font face=\"$face\" size=\"$size\">" . utf8_encode($thisMonthName) . " " . strftime( "%Y",$stdate) . "</th>\n</tr>\n";
+		$this->retVals.="<tr class=\"availability_calendar_months\" >\n<th colspan=7 height=\"$height\"><font face=\"$face\" size=\"$size\">" . utf8_encode($thisMonthName) . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		$this->retVals.="<tr class=\"availability_calendar_days\">\n<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR)."</th>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR)."</th>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR)."</th>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR)."</th>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR)."</th>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR)."</th>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR)."</th>\n</tr>\n";
+			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR)."</font></th>\n</tr>\n";
 		if ($mrConfig['limitAdvanceBookingsYesNo']=="1")
 			{
 			$dateElements=explode("/",$todaysDate);
@@ -375,6 +375,7 @@ class j00017SRPavailabilitycalendar {
 											$link=jomresURL($link,1);
 										else
 											$link=jomresURL($link);
+										$link = jomresValidateUrl($link);
 										$thelink='<a '.$target.' href="'.$link.'" class=rescal rel="nofollow">'.date ("j",$currdate).'</a>';
 
 										$this->retVals.=$thelink;

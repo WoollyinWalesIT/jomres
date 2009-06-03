@@ -4355,7 +4355,7 @@ define('_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL','Unable to validat
 /**
 * @ignore
 */
-define('_JOMRES_SRP_WEHAVEVACANCIES','We have vacancies!');
+define('_JOMRES_SRP_WEHAVEVACANCIES','<b>We have vacancies!</b>');
 /**
 * @ignore
 */
