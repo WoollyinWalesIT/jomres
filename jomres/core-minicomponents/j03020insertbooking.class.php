@@ -253,10 +253,9 @@ class j03020insertbooking {
 			else
 				{
 				$result = jomres_cmsspecific_createNewUserOnBooking();
-				if ($result > 0)
-					$guests_uid=$result;
-				else
+				if ($result > 0 && !$thisJRUser->userIsRegistered )
 					$guests_uid=insertGuestDeets($jomressession);
+
 				// We will try to use the first 10 chars of the jomressession as our booking number. If we can't use it then we'll find a random number and append it to the end.
 				$session10Chars= substr($jomressession, 0, 10);
 				$cartnumber=$session10Chars;
