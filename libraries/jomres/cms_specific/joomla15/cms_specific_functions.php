@@ -91,7 +91,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$map=doInsertSql($query);
 				
 				
-			$thisJRUser->userIsRegistered=true;
+			//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
 			$thisJRUser->id=$id;
 			$tmpBookingHandler->updateGuestField('mos_userid',$id);
 			$tmpBookingHandler->saveGuestData();
@@ -107,6 +107,10 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $guestDeets['email'], $subject, $text,$mode=0))
 				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 			}
+		}
+	else
+		{
+		$id = $thisJRUser->id;
 		}
 	return $id;
 	}
