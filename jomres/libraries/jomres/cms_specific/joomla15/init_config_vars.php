@@ -154,7 +154,7 @@ if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 		
 	if($CONFIG->session_handler !="none")
 		{
-		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
+		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Site -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
 		}
 	}
 
