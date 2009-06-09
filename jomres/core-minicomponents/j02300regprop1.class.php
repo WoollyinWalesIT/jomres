@@ -55,6 +55,9 @@ class j02300regprop1 {
 			$propertyRegion="Pembrokeshire";
 			}
 			
+		if (!subscribers_checkUserHasSubscriptionsToCreateNewProperty() && !$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1" )
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=list_subscription_packages","");
+
 		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
 		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
 		$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;

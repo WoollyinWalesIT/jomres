@@ -44,7 +44,12 @@ class j02320regprop3 {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $my,$thisJRUser,$jrConfig,$MiniComponents;
+		global $thisJRUser,$jrConfig,$MiniComponents;
+		
+		if (!subscribers_checkUserHasSubscriptionsToCreateNewProperty() && !$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1" )
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=list_subscription_packages","");
+
+		
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
 			return;
 			
@@ -136,7 +141,7 @@ class j02320regprop3 {
 		$componentArgs=array('property_uid'=>(int)$newPropId);
 		$MiniComponents->triggerEvent('04901',$componentArgs); // Trigger point. Not currently used, but available if somebody wants a trigger point after the create property phase.
 		$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
-		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
+		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$thisJRUser->username;
 		sendAdminEmail($subject,$message);
 		$cache = new jomres_cache();
 		$cache->trashCacheForUser($thisJRUser->userid);

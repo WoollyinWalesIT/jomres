@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">ID</td>
+					<td class="jradmin_subheader_la">{HNAME}</td>
+					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
+					<td class="jradmin_subheader_la">{HFREQUENCY}</td>
+					<td class="jradmin_subheader_la">{HTRIALPERIOD}</td>
+					<td class="jradmin_subheader_ca">{HTRIALAMOUNT}</td>
+					<td class="jradmin_subheader_la">{HFULLAMOUNT}</td>
+					<!-- not supported yet so not offered <td class="jradmin_subheader_la">{HROOMSLIMIT}</td> -->
+					<td class="jradmin_subheader_la">{HPROPERTYLIMIT}</td>
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
+					<td class="jradmin_field_la">{NAME}</td>
+					<td class="jradmin_field_la">{DESCRIPTION}</td>
+					<td class="jradmin_field_ca">{FREQUENCY}</td>
+					<td class="jradmin_field_ca">{TRIALPERIOD}</td>
+					<td class="jradmin_field_ca">{TRIALAMOUNT}</td>
+					<td class="jradmin_field_ca">{FULLAMOUNT}</td>
+					<!-- not supported yet so not offered <td class="jradmin_field_ca">{ROOMSLIMIT}</td> -->
+					<td class="jradmin_field_ca">{PROPERTYLIMIT}</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="task" value="editTaxrate" />
+</form>
+</patTemplate:tmpl>
