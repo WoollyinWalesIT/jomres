@@ -1,3 +1,11 @@
+Jomres 4.0.2
+
+Fixed bug where you are unable to change the property type in an SRP once it has been created.
+Fixed parsebybots handling.
+General code changes to resolve some validation issues
+Fixed a bug where new, non-registered users weren't having their details recorded against a booking.
+
+
 Jomres 4.0.1
 
 Added ability for Jomres to detect when a template on disk is newer than the last time the template in the db was edited and warn that it may have been updated.

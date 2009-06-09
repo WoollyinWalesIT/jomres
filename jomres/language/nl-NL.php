@@ -5644,7 +5644,7 @@ define('_JOMRES_COM_SEF_DEFAULT_PTYPE_DESC','Gebruikt in url wanneer zoeken geld
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_NOTINSTALLED','Of she404sef is niet geinstalleerd, of '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS.'com_jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext is nog niet gekopieerd. Wanneer sh404sef is geinstalleerd of deze bestanden hebt gekopieerd, dan kun je je sef urls hier configureren. ');
+define('_JOMRES_COM_SEF_NOTINSTALLED','Of she404sef is niet geinstalleerd, of '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'com_jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext is nog niet gekopieerd. Wanneer sh404sef is geinstalleerd of deze bestanden hebt gekopieerd, dan kun je je sef urls hier configureren. ');
 /**
 * @ignore
 */
