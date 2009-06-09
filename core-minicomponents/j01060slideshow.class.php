@@ -110,8 +110,7 @@ class j01060slideshow {
 			}
 		else
 			{
-			echo jr_gettext('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES',_JOMRES_COM_A_SLIDESHOWS_NOIMAGES,'');
-			echo "<br />";
+			$this->retVals['slideshow']=jr_gettext('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES',_JOMRES_COM_A_SLIDESHOWS_NOIMAGES,'');
 			}
 		
 		
