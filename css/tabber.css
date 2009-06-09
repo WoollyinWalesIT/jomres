@@ -32,9 +32,11 @@ ul.tabbernav
 
 ul.tabbernav li
 {
+ background: none;
  list-style: none;
  margin: 0;
  display: inline;
+ padding-left: 0px;
 }
 
 ul.tabbernav li a
