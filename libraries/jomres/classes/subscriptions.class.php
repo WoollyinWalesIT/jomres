@@ -1,0 +1,200 @@
+<?php
+/**
+ * Core file
+ * @author Vince Wooll <sales@jomres.net>
+ * @version Jomres 4
+* @package Jomres
+* @copyright	2005-2009 Vince Wooll
+
+Jomres is distributed as a mix of two licenses (excepting other files in the libraries folder, which are independantly licensed). 
+
+The first, proprietary license, refers to Jomres as a package. You cannot share it, period. You can see the full license here http://www.jomres.net/license.html. There are some exceptions, and these files are independantly licensed (see the /jomres/libraries/phptools folder for example)
+The files in the /jomres/core-minicomponents,  /jomres/libraries/jomres/cms_specific and the /jomres/templates folders, whilst copyright Vince Wooll, are licensed differently to allow those users who wish, to develop and distribute their own third party plugins for Jomres. Those files are licensed under the MIT license, which allows third party vendors to modify them to suit their own requirements and if so desired, distribute them for free or cost. 
+
+################################################################
+This file is subject to the Jomres proprietary license, please do not distribute it. For licencing information, please visit 
+http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 and http://www.jomres.net/license.html
+################################################################
+*/
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+// ################################################################
+
+class jrportal_subscriptions
+	{
+	function jrportal_subscriptions()
+		{
+		$this->id					= 0;
+		$this->cms_user_id			= 0;
+		$this->gateway_subscription_id	= '';
+		$this->name					= '';
+		$this->description			= '';
+		$this->frequency			= "M";
+		$this->trial_period			= 0;
+		$this->trial_amount			= 0.00;
+		$this->full_amount			= 0.00;
+		$this->rooms_limit			= 0;
+		$this->property_limit		= 0;
+		$this->status				= 0;
+		$this->raised_date				= 0;
+
+		$this->error				= null;
+		}
+		
+
+
+	function getSubscription()
+		{
+		if ($this->id > 0 )
+			{
+			$query = "SELECT
+				`id`,`cms_user_id`,`gateway_subscription_id`,`name`,`description`,`frequency`,`trial_period`,`trial_amount`,`full_amount`,`rooms_limit`,`property_limit`,`status`,`raised_date`
+				FROM #__jomresportal_subscriptions WHERE `id`=".(int)$this->id." LIMIT 1";
+
+			$result=doSelectSql($query);
+			if ($result && count($result)==1)
+				{
+				foreach ($result as $r)
+					{
+					$this->id					= (int)$r->id;
+					$this->cms_user_id			= (int)$r->cms_user_id;
+					$this->gateway_subscription_id= (string)$r->gateway_subscription_id;
+					$this->name					= (string)$r->name;
+					$this->description			= (string)$r->description;
+					$this->frequency			= (string)$r->frequency;
+					$this->trial_period			= (int)$r->trial_period;
+					$this->trial_amount			= (float)$r->trial_amount;
+					$this->full_amount			= (float)$r->full_amount;
+					$this->rooms_limit			= (float)$r->rooms_limit;
+					$this->property_limit		= (float)$r->property_limit;
+					$this->status				= (int)$r->status;
+					$this->raised_date			= (int)$r->raised_date;
+					}
+				return true;
+				}
+			else
+				{
+				if (count($result)==0)
+					{
+					error_logging(  "No Subscriptions were found with that id");
+					return false;
+					}
+				if (count($result)> 1)
+					{
+					error_logging(  "More than one Subscription was found with that id");
+					return false;
+					}
+				}
+			}
+		else
+			{
+			error_logging(  "ID of Subscriptions not available");
+			return false;
+			}
+		}
+
+	function commitSubscription()
+		{
+		if ($this->id < 1 )
+			{
+			$query="INSERT INTO #__jomresportal_subscriptions
+				(
+				`cms_user_id`,
+				`gateway_subscription_id`,
+				`name`,
+				`description`,
+				`frequency`,
+				`trial_period`,
+				`trial_amount`,
+				`full_amount`,
+				`rooms_limit`,
+				`property_limit`,
+				`status`,
+				`raised_date`
+				)
+				VALUES
+				(
+				'".(int)$this->cms_user_id."',
+				'".(string)$this->gateway_subscription_id."',
+				'".(string)$this->name."',
+				'".(string)$this->description."',
+				'".(string)$this->frequency."',
+				'".(int)$this->trial_period."',
+				'".(float)$this->trial_amount."',
+				'".(float)$this->full_amount."',
+				'".(int)$this->rooms_limit."',
+				'".(int)$this->property_limit."',
+				'".(int)$this->status."',
+				'".date( 'Y-m-d H:i:s' )."'
+				)";
+			
+			$result=doInsertSql($query,"");
+			if ($result)
+				{
+				$this->id=$result;
+				return true;
+				}
+			else
+				{
+				error_logging(  "ID of Subscription could not be found after apparent successful insert");
+				return false;
+				}
+			}
+		error_logging(  "ID of Subscription already available. Are you sure you are creating a new Commission rate?");
+		return false;
+		}
+		
+
+	function commitUpdateSubscription()
+		{
+		if ($this->id > 0 )
+			{
+			$query="UPDATE #__jomresportal_subscriptions SET
+				`cms_user_id` 			= '".(int)$this->cms_user_id."',
+				`gateway_subscription_id`= '".(string)$this->gateway_subscription_id."',
+				`name` 					= '".(string)$this->name."',
+				`description` 			= '".(string)$this->description."',
+				`frequency` 			= '".(string)$this->frequency."',
+				`trial_period` 			= '".(int)$this->trial_period."',
+				`trial_amount` 			= '".(float)$this->trial_amount."',
+				`full_amount` 			= '".(float)$this->full_amount."',
+				`rooms_limit` 			= '".(int)$this->rooms_limit."',
+				`property_limit` 		= '".(int)$this->property_limit."',
+				`status` 				= '".(int)$this->status."'
+				WHERE `id`=".(int)$this->id;
+			$result=doInsertSql($query,"");
+			if ($result)
+				return true;
+			else
+				{
+				error_logging(  "ID of Subscription could not be found after apparent successful insert");
+				return false;
+				}
+			}
+		error_logging(  "ID of Subscription not available");
+		return false;
+		}
+
+	function deleteSubscription()
+		{
+		if ($this->id > 0 )
+			{
+			$query="DELETE FROM #__jomresportal_subscriptions WHERE `id` = ".(int)$this->id;
+			$result=doInsertSql($query,"");
+			if ($result)
+				{
+				return true;
+				}
+			else
+				{
+				error_logging(  "Could not delete Subscription.");
+				return false;
+				}
+			}
+		error_logging(  "ID of Subscription not available");
+		return false;
+		}
+	}
+
+?>

@@ -44,21 +44,53 @@ class j02272publishprop {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		global $thisJRUser,$jrConfig;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$cache = new jomres_cache();
-		$cache->trashCacheForProperty($defaultProperty);
-		$cache->trashCacheForUser($thisJRUser->userid);
-		$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid = '".(int)$defaultProperty."'";
-		$published = doSelectSql($query,1);
-		if ($published)
-			$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = '".(int)$defaultProperty."'";
-		else
-			$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = '".(int)$defaultProperty."'";
+
 		$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE));
-		if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) returnToPropertyConfig("");
+
+		if (!isset($_REQUEST['property_uid']) )
+			$defaultProperty=getDefaultProperty();
+		else
+			$defaultProperty=jomresGetParam( $_REQUEST, 'property_uid',0);
+		$cache->trashCacheForProperty($defaultProperty);
+		$cache->trashCacheForUser($thisJRUser->userid);
+		if (in_array($defaultProperty,$thisJRUser->authorisedProperties))
+			{
+			$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+			$published = doSelectSql($query,1);
+			if ($published)
+				{
+				$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+				}
+			else
+				{
+				if ($jrConfig['useSubscriptions']=="1")
+					{
+					$allowedProperties = subscribers_getAvailablePropertySlots($thisJRUser->id);
+					$existingPublishedProperties = subscribers_getManagersPublishedProperties($thisJRUser->id);
+					if ($allowedProperties > count($existingPublishedProperties) || ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods) )
+						{
+						$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+						if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+						}
+					else
+						echo _JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH;
+					}
+				else
+					{
+					$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+					if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+					}
+				}
+			}
+		else
+			echo "You naughty little tinker, that's not your property";
+
 		}
 
 	/**

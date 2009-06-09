@@ -130,6 +130,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
+			 <td class="jradmin_subheader_la" valign="top">'.$lists['useSubscriptions'].'</td>
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_MANAGEROPTIONSASIMAGES.'</td>
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['menusAsImages'].'</td>
 			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>

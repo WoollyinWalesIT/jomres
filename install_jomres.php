@@ -238,8 +238,76 @@ function doTableUpdates()
 		alterPropertysTimestampCol();
 	if (!checkCustomTemplatesTimestampColExists() )
 		alterCustomTemplatesTimestampCol();
+	if (!checkSubscriptionsTablesExist() )
+		{
+		createSubscriptionsTables();
+		$cron = new jomres_cron($displayLog);
+		$cron->addJob("subscriptions","D","");
+		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('0','useSubscriptions')";
+		echo "Setting $key to $val";echo "<br>";
+		}
 	}
 
+function createSubscriptionsTables()
+	{
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
+	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`name` VARCHAR( 100 ) NOT NULL ,
+	`description` VARCHAR( 255 ) NOT NULL ,
+	`published` BOOL NOT NULL DEFAULT '1',
+	`frequency` CHAR(1) DEFAULT 'M',
+	`trial_period` SMALLINT NOT NULL DEFAULT '0',
+	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
+	`full_amount` FLOAT NOT NULL,
+	`rooms_limit` int(11) NOT NULL default '0',
+	`property_limit` int(11) NOT NULL default '0',
+	`tax_code_id` int(11) NOT NULL default '0'
+	)";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
+	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`cms_user_id` int(11) NOT NULL default '0',
+	`gateway_subscription_id` CHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 20 ) NOT NULL ,
+	`description` VARCHAR( 255 ) NOT NULL ,
+	`frequency` CHAR(1) DEFAULT 'M',
+	`trial_period` SMALLINT NOT NULL DEFAULT '0',
+	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
+	`full_amount` FLOAT NOT NULL,
+	`rooms_limit` int(11) NOT NULL default '0',
+	`property_limit` int(11) NOT NULL default '0',
+	`status` SMALLINT NOT NULL DEFAULT '0',
+	`raised_date` datetime NOT NULL
+	)";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
+	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`cms_user_id` int(11) NOT NULL default '0',
+	`firstname` VARCHAR( 255 ) NOT NULL ,
+	`surname` VARCHAR( 255 ) NOT NULL ,
+	`address` VARCHAR( 255 ) NOT NULL ,
+	`country` VARCHAR( 255 ) NOT NULL ,
+	`postcode` VARCHAR( 255 ) NOT NULL 
+	)";
+	doInsertSql($query,"");
+	}
+
+function checkSubscriptionsTablesExist()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '__jomresportal_subscribers') )
+			return true;
+		}
+	return false;
+	}
 
 function alterCustomTemplatesTimestampCol()
 	{
@@ -1466,6 +1534,52 @@ function createJomresTables()
 	$result=doInsertSql($query,"");
 	if (!$result )
 		echo "<b>Error creating table table __jomres_propertys </b><br>";
+		
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
+	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`name` VARCHAR( 100 ) NOT NULL ,
+	`description` VARCHAR( 255 ) NOT NULL ,
+	`published` BOOL NOT NULL DEFAULT '1',
+	`frequency` CHAR(1) DEFAULT 'M',
+	`trial_period` SMALLINT NOT NULL DEFAULT '0',
+	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
+	`full_amount` FLOAT NOT NULL,
+	`rooms_limit` int(11) NOT NULL default '0',
+	`property_limit` int(11) NOT NULL default '0',
+	`tax_code_id` int(11) NOT NULL default '0'
+	)";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
+	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`cms_user_id` int(11) NOT NULL default '0',
+	`gateway_subscription_id` CHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 20 ) NOT NULL ,
+	`description` VARCHAR( 255 ) NOT NULL ,
+	`frequency` CHAR(1) DEFAULT 'M',
+	`trial_period` SMALLINT NOT NULL DEFAULT '0',
+	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
+	`full_amount` FLOAT NOT NULL,
+	`rooms_limit` int(11) NOT NULL default '0',
+	`property_limit` int(11) NOT NULL default '0',
+	`status` SMALLINT NOT NULL DEFAULT '0',
+	`raised_date` datetime NOT NULL
+	)";
+	doInsertSql($query,"");
+
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
+	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`cms_user_id` int(11) NOT NULL default '0',
+	`firstname` VARCHAR( 255 ) NOT NULL ,
+	`surname` VARCHAR( 255 ) NOT NULL ,
+	`address` VARCHAR( 255 ) NOT NULL ,
+	`country` VARCHAR( 255 ) NOT NULL ,
+	`postcode` VARCHAR( 255 ) NOT NULL 
+	)";
+	doInsertSql($query,"");
+
+
 	}
 
 function insertSampleData()

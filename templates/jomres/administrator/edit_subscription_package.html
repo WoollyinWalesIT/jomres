@@ -1,0 +1,53 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">ID</td>
+					<td class="jradmin_subheader_la">{HNAME}</td>
+					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
+					<td class="jradmin_subheader_la">{HFREQUENCY}</td>
+					<td class="jradmin_subheader_la">{HTRIALPERIOD}</td>
+					<td class="jradmin_subheader_ca">{HTRIALAMOUNT}</td>
+					<td class="jradmin_subheader_la">{HFULLAMOUNT}</td>
+					<!-- not supported yet so not offered<td class="jradmin_subheader_la">{HROOMSLIMIT}</td>-->
+					<td class="jradmin_subheader_la">{HPROPERTYLIMIT}</td>
+					<td class="jradmin_subheader_la">{HTAXCODE}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_field_ca">{ID}</td>
+					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="name" value="{NAME}" /></td>
+					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
+					<td class="jradmin_field_ca">{FREQUENCYDROPDOWN}</td>
+					<td class="jradmin_field_ca">{TRIALPERIODDROPDOWN}</td>
+					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="trial_amount" value="{TRIALAMOUNT}" size="7" /></td>
+					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="full_amount" value="{FULLAMOUNT}" /></td>
+					<!-- not supported yet so not offered<td class="jradmin_field_ca">{ROOMSLIMIT}</td>-->
+					<td class="jradmin_field_ca">{PROPERTYLIMIT}</td>
+					<td class="jradmin_subheader_la">{TAXCODEDROPDOWN}</td>
+				</tr>
+				<tr>
+					<td colspan="6" >{FREQUENCY_DESC}</td>
+				</tr>
+				<tr>
+					<td colspan="6" >{TRIALPERIOD_DESC}</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+{JOMRESTOKEN}
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="save_subscription_package" />
+</form>
+</patTemplate:tmpl>

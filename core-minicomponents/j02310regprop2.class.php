@@ -45,6 +45,10 @@ class j02310regprop2 {
 			$this->template_touchable=true; return;
 			}
 		global $jomresConfig_live_site,$thisJRUser,$jrConfig,$mrConfig;
+		
+		if (!subscribers_checkUserHasSubscriptionsToCreateNewProperty() && !$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1" )
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=list_subscription_packages","");
+
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
 			return;
 

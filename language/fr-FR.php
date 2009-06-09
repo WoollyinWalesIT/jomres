@@ -6376,3 +6376,154 @@ define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show ma
 * @ignore
 */
 define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
+
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_DB','Database template Last edited');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_DISK','Disk template Last edited');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_WARNINGICON','Database template warning');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_WARNINGICON_TEXT','Database template may be out of date');
+/**
+* @ignore
+*/
+define('_JOMRES_LASTEDITED_WARNING','If there is an icon against a template, then Jomres has detected that the template stored in the database <strong><i>may</i></strong> be older than that stored on disk, in which case it is possible that the template has been updated in a newer version of Jomres. If this is the case, then it is possible that your template may not be benefiting from a new feature in Jomres, or that existing functionality may no longer work as expected, and you should compare the file on disk to your customisations to ensure that you are not missing out on new features.');
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',"Subscription packages");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME',"Name");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_DESCRIPTION',"Description");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PUBLISHED',"Published");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY',"Frequency");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD',"Trial period");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALAMOUNT',"Trial amount");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FULLAMOUNT',"Full amount");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_ROOMSLIMIT',"Rooms limit"); // Not currently used, saved for a rainy day
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PROPERTYLIMIT',"Property limit");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY_DESC',"Frequency: M/Q/B/A Monthly/Quarterly/Bianually/Anually");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD_DESC',"Trial period: Integer input, 0 (zero) to not set, 1 for one month, 2 for two months etc");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE',"Subscribe");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE_DESC',"Please enter/update your subscriber information. Please note that all fields are required.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_FIRSTNAME',"First name");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_SURNAME',"Surname");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_ADDRESS',"Address");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_COUNTRY',"Country");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_POSTCODE',"Postcode");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1',"You need a valid subscription to create new properties. At this moment in time, you have purchased subscriptions for ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2'," published property(s). ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3',"You can increase the number of properties you can create by <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>purchasing more subscription packages here.</a>");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4'," You have used ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5'," property slots. ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6',"To see a list of your current properties click <a href='index.php?option=com_jomres&task=listyourproperties'>here</a>. ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7',"To see a list of the current subscription packages available, click <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>here</a>. ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR',"Unfortunately, you cannot publish this property as you have reached your maximum number of available property slots.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED',"Thank you for creating a subscription to list your property on our server. Once your invoice is marked as paid (there may be a delay depending on Paypal) please <a href='index.php?option=com_jomres&task=registerProp_step1'>click here to continue creating your property(s).</a>");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE',"We are sorry that you have not chosen to subscribe to our service. Please let us know if there's any way we can help you further");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH',"We are sorry, but you've met the limit of the number of properties that you can have published on this system at any one time. You can raise the number of properties that you can publish by <a href='index.php?option=com_jomres&task=list_subscription_packages&Itemid=".$Itemid."'>purchasing more subscription packages here.</a> ");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_USE',"Use subscription handling functionality");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_USE_DESC',"Set this to Yes to tell Jomres that it must use subscription package handling.");
+

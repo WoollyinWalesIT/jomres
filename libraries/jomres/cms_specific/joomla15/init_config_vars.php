@@ -145,6 +145,8 @@ $jomresConfig_error_reporting		= $CONFIG->error_reporting;
 //$jomresConfig_uniquemail					= $CONFIG->uniquemail;
 //$jomresConfig_admin_site					= $CONFIG->admin_site;
 
+//var_dump($jomresConfig_caching);exit;
+
 if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 	{
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') )
