@@ -68,7 +68,8 @@ class j02211listtariffs_micromanage {
 				$classList =doSelectSql($query);
 				foreach($classList as $rclass)
 					{
-					$roomClassAbbv=$rclass->room_class_abbv;
+					//$roomClassAbbv=$rclass->room_class_abbv;
+					$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$rmClassId,		stripslashes($rclass->room_class_abbv),false,false);
 					}
 				}
 

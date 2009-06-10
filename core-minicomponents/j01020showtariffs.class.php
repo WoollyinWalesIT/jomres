@@ -93,10 +93,10 @@ class j01020showtariffs {
 						$classList =doSelectSql($query);
 
 						foreach($classList as $rclass)
-						{
-						$roomClassAbbv=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFNAME'.$tariffRoomClass,stripslashes($rclass->room_class_abbv) );
-						$roomClassFullDesc=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFNAME'.$tariffRoomClass,stripslashes($rclass->room_class_full_desc) );
-						}
+							{
+							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$tariffRoomClass,		stripslashes($rclass->room_class_abbv),false,false);
+							$roomClassFullDesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$tariffRoomClass,		stripslashes($rclass->room_class_full_desc),false,false);
+							}
 						}
 					else
 						$roomClassAbbv="";

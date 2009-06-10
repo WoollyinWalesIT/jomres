@@ -146,6 +146,9 @@ if (!JRPORTAL_AJAXCALL)
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/graphs.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jrportal.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.jeditable.pack.js"></script>
+	
+	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.bt-0-9-3.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="<?php echo $jomresConfig_live_site; ?>/jomres/css/jomrescss.css" title="" />
 	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
 	<?php

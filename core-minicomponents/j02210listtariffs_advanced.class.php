@@ -69,7 +69,8 @@ class j02210listtariffs_advanced {
 					$classList =doSelectSql($query);
 					foreach($classList as $rclass)
 						{
-						$roomClassAbbv=$rclass->room_class_abbv;
+						//$roomClassAbbv=$rclass->room_class_abbv;
+						$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$tariffRoomClass,		stripslashes($rclass->room_class_abbv),false,false);
 						}
 					}
 				if ($tariff->ignore_pppn)
