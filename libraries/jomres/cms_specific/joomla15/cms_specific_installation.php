@@ -128,7 +128,7 @@ $query="INSERT INTO #__jomres_managers
 VALUES
 ('62','admin','0','2','1','1')";
 $result=doInsertSql($query,"");
-echo $query;
+//echo $query;
 
 if ($result)
 	echo "Inserted admin as manager<br>";
