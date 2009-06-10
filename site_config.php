@@ -149,4 +149,6 @@ $jrConfig['useCaching']			='0';
 $jrConfig['showLangDropdown']	='1';
 $jrConfig['thumbnail_width']	='50';
 $jrConfig['useJomresMessaging'] = '1';
+$jrConfig['useSubscriptions']="0";
+$jrConfig['useNewusers']="0";
 ?>
