@@ -56,7 +56,7 @@ class j16000listTemplates
 			while (FALSE !== ($entry = $d->read()))
 				{
 				$filename = $entry;
-				if( substr($entry,0,1) != '.' )
+				if( substr($entry,0,1) != '.')
 					{
 					$docs[] =$entry;
 					}
@@ -75,7 +75,7 @@ class j16000listTemplates
 				
 				foreach ($docs as $doc)
 					{
-					if ($doc != "jomrescss.css")
+					if ($doc != "jomrescss.css" && $doc != "srch.html")
 						{
 						$r=array();
 						$r['EDITED']=_JOMRES_COM_MR_NO;
