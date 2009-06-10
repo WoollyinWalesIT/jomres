@@ -87,7 +87,12 @@ class j16000addproperty2
 				$r['PID']=$propertyFeature->hotel_features_uid;
 				if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
 					$r['ischecked']="checked";
-				$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+					
+				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
+				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
+				$r['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$jomresConfig_live_site."/".$propertyFeature->image,"","property_feature",array());
+
+				//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
 				$globalPfeatures[]=$r;
 				}
 			}

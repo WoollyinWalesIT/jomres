@@ -512,7 +512,8 @@ class j00030search {
 						{
 						foreach ($sch->prep['features'] as $feature)
 							{
-							$featureArray[]= jomresHTML::makeOption( $feature['id'], stripslashes($feature['title']));
+							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
+							$featureArray[]= jomresHTML::makeOption( $feature['id'], stripslashes($feature_abbv));
 							}
 						$output['feature']=jomresHTML::selectList( $featureArray, 'feature_uids[]', 'size="1" ', 'value', 'text', $selectOption );
 						}
@@ -531,17 +532,12 @@ class j00030search {
 									$ischecked="checked";
 								}
 							$image = '/'.$feature['image'];
-							//$tmp=makeFeatureImages($image,$feature['title'],$feature['description'],$retString=TRUE);
-							$tmp=jomres_makeTooltip($feature['title'],$feature['title'],$feature['description'],$jomresConfig_live_site.$image,"","property_feature",array());
+							
+							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
+							$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$feature['id'],		stripslashes($feature['description']),false,false);
 
-							/*
-							$rowbreak='style="float : left;"';
-							if ($counter>$featurecols)
-								{
-								$rowbreak='style="clear: both;"';
-								$counter=0;
-								}
-							*/
+							$tmp=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$jomresConfig_live_site.$image,"","property_feature",array());
+
 							$rows[]=$r;
 							$r.='<div style="float : left;" >'.$tmp.'<input type="checkbox" name="feature_uids[]" value="'.$pid.'" '.$ischecked.' /></div>';
 							}
@@ -567,7 +563,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['rtypes'] as $rtype)
 							{
-							$roomClassAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$rtype['id'],stripslashes($rtype['title']));
+							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$rtype['id'],		stripslashes($rtype['title']),false,false);
 							$rtypeArray[]= jomresHTML::makeOption( $rtype['id'], $roomClassAbbv);
 							}
 						$output['room_type']=jomresHTML::selectList( $rtypeArray, 'room_type', 'size="1"', 'value', 'text', $selectOption );
@@ -577,7 +573,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['rtypes'] as $room_type)
 							{
-							$roomClassAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$room_type['id'],stripslashes($room_type['title']));
+							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_type['id'],		stripslashes($room_type['title']),false,false);
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&room_type='.$room_type['id']);
 							$link=jomresURL($l);
 							$link = jomresValidateUrl($link);

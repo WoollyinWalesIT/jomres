@@ -113,7 +113,8 @@ class j01055showroomdetails {
 				$roomsClassList =doSelectSql($query);
 				foreach ($roomsClassList as $roomClass)
 					{
-					$classAbbv = stripslashes($roomClass->room_class_abbv);
+					//$classAbbv = stripslashes($roomClass->room_class_abbv);
+					$classAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
 					}
 				//$propertyName getPropertyNameNoTables($property_uid)
 				if ($room_disabled_access == 1)

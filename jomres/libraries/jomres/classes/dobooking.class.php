@@ -539,7 +539,10 @@ class jomres_booking
 		$roomClasses =doSelectSql($query);
 		foreach ($roomClasses as $c)
 			{
-			$this->allRoomClasses[$c->room_classes_uid]=array('room_class_abbv'=>$c->room_class_abbv,'room_class_full_desc'=>$c->room_class_full_desc,'image'=>$c->image);
+			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$c->room_classes_uid,		stripslashes($c->room_class_abbv),false,false);
+			$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$c->room_classes_uid,		stripslashes($c->room_class_full_desc),false,false);
+
+			$this->allRoomClasses[$c->room_classes_uid]=array('room_class_abbv'=>$roomtype_abbv,'room_class_full_desc'=>$roomtype_desc,'image'=>$c->image);
 			}
 		}
 

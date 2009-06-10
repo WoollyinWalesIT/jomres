@@ -162,7 +162,10 @@ class j04000roomsconfig {
 					{
 					$roomClassUid=$roomClass->room_classes_uid;
 					if ($roomClassUid == $room_classes_uid)
-						$roomClassAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomClass->room_classes_uid,$roomClass->room_class_abbv);
+						{
+						//$roomClassAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomClass->room_classes_uid,$roomClass->room_class_abbv);
+						$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
+						}
 					}
 
 				$roomRowInfo .="<td class=\"jradmin_field_ca\"><b>".$roomClassAbbv."</b></td>
@@ -245,7 +248,8 @@ class j04000roomsconfig {
 				$jrtb .= $jrtbar->endTable();
 				$roomTypesRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>
 				";
-				$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomClass->room_classes_uid,$roomClass->room_class_abbv);
+				//$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomClass->room_classes_uid,$roomClass->room_class_abbv);
+				$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
 				$roomTypesRowInfo .="<td class=\"jradmin_field_ca\"><b>".$roomtype_abbr."</b></td>
 				";
 				$roomTypesRowInfo .="<td class=\"jradmin_field_ca\">".($roomClass->room_class_full_desc)."</td>
@@ -389,7 +393,8 @@ class j04000roomsconfig {
 			$jrtb .= $jrtbar->endTable();
 			$contentPanel->setcontent('<table><tr>
 			<td>');
-			$contentPanel->setcontent(_JOMRES_COM_MR_VRCT_PROPERTY_TYPE.$jrtb." ".$room_class_abbv);
+			$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
+			$contentPanel->setcontent(_JOMRES_COM_MR_VRCT_PROPERTY_TYPE.$jrtb." ".$roomClassAbbv);
 			$contentPanel->setcontent('</td>
 			</tr></table>');
 			}

@@ -137,7 +137,8 @@ class j02212edittariff_advanced {
 					{
 					$selected="";
 					$room_classes_uid=$roomClass->room_classes_uid;
-					$room_class_abbv=$roomClass->room_class_abbv;
+					//$room_class_abbv=$roomClass->room_class_abbv;
+					$room_class_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
 					if ($room_classes_uid==$roomclass_uid)
 						$selected="selected";
 					$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";

@@ -108,7 +108,9 @@ class j00015viewproperty
 					if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
 						{
 						//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-						$propertyFeatureDescriptionsArray['FEATURE']=jomres_makeTooltip($propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$propertyFeature->image,"","property_feature",array());
+						$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
+						$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
+						$propertyFeatureDescriptionsArray['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$propertyFeature->image,"","property_feature",array());
 						$featureList[]=$propertyFeatureDescriptionsArray;
 						}
 					}
@@ -132,7 +134,7 @@ class j00015viewproperty
 						{
 						$roomTypeArray[]=$roomtype->room_classes_uid;
 						}
-									
+
 					if (count($roomTypeArray)>1)
 						$roomTypeArray=array_unique($roomTypeArray);
 					if (count($roomTypeArray)>0)
@@ -142,8 +144,9 @@ class j00015viewproperty
 							{
 							$query="SELECT room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$type."'";
 							$rtdeets= doSelectSql($query,2);
-							//$rtRows[]=makeFeatureImages($rtdeets['image'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc']);
-							$rtRows['ROOM_TYPE']=jomres_makeTooltip($rtdeets['room_class_abbv'],$rtdeets['room_class_abbv'],$rtdeets['room_class_full_desc'],$rtdeets['image'],"","room_type",array());
+							$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$type,		stripslashes($rtdeets->room_class_abbv),false,false);
+							$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$type,		stripslashes($rtdeets->room_class_full_desc),false,false);
+							$rtRows['ROOM_TYPE']=jomres_makeTooltip($roomtype_abbv,$roomtype_abbv,$roomtype_desc,$rtdeets['image'],"","room_type",array());
 							$roomtypes[]=$rtRows;
 							}
 						}

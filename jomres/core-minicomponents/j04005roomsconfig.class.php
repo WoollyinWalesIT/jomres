@@ -137,7 +137,9 @@ class j04005roomsconfig {
 				{
 				$roomtype_id=$roomType->room_classes_uid;
 				$r=array();
-				$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomType->room_classes_uid, $roomType->room_class_abbv);
+				//$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomType->room_classes_uid, $roomType->room_class_abbv);
+				$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomType->room_classes_uid,		stripslashes($roomType->room_class_abbv),false,false);
+						
 				$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
 				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 1000, 1, "numberofRooms[$roomtype_id]", 'size="1" class="inputbox"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
 				$r['ROOMRATEPERDAY']=$mrConfig['currency'].'<input class="inputbox" style="text-align:right" size="4" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
