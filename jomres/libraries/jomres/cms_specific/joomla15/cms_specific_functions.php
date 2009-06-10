@@ -23,7 +23,9 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
-	global $thisJRUser,$tmpBookingHandler,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site;
+	global $thisJRUser,$tmpBookingHandler,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site,$jrConfig;
+	if ($jrConfig['useNewusers']=="0")
+		return 1;
 	$id = 0;
 	if (!$thisJRUser->userIsRegistered )
 		{

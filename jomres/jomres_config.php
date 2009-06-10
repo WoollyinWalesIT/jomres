@@ -172,5 +172,5 @@ $mrConfig['bookingform_requiredfields_email'] ="1";
 
 $mrConfig['bookingform_roomlist_showdisabled'] ="1";
 $mrConfig['bookingform_roomlist_showmaxpeople'] ="1";
-$jrConfig['useSubscriptions']="0";
+
 ?>
