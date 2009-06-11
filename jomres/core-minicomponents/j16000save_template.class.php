@@ -38,13 +38,15 @@ class j16000save_template
 		$templateData		= $_REQUEST['templatedata'];
 		$last_edited		= date( 'Y-m-d H:i:s' );
 		
+		$templateData		= addslashes(htmlspecialchars($templateData));
+		
 		$custom_templates = new jomres_custom_template_handler();
 		if ($custom_templates->hasThisTemplateBeenCustomised($templatename))
 			$query = "UPDATE #__jomres_custom_templates SET `value`='".$templateData."',`last_edited`='".$last_edited."' WHERE template_name = '".$templatename."'";
 		else
 			$query = "INSERT INTO #__jomres_custom_templates (`template_name`,`value`,`last_edited`) VALUES ( '".$templatename."','".$templateData."','".$last_edited."')";
 		$result = doInsertSql($query,'');
-		
+		//var_dump($result);
 		if ($templatename == "jomrescss.css")
 			{
 			$fp=fopen(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss.css",'w');

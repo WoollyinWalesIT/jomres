@@ -12,6 +12,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		{
 		$default_root = $this->_options[root]['__default'];
 		$custom_templates = new jomres_custom_template_handler();
+		//var_dump($templatename);
 		if ($templatename != "srch.html")
 			{
 			if (file_exists($custom_templates->default_template_files_folder.JRDS.$templatename))
@@ -21,7 +22,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			}
 		else
 			{
-			$content=file_get_contents($default_root.$templatename );
+			$content=file_get_contents($default_root.JRDS.$templatename );
 			}
 		$templates = $this->parseString($content);
 		return $templates;

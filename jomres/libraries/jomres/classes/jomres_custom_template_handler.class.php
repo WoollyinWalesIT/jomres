@@ -43,7 +43,6 @@ class jomres_custom_template_handler
 		$this->custom_templates=array();
 		$this->custom_template = array();
 		$this->getAllCustomTemplates();
-		
 		}
 
 	function getAllCustomTemplates()
@@ -83,7 +82,7 @@ class jomres_custom_template_handler
 				{
 				foreach ($templates as $t)
 					{
-					return $t->value;
+					return stripslashes(htmlspecialchars_decode($t->value));
 					}
 				}
 			}
