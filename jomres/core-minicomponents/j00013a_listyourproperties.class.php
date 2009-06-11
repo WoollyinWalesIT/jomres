@@ -22,21 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-/**
-#
- * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
- #
-* @package Jomres
-#
- */
-class j00011subscriptions {
-
-	/**
-	#
-	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-	#
-	 */
-	function j00011subscriptions($componentArgs)
+class j00013a_listyourproperties
+	{
+	function j00013a_listyourproperties()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
@@ -44,8 +32,8 @@ class j00011subscriptions {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$task;
-		if (!$thisJRUser->superPropertyManager )
+		global $jrConfig,$thisJRUser,$jomresConfig_live_site,$Itemid;
+		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
 			{
 			if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )
 				{
@@ -61,20 +49,71 @@ class j00011subscriptions {
 				echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7;
 				}
 			}
-		}
-
+		$rows=array();
+		if ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods)
+			{
+			$query="SELECT propertys_uid FROM #__jomres_propertys";
+			$managersProperties=doSelectSql($query);
+			$mp=array();
+			foreach ($managersProperties as $p)
+				{
+				$mp[]=(int)$p->propertys_uid;
+				}
+			$clause = "WHERE ";
+			$clause .= genericOr($mp,'propertys_uid');
+			}
+		else
+			{
+			$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '".$thisJRUser->id."'";
+			$managersProperties=doSelectSql($query);
+			$mp=array();
+			foreach ($managersProperties as $p)
+				{
+				$mp[]=(int)$p->property_uid;
+				}
+			$clause = "WHERE ";
+			$clause .= genericOr($mp,'propertys_uid');
+			}
 		
-	/**
-	#
-	 * Must be included in every mini-component
-	#
-	 * Returns any settings the the mini-component wants to send back to the calling script. In addition to being returned to the calling script they are put into an array in the mcHandler object as eg. $mcHandler->miniComponentData[$ePoint][$eName]
-	#
-	 */
+		
+		$query="SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
+		FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);
+		$jomresPropertyList=doSelectSql($query);
+		$output['PAGETITLE']=_JRPORTAL_CPANEL_LISTPROPERTIES;
+		$output['TOTALINLISTPLUSONE']=count($crateList);
+		$output['HPROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
+		$output['HPROPERTYADDRESS']=_JRPORTAL_PROPERTIES_PROPERTYADDRESS;
+		$output['HCRATE_DROPDOWN']=_JRPORTAL_CRATE_VALUE;
+		$output['LEGEND']=_JRPORTAL_PROPERTIES_LEGEND;
+		foreach($jomresPropertyList as $p)
+			{
+			$r=array();
+			$published=$p->published;
+			$jrtbar = new jomres_toolbar();
+			$jrtb  = $jrtbar->startTable();
+			if (!$published)
+				$jrtb .= $jrtbar->toolbarItem('unpublish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken().'&property_uid='.$p->propertys_uid),jr_gettext('_JOMRES_COM_MR_VRCT_PUBLISH',_JOMRES_COM_MR_VRCT_PUBLISH,false));
+			else
+				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken().'&property_uid='.$p->propertys_uid),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
+			$r['PUBLISHLINK']=$jrtb .= $jrtbar->endTable();
+			$r['PROPERTYNAME']=$p->property_name;
+			$r['PROPERTYADDRESS']=$p->property_street.', '.$p->property_town.', '.$p->property_region.', '.$p->property_country.', '.$p->property_postcode;
+			$rows[]=$r;
+			}
+			
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->readTemplatesFromInput( 'frontend_list_properties.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'rows',$rows);
+		$tmpl->displayParsedTemplate();
+		}
+	
+	
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return null;
-		}
+		}	
 	}
-?>
