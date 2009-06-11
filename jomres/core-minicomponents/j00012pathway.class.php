@@ -61,7 +61,9 @@ class j00012pathway {
 			$this->template_touchable=false; return;
 			}
 		global $jrConfig,$jomresConfig_live_site,$thisJRUser,$numberOfPropertiesInSystem;
-		
+		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
+			return;
+			
 		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
 		
 		
