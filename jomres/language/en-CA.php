@@ -6573,3 +6573,16 @@ define('_JRPORTAL_SUBSCRIPTIONS_USE',"Use subscription handling functionality");
 */
 define('_JRPORTAL_SUBSCRIPTIONS_USE_DESC',"Set this to Yes to tell Jomres that it must use subscription package handling.");
 
+/**
+* @ignore
+*/
+define('_JOMRES_COM_NEWUSER','Create new user on booking');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_NEWUSER_DESC','Create new user account on unregistered user booking.');
+/**
+* @ignore
+*/
+define('_JOMRES_CLICKTOREGISTER','Click here to register your property');
+
