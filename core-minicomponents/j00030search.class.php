@@ -707,7 +707,7 @@ class j00030search {
 				{
 				$stmpl = new patTemplate();
 				$stmpl->setRoot( $sch->templateFilePath );
-				$stmpl->readTemplatesFromInput( 'srch.html' );
+				$stmpl->readTemplatesFromInput( $sch->templateFile );
 				$stmpl->addRows( 'search', $pageoutput );
 				$stmpl->displayParsedTemplate();
 				}
