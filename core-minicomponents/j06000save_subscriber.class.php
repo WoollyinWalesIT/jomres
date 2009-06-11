@@ -207,7 +207,7 @@ class j06000save_subscriber
 		$this->add_field('address1', $subscriber->address);
 		$this->add_field('zip', $subscriber->postcode);
 		
-		echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
+		echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery-1.3.2.min.js"></script>';
 		echo '<script type="text/javascript">jQuery.noConflict();</script>';
 		?>
 
@@ -217,6 +217,9 @@ class j06000save_subscriber
 		});
 		</script>
 		<?php
+		
+		var_dump($this);exit;
+		
 		echo "<center><h2>Please wait, your subscription is being processed and you";
 		echo " will be redirected to the PayPal website.</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
