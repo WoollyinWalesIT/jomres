@@ -190,6 +190,7 @@ class jomres_language
 		$langs['es-ES']="Español";
 		$langs['fr-FR']="Français";
 		$langs['he-IL']="עברית";
+		$langs['hr-HR']="Croatian";
 		$langs['hu-HU']="Hungarian";
 		$langs['it-IT']="Italiano";
 		$langs['nb-NO']="Norsk";
@@ -218,6 +219,7 @@ class jomres_language
 		$langs['es']='es-ES';
 		$langs['fr']='fr-FR';
 		$langs['he']='he-IL';
+		$langs['hr']='hr-HR';
 		$langs['hu']='hu-HU';
 		$langs['it']='it-IT';
 		$langs['nb']='nb-NO';

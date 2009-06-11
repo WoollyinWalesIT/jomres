@@ -6585,3 +6585,8 @@ define('_JOMRES_COM_NEWUSER','Create new user on booking');
 * @ignore
 */
 define('_JOMRES_COM_NEWUSER_DESC','Create new user account on unregistered user booking.');
+/**
+* @ignore
+*/
+define('_JOMRES_CLICKTOREGISTER','Click here to register your property');
+
