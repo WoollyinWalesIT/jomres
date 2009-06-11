@@ -33,6 +33,7 @@ class j00013a_listyourproperties
 			$this->template_touchable=false; return;
 			}
 		global $jrConfig,$thisJRUser,$jomresConfig_live_site,$Itemid;
+		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
 		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
 			{
 			if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )

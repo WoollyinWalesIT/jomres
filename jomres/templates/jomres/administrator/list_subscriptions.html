@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<table class="jradmin_innerwrapper">
+	<tr>
+		<td class="jomres_title">{PAGETITLE}</td>
+	</tr>
+	<tr>
+		<td>{JOMRESTOOLBAR}</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="jradmin_table">
+				<tr>
+					<td class="jradmin_subheader_ca">ID</td>
+					<td class="jradmin_subheader_la">{HCMS_USER_ID}</td>
+					<td class="jradmin_subheader_la">{HGATEWAY_SUBSCRIPTION_ID}</td>
+					<td class="jradmin_subheader_la">{HNAME}</td>
+					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
+					<td class="jradmin_subheader_ca">{HFREQUENCY}</td>
+					<td class="jradmin_subheader_la">{HTRIAL_PERIOD}</td>
+					<td class="jradmin_subheader_la">{HTRIAL_AMOUNT}</td>
+					<td class="jradmin_subheader_la">{HFULL_AMOUNT}</td>
+					<td class="jradmin_subheader_la">{HPROPERTY_LIMIT}</td>
+					<td class="jradmin_subheader_ca">{HSTATUS}</td>
+					<td class="jradmin_subheader_la">{HRAISED_DATE}</td>
+				</tr>
+				<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_field_la">{ID}</td>
+					<td class="jradmin_field_la">{CMS_USER_ID}</td>
+					<td class="jradmin_field_la">{GATEWAY_SUBSCRIPTION_ID}</td>
+					<td class="jradmin_field_la">{NAME}</td>
+					<td class="jradmin_field_la">{DESCRIPTION}</td>
+					<td class="jradmin_field_la">{FREQUENCY}</td>
+					<td class="jradmin_field_la">{TRIAL_PERIOD}</td>
+					<td class="jradmin_field_la">{TRIAL_AMOUNT}</td>
+					<td class="jradmin_field_la">{FULL_AMOUNT}</td>
+					<td class="jradmin_field_la">{PROPERTY_LIMIT}</td>
+					<td class="jradmin_field_la">{STATUS}</td>
+					<td class="jradmin_field_la">{RAISED_DATE}</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="task" value="editTaxrate" />
+</form>
+</patTemplate:tmpl>
