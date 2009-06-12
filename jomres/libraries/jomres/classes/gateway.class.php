@@ -67,9 +67,9 @@ class jomres_gateway_handler
 					$invoice->id=$pp_sent_invoice_id;
 					if ($invoice->getInvoice())
 						{
-						if ($pp_sent_receiver_email != $this->paypal_settings['email'])
+						if ( trim($pp_sent_receiver_email) != trim($this->paypal_settings['email']) )
 							{
-							$gateway_log.='Receiver e-mail does not match e-mail in settings<br/>';
+							$gateway_log.='Receiver e-mail does not match e-mail in settings : pp_sent_receiver_email '.$pp_sent_receiver_email.' - this->paypal_settings '.$this->paypal_settings['email'].'<br/>';
 							}
 						else
 							{

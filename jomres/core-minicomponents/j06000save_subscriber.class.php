@@ -218,8 +218,6 @@ class j06000save_subscriber
 		</script>
 		<?php
 		
-		var_dump($this);exit;
-		
 		echo "<center><h2>Please wait, your subscription is being processed and you";
 		echo " will be redirected to the PayPal website.</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
