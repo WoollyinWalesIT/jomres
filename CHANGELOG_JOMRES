@@ -1,9 +1,26 @@
-Jomres 4.0.2
+Jomres 4.1
 
 Fixed bug where you are unable to change the property type in an SRP once it has been created.
 Fixed parsebybots handling.
 General code changes to resolve some validation issues
 Fixed a bug where new, non-registered users weren't having their details recorded against a booking.
+Slight modification of instructions for setting Session handling in Global Config
+Modified slideshow to output no images message within slideshow tab
+Fixed issue where some Joomla templates are showing bullet image in tabs on property details
+Modified paths to com_jomres.php for 404sef message in site config
+Added subscription handling to v4, integrated old subscriptions plugin.
+Added option to enable/disable automatic creation of new users on booking if user is not registered.
+Fixed bug where /templates/jomres/frontend/srch.html was being called by all search modules.
+Reworked all of the code that uses the room types and property features to ensure that calls are passed through jr_gettext thereby allowing users to translate both with confidence.
+Fixed a minor issue where the room type wasn't remembered in the room type dropdown in the micromanage edit tariff page.
+Replaced makefeatureimages call in administrator register property area to use new beauty tips.
+Added croatian lang file to lang library
+Added miscdefinesfortouchtemplating minicomp
+Added language definition for self registration module
+Tweaked template editing so that javascript doesn't cause an error in mysql.
+Switched off pathway when on dashboard.
+Added list subscriptions feature to admin area
+Tweaked how subscription/property list is shown in dashboard.
 
 
 Jomres 4.0.1
