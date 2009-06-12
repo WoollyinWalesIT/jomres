@@ -25,8 +25,13 @@ function jomres_cmsspecific_createNewUserOnBooking()
 	{
 	global $thisJRUser,$tmpBookingHandler,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site,$jrConfig;
 	if ($jrConfig['useNewusers']=="0")
-		return 1;
+		return -1;
 	$id = 0;
+	
+	$thisJRUser->id=$id;
+	$tmpBookingHandler->updateGuestField('mos_userid',$id);
+	$tmpBookingHandler->saveGuestData();
+	
 	if (!$thisJRUser->userIsRegistered )
 		{
 		require_once( JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'user'.JRDS.'helper.php' );
