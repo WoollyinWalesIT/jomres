@@ -6594,3 +6594,8 @@ define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Active subscriptions");
 * @ignore
 */
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"Gateway subscription id");
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_NEWUSER_SUBJECT',"Thank you for your booking - new user details follow");
