@@ -43,6 +43,13 @@ class j03100sms_clickatell {
 			$this->template_touchable=false; return;
 			}
 		global $jomresConfig_live_site,$Itemid;
+		
+		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();
+		$sms_clickatell_settings->get_sms_clickatell_settings();
+		if ($sms_clickatell_settings->sms_clickatellConfigOptions['active'] == "0")
+			return;
+		
+		
 		$currfmt = new jomres_currency_format();
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
