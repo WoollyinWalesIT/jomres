@@ -1636,7 +1636,7 @@ function insertSampleData()
 
 		$result=doInsertSql("delete FROM `#__jomres_rates`","");
 
-		$result=doInsertSql("delete FROM `#__jomres_c_rates`","");
+		$result=doInsertSql("delete FROM `#__jomresportal_c_rates`","");
 
 		$result=doInsertSql("delete FROM `#__jomres_guests`","");
 
@@ -1658,7 +1658,7 @@ function insertSampleData()
 
 		$result=doInsertSql("delete FROM `#__jomres_propertys`","");
 
-		$result=doInsertSql("INSERT INTO `#__jomres_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00')","");
+		$result=doInsertSql("INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00')","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (1, 'Sky', 'Sky TV in every room', NULL, '1')","");
 		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (2, 'Disabled access', 'Disabled access available', 'jomres/uploadedimages/pfeatures/facilities_Disabled_Access.png', '1')","");
