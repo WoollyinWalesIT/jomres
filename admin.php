@@ -58,10 +58,10 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres_webinstall.php') && $noh
 		echo '<font color="red" face="arial" size="1">Warning: file jomres_webinstall.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
 	}
 	
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php') && $nohtml == 0)
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php') && $nohtml == 0)
 	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
+	//if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php') )
+		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php still exists. Please delete it.</font><br/>';
 	}
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') && $nohtml == 0)
@@ -104,6 +104,12 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'
 		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'invoices_link.html still exists. Please delete it.</font><br/>';
 	}
 	
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'srch.html') && $nohtml == 0)
+	{
+	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'srch.html') )
+		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'srch.html still exists. Please delete it as it has been replaced with search.html.</font><br/>';
+	}
+	
 if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml == 0)
 	{
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
@@ -111,6 +117,15 @@ if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml =
 	if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') )
 		echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins still exists. Please delete it.</font><br/>';
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
+	}
+	
+if ($jrConfig['useSubscriptions']=="1")
+	{
+	$packages=subscriptions_packages_getallpackages();
+	if (count()==0)
+		{
+		echo '<font color="red" face="arial" size="1">Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.</font><br/>';
+		}
 	}
 	
 if (strstr($_SERVER['SCRIPT_NAME'],'index3.php') || $nohtml == "1")
