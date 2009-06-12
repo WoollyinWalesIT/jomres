@@ -641,10 +641,10 @@ a.rescal:hover
 	font-size: 11px;
 	}
 
-.roomslist_header 
+.roomslist_header
 	{
 	background: #f1f1f1;
-	color : #fff;
+	color : #000;
 	}
 
 .jradmin_rowtoolbar 	
