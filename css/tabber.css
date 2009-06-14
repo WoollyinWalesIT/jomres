@@ -78,7 +78,7 @@ ul.tabbernav li.tabberactive a:hover
   --------------------------------------------------*/
 .tabberlive .tabbertab {
  padding:5px;
- border:1px solid #aaa;
+
  border-top:0;
 
  /* If you don't want the tab size changing whenever a tab is changed

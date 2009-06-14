@@ -61,21 +61,32 @@ div.blockMsg {
 	
 .panelwrapper 
 	{
-	text-align: left;
+	background-color: #FFFF66;
+	color: #000;
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 10px;
 	}
- 
+
 .innerwrapper,
 .jradmin_innerwrapper  
 	{	
 	width: 100%;
 	}
+	
+div.address_info  { color: #fff;  background-color: #3333ff; text-align: center; }
+div.address_info a:link { color: #fff; text-decoration:underline;}
+div.tab_panel_content  {  background-color: #FFFFFF; text-align: center; color: #000;}
+div.tab_panel_content a:link { text-decoration:underline;}
 
 .jomres_button {
 	/*background: url(../images/jomres_button.gif) no-repeat;*/
+	color: #3333ff;
 	padding: 0;
 	margin: 0 2px 2px 0;
 	height: 23px;
 	width: 150px;
+	background-color: #FFFF00; 
+	text-align: center;
 	}
 
 .jomres_button a:link, .jomres_button a:visited 
@@ -125,7 +136,6 @@ div.blockMsg {
 /*Property list*/
 .propertylist {
 	margin-bottom: 10px;
-	border: 1px solid #dddddd;
 }	
 
 .propertylist_info 
@@ -135,18 +145,21 @@ div.blockMsg {
 
 .propertylist_left 
 	{
+	background-color: #FFFFCC;
 	}
 
+.pheadwrap 
+	{
+	background-color: #FFFF99;
+	padding: 10px 5px 0px 5px;
+	}
+	
 .propertylist_header 
 	{
 	width: 100%;
 	height: 20px;
 	line-height: 20px;
-	background: #f1f1f1;
-	padding: 0;
-	margin: 0;
 	text-indent: 5px;
-	border-bottom: 1px solid #cccccc;
 	}
 
 .propertylist_header a:link, .propertylist_header a:visited 
@@ -176,7 +189,7 @@ div.blockMsg {
 .propertylist_right 
 	{
 	width: 200px;
-	background: #f1f1f1;
+	background: #F3F3C2;
 	border-left: 1px solid #dddddd;
 	}		
 
@@ -207,10 +220,11 @@ div.blockMsg {
 .header
 	{	
 	height: 110px;
-	background: #f1f1f1;
+	background: #FFFF99;
 	margin-top: 5px;
 	border-top: 1px solid #aaaaaa;
 	border-left: 1px solid #aaaaaa;
+	text-align: center;
 	}
 
 .header_property
@@ -230,18 +244,19 @@ div.blockMsg {
 /* Property detail*/
 .viewproperty {
 	margin-bottom: 5px;
+	background: #ffffff;
 }	
 
 .viewproperty_leftcol 
 	{
 	background: #ffffff;
-	padding: 10px 5px 10px 5px;
 	}
 
 .leftinfo_title 
 	{
-	color: #135cae;
+	color: #000;
 	text-transform: uppercase;
+	font-weight: bolder;
 	}
 
 .leftinfo_content 
@@ -251,12 +266,8 @@ div.blockMsg {
 
 .viewproperty_rightcol 
 	{
-	background: #f1f1f1;
-	padding: 10px 5px 10px 5px;
-	width: 138px;
-	border-left: 1px solid #dddddd;
-	border-bottom: 1px solid #dddddd;
-	border-right: 1px solid #aaaaaa;
+	background: #ffffff;
+	padding: 10px;
 	}
 	
 .rightinfo_title 
@@ -275,7 +286,8 @@ div.blockMsg {
 /* Booking form */	
 .bformleftcol 
 	{
-	background: #fff;
+	color: #000;
+	background: #ffffff;
 	vertical-align: top;
 	}
 	
@@ -297,8 +309,8 @@ div.blockMsg {
 
 .bform_table th
 	{
-	background: #999999;
-	color: #ffffff;
+	background: #F3F3C2;
+	color: #000;
 	text-indent: 5px;
 	font-size: 11px;
 	height: 20px;
@@ -306,7 +318,7 @@ div.blockMsg {
 	}
 	
 .bform_small {
-	font-size: .90em;
+	font-size: .70em;
 	color: #f1f1f1;
 	font-weight: normal;
 	text-align: left;
@@ -326,8 +338,8 @@ div.blockMsg {
 
 .bform_table_totals th
 	{
-	background: #999999;
-	color: #ffffff;
+	background: #F8F831;
+	color: #000;
 	text-indent: 5px;
 	font-size: 11px;
 	height: 20px;
@@ -365,7 +377,7 @@ div.blockMsg {
 
 .roomslist_noroomsselected 
 	{
-	background-color: #666666;
+	background-color: #fc0000;
 	color: #ffffff;
 	font-weight: bold;
 	font-size: 11px;
@@ -494,8 +506,8 @@ div.roomsListInnerWrapper, div.roomsListWrapper
 
 .confirmation_table th
 	{
-	background: #999999;
-	color: #ffffff;
+	background: #F8F831;
+	color: #000;
 	text-indent: 5px;
 	font-size: 11px;
 	text-align: left;
@@ -642,10 +654,10 @@ a.rescal:hover
 	}
 
 .roomslist_header
-	{
-	background: #f1f1f1;
-	color : #000;
-	}
+   {
+   background: #f1f1f1;
+   color : #000;
+   }
 
 .jradmin_rowtoolbar 	
 	{

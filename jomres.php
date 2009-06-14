@@ -47,7 +47,6 @@ global $thisJomresPropertyDetails,$customTextObj;
 
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
-
 require_once('integration.php');
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
@@ -80,7 +79,7 @@ if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending res
 $tmpBookingHandler = new jomres_temp_booking_handler();
 $tmpBookingHandler->initBookingSession($jomressession);
 $jomressession  = $tmpBookingHandler->getJomressession();
-gateway_log("Deposit required ".$tmpBookingHandler->tmpbooking['deposit_required']);
+//gateway_log("Deposit required ".$tmpBookingHandler->tmpbooking['deposit_required']);
 
 $selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 $property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
@@ -322,19 +321,15 @@ init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresCo
 
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{
-	// Now we can show top.html
 	$output=array();
-
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 	$output['LIVESITE']=$jomresConfig_live_site;
-
 	$messaging = array();
 	$sticky_messaging = array();
 	if ($jrConfig['useJomresMessaging'] == '1')
 		{
 		$jomres_messaging = new jomres_messages();
-		//$jomres_messaging->set_message("HELLO");
 		$messages = $jomres_messaging->get_messages();
 		
 		if (count($messages)>0)
@@ -346,7 +341,6 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 				}
 			}
 		$jomres_sticky_messaging = new jomres_sticky_messages();
-		//$jomres_sticky_messaging->set_message("HE\"LLO");
 		$sticky_messages = $jomres_sticky_messaging->get_messages();
 		
 		if (count($sticky_messages)>0)
@@ -370,15 +364,14 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$output=array();
 	}
 
-	
 
 // Manager specific tasks
 if (!defined('JOMRES_NOHTML'))
 	{
 	if ($thisJRUser->userIsManager)
 		{
-		if ($task != "propertyadmin" && $task != "editRoom" && $task !='savenormalmodetariffs' && $task !='hotelSettings' && $task !='saveHotelSettings')
-			performSingleRoomPropertyCheck($property_uid);
+		//if ($task != "propertyadmin" && $task != "editRoom" && $task !='savenormalmodetariffs' && $task !='hotelSettings' && $task !='saveHotelSettings')
+		//	performSingleRoomPropertyCheck($property_uid);
 		if ($task != "invoiceForm" && $task != "confirmationForm" && $task != "editCustomText" && $task != "saveCustomText" && !$popup && !$no_html)
 			{
 			// Show the reception menu
@@ -496,6 +489,7 @@ if (!defined('JOMRES_NOHTML'))
 				echo $cachableContent;
 				$componentArgs=array();
 				}
+			
 			if ($accessLevel=="2")
 				{
 				$cache = new jomres_cache("manager_menu",0,true);
@@ -532,13 +526,6 @@ if (!defined('JOMRES_NOHTML'))
 					$cache->setCache($cachableContent);
 					unset($cache);
 					echo $cachableContent;
-					// Show the manager's memu
-					/*
-					$componentArgs=array();
-					$componentArgs['published']=$published;
-					$MiniComponents->triggerEvent('00011',$componentArgs); // Depreciated in v4a2
-					$componentArgs=array();
-					*/
 					}
 				}
 			}
@@ -558,7 +545,13 @@ if (!defined('JOMRES_NOHTML'))
 			$componentArgs['thisJRUser']=$thisJRUser;
 			$MiniComponents->triggerEvent('00009',$componentArgs); // 
 			$mcOutput=$MiniComponents->getAllEventPointsData('00009');
-			if (count($mcOutput)>0)
+			$counter=0;
+			foreach ($mcOutput as $key=>$val)
+				{
+				if ($mcOutput[$key] != "" && $mcOutput[$key] != null)
+					$counter++;
+				}
+			if ($counter>0)
 				{
 				foreach ($mcOutput as $key=>$val)
 					{
@@ -593,9 +586,6 @@ if (!$no_html)
 	$componentArgs=array();
 	}
 
-$task2 			= jomresGetParam( $_REQUEST, 'task2', "" );
-if ($task2 != "")
-	$task = $task2;
 if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
 
@@ -686,6 +676,7 @@ if ($numberOfPropertiesInSystem>0)
 		break;
 		#########################################################################################
 		case 'showRoomsListing':
+			property_header($property_uid);
 			$componentArgs=array('all'=>"all",'property_uid'=>$property_uid);
 			$MiniComponents->triggerEvent('01055',$componentArgs);
 			$componentArgs=array();
@@ -1245,7 +1236,8 @@ if ($numberOfPropertiesInSystem>0)
 		break;
 		#########################################################################################
 		case 'showTariffs':
-				$MiniComponents->triggerEvent('01020'); //showTariffs();
+			property_header($property_uid);
+			$MiniComponents->triggerEvent('01020'); //showTariffs();
 		break;
 		#########################################################################################
 		case 'doSearch':
@@ -1315,6 +1307,7 @@ if ($numberOfPropertiesInSystem>0)
 					else if ($numberOfPropertiesInSystem==1)
 						{
 						//$MiniComponents->triggerEvent('0013');  // Show dashboard
+						property_header($property_uid);
 						$task="viewproperty";
 						$componentArgs=array();
 						$componentArgs['property_uid']=$property_uid;

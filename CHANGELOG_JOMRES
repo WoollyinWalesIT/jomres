@@ -14,13 +14,25 @@ Fixed bug where /templates/jomres/frontend/srch.html was being called by all sea
 Reworked all of the code that uses the room types and property features to ensure that calls are passed through jr_gettext thereby allowing users to translate both with confidence.
 Fixed a minor issue where the room type wasn't remembered in the room type dropdown in the micromanage edit tariff page.
 Replaced makefeatureimages call in administrator register property area to use new beauty tips.
-Added croatian lang file to lang library
+Added croatian lang file to lang library. Many thanks Natalija.
 Added miscdefinesfortouchtemplating minicomp
 Added language definition for self registration module
 Tweaked template editing so that javascript doesn't cause an error in mysql.
 Switched off pathway when on dashboard.
 Added list subscriptions feature to admin area
 Tweaked how subscription/property list is shown in dashboard.
+Added missing define for new user creation email subject
+Fixed call to __jomresportal_c_rates in installer
+Added absolute's fix for white on white rooms list headers. Many thanks.
+Stopped sms script from trying to send and sms if the feature is disabled, no biggie, it was causing a message in the error log. This fix will stop that.
+Rejigged new user handling to ensure all emails are sent correctly.
+
+Jomres main guest facing templates have been overhauled. Added jquery.corner.js to soften the corners of many panels, updated the css file to match and many of the templates.
+Fixed a bug in Beez template where reception and manager's menus were seperated by a large degree by adding some css to the receptionist's toolbar to emulate valign.
+Found a broken td in the booking form, which may have caused some people to experience the availability calendar wandering off to the right.
+Added new links to property list, town region and country now go to search module_m0.
+Booking form modified so that if optional extras haven't been created, the appropriate panel will not be shown.
+Found cause of insertion of several lines into source output. Trival, but irritating.
 
 
 Jomres 4.0.1
