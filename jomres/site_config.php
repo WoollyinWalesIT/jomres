@@ -28,7 +28,7 @@ $jrConfig['globalCurrency']			='€';
 $jrConfig['globalCurrencyCode']		='EUR';
 $jrConfig['menusAsImages']			='1';
 $jrConfig['google_maps_api_key']	='';
-//$jrConfig['jomresItemid']			='40'; Removed for v4
+
 $jrConfig['minimalconfiguration']	='1';
 $jrConfig['useSSLinBookingform']	='0';
 $jrConfig['editingModeAffectsAllProperties']='0';
@@ -151,4 +151,8 @@ $jrConfig['thumbnail_width']	='50';
 $jrConfig['useJomresMessaging'] = '1';
 $jrConfig['useSubscriptions']="0";
 $jrConfig['useNewusers']="0";
+
+//$jrConfig['jomresItemid']			='40'; Removed for v4
+$jrConfig['jomresItemid']			='40'; // Restored for v4.1
+
 ?>

@@ -34,7 +34,9 @@ class j00013a_listyourproperties
 			}
 		global $jrConfig,$thisJRUser,$jomresConfig_live_site,$Itemid;
 		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
-		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
+		if ($thisJRUser->superPropertyManager)
+			return;
+		if ($jrConfig['useSubscriptions']=="1")
 			{
 			if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )
 				{
@@ -51,32 +53,17 @@ class j00013a_listyourproperties
 				}
 			}
 		$rows=array();
-		if ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods)
-			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys";
-			$managersProperties=doSelectSql($query);
-			$mp=array();
-			foreach ($managersProperties as $p)
-				{
-				$mp[]=(int)$p->propertys_uid;
-				}
-			$clause = "WHERE ";
-			$clause .= genericOr($mp,'propertys_uid');
-			}
-		else
-			{
-			$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '".$thisJRUser->id."'";
-			$managersProperties=doSelectSql($query);
-			$mp=array();
-			foreach ($managersProperties as $p)
-				{
-				$mp[]=(int)$p->property_uid;
-				}
-			$clause = "WHERE ";
-			$clause .= genericOr($mp,'propertys_uid');
-			}
 		
-		
+		$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '".$thisJRUser->id."'";
+		$managersProperties=doSelectSql($query);
+		$mp=array();
+		foreach ($managersProperties as $p)
+			{
+			$mp[]=(int)$p->property_uid;
+			}
+		$clause = "WHERE ";
+		$clause .= genericOr($mp,'propertys_uid');
+
 		$query="SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);
 		$jomresPropertyList=doSelectSql($query);

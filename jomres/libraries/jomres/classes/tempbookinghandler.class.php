@@ -109,6 +109,7 @@ class jomres_temp_booking_handler
 			"coupon_code"=>"",
 			"coupon_details"=>array(),
 			"coupon_discount_value"=>"",
+			"cfg_showExtras"=>false,
 			"booking_notes"=>array()
 			);
 			
@@ -415,6 +416,7 @@ class jomres_temp_booking_handler
 			"coupon_code"=>"",
 			"coupon_details"=>array(),
 			"coupon_discount_value"=>"",
+			"cfg_showExtras"=>false,
 			"booking_notes"=>array()
 			);
 		$this->saveBookingData();

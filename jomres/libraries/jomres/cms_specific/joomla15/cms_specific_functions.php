@@ -328,31 +328,3 @@ function jomres_cmsspecific_parseByBots($str)
 	$output= $obj->text;
 	return $output;
 	}
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

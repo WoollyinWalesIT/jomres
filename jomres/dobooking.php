@@ -294,12 +294,26 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$output['AJAXFORM_EXTRAS']		=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 		$output['AJAXFORM_EXTRAS_DESC']	=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));
 		$output['EXTRAS_TOTAL']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL));
-		$output['EXTRAS_HEADER']='
+		$extrasHeader = array();
+		$extrasH = array();
+		$extrasH ['EXTRAS_HEADER']='
 											<tr>
 												<th colspan="5">'.jomres_makeTooltip($output['AJAXFORM_EXTRAS'],$output['AJAXFORM_EXTRAS'],$output['AJAXFORM_EXTRAS_DESC'],$output['AJAXFORM_EXTRAS_DESC'],$class="",$type="infoimage").'</th>
 											</tr>
 			';
+		$extrasHeader[]=$extrasH;
+		$bkg->cfg_showExtras = true;
+		$output['SHOWEXTRAS']="true";
 		}
+	else
+		{
+		$output['SHOWEXTRAS']="false";
+		$bkg->cfg_showExtras = false;
+		}
+
+	
+	
+	
 	$bkg->setStayDays();
 	$bkg->setDateRangeString();
 	$dateRangeIncludesWeekend=$bkg->dateRangeIncludesWeekends();
@@ -420,6 +434,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$tmpl->addRows( 'customfields',$customFields);
  	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'guesttypes',$guestTypes);
+	$tmpl->addRows( 'extrasrow',$extrasHeader);
 	$tmpl->addRows( 'onload',$toload);
 	$MiniComponents->triggerEvent('05019');
 	$mcOutput=$MiniComponents->getAllEventPointsData('05019');

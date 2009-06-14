@@ -338,10 +338,13 @@ function blockInterface(field,fadetime)
 		message = blockui_recheckingroomavailability;
 	if (field == "smoking")
 		message = blockui_recheckingroomavailability;
-	if (field == "extras")
-		message = blockui_changingextra;
-	if (field == "extrasquantity")
-		message = blockui_changingextra;
+	if (show_extras == true)
+		{
+		if (field == "extras" )
+			message = blockui_changingextra;
+		if (field == "extrasquantity")
+			message = blockui_changingextra;
+		}
 	if (field == "requestedRoom")
 		message = blockui_changingroomselection;
 		
@@ -440,8 +443,8 @@ function checkSelectRoomMessage()
 		{
 		if (document.getElementById("messages").innerHTML == selectroommessage )
 			{
-			
-			jQuery("#extrascontainer").fadeTo("slow", 0.2);
+			if (show_extras == true)
+				jQuery("#extrascontainer").fadeTo("slow", 0.2);
 			jQuery("#bookingform_address").fadeTo("slow", 0.2);
 			jQuery("#bookingform_footer").fadeTo("slow", 0.2);
 			document.getElementById("roomalert_top").className="roomalert_on"
@@ -453,13 +456,14 @@ function checkSelectRoomMessage()
 			}
 		else
 			{
-			
-			document.getElementById("extrascontainer").className="roomalert_off";
+			if (show_extras == true)
+				document.getElementById("extrascontainer").className="roomalert_off";
 			document.getElementById("roomalert_top").className="roomalert_off";
 			document.getElementById("roomalert_bottom").className="roomalert_off";
 			//hidediv("roomalert_top");
 			//hidediv("roomalert_bottom");
-			jQuery("#extrascontainer").fadeTo("slow", 1);
+			if (show_extras == true)
+				jQuery("#extrascontainer").fadeTo("slow", 1);
 			jQuery("#bookingform_address").fadeTo("slow", 1);
 			jQuery("#bookingform_footer").fadeTo("slow", 1);
 			}
@@ -489,7 +493,8 @@ function checkSelectRoomMessage()
 function SRPcheckShowGuestDeetsNow() {
 	if (isSRP)
 		{
-		showdiv("extrascontainer");
+		if (show_extras == true)
+			showdiv("extrascontainer");
 		showdiv("guestdeets");
 		}
 	}

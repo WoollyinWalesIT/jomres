@@ -260,7 +260,7 @@ switch ($field)
 	break;
 	case 'show_log':
 		$ajrq="show_log";
-		
+		//var_dump($bkg->cfg_showExtras);exit;
 		$bkg->setErrorLog("handlereq::Generating billing data" );
 		//
 		$arrivalDate=$bkg->getArrivalDate();
@@ -283,7 +283,7 @@ switch ($field)
 				if ($tariffChargesStoredWeeklyYesNo=="0")
 					echo '; document.getElementById("roompernight").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'" ; fadeIn("roompernight",1000);';
 				echo '; document.getElementById("roomtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'" ; fadeIn("roomtotal",1000);';
-				if ($showExtras=="1")
+				if ($bkg->cfg_showExtras)
 					echo '; document.getElementById("extrastotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'" ; fadeIn("extrastotal",1000);';
 				if ($euroTaxYesNo =="1" || $roomTaxYesNo =="1" )
 					echo '; document.getElementById("taxtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'" ; fadeIn("taxtotal",1000);';

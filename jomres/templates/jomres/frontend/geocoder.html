@@ -29,7 +29,7 @@ function showAddress(address) {
 	<table class="innerwrapper">
 		<tr>
 			<td class="header" colspan="2">
-				<div id="map" style="width: 434px; height: 300px"></div>
+				<center><div id="map"></div></center>
 			</td>
 	</table>
 </div>
@@ -37,7 +37,7 @@ function showAddress(address) {
 
 jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
-		var WIDTH = 496;
+		var WIDTH = 600;
         var HEIGHT = 400;
 		map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
   

@@ -253,7 +253,7 @@ class jomres_booking
 		// Part of frontend jscal configuration switch off for v3.2
 		//$this->cfg_cal_input 								= $mrConfig['cal_input'];
 		$this->cfg_cal_input 								= $jrConfig['cal_input'];
-		$this->cfg_showExtras 								= $mrConfig['showExtras'];
+		//$this->cfg_showExtras 								= $mrConfig['showExtras'];
 		$this->cfg_defaultSmokingOption 					= $mrConfig['defaultSmokingOption'];
 		$this->cfg_currency 								= $mrConfig['currency'];
 		$this->cfg_currencyCode 							= $mrConfig['currencyCode'];
@@ -359,6 +359,7 @@ class jomres_booking
 		{
 		global $tmpBookingHandler;
 		$bookingDeets=$tmpBookingHandler->getBookingData();
+		$this->cfg_showExtras = $bookingDeets['show_extras'];
 		return $bookingDeets;
 		}
 
@@ -450,6 +451,8 @@ class jomres_booking
 		$tmpBookingHandler->tmpbooking["coupon_discount_value"]			= $this->coupon_discount_value;
 		$tmpBookingHandler->tmpbooking["booking_notes"]					= $this->booking_notes;
 
+		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
+		
 		$tmpBookingHandler->saveBookingData();
 		}
 
@@ -4221,7 +4224,7 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="0")
 			echo '; document.getElementById("roompernight").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roompernight",1000);';
 		echo '; document.getElementById("roomtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roomtotal",1000);';
-		if ($this->cfg_showExtras=="1")
+		if ($this->cfg_showExtras)
 			echo '; document.getElementById("extrastotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("extrastotal",1000);';
 		if ($this->cfg_euroTaxYesNo =="1" || $this->cfg_roomTaxYesNo =="1" )
 			echo '; document.getElementById("taxtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("taxtotal",1000);';

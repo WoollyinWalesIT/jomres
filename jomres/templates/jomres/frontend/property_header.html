@@ -1,20 +1,35 @@
-<patTemplate:tmpl name="property_header">
-<div class="panelwrapper">
+<patTemplate:tmpl name="pageoutput" >
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery("div.header").corner("5px");
+		jQuery("div.panelwrapper").corner("5px");
+    });
+</script>
+
+<div class="panelwrapper" style="padding: 10px; margin: 10px">
 	<div class="innerwrapper">
 		<div class="header">
 			<div class="header_image">
-				<!--<patTemplate:tmpl name="property_image">
-					<img src="{IMAGE}" alt="property_image" border="0" width="150" height="110" />
-				</patTemplate:tmpl>-->
-				<patTemplate:tmpl name="tooltip_property_image"><patTemplate:var name="tooltip_property_image" /></patTemplate:tmpl>
+				{TOOLTIP_PROPERTY_IMAGE}
 			</div>
 			<div class="header_property">
-				<b><patTemplate:tmpl name="property_name"><patTemplate:var name="property_name" /></patTemplate:tmpl></b>
+				<b>{PROPERTY_NAME}</b>
 				&nbsp;
-				<patTemplate:tmpl name="stars"><patTemplate:var name="stars" /></patTemplate:tmpl>
+				{STARS} {TOWN},{COUNTRY}
+			<!--
+			<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">
+				{ROOM_TYPE}
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">
+				{FEATURE}
+			</patTemplate:tmpl>
+			
+			-->
 			</div>
 		</div>
 	</div>
 </div>
+
+
 </patTemplate:tmpl>
 
