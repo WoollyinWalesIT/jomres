@@ -119,10 +119,10 @@ if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml =
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
 	}
 	
-if ($jrConfig['useSubscriptions']=="1")
+if ($jrConfig['useSubscriptions']=="1" && $nohtml == "0")
 	{
 	$packages=subscriptions_packages_getallpackages();
-	if (count()==0)
+	if (count($packages)==0)
 		{
 		echo '<font color="red" face="arial" size="1">Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.</font><br/>';
 		}
@@ -161,9 +161,10 @@ if (!JRPORTAL_AJAXCALL)
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/graphs.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jrportal.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.jeditable.pack.js"></script>
-	
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.bt-0-9-3.js"></script>
 
+	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.bt-0-9-3.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/excanvas-compressed.js"></script>
+	
 	<link rel="stylesheet" type="text/css" href="<?php echo $jomresConfig_live_site; ?>/jomres/css/jomrescss.css" title="" />
 	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
 	<?php
