@@ -1,6 +1,6 @@
 Jomres 4.1
 
-Fixed bug where you are unable to change the property type in an SRP once it has been created.
+Fixed bug where you are unable to change the property type (1 bedroom/2 bedroom etc) in an SRP once it has been created.
 Fixed parsebybots handling.
 General code changes to resolve some validation issues
 Fixed a bug where new, non-registered users weren't having their details recorded against a booking.
@@ -33,6 +33,8 @@ Found a broken td in the booking form, which may have caused some people to expe
 Added new links to property list, town region and country now go to search module_m0.
 Booking form modified so that if optional extras haven't been created, the appropriate panel will not be shown.
 Found cause of insertion of several lines into source output. Trival, but irritating.
+Fixed issue where saving guest type order feature results in 500 error/blank page.
+Added sorting to language dropdown.
 
 
 Jomres 4.0.1
