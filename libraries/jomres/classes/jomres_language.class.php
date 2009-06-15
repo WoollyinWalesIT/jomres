@@ -144,6 +144,7 @@ class jomres_language
 			return "";
 		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();
+		
 		if (file_exists($langDropdownFile) )
 			{
 			require_once ($langDropdownFile);
@@ -156,7 +157,8 @@ class jomres_language
 			if (count($langfiles)==0)
 				return false;
 			}
-			
+		
+		$tempOptions = array();
 		foreach ($langfiles as $filename)
 			{
 			$langfileexplode=explode(".",$filename);
@@ -164,7 +166,13 @@ class jomres_language
 			$langlong=$langfile_crossref[$langshortcode];
 			//if (!array_key_exists($langshortcode, $langfile_crossref))
 			//	$langlong = $langshortcode;
-			$langfile_options[] = jomresHTML::makeOption( $langshortcode , $langlong );
+			
+			$tempOptions[$langshortcode]=$langlong;
+			}
+		natsort($tempOptions);
+		foreach ($tempOptions as $key=>$val)
+			{
+			$langfile_options[] = jomresHTML::makeOption( $key , $val );
 			}
 		
 		$javascript = "onchange=\"this.form.submit();\"";
