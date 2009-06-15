@@ -121,6 +121,8 @@ class j02114listcustomertypes {
 			$rows[]=$rw;
 			}
 		$output['PAGETITLE']=jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES',_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES);
+		
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
 		$jrtbar = new jomres_toolbar();
 		$jrtb  = $jrtbar->startTable();

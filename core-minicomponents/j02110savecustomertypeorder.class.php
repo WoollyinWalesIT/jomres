@@ -50,7 +50,7 @@ class j02110savecustomertypeorder {
 		foreach ($order as $key=>$val)
 			{
 			$query="UPDATE  #__jomres_customertypes SET `order`='".$val."' WHERE id = '".(int)$key."' AND property_uid = '".(int)$defaultProperty."'";
-			echo $query."<br>";
+			//echo $query."<br>";
 			if (!doInsertSql($query,_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE))
 				trigger_error ("Unable to customer type order, mysql db failure", E_USER_ERROR);
 			}
