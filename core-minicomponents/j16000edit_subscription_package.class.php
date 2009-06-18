@@ -73,7 +73,7 @@ class j16000edit_subscription_package {
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_subscription_package');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=list_subscription_packages",'');
 		if ($id > 0)
-			$jrtb .= $jrtbar->toolbarItem('delete',JOMRES_SITEPAGE_URL_ADMIN."&task=delete_subscription_package".jomresURLToken()."&no_html=1",'');
+			$jrtb .= $jrtbar->toolbarItem('delete',JOMRES_SITEPAGE_URL_ADMIN."&task=delete_subscription_package".jomresURLToken()."&no_html=1&id=".$id,'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

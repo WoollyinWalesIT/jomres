@@ -39,7 +39,6 @@ class j16000delete_subscription_package {
 			$package->id = $id;
 			if ($package->deleteSubscriptionPackage())
 				{
-				echo "Deleted";
 				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=list_subscription_packages","");
 				}
 			else
