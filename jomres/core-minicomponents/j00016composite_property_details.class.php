@@ -138,7 +138,8 @@ class j00016composite_property_details {
 		$tmpl->addRows( 'tariffslist', $tariffslist );
 		$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
 		$tmpl->addRows( 'slideshowcontent', $slideshowcontent );
-		$tmpl->addRows( 'roomslist', $roomslist );
+		if ($mrConfig['singleRoomProperty']=="0")
+			$tmpl->addRows( 'roomslist', $roomslist );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'feature_icons', $featureList);
 		$tmpl->addRows( 'roomtype_icons', $rtRows);
@@ -146,7 +147,8 @@ class j00016composite_property_details {
 		$tmpl->addRows( 'slideshowlink', $slideshowlink);
 		$tmpl->addRows( 'tariffslink', $tariffslink);
 		$tmpl->addRows( 'gallerylink', $gallerylink);
-		$tmpl->addRows( 'roomslistlink', $roomslistlink);
+		if ($mrConfig['singleRoomProperty']=="0")
+			$tmpl->addRows( 'roomslistlink', $roomslistlink);
 		$tmpl->addRows( 'mappinglink', $mappinglink);
 
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
