@@ -52,8 +52,7 @@ if ($jomresItemid == 0)
 	}
 
 $index = "index.php";
-$popup="&popup=0";
-$tmpl="&tmpl=0";
+$tmpl="";
 if (!isset($_GET['tmpl']) )
 	$_GET['tmpl']=false;
 
