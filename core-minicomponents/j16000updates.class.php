@@ -43,6 +43,12 @@ class j16000updates
 		$this->movedFileLog = array();
 		$this->debugging = false;
 		$this->test_download = false;
+		
+		$configfile = JOMRESPATH_BASE.JRDS."jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
+		include($configfile);
+		$thisVersion=$mrConfig['version'];
+		echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
+		
 		// Use your own FTP info
 		$this->ftp_user_name = 'userid';
 		$this->ftp_user_pass = 'password';
