@@ -241,11 +241,11 @@ class j16000showplugins
 					}
 				}
 
-			$installLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&plugin='.$n.'">'.$installAction.'</a>';
+			$installLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$n.'">'.$installAction.'</a>';
 
 			$uninstallLink="";
 			if (!in_array($rp['type'],$externalPluginTypes) )
-				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&plugin='.$n.'">'.$uninstallAction.'</a>';
+				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
 
 			$local_version=$installed_plugins[$n]['version'];
 			if (!array_key_exists($n,$installed_plugins ) )
