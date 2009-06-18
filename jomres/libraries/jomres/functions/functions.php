@@ -90,22 +90,18 @@ function jomresValidateUrl($url)
 	
 function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/') 
 	{
-	global $jomresConfig_live_site,$task;
-	global $ePointFilepath,$eLiveSite,$jrConfig;
+	global $jomresConfig_live_site,$ePointFilepath,$jrConfig;
 	$link = jomresURL($link);
 	$link = jomresValidateUrl($link);
+	
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
-		$path=$eLiveSite.$image;
-	else
+		$path=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,"",$ePointFilepath);
+	if (!strstr($image,"blank.png"))
 		{
-		if (!strstr($image,"blank.png"))
+		if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
 			{
-			
-			if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
-				{
-				
-				$path=$jomresConfig_live_site.$path.$image;
-				return '
+			$path=$jomresConfig_live_site.$path.$image;
+			return '
 				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
 					<div class="icon" align="center">
 						<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
@@ -115,30 +111,28 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 				</div>
 				';
 				}
-			else
-				{
-				return '<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
-						'.$text.'
-						</a>&nbsp;&nbsp;';
-				
-				}
-			}
 		else
 			{
-			if ($text != "<br/>")
-				{
-				$path=$jomresConfig_live_site.$path.$image;
-				return '
-				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
-					<div class="icon" align="center">
-						<img src="'.$path.'" border="0" />
-					</div>
-				</div>
-				';
-				}
-			else
-				return "<br/>";
+			return '<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
+					'.$text.'
+					</a>&nbsp;&nbsp;';
 			}
+		}
+	else
+		{
+		if ($text != "<br/>")
+			{
+			$path=$jomresConfig_live_site.$path.$image;
+			return '
+			<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
+				<div class="icon" align="center">
+					<img src="'.$path.'" border="0" />
+				</div>
+			</div>
+			';
+			}
+		else
+			return "<br/>";
 		}
 	}
 
