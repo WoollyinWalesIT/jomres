@@ -48,10 +48,10 @@ class j01020showtariffs {
 			$this->retVals=$MiniComponents->triggerEvent('01025'); //
 		else
 			{
-			$showheader=$componentArgs['showheader'];
+			//$showheader=$componentArgs['showheader'];
 			global $property_uid,$mrConfig,$jomresConfig_live_site,$MiniComponents,$jrConfig;
-			if (!isset($showheader) )
-				$showheader=TRUE;
+			//if (!isset($showheader) )
+			//	$showheader=TRUE;
 			$mrConfig=getPropertySpecificSettings($property_uid);
 			$pop=jomresGetParam( $_REQUEST, 'popup', '0' );
 			$ccodes= currencyCodesArray();
