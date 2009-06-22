@@ -27,7 +27,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  */
 
 global $jomresConfig_absolute_path,$jomresConfig_live_site;
-$configfile = JOMRESPATH_BASE."/jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
+$configfile = JOMRESPATH_BASE.JRDS."jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
 include($configfile);
 
 $foldersToTestForWritability=array();
