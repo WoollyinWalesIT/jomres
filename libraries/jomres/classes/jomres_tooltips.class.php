@@ -36,6 +36,7 @@ class jomres_tooltips
 	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments)
 		{
 		$keeplooking=true;
+		$beautyTip_opacity = .9;
 		// Just in the off-chance that we supply the same div name twice
 		$div="jrTooltip".ereg_replace("[^A-Za-z0-9]", "", $div);
 		if (strlen($div)==0)
@@ -65,7 +66,7 @@ class jomres_tooltips
 						ajaxPath: \''.$url.'\',
 						width: \'auto\',
 						closeWhenOthersOpen: true,
-						fill: "rgba(0, 0, 0, .7)",
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
 							color: \'#FFF\'
@@ -102,7 +103,7 @@ class jomres_tooltips
 				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt({
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
-						fill: "rgba(0, 0, 0, .5)",
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
 							color: \'#F9FB61\'
@@ -136,7 +137,7 @@ class jomres_tooltips
 						{
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
-						fill: "rgba(0, 0, 0, .5)"
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')"
 						});
 					</script>
 					';
@@ -150,7 +151,7 @@ class jomres_tooltips
 				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						width: \'100\',
-						fill: "rgba(0, 0, 0, .6)",
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
 							color: \'#F9FB61\'
@@ -167,7 +168,7 @@ class jomres_tooltips
 				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						width: \'200\',
-						fill: "rgba(0, 0, 0, .6)",
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
 							color: \'#F9FB61\'
@@ -185,7 +186,7 @@ class jomres_tooltips
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 							width: \'auto\',
-							fill: "rgba(0, 0, 0, .6)",
+							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 							cssStyles: 
 								{
 								color: \'#F9FB61\'
