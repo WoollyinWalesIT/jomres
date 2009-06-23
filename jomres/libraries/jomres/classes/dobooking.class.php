@@ -202,6 +202,18 @@ class jomres_booking
 		$this->varianceqty=explode(",",$this->vq);
 		$this->variancevals=explode(",",$this->vv);
 
+		foreach ($this->varianceuids as $key=>$variance_uid)
+			{
+			if (!$this->checkGuestVariantIdAndQty($variance_uid,1) )
+				{
+				$this->setErrorLog("init::Unsetting variances with key ".$key);
+				unset($this->variancetypes[$key]);
+				unset($this->varianceuids[$key]);
+				unset($this->varianceqty[$key]);
+				unset($this->variancevals[$key]);
+				}
+			}
+		
 		$userDeets=$this->getTmpGuestData();
 
 		//$this->errorLog( "Set booking variables " );
