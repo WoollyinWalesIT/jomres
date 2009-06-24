@@ -4504,9 +4504,10 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 			}
 		else
 			{
-			if ( $mrConfig['tariffmode']=="2")
-				$this->room_total=($this->rate_pernight*$this->stayDays);
-			else
+			// Commented out as causing a bug in pricing when multiple room types chosen in micromanage mode? v4.1.1
+			//if ( $mrConfig['tariffmode']=="2")
+			//	$this->room_total=($this->rate_pernight*$this->stayDays);
+			//else
 				$this->room_total=($this->rate_pernight*$this->stayDays)*count ($this->requestedRoom);
 			}
 			
