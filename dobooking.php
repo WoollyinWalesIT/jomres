@@ -264,12 +264,18 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$output['ARRIVALDATE']=$bkg->makeArrivalDateOutput($arrivalDate);
 	$output['DEPARTUREDATE']=$bkg->makeDepartureDateOutput($departureDate);
 
+	$smokingOpts = array();
 	if ($mrConfig['showSmoking']=="1")
 		{
 		$smoking=$bkg->initSmoking();
-		$output['SMOKING']=$bkg->makeSmokingOutput($smoking);
+		$smokingOptions = array();
+		$smokingOptions['HSMOKINGTITLE']=$output['HSMOKINGTITLE'];
+		$smokingOptions['SMOKING']=$bkg->makeSmokingOutput($smoking);
+		$smokingOpts[]=$smokingOptions;
 		}
 
+	
+		
 	$counter=0;
 	foreach ($guestTypes as $gst)
 		{
@@ -430,7 +436,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$tmpl = new patTemplate();
 	
 	$tmpl->addRows( 'coupons',$coupons);
-	
+	$tmpl->addRows( 'smoking',$smokingOpts);
 	$tmpl->addRows( 'customfields',$customFields);
  	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'guesttypes',$guestTypes);
