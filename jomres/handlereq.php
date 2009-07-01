@@ -74,7 +74,8 @@ switch ($field)
 		$value=$bkg->sanitiseInput("string",$value);
 		$bkg->writeToLogfile("Starting coupon input");
 		$response=$bkg->saveCoupon($value);
-		echo '; document.getElementById("coupon_response").innerHTML = "'.$response.'" ; fadeIn("deposit",1000);';
+		echo '; populateDiv("coupon_response","'.$response.'")';
+		//echo '; document.getElementById("coupon_response").innerHTML = "'.$response.'" ; fadeIn("deposit",1000);';
 				
 	break;
 	case "addressstring":
@@ -278,23 +279,38 @@ switch ($field)
 				$bkg->generateBilling();
 				$bkg->setErrorLog("handlereq::Show deposit: ".$showDeposit );
 				if ($bkg->getGuestVariantCount() > 0)
-					echo '; document.getElementById("totalinparty").innerHTML = "'.$bkg->getTotalInParty().'" ; fadeIn("totalinparty",1000); ';
-				echo '; document.getElementById("staydays").innerHTML = "'.$bkg->getStayDays().'" ; fadeIn("staydays",1000); ';
+					echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
+
+				echo '; populateDiv("staydays","'.$bkg->getStayDays().'")';
+				//echo '; document.getElementById("staydays").innerHTML = "'.$bkg->getStayDays().'" ; fadeIn("staydays",1000); ';
 				if ($tariffChargesStoredWeeklyYesNo=="0")
-					echo '; document.getElementById("roompernight").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'" ; fadeIn("roompernight",1000);';
-				echo '; document.getElementById("roomtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'" ; fadeIn("roomtotal",1000);';
+					echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'")';
+					//echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'")';
+					//echo '; document.getElementById("roompernight").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'" ; fadeIn("roompernight",1000);';
+				
+				echo '; populateDiv("roomtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'")';
+				//echo '; document.getElementById("roomtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'" ; fadeIn("roomtotal",1000);';
+				
 				if ($bkg->cfg_showExtras)
-					echo '; document.getElementById("extrastotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'" ; fadeIn("extrastotal",1000);';
+					echo '; populateDiv("extrastotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'")';
+					//echo '; document.getElementById("extrastotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'" ; fadeIn("extrastotal",1000);';
+					
 				if ($euroTaxYesNo =="1" || $roomTaxYesNo =="1" )
-					echo '; document.getElementById("taxtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'" ; fadeIn("taxtotal",1000);';
-				echo '; document.getElementById("grandtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'" ; fadeIn("grandtotal",1000);';
+					echo '; populateDiv("taxtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'")';
+					//echo '; document.getElementById("taxtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'" ; fadeIn("taxtotal",1000);';
+					
+				echo '; populateDiv("grandtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'")';
+				//echo '; document.getElementById("grandtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'" ; fadeIn("grandtotal",1000);';
 				if ($showDeposit=="1")
-					echo '; document.getElementById("deposit").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'" ; fadeIn("deposit",1000);';
+					echo '; populateDiv("deposit","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'")';
+					//echo '; document.getElementById("deposit").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'" ; fadeIn("deposit",1000);';
 				if ($bkg->singlePersonSupplimentCalculated)
-					echo '; document.getElementById("single_suppliment").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'" ; fadeIn("single_suppliment",1000);';
+					echo '; populateDiv("single_suppliment","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'")';
+					//echo '; document.getElementById("single_suppliment").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'" ; fadeIn("single_suppliment",1000);';
 				
 				if ($bkg->coupon_code != "")
-					echo '; document.getElementById("coupon_discount_value").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'" ; fadeIn("coupon_discount_value",1000);';
+					echo '; populateDiv("coupon_discount_value","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'")';
+					//echo '; document.getElementById("coupon_discount_value").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'" ; fadeIn("coupon_discount_value",1000);';
 				
 				}
 			else
@@ -308,14 +324,17 @@ switch ($field)
 		if ( $bkg->getOkToBook() )
 			{
 			echo $oktobookClass;
-			echo '; document.getElementById("messages").innerHTML = "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"; checkSelectRoomMessage();';
+			echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage();';
+			//echo '; document.getElementById("messages").innerHTML = "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"; checkSelectRoomMessage();';
+			
 			echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 			}
 		else
 			{
 			$messagesClass=$errorClass;
 			echo $messagesClass;
-			echo '; document.getElementById("messages").innerHTML = "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"; fadeIn("messages",0);checkSelectRoomMessage();  ';
+			echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage();';
+			//echo '; document.getElementById("messages").innerHTML = "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"; fadeIn("messages",0);checkSelectRoomMessage();  ';
 			echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 			}
 		if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )

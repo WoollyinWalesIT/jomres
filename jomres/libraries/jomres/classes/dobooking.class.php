@@ -4231,20 +4231,30 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		{
 		$currfmt = new jomres_currency_format();
 		if ($this->getGuestVariantCount() > 0)
-			echo '; document.getElementById("totalinparty").innerHTML = "'.$this->getTotalInParty().'" ; fadeIn("totalinparty",1000); ';
-		echo '; document.getElementById("staydays").innerHTML = "'.$this->getStayDays().'" ; fadeIn("staydays",1000); ';
+			echo '; populateDiv("totalinparty","'.$this->getTotalInParty().'")';
+			//echo '; document.getElementById("totalinparty").innerHTML = "'.$this->getTotalInParty().'" ; fadeIn("totalinparty",1000); ';
+		echo '; populateDiv("staydays","'.$this->getStayDays().'")';
+		//echo '; document.getElementById("staydays").innerHTML = "'.$this->getStayDays().'" ; fadeIn("staydays",1000); ';
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="0")
-			echo '; document.getElementById("roompernight").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roompernight",1000);';
-		echo '; document.getElementById("roomtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roomtotal",1000);';
+			echo '; populateDiv("roompernight","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			//echo '; document.getElementById("roompernight").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roompernight",1000);';
+		echo '; populateDiv("roomtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+		//echo '; document.getElementById("roomtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roomtotal",1000);';
 		if ($this->cfg_showExtras)
-			echo '; document.getElementById("extrastotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("extrastotal",1000);';
+			echo '; populateDiv("extrastotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			//echo '; document.getElementById("extrastotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("extrastotal",1000);';
 		if ($this->cfg_euroTaxYesNo =="1" || $this->cfg_roomTaxYesNo =="1" )
-			echo '; document.getElementById("taxtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("taxtotal",1000);';
-		echo '; document.getElementById("grandtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("grandtotal",1000);';
+			echo '; populateDiv("taxtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			//echo '; document.getElementById("taxtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("taxtotal",1000);';
+		echo '; populateDiv("grandtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+		//echo '; document.getElementById("grandtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("grandtotal",1000);';
 		if ($this->cfg_showDeposit=="1")
-			echo '; document.getElementById("deposit").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("deposit",1000);';
-		echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",1000);';
-		echo '; document.getElementById("coupon_discount_value").innerHTML = "" ; fadeIn("coupon_discount_value",1000);';
+			echo '; populateDiv("deposit","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			//echo '; document.getElementById("deposit").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("deposit",1000);';
+		echo '; populateDiv("discount","")';
+		//echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",1000);';
+		echo '; populateDiv("coupon_discount_value","")';
+		//echo '; document.getElementById("coupon_discount_value").innerHTML = "" ; fadeIn("coupon_discount_value",1000);';
 		}
 	/**
 	#
@@ -4983,9 +4993,11 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		else
 			{
 			$tmpBookingHandler->updateBookingField("wisepricediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
-			echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",0);';
+			echo '; populateDiv("discount","")';
+			//echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",0);';
 			}
-		echo '; document.getElementById("discount").innerHTML = "'.$discountOutput.'" ; fadeIn("discount",0);';
+		echo '; populateDiv("discount","'.$discountOutput.'")';
+		//echo '; document.getElementById("discount").innerHTML = "'.$discountOutput.'" ; fadeIn("discount",0);';
 		}
 
 	function getPercentageOfRoomsBookedForRoomtype($roomtypeid)
@@ -5364,21 +5376,24 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 				$this->total_discount=$discount;
 				$this->setErrorLog("<b>calcLastMinuteDiscount:: Room total modified to: ".$this->room_total."</b>");
 				$disc_txt=_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1.' '._JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2.': '.$this->getCurrencySymbol().$currfmt->get_formatted($discount);
-				echo '; document.getElementById("discount").innerHTML = "'.$disc_txt.'" ; fadeIn("discount",0);';
+				echo '; populateDiv("discount","'.$disc_txt.'")';
+				//echo '; document.getElementById("discount").innerHTML = "'.$disc_txt.'" ; fadeIn("discount",0);';
 				$tmpBookingHandler->updateBookingField("lastminutediscount",$disc_txt );
 				$tmpBookingHandler->updateBookingField("booking_discounted",true );
 				$discountsForTmpdata[]=array("type"=>"SRP","roomtypeabbr"=>"N/A","discountfrom"=>$currfmt->get_formatted($original_total),"discountto"=>$currfmt->get_formatted($this->room_total) );
 				}
 			else
 				{
-				echo '; document.getElementById("discount").innerHTML = "&nbsp;" ; fadeIn("discount",0);';
+				echo '; populateDiv("discount","&nbsp;")';
+				//echo '; document.getElementById("discount").innerHTML = "&nbsp;" ; fadeIn("discount",0);';
 				$tmpBookingHandler->updateBookingField("lastminutediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
 				}
 			$tmpBookingHandler->updateBookingField("discounts",$discountsForTmpdata);
 			}
 		else
 			{
-			echo '; document.getElementById("discount").innerHTML = "&nbsp;" ; fadeIn("discount",0);';
+			echo '; populateDiv("discount","&nbsp;")';
+			//echo '; document.getElementById("discount").innerHTML = "&nbsp;" ; fadeIn("discount",0);';
 			$tmpBookingHandler->updateBookingField("lastminutediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
 			}
 		$tmpBookingHandler->saveBookingData();
