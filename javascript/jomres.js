@@ -1,5 +1,18 @@
 jQuery.noConflict();
 
+function populateDiv(div_id,content)
+	{
+	//alert(jQuery("#"+div_id).length);
+	if ( jQuery("#"+div_id).length > 0 ) 
+		{ 
+		//alert(content);
+		document.getElementById(div_id).innerHTML = content;
+		
+		jQuery(div_id).fadeIn(100);
+		}
+	
+	}
+
 function jomres_isChecked(ischecked){
 	if (ischecked == true){
 		document.adminForm.boxchecked.value++;

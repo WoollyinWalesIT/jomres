@@ -26,7 +26,7 @@
 	}
 
 #totalinparty {
-	color: #ffffff;
+	color: #000000;
 	}
 
 </style>
@@ -150,6 +150,10 @@ jQuery(document).ready(function() {
 							</tr>
 							<tr>
 								<td colspan="4"><div id="discount" class="jomres_message">&nbsp;</div></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</div></td><td>&nbsp;</td>
+								<td><div id="totalinparty"  style="font-weight: bold;"></div></td><td>{BILLING_TOTALINPARTY}</td>
 							</tr>
 							<tr>
 								<td colspan="3" ><b>{ACCOMMODATION_TOTAL}</b></td>
@@ -386,8 +390,6 @@ jQuery(document).ready(function() {
 				</td>
 			</tr>
 		</table>
-		<!--Hidden Fields-->
-		<div id="totalinparty"></div>
 		</div>
 	<div>{AJAXFORM_INSTRUCTIONS}</div>
 	</div>
