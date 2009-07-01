@@ -44,7 +44,7 @@ class j00030search {
 			}
 		global $jomresConfig_live_site,$jomresConfig_lang,$jrConfig;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
-		global $customTextObj;
+		global $customTextObj,$jomresItemid;
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		
 		
@@ -133,7 +133,7 @@ class j00030search {
 			$sch = new jomSearch($calledByModule);
 			$sch->searchAll=$searchAll;
 			$searchOptions=$sch->searchOptions;
-			$h='<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/>';
+			$h='<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.$jomresItemid.'"/>';
 			$output['HIDDEN']	= $h;
 			$jomresSearchFormname=$sch->formname;
 			$searchOutput=$sch->searchOutput;
