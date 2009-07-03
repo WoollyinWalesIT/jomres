@@ -202,12 +202,13 @@ class j06000contactowner {
 					$docs[] =$filename;
 					}
 				}
+				
 			$d->close();
 			if (count($docs)>0)
 				{
 				foreach ($docs as $f)
 					{
-					if (substr($f,0,8) == 'captcha_')
+					if (substr($f,5,9) == '.jpg')
 						{
 						$last_modified = filemtime  ( JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."/".$f);
 						$seconds_timediff = time() - $last_modified;
