@@ -197,11 +197,16 @@ class  j00018MRPavailabilitycalendar {
 
 		$showOutMonthDates=false;
 		$task=jomresGetParam( $_REQUEST, 'task', '' );
+		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
+		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );
 		if ($task == "remoteavailability" )
 			$target='target="_blank"';
 		else
 			$target='';
-
+		if ($tar == 0)
+			$target='';
+		if ($show_links == 0)
+			$this->showlinks = false;
 		###################################
 		## define variables-little cleaner
 		## than mucking over the code to
