@@ -1953,7 +1953,7 @@ class ionoServerConnectivityTest
 			print_r($masterFopen);
 			echo "<br>";
 			}
-		if (function_exists('curl_init') && $masterFopen == "Off") // use CURL
+		if (function_exists('curl_init')) // use CURL
 			{
 			$this->connectionMethodAttempted = 'CURL';
 			if ($this->outPutSteps)
