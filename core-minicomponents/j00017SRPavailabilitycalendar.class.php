@@ -197,15 +197,23 @@ class j00017SRPavailabilitycalendar {
 		// Submitted by: Whiddon James on Dec 01st 1999
 		global $mrConfig,$jomresConfig_locale,$jrConfig;
 		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
+		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
+		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );
 		$userIsManager=checkUserIsManager();
 		setlocale(LC_ALL, $jomresConfig_locale);
 
 		$showOutMonthDates=false;
+		
 		if ($this->pop==1 || jomresGetParam( $_REQUEST, 'task', '' ) == "remoteavailability" )		// If we are in a popup then it is not suitable to link directly to the booking form, so we'll set a target = "_BLANK" to go to the booking form.
 			$target=' TARGET="_blank" ';
 		else
-			$target="";
+			$target='';
+		if ($tar == 0)
+			$target='';
 
+		if ($show_links == 0)
+			$this->showlinks = false;
+			
 		###################################
 		## define variables-little cleaner
 		## than mucking over the code to
