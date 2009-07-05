@@ -287,12 +287,12 @@ class j02260editbooking {
 				if (!$booking_deposit_paid && $bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('enterdeposit',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$booking_contract_uid"),'');
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
-				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&contract_uid='.$booking_contract_uid;
+				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&no_html=1&contract_uid='.$booking_contract_uid;
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('addservice',jomresURL(JOMRES_SITEPAGE_URL."&task=addServiceToBill&contract_uid=$booking_contract_uid"),jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=false));
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('printer','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_CONFIRMATION_PRINT',_JOMRES_COM_CONFIRMATION_PRINT,$editable=false,$isLink=false));
-				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&contract_uid='.$booking_contract_uid.'&sendemail=1';
+				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&no_html=1&contract_uid='.$booking_contract_uid.'&sendemail=1';
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('emailsend','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=false));
 				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&popup=1&contract_uid='.$booking_contract_uid;
