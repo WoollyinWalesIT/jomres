@@ -1916,6 +1916,7 @@ class jomres_booking
 		{
 		$rangeDaysOfWeek=array();
 		$weekendDays=$this->cfg_weekenddays;
+		$this->setErrorLog("dateRangeIsAllWeekends:: Weekend days ".serialize($weekendDays) );
 		$tmpWEarray=array();
 		foreach ($weekendDays as $val)
 			{
@@ -1932,10 +1933,19 @@ class jomres_booking
 			}
 		sort($weekendDays);
 		sort($rangeDaysOfWeek);
-		if ($rangeDaysOfWeek==$weekendDays)
-			return true;
-		else
-			return false;
+		$this->setErrorLog("dateRangeIsAllWeekends:: weekendDays ".serialize($weekendDays) );
+		$this->setErrorLog("dateRangeIsAllWeekends:: rangeDaysOfWeek ".serialize($rangeDaysOfWeek) );
+		
+		foreach ($rangeDaysOfWeek as $rdow)
+			{
+			if (!in_array($rdow,$weekendDays))
+				{
+				$this->setErrorLog("dateRangeIsAllWeekends:: <b>Not</b> all days are weekend days" );
+				return false;
+				}
+			}
+		$this->setErrorLog("dateRangeIsAllWeekends:: All days are weekend days");
+		return true;
 		}
 
 	/**
@@ -3349,14 +3359,20 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 					$dowCheck =TRUE;
 					if ($allow_we == "0" && $dateRangeIncludesWeekend)
+						{
+						$this->setErrorLog("getTariffsForRoomUids::Allow WE =1 and dateRangeIncludesWeekend");
 				  		$dowCheck =FALSE;
+						}
 
 					if ($weekendonly == "1" && $dateRangeIsAllWeekends)
 						$dowCheck =TRUE;
 					else
 						{
 						if ($weekendonly == "1" && !$dateRangeIsAllWeekends)
+							{
+							
 							$dowCheck =FALSE;
+							}
 						}
 
 					$this->setErrorLog("getTariffsForRoomUids::Day of week check, tariff dow = ".$tariff_dayofweek );
