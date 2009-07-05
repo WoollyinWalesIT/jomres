@@ -32,6 +32,17 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'moduleinterface.php') )
 	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
 	}
 	
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php') )
+	{
+	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php');
+	$cmsVer = new version();
+	if ($cmsVer->PRODUCT == 'MiaCMS' && $cmsVer->RELEASE =='4.8' )
+		{
+		define("_JOMRES_DETECTED_CMS","miacms48");
+		define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+		}
+	}
+	
 if (!defined('_JOMRES_DETECTED_CMS') )
 	{
 	$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
