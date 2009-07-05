@@ -436,7 +436,8 @@ function buildSelected(string)
 	if (string != undefined)
 		{
 		if ( string.length > 0 )
-			document.getElementById("selectedRooms").innerHTML = string;
+			populateDiv("selectedRooms",string);
+			//document.getElementById("selectedRooms").innerHTML = string;
 		}
 	}
 
@@ -445,7 +446,8 @@ function buildAvailable(string)
 	if (string != undefined)
 		{	
 		if ( string.length > 0 )
-			document.getElementById("availRooms").innerHTML = string;
+			populateDiv("availRooms",string);
+			//document.getElementById("availRooms").innerHTML = string;
 		}
 	}
 	
