@@ -108,7 +108,7 @@ class j01010listpropertys {
 		if (count($propertys_uids) >0)
 			{
 			$g=genericOr($propertys_uids,'propertys_uid');
-			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features FROM #__jomres_propertys WHERE ";
+			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id FROM #__jomres_propertys WHERE ";
 			$query.=$g;
 			$total_records=count($propertys_uids);
 			$record_per_page=$limit;
@@ -315,7 +315,16 @@ class j01010listpropertys {
 
 					$currfmt = new jomres_currency_format();
 					$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
-
+					
+					if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
+						$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+					else
+						{
+						if ($mrConfig['perPersonPerNight']=="0" )
+							$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+						else
+							$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						}
 					$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
 					$propertyContactArray=$propertyAddressArray[1];
 					$propertyAddyArray=$propertyAddressArray[2];
@@ -371,6 +380,9 @@ class j01010listpropertys {
 					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 						$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
 
+					$query="SELECT ptype FROM #__jomres_ptypes WHERE `id` = '".(int)$property->ptype_id."' LIMIT 1";
+					$property_deets['PROPERTY_TYPE'] = doSelectSql($query,1);
+	
 					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 					$property_deets['LOWESTPRICE']=$price;
 					$property_deets['STARS']=$starslink;
