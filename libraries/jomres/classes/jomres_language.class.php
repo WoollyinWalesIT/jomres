@@ -31,9 +31,11 @@ class jomres_language
 	function jomres_language()
 		{
 		global $jomresConfig_lang,$jrConfig;
+		global $tmpBookingHandler;
 		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
 		$this->showLangDropdown =$jrConfig['showLangDropdown'];
-		
+		$administrator_area=jomres_cmsspecific_areweinadminarea();
+
 		if (isset($_POST['jomreslang']) )
 			{
 			$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_POST, 'jomreslang', "" ) );
@@ -46,27 +48,27 @@ class jomres_language
 				}
 			else
 				{
-				if ( isset($_REQUEST['lang']) )
+				if (isset($_GET['lang']) )
 					{
-					$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_REQUEST, 'lang', "" ) );
+					$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_GET, 'lang', "" ));
 					}
 				else
 					{
-					if ( isset($_COOKIE['jomreslang']))
+					if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php") && !$administrator_area)
 						{
-						$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_COOKIE, 'jomreslang', "" ));
+						$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
 						}
 					else
 						{
-						if (isset($_COOKIE['mbfcookie']) )
+						if ( isset($tmpBookingHandler->tmplang['jomreslang']))
 							{
-							$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['mbfcookie']['lang']);
+							$jomresConfig_lang				=(string)RemoveXSS($tmpBookingHandler->tmplang['jomreslang']);
 							}
 						else
 							{
-							if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php")  )
+							if (isset($_COOKIE['mbfcookie']) )
 								{
-								$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
+								$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['mbfcookie']['lang']);
 								}
 							else
 								{
@@ -84,10 +86,10 @@ class jomres_language
 		$langfile_crossref = $this->define_langfile_to_languages_array();
 		if ( !array_key_exists($jomresConfig_lang,$langfile_crossref) )
 			$jomresConfig_lang				= $this->get_shortcode_to_longcode($jomresConfig_lang);
-		//setcookie ('jomreslang', "", time() - 3600);
-		//var_dump($jomresConfig_lang);			exit;
-		//
-		SetCookie("jomreslang", $jomresConfig_lang, time()+(60*60*24*365),"/");
+
+		$tmpBookingHandler->tmplang['jomreslang']= $jomresConfig_lang;
+		$tmpBookingHandler->close_jomres_session();
+		
 		jomres_cmsspecific_setlanguage($jomresConfig_lang);
 		$this->lang=$jomresConfig_lang;
 		}

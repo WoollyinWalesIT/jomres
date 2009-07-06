@@ -21,6 +21,16 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
+
+function jomres_cmsspecific_areweinadminarea()
+	{
+	$administrator_area=false;
+	if (substr($_SERVER['SCRIPT_NAME'],"/administrator/"))
+		$administrator_area=true;
+	return $administrator_area;
+	}
+
+
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
 	global $thisJRUser,$tmpBookingHandler,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site,$jrConfig;

@@ -43,7 +43,7 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray;
+		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray,$tmpBookingHandler;
 		global $customTextObj;
 		global $_MAMBOTS;
 		$jrConfig=getSiteSettings();
@@ -203,8 +203,8 @@ class j01010listpropertys {
 
 		if (!isset($_REQUEST['arrivalDate']) )
 			{
-			if (isset($_COOKIE['jomsearch_availability']))
-				$arrivalDate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
+			if (isset($tmpBookingHandler->tmpsearch_data['jomsearch_availability']))
+				$arrivalDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
 			else
 				$arrivalDate=date("Y/m/d");
 			}

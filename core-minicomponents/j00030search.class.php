@@ -85,6 +85,10 @@ class j00030search {
 		else
 			{
 			//$customTextObj = new custom_text();
+			global $jomressession,$tmpBookingHandler;
+			$tmpBookingHandler = new jomres_temp_booking_handler();
+			$tmpBookingHandler->initBookingSession($jomressession);
+			$jomressession  = $tmpBookingHandler->getJomressession();
 			$showSearchOptions=true;
 			$jomreslang= new jomres_language();
 			$jomreslang->get_language('xx');
