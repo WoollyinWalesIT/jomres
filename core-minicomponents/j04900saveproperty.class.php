@@ -67,8 +67,8 @@ class j04900saveproperty {
 		$metatitle						= jomresGetParam( $_POST, 'metatitle', "" );
 		$metadescription				= jomresGetParam( $_POST, 'metadescription', "" );
 		
-		$lat							=jomresGetParam( $_POST, 'lat', 0.00 );
-		$long							= jomresGetParam( $_POST, 'long', 0.00 );
+		$lat							=jomresGetParam( $_POST, 'lat', '' );
+		$long							= jomresGetParam( $_POST, 'long', '' );
 
 		if ($jrConfig['allowHTMLeditor'] == "0")
 			{
