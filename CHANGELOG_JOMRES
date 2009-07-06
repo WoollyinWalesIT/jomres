@@ -1,3 +1,39 @@
+Jomres 4.1.1
+
+Rewrote sections of code that saved language and search dates to cookies. As this was giving inconsistent results (eg the wrong language) the data is instead now saved to the Jomres temp booking handler's data.
+Added "var" fix to google maps
+Preliminary inclusion of cms specific files for miaCMS
+Added captions to slideshow images
+Added property type and per day/week label for "prices from" to property list.
+Modified confirmation form popup to not show module positions etc
+Removed old hidden divs from SRP booking form and fixed number icons to go 1-2-3 instead of 1-2-4.
+Fixed bug where if several days were chosen as weekend days and a tariff was made for, say, 2 weekend days, then the tariff wouldn't be found when building the rooms list. Now the method that handles that checks that all days in the date range are weekend days, not that all days in the range and the weekend days range are the same.
+Small modification that causes curl to be used first for connecting to the license server.
+Fixed bug where contact owner (captcha) wasn't deleting old captcha images in /jomres/temp.
+Added two new url options to remote availability calendars. By default, remote availability calendar will show links and when the link is clicked the booking form will be opened in a new window. New option "tar=0" disables the blank target, and new option sl=0 will switch off the links to the booking form altogether.
+Fixed bug where editing a customer type creates a new one
+Created a wrapper function for div population in the booking form. The purpose being to enable site admins to remove elements in the booking form without the missing divs causing an error.
+Added hidden jomresitemid to search module templates
+Corrected the NZ regions.
+Added smoking option to booking form for MRPs.
+Fixed multiroom booking prices calculating incorrectly in micromananage mode
+Fixed unable to amend booking if the guest type has been removed since the booking was created.
+Switched off property header in tariffs and rooms list
+Tweaked path in cpanel to ensure it pulls in the correct setting for the current version of Jomres.
+Changed the opacity to .9 in beautytips
+Fixed bug where subscription packages couldn't be deleted.
+Disabled room link output in SRPs
+Added space between region and country in property header template
+Fixed tax rate labels missing when editing tax rates.
+Added current version info to updates page.
+Fix so that property header doesn't show twice on show tariffs popup
+reset tmpl to '' if not wrapped
+Tweaked Jomres main menu option handling to ensure plugins can insert their own images
+Tweaked url handling in joomla to ensure tmpl=component sets the jomres site url to same
+Fixed hover image popup going too far left by disabling jquery.corner application to the propertylist_right td.
+
+
+
 Jomres 4.1
 
 Fixed bug where you are unable to change the property type (1 bedroom/2 bedroom etc) in an SRP once it has been created.
