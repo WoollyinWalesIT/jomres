@@ -48,6 +48,11 @@ class j01050x_geocoder {
 		$property_uid=(int)$componentArgs['property_uid'];
 		$output=array();
 		$pageoutput=array();
+		$b = new browser();
+		$output['VAR']="";
+		if ($b->BROWSER_AGENT=="IE")
+			$output['VAR']="var";
+			
 		if (strlen($jrConfig['google_maps_api_key'])>0)
 			{
 			$query="SELECT property_name,property_street,property_town,property_postcode,property_tel,property_country,property_region,`lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
