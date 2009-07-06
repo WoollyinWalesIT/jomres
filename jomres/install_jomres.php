@@ -246,8 +246,21 @@ function doTableUpdates()
 		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('0','useSubscriptions')";
 		echo "Setting $key to $val";echo "<br>";
 		}
+	alterPropertyLatLongToChar12();
 	}
 
+	
+	
+	
+function alterPropertyLatLongToChar12()
+	{
+	$query="ALTER TABLE #__jomres_propertys CHANGE `lat` `lat` VARCHAR( 12 ) NULL DEFAULT NULL  ";
+	doInsertSql($query,'');
+	$query="ALTER TABLE #__jomres_propertys CHANGE `long` `long` VARCHAR( 12 ) NULL DEFAULT NULL";
+	doInsertSql($query,'');
+	}
+
+	
 function createSubscriptionsTables()
 	{
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
@@ -1525,8 +1538,8 @@ function createJomresTables()
 		`stars` int NOT NULL,
 		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
-		`lat` float NULL,
-		`long` float NULL,
+		`lat` VARCHAR(12) NULL,
+		`long` VARCHAR(12) NULL,
 		`metatitle` VARCHAR(150) NOT NULL,
 		`metadescription` VARCHAR(150) NOT NULL,
 		`timestamp` DATETIME NOT NULL,
