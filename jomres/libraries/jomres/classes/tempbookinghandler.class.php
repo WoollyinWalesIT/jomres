@@ -141,6 +141,15 @@ class jomres_temp_booking_handler
 			"timestamp"=>""
 			);
 			
+		$this->tmpsearch_data = array(
+			"jomsearch_availability"=>"",
+			"jomsearch_availability_departure"=>""
+			);
+			
+		$this->tmplang = array(
+			"jomreslang" => "en-GB"
+		);
+
 		$this->customFieldValues = array();
 		}
 	
@@ -200,8 +209,10 @@ class jomres_temp_booking_handler
 			$dataArrays=unserialize($data);
 			$this->tmpbooking=$dataArrays['tmpbooking'];
 			$this->tmpguest=$dataArrays['tmpguest'];
+			$this->tmpsearch_data=$dataArrays['tmpsearch_data'];
+			$this->tmplang=$dataArrays['tmplang'];
 			
-			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest);
+			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang);
 			$fp=fopen($this->sessionfile,'w+');
 			if (!fwrite($fp, serialize($data)) )
 				error_log(" Error writing to session file ");
@@ -209,7 +220,7 @@ class jomres_temp_booking_handler
 			}
 		else // session file doesn't exist, let's create it
 			{
-			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest);
+			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang);
 			$fp=fopen($this->sessionfile,'w+');
 			if (!fwrite($fp, serialize($data)) )
 				error_log(" Error writing to session file ");
@@ -220,7 +231,7 @@ class jomres_temp_booking_handler
 
 	function close_jomres_session()
 		{
-		$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest);
+		$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang);
 		$fp=fopen($this->sessionfile,'w+');
 		if (!fwrite($fp, serialize($data)) )
 			error_log(" Error writing to session file ");

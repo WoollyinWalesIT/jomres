@@ -864,7 +864,7 @@ function prepDescriptiveSearch()
  */
 function prepAvailabilitySearch()
 	{
-	global $jomresConfig_live_site;
+	global $jomresConfig_live_site,$tmpBookingHandler;
 	$result=array();
 	//$availabilityArray=array();
 	$today = date("Y/m/d");
@@ -875,7 +875,8 @@ function prepAvailabilitySearch()
 
 	if (!isset($_REQUEST['arrivalDate']) )
 		{
-		if (!isset($_COOKIE['jomsearch_availability']))
+		//if (!isset($_COOKIE['jomsearch_availability']))
+		if ($tmpBookingHandler->tmpsearch_data['jomsearch_availability']=="")
 			{
 			$arrivalDate	=JSCalmakeInputDates(date("Y/m/d",$unixTodaysDate),$siteCal=true);
 			$departureDate	=JSCalmakeInputDates(date("Y/m/d",$unixTomorrowsDate),$siteCal=true);
@@ -885,8 +886,10 @@ function prepAvailabilitySearch()
 		else
 			{
 			//echo jomresGetParam( $_COOKIE,'jomsearch_availability', '' );exit;
-			$arrivalDate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
-			$departureDate	=jomresGetParam( $_COOKIE,'jomsearch_availability_departure', '' );
+			//$arrivalDate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
+			//$departureDate	=jomresGetParam( $_COOKIE,'jomsearch_availability_departure', '' );
+			$arrivalDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
+			$departureDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure'];
 			}
 		}
 	else
@@ -908,10 +911,13 @@ function prepAvailabilitySearch()
 
 
 	$result=array('arrival'=>$arrivalDate,'departure'=>$departureDate);
-	SetCookie("jomsearch_availability", $arrivalDate, time()+60*60);
-	SetCookie("jomsearch_availability_departure", $departureDate, time()+60*60);
-	//SetCookie("jomsearch_availability", $arrivalDate, time()+60*60, "/", $jomresConfig_live_site);
-	//SetCookie("jomsearch_availability_departure", $departureDate, time()+60*60, "/", $jomresConfig_live_site);
+	//SetCookie("jomsearch_availability", $arrivalDate, time()+60*60,"/");
+	//SetCookie("jomsearch_availability_departure", $departureDate, time()+60*60,"/");
+	
+	$tmpBookingHandler->tmpsearch_data['jomsearch_availability']= $arrivalDate;
+	$tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure']= $departureDate;
+	$tmpBookingHandler->close_jomres_session();
+
 	return $result;
 	}
 

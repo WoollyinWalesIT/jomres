@@ -31,6 +31,16 @@ global $xmlelements;
 global $MiniComponents,$indexphp,$logFiles,$jrConfig;
 
 require_once('integration.php');
+
+global $jomressession,$tmpBookingHandler;
+$tmpBookingHandler = new jomres_temp_booking_handler();
+$tmpBookingHandler->initBookingSession($jomressession);
+$jomressession  = $tmpBookingHandler->getJomressession();
+$showSearchOptions=true;
+$jomreslang= new jomres_language();
+$jomreslang->get_language('xx');
+$customTextObj = new custom_text();
+
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
 	define('JOMRES_IMAGELOCATION_ABSPATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);

@@ -48,13 +48,15 @@ $date_elements  	= explode("/",$today);
 $unixTodaysDate		= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 if (!isset($_REQUEST['arrivalDate']) )
 	{
-	if (!isset($_COOKIE['jomsearch_availability']))
+	//if (!isset($_COOKIE['jomsearch_availability']))
+	if ($tmpBookingHandler->tmpsearch_data['jomsearch_availability']=="")
 		{
 		$arrivalDate=JSCalmakeInputDates(date("Y/m/d",$unixTodaysDate),$siteCal=true);
 		$thisdate	=JSCalConvertInputDates($arrivalDate,$siteCal=true);
 		}
 	else
-		$thisdate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
+		$thisdate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
+		//$thisdate	=jomresGetParam( $_COOKIE,'jomsearch_availability', '' );
 	}
 else
 	{
@@ -228,10 +230,16 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$defaultdepartureDate=$bkg->initDepartureDate();
 		if (!isset($_REQUEST['arrivalDate']) )
 			{
+			/*
 			if (!isset($_COOKIE['jomsearch_availability']))
 				$departureDate	=date("Y/m/d",$unixTomorrowsDate);
 			else
 				$departureDate	=jomresGetParam( $_COOKIE,'jomsearch_availability_departure', '' );
+			*/
+			if ($tmpBookingHandler->tmpsearch_data['jomsearch_availability']=="")
+				$departureDate	=date("Y/m/d",$unixTomorrowsDate);
+			else
+				$departureDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure'];
 			}
 		else
 			$departureDate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'departureDate', "" ));
