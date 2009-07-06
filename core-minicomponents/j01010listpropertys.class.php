@@ -356,7 +356,7 @@ class j01010listpropertys {
 						}
 					else
 						{
-						$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,$editable=true,$isLink=true)."</a>";
+						$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
 						$bookinglink[]		= 	$link;
 						}
 
@@ -369,7 +369,7 @@ class j01010listpropertys {
 
 					$property_deets['LIVESITE']=$jomresConfig_live_site;
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
-					$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,$editable=true,true) ;
+					$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false) ;
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
 					$property_deets['PROPERTYNAME']= stripslashes($propertyContactArray[0]);
 					$property_deets['PROPERTYTOWN']= $ptown;
