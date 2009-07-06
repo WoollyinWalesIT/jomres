@@ -203,13 +203,14 @@ class j01010listpropertys {
 
 		if (!isset($_REQUEST['arrivalDate']) )
 			{
-			if (isset($tmpBookingHandler->tmpsearch_data['jomsearch_availability']))
+			if (isset($tmpBookingHandler->tmpsearch_data['jomsearch_availability']) && $tmpBookingHandler->tmpsearch_data['jomsearch_availability'] != "")
 				$arrivalDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
 			else
 				$arrivalDate=date("Y/m/d");
 			}
 		else
 			$arrivalDate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ),$siteCal=true);
+
 		$date_elements  = explode("/",$arrivalDate);
 		$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 
