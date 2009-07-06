@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
 		var map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
 		map.addControl(new GSmallMapControl());
 		map.addControl(new GMapTypeControl());
-		map.setCenter(new GLatLng({LAT}, {LONG}), 13);
+		{VAR} map.setCenter(new GLatLng({LAT}, {LONG}), 13);
 		var point = new GLatLng({LAT}, {LONG});
 		var marker = new GMarker(point);
 		map.addOverlay(marker);
