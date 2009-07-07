@@ -17,10 +17,10 @@ jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
 		var WIDTH = 600;
         var HEIGHT = 400;
-		var map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
+		{VAR} map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
 		map.addControl(new GSmallMapControl());
 		map.addControl(new GMapTypeControl());
-		{VAR} map.setCenter(new GLatLng({LAT}, {LONG}), 13);
+		map.setCenter(new GLatLng({LAT}, {LONG}), 13);
 		var point = new GLatLng({LAT}, {LONG});
 		var marker = new GMarker(point);
 		map.addOverlay(marker);
