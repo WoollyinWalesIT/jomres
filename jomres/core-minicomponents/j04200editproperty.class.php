@@ -88,9 +88,12 @@ class j04200editproperty {
 				$output['PROPERTY_TEL']=getEscaped(($property->property_tel ));
 				$output['PROPERTY_FAX']=getEscaped(($property-> property_fax ));
 				$output['PROPERTY_EMAIL']=getEscaped(($property->property_email ));
+				
 
 				$output['LAT']=$property->lat;
 				$output['LONG']=$property->long;
+				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
+				
 				$output['METATITLE']=getEscaped(($property->metatitle ));
 				$output['METADESCRIPTION']=getEscaped(($property->metadescription ));
 

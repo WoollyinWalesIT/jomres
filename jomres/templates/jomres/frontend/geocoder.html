@@ -12,7 +12,6 @@ function showAddress(address) {
 			function(point) {
 				if (!point) 
 					{
-					alert(address + " not found");
 					//a = 1;
 					} else {
 					map.setCenter(point, 13);
@@ -39,7 +38,7 @@ jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
 		var WIDTH = 600;
         var HEIGHT = 400;
-		{VAR} map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
+		map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
   
 		//var size = new GSize(573, 300);
 		//var map = new GMap2(document.getElementById("map"), {size: size});
