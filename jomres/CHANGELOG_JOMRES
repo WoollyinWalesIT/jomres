@@ -1,3 +1,7 @@
+Jomres 4.1.2
+
+Fixed google maps templates and improved notes for entering latitude and longitude in Edit Property.
+
 Jomres 4.1.1
 
 Rewrote sections of code that saved language and search dates to cookies. As this was giving inconsistent results (eg the wrong language) the data is instead now saved to the Jomres temp booking handler's data.
