@@ -45,7 +45,7 @@ class jomres_messages
 		{
 		$counter = count( $this->jomres_messages)+1;
 		$index = "jomres_messages[".$counter."]";
-		setcookie($index, htmlspecialchars($message), time()+5 );
+		setcookie($index, htmlspecialchars($message), time()+5,"/");
 		}
 	}
 
