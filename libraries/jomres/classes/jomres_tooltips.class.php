@@ -133,11 +133,12 @@ class jomres_tooltips
 					$div_string.='border="'.$border.'"';
 					
 					$div_string.='/></div>';
-					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<img src="'.$div_content.'" >\', 
+					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
 						{
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')"
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
+						cssStyles: {color: \'#FFF\', fontWeight: \'bold\'}
 						});
 					</script>
 					';

@@ -90,7 +90,7 @@ class j01060slideshow {
 				$cap=str_replace($captionElementsToReplace," ",$cap);
 				$cap=strtolower($cap);
 				$cap=ucwords($cap);
-				$r['IMAGE']=jomres_makeTooltip($cap,"",$imageData[$i]['imagelocation'].$imageData[$i]['filename'],$imageData[$i]['imagelocation'].$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>$imageData[$i]['thwidth'],"height"=>$imageData[$i]['thheight'],"border"=>0));
+				$r['IMAGE']=jomres_makeTooltip($cap,$cap,$imageData[$i]['imagelocation'].$imageData[$i]['filename'],$imageData[$i]['imagelocation'].$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>$imageData[$i]['thwidth'],"height"=>$imageData[$i]['thheight'],"border"=>0));
 				$r['CAPTION'] = $cap;
 				$rows[]=$r;
 				}
