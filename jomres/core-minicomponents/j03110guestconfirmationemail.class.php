@@ -161,6 +161,7 @@ class j03110guestconfirmationemail {
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 
+		$output['LINK']=JOMRES_SITEPAGE_URL. "&task=viewproperty&property_uid=".$property_uid;
 		$output['LINKTOPROPERTY']="<a href=\"".JOMRES_SITEPAGE_URL. "&task=viewproperty&property_uid=".$property_uid."\">".jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE,FALSE,FALSE)."</a>";
 		if ($mrConfig['singleRoomProperty'] != "1")
 			{
