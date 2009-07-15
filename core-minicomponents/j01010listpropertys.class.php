@@ -44,6 +44,7 @@ class j01010listpropertys {
 			$this->template_touchable=true; return;
 			}
 		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray,$tmpBookingHandler;
+		global $jomresItemid;
 		global $customTextObj;
 		global $_MAMBOTS;
 		$jrConfig=getSiteSettings();
@@ -101,9 +102,8 @@ class j01010listpropertys {
 		if ($limit > count($propertys_uids))
 			$limit=count($propertys_uids);
 
-		// Enable the following two lines if you want to do a search and be taken direct to a booking form if only one property is returned.
-		//if (count($propertys_uids) == 1)
-		//	jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );
+		if (JOMRES_SINGLEPROPERTY)
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );
 
 		if (count($propertys_uids) >0)
 			{
