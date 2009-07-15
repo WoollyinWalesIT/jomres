@@ -68,6 +68,12 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres_webinstall.php') && $noh
 		echo '<font color="red" face="arial" size="1">Warning: file jomres_webinstall.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
 	}
 	
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php') && $nohtml == 0)
+	{
+	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php') )
+		echo '<font color="red" face="arial" size="1">Warning: file jomres_webinstall.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
+	}
+
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php') && $nohtml == 0)
 	{
 	//if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php') )
