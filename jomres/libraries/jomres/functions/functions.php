@@ -95,7 +95,10 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 	$link = jomresValidateUrl($link);
 	
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
+		{
 		$path=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,"",$ePointFilepath);
+		$path=str_replace(JRDS,"/",$path);
+		}
 	if (!strstr($image,"blank.png"))
 		{
 		if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
