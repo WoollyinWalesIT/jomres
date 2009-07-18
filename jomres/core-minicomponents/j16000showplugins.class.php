@@ -38,7 +38,7 @@ class j16000showplugins
 			}
 		global $jomresConfig_live_site;
 		$installed_plugins=array();
-		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/remote_plugins/';
+		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$third_party_plugins = array();
 		if (!is_dir($jrePath) )
 			{
@@ -82,9 +82,9 @@ class j16000showplugins
 				$filename = $entry;
 				if( substr($entry,0,1) != '.' )
 					{
-					if (file_exists($jrePath.$entry."/plugin_info.php"))
+					if (file_exists($jrePath.$entry.JRDS."plugin_info.php"))
 						{
-						include($jrePath.$entry."/plugin_info.php");
+						include($jrePath.$entry.JRDS."plugin_info.php");
 						$cname= "plugin_info_".$entry;
 						if (class_exists($cname))
 							{
