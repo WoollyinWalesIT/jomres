@@ -34,7 +34,7 @@ class j16000addplugin
 			}
 		global $jomresConfig_live_site;
 
-		$debugging=false;
+		$debugging=true;
 
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
@@ -86,11 +86,11 @@ class j16000addplugin
 			$error=false;
 			
 			$formElement=$_FILES['pluginfile'];
-			//$blowdedUp = explode(".",$formElement['name']);
-			//$pluginName = $blowdedUp[0];
+			$blowdedUp = explode(".",$formElement['name']);
+			$pluginName = $blowdedUp[0];
 			if ($formElement['name']!="")
 				{
-				$newfilename=$updateDirPath.$formElement['name'].".vnw";
+				$newfilename=$updateDirPath.$formElement['name']."";
 
 				if( strtolower($formElement['type']) != "application/zip" )
 					{
@@ -160,6 +160,12 @@ class j16000addplugin
 			if ($debugging) echo "<br>Starting extraction of $newfilename<br>";
 			clearstatcache() ;
 
+			if (!class_exists("PclZip"))
+				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS.'pclzip'.JRDS."pclzip.lib.php");
+				
+			$archive = new PclZip($newfilename);
+			$list = $archive->extract(PCLZIP_OPT_PATH, $updateDirPath."unpacked", PCLZIP_OPT_REMOVE_PATH, $pluginName.'/', PCLZIP_OPT_STOP_ON_ERROR);
+			/*
 			if (!class_exists("dUnzip2"))
 				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
 			//var_dump($newfilename);exit;
@@ -178,10 +184,9 @@ class j16000addplugin
 				return false;
 				}
 			$zip->close();
-
-			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
+			*/
 			
-
+			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
 			
 			if ($debugging) echo "<br>Completed extract of $newfilename<br>";
 			if ($debugging) echo "<br>Moving contents of ".$updateDirPath."unpacked to ".$remote_pluginsDirPath.$pluginName."<br>";
