@@ -37,9 +37,7 @@ class j16000removeplugin
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
 		if ($pluginName == "subsc<x>riptions")
 			$pluginName = "subscriptions";
-		if (dropPlugin($pluginName))
-			echo "Plugin removed";
-		else
+		if (!dropPlugin($pluginName))
 			echo "Plugin could not be removed";
 		
 		$registry = new minicomponent_registry(false);
