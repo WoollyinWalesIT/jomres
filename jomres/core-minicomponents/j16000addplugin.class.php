@@ -34,8 +34,8 @@ class j16000addplugin
 			}
 		global $jomresConfig_live_site;
 
-		$debugging=true;
-
+		$debugging=false;
+		define ("JOMRES_INSTALLER",1);
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
 		$pluginName=str_replace("<x>","",$pluginName);
@@ -164,7 +164,8 @@ class j16000addplugin
 				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS.'pclzip'.JRDS."pclzip.lib.php");
 				
 			$archive = new PclZip($newfilename);
-			$list = $archive->extract(PCLZIP_OPT_PATH, $updateDirPath."unpacked", PCLZIP_OPT_REMOVE_PATH, $pluginName.'/', PCLZIP_OPT_STOP_ON_ERROR);
+			$list = $archive->extract(PCLZIP_OPT_PATH, $updateDirPath."unpacked", PCLZIP_OPT_REMOVE_PATH, $pluginName.'/');
+			
 			/*
 			if (!class_exists("dUnzip2"))
 				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
@@ -193,8 +194,11 @@ class j16000addplugin
 
 			if (file_exists($updateDirPath."unpacked".JRDS."plugin_dependencies_check.php") )
 				{
+				
 				require_once($updateDirPath."unpacked".JRDS."plugin_dependencies_check.php");
+
 				$info = new plugin_check_dependencies();
+				
 				if (!$info->test_result)
 					{
 					echo " Failed dependencies check. Please ensure that you've installed the following plugins before attempting to install this one: <br/>";
@@ -205,6 +209,7 @@ class j16000addplugin
 					return;
 					}
 				}
+				
 			if (file_exists($updateDirPath."unpacked".JRDS."plugin_exclusions_check.php") )
 				{
 				require_once($updateDirPath."unpacked".JRDS."plugin_exclusions_check.php");
@@ -228,7 +233,7 @@ class j16000addplugin
 				if(!rmdir($updateDirPath."unpacked")) echo "Error removing $updateDirPath/unpacked<br/>";
 				if (file_exists($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php") )
 					{
-					define ("JOMRES_INSTALLER",1);
+					
 					require_once ($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
 				if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");

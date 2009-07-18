@@ -160,7 +160,7 @@ class j16000showplugins
 
 			$uninstallLink="";
 			if (!in_array($rp['type'],$externalPluginTypes) )
-				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&plugin='.$n.'">'.$uninstallAction.'</a>';
+				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
 
 			$local_version=$installed_plugins[$n]['version'];
 			if (!array_key_exists($n,$installed_plugins ) )
@@ -177,6 +177,7 @@ class j16000showplugins
 			}
 		echo '</table>
 			<form enctype="multipart/form-data" action="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&thirdparty=1" method="post">
+			<input type="hidden" name="no_html" value="1" />
 			<table class="jradmin_innerwrapper">
 				<tr>
 					<td>
