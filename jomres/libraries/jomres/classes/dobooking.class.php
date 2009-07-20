@@ -3303,9 +3303,7 @@ class jomres_booking
 						$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
 					//$minrooms_alreadyselected = $tariff->minrooms_alreadyselected;
 					//$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
-$this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
-					
-					
+					$this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 					$date_elements  = explode("/",$this->arrivalDate);
 					$unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
@@ -3802,7 +3800,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 		if ($this->cfg_bookingform_roomlist_showroomname == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNAME'].'</a></td>';
 		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMTYPE'].'</a></td>';
-		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
+		if ($this->tariffModel != 1)
+			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
 		$overlib.='<td>'.$this->cfg_currency.$currfmt->get_formatted($tariffStuff['RATEPERNIGHT']).'</td>';
 		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
@@ -4090,7 +4089,8 @@ $this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 			if ($this->cfg_bookingform_roomlist_showroomname == "1")
 				$return_output.='<th>'.$roomRow['HEADER_ROOMNAME'].'</th>';
 			$return_output.='<th>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
-			$return_output.='<th>'.$tariffStuff['HTITLE'].'</th>';
+			if ($this->tariffModel != 1)
+				$return_output.='<th>'.$tariffStuff['HTITLE'].'</th>';
 			$return_output.='<th>'.$tariffStuff['HRATEPERNIGHT'].'</th>';
 			if ($this->cfg_bookingform_roomlist_showdisabled == "1")
 				$return_output.='<th>'.$roomRow['HEADER_DISABLEDACCESS'].'</th>';
