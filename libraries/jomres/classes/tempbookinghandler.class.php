@@ -147,7 +147,7 @@ class jomres_temp_booking_handler
 			);
 			
 		$this->tmplang = array(
-			"jomreslang" => "en-GB"
+			"jomreslang" => null
 		);
 
 		$this->customFieldValues = array();
