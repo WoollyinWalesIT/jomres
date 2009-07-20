@@ -36,6 +36,7 @@ class j16000save_template
 		
 		$templatename		= jomresGetParam( $_REQUEST, 'templatename', '' );
 		$templateData		= $_REQUEST['templatedata'];
+		$templateData		= str_replace("text<x>area","textarea",$templateData);
 		$last_edited		= date( 'Y-m-d H:i:s' );
 		
 		$templateData		= addslashes(htmlspecialchars($templateData));

@@ -34,7 +34,8 @@ class j16000edit_template {
 		$templatename		= jomresGetParam( $_REQUEST, 'jomresTemplateFile', '' );
 		
 		$custom_templates = new jomres_custom_template_handler();
-		$output['TEMPLATEHTML']= $custom_templates->getTemplateData($templatename);
+		$templatehtml= $custom_templates->getTemplateData($templatename);
+		$output['TEMPLATEHTML']=str_replace("textarea","text<x>area",$templatehtml);
 		$output['TEMPLATENAME']=$templatename;
 		
 	
