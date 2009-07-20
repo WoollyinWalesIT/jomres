@@ -170,7 +170,7 @@ class j04000roomsconfig {
 
 				$roomRowInfo .="<td class=\"jradmin_field_ca\"><b>".$roomClassAbbv."</b></td>
 				";
-				$roomRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(($room->room_name))."</td>
+				$roomRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$room->room_uid,stripslashes($room->room_name)))."</td>
 				";
 				$roomRowInfo .="<td class=\"jradmin_field_ca\">".($room->room_number)."</td>
 				";

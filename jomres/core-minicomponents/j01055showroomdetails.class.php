@@ -87,7 +87,7 @@ class j01055showroomdetails {
 				$room_classes_uid=$room->room_classes_uid;
 				$propertys_uid=$room->propertys_uid;
 				$room_features_uid=$room->room_features_uid;
-				$room_name=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME'.$room_uid,stripslashes($room->room_name) );
+				$room_name=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$room_uid,stripslashes($room->room_name) );
 				$room_number=stripslashes($room->room_number);
 				$room_floor=stripslashes($room->room_floor);
 				$room_disabled_access=$room->room_disabled_access;
@@ -108,7 +108,7 @@ class j01055showroomdetails {
 //					}
 				$room_image=getImageForProperty("room",$property_uid,$room->room_uid);
 
-				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,$editable=true,$isLink=true)."</a>";
+				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,false,false)."</a>";
 				$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$room_classes_uid."'";
 				$roomsClassList =doSelectSql($query);
 				foreach ($roomsClassList as $roomClass)
