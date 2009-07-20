@@ -1,3 +1,22 @@
+Jomres 4.1.3
+
+Improved editing mode translation of room names. Tried to improve translation of tariff names but in micromanage this is much harder to achieve.
+Switched off tariff title in booking form when in Normal tariff editing mode
+Changed class for manager's icon to prevent overlapping icons on some joomla templates.
+Added / path to cookies for message class
+Tweaked slideshow functionality to show captions above the image's popup
+Added a couple of missing elements to touch template function in booking completed minicomp.
+Added check for webinstall in /administrator/components/com_jomres.
+Enabled automatic redirect to the booking form in searching if Solo.
+Added {LINK} to guest confirmation email
+Fixed a bug where icons for third party toolbar items in front end weren't having the correct paths in windows.
+Removed some hardcoded / and replaced with JRDS
+Changed unzip library to pclzip
+Moved define for jomres installer, and added no_html to showplugins for third party plugins
+Removed a redundant message saying plugin has been removed
+Tweaked edit template functionality to add <x> to textareas
+Set default language to null in temp booking handler
+
 Jomres 4.1.2
 
 Fixed google maps templates and improved notes for entering latitude and longitude in Edit Property.
