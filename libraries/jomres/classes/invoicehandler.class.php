@@ -74,7 +74,7 @@ class invoicehandler extends jrportal_invoice
 		if (!isset($invoice_data['currencycode']) )
 			$this->currencycode=$default_currencycode;
 		else
-			$this->currencycode=(int)$invoice_data['currencycode'];
+			$this->currencycode=$invoice_data['currencycode'];
 
 		if (!isset($invoice_data['recur_frequency']) )
 			$this->recur_frequency="0";
