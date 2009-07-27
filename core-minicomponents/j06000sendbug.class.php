@@ -53,13 +53,17 @@ class j06000sendbug {
 			$fromname = jomresGetParam( $_REQUEST, 'fromname', '' );
 			$fromemail = jomresGetParam( $_REQUEST, 'fromemail', '' );
 			$contents = jomresGetParam( $_REQUEST, 'contents', '' );
+			/*
 			if (defined('_JOMRES_NEWJOOMLA') )
 				{
 				$result=JUtility::sendMail($fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
 				}
 			else
 				$result=mosMail( $fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
+			*/
 			
+			$result = jomresMailer( $fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
+
 			if ($result)
 				{
 				$jomres_messaging = new jomres_messages();
