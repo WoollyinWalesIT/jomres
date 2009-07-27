@@ -91,22 +91,13 @@ class j16000addplugin
 			if ($formElement['name']!="")
 				{
 				$newfilename=$updateDirPath.$formElement['name']."";
-
-				if( strtolower($formElement['type']) != "application/zip" )
+				if (is_uploaded_file ($formElement['tmp_name'])  )
 					{
-					$error=true;
-					$errorDesc="<br>Filename: ".$formElement['name']." Wrong type of file. Only .zip files allowed";
-					} 
-				else 
-					{
-					if (is_uploaded_file ($formElement['tmp_name'])  )
+					$plugin_tmp			= $formElement['tmp_name'];
+					if (!copy ($plugin_tmp,$newfilename) )
 						{
-						$plugin_tmp			= $formElement['tmp_name'];
-						if (!copy ($plugin_tmp,$newfilename) )
-							{
-							$error=true;
-							$errorDesc="<b>move_uploaded_file failed</b>";
-							}
+						$error=true;
+						$errorDesc="<b>move_uploaded_file failed</b>";
 						}
 					}
 				}
@@ -160,32 +151,35 @@ class j16000addplugin
 			if ($debugging) echo "<br>Starting extraction of $newfilename<br>";
 			clearstatcache() ;
 
-			if (!class_exists("PclZip"))
-				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS.'pclzip'.JRDS."pclzip.lib.php");
-				
-			$archive = new PclZip($newfilename);
-			$list = $archive->extract(PCLZIP_OPT_PATH, $updateDirPath."unpacked", PCLZIP_OPT_REMOVE_PATH, $pluginName.'/');
-			
-			/*
-			if (!class_exists("dUnzip2"))
-				require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
-			//var_dump($newfilename);exit;
-			$zip = new dUnzip2($newfilename);
-			// Activate debug
-			$zip->debug = $debugging;
-			// Unzip all the contents of the zipped file to this folder
-			$zip->getList();
-			$result=$zip->unZipAll($updateDirPath."unpacked");
-			if ($result['result']==false)
+			if ($thirdparty)
 				{
-				echo "Emptying ".$updateDirPath."unpacked"."<br>";
-				emptyDir($updateDirPath."unpacked");
-				rmdir($updateDirPath."unpacked");
-				echo $result['msg'];
-				return false;
+				if (!class_exists("PclZip"))
+					require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS.'pclzip'.JRDS."pclzip.lib.php");
+					
+				$archive = new PclZip($newfilename);
+				$list = $archive->extract(PCLZIP_OPT_PATH, $updateDirPath."unpacked", PCLZIP_OPT_REMOVE_PATH, $pluginName.'/');
 				}
-			$zip->close();
-			*/
+			else
+				{
+				if (!class_exists("dUnzip2"))
+					require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
+				//var_dump($newfilename);exit;
+				$zip = new dUnzip2($newfilename);
+				// Activate debug
+				$zip->debug = $debugging;
+				// Unzip all the contents of the zipped file to this folder
+				$zip->getList();
+				$result=$zip->unZipAll($updateDirPath."unpacked");
+				if ($result['result']==false)
+					{
+					echo "Emptying ".$updateDirPath."unpacked"."<br>";
+					emptyDir($updateDirPath."unpacked");
+					rmdir($updateDirPath."unpacked");
+					echo $result['msg'];
+					return false;
+					}
+				$zip->close();
+				}
 			
 			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
 			
