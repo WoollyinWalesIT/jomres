@@ -44,6 +44,8 @@ class j00011manager_option_09_newproperty {
 			$this->template_touchable=false; return;
 			}
 		global $thisJRUser, $jrConfig;
+		if (JOMRES_SINGLEPROPERTY)
+			return;
 		if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)
 			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), 'AddProperty.png', jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,false,false));
 		}
