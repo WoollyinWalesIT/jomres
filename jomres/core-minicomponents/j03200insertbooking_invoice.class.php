@@ -43,7 +43,7 @@ class j03200insertbooking_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $tmpBookingHandler,$thisJRUser;
+		global $tmpBookingHandler,$thisJRUser,$jrConfig,$mrConfig;
 
 		$this->results=array();
 		$contract_uid=$componentArgs['contract_uid'];
@@ -57,7 +57,7 @@ class j03200insertbooking_invoice {
 		$discounts						= $tmpBookingHandler->getBookingFieldVal("discounts");
 		$resource						= $tmpBookingHandler->getBookingFieldVal("resource");
 		$property_uid					= $tmpBookingHandler->getBookingFieldVal("property_uid");
-		
+
 		if ($resource=="1")
 			$depositPaid=true;
 		else
@@ -188,6 +188,12 @@ class j03200insertbooking_invoice {
 		$invoice_data= array();
 		$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
 		$invoice_data['subscription']=false;
+		
+
+		if ($jrConfig['useGlobalCurrency'] == "1")
+			$invoice_data['currencycode'] = $jrConfig['globalCurrencyCode'];
+		else
+			$invoice_data['currencycode'] = $mrConfig['currencyCode'];
 
 		$invoice_handler = new invoicehandler();
 		$invoice_handler->contract_id=$contract_uid;
