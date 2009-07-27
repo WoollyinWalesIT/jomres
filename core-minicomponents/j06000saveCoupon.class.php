@@ -36,16 +36,21 @@ class j06000saveCoupon {
 
 		$coupon_code			= jomresGetParam( $_POST, 'coupon_code', '' );
 		$coupon_id				= (int)jomresGetParam( $_POST, 'coupon_id', 0 );
-		$valid_from				= jomresGetParam( $_POST, 'valid_from', '' );
-		$valid_to				= jomresGetParam( $_POST, 'valid_to', '' );
+		//$valid_from				= jomresGetParam( $_POST, 'valid_from', '' );
+		//$valid_to				= jomresGetParam( $_POST, 'valid_to', '' );
+		
+		$valid_from=JSCalConvertInputDates($_POST['valid_from']);
+		$valid_to=JSCalConvertInputDates($_POST['valid_to']);
+		
 		$amount					= jomresGetParam( $_POST, 'amount', 0.00 );
 		$is_percentage			= (bool)jomresGetParam( $_POST, 'is_percentage', '' );
 		//$rooms_only				= (bool)jomresGetParam( $_POST, 'rooms_only', '' );
 
+
 		$explodedvalid_from = explode ("/",$valid_from);
-		$valid_from = $explodedvalid_from[2]."-".$explodedvalid_from[1]."-".$explodedvalid_from[0];
+		$valid_from = $explodedvalid_from[0]."-".$explodedvalid_from[1]."-".$explodedvalid_from[2];
 		$explodedvalid_to = explode ("/",$valid_to);
-		$valid_to = $explodedvalid_to[2]."-".$explodedvalid_to[1]."-".$explodedvalid_to[0];
+		$valid_to = $explodedvalid_to[0]."-".$explodedvalid_to[1]."-".$explodedvalid_to[2];
 		
 		$defaultProperty=getDefaultProperty();
 
