@@ -363,10 +363,10 @@ class j01010listpropertys {
 
 					$property_deets['PROP_NAME']=stripslashes($propertyContactArray[0]);
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
-					$property_deets['PROP_TOWN']='<a href="'.JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.htmlspecialchars(stripslashes($propertyContactArray[2])).'">'.stripslashes($propertyContactArray[2]).'</a>';
+					$property_deets['PROP_TOWN']='<a href="'.urlencode(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.htmlspecialchars(stripslashes($propertyContactArray[2]))).'">'.stripslashes($propertyContactArray[2]).'</a>';
 					$property_deets['PROP_POSTCODE']=stripslashes($propertyContactArray[3]);
-					$property_deets['PROP_REGION']='<a href="'.JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.htmlspecialchars(stripslashes($propertyContactArray[4])).'">'.stripslashes($propertyContactArray[4]).'</a>';
-					$property_deets['PROP_COUNTRY']='<a href="'.JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.htmlspecialchars(stripslashes($propertyContactArray[5])).'">'.stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5]))).'</a>';
+					$property_deets['PROP_REGION']='<a href="'.urlencode(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.htmlspecialchars(stripslashes($propertyContactArray[4]))).'">'.stripslashes($propertyContactArray[4]).'</a>';
+					$property_deets['PROP_COUNTRY']='<a href="'.urlencode(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.htmlspecialchars(stripslashes($propertyContactArray[5]))).'">'.stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5]))).'</a>';
 
 					$property_deets['LIVESITE']=$jomresConfig_live_site;
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
