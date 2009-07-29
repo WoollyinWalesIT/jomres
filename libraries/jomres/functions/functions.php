@@ -39,8 +39,9 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 		{
 		if ($jrConfig['autoDetectJSCalendarLang'] == "1")
 			{
+			
 			$calfileSought="calendar-".$jomresConfig_lang.".js";
-			if (file_exists('javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
 				$jrConfig['jscalendarLangfile']=$calfileSought;
 			else
 				$jrConfig['jscalendarLangfile']="calendar-en-GB.js";
