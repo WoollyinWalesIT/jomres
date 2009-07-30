@@ -53,7 +53,8 @@ class j06000editnote {
 		$output['NOTE_ID']= $note_id;
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
-
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
