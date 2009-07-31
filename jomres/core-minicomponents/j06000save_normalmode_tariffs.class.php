@@ -154,12 +154,13 @@ class j06000save_normalmode_tariffs {
 		else //////////////////////////////////////////////////////////////////////////////////////////////////////// MRP 
 			{
 			$numberofRoomsArray		= jomresGetParam( $_POST, 'numberofRooms', array() );
-			$roomrateperdayArray	= jomresGetParam( $_POST, 'roomrateperday', array() );
+			$roomrateperdayArray	= $_POST['roomrateperday'];
 			$existingroomsArray		= $_POST['existingrooms'];
 			$max_peopleArray		= jomresGetParam( $_POST, 'max_people', array() );
 			$max_peopleTariffArray	= jomresGetParam( $_POST, 'maxpeople_tariff', array() );
 			$roomsAndRateData=array();
 			$validRoomTypesForProperty=array();
+
 			foreach ($numberofRoomsArray as $key=>$val)
 				{
 				$roomsAndRateData[$key]['roomtype_uid']=intval($key);
@@ -183,6 +184,7 @@ class j06000save_normalmode_tariffs {
 				$roomsAndRateData[$key]['max_people']=intval($max_peopleArray[$key]);
 				$roomsAndRateData[$key]['max_people_intariff']=intval($max_peopleTariffArray[$key]);
 				}
+
 			// We could probably do this in the previous loop, but keeping it outside makes it a little easier to follow
 			
 			foreach ($roomsAndRateData as $d)
