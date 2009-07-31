@@ -1,3 +1,20 @@
+Jomres 4.1.4
+
+Fixed bug where invoicehandler was setting currency_code to (int) before inserting it into the invoice's details.
+Fixed bug where the currency code wasn't being correctly selected before the invoice was inserted.
+Fixed bug where sendBug was using old functionality to send an email, now uses jomres email handling.
+Added remote_plugins/code_changes check so that countries.php can be in the code_changes folder and hence not overwritten during upgrades.
+Fixed bug where Add property button would show if license is Solo
+Coupons Fixed bug where valid to from dates were not saved if the date config settings weren't set to dd/mm/yyyy
+Modified add plugin handling to get around pclzip library that has a bug on 64 bit servers, using the older zip library for unzipping from the plugin server, and pclzip if the installed file is from a file upload.
+Fixed bug where wrong javascript calendar language file was being used.
+Added urlencode for search links in list propertys
+Ensured that sitepageurl define is sent to template in editnote
+German language has been updated. Many thanks Roger.
+Inserted two blank rows to show confirmation template to resolve issues that some folks have been getting with some templates and jquery corner not playing nicely together.
+Added task = confirmbooking to booking form templates as some servers fail to pass the "task" variable in javascript.
+Fixed bug where 27/28/29 Dec were showing in Jan 2010 availability calendar
+
 Jomres 4.1.3
 
 Improved editing mode translation of room names. Tried to improve translation of tariff names but in micromanage this is much harder to achieve.
