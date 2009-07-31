@@ -333,18 +333,17 @@ class  j00018MRPavailabilitycalendar {
 				$dateElements=explode("/",$jomresCurrDate);
 				$unixCurrDate=mktime(0, 0, 0,$dateElements[1],$dateElements[2],$dateElements[0]);
 
+				if ($currdate < $stdate) 
+					$bgcolor =$outbgcolor;
+					
 				if ($mrConfig['limitAdvanceBookingsYesNo']=="1" && ($unixCurrDate>=$unixLatestDate))
 					$bgcolor = $pastcolour;
 				if ($unixCurrDate<$unixTodaysDate)
 					$bgcolor = $pastcolour;
-/*
-				if ((date("m",$stdate) == date("m",$currdate)) && ($bgcolor != $occupiedcolour) && ($bgcolor != $provisionalcolour) && ($bgcolor != $pastcolour)) {
-					$bgcolor = $inbgcolor;
-				} else {
-						if (($bgcolor != $occupiedcolour) && ($bgcolor != $provisionalcolour) && ($bgcolor != $pastcolour))
-							$bgcolor = $outbgcolor;
-				}
-			*/
+
+				
+
+					
 				if (date("d",$currdate) == date("d") && date("m",$currdate) == date("m") && date("Y",$currdate) == date("Y")) {
 					$fcolor = $todaycolor;
 				} elseif (date("m",$currdate) == date("m",$stdate) && date("Y",$currdate) == date("Y",$stdate)) {
@@ -353,7 +352,6 @@ class  j00018MRPavailabilitycalendar {
 					$fcolor = $outmonthface;
 				}
 
-				//echo $startingmonth.' '.$currentMonth.' '.$endingmonth.'<br>';
 				if ( $currentMonth == $startingmonth && date("m",$stdate) > date("m",$startdate) )
 					$bgcolor =$outbgcolor;
 				if ( date("m",$currdate) == date("m",$enddate) )
