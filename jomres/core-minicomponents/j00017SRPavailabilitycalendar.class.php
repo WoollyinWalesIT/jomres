@@ -332,7 +332,10 @@ class j00017SRPavailabilitycalendar {
 				$jomresCurrDate=date("Y/m/d",$currdate);
 				$dateElements=explode("/",$jomresCurrDate);
 				$unixCurrDate=mktime(0, 0, 0,$dateElements[1],$dateElements[2],$dateElements[0]);
-
+				
+				if ($currdate < $stdate) 
+					$bgcolor =$outbgcolor;
+					
 				if ($mrConfig['limitAdvanceBookingsYesNo']=="1" && ($unixCurrDate>=$unixLatestDate))
 					$bgcolor = $pastcolour;
 				if ($unixCurrDate<$unixTodaysDate)
