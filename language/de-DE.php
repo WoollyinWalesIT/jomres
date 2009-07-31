@@ -6651,3 +6651,8 @@ define('_JRPORTAL_NEWUSER_SUBJECT',"Vielen Dank für Ihre Buchung - Die Benutzer
 * @ignore
 */
 define('_JOMRES_LATLONG_DESC',"Jomres wird Ihre Adresse an Google übermitteln, um die Position auf der Karte in den Objektdetails anzeigen zu können. Wenn Google aus irgend einem Grund die Adresse nicht findet, können Sie stattdessen die Längen- und Breitengrade manuell ins Feld unten eingeben. Falls Sie die Längen- und Breitengrade manuell eingeben wollen, beachten Sie bitte, dass die Angaben aus Google Earth nicht verwendet werden können. Besuchen Sie stattdessen <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">die itouchmap Webseite</a> um die benötigten Längen- und Breitengrade herauszufinden. Die Angaben müssten in etwa so aussehen wie diese hier: '51.754564622' und '-4.997314810'.");
+
+/**
+* @ignore
+*/
+define('_JOMRES_CONTROLPANEL','Control Panel');

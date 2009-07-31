@@ -6572,3 +6572,8 @@ define('_JRPORTAL_NEWUSER_SUBJECT',"Thank you for your booking - new user detail
 * @ignore
 */
 define('_JOMRES_LATLONG_DESC',"Jomres will pass your address to Google to generate the map position in the property details. If for whatever reason Google cannot find your address based on the information found above, you can ienter latitude and longitude in the lat/long fields instead. If you choose to enter the latitude and longitude, please note that I have found the Google earth lat and long information to be inaccurate so you are advised instead to visit <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">the itouchmap site</a> and use their information to determine your latitude and longitude. When entering your lat and long, the format should be something like '51.754564622' and '-4.997314810'.");
+
+/**
+* @ignore
+*/
+define('_JOMRES_CONTROLPANEL','Control Panel');
