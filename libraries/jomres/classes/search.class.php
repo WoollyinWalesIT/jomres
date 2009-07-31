@@ -243,17 +243,21 @@ class jomSearch {
 			$activeCountriesList=doSelectSql($query);
 			$tmpCountryArray=array();
 
-			$this->prep['country'][]=array('countrycode'=>$this->searchAll,'countryname'=>$this->searchAll);
+			//$this->prep['country'][$this->searchAll]=array('countrycode'=>$this->searchAll,'countryname'=>$this->searchAll);
 			$tmpCountryArray[]=$this->searchAll;
 
 			foreach ($activeCountriesList as $country)
 				{
 				if (!in_array($country->property_country,$tmpCountryArray) )
 					{
-					$this->prep['country'][]=array('countrycode'=>$country->property_country,'countryname'=>$allCountries[$country->property_country]);
+					$this->prep['country'][$allCountries[$country->property_country]]=array('countrycode'=>$country->property_country,'countryname'=>$allCountries[$country->property_country]);
 					$tmpCountryArray[]=$country->property_country;
 					}
 				}
+
+			ksort($this->prep['country']);
+			array_unshift($this->prep['country'],array('countrycode'=>$this->searchAll,'countryname'=>$this->searchAll));
+			
 			}
 		if (in_array("region",$this->searchOptions) )
 			{
