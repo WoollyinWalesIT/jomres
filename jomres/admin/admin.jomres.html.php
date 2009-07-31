@@ -105,6 +105,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		-->
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_FAUXHEADERS.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['outputHeadersInline'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_FAUXHEADERS_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalCurrency'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC.'</td>

@@ -166,17 +166,37 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="")
 	{
-	switch ($type) 
+	global $faux_header_scripts,$jrConfig;
+	if ($jrConfig['outputHeadersInline'] == "1")
 		{
-		case "javascript":
-			JHTML::script($filename, $path, false);
-		break;
-		case "css":
-			JHTML::stylesheet($filename, $path);
-		break;
-		default:
-			
-		break;
+		switch ($type) 
+			{
+			case "javascript":
+				$faux_header_scripts .= '<script type="text/javascript" src="'.$path.$filename.'"></script>
+				';
+			break;
+			case "css":
+				JHTML::stylesheet($filename, $path);
+			break;
+			default:
+				
+			break;
+			}
+		}
+	else
+		{
+		switch ($type) 
+			{
+			case "javascript":
+				JHTML::script($filename, $path, false);
+			break;
+			case "css":
+				JHTML::stylesheet($filename, $path);
+			break;
+			default:
+				
+			break;
+			}
 		}
 	}
 	
