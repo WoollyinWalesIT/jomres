@@ -156,6 +156,7 @@ function showSiteConfig(  )
 	$lists['useJomresMessaging']					= jomresHTML::selectList( $yesno, 'cfg_useJomresMessaging', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useJomresMessaging'] );
 	$lists['useSubscriptions']						= jomresHTML::selectList( $yesno, 'cfg_useSubscriptions', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useSubscriptions'] );
 	$lists['useNewusers']							= jomresHTML::selectList( $yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useNewusers'] );
+	$lists['outputHeadersInline']					= jomresHTML::selectList( $yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['outputHeadersInline'] );
 		
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
 	}

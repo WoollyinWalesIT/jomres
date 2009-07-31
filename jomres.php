@@ -584,6 +584,8 @@ if (!$no_html)
 	$componentArgs=array();
 	$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 	$componentArgs=array();
+	global $faux_header_scripts;
+	echo $faux_header_scripts;
 	}
 
 if (!isset($jrConfig['errorChecking']) )
