@@ -1,5 +1,6 @@
 Jomres 4.1.4
 
+Added option to output Jomres javascript headers within the body of the page instead of the head, which seems to resolve the mootools conflict issues in some templates.
 Fixed bug where invoicehandler was setting currency_code to (int) before inserting it into the invoice's details.
 Fixed bug where the currency code wasn't being correctly selected before the invoice was inserted.
 Fixed bug where sendBug was using old functionality to send an email, now uses jomres email handling.
@@ -14,6 +15,11 @@ German language has been updated. Many thanks Roger.
 Inserted two blank rows to show confirmation template to resolve issues that some folks have been getting with some templates and jquery corner not playing nicely together.
 Added task = confirmbooking to booking form templates as some servers fail to pass the "task" variable in javascript.
 Fixed bug where 27/28/29 Dec were showing in Jan 2010 availability calendar
+Fixed a bug where normal mode tariffs were being saved as integer, not floats (eg 19 instead of 19.99)
+Added "desktop" icon to administrator area
+Select combo country name list now nat sorted by country name.
+
+
 
 Jomres 4.1.3
 
