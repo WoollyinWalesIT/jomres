@@ -144,7 +144,7 @@ if (function_exists("curl_init"))
 				</tr>
 				<tr>
 					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/User_Ninja.png" width="48" height="48" align="middle" border="0" /></td>
-					<td bgcolor="#FFFFFF">Thanks to Hazel Wilson for your continuing support.</td>
+					<td bgcolor="#FFFFFF">Thanks to Roger P for the German language file.</td>
 				</tr>
 			</table>
 		</td>
