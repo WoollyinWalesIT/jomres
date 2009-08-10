@@ -1,16 +1,10 @@
 jQuery.noConflict();
 
-function populateDiv(div_id,content)
-	{
-	//alert(jQuery("#"+div_id).length);
-	if ( jQuery("#"+div_id).length > 0 ) 
-		{ 
-		//alert(content);
+function populateDiv(div_id,content){
+	if ( jQuery("#"+div_id).length > 0 ){ 
 		document.getElementById(div_id).innerHTML = content;
-		
 		jQuery(div_id).fadeIn(100);
 		}
-	
 	}
 
 function jomres_isChecked(ischecked){
@@ -49,12 +43,10 @@ function jomres_submitbutton(pressbutton) {
 	document.adminForm.submit();
 }
 
-function disableSubmitButton (button) 
-	{
+function disableSubmitButton (button) {
 	if (typeof button.disabled != 'undefined')
 		button.disabled = true;
-	else if (!button.buttonDisabled) 
-		{
+	else if (!button.buttonDisabled) {
 		button.oldValue = button.value;
 		button.oldOnclick = button.onclick;
 		button.value = 'DISABLED';
@@ -64,19 +56,16 @@ function disableSubmitButton (button)
 	document.getElementById("submitbutton").className="";
 	}
 	
-function enableSubmitButton (button) 
-	{
+function enableSubmitButton (button) {
 	if (typeof button.disabled != 'undefined')
 		button.disabled = false;
-	else if (button.buttonDisabled) 
-		{
+	else if (button.buttonDisabled) {
 		button.value = button.oldValue;
 		button.onclick = button.oldOnclick;
 		button.buttonDisabled = false;
 		}
 	var exists = document.getElementById("roomalert_top");
-	if (exists != null) 
-		{
+	if (exists != null) {
 		document.getElementById("submitbutton").className="oktobook";
 		document.getElementById("roomalert_top").className="roomalert_off";
 		document.getElementById("roomalert_bottom").className="roomalert_off";
@@ -96,8 +85,7 @@ function fadeIn(objId,opacity) {
 	}
 }
 
-function setOpacity(obj, opacity) 
-	{
+function setOpacity(obj, opacity) {
 	opacity = (opacity == 100)?99.999:opacity;
 	// IE/Win
 	obj.style.filter = "alpha(opacity:"+opacity+")";
@@ -113,12 +101,10 @@ function setOpacity(obj, opacity)
 //	 Show hide stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function hidediv(elementName) 
-	{
+function hidediv(elementName) {
 	}
 
-function showdiv($elementName) 
-	{
+function showdiv($elementName) {
 	}
 
 ///////////////////////////////////////
@@ -129,12 +115,9 @@ function showdiv($elementName)
 ///////////////////////////////////////
 
 //onload function
-function generic()
-	{
-	if ( toload.length > 0 )
-		{
-		for (x in toload)
-			{
+function generic(){
+	if ( toload.length > 0 ){
+		for (x in toload){
 			eval(toload[x]);
 			}
 		}
@@ -147,45 +130,36 @@ var undefined;
 var toload=new Array();
 var templateVersion = 2.5;
 
-if(typeof window.addEventListener != 'undefined')
-{
+if(typeof window.addEventListener != 'undefined'){
 	//.. gecko, safari, konqueror and standard
 	window.addEventListener('load', generic, false);
-}
-else if(typeof document.addEventListener != 'undefined')
-{
+	}
+else if(typeof document.addEventListener != 'undefined'){
 	//.. opera 7
 	document.addEventListener('load', generic, false);
-}
-else if(typeof window.attachEvent != 'undefined')
-{
+	}
+else if(typeof window.attachEvent != 'undefined'){
 	//.. win/ie
-
 	window.attachEvent('onload', generic);
-}
+	}
 
 //** remove this condition to degrade older browsers
-else
-{
+else {
 	//.. mac/ie5 and anything else that gets this far
-	
 	//if there's an existing onload function
-	if(typeof window.onload == 'function')
-	{
+	if(typeof window.onload == 'function'){
 		//store it
 		var existing = onload;
 		
 		//add new onload handler
-		window.onload = function()
-		{
+		window.onload = function(){
 		//call existing onload function
 		existing();
 		//call generic onload function
 		generic();
 		};
 	}
-	else
-	{
+	else{
 		//setup onload function
 		window.onload = generic;
 	}
@@ -194,41 +168,33 @@ else
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Ajax get response stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function getResponse_particulars(field,value) 
-	{
+function getResponse_particulars(field,value) {
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: field, 'value': value },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field, 'value': value },
+		function(data){
 			showRoomsList(data); 
 			show_log(field);
 			}
 	);
 }
 
-function getResponse_guesttype(typeid,value) 
-	{
+function getResponse_guesttype(typeid,value) {
 	HideRoomsList();
 	blockInterface('guesttype',200);
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: 'guesttype', 'typeid': typeid ,'value': value },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: 'guesttype', 'typeid': typeid ,'value': value },
+		function(data){
 			showRoomsList(data); 
 			show_log('guesttype');
 			}
-	);
+		);
 	}
 
 function getResponse_rooms(field,value) {
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: field,'value': value },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+		function(data){
 			showRoomsList(data); 
 			show_log(field);
 			}
@@ -236,10 +202,8 @@ function getResponse_rooms(field,value) {
 }
 function getResponse_extras(field,value,theId) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: field,'value': value },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+		function(data){
 			eval(data); 
 			show_log(field);
 			}
@@ -248,10 +212,8 @@ function getResponse_extras(field,value,theId) {
 
 function getResponse_extrasquantity(field,value,theId) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: field,'value': value,'theId': theId },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+		function(data){
 			eval(data); 
 			show_log(field);
 			}
@@ -260,10 +222,8 @@ function getResponse_extrasquantity(field,value,theId) {
 
 
 function getResponse(field,value) {
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: field,'value': value },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+		function(data){
 			eval(data); 
 			show_log(field);
 			}
@@ -272,10 +232,8 @@ function getResponse(field,value) {
 
 function getResponse_existing(field,value) {
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: field,'value': value },
-		function(data)
-			{
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+		function(data){
 			eval(data); 
 			jQuery('div.block_ui_bookingform').unblock();
 			//show_log(field);
@@ -283,8 +241,7 @@ function getResponse_existing(field,value) {
 	);
 }
 
-function getResponse_guest() 
-	{
+function getResponse_guest() {
 	var firstname 		=jQuery('#firstname').val();
 	var surname 		=jQuery('#surname').val();
 	var house 			=jQuery('#house').val();
@@ -302,14 +259,11 @@ function getResponse_guest()
 	url = ajaxurl+'&task=handlereq';
 	result =checkaddressfields();
 
-	if (result)
-		{
+	if (result){
 		var addressString= firstname+"~"+surname+"~"+house+"~"+street+"~"+town+"~"+region+"~"+postcode+"~"+country+"~"+tel_landline+"~"+tel_mobile+"~"+eemail;
 		blockInterface("guestdetails",200);
-		jQuery.get(url,
-			{ field: 'addressstring','value': addressString },
-			function(data)
-				{
+		jQuery.get(url,{ field: 'addressstring','value': addressString },
+			function(data){
 				eval(data);
 				show_log("addressstring");
 				});
@@ -318,18 +272,15 @@ function getResponse_guest()
 	}
 
 function show_log(lastfield) {
-	jQuery.get(ajaxurl+'&task=handlereq',
-		{ field: 'show_log','lastfield': lastfield },
-		function(data)
-			{
-			eval(data); 
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: 'show_log','lastfield': lastfield },
+		function(data){
+			eval(data);
 			jQuery('div.block_ui_bookingform').unblock();
 			}
 	);
 }
 
-function blockInterface(field,fadetime)
-	{
+function blockInterface(field,fadetime){
 	//jQuery.extend(jQuery.blockUI.defaults.overlayCSS, { backgroundColor: '#fff', opacity: '0.5'  });
 	
 	jQuery.blockUI.defaults.overlayCSS.backgroundColor = '#000';
@@ -351,8 +302,7 @@ function blockInterface(field,fadetime)
 		message = blockui_recheckingroomavailability;
 	if (field == "smoking")
 		message = blockui_recheckingroomavailability;
-	if (show_extras == true)
-		{
+	if (show_extras == true){
 		if (field == "extras" )
 			message = blockui_changingextra;
 		if (field == "extrasquantity")
@@ -398,7 +348,7 @@ function blockInterface(field,fadetime)
 	jQuery('div.block_ui_bookingform').block({
 	message: '<img src="'+rel_path+'/jomres/images/31.gif" /> <h3>'+message+'</h3>', 
 	css:	{
-            padding: '15px', 
+			padding: '15px', 
 			'-webkit-border-radius': '10px', 
 			'-moz-border-radius': '10px'
 			}
@@ -406,8 +356,7 @@ function blockInterface(field,fadetime)
 	}
 
 	
-function showRoomsList(req)
-	{
+function showRoomsList(req){
 	var rooms = req.split("~");
 	buildSelected(rooms[0]) ; 
 	buildAvailable(rooms[1]); 
@@ -415,26 +364,22 @@ function showRoomsList(req)
 	return false;
 	}
 
-function HideRoomsList()
-	{
+function HideRoomsList(){
 	jQuery("div.roomsListWrapper").fadeOut("slow",1000); 
 	//jQuery("div.roomsListWrapper").hide("slow"); 
 	//jQuery("div.roomsListWrapper").find("div.roomsListInnerWrapper:visible").slideUp("slow"); 
 	return false;
 	}
 
-function ShowRoomsList()
-	{
+function ShowRoomsList(){
 	jQuery("div.roomsListWrapper").fadeIn("slow",1000); 
 	//jQuery("div.roomsListWrapper").show("slow"); 
 	//jQuery("div.roomsListWrapper").find("div.roomsListInnerWrapper").slideDown("slow");
 	return false;
 	}
 	
-function buildSelected(string)
-	{
-	if (string != undefined)
-		{
+function buildSelected(string){
+	if (string != undefined){
 		if ( string.length > 0 )
 			populateDiv("selectedRooms",string);
 			//document.getElementById("selectedRooms").innerHTML = string;
@@ -443,21 +388,17 @@ function buildSelected(string)
 
 function buildAvailable(string)
 	{	
-	if (string != undefined)
-		{	
+	if (string != undefined){
 		if ( string.length > 0 )
 			populateDiv("availRooms",string);
 			//document.getElementById("availRooms").innerHTML = string;
 		}
 	}
 	
-function checkSelectRoomMessage()
-	{
+function checkSelectRoomMessage(){
 	var exists = document.getElementById("roomalert_top");
-	if (exists != null) 
-		{
-		if (document.getElementById("messages").innerHTML == selectroommessage )
-			{
+	if (exists != null){
+		if (document.getElementById("messages").innerHTML == selectroommessage ){
 			if (show_extras == true)
 				jQuery("#extrascontainer").fadeTo("slow", 0.2);
 			jQuery("#bookingform_address").fadeTo("slow", 0.2);
@@ -469,8 +410,7 @@ function checkSelectRoomMessage()
 			//jQuery("#roomalert_top").Highlight(500, '#fc0000');               // Causes error with jquery 1.2 as interface library does not appear compatible with this version of jquery
 			//jQuery("#roomalert_bottom").Highlight(500, '#fc0000');               // Causes error with jquery 1.2 as interface library does not appear compatible with this version of jquery
 			}
-		else
-			{
+		else{
 			if (show_extras == true)
 				document.getElementById("extrascontainer").className="roomalert_off";
 			document.getElementById("roomalert_top").className="roomalert_off";
@@ -506,8 +446,7 @@ function checkSelectRoomMessage()
 
 
 function SRPcheckShowGuestDeetsNow() {
-	if (isSRP)
-		{
+	if (isSRP){
 		if (show_extras == true)
 			showdiv("extrascontainer");
 		showdiv("guestdeets");
@@ -604,8 +543,7 @@ function ajaxADate(arrivalDate,dformat){
 //
 ///////////////////////////////////////
 
-function checkaddressfields()
-	{
+function checkaddressfields(){
 	var firstname 		=jQuery.trim(jQuery('#firstname').val());
 	var surname 		=jQuery.trim(jQuery('#surname').val());
 	var house 			=jQuery.trim(jQuery('#house').val());
@@ -633,64 +571,52 @@ function checkaddressfields()
 	
 	var pass			= true;
 	
-	if (validation_firstname && firstname.length == 0 )
-		{
+	if (validation_firstname && firstname.length == 0 ){
 		setInputFillToErrorColour("#firstname");
 		pass = false;
 		}
-	if (validation_surname && surname.length == 0 )
-		{
+	if (validation_surname && surname.length == 0 ){
 		setInputFillToErrorColour("#surname");
 		pass = false;
 		}
-	if (validation_houseno && house.length == 0 )
-		{
+	if (validation_houseno && house.length == 0 ){
 		setInputFillToErrorColour("#house");
 		pass = false;
 		}
-	if (validation_street && street.length == 0 )
-		{
+	if (validation_street && street.length == 0 ){
 		setInputFillToErrorColour("#street");
 		pass = false;
 		}
-	if (validation_town && town.length == 0 )
-		{
+	if (validation_town && town.length == 0 ){
 		setInputFillToErrorColour("#town");
 		pass = false;
 		}
-	if (validation_region && region.length == 0 )
-		{
+	if (validation_region && region.length == 0 ){
 		setInputFillToErrorColour("#region");
 		pass = false;
 		}
-	if (validation_postcode && postcode.length == 0 )
-		{
+	if (validation_postcode && postcode.length == 0 ){
 		setInputFillToErrorColour("#postcode");
 		pass = false;
 		}
-	if (validation_country && country.length == 0 )
-		{
+	if (validation_country && country.length == 0 ){
 		setInputFillToErrorColour("#country");
 		pass = false;
 		}
-	if (validation_landline && tel_landline.length == 0 )
-		{
+	if (validation_landline && tel_landline.length == 0 ){
 		setInputFillToErrorColour("#tel_landline");
 		pass = false;
 		}
-	if (validation_cellmobile && tel_mobile.length == 0 )
-		{
+	if (validation_cellmobile && tel_mobile.length == 0 ){
 		setInputFillToErrorColour("#tel_mobile");
 		pass = false;
 		}
-	if (validation_email && eemail.length == 0 )
-		{
+	if (validation_email && eemail.length == 0 ){
 		setInputFillToErrorColour("#eemail");
 		pass = false;
 		}
 
-	if (validation_email && !echeck(eemail))
-		{
+	if (validation_email && !echeck(eemail)){
 		setInputFillToErrorColour("#eemail");
 		pass = false;
 		}
@@ -698,66 +624,56 @@ function checkaddressfields()
 	if (pass)
 		pass = checkCustomFields();
 	
-	if (!pass)
-		{
+	if (!pass){
 		jQuery('div.recheckaddress').show(); 
 		blockInterface("addresserror",2500);
 		jQuery('div.block_ui_bookingform').unblock();
 		//disableSubmitButton(document.ajaxform.confirmbooking);
 		return false;
 		}
-	else
-		{
+	else{
 		enableSubmitButton(document.ajaxform.confirmbooking);
 		return true;
 		}
 	}
 	
-function validate()
-	{
-	if (checkaddressfields())
-		{
+function validate(){
+	if (checkaddressfields()){
 		getResponse_guest();
 		setTimeout('submitBooking()', 1000);
 		}
 	}
 
-function submitBooking()
-	{
+function submitBooking(){
 	document.ajaxform.action = livesite+"&task=confirmbooking"
 	document.ajaxform.submit();
 	}
 	
-function setInputFillToOkColour(field)
-	{
+function setInputFillToOkColour(field){
 	jQuery(field).removeClass("errorbackground");
 	}
 	
-function setInputFillToErrorColour(field)
-	{
+function setInputFillToErrorColour(field){
 	jQuery(field).addClass("errorbackground");
 	}
 	
-function submitenter(myfield,e)
-	{
+function submitenter(myfield,e){
 	var keycode;
 	if (window.event) keycode = window.event.keyCode;
 	else if (e) keycode = e.which;
 	else return true;
-	if (!document.ajaxform.confirmbooking.disabled)
-		{
-		if (keycode == 13)
-			 {
+	if (!document.ajaxform.confirmbooking.disabled){
+		if (keycode == 13) {
 			 document.ajaxform.submit();
 			 return false;
 			 }
 		else
-			 return true;
-			 }
+			return true;
+		}
 	else
 		return true;
 	}	
-			
+
 /**
 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
 */
