@@ -22,9 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j10002aa_controlpanel
+class j10002AAA_controlpanel
 	{
-	function j10002aa_controlpanel()
+	function j10002AAA_controlpanel()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		global $MiniComponents;
