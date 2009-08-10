@@ -3611,7 +3611,7 @@ class jomres_booking
 						$roomDeets[] = $this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
 						foreach ($roomDeets as $rm)
 							{
-							$return_output .= jr_gettext('_JOMRES_BOOKITNOW',_JOMRES_BOOKITNOW,false,false).$rm;
+							$return_output .= $rm;
 							}
 						}
 					else
