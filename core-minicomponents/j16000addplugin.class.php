@@ -90,7 +90,17 @@ class j16000addplugin
 			$pluginName = $blowdedUp[0];
 			if ($formElement['name']!="")
 				{
-				$newfilename=$updateDirPath.$formElement['name']."";
+				if (strstr($formElement['name'],"-") ) 
+					{
+					$pos = strpos($formElement['name'], "-");
+					$temp_file_name = substr ($formElement['name'],$pos+1);
+					$newfilename=$updateDirPath.$temp_file_name;
+					$pos = strpos($temp_file_name, ".zip");
+					$pluginName=substr($temp_file_name, 0, $pos);
+					}
+				else
+					$newfilename=$updateDirPath.$formElement['name']."";
+
 				if (is_uploaded_file ($formElement['tmp_name'])  )
 					{
 					$plugin_tmp			= $formElement['tmp_name'];
@@ -109,8 +119,6 @@ class j16000addplugin
 			}
 		else
 			{
-
-			
 			if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
 				{
 				echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting";
@@ -180,7 +188,7 @@ class j16000addplugin
 					}
 				$zip->close();
 				}
-			
+				
 			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
 			
 			if ($debugging) echo "<br>Completed extract of $newfilename<br>";
