@@ -154,7 +154,7 @@ class j00030search {
 					{
 					$sch->filter['propertyname']		=	jomresGetParam( $_REQUEST, 'propertyname',"" );
 					$sch->filter['propertyname']=str_replace($unwanted,"",$sch->filter['propertyname']);
-					$metaTitle.=" ".$sch->filter['propertyname'];
+					$metaTitle.=" ".htmlspecialchars_decode($sch->filter['propertyname'],ENT_QUOTES);
 					}
 				}
 
@@ -165,7 +165,7 @@ class j00030search {
 					{
 					$sch->filter['country']		=	jomresGetParam( $_REQUEST, 'country',"" );
 					$sch->filter['country']=str_replace($unwanted,"",$sch->filter['country']);
-					$metaTitle.=" ".$sch->filter['country'];
+					$metaTitle.=" ".htmlspecialchars_decode($sch->filter['country'],ENT_QUOTES);
 					}
 				}
 
@@ -176,7 +176,7 @@ class j00030search {
 					{
 					$sch->filter['region']		=jomresGetParam( $_REQUEST, 'region',"" );
 					$sch->filter['region']=str_replace($unwanted,"",$sch->filter['region']);
-					$metaTitle.=" ".$sch->filter['region'];
+					$metaTitle.=" ".htmlspecialchars_decode($sch->filter['region'],ENT_QUOTES);
 					}
 				}
 
@@ -187,7 +187,7 @@ class j00030search {
 					{
 					$sch->filter['town']		=jomresGetParam( $_REQUEST, 'town',"" );
 					$sch->filter['town']=str_replace($unwanted,"",$sch->filter['town']);
-					$metaTitle.=" ".$sch->filter['town'];
+					$metaTitle.=" ".htmlspecialchars_decode($sch->filter['town'],ENT_QUOTES);
 					}
 				}
 
