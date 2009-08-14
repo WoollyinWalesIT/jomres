@@ -38,7 +38,7 @@ function makeJsGraphOutput($graphLabels,$graphValues,$type="hBar",$legend,$div='
 	{
 	$graphParams='
 	<script language="JavaScript"> <!--
-	createGraph("'.$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")
+	jQuery(document).ready(function() {createGraph("'.$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")});
 	//--> </script>
 	';
 	return $graphParams;
