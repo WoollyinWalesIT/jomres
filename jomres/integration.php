@@ -1827,7 +1827,12 @@ function validateLicensekeyFile($license_key)
 	*/
 	// Home call details
 	$user_defined_string = '230a25e276da';
-	$key = new jomres_iono_keys($license_key, $user_defined_string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php');
+	$key_age = 1296000;
+	$kerboom = explode ("-",$license_key);
+	if ($kerboom[2] == "17") // It's a demo license, we need to check more often
+		$key_age = 60;
+	
+	$key = new jomres_iono_keys($license_key, $user_defined_string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php',$key_age);
 	if (!defined('JOMRES_LICRESULT') );
 		define('JOMRES_LICRESULT',$key->result);
 
@@ -2154,11 +2159,13 @@ class jomres_iono_keys
 		$this->key_age =	$key_age;
 		$this->now = time();
 		$thisServer = jomresGetDomain();
+
 		if ($thisServer == 'localhost' && strstr($jomresConfig_live_site,'localhost') )
 			{
 			$this->result = 1;
 			return;
 			}
+
 		// Does the key exist? If not, then we need to create it. Else read it.
 		if (file_exists($this->key_location))
 		{
@@ -2250,7 +2257,7 @@ class jomres_iono_keys
 
 		//$string = '1|key|' .(time()+2000) .'|localhost|127.0.0.1';
 		$exploded = explode('|', $string);
-		switch ($exploded[0]) // If we have an inactive license, return the status code
+		switch (trim($exploded[0])) // If we have an inactive license, return the status code
 		{
 			case 0: // Disabled
 				return 8;
