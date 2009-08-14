@@ -1,9 +1,9 @@
 /*
  +-------------------------------------------------------------------+
- |                   H T M L - G R A P H S   (v4.2)                  |
+ |                   H T M L - G R A P H S   (v4.6)                  |
  |                                                                   |
  | Copyright Gerd Tentler               www.gerd-tentler.de/tools    |
- | Created: Sep. 17, 2002               Last modified: Apr. 15, 2007 |
+ | Created: Sep. 17, 2002               Last modified: Mar. 14, 2009 |
  +-------------------------------------------------------------------+
  | This program may be used and hosted free of charge by anyone for  |
  | personal purpose as long as this copyright notice remains intact. |
@@ -25,7 +25,7 @@
 ------------------------------------------------------------------------------------------------------
  This script was tested with the following systems and browsers:
 
- - Windows XP: IE 6, NN 7, Opera 7, Firefox 1
+ - Windows XP: IE 6, NN 7, Opera 7 + 9, Firefox 2 + 3
  - Mac OS X:   IE 5, Safari 1
 
  If you use another browser or system, this script may not work for you - sorry.
@@ -43,9 +43,18 @@ function BAR_GRAPH(type) {
   this.graphBorder = '';                     // graph border: string (CSS specification; doesn't work with NN4)
   this.graphPadding = 0;                     // graph padding: integer (pixels)
 
+  this.titles;                               // titles: array or string with comma-separated values
+  this.titleColor = 'black';                 // title font color: string
+  this.titleBGColor = '#C0E0FF';             // title background color: string
+  this.titleBorder = '2px groove white';     // title border: string (CSS specification)
+  this.titleFont = 'Arial, Helvetica';       // title font family: string (CSS specification)
+  this.titleSize = 12;                       // title font size: integer (pixels)
+  this.titleAlign = 'center';                // title text align: "left", "center", or "right"
+  this.titlePadding = 2;                     // title padding: integer (pixels)
+
   this.labels;                               // label names: array or string with comma-separated values
   this.labelColor = 'black';                 // label font color: string
-  this.labelBGColor = '#F6F7F8';             // label background color: string
+  this.labelBGColor = '#C0E0FF';             // label background color: string
   this.labelBorder = '2px groove white';     // label border: string (CSS specification)
   this.labelFont = 'Arial, Helvetica';       // label font family: string (CSS specification)
   this.labelSize = 12;                       // label font size: integer (pixels)
@@ -60,9 +69,10 @@ function BAR_GRAPH(type) {
   this.barLevelColors;                       // bar level colors: ascending array (bLevel, bColor[,...]); draw bars >= bLevel with bColor
 
   this.showValues = 0;                       // show values: 0 = % only, 1 = abs. and %, 2 = abs. only, 3 = none
+  this.baseValue = 0;                        // base value: integer or float (only hBar and vBar)
 
   this.absValuesColor = 'black';             // abs. values font color: string
-  this.absValuesBGColor = '#F6F7F8';         // abs. values background color: string
+  this.absValuesBGColor = '#C0E0FF';         // abs. values background color: string
   this.absValuesBorder = '2px groove white'; // abs. values border: string (CSS specification; doesn't work with NN4)
   this.absValuesFont = 'Arial, Helvetica';   // abs. values font family: string (CSS specification)
   this.absValuesSize = 12;                   // abs. values font size: integer (pixels)
@@ -79,7 +89,7 @@ function BAR_GRAPH(type) {
   // hBar/vBar only:
   this.legend;                               // legend items: array or string with comma-separated values
   this.legendColor = 'black';                // legend font color: string
-  this.legendBGColor = '#F6F7F8';            // legend background color: string
+  this.legendBGColor = '#F0F0F0';            // legend background color: string
   this.legendBorder = '2px groove white';    // legend border: string (CSS specification)
   this.legendFont = 'Arial, Helvetica';      // legend font family: string (CSS specification)
   this.legendSize = 12;                      // legend font size: integer (pixels)
@@ -97,6 +107,7 @@ function BAR_GRAPH(type) {
   this.cssGRAPH = '';
   this.cssBAR = '';
   this.cssBARBG = '';
+  this.cssTITLE = '';
   this.cssLABEL = '';
   this.cssLABELBG = '';
   this.cssLEGEND = '';
@@ -112,6 +123,14 @@ function BAR_GRAPH(type) {
     if(this.graphBorder) this.cssGRAPH += 'border:' + this.graphBorder + ';';
     if(this.barBorder) this.cssBAR += 'border:' + this.barBorder + ';';
     if(this.barBGColor) this.cssBARBG += 'background-color:' + this.barBGColor + ';';
+    if(this.titleColor) this.cssTITLE += 'color:' + this.titleColor + ';';
+    if(this.titleBGColor) this.cssTITLE += 'background-color:' + this.titleBGColor + ';';
+    if(this.titleBorder) this.cssTITLE += 'border:' + this.titleBorder + ';';
+    if(this.titleFont) this.cssTITLE += 'font-family:' + this.titleFont + ';';
+    if(this.titleAlign) this.cssTITLE += 'text-align:' + this.titleAlign + ';';
+    if(this.titleSize) this.cssTITLE += 'font-size:' + this.titleSize + 'px;';
+    if(this.titleBGColor) this.cssTITLE += 'background-color:' + this.titleBGColor + ';';
+    if(this.titlePadding) this.cssTITLE += 'padding:' + this.titlePadding + 'px;';
     if(this.labelColor) this.cssLABEL += 'color:' + this.labelColor + ';';
     if(this.labelBGColor) this.cssLABEL += 'background-color:' + this.labelBGColor + ';';
     if(this.labelBorder) this.cssLABEL += 'border:' + this.labelBorder + ';';
@@ -154,9 +173,8 @@ function BAR_GRAPH(type) {
     var bar = '<table border=0 cellspacing=0 cellpadding=0><tr>';
     bar += '<td style="' + this.cssBAR + '" ' + bg + '="' + color + '"';
     bar += ((value != '') ? ' title="' + title + '">' : '>');
-    bar += '<table border=0 cellspacing=0 cellpadding=0><tr>';
-    bar += '<td width=' + width + ' height=' + height + '></td>';
-    bar += '</tr></table>';
+    bar += '<div style="width:' + width + 'px; height:' + height + 'px;';
+    bar += ' line-height:1px; font-size:1px;"></div>';
     bar += '</td></tr></table>';
     return bar;
   }
@@ -198,6 +216,15 @@ function BAR_GRAPH(type) {
     return legend;
   }
 
+  this.build_hTitle = function(titleLabel, titleValue, titleBar) {
+    var title = '<tr>';
+    title += '<td style="' + this.cssTITLE + '">' + titleLabel + '</td>';
+    if(titleValue != '') title += '<td style="' + this.cssTITLE + '">' + titleValue + '</td>';
+    title += '<td style="' + this.cssTITLE + '">' + titleBar + '</td>';
+    title += '</tr>';
+    return title;
+  }
+
   this.create_hBar = function(value, percent, mPerc, mPerc_neg, max_neg, mul, valSpace, bColor, border, spacer, spacer_neg) {
     var bar = '<table border=0 cellspacing=0 cellpadding=0 height=100%><tr>';
 
@@ -219,7 +246,7 @@ function BAR_GRAPH(type) {
         bar += this.build_bar(value, Math.round(percent * mul), this.barWidth, bColor);
         bar += '</td>';
       }
-      else bar += '<td><img width=1 height=' + (this.barWidth + (border * 2)) + '></td>';
+      else bar += '<td width=1 height=' + (this.barWidth + (border * 2)) + '></td>';
 
       bar += '<td style="' + this.cssPERCVALUES + '" width=' + Math.round((mPerc - percent) * mul + valSpace) + ' align=left nowrap>';
       if(this.showValues < 2) bar += '&nbsp;' + _number_format(percent, this.percValuesDecimals) + '%';
@@ -251,7 +278,7 @@ function BAR_GRAPH(type) {
         bar += this.build_bar(value, this.barWidth, Math.round(percent * mul), bColor);
         bar += '</td>';
       }
-      else bar += '</tr><tr><td><img width=' + (this.barWidth + (border * 2)) + ' height=1></td>';
+      else bar += '</tr><tr><td width=' + (this.barWidth + (border * 2)) + ' height=1></td>';
       if(max_neg) {
         bar += '</tr><tr><td style="' + this.cssLABELBG + '" height=' + spacer_neg + '>';
         bar += '<table border=0 cellspacing=0 cellpadding=0><tr><td></td></tr></table></td>';
@@ -265,6 +292,8 @@ function BAR_GRAPH(type) {
   this.create = function() {
     this.type = this.type.toLowerCase();
     var d = (typeof(this.values) == 'string') ? this.values.split(',') : this.values;
+    if(this.titles) var t = (typeof(this.titles) == 'string') ? this.titles.split(',') : this.titles;
+    else var t = new Array();
     if(this.labels) var r = (typeof(this.labels) == 'string') ? this.labels.split(',') : this.labels;
     else var r = new Array();
     var label = graph = bColor = '';
@@ -279,7 +308,7 @@ function BAR_GRAPH(type) {
 
     if(this.type == 'pbar' || this.type == 'fader') {
       if(!this.barBGColor) this.barBGColor = this.labelBGColor;
-      if(this.labelBGColor == this.barBGColor) {
+      if(this.labelBGColor == this.barBGColor && t.length == 0) {
         this.labelBGColor = '';
         this.labelBorder = '';
       }
@@ -316,7 +345,11 @@ function BAR_GRAPH(type) {
       val[chart][lcnt] = new Array();
 
       for(var j = v = 0; j < drv.length; j++) {
-        val[chart][lcnt][j] = v = drv[j] ? parseFloat(drv[j]) : 0;
+        if(drv[j]) {
+          val[chart][lcnt][j] = parseFloat(drv[j]);
+          v = val[chart][lcnt][j] ? val[chart][lcnt][j] - this.baseValue : 0;
+        }
+        else val[chart][lcnt][j] = v = 0;
 
         if(v > max) max = v;
         else if(v < max_neg) max_neg = v;
@@ -324,8 +357,8 @@ function BAR_GRAPH(type) {
         if(v < 0) v *= -1;
         sum += v;
 
-        v = v.toString();
-        if(v.indexOf('.') != -1) {
+        if(v.toString().indexOf('.') != -1) {
+          v = (Math.round(v * 1000000000000) / 1000000000000).toString();
           v = v.substr(v.indexOf('.') + 1);
           dec = v.length;
           if(dec > max_dec) max_dec = dec;
@@ -359,10 +392,24 @@ function BAR_GRAPH(type) {
       maxSize += spacer_neg;
     }
 
+    var titleLabel = titleValue = titleBar = '';
+
+    if(t.length > 0) {
+      titleLabel = (t[0] == '') ? '&nbsp;' : t[0];
+
+      if(this.showValues == 1 || this.showValues == 2) {
+        titleValue = (t[1] == '') ? '&nbsp;' : t[1];
+        titleBar = (t[2] == '') ? '&nbsp;' : t[2];
+      }
+      else titleBar = (t[1] == '') ? '&nbsp;' : t[1];
+    }
+
     for(chart = lcnt = 0; chart < val.length; chart++) {
       graph += '<table border=0 cellspacing=2 cellpadding=0>';
 
       if(this.type == 'hbar') {
+        if(t.length > 0) graph += this.build_hTitle(titleLabel, titleValue, titleBar);
+
         for(i = 0; i < val[chart].length; i++, lcnt++) {
           label = (lcnt < r.length) ? _trim(r[lcnt]) : lcnt+1;
           rowspan = val[chart][i].length;
@@ -370,7 +417,8 @@ function BAR_GRAPH(type) {
           graph += '&nbsp;' + label + '&nbsp;</td>';
 
           for(j = 0; j < val[chart][i].length; j++) {
-            percent = sum ? val[chart][i][j] * 100 / sum : 0;
+            value = val[chart][i][j] ? val[chart][i][j] - this.baseValue : 0;
+            percent = sum ? value * 100 / sum : 0;
             value = _number_format(val[chart][i][j], max_dec);
             bColor = this.level_color(val[chart][i][j], bc[j]);
 
@@ -387,10 +435,15 @@ function BAR_GRAPH(type) {
       }
       else if(this.type == 'vbar') {
         graph += '<tr align=center valign=bottom>';
-        for(i = 0; i < val[chart].length; i++) {
 
+        if(titleBar != '') {
+          titleBar = titleBar.replace(/-/g, '-<br>');
+          graph += '<td style="' + this.cssTITLE + '" valign=middle>' + titleBar + '</td>';
+        }
+        for(i = 0; i < val[chart].length; i++) {
           for(j = 0; j < val[chart][i].length; j++) {
-            percent = sum ? val[chart][i][j] * 100 / sum : 0;
+            value = val[chart][i][j] ? val[chart][i][j] - this.baseValue : 0;
+            percent = sum ? value * 100 / sum : 0;
             value = _number_format(val[chart][i][j], max_dec);
             bColor = this.level_color(val[chart][i][j], bc[j]);
 
@@ -402,6 +455,8 @@ function BAR_GRAPH(type) {
         }
         if(this.showValues == 1 || this.showValues == 2) {
           graph += '</tr><tr align=center>';
+          if(titleValue != '') graph += '<td style="' + this.cssTITLE + '">' + titleValue + '</td>';
+
           for(i = 0; i < val[chart].length; i++) {
             for(j = 0; j < val[chart][i].length; j++) {
               graph += this.build_value(val[chart][i][j], max_dec);
@@ -410,6 +465,8 @@ function BAR_GRAPH(type) {
           }
         }
         graph += '</tr><tr>';
+        if(titleLabel != '') graph += '<td style="' + this.cssTITLE + '">' + titleLabel + '</td>';
+
         for(i = 0; i < val[chart].length; i++, lcnt++) {
           label = (lcnt < r.length) ? _trim(r[lcnt]) : lcnt+1;
           colspan = val[chart][i].length;
@@ -420,6 +477,8 @@ function BAR_GRAPH(type) {
         graph += '</tr>';
       }
       else if(this.type == 'pbar' || this.type == 'fader') {
+        if(t.length > 0) graph += this.build_hTitle(titleLabel, titleValue, titleBar);
+
         for(i = 0; i < val[chart].length; i++, lcnt++) {
           label = (lcnt < r.length) ? _trim(r[lcnt]) : '';
           graph += '<tr>';
@@ -484,20 +543,25 @@ function BAR_GRAPH(type) {
 //----------------------------------------------------------------------------------------------------
 function _number_format(val, dec) {
   if(dec) {
-    if(val < 0) {
-      var neg = true;
-      val *= -1;
+    if(val == 0) {
+      val = '0.';
+      for(var i = 0; i < dec; i++) val += '0';
     }
-    else var neg = false;
-    var v = (Math.round(val * Math.pow(10, dec))).toString();
-    if(v.length <= dec) for(var i = 0; i < dec - v.length + 1; i++) v = '0' + v;
-    v = v.substr(0, v.length - dec) + '.' + v.substr(v.length - dec);
-    if(v.substr(0, 1) == '.') v = '0' + v;
-    if(neg) v = '-' + v;
+    else {
+      if(val < 0) {
+        var neg = true;
+        val *= -1;
+      }
+      else var neg = false;
+      val = (Math.round(val * Math.pow(10, dec))).toString();
+      if(val.length <= dec) for(var i = 0; i < dec - val.length + 1; i++) val = '0' + val;
+      val = val.substr(0, val.length - dec) + '.' + val.substr(val.length - dec);
+      if(val.substr(0, 1) == '.') val = '0' + val;
+      if(neg) val = '-' + val;
+    }
   }
-  else v = Math.round(val);
-
-  return v;
+  else val = Math.round(val);
+  return val;
 }
 
 function _trim(str) {
