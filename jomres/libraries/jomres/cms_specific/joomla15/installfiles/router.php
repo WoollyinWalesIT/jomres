@@ -101,21 +101,20 @@ function JomresBuildRoute(&$query)
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN;
 			$segments[] = $query['town'];
-			
+			unset( $query['town'] );
 			}
 		if (isset($query['region']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION;
 			$segments[] = $query['region'];
+			unset( $query['region'] );
 			}
 		if (isset($query['country']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY;
 			$segments[] = $query['country'];
+			unset( $query['country'] );
 			}
-		unset( $query['town'] );
-		unset( $query['region'] );
-		unset( $query['country'] );
 		unset( $query['send'] );
 		unset( $query['calledByModule'] );
 		}
