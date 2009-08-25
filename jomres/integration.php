@@ -830,7 +830,7 @@ function doSelectSql($query,$mode=FALSE)
 	}
 
 
-function doInsertSql($query,$op)
+function doInsertSql($query,$op,$ignoreErrors=false)
 	{
 	global $jomres_db,$jrConfig;
 	global $jomres_db_querylog;
@@ -850,7 +850,8 @@ function doInsertSql($query,$op)
 	//echo $query;echo "<br>";
 	if (!$jomres_db->query())
 		{
-		error_logging("Do insert failed :: ".$jomres_db->error." ".$query);
+		if (!$ignoreErrors)
+			error_logging("Do insert failed :: ".$jomres_db->error." ".$query);
 		return FALSE;
 		}
 	else
