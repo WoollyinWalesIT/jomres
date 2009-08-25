@@ -119,7 +119,7 @@ class j02250showaudit {
 
 			//$thedate=str_replace("-","/",($activity->date));
 			$thedate=$activity->date;
-			$rw['THEDATE']=outputDate($thedate);
+			$rw['THEDATE']=$thedate;
 			$rw['THETIME']=$activity->time;
 			$rw['OPERATION']=$activity->op;
 
