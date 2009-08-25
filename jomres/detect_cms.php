@@ -81,6 +81,14 @@ if (!defined('_JOMRES_DETECTED_CMS') )
 		}
 	}
 
+
+if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'index.php') || file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres_standalone_config.php') )
+	{
+	define("_JOMRES_DETECTED_CMS","jomressa");
+	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+	}
+
+	
 if (!defined('_JOMRES_DETECTED_CMS') )
 	define("_JOMRES_DETECTED_CMS","unknown");
 	
