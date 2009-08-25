@@ -148,7 +148,7 @@ class j01070showpropertyheader
 				jomres_cmsspecific_setmetadata('keywords',stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])));
 
 				$output['STARS']=$starslink;
-				$output['PROPERTY_NAME']=$propertyname;
+				$output['PROPERTY_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property_uid,stripslashes(propertyname));
 				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
