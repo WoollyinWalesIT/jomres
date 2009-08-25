@@ -632,6 +632,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 			}
 		}
 
+	/*
 	$mail = new jomresPHPMailer();
 	if ($jomresConfig_debug =="1")
 		$mail->SMTPDebug=true;
@@ -660,6 +661,42 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$mail->Body			= $body;
 
 	$mail->SetLanguage("en",JOMRESPATH_BASE.JRDS."libraries".JRDS."PHPMailer_v2.0.0".JRDS."language".JRDS);
+	*/
+			
+	$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
+				
+	$mail             = new jomresPHPMailer();
+	$mail->SMTPDebug	= false;
+	$mail->IsHTML	= true;
+	if ($mode==1) $mail->IsHTML(true);
+	$mail->Mailer		= $jomresConfig_mailer;
+
+	$body             = eregi_replace("[\]",'',$body);
+
+	$mail->IsSMTP(); // telling the class to use SMTP
+
+
+	$mail->Host       = $jomresConfig_smtphost;
+	$mail->From       = $jomresConfig_smtpuser;
+
+	$mail->FromName   = $jomresConfig_sitename;
+
+	$mail->Subject    = $subject;
+
+	$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+
+	$mail->MsgHTML($body);
+
+	$mail->AddAddress($to, $to);
+
+	//$mail->AddAttachment("images/phpmailer.gif");             // attachment
+	/*
+	if(!$mail->Send()) {
+			  echo "Mailer Error: " . $mail->ErrorInfo;
+	} else {
+			  echo "Message sent!";
+	}
+	*/
 
 	if(!$mail->Send())
 		{
