@@ -20,6 +20,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to '.__FILE__.' is not allowed.' );
 
+ob_start();
 @ini_set("memory_limit","64M");
 @ini_set("max_execution_time","480");
 @ini_set("display_errors",1);
@@ -28,7 +29,7 @@ defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to '.__FILE__.' is no
 
 
 global $xmlelements;
-global $MiniComponents,$indexphp,$logFiles,$jrConfig;
+global $MiniComponents,$indexphp,$logFiles,$jrConfig,$jomresConfig_live_site;
 
 require_once('integration.php');
 
@@ -316,9 +317,11 @@ switch ($task) {
 			}
 		break;
 	}
-if (!JOMRES_LICVALID && JOMRES_ISADMINCALLED)
+if (defined("JOMRES_RETURNDATA") )
 	{
-	testConnectivity();
+	define("JOMRES_RETURNDATA_CONTENT", ob_get_contents() ) ;
+	ob_end_clean();
 	}
-
+else
+	ob_end_flush();
 ?>
