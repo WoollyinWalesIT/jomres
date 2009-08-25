@@ -47,14 +47,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class jomres_booking
+class dobooking
 	{
 	/**
 	#
 	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
 	#
 	 */
-	function jomres_booking()
+	function dobooking()
 		{
 		global $jrConfig;
 		$this->jrConfig					= $jrConfig; // Importing the site config settings
