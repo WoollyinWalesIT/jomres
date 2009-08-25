@@ -24,6 +24,10 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 
 class html_functions
 	{
+	function html_functions()
+		{
+		}
+		
 	function cpanelButton( $link, $image, $text, $path='/jomres/images/jomresimages/large/' ) 
 		{
 		global $jomresConfig_live_site,$task;
