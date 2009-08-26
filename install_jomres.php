@@ -209,6 +209,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 				elseif (ACTION == "Upgrade") // Upgrading
 					{
 					define('ACTION',"Upgrade");
+					jr_import('minicomponent_registry');
 					$registry = new minicomponent_registry(true);
 					$registry->regenerate_registry();
 					echo "Data already installed, no need to re-create it<br>";
@@ -241,6 +242,7 @@ function doTableUpdates()
 	if (!checkSubscriptionsTablesExist() )
 		{
 		createSubscriptionsTables();
+		jr_import('jomres_cron');
 		$cron = new jomres_cron($displayLog);
 		$cron->addJob("subscriptions","D","");
 		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('0','useSubscriptions')";
@@ -427,6 +429,7 @@ function alterInvoicesPropertyuidCol()
 function installCronjobs()
 	{
 	echo "Installing cron jobs<br/>";
+	jr_import('jomres_cron');
 	$cron = new jomres_cron();
 	$cron->addJob("optimise","D","");
 	$cron->addJob("invoice","D","");

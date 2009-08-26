@@ -80,6 +80,7 @@ if (function_exists("curl_init"))
 				<tr>
 					<td align="center">
 					<?php
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
 					$cpanel=new cpanel();
 					?>
 					</td>

@@ -29,18 +29,22 @@ ob_start();
 
 
 global $xmlelements;
-global $MiniComponents,$indexphp,$logFiles,$jrConfig,$jomresConfig_live_site;
+global $indexphp,$logFiles,$jrConfig,$jomresConfig_live_site;
 
 require_once('integration.php');
+$MiniComponents =jomres_getSingleton('mcHandler');
 
-global $jomressession,$tmpBookingHandler;
-$tmpBookingHandler = new jomres_temp_booking_handler();
+global $jomressession;
+$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+//$tmpBookingHandler = new jomres_temp_booking_handler();
 $tmpBookingHandler->initBookingSession($jomressession);
 $jomressession  = $tmpBookingHandler->getJomressession();
 $showSearchOptions=true;
-$jomreslang= new jomres_language();
+$jomreslang =jomres_getSingleton('jomres_language');
+//$jomreslang= new jomres_language();
 $jomreslang->get_language('xx');
-$customTextObj = new custom_text();
+$customTextObj =jomres_getSingleton('custom_text');
+//$customTextObj = new custom_text();
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
@@ -61,72 +65,19 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'admin.j
 
 $nohtml	= jomresGetParam( $_REQUEST, 'no_html',0 );
 
+jr_import('jomres_obsolete_file_handling');
+$obsolete_files = new jomres_obsolete_file_handling();
+$obsolete_files->set_default_obs_files_array();
+$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
+if (jomresGetDomain() != "localhost")
+	$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php');
 
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres_webinstall.php') && $nohtml == 0)
+if ($obsolete_files->ready_to_go() )
 	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres_webinstall.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file jomres_webinstall.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
-	}
-	
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file jomres_webinstall.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
-	}
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php') && $nohtml == 0)
-	{
-	//if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'install_jomres.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php still exists in the root of your CMS\'s directory. Please delete it.</font><br/>';
+	$obsolete_files->remove_obs_files();
+	$obsolete_files->output_file_deletion_warning();
 	}
 
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00011manager.class.php still exists. Please delete it.</font><br/>';
-	}
-	
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00010reception.class.php still exists. Please delete it.</font><br/>';
-	$registry = new minicomponent_registry(false);
-	$registry->regenerate_registry();
-	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
-	jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN);
-	}
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00050mumenu.class.php') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00050mumenu.class.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00050mumenu.class.php still exists. Please delete it.</font><br/>';
-	}
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'menus.html') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'menus.html') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'menus.html still exists. Please delete it.</font><br/>';
-	}
-	
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00012invoices_link.class.php') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-minicomponents'.JRDS.'j00012invoices_link.class.php') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'core-minicomponents'.JRDS.'j00012invoices_link.class.php still exists. Please delete it.</font><br/>';
-	}
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'invoices_link.html') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'invoices_link.html') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'invoices_link.html still exists. Please delete it.</font><br/>';
-	}
-	
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'srch.html') && $nohtml == 0)
-	{
-	if (!@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'srch.html') )
-		echo '<font color="red" face="arial" size="1">Warning: file '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS.'srch.html still exists. Please delete it as it has been replaced with search.html.</font><br/>';
-	}
-	
 if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml == 0)
 	{
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
@@ -162,7 +113,7 @@ if (count($customTextList))
 		}
 	}
 
-$jomreslang= new jomres_language();
+$jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 
 if (!JRPORTAL_AJAXCALL)
@@ -186,7 +137,10 @@ if (!JRPORTAL_AJAXCALL)
 	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
 	<?php
 	if (strlen($task)>1)
+		{
+		jr_import('cpanel');
 		$cpanel=new cpanel();
+		}
 	}
 if (isset($_REQUEST['statoption']))
 	{
@@ -296,9 +250,9 @@ switch ($task) {
 	//case "deletePfeature":
 	//	deletePfeature();
 	//	break;
-	case "portalcpanel":
-		$cpanel=new cpanel();
-		break;
+	//case "portalcpanel":
+	//	$cpanel=new cpanel();
+	//	break;
 	case 'cpanel':
 		default:
 		if ($MiniComponents->eventSpecificlyExistsCheck('16000',$task) )

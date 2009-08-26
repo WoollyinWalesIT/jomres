@@ -25,8 +25,11 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Get some basic data before beginning construction of the booking form
 #
  */
-global $MiniComponents,$jomressession,$thisJRUser ;
-global $tmpBookingHandler,$property_uid;
+global $jomressession,$thisJRUser ;
+global $property_uid;
+
+$MiniComponents =jomres_getSingleton('mcHandler');
+$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 $userIsManager=checkUserIsManager();
@@ -89,8 +92,10 @@ else
  */
 function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	{
-	global $jomresAdminPath,$jomresConfig_live_site,$mrConfig,$jomresConfig_lang,$thisJRUser,$Itemid,$MiniComponents,$jomresConfig_absolute_path;
-	global $tmpBookingHandler,$jrConfig;
+	global $jomresAdminPath,$jomresConfig_live_site,$mrConfig,$jomresConfig_lang,$thisJRUser,$Itemid,$jomresConfig_absolute_path;
+	global $jrConfig;
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	
 	$referrer=$_SERVER['HTTP_REFERER'];
 	$backWasClicked=false;
@@ -114,7 +119,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$mrConfig=getPropertySpecificSettings($selectedProperty);
 	property_header($selectedProperty);
 	$MiniComponents->triggerEvent('00102'); // First-form generation
-	$bkg =$MiniComponents->triggerEvent('05000'); // Create the new booking object
+	$bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
 	if (!is_object($bkg) )
 		{
 		echo "Error creating booking object";
@@ -409,6 +414,8 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		}
 	$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
 	
+	
+	jr_import('jomres_custom_field_handler');
 	$custom_fields = new jomres_custom_field_handler();
 	$allCustomFields = $custom_fields->getAllCustomFields();
 	if (count($allCustomFields)>0)

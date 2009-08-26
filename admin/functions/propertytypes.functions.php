@@ -93,7 +93,7 @@ function editPropertyType()
 
 	$hidden="<input type=\"hidden\" name=\"id\" value=\"".$id."\" />";
 
-	$jrtbar = new jomres_toolbar();
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
