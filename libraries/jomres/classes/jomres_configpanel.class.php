@@ -21,6 +21,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+
+jr_import('jomres_contentTabs');
+
 /**
 #
  * Creates the Jomres config panel object

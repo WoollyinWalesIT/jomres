@@ -191,6 +191,7 @@ class jomres_temp_booking_handler
 		$this->jomressession=$jomressession=session_id();
 		//echo $jomressession=session_id()." ";
 		$this->sessionfile=$this->session_directory.$this->jomressession.".txt";
+		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
 		$this->initCustomFields($allCustomFields);

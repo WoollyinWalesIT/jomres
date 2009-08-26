@@ -57,6 +57,7 @@ class dobooking
 	function dobooking()
 		{
 		global $jrConfig;
+		
 		$this->jrConfig					= $jrConfig; // Importing the site config settings
 		$this->requestedRoom			= array();
 		$this->rate_pernight			= 0.00;
@@ -370,7 +371,7 @@ class dobooking
 	 */
 	function getTmpBookingData()
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$bookingDeets=$tmpBookingHandler->getBookingData();
 		$this->cfg_showExtras = $bookingDeets['show_extras'];
 		return $bookingDeets;
@@ -384,7 +385,7 @@ class dobooking
 	 */
 	function getTmpGuestData()
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$userDeets=$tmpBookingHandler->getGuestData();
 		return $userDeets;
 		}
@@ -398,7 +399,7 @@ class dobooking
 	 */
 	function storeBookingDetails()
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->writeToLogfile("<font color='grey'>".serialize($tmpBookingHandler->tmpguest)."</font>");
 
 		$tmpBookingHandler->tmpguest["mos_userid"]		=$this->mos_userid;
@@ -580,7 +581,7 @@ class dobooking
 
 	function getAllBookings()
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
 		$gor=genericOr($this->allPropertyRoomUids,'room_uid');
@@ -759,7 +760,8 @@ class dobooking
 		{
 		global $mrConfig,$jomresConfig_live_site;
 		$extra_details=array();
-		$currfmt = new jomres_currency_format();
+		
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($mrConfig['showExtras']=="1")
 			{
 			$query="SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
@@ -1495,7 +1497,7 @@ class dobooking
 	 */
 	function checkArrivalDate($arrivalDate)
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		if ( empty($this->cfg_mindaysbeforearrival) )
 			$this->cfg_mindaysbeforearrival=0;
@@ -1596,7 +1598,7 @@ class dobooking
 	 */
 	function fixedDaysArrivaldateDropdown($arrivalDate)
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 
 		$date_elements	= explode("/",$arrivalDate);
 		$day=$date_elements[2];
@@ -1744,7 +1746,7 @@ class dobooking
 	//
 	function checkDepartureDate($departureDate)
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->setErrorLog("checkDepartureDate::Checking Departure date ".$departureDate);
 		$this->setErrorLog("checkDepartureDate::Booker class ".$this->booker_class);
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
@@ -2599,7 +2601,7 @@ class dobooking
 	 */
 	function initGuestDetails(&$bkg,$guest_deets)
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		if ($amend_contract)
 			$this->existing_id=$this->guests_uid;
@@ -3770,7 +3772,7 @@ class dobooking
 
 		//$overlib='<a href="javascript:void(0);" onmouseover="return overlib(\'&nbsp\', CAPTION, \''.$caption.'\', WIDTH, 300, ABOVE, RIGHT );" onmouseout="return nd(0);"  onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomTariffOutputText.'</a>'.$data.'<br/>';
 
-		$currfmt = new jomres_currency_format();
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		
 		if ($this->tariffModel == "2")
 			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
@@ -3919,7 +3921,8 @@ class dobooking
 			$this->cfg_ratemultiplier=1;
 		else
 			$this->cfg_ratemultiplier+=0;
-		$currfmt = new jomres_currency_format();
+		
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($tariff['ignore_pppn'] || $this->cfg_perPersonPerNight=="0" )
 			$output['ROOMRATEPERDAY']=$this->cfg_currency.$currfmt->get_formatted(($this->cfg_ratemultiplier*$tariff['roomrateperday']))." ".$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN,false,false) );
 		else
@@ -4119,7 +4122,7 @@ class dobooking
 	 */
 	function monitorBookingStatus()
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 
 		// Let's see if the form is ready to be booked.
@@ -4246,7 +4249,7 @@ class dobooking
 
 	function outputZeroPrices()
 		{
-		$currfmt = new jomres_currency_format();
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($this->getGuestVariantCount() > 0)
 			echo '; populateDiv("totalinparty","'.$this->getTotalInParty().'")';
 			//echo '; document.getElementById("totalinparty").innerHTML = "'.$this->getTotalInParty().'" ; fadeIn("totalinparty",1000); ';
@@ -4913,7 +4916,7 @@ class dobooking
 	function setFlatRate()
 		{
 		global $mrConfig;
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$disc=array();
 		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
 		$tmpBookingHandler->saveBookingData();
@@ -4979,10 +4982,10 @@ class dobooking
 
 	function outputDiscounts()
 		{
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$discountData=$tmpBookingHandler->getBookingFieldVal("wiseprice_discount");
 		$discountOutput="";
-		$currfmt = new jomres_currency_format();
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ( count($discountData)> 0)
 			{
 			$discountsForTmpdata=array();
@@ -5090,7 +5093,7 @@ class dobooking
 	function setAverageRate()
 		{
 		global $mrConfig;
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if ( $mrConfig['tariffmode']=="2")
 			{
 			$this->setErrorLog("setAverageRate : going to te_setAverageRate");
@@ -5376,12 +5379,13 @@ class dobooking
 
 	function calcLastMinuteDiscount()
 		{
-		global $mrConfig,$tmpBookingHandler;
+		global $mrConfig;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if ($mrConfig['lastminuteactive'] == '1')
 			{
 			$discountsForTmpdata=array();
 			$tmpBookingHandler->updateBookingField(array());
-			$currfmt = new jomres_currency_format();
+			$currfmt = jomres_getSingleton('jomres_currency_format');
 			$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
 			$lastminutediscount=(int)$mrConfig['lastminutediscount'];
 			if ( count($datesTilBooking) <= (int)$mrConfig['lastminutethreshold'])

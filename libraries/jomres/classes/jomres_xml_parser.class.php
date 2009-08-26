@@ -23,25 +23,10 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class jomresXMLParser
+class jomres_xml_parser
 	{
-	function jomresXMLParser($xml)
+	function jomres_xml_parser($xml)
 		{
-		// raw xml
-		//$this->$rawXML = null;
-		// xml parser
-		//$this->$parser = null;
-		// array returned by the xml parser
-		//$this->$valueArray = array();
-		//$this->$keyArray = array();
-
-		// arrays for dealing with duplicate keys
-		//$this->$duplicateKeys = array();
-
-		// return data
-		//$this->$output = array();
-		//$this->$status;
-	
 		$this->rawXML = $xml;
 		$this->parser = xml_parser_create();
 		return $this->parse();

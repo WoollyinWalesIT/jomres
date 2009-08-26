@@ -26,12 +26,13 @@ class cpanel
 	function cpanel()
 		{
 		//global $jomresConfig_live_site,$jomresAdminPath,$indexphp;
-		global $MiniComponents,$htmlFuncs,$jrConfig;
-
+		global $jrConfig;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		$rows		=array();
 		$pageoutput	=array();
 		//$info		=array();
-		$htmlFuncs = new html_functions();
+		$htmlFuncs =jomres_getSingleton('html_functions');
+		//$htmlFuncs = new html_functions();
 		if (!file_exists(JOMRESPATH_BASE.'/images/jomresimages/small/ViewDatabase.png') )
 			{
 			$icon_database=makeImageValid("Help Index Results.jpg");
@@ -68,7 +69,7 @@ class cpanel
 /*
 	function getStatsPanel()
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		$pageoutput=array();
 		$ajaxUrl=JOMRES_SITEPAGE_URL_ADMIN."task=getstats&no_html=1";
 

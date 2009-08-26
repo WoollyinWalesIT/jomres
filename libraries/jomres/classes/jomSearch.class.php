@@ -368,7 +368,7 @@ class jomSearch {
 	 */
 	function jomSearch_showresults()
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		$tmpResultsArray=end($this->propertys_uid);
 		$componentArgs=array();
 		$componentArgs['propertys_uid']=$tmpResultsArray;
@@ -868,7 +868,8 @@ function prepDescriptiveSearch()
  */
 function prepAvailabilitySearch()
 	{
-	global $jomresConfig_live_site,$tmpBookingHandler;
+	global $jomresConfig_live_site;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$result=array();
 	//$availabilityArray=array();
 	$today = date("Y/m/d");

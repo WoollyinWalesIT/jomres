@@ -24,6 +24,7 @@ class jomres_gateway_handler
 	{
 	function jomres_gateway_handler()
 		{
+		jr_import('jrportal_paypal_settings');
 		$paypal_settings = new jrportal_paypal_settings();
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings=$paypal_settings->paypalConfigOptions;
@@ -63,6 +64,7 @@ class jomres_gateway_handler
 				$transaction = doSelectSql($query);
 				if (count($transaction)==0)
 					{
+					jr_import('jrportal_invoice');
 					$invoice=new jrportal_invoice();
 					$invoice->id=$pp_sent_invoice_id;
 					if ($invoice->getInvoice())
@@ -73,6 +75,7 @@ class jomres_gateway_handler
 							}
 						else
 							{
+							jr_import('invoicehandler');
 							$invoice_handler = new invoicehandler();
 							$invoice_handler->id=$pp_sent_invoice_id;
 							$invoice_handler->getInvoice();
@@ -169,6 +172,7 @@ class jomres_gateway_handler
 									break;
 								}
 							// Subscription Status
+							jr_import('jrportal_subscriptions');
 							$subscription = new jrportal_subscriptions();
 							$subscription->id=$pp_sent_custom_subscription_id;
 							if ($subscription->getSubscription())
