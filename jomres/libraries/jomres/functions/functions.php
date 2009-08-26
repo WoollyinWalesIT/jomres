@@ -21,6 +21,24 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+
+
+function jr_import($class)
+	{
+	if (!class_exists($class)) 
+		{
+		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
+			{
+			$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
+			}
+		else
+			{
+			trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+			}
+		}
+	}
+
+
 function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang)
 	{
 	if (!defined("JOMRES_JSCALLED") )
@@ -169,11 +187,8 @@ function getIntegratedSearchModuleVals()
 
 function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
 	{
-	global $jomres_tooltips;
-	if (is_null($jomres_tooltips))
-		{
-		$jomres_tooltips = new jomres_tooltips();
-		}
+	$jomres_tooltips =jomres_getSingleton('jomres_tooltips');
+	//$jomres_tooltips = new jomres_tooltips();
 	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
 	}
 
@@ -663,8 +678,8 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$mail->SetLanguage("en",JOMRESPATH_BASE.JRDS."libraries".JRDS."PHPMailer_v2.0.0".JRDS."language".JRDS);
 	*/
 			
-	$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
-				
+	//$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
+
 	$mail             = new jomresPHPMailer();
 	$mail->SMTPDebug	= false;
 	$mail->IsHTML	= true;
@@ -852,7 +867,8 @@ function getGuestDetailsForContract($contract_uid)
 function getCurrentBookingData($jomressession="")
 	{
 	// Whilst this is a new function to construct data from session variables, we'll need to do a bunch of jiggery pokery with the nice simple data pulled from the sess vars so that the data is in a format that's understood by other functions that previously received data that had been pulled from the database
-	global $tmpBookingHandler;
+	//global $tmpBookingHandler;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$obj=new stdClass;
 	$tempBookingDataList=array();
 	$userDeets=$tmpBookingHandler->getGuestData();
@@ -901,7 +917,7 @@ function getbookingguestdata()
 */
 function gettempBookingdata()
 	{
-	global $tmpBookingHandler;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$bookingDeets=$tmpBookingHandler->getBookingData();
 	return $bookingDeets;
 	}
@@ -1252,9 +1268,9 @@ function hotelSettings()
 	{
 
 	global $mrConfig,$configurationPanel;
-	global $MiniComponents,$Itemid;
 	global $jomresConfig_live_site;
-
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	
 	//global $_CONFIG;
 	$property_uid=(int)getDefaultProperty();
 	$mrConfig=getPropertySpecificSettings($property_uid);
@@ -1463,7 +1479,7 @@ function hotelSettings()
 	 	</table>
 	<?php
 
-	$jrtbar = new jomres_toolbar();
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb	= $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveHotelSettings');
 	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
@@ -1472,6 +1488,7 @@ function hotelSettings()
 
 	echo $output['JOMRESTOOLBAR'];
 
+	jr_import('jomres_configpanel');
 	$configurationPanel = new jomres_configpanel();
 	$componentArgs['configurationPanel']=$configurationPanel;
 
@@ -1725,7 +1742,9 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
  */
 function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="",$usejomressessionasCartid=false)
 	{
-	global $MiniComponents,$tmpBookingHandler,$Itemid;
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	
 	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".$jomressession);
 	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
@@ -1748,7 +1767,7 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 				{
 				echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
 				//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb	= $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$MiniComponents->miniComponentData['03020']['insertbooking']['contract_uid']),'');
 				$jrtb .= $jrtbar->endTable();
@@ -1776,7 +1795,8 @@ function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPa
 function insertGuestDeets($jomressession)
 	{
 	//global $my,$mykey;
-	global $tmpBookingHandler,$jomresConfig_secret,$thisJRUser;
+	global $jomresConfig_secret,$thisJRUser;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$userIsManager=checkUserIsManager();
 
 	$xCustomers=$tmpBookingHandler->getGuestData();
@@ -2458,7 +2478,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		if ($unixDeparture< $unixToday && $bookedIn =="1")
 			$imgToShow=$img_stillhere;
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb	= $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=".$row->contract_uid ),'');
 		$jrtb .= $jrtbar->endTable();
@@ -2634,6 +2654,7 @@ function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = 
 				}
 			else
 				{
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message($saveMessage);
 				if ($redirectOnDone)
@@ -2652,6 +2673,7 @@ function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = 
 		}
 	else
 		{
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message("Could not discerne filename");
 		if ($redirectOnDone)
@@ -2684,8 +2706,10 @@ function uploadPropertyImage()
 		$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
 	if ($checkedImage)
 		{
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message($saveMessage);
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), "" );
@@ -2730,8 +2754,10 @@ function uploadRoomImage()
 
 		if ($checkedImage)
 			{
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging = new jomres_messages();
 			$jomres_messaging->set_message($saveMessage);
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&roomUid=$roomUid"), $saveMessage );
@@ -2772,6 +2798,7 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 		$maxwidth = $jrConfig['maxwidth'];
 		$maxHeight = $jrConfig['maxwidth'];
 		// load the class
+		jr_import('images');
 		$img = new images();
 		// open a file
 		if ($img->getImageFromPost($formelement) )
@@ -3194,7 +3221,10 @@ function registerProp_step2()
 */
 function saveRegisterProp()
 	{
-	global $my,$thisJRUser,$jrConfig,$MiniComponents,$Itemid;
+	global $my,$thisJRUser,$jrConfig;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	
 	if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
 		return;
 	$property_name					= jomresGetParam( $_POST, 'property_name', "" );
@@ -3528,7 +3558,7 @@ function returnToPropertyConfig($saveMessage="")
  */
 function publishProperty()
 	{
-	global $MiniComponents;
+	$MiniComponents =jomres_getSingleton('mcHandler');
 	$MiniComponents->specificEvent('02272',"publishprop");
 	}
 
@@ -3575,7 +3605,7 @@ function jomresShowSearch()
 	global $task;
 	if ( empty($task) )
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		$MiniComponents->triggerEvent('00030'); //Search mini-comp
 		}
 	}
@@ -3811,7 +3841,7 @@ function showCalandarMonthDropdown()
  */
 function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear=12,$room_avl_enquiry=false)
 	{
-	global $MiniComponents;
+	$MiniComponents =jomres_getSingleton('mcHandler');
 	$componentArgs=array();
 	$componentArgs['roomUid']=$roomUid;
 	$componentArgs['requestedDate']=$requestedDate;
@@ -3828,7 +3858,7 @@ function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear
  */
 function property_header($property_uid)
 	{
-	global $MiniComponents;
+	$MiniComponents =jomres_getSingleton('mcHandler');
 	$MiniComponents->triggerEvent('01070',array('property_uid'=>$property_uid) ); // Call property header mini-component
 	}
 
@@ -3932,5 +3962,394 @@ function createJSCSSDropdown()
 			</div>
 		</div>
 		<?php
+	}
+	
+
+function homeButton()
+	{
+	global $indexphp,$jomresConfig_live_site;
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
+	$jrtb  = $jrtbar->startTable();
+	$image = JOMRESPATH_BASE."/images/jomresimages/small/Home.png";
+	$link = $jomresConfig_live_site."/administrator/".$indexphp."?option=com_jomcompjrportal";
+	$jrtb .= $jrtbar->customToolbarItem('',$link,"Home",false,"",$image);
+	$jrtb .= $jrtbar->endTable();
+	return $jrtb;
+	}
+
+function makeJsGraphOutput($graphLabels,$graphValues,$type="hBar",$legend,$div='divGraph')
+	{
+	$graphParams='
+	<script language="JavaScript"> <!--
+	jQuery(document).ready(function() {createGraph("'.$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")});
+	//--> </script>
+	';
+	return $graphParams;
+	}
+
+function getMonthName($monthNo)
+	{
+	$monthNo=intval($monthNo);
+	return constant ('_JRPORTAL_MONTHS_LONG_'.$monthNo);
+	}
+
+function makeImageValid($imageName="")
+	{
+	$image = str_replace('+' , '%20' , $imageName);
+	$image = str_replace('%2F' , '/' , $image);
+	return $image;
+	}
+	
+
+function invoices_getalllineitems_forinvoice($id)
+	{
+	$lineitems=array();
+	$query = "SELECT * FROM #__jomresportal_lineitems WHERE `inv_id`=".(int)$id;
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$lineitems[$r->id]['id']			=$r->id;
+			$lineitems[$r->id]['name']			=$r->name;
+			$lineitems[$r->id]['description']	=$r->description;
+			$lineitems[$r->id]['init_price']	=$r->init_price;
+			$lineitems[$r->id]['init_qty']		=$r->init_qty;
+			$lineitems[$r->id]['init_discount']	=$r->init_discount;
+			$lineitems[$r->id]['init_total']	=$r->init_total;
+			$lineitems[$r->id]['recur_price']	=$r->recur_price;
+			$lineitems[$r->id]['recur_qty']		=$r->recur_qty;
+			$lineitems[$r->id]['recur_discount']=$r->recur_discount;
+			$lineitems[$r->id]['recur_total']	=$r->recur_total;
+			$lineitems[$r->id]['tax_code']		=$r->tax_code;
+			$lineitems[$r->id]['tax_description']=$r->tax_description;
+			$lineitems[$r->id]['tax_rate']		=$r->tax_rate;
+			$lineitems[$r->id]['inv_id']		=$r->inv_id;
+			}
+		}
+	return $lineitems;
+	
+	}
+
+
+function invoices_getallinvoices($dec,$status=null)
+	{
+	$invoices=array();
+	$clause="";
+	if (isset($status))
+		$clause= " WHERE `status` = ".(int)$status." ";
+
+	if ($dec)
+		$clause.=" ORDER BY raised_date DESC";
+	$query="SELECT * FROM #__jomresportal_invoices".$clause;
+	//echo $query;exit;
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$invoices[$r->id]['id']=$r->id;
+			$invoices[$r->id]['cms_user_id']=$r->cms_user_id;
+			$invoices[$r->id]['status']=$r->status;
+			$invoices[$r->id]['raised_date']=$r->raised_date;
+			$invoices[$r->id]['due_date']=$r->due_date;
+			$invoices[$r->id]['paid']=$r->paid;
+			$invoices[$r->id]['subscription']=$r->subscription;
+			$invoices[$r->id]['init_total']=$r->init_total;
+			$invoices[$r->id]['recur_total']=$r->recur_total;
+			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
+			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
+			$invoices[$r->id]['currencycode']=$r->currencycode;
+			}
+		}
+	return $invoices;
+	}
+	
+function invoices_getinvoicesfor_juser($juser=0,$status=null)
+	{
+	$invoices=array();
+	$clause="";
+	if (isset($status))
+		$clause= " AND `status` = ".(int)$status." ";
+	$clause.=" ORDER BY raised_date DESC";
+	$query="SELECT * FROM #__jomresportal_invoices WHERE `cms_user_id`='".(int)$juser."'".$clause;
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$invoices[$r->id]['id']=$r->id;
+			$invoices[$r->id]['cms_user_id']=$r->cms_user_id;
+			$invoices[$r->id]['status']=$r->status;
+			$invoices[$r->id]['raised_date']=$r->raised_date;
+			$invoices[$r->id]['due_date']=$r->due_date;
+			$invoices[$r->id]['paid']=$r->paid;
+			$invoices[$r->id]['subscription']=$r->subscription;
+			$invoices[$r->id]['init_total']=$r->init_total;
+			$invoices[$r->id]['recur_total']=$r->recur_total;
+			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
+			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
+			$invoices[$r->id]['currencycode']=$r->currencycode;
+			}
+		}
+	return $invoices;
+	}
+	
+function invoices_makeInvoiceStatusDropdown( $selected='0' )
+	{
+	$statusOptions=array();
+	$statusDropdown="";
+	$statuses=array();
+	$statuses[0]=_JRPORTAL_INVOICES_STATUS_UNPAID;
+	$statuses[1]=_JRPORTAL_INVOICES_STATUS_PAID;
+	$statuses[2]=_JRPORTAL_INVOICES_STATUS_CANCELLED;
+	$statuses[3]=_JRPORTAL_INVOICES_STATUS_PENDING;
+
+	foreach($statuses as $key=>$val)
+		{
+		$statusOptions[]=jomresHTML::makeOption( $key, $val );
+		}
+	$statusDropdown= jomresHTML::selectList($statusOptions, 'status', 'class="inputbox" size="1"', 'value', 'text', $selected);
+	return $statusDropdown;
+	}
+	
+function subscribers_thisUserIsASubscriber($id=0)
+	{
+	global $thisJRUser;
+	if ($id == 0)
+		$id=$thisJRUser->id;
+	$query="SELECT id FROM #__jomresportal_subscriptions WHERE cms_user_id =".(int)$id."";
+	$result=doSelectSql($query);
+	if (count($result) > 0 )
+		return true;
+	return false;
+	}
+	
+function subscribers_unpublishNproperties($numberOfPropertiesToUnpublish,$cms_user_id)
+	{
+	if ($numberOfPropertiesToUnpublish > 0 && $cms_user_id > 0)
+		{
+		$published_properties=subscribers_getManagersPublishedProperties($cms_user_id);
+		for ($i=0;$i<$numberOfPropertiesToUnpublish;$i++)
+			{
+			$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".$published_properties[$i]."";
+			$result=doInsertSql($query,"Unpublished by system");
+			}
+		return true;
+		}
+	else
+		return false;
+	}
+
+
+function subscribers_getManagersPublishedProperties($cms_user_id)
+	{
+	$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE `manager_id` = '".(int)$cms_user_id."'";
+	$managersProperties=doSelectSql($query);
+	$mp=array();
+	$published_properties=array();
+	foreach ($managersProperties as $p)
+		{
+		$mp[]=(int)$p->property_uid;
+		}
+	$clause = "WHERE ";
+	$clause .= genericOr($mp,'propertys_uid')." AND published = 1";
+	$query="SELECT propertys_uid FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);
+	$jomresPropertyList=doSelectSql($query);
+	foreach($jomresPropertyList as $p)
+		{
+		$published_properties[]=(int)$p->propertys_uid;
+		}
+	return $published_properties;
+	}
+	
+function subscribers_checkUserHasSubscriptionsToCreateNewProperty($id=0)
+	{
+	global $thisJRUser;
+	if ($id == 0)
+		$id=$thisJRUser->id;
+	$allowedProperties = subscribers_getAvailablePropertySlots($id);
+	$existingProperties = subscribers_getManagersPublishedProperties($id);
+
+	if ($allowedProperties > count($existingProperties))
+		return true;
+	else
+		return false;
+	}
+	
+function subscribers_getAvailablePropertySlots($id=0)
+	{
+	global $thisJRUser;
+	if ($id == 0)
+		$id=$thisJRUser->id;
+	$query="SELECT property_limit FROM #__jomresportal_subscriptions WHERE cms_user_id ='".(int)$id."' AND `status` = 1";
+	
+	$result=doSelectSql($query);
+
+	$allowedProperties=0;
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$c=$r->property_limit;
+			$allowedProperties=$allowedProperties+$c;
+			}
+		}
+	return $allowedProperties;
+	}
+
+function subscribers_getCurrentPropertiesNumbers($id=0)
+	{
+	global $thisJRUser;
+	if ($id == 0)
+		$id=$thisJRUser->id;
+	$query="SELECT COUNT(`manager_id`)  FROM #__jomres_managers_propertys_xref WHERE manager_id ='".(int)$id."'";
+	$existingProperties=doSelectSql($query,1);
+
+	if ($existingProperties)
+		return $existingProperties;
+	else
+		return 0;
+	}
+	
+	
+function subscribers_getSubscriberDetailsForJosId($id)
+	{
+	$user = array();
+	if ($id > 0 )
+		{
+		$query = "SELECT
+			`id`,`cms_user_id`,`firstname`,`surname`,`address`,`country`,`postcode`
+			FROM #__jomresportal_subscribers WHERE `cms_user_id`=".(int)$id." LIMIT 1";
+		$result=doSelectSql($query);
+		if ($result && count($result)==1)
+			{
+			foreach ($result as $r)
+				{
+				$user['id']					= (int)$r->id;
+				$user['cms_user_id']		= (int)$r->cms_user_id;
+				$user['firstname']			= (string)$r->firstname;
+				$user['surname']			= (string)$r->surname;
+				$user['address']			= (string)$r->address;
+				$user['country']			= (string)$r->country;
+				$user['postcode']			= (string)$r->postcode;
+				}
+			return $user;
+			}
+		else
+			return false;
+		}
+	else
+		return false;
+	}
+
+function subscriptions_packages_getallpackages()
+	{
+	$packages=array();
+	$query="SELECT * FROM #__jomresportal_subscriptions_packages";
+	$result=doSelectSql($query);
+
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$packages[$r->id]['id']=$r->id;
+			$packages[$r->id]['name']=$r->name;
+			$packages[$r->id]['description']=$r->description;
+			$packages[$r->id]['published']=$r->published;
+			$packages[$r->id]['frequency']=$r->frequency;
+			$packages[$r->id]['trial_period']=$r->trial_period;
+			$packages[$r->id]['trial_amount']=$r->trial_amount;
+			$packages[$r->id]['full_amount']=$r->full_amount;
+			$packages[$r->id]['rooms_limit']=$r->rooms_limit;
+			$packages[$r->id]['property_limit']=$r->property_limit;
+			$packages[$r->id]['tax_code_id']=$r->tax_code_id;
+			}
+		}
+
+	return $packages;
+	}
+	
+function subscriptions_packages_makefrequencyDropdown( $selected='1' )
+	{
+	$frequencyOptions=array();
+	$frequencyDropdown="";
+	$frequencies=array("M"=>"M","Q"=>"Q","B"=>"B","A"=>"A");
+	if (count($frequencies>0) )
+		{
+		foreach($frequencies as $k=>$v)
+			{
+			$frequencyOptions[]=jomresHTML::makeOption( $k, $v );
+			}
+		$frequencyDropdown= jomresHTML::selectList($frequencyOptions, 'frequency', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		}
+	return $frequencyDropdown;
+	}
+	
+function subscriptions_packages_maketrialperiodDropdown( $selected='0' )
+	{
+	$periodOptions=array();
+	$periodDropdown="";
+	$periods=array("0"=>"","1"=>"1","2"=>"2","3"=>"3");
+	if (count($periods>0) )
+		{
+		foreach($periods as $k=>$v)
+			{
+			$periodOptions[]=jomresHTML::makeOption( $k, $v );
+			}
+		$periodDropdown= jomresHTML::selectList($periodOptions, 'trial_period', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		}
+	return $periodDropdown;
+	}
+	
+function subscriptions_packages_makepropertylimitDropdown( $selected = 0 )
+	{
+	$property_limitDropdown = jomresHTML::integerSelectList( 1, 1000, 1, 'property_limit', 'size="1" class="inputbox"', $selected );
+	return $property_limitDropdown;
+	}
+	
+function subscriptions_packages_makeroomslimitDropdown( $selected = 0 )
+	{
+	$rooms_limitDropdown = jomresHTML::integerSelectList( 1, 12, 1, 'rooms_limit', 'size="1" class="inputbox"', $selected );
+	return $rooms_limitDropdown;
+	}
+	
+
+function taxrates_getalltaxrates()
+	{
+	$rates=array();
+	$query="SELECT * FROM #__jomresportal_taxrates";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$rates[$r->id]['id']=$r->id;
+			$rates[$r->id]['code']=$r->code;
+			$rates[$r->id]['description']=$r->description;
+			$rates[$r->id]['rate']=$r->rate;
+			}
+		}
+	return $rates;
+	}
+	
+function taxrates_makerateDropdown( $rates=array(),$selected='0' )
+	{
+	$ratesOptions=array();
+	$ratesDropdown="";
+	
+	if (count($rates)<1)
+		$rates=taxrates_getalltaxrates();
+	if (count($rates>0) )
+		{
+		foreach($rates as $r)
+			{
+			$ratesOptions[]=jomresHTML::makeOption( $r['id'], $r['code']." ".$r['description'] );
+			
+			}
+		$ratesDropdown= jomresHTML::selectList($ratesOptions, 'taxrate', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		}
+		
+	return $ratesDropdown;
 	}
 ?>

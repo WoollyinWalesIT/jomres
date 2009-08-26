@@ -117,6 +117,7 @@ function batchUploadForm()
 	{
 	global $Itemid,$jomresConfig_live_site,$jrConfig;
 	$defaultProperty=getDefaultProperty();
+	jr_import('jomres_cache');
 	$cache = new jomres_cache();
 	$cache->trashCacheForProperty($defaultProperty);
 	$output['PAGETITLE']			=jr_gettext('_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD',_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD);
@@ -138,7 +139,7 @@ function batchUploadForm()
 			}
 		}
 
-	$jrtbar = new jomres_toolbar();
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'bUpload');
 	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
@@ -170,7 +171,7 @@ function batchUploadPropertyImages()
 	global $jrConfig;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
-
+	jr_import('jomres_cache');
 	$cache = new jomres_cache();
 	$cache->trashCacheForProperty($defaultProperty);
 	
