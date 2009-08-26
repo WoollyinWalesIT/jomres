@@ -41,7 +41,7 @@ global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$j
 global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 */
 
-global $jomresPath,$license_key,$jomres_db_querylog,$MiniComponents,$timetracking,$jomresConfig_absolute_path;
+global $jomresPath,$license_key,$jomres_db_querylog,$timetracking,$jomresConfig_absolute_path,$MiniComponents;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
 global $ra1,$ra2,$convertedRAs,$lessThans; // globaled so that we don't need to initialise them every time
 global $R;
@@ -148,15 +148,15 @@ if ( !function_exists('gregoriantojd') )
 		return $c + $d + $e + $f - 1524.5 + 0.5;
 		}
 	}
-
+	
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
-
-
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
 
 $jomres_db_querylog=array();
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
+
+//require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
 
 $jomresConfig_dbtype = 'mysql';
 if (!function_exists ('adodb_date_test_date') )
@@ -188,11 +188,18 @@ if (is_null($_VERSION) )
 
 define('CMSVER',$_VERSION->PRODUCT.$_VERSION->RELEASE);
 
-if ($timetracking)
+if (isset($timetracking) && isset($timekeeper) )
 	{
-	$timereport = array();
-	$timekeeper = start_track("jomres_initialisation", $timekeeper);
+	if ($timetracking)
+		{
+		$timereport = array();
+		$timekeeper = start_track("jomres_initialisation", $timekeeper);
+		}
 	}
+
+
+//$jomresConfig = jomres_getSingleton('jomressa_config');
+
 
 if (!class_exists('patTemplate') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patTemplate.php');
@@ -200,80 +207,20 @@ if (!class_exists('patErrorManager') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php');
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
-
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
 
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'tempbookinghandler.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'currencyformat.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'contenttabs.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'configpanel.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'toolbar.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'images.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'paging.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'booking.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'crate.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'general.classes.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'property.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'user.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
-if (isset($_REQUEST['task']) || isset($_REQUEST['dobooking']) )
-	{
-	if ($_REQUEST['task'] == "handlereq" || $_REQUEST['dobooking'] = "dobooking")
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dobooking.class.php');
-	}
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'search.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'pathway.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'dashboard.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomresxmlparser.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'minicomponent_registry.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_tooltips.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_language.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cron.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_cache.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_messages.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_sticky_messages.class.php');
-
-// Invoices plugin
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'gateway.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'invoice.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'custom_text.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'invoicehandler.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'lineitem.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'taxrates.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'paypal_settings.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_custom_template_handler.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_custom_field_handler.class.php');
-
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'sms_clickatell_handler.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'sms_clickatell_message.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'sms_clickatell_settings.class.php');
-
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'subscriptions_packages.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'subscriptions.class.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'subscribers.class.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomSearch.class.php');
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'code_changes'.JRDS.'countries.php') )
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'code_changes'.JRDS.'countries.php');
 else
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
+
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'general.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'crate.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'booking.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'property.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'user.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'invoice.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'taxrate.functions.php');
 
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'subscriptions_packages.functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'subscribers.functions.php');
-
-	
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_functions.php");
 
-
-if ($timetracking)
+if (isset($timetracking) && isset($timekeeper) )
 	{
 	$timereport = end_track("jomres_initialisation", $timekeeper, $timereport);
 	time_report($timereport);
@@ -292,11 +239,10 @@ define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
 if ($jomresConfig_lang=='')
 	$jomresConfig_lang = 'en-GB';
 
-
-$MiniComponents = new mcHandler();
+$MiniComponents =jomres_getSingleton('mcHandler');
 $MiniComponents->triggerEvent('00001'); // Start
 
-require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
+//require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
 
 if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
 	define('JOMRES_TEMPLATEPATH_FRONTEND',"templates".JRDS."jomres".JRDS."frontend");
@@ -342,6 +288,7 @@ if ($product_id != "20" )
 // In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
 if (!defined('JOMRES_SINGLEPROPERTY'))
 	define('JOMRES_SINGLEPROPERTY',false);
+	
 // Stops here
 
 function jomresURL($link, $ssl=2)
@@ -599,9 +546,7 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 			break;
 		default :	// treat everything else as a string.
 			$dirty = (string) $dirty;
-			global $jomres_db;
-			if ( is_null($jomres_db) )
-				$jomres_db = new jomres_database();
+			$jomres_db =jomres_getSingleton('jomres_database');
 			if (function_exists('filter_var'))
 				{
 				if ($mask != _MOS_ALLOWHTML )
@@ -770,13 +715,13 @@ function checkUserIsManager()
 
 function doSelectSql($query,$mode=FALSE)
 	{
-	global $jomres_db,$jrConfig;
+	global $jrConfig;
 	global $jomres_db_querylog;
-	global $MiniComponents;
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	error_reporting(E_ALL | E_STRICT);
 	if (isset($MiniComponents->currentEvent) )
 		$jomres_db_querylog[]="<font size=\"-3\"  color=\"red\">".$query."</font><br/><font size=\"-5\">".$MiniComponents->currentEvent."</font>";
-	if ( is_null($jomres_db) )
-		$jomres_db = new jomres_database();
+	$jomres_db =jomres_getSingleton('jomres_database');
 	$jomres_db->setQuery($query);
 	$result = $jomres_db->loadObjectList();
 	$num=count($result);
@@ -819,6 +764,7 @@ function doSelectSql($query,$mode=FALSE)
 		break;
 		default:
 			// Yer bog standard query
+			
 			if (isset($jrConfig['errorChecking'])) {if ($jrConfig['errorChecking']) echo $query."<br>";}
 		break;
 		}
@@ -834,17 +780,13 @@ function doInsertSql($query,$op,$ignoreErrors=false)
 	{
 	global $jomres_db,$jrConfig;
 	global $jomres_db_querylog;
-	global $MiniComponents;
+	$MiniComponents =jomres_getSingleton('mcHandler');
 	$jomres_db_querylog[]="<font size=\"-3\"  color=\"red\">".$query."</font><br/><font size=\"-5\">".$MiniComponents->currentEvent."</font>";
 	// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
 	// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
 	// This way we can call the audit directly from the insert internet booking function
 	// rather than logging EVERYTHING that's done by the function.
-	//echo $query."<br />";
-	if ( is_null($jomres_db) )
-		{
-		$jomres_db = new jomres_database();
-		}
+	$jomres_db =jomres_getSingleton('jomres_database');
 	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
 	//echo $query;echo "<br>";
@@ -870,8 +812,7 @@ function doInsertSql($query,$op,$ignoreErrors=false)
 function doSql($query)
 	{
 	global $jomres_db,$jrConfig;
-	if ( is_null($jomres_db) )
-		$jomres_db = new jomres_database();
+	$jomres_db =jomres_getSingleton('jomres_database');
 	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
 	if (!$jomres_db->query())
@@ -1000,7 +941,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					}
 				else
 					{
-					//$b = new browser();  //  Disabled now that IE seems to run editinplace ok.
 					if ($jrConfig['editinplace']==1  )
 						{
 						if (!defined('JOMRESJQUERY_EDITINPLACE'))
@@ -1084,7 +1024,7 @@ function editCustomText()
 
 	if (strlen($theText)==0)
 		$theText=stripslashes(constant($theConstant));
-	$jrtbar = new jomres_toolbar();
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb	= $jrtbar->startTable();
 	if ($jrConfig['allowHTMLeditor'] != "2" && $jrConfig['allowHTMLeditor'] != "3")
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCustomText');
@@ -1358,246 +1298,6 @@ function generateJomresRandomString($length=50)
 	}
 
 
-
-/**
-#
- * The true heart of Jomres. Finds all core and plugin minicomponents for Jomres, enables calling of specific minicomponents and can return minicomponent stored variables
-#
- */
-class mcHandler {
-
-	function mcHandler()
-		{
-		$this->registeredClasses = array();
-		$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
-		if (strstr($scriptname,'install_jomres.php'))
-			return;
-		// Following commented out functionality superceeded by Jomres minicomponent registry introduced in 3.2beta2
-		//$this->eventPoints = array();
-		//$this->nonOverridableEventClasses=array();
-		//$this->unWantedFolderContents=array('.','..','cvs','.svn');
-
-		$this->miniComponentData=array();
-		$this->template_touch=false;
-		$this->log = array();
-		$this->currentEvent = "";
-
-		$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS;
-		if (!is_dir($this->remote_plugin_directory) )
-			{
-			if (!@mkdir($this->remote_plugin_directory))
-				{
-				echo "Error, unable to make folder ".$this->remote_plugin_directory." automatically therefore cannot store minicomponent path data. Please create the folder manually and ensure that it's writable by the web server";
-				exit;
-				}
-			}
-
-		// Following commented out functionality superceeded by Jomres minicomponent registry introduced in 3.2beta2
-		// Mini components can have two sources, the Jomres events folder, and the Joomla components table. We read in from both
-		//$this->getMiniComponentCoreClasses();
-		//$this->getMiniComponentRemoteClasses();
-		//$this->getMiniComponentComponentClasses();
-		//asort($this->registeredClasses);
-
-		$registry = new minicomponent_registry();
-		$this->registeredClasses=$registry->get_registered_classes();
-		
-		$startPath = $registry->registeredClasses["00001start"]["filepath"];
-		if (!file_exists($startPath."j00001start.class.php") )
-			{
-			$registry->regenerate_registry();
-			$this->registeredClasses=$registry->get_registered_classes();
-			}
-		}
-
-	function touch_templates()
-		{
-		global $ePointFilepath,$thisJRUser,$mrConfig,$jomresConfig_live_site;
-		$eventArgs=null;
-		$mrConfig['editingOn']="1";
-		//var_dump($thisJRUser);exit;
-		//if ($thisJRUser->superPropertyManager)
-		//	{
-			$eventClasses=$this->registeredClasses;
-			$this->template_touch=true;
-			echo jr_gettext('_JOMRES_CUSTOMTEXT_TOUCHTEMPLATES',"This feature allows you to edit language text for any template configured to allow you to edit text. You will be editing the default text for every property and saving that text to the database. HTML code is not allowed. To change the language that the text is saved for, change the default language in the Site Settings -> Misc tab. Click on a line to edit the text.");
-			echo "<br/>";
-			foreach ( $eventClasses as $eClass)
-				{
-				$ePointFilepath=$eClass['filepath'];
-				$classFileSuffix='.class.php';
-				$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
-				//echo $filename;exit;
-				if (file_exists($eClass['filepath'].$filename) )
-					{
-					include_once($eClass['filepath'].$filename);
-					$this->log[]=$eClass['filepath'].$filename;
-					$event=new stdClass;
-					$ePoint=$eClass['eventPoint'];
-					$eName=$eClass['eventName'];
-					$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$ePointFilepath);
-					$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
-					$event='j'.$ePoint.$eName;
-					$e = new $event($eventArgs);
-					if (isset($e->template_touchable) && $e->template_touchable)
-						{
-						echo "<br/>".$event."<br/>";
-						echo $e->touch_template_language();
-						}
-					unset($e);
-					}
-				}
-		//	}
-
-
-		}
-
-	// Acutally calls the triggered event.
-	function triggerEvent($eventPoint,$eventArgs=null)
-		{
-		global $ePointFilepath,$eLiveSite,$jomresConfig_live_site;
-		$retVal=null;
-		$eventClasses=$this->registeredClasses;
-		if (count($this->registeredClasses) > 0 )
-			{
-			foreach ( $eventClasses as $eClass)
-				{
-				if ($eClass['eventPoint']==$eventPoint)
-					{
-					$ePointFilepath=$eClass['filepath'];
-					$classFileSuffix='.class.php';
-					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
-					if (file_exists($eClass['filepath'].$filename) )
-						{
-						include_once($eClass['filepath'].$filename);
-						$this->log[]=$eClass['filepath'].$filename;
-						$this->currentEvent =$eClass['filepath'].$filename;
-						$event=new stdClass;
-						$ePoint=$eClass['eventPoint'];
-						$eName=$eClass['eventName'];
-						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$ePointFilepath);
-						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
-						$event='j'.$ePoint.$eName;
-						$e = new $event($eventArgs);
-						$retVal=$e->getRetVals();
-						$this->miniComponentData[$ePoint][$eName]=$retVal;
-						unset($e);
-						}
-					}
-				}
-			}
-		$this->currentEvent = "";
-		return $retVal;
-		}
-
-	// Calls a specific event.
-	function specificEvent($eventPoint,$eventName,$eventArgs=null)
-		{
-		global $ePointFilepath,$eLiveSite,$jomresConfig_live_site;
-		$retVal=null;
-		$eventClasses=$this->registeredClasses;
-		if (count($this->registeredClasses) > 0 )
-			{
-			foreach ( $eventClasses as $eClass)
-				{
-				if ($eClass['eventPoint']==$eventPoint && $eClass['eventName']==$eventName)
-					{
-					$ePointFilepath=$eClass['filepath'];
-					$classFileSuffix='.class.php';
-					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
-					if (file_exists($eClass['filepath'].$filename) )
-						{
-						include_once($eClass['filepath'].$filename);
-						$this->log[]=$eClass['filepath'].$filename;
-						$this->currentEvent =$eClass['filepath'].$filename;
-						$event=new stdClass;
-						$ePoint=$eClass['eventPoint'];
-						$eName=$eClass['eventName'];
-						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$ePointFilepath);
-						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
-						$event='j'.$ePoint.$eName;
-						$e = new $event($eventArgs);
-						$retVal=$e->getRetVals();
-						$this->miniComponentData[$ePoint][$eName]=$retVal;
-						unset($e);
-						}
-					}
-				}
-			}
-		$this->currentEvent = "";
-		return $retVal;
-		}
-
-	//  This function is used to see if a mini-component exists for a given event point
-	function eventFileExistsCheck($eventPoint)
-		{
-		$eventClasses=$this->registeredClasses;
-		if (count($this->registeredClasses) > 0 )
-			{
-			foreach ( $eventClasses as $eClass)
-				{
-				if ($eClass['eventPoint']==$eventPoint)
-					{
-					return true;
-					}
-				}
-			}
-		return false;
-		}
-
-	//  This function is used to see if a mini-component exists.
-	function eventSpecificlyExistsCheck($eventPoint,$eventName)
-		{
-		$eventClasses=$this->registeredClasses;
-		if (count($this->registeredClasses) > 0 )
-			{
-			foreach ( $eventClasses as $eClass)
-				{
-				//echo $eClass['eventPoint'].$eClass['eventName']." || " .$eventPoint.$eventName."<br>";
-				if ($eClass['eventPoint']==$eventPoint && $eClass['eventName']==$eventName)
-					{
-					return true;
-					}
-				}
-			}
-		return false;
-		}
-
-	//  This function is used to see if a mini-component file exists.
-	function eventFileLocate($eventPoint,$eventName)
-		{
-		$eventClasses=$this->registeredClasses;
-		if (count($this->registeredClasses) > 0 )
-			{
-			foreach ( $eventClasses as $eClass)
-				{
-				if ($eClass['eventPoint']==$eventPoint && $eClass['eventName']==$eventName)
-					{
-					return true;
-					}
-				}
-			}
-		return false;
-		}
-
-	function getAllEventPointsData($ePoint)
-		{
-		$retVal =array();
-		if (count($this->miniComponentData[$ePoint]) >0)
-			{
-			foreach ($this->miniComponentData[$ePoint] as $key=>$val)
-				{
-				$retVal[$key]=$this->getEventPointData($ePoint,$key);
-				}
-			}
-		return $retVal;
-		}
-
-	function getEventPointData($ePoint,$eName)
-		{
-		return $this->miniComponentData[$ePoint][$eName];
-		}
-	}
 
 /**
 #

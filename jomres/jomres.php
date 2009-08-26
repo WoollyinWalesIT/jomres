@@ -21,7 +21,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 ##################################################################
 
 global $timetracking;
-$timetracking = false;
+$timetracking = true;
 if (!isset($_REQUEST['no_html']))
 	$_REQUEST['no_html'] = 0;
 if ($timetracking && $_REQUEST['no_html']!="1")
@@ -36,18 +36,20 @@ ob_start("removeBOM");
 @ini_set("memory_limit","128M");
 @ini_set("max_execution_time","480");
 ini_set("display_errors",1);
-//error_reporting(E_ALL);
-@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ALL|E_STRICT);
+//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
-global $MiniComponents,$thisJRUser,$cssStyle,$task,$jomresPathway, $jrConfig;
+global $thisJRUser,$cssStyle,$task,$jomresPathway, $jrConfig;
 global $property_uid,$Itemid,$jomressession,$jomresConfig_absolute_path;
 global $popup,$numberOfPropertiesInSystem,$loggingEnabled,$customTextArray;
-global $version,$tmpBookingHandler,$jomresConfig_live_site;
-global $thisJomresPropertyDetails,$customTextObj;
+global $version,$jomresConfig_live_site;
+global $thisJomresPropertyDetails;
 
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once('integration.php');
+
+$MiniComponents =jomres_getSingleton('mcHandler');
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
@@ -61,7 +63,7 @@ if ( $_REQUEST['no_html']!="1")
 	@ini_set("display_errors", 1);
 	}
 
-$cron = new jomres_cron($displayLog);
+$cron =jomres_getSingleton('jomres_cron');
 if ($cron->method == "Minicomponent")
 	{
 	$cron->triggerJobs();
@@ -75,11 +77,10 @@ if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending res
 	{
 	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
 	}
-//gateway_log("Setting jomressession to ". $jomressession);
-$tmpBookingHandler = new jomres_temp_booking_handler();
+
+$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession($jomressession);
 $jomressession  = $tmpBookingHandler->getJomressession();
-//gateway_log("Deposit required ".$tmpBookingHandler->tmpbooking['deposit_required']);
 
 $selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 $property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
@@ -99,7 +100,8 @@ $propertyNamesArray=array();
 if ($tag != "" && $task != "editBooking")
 	$task="tagSearch";
 
-$jomresPathway=new jomres_pathway();
+$jomresPathway =jomres_getSingleton('jomres_pathway');
+//$jomresPathway=new jomres_pathway();
 
 if ($task!="error")
 	{
@@ -285,9 +287,9 @@ if (!empty($property_uid))
 else
 	$propertytype="";
 
-$jomreslang= new jomres_language();
+$jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
-$customTextObj = new custom_text();
+$customTextObj =jomres_getSingleton('custom_text');
 
 // This little routine sets the custom text for an individual property.
 if (!empty($property_uid))
@@ -329,7 +331,7 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$sticky_messaging = array();
 	if ($jrConfig['useJomresMessaging'] == '1')
 		{
-		$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$messages = $jomres_messaging->get_messages();
 		
 		if (count($messages)>0)
@@ -340,7 +342,7 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 				$messaging[] = $m;
 				}
 			}
-		$jomres_sticky_messaging = new jomres_sticky_messages();
+		$jomres_sticky_messaging =jomres_getSingleton('jomres_sticky_messages');
 		$sticky_messages = $jomres_sticky_messaging->get_messages();
 		
 		if (count($sticky_messages)>0)
@@ -376,6 +378,7 @@ if (!defined('JOMRES_NOHTML'))
 			{
 			// Show the reception menu
 			//$MiniComponents->triggerEvent('00010'); // Depreciated in v4a2
+			jr_import('jomres_cache');
 			$cache = new jomres_cache("reception_menu",0,true);
 			$cacheContent = $cache->readCache();
 			if ($cacheContent && !isset($_REQUEST['thisProperty']))
@@ -492,6 +495,7 @@ if (!defined('JOMRES_NOHTML'))
 			
 			if ($accessLevel=="2")
 				{
+				jr_import('jomres_cache');
 				$cache = new jomres_cache("manager_menu",0,true);
 				$cacheContent = $cache->readCache();
 				if ($cacheContent)
@@ -644,7 +648,9 @@ if ($numberOfPropertiesInSystem>0)
 		case 'processpayment':
 			$bookingdata = gettempBookingdata();
 			$MiniComponents->triggerEvent('00599',array ('bookingdata'=> $bookingdata) ); // Optional
-			$paypal_settings = new jrportal_paypal_settings();
+			
+			
+			$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 			$paypal_settings->get_paypal_settings();
 			
 			if (!$thisJRUser->userIsManager && $mrConfig['useOnlinepayment']=="1" || $paypal_settings->paypalConfigOptions['override'] == "1")
@@ -1270,6 +1276,7 @@ if ($numberOfPropertiesInSystem>0)
 			if ($thisJRUser->userIsManager )
 				{
 				property_header($property_uid);
+				jr_import('jomres_cache');
 				$cache = new jomres_cache("preview",$property_uid,false);
 				$cacheContent = $cache->readCache();
 				if ($cacheContent)
@@ -1305,7 +1312,9 @@ if ($numberOfPropertiesInSystem>0)
 				else
 					{
 					if ($thisJRUser->userIsManager )
+						{
 						$MiniComponents->triggerEvent('00013');  // Show dashboard
+						}
 					else if ($numberOfPropertiesInSystem==1)
 						{
 						//$MiniComponents->triggerEvent('0013');  // Show dashboard
@@ -1327,8 +1336,8 @@ if ($numberOfPropertiesInSystem>0)
 
 	if (!$no_html)
 		{
-		global $jomres_tooltips;
-		
+		//global $jomres_tooltips;
+		$jomres_tooltips =jomres_getSingleton('jomres_tooltips');
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		/*
@@ -1413,7 +1422,7 @@ function performSingleRoomPropertyCheck($property_uid)
 
 	function start_track($item, $timekeeper)
 	{
-		$timeStart=gettimeofday();
+		$timeStart=@gettimeofday();
 		$timeStart_uS=$timeStart["usec"];
 		$timeStart_S=$timeStart["sec"];
 		$item1 = $item . "_usec";
@@ -1425,7 +1434,7 @@ function performSingleRoomPropertyCheck($property_uid)
 
 	function end_track($item, $timekeeper, $timereport)
 	{
-		$timeEnd=gettimeofday();
+		$timeEnd=@gettimeofday();
 		$timeEnd_uS=$timeEnd["usec"];
 		$timeEnd_S=$timeEnd["sec"];
 		$item1 = $item . "_usec";

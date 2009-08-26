@@ -25,14 +25,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Receives 2 calls from the booking form, processes them and returns stuff
  * Call 1: Notes the changed details. Sanitises and changes the booking's parameters to reflect the change
  * Call 2: Rebuilds the room list  (or simply outputs "We have bookings" in the case of SRPs) and returns the room list. This is parsed by the booking form as plain text in the room details field. Needs to be plain text as the overlib data returned will update javascript
- * Call 3: Calculates new room prices and constructs any warnings. Sets background colours of the messages field and returns the calculated prices, the messages when are in turn parsed by javascript in the booking form and displayed
+ * Call 3: Calculates room prices and constructs any warnings. Sets background colours of the messages field and returns the calculated prices, the messages when are in turn parsed by javascript in the booking form and displayed
 #
  */
  
 header('Content-type: text/html; utf-8');
 
 global $mrConfig,$jomressession,$property_uid;
-global $tmpBookingHandler;
+$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 $bookingDeets=gettempBookingdata();
 $pid=$bookingDeets['property_uid'];
 
@@ -60,8 +60,8 @@ $lastfield= getEscaped( $lastfield );
 $retText="";
 
 $doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email");
-$MiniComponents = new mcHandler();
-$bkg =$MiniComponents->triggerEvent('05000'); // Create the new booking object
+$MiniComponents =jomres_getSingleton('mcHandler');
+$bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
 $isSingleRoomProperty=$bkg->getSingleRoomPropertyStatus();
 $bkg->rebuildIgnoreList=$doNotRebuildRoomsListOnTheseFieldsArray;
 $bkg->currentField=$field;
@@ -271,7 +271,8 @@ switch ($field)
 			$bkg->setOkToBook(false);
 			$bkg->writeToLogfile("Lastfield ".$lastfield);
 			$bkg->setErrorLog("Lastfield ".$lastfield);
-			$currfmt = new jomres_currency_format();
+			
+			$currfmt = jomres_getSingleton('jomres_currency_format');
 			if (!in_array($lastfield,$doNotRebuildRoomsListOnTheseFieldsArray) )
 				{
 				$bkg->resetTotals();
@@ -370,7 +371,7 @@ ob_end_flush();
 
 function updateBookingFormAddressDetails(&$bkg)
 	{
-	global $tmpBookingHandler;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$bkg->storeBookingDetails();
 	$result=$tmpBookingHandler->getGuestData();
 	echo '; document.ajaxform.firstname.value="'.$bkg->sanitiseOutput($result['firstname']).'"';

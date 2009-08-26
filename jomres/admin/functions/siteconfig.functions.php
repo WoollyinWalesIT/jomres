@@ -37,7 +37,7 @@ function showSiteConfig(  )
 
 	$jrConfig=getSiteSettings();
 
-	$jrtbar = new jomres_toolbar();
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
@@ -83,6 +83,7 @@ function showSiteConfig(  )
 	if (!isset($jrConfig['cssColourScheme']) )
 		$jrConfig['cssColourScheme']="blue";
 
+	jr_import('jrportal_crate_functions');
 	$crateFunctions=new jrportal_crate_functions();
 	$crateList=$crateFunctions->getAllUnarchivedCrates();
 	$crateOptions=array();

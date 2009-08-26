@@ -61,7 +61,8 @@ function controlPanel($version)
 function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList)
 	{
 	global $jomresConfig_live_site,$version;
-		$contentPanel = new jomres_contentTabs();
+		
+		$contentPanel =jomres_getSingleton('jomres_contentTabs');
 		?>
 		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 		<table cellpadding="4" cellspacing="0" border="0" width="100%">

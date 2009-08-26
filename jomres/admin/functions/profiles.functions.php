@@ -214,7 +214,7 @@ function editProfile()
 		$rows[]=$r;
 		}
 
-	$jrtbar = new jomres_toolbar();
+	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = $jomresConfig_live_site."/".JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
