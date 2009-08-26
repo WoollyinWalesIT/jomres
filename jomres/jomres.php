@@ -39,7 +39,7 @@ ini_set("display_errors",1);
 error_reporting(E_ALL|E_STRICT);
 //@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
-global $thisJRUser,$cssStyle,$task,$jomresPathway, $jrConfig;
+global $thisJRUser,$cssStyle,$task,$jomresPathway;
 global $property_uid,$Itemid,$jomressession,$jomresConfig_absolute_path;
 global $popup,$numberOfPropertiesInSystem,$loggingEnabled,$customTextArray;
 global $version,$jomresConfig_live_site;
@@ -48,6 +48,8 @@ global $thisJomresPropertyDetails;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once('integration.php');
+$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+$jrConfig=$siteConfig->get();
 
 $MiniComponents =jomres_getSingleton('mcHandler');
 

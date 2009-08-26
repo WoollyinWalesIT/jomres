@@ -30,8 +30,9 @@ class jomres_language
 	 */
 	function jomres_language()
 		{
-		global $jomresConfig_lang,$jrConfig;
-		//global $tmpBookingHandler;
+		global $jomresConfig_lang;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
 		$this->showLangDropdown =$jrConfig['showLangDropdown'];

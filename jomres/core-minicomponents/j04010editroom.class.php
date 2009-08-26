@@ -42,7 +42,9 @@ class j04010editroom {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$defaultProperty=getDefaultProperty();
 		$output=array();
 		if ($mrConfig['singleRoomProperty'] == "0")

@@ -32,7 +32,8 @@ class j10002subscriptions_packages
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$htmlFuncs =jomres_getSingleton('html_functions');
 		if ($jrConfig['useSubscriptions']=="0")
 			return;

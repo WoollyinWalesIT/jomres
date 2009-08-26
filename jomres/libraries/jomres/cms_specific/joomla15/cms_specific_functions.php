@@ -33,7 +33,9 @@ function jomres_cmsspecific_areweinadminarea()
 
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
-	global $thisJRUser,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site,$jrConfig;
+	global $thisJRUser,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	if ($jrConfig['useNewusers']=="0")
 		return -1;
@@ -168,7 +170,9 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="")
 	{
-	global $faux_header_scripts,$jrConfig;
+	global $faux_header_scripts;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	if ($jrConfig['outputHeadersInline'] == "1")
 		{
 		switch ($type) 

@@ -43,7 +43,9 @@ class j00501avlcal {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel,$jrConfig,$thisJRUser;
+		global $configurationPanel,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$mrConfig=$componentArgs['mrConfig'];
 		$lists=$componentArgs['lists'];
 		//$tabs=$componentArgs['tabs'];

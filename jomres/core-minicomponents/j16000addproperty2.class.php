@@ -33,8 +33,9 @@ class j16000addproperty2
 			$this->template_touchable=false; return;
 			}
 
-		global $jomresConfig_live_site,$thisJRUser,$jrConfig;
-
+		global $jomresConfig_live_site,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$property_region				= jomresGetParam( $_POST, 'region', "" );
 		$property_country				= jomresGetParam( $_POST, 'country', "" );
 		$crates							= jomresGetParam( $_POST, 'crates', array() );

@@ -33,7 +33,7 @@ class j16000editinplace
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$jomresConfig_lang;
+		global $jomresConfig_lang;
 		$customText = jomresGetParam( $_POST, 'newtext', '','string' );
 		$theConstant = jomresGetParam( $_POST, 'theConstant', '' );
 

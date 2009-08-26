@@ -37,10 +37,11 @@ class jomSearch {
 	function jomSearch($calledByModule)
 		{
 		//var_dump($searchOptions);
-		global $jrConfig,$searchAll;
+		global $searchAll;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$this->formname="";
 		$this->searchAll=$searchAll;
-		$jrConfig=getSiteSettings();
 		if (empty($jrConfig['randomsearchlimit']) )
 			$jrConfig['randomsearchlimit']=2;
 		$randomsearchlimit 	= $jrConfig['randomsearchlimit'];

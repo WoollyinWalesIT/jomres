@@ -32,7 +32,9 @@ class j16000clearLog
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$logFiles;
+		global $logFiles;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
 		echo "Attempting to delete ".JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]."<br/>";
 		if (file_exists(JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]) && is_writable(JOMRES_SYSTEMLOG_PATH.$logFiles[$logfile]) )

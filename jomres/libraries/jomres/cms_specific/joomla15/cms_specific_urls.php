@@ -22,7 +22,10 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-global $jomresConfig_live_site,$jomresItemid,$jrConfig;
+global $jomresConfig_live_site,$jomresItemid;
+
+$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+$jrConfig=$siteConfig->get();
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (strstr($scriptname,'install_jomres.php'))

@@ -42,7 +42,7 @@ class j00501sms_clickatell {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel,$jrConfig,$thisJRUser;
+		global $configurationPanel,$thisJRUser;
 		
 		jr_import('jrportal_sms_clickatell_settings');
 		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();

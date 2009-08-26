@@ -43,7 +43,9 @@ class j04000roomsconfig {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jrConfig,$jomresConfig_live_site,$thisJRUser,$roomCount;
+		global $mrConfig,$jomresConfig_live_site,$thisJRUser,$roomCount;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if ( $mrConfig['tariffmode']=="0")
 			$MiniComponents->triggerEvent('04005'); //
 		else
@@ -347,7 +349,9 @@ class j04000roomsconfig {
 
 	function roomPropertyConfig_html( $newPropertyButton,$newRoomButton,$newRoomFeatureButton,$newRoomClassButton,$newPropertyFeatureButton, $roomRowInfo,$roomFeaturesRowInfo,$roomTypesRowInfo,$propertyRowInfo,$propertyFeaturesRowInfo,$option,$roomCount,$roomTypeCount )
 		{
-		global $mrConfig,$thisJRUser,$jrConfig;
+		global $mrConfig,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();

@@ -43,7 +43,9 @@ class j00011manager_option_09_newproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser, $jrConfig;
+		global $thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if (JOMRES_SINGLEPROPERTY)
 			return;
 		if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)

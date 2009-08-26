@@ -43,7 +43,9 @@ class j02213edittariff_micromanage {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jrConfig,$mrConfig;
+		global $mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$defaultProperty=getDefaultProperty();
 	 	if ($jrConfig['useGlobalRoomTypes']=="1")
 			$roomTypeSearchParameter="0";

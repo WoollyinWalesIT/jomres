@@ -25,14 +25,10 @@ class cpanel
 	{
 	function cpanel()
 		{
-		//global $jomresConfig_live_site,$jomresAdminPath,$indexphp;
-		global $jrConfig;
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$rows		=array();
 		$pageoutput	=array();
-		//$info		=array();
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		//$htmlFuncs = new html_functions();
 		if (!file_exists(JOMRESPATH_BASE.'/images/jomresimages/small/ViewDatabase.png') )
 			{
 			$icon_database=makeImageValid("Help Index Results.jpg");

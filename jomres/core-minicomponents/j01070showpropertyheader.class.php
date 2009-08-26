@@ -44,9 +44,10 @@ class j01070showpropertyheader
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jrConfig,$task;
+		global $mrConfig,$jomresConfig_live_site,$task;
 		global $thisJomresPropertyDetails;
-		
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$output=array();
 		$pageoutput = array();
 		

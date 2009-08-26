@@ -44,8 +44,9 @@ class j02210listtariffs_advanced {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jrConfig;
-		
+		global $mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if ( $mrConfig['tariffmode']=="2")
 			$this->tpl=$MiniComponents->triggerEvent('02211'); //
 		else

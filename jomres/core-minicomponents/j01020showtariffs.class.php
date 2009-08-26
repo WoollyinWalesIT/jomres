@@ -49,9 +49,9 @@ class j01020showtariffs {
 		else
 			{
 			//$showheader=$componentArgs['showheader'];
-			global $property_uid,$mrConfig,$jomresConfig_live_site,$jrConfig;
-			//if (!isset($showheader) )
-			//	$showheader=TRUE;
+			global $property_uid,$mrConfig,$jomresConfig_live_site;
+			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$jrConfig=$siteConfig->get();
 			$mrConfig=getPropertySpecificSettings($property_uid);
 			$pop=jomresGetParam( $_REQUEST, 'popup', '0' );
 			$ccodes= currencyCodesArray();

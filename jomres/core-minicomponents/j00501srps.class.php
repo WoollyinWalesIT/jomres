@@ -42,7 +42,9 @@ class j00501srps {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel,$jrConfig,$thisJRUser;
+		global $configurationPanel,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];
 		$mrConfig=$componentArgs['mrConfig'];
 		$weekdayDropdown=$componentArgs['weekdayDropdown'];

@@ -44,7 +44,9 @@ class j02300regprop1 {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser,$jrConfig;
+		global $thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
 			return;
 		if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))

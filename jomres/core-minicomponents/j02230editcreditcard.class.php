@@ -45,6 +45,8 @@ class j02230editcreditcard {
 			$this->template_touchable=true; return;
 			}
 		global $mrConfig, $jomresConfig_live_site,$jomresConfig_secret;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$defaultProperty=getDefaultProperty();
 		$guestUid=jomresGetParam( $_REQUEST, 'guestUid', 0 );
 

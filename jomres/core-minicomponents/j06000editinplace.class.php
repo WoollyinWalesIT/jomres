@@ -33,7 +33,8 @@ class j06000editinplace
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$property_uid=(int)getDefaultProperty();
 		if ($jrConfig['allowHTMLeditor'] == "1")
 			{

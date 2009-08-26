@@ -35,14 +35,14 @@ function showSiteConfig(  )
 	global $jomresConfig_lang;
 	global $jomresConfig_absolute_path, $jomresConfig_admin_template, $jomresConfig_live_site,$version;
 
-	$jrConfig=getSiteSettings();
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 
 	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
 	$jrtb .= $jrtbar->customToolbarItem('saveSiteConfig',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveSiteConfig",$image);
-	
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 	$jrtb .= $jrtbar->endTable();
 
@@ -226,7 +226,8 @@ function saveSiteConfig (  )
 
 function getJomresLanguagesDropdown()
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$langs=array();
 
 	$d = @dir(JOMRESPATH_BASE."/language");

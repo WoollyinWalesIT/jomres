@@ -60,7 +60,7 @@ class j00012pathway {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$jomresConfig_live_site,$thisJRUser,$numberOfPropertiesInSystem;
+		global $jomresConfig_live_site,$thisJRUser,$numberOfPropertiesInSystem;
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
 			

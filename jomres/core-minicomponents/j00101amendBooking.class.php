@@ -36,7 +36,9 @@ class j00101amendBooking
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jrConfig,$thisJRUser;
+		global $mrConfig,$jomresConfig_live_site,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 
 		$amend					= intval(jomresGetParam( $_REQUEST, 'amend', 0 ) );

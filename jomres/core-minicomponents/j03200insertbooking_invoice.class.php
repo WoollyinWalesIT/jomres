@@ -43,7 +43,9 @@ class j03200insertbooking_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jrConfig,$mrConfig;
+		global $thisJRUser,$mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->results=array();
 		$contract_uid=$componentArgs['contract_uid'];

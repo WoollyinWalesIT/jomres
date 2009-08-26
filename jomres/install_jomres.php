@@ -56,7 +56,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."regis
 	@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php");
 	
 	
-global $jomres_systemLog_path,$jomresConfig_absolute_path,$jrConfig,$lkey;
+global $jomres_systemLog_path,$jomresConfig_absolute_path,$lkey;
 $jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
 
 showheader();

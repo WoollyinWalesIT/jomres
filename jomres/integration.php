@@ -21,25 +21,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-//global $mainframe,$task,$config;
-
-
-// @ini_set("register_globals", 1); // not set yet, resisting the temptation
-
 define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');
-
-/*
-global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$jomresConfig_sitename,$jomresConfig_shownoauth,$jomresConfig_useractivation,
-	$jomresConfig_uniquemail,$jomresConfig_offline_message,$jomresConfig_lifetime,$jomresConfig_MetaDesc,$jomresConfig_MetaKeys,$jomresConfig_MetaTitle,
-	$jomresConfig_MetaAuthor,$jomresConfig_debug,$jomresConfig_locale,$jomresConfig_offset,$jomresConfig_offset_user,$jomresConfig_hideAuthor,$jomresConfig_hideCreateDate,
-	$jomresConfig_hideModifyDate,$jomresConfig_hidePdf,$jomresConfig_hidePrint,$jomresConfig_hideEmail,$jomresConfig_enable_log_items,$jomresConfig_enable_log_searches,
-	$jomresConfig_enable_stats,$jomresConfig_sef,$jomresConfig_vote,$jomresConfig_gzip,$jomresConfig_multipage_toc,$jomresConfig_allowUserRegistration,
-	$jomresConfig_error_reporting,$jomresConfig_error_message,$jomresConfig_link_titles,$jomresConfig_list_limit,$jomresConfig_caching,$jomresConfig_cachepath,
-	$jomresConfig_cachetime,$jomresConfig_mailer,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sendmail,$jomresConfig_smtpauth,$jomresConfig_smtpuser,
-	$jomresConfig_smtppass,$jomresConfig_smtphost,$jomresConfig_back_button,$jomresConfig_item_navigation,$jomresConfig_secret,$jomresConfig_pagetitles,$jomresConfig_readmore,
-	$jomresConfig_hits,$jomresConfig_icons,$jomresConfig_favicon,$jomresConfig_fileperms,$jomresConfig_dirperms,$jomresConfig_helpurl,$jomresConfig_mbf_content,$jomresConfig_editor,$jomresAdminPath;
-global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
-*/
 
 global $jomresPath,$license_key,$jomres_db_querylog,$timetracking,$jomresConfig_absolute_path,$MiniComponents;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
@@ -60,8 +42,6 @@ $R[gettype('')]='string';
 $R[gettype(null)]='null';
 $R[gettype(array())]='array';
 $R[gettype(new stdClass())]='object';
-
-
 
 if (!defined('JOMRESPATH_BASE'))
 	{
@@ -197,10 +177,6 @@ if (isset($timetracking) && isset($timekeeper) )
 		}
 	}
 
-
-//$jomresConfig = jomres_getSingleton('jomressa_config');
-
-
 if (!class_exists('patTemplate') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patTemplate.php');
 if (!class_exists('patErrorManager') )
@@ -227,7 +203,11 @@ if (isset($timetracking) && isset($timekeeper) )
 	}
 
 if (!strstr($scriptname,'install_jomres.php'))
-	$jrConfig=getSiteSettings();
+	{
+	//$jrConfig=getSiteSettings();
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	}
 
 define('LOGGINGBOOKING',$jrConfig['loggingBooking']);
 define('LOGGINGGATEWAY',$jrConfig['loggingGateway']);
@@ -293,8 +273,9 @@ if (!defined('JOMRES_SINGLEPROPERTY'))
 
 function jomresURL($link, $ssl=2)
 	{
-	global $jrConfig;
-	
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+
 	if (!$jrConfig['isInIframe'] )
 		{
 		$link=jomres_cmsspecific_makeSEF_URL($link);
@@ -494,7 +475,8 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 	{
 
 	global $R;
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	//echo $element .' - ';
 	if (isset($request[$element]) )
 		$dirty=$request[$element];
@@ -577,48 +559,6 @@ function getEscaped( $text ) {
 		return $text;
 	}
 
-
-/**
- * @return string
- * @param string
- * @desc Strip forbidden tags and delegate tag-source check to removeEvilAttributes()
- */
- // src http://uk2.php.net/manual/en/function.strip-tags.php#36574
-/*
-function removeEvilTags($source)
-	{
-	global $jrConfig;
-
-	//$source = strip_tags($source, $jrConfig['allowedTags']);
-	$txt = removeEvilAttributes($source);
-	//$txt = preg_replace('/<(.*?)>/ie', "'<'.removeEvilAttributes('\\1').'>'", $source);
-	if (strlen($txt) > 0)
-		$txt = strip_tags_except($txt, $jrConfig['allowedTags'], $strip=TRUE);
-	return $txt;
-	}
-*/
-
-/**
- * @return string
- * @param string
- * @desc Strip forbidden attributes from a tag
- */
-/*function removeEvilAttributes($tagSource)
-	{
-	global $jrConfig;
-	//$stripAttrib=$jrConfig['stripAttrib'];
-	$badAttribsArr=explode("|",$jrConfig['stripAttrib']);
-	foreach ($badAttribsArr as $badAttrib)
-		{
-		$pos = strpos($tagSource, $badAttrib);
-		if ($pos === true)
-			{
-			return "";
-			}
-		}
-	return $tagSource;
-	}*/
-
 /**
 * @return
  * @param string
@@ -629,7 +569,8 @@ function removeEvilTags($source)
 // http://uk2.php.net/manual/en/function.strip-tags.php#73435
 function strip_tags_except($text,$strip=TRUE)
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$all_tags=array();
 
 	$allowedTags=explode("|",$jrConfig['allowedTags']);
@@ -715,7 +656,8 @@ function checkUserIsManager()
 
 function doSelectSql($query,$mode=FALSE)
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	global $jomres_db_querylog;
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	error_reporting(E_ALL | E_STRICT);
@@ -778,8 +720,9 @@ function doSelectSql($query,$mode=FALSE)
 
 function doInsertSql($query,$op,$ignoreErrors=false)
 	{
-	global $jomres_db,$jrConfig;
 	global $jomres_db_querylog;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$jomres_db_querylog[]="<font size=\"-3\"  color=\"red\">".$query."</font><br/><font size=\"-5\">".$MiniComponents->currentEvent."</font>";
 	// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
@@ -811,7 +754,8 @@ function doInsertSql($query,$op,$ignoreErrors=false)
 
 function doSql($query)
 	{
-	global $jomres_db,$jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$jomres_db =jomres_getSingleton('jomres_database');
 	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
@@ -825,7 +769,8 @@ function doSql($query)
 function jomres_audit($query,$op)
 	{
 	global $thisJRUser;
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	if ($jrConfig['disableAudit']!="1")
 		{
 		$ipstuff=getEscaped($_SERVER['REMOTE_ADDR']);
@@ -890,8 +835,10 @@ function editCustomTextAll()
 
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
-	global $mrConfig,$property_uid,$thisJRUser,$customTextArray,$jomresConfig_live_site,$jrConfig;
+	global $mrConfig,$property_uid,$thisJRUser,$customTextArray,$jomresConfig_live_site;
 	global $jomresConfig_lang,$task;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	if (isset($thisJRUser->accesslevel))
 		$accessLevel=$thisJRUser->accesslevel;
 	else
@@ -996,7 +943,9 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 
 function editCustomText()
 	{
-	global $jomresConfig_live_site,$jomresConfig_lang,$jrConfig;
+	global $jomresConfig_live_site,$jomresConfig_lang;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$theConstant = jomresGetParam( $_REQUEST, 'theConstant', '' );
 	$defaultText = jomresGetParam( $_REQUEST, 'defaultText', '', _MOS_ALLOWHTML );
 	$property_uid=(int)getDefaultProperty();
@@ -1071,7 +1020,8 @@ function editCustomText()
 
 function saveCustomText()
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$property_uid=(int)getDefaultProperty();
 	if ($jrConfig['allowHTMLeditor'] == "1")
@@ -1101,7 +1051,9 @@ function saveCustomText()
 
 function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	{
-	global $jomresConfig_lang,$jrConfig,$thisJRUser;
+	global $jomresConfig_lang,$thisJRUser;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$testStr= trim(strip_tags_except($theValue));
 	$crsEtc=array("\t","\n","\r");
 	$testStr=str_replace($crsEtc,"",$testStr);
@@ -1306,58 +1258,8 @@ function generateJomresRandomString($length=50)
 */
 function getSiteSettings()
 	{
-	global $jrConfig;
-	$mrConfig=getPropertySpecificSettings(0);
-	include('site_config.php' );
-	$tempConfigArr=$jrConfig;
-	$jrConfig=array();
-	$query="SELECT akey,value FROM #__jomres_site_settings";
-	$settingsList=doSelectSql($query);
-	if (count($settingsList)>0)
-		{
-		foreach ($settingsList as $setting)
-			{
-			$akey=$setting->akey;
-			$value=$setting->value;
-			//echo "Resetting mrConfig variables: Setting $akey ".$mrConfig['$akey']." to $value<br>";
-			$jrConfig[$akey]=$value;
-			}
-		}
-	// Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
-	if (count($settingsList)==0)
-		{
-		global $jomresConfig_dbprefix,$jomresConfig_db;
-		// Jomres probably hasn't been installed yet, does the site settings table exist yet?
-		$tablesFound=false;
-		$query="SHOW TABLES";
-		$result=doSelectSql($query,$mode=FALSE);
-		$string="Tables_in_".strtolower($jomresConfig_db);
-		foreach ($result as $r)
-			{
-			//var_dump($r->$string);echo "<br>";
-			if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings') )
-				{
-				$tablesFound=true;
-				}
-			}
-		if (!$tablesFound)
-			{
-			// The site settings table doesn't exist yet, we'll dump out for now.
-			return;
-			}
-		}
-
-	foreach ($tempConfigArr as $k=>$v)
-		{
-		if (!array_key_exists($k,$jrConfig) )
-			{
-			$query="INSERT INTO #__jomres_site_settings (akey,value) VALUES ('".$k."','".$v."')";
-			//echo $query."<br>";
-			doInsertSql($query,'');
-			}
-		}
-
-	//$jrConfig['jomres_systemLog_path']='temp'.JRDS;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	return $jrConfig;
 	}
 

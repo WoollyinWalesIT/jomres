@@ -44,8 +44,9 @@ class j02320regprop3 {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jrConfig,$MiniComponents;
-		
+		global $thisJRUser,$MiniComponents;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if (!subscribers_checkUserHasSubscriptionsToCreateNewProperty() && !$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1" )
 			jomresRedirect( JOMRES_SITEPAGE_URL."&task=list_subscription_packages","");
 

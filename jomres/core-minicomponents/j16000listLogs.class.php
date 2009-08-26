@@ -32,7 +32,7 @@ class j16000listLogs
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$logFiles,$jomresAdminPath;
+		global $logFiles,$jomresAdminPath;
 		
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();

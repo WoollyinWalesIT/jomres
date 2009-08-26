@@ -32,7 +32,9 @@ class j06000list_subscription_packages
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser,$jomresConfig_live_site;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
 		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
 			{

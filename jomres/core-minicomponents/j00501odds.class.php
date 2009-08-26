@@ -43,7 +43,9 @@ class j00501odds {
 			$this->template_touchable=false; return;
 			}
 		global $cssStyle;
-		global $configurationPanel,$jrConfig,$thisJRUser;
+		global $configurationPanel,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$mrConfig=$componentArgs['mrConfig'];
 		$lists=$componentArgs['lists'];
 		$editIconSize=$componentArgs['editIconSize'];

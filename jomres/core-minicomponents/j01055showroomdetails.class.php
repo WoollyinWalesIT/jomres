@@ -45,7 +45,7 @@ class j01055showroomdetails {
 		$all=$componentArgs['all'];
 		if ($all)
 			$property_uid=(int)$componentArgs['property_uid'];
-		global $mrConfig,$jomresConfig_live_site,$noshowroom,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$noshowroom;
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();
