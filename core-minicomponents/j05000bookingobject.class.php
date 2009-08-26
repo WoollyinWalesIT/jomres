@@ -22,6 +22,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+jr_import('dobooking');
 
 /**
 #
@@ -39,7 +40,8 @@ class j05000bookingobject {
 	function j05000bookingobject($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -69,7 +71,7 @@ class j05000bookingobject {
 * @package Jomres
 #
  */
-class booking extends jomres_booking
+class booking extends dobooking
 	{
 	}
 ?>

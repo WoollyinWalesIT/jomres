@@ -27,7 +27,7 @@ class j06000test_unsubscribe
 	function j06000test_unsubscribe()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -36,6 +36,7 @@ class j06000test_unsubscribe
 		
 		$subscription_id	=(int)jomresGetParam( $_REQUEST, 'id', 0 );
 		
+		jr_import('jrportal_subscriptions');
 		$subscription = new jrportal_subscriptions();
 		$subscription->id=$subscription_id;
 		if ($subscription->getSubscription())

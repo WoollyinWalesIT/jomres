@@ -38,7 +38,7 @@ class j02240listlivebookings {
 	function j02240listlivebookings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;

@@ -26,7 +26,7 @@ class j16000save_subscription_package {
 	function j16000save_subscription_package()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -43,6 +43,7 @@ class j16000save_subscription_package {
 		$property_limit	= (int)jomresGetParam( $_POST, 'property_limit', 0 );
 		$tax_code_id	= (int)jomresGetParam( $_POST, 'taxrate', 0 );
 
+		jr_import('jrportal_subscriptions_packages');
 		$package = new jrportal_subscriptions_packages();
 		if ($id > 0)
 			{

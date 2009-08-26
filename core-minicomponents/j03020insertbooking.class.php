@@ -40,12 +40,13 @@ class j03020insertbooking {
 	function j03020insertbooking($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jrConfig,$jomresConfig_live_site,$jomresProccessingBookingObject,$tmpBookingHandler;
+		global $mrConfig,$jrConfig,$jomresConfig_live_site,$jomresProccessingBookingObject;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$jomressession=$componentArgs['jomressession'];
 		$depositPaid=$componentArgs['depositPaid'];
 		if (isset($componentArgs['usejomressessionasCartid']) )
@@ -228,7 +229,7 @@ class j03020insertbooking {
 					}
 
 				jomres_audit($jomressession,"Amend booking - updated room booking ".$amend_contractuid);
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message("Amend booking - updated room booking ".$amend_contractuid);
 				if (count($rates_uids)>1)
 					$rates_uids			= array_unique($rates_uids);
@@ -498,6 +499,7 @@ class j03020insertbooking {
 				doInsertSql($query,"");
 				}
 
+			jr_import('jomres_custom_field_handler');
 			$custom_fields = new jomres_custom_field_handler();
 			$allCustomFields = $custom_fields->getAllCustomFields();
 			if (count($allCustomFields)>0)
@@ -512,6 +514,7 @@ class j03020insertbooking {
 				doInsertSql($query,"");
 				}
 			}
+		jr_import('jomres_cache');
 		$cache = new jomres_cache("",$property_uid);
 		$cache->trashCacheForProperty($property_uid);
 		}

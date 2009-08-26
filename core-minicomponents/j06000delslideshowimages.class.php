@@ -39,7 +39,7 @@ class j06000delslideshowimages {
 	function j06000delslideshowimages()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -82,7 +82,7 @@ class j06000delslideshowimages {
 			}
 		if ($success)
 			{
-			$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message(_JOMRES_FILE_DELETED);
 			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
 			}

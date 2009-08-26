@@ -27,7 +27,7 @@ class j16000save_template
 	function j16000save_template()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -41,6 +41,7 @@ class j16000save_template
 		
 		$templateData		= addslashes(htmlspecialchars($templateData));
 		
+		jr_import('jomres_custom_template_handler');
 		$custom_templates = new jomres_custom_template_handler();
 		if ($custom_templates->hasThisTemplateBeenCustomised($templatename))
 			$query = "UPDATE #__jomres_custom_templates SET `value`='".$templateData."',`last_edited`='".$last_edited."' WHERE template_name = '".$templatename."'";

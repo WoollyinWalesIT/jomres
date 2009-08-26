@@ -25,13 +25,14 @@ class j16000save_sms_clickatell_settings {
 	function j16000save_sms_clickatell_settings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 			
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		jr_import('jrportal_sms_clickatell_settings');
 		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();
 		$sms_clickatell_settings->save_sms_clickatell_settings();
 		

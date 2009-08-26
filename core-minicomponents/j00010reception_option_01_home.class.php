@@ -38,12 +38,11 @@ class j00010reception_option_01_home {
 	function j00010reception_option_01_home($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs;
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."", 'Home.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME',_JOMRES_FRONT_MR_MENU_ADMIN_HOME,false,false));
 		}
 	

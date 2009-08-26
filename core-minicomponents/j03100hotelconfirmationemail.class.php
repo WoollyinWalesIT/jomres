@@ -38,13 +38,13 @@ class j03100hotelconfirmationemail {
 	function j03100hotelconfirmationemail($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		global $jomresConfig_live_site;
-		$currfmt = new jomres_currency_format();
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
 		$guestDetails=$componentArgs['guestDetails'];

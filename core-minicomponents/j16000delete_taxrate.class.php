@@ -39,7 +39,7 @@ class j16000delete_taxrate {
 	function j16000delete_taxrate()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -49,6 +49,7 @@ class j16000delete_taxrate {
 		$id=jomresGetParam( $_REQUEST, 'id', 0 );
 		if ($id>1)
 			{
+			jr_import('jrportal_taxrate');
 			$rate = new jrportal_taxrate();
 			if ($id > 0)
 				{

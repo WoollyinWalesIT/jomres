@@ -27,7 +27,7 @@ class j16000listcrates
 	function j16000listcrates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -36,6 +36,7 @@ class j16000listcrates
 		$rows=array();
 		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 
+		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
 
 		$crateList=$crateFunctions->getAllUnarchivedCrates();
@@ -60,18 +61,20 @@ class j16000listcrates
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$crate['id'].'" onClick="jomres_isChecked(this.checked);">';
 			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editcrate&id='.$crate['id'].'">'.$editIcon.'</a>';
 			$r['TITLE']=$crate['title'];
+			jr_import('crateTypes');
 			$crateType = new crateTypes();
 			$crateType->id=$crate['type'];
 			$r['TYPE']=$crateType->types[$crateType->id];
 			$r['VALUE']=$crate['value'];
 
+			jr_import('currency_codes');
 			$currency_codes = new currency_codes();
 			$currency_codes->id=$crate['currencycode'];
 			$r['CURRENCYCODE']=$currency_codes->getCode();
 			$rows[]=$r;
 			}
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

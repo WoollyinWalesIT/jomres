@@ -38,7 +38,7 @@ class j04080saveroomfeature {
 	function j04080saveroomfeature($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -47,12 +47,13 @@ class j04080saveroomfeature {
 		$roomFeatureUid	= intval( jomresGetParam( $_POST, 'roomFeatureUid', 0 ) );
 		$feature_description = getEscaped(  jomresGetParam( $_POST, 'feature_description', '' ) );
 		$defaultProperty=getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
 		if ($roomFeatureUid==0)
 			{
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT',_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT,FALSE);
-			$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$query="INSERT INTO #__jomres_room_features (`feature_description`,`property_uid` )VALUES ('$feature_description','".(int)$defaultProperty."')";
 			if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM_FEATURE',_JOMRES_MR_AUDIT_INSERT_ROOM_FEATURE,FALSE)))
@@ -62,7 +63,7 @@ class j04080saveroomfeature {
 		else
 			{
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE',_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE,FALSE);
-			$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$query="UPDATE #__jomres_room_features SET `feature_description`='$feature_description' WHERE room_features_uid='".(int)$roomFeatureUid."' AND property_uid='".(int)$defaultProperty."'";
 			if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_ROOM_FEATURE',_JOMRES_MR_AUDIT_UPDATE_ROOM_FEATURE,FALSE)))

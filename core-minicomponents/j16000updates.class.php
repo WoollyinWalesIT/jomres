@@ -27,7 +27,8 @@ class j16000updates
 	function j16000updates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents,$jomresConfig_live_site,$jomresConfig_offline;
+		global $jomresConfig_live_site,$jomresConfig_offline;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/defines.php') )
 			{
 			$CONFIG = new JConfig();

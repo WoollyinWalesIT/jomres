@@ -38,7 +38,7 @@ class j02140publishextra {
 	function j02140publishextra()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -56,7 +56,7 @@ class j02140publishextra {
 			$query="UPDATE #__jomres_extras SET `published`='0' WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 		else
 			$query="UPDATE #__jomres_extras SET `published`='1' WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
-		$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging->set_message(_JOMRES_MR_AUDIT_PUBLISH_EXTRA);
 		if (doInsertSql($query,_JOMRES_MR_AUDIT_PUBLISH_EXTRA))
 			jomresRedirect( JOMRES_SITEPAGE_URL."&task=listExtras","" );

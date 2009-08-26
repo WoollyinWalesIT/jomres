@@ -27,7 +27,7 @@ class j06000save_subscriber
 	function j06000save_subscriber()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -51,6 +51,7 @@ class j06000save_subscriber
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 			}
 		
+		jr_import('jrportal_subscribers');
 		$subscriber = new jrportal_subscribers();
 		$user=subscribers_getSubscriberDetailsForJosId($thisJRUser->id);
 		if ($user)
@@ -69,10 +70,12 @@ class j06000save_subscriber
 		else
 			$subscriber->commitSubscriber();
 
+		jr_import('jrportal_subscriptions_packages');
 		$package = new jrportal_subscriptions_packages();
 		$package->id = $package_id;
 		if ($package->getSubscriptionPackage() )
 			{
+			jr_import('jrportal_subscriptions_packages');
 			$subscription = new jrportal_subscriptions();
 			$subscription->cms_user_id	= $thisJRUser->id;
 			
@@ -120,6 +123,7 @@ class j06000save_subscriber
 					);
 				$line_items[]=$line_item_data;
 				}
+			jr_import('invoicehandler');
 			$invoice_handler = new invoicehandler();
 			$invoice_handler->create_new_invoice($invoice_data,$line_items);
 			$invoice_handler->subscription_id=$subscription->id;
@@ -132,7 +136,7 @@ class j06000save_subscriber
 		{
 		global $jomresConfig_live_site,$jomresConfig_sitename,$Itemid;
 
-		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings=$paypal_settings->paypalConfigOptions;
 		

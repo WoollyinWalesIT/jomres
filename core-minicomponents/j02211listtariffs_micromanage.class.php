@@ -39,7 +39,7 @@ class j02211listtariffs_micromanage {
 	function j02211listtariffs_micromanage()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -73,7 +73,7 @@ class j02211listtariffs_micromanage {
 					}
 				}
 
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&tarifftypeid=".($tariff->id) ),'');
 			$jrtb .= $jrtbar->toolbarItem('copy',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff&tarifftypeid=".($tariff->id)."&clone=1"),'');
@@ -97,7 +97,7 @@ class j02211listtariffs_micromanage {
 		$output['HMAXPEOPLE']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_MAXPEOPLE',_JOMRES_COM_MR_LISTTARIFF_MAXPEOPLE);
 		$output['HROOMCLASS']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS);
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editTariff"),'');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');

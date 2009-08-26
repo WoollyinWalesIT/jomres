@@ -39,25 +39,27 @@ class j02182savebookout {
 	function j02182savebookout()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
 		$contract_uid         = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		$items="";
 		$saveMessage= jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT',_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT,FALSE);
-		$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging->set_message($saveMessage);
 		$query="SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 		$contractData =doSelectSql($query);
 
 		if (count($contractData)>0)
 			{
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
 

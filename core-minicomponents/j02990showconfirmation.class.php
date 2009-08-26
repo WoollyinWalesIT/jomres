@@ -38,13 +38,14 @@ class j02990showconfirmation {
 	function j02990showconfirmation()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 
-		global $mrConfig,$jomresConfig_live_site,$tmpBookingHandler,$thisJRUser;
+		global $mrConfig,$jomresConfig_live_site,$thisJRUser;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$booking_parts=array();
 		if ( !isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )
 			$tmpBookingHandler->addNewBookingField("confirmationSeen");
@@ -56,7 +57,7 @@ class j02990showconfirmation {
 		$tmpBookingHandler->updateBookingField("bookersUsername",$thisJRUser->username);
 
 		
-		$currfmt 		= 	new jomres_currency_format();
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 
 		// Trigger point
 		$MiniComponents->triggerEvent('03000');
@@ -72,6 +73,7 @@ class j02990showconfirmation {
 		if (!$bookingDeets['ok_to_book'])
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']), '' );
 
+		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
 		if (count($allCustomFields)>0)

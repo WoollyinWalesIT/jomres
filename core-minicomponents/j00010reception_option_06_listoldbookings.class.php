@@ -38,12 +38,11 @@ class j00010reception_option_06_listoldbookings {
 	function j00010reception_option_06_listoldbookings($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs;
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listoldbookings", 'ReservationsHistoric.png', jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS',_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS,false,false));
 		}
 	

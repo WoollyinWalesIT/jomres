@@ -21,6 +21,8 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
+jr_import('jomres_dashboard');
+
 /**
 #
  * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -39,7 +41,7 @@ class j00013dashboard extends jomres_dashboard
 	function j00013dashboard()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -47,6 +49,7 @@ class j00013dashboard extends jomres_dashboard
 		global $mrConfig;
 
 		$this->property_uid		= getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache("dashboard",$this->property_uid,false);
 		$cacheContent = $cache->readCache();
 		if ($cacheContent)

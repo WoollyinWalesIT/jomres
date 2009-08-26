@@ -27,7 +27,7 @@ class j16000removeplugin
 	function j16000removeplugin()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -40,6 +40,7 @@ class j16000removeplugin
 		if (!dropPlugin($pluginName))
 			echo "Plugin could not be removed";
 		
+		jr_import('minicomponent_registry');
 		$registry = new minicomponent_registry(false);
 		$registry->regenerate_registry();
 		

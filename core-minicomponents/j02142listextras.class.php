@@ -37,7 +37,7 @@ class j02142listextras {
 	function j02142listextras()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -63,7 +63,7 @@ class j02142listextras {
 				$img = "administrator/images/publish_x.png";
 			$rw['PUBLISHIMAGE']=$img;
 
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editExtra&uid=".$ex->uid ),'');
 			if ($published)
@@ -82,7 +82,7 @@ class j02142listextras {
 			}
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE',_JOMRES_COM_MR_EXTRA_TITLE);
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editExtra"),'');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');

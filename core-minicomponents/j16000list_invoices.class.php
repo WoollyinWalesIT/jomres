@@ -27,7 +27,7 @@ class j16000list_invoices
 	function j16000list_invoices()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -88,6 +88,7 @@ class j16000list_invoices
 			$r=array();
 			$r['ID']=$invoice['id'];
 			
+			jr_import('jrportal_user_functions');
 			$user_obj = new jrportal_user_functions();
 			
 			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
@@ -120,7 +121,7 @@ class j16000list_invoices
 			$rows[]=$r;
 			}
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		//$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=edit_invoice"),'');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL_ADMIN),'');

@@ -39,7 +39,7 @@ class j02320regprop3 {
 	function j02320regprop3()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -129,12 +129,14 @@ class j02320regprop3 {
 
 		if (!$thisJRUser->userIsManager)
 			{
+			jr_import('jrportal_user_functions');
 			$ufuncs=new jrportal_user_functions();
 			$userdeets=$ufuncs->getJoomlaUserDetailsForJoomlaId($thisJRUser->id);
 			$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`)VALUES (".(int)$userdeets['id'].",'".(string)$userdeets['username']."','".(int)$newPropId."','2')";
 			$managerId=doInsertSql($query,_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY);
 			}
-		$jomres_messaging = new jomres_messages();
+		
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging->set_message(_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY);
 		$thisJRUser->authorisedProperties[]=$newPropId;
 		updateManagerIdToPropertyXrefTable($thisJRUser->id,$thisJRUser->authorisedProperties );
@@ -143,6 +145,7 @@ class j02320regprop3 {
 		$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
 		$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$thisJRUser->username;
 		sendAdminEmail($subject,$message);
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForUser($thisJRUser->userid);
 		jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");

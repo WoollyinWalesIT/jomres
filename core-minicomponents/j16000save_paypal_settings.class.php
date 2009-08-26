@@ -26,14 +26,14 @@ class j16000save_paypal_settings {
 	function j16000save_paypal_settings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 			
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->save_paypal_settings();
 		
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=paypal_settings"), "" );

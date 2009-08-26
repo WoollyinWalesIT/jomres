@@ -37,7 +37,7 @@ class j04010editroom {
 	function j04010editroom($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -166,7 +166,7 @@ class j04010editroom {
 			$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 			$deleteText=jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE,FALSE);
 			$saveText=jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE);
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
 			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
@@ -205,7 +205,7 @@ class j04010editroom {
 				}
 			$dropDownList.="</select>";
 			
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
 			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);

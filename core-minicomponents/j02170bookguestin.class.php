@@ -38,7 +38,7 @@ class j02170bookguestin {
 	function j02170bookguestin()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -93,7 +93,7 @@ class j02170bookguestin {
 
 				$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('save','','',true,'bookGuestIn');
 				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
@@ -124,7 +124,8 @@ class j02170bookguestin {
 				else
 					{
 					addBookingNote($contractUid,$defaultProperty,_JOMRES_MR_AUDIT_BOOKEDGUESTIN);
-					$jomres_messaging = new jomres_messages();
+					//$jomres_messaging = new jomres_messages();
+					$jomres_messaging =jomres_getSingleton('jomres_messages');
 					$jomres_messaging->set_message(_JOMRES_MR_AUDIT_BOOKEDGUESTIN);
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contractUid"),  jr_gettext('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN',_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN,false ) );
 					}

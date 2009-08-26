@@ -38,7 +38,7 @@ class j02180bookguestout {
 	function j02180bookguestout()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -85,7 +85,7 @@ class j02180bookguestout {
 				$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE',_JOMRES_FRONT_MR_BOOKOUT_TITLE);
 				$output['DROPDOWNLIST']=$dropDownList;
 
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('save','','',true,'bookGuestOut');
 				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
@@ -116,9 +116,10 @@ class j02180bookguestout {
 					$contractUid=$contract_uid;
 				$today = date("Y/m/d");
 				$saveMessage=jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT',_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT,FALSE);
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				//$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message($saveMessage);
-				$currfmt = new jomres_currency_format();
+				$currfmt = jomres_getSingleton('jomres_currency_format');
 
 				// It's time to generate our invoice
 				$query="SELECT deposit_required,contract_total,arrival,true_arrival,deposit_paid,rate_rules,property_uid,single_person_suppliment,room_total,date_range_string,guest_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contractUid."' AND property_uid = '".(int)$defaultProperty."'";
@@ -195,7 +196,7 @@ class j02180bookguestout {
 
 				if ($popup ==0)
 					{
-					$jrtbar = new jomres_toolbar();
+					$jrtbar =jomres_getSingleton('jomres_toolbar');
 					$jrtb  = $jrtbar->startTable();
 					$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveBookout');
 					$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contractUid"),'');

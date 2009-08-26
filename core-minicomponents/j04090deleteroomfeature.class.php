@@ -38,7 +38,7 @@ class j04090deleteroomfeature {
 	function j04090deleteroomfeature($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -46,6 +46,7 @@ class j04090deleteroomfeature {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$roomFeatureUid		= intval( jomresGetParam( $_REQUEST, 'roomFeatureUid', '' ) );
 		$defaultProperty=getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
 		//Lets delete this room feature

@@ -38,7 +38,7 @@ class j04200editproperty {
 	function j04200editproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -305,7 +305,7 @@ class j04200editproperty {
 		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 		$output['PROPERTYUID']=$propertyUid;
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		if ($jrConfig['allowHTMLeditor']!="2" && $jrConfig['allowHTMLeditor'] != "3")
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveProperty');

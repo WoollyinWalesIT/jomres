@@ -38,7 +38,7 @@ class j02216deletetariff {
 	function j02216deletetariff()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -52,10 +52,11 @@ class j02216deletetariff {
 			if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 			$tariffUid	= intval(jomresGetParam( $_REQUEST, 'tariffUid', 0 ) );
 			$defaultProperty=getDefaultProperty();
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_DELETED',_JOMRES_COM_MR_LISTTARIFF_DELETED,FALSE);
-			$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			if ($tariffUid != 0)
 				{

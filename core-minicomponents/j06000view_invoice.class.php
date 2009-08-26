@@ -26,7 +26,7 @@ class j06000view_invoice {
 	function j06000view_invoice()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -47,6 +47,7 @@ class j06000view_invoice {
 			trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
 			}
 		
+		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
 		if ($id > 0)
 			{

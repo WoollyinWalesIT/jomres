@@ -32,13 +32,13 @@ class j03000amendBooking
 	function j03000amendBooking()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$tmpBookingHandler;
-
+		global $thisJRUser;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if (!$thisJRUser->userIsManager)
 			return;
 		if ((isset($tmpBookingHandler->tmpbooking["amend_contract"])) && ($tmpBookingHandler->tmpbooking["amend_contract"] == true))

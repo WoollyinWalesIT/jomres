@@ -27,7 +27,7 @@ class j16000viewproperty
 	function j16000viewproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -41,6 +41,9 @@ class j16000viewproperty
 		if ($id ==0)
 			trigger_error ("Front end stats ID empty", E_USER_ERROR);
 
+		jr_import('jrportal_booking_functions');
+		jr_import('jrportal_crate_functions');
+		jr_import('jrportal_property_functions');
 		$propertyFunctions=new jrportal_property_functions();
 		$bookingFunctions=new jrportal_booking_functions();
 		$crateFunctions=new jrportal_crate_functions();
@@ -65,7 +68,7 @@ class j16000viewproperty
 
 		if (is_null($componentArgs['id']))
 			{
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listproperties",_JRPORTAL_CANCEL);
 			$jrtb .= $jrtbar->endTable();
@@ -76,6 +79,7 @@ class j16000viewproperty
 		$commissionRate=floatval($crate['value']);
 		$currencyCode=$crate['currencycode'];
 
+		jr_import('crateTypes');
 		$crateTypesObj= new crateTypes();
 		$crateTypesObj->id=$crate['type'];
 		$crateTypeText=$crateTypesObj->getCrate();

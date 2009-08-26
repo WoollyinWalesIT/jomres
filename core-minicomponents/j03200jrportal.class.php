@@ -26,7 +26,7 @@ class j03200jrportal {
 	function j03200jrportal($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -35,6 +35,7 @@ class j03200jrportal {
 		if ($MiniComponents->eventFileExistsCheck('07005') )
 			$propertys_uids=$MiniComponents->triggerEvent('07005' ); // Optional minicomponent trigger, eg for system cleanups or other pre-booking activity
 
+		jr_import('jrportal_booking');
 		$booking 				= new jrportal_booking();
 		$cartnumber				= $componentArgs['cartnumber'];
 		$guests_uid				= $componentArgs['guests_uid'];
@@ -55,6 +56,7 @@ class j03200jrportal {
 
 		$booking->commitNewBooking();
 
+		jr_import('jrportal_user_functions');
 		$userFunctions = new jrportal_user_functions();
 		$usersArray=$userFunctions->getManagerIdsForProperty($property_uid);
 		$userObjsArray=array();
@@ -65,6 +67,7 @@ class j03200jrportal {
 				$jos_id = $u['manager_id'];
 				$userDeets = $userFunctions->getJoomlaUserDetailsForJoomlaId($jos_id);
 				$manager_id = $userFunctions->getManagerIdForJosId($jos_id);
+				jr_import('jrportal_user');
 				$user = new jrportal_user();
 				$user->manager_uid			= $manager_id;
 				$user->jos_id				= $jos_id;
@@ -79,6 +82,7 @@ class j03200jrportal {
 
 		if ($MiniComponents->eventFileExistsCheck('07010') )
 			{
+			jr_import('jrportal_property_functions');
 			$property = new jrportal_property_functions();
 			$propertyDeets=$property->getPropertyDetails(array($property_uid) );
 			$p=$propertyDeets[$property_uid];

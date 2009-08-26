@@ -39,12 +39,11 @@ class j00010reception_option_06_listnewbookings {
 	function j00010reception_option_06_listnewbookings($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs;
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listNewBookings", 'ListNewBookings.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS,false,false));
 		}
 	

@@ -38,7 +38,7 @@ class j02150addservicetobill {
 	function j02150addservicetobill()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -57,7 +57,7 @@ class j02150addservicetobill {
 			$output['CURRENCY']=$mrConfig['currency'];
 			$output['CONTRACTUID']=$contract_uid;
 
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'addServiceToBill');
 			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"),'');

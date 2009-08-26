@@ -27,7 +27,7 @@ class j16000savecrate
 	function j16000savecrate()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -40,6 +40,7 @@ class j16000savecrate
 		$value 				= jomresGetParam( $_REQUEST, 'value',0.00 );
 		$currencycode 		= jomresGetParam( $_REQUEST, 'currencycode','' );
 
+		jr_import('jrportal_crate');
 		$crateObj=new jrportal_crate();
 		$crateObj->id=$id;
 		if ($id>0)

@@ -31,13 +31,13 @@ class j00101amendBooking
 	function j00101amendBooking()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		global $mrConfig,$jomresConfig_live_site,$jrConfig,$thisJRUser;
-		global $tmpBookingHandler;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 
 		$amend					= intval(jomresGetParam( $_REQUEST, 'amend', 0 ) );
 
@@ -192,7 +192,7 @@ class j00101amendBooking
 						}
 					}
 
-					$currfmt = new jomres_currency_format();
+					$currfmt = jomres_getSingleton('jomres_currency_format');
 					$mrConfig	= getPropertySpecificSettings($tmpBookingHandler->tmpbooking["amend_property_uid"]);
 					$output['HEADER']		= jr_gettext('_JOMCOMP_AMEND_HEADER',_JOMCOMP_AMEND_HEADER);
 					$output['HTOTAL']		= jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL);

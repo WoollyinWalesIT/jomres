@@ -37,20 +37,21 @@ class j03100sms_clickatell {
 	function j03100sms_clickatell($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		global $jomresConfig_live_site,$Itemid;
 		
+		jr_import('jrportal_sms_clickatell_settings');
 		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();
 		$sms_clickatell_settings->get_sms_clickatell_settings();
 		if ($sms_clickatell_settings->sms_clickatellConfigOptions['active'] == "0")
 			return;
 		
 		
-		$currfmt = new jomres_currency_format();
+		$currfmt = jomres_getSingleton('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
 		$guestDetails=$componentArgs['guestDetails'];
@@ -165,6 +166,7 @@ class j03100sms_clickatell {
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
 		$output['DEPOSIT']		=	$mrConfig['currency'].$currfmt->get_formatted($deposit_required);
 
+		jr_import('jrportal_user_functions');
 		$userFunctions = new jrportal_user_functions();
 		$usersArray=$userFunctions->getManagerIdsForProperty($property_uid);
 		if (count($usersArray) >0)
@@ -179,6 +181,7 @@ class j03100sms_clickatell {
 				if (strlen($mobile_number)==0)
 					return false;
 					
+				jr_import('jrportal_sms_clickatell_message');
 				$message_record = new jrportal_sms_clickatell_message();
 				$message_record->username			= $userDeets['username'];
 				$message_record->number				= $mobile_number;
@@ -186,6 +189,7 @@ class j03100sms_clickatell {
 				$message_record->property_uid		= $property_uid;
 				$message_record->commitNewMessage();
 				$message_record->getMessage(); // We'll do this so that the send time isn't reset when we commit update
+				jr_import('jrportal_sms_clickatellhandler');
 				$handler = new jrportal_sms_clickatellhandler();
 				$handler->addField("to",$message_record->number);
 				$handler->addField("text",$message_record->message);

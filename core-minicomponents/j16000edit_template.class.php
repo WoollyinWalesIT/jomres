@@ -26,20 +26,21 @@ class j16000edit_template {
 	function j16000edit_template()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$templatename		= jomresGetParam( $_REQUEST, 'jomresTemplateFile', '' );
 		
+		jr_import('jomres_custom_template_handler');
 		$custom_templates = new jomres_custom_template_handler();
 		$templatehtml= $custom_templates->getTemplateData($templatename);
 		$output['TEMPLATEHTML']=str_replace("textarea","text<x>area",$templatehtml);
 		$output['TEMPLATENAME']=$templatename;
 		
 	
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_template');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listTemplates",'');

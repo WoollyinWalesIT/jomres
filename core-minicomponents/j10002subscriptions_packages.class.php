@@ -27,12 +27,13 @@ class j10002subscriptions_packages
 	function j10002subscriptions_packages()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs,$jrConfig;
+		global $jrConfig;
+		$htmlFuncs =jomres_getSingleton('html_functions');
 		if ($jrConfig['useSubscriptions']=="0")
 			return;
 

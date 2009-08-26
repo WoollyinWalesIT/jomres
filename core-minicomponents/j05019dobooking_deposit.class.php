@@ -40,13 +40,13 @@ class j05019dobooking_deposit
 	function j05019dobooking_deposit()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		global  $tmpBookingHandler, $thisJRUser;
-
+		global  $thisJRUser;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 
 		if (!$thisJRUser->userIsManager)
 			return;
@@ -62,7 +62,7 @@ class j05019dobooking_deposit
 		$defaultValue		= "";
 		if (isset($tmpBookingHandler->tmpbooking["override_contract_deposit"]) && ($tmpBookingHandler->tmpbooking["override_contract_deposit"] != "") )
 			{
-			$currfmt 		= new jomres_currency_format();
+			$currfmt = jomres_getSingleton('jomres_currency_format');
 			$defaultValue	= $currfmt->get_formatted($tmpBookingHandler->tmpbooking["override_contract_deposit"]);
 			}
 

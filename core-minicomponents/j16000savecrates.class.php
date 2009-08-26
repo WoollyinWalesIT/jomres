@@ -27,7 +27,7 @@ class j16000savecrates
 	function j16000savecrates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -45,6 +45,7 @@ class j16000savecrates
 
 		//var_dump($tmpCrates);exit;
 		$crates=$tmpCrates;
+		jr_import('jrportal_property_functions');
 		$propertyFunctions		= new jrportal_property_functions();
 		$portalPropertyList		= $propertyFunctions->getAllPortalProperties();
 		$portalPropertyIds		= array();
@@ -56,6 +57,7 @@ class j16000savecrates
 		foreach ($crates as $k=>$v)
 			{
 			$crate_id=$v;
+			jr_import('jrportal_property');
 			$property = new jrportal_property();
 			if (!in_array($k,$portalPropertyIds) )
 				{

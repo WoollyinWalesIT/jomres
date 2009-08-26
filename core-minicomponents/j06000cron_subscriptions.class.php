@@ -27,7 +27,7 @@ class j06000cron_subscriptions
 	{
 	function j06000cron_subscriptions ()
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;

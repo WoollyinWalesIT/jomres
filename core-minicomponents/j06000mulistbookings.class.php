@@ -27,7 +27,7 @@ class j06000mulistbookings {
 	function j06000mulistbookings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -75,7 +75,7 @@ class j06000mulistbookings {
 							$r['STYLE'] ="odd";
 						else
 							$r['STYLE'] ="even";
-						$currfmt = new jomres_currency_format();
+						$currfmt = jomres_getSingleton('jomres_currency_format');
 						$currency=$mrConfig['currency'];
 						$r['PROPERTYNAME']=getPropertyNameNoTables($c->property_uid);
 						$r['ARRIVAL']=outputDate($c->arrival);

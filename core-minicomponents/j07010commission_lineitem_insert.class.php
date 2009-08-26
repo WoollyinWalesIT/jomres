@@ -26,9 +26,6 @@ class j07010commission_lineitem_insert {
 	function j07010commission_lineitem_insert($componentArgs)
 		{
 		global $ePointFilepath,$jomresConfig_absolute_path;
-		
-		require_once(JOMRESPATH_BASE.'/libraries/jomres/classes/general.classes.php');
-		require_once(JOMRESPATH_BASE.'/libraries/jomres/functions/crate.functions.php');
 
 		$bookingObj				= $componentArgs['bookingObj'];
 		$userObjsArray			= $componentArgs['userObjsArray'];
@@ -44,6 +41,7 @@ class j07010commission_lineitem_insert {
 			$username=$client->username;
 			$commissionRate=0.00;
 			$commission=0.00;
+			jr_import('jrportal_crate_functions');
 			$crateFunctions=new jrportal_crate_functions();
 			if (count($crateFunctions->getAllCrates())==0)
 				{

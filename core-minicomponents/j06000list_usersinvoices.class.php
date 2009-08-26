@@ -25,7 +25,7 @@ class j06000list_usersinvoices
 	{
 	function j06000list_usersinvoices()
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -85,6 +85,7 @@ class j06000list_usersinvoices
 					$r=array();
 					$r['ID']=$invoice['id'];
 					
+					jr_import('jrportal_user_functions');
 					$user_obj = new jrportal_user_functions();
 					$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
 					$r['USER']=$user_deets['name'];

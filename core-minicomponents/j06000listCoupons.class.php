@@ -27,7 +27,7 @@ class j06000listCoupons
 	function j06000listCoupons()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -58,7 +58,7 @@ class j06000listCoupons
 			foreach ($result as $coupon)
 				{
 				$r=array();
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editCoupon&coupon_id=".$coupon->coupon_id),'');
 				$jrtb .= $jrtbar->endTable();
@@ -77,7 +77,7 @@ class j06000listCoupons
 				}
 			}
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editCoupon"),'');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');

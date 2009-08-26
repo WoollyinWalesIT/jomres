@@ -26,7 +26,7 @@ class j16000edit_invoice {
 	function j16000edit_invoice()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -37,7 +37,7 @@ class j16000edit_invoice {
 		$rows=array();
 		
 		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
-		
+		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
 		if ($id > 0)
 			{
@@ -79,6 +79,7 @@ class j16000edit_invoice {
 			
 			$output['STATUS']=invoices_makeInvoiceStatusDropdown($invoice->status);
 			$output['USER']=_JRPORTAL_INVOICES_USER;
+			jr_import('jrportal_user_functions');
 			$user_obj = new jrportal_user_functions();
 			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice->cms_user_id);
 			$output['USERSINVOICESLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice->cms_user_id.'">'.$user_deets['name'].'</a>';
@@ -159,7 +160,7 @@ class j16000edit_invoice {
 					$r['LI_INV_ID']			=$li['inv_id'];
 			}
 			
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_invoice');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=list_invoices",'');

@@ -26,7 +26,7 @@ class j06000cron_invoice
 	{
 	function j06000cron_invoice ()
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -75,6 +75,7 @@ class j06000cron_invoice
 				$line_items[]=$line_item_data;
 				}
 			
+			jr_import('invoicehandler');
 			$invoice_handler = new invoicehandler();
 			$invoice_handler->create_new_invoice($invoice_data,$line_items);
 			}

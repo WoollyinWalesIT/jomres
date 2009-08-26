@@ -39,7 +39,7 @@ class j06000sendbug {
 	function j06000sendbug()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -66,7 +66,8 @@ class j06000sendbug {
 
 			if ($result)
 				{
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				//$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message("Bug report sent.");
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL));
 				}

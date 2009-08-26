@@ -27,7 +27,7 @@ class j16000listbookings
 	function j16000listbookings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -39,8 +39,6 @@ class j16000listbookings
 
 		$property_uid_array=array();
 
-		//$bookingFunctions=new jrportal_booking_functions();
-		//$bookings=$bookingFunctions->getBookings("");
 		$output['LIVESITE']=$jomresConfig_live_site;
 		$output['HPROPERTYID']=_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID;
 		$output['HGUESTID']=_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID;
@@ -54,13 +52,15 @@ class j16000listbookings
 		$output['HARCHIVED']=_JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED;
 		$output['HARCHIVEDDATE']=_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED;
 
+		jr_import('jrportal_booking_functions');
 		$bookingsFunctions = new jrportal_booking_functions();
 		$bookingsArray=$bookingsFunctions->getBookings("");
 		$counter=0;
+		jr_import('jrportal_property_functions');
 		$propertyFunctions=new jrportal_property_functions();
 		$jomresPropertyList=$propertyFunctions->getAllJomresProperties();
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->endTable();

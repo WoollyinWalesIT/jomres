@@ -27,7 +27,7 @@ class j04901jrportal {
 	function j04901jrportal($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -36,6 +36,7 @@ class j04901jrportal {
 		$defaultCrate=$jrConfig['defaultCrate'];
 		$property_uid			= $componentArgs['property_uid'];
 
+		jr_import('jrportal_property');
 		$property = new jrportal_property();
 		$property->property_id=$property_uid;
 		$property->crate_id=$defaultCrate;

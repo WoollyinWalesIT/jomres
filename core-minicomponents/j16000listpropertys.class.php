@@ -27,7 +27,7 @@ class j16000listpropertys
 	function j16000listpropertys()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -38,7 +38,9 @@ class j16000listpropertys
 		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		//require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/pageNavigation.php');
 
+		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
+		jr_import('jrportal_property_functions');
 		$propertyFunctions=new jrportal_property_functions();
 
 		$crateList=$crateFunctions->getAllUnarchivedCrates();
@@ -95,7 +97,7 @@ class j16000listpropertys
 			$rows[]=$r;
 			}
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

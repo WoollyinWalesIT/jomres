@@ -38,14 +38,15 @@ class j01010listpropertys {
 	function j01010listpropertys($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray,$tmpBookingHandler;
+		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		global $jomresItemid;
-		global $customTextObj;
+		$customTextObj =jomres_getSingleton('custom_text');
 		global $_MAMBOTS;
 		$jrConfig=getSiteSettings();
 		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
@@ -116,6 +117,7 @@ class j01010listpropertys {
 			$start=jomresGetParam( $_REQUEST, 'plistpage', 0 );
 			if (count($propertys_uids) <= $scroll)
 				$start=0;
+			jr_import('JomresPage');
 			$page=new JomresPage(); ///creating new instance of Class Page
 			$page->set_page_data(JOMRES_SITEPAGE_URL,$total_records,$record_per_page,$scroll,true,true,true,$limit);
 
@@ -219,6 +221,7 @@ class j01010listpropertys {
 			$property_details=array();
 			foreach ($propertyDeets as $property)
 				{
+				jr_import('jomres_cache');
 				$cache = new jomres_cache("propertylist",$property->propertys_uid);
 				$cacheContent = $cache->readCache();
 				if ($cacheContent)
@@ -314,7 +317,7 @@ class j01010listpropertys {
 					else
 						$lowestPrice="-";
 
-					$currfmt = new jomres_currency_format();
+					$currfmt = jomres_getSingleton('jomres_currency_format');
 					$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
 					
 					if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")

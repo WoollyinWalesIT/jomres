@@ -39,12 +39,13 @@ class j06000contactowner {
 	function j06000contactowner($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_secret,$thisJomresPropertyDetails,$tmpBookingHandler,$mrConfig,$jomresConfig_live_site;
+		global $jomresConfig_secret,$thisJomresPropertyDetails,$mrConfig,$jomresConfig_live_site;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->_remove_old_captcha_files();
 		require_once(JOMRESPATH_BASE.'/libraries/hn_captcha/hn_captcha.class.php');
 
