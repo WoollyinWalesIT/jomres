@@ -49,6 +49,7 @@ class minicomponent_registry
 				$this->regenerate_registry();
 				}
 			require_once($this->registry_file);
+			jr_import('jomres_mc_registry');
 			$registry = new jomres_mc_registry();
 			$lastGenerated = $registry->mcRegistry_now;
 			$this->registeredClasses = unserialize($registry->mcRegistry_registry_serialized);

@@ -26,6 +26,8 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // 1 paid
 // 2 cancelled
 
+jr_import('jrportal_invoice');
+
 class invoicehandler extends jrportal_invoice
 	{
 
@@ -132,6 +134,7 @@ class invoicehandler extends jrportal_invoice
 		We;re expecting to see the id,  init_qty, init_discount, recur_qty & recur_discount
 		*/
 
+		jr_import('jrportal_lineitem');
 		$line_item = new jrportal_lineitem();
 		if (!isset($line_item_data['id']) )
 			{
@@ -167,9 +170,11 @@ class invoicehandler extends jrportal_invoice
 		
 		if ($result)
 			{
+			jr_import("jrportal_taxrate");
 			$taxrate = new jrportal_taxrate();
 			$taxrate->id = $line_item_data['tax_code_id'];
 
+			jr_import("jrportal_lineitem");
 			$line_item = new jrportal_lineitem();
 			if ($taxrate->getTaxRate())
 				{

@@ -30,14 +30,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @since 2.6
 #
 */
-class jomres_contentTabs
+class jomres_content_tabs
 	{
 	/**
 	#
 	* Constructor.
 	#
 	*/
-	function jomres_contentTabs()
+	function jomres_content_tabs()
 		{
 		$this->panes=array();
 		$this->paneLink=array();
