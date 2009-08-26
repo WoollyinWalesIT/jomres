@@ -94,7 +94,7 @@ class j01060slideshow {
 				$r['CAPTION'] = $cap;
 				$rows[]=$r;
 				}
-			global $jrConfig;	
+
 			$pageoutput[]=$output;
 			$tmpl    =    new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

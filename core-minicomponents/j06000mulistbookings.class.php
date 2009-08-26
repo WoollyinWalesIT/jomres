@@ -32,8 +32,9 @@ class j06000mulistbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
-
+		global $thisJRUser,$mrConfig,$jomresConfig_live_site;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if ($thisJRUser->userIsRegistered)
 			{
 			$pageoutput=array();

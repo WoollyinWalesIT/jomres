@@ -32,7 +32,9 @@ class j00013a_listyourproperties
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig,$thisJRUser,$jomresConfig_live_site,$Itemid;
+		global $thisJRUser,$jomresConfig_live_site,$Itemid;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
 		if ($thisJRUser->superPropertyManager)
 			return;

@@ -33,7 +33,8 @@ class invoicehandler extends jrportal_invoice
 
 	function create_new_invoice($invoice_data, $line_items=array() )
 		{
-		global $jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$default_status = 0;
 		$default_subscription=0;
 		$default_currencycode=$jrConfig['globalCurrencyCode'];

@@ -29,10 +29,12 @@ ob_start();
 
 
 global $xmlelements;
-global $indexphp,$logFiles,$jrConfig,$jomresConfig_live_site;
+global $indexphp,$logFiles,$jomresConfig_live_site;
 
 require_once('integration.php');
 $MiniComponents =jomres_getSingleton('mcHandler');
+$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+$jrConfig=$siteConfig->get();
 
 global $jomressession;
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');

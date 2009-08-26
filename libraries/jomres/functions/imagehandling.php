@@ -21,53 +21,8 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-/**
-#
- * Finds the configured slideshow finds the images then includes the required slideshow.php file
-#
- */
- /*
- Depreciated in v4
- 
-function getSlideshow($property_uid)
-	{
-	global $jrConfig,$jomresConfig_live_site;
 
-	$slideshowImgs_AbPath=JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS;
-	$slideshowImgs_RelPath=JOMRES_IMAGELOCATION_RELPATH.$property_uid.'/';
-	$slideshowBasepath=JOMRESPATH_BASE.JRDS.'plugins'.JRDS.'slideshows'.JRDS.$jrConfig['slideshow'].JRDS;
-	$slideshowRelpath='/plugins/slideshows/'.$jrConfig['slideshow'].'/';
-	$imagesArray=listImages($property_uid);
 
-	if (count($imagesArray) >0)
-		{
-		$filecount=0;
-		for ($i = 0; $i <count($imagesArray); $i++)
-			{
-		 	$filename= split("\.",$imagesArray[$i]);
-			$numExtensions=count($filename)-1;
-			$fileExt=strtoupper($filename[$numExtensions]);
-			if ($fileExt== "JPG" || $fileExt== "JPEG")
-				{
-				$imageData[$i]['filename']=$imagesArray[$i];
-				$sizes=getImagesSize($imagesArray[$i]);
-				$imageData[$i]['actualwidth'] = $sizes['actualwidth'];
-				$imageData[$i]['actualheight'] = $sizes['actualheight'];
-				$imageData[$i]['fullwidth'] = $sizes['fullwidth'];
-				$imageData[$i]['fullheight'] = $sizes['fullheight'];
-				$imageData[$i]['thwidth'] = $sizes['thwidth'];
-				$imageData[$i]['thheight'] = $sizes['thheight'];
-				$imageData[$i]['imagelocation'] = $slideshowImgs_RelPath;
-				$filecount++;
-				}
-			}
-		}
-	$propertyName=getPropertyNameNoTables($property_uid);
-	require_once($slideshowBasepath."slideshow.php");
-	$result=constructSlideshow($imageData,$propertyName,$slideshowImgs_RelPath,$slideshowRelpath);
-	return $result;
-	}
-*/
 /**
 #
  * Gets the image sizes, refactored to the jrConfig max width value, then returns them. Allows us to return a set of sizes so that the image proportions remain valid
@@ -75,7 +30,8 @@ function getSlideshow($property_uid)
  */
 function getImagesSize($imageLocation)
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$thumbnail_width=$jrConfig['thumbnail_width'];
 	$mysock = getimagesize($imageLocation);
 	if ($mysock)
@@ -115,7 +71,9 @@ function getImagesSize($imageLocation)
  */
 function batchUploadForm()
 	{
-	global $Itemid,$jomresConfig_live_site,$jrConfig;
+	global $Itemid,$jomresConfig_live_site;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$defaultProperty=getDefaultProperty();
 	jr_import('jomres_cache');
 	$cache = new jomres_cache();
@@ -168,21 +126,17 @@ function batchUploadForm()
  */
 function batchUploadPropertyImages()
 	{
-	global $jrConfig;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
 	jr_import('jomres_cache');
 	$cache = new jomres_cache();
 	$cache->trashCacheForProperty($defaultProperty);
-	
-	//$saveMessage=_JOMRES_FILE_UPDATED;
+
 	$uploadedImagesArray=array();
 	for ($i = 0; $i < 12; $i++)
 		{
 		$checkedImage=FALSE;
 		$uploadedFilename	=	$_FILES['image'.$i]['name'];
-		//$uploadedSize		=	$_FILES['image'.$i]['size'];
-		//$uploadedTemp		=	$_FILES['image'.$i]['tmp_name'];
 		if (!empty($uploadedFilename))
 			$checkedImage=uploadImageFromPost('image'.$i,$uploadedFilename,JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.JRDS);
 	   	if ($checkedImage)
@@ -230,7 +184,9 @@ function listImages($property_uid)
  */
 function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploadedFilename,$uploadedSize,$uploadedTemp)
 	{
-	global $mrConfig,$jrConfig;
+	global $mrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$saveMessage=jr_gettext('_JOMRES_FILE_UPDATED',_JOMRES_FILE_UPDATED,FALSE);
 	$mrp=JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'/';
    	$rc=1; //reset return code
@@ -266,13 +222,11 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 	if ($rc)
 		{
 		$theFile=$uploadedTemp;
-		//echo $theFile;
    		move_uploaded_file($theFile, $mrp."$newFileName");
 		@chmod ($mrp."$newFileName", 0777);
 
 		//Filename + proper path
 		$fileLocation=$mrp."/$newFileName";
-		//some transaltions for readability
 		//numExtensions= people tend to upload malicious files using mutliple extensions like: virus.txt.vbs; we'll want to have the last extension to validate against..
 		$numExtensions=(count($filename))-1;
 		$filesize=$uploadedSize;
@@ -282,7 +236,6 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 			{
 			@unlink($fileLocation);
 			echo "<script> alert('".jr_gettext('_JOMRES_FILE_ERROR_EMPTY',_JOMRES_FILE_ERROR_EMPTY,FALSE).". ".jr_gettext('_JOMRES_FILE_NOT_UPLOADED',_JOMRES_FILE_NOT_UPLOADED,FALSE)."'); ; </script>\n";
-//			$message=str_replace("[file]","",$message);
 			$rc=FALSE;
 			}
 		if (!getimagesize($fileLocation))
@@ -298,7 +251,6 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 				{
 				unlink($fileLocation);
 				echo "<script> alert('".jr_gettext('_JOMRES_FILE_ERROR_TYPE',_JOMRES_FILE_ERROR_TYPE,FALSE)." ".$jrConfig['fileTypes'].". ".jr_gettext('_JOMRES_FILE_NOT_UPLOADED',_JOMRES_FILE_NOT_UPLOADED,FALSE)."'); ; </script>\n";
-//				$message=str_replace("[file]","",$message);
 				$rc=0;
 				}
 			if ($rc)
@@ -308,10 +260,8 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 					{
 					unlink($fileLocation);
 					echo "<script> alert('".jr_gettext('_JOMRES_FILE_ERROR_NAME',_JOMRES_FILE_ERROR_NAME,FALSE).". ".jr_gettext('_JOMRES_FILE_NOT_UPLOADED',_JOMRES_FILE_NOT_UPLOADED,FALSE)."'); ; </script>\n";
-//					$message=str_replace("[file]","",$message);
 					$rc=0;
 					}
-
 				if ($rc)
 					{
 					//check filesize
@@ -320,16 +270,11 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 						{
 						unlink($fileLocation);
 						echo "<script> alert('".jr_gettext('_JOMRES_FILE_ERROR_SIZE',_JOMRES_FILE_ERROR_SIZE,FALSE)." (".$jrConfig['fileSize']." Kilobytes). ".jr_gettext('_JOMRES_FILE_NOT_UPLOADED',_JOMRES_FILE_NOT_UPLOADED,FALSE)."'); ; </script>\n";
-//						$message=str_replace("[file]","",$message);
 						$rc=0;
 						}
 					if ($rc)
 						{
 						$code='[file name='.$newFileName.' size='.$filesize.']'.$mrp.$newFileName.'[/file]';
-//						if ( preg_match("/\[file\]/si", $message) )
-//							$message=str_replace("[file]",$code,$message);
-//						else
-//							$message=$message.' '.$code;
 						$uploadedFileLocation=JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'/'.$newFileName;
 						}
 					}

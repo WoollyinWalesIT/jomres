@@ -44,7 +44,9 @@ class j00017SRPavailabilitycalendar {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$noshowroom,$jrConfig;
+		global $mrConfig,$noshowroom;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$this->retVals="";
 		$this->showlinks=true;
 		$queryString=$_SERVER['QUERY_STRING'];
@@ -195,7 +197,9 @@ class j00017SRPavailabilitycalendar {
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		global $mrConfig,$jomresConfig_locale,$jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		global $mrConfig,$jomresConfig_locale;
 		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
 		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
 		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );

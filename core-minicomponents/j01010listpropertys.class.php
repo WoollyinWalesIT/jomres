@@ -43,12 +43,13 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jrConfig,$jomresConfig_list_limit,$customTextArray;
+		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$method,$jomresConfig_list_limit,$customTextArray;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		global $jomresItemid;
 		$customTextObj =jomres_getSingleton('custom_text');
 		global $_MAMBOTS;
-		$jrConfig=getSiteSettings();
 		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
 
 		$propertys_uids=$componentArgs['propertys_uid'];

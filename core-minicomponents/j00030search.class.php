@@ -42,13 +42,14 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$jomresConfig_lang,$jrConfig;
+		global $jomresConfig_live_site,$jomresConfig_lang;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
 		global $jomresItemid;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		$customTextObj =jomres_getSingleton('custom_text');
-		
-		$jrConfig=getSiteSettings();
+
 		unset ($sch);
 		$doSearch=false;
 		$includedInModule=false;

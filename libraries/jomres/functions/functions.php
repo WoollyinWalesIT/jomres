@@ -27,13 +27,20 @@ function jr_import($class)
 	{
 	if (!class_exists($class)) 
 		{
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
+		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.".class.php") )
 			{
-			$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
+			$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.".class.php");
 			}
 		else
 			{
-			trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
+				{
+				$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
+				}
+			else
+				{
+				trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+				}
 			}
 		}
 	}
@@ -109,7 +116,9 @@ function jomresValidateUrl($url)
 	
 function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/') 
 	{
-	global $jomresConfig_live_site,$ePointFilepath,$jrConfig;
+	global $jomresConfig_live_site,$ePointFilepath;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$link = jomresURL($link);
 	$link = jomresValidateUrl($link);
 	
@@ -161,7 +170,9 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 
 function getIntegratedSearchModuleVals()
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$vals = array();
 	$vals['useCols']				= $jrConfig['integratedSearch_useCols'] ;
 	$vals['featurecols']			= $jrConfig['integratedSearch_featurecols'] ;
@@ -599,7 +610,10 @@ Allows us to work independantly of Joomla or Mambo's emailers
 
 function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode=0)
 	{
-	global $jrConfig,$jomresConfig_smtpauth,$jomresConfig_smtphost,$jomresConfig_smtppass,$jomresConfig_smtpuser,$jomresConfig_mailer,$jomresConfig_debug;
+	global $jomresConfig_smtpauth,$jomresConfig_smtphost,$jomresConfig_smtppass,$jomresConfig_smtpuser,$jomresConfig_mailer,$jomresConfig_debug;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$emails=array();
 	if (isset($jrConfig['useJomresEmailCheck']) && $jrConfig['useJomresEmailCheck']=="1")
 		{
@@ -728,7 +742,6 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 */
 function jomres_check_email_address($email)
 	{
-	//global $jrConfig;
 
 	// Are we on windows? If so we can try to give our win user their own checkndsrr function. The exec might cause problems depending on how wamp/xamp/jsas is set up, but there's no harm in trying
 	// http://uk2.php.net/manual/en/function.checkdnsrr.php#75158
@@ -1080,7 +1093,9 @@ function recordError($errno, $errstr, $errfile, $errline, $errcontext)
  */
 function error_logging($message,$emailMessage=true)
 	{
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$logfile=JOMRES_SYSTEMLOG_PATH.'jomres_error_log.xml';
 
 	$log = "<![CDATA[".$message . "]]>";
@@ -1222,8 +1237,10 @@ function writexml($logfile,$rootelement,$entry,$newlines)
  */
 function jomresRedirect( $url, $msg='' )
 	{
-	global $mainframe,$jrConfig;
-
+	global $mainframe;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$url=str_replace("&amp;","&",$url);
 
 	if ($jrConfig['errorChecking']!="1")
@@ -1673,7 +1690,10 @@ function userHasBeenLoggedOut() {
 */
 function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$jrc=FALSE)
 	{
-	global $jrConfig,$jomresConfig_live_site,$jomresConfig_lang;
+	global $jomresConfig_live_site,$jomresConfig_lang;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	// We need to give the javascript date function a randon name because it will be called by both the component and modules
 	$javascriptFunctionName="";
 	list($usec,$sec)=explode(" ",microtime());
@@ -1946,7 +1966,10 @@ function outputDate($thedate)
 */
 function JSCalmakeInputDates($inputDate,$siteCal=FALSE)
 	{
-	global $mrConfig,$jrConfig;
+	global $mrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	// Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
 	// m d y. Probably unneccesary, but we'll do it anyway, to be on the safe side.
 	$date_elements	= explode("/",$inputDate);
@@ -1992,8 +2015,10 @@ function JSCalmakeInputDates($inputDate,$siteCal=FALSE)
 function JSCalConvertInputDates($inputDate,$siteCal=FALSE)
 	{
 	// Lets convert the input calendar dates to Y/m/d
-	global $mrConfig,$jrConfig;
-
+	global $mrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$dateFormat=$jrConfig['cal_input'];
 	switch ($dateFormat)
 		{
@@ -2690,7 +2715,6 @@ function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = 
 */
 function uploadPropertyImage()
 	{
-	global $jrConfig,$Itemid;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
 	$saveMessage=_JOMRES_FILE_UPDATED;
@@ -2726,7 +2750,6 @@ function uploadPropertyImage()
 
 function uploadRoomImage()
 	{
-	global $Itemid,$jrConfig;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
 	$saveMessage=_JOMRES_FILE_UPDATED;
@@ -2776,7 +2799,9 @@ function uploadRoomImage()
 */
 function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	{
-	global $jrConfig,$thisJRUser;
+	global $thisJRUser;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	
 	$elementsToRemove=array(" ","\\","'",);
 	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
@@ -3022,7 +3047,10 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 */
 function getPropertySpecificSettings($property_uid)
 	{
-	global $mrConfig,$jrConfig;
+	global $mrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	if (!isset($mrConfig) )
 		$mrConfig = array();
 	$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = 0";
@@ -3071,8 +3099,11 @@ function getPropertySpecificSettings($property_uid)
 */
 function registerProp_step1()
 	{
-	global $jomresConfig_live_site,$thisJRUser,$Itemid,$jrConfig;
-		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
+	global $jomresConfig_live_site,$thisJRUser;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
+	if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
 		return;
 	$propertyRegion[]=array("AF","");
 	if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))
@@ -3104,7 +3135,10 @@ function registerProp_step1()
 */
 function registerProp_step2()
 	{
-	global $jomresConfig_live_site,$thisJRUser,$Itemid,$jrConfig,$mrConfig;
+	global $jomresConfig_live_site,$thisJRUser,$mrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
 		return;
 
@@ -3114,7 +3148,6 @@ function registerProp_step2()
 	$property_country				= jomresGetParam( $_POST, 'country', "" );
 
 	$propertyFeatures="";
-
 
 	// make a standard yes/no list
 	$yesno = array();
@@ -3221,7 +3254,10 @@ function registerProp_step2()
 */
 function saveRegisterProp()
 	{
-	global $my,$thisJRUser,$jrConfig;
+	global $my,$thisJRUser;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	

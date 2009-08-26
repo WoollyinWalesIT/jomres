@@ -43,7 +43,9 @@ class j06000paypal {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$jomressession,$Itemid,$jomresConfig_sitename,$Itemid,$jrConfig;
+		global $jomresConfig_live_site,$jomressession,$Itemid,$jomresConfig_sitename,$Itemid;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		gateway_log(serialize($bookingdata));

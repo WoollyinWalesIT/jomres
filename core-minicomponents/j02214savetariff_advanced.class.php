@@ -43,7 +43,7 @@ class j02214savetariff_advanced {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $tariffUid,$mrConfig,$jrConfig;
+		global $tariffUid,$mrConfig;
 		if ( $mrConfig['tariffmode']=="2")
 			$MiniComponents->triggerEvent('02215'); //
 		else

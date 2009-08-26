@@ -93,7 +93,8 @@ else
 function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	{
 	global $jomresAdminPath,$jomresConfig_live_site,$mrConfig,$jomresConfig_lang,$thisJRUser,$Itemid,$jomresConfig_absolute_path;
-	global $jrConfig;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	

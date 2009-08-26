@@ -43,7 +43,9 @@ class j01025showtariffs {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $property_uid,$mrConfig,$jomresConfig_live_site,$ePointFilepath,$jrConfig;
+		global $property_uid,$mrConfig,$jomresConfig_live_site,$ePointFilepath;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		$pop=jomresGetParam( $_REQUEST, 'popup', '0' );
 		

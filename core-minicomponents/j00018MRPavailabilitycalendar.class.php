@@ -43,7 +43,9 @@ class  j00018MRPavailabilitycalendar {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$noshowroom,$jrConfig;
+		global $mrConfig,$noshowroom;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$this->retVals="";
 		$this->pop=jomresGetParam( $_REQUEST, 'popup', 0 );
 		if ($this->pop==1)
@@ -191,7 +193,9 @@ class  j00018MRPavailabilitycalendar {
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
 		global $mrConfig,$jomresConfig_locale;
-		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset,$jrConfig;
+		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$userIsManager=checkUserIsManager();
 		setlocale(LC_ALL, $jomresConfig_locale);
 

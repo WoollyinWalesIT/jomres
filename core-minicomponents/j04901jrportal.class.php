@@ -32,7 +32,8 @@ class j04901jrportal {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$defaultCrate=$jrConfig['defaultCrate'];
 		$property_uid			= $componentArgs['property_uid'];
 

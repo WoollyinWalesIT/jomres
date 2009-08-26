@@ -43,7 +43,9 @@ class j02212edittariff_advanced {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $clone,$mrConfig,$jrConfig;
+		global $clone,$mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if ( $mrConfig['tariffmode']=="2")
 			$MiniComponents->triggerEvent('02213'); //
 		else

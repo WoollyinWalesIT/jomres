@@ -43,7 +43,9 @@ class j06000remoteavailability {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $property_uid,$mrConfig,$jrConfig;
+		global $property_uid,$mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$property_uid = intval( jomresGetParam( $_GET, 'id', 0 ) );
 		$_REQUEST['popup']=0; // Normally, if a popup is set to true (1) then the j00017availabilitycalendar.class.php minicomp will show the property header. We don't want this to happen in this instance so we will reset popup to 0, now that we're not using it again.
 		if ($property_uid > 0)

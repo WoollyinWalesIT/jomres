@@ -42,7 +42,9 @@ class jomres_toolbar
 		$this->livesite=$jomresConfig_live_site;
 		$this->standardActivityImages=$this->getStandardActivityImagesArray();
 		$this->menubarImagesArray = $this->getMenubarImagesArray();
-		$this->imageSize=$mrConfig['editiconsize'];
+		$this->imageSize="small";
+		if (isset($mrConfig['editiconsize']))
+			$this->imageSize=$mrConfig['editiconsize'];
 		$this->imageExtension='png';
 		}
 

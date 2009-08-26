@@ -56,7 +56,8 @@ class dobooking
 	 */
 	function dobooking()
 		{
-		global $jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		
 		$this->jrConfig					= $jrConfig; // Importing the site config settings
 		$this->requestedRoom			= array();
@@ -253,40 +254,38 @@ class dobooking
 		$this->cfg_singlePersonSupplimentCost				= $mrConfig['singlePersonSupplimentCost'];
 		$this->cfg_perPersonPerNight						= $mrConfig['perPersonPerNight'];
 		$this->cfg_depositIsPercentage						= $mrConfig['depositIsPercentage'];
-		$this->cfg_depositValue							= $mrConfig['depositValue'];
+		$this->cfg_depositValue								= $mrConfig['depositValue'];
 		$this->cfg_visitorscanbookonline					= $mrConfig['visitorscanbookonline'];
 		$this->cfg_fixedPeriodBookings						= $mrConfig['fixedPeriodBookings'];
 		$this->cfg_fixedPeriodBookingsNumberOfDays			= $mrConfig['fixedPeriodBookingsNumberOfDays'];
-		$this->cfg_numberofFixedPeriods					= $mrConfig['numberofFixedPeriods'];
+		$this->cfg_numberofFixedPeriods						= $mrConfig['numberofFixedPeriods'];
 		$this->cfg_fixedArrivalDateYesNo					= $mrConfig['fixedArrivalDateYesNo'];
 		$this->cfg_fixedArrivalDay							= $mrConfig['fixedArrivalDay'];
 		$this->cfg_fixedPeriodBookingsShortYesNo			= $mrConfig['fixedPeriodBookingsShortYesNo'];
-		$this->cfg_fixedPeriodBookingsShortNumberOfDays	= $mrConfig['fixedPeriodBookingsShortNumberOfDays'];
+		$this->cfg_fixedPeriodBookingsShortNumberOfDays		= $mrConfig['fixedPeriodBookingsShortNumberOfDays'];
 		$this->cfg_singleRoomProperty						= $mrConfig['singleRoomProperty'];
 		$this->cfg_cal_output								= $mrConfig['cal_output'];
-		// Part of frontend jscal configuration switch off for v3.2
-		//$this->cfg_cal_input								= $mrConfig['cal_input'];
 		$this->cfg_cal_input								= $jrConfig['cal_input'];
-		//$this->cfg_showExtras								= $mrConfig['showExtras'];
-		$this->cfg_defaultSmokingOption					= $mrConfig['defaultSmokingOption'];
-		$this->cfg_currency								= $mrConfig['currency'];
-		$this->cfg_currencyCode							= $mrConfig['currencyCode'];
-		$this->cfg_templatePack							= "basic";
+		//$this->cfg_showExtras									= $mrConfig['showExtras'];
+		$this->cfg_defaultSmokingOption						= $mrConfig['defaultSmokingOption'];
+		$this->cfg_currency									= $mrConfig['currency'];
+		$this->cfg_currencyCode								= $mrConfig['currencyCode'];
+		$this->cfg_templatePack								= "basic";
 		$this->cfg_showSmoking								= $mrConfig['showSmoking'];
 		$this->cfg_limitAdvanceBookingsYesNo				= $mrConfig['limitAdvanceBookingsYesNo'];
-		$this->cfg_advanceBookingsLimit					= $mrConfig['advanceBookingsLimit'];
-		$this->cfg_roomTaxYesNo							= $mrConfig['roomTaxYesNo'];
-		$this->cfg_roomTaxFixed							= $mrConfig['roomTaxFixed'];
+		$this->cfg_advanceBookingsLimit						= $mrConfig['advanceBookingsLimit'];
+		$this->cfg_roomTaxYesNo								= $mrConfig['roomTaxYesNo'];
+		$this->cfg_roomTaxFixed								= $mrConfig['roomTaxFixed'];
 		$this->cfg_roomTaxPercentage						= $mrConfig['roomTaxPercentage'];
-		$this->cfg_euroTaxYesNo							= $mrConfig['euroTaxYesNo'];
+		$this->cfg_euroTaxYesNo								= $mrConfig['euroTaxYesNo'];
 		$this->cfg_euroTaxPercentage						= $mrConfig['euroTaxPercentage'];
 		$this->cfg_depAmount								= $mrConfig['depAmount'];
-		$this->cfg_useOnlinepayment						= $mrConfig['useOnlinepayment'];
+		$this->cfg_useOnlinepayment							= $mrConfig['useOnlinepayment'];
 		$this->cfg_popupsAllowed							= $mrConfig['popupsAllowed'];
 		$this->cfg_showdepartureinput						= $mrConfig['showdepartureinput'];
 		$this->cfg_ratemultiplier							= $mrConfig['ratemultiplier'];
 		$this->cfg_dateFormatStyle							= $mrConfig['dateFormatStyle'];
-		//$this->cfg_inputBoxErrorBorder						= $mrConfig['inputBoxErrorBorder'];
+		//$this->cfg_inputBoxErrorBorder								= $mrConfig['inputBoxErrorBorder'];
 		$this->cfg_inputBoxErrorBackground					= $mrConfig['inputBoxErrorBackground'];
 		$this->cfg_defaultcountry							= $mrConfig['defaultcountry'];
 		//if ($this->booker_class == "100")
@@ -347,7 +346,7 @@ class dobooking
 		$this->cfg_bookingform_requiredfields_country		= $mrConfig['bookingform_requiredfields_country'];
 		$this->cfg_bookingform_requiredfields_tel			= $mrConfig['bookingform_requiredfields_tel'];
 		$this->cfg_bookingform_requiredfields_mobile		= $mrConfig['bookingform_requiredfields_mobile'];
-		$this->cfg_bookingform_requiredfields_email		= $mrConfig['bookingform_requiredfields_email'];
+		$this->cfg_bookingform_requiredfields_email			= $mrConfig['bookingform_requiredfields_email'];
 
 		if (is_null($this->smoking) || strlen($this->smoking) == 0)
 			$this->smoking					= $this->cfg_defaultSmokingOption;

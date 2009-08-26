@@ -43,7 +43,9 @@ class j00501propertydetailsoptions {
 			$this->template_touchable=false; return;
 			}
 		global $cssStyle;
-		global $configurationPanel,$jrConfig,$thisJRUser;
+		global $configurationPanel,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$mrConfig=$componentArgs['mrConfig'];
 		$lists=$componentArgs['lists'];
 		$configurationPanel->startPanel(_JOMRES_PATHWAY_PROPERTYDETAILS);

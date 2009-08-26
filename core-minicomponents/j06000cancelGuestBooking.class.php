@@ -36,7 +36,7 @@ class j06000cancelGuestBooking {
 	 */
 	function j06000cancelGuestBooking()
 		{
-		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
+		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$mrConfig,$jomresConfig_live_site;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)

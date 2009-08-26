@@ -44,7 +44,8 @@ class j01050x_geocoder {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
 		$output=array();
 		$pageoutput=array();

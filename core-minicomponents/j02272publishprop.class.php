@@ -44,7 +44,9 @@ class j02272publishprop {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jrConfig;
+		global $thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		jr_import('jomres_cache');

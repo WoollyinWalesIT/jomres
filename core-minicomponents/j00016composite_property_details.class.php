@@ -43,8 +43,9 @@ class j00016composite_property_details {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$jrConfig;
-		
+		global $mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];  
 		
 		$componentArgs['property_uid']=$property_uid;

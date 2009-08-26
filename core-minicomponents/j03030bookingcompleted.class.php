@@ -43,7 +43,9 @@ class j03030bookingcompleted {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$mrConfig,$jrConfig;
+		global $jomresConfig_live_site,$mrConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 

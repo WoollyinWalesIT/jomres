@@ -43,7 +43,9 @@ class j00501editingmode {
 			$this->template_touchable=false; return;
 			}
 		global $cssStyle;
-		global $configurationPanel,$jrConfig,$thisJRUser;
+		global $configurationPanel,$thisJRUser;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
 			$lists=$componentArgs['lists'];
