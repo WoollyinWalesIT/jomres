@@ -37,7 +37,7 @@ class j16000sms_clickatell_settings {
 	function j16000sms_clickatell_settings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -46,6 +46,7 @@ class j16000sms_clickatell_settings {
 		$output=array();
 		$pageoutput=array();
 
+		jr_import('jrportal_sms_clickatell_settings');
 		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();
 		$sms_clickatell_settings->get_sms_clickatell_settings();
 		
@@ -68,7 +69,7 @@ class j16000sms_clickatell_settings {
 		$output['API_ID'] 	= $sms_clickatell_settings->sms_clickatellConfigOptions['api_id'];
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_sms_clickatell_settings');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL_ADMIN),'');

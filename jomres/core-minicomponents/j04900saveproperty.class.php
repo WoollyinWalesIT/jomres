@@ -39,7 +39,7 @@ class j04900saveproperty {
 	function j04900saveproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -48,6 +48,7 @@ class j04900saveproperty {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$this->newpropertyId	= 0;
 		$propertyUid  = intval( jomresGetParam( $_POST, 'property_uid', 0 ) );
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($propertyUid);
 		if ($propertyUid > 0 && !in_array($propertyUid,$jrConfig->authorisedProperties) )
@@ -115,7 +116,7 @@ class j04900saveproperty {
 			{
 			$apikey=createNewAPIKey();
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT,FALSE);
-			$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$query="INSERT INTO #__jomres_propertys (`property_name`,`property_street`,`property_town`,
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
@@ -198,7 +199,8 @@ class j04900saveproperty {
 				$apiclause="`apikey`='".$apikey."',";
 				}
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE,FALSE);
-			$jomres_messaging = new jomres_messages();
+			
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			
 			$query="UPDATE #__jomres_propertys SET

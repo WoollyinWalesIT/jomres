@@ -27,7 +27,7 @@ class j06000immediatepay
 	function j06000immediatepay()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -45,11 +45,12 @@ class j06000immediatepay
 			trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
 			}
 
+		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
 		$invoice->id=$invoice_id;
 		$invoice->getInvoice();
 
-		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings=$paypal_settings->paypalConfigOptions;
 

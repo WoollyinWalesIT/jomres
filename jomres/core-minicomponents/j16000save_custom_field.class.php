@@ -26,7 +26,7 @@ class j16000save_custom_field {
 	function j16000save_custom_field()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -41,6 +41,7 @@ class j16000save_custom_field {
 
 		$fieldname=ereg_replace("[^A-Za-z0-9]", "", $fieldname);
 		
+		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
 

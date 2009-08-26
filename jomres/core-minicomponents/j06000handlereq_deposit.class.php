@@ -32,17 +32,16 @@ class j06000handlereq_deposit
 	function j06000handlereq_deposit()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomressession,$property_uid,$tmpBookingHandler;
-		
+		global $jomressession,$property_uid;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$inputName						= "overdeposit";
 
 		// A la handlereq, we'll create a new jomres booking object
-		$MiniComponents 				= new mcHandler();
 		$bkg 							= $MiniComponents->triggerEvent('05000'); // Create the new booking object
 		
 		// Now we can do stuff to the booking parameters. 

@@ -38,7 +38,7 @@ class j02214savetariff_advanced {
 	function j02214savetariff_advanced()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -50,6 +50,7 @@ class j02214savetariff_advanced {
 			{
 			if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 			$defaultProperty=getDefaultProperty();
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
 			$tariffUid         = intval( jomresGetParam( $_POST, 'tariffUid', 0 ) );
@@ -86,7 +87,7 @@ class j02214savetariff_advanced {
 			if ($tariffUid=="")
 				{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_SAVE_INSERT',_JOMRES_COM_MR_LISTTARIFF_SAVE_INSERT,FALSE);
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				$query="INSERT INTO #__jomres_rates (
 					`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,
@@ -104,7 +105,7 @@ class j02214savetariff_advanced {
 			else
 				{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_SAVE_UPDATE',_JOMRES_COM_MR_LISTTARIFF_SAVE_UPDATE,FALSE);
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				$query="UPDATE #__jomres_rates SET 
 					`rate_title`='$rate_title',

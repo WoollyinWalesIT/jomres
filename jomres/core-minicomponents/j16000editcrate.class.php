@@ -28,7 +28,7 @@ class j16000editcrate
 	function j16000editcrate()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -42,11 +42,13 @@ class j16000editcrate
 		$output['HVALUE']=_JRPORTAL_CRATE_VALUE;
 		$output['HCURRENCYCODE']=_JRPORTAL_CRATE_CURRENCYCODE;
 
+		jr_import('jrportal_crate');
 		$crateObj=new jrportal_crate();
 		$crateObj->id=$id;
 		if ($id>0)
 			$crateObj->getCrate();
 
+		jr_import('crateTypes');
 		$crateType = new crateTypes();
 		$crateType->id=$crateObj->type;
 		$output['ID']=$crateObj->id;
@@ -55,12 +57,13 @@ class j16000editcrate
 		$dd=$crateType->makeCrateTypeDropdown();
 		$output['TYPE']=$dd;
 		$output['VALUE']=$crateObj->value;
+		jr_import('currency_codes');
 		$currency_codes = new currency_codes();
 		$currency_codes->id=$crateObj->currencycode;
 		$dd=$currency_codes->makeCodesDropdown();
 		$output['CURRENCYCODE']=$dd;
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

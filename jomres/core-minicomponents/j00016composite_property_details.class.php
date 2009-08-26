@@ -38,7 +38,7 @@ class j00016composite_property_details {
 	function j00016composite_property_details($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -156,6 +156,7 @@ class j00016composite_property_details {
 
 		$cachableContent = $tmpl->getParsedTemplate();
 		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+		jr_import('jomres_cache');
 		$cache = new jomres_cache($task,$property_uid,false);
 		$cache->setCache($cachableContent);
 		unset($cache);

@@ -38,13 +38,14 @@ class j00605paypal {
 	function j00605paypal($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 
-		global $jomresConfig_live_site,$jomressession,$jomresConfig_sitename,$jrConfig,$tmpBookingHandler;
+		global $jomresConfig_live_site,$jomressession,$jomresConfig_sitename,$jrConfig;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		gateway_log(serialize($bookingdata));
 		$bookingdata=$componentArgs['bookingdata'];
@@ -61,7 +62,7 @@ class j00605paypal {
 			$settingArray['currencycode']=$jrConfig['globalCurrencyCode'];
 			}
 			
-		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		
 		if ($paypal_settings->paypalConfigOptions['override'] == "1")

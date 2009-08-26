@@ -26,17 +26,19 @@ class j16000addproperty
 	function j16000addproperty()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 
 		global $indexphp,$jomresConfig_live_site,$jrportalConfig;
+		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
 		$crateFunctions->getAllUnarchivedCrates();
 		$output['DEFAULTCREATE'] = _JRPORTAL_CONFIG_DEFAULT_CRATE;
 		$output['CRATE_DROPDOWN']=$crateFunctions->makeCrateDropdown($jrportalConfig['defaultCrate'],$idx=$p['id']);
+		jr_import('jrportal_user_functions');
 		$userFunctions=new jrportal_user_functions();
 		$output['HMANAGER'] = _JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN;
 		$output['MANAGER_DROPDOWN']=$userFunctions->makeManagersDropdown();
@@ -61,7 +63,8 @@ class j16000addproperty
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
 
-		$jrtbar = new jomres_toolbar();
+		
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/next.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

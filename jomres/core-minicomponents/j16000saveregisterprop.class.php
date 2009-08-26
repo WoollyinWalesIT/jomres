@@ -27,7 +27,7 @@ class j16000saveregisterprop
 	function j16000saveregisterprop()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -158,6 +158,7 @@ class j16000saveregisterprop
 		$property->crate_id=$crate;
 		$property->commitNewProperty();
 
+		jr_import('jrportal_user');
 		$userObj= new jrportal_user();
 		$userObj->id=$userid;
 		$userObj->getJUser();

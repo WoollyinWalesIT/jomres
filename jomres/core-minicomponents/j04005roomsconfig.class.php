@@ -38,7 +38,7 @@ class j04005roomsconfig {
 	function j04005roomsconfig($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -114,7 +114,7 @@ class j04005roomsconfig {
 			}
 
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_normalmode_tariffs');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');
@@ -226,7 +226,7 @@ class j04005roomsconfig {
 			$property_image=getImageForProperty("property",$property->propertys_uid,$property->propertys_uid);
 
 			$propertyRowInfo .="<tr>";
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&amp;propertyUid=".$property->propertys_uid),'');
 			if (!$published)
@@ -258,11 +258,12 @@ class j04005roomsconfig {
 			$propertyRowInfo .='<tr><td class=\"jradmin_subheader_la\" colspan=\"6\">APIKEY: <input type="text" size="50" class="inputbox" name="apikey'.$id.'" value="'.$property->apikey.'" READONLY onclick="select_all(this)"/></td></tr>';
 			}
 
-		global $mrConfig,$thisJRUser,$jrConfig,$MiniComponents;
+		global $mrConfig,$thisJRUser,$jrConfig;
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
 		echo jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE);
-		$contentPanel = new jomres_contentTabs();
+		jr_import('jomres_content_tabs');
+		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM',_JOMRES_COM_MR_VRCT_TAB_ROOM,FALSE));
 		$contentPanel->setcontent($tariffRoomOutput);

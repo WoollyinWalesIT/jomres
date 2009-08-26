@@ -37,10 +37,13 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$jrConfig,$MiniComponents,$mainframe,$customTextArray;
-		global $thisJomresPropertyDetails,$customTextObj,$tmpBookingHandler;
-		global $MiniComponents;
-
+		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$jrConfig,$mainframe,$customTextArray;
+		global $thisJomresPropertyDetails;
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		
+		$customTextObj =jomres_getSingleton('custom_text');
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;

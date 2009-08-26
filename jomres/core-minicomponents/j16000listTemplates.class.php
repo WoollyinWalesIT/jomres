@@ -27,7 +27,7 @@ class j16000listTemplates
 	function j16000listTemplates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -45,8 +45,9 @@ class j16000listTemplates
 		$output['HLAST_WARNINGICON']=_JOMRES_LASTEDITED_WARNINGICON;
 		$output['EDITWARNINGNOTE']=_JOMRES_LASTEDITED_WARNING;
 		
+		jr_import('jomres_custom_template_handler');
 		$custom_templates = new jomres_custom_template_handler();
-		
+
 		$frontendTemplatesFolder=JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend";
 		$d = @dir($frontendTemplatesFolder);
 		$docs = array();
@@ -102,7 +103,7 @@ class j16000listTemplates
 				}
 			}
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->spacer();

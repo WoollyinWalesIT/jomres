@@ -32,6 +32,7 @@ class j06000cronjobs
 		$secret = jomresGetParam($_REQUEST,"secret","");
 		if ($secret == $jomresConfig_secret)
 			{
+			jr_import('jomres_cron');
 			$cron = new jomres_cron();
 			if ($cron->method == "Cron")
 				{

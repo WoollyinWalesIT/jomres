@@ -39,7 +39,7 @@ class j02202savedeposit {
 	function j02202savedeposit()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -47,6 +47,7 @@ class j02202savedeposit {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
 		$contractUid        = intval(jomresGetParam( $_POST, 'contractUid', 0 ) );
@@ -54,7 +55,7 @@ class j02202savedeposit {
 		if ($contractUid>0)
 			{
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE',_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE,FALSE);
-			$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$query="UPDATE #__jomres_contracts SET `deposit_paid`='1',`deposit_ref`='$depositRef' WHERE contract_uid='".(int)$contractUid."' AND property_uid = '".(int)$defaultProperty."'";
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT',_JOMRES_MR_AUDIT_ENTEREDDEPOSIT,FALSE))) trigger_error ("Unable to update deposit entry, mysql db failure", E_USER_ERROR);

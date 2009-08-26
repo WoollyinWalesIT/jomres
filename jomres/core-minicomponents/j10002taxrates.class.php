@@ -27,12 +27,12 @@ class j10002taxrates
 	function j10002taxrates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs;
+		$htmlFuncs =jomres_getSingleton('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates', 'Taxes.png', _JRPORTAL_TAXRATES_TITLE);
 		}
 	

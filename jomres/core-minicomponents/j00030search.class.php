@@ -37,16 +37,16 @@ class j00030search {
 	 */
 	function j00030search($componentArgs)
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		global $jomresConfig_live_site,$jomresConfig_lang,$jrConfig;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
-		global $customTextObj,$jomresItemid;
+		global $jomresItemid;
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
-		
+		$customTextObj =jomres_getSingleton('custom_text');
 		
 		$jrConfig=getSiteSettings();
 		unset ($sch);
@@ -69,7 +69,7 @@ class j00030search {
 		
 		
 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 
 		if (isset($componentArgs['doSearch']) )
 			$doSearch=$componentArgs['doSearch'];
@@ -85,14 +85,17 @@ class j00030search {
 		else
 			{
 			//$customTextObj = new custom_text();
-			global $jomressession,$tmpBookingHandler;
-			$tmpBookingHandler = new jomres_temp_booking_handler();
+			global $jomressession;
+			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+			//$tmpBookingHandler = new jomres_temp_booking_handler();
 			$tmpBookingHandler->initBookingSession($jomressession);
 			$jomressession  = $tmpBookingHandler->getJomressession();
 			$showSearchOptions=true;
-			$jomreslang= new jomres_language();
+			$jomreslang =jomres_getSingleton('jomres_language');
+			//$jomreslang= new jomres_language();
 			$jomreslang->get_language('xx');
-			$customTextObj = new custom_text();
+			$customTextObj =jomres_getSingleton('custom_text');
+			//$customTextObj = new custom_text();
 			}
 			
 		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
@@ -134,6 +137,7 @@ class j00030search {
 			$pageoutput=array();
 			$showButton=false;
 			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
+			
 			$sch = new jomSearch($calledByModule);
 			$sch->searchAll=$searchAll;
 			$searchOptions=$sch->searchOptions;

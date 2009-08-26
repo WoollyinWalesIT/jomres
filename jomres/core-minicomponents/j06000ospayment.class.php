@@ -26,12 +26,13 @@ class j06000ospayment {
 	function j06000ospayment()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		global $ePointFilepath;
+		jr_import('jomres_gateway_handler');
 		$transaction = new jomres_gateway_handler();
 		$transaction->callback();
 		

@@ -38,7 +38,7 @@ class j02260editbooking {
 	function j02260editbooking()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -104,7 +104,7 @@ class j02260editbooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures,$bookersUsername)
 			{
-			global $MiniComponents;
+			$MiniComponents =jomres_getSingleton('mcHandler');
 			global $mrConfig,$jomresConfig_live_site,$popup,$thisJRUser;
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")
@@ -253,7 +253,7 @@ class j02260editbooking {
 
 		if ($thisJRUser->userIsManager)
 			{
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			if (!$popup)
 				{
@@ -318,7 +318,8 @@ class j02260editbooking {
 			</table>';
 			}
 
-		$contentPanel = new jomres_contentTabs();
+		jr_import('jomres_content_tabs');
+		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL',_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL,FALSE));
 		$contentPanel->setcontent('<table>

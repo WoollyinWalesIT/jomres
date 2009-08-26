@@ -38,7 +38,7 @@ class j04910deleteproperty {
 	function j04910deleteproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -49,6 +49,7 @@ class j04910deleteproperty {
 		if ($sure)
 			{
 			$property_uid=(int)getDefaultProperty();
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($property_uid);
 			if (in_array($property_uid,$thisJRUser->authorisedProperties) && !JOMRES_SINGLEPROPERTY)
@@ -91,7 +92,7 @@ class j04910deleteproperty {
 				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_PROPERTY',_JOMRES_MR_AUDIT_DELETE_PROPERTY,FALSE)))
 					{
 					$resetProperty = $thisJRUser->check_currentproperty();
-					$jomres_messaging = new jomres_messages();
+					$jomres_messaging =jomres_getSingleton('jomres_messages');
 					$jomres_messaging->set_message($saveMessage);
 					
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&thisProperty=".$resetProperty, '' ));

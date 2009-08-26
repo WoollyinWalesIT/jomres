@@ -27,12 +27,12 @@ class j10002stats
 	function j10002stats()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs,$indexphp;
+		$htmlFuncs =jomres_getSingleton('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showstats', 'ChartBarTrend.png', _JRPORTAL_STATS_PATETITLE);
 		}
 	

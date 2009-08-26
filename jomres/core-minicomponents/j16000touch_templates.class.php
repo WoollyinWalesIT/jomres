@@ -26,12 +26,12 @@ class j16000touch_templates
 	{
 	function j16000touch_templates()
 		{
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $MiniComponents,$thisJRUser,$jomresConfig_live_site,$jomresConfig_lang;
+		global $thisJRUser,$jomresConfig_live_site,$jomresConfig_lang;
 		
 		echo "<br/>Current lang ".$jomresConfig_lang."<br/>";
 		

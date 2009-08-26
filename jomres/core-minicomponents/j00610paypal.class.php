@@ -38,12 +38,13 @@ class j00610paypal {
 	function j00610paypal()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		global $property_uid,$jomressession,$tmpBookingHandler;
+		global $property_uid,$jomressession;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		$plugin='paypal';
 		// Email stuff
@@ -67,7 +68,7 @@ class j00610paypal {
 			}
 		$this->messagelog 	= array();
 		
-		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		
 		if ($paypal_settings->paypalConfigOptions['override'] == "1")

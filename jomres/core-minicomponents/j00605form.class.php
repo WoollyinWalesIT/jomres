@@ -38,12 +38,13 @@ class j00605form {
 	function j00605form($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$tmpBookingHandler;
+		global $jomresConfig_live_site;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$validCCtypes=array('AMEX','Discover','MasterCard','Visa');
 		$bookingdata=$componentArgs['bookingdata'];
 		$plugin="form";

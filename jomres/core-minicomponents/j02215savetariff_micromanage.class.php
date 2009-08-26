@@ -38,13 +38,14 @@ class j02215savetariff_micromanage {
 	function j02215savetariff_micromanage()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
 		$tariffinput		= $_POST['tariffinput'];
@@ -175,7 +176,7 @@ class j02215savetariff_micromanage {
 				$newRateStr.=",";
 			$counter++;
 			}
-		$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE));
 		$query="INSERT INTO #__jomcomp_tarifftype_rate_xref (`tarifftype_id`,`tariff_id`,`roomclass_uid`,`property_uid`) VALUES".$newRateStr;
 		if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE))) returnToPropertyConfig($saveMessage);

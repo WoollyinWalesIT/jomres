@@ -27,12 +27,11 @@ class j16000add_adhoc_item_to_bill
 	function j16000add_adhoc_item_to_bill()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs,$indexphp;
 		$step=intval(jomresGetParam($_POST,"step",1));
 		$output=array();
 
@@ -41,7 +40,9 @@ class j16000add_adhoc_item_to_bill
 			case "2": // Now we can choose the property and put in the value of the item
 
 				$userid=jomresGetParam($_POST,"userid",0);
+				jr_import('jrportal_property_functions');
 				$propertyFunctions=new jrportal_property_functions();
+				jr_import('jrportal_user_functions');
 				$userFunctions=new jrportal_user_functions();
 				$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 				$manager=$userFunctions->getJoomlaUserDetailsForJoomlaId($userid);
@@ -52,7 +53,7 @@ class j16000add_adhoc_item_to_bill
 				$output['VALUE']=_JRPORTAL_ADD_ADHOC_ITEM_VALUE;
 				$output['DESCRIPTION']=_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION;
 
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 				$link = JOMRES_SITEPAGE_URL_ADMIN;
@@ -95,10 +96,11 @@ class j16000add_adhoc_item_to_bill
 					echo _JRPORTAL_ADD_ADHOC_ITEM_NOVALUE;
 			break;
 			default:  // First let's get the manager's id
+				jr_import('jrportal_user_functions');
 				$userFunctions=new jrportal_user_functions();
 				$output['MANAGER_DROPDOWN']=$userFunctions->makeManagersDropdown();
 				$output['MANAGER']=_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEMANAGER;
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$image = $jrtbar->makeImageValid("/jomres/images/next.png");
 				$link = JOMRES_SITEPAGE_URL_ADMIN;

@@ -26,7 +26,7 @@ class j16000save_invoice {
 	function j16000save_invoice()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -62,6 +62,7 @@ class j16000save_invoice {
 				);
 			}
 		
+		jr_import('invoicehandler');
 		$invoice_handler = new invoicehandler();
 		$invoice_handler->id=$id;
 		$invoice_handler->getInvoice();
@@ -69,6 +70,7 @@ class j16000save_invoice {
 		
 		if ($invoice_handler->subscription)
 			{
+			jr_import('jrportal_subscriptions');
 			$subscription = new jrportal_subscriptions();
 			$subscription->id= $invoice_handler->subscription_id;
 			$subscription->getSubscription();

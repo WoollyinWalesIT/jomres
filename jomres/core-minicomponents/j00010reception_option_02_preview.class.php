@@ -38,12 +38,11 @@ class j00010reception_option_02_preview {
 	function j00010reception_option_02_preview($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $htmlFuncs;
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=preview", 'Preview.png', jr_gettext('_JOMRES_FRONT_PREVIEW',_JOMRES_FRONT_PREVIEW,false,false));
 		}
 	

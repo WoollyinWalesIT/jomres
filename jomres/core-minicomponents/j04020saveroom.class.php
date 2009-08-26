@@ -38,7 +38,7 @@ class j04020saveroom {
 	function j04020saveroom($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -50,6 +50,7 @@ class j04020saveroom {
 		
 		if ($mrConfig['singleRoomProperty'] == "0")
 			{
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
 			$roomUid         = intval( jomresGetParam( $_POST, 'roomUid', 0 ) );
@@ -71,7 +72,7 @@ class j04020saveroom {
 			if ($roomUid == 0)
 				{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT',_JOMRES_COM_MR_VRCT_ROOM_SAVE_INSERT,FALSE);
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				$query="INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`room_features_uid`,`room_name`,`room_number`,`room_floor`,`room_disabled_access`,`max_people`,`smoking`,`singleperson_suppliment`)VALUES ('".(int)$roomClasses."',".(int)$defaultProperty.",'$featuresList','$room_name','$room_number','$room_floor','".(int)$disabledAccess."','".(int)$max_people."','".(int)$smoking."','".$singleperson_suppliment."')";
 				if (doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM)) returnToPropertyConfig($saveMessage);
@@ -80,7 +81,7 @@ class j04020saveroom {
 			else
 				{
 				$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE',_JOMRES_COM_MR_VRCT_ROOM_SAVE_UPDATE,FALSE);
-				$jomres_messaging = new jomres_messages();
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				$query="UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClasses',`room_features_uid`='$featuresList',`room_name`='$room_name',`room_number`='$room_number',`room_floor`='$room_floor',`room_disabled_access`='".(int)$disabledAccess."',`max_people`='".(int)$max_people."',`smoking`='".(int)$smoking."',`singleperson_suppliment`='".(float)$singleperson_suppliment."' WHERE room_uid='".(int)$roomUid."' AND propertys_uid='".(int)$defaultProperty."'";
 				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_ROOM',_JOMRES_MR_AUDIT_UPDATE_ROOM,FALSE))) returnToPropertyConfig($saveMessage);

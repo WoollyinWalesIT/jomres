@@ -38,7 +38,7 @@ class j02252archiveaudit {
 	function j02252archiveaudit()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -68,7 +68,7 @@ class j02252archiveaudit {
 			$counter++;
 			}
 		jomres_audit(jr_gettext('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT',_JOMRES_MR_AUDIT_ARCHIVED_AUDIT,FALSE),$counter.$saveMessage);
-		$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging->set_message($counter.$saveMessage);
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=showAuditTrail"), $saveMessage );
 		}

@@ -18,6 +18,8 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 ################################################################
 */
 
+jr_import('jomres_xml_parser');
+
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
@@ -27,7 +29,7 @@ class j16000showLog
 	function j16000showLog()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -86,8 +88,9 @@ class j16000showLog
 					{
 					$xml.=$data;
 					}
-						
-				$p = new jomresXMLParser($xml);
+					
+				jr_import('jomres_xml_parser');
+				$p = new jomres_xml_parser($xml);
 				$result=$p->getOutput($xml);
 				$counter=0;
 				foreach ($result[$xml_root_key] as $res)
@@ -103,7 +106,7 @@ class j16000showLog
 					$counter++;
 					}
 				
-				$jrtbar = new jomres_toolbar();
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listLogs",'');
 				$jrtb .= $jrtbar->endTable();
@@ -149,8 +152,8 @@ class j16000showLog
 					{
 					$xml.=$data;
 					}
-					
-				$p = new jomresXMLParser($xml);
+				jr_import('jomres_xml_parser');
+				$p = new jomres_xml_parser($xml);
 				$result=$p->getOutput($xml);
 				$counter=0;
 				foreach ($result[$xml_root_key] as $res)

@@ -38,7 +38,7 @@ class j06000cancelGuestBooking {
 		{
 		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$mrConfig,$jrConfig,$jomresConfig_live_site;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -248,7 +248,7 @@ class j06000cancelGuestBooking {
 				
 		if (!$bookedin)
 			{
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&contract_uid=$booking_contract_uid"),'');
 			$jrtb .= $jrtbar->endTable();
@@ -256,7 +256,8 @@ class j06000cancelGuestBooking {
 			}
 					
 		echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
-		$contentPanel = new jomres_contentTabs();
+		jr_import('jomres_content_tabs');
+		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL',_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL,FALSE));
 		$contentPanel->setcontent('<table>

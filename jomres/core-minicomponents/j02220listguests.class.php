@@ -38,7 +38,7 @@ class j02220listguests {
 	function j02220listguests()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -67,7 +67,7 @@ class j02220listguests {
 
 		foreach($guestList as $guest)
 			{
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			
 			
@@ -101,7 +101,7 @@ class j02220listguests {
 		asort($surnames);
 		$output['surnameDropdown']=filterForm('surnameFirstChars',$surnames,"");
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		
 		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,$editable=false,$isLink=true) ;

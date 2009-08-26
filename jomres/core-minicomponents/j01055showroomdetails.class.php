@@ -37,7 +37,7 @@ class j01055showroomdetails {
 	function j01055showroomdetails($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -45,7 +45,7 @@ class j01055showroomdetails {
 		$all=$componentArgs['all'];
 		if ($all)
 			$property_uid=(int)$componentArgs['property_uid'];
-		global $mrConfig,$jomresConfig_live_site,$noshowroom,$MiniComponents,$jrConfig;
+		global $mrConfig,$jomresConfig_live_site,$noshowroom,$jrConfig;
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();

@@ -26,7 +26,7 @@ class j16000edit_custom_field {
 	function j16000edit_custom_field()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -44,6 +44,7 @@ class j16000edit_custom_field {
 		$yesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
 		$yesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
 			
+		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
 		
@@ -55,7 +56,7 @@ class j16000edit_custom_field {
 		$output['REQUIRED']=jomresHTML::selectList( $yesno, 'required','class="inputbox" size="1"', 'value', 'text', $thisField['required']);
 		$output['UID']=$thisField['uid'];
 		
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_custom_field');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listCustomFields",'');

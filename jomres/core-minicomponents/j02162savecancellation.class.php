@@ -38,7 +38,7 @@ class j02162savecancellation {
 	function j02162savecancellation()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -50,11 +50,13 @@ class j02162savecancellation {
 		if ($contract_uid != 0 )
 			{
 			$defaultProperty=getDefaultProperty();
+			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
 			$today = date("Y/m/d");
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
-			$jomres_messaging = new jomres_messages();
+			//$jomres_messaging = new jomres_messages();
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$forfeit_retained="0";
 			if ($mrConfig['cancellationPolicyReserveDeposits']=="1")

@@ -27,13 +27,14 @@ class j16000archivecrates
 	function j16000archivecrates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		global $indexphp;
 		$idArray = jomresGetParam( $_REQUEST, 'idarray',array() );
+		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
 		if (count($idArray)>0)
 			{

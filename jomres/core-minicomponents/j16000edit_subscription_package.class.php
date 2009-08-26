@@ -26,7 +26,7 @@ class j16000edit_subscription_package {
 	function j16000edit_subscription_package()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -34,6 +34,7 @@ class j16000edit_subscription_package {
 
 		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
 		
+		jr_import('jrportal_subscriptions_packages');
 		$package = new jrportal_subscriptions_packages();
 
 		if ($id > 0)
@@ -68,7 +69,7 @@ class j16000edit_subscription_package {
 		$output['PROPERTYLIMIT']	=subscriptions_packages_makepropertylimitDropdown( $package->property_limit );
 		$output['TAXCODEDROPDOWN']		=taxrates_makerateDropdown(array(),$package->tax_code_id);
 			
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_subscription_package');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=list_subscription_packages",'');

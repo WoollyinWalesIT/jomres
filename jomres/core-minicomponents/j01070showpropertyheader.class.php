@@ -39,7 +39,7 @@ class j01070showpropertyheader
 	function j01070showpropertyheader($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -52,6 +52,7 @@ class j01070showpropertyheader
 		
 		
 		$property_uid=(int)$componentArgs['property_uid'];
+		jr_import('jomres_cache');
 		$cache = new jomres_cache("property_header",$property_uid,false);
 		$cacheContent = $cache->readCache();
 		if ($cacheContent)

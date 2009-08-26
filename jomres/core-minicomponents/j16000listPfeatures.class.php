@@ -27,7 +27,7 @@ class j16000listPfeatures
 	function j16000listPfeatures()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -61,7 +61,7 @@ class j16000listPfeatures
 		$output['COUNTER']=count($rows);
 		$output['TOTALINLISTPLUSONE']=count($rows)+1;
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

@@ -38,7 +38,7 @@ class j02148deleteextra {
 	function j02148deleteextra()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -47,7 +47,8 @@ class j02148deleteextra {
 		$uid=jomresGetParam( $_REQUEST, 'uid', 0 );
 		$defaultProperty=getDefaultProperty();
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_EXTRA_DELETED',_JOMRES_COM_MR_EXTRA_DELETED,FALSE);
-		$jomres_messaging = new jomres_messages();
+		//$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
 		$jomres_messaging->set_message($saveMessage);
 		$query="DELETE FROM #__jomres_extras WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 		if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_EXTRA',_JOMRES_MR_AUDIT_DELETE_EXTRA,FALSE)))

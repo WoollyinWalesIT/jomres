@@ -38,7 +38,7 @@ class j02114listcustomertypes {
 	function j02114listcustomertypes()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -83,7 +83,7 @@ class j02114listcustomertypes {
 			$rw['PUBLISHIMAGE']=$img;
 			$rw['ID']=$ex->id;
 
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomerType&id=".$ex->id ),'');
 			$jrtb .= $jrtbar->endTable();
@@ -103,7 +103,7 @@ class j02114listcustomertypes {
 			$rw['VARIANCE']=number_format($ex->variance,2, '.', '');
 			$rw['PUBLISHLINK']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=publishCustomerType&no_html=1&id=".($ex->id) ).'"><img src="'.$img.'" border="0"></a>';
 
-			$jrtbar = new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			if ($published)
 				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL."&task=publishCustomerType&no_html=1&id=".$ex->id ),'');
@@ -124,7 +124,7 @@ class j02114listcustomertypes {
 		
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editCustomerType"),'');
 		$jrtb .= $jrtbar->toolbarItem('save','',jr_gettext('_JOMRES_ORDER',_JOMRES_ORDER,false,true),true,'saveCustomerTypeOrder');

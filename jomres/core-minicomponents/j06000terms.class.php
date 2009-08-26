@@ -37,7 +37,7 @@ class j06000terms
 	 */
 	function j06000terms()
 		{
-		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$jrConfig,$MiniComponents,$mainframe;
+		global $mrConfig,$jomresConfig_live_site,$jomresConfig_lang,$jrConfig,$mainframe;
 
 		$property_uid 	= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$this->pop		= jomresGetParam( $_REQUEST, 'popup', 0 );

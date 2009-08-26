@@ -39,7 +39,7 @@ class j04030deleteroom {
 	function j04030deleteroom($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -47,6 +47,7 @@ class j04030deleteroom {
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$roomUid         = intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$defaultProperty=getDefaultProperty();
+		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOM_DELETED',_JOMRES_COM_MR_ROOM_DELETED,FALSE);

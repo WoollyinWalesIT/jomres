@@ -32,7 +32,7 @@ class j06000amendBooking
 	function j06000amendBooking()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -68,7 +68,7 @@ class j06000amendBooking
 			$output['PROPERTYDROPDOWN']=''.$propertyDropdown.'';
 
 			$cancelText					= jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
-			$jrtbar 					= new jomres_toolbar();
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  						= $jrtbar->startTable();
 			$jrtb 						.= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 			$jrtb 						.= $jrtbar->endTable();

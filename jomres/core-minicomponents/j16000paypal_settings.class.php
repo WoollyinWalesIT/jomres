@@ -38,7 +38,7 @@ class j16000paypal_settings {
 	function j16000paypal_settings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -51,7 +51,7 @@ class j16000paypal_settings {
 		$yesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
 		$yesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
 		
-		$paypal_settings = new jrportal_paypal_settings();
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		
 		$paypal_settings->get_paypal_settings();
 
@@ -69,7 +69,7 @@ class j16000paypal_settings {
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		$output['OVERRIDE'] = jomresHTML::selectList( $yesno, 'override', 'class="inputbox" size="1"', 'value', 'text', $paypal_settings->paypalConfigOptions['override'] );
 		
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_paypal_settings');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL_ADMIN),'');

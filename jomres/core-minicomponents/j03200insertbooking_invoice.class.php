@@ -38,13 +38,13 @@ class j03200insertbooking_invoice {
 	function j03200insertbooking_invoice($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		global $tmpBookingHandler,$thisJRUser,$jrConfig,$mrConfig;
-
+		global $thisJRUser,$jrConfig,$mrConfig;
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->results=array();
 		$contract_uid=$componentArgs['contract_uid'];
 		
@@ -195,6 +195,7 @@ class j03200insertbooking_invoice {
 		else
 			$invoice_data['currencycode'] = $mrConfig['currencyCode'];
 
+		jr_import('invoicehandler');
 		$invoice_handler = new invoicehandler();
 		$invoice_handler->contract_id=$contract_uid;
 		$invoice_handler->property_uid=$property_uid;

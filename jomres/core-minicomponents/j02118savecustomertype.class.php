@@ -37,7 +37,7 @@ class j02118savecustomertype {
 	function j02118savecustomertype()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -65,7 +65,8 @@ class j02118savecustomertype {
 			$query="UPDATE #__jomres_customertypes SET `type`='$type',`notes`='$notes',`maximum`='".(int)$maximum."',`is_percentage`='".(int)$is_percentage."',`posneg`='$posneg',`variance`='$variance' WHERE id = '$id' AND property_uid='$defaultProperty'";
 			}
 		
-		$jomres_messaging = new jomres_messages();
+		$jomres_messaging =jomres_getSingleton('jomres_messages');
+		//$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message($saveMessage);
 		
 		if (!doInsertSql($query,$auditMessage))

@@ -38,7 +38,7 @@ class j01025showtariffs {
 	function j01025showtariffs($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -118,7 +118,7 @@ class j01025showtariffs {
 					else
 						$mrConfig['ratemultiplier']+=0;
 
-					$currfmt = new jomres_currency_format();
+					$currfmt = jomres_getSingleton('jomres_currency_format');
 					if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
 						$r['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($tariff->roomrateperday)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
 					else

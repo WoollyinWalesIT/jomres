@@ -27,7 +27,7 @@ class j16000listCustomFields
 	function j16000listCustomFields()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -43,7 +43,7 @@ class j16000listCustomFields
 		$output['HDESCRIPTION']=_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION;
 		$output['HREQUIRED']=_JOMRES_COM_CUSTOMFIELDS_REQUIRED;
 		
-		
+		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
 		
@@ -65,7 +65,7 @@ class j16000listCustomFields
 			}
 
 
-		$jrtbar = new jomres_toolbar();
+		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

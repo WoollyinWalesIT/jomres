@@ -27,7 +27,7 @@ class j16000pseudocron
 	function j16000pseudocron()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -110,6 +110,7 @@ class j16000pseudocron
 		<?php
 		echo "<hr>";echo "<hr>";
 		echo _JOMRES_COM_A_CRON_IMMEDIATERUN."<br />";
+		jr_import('jomres_cron');
 		$cron = new jomres_cron($displayLog);
 		foreach ($cron->allJobs as $job)
 			{
