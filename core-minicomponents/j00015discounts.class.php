@@ -43,7 +43,7 @@ class j00015discounts
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$property_uid=$componentArgs['property_uid'];
 		if ($mrConfig['singleRoomProperty'] == 1)  // Using last minute calculations
 			{

@@ -43,7 +43,7 @@ class j04020saveroom {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();

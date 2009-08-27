@@ -47,7 +47,7 @@ class j00501gallery {
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$mrConfig=$componentArgs['mrConfig'];
+			$mrConfig=getPropertySpecificSettings();
 			$configurationPanel->startPanel(_JOMRES_COM_A_GALLERYLINK);
 			$configurationPanel->setleft(_JOMRES_COM_A_GALLERYLINK);
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="50" name="cfg_galleryLink" value="'.$mrConfig['galleryLink'].'" />');

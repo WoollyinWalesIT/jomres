@@ -96,7 +96,7 @@ class jomres_dashboard
 
 	function setDates()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		if ($this->requestedMonth==0)
 			{
 			$stmonth=date("m");

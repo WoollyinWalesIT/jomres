@@ -64,7 +64,7 @@ class j03100hotelconfirmationemail {
 		
 		
 		$clientIP=$_SERVER['REMOTE_ADDR'];
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$rmids=array();
 		$requestedRoom =$tempBookingDataList[0]->requestedRoom;
 		$rooms=explode(",",$requestedRoom);

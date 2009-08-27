@@ -31,7 +31,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  
 header('Content-type: text/html; utf-8');
 
-global $mrConfig,$jomressession,$property_uid;
+global $jomressession;
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 $bookingDeets=gettempBookingdata();
 $pid=$bookingDeets['property_uid'];

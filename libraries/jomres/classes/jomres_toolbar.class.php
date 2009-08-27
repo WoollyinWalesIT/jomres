@@ -38,7 +38,8 @@ class jomres_toolbar
 	*/
 	function jomres_toolbar()
 		{
-		global $jomresConfig_live_site,$mrConfig;
+		global $jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings();
 		$this->livesite=$jomresConfig_live_site;
 		$this->standardActivityImages=$this->getStandardActivityImagesArray();
 		$this->menubarImagesArray = $this->getMenubarImagesArray();

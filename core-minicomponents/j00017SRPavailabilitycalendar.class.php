@@ -44,7 +44,8 @@ class j00017SRPavailabilitycalendar {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$noshowroom;
+		global $noshowroom;
+		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->retVals="";
@@ -199,8 +200,9 @@ class j00017SRPavailabilitycalendar {
 		// Submitted by: Whiddon James on Dec 01st 1999
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		global $mrConfig,$jomresConfig_locale;
+		global $jomresConfig_locale;
 		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
+		$mrConfig=getPropertySpecificSettings();
 		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
 		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );
 		$userIsManager=checkUserIsManager();

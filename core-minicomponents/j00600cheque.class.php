@@ -39,9 +39,9 @@ class j00600cheque {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$eLiveSite,$mrConfig;
+		global $ePointFilepath,$eLiveSite;
 		global $thisJomresPropertyDetails;
-		
+		$mrConfig=getPropertySpecificSettings();
 		$plugin="cheque";
 		$bookingdata=$componentArgs['bookingdata'];
 		$output=array();

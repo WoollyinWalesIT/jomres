@@ -44,7 +44,7 @@ class j00501xwiseprice {
 			}
 		global $configurationPanel;
 		global $ePointFilepath,$jomresConfig_lang;
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['singleRoomProperty'] == 0)
 			{
 			if (file_exists($ePointFilepath.'language/'.$jomresConfig_lang.'.php')) 

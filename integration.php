@@ -782,7 +782,8 @@ function getPropertyNameNoTables($property_uid)
 
 function editCustomTextAll()
 	{
-	global $mrConfig,$jomresConfig_lang;
+	global $jomresConfig_lang;
+	$mrConfig=getPropertySpecificSettings();
 	$mrConfig['editingOn']="1";
 	$allDefinedContants=get_defined_constants();
 	$jomresConstants=array();
@@ -806,8 +807,9 @@ function editCustomTextAll()
 
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
-	global $mrConfig,$property_uid,$thisJRUser,$customTextArray,$jomresConfig_live_site;
+	global $property_uid,$thisJRUser,$customTextArray,$jomresConfig_live_site;
 	global $jomresConfig_lang,$task;
+	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if (isset($thisJRUser->accesslevel))

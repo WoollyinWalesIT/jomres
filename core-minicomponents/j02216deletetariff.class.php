@@ -43,8 +43,7 @@ class j02216deletetariff {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $tariffUid,$mrConfig;
-		
+		$mrConfig=getPropertySpecificSettings();
 		if ( $mrConfig['tariffmode']=="2")
 			$MiniComponents->triggerEvent('02217'); //
 		else

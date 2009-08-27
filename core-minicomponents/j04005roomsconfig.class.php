@@ -44,7 +44,7 @@ class j04005roomsconfig {
 			$this->template_touchable=true; return;
 			}
 
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$output=array();
 		$defaultProperty=getDefaultProperty();
 
@@ -258,7 +258,7 @@ class j04005roomsconfig {
 			$propertyRowInfo .='<tr><td class=\"jradmin_subheader_la\" colspan=\"6\">APIKEY: <input type="text" size="50" class="inputbox" name="apikey'.$id.'" value="'.$property->apikey.'" READONLY onclick="select_all(this)"/></td></tr>';
 			}
 
-		global $mrConfig,$thisJRUser;
+		global $thisJRUser;
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
 		echo jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE);

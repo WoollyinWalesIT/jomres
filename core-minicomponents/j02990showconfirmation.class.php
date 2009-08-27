@@ -44,7 +44,8 @@ class j02990showconfirmation {
 			$this->template_touchable=true; return;
 			}
 
-		global $mrConfig,$jomresConfig_live_site,$thisJRUser;
+		global $jomresConfig_live_site,$thisJRUser;
+		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$booking_parts=array();
 		if ( !isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )

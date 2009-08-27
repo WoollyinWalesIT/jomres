@@ -42,7 +42,7 @@ class j02142listextras {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 		$output=array();
 		

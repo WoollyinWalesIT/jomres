@@ -46,7 +46,7 @@ class j00501propertydetailsoptions {
 		global $configurationPanel,$thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
 		$configurationPanel->startPanel(_JOMRES_PATHWAY_PROPERTYDETAILS);
 		

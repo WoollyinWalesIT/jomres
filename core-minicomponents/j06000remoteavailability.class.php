@@ -43,7 +43,7 @@ class j06000remoteavailability {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $property_uid,$mrConfig;
+		global $property_uid;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid = intval( jomresGetParam( $_GET, 'id', 0 ) );

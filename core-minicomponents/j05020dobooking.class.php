@@ -45,7 +45,8 @@ class j05020dobooking {
 			}
 		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'dobooking.php');
 		
-		global $mrConfig,$property_uid;
+		global $property_uid;
+		$mrConfig=getPropertySpecificSettings();
 		if ( $mrConfig['singleRoomProperty'] || $mrConfig['fixedPeriodBookings'] == "1" )
 			{
 			showSingleRoomPropAvl($property_uid);

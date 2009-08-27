@@ -43,13 +43,13 @@ class j01020showtariffs {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		if ( $mrConfig['verbosetariffinfo']=="0")
 			$this->retVals=$MiniComponents->triggerEvent('01025'); //
 		else
 			{
 			//$showheader=$componentArgs['showheader'];
-			global $property_uid,$mrConfig,$jomresConfig_live_site;
+			global $property_uid,$jomresConfig_live_site;
 			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$mrConfig=getPropertySpecificSettings($property_uid);

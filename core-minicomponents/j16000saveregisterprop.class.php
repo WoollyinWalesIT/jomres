@@ -32,7 +32,7 @@ class j16000saveregisterprop
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp,$jomresConfig_live_site,$jrportalConfig,$mrConfig;
+		global $jomresConfig_live_site;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}

@@ -50,7 +50,7 @@ class j00501sms_clickatell {
 		
 		if ($sms_clickatell_settings->sms_clickatellConfigOptions['active'] == "1")
 			{
-			$mrConfig=$componentArgs['mrConfig'];
+			$mrConfig=getPropertySpecificSettings();
 			$configurationPanel->startPanel(_JRPORTAL_SMS_CLICKATELL_TABTITLE);
 			$configurationPanel->setleft(_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER);
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="50" name="cfg_sms_clickatell_notification_number" value="'.$mrConfig['sms_clickatell_notification_number'].'" />');

@@ -38,7 +38,7 @@ class jomres_currency_format
 	*/
 	function jomres_currency_format($cformat=false)
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		if (!$cformat)
 			$this->cformat  = $mrConfig['cformat'];
 		else 
@@ -96,7 +96,7 @@ class jomres_currency_format
 	*/
 	function get_currency_format_dropdowninput()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		if (!isset($mrConfig['cformat']) )
 			$mrConfig['cformat']='2';
 		$fmts = array();

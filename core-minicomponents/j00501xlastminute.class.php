@@ -46,7 +46,7 @@ class j00501xlastminute {
 			
 		global $configurationPanel;
 		global $ePointFilepath,$jomresConfig_lang;
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['singleRoomProperty'] == 1)
 			{
 			$yesno = array();

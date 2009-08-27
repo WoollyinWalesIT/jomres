@@ -44,8 +44,8 @@ class j02190confirmationform {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
-		//echo $contract_uid;
+		global $jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		$sendemail = jomresGetParam( $_REQUEST, 'sendemail', 0 );

@@ -46,7 +46,7 @@ class j00501srps {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		$weekdayDropdown=$componentArgs['weekdayDropdown'];
 		$fixedArrivalDatesRecurring=$componentArgs['fixedArrivalDatesRecurring'];
 

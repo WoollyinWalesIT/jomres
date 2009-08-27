@@ -43,7 +43,8 @@ class j02114listcustomertypes {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
+		global $jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 
 		$output['HTYPE']=jr_gettext('_JOMRES_VARIANCES_TYPE',_JOMRES_VARIANCES_TYPE);

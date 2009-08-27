@@ -75,7 +75,8 @@ class mcHandler {
 
 	function touch_templates()
 		{
-		global $ePointFilepath,$thisJRUser,$mrConfig,$jomresConfig_live_site;
+		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings($property_uid);
 		$eventArgs=null;
 		$mrConfig['editingOn']="1";
 		//var_dump($thisJRUser);exit;

@@ -43,7 +43,8 @@ class j04200editproperty {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $selectedCountry,$mrConfig,$jomresConfig_live_site,$thisJRUser;
+		global $selectedCountry,$jomresConfig_live_site,$thisJRUser;
+		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$defaultText="Change Me!";

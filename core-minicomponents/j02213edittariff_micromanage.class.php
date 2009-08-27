@@ -43,7 +43,7 @@ class j02213edittariff_micromanage {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$defaultProperty=getDefaultProperty();

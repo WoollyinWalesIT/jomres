@@ -43,7 +43,7 @@ class j00501xtariffsenhanced {
 			$this->template_touchable=false; return;
 			}
 		global $configurationPanel;
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['tariffmode'] == 2)
 			{
 			if (!isset($mrConfig['tariffsenhanceddefault']))
