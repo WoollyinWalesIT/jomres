@@ -23,7 +23,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 
 define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');
 
-global $jomresPath,$license_key,$jomres_db_querylog,$timetracking,$jomresConfig_absolute_path,$MiniComponents;
+global $jomresPath,$license_key,$jomresConfig_absolute_path,$MiniComponents;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
 global $ra1,$ra2,$convertedRAs,$lessThans; // globaled so that we don't need to initialise them every time
 global $R;
@@ -69,6 +69,9 @@ if (!defined('JOMRESPATH_BASE'))
 
 $jomresConfig_absolute_path = substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE)-7);
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
+
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
+$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
@@ -129,27 +132,23 @@ if ( !function_exists('gregoriantojd') )
 		}
 	}
 	
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
+
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
 
-$jomres_db_querylog=array();
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
 
-//require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
 
 $jomresConfig_dbtype = 'mysql';
+
+$performance_monitor->set_point("pre-inclusions");
+
 if (!function_exists ('adodb_date_test_date') )
 	{
-	//define('JOMRES_CMS', 'joomla' );
-	//if (strstr($scriptname,'install_jomres.php'))
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
-	//else
-	//	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
+	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
 	}
-//else
-//	define('JOMRES_CMS', 'elexismambo' );
-	
+
+/*
 global $_VERSION;
 if (is_null($_VERSION) )
 	{
@@ -167,15 +166,8 @@ if (is_null($_VERSION) )
 	}
 
 define('CMSVER',$_VERSION->PRODUCT.$_VERSION->RELEASE);
+*/
 
-if (isset($timetracking) && isset($timekeeper) )
-	{
-	if ($timetracking)
-		{
-		$timereport = array();
-		$timekeeper = start_track("jomres_initialisation", $timekeeper);
-		}
-	}
 
 if (!class_exists('patTemplate') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patTemplate.php');
@@ -196,15 +188,10 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jom
 
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_functions.php");
 
-if (isset($timetracking) && isset($timekeeper) )
-	{
-	$timereport = end_track("jomres_initialisation", $timekeeper, $timereport);
-	time_report($timereport);
-	}
+$performance_monitor->set_point("post-inclusions");
 
 if (!strstr($scriptname,'install_jomres.php'))
 	{
-	//$jrConfig=getSiteSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	}
@@ -232,8 +219,6 @@ if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
 
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
-
-
 
 set_error_handler('errorHandler');
 jomres_parseRequest();
@@ -269,6 +254,7 @@ if ($product_id != "20" )
 if (!defined('JOMRES_SINGLEPROPERTY'))
 	define('JOMRES_SINGLEPROPERTY',false);
 	
+$performance_monitor->set_point("end integration run");
 // Stops here
 
 function jomresURL($link, $ssl=2)
@@ -656,18 +642,11 @@ function checkUserIsManager()
 
 function doSelectSql($query,$mode=FALSE)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	global $jomres_db_querylog;
 	$MiniComponents =jomres_getSingleton('mcHandler');
-	error_reporting(E_ALL | E_STRICT);
-	if (isset($MiniComponents->currentEvent) )
-		$jomres_db_querylog[]="<font size=\"-3\"  color=\"red\">".$query."</font><br/><font size=\"-5\">".$MiniComponents->currentEvent."</font>";
 	$jomres_db =jomres_getSingleton('jomres_database');
 	$jomres_db->setQuery($query);
 	$result = $jomres_db->loadObjectList();
 	$num=count($result);
-	if (isset($jrConfig['errorChecking'])) {if ($jrConfig['errorChecking']) echo $query."<br>";}
 	switch ($mode)
 		{
 		case 1:
@@ -705,9 +684,6 @@ function doSelectSql($query,$mode=FALSE)
 				}
 		break;
 		default:
-			// Yer bog standard query
-			
-			if (isset($jrConfig['errorChecking'])) {if ($jrConfig['errorChecking']) echo $query."<br>";}
 		break;
 		}
 	$jomres_db->unsetResult();
@@ -720,19 +696,15 @@ function doSelectSql($query,$mode=FALSE)
 
 function doInsertSql($query,$op,$ignoreErrors=false)
 	{
-	global $jomres_db_querylog;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$MiniComponents =jomres_getSingleton('mcHandler');
-	$jomres_db_querylog[]="<font size=\"-3\"  color=\"red\">".$query."</font><br/><font size=\"-5\">".$MiniComponents->currentEvent."</font>";
 	// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
 	// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
 	// This way we can call the audit directly from the insert internet booking function
 	// rather than logging EVERYTHING that's done by the function.
 	$jomres_db =jomres_getSingleton('jomres_database');
-	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
-	//echo $query;echo "<br>";
 	if (!$jomres_db->query())
 		{
 		if (!$ignoreErrors)
@@ -741,7 +713,6 @@ function doInsertSql($query,$op,$ignoreErrors=false)
 		}
 	else
 		{
-
 		$thisID=mysql_insert_id();
 		if ($op!="")
 			jomres_audit($query,$op);

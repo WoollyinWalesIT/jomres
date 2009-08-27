@@ -22,7 +22,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 
-jr_import('jomres_contentTabs');
+jr_import('jomres_content_tabs');
 
 /**
 #
@@ -32,7 +32,7 @@ jr_import('jomres_contentTabs');
 * @since 2.6
 #
 */
-class jomres_configpanel extends jomres_contentTabs
+class jomres_configpanel extends jomres_content_tabs
 	{
 	/**
 	#
