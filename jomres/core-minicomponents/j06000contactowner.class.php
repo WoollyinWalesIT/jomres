@@ -44,7 +44,8 @@ class j06000contactowner {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_secret,$thisJomresPropertyDetails,$mrConfig,$jomresConfig_live_site;
+		global $jomresConfig_secret,$thisJomresPropertyDetails,$jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->_remove_old_captcha_files();
 		require_once(JOMRESPATH_BASE.'/libraries/hn_captcha/hn_captcha.class.php');

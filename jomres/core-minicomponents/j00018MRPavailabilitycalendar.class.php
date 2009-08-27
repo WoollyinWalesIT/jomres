@@ -43,7 +43,8 @@ class  j00018MRPavailabilitycalendar {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$noshowroom;
+		global $noshowroom;
+		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->retVals="";
@@ -192,8 +193,9 @@ class  j00018MRPavailabilitycalendar {
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		global $mrConfig,$jomresConfig_locale;
+		global $jomresConfig_locale;
 		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
+		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$userIsManager=checkUserIsManager();

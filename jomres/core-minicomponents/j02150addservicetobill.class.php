@@ -43,7 +43,7 @@ class j02150addservicetobill {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $contract_uid,$mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$saveMessage=_JOMRES_COM_ADDSERVICE_SAVEMESSAGE;
 
 		$contract_uid	=	jomresGetParam( $_REQUEST, 'contract_uid', 0 );

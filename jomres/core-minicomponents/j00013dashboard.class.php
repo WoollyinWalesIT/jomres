@@ -46,9 +46,8 @@ class j00013dashboard extends jomres_dashboard
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
-
 		$this->property_uid		= getDefaultProperty();
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("dashboard",$this->property_uid,false);
 		$cacheContent = $cache->readCache();
@@ -56,6 +55,7 @@ class j00013dashboard extends jomres_dashboard
 			echo $cacheContent;
 		else
 			{
+			
 			$this->cfg_todaycolor	= $mrConfig['avlcal_todaycolor'];  ## font color for the current date
 			$this->cfg_inmonthface	= $mrConfig['avlcal_inmonthface'];  ## font color for days in the display month
 			$this->cfg_outmonthface	= $mrConfig['avlcal_outmonface'];  ## font color for days not in the display month
@@ -158,7 +158,7 @@ class j00013dashboard extends jomres_dashboard
 	 */
 	function viewRoomsHorizontal()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 
 		$output="";
 		$monthsToShow=1;
@@ -228,7 +228,7 @@ class j00013dashboard extends jomres_dashboard
 	 */
 	function getHorizontalRoom($room_id,$bookings)
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$output="";
 		$i=0;
 
@@ -328,7 +328,7 @@ class j00013dashboard extends jomres_dashboard
 	 */
 	function showDate($pastDate,$dobookingLink,$bgcolor,$fcolor,$currdate,$sqlDate2,$contract_uid="",$room_id,$border,$blackBookingLink)
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$output="";
 		$bookinglink=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.$sqlDate2;
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid;

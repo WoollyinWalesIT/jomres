@@ -43,7 +43,7 @@ class j02160cancelbooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 
 		$jsLink=jomresURL(JOMRES_SITEPAGE_URL."&task=saveCancellation&contract_uid=$contract_uid");

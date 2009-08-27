@@ -43,11 +43,11 @@ class j02180bookguestout {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $mrConfig,$jomresConfig_live_site;
+		global $jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 		if (!isset($_REQUEST['dueDepart'])  )
 			{
-			global $mrConfig,$jomresConfig_live_site;
 			$defaultProperty=getDefaultProperty();
 			$today = date("Y/m/d");
 			$dropDownList ="<select name=\"dueDepart\">";

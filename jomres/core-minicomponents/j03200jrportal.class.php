@@ -31,7 +31,8 @@ class j03200jrportal {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig,$thisJRUser;
+		global $thisJRUser;
+		$mrConfig=getPropertySpecificSettings();
 		if ($MiniComponents->eventFileExistsCheck('07005') )
 			$propertys_uids=$MiniComponents->triggerEvent('07005' ); // Optional minicomponent trigger, eg for system cleanups or other pre-booking activity
 

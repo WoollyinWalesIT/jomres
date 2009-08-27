@@ -47,7 +47,7 @@ class j00501bookings1 {
 		global $configurationPanel,$thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
 		//$tabs=$componentArgs['tabs'];
 		$smokingOptionDropdownList=$componentArgs['smokingOptionDropdownList'];

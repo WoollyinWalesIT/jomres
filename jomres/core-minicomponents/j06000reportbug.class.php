@@ -44,8 +44,9 @@ class j06000reportbug {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$mrConfig,$ePointFilepath,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sitename;
+		global $jomresConfig_live_site,$ePointFilepath,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sitename;
 		global $jomresConfig_host,$jomresConfig_user,$jomresConfig_password,$_VERSION,$thisJRUser;
+		$mrConfig=getPropertySpecificSettings();
 		if ($thisJRUser->superPropertyManager)
 			{
 			$link = mysql_connect($jomresConfig_host, $jomresConfig_user, $jomresConfig_password);

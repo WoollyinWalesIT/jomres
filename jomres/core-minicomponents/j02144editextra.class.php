@@ -36,7 +36,7 @@ class j02144editextra {
 
 	function editExtra()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		global $ePointFilepath,$eLiveSite;
 
 		$uid		= intval(jomresGetParam( $_REQUEST, 'uid', 0 ));

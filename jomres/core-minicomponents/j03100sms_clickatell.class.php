@@ -71,7 +71,8 @@ class j03100sms_clickatell {
 		
 		
 		$clientIP=$_SERVER['REMOTE_ADDR'];
-		global $my,$database,$mrConfig;
+		global $my,$database;
+		$mrConfig=getPropertySpecificSettings();
 		$rmids=array();
 		$requestedRoom =$tempBookingDataList[0]->requestedRoom;
 		$rooms=explode(",",$requestedRoom);

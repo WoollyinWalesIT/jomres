@@ -46,7 +46,7 @@ class j00501avlcal {
 		global $configurationPanel,$thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
 		//$tabs=$componentArgs['tabs'];
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)

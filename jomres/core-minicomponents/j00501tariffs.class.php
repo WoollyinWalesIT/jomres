@@ -45,7 +45,7 @@ class j00501tariffs {
 		global $configurationPanel,$thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
 		$paymentAmounts=$componentArgs['paymentAmounts'];
 		$tariffModelsDropdown=$componentArgs['tariffModelsDropdown'];

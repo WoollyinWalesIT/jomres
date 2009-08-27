@@ -43,11 +43,10 @@ class j00016composite_property_details {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $mrConfig;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];  
-		
+		$mrConfig=getPropertySpecificSettings($property_uid);
 		$componentArgs['property_uid']=$property_uid;
 		
 		// We will pass some of the old templates back as generated templates, whereas some of the data will be passed back as arrays to be processed into the new template.

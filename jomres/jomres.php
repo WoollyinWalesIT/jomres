@@ -20,8 +20,6 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 ##################################################################
 
-$timetracking = true;
-
 if (!isset($_REQUEST['no_html']))
 	$_REQUEST['no_html'] = 0;
 
@@ -230,7 +228,7 @@ if ($task=="completebk" || $task=="processpayment" || $task=="confirmbooking")
 // Getting the property specific settings
 if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProperty) && !empty($selectedProperty) ) || ( isset($defaultProperty) && $defaultProperty!="%" ) )
 	{
-	global $mrConfig;
+	//$mrConfig=getPropertySpecificSettings();
 	if (!empty($property_uid))
 		{
 		$a=0;

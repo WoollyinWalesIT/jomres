@@ -34,6 +34,7 @@ class j16000addproperty2
 			}
 
 		global $jomresConfig_live_site,$thisJRUser;
+		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_region				= jomresGetParam( $_POST, 'region', "" );

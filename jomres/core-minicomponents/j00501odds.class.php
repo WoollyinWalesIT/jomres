@@ -46,7 +46,7 @@ class j00501odds {
 		global $configurationPanel,$thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$mrConfig=$componentArgs['mrConfig'];
+		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
 		$editIconSize=$componentArgs['editIconSize'];
 		$configurationPanel->startPanel(_JOMRES_COM_A_ODDS);

@@ -757,7 +757,8 @@ class dobooking
 	 */
 	function makeExtras($selectedProperty)
 		{
-		global $mrConfig,$jomresConfig_live_site;
+		global $jomresConfig_live_site;
+		$mrConfig=getPropertySpecificSettings();
 		$extra_details=array();
 		
 		$currfmt = jomres_getSingleton('jomres_currency_format');
@@ -855,7 +856,7 @@ class dobooking
 		 */
 		function makeOutputText()
 			{
-			global $mrConfig;
+			$mrConfig=getPropertySpecificSettings();
 			$output=array();
 			$output['HARRIVALDATE']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) );
 			if ($mrConfig['showdepartureinput']=="1")
@@ -1202,7 +1203,7 @@ class dobooking
 	 */
 	function makeCustomerTypes($selectedProperty)
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$cust=array();
 		$query="SELECT `id`,`type`,`maximum` FROM `#__jomres_customertypes` where property_uid = '$selectedProperty' AND published = '1' ORDER BY `order`";
 		$exList =doSelectSql($query);
@@ -2273,7 +2274,6 @@ class dobooking
 
 	function calcPeriods($arrivalDate)
 		{
-		//global $mrConfig;
 		$increment = 7;
 		$stmt = 'days';
 		$t=0;
@@ -2519,7 +2519,7 @@ class dobooking
 	 */
 	function makeRequiredIcons()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$output=array();
 		$icon="*";
 		$output['VALIDATION_FIRSTNAME']="false";
@@ -2750,7 +2750,6 @@ class dobooking
 	 */
 	function bookingCountriesDropdown($selectedCountry)
 		{
-		//global $mrConfig;
 		if (!isset($selectedCountry) || empty($selectedCountry) )
 			$selectedCountry=$this->cfg_defaultcountry;
 
@@ -3143,7 +3142,6 @@ class dobooking
 	 */
 	function checkPeopleNumbers($freeRoomsArray)
 		{
-		//global $mrConfig;
 		$totalFreeBeds=0;
 		if (count($freeRoomsArray) > 0 )
 			{
@@ -3940,7 +3938,7 @@ class dobooking
 	 */
 	function estimate_AverageRate($roomUid,$tariffUid)
 		{
-		global $mrConfig,$tmpBookingHandler;
+		$mrConfig=getPropertySpecificSettings();
 		$this->setErrorLog("estimate_AverageRate:: Started");
 		$dateRangeArray=explode(",",$this->dateRangeString);
 		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
@@ -4472,7 +4470,6 @@ class dobooking
 	 */
 	function makeNightlyRoomCharges()
 		{
-		global $mrConfig;
 		$this->setErrorLog("makeNightlyRoomCharges:: Started");
 		$total=0.00;
 		$result=$this->getVariantsOfType("guesttype");
@@ -4914,7 +4911,7 @@ class dobooking
 	 */
 	function setFlatRate()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$disc=array();
 		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
@@ -5053,8 +5050,8 @@ class dobooking
 
 	function getDiscountedRoomrate ($roomrate,$percentagebooked,$roomType)
 		{
+		$mrConfig=getPropertySpecificSettings();
 		$this->setErrorLog("getDiscountedRoomrate:: Started");
-		global $mrConfig;
 		if (!isset($mrConfig['wiseprice10discount']) || empty($mrConfig['wiseprice10discount']) )
 			$mrConfig['wiseprice10discount']='30';
 		if (!isset($mrConfig['wiseprice25discount']) || empty($mrConfig['wiseprice25discount']) )
@@ -5091,7 +5088,7 @@ class dobooking
 	 */
 	function setAverageRate()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if ( $mrConfig['tariffmode']=="2")
 			{
@@ -5214,7 +5211,8 @@ class dobooking
 	 */
 	function te_setAverageRate()
 		{
-		global $mrConfig,$tmpBookingHandler;
+		$mrConfig=getPropertySpecificSettings();
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->setErrorLog("te_setAverageRate:: Started");
 		$dateRangeArray=explode(",",$this->dateRangeString);
 		$tariffsArray=array();
@@ -5378,7 +5376,7 @@ class dobooking
 
 	function calcLastMinuteDiscount()
 		{
-		global $mrConfig;
+		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if ($mrConfig['lastminuteactive'] == '1')
 			{

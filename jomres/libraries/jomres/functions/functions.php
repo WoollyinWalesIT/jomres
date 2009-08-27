@@ -3045,49 +3045,26 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
  * Constructs the mrConfig data when passed a property uid.
 #
 */
-function getPropertySpecificSettings($property_uid)
+function getPropertySpecificSettings($property_uid=null)
 	{
 	global $mrConfig;
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	
-	if (!isset($mrConfig) )
-		$mrConfig = array();
-	$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = 0";
-	$settingsList=doSelectSql($query);
-	if (count($settingsList)>0)
+	$propertyConfig = jomres_getSingleton('jomres_config_property_singleton');
+	if ($propertyConfig->property_uid == 0)
+		$propertyConfig->init($property_uid);
+
+	if ($property_uid == null)
 		{
-		foreach ($settingsList as $setting)
-			{
-			$akey=$setting->akey;
-			$value=$setting->value;
-			$mrConfig[$akey]=$value;
-			}
-		if ($jrConfig['useGlobalCurrency'] =="1")
-			{
-			$mrConfig['currency']=$jrConfig['globalCurrency'];
-			$mrConfig['currencyCode']=$jrConfig['globalCurrencyCode'];
-			}
+		$mrConfig=$propertyConfig->get();
 		}
-	if ($property_uid > 0)
+	else
 		{
-		$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = '".(int)$property_uid."'";
-		$settingsList=doSelectSql($query);
-		if (count($settingsList)>0)
+		if ((int)$property_uid != (int)$propertyConfig->property_uid)
 			{
-			foreach ($settingsList as $setting)
-				{
-				$akey=$setting->akey;
-				$value=$setting->value;
-				//echo "Resetting mrConfig variables: Setting $akey ".$mrConfig['$akey']." to $value<br>";
-				$mrConfig[$akey]=$value;
-				}
-			if ($jrConfig['useGlobalCurrency'] =="1")
-				{
-				$mrConfig['currency']=$jrConfig['globalCurrency'];
-				$mrConfig['currencyCode']=$jrConfig['globalCurrencyCode'];
-				}
+			$propertyConfig->load_property_config($property_uid);
+			$mrConfig=$propertyConfig->get();
 			}
+		else
+			$mrConfig=$propertyConfig->get();
 		}
 	return $mrConfig;
 	}
