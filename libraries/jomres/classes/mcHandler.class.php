@@ -39,10 +39,16 @@ class mcHandler {
 		//$this->eventPoints = array();
 		//$this->nonOverridableEventClasses=array();
 		//$this->unWantedFolderContents=array('.','..','cvs','.svn');
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 
 		$this->miniComponentData=array();
 		$this->template_touch=false;
 		$this->log = array();
+		$this->logging_enbled = false;
+		if ($jrConfig['errorChecking'] =="1")
+			$this->logging_enbled = true;
+			
 		$this->currentEvent = "";
 
 		$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS;
@@ -88,7 +94,8 @@ class mcHandler {
 				if (file_exists($eClass['filepath'].$filename) )
 					{
 					include_once($eClass['filepath'].$filename);
-					$this->log[]=$eClass['filepath'].$filename;
+					if ($this->logging_enbled)
+						$this->log[]=$eClass['filepath'].$filename;
 					$event=new stdClass;
 					$ePoint=$eClass['eventPoint'];
 					$eName=$eClass['eventName'];
@@ -127,7 +134,8 @@ class mcHandler {
 					if (file_exists($eClass['filepath'].$filename) )
 						{
 						include_once($eClass['filepath'].$filename);
-						$this->log[]=$eClass['filepath'].$filename;
+						if ($this->logging_enbled)
+							$this->log[]=$eClass['filepath'].$filename;
 						$this->currentEvent =$eClass['filepath'].$filename;
 						$event=new stdClass;
 						$ePoint=$eClass['eventPoint'];
@@ -165,7 +173,8 @@ class mcHandler {
 					if (file_exists($eClass['filepath'].$filename) )
 						{
 						include_once($eClass['filepath'].$filename);
-						$this->log[]=$eClass['filepath'].$filename;
+						if ($this->logging_enbled)
+							$this->log[]=$eClass['filepath'].$filename;
 						$this->currentEvent =$eClass['filepath'].$filename;
 						$event=new stdClass;
 						$ePoint=$eClass['eventPoint'];
