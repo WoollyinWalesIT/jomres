@@ -28,9 +28,7 @@ class jomres_database
 	function jomres_database()
 		{
 		global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
-		$this->queryLoggingEnabled = false;
 		$this->system_tables=array();
-		$this->queryLog=array();
 		$this->error = null;
 		$this->result=null;
 		mysql_connect($jomresConfig_host,$jomresConfig_user,$jomresConfig_password) or die('Could not connect ' . mysql_error());
@@ -41,6 +39,7 @@ class jomres_database
 
 	function query()
 		{
+
 		$this->result = mysql_query($this->query);
 		if ($this->result)
 			return $this->result;
@@ -53,10 +52,10 @@ class jomres_database
 
 	function setQuery($query)
 		{
+		$performance_monitor = jomres_getSingleton('jomres_performance_monitor');
+		$performance_monitor->set_sqlquery_log($query);
 		$q = str_replace("#__",$this->db_prefix,$query);
 		$this->query=$q;
-		if ($this->queryLoggingEnabled)
-			$this->queryLog[]=$q;
 		}
 
 	function loadObjectList()

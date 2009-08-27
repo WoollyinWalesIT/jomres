@@ -20,17 +20,10 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 ##################################################################
 
-global $timetracking;
 $timetracking = true;
+
 if (!isset($_REQUEST['no_html']))
 	$_REQUEST['no_html'] = 0;
-if ($timetracking && $_REQUEST['no_html']!="1")
-	{
-	global $jomres_db_querylog;
-	$timekeeper = array();
-	$timereport = array();
-	$timekeeper = start_track("jomres_runtime", $timekeeper);
-	}
 
 ob_start("removeBOM");
 @ini_set("memory_limit","128M");
@@ -43,13 +36,20 @@ global $thisJRUser,$cssStyle,$task,$jomresPathway;
 global $property_uid,$Itemid,$jomressession,$jomresConfig_absolute_path;
 global $popup,$numberOfPropertiesInSystem,$loggingEnabled,$customTextArray;
 global $version,$jomresConfig_live_site;
-global $thisJomresPropertyDetails;
+global $thisJomresPropertyDetails,$customTextObj;
 
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once('integration.php');
+
+
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
+$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
+if ($jrConfig['errorChecking'] =="1")
+	$performance_monitor->switch_on();
+else
+	$performance_monitor->switch_off();
 
 $MiniComponents =jomres_getSingleton('mcHandler');
 
@@ -192,19 +192,6 @@ if ($numberOfPropertiesInSystem==1)
 else if ($thisJRUser->userIsManager)
 	$property_uid=$defaultProperty;
 
-/*
-replaced with $published=$thisJomresPropertyDetails['published'];
-if ($task != "handlereq")
-	{
-	$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid = ".(int)$property_uid." ";
-	$propertyList = doSelectSql($query);
-	$published="0";
-	foreach ($propertyList as $prop)
-		{
-		$published=$prop->published;
-		}
-	}
-*/
 
 if ($task=="showRoomDetails")
 	{
@@ -368,6 +355,7 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$output=array();
 	}
 
+$performance_monitor->set_point("pre-menu generation");
 
 // Manager specific tasks
 if (!defined('JOMRES_NOHTML'))
@@ -578,6 +566,8 @@ if (!defined('JOMRES_NOHTML'))
 		}
 	}
 
+$performance_monitor->set_point("post-menu generation");
+	
 $option="com_jomres";
 $componentArgs=array();
 $MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done.
@@ -1369,36 +1359,20 @@ $componentArgs=array();
 $MiniComponents->triggerEvent('99999',$componentArgs); // Optional end of run minicomponent
 $componentArgs=array();
 
+$performance_monitor->set_point("end run");
+$performance_monitor->output_report();
+
 if ($no_html==0 && $jrConfig['errorChecking']==1)
 	{
 	foreach ($MiniComponents->log as $log)
 		echo "Log :".$log."<br>";
 	}
-if ($timetracking && $_REQUEST['no_html']!="1")
-	{
-	$timereport = end_track("jomres_runtime", $timekeeper, $timereport);
-	time_report($timereport);
-	//var_dump($jomres_db_querylog);exit;
-
-	if( function_exists('memory_get_usage') )
-		{
-		echo "Memory usage: ".memory_get_usage  (TRUE );
-		echo "<br>";
-		echo "Peak usage: ".memory_get_peak_usage  ( TRUE  );
-		echo "<br>";
-		}
-	echo "Number of queries: ".count($jomres_db_querylog);
-	echo "<br>";
-	foreach ($jomres_db_querylog as $q)
-		{
-		//echo substr  ($q,0,80);
-		echo wordwrap  ($q,80);
-		echo "<br>";
-		}
-	}
 	
-// Untested. The idea here is to decide if we're going to output the data here (at the end of jomres.php runing) or dump out data into a define that the bridging script can then use to pass back to the cms
-// Don't know if it's going to be needed, but it seems to work as it stands so for now I'll not make any more changes.
+
+	
+
+	
+// The idea here is to decide if we're going to output the data here (at the end of jomres.php runing) or dump out data into a define that the bridging script can then use to pass back to the cms
 if (defined("JOMRES_RETURNDATA") )
 	{
 	define("JOMRES_RETURNDATA_CONTENT", ob_get_contents() ) ;
@@ -1406,55 +1380,11 @@ if (defined("JOMRES_RETURNDATA") )
 	}
 else
 	ob_end_flush();
+	
+
 
 // Script stops here
 
-function performSingleRoomPropertyCheck($property_uid)
-	{
-	global $mrConfig;
-	if ($mrConfig['singleRoomProperty'] == "1" )
-		{
-		$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = ".(int)$property_uid."";
-		$roomsList =doSelectSql($query);
-		if (count($roomsList) > 1 )
-			echo "<script>alert('"._JOMRES_SINGLEROOMPROPERTY_ERROR."')</script>";
-		}
-	}
-
-
-	function start_track($item, $timekeeper)
-	{
-		$timeStart=@gettimeofday();
-		$timeStart_uS=$timeStart["usec"];
-		$timeStart_S=$timeStart["sec"];
-		$item1 = $item . "_usec";
-		$item2 = $item . "_sec";
-		$timekeeper[$item1] = $timeStart_uS;
-		$timekeeper[$item2] = $timeStart_S;
-		return $timekeeper;
-	}
-
-	function end_track($item, $timekeeper, $timereport)
-	{
-		$timeEnd=@gettimeofday();
-		$timeEnd_uS=$timeEnd["usec"];
-		$timeEnd_S=$timeEnd["sec"];
-		$item1 = $item . "_usec";
-		$item2 = $item . "_sec";
-		$start_uS = $timekeeper[$item1];
-		$start_S = $timekeeper[$item2];
-		$ExecTime_S = ($timeEnd_S+($timeEnd_uS/1000000))-($start_S+($start_uS/1000000));
-		$timereport[$item] = $ExecTime_S;
-		return $timereport;
-	}
-
-	function time_report($timereport)
-	{
-		while(list($key, $time) = each($timereport))
-		{
-			print "$key - $time sec.<br>\n";
-		}
-	}
 
 function removeBOM($str="")
 	{
