@@ -158,15 +158,22 @@ if (function_exists("curl_init"))
 function jomresStatusTestFolderIsWritable($path)
 	{
 	$tmpFile="temp.txt";
+	$tmpDir="jomres_test_dir";
 	if (!is_dir($path) )
 		return array("result"=>false,"message"=>"Directory ".$path." doesn't exist");
 	if (!is_writable($path) )
 		return array("result"=>false,"message"=>"Directory ".$path." isn't writable");
 	if (!touch($path.$tmpFile) )
 		return array("result"=>false,"message"=>"Could not write ".$path.$tmpFile);
+	if (!file_exists($path.$tmpFile) )
+		return array("result"=>false,"message"=>"Could not find ".$path.$tmpFile." after seeming to be able to create it.");
 	if (!unlink($path.$tmpFile) )
 		return array("result"=>false,"message"=>"Could not delete ".$path.$tmpFile);
 
+	if (!mkdir($path.$tmpDir) )
+		return array("result"=>false,"message"=>"Could not make temporary folder ".$path.$tmpDir);
+	if (!rmdir($path.$tmpDir) )
+		return array("result"=>false,"message"=>"Could not remove temporary folder ".$path.$tmpDir);
 	return array("result"=>true,"message"=>"Pass");
 	}
 ?>

@@ -47,11 +47,16 @@ if (!defined('JOMRESPATH_BASE'))
 	{
 	if (!defined('JRDS'))
 		{
+		$apacheSig =false;
+
 		$detect_os = strtoupper($_SERVER["SERVER_SOFTWARE"]); // converted to uppercase
 		$isWin32 = strpos($detect_os, "WIN32");
 		$IIS = strpos($detect_os, "IIS");
-		$signature = strtoupper($_SERVER["SERVER_SIGNATURE"]);
-		$apacheSig = strpos($signature, "APACHE");
+		if (isset($_SERVER["SERVER_SIGNATURE"]))
+			{
+			$signature = strtoupper($_SERVER["SERVER_SIGNATURE"]);
+			$apacheSig = strpos($signature, "APACHE");
+			}
 		$dir =  dirname(realpath(__FILE__));
 		if ( strpos($dir,":\\" ) )
 			define("JRDS" , "\\");
