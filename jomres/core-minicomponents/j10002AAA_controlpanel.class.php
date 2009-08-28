@@ -32,6 +32,7 @@ class j10002AAA_controlpanel
 			{
 			$this->template_touchable=false; return;
 			}
+		global $htmlFuncs;  // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
 		$htmlFuncs =jomres_getSingleton('html_functions');
 		
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN, 'Desktop.png', _JOMRES_CONTROLPANEL);
