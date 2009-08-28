@@ -131,19 +131,25 @@ class j16000addplugin
 			$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&plugin=".$pluginName;
 			//echo $queryServer;exit;
 			if ($debugging) echo $queryServer;
-
-			$out = fopen($newfilename, 'wb');
-			if ($out == FALSE)
-				{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
+			
 			$curl_handle = curl_init($queryServer);
-			curl_setopt($curl_handle, CURLOPT_FILE, $out);
+			$file_handle = fopen($newfilename, 'wb');
+			if ($file_handle == FALSE)
+				{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
+
+			curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
 			curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+			
+			/*
 			curl_setopt($curl_handle, CURLOPT_URL, $queryServer);
+			curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl_handle, CURLOPT_FORBID_REUSE, 1);
 			curl_setopt($curl_handle, CURLOPT_FRESH_CONNECT, 1);
-			curl_exec($curl_handle);
+			curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, true);
+			*/
+			$result=curl_exec($curl_handle);
 			curl_close($curl_handle);
-			fclose($out);
+			fclose($file_handle);
 			}
 
 		if (!file_exists($newfilename) || filesize($newfilename)==0 )
