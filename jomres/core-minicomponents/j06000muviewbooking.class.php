@@ -37,7 +37,7 @@ class j06000muviewbooking {
 	 */
 	function j06000muviewbooking()
 		{
-		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$jomresConfig_live_site;
+		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
@@ -55,10 +55,6 @@ class j06000muviewbooking {
 			$output['HMOREINFO']=jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,$isLink=false);
 			$output['TITLE']=jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,$editable=false,$isLink=false);
 
-			if (file_exists($ePointFilepath.'language/'.$jomresConfig_lang.'.php'))
-				require_once($ePointFilepath.'language/'.$jomresConfig_lang.'.php');
-			else if (file_exists($ePointFilepath.'language/en-GB.php'))
-				require_once($ePointFilepath.'language/en-GB.php');
 			$pageoutput=array();
 			$output=array();
 			if ($contract_uid==0)

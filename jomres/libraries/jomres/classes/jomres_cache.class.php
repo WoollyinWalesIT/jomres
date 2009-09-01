@@ -31,11 +31,10 @@ class jomres_cache
 	//function jomres_cache($key="",$property_uid=0,$userSpecific=false)
 	function jomres_cache($args)
 		{
-		global $jomresConfig_lang;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->useCaching = $jrConfig['useCaching'];
-		$this->lang = $jomresConfig_lang;
+		$this->lang = get_showtime('lang');
 		$this->cache_folder=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS;
 		$this->expiration = 3600;
 		if (strlen($key)>0 && $this->useCaching == "1")

@@ -92,7 +92,7 @@ else
  */
 function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	{
-	global $jomresAdminPath,$jomresConfig_live_site,$jomresConfig_lang,$thisJRUser,$Itemid,$jomresConfig_absolute_path;
+	global $jomresAdminPath,$jomresConfig_live_site,$thisJRUser,$Itemid,$jomresConfig_absolute_path;
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -105,7 +105,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 		$backWasClicked=true;
 	elseif ($thisJRUser->userIsManager == true)
 		$tmpBookingHandler->resetTempGuestData();  // We don't want managers coming back to the booking form with the old guest data still saved.
-	$tmpBookingHandler->updateBookingField("lang",$jomresConfig_lang);
+	$tmpBookingHandler->updateBookingField("lang",get_showtime('lang'));
 	if ((int)$tmpBookingHandler->getBookingPropertyId() != (int)$selectedProperty)
 		$tmpBookingHandler->resetTempBookingData();
 	$tmpBookingHandler->tmpbooking["property_uid"]=(int)$selectedProperty;

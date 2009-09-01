@@ -37,7 +37,7 @@ class j06000terms
 	 */
 	function j06000terms()
 		{
-		global $jomresConfig_live_site,$jomresConfig_lang,$mainframe;
+		global $jomresConfig_live_site,$mainframe;
 
 		$property_uid 	= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$this->pop		= jomresGetParam( $_REQUEST, 'popup', 0 );
@@ -56,7 +56,7 @@ class j06000terms
 
 		if ( (!$userIsManager) || $userIsManager )
 			{
-			$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = '$property_uid' AND language = '$jomresConfig_lang'";
+			$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = '$property_uid' AND language = '".get_showtime('lang')."'";
 			$customTextList=doSelectSql($query);
 			if (count($customTextList))
 				{

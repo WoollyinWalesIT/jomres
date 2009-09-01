@@ -23,6 +23,23 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 
 
 
+function get_showtime($setting)
+	{
+	$showtime = jomres_getSingleton('showtime');
+	if (isset($showtime->run_time_information[$setting]))
+		return $showtime->get($setting);
+	else
+		return null;
+	}
+
+function set_showtime($setting,$value)
+	{
+	$showtime = jomres_getSingleton('showtime');
+	if (!$showtime->set($setting,$value))
+		return false;
+	return true;
+	}
+	
 function jr_import($class)
 	{
 	if (!class_exists($class)) 
@@ -46,7 +63,7 @@ function jr_import($class)
 	}
 
 
-function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang)
+function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang="")
 	{
 	if (!defined("JOMRES_JSCALLED") )
 		{
@@ -65,7 +82,7 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 		if ($jrConfig['autoDetectJSCalendarLang'] == "1")
 			{
 			
-			$calfileSought="calendar-".$jomresConfig_lang.".js";
+			$calfileSought="calendar-".get_showtime('lang').".js";
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
 				$jrConfig['jscalendarLangfile']=$calfileSought;
 			else
@@ -1690,7 +1707,7 @@ function userHasBeenLoggedOut() {
 */
 function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$jrc=FALSE)
 	{
-	global $jomresConfig_live_site,$jomresConfig_lang;
+	global $jomresConfig_live_site;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	

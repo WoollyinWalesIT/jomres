@@ -36,7 +36,7 @@ class j06000cancelGuestBooking {
 	 */
 	function j06000cancelGuestBooking()
 		{
-		global $ePointFilepath,$jomresConfig_lang,$thisJRUser,$jomresConfig_live_site;
+		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -48,11 +48,6 @@ class j06000cancelGuestBooking {
 			{
 			$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 
-			if (file_exists($ePointFilepath.'language/'.$jomresConfig_lang.'.php'))
-				require_once($ePointFilepath.'language/'.$jomresConfig_lang.'.php');
-			else if (file_exists($ePointFilepath.'language/en-GB.php'))
-				require_once($ePointFilepath.'language/en-GB.php');
-			
 			$pageoutput=array();
 			$output=array();
 			if ($contract_uid==0)

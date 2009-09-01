@@ -37,7 +37,7 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		global $jomresConfig_live_site,$jomresConfig_lang,$mainframe,$customTextArray;
+		global $jomresConfig_live_site,$mainframe,$customTextArray;
 		
 		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();

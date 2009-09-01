@@ -42,7 +42,7 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$jomresConfig_lang;
+		global $jomresConfig_live_site;
 		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
 		global $jomresItemid;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
@@ -56,19 +56,6 @@ class j00030search {
 		$calledByModule="";
 		$searchRestarted=false;
 		$showSearchOptions=true;
-
-		/*
-		if (!defined(_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) )
-			{
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.$jomresConfig_lang.'.php')) {
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.$jomresConfig_lang.'.php');
-				} else if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.'en-GB.php'))  {
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'language'.JRDS.'en-GB.php');
-				}
-			}
-		*/
-		
-		
 
 		$MiniComponents =jomres_getSingleton('mcHandler');
 
@@ -99,7 +86,7 @@ class j00030search {
 			//$customTextObj = new custom_text();
 			}
 			
-		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
+		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site);
 		//$runningMiniComp=false;
 		if ($calledByModule == "" && isset($_REQUEST['calledByModule']) )
 			{
@@ -123,7 +110,7 @@ class j00030search {
 		$calledByModule=mysql_real_escape_string($calledByModule);
 
 		$customTextArray=array();
-		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '$jomresConfig_lang'";
+		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".get_showtime('lang')."'";
 		$customTextList=doSelectSql($query);
 		if (count($customTextList))
 			{

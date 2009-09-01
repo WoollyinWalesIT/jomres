@@ -105,7 +105,7 @@ else
 
 global $customTextArray;
 $customTextArray=array();
-$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '$jomresConfig_lang'";
+$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".get_showtime('lang')."'";
 $customTextList=doSelectSql($query);
 if (count($customTextList))
 	{

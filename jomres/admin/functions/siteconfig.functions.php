@@ -32,7 +32,6 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
  */
 function showSiteConfig(  )
 	{
-	global $jomresConfig_lang;
 	global $jomresConfig_absolute_path, $jomresConfig_admin_template, $jomresConfig_live_site,$version;
 
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');

@@ -55,13 +55,6 @@ class jomres_custom_field_handler
 			}
 		return $this->custom_fields;
 		}
-		
-		
-		
-		
-
-
-	
 	}
 	
 ?>

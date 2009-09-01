@@ -30,7 +30,6 @@ class jomres_language
 	 */
 	function jomres_language()
 		{
-		global $jomresConfig_lang;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -94,6 +93,7 @@ class jomres_language
 		
 		jomres_cmsspecific_setlanguage($jomresConfig_lang);
 		$this->lang=$jomresConfig_lang;
+		set_showtime('lang',$jomresConfig_lang);
 		}
 		
 	function get_language($propertytype = "")

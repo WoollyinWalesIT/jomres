@@ -43,7 +43,7 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$jomresConfig_lang,$method,$jomresConfig_list_limit,$customTextArray;
+		global $jomresConfig_live_site,$method,$jomresConfig_list_limit,$customTextArray;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
