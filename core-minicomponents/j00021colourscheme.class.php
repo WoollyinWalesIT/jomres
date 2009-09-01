@@ -48,7 +48,7 @@ class j00021colourscheme
 		if (file_exists(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss.css") )
 			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/temp/',"jomrescss.css");
 		else
-			jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/',"jomrescss.css");
+			jomres_cmsspecific_addheaddata("css",JOMRES_CSSRELPATH,"jomrescss.css");
 		//echo '<link rel="stylesheet" type="text/css" href="'.$jomresConfig_live_site.'/jomres/css/jomrescss.css" />';
 		}
 
