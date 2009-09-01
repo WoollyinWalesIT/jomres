@@ -28,8 +28,7 @@ class custom_text
 	{
 	function custom_text() 
 		{
-		global $jomresConfig_lang;
-		$this->lang=$jomresConfig_lang;
+		$this->lang=get_showtime('lang');
 		$this->global_custom_text=array();
 		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".$this->lang."'";
 		$customTextList=doSelectSql($query);

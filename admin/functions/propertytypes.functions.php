@@ -112,7 +112,6 @@ function editPropertyType()
  */
 function savePropertyType()
 	{
-	global $jomresConfig_lang;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$id = jomresGetParam( $_POST, 'id', 0 );
 	$ptype = jomresGetParam( $_POST, 'ptype', '' );
@@ -122,7 +121,7 @@ function savePropertyType()
 	if (!is_dir(JOMRESPATH_BASE.'/language/'.$ptype_desc) && is_writable(JOMRESPATH_BASE.'/language/') )
 		{
 		mkdir(JOMRESPATH_BASE.'/language/'.$ptype_desc);
-		copy (JOMRESPATH_BASE.'/language/'.$jomresConfig_lang.".php",JOMRESPATH_BASE.'/language/'.$ptype_desc."/".$jomresConfig_lang.".php" );
+		copy (JOMRESPATH_BASE.'/language/'.get_showtime('lang').".php",JOMRESPATH_BASE.'/language/'.$ptype_desc."/".get_showtime('lang').".php" );
 		}
 	if (isset($id) && !empty($id) )
 		$query="UPDATE #__jomres_ptypes SET `ptype`='$ptype',`ptype_desc`='$ptype_desc' WHERE id = '".(int)$id."'";

@@ -151,7 +151,7 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpbooking["error_log"]					= (string)$c->special_reqs;
 						$tmpBookingHandler->tmpbooking["total_in_party"]			= (int)$totalinparty;
 						$tmpBookingHandler->tmpbooking["room_total"] 				= (float)$c->room_total;
-						$tmpBookingHandler->tmpbooking["lang"]						= (string)$jomresConfig_lang;
+						$tmpBookingHandler->tmpbooking["lang"]						= (string)get_showtime('lang');
 						$tmpBookingHandler->tmpbooking["timestamp"]					= "";
 						$tmpBookingHandler->tmpbooking["mininterval"]				= "";
 						$tmpBookingHandler->saveBookingData();
@@ -188,7 +188,7 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpbooking["error_log"]					= (string)$c->special_reqs;
 						$tmpBookingHandler->tmpbooking["total_in_party"]			= (int)$totalinparty;
 						$tmpBookingHandler->tmpbooking["room_total"] 				= (string)$c->room_total;
-						$tmpBookingHandler->tmpbooking["lang"]						= (string)$jomresConfig_lang;
+						$tmpBookingHandler->tmpbooking["lang"]						= (string)get_showtime('lang');
 						$tmpBookingHandler->tmpbooking["timestamp"]					= "";
 						$tmpBookingHandler->tmpbooking["mininterval"]				= "";
 						$tmpBookingHandler->saveBookingData();

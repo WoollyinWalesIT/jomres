@@ -34,11 +34,7 @@ class j06000deletenote {
 			}
 		$note_id				= jomresGetParam( $_REQUEST, 'note_id', 0 );
 		$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
-		global $ePointFilepath,$jomresConfig_lang;
-		if (file_exists($ePointFilepath.'language/'.$jomresConfig_lang.'.php'))
-			require_once($ePointFilepath.'language/'.$jomresConfig_lang.'.php');
-		else if (file_exists($ePointFilepath.'language/en-GB.php'))
-			require_once($ePointFilepath.'language/en-GB.php');
+		global $ePointFilepath;
 		if ($note_id==0 || $contract_uid ==0)
 			{
 			echo "Error with note id or contract id";

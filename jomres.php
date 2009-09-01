@@ -309,7 +309,7 @@ if ( $jrConfig['useSSLinBookingform'] == 1 && !_JOMRES_NEWJOOMLA )
 		}
 	}
 
-init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang);
+init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site);
 
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{

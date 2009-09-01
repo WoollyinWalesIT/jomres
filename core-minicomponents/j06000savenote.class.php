@@ -40,11 +40,7 @@ class j06000savenote {
 		$defaultProperty=getDefaultProperty();
 		$datetime=date("Y-m-d H-i-s");
 
-		global $ePointFilepath,$jomresConfig_lang;
-		if (file_exists($ePointFilepath.'language/'.$jomresConfig_lang.'.php'))
-			require_once($ePointFilepath.'language/'.$jomresConfig_lang.'.php');
-		else if (file_exists($ePointFilepath.'language/en-GB.php'))
-			require_once($ePointFilepath.'language/en-GB.php');
+		global $ePointFilepath;
 		$auditMessage=jr_gettext('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE',_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE,false,false);
 		if ($note_id == 0 )
 			$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','$newtext','$datetime','".(int)$defaultProperty."')";

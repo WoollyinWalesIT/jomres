@@ -42,8 +42,7 @@ if (isset($_REQUEST['no_html']) )
 else
 	$no_html = 0;
 
-$jomresConfig_offline			= $CONFIG->offline;
-$jomresConfig_db				= $CONFIG->db;
+
 
 if (!strstr($scriptname,'install_jomres.php'))
 	{
@@ -81,6 +80,43 @@ if (!strstr($scriptname,'install_jomres.php'))
 	$lang			= @ JFactory::getLanguage();
 	$jomresConfig_lang = $lang->_lang;
 	}
+$showtime = jomres_getSingleton('showtime');
+
+$showtime->set['lang']				= $jomresConfig_lang;
+$showtime->set['live_site']			= $jomresConfig_live_site;
+$showtime->set['offline']			= $CONFIG->offline;
+$showtime->set['db']				= $CONFIG->db;
+$showtime->set['sitename']			= $CONFIG->sitename;
+$showtime->set['lifetime']			= $CONFIG->lifetime;
+$showtime->set['MetaDesc']			= $CONFIG->MetaDesc;
+$showtime->set['MetaKeys']			= $CONFIG->MetaKeys;
+$showtime->set['MetaTitle']			= $CONFIG->MetaTitle;
+$showtime->set['MetaAuthor']		= $CONFIG->MetaAuthor;
+$showtime->set['debug']				= $CONFIG->debug;
+$showtime->set['mailer']			= $CONFIG->mailer;
+$showtime->set['mailfrom']			= $CONFIG->mailfrom;
+$showtime->set['fromname']			= $CONFIG->fromname;
+$showtime->set['sendmail']			= $CONFIG->sendmail;
+$showtime->set['smtpauth']			= $CONFIG->smtpauth;
+$showtime->set['smtpuser']			= $CONFIG->smtpuser;
+$showtime->set['smtppass']			= $CONFIG->smtppass;
+$showtime->set['smtphost']			= $CONFIG->smtphost;
+$showtime->set['secret']			= $CONFIG->secret;
+$showtime->set['dbprefix']			= $CONFIG->dbprefix;
+$showtime->set['user']				= $CONFIG->user;
+$showtime->set['password']			= $CONFIG->password;
+$showtime->set['db']				= $CONFIG->db;
+$showtime->set['host']				= $CONFIG->host;
+$showtime->set['helpurl']			= $CONFIG->helpurl;
+$showtime->set['editor']			= $CONFIG->editor;
+$showtime->set['caching']			= $CONFIG->caching;
+$showtime->set['cachetime']			= $CONFIG->cachetime;
+$showtime->set['offset']			= $CONFIG->offset;
+$showtime->set['sef']				= $CONFIG->sef;
+$showtime->set['gzip']				= $CONFIG->gzip;
+$showtime->set['error_reporting']	= $CONFIG->error_reporting;
+
+
 
 $jomresConfig_sitename			= $CONFIG->sitename;
 $jomresConfig_lifetime			= $CONFIG->lifetime;

@@ -78,6 +78,7 @@ define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
 $performance_monitor =jomres_getSingleton('jomres_performance_monitor');
 
+
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php");
@@ -140,6 +141,7 @@ if ( !function_exists('gregoriantojd') )
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
+$showtime = jomres_getSingleton('showtime');
 
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
 
@@ -209,7 +211,10 @@ define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
 
 // loads en language file by default
 if ($jomresConfig_lang=='')
+	{
+	set_showtime('lang','en-GB');
 	$jomresConfig_lang = 'en-GB';
+	}
 
 $MiniComponents =jomres_getSingleton('mcHandler');
 $MiniComponents->triggerEvent('00001'); // Start
@@ -789,7 +794,6 @@ function getPropertyNameNoTables($property_uid)
 
 function editCustomTextAll()
 	{
-	global $jomresConfig_lang;
 	$mrConfig=getPropertySpecificSettings();
 	$mrConfig['editingOn']="1";
 	$allDefinedContants=get_defined_constants();
@@ -804,7 +808,7 @@ function editCustomTextAll()
 	$mrConfig['editingOn']="1";
 	foreach ($jomresConstants as $key=>$value)
 		{
-		if ($jomresConfig_lang == "en")
+		if ( get_showtime('lang') == "en")
 			echo jr_gettext($key,$value)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
 		else
 			echo jr_gettext($key,$value,true,FALSE)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
@@ -815,7 +819,7 @@ function editCustomTextAll()
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
 	global $property_uid,$thisJRUser,$customTextArray,$jomresConfig_live_site;
-	global $jomresConfig_lang,$task;
+	global $task;
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -862,7 +866,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				if ($isLink)
 					{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-					$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
+					$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
 					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".$jomresConfig_live_site."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
 					$theText=$editingLink.$theText;
 					}
@@ -899,7 +903,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					else
 						{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-						$link = JOMRES_SITEPAGE_URL_NOHTML.'&task=editCustomText&popup=1&lng='.$jomresConfig_lang.'&theConstant='.$theConstant."&property_uid=".$property_uid;
+						$link = JOMRES_SITEPAGE_URL_NOHTML.'&task=editCustomText&popup=1&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
 						$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" >$theText</a>";
 						$theText=$editingLink.$br;
 						}
@@ -923,13 +927,13 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 
 function editCustomText()
 	{
-	global $jomresConfig_live_site,$jomresConfig_lang;
+	global $jomresConfig_live_site;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$theConstant = jomresGetParam( $_REQUEST, 'theConstant', '' );
 	$defaultText = jomresGetParam( $_REQUEST, 'defaultText', '', _MOS_ALLOWHTML );
 	$property_uid=(int)getDefaultProperty();
-	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '0' AND language = '$jomresConfig_lang'";
+	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '0' AND language = '".get_showtime('lang')."'";
 	$customTextList=doSelectSql($query);
 	$theText = false;
 	if (count($customTextList))
@@ -939,7 +943,7 @@ function editCustomText()
 			$theText=stripslashes($text->customtext);
 			}
 		}
-	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '".(int)$property_uid."' AND language = '$jomresConfig_lang'";
+	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
 	$textList=doSelectSql($query);
 	if (count($textList)==1)
 		{
@@ -1031,7 +1035,7 @@ function saveCustomText()
 
 function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	{
-	global $jomresConfig_lang,$thisJRUser;
+	global $thisJRUser;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$testStr= trim(strip_tags_except($theValue));
@@ -1054,18 +1058,18 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 			$property_uid=(int)getDefaultProperty();
 		}
 	//$theValue=htmlentities($theValue);
-	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '$jomresConfig_lang'";
+	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
 	$textList=doSelectSql($query);
 	if (strlen($theValue)==0)
 		{
-		$query="DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int)$property_uid."' AND language = '$jomresConfig_lang'";
+		$query="DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
 		}
 	else
 		{
 		if (count($textList)<1)
-			$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int)$property_uid."','$jomresConfig_lang')";
+			$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int)$property_uid."','".get_showtime('lang')."')";
 		else
-			$query="UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int)$property_uid."' AND language = '$jomresConfig_lang'";
+			$query="UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
 		}
 	//echo $query;
 	if ($audit)

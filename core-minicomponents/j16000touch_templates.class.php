@@ -31,9 +31,9 @@ class j16000touch_templates
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jomresConfig_live_site,$jomresConfig_lang;
+		global $thisJRUser,$jomresConfig_live_site;
 		
-		echo "<br/>Current lang ".$jomresConfig_lang."<br/>";
+		echo "<br/>Current lang ".get_showtime('lang')."<br/>";
 		
 		$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
 		echo "<hr>";
