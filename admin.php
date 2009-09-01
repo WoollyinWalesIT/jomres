@@ -29,18 +29,18 @@ ob_start();
 
 
 global $xmlelements;
-global $indexphp,$logFiles,$jomresConfig_live_site;
+global $indexphp,$logFiles;
 
 require_once('integration.php');
 $MiniComponents =jomres_getSingleton('mcHandler');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
-global $jomressession;
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 //$tmpBookingHandler = new jomres_temp_booking_handler();
-$tmpBookingHandler->initBookingSession($jomressession);
+$tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
 $jomressession  = $tmpBookingHandler->getJomressession();
+
 $showSearchOptions=true;
 $jomreslang =jomres_getSingleton('jomres_language');
 //$jomreslang= new jomres_language();
@@ -51,10 +51,10 @@ $customTextObj =jomres_getSingleton('custom_text');
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
 	define('JOMRES_IMAGELOCATION_ABSPATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
-	define('JOMRES_IMAGELOCATION_RELPATH',$jomresConfig_live_site.'/jomres/uploadedimages/');
+	define('JOMRES_IMAGELOCATION_RELPATH',get_showtime('live_site').'/jomres/uploadedimages/');
 	}
 $task = jomresGetParam( $_REQUEST, 'task', "" );
-
+set_showtime('task',$task);
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'jomresxml.functions.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'siteconfig.functions.php');
@@ -122,23 +122,23 @@ if (!JRPORTAL_AJAXCALL)
 	{
 	echo $jomreslang->get_languageselection_dropdown()."<br/>";
 	?>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery-1.3.2.min.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery-1.3.2.min.js"></script>
 	<script language="javascript" type="text/javascript">jQuery.noConflict();</script>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.cookee.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jomres.js"></script>
-	<script language="javascript"type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/tablesort.js"></script>
-	<script  language="javascript"type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/tablepaginator.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/graphs.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jrportal.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.jeditable.pack.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.cookee.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jomres.js"></script>
+	<script language="javascript"type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/tablesort.js"></script>
+	<script  language="javascript"type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/tablepaginator.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/graphs.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.jeditable.pack.js"></script>
 
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/jquery.bt-0-9-3.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo $jomresConfig_live_site; ?>/jomres/javascript/excanvas-compressed.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.bt-0-9-3.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/excanvas-compressed.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="<?php echo $jomresConfig_live_site; ?>/jomres/css/jomrescss.css" title="" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_showtime('live_site'); ?>/jomres/css/jomrescss.css" title="" />
 	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
 	<?php
-	if (strlen($task)>1)
+	if (strlen(get_showtime('task'))>1)
 		{
 		jr_import('cpanel');
 		$cpanel=new cpanel();
@@ -162,7 +162,7 @@ if (!JRPORTAL_AJAXCALL)
 		$indexphp="index.php";
 	else
 		{
-		echo '<script language="JavaScript" src="'.$jomresConfig_live_site.'/includes/js/joomla.javascript.js" type="text/javascript"></script>';
+		echo '<script language="JavaScript" src="'.get_showtime('live_site').'/includes/js/joomla.javascript.js" type="text/javascript"></script>';
 		$indexphp="index2.php";	
 		}
 	}
@@ -170,7 +170,7 @@ else
 	$indexphp="index3.php";
 	
 
-switch ($task) {
+switch (get_showtime('task')) {
 	//case "clearLog":
 	//	clearLog();
 	//	break;
@@ -257,13 +257,13 @@ switch ($task) {
 	//	break;
 	case 'cpanel':
 		default:
-		if ($MiniComponents->eventSpecificlyExistsCheck('16000',$task) )
+		if ($MiniComponents->eventSpecificlyExistsCheck('16000',get_showtime('task')) )
 			{
-			$MiniComponents->specificEvent('16000',$task); // Custom task
+			$MiniComponents->specificEvent('16000',get_showtime('task')); // Custom task
 			}
 		else
 			{
-			if ( $task!="getLicenseKey" )
+			if ( get_showtime('task')!="getLicenseKey" )
 				{
 				$version=$mrConfig['version'];
 				HTML_jomres::controlPanel($version);

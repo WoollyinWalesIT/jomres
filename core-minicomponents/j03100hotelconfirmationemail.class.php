@@ -43,7 +43,6 @@ class j03100hotelconfirmationemail {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site;
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
@@ -135,7 +134,7 @@ class j03100hotelconfirmationemail {
 		$output['ISO']=_ISO;
 
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['HROOM']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM',_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM,FALSE,FALSE);
 		$output['ROOM']=$roomNumber." ".$room_name;
 		$output['HBOOKINGNO']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE,FALSE);

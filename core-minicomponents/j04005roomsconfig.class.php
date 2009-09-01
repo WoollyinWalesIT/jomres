@@ -213,16 +213,13 @@ class j04005roomsconfig {
 			$published=$property->published;
 			if ($published)
 				{
-				$img = $jomresConfig_live_site."/administrator/images/tick.png";
+				$img = get_showtime('live_site')."/jomres/images/jomresimages/small/tick.png";
 				}
 			else
 				{
-				$img = $jomresConfig_live_site."/administrator/images/publish_x.png";
+				$img = get_showtime('live_site')."/jomres/images/jomresimages/small/publish_x.png";
 				}
-//			$fileLocation=checkForImage('property',$property->propertys_uid);
-//			$property_image=$jomresConfig_live_site."/jomres/uploaded/jrlogo.png";
-//			if ($fileLocation)
-//				$property_image=$jomresConfig_live_site.$fileLocation;
+
 			$property_image=getImageForProperty("property",$property->propertys_uid,$property->propertys_uid);
 
 			$propertyRowInfo .="<tr>";

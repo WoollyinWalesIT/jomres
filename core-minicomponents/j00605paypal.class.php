@@ -44,7 +44,7 @@ class j00605paypal {
 			$this->template_touchable=false; return;
 			}
 
-		global $jomresConfig_live_site,$jomressession,$jomresConfig_sitename;
+		global $jomresConfig_sitename;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -89,7 +89,7 @@ class j00605paypal {
 				$this->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';
 				}
 
-			$this_script = JOMRES_SITEPAGE_URL.'&task=completebk&plugin='.$plugin.'&jsid='.$jomressession;
+			$this_script = JOMRES_SITEPAGE_URL.'&task=completebk&plugin='.$plugin.'&jsid='.get_showtime('jomressession');
 
 			$bookingDeets=gettempBookingdata();
 
@@ -145,7 +145,7 @@ class j00605paypal {
 			$this->add_field('notify_url', $this_script.'&action=ipn');
 			$this->add_field('item_name', $transactionName);
 			$this->add_field('payer_id', $guests_uid);
-			$this->add_field('custom', $jomressession);
+			$this->add_field('custom', get_showtime('jomressession'));
 			$this->add_field('currency_code', $settingArray['currencycode']);
 			$this->add_field('amount', number_format($deposit_required,2, '.', ''));
 			

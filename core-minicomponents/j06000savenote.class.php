@@ -40,7 +40,6 @@ class j06000savenote {
 		$defaultProperty=getDefaultProperty();
 		$datetime=date("Y-m-d H-i-s");
 
-		global $ePointFilepath;
 		$auditMessage=jr_gettext('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE',_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE,false,false);
 		if ($note_id == 0 )
 			$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','$newtext','$datetime','".(int)$defaultProperty."')";

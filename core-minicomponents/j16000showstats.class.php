@@ -32,7 +32,6 @@ class j16000showstats
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp,$jomresConfig_live_site;
 		$pageoutput=array();
 		$output=array();
 		$rows=array();
@@ -57,7 +56,7 @@ class j16000showstats
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['STATOPTIONS']=$statoptions;
-		$output['LIVESITE']=$jomresConfig_live_site;
+		$output['LIVESITE']=get_showtime('live_site');
 		$output['PAGETITLE']	= _JRPORTAL_STATS_PATETITLE;
 
 		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;

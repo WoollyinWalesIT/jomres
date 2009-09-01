@@ -32,7 +32,6 @@ class j16000editPfeature
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresAdminPath,$jomresConfig_live_site;
 		$propertyFeatureUid = jomresGetParam( $_REQUEST, 'propertyFeatureUid',	0 );
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	false ) );
 		if ($propertyFeatureUid >0)
@@ -50,7 +49,7 @@ class j16000editPfeature
 			$propertyFeatureUid=0;
 
 		$map=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS;
-		$mrp=$jomresConfig_live_site.'/jomres/uploadedimages/pfeatures/';
+		$mrp=get_showtime('live_site').'/jomres/uploadedimages/pfeatures/';
 		$d = @dir($map);
 		$docs = array();
 		$rows=array();
@@ -81,7 +80,7 @@ class j16000editPfeature
 		$output['HLINKTEXTCLONE']=_JOMRES_COM_MR_LISTTARIFF_LINKTEXTCLONE;
 		$output['HFEATUREABBV']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
 		$output['HFEATUREDESCRIPTION']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC;
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
 		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'._JOMRES_COM_MR_BACK.'</a>';
 

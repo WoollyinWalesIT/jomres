@@ -37,7 +37,7 @@ class j06000muviewbooking {
 	 */
 	function j06000muviewbooking()
 		{
-		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
@@ -131,7 +131,7 @@ class j06000muviewbooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
-			global $jomresConfig_live_site,$popup;
+			global $popup;
 			$mrConfig=getPropertySpecificSettings();
 			$guest_firstname="N/A";
 			$guest_surname="N/A";

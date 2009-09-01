@@ -44,7 +44,7 @@ class j02230editcreditcard {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$jomresConfig_secret;
+		global $jomresConfig_secret;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$defaultProperty=getDefaultProperty();
@@ -107,9 +107,9 @@ class j02230editcreditcard {
 			$output['GUESTUID']		=$guestUid;
 			if ( $jrConfig['useSSLinBookingform'] == 1)
 				{
-				$jomresConfig_live_site = str_replace("http://","https://",$jomresConfig_live_site);
+				set_showtime('live_site',str_replace("http://","https://",get_showtime('live_site')));
 				}
-			$output['LIVESITE']		=$jomresConfig_live_site;
+			$output['LIVESITE']		=get_showtime('live_site');
 
 			$iss_mon = jomresHTML::integerSelectList( 01, 12, 1, 'iss_mon', 'size="1" class="inputbox"', $issueMonth, "%02d" );
 			$iss_year = jomresHTML::integerSelectList( 2005, 2020, 1, 'iss_year', 'size="1" class="inputbox"', $issueYear, "%02d" );
@@ -125,7 +125,7 @@ class j02230editcreditcard {
 
 			$output['JOMRESJS']="";
 			if (CMSVER == "Mambo4.6")
-				$output['JOMRESJS']='<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/ajax/jomres.js"></script>';
+				$output['JOMRESJS']='<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/ajax/jomres.js"></script>';
 
 			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 

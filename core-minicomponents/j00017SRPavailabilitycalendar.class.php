@@ -62,7 +62,7 @@ class j00017SRPavailabilitycalendar {
 			$this->showlinks=false;
 			}
 		
-		$task=jomresGetParam( $_REQUEST, 'task', '' );
+		$task=get_showtime('task');
 		if ($task == "remoteavailability" )
 			{
 			$property_uid=(int)jomresGetParam( $_REQUEST, 'id', '' );
@@ -201,7 +201,7 @@ class j00017SRPavailabilitycalendar {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		global $jomresConfig_locale;
-		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
+		global $noshowroom, $jomresConfig_offset;
 		$mrConfig=getPropertySpecificSettings();
 		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
 		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );

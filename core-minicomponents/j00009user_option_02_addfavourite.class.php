@@ -43,7 +43,6 @@ class j00009user_option_02_addfavourite {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $task;
 		$property_uid		= (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
 		$thisJRUser=$componentArgs['thisJRUser'];
 		if ($thisJRUser->userIsRegistered)
@@ -58,7 +57,7 @@ class j00009user_option_02_addfavourite {
 					$favs[]=$f->property_uid;
 					}
 				}
-			if ($task=='viewproperty' && !in_array($property_uid,$favs) )
+			if (get_showtime('task')=='viewproperty' && !in_array($property_uid,$favs) )
 				{
 				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=muaddtofavourites&no_html=1&amp;property_uid=".$property_uid, '', jr_gettext('_JOMCOMP_MYUSER_ADDTOFAVOURITES',_JOMCOMP_MYUSER_ADDTOFAVOURITES,true,true) );
 				}

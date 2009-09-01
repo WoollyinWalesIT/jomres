@@ -32,7 +32,7 @@ class j06000subscribe
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser;
+		global $thisJRUser;
 		$package_id		= (int)jomresGetParam( $_REQUEST, 'id', 0 );
 		
 		$output=array();

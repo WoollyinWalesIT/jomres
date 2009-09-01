@@ -34,8 +34,8 @@ class j16000showLog
 			{
 			$this->template_touchable=false; return;
 			}
-		global $logFiles,$xmlelements,$jomresConfig_live_site;
-		global $xml_entry_key,$rows,$jomresAdminPath,$counter,$lastdata,$xmlelements;
+		global $logFiles,$xmlelements;
+		global $xml_entry_key,$rows,$counter,$lastdata,$xmlelements;
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
 		$no_html = jomresGetParam( $_REQUEST, 'no_html',	0 );
 		$no_update = jomresGetParam( $_REQUEST, 'no_update',	0 );
@@ -55,9 +55,9 @@ class j16000showLog
 			{
 			$output['DELETE']=_JOMRES_COM_MR_ROOM_DELETE;
 			$output['DELETELINK']=JOMRES_SITEPAGE_URL_ADMIN.'&task=clearLog&logfile='.$logfile;
-			$output['LIVESITE']=$jomresConfig_live_site;
+			$output['LIVESITE']=get_showtime('live_site');
 			$output['BACKLINK']='<a href="javascript:submitbutton(\'listLogs\')">'._JOMRES_COM_MR_BACK.'</a>';
-			echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/heartbeat.js"></script>
+			echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/heartbeat.js"></script>
 				';
 				
 			if ($no_update ==0)
@@ -101,7 +101,7 @@ class j16000showLog
 					$r['TASK']=$res['requesturi'];
 					$r['MESSAGEFULL']=$res['message'];
 					$r['JOMRESSESSION']=$res['jomressession'];
-					$r['LIVESITE']=$jomresConfig_live_site;
+					$r['LIVESITE']=get_showtime('live_site');
 					$rows[]=$r;
 					$counter++;
 					}
@@ -164,7 +164,7 @@ class j16000showLog
 					$r['TASK']=$res['requesturi'];
 					$r['MESSAGEFULL']=$res['message'];
 					$r['JOMRESSESSION']=$res['jomressession'];
-					$r['LIVESITE']=$jomresConfig_live_site;
+					$r['LIVESITE']=get_showtime('live_site');
 					$rows[]=$r;
 					$counter++;
 					if ($counter == 10)

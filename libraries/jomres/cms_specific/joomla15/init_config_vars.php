@@ -29,7 +29,7 @@ global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$j
 	$jomresConfig_error_reporting,$jomresConfig_error_message,$jomresConfig_link_titles,$jomresConfig_list_limit,$jomresConfig_caching,$jomresConfig_cachepath,
 	$jomresConfig_cachetime,$jomresConfig_mailer,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sendmail,$jomresConfig_smtpauth,$jomresConfig_smtpuser,
 	$jomresConfig_smtppass,$jomresConfig_smtphost,$jomresConfig_back_button,$jomresConfig_item_navigation,$jomresConfig_secret,$jomresConfig_pagetitles,$jomresConfig_readmore,
-	$jomresConfig_hits,$jomresConfig_icons,$jomresConfig_favicon,$jomresConfig_fileperms,$jomresConfig_dirperms,$jomresConfig_helpurl,$jomresConfig_mbf_content,$jomresConfig_editor,$jomresAdminPath;
+	$jomresConfig_hits,$jomresConfig_icons,$jomresConfig_favicon,$jomresConfig_fileperms,$jomresConfig_dirperms,$jomresConfig_helpurl,$jomresConfig_mbf_content,$jomresConfig_editor;
 global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
@@ -82,40 +82,40 @@ if (!strstr($scriptname,'install_jomres.php'))
 	}
 $showtime = jomres_getSingleton('showtime');
 
-$showtime->set['lang']				= $jomresConfig_lang;
-$showtime->set['live_site']			= $jomresConfig_live_site;
-$showtime->set['offline']			= $CONFIG->offline;
-$showtime->set['db']				= $CONFIG->db;
-$showtime->set['sitename']			= $CONFIG->sitename;
-$showtime->set['lifetime']			= $CONFIG->lifetime;
-$showtime->set['MetaDesc']			= $CONFIG->MetaDesc;
-$showtime->set['MetaKeys']			= $CONFIG->MetaKeys;
-$showtime->set['MetaTitle']			= $CONFIG->MetaTitle;
-$showtime->set['MetaAuthor']		= $CONFIG->MetaAuthor;
-$showtime->set['debug']				= $CONFIG->debug;
-$showtime->set['mailer']			= $CONFIG->mailer;
-$showtime->set['mailfrom']			= $CONFIG->mailfrom;
-$showtime->set['fromname']			= $CONFIG->fromname;
-$showtime->set['sendmail']			= $CONFIG->sendmail;
-$showtime->set['smtpauth']			= $CONFIG->smtpauth;
-$showtime->set['smtpuser']			= $CONFIG->smtpuser;
-$showtime->set['smtppass']			= $CONFIG->smtppass;
-$showtime->set['smtphost']			= $CONFIG->smtphost;
-$showtime->set['secret']			= $CONFIG->secret;
-$showtime->set['dbprefix']			= $CONFIG->dbprefix;
-$showtime->set['user']				= $CONFIG->user;
-$showtime->set['password']			= $CONFIG->password;
-$showtime->set['db']				= $CONFIG->db;
-$showtime->set['host']				= $CONFIG->host;
-$showtime->set['helpurl']			= $CONFIG->helpurl;
-$showtime->set['editor']			= $CONFIG->editor;
-$showtime->set['caching']			= $CONFIG->caching;
-$showtime->set['cachetime']			= $CONFIG->cachetime;
-$showtime->set['offset']			= $CONFIG->offset;
-$showtime->set['sef']				= $CONFIG->sef;
-$showtime->set['gzip']				= $CONFIG->gzip;
-$showtime->set['error_reporting']	= $CONFIG->error_reporting;
+$showtime->error_reporting	= $CONFIG->error_reporting;
 
+$showtime->lang				= $jomresConfig_lang;
+$showtime->live_site		= $jomresConfig_live_site;
+$showtime->offline			= $CONFIG->offline;
+$showtime->db				= $CONFIG->db;
+$showtime->sitename			= $CONFIG->sitename;
+$showtime->lifetime			= $CONFIG->lifetime;
+$showtime->MetaDesc			= $CONFIG->MetaDesc;
+$showtime->MetaKeys			= $CONFIG->MetaKeys;
+$showtime->MetaTitle		= $CONFIG->MetaTitle;
+$showtime->MetaAuthor		= $CONFIG->MetaAuthor;
+$showtime->debug			= $CONFIG->debug;
+$showtime->mailer			= $CONFIG->mailer;
+$showtime->mailfrom			= $CONFIG->mailfrom;
+$showtime->fromname			= $CONFIG->fromname;
+$showtime->sendmail			= $CONFIG->sendmail;
+$showtime->smtpauth			= $CONFIG->smtpauth;
+$showtime->smtpuser			= $CONFIG->smtpuser;
+$showtime->smtppass			= $CONFIG->smtppass;
+$showtime->smtphost			= $CONFIG->smtphost;
+$showtime->secret			= $CONFIG->secret;
+$showtime->dbprefix			= $CONFIG->dbprefix;
+$showtime->user				= $CONFIG->user;
+$showtime->password			= $CONFIG->password;
+$showtime->db				= $CONFIG->db;
+$showtime->host				= $CONFIG->host;
+$showtime->helpurl			= $CONFIG->helpurl;
+$showtime->editor			= $CONFIG->editor;
+$showtime->caching			= $CONFIG->caching;
+$showtime->cachetime			= $CONFIG->cachetime;
+$showtime->offset			= $CONFIG->offset;
+$showtime->sef				= $CONFIG->sef;
+$showtime->gzip				= $CONFIG->gzip;
 
 
 $jomresConfig_sitename			= $CONFIG->sitename;

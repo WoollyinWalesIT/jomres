@@ -42,9 +42,8 @@ class j00510form {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$eLiveSite;
 		$gateway="form";
-		$button="<IMG SRC=\"".$eLiveSite."j00510".$gateway.".gif\" border=\"0\">";
+		$button="<IMG SRC=\"".get_showtime('eLiveSite')."j00510".$gateway.".gif\" border=\"0\">";
 		$defaultProperty=getDefaultProperty();
 
 		$yesno = array();
@@ -68,7 +67,7 @@ class j00510form {
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath );
+		$tmpl->setRoot( get_showtime('ePointFilepath') );
 		$tmpl->readTemplatesFromInput( 'j00510'.$gateway.'.html' );
 		$tmpl->addRows( 'edit_gateway', $pageoutput );
 		$tmpl->displayParsedTemplate();

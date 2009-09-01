@@ -57,7 +57,7 @@ class jomres_pathway
 
 	function addItem($pathwayText,$task="",$options="")
 		{
-		global $itemId;
+		$task=get_showtime('task');
 		if (defined('_JOMRES_NEWJOOMLA') )
 			{
 			$link=JOMRES_SITEPAGE_URL."";

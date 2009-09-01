@@ -62,7 +62,7 @@ class j02300regprop1 {
 
 		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
 		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
-		$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 		$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);

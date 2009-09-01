@@ -37,7 +37,7 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		global $jomresConfig_live_site,$mainframe,$customTextArray;
+		global $customTextArray;
 		
 		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
@@ -94,13 +94,13 @@ class j00015viewproperty
 			$property_deets=$MiniComponents->triggerEvent('00040',array('property_uid'=>$property_uid ) );
 
 			$stars=$thisJomresPropertyDetails['stars'];
-			$starslink="<IMG SRC=\"".$jomresConfig_live_site."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\">";
+			$starslink="<IMG SRC=\"".get_showtime('live_site')."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\">";
 			if ($stars!="0")
 				{
 				$starslink="";
 			  	for ($i=1;$i<=$stars;$i++)
 		    		{
-					$starslink.="<IMG SRC=\"".$jomresConfig_live_site."/jomres/images/star.png\" border=\"0\">";
+					$starslink.="<IMG SRC=\"".get_showtime('live_site')."/jomres/images/star.png\" border=\"0\">";
 					}
 				}
 			$countryname=getSimpleCountry($property_country);
@@ -168,7 +168,7 @@ class j00015viewproperty
 				$MiniComponents->triggerEvent('01060',array('property_uid'=>$property_uid )); // New location for slideshow images
 				}
 
-			$property['LIVE_SITE']=$jomresConfig_live_site;
+			$property['LIVE_SITE']=get_showtime('live_site');
 			$property['HPROPERTYNAME']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);
 			$property['HSTREET']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET);
 			$property['HTOWN']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN);
@@ -200,10 +200,6 @@ class j00015viewproperty
 			$property['COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE',_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE,FALSE);
 			$property['COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE',_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE,FALSE);
 
-		    //$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-			//$link =$jomresConfig_live_site."/index2.php?option=com_jomres&task=showTariffs&popup=1&property_uid=$property_uid";
-			//$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS)."</a>";
-			//Template link arrays for buttons
 			$tariffslink		=	array();
 			$slideshowlink		=	array();
 			$gallerylink		=	array();

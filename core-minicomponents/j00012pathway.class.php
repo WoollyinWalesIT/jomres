@@ -60,7 +60,7 @@ class j00012pathway {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$thisJRUser,$numberOfPropertiesInSystem;
+		global $thisJRUser,$numberOfPropertiesInSystem;
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
 			
@@ -85,7 +85,7 @@ class j00012pathway {
 			$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 			if ($thisJRUser->userIsManager==TRUE)
 				$property_uid=(int)$thisJRUser->defaultproperty;
-			$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+			$task 				= get_showtime('task');
 			if ($selectedProperty>0)
 				$property_uid=(int)$selectedProperty;
 

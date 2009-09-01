@@ -45,7 +45,7 @@ class j01055showroomdetails {
 		$all=$componentArgs['all'];
 		if ($all)
 			$property_uid=(int)$componentArgs['property_uid'];
-		global $jomresConfig_live_site,$noshowroom;
+		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
@@ -94,19 +94,7 @@ class j01055showroomdetails {
 				$room_disabled_access=$room->room_disabled_access;
 				$max_people=$room->max_people;
 				$smoking=$room->smoking;
-//				$roomImageLocation=FALSE;
-//				$query="SELECT filelocation FROM #__jomres_room_images WHERE roomid = '".(int)$room_uid."'";
-//				$roomImageList =doSelectSql($query);
-//				$room_image=$jomresConfig_live_site."/jomres/images/noimage.gif";
-//				if (count($roomImageList)>0)
-//					{
-//					foreach ($roomImageList as $imageLocation)
-//						{
-//						$room_image=$jomresConfig_live_site.$imageLocation->filelocation;
-//						}
-//					if ($roomImageLocation!="")
-//						$room_image=$jomresConfig_live_site.$roomImageLocation;
-//					}
+
 				$room_image=getImageForProperty("room",$property_uid,$room->room_uid);
 
 				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,false,false)."</a>";

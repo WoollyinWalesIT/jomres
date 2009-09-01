@@ -31,8 +31,7 @@ class j00605cheque {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomressession;
- 		insertInternetBooking($jomressession,$paymentSuccessful=false);
+ 		insertInternetBooking(get_showtime('jomressession'),$paymentSuccessful=false);
 		}
 	
 	// This must be included in every Event/Mini-component

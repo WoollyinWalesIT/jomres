@@ -32,7 +32,7 @@ class j06000listyourproperties
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site,$Itemid;
+		global $thisJRUser;
 		$rows=array();
 		if ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods)
 			{
@@ -87,7 +87,7 @@ class j06000listyourproperties
 			
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath."/templates" );
+		$tmpl->setRoot( get_showtime('ePointFilepath')."/templates" );
 		$tmpl->readTemplatesFromInput( 'frontend_list_properties.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);

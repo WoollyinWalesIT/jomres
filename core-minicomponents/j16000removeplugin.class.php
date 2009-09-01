@@ -32,7 +32,6 @@ class j16000removeplugin
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$debugging=false;
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
 		if ($pluginName == "subsc<x>riptions")

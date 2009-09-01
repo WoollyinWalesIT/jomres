@@ -43,7 +43,6 @@ class j00605form {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$validCCtypes=array('AMEX','Discover','MasterCard','Visa');
 		$bookingdata=$componentArgs['bookingdata'];
@@ -83,7 +82,7 @@ class j00605form {
 		$tmpBookingHandler->updateGuestField('type',$type);
 		$tmpBookingHandler->saveGuestData();
 		
-		insertInternetBooking($jomressession,FALSE,true);
+		insertInternetBooking(get_showtime('jomressession'),FALSE,true);
 		}
 
 	/**

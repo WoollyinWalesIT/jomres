@@ -38,9 +38,9 @@ class jomres_temp_booking_handler
 	*/
 	function jomres_temp_booking_handler()
 		{
-		global $task,$jomressession,$jomresConfig_lifetime;
-		$this->task=$task;
-		$this->jomressession=$jomressession;
+		global $jomresConfig_lifetime;
+		$this->task=get_showtime('task');
+		$this->jomressession=get_showtime('jomressession');
 		if (defined('_JOMRES_NEWJOOMLA') )
 			$this->timeout = $jomresConfig_lifetime*60;
 		else
@@ -189,7 +189,6 @@ class jomres_temp_booking_handler
 			session_start();
 			}
 		$this->jomressession=$jomressession=session_id();
-		//echo $jomressession=session_id()." ";
 		$this->sessionfile=$this->session_directory.$this->jomressession.".txt";
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();

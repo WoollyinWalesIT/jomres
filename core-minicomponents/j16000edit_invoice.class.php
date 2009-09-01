@@ -31,7 +31,6 @@ class j16000edit_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site;
 		$output=array();
 		$pageoutput=array();
 		$rows=array();
@@ -45,7 +44,7 @@ class j16000edit_invoice {
 			$invoice->getInvoice();
 			}
 		$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
-		$output['LIVESITE']=$jomresConfig_live_site;
+		$output['LIVESITE']=get_showtime('live_site');
 		$output['HUSER']=_JRPORTAL_INVOICES_USER;
 		$output['HSTATUS']=_JRPORTAL_INVOICES_STATUS;
 		$output['HRAISED']=_JRPORTAL_INVOICES_RAISED;

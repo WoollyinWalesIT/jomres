@@ -44,7 +44,6 @@ class j02190confirmationform {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site;
 		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
@@ -146,11 +145,6 @@ class j02190confirmationform {
 			$counter++;
 			}
 
-//		$fileLocation=checkForImage('property',$propertyUid);
-//		$property_image=array();
-//		$output['PROPERTYIMAGE']=$jomresConfig_live_site."/jomres/images/jrlogo.png";
-//		if ($fileLocation)
-//			$output['PROPERTYIMAGE']=$jomresConfig_live_site.$fileLocation;
 		$output['PROPERTYIMAGE']=getImageForProperty("property",$propertyUid,$propertyUid);
 		$output['BL_DEAR']=jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR);
 		$output['BL_INTRO1']=jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1',_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1);
@@ -221,7 +215,7 @@ class j02190confirmationform {
 		$output['CONTRACT_TOTAL']=$mrConfig['currency'].number_format($contract_total,2, '.', '');
 		$output['ROOMTYPE']=$room_class_abbv;
 		$output['PERNIGHT']=$mrConfig['currency'].number_format($rate_rules,2, '.', '');
-		$output['LIVESITE']=$jomresConfig_live_site;
+		$output['LIVESITE']=get_showtime('live_site');
 		$pageoutput[]=$output;
 
 		$tmpl = new patTemplate();

@@ -757,7 +757,6 @@ class dobooking
 	 */
 	function makeExtras($selectedProperty)
 		{
-		global $jomresConfig_live_site;
 		$mrConfig=getPropertySpecificSettings();
 		$extra_details=array();
 		
@@ -806,7 +805,7 @@ class dobooking
 					$extra_deets['PERNIGHT']="";
 				$extra_deets['DESCRIPTION']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES) ));
 				$descriptionForOverlib=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES),false,true);
-				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.$jomresConfig_live_site.'/jomres/images/info.png" />';
+				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.get_showtime('live_site').'/jomres/images/info.png" />';
 				$extra_deets['OVERLIB_DESCRIPTION']=jomres_makeTooltip('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid,$extra_deets['PERNIGHT'],$descriptionForOverlib,$model_text." ".$descriptionForOverlib,$class="",$type="infoimage",array("width"=>20,"height"=>20) );
 		
 				$checked="";
@@ -2087,7 +2086,6 @@ class dobooking
 	 */
 	function generateDateInput($fieldName,$dateValue,$myID=FALSE)
 		{
-		global $jomresConfig_live_site;
 		$dateFormat=$this->cfg_cal_input;
 		$output="";
 		if ($dateValue=="")
@@ -2116,7 +2114,7 @@ class dobooking
 			
 			// Popup on both input and image click
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".get_showtime('live_site')."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
 				<script type=\"text/javascript\">
 					Calendar.setup({
 					inputField    :   \"x".$randomID."\",
@@ -3679,11 +3677,10 @@ class dobooking
 	 */
 	function makeRoomTariffDetails($roomuid,$tariffuid)
 		{
-		global $jomresConfig_live_site;
 		if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$this->property_uid.'_room_'.$roomuid.'.jpg' ) )
 			$this->roomImagePath=JOMRES_IMAGELOCATION_RELPATH.$this->property_uid.'_room_'.$roomuid.'.jpg';
 		else
-			$this->roomImagePath=$jomresConfig_live_site."/jomres/images/noimage.gif";
+			$this->roomImagePath=get_showtime('live_site')."/jomres/images/noimage.gif";
 		$room_number=$this->allPropertyRooms[$roomuid]['room_number'];
 		$room_name=$this->allPropertyRooms[$roomuid]['room_name'];
 		$tariffTitle=$this->allPropertyTariffs[$tariffuid]['rate_title'];

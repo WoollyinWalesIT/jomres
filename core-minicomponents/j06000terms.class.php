@@ -37,8 +37,6 @@ class j06000terms
 	 */
 	function j06000terms()
 		{
-		global $jomresConfig_live_site,$mainframe;
-
 		$property_uid 	= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$this->pop		= jomresGetParam( $_REQUEST, 'popup', 0 );
 		//if ($this->pop==1)
@@ -66,7 +64,7 @@ class j06000terms
 				}
 
 			$property=array();
-			$property['LIVESITE']			= $jomresConfig_live_site;
+			$property['LIVESITE']			= get_showtime('live_site');
 			$property['HPROPERTYNAME']		= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);
 			$property['HPOLICIESDISCLAIMERS']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
 

@@ -32,7 +32,6 @@ class j16000editGlobalroomTypes
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresAdminPath,$jomresConfig_live_site;
 		$rmTypeUid 			= intval(jomresGetParam( $_REQUEST, 'rmTypeUid',	0 ));
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
 		$yesno = array();
@@ -94,7 +93,7 @@ class j16000editGlobalroomTypes
 		$output['HABBV']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
 		$output['HDESC']=_JOMRES_COM_MR_EB_ROOM_CLASS_DESC;
 		$output['HSRP_ONLY']=JOMRES_COM_A_SRPONLY;
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK;
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');

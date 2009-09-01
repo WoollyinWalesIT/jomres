@@ -43,7 +43,7 @@ class j04200editproperty {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $selectedCountry,$jomresConfig_live_site,$thisJRUser;
+		global $selectedCountry,$thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -263,18 +263,7 @@ class j04200editproperty {
 		if (isset($listTxt))
 			$output['FEATURES']=$listTxt;
 		$propertyImageLocation="";
-		/*
-		$query="SELECT filelocation FROM #__jomres_property_images WHERE propertyid = '".(int)$propertyUid."'";
-		$propertyImageList =doSelectSql($query);
-		if (count($propertyImageList)>0)
-			{
-			foreach ($propertyImageList as $imageLocation)
-				{
-				$propertyImageLocation='<img src="'.$jomresConfig_live_site.'/'.$imageLocation->filelocation.'">';
-				}
-			}
-		*/
-		
+
 		$propImage = getImageForProperty("property",(int)$propertyUid,(int)$propertyUid);
 		$propertyImageLocation='<img src="'.$propImage.'" />';
 		
@@ -305,7 +294,7 @@ class j04200editproperty {
 		$output['SAVEBEFOREUPLOADWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD',_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD);
 
 
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PROPERTYUID']=$propertyUid;
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');

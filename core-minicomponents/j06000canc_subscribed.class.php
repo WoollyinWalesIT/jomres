@@ -32,7 +32,7 @@ class j06000canc_subscribed
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser;
+		global $ePointFilepath,$thisJRUser;
 		
 		echo _JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE;
 		

@@ -28,7 +28,7 @@ class j06000cronjobs
 	{
 	function j06000cronjobs ()
 		{
-		global $ePointFilepath,$jomresConfig_secret;
+		global $jomresConfig_secret;
 		$secret = jomresGetParam($_REQUEST,"secret","");
 		if ($secret == $jomresConfig_secret)
 			{

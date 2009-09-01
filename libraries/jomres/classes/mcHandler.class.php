@@ -75,7 +75,7 @@ class mcHandler {
 
 	function touch_templates()
 		{
-		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site;
+		global $ePointFilepath,$thisJRUser;
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		$eventArgs=null;
 		$mrConfig['editingOn']="1";
@@ -89,6 +89,7 @@ class mcHandler {
 			foreach ( $eventClasses as $eClass)
 				{
 				$ePointFilepath=$eClass['filepath'];
+				set_showtime('ePointFilepath',$eClass['filepath']);
 				$classFileSuffix='.class.php';
 				$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
 				//echo $filename;exit;
@@ -100,8 +101,9 @@ class mcHandler {
 					$event=new stdClass;
 					$ePoint=$eClass['eventPoint'];
 					$eName=$eClass['eventName'];
-					$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$ePointFilepath);
+					$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$eClass['filepath']);
 					$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
+					set_showtime('eLiveSite',$eLiveSite);
 					$event='j'.$ePoint.$eName;
 					$e = new $event($eventArgs);
 					if (isset($e->template_touchable) && $e->template_touchable)
@@ -120,7 +122,7 @@ class mcHandler {
 	// Acutally calls the triggered event.
 	function triggerEvent($eventPoint,$eventArgs=null)
 		{
-		global $ePointFilepath,$eLiveSite,$jomresConfig_live_site;
+		global $ePointFilepath,$eLiveSite;
 		$retVal=null;
 		$eventClasses=$this->registeredClasses;
 		if (count($this->registeredClasses) > 0 )
@@ -130,6 +132,7 @@ class mcHandler {
 				if ($eClass['eventPoint']==$eventPoint)
 					{
 					$ePointFilepath=$eClass['filepath'];
+					set_showtime('ePointFilepath',$eClass['filepath']);
 					$classFileSuffix='.class.php';
 					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
 					if (file_exists($eClass['filepath'].$filename) )
@@ -141,8 +144,9 @@ class mcHandler {
 						$event=new stdClass;
 						$ePoint=$eClass['eventPoint'];
 						$eName=$eClass['eventName'];
-						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$ePointFilepath);
+						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$ePointFilepath);
 						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
+						set_showtime('eLiveSite',$eLiveSite);
 						$event='j'.$ePoint.$eName;
 						$e = new $event($eventArgs);
 						$retVal=$e->getRetVals();
@@ -159,7 +163,7 @@ class mcHandler {
 	// Calls a specific event.
 	function specificEvent($eventPoint,$eventName,$eventArgs=null)
 		{
-		global $ePointFilepath,$eLiveSite,$jomresConfig_live_site;
+		global $ePointFilepath,$eLiveSite;
 		$retVal=null;
 		$eventClasses=$this->registeredClasses;
 		if (count($this->registeredClasses) > 0 )
@@ -169,6 +173,7 @@ class mcHandler {
 				if ($eClass['eventPoint']==$eventPoint && $eClass['eventName']==$eventName)
 					{
 					$ePointFilepath=$eClass['filepath'];
+					set_showtime('ePointFilepath',$eClass['filepath']);
 					$classFileSuffix='.class.php';
 					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
 					if (file_exists($eClass['filepath'].$filename) )
@@ -180,8 +185,9 @@ class mcHandler {
 						$event=new stdClass;
 						$ePoint=$eClass['eventPoint'];
 						$eName=$eClass['eventName'];
-						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$ePointFilepath);
+						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$ePointFilepath);
 						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
+						set_showtime('eLiveSite',$eLiveSite);
 						$event='j'.$ePoint.$eName;
 						$e = new $event($eventArgs);
 						$retVal=$e->getRetVals();

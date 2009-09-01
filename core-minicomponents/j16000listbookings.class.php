@@ -32,14 +32,13 @@ class j16000listbookings
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp,$jomresConfig_live_site;
 		$pageoutput=array();
 		$output=array();
 		$rows=array();
 
 		$property_uid_array=array();
 
-		$output['LIVESITE']=$jomresConfig_live_site;
+		$output['LIVESITE']=get_showtime('live_site');
 		$output['HPROPERTYID']=_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID;
 		$output['HGUESTID']=_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID;
 		$output['HAFFILIATEID']=_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID;

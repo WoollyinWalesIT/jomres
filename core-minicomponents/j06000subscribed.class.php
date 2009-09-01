@@ -32,7 +32,7 @@ class j06000subscribed
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser;
+		global $thisJRUser;
 		
 		echo _JRPORTAL_SUBSCRIBERS_SUBSCRIBED;
 		
@@ -74,7 +74,7 @@ class j06000subscribed
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath."/templates" );
+		$tmpl->setRoot( get_showtime('ePointFilepath')."/templates" );
 		$tmpl->readTemplatesFromInput( 'frontend_subscriber_register.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->displayParsedTemplate();

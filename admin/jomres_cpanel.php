@@ -26,7 +26,6 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 #
  */
 
-global $jomresConfig_absolute_path,$jomresConfig_live_site;
 $configfile = JOMRESPATH_BASE.JRDS."jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
 include($configfile);
 
@@ -42,8 +41,8 @@ $foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'ad
 $foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS;
 $foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS;
 
-$writabilityCheckPassImage=$jomresConfig_live_site."/jomres/images/writability_check_passed.png";
-$writabilityCheckFailImage=$jomresConfig_live_site."/jomres/images/writability_check_failed.png";
+$writabilityCheckPassImage=get_showtime('live_site')."/jomres/images/writability_check_passed.png";
+$writabilityCheckFailImage=get_showtime('live_site')."/jomres/images/writability_check_failed.png";
 
 $configSets=parseConfiguration();
 $localFopen=$configSets["PHP Core"]['allow_url_fopen'][0];
@@ -109,7 +108,7 @@ if (function_exists("curl_init"))
 					<td bgcolor="#FFFFFF" colspan="2">
 						<br />
 						<div style="width=100%" align="center">
-							<a href="http://www.jomres.net" target="_blank"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/jrlogo.png" align="middle" border="0" alt="Jomres logo"/></a>
+							<a href="http://www.jomres.net" target="_blank"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" align="middle" border="0" alt="Jomres logo"/></a>
 							<br /><br />
 						</div>
 					</td>
@@ -146,7 +145,7 @@ if (function_exists("curl_init"))
 					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007, 2008, 2009 Vince Wooll</td>
 				</tr>
 				<tr>
-					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo $jomresConfig_live_site; ?>/jomres/images/User_Ninja.png" width="48" height="48" align="middle" border="0" /></td>
+					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/User_Ninja.png" width="48" height="48" align="middle" border="0" /></td>
 					<td bgcolor="#FFFFFF">Thanks to Roger P for the German language file.</td>
 				</tr>
 			</table>

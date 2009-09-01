@@ -32,8 +32,7 @@ class j16000listGlobalroomTypes
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresAdminPath,$jomresConfig_live_site;
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
 		$roomtypeList=doSelectSql($query);
 		$rows=array();
@@ -53,7 +52,7 @@ class j16000listGlobalroomTypes
 			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editGlobalroomTypes&$rmTypeUid='.$roomtype->room_classes_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['RTTITLE']=$roomtype->room_class_abbv;
 			$r['RTDESCRIPTION']=$roomtype->room_class_full_desc;
-			$r['IMAGE']=$jomresConfig_live_site."/".$roomtype->image;
+			$r['IMAGE']=get_showtime('live_site')."/".$roomtype->image;
 			$rows[]=$r;
 			}
 		$output['COUNTER']=count($rows);

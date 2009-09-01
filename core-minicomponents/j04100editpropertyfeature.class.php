@@ -43,7 +43,6 @@ class j04100editpropertyfeature {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		$propertyFeatureUid = intval( jomresGetParam( $_REQUEST, 'propertyFeatureUid',	0 ) );
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	0 ) );
@@ -64,7 +63,7 @@ class j04100editpropertyfeature {
 		$output['PROPERTYFEATUREUID']=$propertyFeatureUid;
 		$output['HFEATUREABBV']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV);
 		$output['HFEATUREDESCRIPTION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC);
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES',_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES);
 
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);

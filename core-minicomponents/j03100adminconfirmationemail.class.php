@@ -43,8 +43,6 @@ class j03100adminconfirmationemail {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$Itemid;
-
 		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$adminemail=$paypal_settings->paypalConfigOptions['email'];
@@ -128,15 +126,11 @@ class j03100adminconfirmationemail {
 			}
 		$subject=_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE.stripslashes($propertyName);
 
-//		$fileLocation=checkForImage('property',$property_uid);
 		$output=array();
 		$output['ISO']=_ISO;
-//		$output['IMAGE']=$jomresConfig_live_site."/components/com_jomres/images/jrlogo.png";
-//		if ($fileLocation)
-//			$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['HROOM']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM',_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM,FALSE);
 		$output['ROOM']=$roomNumber." ".$room_name;
 		$output['HBOOKINGNO']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE);

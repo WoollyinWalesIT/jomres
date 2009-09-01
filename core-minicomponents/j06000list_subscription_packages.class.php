@@ -32,10 +32,10 @@ class j06000list_subscription_packages
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+		$task 				= get_showtime('task');
 		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
 			{
 			if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )
@@ -52,7 +52,7 @@ class j06000list_subscription_packages
 				echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7;
 				}
 			}
-		$subscribeIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$subscribeIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		$packages=subscriptions_packages_getallpackages();
 		$output=array();
 		$pageoutput=array();

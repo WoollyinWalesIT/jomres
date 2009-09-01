@@ -31,8 +31,6 @@ class j16000edit_taxrate {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath;
-		
 		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
 		jr_import('jrportal_taxrate');
 		$rate = new jrportal_taxrate();

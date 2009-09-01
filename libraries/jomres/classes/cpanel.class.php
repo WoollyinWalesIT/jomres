@@ -61,45 +61,6 @@ class cpanel
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();
 		}
-
-/*
-	function getStatsPanel()
-		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
-		$pageoutput=array();
-		$ajaxUrl=JOMRES_SITEPAGE_URL_ADMIN."task=getstats&no_html=1";
-
-		$functionStr=",
-			function(data){
-				jQuery('div.graphcontainer').empty();
-				jQuery('div.graphcontainer').append(data);
-				}";
-		$MiniComponents->triggerEvent('16010');  // Separate stat type options
-		$mcOutput=$MiniComponents->getAllEventPointsData('16010');
-		if (count($mcOutput)>0)
-			{
-			$statoptions=array();
-			$statoptions[] = jomresHTML::makeOption( '', '' );
-			foreach ($mcOutput as $key=>$val)
-				{
-				$statoptions[] = jomresHTML::makeOption($val['task'], $val['text'] );
-				}
-			$output['STATOPTION_DROPDOWN']=jomresHTML::selectList( $statoptions, 'statoption','id="statoption" class="inputbox" size="1" onChange="jQuery.get(\''.$ajaxUrl.'\', { statoption: document.getElementById(\'statoption\').value}'.$functionStr.');" ', 'value', 'text', $statoption);
-			}
-
-		$output['STATTYPE']	= _JRPORTAL_STATS_STATTYPE;
-
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( $jomresAdminPath.'/templates/basic/portal' );
-		$tmpl->readTemplatesFromInput( 'show_stats.html');
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->addRows( 'rows',$rows);
-
-		$stats=$tmpl->getParsedTemplate();
-		return $stats;
-		}
-*/
 	}
 
 ?>

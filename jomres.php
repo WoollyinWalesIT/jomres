@@ -27,13 +27,13 @@ ob_start("removeBOM");
 @ini_set("memory_limit","128M");
 @ini_set("max_execution_time","480");
 ini_set("display_errors",1);
-//error_reporting(E_ALL|E_STRICT);   // For testing/development purposes, shouldn't be used on a live site
-@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ALL|E_STRICT);   // For testing/development purposes, shouldn't be used on a live site
+//@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
 global $thisJRUser,$task,$jomresPathway;
-global $property_uid,$Itemid,$jomressession,$jomresConfig_absolute_path;
+global $property_uid,$Itemid,$jomressession;
 global $popup,$numberOfPropertiesInSystem,$loggingEnabled,$customTextArray;
-global $version,$jomresConfig_live_site;
+global $version;
 global $thisJomresPropertyDetails,$customTextObj;
 
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
@@ -53,7 +53,7 @@ $MiniComponents =jomres_getSingleton('mcHandler');
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
 	define('JOMRES_IMAGELOCATION_ABSPATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
-	define('JOMRES_IMAGELOCATION_RELPATH',$jomresConfig_live_site.'/jomres/uploadedimages/');
+	define('JOMRES_IMAGELOCATION_RELPATH',get_showtime('live_site').'/jomres/uploadedimages/');
 	}
 
 if ( $_REQUEST['no_html']!="1")
@@ -70,16 +70,19 @@ if ($cron->method == "Minicomponent")
 	}
 
 request_log($loggingRequest);
-$jomressession  = "";
+
+set_showtime('jomressession',"");
 
 if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending response codes
 	{
 	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
+	
 	}
 
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession($jomressession);
 $jomressession  = $tmpBookingHandler->getJomressession();
+set_showtime('jomressession',$jomressession);
 
 $selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 $property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
@@ -90,19 +93,21 @@ $plugin 			= jomresGetParam( $_REQUEST, 'plugin', "" );
 $task 				= jomresGetParam( $_REQUEST, 'task', "" );
 $Itemid				= intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
 
+set_showtime('task',$task);
+
 if ($no_html == 1)
 	define ("JOMRES_NOHTML",1);
 
 $propertyNamesArray=array();
 
 
-if ($tag != "" && $task != "editBooking")
-	$task="tagSearch";
+if ($tag != "" && get_showtime('task') != "editBooking")
+	set_showtime('task',"tagSearch");
 
 $jomresPathway =jomres_getSingleton('jomres_pathway');
 //$jomresPathway=new jomres_pathway();
 
-if ($task!="error")
+if (get_showtime('task')!="error")
 	{
 	$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
 	$defaultProperty=(int)$thisJRUser->currentproperty;
@@ -112,7 +117,7 @@ if ($task!="error")
 	if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered)
 		{
 		$tmpBookingHandler->updateGuestField('mos_userid',$thisJRUser->id);
-		if ($task!="handlereq" && $task!="completebk" && $task!="processpayment" && $task!="confirmbooking")
+		if (get_showtime('task')!="handlereq" && get_showtime('task')!="completebk" && get_showtime('task')!="processpayment" && get_showtime('task')!="confirmbooking")
 			{
 			$query="SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' LIMIT 1";
 			$guestData=doSelectSql($query,2);
@@ -154,9 +159,9 @@ else
 	}
 
 // The admins_first_login.txt file in the temp folder is used as a check to remind new users that they need to log into the Jomres front end
-if (!file_exists($jomresConfig_absolute_path.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && $thisJRUser->username == "admin")
+if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && $thisJRUser->username == "admin")
 	{
-	touch($jomresConfig_absolute_path.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt');
+	touch(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt');
 	}
 
 // Finding the property uid
@@ -190,7 +195,7 @@ else if ($thisJRUser->userIsManager)
 	$property_uid=$defaultProperty;
 
 
-if ($task=="showRoomDetails")
+if (get_showtime('task')=="showRoomDetails")
 	{
 	$roomUid	= jomresGetParam( $_REQUEST, 'roomUid', 0 );
 	$query = "SELECT propertys_uid FROM #__jomres_rooms WHERE  room_uid  = '".(int)$roomUid."'";
@@ -204,14 +209,14 @@ if ($task=="showRoomDetails")
 		}
 	}
 
-if (($task=="handlereq" || $task=="confirmbooking" || $task=="completebk" || $task=="processpayment") && !$thisJRUser->userIsManager  )
+if ((get_showtime('task')=="handlereq" || get_showtime('task')=="confirmbooking" || get_showtime('task')=="completebk" || get_showtime('task')=="processpayment") && !$thisJRUser->userIsManager  )
 	{
 	$property_uid = (int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	gateway_log("Setting property uid to ".$property_uid);
 	}
 
 // Payment specific stuff.
-if ($task=="completebk" || $task=="processpayment" || $task=="confirmbooking")
+if (get_showtime('task')=="completebk" || get_showtime('task')=="processpayment" || get_showtime('task')=="confirmbooking")
 	{
 	if (isset($_POST['specialReqs']) )
 		{
@@ -291,32 +296,26 @@ if (!empty($property_uid))
 if (!isset($jrConfig['useSSLinBookingform']) )
 	$jrConfig['useSSLinBookingform']=0;
 
-if ( $jrConfig['useSSLinBookingform'] == 1 && !_JOMRES_NEWJOOMLA )
+if ( $jrConfig['useSSLinBookingform'] == 1)
 	{
-	if ($task == "handlereq" || $task == "dobooking" || $task == "confirmbooking" || $task == "completebk" || $task == "processpayment")
+	if (get_showtime('task') == "handlereq" || get_showtime('task') == "dobooking" || get_showtime('task') == "confirmbooking" || get_showtime('task') == "completebk" || get_showtime('task') == "processpayment")
 		{
-		$jomresConfig_live_site = str_replace("http://","https://",$jomresConfig_live_site);
-		$mosConfig_live_site = str_replace("http://","https://",$mosConfig_live_site);
-		if (strstr( $version, "Mambo" ) )
-			mamboCore::set ('mosConfig_live_site', $jomresConfig_live_site);
+		set_showtime('live_site',str_replace("http://","https://",get_showtime('live_site')));
 		}
 	else
 		{
-		$jomresConfig_live_site = str_replace("https://","http://",$jomresConfig_live_site);
-		$mosConfig_live_site = str_replace("https://","http://",$mosConfig_live_site);
-		if (strstr( $version, "Mambo" ) )
-			mamboCore::set ('mosConfig_live_site', $jomresConfig_live_site);
+		set_showtime('live_site',str_replace("https://","http://",get_showtime('live_site')));
 		}
 	}
 
-init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site);
+init_javascript($jrConfig,$thisJRUser,$version);
 
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{
 	$output=array();
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
-	$output['LIVESITE']=$jomresConfig_live_site;
+	$output['LIVESITE']=get_showtime('live_site');
 	$messaging = array();
 	$sticky_messaging = array();
 	if ($jrConfig['useJomresMessaging'] == '1')
@@ -363,9 +362,7 @@ if (!defined('JOMRES_NOHTML'))
 	{
 	if ($thisJRUser->userIsManager)
 		{
-		//if ($task != "propertyadmin" && $task != "editRoom" && $task !='savenormalmodetariffs' && $task !='hotelSettings' && $task !='saveHotelSettings')
-		//	performSingleRoomPropertyCheck($property_uid);
-		if ($task != "invoiceForm" && $task != "confirmationForm" && $task != "editCustomText" && $task != "saveCustomText" && !$popup && !$no_html)
+		if (get_showtime('task') != "invoiceForm" && get_showtime('task')!= "confirmationForm" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup && !$no_html)
 			{
 			// Show the reception menu
 			//$MiniComponents->triggerEvent('00010'); // Depreciated in v4a2
@@ -381,7 +378,7 @@ if (!defined('JOMRES_NOHTML'))
 				$rows		=array();
 				$pageoutput	=array();
 				$output=array();
-				if ($task != "invoiceForm" && $task != "confirmationForm" && $task != "showRoomDetails" && $task != "editCustomText" && $task != "saveCustomText" && !$popup)
+				if (get_showtime('task') != "invoiceForm" && get_showtime('task') != "confirmationForm" && get_showtime('task') != "showRoomDetails" && $get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup)
 					{
 					$propertyOptions=array();
 					$initialsOptions=array();
@@ -454,8 +451,8 @@ if (!defined('JOMRES_NOHTML'))
 					}
 				else
 					$output['CLICKCOUNT']=0;
-				$output['SEARCHIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="Find" border="0" title="'.$output['HTAGSEARCH'].'" />';
-				$output['CLICKCOUNTIMAGE']='<img src="'.$jomresConfig_live_site.'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
+				$output['SEARCHIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="Find" border="0" title="'.$output['HTAGSEARCH'].'" />';
+				$output['CLICKCOUNTIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
 
 				$componentArgs=array();
 				$MiniComponents->triggerEvent('00010'); // 
@@ -588,10 +585,13 @@ if (!$no_html)
 if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
 
-$jomresPathway->addItem("Search",$task,"");
+$jomresPathway->addItem("Search",get_showtime('task'),"");
+
+set_showtime('numberOfPropertiesInSystem',$numberOfPropertiesInSystem);
+
 if ($numberOfPropertiesInSystem>0)
 	{
-	switch ($task) {
+	switch (get_showtime('task')) {
 		#########################################################################################
 		case 'handlereq':
 			$MiniComponents->triggerEvent('05010');
@@ -667,12 +667,12 @@ if ($numberOfPropertiesInSystem>0)
 					}
 				else
 					{
-					insertInternetBooking($jomressession,$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="");
+					insertInternetBooking(get_showtime('jomressession'),$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="");
 					}
 				}
 			else
 				{
-				insertInternetBooking($jomressession,$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="");
+				insertInternetBooking(get_showtime('jomressession'),$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="");
 				}
 		break;
 		#########################################################################################
@@ -1291,9 +1291,9 @@ if ($numberOfPropertiesInSystem>0)
 		break;
 		#########################################################################################
 		default:
-			if ($MiniComponents->eventSpecificlyExistsCheck('06000',$task) )
+			if ($MiniComponents->eventSpecificlyExistsCheck('06000',get_showtime('task')) )
 				{
-				$MiniComponents->specificEvent('06000',$task); // Custom task
+				$MiniComponents->specificEvent('06000',get_showtime('task')); // Custom task
 				}
 			else
 				{
@@ -1312,7 +1312,7 @@ if ($numberOfPropertiesInSystem>0)
 						{
 						//$MiniComponents->triggerEvent('0013');  // Show dashboard
 						property_header($property_uid);
-						$task="viewproperty";
+						set_showtime('task',"viewproperty");
 						$componentArgs=array();
 						$componentArgs['property_uid']=$property_uid;
 						$MiniComponents->triggerEvent('00016',$componentArgs);
@@ -1346,13 +1346,13 @@ if ($numberOfPropertiesInSystem>0)
 	}
 else
 	{
-	if ($MiniComponents->eventSpecificlyExistsCheck('06000',$task) )
+	if ($MiniComponents->eventSpecificlyExistsCheck('06000',get_showtime('task')) )
 		{
-		$MiniComponents->specificEvent('06000',$task); // Optional  Custom task
+		$MiniComponents->specificEvent('06000',get_showtime('task')); // Optional  Custom task
 		}
 	else
 		{
-		echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"$jomresConfig_live_site/install_jomres.php\"></a>install_jomres.php.";
+		echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"".get_showtime('live_site')."/install_jomres.php\"></a>install_jomres.php.";
 		}
 	}
 

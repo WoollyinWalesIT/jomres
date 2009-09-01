@@ -32,8 +32,6 @@ class j16000addplugin
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
-
 		$debugging=false;
 		define ("JOMRES_INSTALLER",1);
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );

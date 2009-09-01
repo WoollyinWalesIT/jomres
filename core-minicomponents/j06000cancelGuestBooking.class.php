@@ -36,7 +36,7 @@ class j06000cancelGuestBooking {
 	 */
 	function j06000cancelGuestBooking()
 		{
-		global $ePointFilepath,$thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser;
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -115,7 +115,7 @@ class j06000cancelGuestBooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
-			global $jomresConfig_live_site,$popup;
+			global $popup;
 			$mrConfig=getPropertySpecificSettings();
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")

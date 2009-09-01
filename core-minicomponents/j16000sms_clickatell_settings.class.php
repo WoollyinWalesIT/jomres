@@ -42,7 +42,6 @@ class j16000sms_clickatell_settings {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath;
 		$output=array();
 		$pageoutput=array();
 

@@ -155,7 +155,7 @@ class j00016composite_property_details {
 		$tmpl->readTemplatesFromInput( 'composite_property_details.html');
 
 		$cachableContent = $tmpl->getParsedTemplate();
-		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+		$task 				= get_showtime('task');
 		jr_import('jomres_cache');
 		$cache = new jomres_cache($task,$property_uid,false);
 		$cache->setCache($cachableContent);

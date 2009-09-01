@@ -43,16 +43,9 @@ class j00501xwiseprice {
 			$this->template_touchable=false; return;
 			}
 		global $configurationPanel;
-		global $ePointFilepath;
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['singleRoomProperty'] == 0)
 			{
-			if (file_exists($ePointFilepath.'language/'.get_showtime('lang').'.php')) 
-				require_once($ePointFilepath.'language/'.get_showtime('lang').'.php');
-			else if (file_exists($ePointFilepath.'language/en-GB.php')) 
-				require_once($ePointFilepath.'language/en-GB.php');
-
-			
 			$yesno = array();
 			$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 			$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );

@@ -32,7 +32,7 @@ class j16000addproperty
 			$this->template_touchable=false; return;
 			}
 
-		global $indexphp,$jomresConfig_live_site,$jrportalConfig;
+		global $indexphp,$jrportalConfig;
 		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
 		$crateFunctions->getAllUnarchivedCrates();
@@ -58,7 +58,7 @@ class j16000addproperty
 			$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
 
 		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
-		$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 		$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);

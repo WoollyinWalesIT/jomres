@@ -44,15 +44,13 @@ class j01070showpropertyheader
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$task;
 		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$output=array();
 		$pageoutput = array();
-		
-		
+
 		$property_uid=(int)$componentArgs['property_uid'];
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("property_header",$property_uid,false);
@@ -66,19 +64,19 @@ class j01070showpropertyheader
 			if ($property_uid>0)
 				{
 				$stars=$thisJomresPropertyDetails['stars'];
-				$starslink="<img src=\"".$jomresConfig_live_site."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
+				$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
 				if ($stars!="0")
 					{
 					$starslink="";
 				  	for ($i=1;$i<=$stars;$i++)
 			    		{
-						$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
+						$starslink.="<img src=\"".get_showtime('live_site')."/jomres/images/star.png\" border=\"0\" alt=\"star\" />";
 						}
 					$starslink.="";
 					}
 				$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 
-				$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+				$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 
 				$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 				if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_property_".$property_uid.".jpg"))

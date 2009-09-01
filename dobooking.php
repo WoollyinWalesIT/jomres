@@ -25,7 +25,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Get some basic data before beginning construction of the booking form
 #
  */
-global $jomressession,$thisJRUser ;
+global $thisJRUser ;
 global $property_uid;
 
 $MiniComponents =jomres_getSingleton('mcHandler');
@@ -76,7 +76,7 @@ $result=doSelectSql($query);
 if (count($result)>0 )
 	{
 	if ($selectedProperty > 0 )
-		dobooking($selectedProperty,$thisdate,$jomressession,$remus);
+		dobooking($selectedProperty,$thisdate,$remus);
 	else
 		echo "Property uid incorrect";
 	}
@@ -90,9 +90,9 @@ else
  * Construct the booking form
 #
  */
-function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
+function dobooking($selectedProperty,$thisdate=false,$remus)
 	{
-	global $jomresAdminPath,$jomresConfig_live_site,$thisJRUser,$Itemid,$jomresConfig_absolute_path;
+	global $thisJRUser;
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -155,7 +155,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$output['PID']=$selectedProperty;
 	$output['ITEMID']=$Itemid;
 	
-	$output['RELPATH']=$jomresConfig_live_site;
+	$output['RELPATH']=get_showtime('live_site');
 	$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
 	$output['LIVESITE']=JOMRES_SITEPAGE_URL;
 	if (!$thisJRUser->userIsManager)
@@ -310,7 +310,7 @@ function dobooking($selectedProperty,$thisdate=false,$jomressession,$remus)
 	$extra_details=$bkg->makeExtras($selectedProperty);
 	if (count($extra_details)>0)
 		{
-		$output['EXTRAS_INFO']		='<img border="0" style="vertical-align:top;" src="'.$jomresConfig_live_site.'/components/com_jomres/images/info.png" />';
+		$output['EXTRAS_INFO']		='<img border="0" style="vertical-align:top;" src="'.get_showtime('live_site').'/components/com_jomres/images/info.png" />';
 		//$output['EXTRAS_SPACES']		="";
 		$output['AJAXFORM_EXTRAS']		=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 		$output['AJAXFORM_EXTRAS_DESC']	=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));

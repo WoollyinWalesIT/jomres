@@ -59,7 +59,6 @@ class j04040editroomtype {
 		if ($clone)
 			$classUid=FALSE;
 
-		//$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
 		$output['INDEX']="index.php";
 		$output['HABBV']= jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV);
 		$output['HDESC']= jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC);

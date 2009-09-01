@@ -32,8 +32,7 @@ class j16000listPfeatures
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresAdminPath,$jomresConfig_live_site;
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList=doSelectSql($query);
 		$rows=array();
@@ -55,7 +54,7 @@ class j16000listPfeatures
 			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['PFEATURETITLE']=$propertyFeature->hotel_feature_abbv;
 			$r['PFEATUREDESCRIPTION']=$propertyFeature->hotel_feature_full_desc;
-			$r['IMAGE']=$jomresConfig_live_site.'/'.$propertyFeature->image;
+			$r['IMAGE']=get_showtime('live_site').'/'.$propertyFeature->image;
 			$rows[]=$r;
 			}
 		$output['COUNTER']=count($rows);

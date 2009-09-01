@@ -44,7 +44,7 @@ class j02990showconfirmation {
 			$this->template_touchable=true; return;
 			}
 
-		global $jomresConfig_live_site,$thisJRUser;
+		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$booking_parts=array();
@@ -289,7 +289,7 @@ class j02990showconfirmation {
 			$booking_parts['SINGLEPERSON_COST']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['single_person_suppliment']);
 			}
 			
-		$booking_parts['LIVESITE']				=	$jomresConfig_live_site;
+		$booking_parts['LIVESITE']				=	get_showtime('live_site');
 		if (isset($_POST['specialReqs']))
 			{
 			$booking_parts['HSPECIAL_REQUIREMENTS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ);
@@ -339,7 +339,7 @@ class j02990showconfirmation {
 		if (!$userIsManager && $mrConfig['useOnlinepayment'] !="0" )
 			{
 			$gatewaylist 	= 	array();
-			$gatewaydir		=	$jomresConfig_live_site."/administrator/jomres/plugins/gateways/";
+			$gatewaydir		=	get_showtime('live_site')."/administrator/jomres/plugins/gateways/";
 			$query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '".(int)$property_uid."' AND setting = 'active' AND value = '1'";
 			$gatewayDeets	=	doSelectSql($query);
 			if (count($gatewayDeets)>0)
@@ -366,7 +366,7 @@ class j02990showconfirmation {
 							$tmpgatewaydir	=	$result;
 							}
 						$gw['GWINPUT']		=	'<input type="radio" name="plugin" value="'.$gateway->plugin.'" class="inputbox" '.$checked.' />'.$gw['GWNAME'];
-						$gatewaydir			=	str_replace(JOMRESCONFIG_ABSOLUTE_PATH,$jomresConfig_live_site,$tmpgatewaydir);
+						$gatewaydir			=	str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$tmpgatewaydir);
 						$gw['GWIMAGE']		=	'<img src="'.$gatewaydir.'j00510'.$gateway->plugin.'.gif" border="0">';
 						$gateways[]			=	$gw;
 						$counter++;

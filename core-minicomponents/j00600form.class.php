@@ -43,7 +43,6 @@ class j00600form {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$eLiveSite;
 		$plugin="form";
 		$bookingdata=$componentArgs['bookingdata'];
 		//$bookingdata=$componentArgs['guestdata'];
@@ -79,7 +78,7 @@ class j00600form {
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath );
+		$tmpl->setRoot( get_showtime('ePointFilepath') );
 		$tmpl->readTemplatesFromInput( 'j00600'.$plugin.'.html' );
 		$tmpl->addRows( 'interrupt_outgoing', $pageoutput );
 		$tmpl->displayParsedTemplate();

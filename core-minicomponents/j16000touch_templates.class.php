@@ -31,7 +31,7 @@ class j16000touch_templates
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser;
 		
 		echo "<br/>Current lang ".get_showtime('lang')."<br/>";
 		
@@ -43,7 +43,7 @@ class j16000touch_templates
 			{
 			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rType->room_classes_uid,		stripslashes($rType->room_class_abbv) );
 			$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rType->room_classes_uid,		stripslashes($rType->room_class_full_desc) );
-			echo '<img src="'.$jomresConfig_live_site.'/'.$rType->image.'" />';
+			echo '<img src="'.get_showtime('live_site').'/'.$rType->image.'" />';
 			echo "&nbsp;";
 			echo $roomtype_abbv;
 			echo "&nbsp;";
@@ -58,7 +58,7 @@ class j16000touch_templates
 			$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.$propertyFeature->hotel_features_uid,stripslashes($propertyFeature->hotel_feature_abbv) );
 			$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.$propertyFeature->hotel_features_uid,stripslashes($propertyFeature->hotel_feature_full_desc) );
 			
-			echo '<img src="'.$jomresConfig_live_site.'/'.$propertyFeature->image.'" />';
+			echo '<img src="'.get_showtime('live_site').'/'.$propertyFeature->image.'" />';
 			echo "&nbsp;";
 			echo $feature_abbv;
 			echo "&nbsp;";

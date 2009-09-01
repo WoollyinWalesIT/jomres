@@ -32,10 +32,9 @@ class j16000listpropertys
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$indexphp;
-		global $jrportalConfig,$jomresConfig_list_limit;
+		global $jrportalConfig;
 		$rows=array();
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		//require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/pageNavigation.php');
 
 		jr_import('jrportal_crate_functions');

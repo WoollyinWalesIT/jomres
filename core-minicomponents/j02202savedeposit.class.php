@@ -45,7 +45,6 @@ class j02202savedeposit {
 			$this->template_touchable=false; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 		jr_import('jomres_cache');
 		$cache = new jomres_cache();

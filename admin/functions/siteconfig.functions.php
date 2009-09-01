@@ -32,7 +32,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
  */
 function showSiteConfig(  )
 	{
-	global $jomresConfig_absolute_path, $jomresConfig_admin_template, $jomresConfig_live_site,$version;
+	global $jomresConfig_admin_template, $version;
 
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -168,8 +168,6 @@ function showSiteConfig(  )
  */
 function saveSiteConfig (  )
 	{
-	//Add code to check if config file is writeable.
-	global $jomresConfig_absolute_path;
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	foreach ($_POST as $k=>$v)
 		{
@@ -189,7 +187,7 @@ function saveSiteConfig (  )
 				else
 					$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
 				$result=doInsertSql($query,'');
-				$result=unlink($jomresConfig_absolute_path.'/jomres/temp/key.php');
+				$result=unlink(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/temp/key.php');
 				}
 			else
 				{

@@ -32,7 +32,7 @@ class j06000save_subscriber
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser;
+		global $thisJRUser;
 		$package_id		= (int)jomresGetParam( $_POST, 'package_id', 0 );
 		
 		$firstname		= (string)jomresGetParam( $_POST, 'firstname', '' );
@@ -134,7 +134,7 @@ class j06000save_subscriber
 		
 	function sendNewSubscription($subscription,$subscriber,$invoice_id,$init_total,$recur_total)
 		{
-		global $jomresConfig_live_site,$jomresConfig_sitename,$Itemid;
+		global $jomresConfig_sitename,$Itemid;
 
 		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
@@ -211,7 +211,7 @@ class j06000save_subscriber
 		$this->add_field('address1', $subscriber->address);
 		$this->add_field('zip', $subscriber->postcode);
 		
-		echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery-1.3.2.min.js"></script>';
+		echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.3.2.min.js"></script>';
 		echo '<script type="text/javascript">jQuery.noConflict();</script>';
 		?>
 

@@ -22,16 +22,16 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-global $jomresConfig_live_site,$jomresItemid;
+global $jomresItemid;
 
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (strstr($scriptname,'install_jomres.php'))
-	$jomresConfig_live_site=str_replace("/jomres","",$jomresConfig_live_site);
+	set_showtime('live_site',str_replace("/jomres","",get_showtime('live_site')));
 
-$ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
+$ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
@@ -70,9 +70,9 @@ if ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || 
 else
 	define("JOMRES_WRAPPED",0);
 	
-define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
-define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres");
+define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
+define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres");
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$jomresItemid."");
-define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
+define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
 
 ?>

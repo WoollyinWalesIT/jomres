@@ -33,7 +33,7 @@ function jomres_cmsspecific_areweinadminarea()
 
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
-	global $thisJRUser,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site;
+	global $thisJRUser,$jomresConfig_mailfrom,$jomresConfig_fromname;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -123,7 +123,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$text .= jr_gettext('_JRPORTAL_NEWUSER_THANKYOU',_JRPORTAL_NEWUSER_THANKYOU,false,false)." \t\n";
 			$text .= jr_gettext('_JRPORTAL_NEWUSER_USERNAME',_JRPORTAL_NEWUSER_USERNAME,false,false)." ".$username." \t\n";
 			$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD',_JRPORTAL_NEWUSER_PASSWORD,false,false)." ".$password." \t\n";
-			$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN',_JRPORTAL_NEWUSER_LOG_IN,false,false)." ".$jomresConfig_live_site."\t\n\t\n";
+			$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN',_JRPORTAL_NEWUSER_LOG_IN,false,false)." ".get_showtime('live_site')."\t\n\t\n";
 			
 			if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $guestDeets['email'], $subject, $text,$mode=0))
 				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);

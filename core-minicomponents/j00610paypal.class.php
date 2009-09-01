@@ -43,7 +43,7 @@ class j00610paypal {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $property_uid,$jomressession;
+		global $property_uid;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		$plugin='paypal';
@@ -119,7 +119,7 @@ class j00610paypal {
 							{
 							$subject = 'Paypal payment completed successfully.';
 							$this->messagelog[]="Paypal minicomponent - inserting booking.";
-							$result=insertInternetBooking($jomressession,$paymentSuccessful,$confirmationPageRequired=false);
+							$result=insertInternetBooking(get_showtime('jomressession'),$paymentSuccessful,$confirmationPageRequired=false);
 							if (!$result)
 								{
 								$this->messagelog[]="<b>Paypal payment completed successfully but booking insert failed</b>";

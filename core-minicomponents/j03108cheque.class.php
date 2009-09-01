@@ -39,8 +39,7 @@ class j03108cheque
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath;
-		$this->filepath=$ePointFilepath;
+		$this->filepath=get_showtime('ePointFilepath');
 		$this->gatewayname=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'."cheque","cheque",false,false);
 		}
 

@@ -31,9 +31,8 @@ class j00510cheque {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$eLiveSite;
 		$plugin="cheque";
-		$button="<IMG SRC=\"".$eLiveSite."j00510".$plugin.".gif\" border=\"0\">";
+		$button="<IMG SRC=\"".get_showtime('eLiveSite')."j00510".$plugin.".gif\" border=\"0\">";
 		$defaultProperty=getDefaultProperty();
 
 		$yesno = array();
@@ -56,7 +55,7 @@ class j00510cheque {
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath );
+		$tmpl->setRoot( get_showtime('ePointFilepath') );
 		$tmpl->readTemplatesFromInput( 'j00510'.$plugin.'.html' );
 		$tmpl->addRows( 'edit_gateway', $pageoutput );
 		$tmpl->displayParsedTemplate();	

@@ -45,7 +45,6 @@ class j00501xlastminute {
 			}
 			
 		global $configurationPanel;
-		global $ePointFilepath;
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['singleRoomProperty'] == 1)
 			{

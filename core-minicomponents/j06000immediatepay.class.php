@@ -32,8 +32,8 @@ class j06000immediatepay
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser,$Itemid;
-		
+		global $thisJRUser;
+
 		$invoice_id		= (int)jomresGetParam( $_GET, 'id', 0 );
 
 		// a quick anti hack check
@@ -76,7 +76,7 @@ class j06000immediatepay
 		$this->add_field('no_note', "1");
 		$this->add_field('currency_code', $this->paypal_settings['currencycode']);
 
-		echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.js"></script>';
+		echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.js"></script>';
 		echo '<script type="text/javascript">jQuery.noConflict();</script>';
 		?>
 
