@@ -222,7 +222,9 @@ if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
 	define('JOMRES_TEMPLATEPATH_BACKEND',"templates".JRDS."jomres".JRDS."backend");
 if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
-
+if (!defined('JOMRES_CSSRELPATH'))
+	define('JOMRES_CSSRELPATH',$jomresConfig_live_site.'/jomres/css/');
+	
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
 set_error_handler('errorHandler');

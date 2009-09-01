@@ -39,7 +39,7 @@ class jomres_custom_template_handler
 	function jomres_custom_template_handler($specific_path=false)
 		{
 		if (!$specific_path)
-			$this->default_template_files_folder = JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend";
+			$this->default_template_files_folder = JOMRES_TEMPLATEPATH_FRONTEND;
 		$this->custom_templates=array();
 		$this->custom_template = array();
 		$this->getAllCustomTemplates();

@@ -48,7 +48,7 @@ class j16000listTemplates
 		jr_import('jomres_custom_template_handler');
 		$custom_templates = new jomres_custom_template_handler();
 
-		$frontendTemplatesFolder=JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend";
+		$frontendTemplatesFolder=JOMRES_TEMPLATEPATH_FRONTEND;
 		$d = @dir($frontendTemplatesFolder);
 		$docs = array();
 		$rows = array();
