@@ -179,12 +179,12 @@ class jomres_cron
 	// We will use jomresConfig_secret to prevent outsiders from triggering a specific cron job remotely. The cron 6000 minicomponent can be edited to disable this check if the developer wants to run the job manually while testing
 	function runDueJobs()
 		{
-		global $jomresConfig_live_site,$jomresConfig_secret;
+		global $jomresConfig_secret;
 		if (count($this->dueJobs) > 0)
 			{
 			foreach ($this->dueJobs as $job)
 				{
-				$request = $jomresConfig_live_site."/index2.php?option=com_jomres&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
+				$request = get_showtime('live_site')."/index2.php?option=com_jomres&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
 				if (function_exists("curl_init") )
 					{
 					$ch = curl_init();

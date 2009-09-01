@@ -42,8 +42,6 @@ class j03100sms_clickatell {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$Itemid;
-		
 		jr_import('jrportal_sms_clickatell_settings');
 		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();
 		$sms_clickatell_settings->get_sms_clickatell_settings();
@@ -141,7 +139,7 @@ class j03100sms_clickatell {
 			$output['SPECIAL_REQUIREMENTS']=quote_smart($specialReqs);
 			}
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
-		$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['HROOM']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM',_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM,FALSE,FALSE);
 		$output['ROOM']=$roomNumber." ".$room_name;
 		$output['HBOOKINGNO']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE,FALSE);
@@ -161,7 +159,7 @@ class j03100sms_clickatell {
 		$output['TOTAL']=$currency.number_format($contract_total, 2, '.', '');
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
-		$output['LINKTOBOOKING']="<a href=\"".$jomresConfig_live_site."/index.php?option=com_jomres&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
+		$output['LINKTOBOOKING']="<a href=\"".get_showtime('live_site')."/index.php?option=com_jomres&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
 
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);

@@ -53,7 +53,6 @@ class jomres_tooltips
 		switch ($type) 
 			{
 			case "ajaxpage":
-				global $jomresConfig_live_site;
 				$url=$type_arguments["url"];
 				$div_string.='<div id="'.$div.'"';
 				if (strlen($class)>0)
@@ -79,7 +78,6 @@ class jomres_tooltips
 					';
 			break;
 			case "infoimage":
-				global $jomresConfig_live_site;
 				if (isset($type_arguments["width"]))
 					$width=$type_arguments["width"];
 				if (isset($type_arguments["height"]))
@@ -92,7 +90,7 @@ class jomres_tooltips
 				else
 					$div_string.=' class="jomres_bt_tooltip" ';
 					
-				$div_string.=' title="'.$hover_content.'"><img src="'.$jomresConfig_live_site.'/jomres/images/SymbolInformation.png" ';
+				$div_string.=' title="'.$hover_content.'"><img src="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" ';
 				if (isset($type_arguments["width"]))
 					$div_string.='width="'.$width.'" ';
 				if (isset($type_arguments["height"]))

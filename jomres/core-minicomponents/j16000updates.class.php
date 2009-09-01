@@ -27,7 +27,7 @@ class j16000updates
 	function j16000updates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $jomresConfig_live_site,$jomresConfig_offline;
+		global $jomresConfig_offline;
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/defines.php') )
 			{
@@ -141,7 +141,7 @@ class j16000updates
 			if (strlen($license_key)<1)
 				exit;
 			$license_key_hash=md5($license_key);
-			$liveSite="&live_site=".urlencode($jomresConfig_live_site);
+			$liveSite="&live_site=".urlencode(get_showtime('live_site'));
 
 			$requiredEncoding=jomresGetParam( $_REQUEST, 'encoding', '' );
 			$requiredVersion=jomresGetParam( $_REQUEST, 'version', '' );
@@ -193,7 +193,6 @@ class j16000updates
 				return;
 				}
 
-			global $ePointFilepath;
 			require_once (JOMRESPATH_BASE."/libraries/dUnzip2.inc.php");
 
 			$zip = new dUnzip2($newfilename);
@@ -207,7 +206,7 @@ class j16000updates
 				if (!$this->test_download)
 					$this->dirmv($this->updateFolder."/unpacked/", JOMRESCONFIG_ABSOLUTE_PATH."/", $this->overwriteAllowed, $funcloc = "/");
 
-				echo "Completed upgrade. Please ensure that you visit <a href=\"$jomresConfig_live_site/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+				echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				if ($this->debugging)
 					{
 					echo "<br/><br/><br/><br/><br/><br/>";
@@ -215,7 +214,7 @@ class j16000updates
 					foreach ($this->movedFileLog as $record)
 						echo $record;
 					}
-				jomresRedirect($jomresConfig_live_site."/jomres/install_jomres.php", '');
+				jomresRedirect(get_showtime('live_site')."/jomres/install_jomres.php", '');
 				}
 			else
 				echo "Error creating unpack folder";

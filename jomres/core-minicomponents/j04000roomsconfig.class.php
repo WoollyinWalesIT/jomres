@@ -43,7 +43,7 @@ class j04000roomsconfig {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$thisJRUser,$roomCount;
+		global $thisJRUser,$roomCount;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -197,10 +197,7 @@ class j04000roomsconfig {
 				if ($mrConfig['showSmoking']=="1")
 					$roomRowInfo .="<td class=\"jradmin_field_ca\">".$smokingRoom."</td>
 					";
-				//$fileLocation=checkForImage('room',$room->room_uid);
-				//$room_image=$jomresConfig_live_site."/jomres/uploaded/jrhouse.png";
-				//if ($fileLocation)
-				//	$room_image=$jomresConfig_live_site.$fileLocation;
+
 				$room_image=getImageForProperty("room",$defaultProperty,$room->room_uid);
 
 				$roomRowInfo .='<td class="jradmin_field_ca"><img src="'.$room_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'" /></td>';
@@ -267,16 +264,13 @@ class j04000roomsconfig {
 				$published=$property->published;
 				if ($published)
 					{
-					$img = $jomresConfig_live_site."/administrator/images/tick.png";
+					$img = get_showtime('live_site')."/jomres/images/jomresimages/small/tick.png";
 					}
 				else
 					{
-					$img = $jomresConfig_live_site."/administrator/images/publish_x.png";
+					$img = get_showtime('live_site')."/jomres/images/jomresimages/small/publish_x.png";
 					}
-//				$fileLocation=checkForImage('property',$property->propertys_uid);
-//				$property_image=$jomresConfig_live_site."/jomres/uploaded/jrlogo.png";
-//				if ($fileLocation)
-//					$property_image=$jomresConfig_live_site.$fileLocation;
+
 				$property_image=getImageForProperty("property",$property->propertys_uid,$property->propertys_uid);
 
 				$propertyRowInfo .="<tr>

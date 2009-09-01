@@ -39,7 +39,6 @@ class j00600cheque {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$eLiveSite;
 		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
 		$plugin="cheque";
@@ -85,7 +84,7 @@ class j00600cheque {
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath );
+		$tmpl->setRoot( get_showtime('ePointFilepath') );
 		$tmpl->readTemplatesFromInput( 'j00600'.$plugin.'.html' );
 		$tmpl->addRows( 'interrupt_outgoing', $pageoutput );
 		$tmpl->displayParsedTemplate();

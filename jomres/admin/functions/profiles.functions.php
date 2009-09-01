@@ -33,17 +33,16 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not al
  */
 function listMosUsers()
 	{
-	global $jomresConfig_live_site;
 	$userList = jomres_cmsspecific_getCMSUsers();
 	$userRowInfo="";
-	$tickIcon	= '<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/Tick.png" border="0">';
-	$crossIcon	= '<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/Cancel.png" border="0">';
-	$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
+	$tickIcon	= '<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/Tick.png" border="0">';
+	$crossIcon	= '<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/Cancel.png" border="0">';
+	$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 	
-	$img_guest=$jomresConfig_live_site."/jomres/images/Tourists.png";
-	$img_reception=$jomresConfig_live_site."/jomres/images/Services.png";
-	$img_manager=$jomresConfig_live_site."/jomres/images/User_Agent_Male.png";
-	$img_superpropertymanager=$jomresConfig_live_site."/jomres/images/User_Ninja.png";
+	$img_guest=get_showtime('live_site')."/jomres/images/Tourists.png";
+	$img_reception=get_showtime('live_site')."/jomres/images/Services.png";
+	$img_manager=get_showtime('live_site')."/jomres/images/User_Agent_Male.png";
+	$img_superpropertymanager=get_showtime('live_site')."/jomres/images/User_Ninja.png";
 	
 	$rows=array();
 	$output=array();
@@ -53,7 +52,7 @@ function listMosUsers()
 	$output['HGRANTLINK']=	_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER;
 	$output['HACCESSLEVEL']=_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL;
 	$output['HUSERNAME']=_JOMRES_COM_MR_ASSIGNUSER_USERNAME;
-	$output['HNUMBEROFPROPERTIES']='<img src="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/propertyTypes.png">';
+	$output['HNUMBEROFPROPERTIES']='<img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/propertyTypes.png">';
 	
 	
 	$output['KEY']='
@@ -217,7 +216,7 @@ function editProfile()
 	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
-	$link = $jomresConfig_live_site."/".JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+	$link = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveProfile",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',"index2.php?option=com_jomres&task=listMosUsers",'');
 	$jrtb .= $jrtbar->endTable();

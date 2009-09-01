@@ -76,105 +76,26 @@ $jomresConfig_absolute_path = substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE)
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
+$showtime = jomres_getSingleton('showtime');
 $performance_monitor =jomres_getSingleton('jomres_performance_monitor');
-
-
+$performance_monitor->set_point("pre-inclusions");
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php");
 
-/**
-#
- * Alternative function for str_ireplace
-#
- */
-
-if(!function_exists('str_ireplace'))
-	{
-	function str_ireplace($search,$replace,$subject)
-		{
-		$token = chr(1);
-		$haystack = strtolower($subject);
-		//$needle = strtolower($search);
-		if (is_array($search) )
-			{
-			$count=count($search);
-			for ($i=0;$i<$count;$i++)
-				{
-				//echo $search[$i];echo "<br/>";
-				$search[$i]= strtolower($search[$i]);
-				}
-			$needle=$search;
-			}
-		else
-			$needle = strtolower($search);
-		while (($pos=strpos($haystack,$needle))!==FALSE)
-			{
-			$subject = substr_replace($subject,$token,$pos,strlen($search));
-			$haystack = substr_replace($haystack,$token,$pos,strlen($search));
-			}
-		$subject = str_replace($token,$replace,$subject);
-		return $subject;
-		}
-	}
-
-/**
-#
- * Alternative function for gregoriantojd
-#
- */
-if ( !function_exists('gregoriantojd') )
-	{
-	function gregoriantojd( $m, $d, $y )
-		{
-		$y = $m == 1 || $m == 2 ? --$y : $y;
-		$m = $m == 1 || $m == 2 ? $m + 12 : $m;
-		$a = intval( $y / 100 );
-		$b = intval( $a / 4 );
-		$c = 2 - $a + $b;
-		$e = intval( 365.25 * ( $y + 4716 ) );
-		$f = intval( 30.6001 * ( $m + 1 ) );
-		return $c + $d + $e + $f - 1524.5 + 0.5;
-		}
-	}
-	
-
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
-$showtime = jomres_getSingleton('showtime');
+
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
+
 
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
 
-
 $jomresConfig_dbtype = 'mysql';
 
-$performance_monitor->set_point("pre-inclusions");
 
 if (!function_exists ('adodb_date_test_date') )
-	{
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'adodb'.JRDS.'adodb-time.inc.php');
-	}
-
-/*
-global $_VERSION;
-if (is_null($_VERSION) )
-	{
-	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php'))
-		{
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php');
-		$_VERSION = new version();
-		}
-	else
-		{
-		$_VERSION = new stdClass;
-		$_VERSION->PRODUCT = "Joomla!";
-		$_VERSION->RELEASE = "1.5";
-		}
-	}
-
-define('CMSVER',$_VERSION->PRODUCT.$_VERSION->RELEASE);
-*/
-
 
 if (!class_exists('patTemplate') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patTemplate.php');
@@ -182,17 +103,14 @@ if (!class_exists('patErrorManager') )
 	require_once('libraries'.JRDS.'phptools'.JRDS.'patErrorManager.php');
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomSearch.class.php');
-
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'code_changes'.JRDS.'countries.php') )
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'code_changes'.JRDS.'countries.php');
 else
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'countries.php');
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'imagehandling.php');
-
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_functions.php");
 
 $performance_monitor->set_point("post-inclusions");
@@ -228,15 +146,12 @@ if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
 if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
 if (!defined('JOMRES_CSSRELPATH'))
-	define('JOMRES_CSSRELPATH',$jomresConfig_live_site.'/jomres/css/');
+	define('JOMRES_CSSRELPATH',get_showtime('live_site').'/jomres/css/');
 	
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
 set_error_handler('errorHandler');
 jomres_parseRequest();
-
-if ( JOMRES_CMS == 'elexismambo')
-	$database = new database( $jomresConfig_host, $jomresConfig_user, $jomresConfig_password, $jomresConfig_db, $jomresConfig_dbprefix, $jomresConfig_dbtype );
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if (!strstr($scriptname,'install_jomres.php'))
@@ -247,7 +162,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 else  // We're running install_jomres.php
 	{
 	$license_key=$_POST['lkey'];
-	$task="showSiteConfig";
+	set_showtime('task',"showSiteConfig");
 	}
 
 $bang=explode("-",$license_key);
@@ -613,21 +528,20 @@ class dummy_params_class
 
 function mailJomresdotnet($message)
 	{
-	global $jomresConfig_live_site,$jomresConfig_sitename,$jomresConfig_mailfrom;
 	if (jomresGetDomain() != "localhost")
 		{
 		$to = "bugs@jomres.net ";
-		$subject = "Error report from ".$jomresConfig_sitename;
-		$from = $jomresConfig_mailfrom;
+		$subject = "Error report from ".get_showtime('sitename');
+		$from = get_showtime('mailfrom');
 
 		$body = " on ".date('d/m/Y');
 		$body .= " at ".date('g:i A')."\n\nDetails:\n";
 		$body .= "Server details follow\n\n";
-		$body .= "Livesite: ".$jomresConfig_live_site."\n";
-		$body .= "Site name: ".$jomresConfig_sitename."\n";
-		$body .= "Users email address: ".$jomresConfig_mailfrom."\n";
+		$body .= "Livesite: ".get_showtime('live_site')."\n";
+		$body .= "Site name: ".get_showtime('sitename')."\n";
+		$body .= "Users email address: ".get_showtime('mailfrom')."\n";
 		$body =	$message."\n";
-		jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,0);
+		jomresMailer( $from, get_showtime('sitename'), $to, $subject, $body,0);
 		}
 	}
 
@@ -818,8 +732,7 @@ function editCustomTextAll()
 
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
-	global $property_uid,$thisJRUser,$customTextArray,$jomresConfig_live_site;
-	global $task;
+	global $property_uid,$thisJRUser,$customTextArray;
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -830,7 +743,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	$theText=$theValue;
 	$defaultText="";
 	$br="";
-	if ($task=="editCustomTextAll")
+	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
 
 	if (count($customTextArray)>0)
@@ -867,7 +780,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					{
 					//$status = 'status=no,toolbar=yes,scrollbars=no,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
 					$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
-					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".$jomresConfig_live_site."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
+					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".get_showtime('live_site')."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
 					$theText=$editingLink.$theText;
 					}
 				else
@@ -927,7 +840,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 
 function editCustomText()
 	{
-	global $jomresConfig_live_site;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$theConstant = jomresGetParam( $_REQUEST, 'theConstant', '' );
@@ -964,7 +876,7 @@ function editCustomText()
 	$jrtb .= $jrtbar->toolbarItem('cancel','javascript:window.close();','');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
-	$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+	$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 	$output['HCURRENTTEXT']=_JOMRES_COM_A_EDITING_CURRENTTEXT;
 	$output['HNEWTEXT']=_JOMRES_COM_A_EDITING_NEWTEXT;
 	$output['PROPERTYUID']=$property_uid;
@@ -1251,11 +1163,10 @@ function getSiteSettings()
 
 function checkLicense($license_key,$scriptname)
 	{
-	global $task;
-	if (strlen($license_key)==0 && $task!="showSiteConfig" && $task!="saveSiteConfig" && !strstr($scriptname,'install_jomres.php'))
+	if (strlen($license_key)==0 && get_showtime('task')!="showSiteConfig" && get_showtime('task')!="saveSiteConfig" && !strstr($scriptname,'install_jomres.php'))
 		{
 		echo "<font color='red'><h1>Your license key is not set, therefore you will not be able to use Jomres yet. Please ensure that you have entered the license key number in the Site Configuration -> Misc -> License Key field before continuing.</h1></font>";
-		$task="showSiteConfig";
+		set_showtime('task',showSiteConfig);
 		}
 
 	if (defined('JOMRES_LICVALID'))
@@ -1282,7 +1193,6 @@ function checkLicense($license_key,$scriptname)
 
 	if (!JOMRES_LICVALID && JOMRES_ISADMINCALLED && ( $_REQUEST['task']!="showSiteConfig" && $_REQUEST['task']!="saveSiteConfig" &&$_REQUEST['task']!="saveLicenseKey" && $_REQUEST['task']!="getLicenseKey"))
 		{
-		global $jomresConfig_live_site;
 		$message="ERROR: Your license is not valid. Backend functionality is severely limited until this is resolved.<br>";
 		$str='<SCRIPT LANGUAGE="JavaScript">document.location.href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig&mosmsg='.$message.'";</script>';
 		echo $str;
@@ -1420,6 +1330,7 @@ function validateLicensekeyFile($license_key)
 		$key_age = 60;
 	
 	$key = new jomres_iono_keys($license_key, $user_defined_string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'key.php',$key_age);
+
 	if (!defined('JOMRES_LICRESULT') );
 		define('JOMRES_LICRESULT',$key->result);
 
@@ -1688,7 +1599,6 @@ class jomres_iono_keys
 	*/
 	function jomres_iono_keys($license_key, $remote_auth, $key_location = 'key.php', $key_age = 1296000)
 		{
-		global $jomresConfig_live_site;
 		/**
 		* @var string The user's license key
 		* @access private
@@ -1747,7 +1657,7 @@ class jomres_iono_keys
 		$this->now = time();
 		$thisServer = jomresGetDomain();
 
-		if ($thisServer == 'localhost' && strstr($jomresConfig_live_site,'localhost') )
+		if ($thisServer == 'localhost' && strstr(get_showtime('live_site'),'localhost') )
 			{
 			$this->result = 1;
 			return;
@@ -2369,6 +2279,63 @@ class jomres_getkeydata
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 				}
 			}
+		}
+	}
+	
+
+/**
+#
+ * Alternative function for str_ireplace
+#
+ */
+
+if(!function_exists('str_ireplace'))
+	{
+	function str_ireplace($search,$replace,$subject)
+		{
+		$token = chr(1);
+		$haystack = strtolower($subject);
+		//$needle = strtolower($search);
+		if (is_array($search) )
+			{
+			$count=count($search);
+			for ($i=0;$i<$count;$i++)
+				{
+				//echo $search[$i];echo "<br/>";
+				$search[$i]= strtolower($search[$i]);
+				}
+			$needle=$search;
+			}
+		else
+			$needle = strtolower($search);
+		while (($pos=strpos($haystack,$needle))!==FALSE)
+			{
+			$subject = substr_replace($subject,$token,$pos,strlen($search));
+			$haystack = substr_replace($haystack,$token,$pos,strlen($search));
+			}
+		$subject = str_replace($token,$replace,$subject);
+		return $subject;
+		}
+	}
+	
+
+/**
+#
+ * Alternative function for gregoriantojd
+#
+ */
+if ( !function_exists('gregoriantojd') )
+	{
+	function gregoriantojd( $m, $d, $y )
+		{
+		$y = $m == 1 || $m == 2 ? --$y : $y;
+		$m = $m == 1 || $m == 2 ? $m + 12 : $m;
+		$a = intval( $y / 100 );
+		$b = intval( $a / 4 );
+		$c = 2 - $a + $b;
+		$e = intval( 365.25 * ( $y + 4716 ) );
+		$f = intval( 30.6001 * ( $m + 1 ) );
+		return $c + $d + $e + $f - 1524.5 + 0.5;
 		}
 	}
 ?>

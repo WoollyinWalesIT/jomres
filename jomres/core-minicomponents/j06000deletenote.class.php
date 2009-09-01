@@ -34,7 +34,6 @@ class j06000deletenote {
 			}
 		$note_id				= jomresGetParam( $_REQUEST, 'note_id', 0 );
 		$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
-		global $ePointFilepath;
 		if ($note_id==0 || $contract_uid ==0)
 			{
 			echo "Error with note id or contract id";

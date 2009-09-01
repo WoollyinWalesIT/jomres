@@ -42,9 +42,8 @@ class j00510paypal {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $ePointFilepath,$eLiveSite,$jomresConfig_live_site;
 		$plugin="paypal";
-		$button="<IMG SRC=\"".$eLiveSite."j00510".$plugin.".gif\" border=\"0\">";
+		$button="<IMG SRC=\"".get_showtime('eLiveSite')."j00510".$plugin.".gif\" border=\"0\">";
 		$defaultProperty=getDefaultProperty();
 
 		// Default settings
@@ -98,7 +97,7 @@ class j00510paypal {
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath );
+		$tmpl->setRoot( get_showtime('ePointFilepath') );
 		$tmpl->readTemplatesFromInput( 'j00510'.$plugin.'.html' );
 		$tmpl->addRows( 'edit_gateway', $pageoutput );
 		$tmpl->displayParsedTemplate();

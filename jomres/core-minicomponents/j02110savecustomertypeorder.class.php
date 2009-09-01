@@ -43,7 +43,6 @@ class j02110savecustomertypeorder {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$order      = jomresGetParam( $_POST, 'order', array() );

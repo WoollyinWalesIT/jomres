@@ -43,7 +43,6 @@ class j02134newblackbooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$defaultProperty=getDefaultProperty();
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING',_JOMRES_FRONT_BLACKBOOKING);

@@ -44,7 +44,6 @@ class j02200editdeposit {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$mrConfig=getPropertySpecificSettings();
 		$contractUid=jomresGetParam( $_REQUEST, 'contractUid',0 );
 		if ($contractUid>0)

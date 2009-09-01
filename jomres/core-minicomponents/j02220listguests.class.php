@@ -43,7 +43,6 @@ class j02220listguests {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site;
 		$mrConfig=getPropertySpecificSettings();
 		$rows=array();
 		$surnameFirstChars         = jomresGetParam( $_POST, 'surnameFirstChars', '' );

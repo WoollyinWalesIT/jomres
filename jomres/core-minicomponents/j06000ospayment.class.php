@@ -31,7 +31,6 @@ class j06000ospayment {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath;
 		jr_import('jomres_gateway_handler');
 		$transaction = new jomres_gateway_handler();
 		$transaction->callback();

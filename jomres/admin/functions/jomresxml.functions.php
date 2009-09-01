@@ -36,9 +36,9 @@ $xmlelements=array('system'=>$systemElements,'request'=>$requestElements,'gatewa
 
 
 function characterData($parser, &$data){
-	global $current_tag, $temp, $jomresConfig_live_site;
+	global $current_tag, $temp;
 	global $lastdata, $lastTag;
-	$temp['LIVESITE']=$jomresConfig_live_site;
+	$temp['LIVESITE']=get_showtime('live_site');
 		switch($current_tag)
 			{
 			case 'DATETIME':

@@ -19,8 +19,6 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 
-global $jomresConfig_absolute_path;
-
 $jrConfig['defaultCrate']	='default';
 $jrConfig['property_list_limit']	='5';
 $jrConfig['useGlobalCurrency']		='0';
@@ -55,7 +53,6 @@ $jrConfig['dynamicMinIntervalRecalculation']='0';
 $jrConfig['disableAudit']			='0';
 $jrConfig['allowedTags']			='<h2>|<h3>|<h4>|<h5>|<b>|<i>|<a>|<ul>|<li>|<pre>|<hr>|<blockquote>|<img>|<p>';
 $jrConfig['utfHTMLdecode']			='0';
-//$jrConfig['jomres_systemLog_path']	=$jomresConfig_absolute_path.JRDS.'media'.JRDS;
 $jrConfig['emailErrors']			='0';
 //$jrConfig['slideshowLocation']		='1';  // Removed in v4
 $jrConfig['useJomresEmailCheck']	='0';

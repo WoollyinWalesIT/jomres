@@ -26,16 +26,15 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 function get_showtime($setting)
 	{
 	$showtime = jomres_getSingleton('showtime');
-	if (isset($showtime->run_time_information[$setting]))
-		return $showtime->get($setting);
-	else
-		return null;
+	$result = $showtime->$setting;
+	//var_dump ($setting." ".$result);
+	return $result;
 	}
 
 function set_showtime($setting,$value)
 	{
 	$showtime = jomres_getSingleton('showtime');
-	if (!$showtime->set($setting,$value))
+	if (!$showtime->$setting=$value)
 		return false;
 	return true;
 	}
@@ -63,7 +62,7 @@ function jr_import($class)
 	}
 
 
-function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,$jomresConfig_lang="")
+function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site="",$jomresConfig_lang="")
 	{
 	if (!defined("JOMRES_JSCALLED") )
 		{
@@ -93,31 +92,31 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site,
 			if (!defined("JOMRES_CALENDARJSCALLED") )
 				{
 				define ('JOMRES_CALENDARJSCALLED',1);
-				jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/javascript/cal/css/',$jrConfig['jscalendarCSSfile']);
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/',"calendar.js");
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/',"calendar-setup.js");
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
+				jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/javascript/cal/css/',$jrConfig['jscalendarCSSfile']);
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar.js");
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar-setup.js");
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery-1.3.2.min.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"interface.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.cookee.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.blockUI.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"heartbeat.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.bt-0-9-3.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.corner.js");
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.hoverIntent.minified.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.3.2.min.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"interface.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.cookee.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"heartbeat.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.bt-0-9-3.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.corner.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.hoverIntent.minified.js");
 			
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.jeditable.pack.js");
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jeditable.pack.js");
 
 			if ($thisJRUser->userIsManager)
 				{
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"MiniColorPicker.js");
-				jomres_cmsspecific_addheaddata("css",$jomresConfig_live_site.'/jomres/css/','jquery.jgrowl.css');
-				jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"jquery.jgrowl.js");
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"MiniColorPicker.js");
+				jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.jgrowl.css');
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jgrowl.js");
 				}
-			jomres_cmsspecific_addheaddata("javascript",$jomresConfig_live_site.'/jomres/javascript/',"excanvas.compiled.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"excanvas.compiled.js");
 			}
 		}
 	}
@@ -133,7 +132,6 @@ function jomresValidateUrl($url)
 	
 function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/') 
 	{
-	global $jomresConfig_live_site,$ePointFilepath;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$link = jomresURL($link);
@@ -141,14 +139,14 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 	
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
 		{
-		$path=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,"",$ePointFilepath);
+		$path=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,"",get_showtime('ePointFilepath'));
 		$path=str_replace(JRDS,"/",$path);
 		}
 	if (!strstr($image,"blank.png"))
 		{
 		if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
 			{
-			$path=$jomresConfig_live_site.$path.$image;
+			$path=get_showtime('live_site').$path.$image;
 			return '
 				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
 					<div class="icon" align="center">
@@ -170,7 +168,7 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 		{
 		if ($text != "<br/>")
 			{
-			$path=$jomresConfig_live_site.$path.$image;
+			$path=get_showtime('live_site').$path.$image;
 			return '
 			<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
 				<div class="icon" align="center">
@@ -1201,8 +1199,7 @@ function gateway_log($message)
  */
 function writexml($logfile,$rootelement,$entry,$newlines)
 	{
-	global $jomressession;
-	$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+	$task 				= get_showtime('task');
 
 	//if ($_REQUEST['option'] == "com_jomres")
 	//	{
@@ -1211,7 +1208,7 @@ function writexml($logfile,$rootelement,$entry,$newlines)
 		$rootElementStart="<".$rootelement.">\n";
 		$entryStart="\t<".$entry.">\n";
 		$datetime = "\t\t<datetime>" . $dt . "</datetime>\n";
-		$session = "\t\t<jomressession>" . $jomressession . "</jomressession>\n";
+		$session = "\t\t<jomressession>" . get_showtime('jomressession') . "</jomressession>\n";
 		$taskEntry = "\t\t<task>" . $task . "</task>\n";
 		$request = "\t\t<requesturi><![CDATA[" . $task." ".$ipstuff=getEscaped($_SERVER['REMOTE_ADDR'])." ".$host. "]]></requesturi>\n";
 		$message="\t\t\t<message>".$newlines."</message>\n";
@@ -1254,7 +1251,6 @@ function writexml($logfile,$rootelement,$entry,$newlines)
  */
 function jomresRedirect( $url, $msg='' )
 	{
-	global $mainframe;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -1262,15 +1258,8 @@ function jomresRedirect( $url, $msg='' )
 
 	if ($jrConfig['errorChecking']!="1")
 		{
-		if (!defined('_JOMRES_NEWJOOMLA') )
-			{
-			echo "<script>document.location.href='$url';</script>\n";
-			exit();
-			}
-		else
-			{
-			$mainframe->redirect( $url, JText::_( $msg ) );
-			}
+		echo "<script>document.location.href='$url';</script>\n";
+		exit();
 		}
 	}
 
@@ -1302,7 +1291,6 @@ function hotelSettings()
 	{
 
 	global $mrConfig,$configurationPanel;
-	global $jomresConfig_live_site;
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	
 	//global $_CONFIG;
@@ -1497,7 +1485,7 @@ function hotelSettings()
 	$componentArgs['editIconSize']=$editIconSize;
 	$componentArgs['fixedArrivalDatesRecurring']=$fixedArrivalDatesRecurring;
 	$componentArgs['tariffModelsDropdown']=$tariffModelsDropdown;
-	$componentArgs['jomresConfig_live_site']=$jomresConfig_live_site;
+	$componentArgs['jomresConfig_live_site']=get_showtime('live_site');
 	$componentArgs['tariffModeDD']=$tariffModeDD;
 	$componentArgs['Itemid']=$Itemid;
 	ob_start();
@@ -1684,14 +1672,13 @@ function jomres_makeColourPickerInput($setting,$value)
 #
 */
 function userHasBeenLoggedOut() {
-	global $jomresConfig_live_site;
-	echo '<center><img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Secured.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
+	echo '<center><img src="'.get_showtime('live_site').'/jomres/images/Restricted.png" align="middle" border="0" />';
+	echo '<img src="'.get_showtime('live_site').'/jomres/images/Secured.png" align="middle" border="0" />';
+	echo '<img src="'.get_showtime('live_site').'/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
 	echo '<h2>'.jr_gettext('_JOMRES_JR_NOTLOGGEDIN',_JOMRES_JR_NOTLOGGEDIN).'</h2>';
-	echo '<center><img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Secured.png" align="middle" border="0" />';
-	echo '<img src="'.$jomresConfig_live_site.'/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
+	echo '<center><img src="'.get_showtime('live_site').'/jomres/images/Restricted.png" align="middle" border="0" />';
+	echo '<img src="'.get_showtime('live_site').'/jomres/images/Secured.png" align="middle" border="0" />';
+	echo '<img src="'.get_showtime('live_site').'/jomres/images/Restricted.png" align="middle" border="0" /></center><br />';
 
 
 	//global $my;
@@ -1707,7 +1694,6 @@ function userHasBeenLoggedOut() {
 */
 function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$jrc=FALSE)
 	{
-	global $jomresConfig_live_site;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -1747,7 +1733,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		// Popup on image click
 
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".$jomresConfig_live_site."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".get_showtime('live_site')."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
 				<script type=\"text/javascript\">
 					Calendar.setup({
 					inputField    :   \"x".$randomID."\",
@@ -1777,18 +1763,19 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
  * Triggesr the insert booking mini-comp 03020
 #
  */
-function insertInternetBooking($jomressession,$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="",$usejomressessionasCartid=false)
+function insertInternetBooking($jomressession="",$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="",$usejomressessionasCartid=false)
 	{
+	$jomressession=get_showtime('jomressession');
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	
-	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".$jomressession);
+	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".get_showtime('jomressession'));
 	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
 	if ($contract_total == 0.00)
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
 	$userIsManager=checkUserIsManager();
-	$componentArgs=array('jomressession'=>$jomressession,'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
+	$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
 	gateway_log("insertInternetBooking: ".serialize($MiniComponents->miniComponentData['03020']) );
 	if ($MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
@@ -2397,7 +2384,7 @@ function getPropertyTypeDropdown($propertyType="")
 */
 function filterForm($selectname,$value,$format,$task="")
 	{
-	global $task;
+	$task=get_showtime('task');
 	$selecthtml="\n<form action=\"\" method=\"get\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" onchange=\"window.open(this.options[this.selectedIndex].value,'_top')\">";
 	$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."\"></option>";
 	$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
@@ -2416,30 +2403,7 @@ function filterForm($selectname,$value,$format,$task="")
 		}
 	$selecthtml.="\n</select></span>
 	</form>";
-	
-	/*
-	global $Itemid,$task;
-	$defaultValue=$_REQUEST[$selectname];
-	$javascript = 'OnChange="location.href=jomresFilter'.$selectname.'.'.$selectname.'.options[selectedIndex].value"';
-	$selecthtml="\n<form action=\"\" method=\"post\" name=\"jomresFilter".$selectname."\"><span class=\"inputbox_wrapper\"><select class=\"inputbox\" name=\"$selectname\" $javascript>";
-	$selecthtml .= "\n<option value=\"%\"></option>";
-	$selecthtml .= "\n<option value=\"%\">".jr_gettext('_JOMRES_COM_A_RESET',_JOMRES_COM_A_RESET,FALSE)."</option>";
-	if (count($value)>0)
-		{
-		foreach ($value as $v)
-			{
-			$v_output=$v;
-			$selected="";
-			if ($format=="date")
-				$v_output=outputDate($v_output);
-			if ($v==$defaultValue)
-				$selected="selected";
-			$selecthtml .= "\n<option value=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=".$task)."&".$selectname."=".$v."\"".$selected.">".$v_output."</option>";
-			}
-		}
-	$selecthtml.="\n</select></span>
-	</form>";
-	*/
+
 	return $selecthtml;
 	}
 /**
@@ -2449,12 +2413,11 @@ function filterForm($selectname,$value,$format,$task="")
 */
 function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	{
-	global $jomresConfig_live_site,$Itemid;
 	$defaultProperty=getDefaultProperty();
 	if ($defaultProperty=="0")
 		$defaultProperty="%";
 	$today = date("Y/m/d");
-	$pathToImages=$jomresConfig_live_site."/jomres/images";
+	$pathToImages=get_showtime('live_site')."/jomres/images";
 	$img_pending=$pathToImages."/pending.gif";
 	$img_arrivetoday=$pathToImages."/arrivetoday.gif";
 	$img_resident=$pathToImages."/resident.gif";
@@ -2553,8 +2516,6 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 function getPropertyAddressForPrint($propertyUid)
 	{
 	//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
-	global $jomresConfig_live_site;
-
 	$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".(int)$propertyUid."' LIMIT 1";
 	$propertyData=doSelectSql($query);
 	foreach ($propertyData as $data)
@@ -2627,7 +2588,7 @@ function getPropertyAddressForPrint($propertyUid)
 
 		}
 	$propertyAddress=array($property_name,$property_street,$property_town,$property_postcode,$property_region,$property_country);
-	$propertyContact=array($property_tel,$property_fax,$property_email,$jomresConfig_live_site);
+	$propertyContact=array($property_tel,$property_fax,$property_email,get_showtime('live_site'));
 	$propertyDataArray=array($property_name,$propertyAddress,$propertyContact,$indexedPropertyDetails);
 	return $propertyDataArray;
 	}
@@ -3034,19 +2995,18 @@ function checkForImage($imageType,$itemUid)
 
 function getImageForProperty($imageType,$property_uid,$itemUid)
 	{
-	global $jomresConfig_live_site;
 	$fileLocation=FALSE;
 	switch ($imageType)
 		{
 		case 'property':
-			$default_image = $jomresConfig_live_site."/jomres/images/jrlogo.png";
+			$default_image = get_showtime('live_site')."/jomres/images/jrlogo.png";
 			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_property_".$itemUid.".jpg"))
 				$fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid.".jpg";
 			else
 				$fileLocation = $default_image;
 			break;
 		case 'room':
-			$default_image = $jomresConfig_live_site."/jomres/images/noimage.gif";
+			$default_image = get_showtime('live_site')."/jomres/images/noimage.gif";
 			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property_uid."_room_".$itemUid.".jpg"))
 				$fileLocation = JOMRES_IMAGELOCATION_RELPATH.$property_uid."_room_".$itemUid.".jpg";
 			else
@@ -3093,7 +3053,7 @@ function getPropertySpecificSettings($property_uid=null)
 */
 function registerProp_step1()
 	{
-	global $jomresConfig_live_site,$thisJRUser;
+	global $thisJRUser;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -3108,7 +3068,7 @@ function registerProp_step1()
 	else
 		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
 	$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
-	$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;
+	$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 	$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 	$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 	$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
@@ -3129,7 +3089,7 @@ function registerProp_step1()
 */
 function registerProp_step2()
 	{
-	global $jomresConfig_live_site,$thisJRUser,$mrConfig;
+	global $thisJRUser,$mrConfig;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -3224,7 +3184,7 @@ function registerProp_step2()
 	$output['HAIRPORTS']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS);
 	$output['HOTHERTRANSPORT']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT);
 	$output['HPOLICIESDISCLAIMERS']	=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
-	$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;
+	$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 	$output['ITEMID']				=$Itemid;
 
 	$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
@@ -3632,8 +3592,8 @@ function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $
  */
 function jomresShowSearch()
 	{
-	global $task;
-	if ( empty($task) )
+	$result = get_showtime('task');
+	if ( empty($result) )
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$MiniComponents->triggerEvent('00030'); //Search mini-comp
@@ -3660,11 +3620,16 @@ function checkPortalExists()
  * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate
 #
  */
+ /*
+ 
+ ************ Depreciated ****************
+ 
+ */
 function makeFeatureImages($image,$title,$description,$retString=false,$altLivesite="")
 	{
-	global $jomresConfig_live_site,$mrConfig,$thisJRUser;
+	global $mrConfig,$thisJRUser;
 	if (!empty($altLivesite))
-		$jomresConfig_live_site=$altLivesite;
+		set_showtime('live_site',$altLivesite);
 	$title=addslashes($title);
 	$description=addslashes($description);
 	$defaultImage="images/blank.png";
@@ -3695,14 +3660,14 @@ function makeFeatureImages($image,$title,$description,$retString=false,$altLives
 	$description=str_replace("'","\'",$description);
 
 	if ($retString)
-		$r='<img src="'.$jomresConfig_live_site.'/'.$image.'" alt="" border="0" onmouseover="return overlib(\''.$description.'\', CAPTION, \''.$title.'\', BELOW, RIGHT);" onmouseout="return nd();" />';
+		$r='<img src="'.get_showtime('live_site').'/'.$image.'" alt="" border="0" onmouseover="return overlib(\''.$description.'\', CAPTION, \''.$title.'\', BELOW, RIGHT);" onmouseout="return nd();" />';
 	else
 		{
 		$r=array();
 		$space="";
 		if ($captionpopup != "")
 			$space="<br>";
-		$r['FEATURE']=$space.'<img src="'.$jomresConfig_live_site.'/'.$image.'" alt="" border="0" onmouseover="return overlib(\''.$description.'\', CAPTION, \''.$title.'\', BELOW, RIGHT);" onmouseout="return nd();" />'.$captionpopup.' '.$descriptonpopup;
+		$r['FEATURE']=$space.'<img src="'.get_showtime('live_site').'/'.$image.'" alt="" border="0" onmouseover="return overlib(\''.$description.'\', CAPTION, \''.$title.'\', BELOW, RIGHT);" onmouseout="return nd();" />'.$captionpopup.' '.$descriptonpopup;
 		}
 	return $r;
 	}
@@ -3715,8 +3680,8 @@ function makeFeatureImages($image,$title,$description,$retString=false,$altLives
  */
 function propertyClicked($p_uid)
 	{
-	global $database,$jomresConfig_live_site;
-	$sessionCookieName 	= md5( 'site'.$jomresConfig_live_site);
+	global $database;
+	$sessionCookieName 	= md5( 'site'.get_showtime('live_site'));
 	//$sessioncookie 		= jomresGetParam( $_REQUEST, $sessionCookieName, '' );
 	$cookiename = "jomresp$p_uid";
 
@@ -3762,7 +3727,7 @@ function quote_smart($value)
  */
 function makePopupLink($link,$text,$isLocalPage=TRUE,$width=550,$height=500)
 	{
-	global $mrConfig,$jomresConfig_live_site,$jomresConfig_sef;
+	global $mrConfig,$jomresConfig_sef;
 
 	$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width='.$width.',height='.$height.',directories=no,location=no';
 	$format="";
@@ -3771,52 +3736,11 @@ function makePopupLink($link,$text,$isLocalPage=TRUE,$width=550,$height=500)
 		
 	if ( $jrConfig['useSSLinBookingform'] == 1 && $_REQUEST['task'] == "editGuest" )
 		{
-		$jomresConfig_live_site = str_replace("http://","https://",$link);
+		set_showtime('live_site',str_replace("http://","https://",$link));
 		}
 		
 	$thelink="<a href=\"javascript:void window.open('".$link.$format."', 'win2', '".$status."');\" rel=\"nofollow\" title=\"\">".$text."</a>";
-	
-	
-	
-	/*
-	if ($mrConfig['popupsAllowed'])
-		{
-		$format="";
-		if ($isLocalPage)
-			{
-			if (defined('_JOMRES_NEWJOOMLA') )
-				{
-				$indexphp="index.php";
-				$format="&tmpl=component";
-				}
-			else
-				{
-				if ($jomresConfig_sef=="1")
-					$indexphp=$jomresConfig_live_site."/index2.php";
-				else
-					$indexphp="";
-				}
-			}
-		else
-			$indexphp="";
-		$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width='.$width.',height='.$height.',directories=no,location=no';
-		
-		if ( $jrConfig['useSSLinBookingform'] == 1 && $_REQUEST['task'] == "editGuest" )
-			{
-			$jomresConfig_live_site = str_replace("http://","https://",$jomresConfig_live_site);
-			}
-		$thelink =$jomresConfig_live_site.$link;
-		$thelink="<a href=\"javascript:void window.open('".$indexphp.$link.$format."', 'win2', '".$status."');\" rel=\"nofollow\" title=\"\">".$text."</a>";
-		}
-	else
-		{
-		if ($isLocalPage)
-			$indexphp=$jomresConfig_live_site."/index.php";
-		$thelink='<a href="'.jomresURL($indexphp.$link).'">'.$text.'</a>';
-		}
-	*/
-	
-	
+
 	$thelink=str_replace("&amp;","&",$thelink);
 	$thelink=str_replace("&","&amp;",$thelink);
 	return $thelink;
@@ -3981,30 +3905,16 @@ function createJSCSSDropdown()
 	 * @param unknown_type $text
 	 */
 	function _quickiconButton( $link, $image, $text, $path='/administrator/images/' ) {
-		global $jomresConfig_live_site;
 		?>
 		<div style="padding:0 2px 0 0;text-align:center;vertical-align:middle;float:left;width:120px;height:110px;">
 			<div class="icon" align="center">
 				<a href="<?php echo $link; ?>" style="text-decoration:none;">
-				<img src="<?php echo $jomresConfig_live_site.$path.$image;?>" border="0" /><br />
+				<img src="<?php echo get_showtime('live_site').$path.$image;?>" border="0" /><br />
 				<span><?php echo $text; ?></span>
 				</a>
 			</div>
 		</div>
 		<?php
-	}
-	
-
-function homeButton()
-	{
-	global $indexphp,$jomresConfig_live_site;
-	$jrtbar =jomres_getSingleton('jomres_toolbar');
-	$jrtb  = $jrtbar->startTable();
-	$image = JOMRESPATH_BASE."/images/jomresimages/small/Home.png";
-	$link = $jomresConfig_live_site."/administrator/".$indexphp."?option=com_jomcompjrportal";
-	$jrtb .= $jrtbar->customToolbarItem('',$link,"Home",false,"",$image);
-	$jrtb .= $jrtbar->endTable();
-	return $jrtb;
 	}
 
 function makeJsGraphOutput($graphLabels,$graphValues,$type="hBar",$legend,$div='divGraph')

@@ -32,9 +32,7 @@ class j16000listPropertyTypes
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresAdminPath,$jomresConfig_live_site;
-		
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$ptypeData=array();
 		$pList=array();
 		$pList['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE;
@@ -53,9 +51,9 @@ class j16000listPropertyTypes
 			$ptypeData['ptype_desc']=$ptype->ptype_desc;
 			$published=$ptype->published;
 			if ($published)
-				$ptypeData['published'] = $jomresConfig_live_site."/".JOMRES_ADMINISTRATORDIRECTORY."/images/tick.png";
+				$ptypeData['published'] = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/images/tick.png";
 			else
-				$ptypeData['published'] = $jomresConfig_live_site."/".JOMRES_ADMINISTRATORDIRECTORY."/images/publish_x.png";
+				$ptypeData['published'] = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/images/publish_x.png";
 			$rowInfo.="
 				<tr>
 					<td class=\"jradmin_subheader_la\" width=\"20\"><input type=\"checkbox\" id=\"cb".$counter."\" name=\"idarray[]\" value=\"".$ptypeData['id']."\" onClick=\"jomres_isChecked(this.checked);\"></td>

@@ -43,7 +43,7 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site,$method,$jomresConfig_list_limit,$customTextArray;
+		global $method,$customTextArray;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -240,16 +240,16 @@ class j01010listpropertys {
 					$stars=$property->stars;
 					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
 
-					$property_image=$jomresConfig_live_site."/jomres/images/jrlogo.png";
+					$property_image=get_showtime('live_site')."/jomres/images/jrlogo.png";
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
-						$property_image=$jomresConfig_live_site."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
-					$starslink="<img src=\"".$jomresConfig_live_site."/jomres/images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
+						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
+					$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
 					if ($stars!="0")
 						{
 						$starslink="";
 							for ($i=1;$i<=$stars;$i++)
 				    		{
-							$starslink.="<img src=\"".$jomresConfig_live_site."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+							$starslink.="<img src=\"".get_showtime('live_site')."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
 							}
 						$starslink.="";
 						}
@@ -372,7 +372,7 @@ class j01010listpropertys {
 					$property_deets['PROP_REGION']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.urlencode($propertyContactArray[4])).'">'.stripslashes($propertyContactArray[4]).'</a>';
 					$property_deets['PROP_COUNTRY']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.urlencode($propertyContactArray[5])).'">'.stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5]))).'</a>';
 
-					$property_deets['LIVESITE']=$jomresConfig_live_site;
+					$property_deets['LIVESITE']=get_showtime('live_site');
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 					$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false) ;
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;

@@ -71,7 +71,6 @@ function getImagesSize($imageLocation)
  */
 function batchUploadForm()
 	{
-	global $Itemid,$jomresConfig_live_site;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$defaultProperty=getDefaultProperty();

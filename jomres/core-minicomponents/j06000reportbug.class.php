@@ -44,7 +44,7 @@ class j06000reportbug {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$ePointFilepath,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sitename;
+		global $jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sitename;
 		global $jomresConfig_host,$jomresConfig_user,$jomresConfig_password,$_VERSION,$thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		if ($thisJRUser->superPropertyManager)
@@ -57,7 +57,7 @@ class j06000reportbug {
 			$safemode=$s["PHP Core"]['safe_mode'][1];
 			$image="/jomres/images/jomresimages/small/EmailSend.png";
 			$sitename="Site name : ".$jomresConfig_sitename;
-			$joomlaUrl="CMS url : ".$jomresConfig_live_site;
+			$joomlaUrl="CMS url : ".get_showtime('live_site');
 			$jomresVersion="Jomres version : ".$mrConfig['version'];
 			$joomlaVersion="CMS version : ".$_VERSION->PRODUCT.' '.$_VERSION->RELEASE.'.'.$_VERSION->DEV_LEVEL.' '.$_VERSION->DEV_STATUS;
 			$phpVersion="PHP Version : ".phpversion();
@@ -67,7 +67,7 @@ class j06000reportbug {
 			$serverSoftware="Server software : ".$_SERVER['SERVER_SOFTWARE'];
 			$opSys="Operating system : ".php_uname ();
 
-			$currentPage="Report triggered at page : ".$jomresConfig_live_site."/".$currentPage;
+			$currentPage="Report triggered at page : ".get_showtime('live_site')."/".$currentPage;
 			$yourreport="Your bug report : ";
 			$adminLogin="Admin userid : admin";
 			$adminPassword="Admin password : ";

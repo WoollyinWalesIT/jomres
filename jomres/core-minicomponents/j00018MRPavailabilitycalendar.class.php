@@ -194,7 +194,7 @@ class  j00018MRPavailabilitycalendar {
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
 		global $jomresConfig_locale;
-		global $jomresConfig_live_site,$noshowroom, $jomresConfig_offset;
+		global $noshowroom, $jomresConfig_offset;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -202,7 +202,7 @@ class  j00018MRPavailabilitycalendar {
 		setlocale(LC_ALL, $jomresConfig_locale);
 
 		$showOutMonthDates=false;
-		$task=jomresGetParam( $_REQUEST, 'task', '' );
+		$task=get_showtime('task');
 		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
 		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );
 		if ($task == "remoteavailability" )

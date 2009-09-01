@@ -49,7 +49,6 @@ class j00501gateways {
 		if ($paypal_settings->paypalConfigOptions['override'] == "0")
 			{
 			$lists=$componentArgs['lists'];
-			$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
 			$gatewayNames=$componentArgs['gatewayNames'];
 
 			$configurationPanel->startPanel(_JOMRES_COM_A_GATEWAYLIST);

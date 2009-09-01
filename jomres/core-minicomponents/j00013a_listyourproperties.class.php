@@ -32,10 +32,10 @@ class j00013a_listyourproperties
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$jomresConfig_live_site,$Itemid;
+		global $thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+		$task 				= get_showtime('task');
 		if ($thisJRUser->superPropertyManager)
 			return;
 		if ($jrConfig['useSubscriptions']=="1")

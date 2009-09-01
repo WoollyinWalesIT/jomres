@@ -54,7 +54,6 @@ function publishPropertyType()
  */
 function editPropertyType()
 	{
-	global $jomresAdminPath,$jomresConfig_live_site;
 	$id = jomresGetParam( $_GET, 'id', 0 );
 	$ptypeData=array();
 	$pList=array();

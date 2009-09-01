@@ -32,9 +32,8 @@ class j16000listcrates
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$indexphp;
 		$rows=array();
-		$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/jomresimages/small/EditItem.png" border="0">';
+		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 
 		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();

@@ -44,7 +44,6 @@ class j02202a_update_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$Itemid;
 		$defaultProperty=getDefaultProperty();
 		$contractUid        = intval(jomresGetParam( $_POST, 'contractUid', 0 ) );
 		if ($contractUid>0)

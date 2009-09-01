@@ -32,7 +32,7 @@ class j06000muviewfavourites {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($thisJRUser->userIsRegistered)
@@ -78,7 +78,7 @@ class j06000muviewfavourites {
 						$r['STYLE'] ="even";
 					$fileLocation=$jrConfig['ss_imageLocation'];
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg') )
-						$r['IMAGE']='<img src="'.$jomresConfig_live_site.$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg" width="40">';
+						$r['IMAGE']='<img src="'.get_showtime('live_site').$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg" width="40">';
 					else
 						$r['IMAGE']='&nbsp;';
 					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$f->property_uid;

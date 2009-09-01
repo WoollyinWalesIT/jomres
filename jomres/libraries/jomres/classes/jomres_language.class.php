@@ -142,7 +142,7 @@ class jomres_language
 		
 	function get_languageselection_dropdown()
 		{
-		$task = jomresGetParam( $_REQUEST, 'task', "" );
+		$task = get_showtime('task');
 		
 		if ($this->showLangDropdown != "1" && $task != "touch_templates" )
 			return "";

@@ -36,7 +36,6 @@ class j16000showplugins
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$installed_plugins=array();
 		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$third_party_plugins = array();

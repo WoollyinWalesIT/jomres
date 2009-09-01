@@ -32,7 +32,6 @@ class j16000listTemplates
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site;
 		$output=array();
 
 		$output['TITLE']=_JOMRES_COM_TEMPLATEEDITING_TITLE;

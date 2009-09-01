@@ -30,20 +30,18 @@ class html_functions
 		
 	function cpanelButton( $link, $image, $text, $path='/jomres/images/jomresimages/large/' ) 
 		{
-		global $jomresConfig_live_site,$task;
-		global $ePointFilepath,$eLiveSite;
 		$link = str_replace("&amp;", "&", $link);
 		$link = str_replace("&", "&amp;", $link);
 		
 		if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.$image) )
 			{
 			if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS.$image) )
-				$path=$eLiveSite.$image;
+				$path=get_showtime('eLiveSite').$image;
 			else
-				$path=$jomresConfig_live_site.$path.$image;
+				$path=get_showtime('live_site').$path.$image;
 			}
 		else
-			$path=$jomresConfig_live_site.'/jomres/images/'.$image;
+			$path=get_showtime('live_site').'/jomres/images/'.$image;
 		if (strlen( jomresGetParam( $_REQUEST, 'task', "" ))>0)
 			{
 			return '

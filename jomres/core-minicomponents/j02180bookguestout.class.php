@@ -43,7 +43,6 @@ class j02180bookguestout {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site;
 		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 		if (!isset($_REQUEST['dueDepart'])  )
@@ -148,7 +147,7 @@ class j02180bookguestout {
 				$agreedratepernight=$room_total/$originalStayDays;
 				$totalCosts=$single_person_suppliment+($agreedratepernight*$actualstayDays);
 
-				$output['LIVESITE']=$jomresConfig_live_site;
+				$output['LIVESITE']=get_showtime('live_site');
 				$output['HSTAYNIGHTS']=jr_gettext('_JOMRES_COM_INVOICE_STAYNIGHTS',_JOMRES_COM_INVOICE_STAYNIGHTS);
 				$output['HCONTRACTAGREED']=jr_gettext('_JOMRES_COM_INVOICE_CONTRACTAGREED',_JOMRES_COM_INVOICE_CONTRACTAGREED);
 				$output['HCOSTPERNIGHT']=jr_gettext('_JOMRES_COM_INVOICE_COSTPERNIGHT',_JOMRES_COM_INVOICE_COSTPERNIGHT);
@@ -218,13 +217,9 @@ class j02180bookguestout {
 					}
 				else
 					{
-//					$fileLocation=checkForImage('property',$propertyUid);
-//					$output['IMAGE']=$jomresConfig_live_site."/jomres/images/jrlogo.png";
-//					if ($fileLocation)
-//						$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
 					$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 
-					$output['LIVESITE']		=$jomresConfig_live_site;
+					$output['LIVESITE']		=get_showtime('live_site');
 					$output['BL_DEAR']=jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR);
 					$output['BL_INTRO1']=jr_gettext('_JOMRES_COM_INVOICE_LETTER_INTRO1',_JOMRES_COM_INVOICE_LETTER_INTRO1);
 					$output['HOPEYOUENJOYEDSTAY']=jr_gettext('_JOMRES_COM_INVOICE_LETTER_HOPEYOUENJOYEDSTAY',_JOMRES_COM_INVOICE_LETTER_HOPEYOUENJOYEDSTAY);
@@ -275,12 +270,6 @@ class j02180bookguestout {
 					$tmpl->addRows( 'output_extras',$output_extras);
 					$tmpl->addRows( 'pageoutput',$pageoutput);
 					$tmpl->displayParsedTemplate();
-
-//					$fileLocation=checkForImage('property',$property_uid);
-//					$output['IMAGE']=$jomresConfig_live_site."/jomres/uploaded/jrlogo.png";
-//					if ($fileLocation)
-//						$output['IMAGE']=$jomresConfig_live_site.$fileLocation;
-//
 					}
 
 

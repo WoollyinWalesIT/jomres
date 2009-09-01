@@ -32,7 +32,7 @@ class j06000test_unsubscribe
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser;
+		global $thisJRUser;
 		
 		$subscription_id	=(int)jomresGetParam( $_REQUEST, 'id', 0 );
 		

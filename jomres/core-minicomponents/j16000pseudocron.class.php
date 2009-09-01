@@ -32,7 +32,7 @@ class j16000pseudocron
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_secret,$jomresConfig_live_site,$cronConfigOptions;
+		global $jomresConfig_secret,$cronConfigOptions;
 		$plugin="jomcompcronjobs";
 		if (isset($_POST['method']) )
 			$this->savecronconfigPlugin($plugin);
@@ -147,7 +147,6 @@ class j16000pseudocron
 		
 	function savecronconfigPlugin($plugin)
 		{
-		global $jomresAdminPath;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty="0";
 		foreach ($_POST as $k=>$v)

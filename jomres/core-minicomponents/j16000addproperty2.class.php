@@ -33,7 +33,7 @@ class j16000addproperty2
 			$this->template_touchable=false; return;
 			}
 
-		global $jomresConfig_live_site,$thisJRUser;
+		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -92,7 +92,7 @@ class j16000addproperty2
 					
 				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
 				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
-				$r['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$jomresConfig_live_site."/".$propertyFeature->image,"","property_feature",array());
+				$r['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,get_showtime('live_site')."/".$propertyFeature->image,"","property_feature",array());
 
 				//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
 				$globalPfeatures[]=$r;
@@ -120,7 +120,7 @@ class j16000addproperty2
 			{
 			foreach ($propertyImageList as $imageLocation)
 				{
-				$propertyImageLocation='<img src="'.$jomresConfig_live_site.'/'.$imageLocation->filelocation.'">';
+				$propertyImageLocation='<img src="'.get_showtime('live_site').'/'.$imageLocation->filelocation.'">';
 				}
 			}
 
@@ -166,7 +166,7 @@ class j16000addproperty2
 		$output['HAIRPORTS']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS);
 		$output['HOTHERTRANSPORT']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT);
 		$output['HPOLICIESDISCLAIMERS']	=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
-		$output['MOSCONFIGLIVESITE']	=$jomresConfig_live_site;
+		$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 		$output['CRATE']=$crate;
 		$output['USERID']=$userid;
 

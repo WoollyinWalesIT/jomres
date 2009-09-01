@@ -17,8 +17,6 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 ################################################################
 */
 
-global $jomresConfig_absolute_path;
-
 define('_JOMRES_INITCHECK', 1 );
 
 if (!defined('JRDS'))
@@ -56,8 +54,8 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."regis
 	@unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php");
 	
 	
-global $jomres_systemLog_path,$jomresConfig_absolute_path,$lkey;
-$jomres_systemLog_path=$jomresConfig_absolute_path.$jrConfig['jomres_systemLog_path'];
+global $jomres_systemLog_path,$lkey;
+$jomres_systemLog_path=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['jomres_systemLog_path'];
 
 showheader();
 
@@ -683,7 +681,6 @@ function copyImages()
 
 function showCompletedText()
 	{
-	global $jomresConfig_live_site;
 	$fullurl = str_replace("/jomres/install_jomres.php","", $_SERVER['HTTP_REFERER']);
 	echo '<br>Thank you for installing Jomres. <a href="'.$fullurl.JOMRES_SITEPAGE_URL_ADMIN.'" target="_blank" >You may now go to your CMS\'s administrator area and configure Jomres</a><br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
@@ -2082,8 +2079,6 @@ function upgradeWarning()
 
 function showheader()
 	{
-	global $jomresConfig_live_site;
-
 	?>
 	<html>
 	<head>

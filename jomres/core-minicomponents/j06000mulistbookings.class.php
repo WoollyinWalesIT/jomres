@@ -32,7 +32,7 @@ class j06000mulistbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser,$jomresConfig_live_site;
+		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -87,7 +87,7 @@ class j06000mulistbookings {
 						$r['CONTRACT_TOTAL']=$currency.$currfmt->get_formatted($c->contract_total);
 						$fileLocation=$jrConfig['ss_imageLocation'];
 						if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg') )
-							$r['IMAGE']='<img src="'.$jomresConfig_live_site.$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg" width="40">';
+							$r['IMAGE']='<img src="'.get_showtime('live_site').$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg" width="40">';
 						else
 							$r['IMAGE']='&nbsp;';
 						$r['VIEWLINK']=JOMRES_SITEPAGE_URL."&task=muviewbooking&contract_uid=".$c->contract_uid;

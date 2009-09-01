@@ -45,10 +45,9 @@ class j03020insertbooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_live_site,$jomresProccessingBookingObject;
+		global $jomresProccessingBookingObject;
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$jomressession=$componentArgs['jomressession'];
 		$depositPaid=$componentArgs['depositPaid'];
 		if (isset($componentArgs['usejomressessionasCartid']) )
 			$usejomressessionasCartid=$componentArgs['usejomressessionasCartid'];
@@ -56,10 +55,10 @@ class j03020insertbooking {
 			$usejomressessionasCartid=false;
 		$usejomressessionasCartid=false;
 		$userIsManager=checkUserIsManager();
-		$jomresProccessingBookingObject=getCurrentBookingData($jomressession);
+		$jomresProccessingBookingObject=getCurrentBookingData(get_showtime('jomressession'));
 		$guestDetails 			=$jomresProccessingBookingObject->guestDetails;
 		$tempBookingDataList 	=$jomresProccessingBookingObject->tempBookingDataList;
-		gateway_log("j03020insertbooking :: Attempting to insert booking jsid: ".$jomressession);
+		gateway_log("j03020insertbooking :: Attempting to insert booking jsid: ".get_showtime('jomressession'));
 
 		if (count($guestDetails)==0)
 			{
@@ -68,7 +67,7 @@ class j03020insertbooking {
 			}
 		if (count($tempBookingDataList)==0)
 			{
-			gateway_log("j03020insertbooking :: Failed to insert booking: Booking data not found. Probably already booking inserted. ".$jomressession);
+			gateway_log("j03020insertbooking :: Failed to insert booking: Booking data not found. Probably already booking inserted. ".get_showtime('jomressession'));
 			$this->insertSuccessful = false;
 			echo "Booking already made";
 			}
@@ -87,9 +86,9 @@ class j03020insertbooking {
 				{
 
 				//Booking amendment code
-				gateway_log("j03020insertbooking :: Amending contract. ".$amend_contractuid ." for ".$jomressession);
+				gateway_log("j03020insertbooking :: Amending contract. ".$amend_contractuid ." for ".get_showtime('jomressession'));
 
-				$guests_uid		= insertGuestDeets($jomressession);
+				$guests_uid		= insertGuestDeets(get_showtime('jomressession'));
 
 				foreach ($tempBookingDataList as $tempBookingData)
 					{
@@ -196,7 +195,7 @@ class j03020insertbooking {
 					$this->insertSuccessful =false;
 					}
 
-				jomres_audit($jomressession,"Amend booking - contract updated ".$amend_contractuid);
+				jomres_audit(get_showtime('jomressession'),"Amend booking - contract updated ".$amend_contractuid);
 				$dt=date("Y-m-d H-i-s");
 				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".RemoveXSS("Amend booking - contract updated ".$amend_contractuid)."','$dt','".(int)$property_uid."')";
 				doInsertSql($query,"");
@@ -229,7 +228,7 @@ class j03020insertbooking {
 						}
 					}
 
-				jomres_audit($jomressession,"Amend booking - updated room booking ".$amend_contractuid);
+				jomres_audit(get_showtime('jomressession'),"Amend booking - updated room booking ".$amend_contractuid);
 				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message("Amend booking - updated room booking ".$amend_contractuid);
 				if (count($rates_uids)>1)
@@ -256,12 +255,12 @@ class j03020insertbooking {
 				{
 				$result = jomres_cmsspecific_createNewUserOnBooking();
 
-				$guests_uid=insertGuestDeets($jomressession);
+				$guests_uid=insertGuestDeets(get_showtime('jomressession'));
 
 				//var_dump($guests_uid);exit;
 					
 				// We will try to use the first 10 chars of the jomressession as our booking number. If we can't use it then we'll find a random number and append it to the end.
-				$session10Chars= substr($jomressession, 0, 10);
+				$session10Chars= substr(get_showtime('jomressession'), 0, 10);
 				$cartnumber=$session10Chars;
 				// First let's generate a random number for our shopping cart.
 				if (!$usejomressessionasCartid)
@@ -276,8 +275,8 @@ class j03020insertbooking {
 					endwhile;
 					}
 				else
-					$cartnumber=$jomressession;
-				gateway_log("j03020insertbooking :: Setting cart number. ".$cartnumber ." for ".$jomressession);
+					$cartnumber=get_showtime('jomressession');
+				gateway_log("j03020insertbooking :: Setting cart number. ".$cartnumber ." for ".get_showtime('jomressession'));
 
 				
 				foreach ($tempBookingDataList as $tempBookingData)
@@ -438,7 +437,7 @@ class j03020insertbooking {
 							trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
 							$this->insertSuccessful =false;
 							}
-						jomres_audit($jomressession,"Booked room ".$cartnumber);
+						jomres_audit(get_showtime('jomressession'),"Booked room ".$cartnumber);
 						}
 					}
 

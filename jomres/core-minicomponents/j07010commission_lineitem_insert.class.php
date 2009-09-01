@@ -25,8 +25,6 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 class j07010commission_lineitem_insert {
 	function j07010commission_lineitem_insert($componentArgs)
 		{
-		global $ePointFilepath,$jomresConfig_absolute_path;
-
 		$bookingObj				= $componentArgs['bookingObj'];
 		$userObjsArray			= $componentArgs['userObjsArray'];
 		$property_name			= $componentArgs['property_name'];

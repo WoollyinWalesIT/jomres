@@ -44,10 +44,7 @@ class j00509paypal {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $eLiveSite,$jomresConfig_live_site;
 		$plugin="paypal";
-
-		$jomresConfig_live_site=$componentArgs['jomresConfig_live_site'];
 		$defaultProperty=getDefaultProperty();
 		$query="SELECT value FROM #__jomres_pluginsettings WHERE prid = '".(int)$defaultProperty."' AND plugin = '$plugin' AND setting = 'active' AND value = '1'";
 		$activeList =doSelectSql($query);
@@ -59,7 +56,7 @@ class j00509paypal {
 		$link = JOMRES_SITEPAGE_URL."&task=editGateway&popup=1&plugin=$plugin";
 		$gatewayname=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'.$plugin,ucwords($plugin),false,false);
 		$pluginLink="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"".$plugin."\">".$gatewayname."</a>";
-		$button="<IMG SRC=\"".$eLiveSite."j00510".$plugin.".gif"."\" border=\"0\">";
+		$button="<IMG SRC=\"".get_showtime('eLiveSite')."j00510".$plugin.".gif"."\" border=\"0\">";
 		$this->outputArray=array('button'=>$button,'link'=>$pluginLink,'active'=>$active);
 		}
 

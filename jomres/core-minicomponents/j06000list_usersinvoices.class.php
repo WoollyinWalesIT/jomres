@@ -30,8 +30,8 @@ class j06000list_usersinvoices
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$jomresConfig_live_site,$thisJRUser;
-		$infoIcon	='<IMG SRC="'.$jomresConfig_live_site.'/jomres/images/SymbolInformation.jpg" border="0" alt="info">';
+		global $thisJRUser;
+		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.jpg" border="0" alt="info">';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
 		$id= $thisJRUser->id;
 

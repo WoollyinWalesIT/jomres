@@ -869,7 +869,6 @@ function prepDescriptiveSearch()
  */
 function prepAvailabilitySearch()
 	{
-	global $jomresConfig_live_site;
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$result=array();
 	//$availabilityArray=array();

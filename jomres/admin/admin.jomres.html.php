@@ -34,7 +34,6 @@ class HTML_jomres {
 
 function controlPanel($version)
 		{
-		global $jomresConfig_absolute_path, $jomresConfig_admin_template, $jomresConfig_live_site;
 		?>
 		<table class="adminheading" border="0">
 		<tr>
@@ -60,7 +59,7 @@ function controlPanel($version)
  */
 function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList)
 	{
-	global $jomresConfig_live_site,$version;
+	global $version;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$contentPanel =jomres_getSingleton('jomres_content_tabs');
@@ -81,7 +80,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			'<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['useSSLinBookingform'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL_DESC.$jomresConfig_live_site.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
 			</tr>';
 			}
 
@@ -705,9 +704,7 @@ function editPfeature_html($output,$rows)
  */
 function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 		{
-		global $mrConfig,$jomresConfig_live_site;
 		echo $jrtb;
-		//$editIcon	='<IMG SRC="'.$jomresConfig_live_site.'/administrator/images/edit_f2.png" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'">';
 		?>
 		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
 		<input type="hidden" name="jomrestoken" value="<?php echo jomresSetToken();?>">

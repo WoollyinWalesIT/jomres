@@ -42,8 +42,7 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site;
-		global $option,$task,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
+		global $option,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
 		global $jomresItemid;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -76,7 +75,7 @@ class j00030search {
 			global $jomressession;
 			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 			//$tmpBookingHandler = new jomres_temp_booking_handler();
-			$tmpBookingHandler->initBookingSession($jomressession);
+			$tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
 			$jomressession  = $tmpBookingHandler->getJomressession();
 			$showSearchOptions=true;
 			$jomreslang =jomres_getSingleton('jomres_language');
@@ -86,7 +85,7 @@ class j00030search {
 			//$customTextObj = new custom_text();
 			}
 			
-		init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site);
+		init_javascript($jrConfig,$thisJRUser,$version);
 		//$runningMiniComp=false;
 		if ($calledByModule == "" && isset($_REQUEST['calledByModule']) )
 			{
@@ -233,7 +232,6 @@ class j00030search {
 				
 			if ($option == "com_jomres" && (!empty($_REQUEST['propertyname']) || !empty($_REQUEST['country'] ) || !empty($_REQUEST['region']) || !empty($_REQUEST['town'])) )
 				{
-				//$mainframe->setPageTitle(stripslashes($metaTitle));
 				jomres_cmsspecific_setmetadata("title",$metaTitle);
 				}
 			//var_dump($sch->searchOptions);
@@ -264,7 +262,7 @@ class j00030search {
 			if (in_array("room_type",$searchOptions) && $showSearchOptions) {
 				$output['JOMRES_SEARCH_RTYPES']				=jr_gettext('_JOMRES_SEARCH_RTYPES',_JOMRES_SEARCH_RTYPES,false);
 				}
-			if (in_array("availability",$searchOptions) && $showSearchOptions && $task!="bookaroom") {
+			if (in_array("availability",$searchOptions) && $showSearchOptions && get_showtime('task')!="bookaroom") {
 				$output['JOMRES_SEARCH_AVL_INFO']			=jr_gettext('_JOMRES_SEARCH_AVL_INFO',_JOMRES_SEARCH_AVL_INFO,false);
 
 				$output['HARRIVALDATE']						=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL,false);
@@ -285,8 +283,8 @@ class j00030search {
 					$output['JOMRES_SEARCH_PRICERANGES']				=jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES,false);
 				}
 		
-			$output['LIVESITE']=$jomresConfig_live_site;
-			$nossl			  = str_replace("https://","http://",$jomresConfig_live_site);
+			$output['LIVESITE']=get_showtime('live_site');
+			$nossl			  = str_replace("https://","http://",get_showtime('live_site'));
 			$output['LIVESITELINK'] =  $nossl;
 			$output['FORMNAME']=$jomresSearchFormname;
 
@@ -298,7 +296,7 @@ class j00030search {
 				if (!defined("_JOMRES_SELECTCOMBO") )
 					{
 					define("_JOMRES_SELECTCOMBO",1);
-					echo '<script type="text/javascript" src="'.$jomresConfig_live_site.'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
+					echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
 					echo "<script>
 					jQuery(function() {
 						jQuery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
@@ -532,7 +530,7 @@ class j00030search {
 							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
 							$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$feature['id'],		stripslashes($feature['description']),false,false);
 
-							$tmp=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$jomresConfig_live_site.$image,"","property_feature",array());
+							$tmp=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,get_showtime('live_site').$image,"","property_feature",array());
 
 							$rows[]=$r;
 							$r.='<div style="float : left;" >'.$tmp.'<input type="checkbox" name="feature_uids[]" value="'.$pid.'" '.$ischecked.' /></div>';
@@ -658,7 +656,7 @@ class j00030search {
 			if ($doSearch)
 				{
 				global $numberOfPropertiesInSystem;
-				if ($numberOfPropertiesInSystem > 1 && !$includedInModule && !isset($_REQUEST['calledByModule']) && !isset($_REQUEST['next']) && $task=="" )
+				if ($numberOfPropertiesInSystem > 1 && !$includedInModule && !isset($_REQUEST['calledByModule']) && !isset($_REQUEST['next']) && get_showtime('task')=="" )
 					{
 					$sch->jomSearch_random();
 					}

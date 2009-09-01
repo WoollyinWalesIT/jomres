@@ -42,7 +42,6 @@ class j04010editroom {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_live_site;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -119,19 +118,7 @@ class j04010editroom {
 					$checked="checked";
 				$featureListTxt.="<input type=\"checkbox\" name=\"features_list[]\" value=\"".($roomFeature->room_features_uid)."\" ".$checked." >".($roomFeature->feature_description)."<br>";
 				}
-			// Now to find the property image
-			//$roomImageLocation="";
-			/*
-			$query="SELECT filelocation FROM #__jomres_room_images WHERE roomid = '".(int)$roomUid."'";
-			$roomImageList =doSelectSql($query);
-			if (count($roomImageList)>0)
-				{
-				foreach ($roomImageList as $imageLocation)
-					{
-					$roomImageLocation='<img src="'.$jomresConfig_live_site.'/'.$imageLocation->filelocation.'">';
-					}
-				}
-			*/
+
 			$roomImageLocation='<img src="'.getImageForProperty("room",$defaultProperty,(int)$roomUid).'">';
 
 			$output['ROOMUID']			=$roomUid;
@@ -157,7 +144,7 @@ class j04010editroom {
 			$output['HSUPPLIMENT']		=jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON);
 			$output['SUPPLIMENT_DESC']		=jr_gettext('_JOMRES_COM_SPS_EDITROOM_DESC',_JOMRES_COM_SPS_EDITROOM_DESC);
 			
-			$output['MOSCONFIGLIVESITE']=$jomresConfig_live_site;
+			$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 
 			$output['IMAGE']=$roomImageLocation;
 			if ($roomImageLocation!="")

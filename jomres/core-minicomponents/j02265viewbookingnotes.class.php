@@ -45,7 +45,7 @@ class j02265viewbookingnotes {
 			}
 		global $thisJRUser;
 		
-		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
+		$task 				= get_showtime('task');
 		if ($task=="editBooking" && $thisJRUser->userIsManager )
 			{
 			$pageoutput=array();
