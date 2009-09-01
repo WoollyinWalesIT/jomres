@@ -44,7 +44,6 @@ class j06000delslideshowimages {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
 		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$success=true;
 		$defaultProperty=getDefaultProperty();

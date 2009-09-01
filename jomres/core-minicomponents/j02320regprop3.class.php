@@ -44,7 +44,7 @@ class j02320regprop3 {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$MiniComponents;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!subscribers_checkUserHasSubscriptionsToCreateNewProperty() && !$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1" )

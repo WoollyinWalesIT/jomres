@@ -32,7 +32,7 @@ class j06000save_subscriber
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$package_id		= (int)jomresGetParam( $_POST, 'package_id', 0 );
 		
 		$firstname		= (string)jomresGetParam( $_POST, 'firstname', '' );

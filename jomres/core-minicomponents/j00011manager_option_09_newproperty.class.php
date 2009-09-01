@@ -43,7 +43,7 @@ class j00011manager_option_09_newproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (JOMRES_SINGLEPROPERTY)

@@ -29,7 +29,7 @@ ob_start();
 
 
 global $xmlelements;
-global $indexphp,$logFiles;
+global $logFiles;
 
 require_once('integration.php');
 $MiniComponents =jomres_getSingleton('mcHandler');

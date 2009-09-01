@@ -32,8 +32,7 @@ class j16000nocurl
 			{
 			$this->template_touchable=false; return;
 			}
-
-		echo "<h2>Error. CURL is not enabled on this server, please enable CURL restart the server if you can, and try again</h2>";
+		echo "<h2>Error. CURL is not enabled on this server, please enable CURL, restart the server if you can, and try again</h2>";
 		}
 
 	// This must be included in every Event/Mini-component

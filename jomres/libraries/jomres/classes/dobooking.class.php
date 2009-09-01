@@ -2624,7 +2624,7 @@ class dobooking
 	 */
 	function makeGuestData()
 		{
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$userIsManager=$thisJRUser->userIsManager;
 		$guests_uid			=	0;
 		/*

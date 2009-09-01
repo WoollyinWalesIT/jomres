@@ -43,7 +43,7 @@ class j00009user_option_01_listbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=$componentArgs['thisJRUser'];
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsRegistered)
 			{
 			$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = ".(int)$thisJRUser->id;

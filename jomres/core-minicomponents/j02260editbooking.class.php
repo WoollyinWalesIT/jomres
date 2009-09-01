@@ -43,7 +43,6 @@ class j02260editbooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 		$contract_uid	=	jomresGetParam( $_REQUEST, 'contract_uid', 0 );
@@ -107,7 +106,8 @@ class j02260editbooking {
 			{
 			$MiniComponents =jomres_getSingleton('mcHandler');
 			$mrConfig=getPropertySpecificSettings();
-			global $popup,$thisJRUser;
+			global $popup;
+			$thisJRUser=jomres_getSingleton('jr_user');
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")
 				$defaultProperty="%";

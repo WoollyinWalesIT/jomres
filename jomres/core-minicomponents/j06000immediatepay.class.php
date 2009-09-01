@@ -32,8 +32,7 @@ class j06000immediatepay
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
-
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$invoice_id		= (int)jomresGetParam( $_GET, 'id', 0 );
 
 		// a quick anti hack check

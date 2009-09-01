@@ -45,7 +45,7 @@ class j05019dobooking_total
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if (!$thisJRUser->userIsManager)
 			return;

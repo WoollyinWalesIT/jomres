@@ -43,7 +43,8 @@ class j04000roomsconfig {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser,$roomCount;
+		global $roomCount;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -344,7 +345,7 @@ class j04000roomsconfig {
 
 	function roomPropertyConfig_html( $newPropertyButton,$newRoomButton,$newRoomFeatureButton,$newRoomClassButton,$newPropertyFeatureButton, $roomRowInfo,$roomFeaturesRowInfo,$roomTypesRowInfo,$propertyRowInfo,$propertyFeaturesRowInfo,$option,$roomCount,$roomTypeCount )
 		{
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

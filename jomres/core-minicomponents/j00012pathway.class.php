@@ -60,7 +60,8 @@ class j00012pathway {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser,$numberOfPropertiesInSystem;
+		global $numberOfPropertiesInSystem;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
 			

@@ -44,7 +44,7 @@ class j02310regprop2 {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

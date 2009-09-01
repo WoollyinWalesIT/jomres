@@ -43,7 +43,7 @@ class j04910deleteproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$sure  = jomresGetParam( $_REQUEST, 'sure', 0 );
 		if ($sure)

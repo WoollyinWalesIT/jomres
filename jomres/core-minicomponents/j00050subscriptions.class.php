@@ -44,7 +44,7 @@ class j00050subscriptions {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!$thisJRUser->superPropertyManager )
 			{
 			$MiniComponents->specificEvent('00013',"list_usersinvoices"); // Custom task

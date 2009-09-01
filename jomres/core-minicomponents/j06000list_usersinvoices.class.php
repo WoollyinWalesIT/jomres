@@ -30,7 +30,7 @@ class j06000list_usersinvoices
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.jpg" border="0" alt="info">';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
 		$id= $thisJRUser->id;

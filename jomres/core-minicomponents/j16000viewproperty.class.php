@@ -32,7 +32,6 @@ class j16000viewproperty
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp;
 		$id=$componentArgs['id'];
 		$numberOfYearsToShow=3;
 		if (is_null($id) )

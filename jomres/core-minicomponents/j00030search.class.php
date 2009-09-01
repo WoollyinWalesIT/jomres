@@ -42,7 +42,8 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $option,$jomresSearchFormname,$searchAll,$customTextArray,$version,$thisJRUser;
+		global $option,$jomresSearchFormname,$searchAll,$customTextArray,$version;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		global $jomresItemid;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

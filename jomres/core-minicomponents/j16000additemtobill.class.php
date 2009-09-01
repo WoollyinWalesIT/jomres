@@ -32,7 +32,6 @@ class j16000additemtobill
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$jos_id					= $componentArgs['jos_id'];
 		$username				= $componentArgs['username'];

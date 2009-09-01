@@ -44,7 +44,7 @@ class j04900saveproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}

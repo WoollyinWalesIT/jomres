@@ -561,7 +561,7 @@ function stripUnwanted($text)
 */
 function checkUserIsManager()
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$userIsManager=$thisJRUser->userIsManager;
 	return $userIsManager;
 	}
@@ -665,7 +665,7 @@ function doSql($query)
 
 function jomres_audit($query,$op)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['disableAudit']!="1")
@@ -684,7 +684,7 @@ function jomres_audit($query,$op)
 
 function getDefaultProperty()
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$defaultProperty=$thisJRUser->currentproperty;
 	return (int)$defaultProperty;
 	}
@@ -732,7 +732,8 @@ function editCustomTextAll()
 
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
-	global $property_uid,$thisJRUser,$customTextArray;
+	global $property_uid,$customTextArray;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -947,7 +948,7 @@ function saveCustomText()
 
 function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$testStr= trim(strip_tags_except($theValue));

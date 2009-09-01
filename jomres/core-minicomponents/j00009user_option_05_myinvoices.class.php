@@ -43,7 +43,7 @@ class j00009user_option_05_myinvoices {
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=$componentArgs['thisJRUser'];
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsRegistered)
 			{
 			

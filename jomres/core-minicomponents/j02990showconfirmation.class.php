@@ -44,7 +44,7 @@ class j02990showconfirmation {
 			$this->template_touchable=true; return;
 			}
 
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$booking_parts=array();

@@ -42,7 +42,8 @@ class j00501srps {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel,$thisJRUser;
+		global $configurationPanel;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];

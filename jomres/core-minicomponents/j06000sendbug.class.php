@@ -44,7 +44,7 @@ class j06000sendbug {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		if ($thisJRUser->superPropertyManager)
 			{

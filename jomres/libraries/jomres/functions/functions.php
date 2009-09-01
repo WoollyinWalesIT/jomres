@@ -20,9 +20,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
-
-
-
+	
 function get_showtime($setting)
 	{
 	$showtime = jomres_getSingleton('showtime');
@@ -957,7 +955,7 @@ function gettempBookingdata()
 */
 function addPropertyUidToUsersProperties($property_uid)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if (!in_array($property_uid,$thisJRUser->authorisedProperties) )
 		{
 		$query="INSERT INTO #__jomres_managers_propertys_xref (`manager_id`,`property_uid`) VALUES ('".(int)$thisJRUser->userid."','".(int)$property_uid."')";
@@ -1076,7 +1074,8 @@ function errorHandler ($errno, $errstr, $errfile, $errline, $errcontext)
 
 function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 	{
-	global $jrUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
+	
 	$errorstring = "Fatal Error: $errstr (# $errno).";
 	//$errorstring .= "User id '$jrUser->username'&nbsp;&nbsp;.";
 	$errorstring .= "Error in line $errline of file '$errfile'.";
@@ -1549,8 +1548,6 @@ function hotelSettings()
 */
 function saveHotelSettings()
 	{
-	global $Itemid;
-
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$property_uid=(int)getDefaultProperty();
 	//$updateText="";
@@ -1819,7 +1816,8 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 function insertGuestDeets($jomressession)
 	{
 	//global $my,$mykey;
-	global $jomresConfig_secret,$thisJRUser;
+	global $jomresConfig_secret;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$userIsManager=checkUserIsManager();
 
@@ -2626,7 +2624,6 @@ function getGuestForPrint($guestUid)
 */
 function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = true)
 	{
-	global $Itemid;
 	$imageType		= getEscaped( jomresGetParam( $_REQUEST, 'imageType', '' ) );
 	$itemUid		= getEscaped( jomresGetParam( $_REQUEST, 'itemUid', 0 ) );
 
@@ -2777,7 +2774,7 @@ function uploadRoomImage()
 */
 function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -3053,7 +3050,7 @@ function getPropertySpecificSettings($property_uid=null)
 */
 function registerProp_step1()
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -3089,7 +3086,8 @@ function registerProp_step1()
 */
 function registerProp_step2()
 	{
-	global $thisJRUser,$mrConfig;
+	global $mrConfig;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -3208,7 +3206,8 @@ function registerProp_step2()
 */
 function saveRegisterProp()
 	{
-	global $my,$thisJRUser;
+	global $my;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -3627,7 +3626,8 @@ function checkPortalExists()
  */
 function makeFeatureImages($image,$title,$description,$retString=false,$altLivesite="")
 	{
-	global $mrConfig,$thisJRUser;
+	global $mrConfig;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if (!empty($altLivesite))
 		set_showtime('live_site',$altLivesite);
 	$title=addslashes($title);
@@ -4055,7 +4055,7 @@ function invoices_makeInvoiceStatusDropdown( $selected='0' )
 	
 function subscribers_thisUserIsASubscriber($id=0)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT id FROM #__jomresportal_subscriptions WHERE cms_user_id =".(int)$id."";
@@ -4105,7 +4105,7 @@ function subscribers_getManagersPublishedProperties($cms_user_id)
 	
 function subscribers_checkUserHasSubscriptionsToCreateNewProperty($id=0)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$allowedProperties = subscribers_getAvailablePropertySlots($id);
@@ -4119,7 +4119,7 @@ function subscribers_checkUserHasSubscriptionsToCreateNewProperty($id=0)
 	
 function subscribers_getAvailablePropertySlots($id=0)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT property_limit FROM #__jomresportal_subscriptions WHERE cms_user_id ='".(int)$id."' AND `status` = 1";
@@ -4140,7 +4140,7 @@ function subscribers_getAvailablePropertySlots($id=0)
 
 function subscribers_getCurrentPropertiesNumbers($id=0)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT COUNT(`manager_id`)  FROM #__jomres_managers_propertys_xref WHERE manager_id ='".(int)$id."'";

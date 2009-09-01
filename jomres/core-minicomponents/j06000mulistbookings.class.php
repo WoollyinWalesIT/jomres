@@ -32,7 +32,7 @@ class j06000mulistbookings {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -112,6 +112,7 @@ class j06000mulistbookings {
 			}
 		}
 
+		
 	function touch_template_language()
 		{
 		$output=array();
