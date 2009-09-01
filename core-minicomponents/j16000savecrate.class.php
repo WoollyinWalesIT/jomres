@@ -32,7 +32,6 @@ class j16000savecrate
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$id 				= jomresGetParam( $_REQUEST, 'id',	0 );
 		$title 				= jomresGetParam( $_REQUEST, 'title','' );

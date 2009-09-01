@@ -44,7 +44,6 @@ class j16000delete_taxrate {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $Itemid;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$id=jomresGetParam( $_REQUEST, 'id', 0 );
 		if ($id>1)

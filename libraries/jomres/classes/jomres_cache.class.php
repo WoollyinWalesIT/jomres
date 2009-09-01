@@ -61,7 +61,7 @@ class jomres_cache
 		
 	function setUserID($userSpecific)
 		{
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($userSpecific)
 			$this->user_id = $thisJRUser->userid;
 		else
@@ -70,7 +70,8 @@ class jomres_cache
 
 	function generateFilename()
 		{
-		global $thisJRUser,$jomresConfig_secret;
+		global $jomresConfig_secret;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$registeredFlag = "0";
 		$receptionistFlag = "0";
 		$managerFlag = "0";

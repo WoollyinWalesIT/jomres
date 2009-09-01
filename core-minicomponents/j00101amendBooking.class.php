@@ -36,7 +36,6 @@ class j00101amendBooking
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

@@ -37,7 +37,7 @@ class j03000amendBooking
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if (!$thisJRUser->userIsManager)
 			return;

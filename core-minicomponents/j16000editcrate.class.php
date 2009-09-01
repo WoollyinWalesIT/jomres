@@ -33,7 +33,6 @@ class j16000editcrate
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp;
 		$id = jomresGetParam( $_REQUEST, 'id',	0 );
 
 		$output['PAGETITLE']=_JRPORTAL_CPANEL_PATETITLE;

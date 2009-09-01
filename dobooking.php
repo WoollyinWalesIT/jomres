@@ -25,11 +25,11 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
  * Get some basic data before beginning construction of the booking form
 #
  */
-global $thisJRUser ;
 global $property_uid;
 
 $MiniComponents =jomres_getSingleton('mcHandler');
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+$thisJRUser=jomres_getSingleton('jr_user');
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
 $userIsManager=checkUserIsManager();
@@ -92,7 +92,7 @@ else
  */
 function dobooking($selectedProperty,$thisdate=false,$remus)
 	{
-	global $thisJRUser;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();

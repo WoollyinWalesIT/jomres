@@ -43,7 +43,7 @@ class j00011manager_option_12_deleteproperty {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if ( $thisJRUser->superPropertyManager)
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken(), 'WasteBasket.png', jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE',_JOMRES_COM_MR_PROPERTY_DELETE,false,false));
 		}

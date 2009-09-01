@@ -36,7 +36,7 @@ class j06000cancelGuestBooking {
 	 */
 	function j06000cancelGuestBooking()
 		{
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');

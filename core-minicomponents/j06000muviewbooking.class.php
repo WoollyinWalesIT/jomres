@@ -37,7 +37,7 @@ class j06000muviewbooking {
 	 */
 	function j06000muviewbooking()
 		{
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)

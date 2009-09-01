@@ -32,7 +32,7 @@ class j06000subscribed
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		
 		echo _JRPORTAL_SUBSCRIBERS_SUBSCRIBED;
 		

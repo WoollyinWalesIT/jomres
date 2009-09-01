@@ -32,7 +32,6 @@ class j16000archivecrates
 			{
 			$this->template_touchable=false; return;
 			}
-		global $indexphp;
 		$idArray = jomresGetParam( $_REQUEST, 'idarray',array() );
 		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();

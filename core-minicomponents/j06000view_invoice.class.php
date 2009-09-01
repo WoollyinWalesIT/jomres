@@ -31,7 +31,7 @@ class j06000view_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$output=array();
 		$pageoutput=array();
 		$rows=array();

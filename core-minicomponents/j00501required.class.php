@@ -46,7 +46,7 @@ class j00501required {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];
-		
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) )
 			{
 			$configurationPanel->startPanel(_JOMRES_REQUIREDFIELDS);

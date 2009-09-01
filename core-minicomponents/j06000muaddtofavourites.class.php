@@ -32,7 +32,7 @@ class j06000muaddtofavourites {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsRegistered)
 			{
 			$property_uid = jomresGetParam( $_REQUEST, 'property_uid', 0 );

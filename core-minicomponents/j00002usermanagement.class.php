@@ -44,8 +44,9 @@ class j00002usermanagement {
 			$this->template_touchable=false; return;
 			}
 
-		jr_import('jr_user');
-		$thisJRUser= new jr_user();
+		//jr_import('jr_user');
+		$thisJRUser=jomres_getSingleton('jr_user');
+		//$thisJRUser= new jr_user();
 		if ($thisJRUser->userIsManager==TRUE)
 			$thisJRUser->check_currentproperty();
 		$thisProperty = trim( jomresGetParam( $_REQUEST, 'thisProperty', 0 ) );

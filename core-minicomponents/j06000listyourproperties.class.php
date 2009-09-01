@@ -32,7 +32,7 @@ class j06000listyourproperties
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$rows=array();
 		if ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods)
 			{

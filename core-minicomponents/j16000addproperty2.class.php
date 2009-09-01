@@ -33,7 +33,6 @@ class j16000addproperty2
 			$this->template_touchable=false; return;
 			}
 
-		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

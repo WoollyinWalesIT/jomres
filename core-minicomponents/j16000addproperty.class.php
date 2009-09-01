@@ -32,7 +32,7 @@ class j16000addproperty
 			$this->template_touchable=false; return;
 			}
 
-		global $indexphp,$jrportalConfig;
+		global $jrportalConfig;
 		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
 		$crateFunctions->getAllUnarchivedCrates();

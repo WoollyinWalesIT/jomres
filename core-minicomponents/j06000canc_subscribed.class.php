@@ -32,8 +32,9 @@ class j06000canc_subscribed
 			{
 			$this->template_touchable=false; return;
 			}
-		global $ePointFilepath,$thisJRUser;
+		$ePointFilepath = get_showtime('ePointFilepath');
 		
+		$thisJRUser=jomres_getSingleton('jr_user');
 		echo _JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE;
 		
 		/*

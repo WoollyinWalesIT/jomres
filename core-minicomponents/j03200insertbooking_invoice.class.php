@@ -43,7 +43,6 @@ class j03200insertbooking_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

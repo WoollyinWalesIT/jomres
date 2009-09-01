@@ -43,6 +43,7 @@ class j00011manager_option_10_audittrail {
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)

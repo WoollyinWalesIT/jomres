@@ -389,7 +389,6 @@ function updateBookingFormAddressDetails(&$bkg)
 	
 function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 	{
-	//global $bkg;
 	$bkg->writeToLogfile("Listing rooms");
 	$arrivalDate=$bkg->getArrivalDate();
 	$departureDate=$bkg->getDepartureDate();

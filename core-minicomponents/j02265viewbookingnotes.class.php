@@ -43,8 +43,7 @@ class j02265viewbookingnotes {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJRUser;
-		
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$task 				= get_showtime('task');
 		if ($task=="editBooking" && $thisJRUser->userIsManager )
 			{

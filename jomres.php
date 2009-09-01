@@ -39,7 +39,7 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once('integration.php');
-
+$thisJRUser=jomres_getSingleton('jr_user');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 $performance_monitor =jomres_getSingleton('jomres_performance_monitor');
@@ -246,6 +246,7 @@ if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProper
 			{
 			$property_uid=(int)$defaultProperty;
 			}
+	
 	$mrConfig=getPropertySpecificSettings($property_uid);
 	}
 
@@ -256,6 +257,7 @@ if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProper
 
 if ($property_uid > 0)
 	{
+	set_showtime('property_uid',$jomresConfig_lang);
 	//$tmpBookingHandler->tmpbooking["property_uid"]=$property_uid;
 	$tmpBookingHandler->saveBookingData();
 	$pdeets=getPropertyAddressForPrint($property_uid);
@@ -378,7 +380,7 @@ if (!defined('JOMRES_NOHTML'))
 				$rows		=array();
 				$pageoutput	=array();
 				$output=array();
-				if (get_showtime('task') != "invoiceForm" && get_showtime('task') != "confirmationForm" && get_showtime('task') != "showRoomDetails" && $get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup)
+				if (get_showtime('task') != "invoiceForm" && get_showtime('task') != "confirmationForm" && get_showtime('task') != "showRoomDetails" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup)
 					{
 					$propertyOptions=array();
 					$initialsOptions=array();
