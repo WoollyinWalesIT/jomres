@@ -32,8 +32,8 @@ class j16000listLogs
 			{
 			$this->template_touchable=false; return;
 			}
-		global $logFiles;
-		
+		$logFiles = get_showtime('logFiles');
+
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');

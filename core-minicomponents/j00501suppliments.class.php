@@ -42,7 +42,7 @@ class j00501suppliments {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
 		if ($mrConfig['singleRoomProperty'] != "1" )

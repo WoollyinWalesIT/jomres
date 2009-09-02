@@ -194,6 +194,7 @@ class jomres_temp_booking_handler
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
 		$this->initCustomFields($allCustomFields);
+		
 		$this->session_jomres_start();
 		}
 

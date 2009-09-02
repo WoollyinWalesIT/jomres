@@ -37,7 +37,7 @@ class j06000handlereq_total
 			{
 			$this->template_touchable=false; return;
 			}
-		global $property_uid;
+		$property_uid = get_showtime('property_uid');
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$inputName						= "overtotal";
 

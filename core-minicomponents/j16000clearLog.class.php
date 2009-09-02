@@ -32,7 +32,7 @@ class j16000clearLog
 			{
 			$this->template_touchable=false; return;
 			}
-		global $logFiles;
+		$logFiles = get_showtime('logFiles');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );

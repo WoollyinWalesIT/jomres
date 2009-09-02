@@ -42,7 +42,7 @@ class j00501required {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];

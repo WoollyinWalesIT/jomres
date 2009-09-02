@@ -1289,10 +1289,9 @@ function sanitiseOverlibOutput($data)
 function hotelSettings()
 	{
 
-	global $mrConfig,$configurationPanel;
+	//global $configurationPanel;
 	$MiniComponents =jomres_getSingleton('mcHandler');
-	
-	//global $_CONFIG;
+
 	$property_uid=(int)getDefaultProperty();
 	$mrConfig=getPropertySpecificSettings($property_uid);
 	$option="com_jomres";
@@ -1509,8 +1508,8 @@ function hotelSettings()
 
 	echo $output['JOMRESTOOLBAR'];
 
-	jr_import('jomres_configpanel');
-	$configurationPanel = new jomres_configpanel();
+	$configurationPanel =jomres_getSingleton('jomres_configpanel');
+
 	$componentArgs['configurationPanel']=$configurationPanel;
 
 	$configurationPanel->startTabs();

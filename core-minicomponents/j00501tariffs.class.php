@@ -42,7 +42,7 @@ class j00501tariffs {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -127,11 +127,7 @@ class j00501tariffs {
 			
 
 			}
-			
 
-
-
-		
 		$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
 		$configurationPanel->setmiddle($lists['verbosetariffinfo']);
 		$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);

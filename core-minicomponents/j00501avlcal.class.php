@@ -43,7 +43,7 @@ class j00501avlcal {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -54,7 +54,7 @@ class j00501avlcal {
 			{
 			$jsInputFormatDropdownList=$componentArgs['jsInputFormatDropdownList'];
 
-			//$configurationPanel=$componentArgs['configurationPanel'];
+			//
 			$configurationPanel->startPanel(_JOMRES_COM_A_AVLCAL);
 
 			$configurationPanel->setleft(_JOMRES_COM_MONTHSTOSHOW);

@@ -49,7 +49,7 @@ class j01020showtariffs {
 		else
 			{
 			//$showheader=$componentArgs['showheader'];
-			global $property_uid;
+			$property_uid = get_showtime('property_uid');
 			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$mrConfig=getPropertySpecificSettings($property_uid);

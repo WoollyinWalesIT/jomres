@@ -43,7 +43,6 @@ class j00610paypal {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $property_uid;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$property_uid=$tmpBookingHandler->getBookingPropertyId();
 		$plugin='paypal';
