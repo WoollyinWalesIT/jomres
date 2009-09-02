@@ -31,7 +31,7 @@ class j16000touch_templates
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJRUser;
+		//global $thisJRUser;
 		
 		echo "<br/>Current lang ".get_showtime('lang')."<br/>";
 		

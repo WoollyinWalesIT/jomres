@@ -125,7 +125,7 @@ class dobooking
 		$this->error					= "";
 		$this->error_code				= "";
 		$this->billing_roomtotal		= 0.00;
-		$this->customTextArray			= array();
+		//$this->customTextArray			= array();
 		$this->resetPricingOutput		= false;
 		$this->roomImageHTML			="";
 		$this->allPropertyRooms			= array();

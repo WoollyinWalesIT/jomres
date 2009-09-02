@@ -257,7 +257,7 @@ if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProper
 
 if ($property_uid > 0)
 	{
-	set_showtime('property_uid',$jomresConfig_lang);
+	set_showtime('property_uid',$property_uid);
 	//$tmpBookingHandler->tmpbooking["property_uid"]=$property_uid;
 	$tmpBookingHandler->saveBookingData();
 	$pdeets=getPropertyAddressForPrint($property_uid);
@@ -291,9 +291,8 @@ $customTextObj =jomres_getSingleton('custom_text');
 // This little routine sets the custom text for an individual property.
 if (!empty($property_uid))
 	{
-	$customTextArray=$customTextObj->get_custom_text_for_property($property_uid);
+	$customTextObj->get_custom_text_for_property($property_uid);
 	}
-
 
 if (!isset($jrConfig['useSSLinBookingform']) )
 	$jrConfig['useSSLinBookingform']=0;

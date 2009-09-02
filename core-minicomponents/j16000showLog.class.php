@@ -34,11 +34,13 @@ class j16000showLog
 			{
 			$this->template_touchable=false; return;
 			}
-		global $logFiles,$xmlelements;
-		global $xml_entry_key,$rows,$counter,$lastdata,$xmlelements;
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
 		$no_html = jomresGetParam( $_REQUEST, 'no_html',	0 );
 		$no_update = jomresGetParam( $_REQUEST, 'no_update',	0 );
+		
+		$xmlelements = get_showtime('xmlelements');
+		$logFiles = get_showtime('logFiles');
+		
 		$pageoutput=array();
 		$output=array();
 		$rows=array();
@@ -73,6 +75,8 @@ class j16000showLog
 				</script>';
 				}
 				
+
+			
 			$theElements=$xmlelements[$logfile];
 			$xml_root_key=$theElements['root'];
 			//$xml_entry_key=$theElements['entry'];

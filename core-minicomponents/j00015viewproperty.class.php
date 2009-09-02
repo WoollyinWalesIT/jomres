@@ -37,8 +37,6 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		global $customTextArray;
-		
 		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -64,8 +62,6 @@ class j00015viewproperty
 
 		foreach ($propertyList as $pproperty)
 			{
-			$customTextArray=$customTextObj->get_custom_text_for_property($property_uid);
-			
 			$pr_published=$pproperty->published;
 			$property_street=stripslashes($pproperty->property_street);
 			$property_town=stripslashes($pproperty->property_town);
