@@ -47,6 +47,7 @@ class j01055showroomdetails {
 			$property_uid=(int)$componentArgs['property_uid'];
 		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
+		$current_property_details =jomres_getSingleton('current_property_details');
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();
@@ -81,6 +82,15 @@ class j01055showroomdetails {
 			$headersList['HEADER_DISABLEDACCESS']= jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS);
 			$headersList['HEADER_MAXPEOPLE']= jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE);
 
+			$classAbbvs = array();
+			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes";
+			$roomsClassList =doSelectSql($query);
+			foreach ($roomsClassList as $roomClass)
+				{
+				$classAbbvs[(int)$roomClass->room_classes_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
+				}
+			
+			
 			foreach ($roomList as $room)
 				{
 				$roomRow=array();
@@ -98,13 +108,8 @@ class j01055showroomdetails {
 				$room_image=getImageForProperty("room",$property_uid,$room->room_uid);
 
 				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,false,false)."</a>";
-				$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$room_classes_uid."'";
-				$roomsClassList =doSelectSql($query);
-				foreach ($roomsClassList as $roomClass)
-					{
-					//$classAbbv = stripslashes($roomClass->room_class_abbv);
-					$classAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
-					}
+				$classAbbv = $classAbbvs[(int)$room_classes_uid];
+
 				//$propertyName getPropertyNameNoTables($property_uid)
 				if ($room_disabled_access == 1)
 					$disabledAccess= jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
@@ -121,12 +126,9 @@ class j01055showroomdetails {
 				$featurelist=array();
 				foreach ($roomFeatureUidsArray as $featureUid)
 					{
-					$requestedFeature=$featureUid;
-					$query="SELECT feature_description FROM #__jomres_room_features WHERE room_features_uid = '".(int)$requestedFeature."'";
-					$requestedRoomFeatures =doSelectSql($query);
-					foreach ($requestedRoomFeatures as $pulledFeature)
+					if ((int)$featureUid > 0)
 						{
-						$roomFeatureDescriptionsArray['ROOMFEATURE']=stripslashes($pulledFeature->feature_description);
+						$roomFeatureDescriptionsArray['ROOMFEATURE']=$current_property_details->room_features[$featureUid]['desc'];
 						$featurelist[]=$roomFeatureDescriptionsArray;
 						}
 					}
@@ -151,6 +153,7 @@ class j01055showroomdetails {
 			$tmpl = new patTemplate();
 			if ($featurelist[0])
 				$tmpl->addRows( 'room_features',$featurelist );
+				
 			$tmpl->addRows( 'room_headers', $headers);
 			$tmpl->addRows( 'room_details', $rows );
 			$mcOutput=$MiniComponents->getAllEventPointsData('01050');

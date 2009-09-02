@@ -25,8 +25,15 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
 	$customTextObj =jomres_getSingleton('custom_text');
+	
 	$property_uid = get_showtime('property_uid');
 	$customTextArray = $customTextObj->get_custom_text();
+	//echo $theConstant."<br>";
+	//var_dump($customTextArray['_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION1']);
+	//echo "<br>";
+	//if ($theConstant =="_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION1" || $theConstant == "_JOMRES_SEARCH_ALL")
+	//	var_dump($customTextArray);
+
 	$thisJRUser=jomres_getSingleton('jr_user');
 	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
