@@ -62,13 +62,24 @@ class jomres_tooltips
 					
 				$div_string.='>'.$div_content.'</div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
+						cornerRadius: 10,        
+						strokeWidth: 0,
+						shadow: true,     //only shown in new browser
+						shadowOffsetX: 3,
+						shadowOffsetY: 3,
+						shadowBlur: 8,
+						shadowColor: \'rgba(0,0,0,.9)\',
+						shadowOverlap: false,
+						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+						positions: [\'most\'],
+						offsetParent: \'body\',
 						ajaxPath: \''.$url.'\',
 						width: \'auto\',
 						closeWhenOthersOpen: true,
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
-							color: \'#FFF\'
+							color: \'#FFFFFF\'
 							},
 						hoverIntentOpts: {
 							interval: 500,
@@ -99,6 +110,17 @@ class jomres_tooltips
 					$div_string.='border="'.$border.'"';
 				$div_string.=' /></div>';
 				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt({
+						cornerRadius: 10,        
+						strokeWidth: 0,
+						shadow: true,     //only shown in new browser
+						shadowOffsetX: 3,
+						shadowOffsetY: 3,
+						shadowBlur: 8,
+						shadowColor: \'rgba(0,0,0,.9)\',
+						shadowOverlap: false,
+						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+						positions: [\'most\'],
+						offsetParent: \'body\',
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
@@ -133,10 +155,21 @@ class jomres_tooltips
 					$div_string.='/></div>';
 					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
 						{
+						cornerRadius: 10,        
+						strokeWidth: 0,
+						shadow: true,     //only shown in new browser
+						shadowOffsetX: 3,
+						shadowOffsetY: 3,
+						shadowBlur: 8,
+						shadowColor: \'rgba(0,0,0,.9)\',
+						shadowOverlap: false,
+						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+						positions: [\'most\'],
+						offsetParent: \'body\',
 						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: {color: \'#FFF\', fontWeight: \'bold\'}
+						cssStyles: {color: \'#FFFFFF\', fontWeight: \'bold\'}
 						});
 					</script>
 					';
@@ -149,7 +182,18 @@ class jomres_tooltips
 					$div_string.=' class="jomres_bt_tooltip_room_type" ';
 				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
-						width: \'100\',
+						cornerRadius: 10,        
+						strokeWidth: 0,
+						shadow: true,     //only shown in new browser
+						shadowOffsetX: 3,
+						shadowOffsetY: 3,
+						shadowBlur: 8,
+						shadowColor: \'rgba(0,0,0,.9)\',
+						shadowOverlap: false,
+						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+						positions: [\'most\'],
+						offsetParent: \'body\',
+						width: \'auto\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
@@ -166,7 +210,18 @@ class jomres_tooltips
 					$div_string.=' class="jomres_bt_tooltip_features" ';
 				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
-						width: \'200\',
+						cornerRadius: 10,        
+						strokeWidth: 0,
+						shadow: true,     //only shown in new browser
+						shadowOffsetX: 3,
+						shadowOffsetY: 3,
+						shadowBlur: 8,
+						shadowColor: \'rgba(0,0,0,.9)\',
+						shadowOverlap: false,
+						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+						positions: [\'most\'],
+						offsetParent: \'body\',
+						width: \'auto\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
@@ -184,6 +239,7 @@ class jomres_tooltips
 					
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
+							offsetParent: \'body\',
 							width: \'auto\',
 							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 							cssStyles: 

@@ -1,4 +1,8 @@
+
+if ('undefined'==typeof(jQuery)){
 jQuery.noConflict();
+}
+
 
 function populateDiv(div_id,content){
 	if ( jQuery("#"+div_id).length > 0 ){ 

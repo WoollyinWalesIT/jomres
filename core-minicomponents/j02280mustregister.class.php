@@ -44,10 +44,8 @@ class j02280mustregister {
 			{
 			$this->template_touchable=true; return;
 			}
-		if (!defined('_JOMRES_NEWJOOMLA') )
-			echo '<a href="'.jomresURL("index.php?option=com_registration&task=register").'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK',_JOMRES_REGISTEREDUSERSONLYBOOK,false).'</a>';
-		else
-			echo '<a href="'.jomresURL("index.php?option=com_user&view=login").'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK',_JOMRES_REGISTEREDUSERSONLYBOOK,false).'</a>';
+		// Need to create a cms specific function here, TODO
+		echo '<a href="'.jomresURL("index.php?option=com_user&view=register").'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK',_JOMRES_REGISTEREDUSERSONLYBOOK,false).'</a>';
 		}
 
 	function touch_template_language()
