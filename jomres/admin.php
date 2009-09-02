@@ -129,7 +129,7 @@ if (!JRPORTAL_AJAXCALL)
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.jeditable.pack.js"></script>
 
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.bt-0-9-3.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.bt.min.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/excanvas-compressed.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="<?php echo get_showtime('live_site'); ?>/jomres/css/jomrescss.css" title="" />
