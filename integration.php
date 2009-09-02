@@ -883,7 +883,10 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	//echo $query;
 	if ($audit)
 		$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
+		
 	doInsertSql($query,$audit);
+	//$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
+	//echo doSelectSql($query,1);
 	return true;
 	}
 

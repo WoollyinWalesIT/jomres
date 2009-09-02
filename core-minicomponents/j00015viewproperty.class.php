@@ -95,24 +95,6 @@ class j00015viewproperty
 				}
 			$countryname=getSimpleCountry($property_country);
 
-			/*
-			if (count($propertyFeaturesArray)>0)
-				{
-				$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-				$propertyFeaturesList= doSelectSql($query);
-				foreach($propertyFeaturesList as $propertyFeature)
-					{
-					if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-						{
-						//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-						$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
-						$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
-						$propertyFeatureDescriptionsArray['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$propertyFeature->image,"","property_feature",array());
-						$featureList[]=$propertyFeatureDescriptionsArray;
-						}
-					}
-				}
-			*/
 			$features=$current_property_details->features;
 			if (count($features) > 0)
 				{
@@ -295,15 +277,15 @@ class j00015viewproperty
 				else
 					$url=jomresURL($url);
 					
-				$link['BOOKINGLINK']="<a href=\"".$url."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=true,$isLink=true)."</a>";
+				$link['BOOKINGLINK']="<a href=\"".$url."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false)."</a>";
 				if ($mrConfig['singleRoomProperty'] ==  '1')
-					$link['BOOKINGLINK']="<a href=\"".$url."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,$editable=true,$isLink=true)."</a>";
+					$link['BOOKINGLINK']="<a href=\"".$url."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false)."</a>";
 
 				$bookinglink[]		= 	$link;
 				}
 			else
 				{
-				$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid&amp;arrivalDate=2009-01-01")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,$editable=true,$isLink=true)."</a>";
+				$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid&amp;arrivalDate=2009-01-01")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
 				$bookinglink[]		= 	$link;
 				}
 
