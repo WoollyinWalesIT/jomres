@@ -194,7 +194,6 @@ if ($numberOfPropertiesInSystem==1)
 else if ($thisJRUser->userIsManager)
 	$property_uid=$defaultProperty;
 
-
 if (get_showtime('task')=="showRoomDetails")
 	{
 	$roomUid	= jomresGetParam( $_REQUEST, 'roomUid', 0 );
@@ -292,6 +291,7 @@ $customTextObj =jomres_getSingleton('custom_text');
 if (!empty($property_uid))
 	{
 	$customTextObj->get_custom_text_for_property($property_uid);
+	$current_property_details =jomres_getSingleton('current_property_details');
 	}
 
 if (!isset($jrConfig['useSSLinBookingform']) )
