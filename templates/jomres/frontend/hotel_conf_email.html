@@ -56,6 +56,23 @@
 		<td>{TOTAL}</td>
 	</tr>
 </table>
+
+<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+	<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
+	<tr>
+		<td>{NAME}<td>
+		<td valign="top">{PRICE}</td>
+		<td>&nbsp;</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td colspan="2"><b>{HEXTRASTOTAL}</b><td>
+		<td><STRONG>{EXTRASTOTAL}</STRONG></td>
+	</tr>
+</table>
+</patTemplate:tmpl>
+		
 <p>&nbsp;</p>
 {HNUMBEROFGUESTS}
 <patTemplate:tmpl name="rows" unusedvars="nbsp">

@@ -44,6 +44,7 @@ class j03110guestconfirmationemail {
 			{
 			$this->template_touchable=true; return;
 			}
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$mrConfig=getPropertySpecificSettings();
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
@@ -55,16 +56,13 @@ class j03110guestconfirmationemail {
 		$departureDate=$componentArgs['departureDate'];
 		$contract_total=$componentArgs['contract_total'];
 		$rates_uids=$componentArgs['rates_uids'];
-		$property_uid=(int)$componentArgs['property_uid'];
 		$specialReqs=$componentArgs['specialReqs'];
 		$deposit_required=$componentArgs['deposit_required'];
 		if ( !isset( $componentArgs['email_when_done'] ) )
 			$email_when_done=true;
 		else
 			$email_when_done=$componentArgs['email_when_done']; // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independantly which in turn allows us to view the email as it's contructed, rather than when sent.
-			
-			
-			
+
 		$clientIP=$_SERVER['REMOTE_ADDR'];
 
 		$rmids=array();
@@ -85,13 +83,16 @@ class j03110guestconfirmationemail {
 			{
 			$property=$room->propertys_uid;
 			$roomNumber.=$room->room_number;
-			$room_name.=$room->room_name;
+			if ($room->room_name != "")
+				$room_name.=$room->room_name;
 			if ($counter < count($roomList) )
 				{
 				$roomNumber.=",";
-				$room_name.=",";
+				if ($room->room_name != "")
+					$room_name.=",";
 				}
 			}
+		
 		$query="SELECT property_name,property_tel,property_email FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
 		$propertyEmail =doSelectSql($query);
 		foreach ($propertyEmail as $email)
@@ -123,6 +124,69 @@ class j03110guestconfirmationemail {
 				$rateOutput.=$rTitle.' '.$rDesc.' '.$rRate.' ';
 				}
 			}
+
+		$bookingDeets	=	gettempBookingdata();
+		if ($mrConfig['showExtras']=="1")
+			{
+			$extras 			= 	$bookingDeets['extras'];
+			$extrasquantities	=	$bookingDeets['extrasquantities'];
+			$extrasArray		=	explode(",",$extras);
+			foreach ($extrasArray as $extraAll)
+				{
+				if (!empty($extraAll))
+					{
+					$extra 			= 	$extraAll;
+
+					$query			=	"SELECT price, name FROM #__jomres_extras WHERE uid = '$extra'";
+					$thisPrice 		=	doSelectSql($query,2);
+					$query			=	"SELECT `model`,`params` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$extra'";
+					$model			=	doSelectSql($query,2);
+					switch ($model['model'])
+						{
+						case '1': // Per week
+							$numberOfWeeks	=	ceil($bookingDeets['stayDays']/7);
+							$calc			=	$numberOfWeeks*$thisPrice['price'];
+						break;
+						case '2': // per days
+							$calc			=	$bookingDeets['stayDays']*$thisPrice['price'];
+						break;
+						case '3': // per booking
+							$calc			=	$thisPrice['price'];
+						break;
+						case '4': // per person per booking
+							$calc			=	$bookingDeets['total_in_party']*$thisPrice['price'];
+						break;
+						case '5': // per person per day
+							$calc			=	$bookingDeets['total_in_party']*$this->stayDays*$thisPrice['price'];
+						break;
+						case '6': // per person per week
+							$numberOfWeeks	=	ceil($this->stayDays/7);
+							$calc			=	$bookingDeets['total_in_party']*$numberOfWeeks*$thisPrice['price'];
+						break;
+						case '7': // per person per days min days
+							$mindays		=	$model['params'];
+							if ($bookingDeets['total_in_party'] < $mindays)
+								$days		=	$mindays;
+							else
+								$days		=	$bookingDeets['stayDays'];
+
+							$calc			=	$days*$thisPrice['price'];
+						break;
+						}
+
+					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra];
+					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($thisPrice['price']);
+					$booking_extras[]			=	$extra_parts;
+					}
+				}
+			$extratext	=	array();
+			$extra_text['AJAXFORM_EXTRAS']		=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS);
+			$extra_text['EXTRASTOTAL']			=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['extrasvalue']);
+			$extra_text['HEXTRASTOTAL']			=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL);
+			$extrastext[]	=	$extra_text;
+			}
+		
+		
 		/*
 			$text="";
 			$subject=_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS." ".stripslashes($propertyName);
@@ -156,6 +220,7 @@ class j03110guestconfirmationemail {
 		$output['ISO']=_ISO;
 
 		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
+
 		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 
 		$output['LINK']=JOMRES_SITEPAGE_URL. "&task=viewproperty&property_uid=".$property_uid;
@@ -211,7 +276,8 @@ class j03110guestconfirmationemail {
 		$tmpl->readTemplatesFromInput( 'guest_conf_email.html');
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
-
+		$tmpl->addRows( 'booking_extras', $booking_extras);
+		$tmpl->addRows( 'booking_extratext', $extrastext);
 		if ($email_when_done)
 			{
 			$text=$tmpl->getParsedTemplate();
