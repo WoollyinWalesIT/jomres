@@ -37,6 +37,9 @@ class jomres_obsolete_file_handling
 		$this->dir_classes = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS;
 		$this->dir_functions = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS;
 		
+		$this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'css'.JRDS;
+		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'javascript'.JRDS;
+		
 		$this->dir_templates_frontend = JOMRES_TEMPLATEPATH_FRONTEND.JRDS;
 		$this->dir_templates_backend =JOMRES_TEMPLATEPATH_BACKEND.JRDS;
 		$this->dir_templates_administrator = JOMRES_TEMPLATEPATH_ADMINISTRATOR.JRDS;
@@ -102,6 +105,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_functions.'property.functions.php');
 		$this->add_obs_file($this->dir_functions.'crate.functions.php');
 		$this->add_obs_file($this->dir_functions.'user.functions.php');
+		
+		$this->add_obs_file($this->dir_javascript.'jquery.bt-0-9.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.bt-0-9-3.js');
+
+		$this->add_obs_file($this->dir_javascript.'excanvas.js');
+		$this->add_obs_file($this->dir_javascript.'excanvas-compressed.js');
 		}
 	
 	function add_obs_file($path_and_file)
