@@ -44,7 +44,7 @@ class j00501xlastminute {
 			$this->template_touchable=false; return;
 			}
 			
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['singleRoomProperty'] == 1)
 			{

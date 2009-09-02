@@ -43,7 +43,7 @@ class j01025showtariffs {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $property_uid;
+		$property_uid = get_showtime('property_uid');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings($property_uid);

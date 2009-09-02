@@ -42,7 +42,7 @@ class j00501xwiseprice {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['singleRoomProperty'] == 0)
 			{

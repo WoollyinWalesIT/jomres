@@ -27,7 +27,6 @@ class j16000updates
 	function j16000updates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		//global $jomresConfig_offline;
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$jomresConfig_offline			= true;
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/defines.php') )
@@ -233,14 +232,9 @@ class j16000updates
 
 	function checkJomresDirectories()
 		{
-		global $myfiles;
 		$this->directoryScanResults=array();
-		//$jomresAdminDir = JOMRESCONFIG_ABSOLUTE_PATH."/".JOMRES_ADMINISTRATORDIRECTORY."/jomres";
 		$jomresFrontDir = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres";
-		//$files_array = $this->recur_dir($jomresAdminDir);
 		$files_array = $this->recur_dir($jomresFrontDir);
-
-		//var_dump($this->is_removeable($jomresAdminDir));exit;
 		if (count($this->directoryScanResults) > 0)
 			{
 			return false;

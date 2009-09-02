@@ -60,7 +60,7 @@ class j00012pathway {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $numberOfPropertiesInSystem;
+		$numberOfPropertiesInSystem = get_showtime('numberOfPropertiesInSystem');
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
@@ -68,7 +68,7 @@ class j00012pathway {
 		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
 		
 		
-		if (defined('_JOMRES_NEWJOOMLA') )
+		if (_JOMRES_DETECTED_CMS == "joomla15" )
 			{
 			global $mainframe;
 			$breadcrumbs = & $mainframe->getPathWay();

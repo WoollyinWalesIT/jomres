@@ -42,7 +42,7 @@ class j00501gallery {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

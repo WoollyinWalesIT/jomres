@@ -579,8 +579,12 @@ function doSelectSql($query,$mode=FALSE)
 			// Mode 1. The calling function expects 1 row with 1 element in it. Returns a string
 			if ($num==1)
 				{
+				foreach ($result[0] as $r)
+					$result =$r;
+				/*
 				$jomres_db->setQuery( $query );
 				$result = $jomres_db->loadResult();
+				*/
 				}
 			else
 				return FALSE;

@@ -418,6 +418,7 @@ class j00013dashboard extends jomres_dashboard
 	function dashboardMakeMonthList($orientation="")
 		{
 		global $jomresConfig_locale;
+		
 		$monthsArray=array();
 		$output="";
 		setlocale(LC_ALL, $jomresConfig_locale );

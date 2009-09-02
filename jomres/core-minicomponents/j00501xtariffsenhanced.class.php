@@ -42,7 +42,7 @@ class j00501xtariffsenhanced {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $configurationPanel;
+		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['tariffmode'] == 2)
 			{
