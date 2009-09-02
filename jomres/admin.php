@@ -28,8 +28,8 @@ ob_start();
 @ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
 
-global $xmlelements;
-global $logFiles;
+//global $xmlelements;
+//global $logFiles;
 
 require_once('integration.php');
 $MiniComponents =jomres_getSingleton('mcHandler');
@@ -102,6 +102,7 @@ if (strstr($_SERVER['SCRIPT_NAME'],'index3.php') || $nohtml == "1")
 	define('JRPORTAL_AJAXCALL',true);
 else
 	define('JRPORTAL_AJAXCALL',false);
+
 
 global $customTextArray;
 $customTextArray=array();

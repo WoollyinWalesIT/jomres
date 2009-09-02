@@ -54,15 +54,6 @@ class j06000terms
 
 		if ( (!$userIsManager) || $userIsManager )
 			{
-			$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = '$property_uid' AND language = '".get_showtime('lang')."'";
-			$customTextList=doSelectSql($query);
-			if (count($customTextList))
-				{
-				$customTextArray=array();
-				foreach ($customTextList as $text)
-					$customTextArray[$text->constant]=stripslashes($text->customtext);
-				}
-
 			$property=array();
 			$property['LIVESITE']			= get_showtime('live_site');
 			$property['HPROPERTYNAME']		= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);

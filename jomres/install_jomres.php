@@ -2020,8 +2020,7 @@ function showGetInstallUpgradeRequest()
 
 function showGetKeyInput($lkey)
 	{
-
-	global $mrConfig,$lkey;
+	$mrConfig=getPropertySpecificSettings();
 	if (!isset($lkey) || strlen($lkey)==0 || $lkey=="X-XXXX-11-XXXXXXXXXX-XXXXXXXX" )
 		{
 		$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";

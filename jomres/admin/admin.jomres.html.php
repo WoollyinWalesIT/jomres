@@ -59,7 +59,6 @@ function controlPanel($version)
  */
 function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList)
 	{
-	global $version;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$contentPanel =jomres_getSingleton('jomres_content_tabs');
@@ -74,15 +73,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		echo '<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
 		echo $jrtb;
 		$sslinput="";
-		if (substr($version,"Mambo") )
-			{
-			$sslinput=
+		$sslinput=
 			'<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['useSSLinBookingform'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
 			</tr>';
-			}
 
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC',_JOMRES_A_TABS_MISC,FALSE));

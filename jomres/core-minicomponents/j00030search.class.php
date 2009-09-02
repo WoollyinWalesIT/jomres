@@ -42,7 +42,7 @@ class j00030search {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $option,$jomresSearchFormname,$searchAll,$customTextArray,$version;
+		global $option,$jomresSearchFormname,$searchAll,$version;
 		$thisJRUser=jomres_getSingleton('jr_user');
 		global $jomresItemid;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
@@ -109,6 +109,8 @@ class j00030search {
 
 		$calledByModule=mysql_real_escape_string($calledByModule);
 
+		$customTextObj =jomres_getSingleton('custom_text');
+		/*
 		$customTextArray=array();
 		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".get_showtime('lang')."'";
 		$customTextList=doSelectSql($query);
@@ -119,7 +121,8 @@ class j00030search {
 				$customTextArray[$text->constant]=stripslashes($text->customtext);
 				}
 			}
-
+		*/
+		
 			$infoIcon="/jomres/images/information.png";
 			$output=array();
 			$pageoutput=array();

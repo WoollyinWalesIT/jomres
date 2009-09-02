@@ -21,7 +21,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
 // ################################################################
 
-global $logFiles,$xmlelements;
+//global $logFiles,$xmlelements;
 
 $logFiles=array('system'=>'jomres_system_log.xml','request'=>'jomres_request_log.xml','gateway'=>'jomres_gateway_log.xml','booking'=>'jomres_booking_log.xml','error'=>'jomres_error_log.xml','jrportalquery'=>'jrportalquery_log.xml');
 $systemElements=array('root'=>'systemlog','entry'=>'systemlogentry');
@@ -32,8 +32,8 @@ $errorElements=array('root'=>'errorlog','entry'=>'errorlogentry');
 $jrportalqueryElements=array('root'=>'jrportalquerylog','entry'=>'jrportalquerylogentry');
 
 $xmlelements=array('system'=>$systemElements,'request'=>$requestElements,'gateway'=>$gatewayElements,'booking'=>$bookingElements,'error'=>$errorElements,'jrportalquery'=>$jrportalqueryElements);
-
-
+set_showtime('xmlelements',$xmlelements);
+set_showtime('logFiles',$logFiles);
 
 function characterData($parser, &$data){
 	global $current_tag, $temp;

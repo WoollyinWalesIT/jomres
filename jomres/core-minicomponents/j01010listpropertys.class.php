@@ -43,7 +43,6 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $method,$customTextArray;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -189,7 +188,10 @@ class j01010listpropertys {
 				$rtDetails=doSelectSql($query);
 				foreach ($rtDetails as $rt)
 					{
-					$rtDetailsArray[$rt->room_classes_uid]=array('room_class_abbv'=>$rt->room_class_abbv,'room_class_full_desc'=>$rt->room_class_full_desc,'image'=>$rt->image);
+					$rtAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rt->room_classes_uid, $rt->room_class_abbv,false,false );
+					$rtDesc =  jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt->room_classes_uid, $rt->room_class_full_desc,false,false );
+					$rtDetailsArray[$rt->room_classes_uid]=array('room_class_abbv'=>$rtAbbv,'room_class_full_desc'=>$rtDesc,'image'=>$rt->image);
+					
 					}
 
 				// Property features
@@ -231,7 +233,8 @@ class j01010listpropertys {
 					}
 				else
 					{
-					$customTextArray=$customTextObj->get_custom_text_for_property($property->propertys_uid);
+					set_showtime('property_uid',$property->propertys_uid);
+					$customTextObj->get_custom_text_for_property($property->propertys_uid);
 					$property_deets=array();
 					$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
 					$mrConfig=getPropertySpecificSettings($property->propertys_uid);
