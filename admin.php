@@ -27,26 +27,19 @@ ob_start();
 //error_reporting(E_ALL);
 @ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
-
-//global $xmlelements;
-//global $logFiles;
-
 require_once('integration.php');
 $MiniComponents =jomres_getSingleton('mcHandler');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-//$tmpBookingHandler = new jomres_temp_booking_handler();
 $tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
 $jomressession  = $tmpBookingHandler->getJomressession();
 
 $showSearchOptions=true;
 $jomreslang =jomres_getSingleton('jomres_language');
-//$jomreslang= new jomres_language();
 $jomreslang->get_language('xx');
 $customTextObj =jomres_getSingleton('custom_text');
-//$customTextObj = new custom_text();
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
@@ -103,7 +96,10 @@ if (strstr($_SERVER['SCRIPT_NAME'],'index3.php') || $nohtml == "1")
 else
 	define('JRPORTAL_AJAXCALL',false);
 
-
+$jomreslang =jomres_getSingleton('jomres_language');
+$jomreslang->get_language($propertytype);
+$customTextObj =jomres_getSingleton('custom_text');
+/*
 global $customTextArray;
 $customTextArray=array();
 $query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".get_showtime('lang')."'";
@@ -115,9 +111,9 @@ if (count($customTextList))
 		$customTextArray[$text->constant]=stripslashes($text->customtext);
 		}
 	}
+*/
 
-$jomreslang =jomres_getSingleton('jomres_language');
-$jomreslang->get_language($propertytype);
+
 
 if (!JRPORTAL_AJAXCALL)
 	{
@@ -172,27 +168,6 @@ else
 	
 
 switch (get_showtime('task')) {
-	//case "clearLog":
-	//	clearLog();
-	//	break;
-	//case "listLogs":
-	//	listLogs();
-	//	break;
-	//case "showLog":
-	//	showLog();
-	//	break;
-	//case "deleteGlobalroomTypes":
-	//	deleteGlobalroomTypes();
-	//	break;
-	//case "saveGlobalRoomClass":
-	//	saveGlobalRoomClass();
-	//	break;
-	//case "editGlobalroomTypes":
-	//	editGlobalroomTypes();
-	//	break;
-	//case "listGlobalroomTypes":
-	//	listGlobalroomTypes();
-	//	break;
 	case "convertCustomTextAll":
 		convertCustomTextAll();
 		break;
@@ -208,9 +183,6 @@ switch (get_showtime('task')) {
 	case "editPropertyType":
 		editPropertyType();
 		break;
-	//case "listPropertyTypes":
-	//	listPropertyTypes();
-	//	break;
 	case "changeUserHotel":
 		changeUserHotel($option);
 		break;
@@ -235,27 +207,9 @@ switch (get_showtime('task')) {
 	case "saveSiteConfig":
 		saveSiteConfig(  );
 		break;
-	//case "listPfeatures":
-	//	listPfeatures();
-	//	break;
 	case "publishPfeature":
 		publishPfeature();
 		break;
-	//case "editPfeature":
-	//	editPfeature();
-	//	break;
-	//case "newPfeature":
-	//	editPfeature();
-	//	break;
-	//case "savePfeature":
-	//	savePfeature();
-	//	break;
-	//case "deletePfeature":
-	//	deletePfeature();
-	//	break;
-	//case "portalcpanel":
-	//	$cpanel=new cpanel();
-	//	break;
 	case 'cpanel':
 		default:
 		if ($MiniComponents->eventSpecificlyExistsCheck('16000',get_showtime('task')) )

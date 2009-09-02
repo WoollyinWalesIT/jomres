@@ -27,8 +27,9 @@ class j16000updates
 	function j16000updates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		global $jomresConfig_offline;
+		//global $jomresConfig_offline;
 		$MiniComponents =jomres_getSingleton('mcHandler');
+		$jomresConfig_offline			= true;
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/defines.php') )
 			{
 			$CONFIG = new JConfig();
@@ -177,6 +178,8 @@ class j16000updates
 			curl_setopt($curl_handle, CURLOPT_HEADER, 0);
 			curl_setopt($curl_handle, CURLOPT_URL, $updateFile);
 			curl_exec($curl_handle);
+			curl_close($curl_handle);
+			fclose($out);
 			curl_close($curl_handle);
 			fclose($out);
 			/// TO DO
