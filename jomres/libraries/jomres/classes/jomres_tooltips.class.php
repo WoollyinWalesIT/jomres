@@ -193,7 +193,7 @@ class jomres_tooltips
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 						positions: [\'most\'],
 						offsetParent: \'body\',
-						width: \'auto\',
+						width: \'200px\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
@@ -221,7 +221,7 @@ class jomres_tooltips
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 						positions: [\'most\'],
 						offsetParent: \'body\',
-						width: \'auto\',
+						width: \'200px\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
 							{
