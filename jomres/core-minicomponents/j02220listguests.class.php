@@ -45,40 +45,71 @@ class j02220listguests {
 			}
 		$mrConfig=getPropertySpecificSettings();
 		$rows=array();
-		$surnameFirstChars         = jomresGetParam( $_POST, 'surnameFirstChars', '' );
+		$surnameFirstChars         = jomresGetParam( $_REQUEST, 'surnameFirstChars', '' );
 		$defaultProperty=getDefaultProperty();
-
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
 		$output['HEDITLINK']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS',_JOMRES_COM_MR_DISPGUEST_EDITDETAILS);
+		$output['HINVOICELINK']=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES);
 		$output['HFIRSTNAME']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME',_JOMRES_COM_MR_DISPGUEST_FIRSTNAME);
 		$output['HSURNAME']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
 		$output['HHOUSE']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE',_JOMRES_COM_MR_DISPGUEST_HOUSE);
 		$output['HSTREET']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_STREET',_JOMRES_COM_MR_DISPGUEST_STREET);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
 
-		if ($surnameFirstChars)
-			$query="SELECT guests_uid,firstname,surname,house,street,town  FROM #__jomres_guests WHERE surname LIKE '$surnameFirstChars%' AND property_uid = '".(int)$defaultProperty."'";
+		if ($surnameFirstChars != "")
+			$query="SELECT guests_uid,firstname,surname,house,street,town,mos_userid  FROM #__jomres_guests WHERE surname LIKE '$surnameFirstChars%' AND property_uid = '".(int)$defaultProperty."'";
 		else
-			$query="SELECT guests_uid,firstname,surname,house,street,town  FROM #__jomres_guests  WHERE property_uid = '".(int)$defaultProperty."' ORDER BY surname";
+			$query="SELECT guests_uid,firstname,surname,house,street,town,mos_userid  FROM #__jomres_guests  WHERE property_uid = '".(int)$defaultProperty."' ORDER BY surname";
+
 		$guestList =doSelectSql($query);
+		if (count($guestList)==0)
+			return;
+		$mos_userids = array();
+		foreach($guestList as $guest)
+			{
+			$mos_userids[]=$guest->mos_userid;
+			}
+		
+		$invoices = array();
+		$gor= genericOr($mos_userids ,'cms_user_id');
+		$query = "SELECT cms_user_id,id FROM #__jomresportal_invoices WHERE ".$gor;
+		$result =doSelectSql($query);
+		if (count($result)>0)
+			{
+			foreach ($result as $r)
+				{
+				$invoices[$r->cms_user_id] = $r->id;
+				}
+			}
+		
 		$surnameFirstCharArray=array();
 		$editIcon='<IMG SRC="'.JOMRES_SITEPAGE_URL.'/administrator/images/edit_f2.png" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'">';
 
+		$image='/jomres/images/jomresimages/small/guestEdit.png';
+		$invoice_image='/jomres/images/jomresimages/small/Invoice.png';
 		foreach($guestList as $guest)
 			{
 			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			
-			
 			$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
 			$link=JOMRES_SITEPAGE_URL.'&task=editGuest&guestUid='.($guest->guests_uid);
 			$targetTask='bookGuestIn';
-			$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestEdit.png';
 			$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
-
 			$jrtb .= $jrtbar->endTable();
 			$rw['EDITLINK']=$jrtb;
+
+			if (array_key_exists($guest->mos_userid,$invoices) )
+				{
+				$jrtb  = $jrtbar->startTable();
+				$text=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,$editable=false,$isLink=true) ;
+				$link=JOMRES_SITEPAGE_URL.'&task=list_guests_invoices&id='.($guest->mos_userid);
+				$targetTask='';
+				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$invoice_image);
+				$jrtb .= $jrtbar->endTable();
+				$rw['INVOICELINK']=$jrtb;
+				}
 
 			$rw['FIRSTNAME']=$guest->firstname;
 			$rw['SURNAME']=$guest->surname;

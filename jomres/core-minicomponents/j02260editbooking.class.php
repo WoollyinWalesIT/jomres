@@ -297,6 +297,18 @@ class j02260editbooking {
 				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&no_html=1&contract_uid='.$booking_contract_uid.'&sendemail=1';
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('emailsend','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=false));
+
+				$query = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = ".$booking_contract_uid;
+				$invoice_number = doSelectSql($query,1);
+				if ($invoice_number >0)
+					{
+					$output['SHOWINVOICE']=jr_gettext('_JOMRES_MANAGER_SHOWINVOICE',_JOMRES_MANAGER_SHOWINVOICE,$editable=false,$isLink=true) ;
+					$link=JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice_number;
+					$targetTask='view_invoice';
+					$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/Invoice.png';
+					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['SHOWINVOICE'],$submitOnClick=false,$submitTask="",$image);
+					}
+					
 				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&popup=1&contract_uid='.$booking_contract_uid;
 				$jrtb .= $jrtbar->toolbarItem('note','javascript:void window.open(\''.$notesLink.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=false));
 				}

@@ -21,9 +21,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000list_usersinvoices
+class j06000list_guests_invoices
 	{
-	function j06000list_usersinvoices()
+	function j06000list_guests_invoices()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
@@ -31,9 +31,11 @@ class j06000list_usersinvoices
 			$this->template_touchable=false; return;
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
+		$defaultProperty=getDefaultProperty();
 		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info">';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
-		$id= $thisJRUser->id;
+		
+		$id = (int)jomresGetParam( $_GET, 'id', '' );
 
 		if ($thisJRUser->userIsRegistered)
 			{
@@ -53,8 +55,7 @@ class j06000list_usersinvoices
 				break;
 				}
 
-			$invoices=invoices_getinvoicesfor_juser($id,$stat);
-		//var_dump($invoices);exit;
+		$invoices=invoices_getinvoicesfor_juser_byproperty_uid($id,$stat,$defaultProperty);
 			if (count($invoices)>0)
 				{
 				$output=array();
@@ -108,8 +109,7 @@ class j06000list_usersinvoices
 					$r['RECURTOTAL']	=$invoice['recur_total'];
 					$r['FREQ']			=$invoice['recur_frequency'];
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
-					if ($invoice['subscription'] == "0" && $invoice['status'] != "1")
-						$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
+
 					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
 					$rows[]=$r;
 					}
