@@ -6621,3 +6621,11 @@ define('_JOMRES_COM_FAUXHEADERS','Output Jomres javascript headers into the body
 * @ignore
 */
 define('_JOMRES_COM_FAUXHEADERS_DESC','Set this to Yes if you are having problems with mootools and Jomres\'s jQuery conflicting in IE. This will force Jomres to output the javascript calls within the body of the page instead of the HEAD area, which isn\'t valid html, however it seems to resolve the probems with jquery and mootools conflicting with each other.');
+/**
+* @ignore
+*/
+define('_JOMRES_MANAGER_SHOWINVOICE','Show invoice');
+/**
+* @ignore
+*/
+define('_JOMRES_MANAGER_SHOWINVOICES','Show invoices');

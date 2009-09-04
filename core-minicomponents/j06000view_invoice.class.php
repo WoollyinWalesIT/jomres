@@ -40,12 +40,29 @@ class j06000view_invoice {
 		
 		// a quick anti hack check
 		$userid= $thisJRUser->id;
-		$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
-		$result=doSelectSql($query);
-		if (count($result)<1 || count($result)>1)
+		
+		if ($thisJRUser->userIsManager)
 			{
-			trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
+			$defaultProperty=getDefaultProperty();
+			$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".$defaultProperty;
+			$result = doSelectSql($query,1);
+			if (!$result)
+				{
+				trigger_error ("Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR);
+				return;
+				}
 			}
+		else
+			{
+			$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
+			$result=doSelectSql($query);
+			if (count($result)<1 || count($result)>1)
+				{
+				trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
+				return;
+				}
+			}
+		
 		
 		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
@@ -106,15 +123,18 @@ class j06000view_invoice {
 		$output['HLI_TAX_DESCRIPTION']=_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION;
 		$output['HLI_TAX_RATE']=_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE;
 
-		if ($invoice->subscription == "0" && $invoice->status != "1")
+		if (!$thisJRUser->userIsManager)
 			{
-			$ip=array();
-			$immediate_pay=array();
-			$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
-			$ip['INV_ID']	=$invoice->id;
-			$immediate_pay[]=$ip;
+			if ($invoice->subscription == "0" && $invoice->status != "1")
+				{
+				$ip=array();
+				$immediate_pay=array();
+				$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
+				$ip['INV_ID']	=$invoice->id;
+				$immediate_pay[]=$ip;
+				}
 			}
-		
+			
 		$lineitems=invoices_getalllineitems_forinvoice($id);
 		$counter=0;
 		if (count($lineitems)>0)
