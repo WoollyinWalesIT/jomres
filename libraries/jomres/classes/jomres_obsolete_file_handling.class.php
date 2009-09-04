@@ -60,7 +60,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j00050mumenu.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00012invoices_link.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00501jscalendar.class.php');
-		
+		$this->add_obs_file($this->dir_minicomponents.'j06000test_unsubscribe.class.php');
+
 		$this->add_obs_file($this->dir_templates_frontend.'menus.html');
 		$this->add_obs_file($this->dir_templates_frontend.'invoices_link.html');
 		$this->add_obs_file($this->dir_templates_frontend.'invoices_link.html');
