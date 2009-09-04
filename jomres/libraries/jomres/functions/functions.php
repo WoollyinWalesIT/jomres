@@ -4066,6 +4066,40 @@ function invoices_getinvoicesfor_juser_byproperty_uid($juser=0,$status=null,$pro
 	return $invoices;
 	}
 
+
+function invoices_getinvoicesfor_property_byproperty_uid($status=null,$property_uid=0)
+	{
+	if ($property_uid == 0)
+		return false;
+	$invoices=array();
+	$clause="";
+	if (isset($status))
+		$clause= "AND `status` = ".(int)$status." ";
+	$clause.=" ORDER BY raised_date DESC";
+	$query="SELECT * FROM #__jomresportal_invoices WHERE property_uid = ".(int)$property_uid." ".$clause;
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$invoices[$r->id]['id']=$r->id;
+			$invoices[$r->id]['cms_user_id']=$r->cms_user_id;
+			$invoices[$r->id]['status']=$r->status;
+			$invoices[$r->id]['raised_date']=$r->raised_date;
+			$invoices[$r->id]['due_date']=$r->due_date;
+			$invoices[$r->id]['paid']=$r->paid;
+			$invoices[$r->id]['subscription']=$r->subscription;
+			$invoices[$r->id]['init_total']=$r->init_total;
+			$invoices[$r->id]['recur_total']=$r->recur_total;
+			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
+			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
+			$invoices[$r->id]['currencycode']=$r->currencycode;
+			}
+		}
+	return $invoices;
+	}
+	
+	
 function invoices_makeInvoiceStatusDropdown( $selected='0' )
 	{
 	$statusOptions=array();

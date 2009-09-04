@@ -149,6 +149,11 @@ class mcHandler {
 						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
 						set_showtime('eLiveSite',$eLiveSite);
 						$event='j'.$ePoint.$eName;
+						if (!class_exists($event))
+							{
+							echo "Error, class ".$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
+							return;
+							}
 						$e = new $event($eventArgs);
 						$retVal=$e->getRetVals();
 						$this->miniComponentData[$ePoint][$eName]=$retVal;

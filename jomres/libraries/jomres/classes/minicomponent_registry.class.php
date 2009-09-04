@@ -36,6 +36,7 @@ class minicomponent_registry
 			{
 			$this->registeredClasses = array();
 			$this->eventPoints = array();
+			$this->new_filesize = 0;
 			$this->nonOverridableEventClasses=array();
 			$this->error_detected=false;
 			$this->unWantedFolderContents=array('.','..','cvs','.svn','registry.php');
@@ -43,7 +44,7 @@ class minicomponent_registry
 			$this->registry_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php";
 			$this->now = time();
 			$this->force_reload_allowed=$force_reload_allowed;
-			$original_filesize=@filesize($this->registry_file); // @to prevent notices when the file doesn't exist at all
+			$this->original_filesize=@filesize($this->registry_file); // @to prevent notices when the file doesn't exist at all
 			if (!file_exists($this->registry_file) )
 				{
 				$this->regenerate_registry();
@@ -55,7 +56,7 @@ class minicomponent_registry
 			$this->registeredClasses = unserialize($registry->mcRegistry_registry_serialized);
 			unset($registry);
 
-			$new_filesize=filesize($this->registry_file);
+			$this->new_filesize=filesize($this->registry_file);
 			}
 		}
 
@@ -73,7 +74,7 @@ class minicomponent_registry
 		$this->getMiniComponentComponentClasses();
 		asort($this->registeredClasses);
 		$this->save_registry_file();
-		if ($original_filesize != $new_filesize && $this->force_reload_allowed )
+		if ($this->original_filesize != $this->new_filesize && $this->force_reload_allowed )
 			{
 			echo "<script>alert('Reloading current page as minicomponents registry has changed');</script>";
 			echo "<script>window.location.reload()</script>";
