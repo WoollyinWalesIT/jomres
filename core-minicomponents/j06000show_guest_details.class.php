@@ -49,7 +49,7 @@ class j06000show_guest_details
 				$output['STREET']=$data->street ;
 				$output['TOWN']=$data->town;
 				$output['REGION']=$data->county;
-				$output['COUNTRY']=createSimpleCountriesDropdown($data->country);
+				$output['COUNTRY']=getSimpleCountry($data->country);
 				$output['POSTCODE']=$data->postcode ;
 				$output['LANDLINE']=$data->tel_landline;
 				$output['MOBILE']=$data->tel_mobile;
@@ -59,6 +59,8 @@ class j06000show_guest_details
 			}
 
 
+		
+		$output['TITLE']=jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST',_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST);
 		$output['HFIRSTNAME']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME',_JOMRES_COM_MR_DISPGUEST_FIRSTNAME);
 		$output['HSURNAME']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
 		$output['HHOUSE']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE',_JOMRES_COM_MR_DISPGUEST_HOUSE);

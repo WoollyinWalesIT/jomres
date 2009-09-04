@@ -37,6 +37,7 @@ class j06000view_invoice {
 		$rows=array();
 		
 		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
+		$popup		= intval(jomresGetParam( $_REQUEST, 'popup', 0 ));
 		
 		// a quick anti hack check
 		$userid= $thisJRUser->id;
@@ -62,15 +63,27 @@ class j06000view_invoice {
 				return;
 				}
 			}
-		
-		
+
+		if ($popup != 1)
+			{
+			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
+			$output['PRINTTEXT'] =_JOMRES_COM_INVOICE_TITLE;
+			}
+			
 		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
+
 		if ($id > 0)
 			{
 			$invoice->id = $id;
 			$invoice->getInvoice();
 			}
+			
+		$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$invoice->cms_user_id."'  AND property_uid = '".(int)$defaultProperty."'";
+		$guest_uid =doSelectSql($query,1);
+
+		$output['GUEST_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
+
 		$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 		$output['LIVESITE']=get_showtime('live_site');
 		$output['HUSER']=_JRPORTAL_INVOICES_USER;
