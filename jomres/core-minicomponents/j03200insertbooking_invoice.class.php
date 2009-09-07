@@ -59,6 +59,8 @@ class j03200insertbooking_invoice {
 		$discounts						= $tmpBookingHandler->getBookingFieldVal("discounts");
 		$resource						= $tmpBookingHandler->getBookingFieldVal("resource");
 		$property_uid					= $tmpBookingHandler->getBookingFieldVal("property_uid");
+		$extrasvalues_items				= unserialize($tmpBookingHandler->getBookingFieldVal("extrasvalues_items"));
+		
 
 		if ($resource=="1")
 			$depositPaid=true;
@@ -149,19 +151,26 @@ class j03200insertbooking_invoice {
 			$line_items[]=$line_item_data;
 			}
 			
+		$this->taxrates = taxrates_getalltaxrates();
 		$extrasArray	=	explode(",",$extras);
 		foreach ($extrasArray as $extraUid)
 			{
-			$query="SELECT name,price FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
+			$values = 
+			$query="SELECT name,price,tax_rate FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
 			$extrasList= doSelectSql($query);
 			foreach ($extrasList as $theExtras)
 				{
+				
+				$quantity_multiplier = (int)$extrasvalues_items[(int)$extraUid]['quantity_multiplier'];
+				$quant = $extrasquantities[$extraUid];
+				$quantities = $quantity_multiplier*$quant;
+
 				$line_item_data = array (
-					'tax_code_id'=>1,
+					'tax_code_id'=>$theExtras->tax_rate,
 					'name'=>$theExtras->name,
 					'description'=>'',
 					'init_price'=>number_format($theExtras->price,2, '.', ''),
-					'init_qty'=>$extrasquantities[$extraUid],
+					'init_qty'=>$quantities,
 					'init_discount'=>"0",
 					'recur_price'=>"0.00",
 					'recur_qty'=>"0",

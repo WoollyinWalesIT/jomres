@@ -4345,16 +4345,18 @@ function taxrates_makerateDropdown( $rates=array(),$selected='0' )
 	
 	if (count($rates)<1)
 		$rates=taxrates_getalltaxrates();
+		
+	$ratesOptions[]=jomresHTML::makeOption( 0, '' );
+	
 	if (count($rates>0) )
 		{
 		foreach($rates as $r)
 			{
 			$ratesOptions[]=jomresHTML::makeOption( $r['id'], $r['code']." ".$r['description'] );
-			
 			}
 		$ratesDropdown= jomresHTML::selectList($ratesOptions, 'taxrate', 'class="inputbox" size="1"', 'value', 'text', $selected);
 		}
-		
+
 	return $ratesDropdown;
 	}
 ?>

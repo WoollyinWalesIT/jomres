@@ -251,9 +251,28 @@ function doTableUpdates()
 		echo "Setting $key to $val";echo "<br>";
 		}
 	alterPropertyLatLongToChar12();
+	if (!checkExtrasTaxrateColExists() )
+		alterExtrasTaxrateCol();
 	}
 
-	
+function alterExtrasTaxrateCol()
+	{
+	echo "Editing __jomres_extras table adding tax_rate column<br>";
+	$query = "ALTER TABLE `#__jomres_extras` ADD `tax_rate` INT NULL DEFAULT '0' AFTER `price` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_extras tax_rate</b><br>";
+	}
+
+function checkExtrasTaxrateColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_extras LIKE 'last_edited'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
 	
 	
 function alterPropertyLatLongToChar12()
