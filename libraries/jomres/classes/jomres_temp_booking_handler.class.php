@@ -38,13 +38,11 @@ class jomres_temp_booking_handler
 	*/
 	function jomres_temp_booking_handler()
 		{
-		global $jomresConfig_lifetime;
+		$jrConfig=$siteConfig->get();
 		$this->task=get_showtime('task');
 		$this->jomressession=get_showtime('jomressession');
-		if (defined('_JOMRES_NEWJOOMLA') )
-			$this->timeout = $jomresConfig_lifetime*60;
-		else
-			$this->timeout = $jomresConfig_lifetime;
+		
+		$this->timeout = (int)$jrConfig['lifetime'];
 
 		$this->session_directory = JOMRESPATH_BASE."/sessions/";
 		if (!is_dir($this->session_directory) )
@@ -90,7 +88,7 @@ class jomres_temp_booking_handler
 			"extrasquantities"=>array(),
 			"total_discount"=>"",
 			"booking_discounted"=>false,
-			"depositpaidsuccessfully"=>"",
+			"depositpaidsuccessfully"=>false,
 			"tax"=>"",
 			"booker_class"=>"",
 			"ok_to_book"=>"",
@@ -410,7 +408,7 @@ class jomres_temp_booking_handler
 			"extrasquantities"=>array(),
 			"total_discount"=>"",
 			"booking_discounted"=>false,
-			"depositpaidsuccessfully"=>"",
+			"depositpaidsuccessfully"=>false,
 			"tax"=>"",
 			"booker_class"=>"",
 			"ok_to_book"=>"",
