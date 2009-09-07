@@ -71,6 +71,10 @@ if (componentsIntegrationExists())
 	
 
 	$folderChecksPassed=true;
+	
+	if (file_exists(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_pre_installation.php"))
+		require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_pre_installation.php");
+
 	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS) )
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS)) 
