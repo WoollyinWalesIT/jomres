@@ -5288,7 +5288,7 @@ define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per room ");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total ");
+define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total (inc tax)");
 /**
 * @ignore
 */

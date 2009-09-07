@@ -51,7 +51,8 @@ class j02144editextra {
 		$output['HEXDESC']=jr_gettext('_JOMRES_COM_MR_EXTRA_DESC',_JOMRES_COM_MR_EXTRA_DESC);
 		$output['HEXPRICE']=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
 		$output['HMAXQUANTITY']=jr_gettext('_JOMRES_COM_MR_EXTRA_QUANTITY',_JOMRES_COM_MR_EXTRA_QUANTITY);
-		
+		$output['HTAXRATE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
+
 		$output['HMAXQUANTITYINFO']=jr_gettext('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC',_JOMRES_COM_MR_EXTRA_QUANTITY_DESC);
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
@@ -130,21 +131,23 @@ class j02144editextra {
 				break;
 				}
 
-			$query = $query="SELECT `name`,`desc`,`price`,`maxquantity` FROM `#__jomres_extras` WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
+			$query = $query="SELECT `name`,`desc`,`price`,`tax_rate`,`maxquantity` FROM `#__jomres_extras` WHERE uid = '".(int)$uid."' AND property_uid = '".(int)$defaultProperty."'";
 			$exList =doSelectSql($query);
+			
 			foreach($exList as $ex)
 				{
 				$output['EXDESCRIPTION']= stripslashes($ex->desc);
 				$output['EXNAME']= stripslashes($ex->name);
 				$output['EXPRICE']= number_format($ex->price,2, '.', '');
 				$output['MAXQUANTITYDROPDOWN'] = jomresHTML::integerSelectList( 01, 1000, 1, "maxquantity", 'size="1" class="inputbox"', $ex->maxquantity, "%02d" );
-
+				$output['TAXRATEDROPDOWN'] = taxrates_makerateDropdown( array(),$ex->tax_rate );
 				}
 			}
 		else
 			{
 			$output['EXTRAMODEL_PERWEEK_CHECKED']="checked";
 			$output['MAXQUANTITYDROPDOWN'] = jomresHTML::integerSelectList( 01, 1000, 1, "maxquantity", 'size="1" class="inputbox"', 1, "%02d" );
+			$output['TAXRATEDROPDOWN'] = taxrates_makerateDropdown( array(),0 );
 			$model['model']=2;
 			$model['force']=0;
 			switch ($model['model'])

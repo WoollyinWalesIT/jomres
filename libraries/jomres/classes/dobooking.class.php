@@ -156,17 +156,19 @@ class dobooking
 			$this->lastminute_id			= $bookingDeets['lastminute_id'];
 			$this->arrivalDate				= $bookingDeets['arrivalDate'];
 			$this->departureDate			= $bookingDeets['departureDate'];
-			$this->stayDays				= $bookingDeets['stayDays'];
+			$this->stayDays					= $bookingDeets['stayDays'];
 			$this->dateRangeString			= $bookingDeets['dateRangeString'];
 			$this->guests_uid				= $bookingDeets['guests_uid'];
-			$this->property_uid			= (int)$bookingDeets['property_uid'];
+			$this->property_uid				= (int)$bookingDeets['property_uid'];
 			$this->rates_uid				= $bookingDeets['rates_uid'];
-			$this->resource				= $bookingDeets['resource'];
+			$this->resource					= $bookingDeets['resource'];
 			$this->single_person_suppliment = $bookingDeets['single_person_suppliment'];
-			$this->deposit_required		= $bookingDeets['deposit_required'];
+			$this->deposit_required			= $bookingDeets['deposit_required'];
 			$this->contract_total			= $bookingDeets['contract_total'];
 			$this->smoking					= $bookingDeets['smoking'];
 			$this->extrasvalue				= $bookingDeets['extrasvalue'];
+			$this->extrasvalues_items		= unserialize($bookingDeets['extrasvalues_items']);
+			
 			$this->tax						= $bookingDeets['tax'];
 			$this->extras					= $bookingDeets['extras'];
 			$this->extrasquantities			= $bookingDeets['extrasquantities'];
@@ -358,7 +360,7 @@ class dobooking
 		$this->getAllRoomFeatureDetails();
 		$this->getAllRoomClasses();
 		$this->getAllBookings();
-
+		$this->getAllTaxRates();
 		return true;
 		}
 
@@ -444,6 +446,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["contract_total"]				= $this->contract_total;
 		$tmpBookingHandler->tmpbooking["smoking"]						= $this->smoking;
 		$tmpBookingHandler->tmpbooking["extrasvalue"]					= $this->extrasvalue;
+		$tmpBookingHandler->tmpbooking["extrasvalues_items"]			= serialize($this->extrasvalues_items);
 		$tmpBookingHandler->tmpbooking["extras"]						= $this->extras;
 		$tmpBookingHandler->tmpbooking["extrasquantities"]				= $this->extrasquantities;
 		$tmpBookingHandler->tmpbooking["total_discount"]				= $this->total_discount;
@@ -596,7 +599,13 @@ class dobooking
 			}
 		if (count($this->allBookings) >0)
 			ksort($this->allBookings);
-	}
+		}
+	
+	function getAllTaxRates()
+		{
+		$this->taxrates = taxrates_getalltaxrates();
+		$this->setErrorLog("Init found tax rates ".serialize($this->taxrates) );
+		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -4595,33 +4604,42 @@ class dobooking
 				if (!empty($extra) )
 					{
 					$this->setErrorLog("calcExtras: Getting data for extra: ".$extra);
-					$query="SELECT price FROM #__jomres_extras WHERE uid = '$extra'";
-					$thisPrice =doSelectSql($query,1);
+					$query="SELECT price,tax_rate FROM #__jomres_extras WHERE uid = '$extra'";
+					$extraDeets =doSelectSql($query,2);
+					$thisPrice = $extraDeets['price'];
+					$tax_rate_id = $extraDeets['tax_rate'];
+					//$this->setErrorLog("<b>calcExtras:</b> Extra deets : ".serialize($extraDeets));
 					$query="SELECT `model`,`params` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$extra'";
 					$model=doSelectSql($query,2);
-					$this->setErrorLog("calcExtras: Using model: ".$model['model']);
-					$this->setErrorLog("calcExtras: Parameters: ".$model['params']);
+					//$this->setErrorLog("calcExtras: Using model: ".$model['model']);
+					//$this->setErrorLog("calcExtras: Parameters: ".$model['params']);
 					switch ($model['model'])
 						{
 						case '1': // Per week
 							$numberOfWeeks=ceil($this->stayDays/7);
 							$calc=$numberOfWeeks*$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$numberOfWeeks;
 						break;
 						case '2': // per days
 							$calc=$this->stayDays*$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$this->stayDays;
 						break;
 						case '3': // per booking
 							$calc=$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=1;
 						break;
 						case '4': // per person per booking
 							$calc=$this->total_in_party*$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$this->total_in_party;
 						break;
 						case '5': // per person per day
 							$calc=$this->total_in_party*$this->stayDays*$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$this->total_in_party*$this->stayDays;
 						break;
 						case '6': // per person per week
 							$numberOfWeeks=ceil($this->stayDays/7);
 							$calc=$this->total_in_party*$numberOfWeeks*$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$this->total_in_party*$numberOfWeeks;
 						break;
 						case '7': // per person per days min days
 							$mindays=$model['params'];
@@ -4630,17 +4648,37 @@ class dobooking
 							else
 								$days=$this->stayDays;
 							$calc=$days*$thisPrice;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$days;
 						break;
 						case '8': // per days per room
-							$calc=($this->stayDays*$thisPrice)*$this->numberOfCurrentlySelectedRooms();
+							$num_rooms=$this->numberOfCurrentlySelectedRooms();
+							$calc=($this->stayDays*$thisPrice)*$num_rooms;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$this->stayDays*$num_rooms;
 						break;
 						}
 					$quantity=$this->extrasquantities[$extra];
-					$extrasTotal=$extrasTotal+($quantity*$calc);
+					
+					$tmpTotal=$quantity*$calc;
+					//$this->setErrorLog("calcExtras: tax_rate_id: ".$tax_rate_id);
+					if ((int)$tax_rate_id >0)
+						{
+						$rate = $this->taxrates[$tax_rate_id]['rate'];
+						$this->setErrorLog("calcExtras: rate is: ".$rate);
+						$thisTax = ($tmpTotal/100)*$rate;
+						$this->setErrorLog("calcExtras: Adding : ".$thisTax." to original value ".$tmpTotal);
+						$tmpTotal = $tmpTotal + $thisTax;
+						}
+					else
+						$this->setErrorLog("calcExtras: Tax rate not set ");
+						
+					//$this->extrasvalues_items[$extra]=$tmpTotal;
+					$extrasTotal = $extrasTotal+$tmpTotal;
+					//$this->setErrorLog("<b>calcExtras: Extras totals plus Tax</a>: ".$extrasTotal );
 					$this->setErrorLog("calcExtras: Extras totals: ".$extrasTotal );
 					}
 				}
 			}
+		//$this->extrasvalueplustax=$extrasTotalPlusTax;
 		$this->extrasvalue=$extrasTotal;
 		}
 
