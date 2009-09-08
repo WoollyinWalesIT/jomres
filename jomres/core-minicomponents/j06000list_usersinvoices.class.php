@@ -82,6 +82,7 @@ class j06000list_usersinvoices
 
 				foreach ($invoices as $invoice)
 					{
+
 					$r=array();
 					$r['ID']=$invoice['id'];
 					
@@ -108,8 +109,12 @@ class j06000list_usersinvoices
 					$r['RECURTOTAL']	=$invoice['recur_total'];
 					$r['FREQ']			=$invoice['recur_frequency'];
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
-					if ($invoice['subscription'] == "0" && $invoice['status'] != "1")
-						$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
+					$settingArray = get_plugin_settings("paypal",$invoice['property_uid']);
+					if (isset($settingArray['active']) && $settingArray['active'] == "1")
+						{
+						if ($invoice['subscription'] == "0" && $invoice['status'] != "1")
+							$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
+						}
 					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
 					$rows[]=$r;
 					}

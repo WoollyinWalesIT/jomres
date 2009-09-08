@@ -57,9 +57,8 @@ class j00015viewproperty
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		$userIsManager=checkUserIsManager();
-		//if (!$userIsManager)
+		if (!$userIsManager)
 			propertyClicked($property_uid);
-		//$propertyList =$thisJomresPropertyDetails['obj'];
 
 		$pr_published=$current_property_details->published;
 		$property_street=$current_property_details->property_street;
@@ -93,7 +92,6 @@ class j00015viewproperty
 					$starslink.="<IMG SRC=\"".get_showtime('live_site')."/jomres/images/star.png\" border=\"0\">";
 					}
 				}
-			$countryname=getSimpleCountry($property_country);
 
 			$features=$current_property_details->features;
 			if (count($features) > 0)
@@ -118,7 +116,6 @@ class j00015viewproperty
 				$roomsClassList =doSelectSql($query);
 				foreach ($roomsClassList as $roomClass)
 					{
-					//$classAbbv = stripslashes($roomClass->room_class_abbv);
 					$RoomClassAbbvs[(int)$roomClass->room_classes_uid] = array( 
 						'abbv'=>
 						jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false),
@@ -146,11 +143,6 @@ class j00015viewproperty
 						$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
 						foreach ($roomTypeArray as $type)
 							{
-							/*
-							$query="SELECT room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$type."'";
-							$rtdeets= doSelectSql($query,2);
-							*/
-							
 							$roomtype_abbv = $RoomClassAbbvs[$type]['abbv'];
 							$roomtype_desc = $RoomClassAbbvs[$type]['desc'];
 							$rtRows['ROOM_TYPE']=jomres_makeTooltip($roomtype_abbv,$roomtype_abbv,$roomtype_desc,$RoomClassAbbvs[$type]['image'],"","room_type",array());
@@ -159,9 +151,6 @@ class j00015viewproperty
 						}
 					}
 				}
-
-			//if ($mrConfig['showOnlyAvailabilityCalendar']=="0")
-			//	property_header($property_uid);
 
 			if ($mrConfig['showSlideshowInline']=="1" && ($jrConfig['slideshowLocation'] == 1 || $jrConfig['slideshowLocation'] == 3 ))
 				{
@@ -242,10 +231,6 @@ class j00015viewproperty
 					"'<a href=\"$1\" target=\"_blank\">$3</a>$4'",
 					$mrConfig['galleryLink']
 					);
-				
-				//$pagelink =	$mrConfig['galleryLink'];
-				//$link['GALLERYLINK']=	jomres_makeTooltip('_JOMRES_FRONT_GALLERYLINK','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>$mrConfig['galleryLink']));
-				//$link['GALLERYLINK']=.$mrConfig['galleryLink'].'">'.jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK,$editable=false,$isLink=false).'</a>';
 				$gallerylink[]		= 	$link;
 				}
 			if (!empty($mappinglink))
@@ -253,7 +238,6 @@ class j00015viewproperty
 				$link				=	array();
 				if(filter_var($mappinglink, FILTER_VALIDATE_URL) === TRUE)
 					{
-					//$link['MAPPINGLINK']=makePopupLink($mappinglink,jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=true,$isLink=true),FALSE );
 					$pagelink =	jomresURL($mappinglink);
 					$link['MAPPINGLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>$mappinglink));
 					$mappinglink[]		= 	$link;
@@ -268,10 +252,6 @@ class j00015viewproperty
 				$url=JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid";
 				if ( (($mrConfig['fixedArrivalDateYesNo']=='1'|| $mrConfig['fixedPeriodBookings']=='1')) && !isset($tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure']) ) // We'll add an invalid arrival date if the fixed arrival date setting is set to Yes. This way we can force the booking engine to see the arrival date is wrong and it'll rebuild the available rooms list, which it doesn't if the date is correct when coming from the Book a room link.
 					$url.="&amp;arrivalDate=2009-01-01";
-					
-					
-				//if ( $jrConfig['useSSLinBookingform'] == "1" )
-				//	$link['BOOKINGLINK'] = str_replace("http://","https://",$property['BOOKINGLINK']);
 				if ( $jrConfig['useSSLinBookingform'] == "1" )
 					$url=jomresURL($url,1);
 				else
@@ -292,7 +272,6 @@ class j00015viewproperty
 			if ( $mrConfig['showRoomsListingLink']=="1")
 				{
 				$link				=	array();
-				//$link['ROOMSLISTLINK']=makePopupLink(JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=true,$isLink=true));
 				$pagelink =	jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid".$output_now);
 				$link['ROOMSLISTLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=showRoomsListing&popup=1&no_html=1&property_uid=$property_uid".$output_now));
 				$roomslistlink[]	= 	$link;
@@ -303,10 +282,10 @@ class j00015viewproperty
 			$property['TELEPHONE']=$property_tel;
 			$property['FAX']=$property_fax;
 
-			$property['STREET']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET'.$property_uid,$property_street );
-			$property['TOWN']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN'.$property_uid,$property_town );
-			$property['REGION']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$property_uid,$property_region);
-			$property['COUNTRY']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY'.$property_uid,$countryname);
+			$property['STREET']=$current_property_details->property_street;
+			$property['TOWN']=$current_property_details->property_town ;
+			$property['REGION']=$current_property_details->property_region;
+			$property['COUNTRY']=$current_property_details->property_country;
 
 			$property['HMAPPINGLINK']="";
 			$property['DESCRIPTION']=$property_description;
@@ -330,81 +309,80 @@ class j00015viewproperty
 				$property['HPOLICIESDISCLAIMERS']="";
 
 			$property_deets[]=$property;
-			//if ($mrConfig['showOnlyAvailabilityCalendar']=="0")
-			//	{
-				$tmpl = new patTemplate();
-				$tmpl->addRows( 'property_deets', $property_deets );
-				$tmpl->addRows( 'featurelist', $featureList);
-				$tmpl->addRows( 'roomtypes', $roomtypes);
-				$tmpl->addRows( 'bookinglink', $bookinglink);
-				$tmpl->addRows( 'slideshowlink', $slideshowlink);
-				$tmpl->addRows( 'tariffslink', $tariffslink);
-				$tmpl->addRows( 'gallerylink', $gallerylink);
-				$tmpl->addRows( 'roomslistlink', $roomslistlink);
-				$tmpl->addRows( 'mappinglink', $mappinklink);
-				$mcOutput=$MiniComponents->getAllEventPointsData('00015');
-				if (count($mcOutput)>0)
+
+			$tmpl = new patTemplate();
+			$tmpl->addRows( 'property_deets', $property_deets );
+			$tmpl->addRows( 'featurelist', $featureList);
+			$tmpl->addRows( 'roomtypes', $roomtypes);
+			$tmpl->addRows( 'bookinglink', $bookinglink);
+			$tmpl->addRows( 'slideshowlink', $slideshowlink);
+			$tmpl->addRows( 'tariffslink', $tariffslink);
+			$tmpl->addRows( 'gallerylink', $gallerylink);
+			$tmpl->addRows( 'roomslistlink', $roomslistlink);
+			$tmpl->addRows( 'mappinglink', $mappinklink);
+			$mcOutput=$MiniComponents->getAllEventPointsData('00015');
+			if (count($mcOutput)>0)
+				{
+				foreach ($mcOutput as $key=>$val)
 					{
-					foreach ($mcOutput as $key=>$val)
-						{
-						$tmpl->addRows( 'customOutput_'.$key, array($val) );
-						}
+					$tmpl->addRows( 'customOutput_'.$key, array($val) );
 					}
-				$componentArgs=array('tmpl'=>$tmpl);
-				if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00224'))
+				}
+			$componentArgs=array('tmpl'=>$tmpl);
+			if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00224'))
+				{
+				$MiniComponents->triggerEvent('00224',$componentArgs); //
+				}
+			elseif ($MiniComponents->eventFileExistsCheck('00226'))
+				{
+				$MiniComponents->triggerEvent('00226',$componentArgs); //
+				}
+			else
+				{
+				
+				if ($jrConfig['composite_property_details']!="1")
 					{
-					$MiniComponents->triggerEvent('00224',$componentArgs); //
-					}
-				elseif ($MiniComponents->eventFileExistsCheck('00226'))
-					{
-					$MiniComponents->triggerEvent('00226',$componentArgs); //
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'property_details.html');
+					$tmpl->displayParsedTemplate();
 					}
 				else
 					{
-					
-					if ($jrConfig['composite_property_details']!="1")
+					$this->retVals['property_deets']=$property_deets;
+					$this->retVals['featurelist']=$featureList;
+					$this->retVals['roomtypes']=$roomtypes;
+					$this->retVals['bookinglink']=$bookinglink;
+					$this->retVals['slideshowlink']=$slideshowlink;
+					$this->retVals['tariffslink']=$tariffslink;
+					$this->retVals['gallerylink']=$gallerylink;
+					$this->retVals['roomslistlink']=$roomslistlink;
+					$this->retVals['mappinklink']=$mappinklink;
+					$this->retVals['property_deets']=$property_deets;
+					if (count($mcOutput)>0)
 						{
-						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-						$tmpl->readTemplatesFromInput( 'property_details.html');
-						$tmpl->displayParsedTemplate();
-						}
-					else
-						{
-						$this->retVals['property_deets']=$property_deets;
-						$this->retVals['featurelist']=$featureList;
-						$this->retVals['roomtypes']=$roomtypes;
-						$this->retVals['bookinglink']=$bookinglink;
-						$this->retVals['slideshowlink']=$slideshowlink;
-						$this->retVals['tariffslink']=$tariffslink;
-						$this->retVals['gallerylink']=$gallerylink;
-						$this->retVals['roomslistlink']=$roomslistlink;
-						$this->retVals['mappinklink']=$mappinklink;
-						$this->retVals['property_deets']=$property_deets;
-						if (count($mcOutput)>0)
+						foreach ($mcOutput as $key=>$val)
 							{
-							foreach ($mcOutput as $key=>$val)
-								{
-								$this->retVals['customOutput_'.$key]= array($val);
-								}
+							$this->retVals['customOutput_'.$key]= array($val);
 							}
 						}
 					}
+				}
 
-				if ($mrConfig['showSlideshowInline']=="1")
-					{
-					$componentArgs=array('property_uid'=>$property_uid );
-					$MiniComponents->triggerEvent('01060',$componentArgs); //showSlideshows
-					}
-
+			if ($mrConfig['showSlideshowInline']=="1")
+				{
 				$componentArgs=array('property_uid'=>$property_uid );
-				$MiniComponents->triggerEvent('01050',$componentArgs);
+				$MiniComponents->triggerEvent('01060',$componentArgs); //showSlideshows
+				}
 
-				if ($mrConfig['showTariffsInline']=="1")
-					{
-					$componentArgs=array('showheader'=>false);
-					$MiniComponents->triggerEvent('01020',$componentArgs); //showTariffs();
-					}
-			//	}
+			$componentArgs=array('property_uid'=>$property_uid );
+			$MiniComponents->triggerEvent('01050',$componentArgs);
+
+			if ($mrConfig['showTariffsInline']=="1")
+				{
+				$componentArgs=array('showheader'=>false);
+				$MiniComponents->triggerEvent('01020',$componentArgs); //showTariffs();
+				}
+
 
 			if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
 				showSingleRoomPropAvl($property_uid);

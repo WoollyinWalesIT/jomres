@@ -54,7 +54,7 @@ class j00509form {
 		else
 			$active=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 		$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=750,height=500,directories=no,location=no';
-		$link = JOMRES_SITEPAGE_URL."&task=editGateway&popup=1&plugin=$plugin";
+		$link = JOMRES_SITEPAGE_URL_NOHTML."&task=editGateway&popup=1&plugin=$plugin";
 		$gatewayname=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAYNAME'.$plugin,ucwords($plugin),false,false);
 		$pluginLink="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"".$plugin."\">".$gatewayname."</a>";
 		$button="<IMG SRC=\"".get_showtime('eLiveSite')."j00510".$plugin.".gif"."\" border=\"0\">";

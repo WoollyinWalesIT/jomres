@@ -37,6 +37,56 @@ function set_showtime($setting,$value)
 	return true;
 	}
 	
+	
+function get_plugin_settings($plugin,$prop_id=0)
+	{
+	$settingArray = array();
+	$thisJRUser=jomres_getSingleton('jr_user');
+	
+	if ($thisJRUser->userIsManager)
+		{
+		$property_uid=(int)getDefaultProperty();
+		}
+	else
+		{
+		if ($prop_id == 0)
+			{
+			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+			$property_uid=(int)$tmpBookingHandler->getBookingPropertyId();
+			}
+		else
+			$property_uid = (int)$prop_id;
+		}
+
+	if ($property_uid == 0)
+		{
+		return false;
+		}
+	$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$property_uid."' AND plugin = '".$plugin."' ";
+	$settingsList=doSelectSql($query);
+	foreach ($settingsList as $set)
+		{
+		$settingArray[$set->setting]=$set->value;
+		}
+
+	if ($plugin == "paypal")
+		{
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings->get_paypal_settings();
+			
+			if ($paypal_settings->paypalConfigOptions['override'] == "1")
+				{
+				$settingArray['usesandbox']=$paypal_settings->paypalConfigOptions['usesandbox'];
+				$settingArray['currencycode']=$paypal_settings->paypalConfigOptions['currencycode'];
+				$settingArray['paypalemail']=$paypal_settings->paypalConfigOptions['email'];
+				$settingArray['pendingok'] = "0";
+				$settingArray['receiveIPNemail'] = "1";
+				$settingArray['active']="1";
+				}
+		}
+	return $settingArray;
+	}
+			
 function jr_import($class)
 	{
 	if (!class_exists($class)) 
@@ -4013,6 +4063,7 @@ function invoices_getinvoicesfor_juser($juser=0,$status=null)
 	$clause.=" ORDER BY raised_date DESC";
 	$query="SELECT * FROM #__jomresportal_invoices WHERE `cms_user_id`='".(int)$juser."'".$clause;
 	$result=doSelectSql($query);
+
 	if (count($result)>0)
 		{
 		foreach ($result as $r)
@@ -4029,6 +4080,7 @@ function invoices_getinvoicesfor_juser($juser=0,$status=null)
 			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
 			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoices[$r->id]['currencycode']=$r->currencycode;
+			$invoices[$r->id]['property_uid']=$r->property_uid;
 			}
 		}
 	return $invoices;
