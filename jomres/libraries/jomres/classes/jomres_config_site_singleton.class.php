@@ -39,6 +39,17 @@ class jomres_config_site_singleton
 		$this->config[$setting] = $value;
 		}
 		
+	public function insert_new_setting($k,$v)
+		{
+		$jomres_db =jomres_getSingleton('jomres_database');
+		if (!array_key_exists($k,$this->config) )
+			{
+			$query="INSERT INTO #__jomres_site_settings (akey,value) VALUES ('".$k."','".$v."')";
+			$jomres_db->setQuery($query);
+			$jomres_db->query();
+			}
+		}
+		
 	public function get_setting($setting)
 		{
 		return $this->config[$setting];
@@ -73,7 +84,6 @@ class jomres_config_site_singleton
 			// Jomres probably hasn't been installed yet, does the site settings table exist yet?
 			$tablesFound=false;
 			$query="SHOW TABLES";
-			$jomres_db =jomres_getSingleton('jomres_database');
 			$jomres_db->setQuery($query);
 			$result=$jomres_db->loadObjectList();
 			$string="Tables_in_".strtolower($jomresConfig_db);
@@ -96,8 +106,7 @@ class jomres_config_site_singleton
 			{
 			if (!array_key_exists($k,$jrConfig) )
 				{
-				$query="INSERT INTO #__jomres_site_settings (akey,value) VALUES ('".$k."','".$v."')";
-				$jomres_db->setQuery($query);
+				$this->insert_new_setting($k,$v);
 				}
 			}
 		
