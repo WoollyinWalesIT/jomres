@@ -361,8 +361,9 @@ class j02260editbooking {
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
-		global $thisJomresPropertyDetails;
-		$property_name = $thisJomresPropertyDetails['property_name'];
+		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details->gather_data($defaultProperty);
+		$property_name = $current_property_details->property_name;
 
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST',_JOMRES_COM_MR_EDITBOOKING_TAB_GUEST,FALSE));
 		$contentPanel->setcontent('<table>

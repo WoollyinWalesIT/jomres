@@ -52,6 +52,9 @@ class j01070showpropertyheader
 		$pageoutput = array();
 
 		$property_uid=(int)$componentArgs['property_uid'];
+		
+
+		
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("property_header",$property_uid,false);
 		$cacheContent = $cache->readCache();
@@ -63,7 +66,10 @@ class j01070showpropertyheader
 				$property_uid		= intval(jomresGetParam( $_REQUEST, 'property_uid', 0 ));
 			if ($property_uid>0)
 				{
-				$stars=$thisJomresPropertyDetails['stars'];
+				$current_property_details =jomres_getSingleton('basic_property_details');
+				$current_property_details->gather_data($property_uid);
+				
+				$stars=$current_property_details->stars;
 				$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
 				if ($stars!="0")
 					{
@@ -84,14 +90,12 @@ class j01070showpropertyheader
 
 				$output['TOOLTIP_PROPERTY_IMAGE']=jomres_makeTooltip("property_image","",$output['IMAGE'],$output['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 				
-				$propertyname= stripslashes($thisJomresPropertyDetails['property_name']);
-				$propertyList =$thisJomresPropertyDetails['obj'];
-				
+				/*
 				foreach ($propertyList as $pproperty)
 					{
-					$propertyFeaturesArray=explode(",",($pproperty->property_features));
-					$output['COUNTRY']=getSimpleCountry($pproperty->property_country);
-					$output['TOWN']=stripslashes($pproperty->property_town);
+					$propertyFeaturesArray=explode(",",($current_property_details->property_features));
+					$output['COUNTRY']=$current_property_details->property_country;
+					$output['TOWN']=$current_property_details->property_town;
 					}
 					
 				if (count($propertyFeaturesArray)>0)
@@ -110,6 +114,7 @@ class j01070showpropertyheader
 							}
 						}
 					}
+				
 				if ($mrConfig['singleRoomProperty'] != "1")
 					{
 					$property['HRTYPES']	=	"";
@@ -140,17 +145,20 @@ class j01070showpropertyheader
 							}
 						}
 					}
-				if (strlen($thisJomresPropertyDetails['metatitle'])>0)
-					jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['metatitle']));
+				*/
+				if (strlen($current_property_details->metatitle)>0)
+					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->metatitle));
 				else
-					jomres_cmsspecific_setmetadata("title",stripslashes($thisJomresPropertyDetails['property_name']));
+					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->property_name));
 
-				jomres_cmsspecific_setmetadata('description',stripslashes($thisJomresPropertyDetails['metadescription']));
-				jomres_cmsspecific_setmetadata('keywords',stripslashes($thisJomresPropertyDetails['property_town']).", ".stripslashes($thisJomresPropertyDetails['property_region']).", ".getSimpleCountry(stripslashes($thisJomresPropertyDetails['property_country'])));
+				jomres_cmsspecific_setmetadata('description',stripslashes($current_property_details->metadescription));
+				jomres_cmsspecific_setmetadata('keywords',$current_property_details->property_town.", ".$current_property_details->property_region.", ".$current_property_details->property_country);
 
 				$output['STARS']=$starslink;
-				$output['PROPERTY_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property_uid,stripslashes($propertyname));
-				
+				$output['PROPERTY_NAME'] = $current_property_details->property_name;
+				$output['TOWN'] = $current_property_details->property_town;
+				$output['REGION'] = $current_property_details->property_region;
+
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 

@@ -44,7 +44,7 @@ class j06000contactowner {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_secret,$thisJomresPropertyDetails;
+		global $jomresConfig_secret;
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->_remove_old_captcha_files();
@@ -56,6 +56,9 @@ class j06000contactowner {
 		if ($property_uid == 0 )
 			return;
 
+		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details->gather_data($property_uid);
+		
 		$this->QUERY_STRING = strlen(trim($_SERVER['QUERY_STRING'])) > 0 ? '?'.strip_tags($_SERVER['QUERY_STRING']) : '';
 		$output=array();
 		$output['FORMSTART']='<form name="regForm" action="'.$_SERVER['PHP_SELF'].$this->QUERY_STRING.'" method="POST">'."\n";
@@ -92,7 +95,7 @@ class j06000contactowner {
 		$output['INPUTBOXERRORBORDER']				=$mrConfig['inputBoxErrorBorder'];
 		$output['INPUTBOXERRORBACKGROUND']			=$mrConfig['inputBoxErrorBackground'];
 
-		$output['SUBJECT'] = stripslashes(ucfirst(_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE.$thisJomresPropertyDetails['property_name']));
+		$output['SUBJECT'] = stripslashes(ucfirst(_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE.$current_property_details->property_name));
 		$output['ENQUIRY'] = stripslashes(jomresGetParam( $_REQUEST, 'enquiry', jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY)));
 
 		$output['GUEST_NAME'] = stripslashes(jomresGetParam( $_REQUEST, 'guest_name', '' ));
@@ -119,12 +122,12 @@ class j06000contactowner {
 			case 1:
 				$oktosend=true;
 				$MiniComponents->triggerEvent('03500'); // Optional, eg for affiliate schemes offering pay-per-lead
-				$subject = _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT.$output['GUEST_NAME']._JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING.$thisJomresPropertyDetails['property_name'];
+				$subject = _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT.$output['GUEST_NAME']._JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING.$current_property_details->property_name;
 				$output['THANKS'] =jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS);
-				if(!jomresMailer( $output['GUEST_EMAIL'], $thisJomresPropertyDetails['property_name'], $thisJomresPropertyDetails['property_email'], $subject, $output['ENQUIRY'] ,$mode=1))
-					error_logging('Failure in sending enquiry email to hotel. Target address: '.$thisJomresPropertyDetails['property_email'].' Subject'.$subject);
+				if(!jomresMailer( $output['GUEST_EMAIL'], $current_property_details->property_name, $current_property_details->property_email, $subject, $output['ENQUIRY'] ,$mode=1))
+					error_logging('Failure in sending enquiry email to hotel. Target address: '.$current_property_details->property_email.' Subject'.$subject);
 
-				if(!jomresMailer( $thisJomresPropertyDetails['property_email'], $thisJomresPropertyDetails['property_name'], $output['GUEST_EMAIL'], $subject, $output['ENQUIRY'] ,$mode=1))
+				if(!jomresMailer( $current_property_details->property_email, $current_property_details->property_name, $output['GUEST_EMAIL'], $subject, $output['ENQUIRY'] ,$mode=1))
 					error_logging('Failure in sending enquiry email to guest. Target address: '.$output['GUEST_EMAIL'].' Subject'.$subject);
 
 				$output['BACKTOPROPERTY']=jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK',_JOMRES_BACKTOPROPERTYDETAILSLINK);

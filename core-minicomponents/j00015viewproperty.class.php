@@ -37,11 +37,10 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-		$current_property_details =jomres_getSingleton('current_property_details');
+		
 		$jrConfig=$siteConfig->get();
 		$customTextObj =jomres_getSingleton('custom_text');
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -59,6 +58,9 @@ class j00015viewproperty
 		$userIsManager=checkUserIsManager();
 		if (!$userIsManager)
 			propertyClicked($property_uid);
+
+		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details->gather_data($property_uid);
 
 		$pr_published=$current_property_details->published;
 		$property_street=$current_property_details->property_street;
@@ -82,7 +84,7 @@ class j00015viewproperty
 			$property=array();
 			$property_deets=$MiniComponents->triggerEvent('00040',array('property_uid'=>$property_uid ) );
 
-			$stars=$thisJomresPropertyDetails['stars'];
+			$stars=$current_property_details->stars;
 			$starslink="<IMG SRC=\"".get_showtime('live_site')."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\">";
 			if ($stars!="0")
 				{

@@ -77,15 +77,17 @@ class j02162savecancellation {
 			$query="UPDATE #__jomres_contracts SET `cancelled`='1', `cancelled_timestamp`='".date( 'Y-m-d H:i:s' )."', `cancelled_reason`='".$reason."' WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 			if (!doInsertSql($query,""))
 				trigger_error ("Unable to update cancellations data for contract". (int)$contract_uid.", mysql db failure", E_USER_ERROR);
-			
-			global $thisJomresPropertyDetails;
 
 			$query="SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = ".$guest_uid." LIMIT 1";
 			$guestData =doSelectSql($query,2);
 			$text=$tag.' - '.$saveMessage;
-			if (!jomresMailer( $guestData['email'], $thisJomresPropertyDetails['property_name'].' - '.$thisJomresPropertyDetails['property_town'], $thisJomresPropertyDetails['property_email'], $saveMessage, $text,$mode=1))
+			
+			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details->gather_data($defaultProperty);
+		
+			if (!jomresMailer( $guestData['email'], $current_property_details->property_name.' - '.$current_property_details->property_town, $current_property_details->property_email, $saveMessage, $text,$mode=1))
 				error_logging('Failure in sending cancellation email to hotel. Target address: '.$hotelemail.' Subject'.$subject);
-			if (!jomresMailer( $thisJomresPropertyDetails['property_email'], $thisJomresPropertyDetails['property_name'].' - '.$thisJomresPropertyDetails['property_town'], $guestData['email'], $saveMessage, $text,$mode=1))
+			if (!jomresMailer( $current_property_details->property_email, $current_property_details->property_name.' - '.$current_property_details->property_town, $guestData['email'], $saveMessage, $text,$mode=1))
 				error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 				
 			$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$saveMessage."','".date( 'Y-m-d H:i:s' )."','".(int)$defaultProperty."')";
