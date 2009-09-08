@@ -40,36 +40,7 @@ class j06000view_invoice {
 		$popup		= intval(jomresGetParam( $_REQUEST, 'popup', 0 ));
 		
 		// a quick anti hack check
-
-		if ($thisJRUser->userIsManager)
-			{
-			$property_uid=getDefaultProperty();
-			$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".(int)$property_uid;
-			$result = doSelectSql($query,1);
-			if (!$result)
-				{
-				trigger_error ("Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR);
-				return;
-				}
-			}
-		else
-			{
-			$userid= $thisJRUser->id;
-			$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
-			$result=doSelectSql($query);
-			if (count($result)<1 || count($result)>1)
-				{
-				trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
-				return;
-				}
-			}
-
-		if ($popup != 1)
-			{
-			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
-			$output['PRINTTEXT'] =_JOMRES_COM_INVOICE_TITLE;
-			}
-
+		
 		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
 
@@ -79,11 +50,55 @@ class j06000view_invoice {
 			$invoice->getInvoice();
 			}
 
-		$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$invoice->cms_user_id."'  AND property_uid = '".(int)$invoice->property_uid."'";
-		$guest_uid =doSelectSql($query,1);
+		if ((int)$invoice->contract_id > 0) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
+			{
+			if ($thisJRUser->userIsManager)
+				{
+				$property_uid=getDefaultProperty();
+				$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".(int)$property_uid;
+				$result = doSelectSql($query,1);
+				if (!$result)
+					{
+					trigger_error ("Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR);
+					return;
+					}
+				}
+			else
+				{
+				$userid= $thisJRUser->id;
+				$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
+				$result=doSelectSql($query);
+				if (count($result)<1 || count($result)>1)
+					{
+					trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
+					return;
+					}
+				}
+			
+			$query = "SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice->contract_id. " LIMIT 1";
+			$guestUid = doSelectSql($query,1);
+			$query="SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$invoice->property_uid."'";
+			$guest_uid =doSelectSql($query,1);
+			$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
+			$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
+			}
+		else // Let's check that this property manager can view this commission/subscription invoice
+			{
+			if ($thisJRUser->id != $invoice->cms_user_id)
+				{
+				trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
+				return;
+				}
 
-		$output['GUEST_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
-		$output['HOTEL_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
+			$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_site_business',array());
+			$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
+			}
+			
+		if ($popup != 1)
+			{
+			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
+			$output['PRINTTEXT'] =_JOMRES_COM_INVOICE_TITLE;
+			}
 
 		$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 		$output['LIVESITE']=get_showtime('live_site');
@@ -190,7 +205,10 @@ class j06000view_invoice {
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'frontend_view_invoice.html' );
+		if ($popup ==1)
+			$tmpl->readTemplatesFromInput( 'printable_invoice.html' );
+		else
+			$tmpl->readTemplatesFromInput( 'frontend_view_invoice.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
 		if ($invoice->subscription == "0")

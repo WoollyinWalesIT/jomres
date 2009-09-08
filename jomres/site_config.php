@@ -153,4 +153,8 @@ $jrConfig['useNewusers']="0";
 $jrConfig['jomresItemid']			='40'; // Restored for v4.1
 
 $jrConfig['lifetime']="18000";
+
+$jrConfig['business_name']="BLANK";
+$jrConfig['business_vat_number']="BLANK";
+$jrConfig['business_address']="BLANK";
 ?>

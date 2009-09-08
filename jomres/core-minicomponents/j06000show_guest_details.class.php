@@ -36,6 +36,7 @@ class j06000show_guest_details
 		$thisJRUser=jomres_getSingleton('jr_user');
 		
 		$guestUid= $componentArgs['guest_uid'];
+
 		if ($thisJRUser->userIsManager)
 			{
 			$property_uid=getDefaultProperty();
