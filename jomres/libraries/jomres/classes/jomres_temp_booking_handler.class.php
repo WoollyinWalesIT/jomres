@@ -38,6 +38,7 @@ class jomres_temp_booking_handler
 	*/
 	function jomres_temp_booking_handler()
 		{
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->task=get_showtime('task');
 		$this->jomressession=get_showtime('jomressession');
