@@ -1,9 +1,5 @@
 <?php
 
-
-// This arbitrary class will be used seperate to the current_property_details class because it's possible in the future that we'll want to pull information about another property while working on a "main" one. 
-// It's also likely to be used by guest facing code where the guest isn't currently looking at any property, therefore jomres.php will not have identified a current property_uid to work from.
-
 class basic_property_details
 	{
 	// Store the single instance of Database
@@ -48,7 +44,7 @@ class basic_property_details
 		{
 		if ($this->property_uid === 0)
 			{
-			echo "Fatal Error, arbritrary property uid not set, exiting";
+			echo "Fatal Error, property uid not set, exiting";
 			exit;
 			}
 		if ($property_uid == $this->property_uid) // No need to re-gather the info

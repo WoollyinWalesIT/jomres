@@ -47,7 +47,7 @@ class j01055showroomdetails {
 			$property_uid=(int)$componentArgs['property_uid'];
 		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
-		$current_property_details =jomres_getSingleton('current_property_details');
+		$current_property_details =jomres_getSingleton('basic_property_details');
 		$this->retVals = '';
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();
