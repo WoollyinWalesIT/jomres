@@ -116,6 +116,7 @@ class j00610paypal {
 							}
 						if ($depositrequired == $amountPaid && strtolower($settingArray['paypalemail']) == strtolower($business) && strtoupper($settingArray['currencycode']) == $mc_currency)
 							{
+							$tmpBookingHandler->updateBookingField['depositpaidsuccessfully',true];
 							$subject = 'Paypal payment completed successfully.';
 							$this->messagelog[]="Paypal minicomponent - inserting booking.";
 							$result=insertInternetBooking(get_showtime('jomressession'),$paymentSuccessful,$confirmationPageRequired=false);
