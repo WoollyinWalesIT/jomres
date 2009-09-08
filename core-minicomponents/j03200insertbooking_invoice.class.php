@@ -60,12 +60,16 @@ class j03200insertbooking_invoice {
 		$resource						= $tmpBookingHandler->getBookingFieldVal("resource");
 		$property_uid					= $tmpBookingHandler->getBookingFieldVal("property_uid");
 		$extrasvalues_items				= unserialize($tmpBookingHandler->getBookingFieldVal("extrasvalues_items"));
+		$depositpaidsuccessfully		= $tmpBookingHandler->getBookingFieldVal("depositpaidsuccessfully");
 		
 
 		if ($resource=="1")
 			$depositPaid=true;
 		else
 			$depositPaid=false;
+		if ($depositpaidsuccessfully)
+			$depositPaid=true;
+			
 		if ($mrConfig['singleRoomProperty']==1)
 			$discount=$tmpBookingHandler->getBookingFieldVal("lastminutediscount");
 		else
