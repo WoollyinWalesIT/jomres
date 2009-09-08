@@ -80,7 +80,9 @@ class jomres_config_site_singleton
 		// Now we'll check to see if any new settings have been added to the jrConfig file. If they have they'll be added to the site settings table.
 		if (count($settingsList)==0)
 			{
-			global $jomresConfig_dbprefix,$jomresConfig_db;
+			$jomresConfig_dbprefix = get_showtime('dbprefix');
+			$jomresConfig_db = get_showtime('db');
+			
 			// Jomres probably hasn't been installed yet, does the site settings table exist yet?
 			$tablesFound=false;
 			$query="SHOW TABLES";

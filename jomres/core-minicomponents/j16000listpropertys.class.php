@@ -32,7 +32,9 @@ class j16000listpropertys
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jrportalConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		
 		$rows=array();
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 		//require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/pageNavigation.php');
@@ -82,7 +84,7 @@ class j16000listpropertys
 			$r['PROPERTYNAME']=$p['property_name'];
 			$r['PROPERTYADDRESS']=$p['property_street'].', '.$p['property_town'].', '.$p['property_region'].', '.$p['property_country'].', '.$p['property_postcode'];
 			if (!in_array($p['id'],$portalPropertyIds) )
-				$crid=$jrportalConfig['defaultCrate'];
+				$crid=$jrConfig['defaultCrate'];
 			else
 				{
 				$id=$k;

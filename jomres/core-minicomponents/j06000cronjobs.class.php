@@ -28,7 +28,7 @@ class j06000cronjobs
 	{
 	function j06000cronjobs ()
 		{
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		$secret = jomresGetParam($_REQUEST,"secret","");
 		if ($secret == $jomresConfig_secret)
 			{

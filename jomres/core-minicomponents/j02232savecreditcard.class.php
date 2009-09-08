@@ -43,7 +43,7 @@ class j02232savecreditcard {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		$guestUid			= intval(jomresGetParam( $_POST, 'guestUid', 0 ) );

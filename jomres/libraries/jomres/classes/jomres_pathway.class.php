@@ -33,27 +33,23 @@ class jomres_pathway
 	{
 	function jomres_pathway()
 		{
-		if (defined('_JOMRES_NEWJOOMLA') )
+		global $mainframe;
+		$this->joomlaPathway    =& $mainframe->getPathWay();
+		$this->pathWayItems = array();
+		$this->pathWayLinks = array();
+		$query="SELECT name,link FROM #__menu WHERE `link` LIKE JOMRES_SITEPAGE_URL.'%' LIMIT 1";
+		$menuNames =doSelectSql($query);
+		if (count($menuNames) > 0)
 			{
-			global $mainframe;
-			$this->joomlaPathway    =& $mainframe->getPathWay();
-			$this->pathWayItems = array();
-			$this->pathWayLinks = array();
-			$query="SELECT name,link FROM #__menu WHERE `link` LIKE JOMRES_SITEPAGE_URL.'%' LIMIT 1";
-			$menuNames =doSelectSql($query);
-			if (count($menuNames) > 0)
+			foreach ($menuNames as $menuName)
 				{
-				foreach ($menuNames as $menuName)
-					{
-					$name=$menuName->name;
-					$task="";
-					}
+				$name=$menuName->name;
+				$task="";
 				}
-			$this->addItem($name,$task,$options="");
 			}
-		else
-			return false;
+		$this->addItem($name,$task,$options="");
 		}
+
 
 	function addItem($pathwayText,$task="",$options="")
 		{

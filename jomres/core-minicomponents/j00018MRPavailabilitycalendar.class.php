@@ -193,13 +193,13 @@ class  j00018MRPavailabilitycalendar {
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		global $jomresConfig_locale;
-		global $noshowroom, $jomresConfig_offset;
+		//global $jomresConfig_locale;
+		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$userIsManager=checkUserIsManager();
-		setlocale(LC_ALL, $jomresConfig_locale);
+		//setlocale(LC_ALL, $jomresConfig_locale);
 
 		$showOutMonthDates=false;
 		$task=get_showtime('task');

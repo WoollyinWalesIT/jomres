@@ -110,7 +110,7 @@ function jr_import($class)
 	}
 
 
-function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site="",$jomresConfig_lang="")
+function init_javascript()
 	{
 	if (!defined("JOMRES_JSCALLED") )
 		{
@@ -122,7 +122,10 @@ function init_javascript($jrConfig,$thisJRUser,$version,$jomresConfig_live_site=
 	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
 	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
 
-
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$thisJRUser=jomres_getSingleton('jr_user');
+	
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
@@ -673,7 +676,12 @@ Allows us to work independantly of Joomla or Mambo's emailers
 
 function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode=0)
 	{
-	global $jomresConfig_smtpauth,$jomresConfig_smtphost,$jomresConfig_smtppass,$jomresConfig_smtpuser,$jomresConfig_mailer,$jomresConfig_debug;
+	$jomresConfig_smtpauth=get_showtime('smtpauth');
+	$jomresConfig_smtphost=get_showtime('smtphost');
+	$jomresConfig_smtppass=get_showtime('smtppass');
+	$jomresConfig_smtpuser=get_showtime('smtpuser');
+	$jomresConfig_mailer=get_showtime('mailer');
+	$jomresConfig_debug=get_showtime('debug');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -981,7 +989,7 @@ function getCurrentBookingData($jomressession="")
 */
 function getbookingguestdata()
 	{
-	global $tmpBookingHandler;
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$userDeets=$tmpBookingHandler->getGuestData();
 	return $userDeets;
 	}
@@ -1200,7 +1208,6 @@ function request_log($loggingRequest)
  */
 function system_log($message)
 	{
-	global $loggingEnabled,$loggingSystem;
 	if (LOGGINGSYSTEM)
 		{
 		$logfile=JOMRES_SYSTEMLOG_PATH.'jomres_system_log.xml';
@@ -1864,8 +1871,7 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 */
 function insertGuestDeets($jomressession)
 	{
-	//global $my,$mykey;
-	global $jomresConfig_secret;
+	$jomresConfig_secret=get_showtime('secret');
 	$thisJRUser=jomres_getSingleton('jr_user');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$userIsManager=checkUserIsManager();
@@ -1999,8 +2005,7 @@ function ValidateMail($Email) {
 function outputDate($thedate)
 	{
 	// Assumes the date $theDate comes from the system in the format YYYY/mm/dd
-	global $mrConfig,$jomresConfig_locale;
-	setlocale(LC_ALL, $jomresConfig_locale);
+	$mrConfig=getPropertySpecificSettings();
 	$date_elements	= explode("/",$thedate);
 	$unixDate= adodb_mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 	if ($mrConfig['dateFormatStyle']=="1")
@@ -2017,7 +2022,7 @@ function outputDate($thedate)
 */
 function JSCalmakeInputDates($inputDate,$siteCal=FALSE)
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -2066,7 +2071,7 @@ function JSCalmakeInputDates($inputDate,$siteCal=FALSE)
 function JSCalConvertInputDates($inputDate,$siteCal=FALSE)
 	{
 	// Lets convert the input calendar dates to Y/m/d
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -2221,7 +2226,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 
 function importSettings($property_uid,$source_property_uid=0)
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	if ($property_uid == 0 )  // We're installing, so all settings will be inserted from jomres_config.php into the database. We'll use property_uid 0 to create baseline settings that all other properties will use as their default when they call getPropertySpecificSettings
 		{
 		include(JOMRESPATH_BASE.JRDS.'jomres_config.php' );
@@ -2888,7 +2893,12 @@ function getPropertyName($property_uid)
 	{
 	// Gets the property name & returns the name as table data
 	//global $database,$mrConfig;
+	$current_property_details =jomres_getSingleton('basic_property_details');
+	$current_property_details->gather_data($property_uid);
+	return $current_property_details->property_name;
+	/*
 	global $thisJomresPropertyDetails;
+	
 	if ($property_uid == $thisJomresPropertyDetails['propertys_uid'])
 		return $thisJomresPropertyDetails['property_name'];
 	else
@@ -2901,6 +2911,7 @@ function getPropertyName($property_uid)
 			}
 		return 	$propertyName;
 		}
+	*/
 	}
 
 /**
@@ -3000,45 +3011,6 @@ function showImage($imageLocation,$target)
 		}
 	}
 
-/**
-#
- * Checks for the existance of an image when passed an image type (eg property, room) and returns the file location
-#
-*/
-/*  Depreciated
-function checkForImage($imageType,$itemUid)
-	{
-	global $mrConfig;
-	$fileLocation=FALSE;
-	switch ($imageType)
-		{
-		case 'property':
-			$tableName=" #__jomres_property_images ";
-			$fieldName="propertyid";
-			break;
-		case 'room':
-			$tableName=" #__jomres_room_images ";
-			$fieldName="roomid";
-			break;
-		case 'resource':
-			$tableName=" #__jomres_resource_images ";
-			$fieldName="resourceid";
-			break;
-			}
-	$query="SELECT filelocation FROM ".$tableName." WHERE ".$fieldName." = '".$itemUid."'";
-	$imageData =doSelectSql($query);
-	if (count($imageData)>0)
-		 {
-		 if ($mrConfig['errorCheckingShowSQLvardump']) echo "<br><b>".var_dump($imageData)."</b><br>";
-		 foreach ($imageData as $image)
-		 		{
-			$fileLocation=$image->filelocation;
-			}
-		 }
-	return $fileLocation;
-	}
-*/
-
 function getImageForProperty($imageType,$property_uid,$itemUid)
 	{
 	$fileLocation=FALSE;
@@ -3070,7 +3042,7 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 */
 function getPropertySpecificSettings($property_uid=null)
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$propertyConfig = jomres_getSingleton('jomres_config_property_singleton');
 	if ($propertyConfig->property_uid == 0)
 		$propertyConfig->init($property_uid);
@@ -3135,7 +3107,7 @@ function registerProp_step1()
 */
 function registerProp_step2()
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -3255,7 +3227,6 @@ function registerProp_step2()
 */
 function saveRegisterProp()
 	{
-	global $my;
 	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -3357,7 +3328,7 @@ function saveRegisterProp()
 	*/
 	if (!$thisJRUser->userIsManager)
 		{
-		$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`)VALUES ('".(int)$my->id."','$my->username','".(int)$newPropId."','2')";
+		$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`)VALUES ('".(int)$thisJRUser->id."','$thisJRUser->username','".(int)$newPropId."','2')";
 		doInsertSql($query,_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY);
 		}
 	$thisJRUser->authorisedProperties[]=$newPropId;
@@ -3365,7 +3336,7 @@ function saveRegisterProp()
 	$componentArgs=array('property_uid'=>(int)$newPropId);
 	$MiniComponents->triggerEvent('04901',$componentArgs); // Trigger point. Not currently used, but available if somebody wants a trigger point after the create property phase.
 	$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
-	$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$my->username;
+	$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$thisJRUser->username;
 	sendAdminEmail($subject,$message);
 	jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
 	}
@@ -3584,7 +3555,7 @@ function genericOr($idArray,$fieldToSearch,$idArrayisInteger=true)
  */
 function returnToPropertyConfig($saveMessage="")
 	{
-	global $mrConfig,$Itemid;
+	$mrConfig=getPropertySpecificSettings();
 	if ($mrConfig['errorCheckingShowSQL']=="0")
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"), $saveMessage );
 	}
@@ -3650,21 +3621,6 @@ function jomresShowSearch()
 
 /**
 #
- * @deprecated
-#
- */
-function checkPortalExists()
-	{
-	global $jomresPortalAdminPath;
-	$portalExists=false;
-	if (file_exists($jomresPortalAdminPath.'/admin.jrportal.php') )
-		$portalExists=true;
-	return $portalExists;
-	}
-
-
-/**
-#
  * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate
 #
  */
@@ -3675,7 +3631,7 @@ function checkPortalExists()
  */
 function makeFeatureImages($image,$title,$description,$retString=false,$altLivesite="")
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$thisJRUser=jomres_getSingleton('jr_user');
 	if (!empty($altLivesite))
 		set_showtime('live_site',$altLivesite);
@@ -3729,11 +3685,8 @@ function makeFeatureImages($image,$title,$description,$retString=false,$altLives
  */
 function propertyClicked($p_uid)
 	{
-	global $database;
 	$sessionCookieName 	= md5( 'site'.get_showtime('live_site'));
-	//$sessioncookie 		= jomresGetParam( $_REQUEST, $sessionCookieName, '' );
 	$cookiename = "jomresp$p_uid";
-
 	$alreadyClicked = jomresGetParam( $_COOKIE, $cookiename, '0' );
 	if (!$alreadyClicked)
 		{
@@ -3747,10 +3700,11 @@ function propertyClicked($p_uid)
 			$query="INSERT INTO #__jomres_pcounter SET `count`='1',`p_uid`='".(int)$p_uid."'";
 			}
 
-		if (!doInsertSql($query,"") ) {
-		 		echo "<script> alert('".$database->getErrorMsg()."'); window.history.go(-1); </script>\n";
-	 		exit();
-				}
+		if (!doInsertSql($query,"") ) 
+			{
+			echo "Mysql went byebyes";
+			exit();
+			}
 		}
 	}
 
@@ -3776,8 +3730,6 @@ function quote_smart($value)
  */
 function makePopupLink($link,$text,$isLocalPage=TRUE,$width=550,$height=500)
 	{
-	global $mrConfig,$jomresConfig_sef;
-
 	$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width='.$width.',height='.$height.',directories=no,location=no';
 	$format="";
 	if (defined('_JOMRES_NEWJOOMLA') )
@@ -3818,8 +3770,6 @@ function showSingleRoomPropAvl($property_uid)
  */
 function showCalandarMonthDropdown()
 	{
-	global $mosConfig_locale,$Itemid;
-	setlocale(LC_ALL, $mosConfig_locale );
 	$currentMonth=date("Y/m/d");
 	$dateElements=explode("/",$currentMonth);
 	$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1],1,$dateElements[0]));
@@ -3872,7 +3822,9 @@ function property_header($property_uid)
 */
 function sendAdminEmail($subject,$message)
 	{
-	global $jomresConfig_mailfrom, $jomresConfig_fromname,$acl;
+	$jomresConfig_mailfrom=get_showtime('mailfrom');
+	$jomresConfig_fromname=get_showtime('fromname');
+
 	$m="";
 	if (is_array($message) && count($message)>0 )
 		{
@@ -3907,7 +3859,7 @@ function sendAdminEmail($subject,$message)
  */
 function createJSLanguageDropdown()
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$currentLangFile=$mrConfig['jscalendarLangfile'];
 	$calendarFileNamesArray=array("calendar-en.js","calendar-af.js","calendar-al.js","calendar-bg.js","calendar-big5.js","calendar-big5-utf8.js","calendar-br.js","calendar-ca.js","calendar-cs-utf8.js","calendar-cs-win.js","calendar-da.js","calendar-de.js","calendar-du.js","calendar-el.js","calendar-es.js","calendar-fi.js","calendar-fr.js","calendar-he-utf8.js","calendar-hr.js","calendar-hr-utf8.js","calendar-hu.js","calendar-it.js","calendar-jp.js","calendar-ko.js","calendar-ko-utf8.js","calendar-lt.js","calendar-lt-utf8.js","calendar-lv.js","calendar-nl.js","calendar-no.js","calendar-pl.js","calendar-pl-utf8.js","calendar-pt.js","calendar-ro.js","calendar-ru.js","calendar-ru_win_.js","calendar-si.js","calendar-sk.js","calendar-sp.js","calendar-sv.js","calendar-tr.js","calendar-zh.js","cn_utf8.js");
 	$listTxt = '<span><select id="cfg_jscalendarLangfile" class="inputbox" name="cfg_jscalendarLangfile">';
@@ -3930,7 +3882,7 @@ function createJSLanguageDropdown()
  */
 function createJSCSSDropdown()
 	{
-	global $mrConfig;
+	$mrConfig=getPropertySpecificSettings();
 	$currentCSSFile=$mrConfig['jscalendarCSSfile'];
 	$calendarFileNamesArray=array("calendar-win2k-cold-2.css","calendar-blue2.css","calendar-blue.css","calendar-brown.css","calendar-green.css","calendar-system.css","calendar-tas.css","calendar-win2k-1.css","calendar-win2k-2.css","calendar-win2k-cold-1.css");
 	$listTxt = '<span><select id="cfg_jscalendarCSSfile" class="inputbox" name="cfg_jscalendarCSSfile">';

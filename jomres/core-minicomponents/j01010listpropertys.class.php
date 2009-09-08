@@ -46,9 +46,7 @@ class j01010listpropertys {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		global $jomresItemid;
 		$customTextObj =jomres_getSingleton('custom_text');
-		global $_MAMBOTS;
 		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
 
 		$propertys_uids=$componentArgs['propertys_uid'];

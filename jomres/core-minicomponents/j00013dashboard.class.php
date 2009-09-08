@@ -417,11 +417,11 @@ class j00013dashboard extends jomres_dashboard
 	 */
 	function dashboardMakeMonthList($orientation="")
 		{
-		global $jomresConfig_locale;
+		//global $jomresConfig_locale;
 		
 		$monthsArray=array();
 		$output="";
-		setlocale(LC_ALL, $jomresConfig_locale );
+		//setlocale(LC_ALL, $jomresConfig_locale );
 		$currentMonth=date("Y/m/d");
 		$dateElements=explode("/",$currentMonth);
 		//$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1],1,$dateElements[0]));

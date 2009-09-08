@@ -32,7 +32,7 @@ class j16000pseudocron
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_secret,$cronConfigOptions;
+		$jomresConfig_secret = get_showtime('secret');
 		$plugin="jomcompcronjobs";
 		if (isset($_POST['method']) )
 			$this->savecronconfigPlugin($plugin);
@@ -133,7 +133,6 @@ class j16000pseudocron
 	
 	function getcronconfig($plugin)
 		{
-		global $cronConfigOptions;
 		$cronConfigOptions=array();
 		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '".(int)$defaultProperty."' AND plugin = '$plugin'";
 		$settingList=doSelectSql($query);

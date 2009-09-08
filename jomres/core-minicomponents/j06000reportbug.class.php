@@ -44,8 +44,14 @@ class j06000reportbug {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_sitename;
-		global $jomresConfig_host,$jomresConfig_user,$jomresConfig_password,$_VERSION;
+		global $_VERSION;
+		$jomresConfig_fromname=get_showtime('fromname');
+		$jomresConfig_mailfrom=get_showtime('mailfrom');
+		$jomresConfig_sitename=get_showtime('sitename');
+		$jomresConfig_host=get_showtime('host');
+		$jomresConfig_user=get_showtime('user');
+		$jomresConfig_password=get_showtime('password');
+
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		if ($thisJRUser->superPropertyManager)

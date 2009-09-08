@@ -44,7 +44,7 @@ class j02230editcreditcard {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$defaultProperty=getDefaultProperty();

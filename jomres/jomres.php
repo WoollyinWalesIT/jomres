@@ -311,7 +311,7 @@ if ( $jrConfig['useSSLinBookingform'] == 1)
 		}
 	}
 
-init_javascript($jrConfig,$thisJRUser,$version);
+init_javascript();
 
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{

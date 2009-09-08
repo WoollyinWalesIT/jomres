@@ -39,7 +39,6 @@ class j00600cheque {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
 		$plugin="cheque";
 		$bookingdata=$componentArgs['bookingdata'];

@@ -45,7 +45,7 @@ class j03020insertbooking {
 			{
 			$this->template_touchable=false; return;
 			}
-		global $jomresProccessingBookingObject;
+		//global $jomresProccessingBookingObject;
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$depositPaid=$componentArgs['depositPaid'];

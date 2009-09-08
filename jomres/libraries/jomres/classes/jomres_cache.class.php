@@ -70,7 +70,7 @@ class jomres_cache
 
 	function generateFilename()
 		{
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$registeredFlag = "0";
 		$receptionistFlag = "0";
@@ -158,7 +158,7 @@ class jomres_cache
 		
 	function trashCacheForProperty($property_uid)
 		{
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		if ( !is_dir($this->cache_folder) OR !is_writable($this->cache_folder))
 			return false;
 		$searchElement = md5($jomresConfig_secret.$property_uid);
@@ -179,7 +179,7 @@ class jomres_cache
 		
 	function trashCacheForUser($user_id)
 		{
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		if ( !is_dir($this->cache_folder) OR !is_writable($this->cache_folder))
 			return false;
 					

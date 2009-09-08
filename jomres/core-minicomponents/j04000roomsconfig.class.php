@@ -43,7 +43,6 @@ class j04000roomsconfig {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $roomCount;
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');

@@ -200,13 +200,13 @@ class j00017SRPavailabilitycalendar {
 		// Submitted by: Whiddon James on Dec 01st 1999
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		global $jomresConfig_locale;
-		global $noshowroom, $jomresConfig_offset;
+		//global $jomresConfig_locale;
+		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
 		$tar=jomresGetParam( $_REQUEST, 'tar', 0 );
 		$show_links=jomresGetParam( $_REQUEST, 'sl', 1 );
 		$userIsManager=checkUserIsManager();
-		setlocale(LC_ALL, $jomresConfig_locale);
+		//setlocale(LC_ALL, $jomresConfig_locale);
 
 		$showOutMonthDates=false;
 		

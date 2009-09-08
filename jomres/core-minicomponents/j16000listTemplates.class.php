@@ -44,8 +44,7 @@ class j16000listTemplates
 		$output['HLAST_WARNINGICON']=_JOMRES_LASTEDITED_WARNINGICON;
 		$output['EDITWARNINGNOTE']=_JOMRES_LASTEDITED_WARNING;
 		
-		jr_import('jomres_custom_template_handler');
-		$custom_templates = new jomres_custom_template_handler();
+		$custom_templates =jomres_getSingleton('jomres_custom_template_handler');
 
 		$frontendTemplatesFolder=JOMRES_TEMPLATEPATH_FRONTEND;
 		$d = @dir($frontendTemplatesFolder);

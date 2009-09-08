@@ -37,14 +37,13 @@ class j00030search {
 	 */
 	function j00030search($componentArgs)
 		{
+		global $jomresSearchFormname;
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		global $option,$jomresSearchFormname,$searchAll,$version;
 		$thisJRUser=jomres_getSingleton('jr_user');
-		global $jomresItemid;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
@@ -73,7 +72,7 @@ class j00030search {
 		else
 			{
 			//$customTextObj = new custom_text();
-			global $jomressession;
+			//global $jomressession;
 			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 			//$tmpBookingHandler = new jomres_temp_booking_handler();
 			$tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
@@ -86,7 +85,7 @@ class j00030search {
 			//$customTextObj = new custom_text();
 			}
 			
-		init_javascript($jrConfig,$thisJRUser,$version);
+		init_javascript();
 		//$runningMiniComp=false;
 		if ($calledByModule == "" && isset($_REQUEST['calledByModule']) )
 			{
@@ -132,7 +131,7 @@ class j00030search {
 			$sch = new jomSearch($calledByModule);
 			$sch->searchAll=$searchAll;
 			$searchOptions=$sch->searchOptions;
-			$h='<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.$jomresItemid.'"/>';
+			$h='<input type="hidden" name="calledByModule" value="'.$sch->calledByModule.'"/><input type="hidden" name="Itemid" value="'.$jrConfig['jomresItemid'].'"/>';
 			$output['HIDDEN']	= $h;
 			$jomresSearchFormname=$sch->formname;
 			$searchOutput=$sch->searchOutput;
@@ -659,7 +658,8 @@ class j00030search {
 			
 			if ($doSearch)
 				{
-				global $numberOfPropertiesInSystem;
+				//global $numberOfPropertiesInSystem;
+				$numberOfPropertiesInSystem = get_showtime('numberOfPropertiesInSystem');
 				if ($numberOfPropertiesInSystem > 1 && !$includedInModule && !isset($_REQUEST['calledByModule']) && !isset($_REQUEST['next']) && get_showtime('task')=="" )
 					{
 					$sch->jomSearch_random();

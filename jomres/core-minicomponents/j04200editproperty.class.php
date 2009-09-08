@@ -43,7 +43,8 @@ class j04200editproperty {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $selectedCountry;
+		//global $selectedCountry;
+		
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');

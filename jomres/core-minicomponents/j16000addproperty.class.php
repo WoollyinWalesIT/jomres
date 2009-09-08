@@ -32,12 +32,14 @@ class j16000addproperty
 			$this->template_touchable=false; return;
 			}
 
-		global $jrportalConfig;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		
 		jr_import('jrportal_crate_functions');
 		$crateFunctions=new jrportal_crate_functions();
 		$crateFunctions->getAllUnarchivedCrates();
 		$output['DEFAULTCREATE'] = _JRPORTAL_CONFIG_DEFAULT_CRATE;
-		$output['CRATE_DROPDOWN']=$crateFunctions->makeCrateDropdown($jrportalConfig['defaultCrate'],$idx=$p['id']);
+		$output['CRATE_DROPDOWN']=$crateFunctions->makeCrateDropdown($jrConfig['defaultCrate'],$idx=$p['id']);
 		jr_import('jrportal_user_functions');
 		$userFunctions=new jrportal_user_functions();
 		$output['HMANAGER'] = _JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN;
