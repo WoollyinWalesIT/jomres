@@ -72,6 +72,7 @@ class j06000mulistbookings {
 					foreach ($contracts as $c)
 						{
 						$mrConfig=getPropertySpecificSettings($c->property_uid);
+						
 						$counter++;
 						 if ($counter % 2)
 							$r['STYLE'] ="odd";
@@ -79,7 +80,12 @@ class j06000mulistbookings {
 							$r['STYLE'] ="even";
 						$currfmt = jomres_getSingleton('jomres_currency_format');
 						$currency=$mrConfig['currency'];
-						$r['PROPERTYNAME']=getPropertyNameNoTables($c->property_uid);
+						
+						$basic_property_details =jomres_getSingleton('basic_property_details');
+						$basic_property_details->gather_data($c->property_uid);
+		
+						$r['PROPERTYNAME']=$basic_property_details->property_name;
+
 						$r['ARRIVAL']=outputDate($c->arrival);
 						$r['DEPARTURE']=outputDate($c->departure);
 						$r['lastchanged']=$c->timestamp;

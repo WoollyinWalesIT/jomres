@@ -28,7 +28,8 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	
 	$property_uid = get_showtime('property_uid');
 	$customTextArray = $customTextObj->get_custom_text();
-	//echo $theConstant."<br>";
+	//var_dump($customTextArray);
+	//echo $theConstant." - ".$theValue." <br>";
 	//var_dump($customTextArray['_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION1']);
 	//echo "<br>";
 	//if ($theConstant =="_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION1" || $theConstant == "_JOMRES_SEARCH_ALL")
