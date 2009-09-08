@@ -41,8 +41,8 @@ class j06000show_hotel_details
 			exit;
 			}
 
-		$arbitrary_property_details =jomres_getSingleton('arbitrary_property_details');
-		$arbitrary_property_details->gather_data($property_uid);
+		$basic_property_details =jomres_getSingleton('basic_property_details');
+		$basic_property_details->gather_data($property_uid);
 
 		$output['HPROPERTYNAME']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);
 		$output['HSTREET']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET);
@@ -54,15 +54,15 @@ class j06000show_hotel_details
 		$output['HFAX']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX);
 		$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
 
-		$output['PROPERTY_NAME'] = $arbitrary_property_details->property_name;
-		$output['STREET']=$arbitrary_property_details->property_street;
-		$output['TOWN']=$arbitrary_property_details->property_town;
-		$output['REGION']=$arbitrary_property_details->property_region;
-		$output['COUNTRY']=$arbitrary_property_details->property_country;
-		$output['POSTCODE']=$arbitrary_property_details->property_postcode;
-		$output['TELEPHONE']=$arbitrary_property_details->property_tel;
-		$output['FAX']=$arbitrary_property_details->property_fax;
-		$output['EMAIL']=$arbitrary_property_details->property_email;
+		$output['PROPERTY_NAME'] = $basic_property_details->property_name;
+		$output['STREET']=$basic_property_details->property_street;
+		$output['TOWN']=$basic_property_details->property_town;
+		$output['REGION']=$basic_property_details->property_region;
+		$output['COUNTRY']=$basic_property_details->property_country;
+		$output['POSTCODE']=$basic_property_details->property_postcode;
+		$output['TELEPHONE']=$basic_property_details->property_tel;
+		$output['FAX']=$basic_property_details->property_fax;
+		$output['EMAIL']=$basic_property_details->property_email;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
