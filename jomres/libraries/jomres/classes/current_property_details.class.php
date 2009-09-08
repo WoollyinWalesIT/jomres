@@ -56,7 +56,6 @@ class current_property_details
 
 		foreach ($propertyData as $data)
 			{
-			
 			$this->property_name			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$this->property_uid,$data->property_name);
 			$this->property_street			=$data->property_street;
 			$this->property_town			=$data->property_town;

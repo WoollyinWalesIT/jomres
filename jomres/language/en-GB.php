@@ -6621,6 +6621,10 @@ define('_JOMRES_COM_FAUXHEADERS','Output Jomres javascript headers into the body
 * @ignore
 */
 define('_JOMRES_COM_FAUXHEADERS_DESC','Set this to Yes if you are having problems with mootools and Jomres\'s jQuery conflicting in IE. This will force Jomres to output the javascript calls within the body of the page instead of the HEAD area, which isn\'t valid html, however it seems to resolve the probems with jquery and mootools conflicting with each other.');
+
+
+// Jomres v4.2
+
 /**
 * @ignore
 */
@@ -6629,3 +6633,12 @@ define('_JOMRES_MANAGER_SHOWINVOICE','Show invoice');
 * @ignore
 */
 define('_JOMRES_MANAGER_SHOWINVOICES','Show invoices');
+
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_DANGERWILLROBINSON','Warning : ');
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ');

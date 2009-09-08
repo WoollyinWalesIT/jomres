@@ -94,6 +94,8 @@ $task 				= jomresGetParam( $_REQUEST, 'task', "" );
 $Itemid				= intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
 
 set_showtime('task',$task);
+set_showtime('no_html',$no_html);
+set_showtime('popup',$popup);
 
 if ($no_html == 1)
 	define ("JOMRES_NOHTML",1);
@@ -486,6 +488,7 @@ if (!defined('JOMRES_NOHTML'))
 				{
 				jr_import('jomres_cache');
 				$cache = new jomres_cache("manager_menu",0,true);
+				
 				$cacheContent = $cache->readCache();
 				if ($cacheContent)
 					echo $cacheContent;
@@ -494,6 +497,11 @@ if (!defined('JOMRES_NOHTML'))
 					$rows		=array();
 					$pageoutput	=array();
 					$output=array();
+					
+					jr_import('jomres_sanity_check');
+					$sanity_checks = new jomres_sanity_check();
+					$output['WARNINGS'] = $sanity_checks->do_sanity_checks();
+
 					$componentArgs['published']=$published;
 					$componentArgs['property_uid']=$property_uid;
 					$MiniComponents->triggerEvent('00011',$componentArgs); // 
