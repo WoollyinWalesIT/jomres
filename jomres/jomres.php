@@ -293,7 +293,7 @@ $customTextObj =jomres_getSingleton('custom_text');
 if (!empty($property_uid))
 	{
 	$customTextObj->get_custom_text_for_property($property_uid);
-	$current_property_details =jomres_getSingleton('current_property_details');
+	$basic_property_details =jomres_getSingleton('basic_property_details');
 	}
 
 if (!isset($jrConfig['useSSLinBookingform']) )

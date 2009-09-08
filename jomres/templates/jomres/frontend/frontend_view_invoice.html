@@ -1,7 +1,16 @@
 <patTemplate:tmpl name="pageoutput" >
 <a href="{PRINTLINK}" target="_blank">{PRINTTEXT}</a>
-{GUEST_DETAILS_TEMPLATE}
-{HOTEL_DETAILS_TEMPLATE}
+<table>
+	<tr>
+		<td>
+			{GUEST_DETAILS_TEMPLATE}
+		</td>
+		<td>
+			{HOTEL_DETAILS_TEMPLATE}
+		</td>
+	</tr>
+</table>
+
 <br/>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 <table class="jradmin_innerwrapper">
