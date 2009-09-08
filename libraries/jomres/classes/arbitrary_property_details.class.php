@@ -1,29 +1,25 @@
 <?php
 
-class current_property_details
+
+// This arbitrary class will be used seperate to the current_property_details class because it's possible in the future that we'll want to pull information about another property while working on a "main" one. 
+// It's also likely to be used by guest facing code where the guest isn't currently looking at any property, therefore jomres.php will not have identified a current property_uid to work from.
+
+class arbitrary_property_details
 	{
 	// Store the single instance of Database
 	private static $configInstance;
 	private static $internal_debugging;
-	
-	
+
 	public function __construct() 
 		{
-		$this->property_uid = (int)get_showtime('property_uid');
-		if ($this->property_uid === 0)
-			{
-			echo "Fatal Error, property uid not set, exiting";
-			exit;
-			}
 		self::$internal_debugging = false;
-		self::gather_data();
 		}
 
 	public static function getInstance()
 		{
 		if (!self::$configInstance)
 			{
-			self::$configInstance = new current_property_details();
+			self::$configInstance = new arbitrary_property_details();
 			}
 		return self::$configInstance;
 		}
@@ -50,9 +46,15 @@ class current_property_details
 		
 	public function gather_data($property_uid=0)
 		{
+		if ($this->property_uid === 0)
+			{
+			echo "Fatal Error, arbritrary property uid not set, exiting";
+			exit;
+			}
 		if ($property_uid == $this->property_uid) // No need to re-gather the info
 			return true;
-
+		$this->property_uid = (int)$property_uid;
+		
 		$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
 		$propertyData=doSelectSql($query);
 

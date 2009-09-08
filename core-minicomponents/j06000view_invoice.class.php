@@ -40,12 +40,11 @@ class j06000view_invoice {
 		$popup		= intval(jomresGetParam( $_REQUEST, 'popup', 0 ));
 		
 		// a quick anti hack check
-		$userid= $thisJRUser->id;
-		
+
 		if ($thisJRUser->userIsManager)
 			{
-			$defaultProperty=getDefaultProperty();
-			$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".$defaultProperty;
+			$property_uid=getDefaultProperty();
+			$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".(int)$property_uid;
 			$result = doSelectSql($query,1);
 			if (!$result)
 				{
@@ -55,6 +54,7 @@ class j06000view_invoice {
 			}
 		else
 			{
+			$userid= $thisJRUser->id;
 			$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
 			$result=doSelectSql($query);
 			if (count($result)<1 || count($result)>1)
@@ -69,7 +69,7 @@ class j06000view_invoice {
 			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
 			$output['PRINTTEXT'] =_JOMRES_COM_INVOICE_TITLE;
 			}
-			
+
 		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
 
@@ -78,11 +78,12 @@ class j06000view_invoice {
 			$invoice->id = $id;
 			$invoice->getInvoice();
 			}
-			
-		$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$invoice->cms_user_id."'  AND property_uid = '".(int)$defaultProperty."'";
+
+		$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$invoice->cms_user_id."'  AND property_uid = '".(int)$invoice->property_uid."'";
 		$guest_uid =doSelectSql($query,1);
 
 		$output['GUEST_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
+		$output['HOTEL_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
 
 		$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 		$output['LIVESITE']=get_showtime('live_site');
@@ -138,13 +139,20 @@ class j06000view_invoice {
 
 		if (!$thisJRUser->userIsManager)
 			{
-			if ($invoice->subscription == "0" && $invoice->status != "1")
+			$settingArray = get_plugin_settings("paypal",$invoice->property_uid);
+			if ($settingArray)
 				{
-				$ip=array();
-				$immediate_pay=array();
-				$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
-				$ip['INV_ID']	=$invoice->id;
-				$immediate_pay[]=$ip;
+				if (isset($settingArray['active']) && $settingArray['active'] == "1")
+					{
+					if ($invoice->subscription == "0" && $invoice->status != "1")
+						{
+						$ip=array();
+						$immediate_pay=array();
+						$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
+						$ip['INV_ID']	=$invoice->id;
+						$immediate_pay[]=$ip;
+						}
+					}
 				}
 			}
 			
@@ -178,7 +186,7 @@ class j06000view_invoice {
 			}
 
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
-			
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

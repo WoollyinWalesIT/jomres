@@ -33,10 +33,32 @@ class j06000show_guest_details
 			$this->template_touchable=false; return;
 			}
 			
+		$thisJRUser=jomres_getSingleton('jr_user');
+		
 		$guestUid= $componentArgs['guest_uid'];
-		$defaultProperty=getDefaultProperty();
-
-		$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$defaultProperty."'";
+		if ($thisJRUser->userIsManager)
+			{
+			$property_uid=getDefaultProperty();
+			$query="SELECT guests_uid FROM #__jomres_guests WHERE `guests_uid`= ".(int)$guestUid." AND `property_uid` = ".(int)$property_uid." ";
+			$result=doSelectSql($query);
+			if (count($result)<1 || count($result)>1)
+				{
+				trigger_error ("Unable to view guest details, either guest id not found, or guest id tampered with.", E_USER_ERROR);
+				return;
+				}
+			}
+		else
+			{
+			$userid= $thisJRUser->id;
+			$query="SELECT guests_uid FROM #__jomres_guests WHERE `mos_userid`= ".(int)$userid."";
+			$result=doSelectSql($query);
+			if (count($result)<1)
+				{
+				trigger_error ("Unable to view guest details, either guest id not found, or guest id tampered with.", E_USER_ERROR);
+				return;
+				}
+			}
+		$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guests WHERE guests_uid = ".(int)$guestUid."";
 		$guestData =doSelectSql($query);
 		$numberOfReturns=count($guestData);
 		if ($numberOfReturns>0)
@@ -75,7 +97,7 @@ class j06000show_guest_details
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'show_guest_details.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$this->retVals=$tmpl->getParsedTemplate();
