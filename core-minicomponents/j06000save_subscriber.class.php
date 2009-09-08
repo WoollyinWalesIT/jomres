@@ -134,8 +134,7 @@ class j06000save_subscriber
 		
 	function sendNewSubscription($subscription,$subscriber,$invoice_id,$init_total,$recur_total)
 		{
-		global $jomresConfig_sitename,$Itemid;
-
+		$jomresConfig_sitename=get_showtime('sitename');
 		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings=$paypal_settings->paypalConfigOptions;

@@ -661,11 +661,6 @@ class dobooking
 	 */
 	function makeStringSafe($data)
 		{
-		//global $database;
-		if (defined('_JOMRES_NEWJOOMLA') )
-			jimport('phpinputfilter.inputfilter');
-		//$noHtmlFilter = new InputFilter( /* $tags, $attr, $tag_method, $attr_method, $xss_auto */ );
-		//$data = $noHtmlFilter->process( $data );
 		$data=getEscaped( $data );
 		return $data;
 		}
@@ -724,7 +719,7 @@ class dobooking
 
 	/**
 	#
-	 * Updates the debug log with a message
+	 * Updates the debug log with a message - Depreciated
 	#
 	 */
 	function errorLogDb($error)
@@ -2158,8 +2153,8 @@ class dobooking
 	function outputDate($thedate)
 		{
 		// Assumes the date $theDate comes from the system in the format yyyy/mm/dd
-		global $jomresConfig_locale;
-		setlocale(LC_ALL, $jomresConfig_locale);
+		//global $jomresConfig_locale;
+		//setlocale(LC_ALL, $jomresConfig_locale);
 		$date_elements  = explode("/",$thedate);
 		$unixDate= adodb_mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 		if ($this->cfg_dateFormatStyle=="1")
@@ -2732,9 +2727,8 @@ class dobooking
 	 */
 	function AJgetGuestDropdown()
 		{
-		global $property_uid;
 		$dropDownList="";
-		$query = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid = '$property_uid' ORDER BY surname";
+		$query = "SELECT guests_uid,surname, firstname, house, street,town,county FROM #__jomres_guests WHERE property_uid = '$this->property_uid' ORDER BY surname";
 		$existingCustomers=doSelectSql($query);
 		$ec=array();
 		if (count($existingCustomers)>0 )

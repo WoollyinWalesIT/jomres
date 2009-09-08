@@ -106,7 +106,8 @@ class j02260editbooking {
 			{
 			$MiniComponents =jomres_getSingleton('mcHandler');
 			$mrConfig=getPropertySpecificSettings();
-			global $popup;
+			$popup-get_showtime('popup');
+			
 			$thisJRUser=jomres_getSingleton('jr_user');
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")

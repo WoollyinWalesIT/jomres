@@ -116,7 +116,7 @@ class j06000cancelGuestBooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
-			global $popup;
+			$popup=get_showtime('popup');
 			$mrConfig=getPropertySpecificSettings();
 			$defaultProperty=getDefaultProperty();
 			if ($defaultProperty=="0")

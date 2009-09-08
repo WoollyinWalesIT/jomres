@@ -11,8 +11,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 	function readTemplates($templatename)
 		{
 		$default_root = $this->_options[root]['__default'];
-		jr_import('jomres_custom_template_handler');
-		$custom_templates = new jomres_custom_template_handler();
+		$custom_templates =jomres_getSingleton('jomres_custom_template_handler');
 		if ($templatename != "srch.html")
 			{
 			if (file_exists($custom_templates->default_template_files_folder.JRDS.$templatename))

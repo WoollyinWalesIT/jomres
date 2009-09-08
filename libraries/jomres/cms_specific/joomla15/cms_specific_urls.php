@@ -22,8 +22,6 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-global $jomresItemid;
-
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
@@ -55,6 +53,8 @@ if ($jomresItemid == 0)
 	else
 		$jomresItemid = $jrConfig['jomresItemid'];
 	}
+	
+$jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
 
 $index = "index.php";
 $tmpl="";

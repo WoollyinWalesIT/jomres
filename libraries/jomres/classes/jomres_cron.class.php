@@ -67,8 +67,7 @@ class jomres_cron
 
 	function getAllJobs()
 		{
-		//j06000cron_
-		global $MiniComponents;
+		$MiniComponents =jomres_getSingleton('mcHandler');
 		$allJobs=array();
 		foreach ($MiniComponents->registeredClasses as $key=>$val)
 			{
@@ -179,7 +178,7 @@ class jomres_cron
 	// We will use jomresConfig_secret to prevent outsiders from triggering a specific cron job remotely. The cron 6000 minicomponent can be edited to disable this check if the developer wants to run the job manually while testing
 	function runDueJobs()
 		{
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		if (count($this->dueJobs) > 0)
 			{
 			foreach ($this->dueJobs as $job)

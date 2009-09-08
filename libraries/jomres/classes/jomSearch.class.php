@@ -37,7 +37,7 @@ class jomSearch {
 	function jomSearch($calledByModule)
 		{
 		//var_dump($searchOptions);
-		global $searchAll;
+		$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->formname="";
@@ -828,7 +828,7 @@ function prepFeatureSearch()
 function prepRoomtypeSearch()
 	{
 	// Prepares the Room type data required for a search
-	global $searchAll;
+	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 	$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = '0' ORDER BY room_class_abbv ";
 	$roomTypeList=doSelectSql($query);
 	$result=array();
@@ -934,7 +934,7 @@ function prepAvailabilitySearch()
 function prepPropertyTypeSearch()
 	{
 	// Prepares the PropertyType data required for a search
-	global $searchAll;
+	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 	$query="SELECT id, ptype,ptype_desc FROM #__jomres_ptypes WHERE published = '1' ORDER BY `ptype` ASC";
 	$ptypeList = doSelectSql($query);
 	$result=array();
@@ -968,7 +968,7 @@ function prepPropertyTypeSearch()
 function prepPriceRangeSearch($increments=10)
 	{
 	// Prepares the PropertyType data required for a search
-	global $searchAll;
+	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 
 	$query = "SELECT DISTINCT roomrateperday FROM #__jomres_rates ORDER by roomrateperday";
 	$rateList = doSelectSql($query);

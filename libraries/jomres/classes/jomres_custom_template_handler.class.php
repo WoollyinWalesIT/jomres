@@ -40,16 +40,16 @@ class jomres_custom_template_handler
 		{
 		if (!$specific_path)
 			$this->default_template_files_folder = JOMRES_TEMPLATEPATH_FRONTEND;
-		$this->custom_templates=array();
+		
 		$this->custom_template = array();
 		$this->getAllCustomTemplates();
 		}
 
 	function getAllCustomTemplates()
 		{
-		global $jomres_custom_templates;
-		if (!isset($jomres_custom_templates))
+		if (!isset($this->custom_templates))
 			{
+			$this->custom_templates=array();
 			$query = "SELECT template_name,value FROM #__jomres_custom_templates";
 			$templates = doSelectSql($query);
 			if (count($templates)>0)
@@ -62,7 +62,6 @@ class jomres_custom_template_handler
 			}
 		else
 			$this->custom_templates=$jomres_custom_templates;
-		$jomres_custom_templates=$this->custom_templates;
 		}
 
 	function hasThisTemplateBeenCustomised($templatename)

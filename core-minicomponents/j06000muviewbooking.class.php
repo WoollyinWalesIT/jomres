@@ -131,7 +131,7 @@ class j06000muviewbooking {
 
 		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
 			{
-			global $popup;
+			$popup=get_showtime('popup');
 			$mrConfig=getPropertySpecificSettings();
 			$guest_firstname="N/A";
 			$guest_surname="N/A";

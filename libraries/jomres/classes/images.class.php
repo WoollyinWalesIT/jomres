@@ -83,6 +83,7 @@ class images{
 	**/
 	function getImageFromPost($formElement,$open=true)
 		{
+		
 		$error = false;
 		$errorDesc = "";
 		
@@ -116,8 +117,7 @@ class images{
 							{
 							$error=true;
 							$errorDesc="<br/>";
-							global $my;
-							trigger_error ("Unable to upload image, <b>Could not determine image size. Possible hack attempt </b> ".$_FILES[$formElement]['name']." User id ".$my->id, E_USER_ERROR);
+							trigger_error ("Unable to upload image, <b>Could not determine image size. Possible hack attempt </b> ".$_FILES[$formElement]['name'], E_USER_ERROR);
 							} 
 						else
 							{

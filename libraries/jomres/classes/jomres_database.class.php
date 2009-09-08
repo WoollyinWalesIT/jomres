@@ -27,14 +27,13 @@ class jomres_database
 	{
 	function jomres_database()
 		{
-		global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 		$this->system_tables=array();
 		$this->error = null;
 		$this->result=null;
-		mysql_connect($jomresConfig_host,$jomresConfig_user,$jomresConfig_password) or die('Could not connect ' . mysql_error());
-		mysql_select_db($jomresConfig_db) or die('Could not select database');
+		mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
+		mysql_select_db(get_showtime('db')) or die('Could not select database');
 		mysql_query("SET NAMES 'UTF8'");
-		$this->db_prefix=$jomresConfig_dbprefix;
+		$this->db_prefix=get_showtime('dbprefix');
 		}
 
 	function query()

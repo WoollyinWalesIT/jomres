@@ -44,7 +44,7 @@ class j06000contactowner {
 			{
 			$this->template_touchable=true; return;
 			}
-		global $jomresConfig_secret;
+		$jomresConfig_secret = get_showtime('secret');
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->_remove_old_captcha_files();
@@ -192,8 +192,9 @@ class j06000contactowner {
 	// We'll remove old capcha images if they're older than X
 	function _remove_old_captcha_files()
 		{
-		global $jomresConfig_lifetime;
-		$this->timeout = $jomresConfig_lifetime*60;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		$this->timeout = $jrConfig['lifetime'];
 		// $this->timeout = 60; // For testing
 		$d = @dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
 		$docs = array();

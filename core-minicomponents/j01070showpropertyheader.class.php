@@ -44,7 +44,6 @@ class j01070showpropertyheader
 			{
 			$this->template_touchable=false; return;
 			}
-		global $thisJomresPropertyDetails;
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();

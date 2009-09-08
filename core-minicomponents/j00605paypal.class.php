@@ -44,7 +44,8 @@ class j00605paypal {
 			$this->template_touchable=false; return;
 			}
 
-		global $jomresConfig_sitename;
+		//global $jomresConfig_sitename;
+		$jomresConfig_sitename = get_showtime('sitename');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
