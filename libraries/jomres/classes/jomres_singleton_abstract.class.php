@@ -60,9 +60,9 @@ class jomres_singleton_abstract2
 		}
 }
 
-function jomres_getSingleton($class)
+function jomres_getSingleton($class,$args=array() )
 	{
-	$result = jomres_singleton_abstract2::getInstance($class);
+	$result = jomres_singleton_abstract2::getInstance($class,$args);
 	return $result;
 	}
 ?>

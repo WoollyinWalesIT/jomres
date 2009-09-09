@@ -44,13 +44,51 @@ class j06000save_subscriber
 		if ( strlen($firstname) ==0 || strlen($surname) ==0 ||strlen($address) ==0 ||strlen($country) ==0 || strlen($postcode) ==0 )
 			{
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=subscribe&firstname=".$firstname."&surname=".$surname."&address=".$address."&country=".$country."&postcode=".$postcode."&id=".$package_id), "" );
+			exit;
 			}
 
 		if ( $package_id == 0 )
 			{
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID);
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
+			exit;
 			}
+		$all_packages = subscriptions_packages_getallpackages();
 		
+		if (!array_key_exists($package_id,$all_packages))
+			{
+			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID);
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
+			exit;
+			}
+		// Now we need to check and see if there is a freebie subscription package. If so, we then need to see if the subscriber is already subscribed to it.
+		$subscribing_to_freebie = false;
+		// Now, do we have a trial package?
+		$trial_package_exists = subscriptions_check_for_freebie_package($all_packages);
+		if ($trial_package_exists && $package_id == $trial_package_exists)
+			$subscribing_to_freebie = true;
+		
+		if (subscribers_thisUserIsASubscriber())
+			{
+			$users_subscriptions = subscribers_getCurrentSubscriptionsForJosId($thisJRUser->id);
+			if (count($users_subscriptions)>0)
+				{
+				foreach ($users_subscriptions as $sub)
+					{
+					// Status 2 = cancelled Status 3 = eot
+					if ($package_id == (int)$sub['package_id'] && (int)$sub['status'] < 2)
+						{
+						$jomres_messaging =jomres_getSingleton('jomres_messages');
+						$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE);
+						jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
+						exit;
+						}
+					}
+				}
+			}
+
 		jr_import('jrportal_subscribers');
 		$subscriber = new jrportal_subscribers();
 		$user=subscribers_getSubscriberDetailsForJosId($thisJRUser->id);
@@ -75,11 +113,12 @@ class j06000save_subscriber
 		$package->id = $package_id;
 		if ($package->getSubscriptionPackage() )
 			{
-			jr_import('jrportal_subscriptions_packages');
+			jr_import('jrportal_subscriptions');
 			$subscription = new jrportal_subscriptions();
 			$subscription->cms_user_id	= $thisJRUser->id;
 			
 			$subscription->cms_user_id	= $thisJRUser->id;
+			$subscription->package_id	= $package->id;
 			$subscription->name			= $package->name;
 			$subscription->description	= $package->description;
 			$subscription->frequency	= $package->frequency;
@@ -128,7 +167,46 @@ class j06000save_subscriber
 			$invoice_handler->create_new_invoice($invoice_data,$line_items);
 			$invoice_handler->subscription_id=$subscription->id;
 			$invoice_handler->mark_invoice_pending();
-			$this->sendNewSubscription($subscription,$subscriber,$invoice_handler->id,$invoice_handler->init_total,$invoice_handler->recur_total);
+			if (!$subscribing_to_freebie)
+				$this->sendNewSubscription($subscription,$subscriber,$invoice_handler->id,$invoice_handler->init_total,$invoice_handler->recur_total);
+			else
+				{
+				// We need a dummy transaction it
+				$keeplooking=true;
+				$dummy_txn_id = "XXXXXXXX DUMMY ".mt_rand ( 10000000,99999999 );
+				while ($keeplooking):
+					
+					$query = 'SELECT transaction_id FROM #__invoices_transactions WHERE payment_ref = "'.$dummy_txn_id.'" AND payment_result = "Payment: Completed"';
+					$transaction = doSelectSql($query);
+					if (count($transaction)==0)
+						$keeplooking=false;
+					$dummy_txn_id="XXXXXXXX DUMMY ".mt_rand ( 10000000,99999999 );
+				endwhile;
+					
+				
+				jr_import('jomres_gateway_handler');
+				$transaction = new jomres_gateway_handler();
+				$internal_call_arguments = array ();
+				$internal_call_arguments['pp_sent_invoice_id']=$invoice_handler->id;
+				$internal_call_arguments['pp_sent_receiver_email']=$transaction->paypal_settings['email'];
+				$internal_call_arguments['pp_sent_txn_id']=$dummy_txn_id;
+				$internal_call_arguments['pp_sent_mc_gross']=$subscription->trial_amount;
+				$internal_call_arguments['pp_sent_mc_fee']="0.00";
+				$internal_call_arguments['pp_sent_mc_currency']=$transaction->paypal_settings['currencycode'];
+				$internal_call_arguments['pp_sent_payment_status']="Completed";
+				$internal_call_arguments['pp_sent_subscr_id']="XXXX";
+				$internal_call_arguments['pp_sent_subscr_effective']=""; // Not used here
+				$internal_call_arguments['pp_sent_retry_at']=""; //Not used here 
+				$internal_call_arguments['pp_sent_pending_reason']=""; //Not used here
+				$internal_call_arguments['pp_sent_reason_code']=""; // Not used here
+				$internal_call_arguments['pp_sent_txn_type']="subscr_signup";
+				$internal_call_arguments['pp_sent_custom_subscription_id']=$subscription->id;
+
+				$transaction->callback(true,$internal_call_arguments);
+				
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), "" );
+				exit;
+				}
 			}
 		}
 		

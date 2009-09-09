@@ -161,11 +161,12 @@ function init_javascript()
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jeditable.pack.js");
 
+			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.jgrowl.css');
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jgrowl.js");
 			if ($thisJRUser->userIsManager)
 				{
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"MiniColorPicker.js");
-				jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.jgrowl.css');
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jgrowl.js");
+
 				}
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"excanvas.compiled.js");
 			}
@@ -4157,17 +4158,25 @@ function subscribers_getManagersPublishedProperties($cms_user_id)
 	$managersProperties=doSelectSql($query);
 	$mp=array();
 	$published_properties=array();
-	foreach ($managersProperties as $p)
+	if (count($managersProperties) >0)
 		{
-		$mp[]=(int)$p->property_uid;
+		foreach ($managersProperties as $p)
+			{
+			$mp[]=(int)$p->property_uid;
+			}
 		}
+	else
+		return array();
 	$clause = "WHERE ";
 	$clause .= genericOr($mp,'propertys_uid')." AND published = 1";
 	$query="SELECT propertys_uid FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);
 	$jomresPropertyList=doSelectSql($query);
-	foreach($jomresPropertyList as $p)
+	if (count($jomresPropertyList) >0)
 		{
-		$published_properties[]=(int)$p->propertys_uid;
+		foreach($jomresPropertyList as $p)
+			{
+			$published_properties[]=(int)$p->propertys_uid;
+			}
 		}
 	return $published_properties;
 	}
@@ -4179,7 +4188,6 @@ function subscribers_checkUserHasSubscriptionsToCreateNewProperty($id=0)
 		$id=$thisJRUser->id;
 	$allowedProperties = subscribers_getAvailablePropertySlots($id);
 	$existingProperties = subscribers_getManagersPublishedProperties($id);
-
 	if ($allowedProperties > count($existingProperties))
 		return true;
 	else
@@ -4221,6 +4229,36 @@ function subscribers_getCurrentPropertiesNumbers($id=0)
 		return 0;
 	}
 	
+function subscribers_getCurrentSubscriptionsForJosId($id=0)
+	{
+	$users_subscriptions=array();
+	$thisJRUser=jomres_getSingleton('jr_user');
+	if ($id == 0)
+		$id=$thisJRUser->id;
+	$query="SELECT * FROM #__jomresportal_subscriptions WHERE cms_user_id =".(int)$id;
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$users_subscriptions[$r->id]['id']						= (int)$r->id;
+			$users_subscriptions[$r->id]['cms_user_id']				= (int)$r->cms_user_id;
+			$users_subscriptions[$r->id]['gateway_subscription_id']	= (string)$r->gateway_subscription_id;
+			$users_subscriptions[$r->id]['package_id']				= (string)$r->package_id;
+			$users_subscriptions[$r->id]['name']					= (string)$r->name;
+			$users_subscriptions[$r->id]['description']				= (string)$r->description;
+			$users_subscriptions[$r->id]['frequency']				= (string)$r->frequency;
+			$users_subscriptions[$r->id]['trial_period']			= (string)$r->trial_period;
+			$users_subscriptions[$r->id]['trial_amount']			= (string)$r->trial_amount;
+			$users_subscriptions[$r->id]['full_amount']				= (string)$r->full_amount;
+			$users_subscriptions[$r->id]['rooms_limit']				= (string)$r->rooms_limit;
+			$users_subscriptions[$r->id]['property_limit']			= (string)$r->property_limit;
+			$users_subscriptions[$r->id]['status']					= (string)$r->status;
+			$users_subscriptions[$r->id]['raised_date']				= (string)$r->raised_date;
+			}
+		}
+	return $users_subscriptions;
+	}
 	
 function subscribers_getSubscriberDetailsForJosId($id)
 	{
@@ -4250,6 +4288,20 @@ function subscribers_getSubscriberDetailsForJosId($id)
 		}
 	else
 		return false;
+	}
+	
+function subscriptions_check_for_freebie_package($all_packages=array())
+	{
+	if (count($all_packages)==0)
+		$all_packages = subscriptions_packages_getallpackages();
+	if (count($all_packages)==0)
+		return false;
+	foreach ($all_packages as $package)
+		{
+		if ((float)$package['trial_amount'] == 0.00 && (float)$package['full_amount'] == 0.00)
+			return $package['id'];
+		}
+	return false;
 	}
 
 function subscriptions_packages_getallpackages()

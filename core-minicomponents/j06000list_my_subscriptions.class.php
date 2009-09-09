@@ -22,8 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j16000edit_subscription_package {
-	function j16000edit_subscription_package()
+class j06000list_my_subscriptions
+	{
+	function j06000list_my_subscriptions()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -31,71 +32,68 @@ class j16000edit_subscription_package {
 			{
 			$this->template_touchable=false; return;
 			}
-
-		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
+		$thisJRUser=jomres_getSingleton('jr_user');
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		
-		jr_import('jrportal_subscriptions_packages');
-		$package = new jrportal_subscriptions_packages();
-
-		if ($id > 0)
+		$task 				= get_showtime('task');
+		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
 			{
-			$package->id = $id;
-			$package->getSubscriptionPackage();
+			if ($thisJRUser->accesslevel == 2)
+				{
+				$users_subscriptions=subscribers_getCurrentSubscriptionsForJosId($jrConfig->id);
+				
+				}
+			else
+				return;
 			}
-
-		$output['PAGETITLE']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE;
+		else
+			return;
+			
+		$output=array();
+		$pageoutput=array();
+		$rows=array();
+		
+		$currfmt = jomres_getSingleton('jomres_currency_format',2);
+		
+		$output['PAGETITLE']		=_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS;
 		$output['HNAME']			=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME;
 		$output['HDESCRIPTION']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_DESCRIPTION;
-		$output['HPUBLISHED']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PUBLISHED;
 		$output['HFREQUENCY']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY;
 		$output['HTRIALPERIOD']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD;
 		$output['HTRIALAMOUNT']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALAMOUNT;
 		$output['HFULLAMOUNT']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FULLAMOUNT;
-		$output['HROOMSLIMIT']		=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_ROOMSLIMIT;
 		$output['HPROPERTYLIMIT']	=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PROPERTYLIMIT;
+		$output['HSTATUS']			=_JOMRES_COM_MR_VIEWBOOKINGS_STATUS;
+		$output['STATUSEXPL']		=_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL;
 		
-		$output['FREQUENCY_DESC']	=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY_DESC;
-		$output['TRIALPERIOD_DESC']	=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD_DESC;
-		$output['FREEBIENOTES']	=_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_FREEBIENOTES;
-
-
-		$output['ID']				=$package->id;
-		$output['NAME']				=$package->name;
-		$output['DESCRIPTION']		=$package->description;
-		$output['PUBLISHED']		=$package->published;
-		$output['FREQUENCYDROPDOWN']=subscriptions_packages_makefrequencyDropdown($package->frequency);
-		$output['TRIALPERIODDROPDOWN']=subscriptions_packages_maketrialperiodDropdown($package->trial_period);
-		$output['TRIALAMOUNT']		=$package->trial_amount;
-		$output['FULLAMOUNT']		=$package->full_amount;
-		$output['ROOMSLIMIT']		=subscriptions_packages_makeroomslimitDropdown( $package->rooms_limit );
-		$output['PROPERTYLIMIT']	=subscriptions_packages_makepropertylimitDropdown( $package->property_limit );
-		$output['TAXCODEDROPDOWN']		=taxrates_makerateDropdown(array(),$package->tax_code_id);
-			
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
-		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_subscription_package');
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=list_subscription_packages",'');
-		if ($id > 0)
-			$jrtb .= $jrtbar->toolbarItem('delete',JOMRES_SITEPAGE_URL_ADMIN."&task=delete_subscription_package".jomresURLToken()."&no_html=1&id=".$id,'');
-		$jrtb .= $jrtbar->endTable();
-		$output['JOMRESTOOLBAR']=$jrtb;
-
-		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
-		
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		foreach ($users_subscriptions as $users_subscription)
+			{
+			$r=array();
+			$r['NAME']			=$users_subscription['name'];
+			$r['DESCRIPTION']	=$users_subscription['description'];
+			$r['FREQUENCY']		=$users_subscription['frequency'];
+			$r['TRIALPERIOD']	=$users_subscription['trial_period'];
+			$r['TRIALAMOUNT']	=$jrConfig['globalCurrency'].$currfmt->get_formatted($users_subscription['trial_amount']);
+			$r['FULLAMOUNT']	=$jrConfig['globalCurrency'].$currfmt->get_formatted($users_subscription['full_amount']);
+			$r['STATUS']		=$users_subscription['status']."  ";
+			$r['PROPERTYLIMIT']	=$users_subscription['property_limit'];
+			$rows[]=$r;
+			}
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'edit_subscription_package.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( 'frontend_list_my_subscriptions.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();
 		}
-
+	
+	
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return null;
-		}
+		}	
 	}
-?>

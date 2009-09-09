@@ -6532,7 +6532,7 @@ define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1',"You need a valid subscript
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2'," published property(s). ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2'," <i>published</i> property(s). ");
 /**
 * @ignore
 */
@@ -6642,3 +6642,24 @@ define('_JOMRES_WARNINGS_DANGERWILLROBINSON','Warning : ');
 * @ignore
 */
 define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ');
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_FREEBIENOTES',"You can have one free package on the system if you wish, by creating a package and setting both the trial amount and the full amount to 0.00");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID',"Sorry, but that package ID is not recognised.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE',"Sorry, you are already subscribed to a free package, you cannot subscribe to that package again.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL'," Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"My Subscriptions");
