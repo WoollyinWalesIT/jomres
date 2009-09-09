@@ -3042,7 +3042,7 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 */
 function getPropertySpecificSettings($property_uid=null)
 	{
-	$mrConfig=getPropertySpecificSettings();
+	global $mrConfig;
 	$propertyConfig = jomres_getSingleton('jomres_config_property_singleton');
 	if ($propertyConfig->property_uid == 0)
 		$propertyConfig->init($property_uid);
