@@ -248,13 +248,35 @@ function doTableUpdates()
 		$cron = new jomres_cron($displayLog);
 		$cron->addJob("subscriptions","D","");
 		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('0','useSubscriptions')";
-		echo "Setting $key to $val";echo "<br>";
+		//echo "Setting $key to $val";echo "<br>";
 		}
 	alterPropertyLatLongToChar12();
 	if (!checkExtrasTaxrateColExists() )
 		alterExtrasTaxrateCol();
+	if (!checkSubscribersSubscriptionPackageIdColExists() )
+		alterSubscribersSubscriptionPackageIdCol();
 	}
 
+function alterSubscribersSubscriptionPackageIdCol()
+	{
+	echo "Editing __jomresportal_subscriptions table adding tax_rate column<br>";
+	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `package_id` INT NULL DEFAULT '0' AFTER `gateway_subscription_id` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_subscriptions package_id</b><br>";
+	}
+
+function checkSubscribersSubscriptionPackageIdColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomresportal_subscriptions LIKE 'package_id'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+	
+	
 function alterExtrasTaxrateCol()
 	{
 	echo "Editing __jomres_extras table adding tax_rate column<br>";
@@ -265,7 +287,7 @@ function alterExtrasTaxrateCol()
 
 function checkExtrasTaxrateColExists()
 	{
-	$query="SHOW COLUMNS FROM #__jomres_extras LIKE 'last_edited'";
+	$query="SHOW COLUMNS FROM #__jomres_extras LIKE 'tax_rate'";
 	$result=doSelectSql($query);
 	if (count($result)>0)
 		{
