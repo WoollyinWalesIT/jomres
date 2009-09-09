@@ -28,6 +28,7 @@ class jrportal_subscriptions
 		$this->id					= 0;
 		$this->cms_user_id			= 0;
 		$this->gateway_subscription_id	= '';
+		$this->package_id			= 0;
 		$this->name					= '';
 		$this->description			= '';
 		$this->frequency			= "M";
@@ -49,7 +50,7 @@ class jrportal_subscriptions
 		if ($this->id > 0 )
 			{
 			$query = "SELECT
-				`id`,`cms_user_id`,`gateway_subscription_id`,`name`,`description`,`frequency`,`trial_period`,`trial_amount`,`full_amount`,`rooms_limit`,`property_limit`,`status`,`raised_date`
+				`id`,`cms_user_id`,`gateway_subscription_id`,`package_id`,`name`,`description`,`frequency`,`trial_period`,`trial_amount`,`full_amount`,`rooms_limit`,`property_limit`,`status`,`raised_date`
 				FROM #__jomresportal_subscriptions WHERE `id`=".(int)$this->id." LIMIT 1";
 
 			$result=doSelectSql($query);
@@ -60,6 +61,7 @@ class jrportal_subscriptions
 					$this->id					= (int)$r->id;
 					$this->cms_user_id			= (int)$r->cms_user_id;
 					$this->gateway_subscription_id= (string)$r->gateway_subscription_id;
+					$this->package_id			= (int)$r->package_id;
 					$this->name					= (string)$r->name;
 					$this->description			= (string)$r->description;
 					$this->frequency			= (string)$r->frequency;
@@ -77,7 +79,7 @@ class jrportal_subscriptions
 				{
 				if (count($result)==0)
 					{
-					error_logging(  "No Subscriptions were found with that id");
+					error_logging(  "No Subscriptions were found with that id ".$query);
 					return false;
 					}
 				if (count($result)> 1)
@@ -102,6 +104,7 @@ class jrportal_subscriptions
 				(
 				`cms_user_id`,
 				`gateway_subscription_id`,
+				`package_id`,
 				`name`,
 				`description`,
 				`frequency`,
@@ -117,6 +120,7 @@ class jrportal_subscriptions
 				(
 				'".(int)$this->cms_user_id."',
 				'".(string)$this->gateway_subscription_id."',
+				'".(int)$this->package_id."',
 				'".(string)$this->name."',
 				'".(string)$this->description."',
 				'".(string)$this->frequency."',
@@ -153,6 +157,8 @@ class jrportal_subscriptions
 			$query="UPDATE #__jomresportal_subscriptions SET
 				`cms_user_id` 			= '".(int)$this->cms_user_id."',
 				`gateway_subscription_id`= '".(string)$this->gateway_subscription_id."',
+				
+				`package_id` 			= '".(int)$this->package_id."',
 				`name` 					= '".(string)$this->name."',
 				`description` 			= '".(string)$this->description."',
 				`frequency` 			= '".(string)$this->frequency."',

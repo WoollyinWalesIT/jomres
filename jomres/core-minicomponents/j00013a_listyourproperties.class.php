@@ -40,7 +40,8 @@ class j00013a_listyourproperties
 			return;
 		if ($jrConfig['useSubscriptions']=="1")
 			{
-			if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )
+			//if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )
+			if ($thisJRUser->accesslevel == 2)
 				{
 				$allowedProperties = subscribers_getAvailablePropertySlots($thisJRUser->id);
 				$existingProperties = subscribers_getManagersPublishedProperties($thisJRUser->id);
@@ -48,10 +49,6 @@ class j00013a_listyourproperties
 				echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4.count($existingProperties)._JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5;
 				if ($allowedProperties == $existingProperties)
 					echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3;
-				if ($task != "listyourproperties")
-					echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6;
-				if ($task != "list_subscription_packages")
-				echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7;
 				}
 			}
 		$rows=array();
