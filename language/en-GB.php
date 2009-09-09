@@ -6666,3 +6666,19 @@ define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL'," Status <b>0:</b> Pending payment 
 * @ignore
 */
 define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"My Subscriptions");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESS','Your business details');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESS_NAME','business name');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESS_VATNO','VAT number');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESSADDRESS','Building number');

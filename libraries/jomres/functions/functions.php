@@ -4394,7 +4394,7 @@ function taxrates_getalltaxrates()
 	return $rates;
 	}
 	
-function taxrates_makerateDropdown( $rates=array(),$selected='0' )
+function taxrates_makerateDropdown( $rates=array(),$selected='0',$name='taxrate' )
 	{
 	$ratesOptions=array();
 	$ratesDropdown="";
@@ -4410,7 +4410,7 @@ function taxrates_makerateDropdown( $rates=array(),$selected='0' )
 			{
 			$ratesOptions[]=jomresHTML::makeOption( $r['id'], $r['code']." ".$r['description'] );
 			}
-		$ratesDropdown= jomresHTML::selectList($ratesOptions, 'taxrate', 'class="inputbox" size="1"', 'value', 'text', $selected);
+		$ratesDropdown= jomresHTML::selectList($ratesOptions, $name, 'class="inputbox" size="1"', 'value', 'text', $selected);
 		}
 
 	return $ratesDropdown;

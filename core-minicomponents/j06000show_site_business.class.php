@@ -22,9 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000show_hotel_details
+class j06000show_site_business
 	{
-	function j06000show_hotel_details($componentArgs)
+	function j06000show_site_business($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -33,26 +33,12 @@ class j06000show_hotel_details
 			$this->template_touchable=false; return;
 			}
 		$output=array();
-				
-		$property_uid= (int)$componentArgs['property_uid'];
-		if ($property_uid ==0)
-			{
-			$thisJRUser=jomres_getSingleton('jr_user');
-			if ($thisJRUser->userIsManager)
-				{
-				$property_uid=getDefaultProperty();
-				}
-			else
-				{
-				echo "Error, property uid not set";
-				exit;
-				}
-			}
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 
-		$basic_property_details =jomres_getSingleton('basic_property_details');
-		$basic_property_details->gather_data($property_uid);
-
-		$output['HPROPERTYNAME']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);
+		$output['HBUSINESSNAME']=jr_gettext('_JOMRES_COM_YOURBUSINESS_NAME',_JOMRES_COM_YOURBUSINESS_NAME);
+		$output['HVATNO']=jr_gettext('_JOMRES_COM_YOURBUSINESS_VATNO',_JOMRES_COM_YOURBUSINESS_VATNO);
+		$output['HADDRESS']=jr_gettext('_JOMRES_COM_YOURBUSINESSADDRESS',_JOMRES_COM_YOURBUSINESSADDRESS);
 		$output['HSTREET']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET);
 		$output['HTOWN']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN);
 		$output['HREGION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
@@ -62,20 +48,21 @@ class j06000show_hotel_details
 		$output['HFAX']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX);
 		$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
 
-		$output['PROPERTY_NAME'] = $basic_property_details->property_name;
-		$output['STREET']=$basic_property_details->property_street;
-		$output['TOWN']=$basic_property_details->property_town;
-		$output['REGION']=$basic_property_details->property_region;
-		$output['COUNTRY']=$basic_property_details->property_country;
-		$output['POSTCODE']=$basic_property_details->property_postcode;
-		$output['TELEPHONE']=$basic_property_details->property_tel;
-		$output['FAX']=$basic_property_details->property_fax;
-		$output['EMAIL']=$basic_property_details->property_email;
+		$output['BUSINESS_NAME'] =$jrConfig['business_name'];
+		$output['VATNO'] =$jrConfig['business_vat_number'];
+		$output['STREET']=$jrConfig['business_address'];
+		$output['STREET']=$jrConfig['business_address'];
+		$output['TOWN']=$jrConfig['business_town'];
+		$output['REGION']=$jrConfig['business_region'];
+		$output['COUNTRY']=$jrConfig['business_country'];
+		$output['POSTCODE']=$jrConfig['business_postcode'];
+		$output['TELEPHONE']=$jrConfig['business_telephone'];
+		$output['EMAIL']=$jrConfig['business_email'];
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'show_hotel_details.html');
+		$tmpl->readTemplatesFromInput( 'show_business_details.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$this->retVals=$tmpl->getParsedTemplate();
 		}
