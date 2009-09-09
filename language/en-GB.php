@@ -6633,7 +6633,10 @@ define('_JOMRES_MANAGER_SHOWINVOICE','Show invoice');
 * @ignore
 */
 define('_JOMRES_MANAGER_SHOWINVOICES','Show invoices');
-
+/**
+* @ignore
+*/
+define('_JOMRES_USER_LISTMYPROPERTY','Add my property to this site');
 /**
 * @ignore
 */

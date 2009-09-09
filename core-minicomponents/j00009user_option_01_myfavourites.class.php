@@ -47,7 +47,7 @@ class j00009user_option_01_myfavourites {
 		$this->cpanelButton="";
 		if ($thisJRUser->userIsRegistered)
 			{
-			$query="SELECT property_uid FROM #__jomcomp_mufavourites WHERE id='".(int)$thisJRUser->id."'";
+			$query="SELECT property_uid FROM #__jomcomp_mufavourites WHERE my_id='".(int)$thisJRUser->id."'";
 			$favourites=doSelectSql($query);
 			if (count($favourites)>0)
 				{
