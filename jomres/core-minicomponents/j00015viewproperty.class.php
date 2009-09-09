@@ -37,7 +37,6 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		

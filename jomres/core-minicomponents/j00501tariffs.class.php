@@ -157,12 +157,18 @@ class j00501tariffs {
 		$configurationPanel->setmiddle($lists['euroTaxYesNo']);
 		$configurationPanel->setright(_JOMRES_COM_A_EUROTAX_DESC);
 		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
+		$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
+		$configurationPanel->setright('');
+		$configurationPanel->insertSetting();
 
+/*
 		$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX_PERCENTAGE);
 		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_euroTaxPercentage" value="'.$mrConfig['euroTaxPercentage'].'" />');
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-
+*/
 		/*
 		$codes= currencyCodesArray();
 		$conversionSelect='<select size=11 name="cfg_currencyCodes[]" id=currencyCodes multiple onMouseDown="GetCurrentListValues(this);" onchange="FillListValues(this);" style="width:200;">';

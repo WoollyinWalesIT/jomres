@@ -173,6 +173,5 @@ $mrConfig['bookingform_requiredfields_email'] ="1";
 $mrConfig['bookingform_roomlist_showdisabled'] ="1";
 $mrConfig['bookingform_roomlist_showmaxpeople'] ="1";
 
-$jrConfig['outputHeadersInline'] = "0"; // Outputting headers within the body of the page instead of the headers seems to resolve the mootools conflict issues.
-
+$mrConfig['accommodation_tax_code'] ="1";
 ?>

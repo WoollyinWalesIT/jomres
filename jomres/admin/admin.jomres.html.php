@@ -661,6 +661,71 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
+		$contentPanel->startPanel(_JOMRES_COM_YOURBUSINESS);
+		$contentPanel->setcontent('
+		<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESS_NAME.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_name" value="'.$jrConfig['business_name'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESS_VATNO.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_vat_number" value="'.$jrConfig['business_vat_number'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESSADDRESS.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_address" value="'.$jrConfig['business_address'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_street" value="'.$jrConfig['business_street'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_town" value="'.$jrConfig['business_town'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_region" value="'.$jrConfig['business_region'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_country" value="'.$jrConfig['business_country'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_postcode" value="'.$jrConfig['business_postcode'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_telephone" value="'.$jrConfig['business_telephone'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_email" value="'.$jrConfig['business_email'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
 		$contentPanel->endTabs();
 		?>
 
@@ -670,7 +735,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		<input type="hidden" name="cfg_disableAudit" value="<?php echo $jrConfig['disableAudit'];?>" />
 		<input type="hidden" name="cfg_allowedTags" value="<?php echo $jrConfig['allowedTags'];?>" />
 		<input type="hidden" name="cfg_utfHTMLdecode" value="<?php echo $jrConfig['utfHTMLdecode'];?>" />
-
+		<input type="hidden" name="no_html" value="1" />
 		<input type="hidden" name="task" value="saveSiteConfig" />
 		<input type="hidden" name="option" value="com_jomres" />
 		</form>

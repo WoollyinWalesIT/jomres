@@ -42,7 +42,9 @@ class j06000my_subscriptions
 		$MiniComponents->specificEvent('06000','list_subscription_packages');
 		echo "<br/>";
 		$MiniComponents->specificEvent('00013','a_listyourproperties');
-		
+		echo "<br/>";
+		$MiniComponents->specificEvent('06000','list_usersinvoices');
+		echo "<br/>";		
 		}
 	
 	

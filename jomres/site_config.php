@@ -151,10 +151,20 @@ $jrConfig['useNewusers']="0";
 
 //$jrConfig['jomresItemid']			='40'; Removed for v4
 $jrConfig['jomresItemid']			='40'; // Restored for v4.1
+$jrConfig['outputHeadersInline'] = "0"; // Outputting headers within the body of the page instead of the headers seems to resolve the mootools conflict issues.
 
 $jrConfig['lifetime']="18000";
 
 $jrConfig['business_name']="BLANK";
 $jrConfig['business_vat_number']="BLANK";
 $jrConfig['business_address']="BLANK";
+$jrConfig['business_street']="BLANK";
+$jrConfig['business_town']="BLANK";
+$jrConfig['business_region']="BLANK";
+$jrConfig['business_country']="BLANK";
+$jrConfig['business_postcode']="BLANK";
+$jrConfig['business_telephone']="BLANK";
+$jrConfig['business_email']="BLANK";
+
+
 ?>

@@ -1,15 +1,9 @@
 <patTemplate:tmpl name="pageoutput" >
 <a href="{PRINTLINK}" target="_blank">{PRINTTEXT}</a>
-<table>
-	<tr>
-		<td>
-			{CLIENT_DETAILS_TEMPLATE}
-		</td>
-		<td>
-			{BUSINESS_DETAILS_TEMPLATE}
-		</td>
-	</tr>
-</table>
+{BUSINESS_DETAILS_TEMPLATE}
+<br/>
+{CLIENT_DETAILS_TEMPLATE}
+
 
 <br/>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
