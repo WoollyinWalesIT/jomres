@@ -124,10 +124,11 @@ class j00501tariffs {
 			$configurationPanel->setmiddle($lists['roundupDepositYesNo']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
+			}
+			
 			
 
-			}
-
+		
 		$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
 		$configurationPanel->setmiddle($lists['verbosetariffinfo']);
 		$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
@@ -137,7 +138,17 @@ class j00501tariffs {
 		$configurationPanel->setmiddle();
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-
+		
+		$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
+		$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
+		$configurationPanel->setright('');
+		$configurationPanel->insertSetting();
+		
+		$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING2);
+		$configurationPanel->setmiddle();
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX);
 		$configurationPanel->setmiddle($lists['roomTaxYesNo']);
 		$configurationPanel->setright(_JOMRES_COM_A_ROOMTAX_DESC);
@@ -153,15 +164,7 @@ class j00501tariffs {
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX);
-		$configurationPanel->setmiddle($lists['euroTaxYesNo']);
-		$configurationPanel->setright(_JOMRES_COM_A_EUROTAX_DESC);
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
-		$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
-		$configurationPanel->setright('');
-		$configurationPanel->insertSetting();
+
 
 /*
 		$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX_PERCENTAGE);
@@ -190,10 +193,7 @@ class j00501tariffs {
 		$configurationPanel->insertSetting();
 		*/
 		
-		$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
-		$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+
 		
 		$configurationPanel->endPanel();
 	}

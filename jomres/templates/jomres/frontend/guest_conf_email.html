@@ -1,18 +1,14 @@
 <patTemplate:tmpl name="pageoutput">
-<meta http-equiv="Content-Type" content="text/html; {ISO}" />
-<a href="{LINK}"><img src="{IMAGE}" border="0"></a>
+<meta http-equiv="Content-Type" content="text/html; utf-8" />
 <link rel="stylesheet" href="{MOSCONFIGLIVESITE}/jomres/css/jomrescss.css" type="text/css" />
 <div class="panelwrapper">
 	<div class="innerwrapper">
 		<table width="100%" border="0" class="confirmation">
 			<tr>
-				<td>
+				<td colspan="2">
 					<table class="confirmation_table"  border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
-							<td colspan="2">{LINKTOPROPERTY}</td>
-						</tr>
-						<tr>
-							<td colspan="2"><STRONG>{HELLO}&nbsp;{GUESTNAME}</STRONG></td>
+							<td colspan="2"><strong>{HELLO}&nbsp;{GUESTNAME}</strong></td>
 						</tr>
 						<tr>
 							<td colspan="2"><a href="{LINK}">{THANKS}</a></td>
@@ -21,77 +17,56 @@
 							<td colspan="2">{SUMMARY}</td>
 						</tr>
 						<tr>
-							<td width="30%">{HBOOKINGNO} <td>
-							<td><b>{BOOKINGNO}</b></td>
+							<td>{HBOOKINGNO}<td>
+							<td><strong>{BOOKINGNO}</strong></td>
 						</tr>
 						<tr>
-							<td width="30%">{HROOM}<td>
-							<td>{ROOM}</td>
+							<td>{HROOM}<td>
+							<td><strong>{ROOM}</strong></td>
 						</tr>
 						<tr>
-							<td width="30%">{HARRIVAL}<td>
-							<td><STRONG>{ARRIVAL}</STRONG></td>
+							<td>{HARRIVAL}<td>
+							<td><strong>{ARRIVAL}</strong></td>
 						</tr>
 						<tr>
-							<td width="30%">{HDEPARTURE}<td>
-							<td><STRONG>{DEPARTURE}</STRONG></td>
+							<td>{HDEPARTURE}<td>
+							<td><strong>{DEPARTURE}</strong></td>
 						</tr>
 						<tr>
+							<td>{HNUMBEROFGUESTS}</td>
 							<td>
-								{HNUMBEROFGUESTS}
 								<patTemplate:tmpl name="rows" unusedvars="nbsp">
-								{TITLE}&nbsp;{QUANTITY}
+								<strong>{TITLE} {QUANTITY}</strong>
 								</patTemplate:tmpl>
 							</td>
 						</tr>
 						<tr>
-							<td width="30%">{HLANDLINE}<td>
-							<td>{LANDLINE}</td>
+							<td>{HLANDLINE}<td>
+							<td><strong>{LANDLINE}</strong></td>
 						</tr>
 						<tr>
-							<td width="30%">{HMOBILE}<td>
-							<td>{MOBILE}</td>
+							<td>{HMOBILE}<td>
+							<td><strong>{MOBILE}</strong></td>
 						</tr>
 						<tr>
-							<td width="30%">{HTARIFFTITLE}<td>
-							<td>{TARIFFINFO}</td>
-						</tr>
-						<patTemplate:tmpl name="booking_extratext" type="simpleCondition" requiredVars="ajaxform_extras">
-						<tr>
-							<td colspan="2">
-								<table border="0" width="100%" cellpadding="0" cellspacing="0">
-									<patTemplate:tmpl name="booking_extras" type="simpleCondition" requiredVars="name">
-									<tr>
-										<td>{NAME}<td>
-										<td valign="top">{PRICE}</td>
-										<td>&nbsp;</td>
-									</tr>
-									</patTemplate:tmpl>
-									<tr>
-										<td colspan="2"><b>{HEXTRASTOTAL}</b><td>
-										<td><STRONG>{EXTRASTOTAL}</STRONG></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-						</patTemplate:tmpl>
-						<tr>
-							<td width="30%">{HTOTAL}<td>
-							<td><STRONG>{TOTAL}</STRONG></td>
+							<td>{HTOTAL}<td>
+							<td><strong>{TOTAL}</strong></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
-
+			<tr>
+				<td>
+					{INVOICE}
+				</td>
+			</tr>
 			<tr>
 				<td>{HSPECIAL_REQUIREMENTS}</td>
 				<td>{SPECIAL_REQUIREMENTS}</td>
 			</tr>
-			
 		</table>
 	</div>
 </div>
-
 <br>
 {QUESTIONS}
 <br>

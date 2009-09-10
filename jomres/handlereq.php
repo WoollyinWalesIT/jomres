@@ -295,7 +295,7 @@ switch ($field)
 					echo '; populateDiv("extrastotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'")';
 					//echo '; document.getElementById("extrastotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'" ; fadeIn("extrastotal",1000);';
 					
-				if ($euroTaxYesNo =="1" || $roomTaxYesNo =="1" )
+				//if ($euroTaxYesNo =="1" || $roomTaxYesNo =="1" )
 					echo '; populateDiv("taxtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'")';
 					//echo '; document.getElementById("taxtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'" ; fadeIn("taxtotal",1000);';
 					

@@ -3911,7 +3911,7 @@ define('_JOMRES_AJAXFORM_BILLING_DISCOUNT','Discount:');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_BILLING_TOTAL','Grand Total:');
+define('_JOMRES_AJAXFORM_BILLING_TOTAL','Grand Total (inc tax):');
 /**
 * @ignore
 */
@@ -6682,3 +6682,11 @@ define('_JOMRES_COM_YOURBUSINESS_VATNO','VAT number');
 * @ignore
 */
 define('_JOMRES_COM_YOURBUSINESSADDRESS','Building number');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_TAX_WARNING2','<font color=red>NOTE: The following tax rates are designed for use by the American market. If you want to use a flat rate tax (eg VAT) for your accommodation, please choose a tax rate from the option above.</FONT>');
+/**
+* @ignore
+*/
+define('_JOMRES_INVOICE_NUMBER','Invoice No. ');
