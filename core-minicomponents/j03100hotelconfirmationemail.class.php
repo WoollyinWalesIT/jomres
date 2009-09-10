@@ -173,67 +173,14 @@ class j03100hotelconfirmationemail {
 				$rows[]=$r;
 				}
 			}
-		$bookingDeets	=	gettempBookingdata();
-		if ($mrConfig['showExtras']=="1")
+
+		$invoice_id = $MiniComponents->miniComponentData['03025']['insertbooking_invoice']['invoice_id'];
+		if ((int)$invoice_id > 0)
 			{
-			$extras 			= 	$bookingDeets['extras'];
-			$extrasquantities	=	$bookingDeets['extrasquantities'];
-			$extrasArray		=	explode(",",$extras);
-			foreach ($extrasArray as $extraAll)
-				{
-				if (!empty($extraAll))
-					{
-					$extra 			= 	$extraAll;
-
-					$query			=	"SELECT price, name FROM #__jomres_extras WHERE uid = '$extra'";
-					$thisPrice 		=	doSelectSql($query,2);
-					$query			=	"SELECT `model`,`params` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$extra'";
-					$model			=	doSelectSql($query,2);
-					switch ($model['model'])
-						{
-						case '1': // Per week
-							$numberOfWeeks	=	ceil($bookingDeets['stayDays']/7);
-							$calc			=	$numberOfWeeks*$thisPrice['price'];
-						break;
-						case '2': // per days
-							$calc			=	$bookingDeets['stayDays']*$thisPrice['price'];
-						break;
-						case '3': // per booking
-							$calc			=	$thisPrice['price'];
-						break;
-						case '4': // per person per booking
-							$calc			=	$bookingDeets['total_in_party']*$thisPrice['price'];
-						break;
-						case '5': // per person per day
-							$calc			=	$bookingDeets['total_in_party']*$this->stayDays*$thisPrice['price'];
-						break;
-						case '6': // per person per week
-							$numberOfWeeks	=	ceil($this->stayDays/7);
-							$calc			=	$bookingDeets['total_in_party']*$numberOfWeeks*$thisPrice['price'];
-						break;
-						case '7': // per person per days min days
-							$mindays		=	$model['params'];
-							if ($bookingDeets['total_in_party'] < $mindays)
-								$days		=	$mindays;
-							else
-								$days		=	$bookingDeets['stayDays'];
-
-							$calc			=	$days*$thisPrice['price'];
-						break;
-						}
-
-					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra];
-					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($thisPrice['price']);
-					$booking_extras[]			=	$extra_parts;
-					}
-				}
-			$extratext	=	array();
-			$extra_text['AJAXFORM_EXTRAS']		=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS);
-			$extra_text['EXTRASTOTAL']			=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['extrasvalue']);
-			$extra_text['HEXTRASTOTAL']			=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL);
-			$extrastext[]	=	$extra_text;
+			$invoice_template = $MiniComponents->specificEvent('06000','view_invoice',array('internal_call'=>true,'invoice_id'=>$invoice_id) );
+			$output['INVOICE']	= $invoice_template;
 			}
-		
+			
 		$pageoutput[]=$output;
 
 		$tmpl = new patTemplate();

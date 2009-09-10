@@ -71,7 +71,10 @@ class j00501propertydetailsoptions {
 			$configurationPanel->insertSetting();
 			}
 
-
+		$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
+		$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
 			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{

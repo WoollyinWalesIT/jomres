@@ -885,7 +885,7 @@ class dobooking
 			$output['BILLING_ROOMTOTAL']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL));
 			if ($mrConfig['showExtras']=="1")
 				$output['BILLING_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_EXTRAS',_JOMRES_AJAXFORM_BILLING_EXTRAS));
-			if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo'] =="1" )
+			//if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo'] =="1" )
 				$output['BILLING_TAX']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX',_JOMRES_AJAXFORM_BILLING_TAX));
 			$output['BILLING_DISCOUNT']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT));
 			$output['BILLING_TOTAL']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL));
@@ -4249,29 +4249,19 @@ class dobooking
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($this->getGuestVariantCount() > 0)
 			echo '; populateDiv("totalinparty","'.$this->getTotalInParty().'")';
-			//echo '; document.getElementById("totalinparty").innerHTML = "'.$this->getTotalInParty().'" ; fadeIn("totalinparty",1000); ';
 		echo '; populateDiv("staydays","'.$this->getStayDays().'")';
-		//echo '; document.getElementById("staydays").innerHTML = "'.$this->getStayDays().'" ; fadeIn("staydays",1000); ';
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="0")
 			echo '; populateDiv("roompernight","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-			//echo '; document.getElementById("roompernight").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roompernight",1000);';
 		echo '; populateDiv("roomtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-		//echo '; document.getElementById("roomtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("roomtotal",1000);';
 		if ($this->cfg_showExtras)
 			echo '; populateDiv("extrastotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-			//echo '; document.getElementById("extrastotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("extrastotal",1000);';
-		if ($this->cfg_euroTaxYesNo =="1" || $this->cfg_roomTaxYesNo =="1" )
-			echo '; populateDiv("taxtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-			//echo '; document.getElementById("taxtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("taxtotal",1000);';
+		echo '; populateDiv("taxtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+		echo '; populateDiv("single_suppliment","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
 		echo '; populateDiv("grandtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-		//echo '; document.getElementById("grandtotal").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("grandtotal",1000);';
 		if ($this->cfg_showDeposit=="1")
 			echo '; populateDiv("deposit","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-			//echo '; document.getElementById("deposit").innerHTML = "'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'" ; fadeIn("deposit",1000);';
 		echo '; populateDiv("discount","")';
-		//echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",1000);';
 		echo '; populateDiv("coupon_discount_value","")';
-		//echo '; document.getElementById("coupon_discount_value").innerHTML = "" ; fadeIn("coupon_discount_value",1000);';
 		}
 	/**
 	#
@@ -4701,18 +4691,31 @@ class dobooking
 				$fixedRateAllDays=$roomTaxFixedRate*$this->stayDays;
 			$totalTax=$fixedRateAllDays+$percentageToAdd;
 			}
-
-		if ($this->cfg_euroTaxYesNo=="1")
+		else
 			{
-			$percentageToAdd=0;
-			if ($this->cfg_euroTaxPercentage!=0)
+			$totalBooking=$totalBooking+$this->single_person_suppliment;
+			$this->setErrorLog("calcTax:: Calculating basic rate tax");
+			$mrConfig=getPropertySpecificSettings($this->property_uid);
+			//$this->setErrorLog("calcTax::mrConfig ".serialize($mrConfig) );
+			//$this->setErrorLog("calcTax::Using config tax code ".$mrConfig['accommodation_tax_code']);
+			if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
 				{
-				$percentageToAdd=($totalBooking+$extrasTotal) *($this->cfg_euroTaxPercentage/100);
+				$taxrates = taxrates_getalltaxrates();
+				$cfgcode = $mrConfig['accommodation_tax_code'];
+				$taxrate = $taxrates[$cfgcode];
+				//$this->setErrorLog("calcTax::Tax rate ".serialize($taxrate) );
+				$rate=(float)$taxrate['rate'];
+				$this->setErrorLog("calcTax::Tax rate detected as ".$rate );
+				$percentageToAdd=$totalBooking*($rate/100);
+				$totalTax=$percentageToAdd;
 				}
-			$totalTax=$percentageToAdd;
+			else
+				$this->setErrorLog("calcTax:: Tax code not set so tax not calculated.");
 			}
 		$this->tax=$totalTax;
 		$this->setErrorLog("calcTax:: Ended");
+
+			
 		}
 
 	/**

@@ -23,7 +23,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 class j06000view_invoice {
-	function j06000view_invoice()
+	function j06000view_invoice($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -35,12 +35,22 @@ class j06000view_invoice {
 		$output=array();
 		$pageoutput=array();
 		$rows=array();
-		
+		$this->retVals = null;
 		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
 		$popup		= intval(jomresGetParam( $_REQUEST, 'popup', 0 ));
 		
-		// a quick anti hack check
+		// This plugin is being called by another script, typically the emailer functionality, therefore we'll bypass the access checking further down
+		$bypass_security_check = false;
+		$return_template = false;
+		if (isset($componentArgs['internal_call']) && $componentArgs['internal_call'] == true)
+			{
+			$bypass_security_check = true;
+			$id = $componentArgs['invoice_id'];
+			$return_template = true;
+			$popup		=1;
+			}
 		
+		// a quick anti hack check
 		jr_import('jrportal_invoice');
 		$invoice = new jrportal_invoice();
 
@@ -50,50 +60,58 @@ class j06000view_invoice {
 			$invoice->getInvoice();
 			}
 
-		if ((int)$invoice->contract_id > 0) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
+		if (!$bypass_security_check)
 			{
-			if ($thisJRUser->userIsManager)
+			if ((int)$invoice->contract_id > 0) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
 				{
-				$property_uid=getDefaultProperty();
-				$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".(int)$property_uid;
-				$result = doSelectSql($query,1);
-				if (!$result)
+				if ($thisJRUser->userIsManager)
 					{
-					trigger_error ("Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR);
-					return;
+					$property_uid=getDefaultProperty();
+					$query = "SELECT contract_id FROM #__jomresportal_invoices WHERE id = ".$id." AND property_uid = ".(int)$property_uid;
+					$result = doSelectSql($query,1);
+					if (!$result)
+						{
+						trigger_error ("Unable to view invoice, cannot corrolate id with property uid.", E_USER_ERROR);
+						return;
+						}
 					}
+				else
+					{
+					$userid= $thisJRUser->id;
+					$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
+					$result=doSelectSql($query);
+					if (count($result)<1 || count($result)>1)
+						{
+						trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
+						return;
+						}
+					}
+				
+				$query = "SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice->contract_id. " LIMIT 1";
+				$guestUid = doSelectSql($query,1);
+				$query="SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$invoice->property_uid."'";
+				$guest_uid =doSelectSql($query,1);
+				$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
+				$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
 				}
-			else
+			else // Let's check that this property manager can view this commission/subscription invoice
 				{
-				$userid= $thisJRUser->id;
-				$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$userid." AND `id` = ".(int)$id." ";
-				$result=doSelectSql($query);
-				if (count($result)<1 || count($result)>1)
+				if ($thisJRUser->id != $invoice->cms_user_id)
 					{
 					trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
 					return;
 					}
-				}
-			
-			$query = "SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice->contract_id. " LIMIT 1";
-			$guestUid = doSelectSql($query,1);
-			$query="SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$invoice->property_uid."'";
-			$guest_uid =doSelectSql($query,1);
-			$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
-			$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
-			}
-		else // Let's check that this property manager can view this commission/subscription invoice
-			{
-			if ($thisJRUser->id != $invoice->cms_user_id)
-				{
-				trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
-				return;
-				}
 
-			$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_site_business',array());
-			$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array());
+				$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_site_business',array());
+				$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array());
+				}
 			}
-			
+		else
+			{
+			$property_uid = $invoice->property_uid;
+			$mrConfig=getPropertySpecificSettings($property_uid);
+			}
+		
 		if ($popup != 1)
 			{
 			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
@@ -112,9 +130,10 @@ class j06000view_invoice {
 		$output['HFREQ']=_JRPORTAL_INVOICES_RECUR_FREQUENCY;
 		$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 		$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
+		$output['HINVOICENO']=_JOMRES_INVOICE_NUMBER;
 		
 		$output['ID']=$invoice->id;
-
+		
 		if ($invoice->status == "0")
 			$output['STATUS']=_JRPORTAL_INVOICES_STATUS_UNPAID;
 		elseif ($invoice->status == "1")
@@ -215,13 +234,16 @@ class j06000view_invoice {
 			{
 			$tmpl->addRows( 'immediate_pay',$immediate_pay);
 			}
-		$tmpl->displayParsedTemplate();
+		if (!$return_template)
+			$tmpl->displayParsedTemplate();
+		else
+			$this->retVals=$tmpl->getParsedTemplate();
 		}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}
 ?>

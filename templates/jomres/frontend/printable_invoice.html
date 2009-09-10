@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" >
 <center>
+{HINVOICENO} : {ID}
 <table BORDER WIDTH=50%>
 	<tr>
 		<td>
@@ -7,7 +8,6 @@
 			<br/>
 			{CLIENT_DETAILS_TEMPLATE}
 			<br/>
-			<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 			<table class="jradmin_innerwrapper">
 				<tr>
 					<td class="jomres_title">{PAGETITLE}</td>
@@ -96,10 +96,6 @@
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="id" value="{ID}" />
-			<input type="hidden" name="option" value="com_jomres" />
-			<input type="hidden" name="task" value="" />
-			</form>
 		</td>
 	</tr>
 </table>
