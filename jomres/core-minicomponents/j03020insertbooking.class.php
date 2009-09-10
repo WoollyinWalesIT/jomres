@@ -464,6 +464,7 @@ class j03020insertbooking {
 				
 				if ($this->insertSuccessful)
 					{
+					$MiniComponents->triggerEvent('03025',$componentArgs); // Generate invoice
 					$MiniComponents->triggerEvent('03100',$componentArgs); // Generate hotel confirmation email
 					$MiniComponents->triggerEvent('03110',$componentArgs); // Generate guest confirmation email
 					$MiniComponents->triggerEvent('03200',$componentArgs); // post insert booking functionality
