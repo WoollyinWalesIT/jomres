@@ -89,8 +89,6 @@ if (function_exists("curl_init"))
 						<?php
 						$link = 'http://manual.jomres.net" title="Manual (Online)" target="_blank';
 						echo _quickiconButton( $link, 'Help.png', 'Read documentation (Online)', '/jomres/images/' );
-						$link = 'http://tickets.jomres.net/index.php?_m=knowledgebase&amp;_a=view" title="Search (Online) knowledgebase" target="_blank';
-						echo _quickiconButton( $link, 'FAQ.png', 'Search (Online) knowledgebase', '/jomres/images/' );
 						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket (Online)" target="_blank';
 						echo _quickiconButton( $link, 'Support_IT.png', 'Submit support ticket (Online)', '/jomres/images/');
 						?>
