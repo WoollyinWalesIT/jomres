@@ -254,7 +254,7 @@ class j02990showconfirmation {
 						}
 
 					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra];
-					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($thisPrice['price']);
+					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($thisPrice['price']*$extrasquantities[$extra]);
 					$booking_extras[]			=	$extra_parts;
 					}
 				}
