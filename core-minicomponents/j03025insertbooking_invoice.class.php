@@ -29,13 +29,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j03200insertbooking_invoice {
+class j03025insertbooking_invoice {
 	/**
 	#
 	 * Inserts the booking. Receives the jomressession and a flag to indicated if the deposit has been paid
 	#
 	 */
-	function j03200insertbooking_invoice($componentArgs)
+	function j03025insertbooking_invoice($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -75,10 +75,12 @@ class j03200insertbooking_invoice {
 		else
 			$discount=$tmpBookingHandler->getBookingFieldVal("wisepricediscount");
 
+		
+			
 		$line_items= array();
 		
 		$line_item_data = array (
-			'tax_code_id'=>0,
+			'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
 			'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL,false,false),
 			'description'=>'',
 			'init_price'=>number_format($room_total,2, '.', ''),
@@ -142,7 +144,7 @@ class j03200insertbooking_invoice {
 		if ($single_person_suppliment > 0)
 			{
 			$line_item_data = array (
-				'tax_code_id'=>0,
+				'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
 				'name'=>jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST,false,false),
 				'description'=>'',
 				'init_price'=>number_format($single_person_suppliment,2, '.', ''),
@@ -183,23 +185,6 @@ class j03200insertbooking_invoice {
 				$line_items[]=$line_item_data;
 				}
 			}
-			
-		if ($tax > 0)
-			{
-			$line_item_data = array (
-				'tax_code_id'=>0,
-				'name'=>jr_gettext('_JOMRES_COM_FRONT_ROOMTAX',_JOMRES_COM_FRONT_ROOMTAX,false,false),
-				'description'=>'',
-				'init_price'=>number_format($tax,2, '.', ''),
-				'init_qty'=>"1",
-				'init_discount'=>"0",
-				'recur_price'=>"0.00",
-				'recur_qty'=>"0",
-				'recur_discount'=>"0.00"
-				);
-			$line_items[]=$line_item_data;
-			}
-			
 		$invoice_data= array();
 		$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
 		$invoice_data['subscription']=false;
