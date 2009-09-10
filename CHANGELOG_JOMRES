@@ -1,3 +1,54 @@
+Jomres 4.2
+
+Reworked email handling to show invoices in emails
+Major rewrite to largely eliminate the use of globals within the system, switching over to using mainly singletons for maintaining and manipulating data between classes.
+Renamed many class files to allow autoloading of classes, introduced jr_import function for importing class files
+Added performance monitoring class 
+
+Fixed urls in property list to search via town/region/coutry
+Modified positions of { in jomres.js
+Modified dobooking class to not show book now text
+Modified list propertys to change how jomresURL is called
+Modifed addplugin to rename XYZ-plugin_name.php to plugin_name.php
+Updated graphs.js to resolve IE error.
+Fixed IE error in view property stats page.
+Added code to installer to ensure that if files aren't copied over, then this is output to screen.
+Removed url encode from list propertys search by town/region/country as searches on elements with ' were returning no results.
+Modified search function so that special chars are rendered correctly in metatitle.
+Added code to strip out non-latin chars from user names and set it to lowercase on create new users on booking feature.
+Fixed smtp handling in jomres mailer function.
+Added ob_start and end for Jomres SA handling to admin.php
+Added detection of Jomres SA to detect_cms
+Added editing mode option so that property names can be translated via frontend editing mode 
+Added modules folder to Jomres writability check in control panel.
+Fixed bug where incorrect date showing in audit log list
+First phase of rewriting Jomres v4.2 done, classes and files renamed, autoloaders and singleon handler in place, and added obsolete file checking class.
+Added improved handling of curl in plugin installation
+Added option for customisable path to the css file
+Rejigged custom text handling so that it's all done in the custom_text object. Created new function file for jr_gettext
+Added current_property_details class to help minimise query numbers
+Added new version of beauty tips, modified mustregister to point the user to the registration form, 
+Removed a few out of date .js files
+Fixed width issue in tooltips, thx Terago.
+Added view invoice handling to Jomres property manager area.
+Added show invoice option to receptionist's menu
+Added a pre-installation check for Joomla to prevent users getting 404 error after installing Joomla after they've had to make certain folders writable by the web server.
+Added tax option to optional extras and quantity multipliers to booking engine so that these are added to invoices.
+Added jomres lifetime jrConfig variable
+Added an activity to paypal to mark depositpaidsuccessfully. Not really needed for the paypal gateway, instead it's expected to be used by other gateways.
+Added rel="nofollow" to Google currency links
+Added check for depositpaidsuccessfully flag so that invoice has deposit amount added to line items.
+Added sanity check classes/jomres_sanity_check.class.php  Currently only checks that if the property is configured to pppn, then recommends that you create at least one guest type
+Added new property details singleton basic_property_details.class.php
+Modified installer to add package_id to subscriptions table
+Enhanced the subscription handling. Allows the admin to offer one free subscription package (if both the trial and the full amount =0), added a menu button where managers can see their existing subscriptions, available subscriptions and current propertys.
+Added new button to users toolbar inviting them to add their own property, fixed favourite handling as existing favourites weren't being found.
+Added some site config settings so that site admin can provide their business details in invoices. Improved invoices so that site managers can see and print invoices from the subscriptions info page.
+j03200insertbooking_invoice.class.php renumbered to 03025 because we need to ensure that it's called before the emails are sent so that we can generate the invoice details in the guest and hotel emails.
+Fixed bug where extra quantity wasn't modifying price in confirmation page
+
+
+
 Jomres 4.1.4
 
 Added option to output Jomres javascript headers within the body of the page instead of the head, which seems to resolve the mootools conflict issues in some templates.
