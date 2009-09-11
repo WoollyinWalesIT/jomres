@@ -36,7 +36,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	//	var_dump($customTextArray);
 
 	$thisJRUser=jomres_getSingleton('jr_user');
-	$mrConfig=getPropertySpecificSettings();
+	$mrConfig=getPropertySpecificSettings($property_uid);
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if (isset($thisJRUser->accesslevel))

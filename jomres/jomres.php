@@ -78,7 +78,8 @@ if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending res
 	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
 	
 	}
-
+		
+		
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession($jomressession);
 $jomressession  = $tmpBookingHandler->getJomressession();
@@ -418,9 +419,13 @@ if (!defined('JOMRES_NOHTML'))
 						$tmpArray = array();
 						foreach ($thisJRUser->authorisedPropertyDetails as $key=>$val)
 							{
+							
 							$obj = new stdClass();
 							$obj->propertys_uid=$key;
-							$obj->property_name=$val['property_name'];
+							$basic_property_details =jomres_getSingleton('basic_property_details');
+							$obj->property_name=$basic_property_details->get_property_name($key);
+
+							//$obj->property_name=$val['property_name'];
 							$tmpArray[]=$obj;
 							}
 						$propertysList =$tmpArray;

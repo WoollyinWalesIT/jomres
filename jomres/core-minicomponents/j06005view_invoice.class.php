@@ -242,12 +242,6 @@ class j06005view_invoice {
 		
 	function touch_template_language()
 		{
-		$output=array();
-			$output['PRINTTEXT'] =;
-			}
-
-		$output['PAGETITLE']=;
-
 		$output[]=jr_gettext('_JOMRES_COM_INVOICE_TITLE',_JOMRES_COM_INVOICE_TITLE);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_TITLE',_JRPORTAL_INVOICES_TITLE);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_STATUS',_JRPORTAL_INVOICES_STATUS);
