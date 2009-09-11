@@ -439,7 +439,7 @@ define('_JOMRES_COM_MR_EB_PAYM_CURRENCY','&euro;');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT','€');
+define('_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT','Â€');
 /**
 * @ignore
 */
