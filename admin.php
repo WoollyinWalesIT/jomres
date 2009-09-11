@@ -27,7 +27,7 @@ ob_start();
 //error_reporting(E_ALL);
 @ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
-require_once('integration.php');
+require_once(dirname(__FILE__).'/integration.php');
 $MiniComponents =jomres_getSingleton('mcHandler');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
