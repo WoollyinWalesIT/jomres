@@ -154,6 +154,9 @@ class jomres_obsolete_file_handling
 				$this->success = false;
 				}
 			}
+		jr_import('minicomponent_registry');
+		$registry = new minicomponent_registry(true);
+		$registry->regenerate_registry();
 		}
 		
 	function remove_obs_file($path_and_file)
