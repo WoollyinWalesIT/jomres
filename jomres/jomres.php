@@ -1318,30 +1318,37 @@ if ($numberOfPropertiesInSystem>0)
 						}
 					else
 						{
-						if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
+						if ($MiniComponents->eventSpecificlyExistsCheck('06005',get_showtime('task')) && $thisJRUser->userIsRegistered) // Registered only user tasks
 							{
-							$jomresPathway->addItem("Search","listProperties","");
-							jomresShowSearch();
+							$MiniComponents->specificEvent('06005',get_showtime('task')); // Custom task
 							}
 						else
 							{
-							if ($thisJRUser->userIsManager )
-								{
-								$MiniComponents->triggerEvent('00013');  // Show dashboard
-								}
-							else if ($numberOfPropertiesInSystem==1)
-								{
-								//$MiniComponents->triggerEvent('0013');  // Show dashboard
-								property_header($property_uid);
-								set_showtime('task',"viewproperty");
-								$componentArgs=array();
-								$componentArgs['property_uid']=$property_uid;
-								$MiniComponents->triggerEvent('00016',$componentArgs);
-								}
-							else
+							if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
 								{
 								$jomresPathway->addItem("Search","listProperties","");
 								jomresShowSearch();
+								}
+							else
+								{
+								if ($thisJRUser->userIsManager )
+									{
+									$MiniComponents->triggerEvent('00013');  // Show dashboard
+									}
+								else if ($numberOfPropertiesInSystem==1)
+									{
+									//$MiniComponents->triggerEvent('0013');  // Show dashboard
+									property_header($property_uid);
+									set_showtime('task',"viewproperty");
+									$componentArgs=array();
+									$componentArgs['property_uid']=$property_uid;
+									$MiniComponents->triggerEvent('00016',$componentArgs);
+									}
+								else
+									{
+									$jomresPathway->addItem("Search","listProperties","");
+									jomresShowSearch();
+									}
 								}
 							}
 						}
