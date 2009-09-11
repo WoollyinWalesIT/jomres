@@ -68,12 +68,12 @@ define("_JOMRES_COM_MR_DISCOUNTDESC","Configura sconti");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ROOMSCONFIGDESC","Configura camere/propriet�");
+define("_JOMRES_COM_MR_ROOMSCONFIGDESC","Configura camere/proprietà");
 
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTYCONFIGDESC","Configura propriet�");
+define("_JOMRES_COM_MR_PROPERTYCONFIGDESC","Configura proprietà");
 /**
 * @ignore
 */
@@ -179,7 +179,7 @@ define("_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER","Autorizzato attualmente"
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL","propriet� predefinita");
+define("_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL","proprietà predefinita");
 /**
 * @ignore
 */
@@ -199,7 +199,7 @@ define("_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE","non applicabile");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ASSIGNUSER_CHANGEHOTEL","Cambia propriet�");
+define("_JOMRES_COM_MR_ASSIGNUSER_CHANGEHOTEL","Cambia proprietà");
 /**
 * @ignore
 */
@@ -265,7 +265,7 @@ define("_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ","Richieste speciali");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER","Nota bene: Ã© possibile che alcune richieste necessitino di pagamenti aggiuntivi.");
+define("_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER","Nota bene: ÃÂ© possibile che alcune richieste necessitino di pagamenti aggiuntivi.");
 /**
 * @ignore
 */
@@ -294,7 +294,7 @@ define("_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL","Indirizzo");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL","Citt�");
+define("_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL","Città");
 /**
 * @ignore
 */
@@ -338,7 +338,7 @@ define("_JOMRES_COM_MR_EB_GUEST_REASON_BUTTON","Seleziona la causa dell'anullame
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_EB_GUEST_REASON_CHARGES_DIFFERENCE","NÂ°giorni all'arrivo");
+define("_JOMRES_COM_MR_EB_GUEST_REASON_CHARGES_DIFFERENCE","NÃÂ°giorni all'arrivo");
 /**
 * @ignore
 */
@@ -347,7 +347,7 @@ define("_JOMRES_COM_MR_EB_GUEST_REASON_CHARGES_DUE","<b>Oneri d' anullamento</b>
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN","Non Ã¨ possibile anullare questa prenotazione perche l'ospite Ã¨ arrivato");
+define("_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN","Non ÃÂ¨ possibile anullare questa prenotazione perche l'ospite ÃÂ¨ arrivato");
 /**
 * @ignore
 */
@@ -391,7 +391,7 @@ define("_JOMRES_COM_MR_EB_GUEST_CANCELLED","Prenotazione annullata");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL","NÂ°Giorni all'arrivo");
+define("_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL","NÃÂ°Giorni all'arrivo");
 
 /**
 * @ignore
@@ -449,7 +449,7 @@ define("_JOMRES_COM_MR_EB_PAYM_CURRENCY","&euro;");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT","Â");
+define("_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT","ÃÂ");
 /**
 * @ignore
 */
@@ -491,7 +491,7 @@ define("_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE","Deposito salvato");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_LANG_CHMODWARNING","<center><h1><font color=red>Warning...</FONT></h1><br /><B>Avvertenza... Ã necessario chmod il  file della lingua a 766 per aggiornare la lingua</B></center><br /><br />");
+define("_JOMRES_COM_MR_LANG_CHMODWARNING","<center><h1><font color=red>Warning...</FONT></h1><br /><B>Avvertenza... ÃÂ necessario chmod il  file della lingua a 766 per aggiornare la lingua</B></center><br /><br />");
 
 
 /**
@@ -505,11 +505,11 @@ define("_JOMRES_COM_MR_QUICKRES_STEP1_CHECKBOX","Casella di controllo");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_NUMBERADULTS","NÂ° adulti");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_NUMBERADULTS","NÃÂ° adulti");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_NUMBERCHILDREN","NÂ° bambini");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_NUMBERCHILDREN","NÃÂ° bambini");
 /**
 * @ignore
 */
@@ -525,11 +525,11 @@ define("_JOMRES_COM_MR_QUICKRES_STEP1_DAYSDATE_DESC","Immetti le notti che l'osp
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_NUMBEROFDAYS","NÂ° notti");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_NUMBEROFDAYS","NÃÂ° notti");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_INSTRUCTIONS","Per favore seleziona il tipo di camera richiesta, la data di arrivo dell' ospite e il NÂ° di giorni che l'ospite pensa di soggiornare o la data di partenza. Infine, inserisci il NÂ° di adulti e bambini");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_INSTRUCTIONS","Per favore seleziona il tipo di camera richiesta, la data di arrivo dell' ospite e il NÃÂ° di giorni che l'ospite pensa di soggiornare o la data di partenza. Infine, inserisci il NÃÂ° di adulti e bambini");
 
 /**
 * @ignore
@@ -566,7 +566,7 @@ define("_JOMRES_COM_MR_QUICKRES_STEP2_FEATURES","Dettagli");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME","propriet�");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME","proprietà");
 /**
 * @ignore
 */
@@ -574,15 +574,15 @@ define("_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE","Tipo d camera");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_TOOMANYGUESTS","Non Ã¨ possibile alloggiare cosÃ¬ tanti ospiti nelle nostre camere");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_TOOMANYGUESTS","Non ÃÂ¨ possibile alloggiare cosÃÂ¬ tanti ospiti nelle nostre camere");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_NOROOMSINRANGE","<Al momento la struttura Ã¨ al completo. Per favore ritorna al calendario per la disponibilit� successiva.");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_NOROOMSINRANGE","<Al momento la struttura ÃÂ¨ al completo. Per favore ritorna al calendario per la disponibilità successiva.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_SELECTCUSTOMERS","Seleziona dal menÃ¹ a tendina");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_SELECTCUSTOMERS","Seleziona dal menÃÂ¹ a tendina");
 /**
 * @ignore
 */
@@ -598,7 +598,7 @@ define("_JOMRES_COM_MR_QUICKRES_STEP2_SELECTCUSTOMERLISTTITLE","Elenco clienti")
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_STAYDAYSTOOLOW","ERRORE: C'Ã¨ un errore nella scelta della data. Premere il pulsante indietro e inserire i dati.");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_STAYDAYSTOOLOW","ERRORE: C'ÃÂ¨ un errore nella scelta della data. Premere il pulsante indietro e inserire i dati.");
 /**
 * @ignore
 */
@@ -606,7 +606,7 @@ define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_NOGUESTS","ERRORE:Ci vuole almeno un
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_ARRIVALDATENOTSELECTED","ERRORE: Il range di dati selezionato non Ã¨ corretto. Premere il pulsante indietro e reinserire i dati.");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_ARRIVALDATENOTSELECTED","ERRORE: Il range di dati selezionato non ÃÂ¨ corretto. Premere il pulsante indietro e reinserire i dati.");
 /**
 * @ignore
 */
@@ -614,7 +614,7 @@ define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_NOROOMTYPESSELECTED","ERRORE: Non ha
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_POSTDATED","ERRORE: Il giorno di prenotazione Ã¨ gi� trascorso o Ã¨ oggi.<br />  Premere il pulsante indietro e reinserire i dati.");
+define("_JOMRES_COM_MR_QUICKRES_STEP2_ERROR_POSTDATED","ERRORE: Il giorno di prenotazione ÃÂ¨ già trascorso o ÃÂ¨ oggi.<br />  Premere il pulsante indietro e reinserire i dati.");
 
 //Mostrare form  ospite
 
@@ -651,7 +651,7 @@ define("_JOMRES_COM_MR_DISPGUEST_STREET","Via");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_DISPGUEST_TOWN","Citt�");
+define("_JOMRES_COM_MR_DISPGUEST_TOWN","Città");
 /**
 * @ignore
 */
@@ -740,7 +740,7 @@ define("_JOMRES_COM_MR_QUICKRES_STEP4_ROOMRATEPERDAY","Tariffa giornaliera");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP4_NUMBEROFGUESTS","NÂ°ospiti");
+define("_JOMRES_COM_MR_QUICKRES_STEP4_NUMBEROFGUESTS","NÃÂ°ospiti");
 /**
 * @ignore
 */
@@ -754,12 +754,12 @@ define("_JOMRES_COM_MR_QUICKRES_STEP4_DEPOSITDESC","Deposito");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP4_FALLSONPUBLICHOLIDAY","Almeno uno dei giorni selezionato Ã¨ una festivit�.");
+define("_JOMRES_COM_MR_QUICKRES_STEP4_FALLSONPUBLICHOLIDAY","Almeno uno dei giorni selezionato ÃÂ¨ una festività.");
 
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP4_NOTARIFFS","Non Ã¨ stata trovata una tariffa che corrisponde con i criteri specificati . PerÃ² non disperare, basta modificare leggermente i requisiti. Per favore prova di nuovo, modifica il nÂ° di giorni del soggiorno, o chiama  l'albergo e fai una prenotazione  telefonica.");
+define("_JOMRES_COM_MR_QUICKRES_STEP4_NOTARIFFS","Non ÃÂ¨ stata trovata una tariffa che corrisponde con i criteri specificati . PerÃÂ² non disperare, basta modificare leggermente i requisiti. Per favore prova di nuovo, modifica il nÃÂ° di giorni del soggiorno, o chiama  l'albergo e fai una prenotazione  telefonica.");
 
 // Scheda camere
 
@@ -917,7 +917,7 @@ define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET","Indirizzo");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN","Cap Citt�");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN","Cap Città");
 /**
 * @ignore
 */
@@ -953,15 +953,15 @@ define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES","Caratteristiche");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_CLICKTOEDIT","Fai clic nel link UID propriet� per modificare l\"elemento");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_CLICKTOEDIT","Fai clic nel link UID proprietà per modificare l\"elemento");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT","propriet� aggiunta");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT","proprietà aggiunta");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE","propriet� aggiornata");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE","proprietà aggiornata");
 /**
 * @ignore
 */
@@ -1048,7 +1048,7 @@ define("_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN","Ignorare TPN");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_LISTTARIFF_ALLOWPH","Permetti festivit�");
+define("_JOMRES_COM_MR_LISTTARIFF_ALLOWPH","Permetti festività");
 /**
 * @ignore
 */
@@ -1089,15 +1089,15 @@ define("_JOMRES_COM_MR_LISTTARIFF_TITLE_EDIT","Modifica tariffa");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_TITLE","Festivit�");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_TITLE","Festività");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_TITLE_HELP","Il giorno finale  della festivit� dovrebbe essere l'ultima notte che si fattura all'ospite con la tariffa festiva.");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_TITLE_HELP","Il giorno finale  della festività dovrebbe essere l'ultima notte che si fattura all'ospite con la tariffa festiva.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_TITLE_EDIT","Modifica festivit�");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_TITLE_EDIT","Modifica festività");
 /**
 * @ignore
 */
@@ -1113,19 +1113,19 @@ define("_JOMRES_COM_MR_PUBLICHOLIDAY_END","Fine");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_NEWPH","Aggiungi Festivit�");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_NEWPH","Aggiungi Festività");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_CLICKTOEDIT","Fai clic sul link modificare testo della festivit�");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_CLICKTOEDIT","Fai clic sul link modificare testo della festività");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_SAVE_INSERT","Festivit� aggiunta");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_SAVE_INSERT","Festività aggiunta");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_SAVE_UPDATED","Festivit� aggiornata");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_SAVE_UPDATED","Festività aggiornata");
 /**
 * @ignore
 */
@@ -1137,11 +1137,11 @@ define("_JOMRES_COM_MR_PUBLICHOLIDAY_LINKTEXTCLONE","Clona elemento");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_DELETEPUBLICHOLIDAY","Elimina festivit�");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_DELETEPUBLICHOLIDAY","Elimina festività");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PUBLICHOLIDAY_DELETED","Festivit� eliminata");
+define("_JOMRES_COM_MR_PUBLICHOLIDAY_DELETED","Festività eliminata");
 
 
 
@@ -1211,7 +1211,7 @@ define("_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN","Amministra  ospiti");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN","Amministra propriet�");
+define("_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN","Amministra proprietà");
 /**
 * @ignore
 */
@@ -1223,12 +1223,12 @@ define("_JOMRES_FRONT_MR_MENU_ADMIN_DISCOUNT","Scontistica");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_MENU_ADMIN_PUBLICHOLIDAYS","Amministra festivit� ");
+define("_JOMRES_FRONT_MR_MENU_ADMIN_PUBLICHOLIDAYS","Amministra festività ");
 
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_QUICKRES_STEP1_INSTRUCTIONS","Per favore seleziona il tipo di camera richiesto, la sua data di arrivo e il nÂ° di notti di soggiorno. Infine, inserisci il nÂ° di adulti e di bambini");
+define("_JOMRES_FRONT_MR_QUICKRES_STEP1_INSTRUCTIONS","Per favore seleziona il tipo di camera richiesto, la sua data di arrivo e il nÃÂ° di notti di soggiorno. Infine, inserisci il nÃÂ° di adulti e di bambini");
 /**
 * @ignore
 */
@@ -1244,7 +1244,7 @@ define("_JOMRES_FRONT_MR_QUICKRES_STEP3_INSTRUCTIONS2","Inserisci tuoi dati.  I 
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY","Controlla la disponibilit�");
+define("_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY","Controlla la disponibilità");
 /**
 * @ignore
 */
@@ -1278,7 +1278,7 @@ define("_JOMRES_FRONT_MR_DISPGUEST_SURNAME","Cognome");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL","NÂ° civico");
+define("_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL","NÃÂ° civico");
 /**
 * @ignore
 */
@@ -1286,7 +1286,7 @@ define("_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL","Indirizzo");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL","Citt�");
+define("_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL","Città");
 /**
 * @ignore
 */
@@ -1306,7 +1306,7 @@ define("_JOMRES_FRONT_MR_EB_GUEST_JOMRES_FAX_EXPL","Fax");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE","Non c'Ã¨ nessuna camera disponibile per i parametri specificato");
+define("_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE","Non c'ÃÂ¨ nessuna camera disponibile per i parametri specificato");
 
 /**
 * @ignore
@@ -1320,7 +1320,7 @@ define("_JOMRES_FRONT_MR_DISPGUEST_CHECKDETAILS","Conferma tuoi dati");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_BOOKINGMADE","<center>Grazie per la tua prenotazione, ti auguriamo un piacevole soggiorno. La  prenotazione ti sar� confermata tramite mail al piÃ¹ presto possibile.</center>");
+define("_JOMRES_FRONT_MR_BOOKINGMADE","<center>Grazie per la tua prenotazione, ti auguriamo un piacevole soggiorno. La  prenotazione ti sarà confermata tramite mail al piÃÂ¹ presto possibile.</center>");
 /**
 * @ignore
 */
@@ -1333,11 +1333,11 @@ define("_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM","E' stata prenotata una camera: ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_EMAIL_TEXT_ADULTS","NÂ° adulti: ");
+define("_JOMRES_FRONT_MR_EMAIL_TEXT_ADULTS","NÃÂ° adulti: ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_EMAIL_TEXT_CHILDREN","NÂ° bambini: ");
+define("_JOMRES_FRONT_MR_EMAIL_TEXT_CHILDREN","NÃÂ° bambini: ");
 /**
 * @ignore
 */
@@ -1373,7 +1373,7 @@ define("_JOMRES_FRONT_MR_EMAIL_TEXT_TARIFFUID","Tariffa: ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL","Il costo del contratto Ã¨: ");
+define("_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL","Il costo del contratto ÃÂ¨: ");
 /**
 * @ignore
 */
@@ -1382,7 +1382,7 @@ define("_JOMRES_FRONT_MR_EMAIL_TEXT_DEPOSIT","Deposito richiesto: ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_CUSTOMERDETAILSNOTSTORED","Ã necessario che  aggiorni tuoi dati prima di poter fare la tua prenotazione. Per favore, prima fai clic nel link Miei dati sopra e completa e tuoi dati. Grazie.");
+define("_JOMRES_FRONT_MR_CUSTOMERDETAILSNOTSTORED","ÃÂ necessario che  aggiorni tuoi dati prima di poter fare la tua prenotazione. Per favore, prima fai clic nel link Miei dati sopra e completa e tuoi dati. Grazie.");
 /**
 * @ignore
 */
@@ -1390,7 +1390,7 @@ define("_JOMRES_FRONT_MR_CUSTOMERDETAILSSAVED","Grazie, tuoi dati sono stati sal
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_WELCOME_STRANGER","Benvenuto, Prima di fare una prenotazione, Ã¨ necessario aggiornare i tuoi dati nel link Miei dati.");
+define("_JOMRES_FRONT_MR_WELCOME_STRANGER","Benvenuto, Prima di fare una prenotazione, ÃÂ¨ necessario aggiornare i tuoi dati nel link Miei dati.");
 /**
 * @ignore
 */
@@ -1411,7 +1411,7 @@ define("_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN","Ospite registrato ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_BOOKIN_NOGUESTSDUEIN","Non c'Ã¨ nessun ospite che arriva oggi.");
+define("_JOMRES_FRONT_MR_BOOKIN_NOGUESTSDUEIN","Non c'ÃÂ¨ nessun ospite che arriva oggi.");
 /**
 * @ignore
 */
@@ -1427,7 +1427,7 @@ define("_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT_BUTTON","Conferma ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_BOOKOUT_NOGUESTSDUEOUT","Non c'Ã¨ nessun ospite che parte oggi.");
+define("_JOMRES_FRONT_MR_BOOKOUT_NOGUESTSDUEOUT","Non c'ÃÂ¨ nessun ospite che parte oggi.");
 
 /**
 * @ignore
@@ -1501,23 +1501,23 @@ define("_JOMRES_COM_A_DISCOUNTS_AVAILABLE","Disponibile piano di sconto");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_DISCOUNTS_AVAILABLE_DESC","Il piano di sconto Ã¨ per coloro che vogliano offrire un sconto agli ospiti se piÃ¹ numerosi. Non Ã¨ raccomandato utilizzare questa opzione se chiedi il pagamento per \"persona a notte\".");
+define("_JOMRES_COM_A_DISCOUNTS_AVAILABLE_DESC","Il piano di sconto ÃÂ¨ per coloro che vogliano offrire un sconto agli ospiti se piÃÂ¹ numerosi. Non ÃÂ¨ raccomandato utilizzare questa opzione se chiedi il pagamento per \"persona a notte\".");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_DISCOUNTS_LEVEL1","Livello 1Â° soglia");
+define("_JOMRES_COM_A_DISCOUNTS_LEVEL1","Livello 1ÃÂ° soglia");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_DISCOUNTS_LEVEL2","Livello 2Â° soglia");
+define("_JOMRES_COM_A_DISCOUNTS_LEVEL2","Livello 2ÃÂ° soglia");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_DISCOUNTS_LEVEL3","Livello 3Â° soglia");
+define("_JOMRES_COM_A_DISCOUNTS_LEVEL3","Livello 3ÃÂ° soglia");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_DISCOUNTS_LEVEL4","Livello 4Â° soglia");
+define("_JOMRES_COM_A_DISCOUNTS_LEVEL4","Livello 4ÃÂ° soglia");
 /**
 * @ignore
 */
@@ -1581,7 +1581,7 @@ define("_JOMRES_COM_A_TARIFFS_PER_DESC","Seleziona SI se vuoi chiedere il pagame
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_CANCELLATIONPOLICY","Ã possibile usufruire le cancellazioni");
+define("_JOMRES_COM_A_CANCELLATIONPOLICY","ÃÂ possibile usufruire le cancellazioni");
 /**
 * @ignore
 */
@@ -1597,7 +1597,7 @@ define("_JOMRES_COM_A_UPLOADS_FILETYPES","Tipo di file");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_UPLOADS_FILETYPES_DESC","Colloca qui che tipo di file che Ã¨ consentito caricare. Utilizza un elenco in minuscolo separato da virgola senza spazi. Esempio: zip,txt,exe,htm,html");
+define("_JOMRES_COM_A_UPLOADS_FILETYPES_DESC","Colloca qui che tipo di file che ÃÂ¨ consentito caricare. Utilizza un elenco in minuscolo separato da virgola senza spazi. Esempio: zip,txt,exe,htm,html");
 /**
 * @ignore
 */
@@ -1630,7 +1630,7 @@ define("_JOMRES_FRONT_MR_FREE","Libero");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_TAPEVIEWKEY","<br />Le camere su sfondo blu sono prenotate <br/>-se una camera ha il testo in rosso, il deposito non Ã¨ stato pagato.<br /> -l'asterisco indica che l'ospite arriva in data odierna.<br /> -il testo giallo indica che l'ospite sta occupando la camera.<br/>");
+define("_JOMRES_FRONT_MR_TAPEVIEWKEY","<br />Le camere su sfondo blu sono prenotate <br/>-se una camera ha il testo in rosso, il deposito non ÃÂ¨ stato pagato.<br /> -l'asterisco indica che l'ospite arriva in data odierna.<br /> -il testo giallo indica che l'ospite sta occupando la camera.<br/>");
 
 /**
 * @ignore
@@ -1659,7 +1659,7 @@ define("_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2",". Sotto trovi un riassunto
 /**
 * @ignore
 */
-define("_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN"," La registrazione puÃ² avvenire dopo le 11 pm.");
+define("_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN"," La registrazione puÃÂ² avvenire dopo le 11 pm.");
 /**
 * @ignore
 */
@@ -1675,20 +1675,20 @@ define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO","Nota bene");
 /**
 * @ignore
 */
-define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT","Ricorda che una prenotazione Ã¨ un contratto giuridicamante vincolante,in caso dovessi annullare o abbreviare il tuo soggiorno ti sar� trattenuta la caparra come penale.");
+define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT","Ricorda che una prenotazione ÃÂ¨ un contratto giuridicamante vincolante,in caso dovessi annullare o abbreviare il tuo soggiorno ti sarà trattenuta la caparra come penale.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE","Non Ã¨ prevista alcuna indennit� per pasti non comsumati o per camere non occupate durante il periodo della prenotazione.");
+define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE","Non ÃÂ¨ prevista alcuna indennità per pasti non comsumati o per camere non occupate durante il periodo della prenotazione.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO","<i>Penalit� per anullamento o riduzione del periodo di soggiorno:");
+define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO","<i>Penalità per anullamento o riduzione del periodo di soggiorno:");
 
 /**
 * @ignore
 */
-define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS","30 giorni o piÃ¹");
+define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS","30 giorni o piÃÂ¹");
 /**
 * @ignore
 */
@@ -1712,7 +1712,7 @@ define("_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT"," 100% del 
 /**
 * @ignore
 */
-define("_JOMRES_COM_CONFIRMATION_RESERVATION_VAT","Aliquota IVA  del 20% Ã¨ inclusa in tutti le tariffe.");
+define("_JOMRES_COM_CONFIRMATION_RESERVATION_VAT","Aliquota IVA  del 20% ÃÂ¨ inclusa in tutti le tariffe.");
 /**
 * @ignore
 */
@@ -1762,7 +1762,7 @@ define("_JOMRES_COM_INVOICE_LETTER_HOPEYOUENJOYEDSTAY","a presto.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_INVOICE_LETTER_VAT","aliquota IVA  del 20% Ã¨ inclusa in tutte le tariffe.");
+define("_JOMRES_COM_INVOICE_LETTER_VAT","aliquota IVA  del 20% ÃÂ¨ inclusa in tutte le tariffe.");
 /**
 * @ignore
 */
@@ -1822,7 +1822,7 @@ define("_JOMRES_FILE_UPLOAD","Carica file");
 /**
 * @ignore
 */
-define("_JOMRES_FILE_TYPES","Il file puÃ² essere di tipo - dimensione massima.");
+define("_JOMRES_FILE_TYPES","Il file puÃÂ² essere di tipo - dimensione massima.");
 /**
 * @ignore
 */
@@ -1838,7 +1838,7 @@ define("_JOMRES_FILE_ERROR_EMPTY","Per favore seleziona un file prima di caricar
 /**
 * @ignore
 */
-define("_JOMRES_FILE_ERROR_NAME","La stringa puÃ² solamente contenere caratteri alfanumerici e non spazi, per favore.");
+define("_JOMRES_FILE_ERROR_NAME","La stringa puÃÂ² solamente contenere caratteri alfanumerici e non spazi, per favore.");
 /**
 * @ignore
 */
@@ -1846,11 +1846,11 @@ define("_JOMRES_FILE_ERROR_SIZE","La dimensione del file eccede il massimo che c
 /**
 * @ignore
 */
-define("_JOMRES_FILE_ERROR_EXISTS","Esiste gi� un file con il nome  specificato. Per favore assegna un altro nome prima caricare.");
+define("_JOMRES_FILE_ERROR_EXISTS","Esiste già un file con il nome  specificato. Per favore assegna un altro nome prima caricare.");
 /**
 * @ignore
 */
-define("_JOMRES_FILE_UPLOADED","Il file Ã¨ stato caricato.");
+define("_JOMRES_FILE_UPLOADED","Il file ÃÂ¨ stato caricato.");
 /**
 * @ignore
 */
@@ -1858,7 +1858,7 @@ define("_JOMRES_FILE_NOT_UPLOADED","File NON caricato.");
 /**
 * @ignore
 */
-define("_JOMRES_FILE_UPDATED","Il suo Ã¨ stato caricato.");
+define("_JOMRES_FILE_UPDATED","Il suo ÃÂ¨ stato caricato.");
 
 /**
 * @ignore
@@ -1867,7 +1867,7 @@ define("_JOMRES_COM_MR_VRCT_PROPERTY_OPTIN","Optare per la rete jomres?");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_OPTIN_DESC","Se si scoglie di optare per la rete jomres, sar�i elencato in jomres.net. Devi controllare che i tuoi dati siano corretti.");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_OPTIN_DESC","Se si scoglie di optare per la rete jomres, sarài elencato in jomres.net. Devi controllare che i tuoi dati siano corretti.");
 
 
 /**
@@ -1881,7 +1881,7 @@ define("_JOMRES_COM_A_CALENDARLANGUAGE","Lingua del file di calendario JS");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_CALENDARLANGUAGE_DESC","Scegliare la lingua del file utilizzata nel calendario Javascript. Si prega notare che Ã¨ possibile che alcuni calendari contengono bugs, Vedi //sourceforge.net/per maggiori informazioni.");
+define("_JOMRES_COM_A_CALENDARLANGUAGE_DESC","Scegliare la lingua del file utilizzata nel calendario Javascript. Si prega notare che ÃÂ¨ possibile che alcuni calendari contengono bugs, Vedi //sourceforge.net/per maggiori informazioni.");
 /**
 * @ignore
 */
@@ -1893,11 +1893,11 @@ define("_JOMRES_COM_A_CALENDARCSS_DESC","Scegli il file CSS che deve essere util
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_CHECKPUBLICHOLIDAYS","Controllare festivit�?");
+define("_JOMRES_COM_A_CHECKPUBLICHOLIDAYS","Controllare festività?");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_CHECKPUBLICHOLIDAYS_DESC","Se scegli l'opzione SI, devi impostare tariffe separate per festivit� e per i giorni normali. Impostare NO se chiedi il medesimo pagamento per le festivit� e per giorni feriali.");
+define("_JOMRES_COM_A_CHECKPUBLICHOLIDAYS_DESC","Se scegli l'opzione SI, devi impostare tariffe separate per festività e per i giorni normali. Impostare NO se chiedi il medesimo pagamento per le festività e per giorni feriali.");
 /**
 * @ignore
 */
@@ -1931,7 +1931,7 @@ define("_JOMRES_COM_A_SHOWDEPARTUREJAVASCRIPT_DESC","Imposta SI se vuoi mostrare
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_CHOOSEPROPERTY","Sceglie la propriet� di cui vuoi conoscere la disponibilit� ");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_CHOOSEPROPERTY","Sceglie la proprietà di cui vuoi conoscere la disponibilità ");
 
 /**
 * @ignore
@@ -1944,7 +1944,7 @@ define("_JOMRES_FRONT_MR_ROOMBOOKINGLISTING_ROOM","Camera");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_ROOMBOOKINGLISTING_PROPERTY","propriet�");
+define("_JOMRES_FRONT_MR_ROOMBOOKINGLISTING_PROPERTY","proprietà");
 /**
 * @ignore
 */
@@ -1984,7 +1984,7 @@ define("_JOMRES_COM_MR_ROOM_DELETE","Elimina");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ROOM_UNABLETODELETE","Non Ã¨ possibile eliminare questo pulsante, ci sono prenotazioni.");
+define("_JOMRES_COM_MR_ROOM_UNABLETODELETE","Non ÃÂ¨ possibile eliminare questo pulsante, ci sono prenotazioni.");
 /**
 * @ignore
 */
@@ -1996,7 +1996,7 @@ define("_JOMRES_COM_MR_ROOMFEATURE_DELETE","Elimina la caratteristica della came
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE","Non Ã¨ possibile eliminare questa caratteristica della camera, perchÃ¨ e assegnata ad altre camere. Elimina la caratteristica da quelle camere e riprova.");
+define("_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE","Non ÃÂ¨ possibile eliminare questa caratteristica della camera, perchÃÂ¨ e assegnata ad altre camere. Elimina la caratteristica da quelle camere e riprova.");
 /**
 * @ignore
 */
@@ -2004,15 +2004,15 @@ define("_JOMRES_COM_MR_ROOMFEATURE_DELETED","Caratteristica della camera elimina
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTYFEATURE_DELETE","Elimina la caratteristica della propriet�");
+define("_JOMRES_COM_MR_PROPERTYFEATURE_DELETE","Elimina la caratteristica della proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE","Non Ã¨ possibile eliminare questa caratteristica della propriet�, perchÃ¨ Ã¨ assegnata ad altre propriet�. Elimina la caratteristica da quelle propriet� e reprova.");
+define("_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE","Non ÃÂ¨ possibile eliminare questa caratteristica della proprietà, perchÃÂ¨ ÃÂ¨ assegnata ad altre proprietà. Elimina la caratteristica da quelle proprietà e reprova.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTYFEATURE_DELETED","Caratteristica della propriet� eliminata");
+define("_JOMRES_COM_MR_PROPERTYFEATURE_DELETED","Caratteristica della proprietà eliminata");
 
 /**
 * @ignore
@@ -2021,11 +2021,11 @@ define("_JOMRES_COM_MR_ROOMCLASS_DELETE","Elimina il tipo di camera");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS","Non Ã¨ possibile eliminare questo tipo di camera, perchÃ¨ Ã¨ stato assegnato ad altre camere.");
+define("_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS","Non ÃÂ¨ possibile eliminare questo tipo di camera, perchÃÂ¨ ÃÂ¨ stato assegnato ad altre camere.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS","Non Ã¨ possibile eliminare questo tipo d camera, perchÃ¨ Ã¨ stato assegnato a una tariffa.");
+define("_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS","Non ÃÂ¨ possibile eliminare questo tipo d camera, perchÃÂ¨ ÃÂ¨ stato assegnato a una tariffa.");
 /**
 * @ignore
 */
@@ -2034,35 +2034,35 @@ define("_JOMRES_COM_MR_ROOMCLASS_DELETED","Tipo di camera eliminato");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTY_DELETE","propriet� eliminata");
+define("_JOMRES_COM_MR_PROPERTY_DELETE","proprietà eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTY_UNABLETODELETE_MESSAGE","Non Ã¨ possibile eliminare questa propriet�, ci sono dati nella tabella: ");
+define("_JOMRES_COM_MR_PROPERTY_UNABLETODELETE_MESSAGE","Non ÃÂ¨ possibile eliminare questa proprietà, ci sono dati nella tabella: ");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTY_DELETED","propriet� eliminata");
+define("_JOMRES_COM_MR_PROPERTY_DELETED","proprietà eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS","Tu non hai sufficienti diritti per eliminare questa propriet�.");
+define("_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS","Tu non hai sufficienti diritti per eliminare questa proprietà.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ASSIGNROOMTOTHISPROPERTY_BUTTON","Scegli questa propriet�");
+define("_JOMRES_COM_MR_ASSIGNROOMTOTHISPROPERTY_BUTTON","Scegli questa proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_ASSIGNROOMTOTHISPROPERTY_DESC","Con quale propriet� sar� associata la camera?");
+define("_JOMRES_COM_MR_ASSIGNROOMTOTHISPROPERTY_DESC","Con quale proprietà sarà associata la camera?");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_SELECTPROPERTY","Seleziona una propriet�");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_SELECTPROPERTY","Seleziona una proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_QUICKRES_STEP1_MUSTSELECTPROPERTY","Devi selezionare una propriet�");
+define("_JOMRES_COM_MR_QUICKRES_STEP1_MUSTSELECTPROPERTY","Devi selezionare una proprietà");
 
 /**
 * @ignore
@@ -2084,7 +2084,7 @@ define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK","Fai clic per un mappa"
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION","Descrizione della propriet�");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION","Descrizione della proprietà");
 /**
 * @ignore
 */
@@ -2092,7 +2092,7 @@ define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES","Ora di registrazione"
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES","Attivit� della zona");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES","Attività della zona");
 /**
 * @ignore
 */
@@ -2112,12 +2112,12 @@ define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS","Politica e cla
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPERTYKEY","La tua chiave di propriet� in Jomres.net");
+define("_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPERTYKEY","La tua chiave di proprietà in Jomres.net");
 
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_PROPERTIESLISTING_OURPROPERTIES","Nostra propriet�");
+define("_JOMRES_COM_MR_PROPERTIESLISTING_OURPROPERTIES","Nostra proprietà");
 /**
 * @ignore
 */
@@ -2137,7 +2137,7 @@ define("_JOMRES_COM_A_FIXEDPERIODBOOKINGS","Prenotazioni  per un periodo fisso."
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC",'Se imposti SI, la prenotazione sar� per un periodo fisso. Se imposti NO, controlla di non aver impostato in SI  "Giorno di arrivo predefinito" (a meno che si voglia forzare gli arrivari in un giorno predefinito) in altro modo non sar� posibile ottenere link multipli del calendario disponibilit�.');
+define("_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC",'Se imposti SI, la prenotazione sarà per un periodo fisso. Se imposti NO, controlla di non aver impostato in SI  "Giorno di arrivo predefinito" (a meno che si voglia forzare gli arrivari in un giorno predefinito) in altro modo non sarà posibile ottenere link multipli del calendario disponibilità.');
 /**
 * @ignore
 */
@@ -2182,11 +2182,11 @@ define("_JOMRES_COM_A_NUMBEROFGUESTSREQUIRED_DESC","Imposta SI per mostrare la v
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_SINGLEROOMPROPERTY","Propriet� di una sola camera");
+define("_JOMRES_COM_A_SINGLEROOMPROPERTY","Proprietà di una sola camera");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC","Ex. Un'appartamento per vacanze. In questo caso, assicurarti di avere una sola camera registrata in ciascuna propriet�.");
+define("_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC","Ex. Un'appartamento per vacanze. In questo caso, assicurarti di avere una sola camera registrata in ciascuna proprietà.");
 /**
 * @ignore
 */
@@ -2194,7 +2194,7 @@ define("_JOMRES_COM_A_MAXADULTS","Max adulti consentito");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_MAXADULTS_DESC","Max quantit� adulti mostrata nel form prenotazione");
+define("_JOMRES_COM_A_MAXADULTS_DESC","Max quantità adulti mostrata nel form prenotazione");
 /**
 * @ignore
 */
@@ -2202,7 +2202,7 @@ define("_JOMRES_COM_A_MAXCHILDREN","Max bambini consentito");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_MAXCHILDREN_DESC","Max quantit� bambini mostrata nel form prenotazione");
+define("_JOMRES_COM_A_MAXCHILDREN_DESC","Max quantità bambini mostrata nel form prenotazione");
 /**
 * @ignore
 */
@@ -2222,28 +2222,28 @@ define("_JOMRES_FRONT_MR_DISCOUNT","Sconto");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_CONF_CHMODWARNING","<center><h1><font color=red>Avvertenza...</FONT></h1><br /><B>Ã necessario MODIFICARE il file jomres_config.php a 777 per rendere possibile la modifica della  configurazione.</B></center><br /><br />");
+define("_JOMRES_COM_MR_CONF_CHMODWARNING","<center><h1><font color=red>Avvertenza...</FONT></h1><br /><B>ÃÂ necessario MODIFICARE il file jomres_config.php a 777 per rendere possibile la modifica della  configurazione.</B></center><br /><br />");
 
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_WEEKDAYS_MONDAY","LunedÃ¬");
+define("_JOMRES_COM_MR_WEEKDAYS_MONDAY","LunedÃÂ¬");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_WEEKDAYS_TUESDAY","MartedÃ¬");
+define("_JOMRES_COM_MR_WEEKDAYS_TUESDAY","MartedÃÂ¬");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY","MercoledÃ¬");
+define("_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY","MercoledÃÂ¬");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_WEEKDAYS_THURSDAY","GiovedÃ¬");
+define("_JOMRES_COM_MR_WEEKDAYS_THURSDAY","GiovedÃÂ¬");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MR_WEEKDAYS_FRIDAY","VenerdÃ¬");
+define("_JOMRES_COM_MR_WEEKDAYS_FRIDAY","VenerdÃÂ¬");
 /**
 * @ignore
 */
@@ -2285,7 +2285,7 @@ define("_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR","Dom");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_AVLCAL","Calendario di disponibilit�.");
+define("_JOMRES_COM_A_AVLCAL","Calendario di disponibilità.");
 /**
 * @ignore
 */
@@ -2317,7 +2317,7 @@ define("_JOMRES_COM_AVLCAL_OUTMONTHFACE","Colore delle carattere per i giorni ch
 /**
 * @ignore
 */
-define("_JOMRES_COM_AVLCAL_INBGCOLOUR","Colore dello sfondo della casella per i giorni quando Ã¨ diponibile la camera/propriet�.");
+define("_JOMRES_COM_AVLCAL_INBGCOLOUR","Colore dello sfondo della casella per i giorni quando ÃÂ¨ diponibile la camera/proprietà.");
 /**
 * @ignore
 */
@@ -2372,11 +2372,11 @@ define("_JOMRES_FRONT_MR_FIXEDPRIOD1","Periodo di soggiorno (giorni)");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR","Mostrare calendario della disponibilit�");
+define("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR","Mostrare calendario della disponibilità");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC","Colloca questo in SI  per mostrare il calendario della disponibilit�.");
+define("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC","Colloca questo in SI  per mostrare il calendario della disponibilità.");
 /**
 * @ignore
 */
@@ -2384,7 +2384,7 @@ define("_JOMRES_COM_MR_QUICKRES_STEP4_TITLE_SINGLEROOM","Conferma la tua selezio
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_AVAILABILITY","Disponibilit�");
+define("_JOMRES_FRONT_AVAILABILITY","Disponibilità");
 
 /**
 * @ignore
@@ -2447,7 +2447,7 @@ define("_JOMRES_FRONT_DELETEGUEST_GUESTDELETED","Ospite eliminato");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST","Non Ã¨ possibile eliminare questo ospite perche ha delle prenotazioni aperte. ");
+define("_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST","Non ÃÂ¨ possibile eliminare questo ospite perche ha delle prenotazioni aperte. ");
 
 /**
 * @ignore
@@ -2456,7 +2456,7 @@ define("_JOMRES_COM_A_TAPEVIEW","Il panello di amministrazione mostra la visuali
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_TAPEVIEW_DESC","Imposta SI se vuoi utilizzare la visualizzazione a nastro settimanale, No per il calendario mensile di disponibilit�.");
+define("_JOMRES_COM_A_TAPEVIEW_DESC","Imposta SI se vuoi utilizzare la visualizzazione a nastro settimanale, No per il calendario mensile di disponibilità.");
 /**
 * @ignore
 */
@@ -2465,11 +2465,11 @@ define("_JOMRES_COM_INVOICE_ACTUALROOMCOST","Costo della camera: ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MESSAGES_EMAILINVALID","L'indirizzo di  posta elettronica non Ã¨ valida ");
+define("_JOMRES_FRONT_MESSAGES_EMAILINVALID","L'indirizzo di  posta elettronica non ÃÂ¨ valida ");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_GUEST_EMAIL_TEXT_PREFIX","Questa Ã¨ l'indirizzo di posta elettronica di");
+define("_JOMRES_FRONT_GUEST_EMAIL_TEXT_PREFIX","Questa ÃÂ¨ l'indirizzo di posta elettronica di");
 /**
 * @ignore
 */
@@ -2489,7 +2489,7 @@ define("_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS","Per domande, errori o per 
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE","Il nostro numero di telefono Ã¨");
+define("_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE","Il nostro numero di telefono ÃÂ¨");
 /**
 * @ignore
 */
@@ -2565,7 +2565,7 @@ define("_JOMRES_COM_A_PAYPAL_EMAIL_DESC","Nota: Per uttilizare Pypal devi andare
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_PAYPAL_ERROR_NOEMAIL","Errore, non Ã¨ impostata la posta elettronica");
+define("_JOMRES_COM_A_PAYPAL_ERROR_NOEMAIL","Errore, non ÃÂ¨ impostata la posta elettronica");
 
 
 /**
@@ -2596,7 +2596,7 @@ define("_JOMRES_MR_AUDIT_LISTING_OPERATION","Operazione");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_LISTING_PROPERTY","Diritti di propriet�");
+define("_JOMRES_MR_AUDIT_LISTING_PROPERTY","Diritti di proprietà");
 /**
 * @ignore
 */
@@ -2700,35 +2700,35 @@ define("_JOMRES_MR_AUDIT_DELETE_ROOM_TYPE","Tipo di camera eliminato");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_INSERT_PROPERTY","propriet� creata");
+define("_JOMRES_MR_AUDIT_INSERT_PROPERTY","proprietà creata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_UPDATE_PROPERTY","propriet� aggiornata");
+define("_JOMRES_MR_AUDIT_UPDATE_PROPERTY","proprietà aggiornata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_DELETE_PROPERTY","propriet� eliminata");
+define("_JOMRES_MR_AUDIT_DELETE_PROPERTY","proprietà eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_INSERT_PROPERTY_FEATURE","Caratteristica della propriet� creata");
+define("_JOMRES_MR_AUDIT_INSERT_PROPERTY_FEATURE","Caratteristica della proprietà creata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_UPDATE_PROPERTY_FEATURE","Caratteristica della propriet� aggiornata");
+define("_JOMRES_MR_AUDIT_UPDATE_PROPERTY_FEATURE","Caratteristica della proprietà aggiornata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE","Caratteristica della propriet� eliminata");
+define("_JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE","Caratteristica della proprietà eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS","Impostazione della propriet� eliminata");
+define("_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS","Impostazione della proprietà eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_PUBLISH_PROPERTY","propriet� pubblicata");
+define("_JOMRES_MR_AUDIT_PUBLISH_PROPERTY","proprietà pubblicata");
 /**
 * @ignore
 */
@@ -2744,15 +2744,15 @@ define("_JOMRES_MR_AUDIT_DELETE_TARIFF","Tariffa eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_INSERT_PUBHOLIDAY","Festivit� creata");
+define("_JOMRES_MR_AUDIT_INSERT_PUBHOLIDAY","Festività creata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_UPDATE_PUBHOLIDAY","Festivit� aggiornata");
+define("_JOMRES_MR_AUDIT_UPDATE_PUBHOLIDAY","Festività aggiornata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_DELETE_PUBHOLIDAY","Festivit� eliminata");
+define("_JOMRES_MR_AUDIT_DELETE_PUBHOLIDAY","Festività eliminata");
 /**
 * @ignore
 */
@@ -2792,11 +2792,11 @@ define("_JOMRES_MR_AUDIT_DELETE_GUEST","Ospite eliminato");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE","Caricare nuova immagine  della propriet�");
+define("_JOMRES_MR_AUDIT_INSERT_PROPERTY_IMAGE","Caricare nuova immagine  della proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_UPDATE_PROPERTY_IMAGE","Caricare differente immagine  della propriet�");
+define("_JOMRES_MR_AUDIT_UPDATE_PROPERTY_IMAGE","Caricare differente immagine  della proprietà");
 /**
 * @ignore
 */
@@ -2804,11 +2804,11 @@ define("_JOMRES_MR_AUDIT_DELETE_IMAGE","immagine eliminata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE","nuova immagine della propriet� caricata");
+define("_JOMRES_MR_AUDIT_INSERT_ROOM_IMAGE","nuova immagine della proprietà caricata");
 /**
 * @ignore
 */
-define("_JOMRES_MR_AUDIT_UPDATE_ROOM_IMAGE","differente immagine  della propriet� caricata");
+define("_JOMRES_MR_AUDIT_UPDATE_ROOM_IMAGE","differente immagine  della proprietà caricata");
 /**
 * @ignore
 */
@@ -2919,7 +2919,7 @@ define("_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP","Extras facoltativi.");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BUTTON","Seleziona questa propriet�");
+define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BUTTON","Seleziona questa proprietà");
 /**
 * @ignore
 */
@@ -2927,7 +2927,7 @@ define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_SELECTALL","Invertire selezion
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS","Data di inizio e di fine dell' indisponibilit�");
+define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSTARTS","Data di inizio e di fine dell' indisponibilità");
 /**
 * @ignore
 */
@@ -2939,11 +2939,11 @@ define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS","Camere Indisponibili");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSBOOKED","Una o piÃ¹ camere verificate sono  gi�  prenotate. Se vuoi aggiungerla/e alle indisponibili  prima Ã¨ necessario annullare le prenotazioni gi� effetuate.");
+define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSBOOKED","Una o piÃÂ¹ camere verificate sono  già  prenotate. Se vuoi aggiungerla/e alle indisponibili  prima ÃÂ¨ necessario annullare le prenotazioni già effetuate.");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR","Errore durante la prenotazione, una o piÃ¹  camere selezionate non sono libere.");
+define("_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_STAGE2_ERROR","Errore durante la prenotazione, una o piÃÂ¹  camere selezionate non sono libere.");
 /**
 * @ignore
 */
@@ -2980,7 +2980,7 @@ define("_JOMRES_COM_A_RESET","Reimpostare");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_PAYPAL_PENDING","Il tuo status di pagamento in Paypal Ã¨ impostato in sospeso. Quando l'arbergo potr� confermare la ricevuta di pagamento, la prenotazione sar� confermata.");
+define("_JOMRES_COM_A_PAYPAL_PENDING","Il tuo status di pagamento in Paypal ÃÂ¨ impostato in sospeso. Quando l'arbergo potrà confermare la ricevuta di pagamento, la prenotazione sarà confermata.");
 /**
 * @ignore
 */
@@ -2988,7 +2988,7 @@ define("_JOMRES_COM_A_PAYPAL_CANCELLED","Prenotazione annullata");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_SEARCH_HERE","Ricerca quÃ¬ per:");
+define("_JOMRES_FRONT_MR_SEARCH_HERE","Ricerca quÃÂ¬ per:");
 /**
 * @ignore
 */
@@ -3022,7 +3022,7 @@ define("_JOMRES_COM_A_SMOKING_OPTION","Opzione fumatori predefinita");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_SMOKING_OPTION_DESC"," Se la sua opzione prefinita Ã¨ in SI e tutte le tue camere sono non fumatori, nessuma camera sar� mostrata nella pagina d'elenco in prenotazione.");
+define("_JOMRES_COM_A_SMOKING_OPTION_DESC"," Se la sua opzione prefinita ÃÂ¨ in SI e tutte le tue camere sono non fumatori, nessuma camera sarà mostrata nella pagina d'elenco in prenotazione.");
 /**
 * @ignore
 */
@@ -3030,7 +3030,7 @@ define("_JOMRES_COM_A_CURRENCYSYMBOL","Simbolo di valuta");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_CURRENCYSYMBOL_DESC",'Ex. Â, si prega notare che si devono utilizzare i codici degli enti HTML per il simbolo richiesto. Per vedere un elenco di questi visitare <a href="http://www.w3schools.com/tags/ref_entities.asp">w3schools</a>');
+define("_JOMRES_COM_A_CURRENCYSYMBOL_DESC",'Ex. ÃÂ, si prega notare che si devono utilizzare i codici degli enti HTML per il simbolo richiesto. Per vedere un elenco di questi visitare <a href="http://www.w3schools.com/tags/ref_entities.asp">w3schools</a>');
 
 /**
 * @ignore
@@ -3039,7 +3039,7 @@ define("_JOMRES_COM_A_CURRENCYCODE","Codice di valuta");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_CURRENCYCODE_DESC",'Ex. EUR. Questo Ã¨ necessario se si utilizza  Paypal. Per vedere un elenco di questi codici per favore visitare <a href="http://www.xe.com/iso4217.htm">XE.com</a>"');
+define("_JOMRES_COM_A_CURRENCYCODE_DESC",'Ex. EUR. Questo ÃÂ¨ necessario se si utilizza  Paypal. Per vedere un elenco di questi codici per favore visitare <a href="http://www.xe.com/iso4217.htm">XE.com</a>"');
 /**
 * @ignore
 */
@@ -3047,7 +3047,7 @@ define("_JOMRES_COM_A_CLICKFORMOREINFORMATION","Informazioni");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_GODMANAGERWARNING","<font color=red>Avvertenza.... sei registrato come  direttore con privilegio per tutte le propriet�. Si conscio che questo potrebbe causare problemi in Jomres.</FONT>");
+define("_JOMRES_COM_A_GODMANAGERWARNING","<font color=red>Avvertenza.... sei registrato come  direttore con privilegio per tutte le proprietà. Si conscio che questo potrebbe causare problemi in Jomres.</FONT>");
 /**
 * @ignore
 */
@@ -3064,7 +3064,7 @@ define("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS","Giorni di prenotazione avanzata
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_TAX_WARNING","<font color=red>NOTA: Non Ã¨ raccomandato impostare le due opzioni qui di seguito in SI, devi utilizzare solamente uno due metodi di computazione dell' imposta disponibili. </FONT>");
+define("_JOMRES_COM_A_TAX_WARNING","<font color=red>NOTA: Non ÃÂ¨ raccomandato impostare le due opzioni qui di seguito in SI, devi utilizzare solamente uno due metodi di computazione dell' imposta disponibili. </FONT>");
 /**
 * @ignore
 */
@@ -3076,7 +3076,7 @@ define("_JOMRES_COM_A_ROOMTAX","Imposta della camera");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_ROOMTAX_DESC","Ex imposta di soggiorno. Ã possibile applicare un' importo  fisso o una percentuale da applicate al costo della camera.");
+define("_JOMRES_COM_A_ROOMTAX_DESC","Ex imposta di soggiorno. ÃÂ possibile applicare un' importo  fisso o una percentuale da applicate al costo della camera.");
 /**
 * @ignore
 */
@@ -3197,58 +3197,58 @@ define("_JOMRES_COM_A_AUDITING_SHOWING","Mostrando ultimi 200 registri");
 /**
 * @ignore
 */
-define("_JOMRES_COM_A_AUDITING_CANTSHOWSQL","Ci somo piÃ¹ di 200 registri nelle tracce, perciÃ² non Ã¨ possibile mostrare l' attivit� SQL effetuata. Vedi la tabella del DB");
+define("_JOMRES_COM_A_AUDITING_CANTSHOWSQL","Ci somo piÃÂ¹ di 200 registri nelle tracce, perciÃÂ² non ÃÂ¨ possibile mostrare l' attività SQL effetuata. Vedi la tabella del DB");
 
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_PTYPE","Tipo di propriet�");
+define("_JOMRES_FRONT_PTYPE","Tipo di proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_LIST_TITLE","Elencare tipi di propriet�");
+define("_JOMRES_COM_PTYPES_LIST_TITLE","Elencare tipi di proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_LIST_TITLE_EDIT","Modificare tipo di propriet�");
+define("_JOMRES_COM_PTYPES_LIST_TITLE_EDIT","Modificare tipo di proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_PTYPE","Tipo di propriet�");
+define("_JOMRES_COM_PTYPES_PTYPE","Tipo di proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_PTYPE_DESC","Descrizione del tipo di propriet�");
+define("_JOMRES_COM_PTYPES_PTYPE_DESC","Descrizione del tipo di proprietà");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_SAVED","Tipo di  propriet� salvato");
+define("_JOMRES_COM_PTYPES_SAVED","Tipo di  proprietà salvato");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_UNABLETO_DELETE","Non Ã¨ possibile eliminare il tipo di propriet�. Il tipo di propriet� Ã¨ assegnato a una o piÃ¹ propriet�, assegna di nuovo le propiet� prima provare ad eliminare.");
+define("_JOMRES_COM_PTYPES_UNABLETO_DELETE","Non ÃÂ¨ possibile eliminare il tipo di proprietà. Il tipo di proprietà ÃÂ¨ assegnato a una o piÃÂ¹ proprietà, assegna di nuovo le propietà prima provare ad eliminare.");
 /**
 * @ignore
 */
-define("_JOMRES_COM_PTYPES_DELETED","Tipo di propriet� eliminati");
+define("_JOMRES_COM_PTYPES_DELETED","Tipo di proprietà eliminati");
 
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_PROPERTY_BOOKINGCHECK_NOROOMS","<font color=red>Errore, la propriet� non ha camere.</font>");
+define("_JOMRES_FRONT_PROPERTY_BOOKINGCHECK_NOROOMS","<font color=red>Errore, la proprietà non ha camere.</font>");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_PROPERTY_BOOKINGCHECK_NOTARIFFS","<font color=red>Errore, la propriet� non ha tariffe.</font>");
+define("_JOMRES_FRONT_PROPERTY_BOOKINGCHECK_NOTARIFFS","<font color=red>Errore, la proprietà non ha tariffe.</font>");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_PROPERTY_BOOKINGCHECK_NOROOMTYPES","<font color=red>Errore, la propriet� non ha tipi di camera.</font>");
+define("_JOMRES_FRONT_PROPERTY_BOOKINGCHECK_NOROOMTYPES","<font color=red>Errore, la proprietà non ha tipi di camera.</font>");
 
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_PROPERTY_SWAP","Cambiare propriet�");
+define("_JOMRES_FRONT_PROPERTY_SWAP","Cambiare proprietà");
 /**
 * @ignore
 */
@@ -3256,7 +3256,7 @@ define("_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY","Memo del pagamento");
 /**
 * @ignore
 */
-define("_JOMRES_FRONT_MR_BOOKINGMADE_PAYPAL","<center>La sua transazione con Paypal Ã¨ stata completata, le sar� inviata per posta elettronica una ricevuta della sua compera. Ã posibile vedere i dati di questa transazione, nel conto PAYPAL. </b><br /></center>");
+define("_JOMRES_FRONT_MR_BOOKINGMADE_PAYPAL","<center>La sua transazione con Paypal ÃÂ¨ stata completata, le sarà inviata per posta elettronica una ricevuta della sua compera. ÃÂ posibile vedere i dati di questa transazione, nel conto PAYPAL. </b><br /></center>");
 /**
 * @ignore
 */
@@ -3269,7 +3269,7 @@ define("_JOMRES_COM_CHARGING_DEPOSIT","Deposito");
 /**
 * @ignore
 */
-define("_JOMRES_COM_CHARGING_FULLAMT","Quantit� completa");
+define("_JOMRES_COM_CHARGING_FULLAMT","Quantità completa");
 /**
 * @ignore
 */
@@ -3277,7 +3277,7 @@ define("_JOMRES_COM_CHARGING_CONFIG","Costo applicato al momento della prenotazi
 /**
 * @ignore
 */
-define("_JOMRES_COM_CHARGING_CONFIG_DESC"," Sceglie deposito se deve essere richiesta solo una caparra, altrimenti verr� richesto il pagamento della somma completa.");
+define("_JOMRES_COM_CHARGING_CONFIG_DESC"," Sceglie deposito se deve essere richiesta solo una caparra, altrimenti verrà richesto il pagamento della somma completa.");
 
 /**
 * @ignore
@@ -3286,7 +3286,7 @@ define("_JOMRES_COM_MONTHSTOSHOW","Mesi del calendario da mostrare");
 /**
 * @ignore
 */
-define("_JOMRES_COM_MONTHSTOSHOW_DESC","Nella disponibit� della camera, quanti mesi del calendario devono essere mostrati");
+define("_JOMRES_COM_MONTHSTOSHOW_DESC","Nella disponibità della camera, quanti mesi del calendario devono essere mostrati");
 
 /**
 * @ignore
@@ -3305,11 +3305,11 @@ define('_JOMRES_COM_A_CANCEL','Cancella');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_BLACKBOOKING_DESC','Seleziona la camera che desideri tenere fuori servizio, e le date. Se la camera non ha il ceck selezionato, non potr� essere inclusa nelle indisponibili fino a che la prenotazione non sar� cancellata.<br/> Quando hai selezionato le date appropriate, clicca il bottune blu applicare ricontrolla la disponibilit�. ');
+define('_JOMRES_FRONT_BLACKBOOKING_DESC','Seleziona la camera che desideri tenere fuori servizio, e le date. Se la camera non ha il ceck selezionato, non potrà essere inclusa nelle indisponibili fino a che la prenotazione non sarà cancellata.<br/> Quando hai selezionato le date appropriate, clicca il bottune blu applicare ricontrolla la disponibilità. ');
 /**
 * @ignore
 */
-define('_JOMRES_JR_NOTLOGGEDIN','<center><b>Sembra che sei stato scollegato per inattivit�.Perfavore, esegui nuovamente il login.</b> Please log in and try again.');
+define('_JOMRES_JR_NOTLOGGEDIN','<center><b>Sembra che sei stato scollegato per inattività.Perfavore, esegui nuovamente il login.</b> Please log in and try again.');
 /**
 * @ignore
 */
@@ -3469,7 +3469,7 @@ define('_JOMRES_FRONT_IMAGEUPLOADS','Carica  Immagine');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Usa questo form per caricare le tue immagini.<br/><b>Nota</b> ogni immagine con lo stesso nome sar� sovrascritta. Le immagini relative alla propriet� o alle specifiche camere vanno caricate nella sezione apposita.<br/>');
+define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Usa questo form per caricare le tue immagini.<br/><b>Nota</b> ogni immagine con lo stesso nome sarà sovrascritta. Le immagini relative alla proprietà o alle specifiche camere vanno caricate nella sezione apposita.<br/>');
 /**
 * @ignore
 */
@@ -3516,7 +3516,7 @@ define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Prenota una camera');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Prenota questa propriet�');
+define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Prenota questa proprietà');
 /**
 * @ignore
 */
@@ -3538,7 +3538,7 @@ define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS','Mostra informazioni sulla stru
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS','Mostra la disponibilit� di camere');
+define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS','Mostra la disponibilità di camere');
 /**
 * @ignore
 */
@@ -3576,7 +3576,7 @@ define('_JOMRES_SEARCH_TITLE_DESCR',	'Descrizione');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_AVL',		'Disponibilit�');
+define('_JOMRES_SEARCH_TITLE_AVL',		'Disponibilità');
 /**
 * @ignore
 */
@@ -3593,7 +3593,7 @@ define('_JOMRES_SEARCH_GEO_REGIONSEARCH','Elenca le strutture ricettive per regi
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Elenca le strutture ricettive per citt�');
+define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Elenca le strutture ricettive per città');
 
 /**
 * @ignore
@@ -3667,7 +3667,7 @@ define('_JOMRES_FRONT_MR_DISPGUEST_UPDATEBUTTON','Aggiorna');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_DISPGUEST_UPDATETEXT','Clicca per aggiornare la disponibilit�.');
+define('_JOMRES_FRONT_MR_DISPGUEST_UPDATETEXT','Clicca per aggiornare la disponibilità.');
 /**
 * @ignore
 */

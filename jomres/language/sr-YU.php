@@ -446,7 +446,7 @@ define('_JOMRES_COM_MR_EB_PAYM_CURRENCY','&pound;');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT','£');
+define('_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT','Â£');
 /**
 * @ignore
 */
@@ -1219,7 +1219,7 @@ define('_JOMRES_FRONT_MR_MENU_ADMIN_PUBLICHOLIDAYS','Praznici - admin');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_QUICKRES_STEP1_INSTRUCTIONS','Molim vas odaberite tip sobe koji vas zanima, va� datum dolaska i broj nocenja. Na kraju, unesite broj odraslih osoba i djece.');
+define('_JOMRES_FRONT_MR_QUICKRES_STEP1_INSTRUCTIONS','Molim vas odaberite tip sobe koji vas zanima, va datum dolaska i broj nocenja. Na kraju, unesite broj odraslih osoba i djece.');
 /**
 * @ignore
 */
