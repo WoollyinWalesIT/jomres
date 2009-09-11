@@ -32,6 +32,11 @@ class j16000list_subscriptions
 			{
 			$this->template_touchable=false; return;
 			}
+		
+		
+		$jomresConfig_livesite=get_showtime('live_site');
+		
+		$deleteIcon = $jomresConfig_livesite."/jomres/images/jomresimages/small/WasteBasket.png";
 		$output=array();
 		$pageoutput=array();
 		$rows=array();
@@ -69,6 +74,7 @@ class j16000list_subscriptions
 		$query= " SELECT * FROM #__jomresportal_subscriptions WHERE status = 1";
 		$subscriptionList = doSelectSql($query);
 		
+		
 		foreach ($subscriptionList as $subscription)
 			{
 			$r=array();
@@ -85,7 +91,7 @@ class j16000list_subscriptions
 			$r['PROPERTY_LIMIT']		=$subscription->property_limit;
 			$r['STATUS']				=$subscription->status;
 			$r['RAISED_DATE']			=$subscription->raised_date;
-
+			$r['DELETELINK']		='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=delete_subscription&no_html=1&id='.$subscription->id.'"><img src="'.$deleteIcon.'"/></a>';
 			//$r['EDITLINK']		='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_subscription_package&id='.$package['id'].'">'.$editIcon.'</a>';
 			$rows[]=$r;
 			}
