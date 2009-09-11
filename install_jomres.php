@@ -259,7 +259,7 @@ function doTableUpdates()
 
 function alterSubscribersSubscriptionPackageIdCol()
 	{
-	echo "Editing __jomresportal_subscriptions table adding tax_rate column<br>";
+	echo "Editing __jomresportal_subscriptions table adding package_id column<br>";
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `package_id` INT NULL DEFAULT '0' AFTER `gateway_subscription_id` ";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomresportal_subscriptions package_id</b><br>";
