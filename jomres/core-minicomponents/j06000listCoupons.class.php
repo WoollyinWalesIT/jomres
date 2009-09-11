@@ -22,9 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000listCoupons
+class j06002listCoupons
 	{
-	function j06000listCoupons()
+	function j06002listCoupons()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -32,6 +32,10 @@ class j06000listCoupons
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+		
 		$defaultProperty=getDefaultProperty();
 		$output=array();
 		$pageoutput=array();

@@ -29,14 +29,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j06000sendbug {
-
+class j06002sendbug {
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j06000sendbug()
+	function j06002sendbug()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -45,6 +44,8 @@ class j06000sendbug {
 			$this->template_touchable=false; return;
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->superPropertyManager)
+			return;
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		if ($thisJRUser->superPropertyManager)
 			{
@@ -78,6 +79,8 @@ class j06000sendbug {
 				echo '<textarea style="WIDTH:100%;" name="contents"  rows="25">'.$contents.'</textarea>';
 				}
 			}
+		else
+			return;
 		}
 
 	/**

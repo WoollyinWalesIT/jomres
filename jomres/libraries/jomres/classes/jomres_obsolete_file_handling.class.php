@@ -63,6 +63,20 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j06000test_unsubscribe.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
 		
+		$this->add_obs_file($this->dir_minicomponents.'j06000sendbug.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j03200insertbooking_invoice.class.php');
+		
+		
+		
+		
 
 		$this->add_obs_file($this->dir_templates_frontend.'menus.html');
 		$this->add_obs_file($this->dir_templates_frontend.'invoices_link.html');

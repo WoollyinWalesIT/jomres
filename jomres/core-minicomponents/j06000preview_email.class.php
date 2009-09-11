@@ -29,14 +29,20 @@ else
 // ################################################################
 
 
-class j06000preview_email {
-	function j06000preview_email()
+class j06002preview_email {
+	function j06002preview_email()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
+			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->superPropertyManager)
+			{
+			echo "Error, only super property managers can preview emails";
+			return;
 			}
 		$componentArgs=array();
 		$componentArgs['cartnumber']=$cartnumber;

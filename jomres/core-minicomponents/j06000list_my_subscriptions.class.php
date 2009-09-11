@@ -50,6 +50,9 @@ class j06000list_my_subscriptions
 		else
 			return;
 			
+		if (count($users_subscriptions) ==0)
+			return;
+			
 		$output=array();
 		$pageoutput=array();
 		$rows=array();

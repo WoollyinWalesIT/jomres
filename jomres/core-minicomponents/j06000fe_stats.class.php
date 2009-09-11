@@ -22,9 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000fe_stats
+class j06002fe_stats
 	{
-	function j06000fe_stats()
+	function j06002fe_stats()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -32,6 +32,9 @@ class j06000fe_stats
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
 		echo '<script language="javascript" type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/graphs.js"></script>';
 		echo '<script language="javascript" type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jrportal.js"></script>';
 		$defaultProperty=getDefaultProperty();

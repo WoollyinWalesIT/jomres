@@ -29,14 +29,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j06000save_normalmode_tariffs {
+class j06002save_normalmode_tariffs {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j06000save_normalmode_tariffs($componentArgs)
+	function j06002save_normalmode_tariffs($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -44,6 +44,11 @@ class j06000save_normalmode_tariffs {
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+		
+		
 		$mrConfig=getPropertySpecificSettings();
 		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();

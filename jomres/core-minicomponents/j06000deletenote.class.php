@@ -23,8 +23,8 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 
-class j06000deletenote {
-	function j06000deletenote()
+class j06001deletenote {
+	function j06001deletenote()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -32,6 +32,9 @@ class j06000deletenote {
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
 		$note_id				= jomresGetParam( $_REQUEST, 'note_id', 0 );
 		$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		if ($note_id==0 || $contract_uid ==0)

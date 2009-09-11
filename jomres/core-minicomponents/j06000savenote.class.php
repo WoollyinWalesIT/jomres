@@ -23,8 +23,8 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 
-class j06000savenote {
-	function j06000savenote()
+class j06001savenote {
+	function j06001savenote()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -33,7 +33,11 @@ class j06000savenote {
 			$this->template_touchable=false; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+		
+		
 		$newtext				= jomresGetParam( $_POST, 'newtext', "" );
 		$contract_uid			= jomresGetParam( $_POST, 'contract_uid', 0 );
 		$note_id				= jomresGetParam( $_POST, 'note_id', 0 );
