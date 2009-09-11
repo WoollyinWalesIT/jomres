@@ -185,11 +185,13 @@ $jomresConfig_error_reporting		= $CONFIG->error_reporting;
 
 if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 	{
+	/*
+	removed in 4.2
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') )
 		{
 		echo '<font color="red" face="arial" size="2">Note, you haven\'t yet logged into the front end as "admin". Virtually all property configuration is performed from the front end so you should add Jomres to the main menu if you haven\'t already and log in to the front end now.</font><br/>';
 		}
-		
+	*/
 	if($CONFIG->session_handler !="none")
 		{
 		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Site -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
