@@ -1,6 +1,10 @@
 /* CSS Document */
 
-
+.warning {
+	color: #000;
+	background-color: #fce31d;
+	background-image: none;
+	}
 
 div.blockMsg {
 	width:  30%;

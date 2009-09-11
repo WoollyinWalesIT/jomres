@@ -43,10 +43,14 @@ class j02134newblackbooking {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING',_JOMRES_FRONT_BLACKBOOKING);
-		$output['INSTRUCTIONS']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING_DESC',_JOMRES_FRONT_BLACKBOOKING_DESC);
+		if ($mrConfig['singleRoomProperty']=="1")
+			$output['INSTRUCTIONS']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP',_JOMRES_FRONT_BLACKBOOKING_DESC_SRP);
+		else
+			$output['INSTRUCTIONS']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING_DESC',_JOMRES_FRONT_BLACKBOOKING_DESC);
 		$rmcounter=0;
 
 		if (!isset($_POST['saveBBooking']) )
@@ -89,52 +93,81 @@ class j02134newblackbooking {
 			$counter=0;
 			$totalRooms=count($roomsList);
 			$link=jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=editBooking&popup=1&contract_uid=");
-			foreach ($roomsList as $room)
+			$ok_to_blackbook = true;
+			if (count($roomsList) >0)
 				{
-				$links="";
-				$row=array();
-				$checked="";
-				$dateRangeArray= $this->bb_getDateRange($start,$end);
-				$contractUidArray=array();
-				foreach ($dateRangeArray as $theDate)
+				foreach ($roomsList as $room)
 					{
-					$query="SELECT room_bookings_uid,contract_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room->room_uid."' AND date = '$theDate'";
-					$bookingsList = doSelectSql($query);
-					if (count($bookingsList)>0)
+					$links="";
+					$row=array();
+					$checked="";
+					$dateRangeArray= $this->bb_getDateRange($start,$end);
+					$contractUidArray=array();
+					foreach ($dateRangeArray as $theDate)
 						{
-						foreach ($bookingsList as $booking)
+						$query="SELECT room_bookings_uid,contract_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room->room_uid."' AND date = '$theDate'";
+						$bookingsList = doSelectSql($query);
+						if (count($bookingsList)>0)
 							{
-							$contractUidArray[]=$booking->contract_uid;
+							foreach ($bookingsList as $booking)
+								{
+								$contractUidArray[]=$booking->contract_uid;
+								}
 							}
 						}
-					}
-				$contractUidArray=array_unique($contractUidArray);
-				$text=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER).' '.$room->room_number." ".$room->room_name;
-
-				if (count($contractUidArray)>0)
-					{
-					foreach ($contractUidArray as $contract)
+					$contractUidArray=array_unique($contractUidArray);
+					$text=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER).' '.$room->room_number." ".$room->room_name;
+					
+					if (count($contractUidArray)>0)
 						{
-						$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
-						$link =JOMRES_SITEPAGE_URL_NOHTML."&task=editBooking&popup=1&contract_uid=".$contract;
-						$links.='<a href="javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');" title=""> '.jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER).' '.$contract.' </a>';
+						
+						if ($mrConfig['singleRoomProperty']=="1")
+							{
+							$ok_to_blackbook = false;
+							$row['BBMESSAGE']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK',_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK);
+							$row['HIDDEN']="";
+							}
+						else
+							{
+							foreach ($contractUidArray as $contract)
+								{
+								$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=500,height=500,directories=no,location=no';
+								$link =JOMRES_SITEPAGE_URL."&task=editBooking&popup=1&contract_uid=".$contract;
+								$links.='<a href="javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');" title=""> '.jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER).' '.$contract.' </a>';
+								}
+							$rmcounter++;
+							$row['TEXT']=$text.$links;
+							$row['CHECKBOX']="&nbsp;";
+							}
 						}
-					$rmcounter++;
-					$row['TEXT']=$text.$links;
-					$row['CHECKBOX']="&nbsp;";
+					else
+						{
+						if ($mrConfig['singleRoomProperty']=="1")
+							{
+							
+							$row['BBMESSAGE']=jr_gettext('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK',_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK);
+							$row['HIDDEN']='<input type="hidden" name="idarray[]" value="'.$room->room_uid.'">';
+							}
+						else
+							{
+							$row['CHECKBOX']='<input type="checkbox" id="cb'.$counter.'" name="idarray[]" value="'.$room->room_uid.'" onClick="jomres_isChecked(this.checked);">';
+							$row['TEXT']=$text;
+							}
+						}
+					$counter++;
+					$bookingsrow[]=$row;
 					}
-				else
-					{
-					$row['CHECKBOX']='<input type="checkbox" id="cb'.$counter.'" name="idarray[]" value="'.$room->room_uid.'" onClick="jomres_isChecked(this.checked);">';
-					//$row['TEXT']='<input type=checkbox name=row['.$counter.'] value="'.$room->room_uid.'" '.$checked.'>'.$text;
-					$row['TEXT']=$text;
-					}
-				$counter++;
-				$bookingsrow[]=$row;
+				
 				}
-			//echo "Number of rooms $totalRooms Number in roomcounter ".$rmcounter;
 			}
-		$output['TOTALINLISTPLUSONE']=$counter+1;
+			
+		// If we put this into it's own template row, we can ensure that the headers aren't shown if Apply hasn't been hit yet.
+		$rowsheader = array();
+		if (isset($_POST['start']))
+			{
+			$rowsheader[] = array ('TOTALINLISTPLUSONE'=>$counter+1);
+			}
+
 		$output['REASON']=jr_gettext('_JOMRES_JR_BLACKBOOKING_REASON',_JOMRES_JR_BLACKBOOKING_REASON);
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
 
@@ -142,7 +175,8 @@ class j02134newblackbooking {
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('apply',jomresURL(JOMRES_SITEPAGE_URL."&task=newBlackBooking"),'Apply',true,'newBlackBooking');
-		$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveBBooking"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveBBooking');
+		if (isset($_POST['start']) && $ok_to_blackbook)
+			$jrtb .= $jrtbar->toolbarItem('save',jomresURL(JOMRES_SITEPAGE_URL."&task=saveBBooking"),jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,FALSE),true,'saveBBooking');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings"),$cancelText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
@@ -152,14 +186,20 @@ class j02134newblackbooking {
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'new_black_booking.html' );
+		if ($mrConfig['singleRoomProperty']=="1")
+			$tmpl->readTemplatesFromInput( 'new_SRP_black_booking.html' );
+		else
+			$tmpl->readTemplatesFromInput( 'new_black_booking.html' );
+			
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'bookingsrows', $bookingsrow );
+		if (isset($_POST['start']))
+			{
+			$tmpl->addRows( 'bookingsrows', $bookingsrow );
+			$tmpl->addRows( 'rowsheader', $rowsheader );
+			}
 		$tmpl->displayParsedTemplate();
 		}
 
-
-	#
 	/**
 	#
 	 * Sets the date range array

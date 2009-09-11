@@ -38,7 +38,16 @@ function jomres_checkAll( n ) {
 	}
 }
 
+
+
 function jomres_submitbutton(pressbutton) {
+	/*
+	var hid = jQuery('<input type="text" name="nohtml" value="1"/>');
+	hid.prependTo("adminForm");
+	var theval = jQuery("input[name=nohtml]").val();
+	alert(theval);
+	return;
+	*/
 	document.adminForm.task.value=pressbutton;
 	try {
 		document.adminForm.onsubmit();
