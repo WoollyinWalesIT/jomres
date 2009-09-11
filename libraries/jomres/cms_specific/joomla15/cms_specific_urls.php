@@ -51,7 +51,9 @@ if ($jomresItemid == 0)
 			}
 		}
 	else
-		$jomresItemid = $jrConfig['jomresItemid'];
+		{if (isset($jrConfig['jomresItemid']))
+			$jomresItemid = $jrConfig['jomresItemid'];
+		}
 	}
 	
 $jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
