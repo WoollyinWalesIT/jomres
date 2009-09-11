@@ -22,9 +22,8 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06002my_subscriptions
-	{
-	function j06002my_subscriptions()
+class j16000delete_subscription {
+	function j16000delete_subscription()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -32,25 +31,32 @@ class j06002my_subscriptions
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-		$jrConfig=$siteConfig->get();
-		$task 				= get_showtime('task');
+		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		$id				= (int)jomresGetParam( $_REQUEST, 'id', 0 );
+		jr_import('jrportal_subscriptions');
+		$subscription = new jrportal_subscriptions();
+		if ($id > 0)
+			{
+			$subscription->id = $id;
+			if ($subscription->deleteSubscription())
+				{
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=list_subscriptions","");
+				}
+			else
+				echo "Error, couldn't delete subscription.";
+			}
+		else
+			echo "Error, couldn't delete subscription, ID not found.";
+			
+		
 
-		$MiniComponents->specificEvent('06005','list_my_subscriptions');
-		echo "<br/>";
-		$MiniComponents->specificEvent('06005','list_subscription_packages');
-		echo "<br/>";
-		$MiniComponents->specificEvent('00013','a_listyourproperties');
-		echo "<br/>";
-		$MiniComponents->specificEvent('06005','list_usersinvoices');
-		echo "<br/>";		
+		
 		}
-	
-	
+
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return null;
-		}	
+		}
 	}
+?>

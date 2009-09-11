@@ -6661,7 +6661,7 @@ define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL'," Status <b>0:</b> Pending payment 
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"My Subscriptions");
+define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"My Account");
 /**
 * @ignore
 */
