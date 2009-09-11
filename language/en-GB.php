@@ -6690,3 +6690,13 @@ define('_JOMRES_COM_A_TAX_WARNING2','<font color=red>NOTE: The following tax rat
 * @ignore
 */
 define('_JOMRES_INVOICE_NUMBER','Invoice No. ');
+/**
+* @ignore
+*/
+define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP','Select the dates that you want to apply the black booking for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
+<br/> 
+If the property has one or more bookings for the period selected, then you will not be able to book it out until the other bookings/black bookings, have been cancelled/booked out.');
+
+define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK','Sorry, you cannot black book this property for those dates.');
+
+define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK','You can blackbook this property for those dates.');
