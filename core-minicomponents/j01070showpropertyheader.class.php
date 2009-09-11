@@ -148,7 +148,7 @@ class j01070showpropertyheader
 				if (strlen($current_property_details->metatitle)>0)
 					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->metatitle));
 				else
-					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->property_name));
+					jomres_cmsspecific_setmetadata("title",$current_property_details->get_property_name($property_uid));
 
 				jomres_cmsspecific_setmetadata('description',stripslashes($current_property_details->metadescription));
 				jomres_cmsspecific_setmetadata('keywords',$current_property_details->property_town.", ".$current_property_details->property_region.", ".$current_property_details->property_country);

@@ -61,6 +61,18 @@ class basic_property_details
 		return $this->$setting;
 		}
 		
+	public function get_property_name($property_uid=0,$editable = true)
+		{
+		if ($property_uid ==0)
+			$property_uid = $this->property_uid;
+			
+		$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
+		$property_name=doSelectSql($query,1);
+		$customTextObj =jomres_getSingleton('custom_text');
+		$customTextObj->get_custom_text_for_property($property_uid);
+		return jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
+		}
+		
 	public function gather_data($property_uid=0)
 		{
 		if ($this->property_uid === 0)
@@ -87,12 +99,13 @@ class basic_property_details
 			$customTextObj->get_custom_text_for_property($this->property_uid);
 
 			$countryname=getSimpleCountry($data->property_country);
-			$this->property_name			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,false,$editable);
-			$this->property_street			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET',$data->property_street,false,$editable);
-			$this->property_town			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN',$data->property_town,false,$editable);
-			$this->property_postcode		=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE',$data->property_postcode,false,$editable);
-			$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,false,$editable);
-			$this->property_country			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$countryname,false,$editable);
+			
+			$this->property_name			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,$editable,false);
+			$this->property_street			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET',$data->property_street,$editable,false);
+			$this->property_town			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN',$data->property_town,$editable,false);
+			$this->property_postcode		=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE',$data->property_postcode,$editable,false);
+			$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
+			$this->property_country			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$countryname,$editable,false);
 
 			$this->property_tel				=$data->property_tel;
 			$this->property_fax				=$data->property_fax;
@@ -107,13 +120,13 @@ class basic_property_details
 			$this->property_features		=$data->property_features;
 			$this->property_mappinglink		=$data->property_mappinglink;
 
-			$this->property_description		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($data->property_description)),false,$editable));
-			$this->property_checkin_times	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($data->property_checkin_times)),false,$editable));
-			$this->property_area_activities	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($data->property_area_activities)),false,$editable));
-			$this->property_driving_directions=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($data->property_driving_directions)),false,$editable));
-			$this->property_airports		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS',trim(stripslashes($data->property_airports)),false,$editable));
-			$this->property_othertransport	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($data->property_othertransport)),false,$editable));
-			$this->property_policies_disclaimers=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($data->property_policies_disclaimers)),false,$editable));
+			$this->property_description		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($data->property_description)),$editable,false));
+			$this->property_checkin_times	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($data->property_checkin_times)),$editable,false));
+			$this->property_area_activities	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($data->property_area_activities)),$editable,false));
+			$this->property_driving_directions=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($data->property_driving_directions)),$editable,false));
+			$this->property_airports		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS',trim(stripslashes($data->property_airports)),$editable,false));
+			$this->property_othertransport	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($data->property_othertransport)),$editable,false));
+			$this->property_policies_disclaimers=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($data->property_policies_disclaimers)),$editable,false));
 			$this->apikey					=$data->apikey;
 			}
 

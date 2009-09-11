@@ -232,8 +232,9 @@ class jomSearch {
 
 			foreach ($propertynameList as $property)
 				{
-				$this->prep['propertyname'][]=array('pn'=>stripslashes($property->property_name),'puid'=>$property->propertys_uid);
-
+				$basic_property_details =jomres_getSingleton('basic_property_details');
+				$pname=$basic_property_details->get_property_name($property->propertys_uid);
+				$this->prep['propertyname'][]=array('pn'=>$pname,'puid'=>$property->propertys_uid);
 				}
 			}
 		// -------------------------------------------------------------------------------------------------------------------------------------------

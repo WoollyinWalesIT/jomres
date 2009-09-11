@@ -108,7 +108,9 @@ class jr_user
 								{
 								foreach ($propertysList as $p)
 									{
-									$this->authorisedPropertyDetails[$p->propertys_uid]=array('property_name'=>$p->property_name);
+									$basic_property_details =jomres_getSingleton('basic_property_details');
+									$obj->property_name=$basic_property_details->get_property_name($key);
+									$this->authorisedPropertyDetails[$p->propertys_uid]=array('property_name'=>$pname);
 									}
 								}
 							}
