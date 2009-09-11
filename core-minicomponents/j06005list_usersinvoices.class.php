@@ -21,9 +21,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000list_property_invoices
+class j06005list_usersinvoices
 	{
-	function j06000list_property_invoices()
+	function j06005list_usersinvoices()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
@@ -31,11 +31,11 @@ class j06000list_property_invoices
 			$this->template_touchable=false; return;
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
-		$defaultProperty=getDefaultProperty();
 		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info">';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
+		$id= $thisJRUser->id;
 
-		if ($thisJRUser->userIsManager)
+		if ($thisJRUser->userIsRegistered)
 			{
 			switch ($status)
 				{
@@ -53,7 +53,8 @@ class j06000list_property_invoices
 				break;
 				}
 
-			$invoices=invoices_getinvoicesfor_property_byproperty_uid($stat,$defaultProperty);
+			$invoices=invoices_getinvoicesfor_juser($id,$stat);
+		//var_dump($invoices);exit;
 			if (count($invoices)>0)
 				{
 				$output=array();
@@ -81,6 +82,7 @@ class j06000list_property_invoices
 
 				foreach ($invoices as $invoice)
 					{
+
 					$r=array();
 					$r['ID']=$invoice['id'];
 					
@@ -107,7 +109,12 @@ class j06000list_property_invoices
 					$r['RECURTOTAL']	=$invoice['recur_total'];
 					$r['FREQ']			=$invoice['recur_frequency'];
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
-
+					$settingArray = get_plugin_settings("paypal",$invoice['property_uid']);
+					if (isset($settingArray['active']) && $settingArray['active'] == "1")
+						{
+						if ($invoice['subscription'] == "0" && $invoice['status'] != "1")
+							$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
+						}
 					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
 					$rows[]=$r;
 					}

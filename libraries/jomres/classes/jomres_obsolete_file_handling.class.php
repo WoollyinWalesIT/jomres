@@ -84,6 +84,20 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j06000deleteCoupon.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06000amendBooking.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06000addnote.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000reportbug.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000my_subscriptions.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000list_property_invoices.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000list_subscription_packages.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000list_usersinvoices.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000muaddtofavourites.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000mulistbookings.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000muviewbooking.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000save_subscriber.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000subscribe.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000view_invoice.class.php');
+
+		$this->add_obs_file($this->dir_minicomponents.'j06000cancelGuestBooking.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j06000muviewfavourites.class.php');
 
 		$this->add_obs_file($this->dir_templates_frontend.'menus.html');
 		$this->add_obs_file($this->dir_templates_frontend.'invoices_link.html');

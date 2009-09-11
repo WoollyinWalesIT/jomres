@@ -17,6 +17,7 @@ This file is subject to The MIT License. For licencing information, please visit
 http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 and http://www.jomres.net/license.html
 ################################################################
 */
+
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
@@ -28,32 +29,38 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j06000cancelGuestBooking {
+class j06005muviewbooking {
 	/**
 	#
 	 * Constructor: Constructs the javascript tab booking details page
 	#
 	 */
-	function j06000cancelGuestBooking()
+	function j06005muviewbooking()
 		{
 		$thisJRUser=jomres_getSingleton('jr_user');
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$mrConfig=getPropertySpecificSettings();
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		if ($thisJRUser->userIsRegistered)
 			{
 			$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
+			$output['HARRIVAL']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL,$editable=false,$isLink=false);
+			$output['HDEPARTURE']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE,$editable=false,$isLink=false);
+			$output['HTOTAL']=jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL,$editable=false,$isLink=false);
+			$output['HEXTRAS']=jr_gettext('_JOMRES_AJAXFORM_BILLING_EXTRAS',_JOMRES_AJAXFORM_BILLING_EXTRAS,$editable=false,$isLink=false);
+			$output['HPNAME']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME',_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME,$editable=false,$isLink=false);
+			$output['HMOREINFO']=jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,$isLink=false);
+			$output['TITLE']=jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,$editable=false,$isLink=false);
 
 			$pageoutput=array();
 			$output=array();
 			if ($contract_uid==0)
 				return;
-			$allGuestUids=array();
 			
+			$allGuestUids=array();
 			$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' ";
 			$guests_uids=doSelectSql($query);
 			// Because a new record is made in the guests table for each new property the guest registers in, we need to find all the guest uids for this user
@@ -63,10 +70,10 @@ class j06000cancelGuestBooking {
 					{
 					$allGuestUids[]=$g->guests_uid;
 					}
-				}
-			$gOr = genericOr($allGuestUids,"guest_uid");
-			$query="SELECT * FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND ".$gOr." ";
 				
+				$gOr = genericOr($allGuestUids,"guest_uid");
+				}
+			$query="SELECT * FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND ".$gOr." LIMIT 1";
 			$bookingData=doSelectSql($query);
 			if (count($bookingData)==1)
 				{
@@ -76,40 +83,48 @@ class j06000cancelGuestBooking {
 					$contract_uid=$booking->contract_uid;
 					$property_uid=$booking->property_uid;
 					}
-			
-				$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
-
-				$query="SELECT tag FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
-				$contractData =doSelectSql($query);
-				foreach ($contractData as $cancellation)
+				$mrConfig=getPropertySpecificSettings($property_uid);
+				$query="SELECT * FROM #__jomres_extraServices WHERE contract_uid = '".(int)$contract_uid."'";
+				$extraBillingData  = doSelectSql($query);
+				$query="SELECT * FROM #__jomres_guests WHERE guests_uid = '".(int)$guest_uid."'";
+				$guestData  = doSelectSql($query);
+				$query="SELECT * FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$contract_uid."'";
+				$roomBookingData  = doSelectSql($query);
+				$room_uid=array();
+				$roomInfo=array();
+				$room_classes_uid=array();
+				$room_features_uids=array();
+				foreach($roomBookingData as $roomBooking)
+					{$room_uid[]=$roomBooking->room_uid;}
+				if (count($room_uid)>1)
 					{
-					$tag=$cancellation->tag;
+					$room_uid=array_unique($room_uid);
+					sort($room_uid);
 					}
-				
-				$dateToDrop=$dateRangeArray[$i];
-				$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
-				if (!doInsertSql($query,""))
-					trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
-				
-				$query="UPDATE #__jomres_contracts SET `cancelled`='1', `cancelled_timestamp`='".date( 'Y-m-d H:i:s' )."', `cancelled_reason`='".$reason."' WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
-				if (!doInsertSql($query,""))
-					trigger_error ("Unable to update cancellations data for contract". (int)$contract_uid.", mysql db failure", E_USER_ERROR);
-				
-				$current_property_details =jomres_getSingleton('basic_property_details');
-				$current_property_details->gather_data($property_uid);
-		
-				$query="SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = ".$guest_uid." LIMIT 1";
-				$guestData =doSelectSql($query,2);
-				$text=$tag.' - '.$saveMessage;
-				if (!jomresMailer( $guestData['email'], $current_property_details->property_name.' - '.$current_property_details->property_town, $current_property_details->property_email, $saveMessage, $text,$mode=1))
-					error_logging('Failure in sending cancellation email to hotel. Target address: '.$hotelemail.' Subject'.$subject);
-				if (!jomresMailer( $current_property_details->property_email, $current_property_details->property_name.' - '.$current_property_details->property_town, $guestData['email'], $saveMessage, $text,$mode=1))
-					error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
-					
-				
-				echo $saveMessage;
-				
-			
+				$room_uidOr=genericOr($room_uid,'room_uid');
+				$query="SELECT * FROM #__jomres_rooms WHERE $room_uidOr";
+				$roomInfo = doSelectSql($query);
+				$rFeatures ="";
+				foreach($roomInfo as $room)
+					{
+					$room_classes_uid[]=$room->room_classes_uid;
+					$room_features_uids=$room->room_features_uid;
+					if (!empty($room->room_features_uid) )
+						{
+						$featuresArray=explode(",",$room->room_features_uid);
+						if (count($featuresArray)>0)
+							{
+							$room_features_uidOr=genericOr($featuresArray,'room_features_uid');
+							$query= "SELECT * FROM #__jomres_room_features WHERE $room_features_uidOr";
+							$rFeatures = doSelectSql($query);
+							$numberOfRoomFeatures=count($rFeatures);
+							}
+						}
+					}
+				$room_classes_uidOr=genericOr($room_classes_uid,'room_classes_uid');
+				$query="SELECT * FROM #__jomres_room_classes WHERE  $room_classes_uidOr";
+				$rClass  = doSelectSql($query);
+				$this->editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$rClass,$rFeatures );
 				}
 			}
 		}
@@ -118,10 +133,6 @@ class j06000cancelGuestBooking {
 			{
 			$popup=get_showtime('popup');
 			$mrConfig=getPropertySpecificSettings();
-			$defaultProperty=getDefaultProperty();
-			if ($defaultProperty=="0")
-				$defaultProperty="%";
-			//var_dump($guestData);
 			$guest_firstname="N/A";
 			$guest_surname="N/A";
 			$guest_uid="N/A";
@@ -244,14 +255,16 @@ class j06000cancelGuestBooking {
 			else
 				$depositPaid=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 				
-		if (!$bookedin)
-			{
-			$jrtbar =jomres_getSingleton('jomres_toolbar');
-			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&contract_uid=$booking_contract_uid"),'');
-			$jrtb .= $jrtbar->endTable();
-			echo $jrtb;
-			}
+				
+				if (!$bookedin)
+					{
+					$jrtbar =jomres_getSingleton('jomres_toolbar');
+					$jrtb  = $jrtbar->startTable();
+					echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
+					$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&contract_uid=$booking_contract_uid"),'');
+					$jrtb .= $jrtbar->endTable();
+					echo $jrtb;
+					}
 					
 		echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
 		jr_import('jomres_content_tabs');

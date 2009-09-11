@@ -29,14 +29,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j06000reportbug {
+class j06002reportbug {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j06000reportbug($componentArgs)
+	function j06002reportbug($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -53,6 +53,8 @@ class j06000reportbug {
 		$jomresConfig_password=get_showtime('password');
 
 		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->superPropertyManager)
+			return;
 		$mrConfig=getPropertySpecificSettings();
 		if ($thisJRUser->superPropertyManager)
 			{

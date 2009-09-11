@@ -22,9 +22,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000subscribe
+class j06005subscribe
 	{
-	function j06000subscribe()
+	function j06005subscribe()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -36,7 +36,6 @@ class j06000subscribe
 		if (!$thisJRUser->userIsRegistered)
 			{
 			$MiniComponents->triggerEvent('02280');
-			exit;
 			}
 		else
 			{
