@@ -67,14 +67,14 @@ class j02217deletetariff {
 
 			// Now we can start trashing the tariff details
 			$query="DELETE FROM #__jomcomp_tarifftypes WHERE id = '$tarifftypeid'";
-			echo $query."<br>";
+			//echo $query."<br>";
 			if (!doInsertSql($query,'') ) trigger_error ("Unable to delete tariff, mysql db failure", E_USER_ERROR);
 			$gor=genericOr($rates,'rates_uid');
 			// now we can remove the old tariffs
 			if (count($rateIds)>0)
 				{
 				$query="DELETE FROM #__jomres_rates WHERE ".$gor."";
-				echo $query."<br>";
+				//echo $query."<br>";
 				if (!doInsertSql($query,'') ) trigger_error ("Unable to delete tariff, mysql db failure", E_USER_ERROR);
 				}
 			// delete the old __jomcomp_tarifftype_rate_xref records
@@ -82,7 +82,7 @@ class j02217deletetariff {
 			if (count($rateIds)>0)
 				{
 				$query="DELETE FROM #__jomcomp_tarifftype_rate_xref WHERE ".$gor."";
-				echo $query."<br>";
+				//echo $query."<br>";
 				//$result=doInsertSql($query,'');
 				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_TARIFF',_JOMRES_MR_AUDIT_DELETE_TARIFF,FALSE)))
 					returnToPropertyConfig($saveMessage);

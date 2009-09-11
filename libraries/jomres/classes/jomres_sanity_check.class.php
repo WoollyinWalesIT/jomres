@@ -37,7 +37,7 @@ class jomres_sanity_check
 	function do_sanity_checks()
 		{
 		$this->warnings .= $this->checks_guest_types_pppn();
-		
+		$this->warnings .= $this->checks_tariffs_exist();
 		return $this->warnings;
 		}
 		
@@ -71,6 +71,23 @@ class jomres_sanity_check
 			}
 		return "";
 		}
+		
+	function checks_tariffs_exist()
+		{
+		$ignore_on_tasks = array ('propertyadmin','editTariff');
+		if (!in_array(get_showtime('task'),$ignore_on_tasks) )
+			{
+			$query="SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = ".(int)$this->property_uid."";
+			$result = doSelectSql($query);
+			if (count($result) ==0 )
+				{
+				$message = _JOMRES_WARNINGS_TARIFFS_NOTARIFFS;
+				return $this->construct_warning($message);
+				}
+			}
+		return "";
+		}
+		
 	}
 
 ?>

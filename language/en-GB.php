@@ -1520,19 +1520,19 @@ define('_JOMRES_COM_A_DISCOUNTS_LEVEL4_VALUE','Level 4 discount value');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON','Single person suppliments');
+define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON','Single person supplements');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC','Make sure this is set to Yes if you want to charge single person suppliments');
+define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC','Make sure this is set to Yes if you want to charge single person supplements');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST','Single person suppliment charge');
+define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST','Single person supplement charge');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_COT','Cot suppliments.');
+define('_JOMRES_COM_A_SUPPLIMENTS_COT','Cot supplements.');
 /**
 * @ignore
 */
@@ -1540,7 +1540,7 @@ define('_JOMRES_COM_A_SUPPLIMENTS_COT_DESC','Make sure this is set to Yes if you
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_COT_COST','Cot suppliment charge');
+define('_JOMRES_COM_A_SUPPLIMENTS_COT_COST','Cot supplement charge');
 /**
 * @ignore
 */
@@ -5474,7 +5474,7 @@ define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Maximum number of rooms already s
 /**
 * @ignore
 */
-define('_JOMRES_COM_SPS_EDITROOM_DESC','Note that Single person suppliments set here will not be used if Single Person Suppliments are set to Yes in General Configuration. The settings here are an alternative to having flat rates Single Person Suppliements, not an addition to the flat rate SPS.');
+define('_JOMRES_COM_SPS_EDITROOM_DESC','Note that Single person supplements set here will not be used if Single Person Supplements are set to Yes in General Configuration. The settings here are an alternative to having flat rates Single Person Suppliements, not an addition to the flat rate SPS.');
 /**
 * @ignore
 */
@@ -6641,10 +6641,6 @@ define('_JOMRES_USER_LISTMYPROPERTY','Add my property to this site');
 * @ignore
 */
 define('_JOMRES_WARNINGS_DANGERWILLROBINSON','Warning : ');
-/**
-* @ignore
-*/
-define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ');
 
 /**
 * @ignore
@@ -6700,3 +6696,12 @@ If the property has one or more bookings for the period selected, then you will 
 define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK','Sorry, you cannot black book this property for those dates.');
 
 define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK','You can blackbook this property for those dates.');
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ');
+
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS','You don\'t have any tariffs configured yet, you will not be able take any bookings for your property.');
