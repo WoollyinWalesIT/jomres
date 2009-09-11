@@ -29,13 +29,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j06000deleteCoupon {
+class j06002deleteCoupon {
 	/**
 	#
 	 * Constructor:  Delete an optional extra
 	#
 	 */
-	function j06000deleteCoupon()
+	function j06002deleteCoupon()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -43,6 +43,10 @@ class j06000deleteCoupon {
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$coupon_id=jomresGetParam( $_REQUEST, 'coupon_id', 0 );
 		$defaultProperty=getDefaultProperty();

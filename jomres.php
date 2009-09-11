@@ -1306,30 +1306,44 @@ if ($numberOfPropertiesInSystem>0)
 				}
 			else
 				{
-				if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
+				if ($MiniComponents->eventSpecificlyExistsCheck('06001',get_showtime('task')) && $thisJRUser->userIsManager)// Receptionist and manager tasks
 					{
-					$jomresPathway->addItem("Search","listProperties","");
-					jomresShowSearch();
+					$MiniComponents->specificEvent('06001',get_showtime('task')); // Custom task
 					}
 				else
 					{
-					if ($thisJRUser->userIsManager )
+					if ($MiniComponents->eventSpecificlyExistsCheck('06002',get_showtime('task')) && $thisJRUser->userIsManager && $accessLevel ==2) // Manager only tasks
 						{
-						$MiniComponents->triggerEvent('00013');  // Show dashboard
-						}
-					else if ($numberOfPropertiesInSystem==1)
-						{
-						//$MiniComponents->triggerEvent('0013');  // Show dashboard
-						property_header($property_uid);
-						set_showtime('task',"viewproperty");
-						$componentArgs=array();
-						$componentArgs['property_uid']=$property_uid;
-						$MiniComponents->triggerEvent('00016',$componentArgs);
+						$MiniComponents->specificEvent('06002',get_showtime('task')); // Custom task
 						}
 					else
 						{
-						$jomresPathway->addItem("Search","listProperties","");
-						jomresShowSearch();
+						if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
+							{
+							$jomresPathway->addItem("Search","listProperties","");
+							jomresShowSearch();
+							}
+						else
+							{
+							if ($thisJRUser->userIsManager )
+								{
+								$MiniComponents->triggerEvent('00013');  // Show dashboard
+								}
+							else if ($numberOfPropertiesInSystem==1)
+								{
+								//$MiniComponents->triggerEvent('0013');  // Show dashboard
+								property_header($property_uid);
+								set_showtime('task',"viewproperty");
+								$componentArgs=array();
+								$componentArgs['property_uid']=$property_uid;
+								$MiniComponents->triggerEvent('00016',$componentArgs);
+								}
+							else
+								{
+								$jomresPathway->addItem("Search","listProperties","");
+								jomresShowSearch();
+								}
+							}
 						}
 					}
 				}

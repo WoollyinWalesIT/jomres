@@ -22,14 +22,14 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 	
-class j06000handlereq_total
+class j06001handlereq_total
 	{
 	/**
 	#
 	 * Constructor: Let's gather the data we want.
 	#
 	 */	
-	function j06000handlereq_total()
+	function j06001handlereq_total()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -37,6 +37,9 @@ class j06000handlereq_total
 			{
 			$this->template_touchable=false; return;
 			}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
 		$property_uid = get_showtime('property_uid');
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$inputName						= "overtotal";

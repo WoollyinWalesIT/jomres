@@ -1,9 +1,12 @@
 Jomres 4.2
 
-Reworked email handling to show invoices in emails
-Major rewrite to largely eliminate the use of globals within the system, switching over to using mainly singletons for maintaining and manipulating data between classes.
-Renamed many class files to allow autoloading of classes, introduced jr_import function for importing class files
-Added performance monitoring class 
+
+Major rewrite to largely eliminate the use of globals within the system, switching over to using mainly singletons for maintaining and manipulating data between classes. Some globals remain in place to aid backward compatability with pre-v4.2 plugins.
+Reworked email handling to show invoices in emails.
+Renamed many class files to allow autoloading of classes, introduced jr_import function for importing class files. Classes by default are in /jomres/libraries/jomres/classes, however they can also be autoloaded from /jomres/remote_plugins/custom_code.
+Added performance monitoring class (you need to enable minicomponent logging in Site Config to see the output).
+Mdofied and simplified black bookings, giving SRPs their own template and preventing the Save button from showing until the 
+Added view invoices page to Receptionist's menu, and if subscriptions are enabled then Property Managers can see an invoices page in their toolbar.
 
 Fixed urls in property list to search via town/region/coutry
 Modified positions of { in jomres.js

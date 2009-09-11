@@ -23,8 +23,8 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 // ################################################################
 
 
-class j06000saveCoupon {
-	function j06000saveCoupon()
+class j06002saveCoupon {
+	function j06002saveCoupon()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -32,7 +32,10 @@ class j06000saveCoupon {
 			{
 			$this->template_touchable=false; return;
 			}
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 
 		$coupon_code			= jomresGetParam( $_POST, 'coupon_code', '' );
 		$coupon_id				= (int)jomresGetParam( $_POST, 'coupon_id', 0 );

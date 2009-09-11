@@ -29,14 +29,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 * @package Jomres
 #
  */
-class j06000delslideshowimages {
+class j06002delslideshowimages {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j06000delslideshowimages()
+	function j06002delslideshowimages()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -44,7 +44,11 @@ class j06000delslideshowimages {
 			{
 			$this->template_touchable=true; return;
 			}
-		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+			
 		$success=true;
 		$defaultProperty=getDefaultProperty();
 		$imageNameArray =  $_POST['idarray'];

@@ -21,9 +21,9 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-class j06000list_guests_invoices
+class j06001list_guests_invoices
 	{
-	function j06000list_guests_invoices()
+	function j06001list_guests_invoices()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
@@ -31,6 +31,9 @@ class j06000list_guests_invoices
 			$this->template_touchable=false; return;
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
+		if (!$thisJRUser->userIsManager)
+			return;
+		
 		$defaultProperty=getDefaultProperty();
 		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info">';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
@@ -55,7 +58,7 @@ class j06000list_guests_invoices
 				break;
 				}
 
-		$invoices=invoices_getinvoicesfor_juser_byproperty_uid($id,$stat,$defaultProperty);
+			$invoices=invoices_getinvoicesfor_juser_byproperty_uid($id,$stat,$defaultProperty);
 			if (count($invoices)>0)
 				{
 				$output=array();

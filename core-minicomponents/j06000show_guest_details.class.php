@@ -32,9 +32,10 @@ class j06000show_guest_details
 			{
 			$this->template_touchable=false; return;
 			}
-			
 		$thisJRUser=jomres_getSingleton('jr_user');
-		
+		if (!$thisJRUser->userIsRegistered)
+			return;
+
 		$guestUid= $componentArgs['guest_uid'];
 
 		if ($thisJRUser->userIsManager)

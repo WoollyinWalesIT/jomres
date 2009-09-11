@@ -58,7 +58,8 @@ class j06000listyourproperties
 			$clause = "WHERE ";
 			$clause .= genericOr($mp,'propertys_uid');
 			}
-		
+		if (count($mp) ==0)
+			return;
 		
 		$query="SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);

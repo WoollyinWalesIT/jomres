@@ -33,73 +33,80 @@ class j06000subscribe
 			$this->template_touchable=false; return;
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
-		$package_id		= (int)jomresGetParam( $_REQUEST, 'id', 0 );
-		
-		$output=array();
-		$pageoutput=array();
-		
-		jr_import('jrportal_subscribers');
-		$subscriber = new jrportal_subscribers();
-		$user=subscribers_getSubscriberDetailsForJosId($thisJRUser->id);
-		
-		if ($user)
+		if (!$thisJRUser->userIsRegistered)
 			{
-			$subscriber->id	= $user['id'];
-			$subscriber->getSubscriber();
-			/*
-			$subscriber->cms_user_id	= $user['cms_user_id'];
-			$subscriber->firstname		= $user['firstname'];
-			$subscriber->surname		= $user['surname'];
-			$subscriber->address		= $user['address'];
-			$subscriber->country		= $user['country'];
-			$subscriber->postcode		= $user['postcode'];
-			*/
+			$MiniComponents->triggerEvent('02280');
+			exit;
 			}
-		if (isset($_REQUEST['firstname']) )
+		else
 			{
-			$subscriber->firstname		= jomresGetParam( $_REQUEST, 'firstname','');
-			$subscriber->surname		= jomresGetParam( $_REQUEST, 'surname', '' );
-			$subscriber->address		= jomresGetParam( $_REQUEST, 'address', '' );
-			$subscriber->country		= jomresGetParam( $_REQUEST, 'country', '' );
-			$subscriber->postcode		= jomresGetParam( $_REQUEST, 'postcode', '' );
-			}
+			$package_id		= (int)jomresGetParam( $_REQUEST, 'id', 0 );
+			
+			$output=array();
+			$pageoutput=array();
+			
+			jr_import('jrportal_subscribers');
+			$subscriber = new jrportal_subscribers();
+			$user=subscribers_getSubscriberDetailsForJosId($thisJRUser->id);
+			
+			if ($user)
+				{
+				$subscriber->id	= $user['id'];
+				$subscriber->getSubscriber();
+				/*
+				$subscriber->cms_user_id	= $user['cms_user_id'];
+				$subscriber->firstname		= $user['firstname'];
+				$subscriber->surname		= $user['surname'];
+				$subscriber->address		= $user['address'];
+				$subscriber->country		= $user['country'];
+				$subscriber->postcode		= $user['postcode'];
+				*/
+				}
+			if (isset($_REQUEST['firstname']) )
+				{
+				$subscriber->firstname		= jomresGetParam( $_REQUEST, 'firstname','');
+				$subscriber->surname		= jomresGetParam( $_REQUEST, 'surname', '' );
+				$subscriber->address		= jomresGetParam( $_REQUEST, 'address', '' );
+				$subscriber->country		= jomresGetParam( $_REQUEST, 'country', '' );
+				$subscriber->postcode		= jomresGetParam( $_REQUEST, 'postcode', '' );
+				}
 
-		$output['PACKAGE_ID']=$package_id;
+			$output['PACKAGE_ID']=$package_id;
+			
+			$output['PAGETITLE']=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE;
+			$output['SUBMIT']=_JOMRES_FRONT_MR_SUBMITBUTTON_CONFIRMYOURDETAILS;
+			$output['DESC']=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE_DESC;
+			$output['HFIRSTNAME']=_JRPORTAL_SUBSCRIBERS_FIRSTNAME;
+			$output['HSURNAME']=_JRPORTAL_SUBSCRIBERS_SURNAME;
+			$output['HADDRESS']=_JRPORTAL_SUBSCRIBERS_ADDRESS;
+			$output['HCOUNTRY']=_JRPORTAL_SUBSCRIBERS_COUNTRY;
+			$output['HPOSTCODE']=_JRPORTAL_SUBSCRIBERS_POSTCODE;
 		
-		$output['PAGETITLE']=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE;
-		$output['SUBMIT']=_JOMRES_FRONT_MR_SUBMITBUTTON_CONFIRMYOURDETAILS;
-		$output['DESC']=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE_DESC;
-		$output['HFIRSTNAME']=_JRPORTAL_SUBSCRIBERS_FIRSTNAME;
-		$output['HSURNAME']=_JRPORTAL_SUBSCRIBERS_SURNAME;
-		$output['HADDRESS']=_JRPORTAL_SUBSCRIBERS_ADDRESS;
-		$output['HCOUNTRY']=_JRPORTAL_SUBSCRIBERS_COUNTRY;
-		$output['HPOSTCODE']=_JRPORTAL_SUBSCRIBERS_POSTCODE;
-	
-		$output['FIRSTNAME']=$subscriber->firstname;
-		$output['SURNAME']=$subscriber->surname;
-		$output['ADDRESS']=$subscriber->address;
-		$output['POSTCODE']=$subscriber->postcode;
-		//var_dump($subscriber->country);exit;
-		if (!isset($subscriber->country) || strlen($subscriber->country) == 0)
-			$subscriber->country="GB";
+			$output['FIRSTNAME']=$subscriber->firstname;
+			$output['SURNAME']=$subscriber->surname;
+			$output['ADDRESS']=$subscriber->address;
+			$output['POSTCODE']=$subscriber->postcode;
+			//var_dump($subscriber->country);exit;
+			if (!isset($subscriber->country) || strlen($subscriber->country) == 0)
+				$subscriber->country="GB";
 
-		$selectedCountry=strtoupper($subscriber->country);
-		$countryNames=countryNameArray();
-		$countryCodes=countryCodesArray();
-		asort($countryCodes);
-		foreach ($countryCodes as $k=>$v)
-			{
-			$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+			$selectedCountry=strtoupper($subscriber->country);
+			$countryNames=countryNameArray();
+			$countryCodes=countryCodesArray();
+			asort($countryCodes);
+			foreach ($countryCodes as $k=>$v)
+				{
+				$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+				}
+			$output['COUNTRYDROPDOWN']=jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $selectedCountry);
+			
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'frontend_subscriber_register.html' );
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->displayParsedTemplate();
 			}
-		$output['COUNTRYDROPDOWN']=jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $selectedCountry);
-		
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'frontend_subscriber_register.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->displayParsedTemplate();
-		
 		}
 	
 	
