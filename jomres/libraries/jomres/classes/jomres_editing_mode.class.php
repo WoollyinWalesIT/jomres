@@ -65,7 +65,7 @@ class jomres_editing_mode
 			return false;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$tmpBookingHandler->user_settings['editing_on']= true;
-		
+		$tmpBookingHandler->close_jomres_session();
 		}
 		
 	function switch_mode_off()
@@ -74,6 +74,7 @@ class jomres_editing_mode
 			return false;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$tmpBookingHandler->user_settings['editing_on']= false;
+		$tmpBookingHandler->close_jomres_session();
 		}
 		
 	function make_editing_mode_dropdown()
@@ -86,7 +87,7 @@ class jomres_editing_mode
 		$mode_options = array();
 		$mode_options[] = jomresHTML::makeOption( '0' ,  $off_text);
 		$mode_options[] = jomresHTML::makeOption( '1' , $on_text );
-		$javascript = 'onChange="switch_editing_mode(\''.JOMRES_SITEPAGE_URL_NOHTML.'\',this.value)";';
+		$javascript = 'onChange="switch_editing_mode(\''.JOMRES_SITEPAGE_URL_RAW.'\',this.value)";';
 		return jomresHTML::selectList( $mode_options, 'jomres_editing_mode',' AUTOCOMPLETE="OFF" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->editing);
 		}
 	
