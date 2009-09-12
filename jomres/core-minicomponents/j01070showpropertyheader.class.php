@@ -89,40 +89,32 @@ class j01070showpropertyheader
 
 				$output['TOOLTIP_PROPERTY_IMAGE']=jomres_makeTooltip("property_image","",$output['IMAGE'],$output['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 				
-				/*
-				foreach ($propertyList as $pproperty)
-					{
-					$propertyFeaturesArray=explode(",",($current_property_details->property_features));
-					$output['COUNTRY']=$current_property_details->property_country;
-					$output['TOWN']=$current_property_details->property_town;
-					}
-					
-				if (count($propertyFeaturesArray)>0)
-					{
-					$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-					$propertyFeaturesList= doSelectSql($query);
-					foreach($propertyFeaturesList as $propertyFeature)
-						{
-						if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-							{
-							//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
-							$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
-							$propertyFeatureDescriptionsArray['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$propertyFeature->image,"","property_feature",array());
-							$featureList[]=$propertyFeatureDescriptionsArray;
-							}
-						}
-					}
-				
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				$rtRows=array();
+				$roomtypes=array();
 				if ($mrConfig['singleRoomProperty'] != "1")
 					{
+					$RoomClassAbbvs = array();
+					$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
+					$roomsClassList =doSelectSql($query);
+					foreach ($roomsClassList as $roomClass)
+						{
+						$RoomClassAbbvs[(int)$roomClass->room_classes_uid] = array( 
+							'abbv'=>
+							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false),
+							'desc'=>
+							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_full_desc),false,false),
+							'image'=>
+							$roomClass->image
+							);
+						}
 					$property['HRTYPES']	=	"";
 					$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
-					$roomtypes= doSelectSql($query);
-					if (count($roomtypes)>0)
+					$rt= doSelectSql($query);
+					if (count($rt)>0)
 						{
 						$roomTypeArray=array();
-						foreach ($roomtypes as $roomtype)
+						foreach ($rt as $roomtype)
 							{
 							$roomTypeArray[]=$roomtype->room_classes_uid;
 							}
@@ -131,20 +123,30 @@ class j01070showpropertyheader
 							$roomTypeArray=array_unique($roomTypeArray);
 						if (count($roomTypeArray)>0)
 							{
-							$output['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
+							$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
 							foreach ($roomTypeArray as $type)
 								{
-								$query="SELECT room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$type."'";
-								$rtdeets= doSelectSql($query,2);
-								$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$type,		stripslashes($rtdeets['room_class_abbv']),false,false);
-								$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$type,		stripslashes($rtdeets['room_class_full_desc']),false,false);
-								$rtRows['ROOM_TYPE']=jomres_makeTooltip($roomtype_abbv,$roomtype_abbv,$roomtype_desc,$rtdeets['image'],"","room_type",array());
+								$rtRows=array();
+								$roomtype_abbv = $RoomClassAbbvs[$type]['abbv'];
+								$roomtype_desc = $RoomClassAbbvs[$type]['desc'];
+								$rtRows['ROOM_TYPE']=jomres_makeTooltip($roomtype_abbv,$roomtype_abbv,$roomtype_desc,$RoomClassAbbvs[$type]['image'],"","room_type",array());
 								$roomtypes[]=$rtRows;
 								}
 							}
 						}
 					}
-				*/
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				$features=$current_property_details->features;
+				if (count($features) > 0)
+					{
+					foreach ($features as $f)
+						{
+						$propertyFeatureDescriptionsArray['FEATURE']=jomres_makeTooltip($f['abbv'],$f['abbv'],$f['desc'],$f['image'],"","property_feature",array());
+						$featureList[]=$propertyFeatureDescriptionsArray;
+						}
+					}
+				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
 				if (strlen($current_property_details->metatitle)>0)
 					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->metatitle));
 				else
@@ -183,13 +185,14 @@ class j01070showpropertyheader
 					{
 					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 					$tmpl->addRows( 'pageoutput',$pageoutput);
-					$tmpl->addRows( 'featurelist', $featureList);
-					$tmpl->addRows( 'roomtypes', $roomtypes);
+					$tmpl->addRows('featurelist',$featureList);
+					$tmpl->addRows('roomtypes',$roomtypes);
 					$tmpl->readTemplatesFromInput( 'property_header.html');
 					$cachableContent = $tmpl->getParsedTemplate();
 					$cache->setCache($cachableContent);
 					unset($cache);
 					echo $cachableContent;
+					
 					}
 
 				if ($jrConfig['dumpTemplate']=="1")

@@ -1354,6 +1354,7 @@ if ($numberOfPropertiesInSystem>0)
 									}
 								else
 									{
+									set_showtime("task","");
 									$jomresPathway->addItem("Search","listProperties","");
 									jomresShowSearch();
 									}

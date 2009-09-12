@@ -12,21 +12,18 @@
 			<div class="header_image">
 				{TOOLTIP_PROPERTY_IMAGE}
 			</div>
+			
+
 			<div class="header_property">
 				<b>{PROPERTY_NAME}</b>
 				&nbsp;
 				{STARS} {TOWN}, {REGION}
-			<!--
-			<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">
-				{ROOM_TYPE}
-			</patTemplate:tmpl>
-			<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">
-				{FEATURE}
-			</patTemplate:tmpl>
-			
-			-->
+				<br/>
+			<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+			<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
 			</div>
 		</div>
+
 	</div>
 </div>
 
