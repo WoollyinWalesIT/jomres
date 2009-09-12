@@ -128,11 +128,11 @@ class j00015viewproperty
 					}
 				$property['HRTYPES']	=	"";
 				$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
-				$roomtypes= doSelectSql($query);
-				if (count($roomtypes)>0)
+				$rt= doSelectSql($query);
+				if (count($rt)>0)
 					{
 					$roomTypeArray=array();
-					foreach ($roomtypes as $roomtype)
+					foreach ($rt as $roomtype)
 						{
 						$roomTypeArray[]=$roomtype->room_classes_uid;
 						}
@@ -152,7 +152,7 @@ class j00015viewproperty
 						}
 					}
 				}
-
+//var_dump($roomtypes);exit;
 			if ($mrConfig['showSlideshowInline']=="1" && ($jrConfig['slideshowLocation'] == 1 || $jrConfig['slideshowLocation'] == 3 ))
 				{
 				$componentArgs=array();

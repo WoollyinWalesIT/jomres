@@ -96,24 +96,25 @@ div.blockMsg {
 	width: 100%;
 	}
 	
-div.address_info  { color: #fff;  background-color: #3333ff; text-align: center; }
-div.address_info a:link { color: #fff; text-decoration:underline;}
+div.address_info  { color: #000000;  background-color: #eeeeee; text-align: center; }
+div.address_info a:link { color: #000000; text-decoration:underline;}
 div.tab_panel_content  {  background-color: #FFFFFF; text-align: center; color: #000;}
 div.tab_panel_content a:link { text-decoration:underline;}
 
 .jomres_button {
 	/*background: url(../images/jomres_button.gif) no-repeat;*/
-	color: #3333ff;
+	color: #ffffff;
 	padding: 0;
 	margin: 0 2px 2px 0;
 	height: 23px;
 	width: 150px;
-	background-color: #FFFFFF; 
+	background-color: #6e717a; 
 	text-align: center;
 	}
 
 .jomres_button a:link, .jomres_button a:visited 
 	{
+	color: #ffffff;
 	font-family: Tahoma,Arial,Helvetica,sans-serif;
 	font-size: 9px;
 	font-weight: bold;
@@ -252,10 +253,10 @@ div.tab_panel_content a:link { text-decoration:underline;}
 
 .header_property
 	{
-	color: #135cae;
+	color: #000000;
 	font-size: 18px;
 	text-indent: 10px;
-	line-height: 110px; 
+	line-height: 50px; 
 	height: 110px; 
 	}
 

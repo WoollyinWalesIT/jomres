@@ -44,8 +44,8 @@ class j06000show_hotel_details
 				}
 			else
 				{
-				echo "Error, property uid not set";
-				exit;
+				trigger_error ("Unable to view property details, either property id not found, or property id tampered with.", E_USER_ERROR);
+				return;
 				}
 			}
 
