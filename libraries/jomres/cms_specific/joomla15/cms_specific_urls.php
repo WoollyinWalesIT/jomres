@@ -63,7 +63,7 @@ $tmpl="";
 if (!isset($_GET['tmpl']) )
 	$_GET['tmpl']=false;
 
-if ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || $_GET['tmpl'] == (bool)'component' )
+if ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || $_GET['tmpl'] == 'component' )
 	{
 	$index = "index2.php";
 	$tmpl="&tmpl=component";
@@ -72,9 +72,12 @@ if ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || 
 else
 	define("JOMRES_WRAPPED",0);
 	
+if ($_GET['format'] == "raw")
+	define("JOMRES_WRAPPED",1);
+	
 define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/'."index2.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres");
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$jomresItemid."");
 define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
-
+define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=com_jomres&format=raw");
 ?>

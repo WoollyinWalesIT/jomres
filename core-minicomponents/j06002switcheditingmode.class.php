@@ -43,13 +43,19 @@ class j06002switcheditingmode {
 			{
 			$this->template_touchable=false; return;
 			}
+		
+		//$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		//var_dump($tmpBookingHandler->user_settings['editing_on']);
+		
 		$editing_mode =jomres_getSingleton('jomres_editing_mode');
 		$switchmode = (int)jomresGetParam( $_REQUEST, 'switchmode', 0 );
 		if ($switchmode == 1)
 			$editing_mode->switch_mode_on();
 		else
 			$editing_mode->switch_mode_off();
-		echo "1"; // Echoing something so that jquery knows that it can continue running the calling script (if we allow jquery to ignore the response, the page reload function will run before the mode has actually been switched)
+			
+		
+		//var_dump($tmpBookingHandler->user_settings['editing_on']);
 		}
 
 	/**

@@ -5,12 +5,37 @@ jQuery.noConflict();
 
 function switch_editing_mode(url,val)
 	{
-	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,
-		function(data){
-		}
-	);
-	window.location.reload();
+	var original_url = window.location.href;
+	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
+		window.location = original_url;
+	});
 	}
+	
+/*
+Interesting proof of concept, but not ready for showtime
+function switch_editing_mode(url,val)
+	{
+	var original_url = window.location.href;
+		jQuery('div.jomres_content_area').block({
+			message: '<img src="jomres/images/31.gif" />', 
+			css:	{
+					padding: '15px', 
+					'-webkit-border-radius': '10px', 
+					'-moz-border-radius': '10px'
+					}
+				});	
+	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
+
+		jQuery.get(original_url+"&format=raw",
+			function(data){
+				populateDiv('jomres_content_area',data);
+				}
+			);
+		jQuery('div.jomres_content_area').unblock();
+	});
+	//window.location.reload();
+	}
+*/
 
 function populateDiv(div_id,content){
 	if ( jQuery("#"+div_id).length > 0 ){ 
