@@ -3,6 +3,14 @@ if ('undefined'==typeof(jQuery)){
 jQuery.noConflict();
 }
 
+function switch_editing_mode(url,val)
+	{
+	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,
+		function(data){
+		}
+	);
+	window.location.reload();
+	}
 
 function populateDiv(div_id,content){
 	if ( jQuery("#"+div_id).length > 0 ){ 

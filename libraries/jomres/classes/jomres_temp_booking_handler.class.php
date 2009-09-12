@@ -149,7 +149,9 @@ class jomres_temp_booking_handler
 		$this->tmplang = array(
 			"jomreslang" => null
 		);
-
+		$this->user_settings = array(
+			"editing_on" => false
+		);
 		$this->customFieldValues = array();
 		}
 	
@@ -212,8 +214,9 @@ class jomres_temp_booking_handler
 			$this->tmpguest=$dataArrays['tmpguest'];
 			$this->tmpsearch_data=$dataArrays['tmpsearch_data'];
 			$this->tmplang=$dataArrays['tmplang'];
+			$this->user_settings=$dataArrays['user_settings'];
 			
-			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang);
+			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 			$fp=fopen($this->sessionfile,'w+');
 			if (!fwrite($fp, serialize($data)) )
 				error_log(" Error writing to session file ");
@@ -221,7 +224,7 @@ class jomres_temp_booking_handler
 			}
 		else // session file doesn't exist, let's create it
 			{
-			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang);
+			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 			$fp=fopen($this->sessionfile,'w+');
 			if (!fwrite($fp, serialize($data)) )
 				error_log(" Error writing to session file ");
@@ -232,7 +235,7 @@ class jomres_temp_booking_handler
 
 	function close_jomres_session()
 		{
-		$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang);
+		$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 		$fp=fopen($this->sessionfile,'w+');
 		if (!fwrite($fp, serialize($data)) )
 			error_log(" Error writing to session file ");

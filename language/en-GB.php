@@ -6705,3 +6705,12 @@ define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is confi
 * @ignore
 */
 define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS','You don\'t have any tariffs configured yet, you will not be able take any bookings for your property.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_EDITINGMODE_ON','Editing mode on');
+/**
+* @ignore
+*/
+define('_JOMRES_EDITINGMODE_OFF','Editing mode off');
