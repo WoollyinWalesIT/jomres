@@ -167,7 +167,6 @@ class jomres_tooltips
 						positions: [\'most\'],
 						offsetParent: \'body\',
 						width: \'auto\',
-						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: {color: \'#FFFFFF\', fontWeight: \'bold\'}
 						});
@@ -191,7 +190,7 @@ class jomres_tooltips
 						shadowColor: \'rgba(0,0,0,.9)\',
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\'most\'],
+						positions: [\'bottom\'],
 						offsetParent: \'body\',
 						width: \'200px\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
@@ -219,7 +218,7 @@ class jomres_tooltips
 						shadowColor: \'rgba(0,0,0,.9)\',
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\'most\'],
+						positions: [\'bottom\'],
 						offsetParent: \'body\',
 						width: \'200px\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
