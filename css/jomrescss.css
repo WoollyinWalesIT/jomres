@@ -84,7 +84,7 @@ div.blockMsg {
 	
 .panelwrapper 
 	{
-	background-color: #FFFF66;
+	background-color: #cccccc;
 	color: #000;
 	padding: 5px 5px 5px 5px;
 	margin-bottom: 10px;
@@ -108,7 +108,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	margin: 0 2px 2px 0;
 	height: 23px;
 	width: 150px;
-	background-color: #FFFF00; 
+	background-color: #FFFFFF; 
 	text-align: center;
 	}
 
@@ -168,12 +168,12 @@ div.tab_panel_content a:link { text-decoration:underline;}
 
 .propertylist_left 
 	{
-	background-color: #FFFFCC;
+	background-color: #FFFFFF;
 	}
 
 .pheadwrap 
 	{
-	background-color: #FFFF99;
+	background-color: #eeeeee;
 	padding: 10px 5px 0px 5px;
 	}
 	
@@ -212,7 +212,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 .propertylist_right 
 	{
 	width: 200px;
-	background: #F3F3C2;
+	background: #f7f7f7;
 	border-left: 1px solid #dddddd;
 	}		
 
@@ -243,7 +243,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 .header
 	{	
 	height: 110px;
-	background: #FFFF99;
+	background: #eeeeee;
 	margin-top: 5px;
 	border-top: 1px solid #aaaaaa;
 	border-left: 1px solid #aaaaaa;
@@ -332,7 +332,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 
 .bform_table th
 	{
-	background: #F3F3C2;
+	background: #f7f7f7;
 	color: #000;
 	text-indent: 5px;
 	font-size: 11px;
