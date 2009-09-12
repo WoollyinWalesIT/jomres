@@ -317,9 +317,18 @@ if ( $jrConfig['useSSLinBookingform'] == 1)
 
 init_javascript();
 
+
+
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{
 	$output=array();
+	
+	$output['editing_mode_dropdown']='';
+	$editing_mode =jomres_getSingleton('jomres_editing_mode');
+	$result = $editing_mode->make_editing_mode_dropdown();
+	if ($result)
+		$output['EDITING_MODE_DROPDOWN']=$result;
+
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 	$output['LIVESITE']=get_showtime('live_site');
@@ -1399,6 +1408,8 @@ $componentArgs=array();
 $MiniComponents->triggerEvent('99999',$componentArgs); // Optional end of run minicomponent
 $componentArgs=array();
 
+$tmpBookingHandler->close_jomres_session();
+
 $performance_monitor->set_point("end run");
 $performance_monitor->output_report();
 
@@ -1407,8 +1418,6 @@ if ($no_html==0 && $jrConfig['errorChecking']==1)
 	foreach ($MiniComponents->log as $log)
 		echo "Log :".$log."<br>";
 	}
-	
-
 	
 
 	

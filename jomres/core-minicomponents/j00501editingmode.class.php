@@ -42,6 +42,8 @@ class j00501editingmode {
 			{
 			$this->template_touchable=false; return;
 			}
+		// replaced in v4.2 with editing mode switching feature
+		/*
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
@@ -57,6 +59,7 @@ class j00501editingmode {
 			$configurationPanel->insertSetting();
 			$configurationPanel->endPanel();
 			}
+		*/
 		}
 
 	/**

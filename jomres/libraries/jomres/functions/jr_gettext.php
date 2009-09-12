@@ -28,14 +28,23 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	
 	$property_uid = get_showtime('property_uid');
 	$customTextArray = $customTextObj->get_custom_text();
-	//var_dump($customTextArray);
-	//echo $theConstant." - ".$theValue." <br>";
-	//var_dump($customTextArray['_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION1']);
-	//echo "<br>";
-	//if ($theConstant =="_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION1" || $theConstant == "_JOMRES_SEARCH_ALL")
-	//	var_dump($customTextArray);
-
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$thisJRUser=jomres_getSingleton('jr_user');
+	
+
+	if (!isset($tmpBookingHandler->user_settings['editing_on']))
+		$tmpBookingHandler->user_settings['editing_on']= false;
+		
+	if (!$thisJRUser->userIsManager)
+		$tmpBookingHandler->user_settings['editing_on']= false;
+		
+	if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 2)
+		$tmpBookingHandler->user_settings['editing_on']= false;
+
+	$editing = $tmpBookingHandler->user_settings['editing_on'];
+	
+	$tmpBookingHandler->close_jomres_session();
+
 	$mrConfig=getPropertySpecificSettings($property_uid);
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -69,9 +78,9 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$property_uid=0;
 			$jrConfig['editinplace']=1;
 			$jrConfig['editingModeAffectsAllProperties'] = "1";
-			$mrConfig['editingOn'] = 1;
+			$editing = true;
 			}
-		if ($thisJRUser->userIsManager && ($mrConfig['editingOn'] || ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ($accessLevel ==2))
+		if ($thisJRUser->userIsManager && ($editing || ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ($accessLevel ==2))
 			{
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
 				$theText="xxxxxxxxx";
