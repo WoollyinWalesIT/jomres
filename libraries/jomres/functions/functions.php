@@ -278,7 +278,7 @@ function jomres_reconvertString($clean)
 	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
 	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
 	$clean = str_replace(" & "," &amp; " , $clean);
-	$clean = str_replace("&#39;", "'", $clean);
+
 	
 	//var_dump($clean);
 	return $clean;

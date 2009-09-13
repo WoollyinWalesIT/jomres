@@ -105,6 +105,7 @@ class j04900saveproperty {
 			$features_list=array_merge($features_list,$pid);
 		else
 			$features_list=$pid;
+			
 		if (count($features_list)>1)
 			$featuresList=implode(",",$features_list);
 		if (count($features_list)==1)
