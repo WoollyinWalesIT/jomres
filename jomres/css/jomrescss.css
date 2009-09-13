@@ -257,12 +257,11 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	font-size: 18px;
 	text-indent: 10px;
 	line-height: 50px; 
-	height: 110px; 
+	text-align: left; 
 	}
 
 .header_image 
 	{
-	float: right;
 	}
 
 /* Property detail*/

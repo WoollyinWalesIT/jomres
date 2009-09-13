@@ -70,7 +70,9 @@ class basic_property_details
 		$property_name=doSelectSql($query,1);
 		$customTextObj =jomres_getSingleton('custom_text');
 		$customTextObj->get_custom_text_for_property($property_uid);
-		return jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
+		$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
+		$property_name = str_replace("&#39;", "'", $property_name);
+		return $property_name;
 		}
 		
 	public function gather_data($property_uid=0)
