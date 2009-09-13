@@ -2441,6 +2441,20 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	$img_departtoday=$pathToImages."/departtoday.gif";
 	$img_stillhere=$pathToImages."/stillhere.gif";
 	$img_late=$pathToImages."/late.gif";
+	
+	$contract_ids = array();
+	
+	foreach ($contractsList as $c)
+		{
+		$contract_ids[]= $c->contract_uid;
+		}
+		
+	
+	$gor=genericOr($contract_ids,'contract_uid');
+	$query="SELECT * FROM #__jomres_contracts WHERE property_uid = '".(int)$defaultProperty."' AND ".$gor;
+	$booking_data = doSelectSql($query);
+	//var_dump($booking_data);exit;
+		
 	?>
 
 	<table class="jradmin_innerwrapper">
