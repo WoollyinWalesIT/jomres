@@ -5,7 +5,7 @@ Major rewrite to largely eliminate the use of globals within the system, switchi
 Reworked email handling to show invoices in emails.
 Renamed many class files to allow autoloading of classes, introduced jr_import function for importing class files. Classes by default are in /jomres/libraries/jomres/classes, however they can also be autoloaded from /jomres/remote_plugins/custom_code.
 Added performance monitoring class (you need to enable minicomponent logging in Site Config to see the output).
-Mdofied and simplified black bookings, giving SRPs their own template and preventing the Save button from showing until the 
+Modfied and simplified black bookings, giving SRPs their own template and preventing the Save button from showing until the dates have been selected and the Apply button clicked.
 Added view invoices page to Receptionist's menu, and if subscriptions are enabled then Property Managers can see an invoices page in their toolbar.
 
 Fixed urls in property list to search via town/region/coutry
@@ -49,7 +49,22 @@ Added new button to users toolbar inviting them to add their own property, fixed
 Added some site config settings so that site admin can provide their business details in invoices. Improved invoices so that site managers can see and print invoices from the subscriptions info page.
 j03200insertbooking_invoice.class.php renumbered to 03025 because we need to ensure that it's called before the emails are sent so that we can generate the invoice details in the guest and hotel emails.
 Fixed bug where extra quantity wasn't modifying price in confirmation page
-
+Improved blackbooking functionality by switching off Save button until apply button has been clicked once, gave SRPs new template and customised output for SRPs making black bookings.
+Security enhancements to several j06000 minicomponents, and introduction of j06001, j06002 & j06005 minicomponent tasks
+Removed admin's first login warning
+Added new columns to installer phase of table generation.
+Added rate number check to sanity checking
+Added translated property names to search options,tweaked reconvert function to reset '
+Improved paths for finding integration.php
+Added delete subscription feature to admin area
+Language files updated, removing BOM from several.
+Minor tweak to list propertys template to ensure image and button layout works in Chrome
+Modified jomres css to provide a more neutral grey by default. It seems that nobody liked my happy, cheerful harvest yellow scheme. Boo hoo.
+Room type icon colours rejigged to differentiate them from property feature icons
+Room/feature info popup shows now below the icon
+Layout modified, room features/property features are now shown in the property header. The old code for showing the features in the tabs is still available, but commented out. 
+Modified editing mode, made it switchable via a dropdown next to the language dropdown, and is particular to the user, rather than the property. 
+Fixed bug where in editing guests, house is saved as street, and street is saved as house. Template issue where wrong names were used on inputs. Amazingly, this issue must have been in the system for at least a couple of years but I can't remember anybody mentioning it.
 
 
 Jomres 4.1.4
