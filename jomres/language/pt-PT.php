@@ -5794,3 +5794,97 @@ define('_JOMRES_COM_FAUXHEADERS','Output Jomres javascript headers into the body
 * @ignore
 */
 define('_JOMRES_COM_FAUXHEADERS_DESC','Set this to Yes if you are having problems with mootools and Jomres\'s jQuery conflicting in IE. This will force Jomres to output the javascript calls within the body of the page instead of the HEAD area, which isn\'t valid html, however it seems to resolve the probems with jquery and mootools conflicting with each other.');
+
+
+// Jomres v4.2
+
+/**
+* @ignore
+*/
+define('_JOMRES_MANAGER_SHOWINVOICE','Show invoice');
+/**
+* @ignore
+*/
+define('_JOMRES_MANAGER_SHOWINVOICES','Show invoices');
+/**
+* @ignore
+*/
+define('_JOMRES_USER_LISTMYPROPERTY','Add my property to this site');
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_DANGERWILLROBINSON','Warning : ');
+
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_FREEBIENOTES',"You can have one free package on the system if you wish, by creating a package and setting both the trial amount and the full amount to 0.00");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID',"Sorry, but that package ID is not recognised.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE',"Sorry, you are already subscribed to a free package, you cannot subscribe to that package again.");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL'," Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term");
+/**
+* @ignore
+*/
+define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"My Account");
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESS','Your business details');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESS_NAME','business name');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESS_VATNO','VAT number');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_YOURBUSINESSADDRESS','Building number');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_TAX_WARNING2','<font color=red>NOTE: The following tax rates are designed for use by the American market. If you want to use a flat rate tax (eg VAT) for your accommodation, please choose a tax rate from the option above.</FONT>');
+/**
+* @ignore
+*/
+define('_JOMRES_INVOICE_NUMBER','Invoice No. ');
+/**
+* @ignore
+*/
+define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP','Select the dates that you want to apply the black booking for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
+<br/> 
+If the property has one or more bookings for the period selected, then you will not be able to book it out until the other bookings/black bookings, have been cancelled/booked out.');
+
+define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK','Sorry, you cannot black book this property for those dates.');
+
+define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK','You can blackbook this property for those dates.');
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ');
+
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS','You don\'t have any tariffs configured yet, you will not be able take any bookings for your property.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_EDITINGMODE_ON','Editing mode on');
+/**
+* @ignore
+*/
+define('_JOMRES_EDITINGMODE_OFF','Editing mode off');
+
