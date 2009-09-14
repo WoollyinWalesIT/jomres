@@ -117,7 +117,7 @@ class j06005view_invoice {
 		if ($popup != 1)
 			{
 			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
-			$output['PRINTTEXT'] =jr_gettext('_JRPORTAL_INVOICES_TITLE',_JRPORTAL_INVOICES_TITLE);
+			$output['PRINTTEXT'] =jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT);
 			}
 		
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_INVOICE_TITLE',_JOMRES_COM_INVOICE_TITLE);
@@ -244,6 +244,7 @@ class j06005view_invoice {
 		
 	function touch_template_language()
 		{
+		$output[]=jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT);
 		$output[]=jr_gettext('_JOMRES_COM_INVOICE_TITLE',_JOMRES_COM_INVOICE_TITLE);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_TITLE',_JRPORTAL_INVOICES_TITLE);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_STATUS',_JRPORTAL_INVOICES_STATUS);

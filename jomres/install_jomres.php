@@ -327,7 +327,7 @@ function createSubscriptionsTables()
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`cms_user_id` int(11) NOT NULL default '0',
 	`gateway_subscription_id` CHAR( 255 ) NOT NULL ,
-	 ADD `package_id` INT NULL DEFAULT '0',
+	`package_id` INT NULL DEFAULT '0',
 	`name` VARCHAR( 20 ) NOT NULL ,
 	`description` VARCHAR( 255 ) NOT NULL ,
 	`frequency` CHAR(1) DEFAULT 'M',

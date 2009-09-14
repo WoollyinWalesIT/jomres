@@ -58,7 +58,7 @@ class j16000showLog
 			$output['DELETE']=_JOMRES_COM_MR_ROOM_DELETE;
 			$output['DELETELINK']=JOMRES_SITEPAGE_URL_ADMIN.'&task=clearLog&logfile='.$logfile;
 			$output['LIVESITE']=get_showtime('live_site');
-			$output['BACKLINK']='<a href="javascript:submitbutton(\'listLogs\')">'._JOMRES_COM_MR_BACK.'</a>';
+			$output['BACKLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=listLogs">'._JOMRES_COM_MR_BACK.'</a>';
 			echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/heartbeat.js"></script>
 				';
 				
