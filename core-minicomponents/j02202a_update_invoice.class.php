@@ -68,7 +68,7 @@ class j02202a_update_invoice {
 					'tax_code_id'=>0,
 					'name'=>jr_gettext('_JOMRES_MR_AUDIT_ENTEREDDEPOSIT',_JOMRES_MR_AUDIT_ENTEREDDEPOSIT,false,false),
 					'description'=>'',
-					'init_price'=>"-".$deposit_required,
+					'init_price'=>"-"number_format($deposit_required,2, '.', ''),
 					'init_qty'=>"1",
 					'init_discount'=>"0",
 					'recur_price'=>"0.00",

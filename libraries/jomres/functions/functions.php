@@ -3985,6 +3985,37 @@ function invoices_getallinvoices($dec,$status=null)
 	return $invoices;
 	}
 	
+function invoices_getinvoicefor_contract_id($contract_id=0)
+	{
+	if ($contract_id == 0)
+		return false;
+	$invoice=array();
+	$clause="";
+	$query="SELECT * FROM #__jomresportal_invoices WHERE `contract_id`=".(int)$contract_id." LIMIT 1";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$invoice['id']=$r->id;
+			$invoice['cms_user_id']=$r->cms_user_id;
+			$invoice['status']=$r->status;
+			$invoice['raised_date']=$r->raised_date;
+			$invoice['due_date']=$r->due_date;
+			$invoice['paid']=$r->paid;
+			$invoice['subscription']=$r->subscription;
+			$invoice['init_total']=$r->init_total;
+			$invoice['recur_total']=$r->recur_total;
+			$invoice['recur_frequency']=$r->recur_frequency;
+			$invoice['recur_dayofmonth']=$r->recur_dayofmonth;
+			$invoice['currencycode']=$r->currencycode;
+			$invoice['property_uid']=$r->property_uid;
+			}
+		}
+	return $invoice;
+	}
+	
+	
 function invoices_getinvoicesfor_juser($juser=0,$status=null)
 	{
 	$invoices=array();
