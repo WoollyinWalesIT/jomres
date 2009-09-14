@@ -54,9 +54,12 @@ class j02150addservicetobill {
 
 			$output['HSERVICEDESCRIPTION']=jr_gettext('_JOMRES_COM_ADDSERVICE_DESCRIPTION',_JOMRES_COM_ADDSERVICE_DESCRIPTION);
 			$output['HSERVICEVALUE']=jr_gettext('_JOMRES_COM_ADDSERVICE_VALUE',_JOMRES_COM_ADDSERVICE_VALUE);
+			$output['HTAXRATE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
 			$output['CURRENCY']=$mrConfig['currency'];
 			$output['CONTRACTUID']=$contract_uid;
-
+			$output['TAXRATEDROPDOWN'] = taxrates_makerateDropdown( array(),1 );
+			
+			
 			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'addServiceToBill');
@@ -79,13 +82,42 @@ class j02150addservicetobill {
 			$contract_uid			=	jomresGetParam( $_POST, 'contract_uid', 0 );
 			$service_description	=	ucfirst(jomresGetParam( $_POST, 'service_description', '' ));
 			$service_value			=	jomresGetParam( $_POST, 'service_value', 0.00 );
+			$taxrate				=	jomresGetParam( $_POST, 'taxrate', 0 );
+			
 			if ($contract_uid && $service_description && $service_value != 0)
 				{
 				$query="INSERT INTO #__jomres_extraServices (`service_description`,`service_value`,`contract_uid`) VALUES ('$service_description','".(float)$service_value."','".(int)$contract_uid."')";
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_ADDSERVICE',_JOMRES_MR_AUDIT_ADDSERVICE,FALSE)))
 					trigger_error ("Unable to insert into extraServices table, mysql db failure", E_USER_ERROR);
 				else
+					{
+					
+					$invoice = invoices_getinvoicefor_contract_id($contract_uid);
+					$line_items = array();
+					$line_item_data = array (
+						'tax_code_id'=>$taxrate,
+						'name'=>$service_description,
+						'description'=>'',
+						'init_price'=>number_format($service_value,2, '.', ''),
+						'init_qty'=>"1",
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					jr_import('invoicehandler');
+					$invoice_handler = new invoicehandler();
+					$invoice_handler->id = $invoice['id'];
+					if ($invoice_handler->getInvoice())
+						$invoice_handler->add_line_item($line_item_data);
+					else
+						{
+						echo "Error adding line item to invoice";
+						return;
+						}
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=$contract_uid"), $saveMessage );
+					}
 				}
 			else
 				{

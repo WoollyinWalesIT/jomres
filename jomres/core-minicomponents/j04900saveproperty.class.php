@@ -39,7 +39,10 @@ class j04900saveproperty {
 	function j04900saveproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		if (!function_exists('jomres_getSingleton'))
+			global $MiniComponents;
+		else
+			$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
