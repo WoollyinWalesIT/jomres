@@ -6714,3 +6714,7 @@ define('_JOMRES_EDITINGMODE_ON','Editing mode on');
 * @ignore
 */
 define('_JOMRES_EDITINGMODE_OFF','Editing mode off');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_INVOICE_PRINT','Print invoice');
