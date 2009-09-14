@@ -66,6 +66,8 @@ Layout modified, room features/property features are now shown in the property h
 Modified editing mode, made it switchable via a dropdown next to the language dropdown, and is particular to the user, rather than the property. 
 Fixed bug where in editing guests, house is saved as street, and street is saved as house. Template issue where wrong names were used on inputs. Amazingly, this issue must have been in the system for at least a couple of years but I can't remember anybody mentioning it.
 
+Added note to license failure warning to remind users to click Save after changing license binding on the license server.
+
 
 Jomres 4.1.4
 
