@@ -247,7 +247,7 @@ class j06005save_subscriber
 		$this->add_field('currency_code', $this->paypal_settings['currencycode']);
 		$this->add_field('lc', $subscriber->country);
 		
-		$t="M";
+		$t=$subscription->frequency;
 		switch ($subscription->frequency)
 			{
 			case 'M':
