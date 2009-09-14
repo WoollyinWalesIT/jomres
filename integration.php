@@ -1101,6 +1101,7 @@ function checkLicense($license_key,$scriptname)
 	if (!JOMRES_LICVALID && JOMRES_ISADMINCALLED)
 		{
 		echo outputLicenseFailureReasonMessage();
+		echo "<br/>If you have changed your license binding (IE, the domain and/or IP number the license is registered against, please click Save in Site Configuration as Jomres needs to rebuild the license key before your change will take affect.";
 		}
 	if ( (JOMRES_LICRESULT == 2 ||JOMRES_LICRESULT == 3 ||JOMRES_LICRESULT == 5 || JOMRES_LICRESULT == 7 || JOMRES_LICRESULT == 8 || JOMRES_LICRESULT == 9) && !JOMRES_ISADMINCALLED ) // License disabled/suspended
 		{
@@ -1158,7 +1159,7 @@ function outputLicenseFailureReasonMessage()
 			$result='<center>Keyfile failed validation. Error message: '.$message.'. Please contact <a href="http://www.jomres.net">Jomres.net</a> for help in resolving this issue</center>';
 		break;
 		case 4:
-			$message="<br><b>Hostname or IP doesn't match hostname/IP that the license is bound to.<br> Check that this host is the same as that bound to the license.<br>Also check that you are not on load balanced servers/a proxy bank. If you are then make a list of the IPs that show in the connectivity test and pass them onto jomres.net so that they can adjust your license bindings accordingly.<br> Log onto <a href=\"http://license-server.jomres.net\" target=\"_blank\">the license server</a> and view your domain details by clicking on View in the Manage column next to your license.</b><br>";
+			$message="<br><b>Hostname or IP doesn't match hostname/IP that the license is bound to.<br>, please  Check that this host is the same as that bound to the license.<br>Also check that you are not on load balanced servers/a proxy bank. If you are then make a list of the IPs that show in the connectivity test and pass them onto jomres.net so that they can adjust your license bindings accordingly.<br> Log onto <a href=\"http://license-server.jomres.net\" target=\"_blank\">the license server</a> and view your domain details by clicking on View in the Manage column next to your license.</b> <br>";
 			$result='<center>Keyfile failed validation. Error message: '.$message.'. Please contact <a href="http://www.jomres.net">Jomres.net</a> for help in resolving this issue<br></center>';
 		break;
 		case 5:
