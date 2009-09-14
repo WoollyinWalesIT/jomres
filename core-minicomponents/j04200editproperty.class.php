@@ -86,8 +86,10 @@ class j04200editproperty {
 				$starsDropDownList.="</select></span>";
 				$ptypeid=$property->ptype_id;
 
-
-				$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
+				$current_property_details =jomres_getSingleton('basic_property_details');
+				$output['PROPERTY_NAME'] =$current_property_details->get_property_name($propertyUid);
+				
+				//$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
 				$output['PROPERTY_STREET']=getEscaped(($property->property_street));
 				$output['PROPERTY_TOWN']=getEscaped(($property->property_town ));
 				$output['PROPERTY_POSTCODE']=getEscaped(($property->property_postcode));
