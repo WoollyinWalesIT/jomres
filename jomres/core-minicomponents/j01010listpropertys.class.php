@@ -366,7 +366,9 @@ class j01010listpropertys {
 						$bookinglink[]		= 	$link;
 						}
 
-					$property_deets['PROP_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property->propertys_uid,stripslashes($propertyContactArray[0]),false,false);
+					$current_property_details =jomres_getSingleton('basic_property_details');
+					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property_uid);
+					//$property_deets['PROP_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property->propertys_uid,stripslashes($propertyContactArray[0]),false,false);
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
 					$property_deets['PROP_TOWN']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.$propertyContactArray[2]).'">'.stripslashes($propertyContactArray[2]).'</a>';
 					$property_deets['PROP_POSTCODE']=stripslashes($propertyContactArray[3]);
