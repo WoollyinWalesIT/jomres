@@ -46,8 +46,10 @@ class j00009user_option_05_add_your_property {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!$thisJRUser->userIsRegistered)
 			return;
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=registerProp_step1", '', jr_gettext('_JOMRES_USER_LISTMYPROPERTY',_JOMRES_USER_LISTMYPROPERTY,false,false) );
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if ($jrConfig['selfRegistrationAllowed']=="1" && $jrConfig['useSubscriptions']=="1" )
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=registerProp_step1", '', jr_gettext('_JOMRES_USER_LISTMYPROPERTY',_JOMRES_USER_LISTMYPROPERTY,false,false) );
 		}
 	
 	function touch_template_language()
