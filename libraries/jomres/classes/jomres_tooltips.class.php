@@ -31,6 +31,8 @@ class jomres_tooltips
 	function jomres_tooltips()
 		{
 		$this->divs=array();
+		$browser = new browser();
+		$this->browser = $browser->BROWSER_AGENT;
 		}
 
 	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments)
@@ -179,6 +181,10 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_room_type" ';
+				if ($this->browser == "IE")
+					$positions = "most";
+				else
+					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
 				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						cornerRadius: 10,        
@@ -190,7 +196,7 @@ class jomres_tooltips
 						shadowColor: \'rgba(0,0,0,.9)\',
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\'bottom\'],
+						positions: [\''.$positions.'\'],
 						offsetParent: \'body\',
 						width: \'200px\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
@@ -207,6 +213,10 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_features" ';
+				if ($this->browser == "IE")
+					$positions = "most";
+				else
+					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
 				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						cornerRadius: 10,        
@@ -218,7 +228,7 @@ class jomres_tooltips
 						shadowColor: \'rgba(0,0,0,.9)\',
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\'bottom\'],
+						positions: [\''.$positions.'\'],
 						offsetParent: \'body\',
 						width: \'200px\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
