@@ -45,7 +45,7 @@ class html_functions
 		if (strlen( jomresGetParam( $_REQUEST, 'task', "" ))>0)
 			{
 			return '
-			<div style="text-align:center;vertical-align:middle;float:left;width:80px;height:65px;">
+			<div style="text-align:center;vertical-align:middle;float:left;width:120px;height:80px;">
 				<a href="'.$link.'" style="text-decoration:none;border:none;">
 					<img src="'.$path.'" style="border:none;" border="0" height="35" width="35" /><br/>
 					<span>'.$text.'</span>
