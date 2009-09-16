@@ -135,8 +135,10 @@ class jr_user
 								$this->authorisedPropertyDetails[$p->propertys_uid]=array('property_name'=>$p->property_name);
 								}
 							}
-						else
+						else if (!defined('_JOMRES_INITCHECK_ADMIN'))
+							{
 							trigger_error ("This manager ".(int)$this->id."  hasn't got any properties.", E_USER_ERROR);
+							}
 						}
 					if (!in_array($this->currentproperty,$this->authorisedProperties))
 						$this->currentproperty=$this->setToAnyAuthorisedProperty();
@@ -212,7 +214,7 @@ class jr_user
 				return $this->authorisedProperties[1];
 				}
 			}
-		else
+		else if (!defined('_JOMRES_INITCHECK_ADMIN'))
 			{
 			trigger_error ("Unable to reassign a manager to any existing, authorised property. Either last property in database has been deleted, or this manager has rights to no properties.", E_USER_ERROR);
 			}
