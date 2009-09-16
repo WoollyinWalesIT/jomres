@@ -174,6 +174,7 @@ if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admi
 $query="SELECT propertys_uid FROM #__jomres_propertys";
 $countproperties = doSelectSql($query);
 $numberOfPropertiesInSystem=count($countproperties);
+set_showtime('numberOfPropertiesInSystem',$numberOfPropertiesInSystem);
 if ($numberOfPropertiesInSystem==1)
 	{
 	if (!$thisJRUser->userIsManager)
@@ -591,8 +592,7 @@ if (!defined('JOMRES_NOHTML'))
 	}
 
 $performance_monitor->set_point("post-menu generation");
-	
-$option="com_jomres";
+
 $componentArgs=array();
 $MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done.
 $componentArgs=array();
@@ -613,7 +613,7 @@ if (!isset($jrConfig['errorChecking']) )
 
 $jomresPathway->addItem("Search",get_showtime('task'),"");
 
-set_showtime('numberOfPropertiesInSystem',$numberOfPropertiesInSystem);
+
 
 if ($numberOfPropertiesInSystem>0)
 	{
