@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" >
+<h2>{_JOMRES_SA_FORMS_REGISTRATION_TITLE}:</h2>
+<p>{_JOMRES_SA_FORMS_REGISTRATION_DESC}</p>
+<form name="form1" method="post" action="{POSTACTION}">
+  <label for="login">{_JOMRES_SA_FORMS_USERNAME}:</label>
+  <input type="text" name="login" size="12" value="{LOGIN}">
+  <label for="password">{_JOMRES_SA_FORMS_PASSWORD}:</label>
+  <input name="password" type="password" value="{PASSWORD}" size="6">
+  {_JOMRES_SA_FORMS_UPDATEUSER_MINCHARS} <br>
+  <label for="confirm">{_JOMRES_SA_FORMS_UPDATEUSER_CONFIRMPASSWORD}:</label>
+  <input name="confirm" type="password" value="{PASSWORDCONFIRM}" size="6">
+  * <br>
+  <label for="name">{_JOMRES_SA_FORMS_UPDATEUSER_REALNAME}:</label>
+  <input name="name" type="text" value="{FULLNAME}" size="30">
+  <br>
+  <label for="email">{_JOMRES_SA_FORMS_UPDATEUSER_EMAIL}:</label>
+  <input name="email" type="text" value="{EMAIL}" size="30">
+  *<br>
+  <label for="info">{_JOMRES_SA_FORMS_UPDATEUSER_EXTRAINFO}:</label>
+  <input name="info" type="text" value="{INFO}" size="50">
+  <b><br>
+  <br>
+  <input type="submit" name="Submit" value="Update">
+</form>
+<p><b>{ERROR}</b></p>
+<p>&nbsp;</p>
+<!-- Notice! you have to change this links here, if the files are not in the same folder -->
+<p><a href="{CONTROLPANELLINK}">{_JOMRES_CONTROLPANEL}</a></p>
+
+</patTemplate:tmpl>

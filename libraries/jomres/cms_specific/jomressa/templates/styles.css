@@ -1,0 +1,81 @@
+body {
+background:#cacac6 url(../i/bg_body.jpg) top repeat-x;
+border:0;
+font:1em 'Lucida Sans Unicode', 'Lucida Grande', LucidaGrande, 'Lucida Sans', Geneva, Arial, sans-serif;
+color:#210;
+padding:0;
+}
+
+a {
+color:#F30;
+text-decoration:none;
+}
+
+a:hover {
+color:#333;
+text-decoration:none;
+}
+
+#wrap {
+width:966px;
+border:3px solid #fff;
+text-align:left;
+}
+
+#header {
+background:#e6e6e0;
+height:80px;
+}
+
+#logo {
+cursor:pointer;
+position:relative;
+float:left;
+background:url(../../../../../images/jrlogo.png) no-repeat ;
+width:350px;
+height:70px;
+}
+
+#header_right {
+color:#333;
+font-size:0.7em;
+text-align:right;
+float:right;
+width:443px;
+margin:15px 15px 0 0;
+}
+
+#menu_wrap {
+background-color:#bbb;
+clear:both;
+}
+#extra_menu {
+clear:both;
+padding:2px 0 0;
+}
+
+#content {
+font-size:0.8em;
+line-height:1.8em;
+background:#fff url(../i/bg_content.gif) top repeat-x;
+border-bottom:1px solid #eee;
+padding:10px;
+}
+
+.content_full {
+background:#fff url(../i/bg_col.gif) top center no-repeat;
+padding:16px 20px;
+}
+
+#content_left {
+width:746px;
+float:left;
+background:#fff url(../i/bg_col.gif) top center no-repeat;
+padding:8px 10px;
+}
+
+#content_right {
+width:160px;
+float:right;
+}
+
