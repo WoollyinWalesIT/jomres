@@ -66,19 +66,20 @@ class j00012pathway {
 			return;
 			
 		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
-		
-		
+
 		if (_JOMRES_DETECTED_CMS == "joomla15" )
 			{
 			global $mainframe;
 			$breadcrumbs = & $mainframe->getPathWay();
 			$breadcrumbs->setPathway();
 			}
-			
+
 		$no_html			= jomresGetParam( $_REQUEST, 'no_html', 0 );
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
+
 		if ($no_html==0 && $popup==0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem> 1)
 			{
+						
 			$pathwayArray=array();
 			$pathway="";
 			$arrowImgSrc='<img src="jomres/images/arrow_right_grey.png" border="0" alt="arrow" />';  // Change this to change the arrow
