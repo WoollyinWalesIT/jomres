@@ -178,6 +178,19 @@ class basic_property_details
 				$this->room_features[(int)$f->room_features_uid]['desc'] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$f->room_features_uid,stripslashes($f->feature_description));
 				}
 			}
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		$taxrates = taxrates_getalltaxrates();
+		$cfgcode = $mrConfig['accommodation_tax_code'];
+		$this->tax_code_id = $taxrates[$cfgcode];
+		//$this->setErrorLog("calcTax::Tax rate ".serialize($taxrate) );
+		$this->accommodation_tax_rate=(float)$taxrate['rate'];
+		}
+		
+	function get_gross_accommodation_price($nett_amount)
+		{
+		$tax = ( $nett_amount / 100 )*$this->accommodation_tax_rate;
+		$gross = $nett_amount + $tax;
+		return $gross;
 		}
 	}
 ?>
