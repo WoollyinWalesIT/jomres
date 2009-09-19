@@ -53,6 +53,7 @@ class j01020showtariffs {
 			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$mrConfig=getPropertySpecificSettings($property_uid);
+			$current_property_details =jomres_getSingleton('basic_property_details');
 			$pop=jomresGetParam( $_REQUEST, 'popup', '0' );
 			$ccodes= currencyCodesArray();
 			if ($showheader)
@@ -88,7 +89,7 @@ class j01020showtariffs {
 					{
 					$tariffRoomClass=$tariff->roomclass_uid;
 					if ($tariffRoomClass!="")
-					{
+						{
 						$query="SELECT room_class_abbv, room_class_full_desc FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$tariffRoomClass."'";
 						$classList =doSelectSql($query);
 
@@ -138,17 +139,23 @@ class j01020showtariffs {
 							$mrConfig['ratemultiplier']+=0;
 
 						$currfmt = jomres_getSingleton('jomres_currency_format');
+						$price_inc_vat = $current_property_details->get_gross_accommodation_price($tariff->roomrateperday,$property_uid);
+						
 						if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
-							$output['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($tariff->roomrateperday)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+							$output['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
 						else
-							$output['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($tariff->roomrateperday)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+							$output['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
 						if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1")
-							$output['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($tariff->roomrateperday)." ".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
-						//$output['roomrateperday']=$mrConfig['currency'].number_format($tariff->roomrateperday,2)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+							{
+							if ($mrConfig['tariffmode'] == 2)
+								$price_inc_vat = $price_inc_vat * 7;
+							$output['ROOMRATEPERDAY']=$mrConfig['currency'].$currfmt->get_formatted($price_inc_vat)." ".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+							}
 
 						if ($tariff->allow_we=="0")
 							$output['NOTWEEKENDS']=jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND',_JOMRES_FRONT_TARIFFS_NOTWEEKEND);
-						$theRate=number_format(($mrConfig['ratemultiplier']*$tariff->roomrateperday),2, '.', '');
+							
+						$theRate=number_format(($price_inc_vat),2, '.', '');
 						if ($mrConfig['showGoogleCurrencyLink']=="1")
 							{
 							$theLink='http://www.xe.com/pca/input.cgi?From='.$mrConfig['currencyCode'].'&Amount='.$theRate;
