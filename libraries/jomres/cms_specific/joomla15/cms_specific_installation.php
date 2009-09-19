@@ -84,11 +84,9 @@ if ($folderChecksPassed)
 	$result=doInsertSql($query,"");
 	$extraClause="";
 	$extraClausePara="";
-	if (_JOMRES_NEWJOOMLA == 1)
-		{
-		$extraClause=",`enabled`";
-		$extraClausePara=",'1'";
-		}
+	$extraClause=",`enabled`";
+	$extraClausePara=",'1'";
+
 	$query="INSERT INTO #__components
 	(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`".$extraClause.")
 	VALUES
