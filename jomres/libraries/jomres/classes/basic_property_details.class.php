@@ -181,23 +181,27 @@ class basic_property_details
 		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		$taxrates = taxrates_getalltaxrates();
 		$cfgcode = $mrConfig['accommodation_tax_code'];
-		$this->tax_code_id = $taxrates[$cfgcode];
-		$this->accommodation_tax_rate=(float)$taxrate['rate'];
+		$rate = $taxrates[$cfgcode];
+		$this->accommodation_tax_rate=(float)$rate['rate'];
 		}
 		
 	function get_gross_accommodation_price($nett_amount,$property_uid = 0)
 		{
+		$nett_amount = (float)$nett_amount;
+		
 		if ($property_uid != $this->property_uid )
 			{
 			$mrConfig=getPropertySpecificSettings($property_uid);
 			$taxrates = taxrates_getalltaxrates();
 			$cfgcode = $mrConfig['accommodation_tax_code'];
-			$accommodation_tax_rate=(float)$taxrate['rate'];
+			$rate = $taxrates[$cfgcode];
+			$accommodation_tax_rate=(float)$rate['rate'];
 			}
 		else
 			{
 			$accommodation_tax_rate=$this->accommodation_tax_rate;
 			}
+		
 		$tax = ( $nett_amount / 100 )* $accommodation_tax_rate;
 		$gross = $nett_amount + $tax;
 		return $gross;
