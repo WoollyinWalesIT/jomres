@@ -60,12 +60,13 @@ class j00501srps {
 			$configurationPanel->setright(_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC);
 			$configurationPanel->insertSetting();
 			}
-		
-		$configurationPanel->setleft(_JOMRES_COM_A_TARIFFPRICESAREWEEKLY);
-		$configurationPanel->setmiddle($lists['tariffChargesStoredWeeklyYesNo']);
-		$configurationPanel->setright(_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC);
-		$configurationPanel->insertSetting();
-
+		if ($mrConfig['tariffmode'] == "1")
+			{
+			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFPRICESAREWEEKLY);
+			$configurationPanel->setmiddle($lists['tariffChargesStoredWeeklyYesNo']);
+			$configurationPanel->setright(_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC);
+			$configurationPanel->insertSetting();
+			}
 
 
 		$configurationPanel->setleft(_JOMRES_COM_A_FIXEDPERIODBOOKINGS);

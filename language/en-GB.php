@@ -4484,7 +4484,7 @@ define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','Save your property changes befor
 /**
 * @ignore
 */
-define('_JOMRES_TARIFFSFROM','Prices from - ');
+define('_JOMRES_TARIFFSFROM','Prices from ');
 /**
 * @ignore
 */

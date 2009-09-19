@@ -224,6 +224,8 @@ class j01010listpropertys {
 				{
 				jr_import('jomres_cache');
 				$cache = new jomres_cache("propertylist",$property->propertys_uid);
+				$current_property_details =jomres_getSingleton('basic_property_details');
+				
 				$cacheContent = $cache->readCache();
 				if ($cacheContent)
 					{
@@ -315,6 +317,10 @@ class j01010listpropertys {
 						{
 						sort($ratesArray,SORT_NUMERIC);
 						$lowestPrice=$ratesArray[0];
+						$lowestPrice=$current_property_details->get_gross_accommodation_price($lowestPrice,$property->propertys_uid);
+						if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
+							$lowestPrice = $lowestPrice * 7;
+							
 						}
 					else
 						$lowestPrice="-";
@@ -366,7 +372,8 @@ class j01010listpropertys {
 						$bookinglink[]		= 	$link;
 						}
 
-					$current_property_details =jomres_getSingleton('basic_property_details');
+					
+					
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property_uid);
 					//$property_deets['PROP_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property->propertys_uid,stripslashes($propertyContactArray[0]),false,false);
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
