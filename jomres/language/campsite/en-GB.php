@@ -3825,11 +3825,11 @@ define('_JOMRES_COM_ALLOWHTMLEDITOR','Allow users to edit using html editors?');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_INSTRUCTIONS','Use this form to place your booking. Hover the mouse cursor over the "i" images for more information about the column. Modify your booking particulars like arrival and departure dates & camper numbers, then select the pitch(s) you require from the list of those available. Click any available pitchs to add them to your booking. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
+define('_JOMRES_AJAXFORM_INSTRUCTIONS','Use this form to place your booking. Modify your booking particulars like arrival and departure dates & camper numbers, then select the pitch(s) you require from the list of those available. Click any available pitchs to add them to your booking. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP','Use this form to place your booking. Hover the mouse cursor over the "i" images for more information about the column. Modify your booking particulars like arrival and departure dates & camper numbers. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
+define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP','Use this form to place your booking. Modify your booking particulars like arrival and departure dates & camper numbers. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 
 /**
 * @ignore
