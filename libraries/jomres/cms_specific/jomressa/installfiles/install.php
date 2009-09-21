@@ -152,7 +152,7 @@ class jomres_standalone_config
 	function jomres_standalone_config()
 		{
 		// Mysql connection information
-		$showtime = jomres_getSingleton('showtime');
+		$showtime = jomres_getSingleton(\'showtime\');
 		
 		$showtime->host				= "'.$_POST['host'].'";
 		$showtime->db				= "'.$_POST['database'].'";
