@@ -35,7 +35,9 @@ global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresC
 
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
-
+require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'classes'.JRDS.'jomressa_singleton_abstract.class.php');
+require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'functions'.JRDS.'functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
 if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'index.php') ) // index.php doesn't exist, therefore we're not inside a CMS, so we'll assume that we're installing Jomres SA.
 	{
 	require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'install.php');
@@ -52,9 +54,6 @@ if (isset($_REQUEST['no_html']) )
 	$no_html = (int)$_REQUEST['no_html'];
 else
 	$no_html = 0;
-	
 
-require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'classes'.JRDS.'jomressa_singleton_abstract.class.php');
-require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'functions'.JRDS.'functions.php');
 $jomresConfig = jomressa_getSingleton('jomressa_config');
 

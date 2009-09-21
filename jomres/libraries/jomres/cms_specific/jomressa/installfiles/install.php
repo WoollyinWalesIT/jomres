@@ -49,21 +49,24 @@ if (!isset($_POST['host']) || !isset($_POST['database']) || !isset($_POST['usern
 else
 	{
 	// Perform the installation of the tables based on the posted data
-	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
+	//require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
 	global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
+	
+	$showtime = jomres_getSingleton('showtime');
+	
 	$jomresConfig_host = $_POST['host'];
 	$jomresConfig_user = $_POST['username'];
 	$jomresConfig_db = $_POST['database'];
 	$jomresConfig_password = $_POST['password'];
 	$jomresConfig_dbprefix = $_POST['prefix']."_";
 	
-	$db = new jomres_database();
-	if (!$db->connection_result )
-		{
-		jomresSAInstallredirect("Sorry, I cannot connect to that database, please check the login details you supplied and try again.");
-		}
-	unset($db);
-
+	$showtime->dbprefix			= $_POST['prefix']."_";
+	$showtime->user				= $_POST['username'];
+	$showtime->password			= $_POST['password'];
+	$showtime->db				= $_POST['database'];
+	$showtime->host				= $_POST['host'];
+	
+	
 	
 	$query = 
 	"CREATE TABLE IF NOT EXISTS `#__users` (
@@ -140,8 +143,7 @@ else
 	$live_site = curPageURL();
 	$live_site =str_replace("/jomres/install_jomres.php","",$live_site);
 	
-	$configObjString = '
-<?php
+	$configObjString = '<?php
 
 // ################################################################
 defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
@@ -228,6 +230,7 @@ function jomresSAtatusTestFolderIsWritable($path)
 
 function jomresSAInstallredirect($message,$continue=false)
 	{
+	$url="";
 	if (!$continue)
 		{
 		$url = "?message=".$message.
@@ -246,13 +249,18 @@ function jomresSAInstallredirect($message,$continue=false)
 	
 function curPageURL() {
  $pageURL = 'http';
- if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
- $pageURL .= "://";
+ if (isset($_SERVER["HTTPS"]))
+	{
+	 if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	 
+	}
+$pageURL .= "://";
  if ($_SERVER["SERVER_PORT"] != "80") {
 	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
  } else {
 	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
  }
+
  return $pageURL;
 }
 ?>

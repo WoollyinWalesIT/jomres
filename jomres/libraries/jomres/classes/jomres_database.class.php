@@ -21,7 +21,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 // ################################################################
 
-
+//debug_print_backtrace();
 
 class jomres_database
 	{
@@ -30,15 +30,17 @@ class jomres_database
 		$this->system_tables=array();
 		$this->error = null;
 		$this->result=null;
-		mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
+		
+		$showtime = jomres_getSingleton('showtime');
+		$link = mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
 		mysql_select_db(get_showtime('db')) or die('Could not select database');
+		$this->error = mysql_error();
 		mysql_query("SET NAMES 'UTF8'");
 		$this->db_prefix=get_showtime('dbprefix');
 		}
 
 	function query()
 		{
-
 		$this->result = mysql_query($this->query);
 		if ($this->result)
 			return $this->result;
