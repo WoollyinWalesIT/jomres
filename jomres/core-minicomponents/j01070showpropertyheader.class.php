@@ -161,6 +161,7 @@ class j01070showpropertyheader
 				$output['PROPERTY_NAME'] = $current_property_details->property_name;
 				$output['TOWN'] = $current_property_details->property_town;
 				$output['REGION'] = $current_property_details->property_region;
+				$output['COUNTRY'] = $current_property_details->property_country;
 
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
