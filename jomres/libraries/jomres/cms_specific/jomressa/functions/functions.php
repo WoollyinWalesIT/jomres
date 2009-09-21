@@ -35,18 +35,19 @@ function jomressa_sendmail($frommail,$fromname,$target,$subject,$body)
 
 function render_template($template_file,$path,$rows)
 	{
+	if (!file_exists($path.$template_file))
+		{
+		echo "Error, ".$path.$template_file." does not exist<br/>";
+		}
+	//echo "Calling ".$template_file." <br>";
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( $path );
 	$tmpl->readTemplatesFromInput( $template_file );
 	foreach ($rows as $key=>$val)
 		{
-		//if ($template_file == "main.html")
-		//	echo "<br>";var_dump($key);
 		$tmpl->addRows( $key,$val );
-		
 		}
 	$tpl=$tmpl->getParsedTemplate();
-	//$tmpl->dump();
 	return $tpl;
 	}
 
