@@ -18,6 +18,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 */
 
 define('_JOMRES_INITCHECK', 1 );
+ini_set('error_reporting', E_ALL);
 
 if (!defined('JRDS'))
 	{
@@ -728,6 +729,9 @@ function copyImages()
 function showCompletedText()
 	{
 	$fullurl = str_replace("/jomres/install_jomres.php","", $_SERVER['HTTP_REFERER']);
+	
+	if (strstr(JOMRES_SITEPAGE_URL_ADMIN,$fullurl))  // We'll add this because installing on SA the url is already set, whereas in Joomla it's not. as SA gets live site from the config and uses it
+		$fullurl="";
 	echo '<br>Thank you for installing Jomres. <a href="'.$fullurl.JOMRES_SITEPAGE_URL_ADMIN.'" target="_blank" >You may now go to your CMS\'s administrator area and configure Jomres</a><br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
 	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$fullurl.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality log in as "admin" and go to your site profiles and assign a frontend user as a property manager.</a><br>';
@@ -777,8 +781,8 @@ function checkPropertyTableExists()
 	$tablesFound=false;
 	$query="SHOW TABLES";
 	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".strtolower($jomresConfig_db);
-	echo "Looking for ".$jomresConfig_dbprefix.'jomres_propertys<br>';
+	$string="Tables_in_".strtolower(get_showtime('db'));
+	echo "Looking for ".get_showtime('dbprefix').'jomres_propertys<br>';
 	$nullcounter=0;
 	foreach ($result as $r)
 		{
