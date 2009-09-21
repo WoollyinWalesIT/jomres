@@ -4,9 +4,9 @@ defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
 // ################################################################
 function admin_page_render()
 	{
+	$index_page = "index.html";
 	$JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
 	$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
-ini_set('error_reporting', E_ALL|E_STRICT);
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$tmpBookingHandler->initBookingSession($jomressession);
 	
@@ -59,6 +59,7 @@ ini_set('error_reporting', E_ALL|E_STRICT);
 	$heads=$jomresSitefactory->renderHeads();
 	
 	$template_rows = array('pageoutput'=>$pageoutput,'menurows'=>$menurows,'content'=>$contentrows,'heads'=>$heads);
-	echo render_template("main.html",TEMPLATES_ADMIN,$template_rows);
+
+	echo render_template($index_page,TEMPLATES_ADMIN,$template_rows);
 	}
 ?>

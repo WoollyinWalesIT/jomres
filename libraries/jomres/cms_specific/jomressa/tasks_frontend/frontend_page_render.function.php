@@ -4,6 +4,7 @@ defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
 // ################################################################
 function frontend_page_render()
 	{
+	$index_page = "index.html";
 	$JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
 	$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
 	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
@@ -47,14 +48,14 @@ function frontend_page_render()
 		if ($no_html != 1)
 			{
 			//$output['LIVESITE']=get_showtime('live_site');
-			//$output['SITENAME']=get_showtime('sitename');
+			$output['SITENAME']=get_showtime('sitename');
 			$page[] =$output;
 			jomressa_startTask("frontend_generate_heads");
 			$jomresSitefactory	= 	jomressa_getSingleton('jomressa_site_factory');
 			$menus[]= array("content"=>jomressa_startTask("frontend_menus_render"));
 			$heads=$jomresSitefactory->renderHeads();
 			$template_rows = array('page'=>$page,'menurows'=>$menus,'content'=>$contentrows,'heads'=>$heads);
-			echo render_template("main.html",TEMPLATES_FRONTEND,$template_rows);
+			echo render_template($index_page,TEMPLATES_FRONTEND,$template_rows);
 			}
 		else
 			{

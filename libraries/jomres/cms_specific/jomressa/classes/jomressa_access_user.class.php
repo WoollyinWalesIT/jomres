@@ -189,7 +189,7 @@ class jomressa_access_user
 		unset($_SESSION['user']);
 		unset($_SESSION['pw']);
 		unset($_SESSION['logged_in']);
-		session_destroy(); // new in version 1.92
+		session_destroy();
 		header("Location: ".$this->logout_page);
 		exit;
 	}
@@ -261,7 +261,6 @@ class jomressa_access_user
 				}
 			}
 			$this->the_msg = $this->messages(30);
-			//var_dump($new_mail);exit;
 			if ($update_email) {
 				if ($this->send_mail($new_mail, 33)) {
 					$this->the_msg = $this->messages(27);
@@ -377,8 +376,7 @@ class jomressa_access_user
 			$this->the_msg = $this->messages(21);
 		}
 	}
-	// upd. version 1.97 only activate status active = 'n', update the database table:
-	// ALTER TABLE `users` CHANGE `active` `active` ENUM( 'y', 'n', 'b' ) DEFAULT 'n' NOT NULL 
+
 	function activate_account($activate_key, $key_id) {
 		if ($activate_key != "" && strlen($activate_key) == 32 && $key_id > 0) {
 			$this->id = $key_id;
@@ -435,8 +433,6 @@ class jomressa_access_user
 		if ($controle_str != "" && strlen($controle_str) == 32) {
 			$this->check_user = $controle_str;
 			if ($this->check_user("new_pass")) {
-				// this is a fix for version 1.76
-				// we need this login name that teh user will remember the name too
 				$sql_get_user = sprintf("SELECT login FROM %s WHERE MD5(CONCAT(login, %s)) = %s", $this->table_name, $this->ins_string(SECRET_STRING), $this->ins_string($this->check_user));
 				$get_user = mysql_query($sql_get_user);
 				$this->user = mysql_result($get_user, 0, "login"); // end fix
@@ -477,7 +473,7 @@ class jomressa_access_user
 			return false;
 		}
 	}
-	// new in version 1.99 support for phpmailer as alternative mail program
+
 	function send_mail($mail_address, $msg = 29, $subj = 28, $send_admin = false) 
 		{
 		$subject = $this->messages($subj);
@@ -488,10 +484,10 @@ class jomressa_access_user
 		return $result;
 		}
 	
-	// message no. 35 is changed because the verification string based in the user name now
+
 	function messages($num) {
 		$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
-		$result = require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'language'.JRDS.'email_messages'.JRDS.$jomresConfig->lang.".php");
+		$result = require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'language'.JRDS.'email_messages'.JRDS.get_showtime('lang').".php");
 			$msg[10] = _JOMRES_SA_LOGINFAILED;
 			$msg[11] = _JOMRES_SA_EMPTY;
 			$msg[12] = _JOMRES_SA_ALREADYEXISTS;
