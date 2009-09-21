@@ -1,4 +1,7 @@
 <?php
+// ################################################################
+defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+// ################################################################
 class jomressa_language
 	{
 	function jomressa_language($lang)

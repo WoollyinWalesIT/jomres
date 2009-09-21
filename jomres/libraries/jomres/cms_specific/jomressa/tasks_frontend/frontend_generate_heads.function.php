@@ -1,4 +1,7 @@
 <?php
+// ################################################################
+defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+// ################################################################
 function frontend_generate_heads()
 	{
 	$jomresConfig_live_site = get_showtime('live_site');

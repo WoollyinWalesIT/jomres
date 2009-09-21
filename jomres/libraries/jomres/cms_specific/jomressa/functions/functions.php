@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+// ################################################################
 function jrsa_import($class)
 	{
 	if (!class_exists($class)) 

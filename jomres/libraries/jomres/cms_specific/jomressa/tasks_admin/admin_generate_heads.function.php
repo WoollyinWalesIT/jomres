@@ -1,4 +1,7 @@
 <?php
+// ################################################################
+defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+// ################################################################
 function admin_generate_heads()
 	{
 	$jomresSitefactory	=	jomressa_getSingleton('jomressa_site_factory');

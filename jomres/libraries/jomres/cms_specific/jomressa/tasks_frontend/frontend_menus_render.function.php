@@ -1,4 +1,7 @@
 <?php
+// ################################################################
+defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+// ################################################################
 function frontend_menus_render()
 	{
 	$JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
