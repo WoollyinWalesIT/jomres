@@ -56,12 +56,15 @@ class jomres_pathway
 
 	function addItem($pathwayText,$task="",$options="")
 		{
-		$task=get_showtime('task');
-		$link=JOMRES_SITEPAGE_URL."";
-		if ($task != "")
-			$link.="&task=".$task.$options."&itemId=".$itemId;
-		$link=jomresUrl($link);
-		$this->joomlaPathway->addItem($pathwayText, $pathwayLink);
+		if (_JOMRES_DETECTED_CMS =="joomla15")
+			{
+			$task=get_showtime('task');
+			$link=JOMRES_SITEPAGE_URL."";
+			if ($task != "")
+				$link.="&task=".$task.$options."&itemId=".$itemId;
+			$link=jomresUrl($link);
+			$this->joomlaPathway->addItem($pathwayText, $pathwayLink);
+			}
 		}
 
 	}
