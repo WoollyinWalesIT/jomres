@@ -32,54 +32,24 @@ class j06000canc_subscribed
 			{
 			$this->template_touchable=false; return;
 			}
-		$ePointFilepath = get_showtime('ePointFilepath');
-		
+
 		$thisJRUser=jomres_getSingleton('jr_user');
-		echo _JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE;
 		
-		/*
-		$package_id		= (int)jomresGetParam( $_REQUEST, 'id', 0 );
 		
-		$output=array();
-		$pageoutput=array();
-		
-		$subscriber = new jrportal_subscribers();
-		$user=subscribers_getSubscriberDetailsForJosId($thisJRUser->id);
-
-		$output['PAGETITLE']=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE;
-		$output['SUBMIT']=_JOMRES_FRONT_MR_SUBMITBUTTON_CONFIRMYOURDETAILS;
-		$output['DESC']=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE_DESC;
-		$output['HFIRSTNAME']=_JRPORTAL_SUBSCRIBERS_FIRSTNAME;
-		$output['HSURNAME']=_JRPORTAL_SUBSCRIBERS_SURNAME;
-		$output['HADDRESS']=_JRPORTAL_SUBSCRIBERS_ADDRESS;
-		$output['HCOUNTRY']=_JRPORTAL_SUBSCRIBERS_COUNTRY;
-		$output['HPOSTCODE']=_JRPORTAL_SUBSCRIBERS_POSTCODE;
-	
-		$output['FIRSTNAME']=$subscriber->firstname;
-		$output['SURNAME']=$subscriber->surname;
-		$output['ADDRESS']=$subscriber->address;
-		$output['POSTCODE']=$subscriber->postcode;
-		
-		if (!isset($subscriber->country) || strlen($subscriber->country) == 0)
-			$subscriber->country="GB";
-
-		$selectedCountry=strtoupper($subscriber->country);
-		$countryNames=countryNameArray();
-		$countryCodes=countryCodesArray();
-		asort($countryCodes);
-		foreach ($countryCodes as $k=>$v)
+		$id = (int)jomresGetParam( $_GET, 'id', 0 );
+		jr_import('jrportal_subscriptions');
+		$subscription = new jrportal_subscriptions();
+		$subscription->id = $id;
+		$subscription->getSubscription();
+		//error_logging(  "cms_user_id =".$subscription->cms_user_id);
+		//error_logging(  "Jruser id =".$thisJRUser->id);
+		if ($subscription->cms_user_id == $thisJRUser->id)
 			{
-			$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+			echo _JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE;
+			$subscription->deleteSubscription();
 			}
-		$output['COUNTRYDROPDOWN']=jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $selectedCountry);
-		
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( $ePointFilepath."/templates" );
-		$tmpl->readTemplatesFromInput( 'frontend_subscriber_register.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->displayParsedTemplate();
-		*/
+		else
+			error_logging(  "Could not cancel Subscription, could not correlate subscriptions cms_user_id with user's id.");
 		}
 	
 	
