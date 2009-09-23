@@ -171,17 +171,6 @@ class j00013dashboard extends jomres_dashboard
 			foreach ($this->roomsArray as $room)
 				{
 				$n=1;
-				/*
-				foreach ($this->thisMonthsDatesArray as $currdate)
-					{
-					$sqlDates[]=date("Y/m/d",$currdate);
-					$n++;
-					$currdate = mktime(0,0,0,date("m",$this->startdate),date("d",$this->startdate) + $n,date("Y",$this->startdate));
-					}
-				$gor=genericOr($sqlDates,'date',false);
-				$query="SELECT contract_uid,black_booking,date FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room['id']."' AND ".$gor;
-				$roomList = doSelectSql($query);
-				*/
 				$bookings=array();
 				if (count($this->room_bookings)>0)
 					{
@@ -367,6 +356,11 @@ class j00013dashboard extends jomres_dashboard
 			{
 			if ($contract_uid!="")
 				{
+				$is_firstday = false;
+				if (date("Y/m/d",$currdate) == $this->contracts[$contract_uid]['arrival'])
+					{
+					$output='<td align="center" class="arrivaldate_tdback" valign="middle" bgcolor="'.$bgcolor.'" >';
+					}
 				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
 				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
 
@@ -479,7 +473,12 @@ class j00013dashboard extends jomres_dashboard
 	 */
 	function getLegend()
 		{
-		$output="";
+		$output='
+<style type="text/css">
+<!--
+.arrivaldate_tdback { background-image: url(jomres/images/star.png);}
+-->
+</style>';
 		$output.='<table>';
 		$output.='<tr><td>'.jr_gettext('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY',_JOMRES_COM_AVLCAL_INMONTHFACE_KEY).'</td><td bgcolor="'.$this->cfg_inbgcolor.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>';
 		$output.='<td>'.jr_gettext('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY',_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY).'</td><td bgcolor="'.$this->cfg_occupiedcolour.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>';
