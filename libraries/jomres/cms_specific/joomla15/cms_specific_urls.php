@@ -33,7 +33,7 @@ $ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
-$jomresItemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
+//$jomresItemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
 
 if ($jomresItemid == 0)
 	{
