@@ -47,19 +47,11 @@ class j06005subscribe
 			jr_import('jrportal_subscribers');
 			$subscriber = new jrportal_subscribers();
 			$user=subscribers_getSubscriberDetailsForJosId($thisJRUser->id);
-			
+			//var_dump($user);exit;
 			if ($user)
 				{
 				$subscriber->id	= $user['id'];
 				$subscriber->getSubscriber();
-				/*
-				$subscriber->cms_user_id	= $user['cms_user_id'];
-				$subscriber->firstname		= $user['firstname'];
-				$subscriber->surname		= $user['surname'];
-				$subscriber->address		= $user['address'];
-				$subscriber->country		= $user['country'];
-				$subscriber->postcode		= $user['postcode'];
-				*/
 				}
 			if (isset($_REQUEST['firstname']) )
 				{
@@ -97,8 +89,7 @@ class j06005subscribe
 				{
 				$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
 				}
-			$output['COUNTRYDROPDOWN']=jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $selectedCountry);
-			
+			$output['COUNTRYDROPDOWN']=jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $subscriber->country);
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

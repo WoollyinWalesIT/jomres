@@ -40,7 +40,7 @@ class j06005save_subscriber
 		else
 			{
 			$package_id		= (int)jomresGetParam( $_POST, 'package_id', 0 );
-			
+
 			$firstname		= (string)jomresGetParam( $_POST, 'firstname', '' );
 			$surname		= (string)jomresGetParam( $_POST, 'surname', '' );
 			$address		= (string)jomresGetParam( $_POST, 'address', '' );
@@ -174,7 +174,7 @@ class j06005save_subscriber
 				$invoice_handler->subscription_id=$subscription->id;
 				$invoice_handler->mark_invoice_pending();
 				if (!$subscribing_to_freebie)
-					$this->sendNewSubscription($subscription,$subscriber,$invoice_handler->id,$invoice_handler->init_total,$invoice_handler->recur_total);
+					$this->sendNewSubscription($subscription,$subscriber,$invoice_handler->id,$invoice_handler->init_total,$invoice_handler->recur_total,$package->tax_code_id);
 				else
 					{
 					// We need a dummy transaction it
@@ -217,7 +217,7 @@ class j06005save_subscriber
 			}
 		}
 		
-	function sendNewSubscription($subscription,$subscriber,$invoice_id,$init_total,$recur_total)
+	function sendNewSubscription($subscription,$subscriber,$invoice_id,$init_total,$recur_total,$tax_code_id)
 		{
 		$jomresConfig_sitename=get_showtime('sitename');
 		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
@@ -230,6 +230,12 @@ class j06005save_subscriber
 		if ($this->paypal_settings['usesandbox']=="1")
 			$transactionName   .=' Test Service';
 		
+		
+		$taxrates = taxrates_getalltaxrates();
+		$taxrate = $taxrates[$tax_code_id];
+		$rate=(float)$taxrate['rate'];
+		$this->add_field('tax_rate', $rate);
+
 		$this->add_field('rm','2');			  // Return method = POST
 		$this->add_field('cmd','_xclick-subscriptions');
 		$this->add_field('business', $this->paypal_settings['email'] );
@@ -237,42 +243,41 @@ class j06005save_subscriber
 		$this->add_field('item_number', $invoice_id);
 		$this->add_field('invoice', $invoice_id);
 		$this->add_field('custom', $invoice_id);
+		
+		
 		//$this->add_field('image_url', "https://www.yoursite.com/logo.gif");
 		$this->add_field('no_shipping', "1");
 		$this->add_field('return', JOMRES_SITEPAGE_URL);
-		$this->add_field('cancel_return', JOMRES_SITEPAGE_URL.'&task=canc_subscribed');
+		$this->add_field('cancel_return', JOMRES_SITEPAGE_URL.'&task=canc_subscribed&id='.$subscription->id);
 		$this->add_field('notify_url', $ourCallbackURL.'&action=ipn');
 		$this->add_field('no_note', "1");
 		$this->add_field('payer_id', $subscriber->id);
 		$this->add_field('currency_code', $this->paypal_settings['currencycode']);
 		$this->add_field('lc', $subscriber->country);
 		
-		$t=$subscription->frequency;
+		$t1="M";
+		$t3="M";
 		switch ($subscription->frequency)
 			{
 			case 'M':
 				if ($subscription->trial_period > 0)
-					$p=$subscription->trial_period*1;
-				else
-					$p=1;
+					$p1=$subscription->trial_period*1;
+				$p3=1;
 			break;
 			case 'Q':
 				if ($subscription->trial_period > 0)
-					$p=$subscription->trial_period*3;
-				else
-					$p=1;
+					$p1=$subscription->trial_period;
+				$p3=3;
 			break;
 			case 'B':
 				if ($subscription->trial_period > 0)
-					$p=$subscription->trial_period*6;
-				else
-					$p=1;
+					$p1=$subscription->trial_period;
+				$p3=6;
 			break;
 			case 'A':
 				if ($subscription->trial_period > 0)
-					$p=$subscription->trial_period*12;
-				else
-					$p=1;
+					$p1=$subscription->trial_period;
+				$p3=12;
 			break;
 			default:
 				return;
@@ -281,12 +286,12 @@ class j06005save_subscriber
 		if ($subscription->trial_period > 0)
 			{
 			$this->add_field('a1', $init_total);
-			$this->add_field('p1', $p);
-			$this->add_field('t1',$t);
+			$this->add_field('p1', $p1);
+			$this->add_field('t1',$t1);
 			}
 		$this->add_field('a3', $recur_total);
-		$this->add_field('p3', $p);
-		$this->add_field('t3', $t);
+		$this->add_field('p3', $p3);
+		$this->add_field('t3', $t3);
 		
 		
 		$this->add_field('src', "1");
@@ -305,7 +310,7 @@ class j06005save_subscriber
 		});
 		</script>
 		<?php
-		
+		//var_dump($this);exit;
 		echo "<center><h2>Please wait, your subscription is being processed and you";
 		echo " will be redirected to the PayPal website.</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
