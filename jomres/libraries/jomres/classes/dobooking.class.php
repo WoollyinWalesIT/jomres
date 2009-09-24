@@ -318,26 +318,6 @@ class dobooking
 		$this->cfg_bookingform_roomlist_showdisabled		= $mrConfig['bookingform_roomlist_showdisabled'];
 		$this->cfg_bookingform_roomlist_showmaxpeople		= $mrConfig['bookingform_roomlist_showmaxpeople'];
 		
-		//$this->cfg_bookingform_roomlist_showtarifftitle	= $mrConfig['bookingform_roomlist_showtarifftitle'];
-
-		// $this->cfg_bookingform_overlib_tariff_title_show	= $mrConfig['bookingform_overlib_tariff_title_show'];
-		// $this->cfg_bookingform_overlib_tariff_desc_show	= $mrConfig['bookingform_overlib_tariff_desc_show'];
-		// $this->cfg_bookingform_overlib_tariff_rate_show	= $mrConfig['bookingform_overlib_tariff_rate_show'];
-		// $this->cfg_bookingform_overlib_tariff_starts_show	= $mrConfig['bookingform_overlib_tariff_starts_show'];
-		// $this->cfg_bookingform_overlib_tariff_ends_show	= $mrConfig['bookingform_overlib_tariff_ends_show'];
-		// $this->cfg_bookingform_overlib_tariff_mindays_show	= $mrConfig['bookingform_overlib_tariff_mindays_show'];
-		// $this->cfg_bookingform_overlib_tariff_maxdays_show	= $mrConfig['bookingform_overlib_tariff_maxdays_show'];
-		// $this->cfg_bookingform_overlib_tariff_minpeeps_show	= $mrConfig['bookingform_overlib_tariff_minpeeps_show'];
-		// $this->cfg_bookingform_overlib_tariff_maxpeeps_show	= $mrConfig['bookingform_overlib_tariff_maxpeeps_show'];
-		// $this->cfg_bookingform_overlib_room_number_show	= $mrConfig['bookingform_overlib_room_number_show'];
-		// $this->cfg_bookingform_overlib_room_name_show		= $mrConfig['bookingform_overlib_room_name_show'];
-		// $this->cfg_bookingform_overlib_room_type_show		= $mrConfig['bookingform_overlib_room_type_show'];
-		// $this->cfg_bookingform_overlib_room_smoking_show	= $mrConfig['bookingform_overlib_room_smoking_show'];
-		// $this->cfg_bookingform_overlib_room_disabledaccess_show = $mrConfig['bookingform_overlib_room_disabledaccess_show'];
-		// $this->cfg_bookingform_overlib_room_floor_show		= $mrConfig['bookingform_overlib_room_floor_show'];
-		// $this->cfg_bookingform_overlib_room_maxpeople_show	= $mrConfig['bookingform_overlib_room_maxpeople_show'];
-		// $this->cfg_bookingform_overlib_room_features_show	= $mrConfig['bookingform_overlib_room_features_show'];
-
 		$this->cfg_bookingform_requiredfields_name			= $mrConfig['bookingform_requiredfields_name'];
 		$this->cfg_bookingform_requiredfields_surname		= $mrConfig['bookingform_requiredfields_surname'];
 		$this->cfg_bookingform_requiredfields_houseno		= $mrConfig['bookingform_requiredfields_houseno'];
@@ -353,6 +333,16 @@ class dobooking
 		if (is_null($this->smoking) || strlen($this->smoking) == 0)
 			$this->smoking					= $this->cfg_defaultSmokingOption;
 
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		$this->accommodation_tax_rate = 0.0;
+		if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
+			{
+			$taxrates = taxrates_getalltaxrates();
+			$cfgcode = $mrConfig['accommodation_tax_code'];
+			$taxrate = $taxrates[$cfgcode];
+			$this->accommodation_tax_rate=(float)$taxrate['rate'];
+			}
+			
 		// Let's get the room, tariff, room type (class) and room feature information for this property
 
 		$this->getAllRoomsData();
@@ -767,10 +757,16 @@ class dobooking
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($mrConfig['showExtras']=="1")
 			{
-			$query="SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
+			$query="SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`tax_rate`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
 			$exList =doSelectSql($query);
 			foreach($exList as $ex)
 				{
+				
+				$price = $ex->price;
+				$rate = (float)$this->taxrates[$ex->tax_rate]['rate'];
+				$tax = ($price/100)*$rate;
+				$inc_price = $price+$tax;
+				
 				$extra_deets['UID']=$ex->uid;
 				$query="SELECT `force`,`model` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$ex->uid'";
 				$model=doSelectSql($query,2);
@@ -801,13 +797,19 @@ class dobooking
 						$model_text=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM));
 					break;
 					}
-				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) ));
-				$extra_deets['PRICE']=$mrConfig['currency'].$currfmt->get_formatted($ex->price);
+				$tax_output = "";
+				if ($rate > 0)
+					$tax_output = " (".$rate."%)";
+				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) )).$tax_output;
+
+				$extra_deets['PRICE']=$mrConfig['currency'].$currfmt->get_formatted($inc_price);
 				if ($ex->chargabledaily=="1")
 					$extra_deets['PERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_PERDAY',_JOMRES_COM_PERDAY,false,true));
 				else
 					$extra_deets['PERNIGHT']="";
+				
 				$extra_deets['DESCRIPTION']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES) ));
+				
 				$descriptionForOverlib=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES),false,true);
 				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.get_showtime('live_site').'/jomres/images/info.png" />';
 				$extra_deets['OVERLIB_DESCRIPTION']=jomres_makeTooltip('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid,$extra_deets['PERNIGHT'],$descriptionForOverlib,$model_text." ".$descriptionForOverlib,$class="",$type="infoimage",array("width"=>20,"height"=>20) );
@@ -860,6 +862,11 @@ class dobooking
 		function makeOutputText()
 			{
 			$mrConfig=getPropertySpecificSettings();
+			
+			$tax_output = "";
+			if ($this->accommodation_tax_rate > 0)
+				$tax_output = " (".$this->accommodation_tax_rate."%)";
+				
 			$output=array();
 			$output['HARRIVALDATE']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL) );
 			if ($mrConfig['showdepartureinput']=="1")
@@ -888,6 +895,9 @@ class dobooking
 			//if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo'] =="1" )
 				$output['BILLING_TAX']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX',_JOMRES_AJAXFORM_BILLING_TAX));
 			$output['BILLING_DISCOUNT']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT));
+			
+
+
 			$output['BILLING_TOTAL']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL));
 			if ($mrConfig['chargeDepositYesNo']=="1")
 				$output['DEPOSIT']				=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED));
@@ -921,7 +931,7 @@ class dobooking
 				}
 
 			//V3.1 booking form changes
-			$output['ACCOMMODATION_TOTAL']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL));
+			$output['ACCOMMODATION_TOTAL']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL)).$tax_output;
 			$output['ACCOMMODATION_NIGHTS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS));
 			if ($mrConfig['perPersonPerNight'] == "0" )
 				$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM));
@@ -3715,59 +3725,8 @@ class dobooking
 		else
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE',_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE,false,false));
 
-		/*
-		$tariffText="";
 		
-		$roomheader="";
-		$roomheader.="<b>".$roomStuff['HEADER_ROOMTYPE']."&nbsp;".$roomStuff['ROOMTYPE']."</b>";
-
-		if ($this->cfg_bookingform_overlib_tariff_title_show  =="1")
-			$tariffText.="<b>".$tariffStuff['HTITLE']."</b><br/>".$tariffStuff['TITLE']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_desc_show =="1")
-			$tariffText.="<b>".$tariffStuff['HDESC']."</b><br/>".$tariffStuff['DESC']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_rate_show =="1" && $this->tariffModel == "1" )
-			$tariffText.="<b>".$tariffStuff['HRATEPERNIGHT']."</b><br/>".$this->cfg_currency.$tariffStuff['RATEPERNIGHT']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_starts_show =="1")
-			$tariffText.="<b>".$tariffStuff['HSTARTS']."</b><br/>".$tariffStuff['VALIDFROM']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_ends_show =="1")
-			$tariffText.="<b>".$tariffStuff['HENDS']."</b><br/>".$tariffStuff['VALIDTO']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_mindays_show =="1")
-			$tariffText.="<b>".$tariffStuff['HMINDAYS']."</b><br/>".$tariffStuff['MINDAYS']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_maxdays_show =="1")
-			$tariffText.="<b>".$tariffStuff['HMAXDAYS']."</b><br/>".$tariffStuff['MAXDAYS']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_minpeeps_show =="1")
-			$tariffText.="<b>".$tariffStuff['HMINPEEPS']."</b><br/>".$tariffStuff['MINPEOPLE']."<br/>";
-		if ($this->cfg_bookingform_overlib_tariff_maxpeeps_show =="1")
-			$tariffText.="<b>".$tariffStuff['HMAXPEEPS']."</b><br/>".$tariffStuff['MAXPEOPLE']."<br/>";
-		$tariffText=str_replace("'","&acute;",$tariffText);
-		$roomText="";
-		if ($this->cfg_bookingform_overlib_room_number_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_ROOMNUMBER']."</b><br/>".$roomStuff['ROOMNUMBER']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_name_show  =="1")
-			$roomText.="<b>".$roomStuff['HEADER_ROOMNAME']."</b><br/>".$roomStuff['ROOMNAME']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_type_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_ROOMTYPE']."</b><br/>".$roomStuff['ROOMTYPE']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_smoking_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_SMOKING']."</b><br/>".$roomStuff['SMOKING']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_disabledaccess_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_DISABLEDACCESS']."</b><br/>".$roomStuff['DISABLEDACCESS']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_floor_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_ROOMFLOOR']."</b><br/>".$roomStuff['ROOMFLOOR']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_maxpeople_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_MAXPEOPLE']."</b><br/>".$roomStuff['MAXPEOPLE']."<br/>";
-		if ($this->cfg_bookingform_overlib_room_features_show =="1")
-			$roomText.="<b>".$roomStuff['HEADER_FEATURES']."</b><br/>".$roomStuff['FEATURES']."<br/>";
-		$roomText=str_replace("'","&acute;",$roomText);
-		if (!isset($this->cfg_showRoomImageInBookingFormOverlib))
-			$this->cfg_showRoomImageInBookingFormOverlib = "1";
-
-		if ($this->cfg_showRoomImageInBookingFormOverlib == "1" )
-			$data="<table><tr><td colspan=2><center><img src=".$this->roomImagePath." width=100 height=100 border=1 ></center></td></tr><tr><td colspan=2><center>$roomheader</center></td></tr><tr><td>$roomText</td><td>$tariffText</td></tr></table>";
-		else
-			$data="<table><tr><td>$roomText</td><td>$tariffText</td></tr></table>";
-		*/
-
-		//$overlib='<a href="javascript:void(0);" onmouseover="return overlib(\'&nbsp\', CAPTION, \''.$caption.'\', WIDTH, 300, ABOVE, RIGHT );" onmouseout="return nd(0);"  onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );return nd(0);">'.$roomTariffOutputText.'</a>'.$data.'<br/>';
+			
 
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		
@@ -3802,7 +3761,8 @@ class dobooking
 		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMTYPE'].'</a></td>';
 		if ($this->cfg_tariffmode != 0)
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
-		$overlib.='<td>'.$this->cfg_currency.$currfmt->get_formatted($tariffStuff['RATEPERNIGHT']).'</td>';
+		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
+		$overlib.='<td>'.$this->cfg_currency.$currfmt->get_formatted($room_price_inc_tax).'</td>';
 		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
 		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
@@ -3812,6 +3772,17 @@ class dobooking
 		return $overlib;
 		}
 
+	function calculateRoomPriceIncVat($price)
+		{
+		if ($this->accommodation_tax_rate > 0)
+			{
+			$this->setErrorLog("calculateRoomPriceIncVat::Tax rate detected as ".$this->accommodation_tax_rate );
+			$percentageToAdd=$price*($this->accommodation_tax_rate/100);
+			$price=$price+$percentageToAdd;
+			}
+		return $price;
+		}
+		
 	/**
 	#
 	 * Returns details of a given room according to the passed room id
@@ -3918,6 +3889,8 @@ class dobooking
 			$this->cfg_ratemultiplier=1;
 		else
 			$this->cfg_ratemultiplier+=0;
+		
+		
 		
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($tariff['ignore_pppn'] || $this->cfg_perPersonPerNight=="0" )

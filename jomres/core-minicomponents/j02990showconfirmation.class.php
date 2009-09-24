@@ -74,6 +74,18 @@ class j02990showconfirmation {
 		if (!$bookingDeets['ok_to_book'])
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']), '' );
 
+		$this->accommodation_tax_rate = 0.0;
+		if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
+			{
+			$taxrates = taxrates_getalltaxrates();
+			$cfgcode = $mrConfig['accommodation_tax_code'];
+			$taxrate = $taxrates[$cfgcode];
+			$this->accommodation_tax_rate=(float)$taxrate['rate'];
+			}
+		$accommodation_tax_output = "";
+		if ($this->accommodation_tax_rate > 0)
+			$accommodation_tax_output = " (".$this->accommodation_tax_rate."%)";
+
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
@@ -203,7 +215,19 @@ class j02990showconfirmation {
 
 		$roomtype['FULLDESC']		=	$roomadd." x ".$fulldesc;
 		$booking_rooms[]			= 	$roomtype;
-		$booking_parts['ROOMTOTAL']	=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['room_total']);
+		
+		$room_total = $bookingDeets['room_total'];
+		$taxrates = taxrates_getalltaxrates();
+		if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
+			{
+			$cfgcode = $mrConfig['accommodation_tax_code'];
+			$taxrate = $taxrates[$cfgcode];
+			$rate=(float)$taxrate['rate'];
+			$percentageToAdd=$room_total*($rate/100);
+			$room_total=$room_total+$percentageToAdd;
+			}
+
+		$booking_parts['ROOMTOTAL']	=	$mrConfig['currency'].$currfmt->get_formatted($room_total);
 
 		if ($mrConfig['showExtras']=="1")
 			{
@@ -216,7 +240,7 @@ class j02990showconfirmation {
 					{
 					$extra 			= 	$extraAll;
 
-					$query			=	"SELECT price, name FROM #__jomres_extras WHERE uid = '$extra'";
+					$query			=	"SELECT price, name,tax_rate FROM #__jomres_extras WHERE uid = '$extra'";
 					$thisPrice 		=	doSelectSql($query,2);
 					$query			=	"SELECT `model`,`params` FROM #__jomcomp_extrasmodels_models WHERE extra_id = '$extra'";
 					$model			=	doSelectSql($query,2);
@@ -252,9 +276,20 @@ class j02990showconfirmation {
 							$calc			=	$days*$thisPrice['price'];
 						break;
 						}
-
-					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra];
-					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($thisPrice['price']*$extrasquantities[$extra]);
+						
+					
+					$price = $thisPrice['price'];
+					$tax_rate_id = (int)$thisPrice['tax_rate'];
+					$rate = (float)$taxrates[$tax_rate_id]['rate'];
+					$tax = ($price/100)*$rate;
+					$inc_price = $price+$tax;
+					
+					$extra_tax_output = "";
+					if ($rate > 0)
+						$extra_tax_output = " (".$rate."%)";
+			
+					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra].$extra_tax_output;
+					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($inc_price*$extrasquantities[$extra]);
 					$booking_extras[]			=	$extra_parts;
 					}
 				}
@@ -276,7 +311,7 @@ class j02990showconfirmation {
 		$booking_parts['AMENDTEXT']	   			=	jr_gettext('_JOMRES_CONFIRMATION_AMENDTEXT',_JOMRES_CONFIRMATION_AMENDTEXT);
 		$booking_parts['AMEND']	   				=	jr_gettext('_JOMRES_CONFIRMATION_AMEND',_JOMRES_CONFIRMATION_AMEND,false);
 		$booking_parts['SPECIALS']	   			=	jr_gettext('_JOMRES_CONFIRMATION_SPECIALS',_JOMRES_CONFIRMATION_SPECIALS);
-		$booking_parts['ACCOMMODATION_TOTAL']	=	jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL);
+		$booking_parts['ACCOMMODATION_TOTAL']	=	jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL).$accommodation_tax_output;
 		$booking_parts['ACCOMMODATION_NIGHTS']	=	jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS);
 		$booking_parts['ACCOMMODATION_PERROOM']	=	jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM);
 		$booking_parts['PRICE_SUMMARY']			=	jr_gettext('_JOMRES_AJAXFORM_PRICE_SUMMARY',_JOMRES_AJAXFORM_PRICE_SUMMARY);
