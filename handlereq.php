@@ -283,12 +283,19 @@ switch ($field)
 
 				echo '; populateDiv("staydays","'.$bkg->getStayDays().'")';
 				//echo '; document.getElementById("staydays").innerHTML = "'.$bkg->getStayDays().'" ; fadeIn("staydays",1000); ';
+				
+				$room_per_night = $bkg->getRoompernight();
+				$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
+				
 				if ($tariffChargesStoredWeeklyYesNo=="0")
-					echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'")';
+					echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_per_night).'")';
 					//echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'")';
 					//echo '; document.getElementById("roompernight").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'" ; fadeIn("roompernight",1000);';
 				
-				echo '; populateDiv("roomtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'")';
+				$room_total = $bkg->getRoomtotal();
+				$room_total = $bkg->calculateRoomPriceIncVat($room_total);
+				
+				echo '; populateDiv("roomtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_total).'")';
 				//echo '; document.getElementById("roomtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'" ; fadeIn("roomtotal",1000);';
 				
 				if ($bkg->cfg_showExtras)
