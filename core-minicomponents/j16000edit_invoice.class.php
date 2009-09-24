@@ -128,6 +128,7 @@ class j16000edit_invoice {
 			
 			$output['STATUS']=invoices_makeInvoiceStatusDropdown($invoice->status);
 			$output['USER']=_JRPORTAL_INVOICES_USER;
+			jr_import('jrportal_user_functions');
 			$user_obj = new jrportal_user_functions();
 			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice->cms_user_id);
 			$output['USERSINVOICESLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice->cms_user_id.'">'.$user_deets['name'].'</a>';
