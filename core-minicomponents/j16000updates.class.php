@@ -29,7 +29,7 @@ class j16000updates
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$jomresConfig_offline			= true;
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/defines.php') )
+		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
 			{
 			$CONFIG = new JConfig();
 			$jomresConfig_offline			= $CONFIG->offline;
@@ -39,13 +39,13 @@ class j16000updates
 			$this->template_touchable=false; return;
 			}
 		$this->updateServer="http://updates.jomres4.net";
-		$this->updateFolder=JOMRESPATH_BASE."/updates";
+		$this->updateFolder=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates";
 		$this->overwriteAllowed = true;
 		$this->movedFileLog = array();
 		$this->debugging = false;
 		$this->test_download = false;
 		
-		$configfile = JOMRESPATH_BASE.JRDS."jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
+		$configfile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
 		include($configfile);
 		$thisVersion=$mrConfig['version'];
 		echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
@@ -195,20 +195,20 @@ class j16000updates
 				return;
 				}
 
-			require_once (JOMRESPATH_BASE."/libraries/dUnzip2.inc.php");
+			require_once (JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."dUnzip2.inc.php");
 
 			$zip = new dUnzip2($newfilename);
 			// Activate debug
 			$zip->debug = $this->debugging;
 			// Unzip all the contents of the zipped file to this folder
 			$zip->getList();
-			if (mkdir($this->updateFolder."/unpacked"))
+			if (mkdir($this->updateFolder.JRDS."unpacked"))
 				{
-				$zip->unZipAll($this->updateFolder."/unpacked");
+				$zip->unZipAll($this->updateFolder.JRDS."unpacked");
 				if (!$this->test_download)
-					$this->dirmv($this->updateFolder."/unpacked/", JOMRESCONFIG_ABSOLUTE_PATH."/", $this->overwriteAllowed, $funcloc = "/");
+					$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS, $this->overwriteAllowed, $funcloc = "/");
 
-				echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+				echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				if ($this->debugging)
 					{
 					echo "<br/><br/><br/><br/><br/><br/>";
@@ -246,7 +246,7 @@ class j16000updates
 		{
 		$folder = opendir($dir);
 		while($file = readdir( $folder ))
-		if($file != '.' && $file != '..' && ( !is_writable(  $dir."/".$file  ) || (  is_dir(	$dir."/".$file	) && !$this->is_removeable(	$dir."/".$file	)  ) ))
+		if($file != '.' && $file != '..' && ( !is_writable(  $dir.JRDS.$file  ) || (  is_dir(	$dir.JRDS.$file	) && !$this->is_removeable(	$dir.JRDS.$file	)  ) ))
 			{
 			 closedir($dir);
 			 return false;
@@ -267,14 +267,14 @@ class j16000updates
 			if ($getWritablesFiles)
 				{
 				if (is_file($newpath) && is_writable($newpath) )
-					$this->directoryScanResults[] = $dir.'/'.$file;
+					$this->directoryScanResults[] = $dir.JRDS.$file;
 				}
 			else
 				{
 				if (is_file($newpath) && !is_writable($newpath) )
-					$this->directoryScanResults[] = $dir.'/'.$file;
+					$this->directoryScanResults[] = $dir.JRDS.$file;
 				}
-			$level = explode('/',$newpath);
+			$level = explode(JRDS,$newpath);
 			if (!strstr($newpath,".svn" ) )
 				{
 				if (is_dir($newpath) )
@@ -330,7 +330,7 @@ class j16000updates
 		while (false !== ($obj = readdir($dh)))
 			{
 			if($obj=='.' || $obj=='..') continue;
-			if (!@unlink($dir.'/'.$obj)) $this->emptyDir($dir.'/'.$obj, true);
+			if (!@unlink($dir.JRDS.$obj)) $this->emptyDir($dir.JRDS.$obj, true);
 			}
 		closedir($dh);
 		if ($dir != $this->updateFolder)
@@ -446,7 +446,7 @@ class j16000updates
 						}
 					elseif(is_dir( $path))
 						{
-						$this->dirmv($source, $dest, $overwrite, $funcloc . $file . '/'); //recurse!
+						$this->dirmv($source, $dest, $overwrite, $funcloc . $file . JRDS); //recurse!
 						rmdir( $path);
 						}
 					}
