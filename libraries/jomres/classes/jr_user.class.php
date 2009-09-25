@@ -58,8 +58,8 @@ class jr_user
 			}
 
 		$this->id=jomres_cmsspecific_getcurrentusers_id();
-		
-		if ($this->id != "0")
+
+		if ($this->id > 0 && $this->id != "0" && !is_null($this->id) )
 			{
 			$this->userIsRegistered=TRUE;
 
