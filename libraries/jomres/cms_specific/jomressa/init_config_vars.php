@@ -43,8 +43,7 @@ if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'index.php') ) // index.php do
 	require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'installfiles'.JRDS.'install.php');
 	}
 
-define("TEMPLATES_ADMIN",_JOMRES_DETECTED_CMS_SPECIFIC_FILES."templates".JRDS."admin".JRDS);
-define("TEMPLATES_FRONTEND",_JOMRES_DETECTED_CMS_SPECIFIC_FILES."templates".JRDS."frontend".JRDS);
+
 
 global $jrConfig;
 
