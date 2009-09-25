@@ -747,7 +747,8 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		$mail->SMTPAuth="1";
 		}
 	// Need to change this before release?
-	$mail->IsSMTP(); // telling the class to use SMTP
+	if (get_showtime('mailer')=="smtp")
+		$mail->IsSMTP(); // telling the class to use SMTP
 
 	$mail->Host			= $jomresConfig_smtphost;
 	$mail->From			= $jomresConfig_smtpuser;
