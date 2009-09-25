@@ -528,15 +528,19 @@ function generateCustomFieldsJavascript($customFields)
 			';
 		foreach ($customFields as $c)
 			{
-			$js.='				var '.$c['FIELDNAME'].' 		=jQuery.trim(jQuery(\'#'.$c['FIELDNAME'].'\').val());
-							setInputFillToOkColour(\'#'.$c['FIELDNAME'].'\');
-							if ('.$c['FIELDNAME'].'.length == 0 )
-								{
-								setInputFillToErrorColour("#'.$c['FIELDNAME'].'");
-								pass = false;
-								}
-			';
+			if ($c['REQUIRED'] != "&nbsp;")
+				{
+				$js.='				var '.$c['FIELDNAME'].' 		=jQuery.trim(jQuery(\'#'.$c['FIELDNAME'].'\').val());
+								setInputFillToOkColour(\'#'.$c['FIELDNAME'].'\');
+								if ('.$c['FIELDNAME'].'.length == 0 )
+									{
+									setInputFillToErrorColour("#'.$c['FIELDNAME'].'");
+									pass = false;
+									}
+				';
+				}
 			}
+			
 		$js.='
 						return pass;
 						}
