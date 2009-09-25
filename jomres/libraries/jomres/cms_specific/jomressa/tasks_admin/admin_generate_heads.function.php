@@ -7,9 +7,8 @@ function admin_generate_heads()
 	$jomresSitefactory	=	jomressa_getSingleton('jomressa_site_factory');
 	$jomresConfig		=	jomressa_getSingleton('jomressa_config');
 
-	$filename = "adminstyles.css";
-
-	$path = get_showtime('live_site')."/jomres/libraries/jomres/cms_specific/jomressa/templates/";
+	$filename = "admin-styles.css";
+	$path = TEMPLATES_CSS_REL_PATH;
 	$type = "css";$content=array('filename'=>$filename,'path'=>$path);
 	$jomresSitefactory->setHead($type,$content);
 

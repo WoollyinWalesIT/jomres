@@ -220,10 +220,10 @@ function jomresSAtatusTestFolderIsWritable($path)
 		return array("result"=>false,"message"=>"Directory ".$path." doesn't exist");
 	if (!is_writable($path) )
 		return array("result"=>false,"message"=>"Directory ".$path." isn't writable");
-	if (!touch($path.$tmpFile) )
-		return array("result"=>false,"message"=>"Could not write ".$path.$tmpFile);
-	if (!unlink($path.$tmpFile) )
-		return array("result"=>false,"message"=>"Could not delete ".$path.$tmpFile);
+	if (!touch($path.JRDS.$tmpFile) )
+		return array("result"=>false,"message"=>"Could not write ".$path.JRDS.$tmpFile);
+	if (!unlink($path.JRDS.$tmpFile) )
+		return array("result"=>false,"message"=>"Could not delete ".$path.JRDS.$tmpFile);
 
 	return array("result"=>true,"message"=>"Pass");
 	}

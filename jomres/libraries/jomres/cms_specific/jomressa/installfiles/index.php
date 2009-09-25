@@ -6,6 +6,13 @@ define('_JOMRES_INITCHECK', 1 );
 
 require_once("jomres/integration.php"); 
 
+if (!defined('TEMPLATES_FRONTEND'))
+	{
+	define("TEMPLATES_ADMIN",_JOMRES_DETECTED_CMS_SPECIFIC_FILES."templates".JRDS."admin".JRDS);
+	define("TEMPLATES_FRONTEND",_JOMRES_DETECTED_CMS_SPECIFIC_FILES."templates".JRDS."frontend".JRDS);
+	define("TEMPLATES_CSS_REL_PATH",get_showtime('live_site')."/jomres/libraries/jomres/cms_specific/jomressa/templates/css/");
+	}
+
 $JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
 $jomresConfig = jomressa_getSingleton('jomressa_config');
 $jomresSitefactory	= 	jomressa_getSingleton('jomressa_site_factory');
