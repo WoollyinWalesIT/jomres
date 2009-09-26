@@ -734,7 +734,7 @@ function showCompletedText()
 		$fullurl="";
 	echo '<br>Thank you for installing Jomres. <a href="'.$fullurl.JOMRES_SITEPAGE_URL_ADMIN.'" target="_blank" >You may now go to your CMS\'s administrator area and configure Jomres</a><br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
-	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$fullurl.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality log in as "admin" and go to your site profiles and assign a frontend user as a property manager.</a><br>';
+	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$fullurl.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.</a><br>';
 	}
 
 
@@ -1620,6 +1620,7 @@ function createJomresTables()
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`cms_user_id` int(11) NOT NULL default '0',
 	`gateway_subscription_id` CHAR( 255 ) NOT NULL ,
+	`package_id` INT NULL DEFAULT '0',
 	`name` VARCHAR( 20 ) NOT NULL ,
 	`description` VARCHAR( 255 ) NOT NULL ,
 	`frequency` CHAR(1) DEFAULT 'M',
@@ -2095,7 +2096,7 @@ function showGetKeyInput($lkey)
 	<input type="hidden" name="task" value="saveLicenseKey" />
 	<input type="submit" value="Save key" class="button" >
 	</form>
-	<h3><font="red">If you do not have a license key, please visit <a href="http://license-server.jomres.net/" target="_blank">Jomres.net</a> to get one. A demo license key <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=17" target="_blank">can be ordered by ordering a free license key.</a> Alternatively, you can <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=14" target="_blank">purchase a full license key here.</a><br></font></h3>
+	<h3><font="red">If you do not have a license key, please visit <a href="http://license-server.jomres.net/" target="_blank">Jomres.net</a> to get one, you can <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=14" target="_blank">purchase a full license key here.</a><br></font></h3>
 	<?php
 	
 	if (jomresGetDomain() == "localhost")

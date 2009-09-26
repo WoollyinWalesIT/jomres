@@ -126,8 +126,8 @@ class jomresSMTP {
                            "errno" => $errno,
                            "errstr" => $errstr);
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": $errstr ($errno)" . $this->CRLF;
+      error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": $errstr ($errno)" . $this->CRLF);
       }
       return false;
     }
@@ -147,7 +147,7 @@ class jomresSMTP {
     //   socket_set_timeout($this->smtp_conn, 0, 100000);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $announce;
+     error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $announce);
     }
 
     return true;
@@ -176,7 +176,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 220) {
@@ -185,7 +185,7 @@ class jomresSMTP {
                "smtp_code" => $code,
                "smtp_msg"  => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] . ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] . ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -217,8 +217,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -235,8 +235,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -253,8 +253,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -274,8 +274,8 @@ class jomresSMTP {
         // hmm this is an odd situation... the socket is
         // valid but we are not connected anymore
         if($this->do_debug >= 1) {
-            echo "SMTP -> NOTICE:" . $this->CRLF .
-                 "EOF caught while checking if connected";
+            error_logging("SMTP -> NOTICE:" . $this->CRLF .
+                 "EOF caught while checking if connected");
         }
         $this->Close();
         return false;
@@ -340,7 +340,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 354) {
@@ -349,8 +349,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -436,7 +436,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -445,8 +445,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -484,7 +484,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -493,8 +493,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -559,7 +559,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER: " . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER: " . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -568,8 +568,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -614,7 +614,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 211 && $code != 214) {
@@ -623,8 +623,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -662,7 +662,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -671,8 +671,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -704,7 +704,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -713,8 +713,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -748,7 +748,7 @@ class jomresSMTP {
     $byemsg = $this->get_lines();
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $byemsg;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $byemsg);
     }
 
     $rval = true;
@@ -762,8 +762,8 @@ class jomresSMTP {
                  "smtp_rply" => substr($byemsg,4));
       $rval = false;
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $e["error"] . ": " .
-                 $byemsg . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $e["error"] . ": " .
+                 $byemsg . $this->CRLF);
       }
     }
 
@@ -801,7 +801,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250 && $code != 251) {
@@ -810,8 +810,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -845,7 +845,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -854,8 +854,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -894,7 +894,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -903,8 +903,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -942,7 +942,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -951,8 +951,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -990,7 +990,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250) {
@@ -999,8 +999,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -1024,7 +1024,7 @@ class jomresSMTP {
     $this->error = array("error" => "This method, TURN, of the SMTP ".
                                     "is not implemented");
     if($this->do_debug >= 1) {
-      echo "SMTP -> NOTICE: " . $this->error["error"] . $this->CRLF;
+      error_logging("SMTP -> NOTICE: " . $this->error["error"] . $this->CRLF);
     }
     return false;
   }
@@ -1057,7 +1057,7 @@ class jomresSMTP {
     $code = substr($rply,0,3);
 
     if($this->do_debug >= 2) {
-      echo "SMTP -> FROM SERVER:" . $this->CRLF . $rply;
+      error_logging("SMTP -> FROM SERVER:" . $this->CRLF . $rply);
     }
 
     if($code != 250 && $code != 251) {
@@ -1066,8 +1066,8 @@ class jomresSMTP {
               "smtp_code" => $code,
               "smtp_msg" => substr($rply,4));
       if($this->do_debug >= 1) {
-        echo "SMTP -> ERROR: " . $this->error["error"] .
-                 ": " . $rply . $this->CRLF;
+        error_logging("SMTP -> ERROR: " . $this->error["error"] .
+                 ": " . $rply . $this->CRLF);
       }
       return false;
     }
@@ -1091,14 +1091,14 @@ class jomresSMTP {
     $data = "";
     while($str = @fgets($this->smtp_conn,515)) {
       if($this->do_debug >= 4) {
-        echo "SMTP -> get_lines(): \$data was \"$data\"" .
-                 $this->CRLF;
-        echo "SMTP -> get_lines(): \$str is \"$str\"" .
-                 $this->CRLF;
+        error_logging("SMTP -> get_lines(): \$data was \"$data\"" .
+                 $this->CRLF);
+        error_logging("SMTP -> get_lines(): \$str is \"$str\"" .
+                 $this->CRLF);
       }
       $data .= $str;
       if($this->do_debug >= 4) {
-        echo "SMTP -> get_lines(): \$data is \"$data\"" . $this->CRLF;
+        error_logging("SMTP -> get_lines(): \$data is \"$data\"" . $this->CRLF);
       }
       // if the 4th character is a space then we are done reading
       // so just break the loop

@@ -9,7 +9,7 @@ define('_JOMRES_SA_LOGINFAILED', "Login and/or password did not match to the dat
 define('_JOMRES_SA_EMPTY', "Login and/or password is empty!");
 define('_JOMRES_SA_ALREADYEXISTS' , "Sorry, a user with this login and/or e-mail address already exist.");
 define('_JOMRES_SA_CHECKEMAIL' , "Please check your e-mail and follow the instructions.");
-define('_JOMRES_SA_ERROR_OCCURRED' , "Sorry, an error occurred please try it again.");
+define('_JOMRES_SA_ERROR_OCCURRED' , "Sorry, an error occurred please try again.");
 define('_JOMRES_SA_ERROR_OCCURRED_TRYLATER' , "Sorry, an error occurred please try it again later.");
 define('_JOMRES_SA_ADDRESSNOTVALID', "The e-mail address is not valid.");
 define('_JOMRES_SA_FIELDREQUIRED' , "The field login (min. ".LOGIN_LENGTH." char.) is required.");
@@ -24,7 +24,7 @@ define('_JOMRES_SA_CANNOTACTIVATEPASSWORD' , "Sorry, cannot activate your passwo
 define('_JOMRES_SA_YOURFORGOTTENPASSWORD', "Your forgotten password..."); 
 define('_JOMRES_SA_CHECKEMAILTOACTIVATEMODS', "Please check your e-mail and activate your modification(s).");
 define('_JOMRES_SA_REQUESTMUSTBEPROCESSED' , "Your registration activation for ".get_showtime('sitename'));
-define('_JOMRES_SA_ACTIVATIONEEMAILINFO', "Hello,<br/><br/>to activate your request click the following link:<br/><a href='".JOMRES_SITEPAGE_URL."&jsat=login_form&ident=".$this->id."&activate=".md5($this->user_pw)."'>
+define('_JOMRES_SA_ACTIVATIONEEMAILINFO', "Hello,<br/><br/>to activate your registration click the following link:<br/><a href='".JOMRES_SITEPAGE_URL."&jsat=login_form&ident=".$this->id."&activate=".md5($this->user_pw)."'>
 ".JOMRES_SITEPAGE_URL."&jsat=login_form&ident=".$this->id."&activate=".md5($this->user_pw)."</a>
 <br/>
 <br/>kind regards<br/>".get_showtime('fromname'));
