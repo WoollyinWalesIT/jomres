@@ -5689,7 +5689,7 @@ define('_JOMRES_COM_SEF_DEFAULT_PTYPE_DESC','Wird in der URL verwendet, wenn die
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_NOTINSTALLED','Falls die 404sef Komponente nicht installiert ist, oder Sie sie noch nicht kopiert haben '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'com_jomres.php nach '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Falls Sie die Komponente schon installiert haben, können Sie die URLs jetzt hier bearbeiten. ');
+define('_JOMRES_COM_SEF_NOTINSTALLED','Falls die 404sef Komponente nicht installiert ist, oder Sie sie noch nicht kopiert haben '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS.'joomla15'.JRDS.'other_component_files'.JRDS.'sh404sef'.JRDS.'com_jomres.php nach '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Falls Sie die Komponente schon installiert haben, können Sie die URLs jetzt hier bearbeiten. ');
 /**
 * @ignore
 */
