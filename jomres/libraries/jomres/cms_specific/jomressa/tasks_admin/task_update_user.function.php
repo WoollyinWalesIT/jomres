@@ -5,7 +5,9 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 function task_update_user()
 	{
 	$JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
-	
+	if ($JSAuser->id == null)
+		jomresRedirect(JOMRES_SITEPAGE_URL);
+		
 	$output=array();
 	$pageoutput=array();
 	

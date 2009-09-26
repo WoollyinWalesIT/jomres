@@ -10,8 +10,7 @@ class jomressa_site_factory
 	public function __construct() 
 		{
 		$this->runinfo = array();
-		$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
-		if (strstr($scriptname,'admin.php'))
+		if (isset($_REQUEST['admin']))
 			$this->currpage="admin";
 		else
 			$this->currpage="frontend";

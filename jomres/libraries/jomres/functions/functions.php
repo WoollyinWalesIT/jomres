@@ -736,7 +736,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		}
 
 	$mail				= new jomresPHPMailer();
-	$mail->SMTPDebug	= false;
+	$mail->SMTPDebug	= get_showtime('error_reporting');
 	if ($mode==1) 
 		$mail->IsHTML(true);
 	$mail->Mailer		= $jomresConfig_mailer;

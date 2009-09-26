@@ -31,11 +31,11 @@ class jomressa_access_user
 		$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
 		$jomresSitefactory	= 	jomressa_getSingleton('jomressa_site_factory');
 		$this->main_page="index.php";
-		if ($jomresSitefactory->currpage == "admin")
-			$this->main_page="admin.php";
+		//if ($jomresSitefactory->currpage == "admin")
+		//	$this->main_page="admin.php";
 		$this->logout_page="index.php";
-		if ($jomresSitefactory->currpage == "admin")
-			$this->logout_page="admin.php";
+		//if ($jomresSitefactory->currpage == "admin")
+		//	$this->logout_page="admin.php";
 			
 		$this->table_name =get_showtime('dbprefix')."users";
 		$this->connect_db();

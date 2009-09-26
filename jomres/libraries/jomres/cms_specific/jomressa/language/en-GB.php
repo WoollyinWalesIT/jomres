@@ -12,6 +12,7 @@ define('_JOMRES_SA_UPDATE_ACCOUNT','Edit account');
 define('_JOMRES_SA_UPDATE_PROFILE','Update user PROFILE');
 define('_JOMRES_SA_USER_ADMIN','Admin page (user / access level update)');
 define('_JOMRES_SA_LOG_OUT','Log out');
+define('_JOMRES_SA_PAGE_ADMIN','Admin page');
 
 define('_JOMRES_SA_FORMS_ENTERLOGINDETAILS' , "Please enter your login and password.");
 define('_JOMRES_SA_FORMS_USERNAME' , "User name");

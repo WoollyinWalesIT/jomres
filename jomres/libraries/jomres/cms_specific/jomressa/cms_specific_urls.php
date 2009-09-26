@@ -31,8 +31,14 @@ if (strstr($scriptname,'install_jomres.php'))
 
 $ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
 
+if (isset($_GET['format']) )
+	{
+	if ($_GET['format'] == "raw")
+		define("JOMRES_WRAPPED",1);
+	}
+
 define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/jomres/index.php?no_html=1&a=k');
-define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/jomres/administrator.php?a=k');
+define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/jomres/index.php?admin');
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink.'/jomres/index.php?a=k');
 define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/jomres/index.php?a=k");
 
