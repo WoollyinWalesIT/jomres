@@ -34,7 +34,7 @@ function frontend_page_render()
 		define('_JOMRES_INITCHECK', 1 );
 		define('JOMRES_RETURNDATA', 1 );
 		
-		include_once("jomres/jomres.php");
+		include_once("jomres.php");
 		
 		$contentrows[] =array("content"=>JOMRES_RETURNDATA_CONTENT);
 		}

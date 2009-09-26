@@ -139,7 +139,7 @@ else
 		}
 
 	
-	$configFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres_standalone_config.php';
+	$configFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_standalone_config.php';
 	$live_site = curPageURL();
 	$live_site =str_replace("/jomres/install_jomres.php","",$live_site);
 	
@@ -191,6 +191,8 @@ class jomres_standalone_config
 		$showtime->MetaTitle		= "";
 		$showtime->MetaAuthor		= "";
 		
+		$showtime->isWrapped		= "0";
+		
 		$showtime->registration_forbidden = true; // Prevent visitors from registering
 		}
 	}';
@@ -198,16 +200,7 @@ class jomres_standalone_config
 	$fp=fopen($configFile,'w');
 	fwrite($fp, $configObjString);
 	fclose($fp);	// close file
-	
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."index.php",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."index.php"))
-		{
-		jomresSAInstallredirect("<h1>Error, unable to copy "._JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."index.php to ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."index.php automatically, please do this manually through FTP</h1><br/>");
-		}
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.php",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."admin.php"))
-		{
-		jomresSAInstallredirect("<h1>Error, unable to copy "._JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.php to ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."admin.php automatically, please do this manually through FTP</h1><br/>");
-		}
-		
+
 	jomresSAInstallredirect("",true);
 	}
 showfooter();

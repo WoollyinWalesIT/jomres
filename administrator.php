@@ -1,10 +1,13 @@
 <?php
+$dir =  dirname(realpath(__FILE__));
+if (!file_exists($dir.'/jomres_standalone_config.php'))
+	die ("Not an SA installation");
 ob_start();
 session_start();
 ini_set('error_reporting', E_ALL|E_STRICT);
 define('_JOMRES_INITCHECK', 1 );
 
-require_once("jomres/integration.php"); 
+require_once($dir.'/integration.php'); 
 
 if (!defined('TEMPLATES_FRONTEND'))
 	{
@@ -16,8 +19,6 @@ if (!defined('TEMPLATES_FRONTEND'))
 $JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
 $jomresConfig = jomressa_getSingleton('jomressa_config');
 $jomresSitefactory	= 	jomressa_getSingleton('jomressa_site_factory');
-
-
 
 $jomreslang =jomres_getSingleton('jomres_language');
 require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'language'.JRDS.get_showtime('lang').'.php');

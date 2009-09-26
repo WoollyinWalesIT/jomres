@@ -45,7 +45,7 @@ function admin_page_render()
 			define('_JOMRES_INITCHECK', 1 );
 			define('_JOMRES_INITCHECK_ADMIN', 1 );
 			define('JOMRES_RETURNDATA', 1 );
-			include("jomres/admin.php");
+			include("admin.php");
 			$contentrows[] =array("content"=>JOMRES_RETURNDATA_CONTENT);
 			}
 		}
