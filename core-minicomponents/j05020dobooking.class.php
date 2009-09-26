@@ -43,7 +43,7 @@ class j05020dobooking {
 			{
 			$this->template_touchable=true; return;
 			}
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'dobooking.php');
+		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'dobooking.php');
 		
 		$property_uid = get_showtime('property_uid');
 		$mrConfig=getPropertySpecificSettings();

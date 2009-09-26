@@ -44,7 +44,7 @@ class j05010handlereq {
 			$this->template_touchable=false; return;
 			}
 			
-		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'handlereq.php');
+		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'handlereq.php');
 		}
 
 	/**
