@@ -29,11 +29,11 @@ function frontend_menus_render()
 		
 		if ($JSAuser->user=="administrator")
 			{
-			$options[]=array("link"=>JOMRES_SITEPAGE_URL."&jsat=log_out","text"=>_JOMRES_SA_LOG_OUT,"seperator"=>$seperator);
+			$options[]=array("link"=>JOMRES_SITEPAGE_URL."&jsat=log_out","text"=>_JOMRES_SA_LOG_OUT." (".$JSAuser->user.") ","seperator"=>$seperator);
 			$options[]=array("link"=>JOMRES_SITEPAGE_URL."&admin","text"=>"<strong>"._JOMRES_SA_PAGE_ADMIN."</strong>");
 			}
 		else
-			$options[]=array("link"=>JOMRES_SITEPAGE_URL."&jsat=log_out","text"=>_JOMRES_SA_LOG_OUT);
+			$options[]=array("link"=>JOMRES_SITEPAGE_URL."&jsat=log_out","text"=>_JOMRES_SA_LOG_OUT." (".$JSAuser->user.") ");
 		
 		}
 	
