@@ -321,9 +321,10 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$extrasH = array();
 		$extrasH ['EXTRAS_HEADER']='
 											<tr>
-												<th colspan="5">'.jomres_makeTooltip($output['AJAXFORM_EXTRAS'],$output['AJAXFORM_EXTRAS'],$output['AJAXFORM_EXTRAS_DESC'],$output['AJAXFORM_EXTRAS_DESC'],$class="",$type="infoimage").'</th>
+												<th colspan="5">'.$output['AJAXFORM_EXTRAS_DESC'].'</th>
 											</tr>
 			';
+
 		$extrasHeader[]=$extrasH;
 		$bkg->cfg_showExtras = true;
 		$output['SHOWEXTRAS']="true";
