@@ -107,7 +107,7 @@ class j02213edittariff_micromanage {
 				$rateIdArray[]=$r->tariff_id;
 				}
 			$gor=genericOr($rateIdArray,'rates_uid');
-			$query="SELECT rates_uid,validfrom,validto,roomrateperday,mindays,maxdays,minpeople,maxpeople,roomclass_uid,ignore_pppn,allow_we,dayofweek, FROM #__jomres_rates WHERE ".$gor."";
+			$query="SELECT rates_uid,validfrom,validto,roomrateperday,mindays,maxdays,minpeople,maxpeople,roomclass_uid,ignore_pppn,allow_we,dayofweek FROM #__jomres_rates WHERE ".$gor."";
 			$rates=doSelectSql($query);
 			$rateDetails=array();
 			foreach ($rates as $r)
@@ -131,7 +131,7 @@ class j02213edittariff_micromanage {
 					'ignore_pppn'=>$r->ignore_pppn,
 					'allow_we'=>$r->allow_we
 					);
-				$fixed_dayofweek=>$r->dayofweek;
+				$fixed_dayofweek=$r->dayofweek;
 				}
 			$this->rateDetails=$rateDetails;
 			}
