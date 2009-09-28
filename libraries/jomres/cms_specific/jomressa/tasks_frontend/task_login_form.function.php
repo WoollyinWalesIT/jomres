@@ -39,7 +39,7 @@ function task_login_form()
 	if (!get_showtime('registration_forbidden'))
 		{
 		$output['_JOMRES_SA_FORMS_NOTREGISTEREDYET'] = _JOMRES_SA_FORMS_NOTREGISTEREDYET;
-		$output['REGISTERLINK'] = '<a href='.JOMRES_SITEPAGE_URL.'&jsat=register_form">'.$output['_JOMRES_SA_FORMS_CLICKHERE'].'</a>';
+		$output['REGISTERLINK'] = '<a href="'.JOMRES_SITEPAGE_URL.'&jsat=register_form">'.$output['_JOMRES_SA_FORMS_CLICKHERE'].'</a>';
 		}
 	$output['FORGOTLINK'] = JOMRES_SITEPAGE_URL."&jsat=forgot";
 	$output['LOGIN'] =  (isset($_POST['login'])) ? $_POST['login'] : $my_access->user;
