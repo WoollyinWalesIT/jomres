@@ -1,4 +1,55 @@
-Jomres 4.2
+Jomres 4.2beta2
+
+Adding first draft of Jomres SA to v4.2
+
+Fixed missing td in edit property and shortened edit property columns from 90 to 70.
+Undid change that reconverts ', will compromise security. Instead modified basic_property_details.class.php to do the reconversion when showing the property name.
+Modified addservice to add line item to invoice
+Fixed bug where listoldbookings was pulling all data from db, not just bookedout/cancelled bookings
+Added note to license failure warning to remind users to click Save after changing license binding on the license server.
+added print invoice define to lang files
+Fixed bug where new hotel details output wasn't showing telephone number
+Modified positioning of beautytips features and room types popups. Seems the mickey mouse browser doesn't like the "bottom" position. Probably thinks the code's being rude or something and we can't have that. Oh no.
+Modified add your property link in guest's toolbar to only show if allow users to register option and subscriptions option, are both enabled.
+Added caveats to trigger an error if user has no propertys only if we're not in admin area. SA specific.
+Tweaked backend button layout a little
+Modified pathway to not show if not in Joomla
+Fixed pathway not showing issue
+Fixed parse error in j02202a_update_invoice.class.php
+Added gross price calculation to basic_property_details.class.php 
+Modified config so that if property is Micromanage then prices stored weekly option is no longer available, as Micromanage is purely for day to day pricing.
+Modifed show tariffs to calc gross prices
+Removed reference to i hover image in booking information note in English language files.
+Fixed bug in pathway that appears in non-joomla installation
+Updated mailer class
+Restored property country to header
+Added editing mode to custom fields
+commented out line that was setting Itemid on the fly
+Added star icon to dashboard to indicate start days of bookings.
+Fixed some issues where QBA subscriptions weren't being set up in paypal.
+Added fix for missing class import in admin edit_invoice
+Additional changes to show tax details in booking form.
+Some SA bug fixes and tweaks to allow dynamic calling of templates and css
+Modified paths in updates feature
+Fixed mailer function to differentiate between smtp and mail options.
+Corrected init define check in preview email, was using the old v3 defines, now it's using v4.
+Fixed bug where having one "required" custom field made all custom fields required.
+Changed distribution location of com_jomres.php for sh404sef to it's own folder in the joomla15 directory.
+Changed location of dobooking.php and handlereq.php to the /libraries/jomres/functions directory.
+changed default location of Jomres SA jomres_standalone_config.php, index.php and administrator.php to be within the jomres folder. Means we can sit inside the root of another CMS's installation and still run as SA.
+Added some debugging to PHPMailer_v2.0.0/class.smtp.php to improve debugging of smtp mailing (duh).
+Modified SA to run purely within /jomres instead of having index.php and admin.php in the root and removed admin.php altogether, enabling everything to run through index.php.
+SA Added admin password warning
+SA Added iswrapped functionality
+Modified file uploading functionality to replace a " " with a "_" when the slideshow image is renamed.
+Changed booking form output to remove the optional extras popup and instead just the the text that was in that popup, above the optional extras.
+Modified slideshow to change _ to " " in slideshow captions
+SA Modified menus to show link to front page while on login/registration page
+SA removed a stray " in the registration page
+Added fixed arrival day dropdown to Micromanage tariff editing.
+
+
+Jomres 4.2beta1
 
 
 Major rewrite to largely eliminate the use of globals within the system, switching over to using mainly singletons for maintaining and manipulating data between classes. Some globals remain in place to aid backward compatability with pre-v4.2 plugins.
