@@ -1,30 +1,46 @@
 <patTemplate:tmpl name="pageoutput" >
-<h2>{_JOMRES_SA_FORMS_UPDATEUSER_TITLE}:</h2>
-<p>{_JOMRES_SA_FORMS_UPDATEUSER_DESC}</p>
+<h2>{_JOMRES_SA_FORMS_UPDATEUSER_TITLE}</h2>
 <form name="form1" method="post" action="{POSTACTION}">
-  <label for="login">{_JOMRES_SA_FORMS_USERNAME}:</label>
-  <b>{LOGIN}</b><br>
-  <label for="password">{_JOMRES_SA_FORMS_PASSWORD}:</label>
-  <input name="password" type="password" value="{PASSWORD}" size="6">
-  {_JOMRES_SA_FORMS_UPDATEUSER_MINCHARS} <br>
-  <label for="confirm">{_JOMRES_SA_FORMS_UPDATEUSER_CONFIRMPASSWORD}:</label>
-  <input name="confirm" type="password" value="{PASSWORDCONFIRM}" size="6">
-  * {_JOMRES_SA_FORMS_CONFIRMPASSWORDIGNORE} <br>
-  <label for="name">{_JOMRES_SA_FORMS_UPDATEUSER_REALNAME}:</label>
-  <input name="name" type="text" value="{FULLNAME}" size="30">
-  <br>
-  <label for="email">{_JOMRES_SA_FORMS_UPDATEUSER_EMAIL}:</label>
-  <input name="email" type="text" value="{EMAIL}" size="30">
-  *<br>
-  <label for="info">{_JOMRES_SA_FORMS_UPDATEUSER_EXTRAINFO}:</label>
-  <input name="info" type="text" value="{INFO}" size="50">
-  <b><br>
-  <br>
-  <input type="submit" name="Submit" value="Update">
+	<fieldset>
+		<legend>{_JOMRES_SA_FORMS_UPDATEUSER_DESC}</legend>
+		<table>
+			<tr>
+        		<td><label for="login">{_JOMRES_SA_FORMS_USERNAME}</label></td>
+  				<td><b>{LOGIN}</b><br></td>
+			</tr>
+    	    <tr>
+    	    	<td><label for="password">{_JOMRES_SA_FORMS_PASSWORD}</label></td>
+  				<td><input name="password" type="password" value="{PASSWORD}" size="30"></td>
+  				<td>{_JOMRES_SA_FORMS_UPDATEUSER_MINCHARS}</td>
+        	</tr>
+   		    <tr>
+        		<td><label for="confirm">{_JOMRES_SA_FORMS_UPDATEUSER_CONFIRMPASSWORD}</label></td>
+  				<td><input name="confirm" type="password" value="{PASSWORDCONFIRM}" size="30"></td>
+  				<td>* {_JOMRES_SA_FORMS_CONFIRMPASSWORDIGNORE}</td>
+       		</tr>
+        	<tr>
+        		<td><label for="name">{_JOMRES_SA_FORMS_UPDATEUSER_REALNAME}</label></td>
+  				<td><input name="name" type="text" value="{FULLNAME}" size="30"></td>
+  			</tr>
+    	    <tr>
+        		<td><label for="email">{_JOMRES_SA_FORMS_UPDATEUSER_EMAIL}</label></td>
+				<td><input name="email" type="text" value="{EMAIL}" size="30"></td>
+  				<td>*</td>
+  			</tr>
+			<tr>
+        		<td><label for="info">{_JOMRES_SA_FORMS_UPDATEUSER_EXTRAINFO}</label></td>
+  				<td><input name="info" type="text" value="{INFO}" size="30"></td>
+  			</tr>
+			<tr>
+      	  		<td>&nbsp;</td>
+          		<td><input type="submit" name="Submit" value="Update"></td>
+       		</tr>
+       		<tr>
+        		<td colspan="3"><p><b>{ERROR}</b></p></td>
+        	</tr>
+   		</table>
+	</fieldset>
 </form>
-<p><b>{ERROR}</b></p>
-<p>&nbsp;</p>
 <!-- Notice! you have to change this links here, if the files are not in the same folder -->
-<p><a href="{CONTROLPANELLINK}">{_JOMRES_CONTROLPANEL}</a></p>
-
+<!--<p><a href="{CONTROLPANELLINK}">{_JOMRES_CONTROLPANEL}</a></p>-->
 </patTemplate:tmpl>
