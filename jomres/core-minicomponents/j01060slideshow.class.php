@@ -87,7 +87,7 @@ class j01060slideshow {
 				$cap=$imageData[$i]['filename'];
 				$capAr=explode(".",$cap);
 				$cap=$capAr[0];
-				$cap=str_replace($captionElementsToReplace," ",$cap);
+				$cap=str_replace("_"," ",$cap);
 				$cap=strtolower($cap);
 				$cap=ucwords($cap);
 				$r['IMAGE']=jomres_makeTooltip($cap,$cap,$imageData[$i]['imagelocation'].$imageData[$i]['filename'],$imageData[$i]['imagelocation'].$imageData[$i]['filename'],"","imageonly",$type_arguments=array("width"=>$imageData[$i]['thwidth'],"height"=>$imageData[$i]['thheight'],"border"=>0));
