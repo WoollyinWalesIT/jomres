@@ -2812,8 +2812,10 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
-	$elementsToRemove=array(" ","\\","'",);
+	$elementsToRemove=array("\\","'",);
 	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
+	$newName=strtolower(str_replace(" ","_", $newName));
+
 	if (isset($formelement) && isset($newName) && isset($saveToPath) )
 		{
 		if (!is_dir($saveToPath) )
