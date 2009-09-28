@@ -9,7 +9,7 @@ function frontend_menus_render()
 	$options=array();
 	if ($JSAuser->id == NULL)
 		{
-		
+		$options[]=array("link"=>JOMRES_SITEPAGE_URL."","text"=>get_showtime('sitename'),"seperator"=>$seperator);
 		if (!get_showtime('registration_forbidden'))
 			{
 			$options[]=array("link"=>JOMRES_SITEPAGE_URL."&jsat=login_form","text"=>_JOMRES_SA_LOG_IN,"seperator"=>$seperator);
@@ -24,7 +24,7 @@ function frontend_menus_render()
 		{
 		global $jrConfig;
 		$options=array();
-		$options[]=array("link"=>JOMRES_SITEPAGE_URL."","text"=>get_showtime('sitename'),"seperator"=>" - ");
+		$options[]=array("link"=>JOMRES_SITEPAGE_URL."","text"=>get_showtime('sitename'),"seperator"=>$seperator);
 		$options[]=array("link"=>JOMRES_SITEPAGE_URL."&jsat=update_user","text"=>_JOMRES_SA_UPDATE_ACCOUNT,"seperator"=>$seperator);
 		
 		if ($JSAuser->user=="administrator")
