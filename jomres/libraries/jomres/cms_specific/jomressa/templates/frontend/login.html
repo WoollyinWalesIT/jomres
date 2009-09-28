@@ -1,18 +1,33 @@
 <patTemplate:tmpl name="pageoutput" >
 <h2>{_JOMRES_SA_LOG_IN}</h2>
-<p><b>{ERROR}</b></p>
-<p>{_JOMRES_SA_FORMS_ENTERLOGINDETAILS}</p>
 <form name="form1" method="post" action="{POSTACTION}">
-  <label for="login">{_JOMRES_SA_FORMS_USERNAME}</label>
-  <input type="text" name="login" size="20" value="{LOGIN}"><br>
-  <label for="password">{_JOMRES_SA_FORMS_PASSWORD}</label>
-  <input type="password" name="password" size="8" value="{PASSWORD}"><br>
-  <label for="remember">{_JOMRES_SA_FORMS_AUTOLOGIN}</label>
-  <input type="checkbox" name="remember" value="yes" {CHECKED}>
-  <br>
-  <input type="submit" name="Submit" value="Login">
+	<fieldset>
+		<legend>{_JOMRES_SA_FORMS_ENTERLOGINDETAILS}</legend>
+    	<table>
+			<tr>
+               	<td><label for="login">{_JOMRES_SA_FORMS_USERNAME}</label></td>
+  				<td><input type="text" name="login" size="20" value="{LOGIN}"></td>
+            </tr>
+  			<tr>
+               	<td><label for="password">{_JOMRES_SA_FORMS_PASSWORD}</label></td>
+  				<td><input type="password" name="password" size="20" value="{PASSWORD}"></td>
+            </tr>
+  			<tr>
+              	<td><label for="remember">{_JOMRES_SA_FORMS_AUTOLOGIN}</label></td>
+  				<td><input type="checkbox" name="remember" value="yes" {CHECKED}></td>
+            </tr>
+			<tr>
+              	<td>&nbsp;</td>
+                <td><input type="submit" name="Submit" value="Login"></td>
+			</tr>
+  			<tr>
+              	<td colspan="2">
+                   	<p><b>{ERROR}</b></p>
+					<p>{_JOMRES_SA_FORMS_NOTREGISTEREDYET} {REGISTERLINK}</p>
+                    <p>{_JOMRES_SA_FORMS_FORGOTPASSWORD} <a href="{FORGOTLINK}">{_JOMRES_SA_FORMS_CLICKHERE}</a></p>
+				</td>
+            </tr>
+       </table>
+</fieldset>
 </form>
-<p>{_JOMRES_SA_FORMS_NOTREGISTEREDYET} {REGISTERLINK}</p>
-<p>{_JOMRES_SA_FORMS_FORGOTPASSWORD} <a href="{FORGOTLINK}">{_JOMRES_SA_FORMS_CLICKHERE}</a></p>
-
 </patTemplate:tmpl>

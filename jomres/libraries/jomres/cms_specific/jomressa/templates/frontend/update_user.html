@@ -1,7 +1,8 @@
 <patTemplate:tmpl name="pageoutput" >
 <h2>{_JOMRES_SA_FORMS_UPDATEUSER_TITLE}:</h2>
-<p>{_JOMRES_SA_FORMS_UPDATEUSER_DESC}</p>
 <form name="form1" method="post" action="{POSTACTION}">
+<fieldset>
+<legend>{_JOMRES_SA_FORMS_UPDATEUSER_DESC}</legend>
   <label for="login">{_JOMRES_SA_FORMS_USERNAME}:</label>
   <b>{LOGIN}</b><br>
   <label for="password">{_JOMRES_SA_FORMS_PASSWORD}:</label>
@@ -18,11 +19,13 @@
   *<br>
   <label for="info">{_JOMRES_SA_FORMS_UPDATEUSER_EXTRAINFO}:</label>
   <input name="info" type="text" value="{INFO}" size="50">
-  <b><br>
+  <br>
   <br>
   <input type="submit" name="Submit" value="Update">
+  <p><b>{ERROR}</b></p>
+</fieldset>
 </form>
-<p><b>{ERROR}</b></p>
+
 <p>&nbsp;</p>
 <!-- Notice! you have to change this links here, if the files are not in the same folder -->
 <p><a href="{CONTROLPANELLINK}">{_JOMRES_CONTROLPANEL}</a></p>

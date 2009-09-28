@@ -1,78 +1,105 @@
 body {
-background:#ef4035 url(../i/bg_body.jpg) top repeat-x;
+background-color:#ffffff;
 border:0;
-font:1em 'Lucida Sans Unicode', 'Lucida Grande', LucidaGrande, 'Lucida Sans', Geneva, Arial, sans-serif;
-color:#000000;
+font-family: Arial, Helvetica, sans-serif;
+font-size:12px;
+color:#333333;
 padding:0;
 }
 
 a {
-color:#000000;
+color:#333333;
 text-decoration:none;
 }
 
 a:hover {
-color:#000000;
-text-decoration:none;
+color:#333333;
+text-decoration:underline;
 }
 
 #wrap {
-width:966px;
-border:3px solid #fff;
+width:960px;
+border:1px solid #cccccc;
 text-align:left;
 }
 
 #header {
-height:10px;
+height:60px;
 }
 
 #logo {
 cursor:pointer;
 position:relative;
-float:left;
-width:350px;
-height:10px;
+background:url(../images/logo_admin.jpg) no-repeat ;
+width:170px;
+height:42px;
+margin:10px;
 }
 
 #header_right {
 color:#333;
-font-size:0.7em;
+font-size:11px;
 text-align:right;
 float:right;
-width:443px;
-margin:15px 15px 0 0;
+padding:20px;
+}
+
+#header_right a, #header_right a:hover {
+color:#CC0000;
+text-decoration:none;
+font-size:12px;
+font-weight:bold;
 }
 
 #menu_wrap {
-background-color:#bbb;
-clear:both;
 }
+
 #extra_menu {
 clear:both;
 padding:2px 0 0;
 }
 
 #content {
-font-size:0.7em;
-line-height:2em;
-background:#ffffff;
-border-bottom:1px solid #eee;
+font-size:12px;
+padding:20px;
 }
 
-.content_full {
-background:#ffffff;
-padding:16px 20px;
+input, textarea {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#FFFFFF none repeat scroll 0 0;
+border:1px solid #aaaaaa;
+color:#333333;
+font-family:Arial,Helvetica,sans-serif;
+font-size:12px;
+margin:5px 0;
 }
 
-#content_left {
-width:746px;
-float:left;
-background:#ffffff;
-padding:8px 10px;
+fieldset {
+border:1px solid #aaaaaa;
+margin:20px 0 35px;
+padding:20px;
 }
 
-#content_right {
-width:160px;
-float:right;
+.loginform {
+margin:0 auto 100px;
+width:500px;
 }
 
+h2
+{
+color:#cc0000;
+font-size:20px;
+font-weight:normal;
+padding:20px 0 0 0 !important;
+line-height:20px;
+}
+
+legend {
+color:#aaaaaa;
+font-size:14px;
+font-weight:bold;
+margin:0;
+padding:5px 10px;
+}

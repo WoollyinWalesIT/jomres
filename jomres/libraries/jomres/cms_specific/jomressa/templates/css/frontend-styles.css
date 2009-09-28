@@ -1,81 +1,115 @@
 body {
-background:#cacac6 url(../i/bg_body.jpg) top repeat-x;
-border:0;
-font:1em 'Lucida Sans Unicode', 'Lucida Grande', LucidaGrande, 'Lucida Sans', Geneva, Arial, sans-serif;
-color:#210;
-padding:0;
+background:#ffffff url(../images/wrap.gif) repeat-x scroll center top; font-family:Arial,Helvetica,sans-serif; font-size:12px; padding:0; margin:0; color:#333333;
 }
 
 a {
-color:#F30;
+color:#CC0000;
 text-decoration:none;
 }
 
 a:hover {
-color:#333;
-text-decoration:none;
+color:#CC0000;
+text-decoration:underline;
 }
 
 #wrap {
-width:966px;
-border:3px solid #fff;
+width:760px;
 text-align:left;
 }
 
 #header {
-background:#e6e6e0;
-height:80px;
+background:url(../images/default_header.png) no-repeat ;
+width:760px;
+height:198px;
+margin-top:20px;
 }
 
 #logo {
 cursor:pointer;
-position:relative;
 float:left;
-background:url(../../../../../../images/jrlogo.png) no-repeat ;
-width:350px;
-height:70px;
+background:url(../images/logo.png) no-repeat ;
+width:191px;
+height:190px;
+}
+
+#headerimage {
 }
 
 #header_right {
 color:#333;
-font-size:0.7em;
+font-size:11px;
 text-align:right;
 float:right;
-width:443px;
-margin:15px 15px 0 0;
+margin:0 10px;
+}
+
+#header_right a, #header_right a:hover {
+color:#CC0000;
+text-decoration:none;
+font-size:12px;
+font-weight:bold;
 }
 
 #menu_wrap {
-background-color:#bbb;
-clear:both;
-}
-#extra_menu {
-clear:both;
-padding:2px 0 0;
+	margin:0;
+	padding:0;
 }
 
 #content {
-font-size:0.8em;
-line-height:1.8em;
-background:#fff url(../i/bg_content.gif) top repeat-x;
-border-bottom:1px solid #eee;
-padding:10px;
+font-size:12px;
 }
 
-.content_full {
-background:#fff url(../i/bg_col.gif) top center no-repeat;
-padding:16px 20px;
+form {
+  margin: 0;
+  padding: 0;
 }
 
-#content_left {
-width:746px;
-float:left;
-background:#fff url(../i/bg_col.gif) top center no-repeat;
-padding:8px 10px;
+input.button { cursor: pointer; }
+
+p { margin-top: 0; margin-bottom: 5px; }
+
+img { border: 0 none; }
+
+input, textarea {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#FFFFFF none repeat scroll 0 0;
+border:1px solid #aaaaaa;
+color:#333333;
+font-family:Arial,Helvetica,sans-serif;
+font-size:12px;
+margin:5px 0;
 }
 
-#content_right {
-width:160px;
-float:right;
+fieldset {
+border:1px solid #aaaaaa;
+margin:20px 0 35px;
+padding:20px;
 }
 
+h2
+{
+color:#cc0000;
+font-size:20px;
+font-weight:normal;
+margin:20px 0 0 0 !important;
+}
+
+legend {
+color:#aaaaaa;
+font-size:14px;
+font-weight:bold;
+margin:0;
+padding:5px 10px;
+}
+
+.footer {
+background:url(../images/footer.gif) no-repeat ;
+height:70px;
+margin-top:20px;
+}
+.footertext {
+text-align:center;
+padding-top:48px;
+}
