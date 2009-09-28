@@ -79,7 +79,8 @@ class j02213edittariff_micromanage {
 		$output['HROOMTYPEDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS);
 		$output['HIGNOREPPPNDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN',_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN);
 		$output['HALLOWWEEKENDSDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ALLOWWE',_JOMRES_COM_MR_LISTTARIFF_ALLOWWE);
-
+		$output['HFIXED_DAYOFWEEK']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL)." ".jr_gettext('_JOMRES_DTV_DOW',_JOMRES_DTV_DOW);
+		
 		$def_mindays=1;
 		$def_maxdays=100;
 		$def_minpeople=1;
@@ -106,7 +107,7 @@ class j02213edittariff_micromanage {
 				$rateIdArray[]=$r->tariff_id;
 				}
 			$gor=genericOr($rateIdArray,'rates_uid');
-			$query="SELECT rates_uid,validfrom,validto,roomrateperday,mindays,maxdays,minpeople,maxpeople,roomclass_uid,ignore_pppn,allow_we FROM #__jomres_rates WHERE ".$gor."";
+			$query="SELECT rates_uid,validfrom,validto,roomrateperday,mindays,maxdays,minpeople,maxpeople,roomclass_uid,ignore_pppn,allow_we,dayofweek, FROM #__jomres_rates WHERE ".$gor."";
 			$rates=doSelectSql($query);
 			$rateDetails=array();
 			foreach ($rates as $r)
@@ -128,8 +129,9 @@ class j02213edittariff_micromanage {
 					'maxpeople'=>$r->maxpeople,
 					'roomclass_uid'=>$r->roomclass_uid,
 					'ignore_pppn'=>$r->ignore_pppn,
-					'allow_we'=>$r->allow_we,
+					'allow_we'=>$r->allow_we
 					);
+				$fixed_dayofweek=>$r->dayofweek;
 				}
 			$this->rateDetails=$rateDetails;
 			}
@@ -189,6 +191,9 @@ class j02213edittariff_micromanage {
 		$output['ALLOWWEDROPDOWN']= jomresHTML::selectList($weOptions, 'allow_we', 'class="inputbox" size="1"', 'value', 'text', $allow_we);
 		*/
 
+
+		
+		
 		// Let's make our years/months/days array
 		$dowInitArrays=array();
 		$today = getdate();
@@ -324,6 +329,20 @@ class j02213edittariff_micromanage {
 		$cancelText=jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,FALSE);
 		$deleteText=jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE,FALSE);
 
+		if (!isset($fixed_dayofweek))
+			$fixed_dayofweek = 7;
+		
+		$weekDays=array();
+		$weekDays[] = jomresHTML::makeOption(7, jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false) );
+		$weekDays[] = jomresHTML::makeOption(1, _JOMRES_COM_MR_WEEKDAYS_MONDAY);
+		$weekDays[] = jomresHTML::makeOption(2, _JOMRES_COM_MR_WEEKDAYS_TUESDAY);
+		$weekDays[] = jomresHTML::makeOption(3, _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY);
+		$weekDays[] = jomresHTML::makeOption(4, _JOMRES_COM_MR_WEEKDAYS_THURSDAY);
+		$weekDays[] = jomresHTML::makeOption(5, _JOMRES_COM_MR_WEEKDAYS_FRIDAY);
+		$weekDays[] = jomresHTML::makeOption(6, _JOMRES_COM_MR_WEEKDAYS_SATURDAY);
+		$weekDays[] = jomresHTML::makeOption(0, _JOMRES_COM_MR_WEEKDAYS_SUNDAY);
+		$weekdayDropdown= jomresHTML::selectList($weekDays, 'fixed_dayofweek', 'class="inputbox" size="1"', 'value', 'text', $fixed_dayofweek);
+		$output['FIXED_ARRIVAL_DAYOFWEEK']=$weekdayDropdown;
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
