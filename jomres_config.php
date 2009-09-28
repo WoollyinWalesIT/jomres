@@ -27,7 +27,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not all
 #
  */
 
-$mrConfig['version']='4.2beta1';
+$mrConfig['version']='4.2beta2';
 $mrConfig['newTariffModels'] = "1";
 $mrConfig['singlePersonSuppliment']='0';
 $mrConfig['singlePersonSupplimentCost']='10';
