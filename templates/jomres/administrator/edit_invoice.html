@@ -1,4 +1,60 @@
 <patTemplate:tmpl name="pageoutput" >
+				<script>
+				var idarray = new Array();
+
+				function updateInit_Total(id)
+					{
+					tax = jQuery('#tax_rate_'+id).val();
+					qty = jQuery('#init_qty_'+id).val();
+					dsc = jQuery('#init_discount_'+id).val();
+					price = jQuery('#li_init_price_'+id).val();
+
+					pre_tax_total=price*qty
+					post_discount=pre_tax_total-dsc
+					vat=(post_discount/100)*tax
+					init_total=post_discount+vat
+					
+					jQuery("#init_total_"+id).text(init_total);
+					updateInitGrandTotal();
+					};
+
+				function updateInitGrandTotal()
+					{
+					init_total = 0.00;
+					for (i=0; i < idarray.length; i++) {
+						tmp = jQuery("#init_total_"+idarray[i]).text();
+						flt = parseFloat(tmp)
+						init_total = init_total + flt;
+						}
+					jQuery("#init_grand_total").text(init_total);
+					}
+					
+				function updateRecur_Total(id)
+					{
+					tax = jQuery('#tax_rate_'+id).val();
+					qty = jQuery('#init_qty_'+id).val();
+					dsc = jQuery('#init_discount_'+id).val();
+					price = jQuery('#li_init_price_'+id).val();
+					pre_tax_total=price*qty
+					post_discount=pre_tax_total-dsc
+					vat=(post_discount/100)*tax
+					recur_total=post_discount+vat
+					
+					jQuery("#recur_total_"+id).text(recur_total);
+					updateRecurGrandTotal();
+					};
+
+				function updateRecurGrandTotal()
+					{
+					init_total = 0.00;
+					for (i=0; i < idarray.length; i++) {
+						tmp = jQuery("#recur_total_"+idarray[i]).text();
+						flt = parseFloat(tmp)
+						recur_total = recur_total + flt;
+						}
+					jQuery("#recur_grand_total").text(recur_total);
+					}
+				</script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 <table class="jradmin_innerwrapper">
 	<tr>
@@ -62,84 +118,11 @@
 					<td class="jradmin_subheader_la">{HLI_TAX_DESCRIPTION}</td>
 					<td class="jradmin_subheader_la">{HLI_TAX_RATE}</td>
 				</tr>
-				<script>
-				var idarray = new Array();
 
-				function updateInit_Total(id)
-					{
-					tax=eval("document.forms[0].elements['tax_rate[" + id + "]'].value")
-					qty=eval("document.forms[0].elements['init_qty[" + id + "]'].value")
-					dsc=eval("document.forms[0].elements['init_discount[" + id + "]'].value")
-					price=eval("document.forms[0].elements['li_init_price_" + id + "'].value")
-					pre_tax_total=price*qty
-					post_discount=pre_tax_total-dsc
-					vat=(post_discount/100)*tax
-					init_total=post_discount+vat
-					
-					jQuery("#init_total_"+id).text(init_total);
-					updateInitGrandTotal();
-					};
-
-				function updateInitGrandTotal()
-					{
-					//alert (idarray.toString());
-					init_total = 0.00;
-					for (i=0; i < idarray.length; i++) {
-						tmp = jQuery("#init_total_"+idarray[i]).text();
-						flt = parseFloat(tmp)
-						init_total = init_total + flt;
-						}
-					//init_total=to2DecWithDot(init_total);
-					jQuery("#init_grand_total").text(init_total);
-					}
-					
-				function updateRecur_Total(id)
-					{
-					tax=eval("document.forms[0].elements['tax_rate[" + id + "]'].value")
-					qty=eval("document.forms[0].elements['recur_qty[" + id + "]'].value")
-					dsc=eval("document.forms[0].elements['recur_discount[" + id + "]'].value")
-					price=eval("document.forms[0].elements['li_recur_price_" + id + "'].value")
-					pre_tax_total=price*qty
-					post_discount=pre_tax_total-dsc
-					vat=(post_discount/100)*tax
-					recur_total=post_discount+vat
-					
-					jQuery("#recur_total_"+id).text(recur_total);
-					updateRecurGrandTotal();
-					};
-
-				function updateRecurGrandTotal()
-					{
-					//alert (idarray.toString());
-					init_total = 0.00;
-					for (i=0; i < idarray.length; i++) {
-						tmp = jQuery("#recur_total_"+idarray[i]).text();
-						flt = parseFloat(tmp)
-						recur_total = recur_total + flt;
-						}
-					//recur_total=to2DecWithDot(recur_total);
-					jQuery("#recur_grand_total").text(recur_total);
-					}
-					
-				function to2DecWithDot(num)
-					{
-					num="" + Math.floor(num*100.0 + 0.5)/100.0;
-					var i=num.indexOf(".");
-					if ( i<0 ) num+=".00";
-					else {
-					num=num.substring(0,i) + "." + num.substring(i + 1);
-					var nDec=(num.length - i) - 1;
-					if ( nDec==0 ) num+="00";
-					else if ( nDec==1 ) num+="0";
-					else if ( nDec>2 ) num=num.substring(0,i + 3);
-					}
-					return num;
-					}
-				</script>
 				<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<script>idarray[{COUNTER}]={ID};</script>
 				<input type="hidden" name="line_item[]" id="line_item[]" value="{ID}" />
-				<input type="hidden" id="tax_rate[{ID}]" value="{LI_TAX_RATE}" />
+				<input type="hidden" id="tax_rate_{ID}" value="{LI_TAX_RATE}" />
 				<input type="hidden" id="li_init_price_{ID}" value="{LI_INIT_PRICE}" />
 				<input type="hidden" value="{LI_RECUR_PRICE}" />
 				<tr>
@@ -148,13 +131,13 @@
 					<td class="jradmin_field_la">{LI_DESCRIPTION}</td>
 					
 					<td class="jradmin_field_la">{LI_INIT_PRICE}</td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="init_qty[{ID}]" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="init_discount[{ID}]" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
+					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="init_qty_{ID}" name="init_qty_{ID}" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
+					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="init_discount_{ID}" name="init_discount_{ID}" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
 					<td class="jradmin_field_la"><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
 					<td class="jradmin_field_la">{LI_RECUR_PRICE}</td>
 					
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="recur_qty[{ID}]" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="recur_discount[{ID}]" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
+					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="recur_qty_{ID}" name="recur_qty_{ID}" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
+					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="recur_discount_{ID}" name="recur_discount_{ID}" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
 					<td class="jradmin_field_la"><div id="recur_total_{ID}">{LI_RECUR_TOTAL}</div></td>
 
 					<td class="jradmin_field_la">{LI_TAX_CODE}</td>
