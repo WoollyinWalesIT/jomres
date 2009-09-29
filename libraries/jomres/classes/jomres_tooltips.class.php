@@ -222,7 +222,11 @@ class jomres_tooltips
 					$positions = "most";
 				else
 					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
-				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$div_content.'" /></div>
+				$ls="";
+				if (_JOMRES_DETECTED_CMS == "jomressa")
+					$ls=get_showtime('live_site')."/";
+					
+				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$ls.$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						cornerRadius: 10,        
 						strokeWidth: 0,
