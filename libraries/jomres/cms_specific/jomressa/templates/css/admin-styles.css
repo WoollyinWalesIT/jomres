@@ -1,5 +1,5 @@
 body {
-background-color:#ffffff;
+background-color:#cc0000;
 border:0;
 font-family: Arial, Helvetica, sans-serif;
 font-size:12px;
@@ -18,34 +18,35 @@ text-decoration:underline;
 }
 
 #wrap {
-width:960px;
-border:1px solid #cccccc;
+width:970px;
+background:#ffffff url(../images/footer-admin.gif) bottom no-repeat;
 text-align:left;
 }
 
 #header {
-height:60px;
+background:#ffffff url(../images/header-admin.gif) top no-repeat;
+height:70px;
 }
 
 #logo {
 cursor:pointer;
 position:relative;
-background:url(../images/logo_admin.jpg) no-repeat ;
+background:url(../images/logo_admin.png) no-repeat ;
 width:170px;
 height:42px;
-margin:10px;
 }
 
 #header_right {
-color:#333;
+color:#fff;
 font-size:11px;
 text-align:right;
 float:right;
-padding:20px;
+padding-right:20px;
+padding-top:10px;
 }
 
 #header_right a, #header_right a:hover {
-color:#CC0000;
+color:#ffffff;
 text-decoration:none;
 font-size:12px;
 font-weight:bold;
@@ -61,7 +62,7 @@ padding:2px 0 0;
 
 #content {
 font-size:12px;
-padding:20px;
+padding:20px 20px 90px;
 }
 
 input, textarea {
@@ -83,7 +84,7 @@ padding:20px;
 }
 
 .loginform {
-margin:0 auto 100px;
+margin:0 auto 60px;
 width:500px;
 }
 
