@@ -107,7 +107,7 @@ function listMosUsers()
  			}
 		
 		$r['ACCESSLEVELIMAGE']=$accesslevel_img;
-		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&userid='.$user['id'].'&grantAct='.$authorise.'">'.$authorise_img.'</a>';
+		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&no_html=1&userid='.$user['id'].'&grantAct='.$authorise.'">'.$authorise_img.'</a>';
 		if ($access_level>0)
 			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editProfile&id='.$user['id'].'">'.$editIcon.'</a>';
 		else
