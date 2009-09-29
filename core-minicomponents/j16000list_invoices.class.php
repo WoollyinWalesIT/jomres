@@ -95,7 +95,7 @@ class j16000list_invoices
 			if (strlen($user_deets['name'])==0)
 				$r['USER']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
 			else
-				$r['USER']='<a href="index2.php?option=com_jomres&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
+				$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
 			if ($invoice['status'] == "0")
 				$r['STATUS']=_JRPORTAL_INVOICES_STATUS_UNPAID;
 			elseif ($invoice['status'] == "1")
@@ -116,7 +116,7 @@ class j16000list_invoices
 			$r['FREQ']			=$invoice['recur_frequency'];
 			$r['CURRENCYCODE']	=$invoice['currencycode'];
 			
-			$r['EDITLINK']='<a href="index2.php?option=com_jomres&task=edit_invoice&id='.$invoice['id'].'">'.$editIcon.'</a>';
+			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_invoice&id='.$invoice['id'].'">'.$editIcon.'</a>';
 			$rows[]=$r;
 			}
 
