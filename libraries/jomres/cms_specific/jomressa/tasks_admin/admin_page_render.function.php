@@ -8,7 +8,7 @@ function admin_page_render()
 	if (defined('JOMRES_WRAPPED'))
 		$index_page = "wrapped.html";
 	$JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
-	
+	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
 	
 	$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -66,7 +66,11 @@ function admin_page_render()
 	$heads=$jomresSitefactory->renderHeads();
 	
 	$template_rows = array('pageoutput'=>$pageoutput,'menurows'=>$menurows,'content'=>$contentrows,'heads'=>$heads);
-
-	echo render_template($index_page,TEMPLATES_ADMIN,$template_rows);
+	if ($no_html != 1)
+		{
+		echo render_template($index_page,TEMPLATES_ADMIN,$template_rows);
+		}
+	else
+		echo JOMRES_RETURNDATA_CONTENT;
 	}
 ?>
