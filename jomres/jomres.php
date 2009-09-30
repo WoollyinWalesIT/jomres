@@ -171,10 +171,22 @@ if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admi
 */
 
 // Finding the property uid
-$query="SELECT propertys_uid FROM #__jomres_propertys";
+$query="SELECT propertys_uid,published FROM #__jomres_propertys";
 $countproperties = doSelectSql($query);
 $numberOfPropertiesInSystem=count($countproperties);
 set_showtime('numberOfPropertiesInSystem',$numberOfPropertiesInSystem);
+$propertys = array();
+$published_propertys = array();
+foreach ($countproperties as $p)
+	{
+	$propertys[] = $p->propertys_uid;
+	if ($p->published == "1")
+		$published_propertys[]=$p->propertys_uid;
+	}
+set_showtime('all_properties_in_system',$propertys);
+set_showtime('published_properties_in_system',$published_propertys);
+
+
 if ($numberOfPropertiesInSystem==1)
 	{
 	if (!$thisJRUser->userIsManager)
