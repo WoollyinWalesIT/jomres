@@ -1492,7 +1492,8 @@ function hotelSettings()
 	$lists['bookingform_roomlist_showdisabled'] 		= jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showdisabled', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['bookingform_roomlist_showdisabled'] );
 	$lists['bookingform_roomlist_showmaxpeople'] 	= jomresHTML::selectList( $yesno, 'cfg_bookingform_roomlist_showmaxpeople', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['bookingform_roomlist_showmaxpeople'] );
 
-	
+	$lists['use_variable_deposits'] 		= jomresHTML::selectList( $yesno, 'cfg_use_variable_deposits', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['use_variable_deposits'] );
+
 	$componentArgs=array();
 	$componentArgs['mrConfig']=$mrConfig;
 	$componentArgs['lists']=$lists;
