@@ -113,10 +113,23 @@ class j00501tariffs {
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
+		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE);
+		$configurationPanel->setmiddle($lists['use_variable_deposits']);
+		$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC);
+		$configurationPanel->insertSetting();
+
+		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS);
+		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_variable_deposit_threashold" value="'.$mrConfig['variable_deposit_threashold'].'" />');
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft(_JOMRES_COM_CHARGING_CONFIG);
 		$configurationPanel->setmiddle($paymentAmounts);
 		$configurationPanel->setright(_JOMRES_COM_CHARGING_CONFIG_DESC);
 		$configurationPanel->insertSetting();
+		
+		
+		
 		
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{

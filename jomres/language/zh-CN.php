@@ -6684,8 +6684,17 @@ define('_JOMRES_EDITINGMODE_ON','Editing mode on');
 * @ignore
 */
 define('_JOMRES_EDITINGMODE_OFF','Editing mode off');
+
 /**
 * @ignore
 */
-define('_JOMRES_COM_INVOICE_PRINT','Print invoice');
+define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE','Charge variable deposits?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC','Variable deposits allow you to define if you\'d like to charge the full amount if the booking\'s arrival date is within N days from "today". Set this option to Yes to enable the feature, and enter the number of days below, so for example if the arrival day is within 60 days, then the deposit amount charged will be the full amount, otherwise the amount will be based on the deposit options configured above.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS','The number of days, within which the full amount will be charged as a deposit.');
 

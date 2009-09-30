@@ -4765,34 +4765,46 @@ class dobooking
 	 */
 	function calcDeposit()
 		{
-		// Calculate deposit
-		$depositValue=0;
-		// Depreciating this next if, but leaving the stuff inside on. This is because a few folks are setting the show deposit to No, but still sending the deposit value to
-		// paypal/gateway. Commenting out this if will mean that the deposit is still calculated.
-		//if ($this->cfg_chargeDepositYesNo=="1")
-		//	{
-			$depositValue=$this->cfg_depositValue;
-			$totalBooking=$this->contract_total;
-			if ($this->cfg_depAmount=="1")
-				 $depositValue=$this->contract_total;
-			else
-				{
-				if ($this->cfg_depositIsPercentage=="1")
-					{
-					if ($this->cfg_roundupDepositYesNo=="1")
-						$depositValue=ceil(($totalBooking/100)*$depositValue);
-					else
-						$depositValue=($totalBooking/100)*$depositValue;
-					}
+		$mrConfig=getPropertySpecificSettings();
+		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
+		$this->setErrorLog("calcDeposit::Use variable deposits : ".$mrConfig['use_variable_deposits'] );
+		$this->setErrorLog("calcDeposit::Variable deposit threashold : ".(int) $mrConfig['variable_deposit_threashold'] );
+		$this->setErrorLog("calcDeposit::Days til booking : ".count($datesTilBooking) );
+		if ( $mrConfig['use_variable_deposits'] == "1" && count($datesTilBooking) <= (int) $mrConfig['variable_deposit_threashold'])
+			{
+			$depositValue=$this->contract_total;
+			}
+		else
+			{
+			// Calculate deposit
+			$depositValue=0;
+			// Depreciating this next if, but leaving the stuff inside on. This is because a few folks are setting the show deposit to No, but still sending the deposit value to
+			// paypal/gateway. Commenting out this if will mean that the deposit is still calculated.
+			//if ($this->cfg_chargeDepositYesNo=="1")
+			//	{
+				$depositValue=$this->cfg_depositValue;
+				$totalBooking=$this->contract_total;
+				if ($this->cfg_depAmount=="1")
+					 $depositValue=$this->contract_total;
 				else
 					{
-					if ($this->cfg_roundupDepositYesNo=="1")
-						$depositValue=ceil($depositValue);
+					if ($this->cfg_depositIsPercentage=="1")
+						{
+						if ($this->cfg_roundupDepositYesNo=="1")
+							$depositValue=ceil(($totalBooking/100)*$depositValue);
+						else
+							$depositValue=($totalBooking/100)*$depositValue;
+						}
 					else
-						$depositValue=$depositValue;
+						{
+						if ($this->cfg_roundupDepositYesNo=="1")
+							$depositValue=ceil($depositValue);
+						else
+							$depositValue=$depositValue;
+						}
 					}
-				}
-			//}
+				//}
+			}
 		$this->deposit_required = $depositValue;
 		}
 
@@ -4890,7 +4902,7 @@ class dobooking
 	function makeRatePerNight()
 		{
 		$result=false;
-		$this->setErrorLog("Currently selected rooms: ".count($this->requestedRoom) );
+		//$this->setErrorLog("makeRatePerNight::Currently selected rooms: ".count($this->requestedRoom) );
 		if (count($this->requestedRoom) > 0 )
 			{
 			if ($this->tariffModel == "1")
