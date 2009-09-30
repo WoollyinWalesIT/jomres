@@ -201,6 +201,19 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_cal_output" value="'.$jrConfig['cal_output'].'" /></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAROUTPUT_DESC.'</td>
 		</tr>
+		
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['contact_owner_emails_to_alternative'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_contact_owner_emails_to_alternative_email" value="'.$jrConfig['contact_owner_emails_to_alternative_email'].'" /></td>
+			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+		</tr>
+		
+		
 		<!--
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_COMPOSITE_PROPERTY_DETAILS.'</td>

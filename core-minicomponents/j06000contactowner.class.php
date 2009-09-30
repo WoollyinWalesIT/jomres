@@ -44,6 +44,8 @@ class j06000contactowner {
 			{
 			$this->template_touchable=true; return;
 			}
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
 		$jomresConfig_secret = get_showtime('secret');
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -56,6 +58,20 @@ class j06000contactowner {
 		if ($property_uid == 0 )
 			return;
 
+		$thisJRUser=jomres_getSingleton('jr_user');
+		$all_properties_in_system =get_showtime('all_properties_in_system');
+		$published_properties_in_system =get_showtime('published_properties_in_system');
+		if (!in_array($property_uid,$all_properties_in_system) )
+			{
+			echo "Cannot message this property as it doesn't exist";
+			return;
+			}
+		if (!$thisJRUser->userIsManager && !in_array($property_uid,$published_properties_in_system) )
+			{
+			echo "Cannot message an unpublished property";
+			return;
+			}
+		
 		$current_property_details =jomres_getSingleton('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		
@@ -124,8 +140,12 @@ class j06000contactowner {
 				$MiniComponents->triggerEvent('03500'); // Optional, eg for affiliate schemes offering pay-per-lead
 				$subject = _JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT.$output['GUEST_NAME']._JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING.$current_property_details->property_name;
 				$output['THANKS'] =jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS);
-				if(!jomresMailer( $output['GUEST_EMAIL'], $current_property_details->property_name, $current_property_details->property_email, $subject, $output['ENQUIRY'] ,$mode=1))
-					error_logging('Failure in sending enquiry email to hotel. Target address: '.$current_property_details->property_email.' Subject'.$subject);
+				$target_email = $current_property_details->property_email;
+				if ($jrConfig['contact_owner_emails_to_alternative'] == "1")
+					$target_email = $jrConfig['contact_owner_emails_to_alternative_email'] ;
+					
+				if(!jomresMailer( $output['GUEST_EMAIL'], $current_property_details->property_name, $target_email, $subject, $output['ENQUIRY'] ,$mode=1))
+					error_logging('Failure in sending enquiry email to hotel. Target address: '.$target_email.' Subject'.$subject);
 
 				if(!jomresMailer( $current_property_details->property_email, $current_property_details->property_name, $output['GUEST_EMAIL'], $subject, $output['ENQUIRY'] ,$mode=1))
 					error_logging('Failure in sending enquiry email to guest. Target address: '.$output['GUEST_EMAIL'].' Subject'.$subject);
