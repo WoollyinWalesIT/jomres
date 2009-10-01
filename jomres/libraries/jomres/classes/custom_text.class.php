@@ -38,7 +38,7 @@ class custom_text
 			$customTextArray=array();
 			foreach ($customTextList as $text)
 				{
-				$theConstant=strtoupper(str_replace("sc<x>ript","script",$text->constant));
+				$theConstant=str_replace("sc<x>ript","script",$text->constant);
 				$this->global_custom_text[$theConstant]=stripslashes($text->customtext);
 				}
 			}
@@ -57,7 +57,7 @@ class custom_text
 			$customTextArray=array();
 			foreach ($customTextList as $text)
 				{
-				$theConstant=strtoupper(str_replace("sc<x>ript","script",$text->constant));
+				$theConstant=str_replace("sc<x>ript","script",$text->constant);
 				$current_custom_text[$theConstant]=stripslashes($text->customtext);
 				//echo $theConstant." - ".$text->customtext."<br>
 				//";

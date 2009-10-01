@@ -30,7 +30,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	$customTextArray = $customTextObj->get_custom_text();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$thisJRUser=jomres_getSingleton('jr_user');
-	
 
 	if (!isset($tmpBookingHandler->user_settings['editing_on']))
 		$tmpBookingHandler->user_settings['editing_on']= false;
