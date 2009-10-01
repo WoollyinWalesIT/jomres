@@ -98,6 +98,9 @@ class jomres_obsolete_file_handling
 
 		$this->add_obs_file($this->dir_minicomponents.'j06000cancelGuestBooking.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06000muviewfavourites.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00501slideshows.class.php');
+		
+
 
 		$this->add_obs_file($this->dir_templates_frontend.'menus.html');
 		$this->add_obs_file($this->dir_templates_frontend.'invoices_link.html');
