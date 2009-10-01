@@ -180,6 +180,9 @@ class j04010editroom {
 			{
 			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 			$original_room_classes_uid =doSelectSql($query,1);
+			$query = "SELECT max_people FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
+			$max_people =doSelectSql($query,1);
+			
 			echo '<form action="'.JOMRES_SITEPAGE_URL.'" method="post" name="adminForm">';
 			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";
 			$roomClasses=doSelectSql($query);
@@ -192,8 +195,11 @@ class j04010editroom {
 				$room_classes_uid=$roomClass->room_classes_uid;
 				$room_class_abbv=$roomClass->room_class_abbv;
 				$dropDownList .= "<option value=\"".$room_classes_uid."\" ".$selected." >".$room_class_abbv."</option>";
+				
 				}
 			$dropDownList.="</select>";
+			
+			
 			
 			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
@@ -202,9 +208,10 @@ class j04010editroom {
 			$jrtb .= $jrtbar->endTable();
 			
 			echo $jrtb." "._JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO." ".$dropDownList;
+			echo ' '.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'<input type="text" class="inputbox" size="18" name="max_people" value="'.$max_people.'" />';
 			echo '<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 			echo '<input type="hidden" name="task" value="saveRoom" />';
-			echo '</form>';
+			echo '</form><br/>';
 			}
 		}
 

@@ -91,11 +91,12 @@ class j04020saveroom {
 		else
 			{
 			$roomClass					= jomresGetParam( $_POST, 'roomClass', 0 );
+			$max_people      = intval( jomresGetParam( $_POST, 'max_people', 0 ) );
 			if ($roomClass > 0)
 				{
 				$query = "SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 				$room_uid =doSelectSql($query,1);
-				$query="UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClass' WHERE room_uid='".(int)$room_uid."' AND propertys_uid='".(int)$defaultProperty."'";
+				$query="UPDATE #__jomres_rooms SET `room_classes_uid`='$roomClass',`max_people`=".$max_people." WHERE room_uid='".(int)$room_uid."' AND propertys_uid='".(int)$defaultProperty."'";
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_ROOM',_JOMRES_MR_AUDIT_UPDATE_ROOM,FALSE))) 
 					trigger_error ("Sql error when updating room", E_USER_ERROR);
 				
