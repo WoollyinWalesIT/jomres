@@ -30,7 +30,7 @@ class j16000listPropertyTypes
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$ptypeData=array();
@@ -80,7 +80,24 @@ class j16000listPropertyTypes
 		HTML_jomres::listpropertyTypes_html( $pList,$rowInfo,$counter,$jrtb);
 		}
 
-
+	function touch_template_language()
+		{
+		$output=array();
+		
+		$query="SELECT id,ptype FROM #__jomres_ptypes";
+		$ptypeList = doSelectSql($query);
+		foreach ($ptypeList as $ptype)
+			{
+			$output[]	=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.$ptype->id,$ptype->ptype);
+			}
+		
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
+		
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
