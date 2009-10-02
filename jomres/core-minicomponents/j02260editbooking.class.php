@@ -45,6 +45,7 @@ class j02260editbooking {
 			}
 		$mrConfig=getPropertySpecificSettings();
 		$defaultProperty=getDefaultProperty();
+		
 		$contract_uid	=	jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		if ($contract_uid == 0)
 			return;
@@ -529,18 +530,29 @@ class j02260editbooking {
 				<td>'.jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE',_JOMRES_COM_MR_EXTRA_TITLE).'</td>
 				<td>&nbsp;</td>
 			</tr>');
+		$taxrates = taxrates_getalltaxrates();
 		$extraOptionsArray=explode(",",$extraOptionsList);
 		foreach ($extraOptionsArray as $extraUid)
 			{
-			$query="SELECT name,price FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
+			$query="SELECT name,price,tax_rate FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
 			$extrasList= doSelectSql($query);
 			foreach ($extrasList as $theExtras)
 				{
 				$quantity = $extrasquantities[$extraUid];
+				
+				$price = $theExtras->price;
+				$tax_rate_id = (int)$theExtras->tax_rate;
+				$rate = (float)$taxrates[$tax_rate_id]['rate'];
+				$tax = ($price/100)*$rate;
+				$inc_price = $price+$tax;
+					
+				$extra_tax_output = "";
+				if ($rate > 0)
+					$extra_tax_output = " (".$rate."%)";
 				$contentPanel->setcontent('
 					<tr>
 						<td>&nbsp;</td>
-						<td>'.($theExtras->name)."  ".$mrConfig['currency'].number_format($theExtras->price,2, '.', '').' X '.$quantity.'</td>
+						<td>'.($theExtras->name)."  ".$mrConfig['currency'].number_format($inc_price,2, '.', '').' '.$extra_tax_output.' X '.$quantity.'</td>
 					</tr>');
 				}
 			}
