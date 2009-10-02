@@ -110,7 +110,10 @@ class j02150addservicetobill {
 					$invoice_handler = new invoicehandler();
 					$invoice_handler->id = $invoice['id'];
 					if ($invoice_handler->getInvoice())
+						{
 						$invoice_handler->add_line_item($line_item_data);
+						$invoice_handler->commitUpdateInvoice();
+						}
 					else
 						{
 						echo "Error adding line item to invoice";
