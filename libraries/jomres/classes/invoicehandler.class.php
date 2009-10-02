@@ -30,7 +30,9 @@ jr_import('jrportal_invoice');
 
 class invoicehandler extends jrportal_invoice
 	{
-
+	
+	
+	
 	function create_new_invoice($invoice_data, $line_items=array() )
 		{
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
@@ -128,7 +130,10 @@ class invoicehandler extends jrportal_invoice
 			}
 		$this->commitUpdateInvoice();
 		}
-		
+	
+	
+	
+	
 	function update_line_item($line_item_data)
 		{
 		/*
@@ -139,9 +144,29 @@ class invoicehandler extends jrportal_invoice
 		$line_item = new jrportal_lineitem();
 		if (!isset($line_item_data['id']) )
 			{
-			error_logging("Couldn't id while updating line item");
+			error_logging("Couldn't fin id while updating line item");
 			return false;
 			}
+			
+		jr_import("jrportal_taxrate");
+		$taxrate = new jrportal_taxrate();
+		$taxrate->id = $line_item_data['tax_code_id'];
+		
+		jr_import("jrportal_lineitem");
+		$line_item = new jrportal_lineitem();
+		if ($taxrate->getTaxRate())
+			{
+			$line_item->tax_rate			= (float)$taxrate->rate;
+			$line_item->tax_code			= $taxrate->code;
+			$line_item->tax_description		= $taxrate->description;
+			}
+		else
+			{
+			$line_item->tax_rate			= 0.00;
+			$line_item->tax_code			= "";
+			$line_item->tax_description		= "";
+			}
+
 		$line_item->id=$line_item_data['id'];
 		$line_item->getLineItem();
 
@@ -152,14 +177,15 @@ class invoicehandler extends jrportal_invoice
 		$line_item->recur_discount		= $line_item_data['recur_discount'];
 
 		$i_total = ((float)$line_item->init_price*(int)$line_item->init_qty)-(float)$line_item->init_discount;
+		
 		$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2, '.', '');
 		$line_item->init_total = $i_total + $init_toal_tax;
-		$this->init_total = number_format($this->init_total + $line_item->init_total,2, '.', '');
-		
+		$this->init_total = number_format($line_item->init_total,2, '.', '');
+
 		$r_total = ((float)$line_item->recur_price*(int)$line_item->recur_qty)-(float)$line_item->recur_discount;
 		$recur_toal_tax=number_format(($r_total/100)*$line_item->tax_rate,2, '.', '');
 		$line_item->recur_total = $r_total + $recur_toal_tax;
-		$this->recur_total = number_format($this->recur_total + $line_item->recur_total,2, '.', '');
+		$this->recur_total = number_format($line_item->recur_total ,2, '.', '');
 		
 		$line_item->commitUpdateLineItem();
 		
