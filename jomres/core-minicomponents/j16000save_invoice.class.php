@@ -77,9 +77,25 @@ class j16000save_invoice {
 			$subscription->status=$status;
 			$subscription->commitUpdateSubscription();
 			}
-										
-										
-		$invoice_handler->update_invoice($invoice_data,$line_items);
+		
+		
+		foreach ($line_items as $li)
+			{
+			
+			$line_item_id = $li['id'];
+			jr_import('jrportal_lineitem');
+			$line_item = new jrportal_lineitem();
+			$line_item->id = $line_item_id;
+			$line_item->getLineItem();
+			$li['tax_code_id'] = $line_item->tax_code;
+			
+			$invoice_handler->update_line_item($li);
+			
+			}
+			
+		
+		$invoice_handler->commitUpdateInvoice();
+		
 		if ($original_status != 1 && $status == 1)
 			{
 			$invoice_handler->paid=date( 'Y-m-d H:i:s' );
