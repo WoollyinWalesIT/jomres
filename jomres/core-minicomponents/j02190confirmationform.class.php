@@ -230,7 +230,6 @@ class j02190confirmationform {
 			{
 			$text=$tmpl->getParsedTemplate();
 			$subject=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS',_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS)." ".$output['PROP_NAME'];
-			//mosMail( $from=$useremail, $fromname=$propertyName, $recipient=$hotelemail, $subject, $body=$text, $mode=1, $cc=NULL, $bcc=NULL, $Attachment=NULL);
 			$query="SELECT email FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."' LIMIT 1";
 			if ($mrConfig['errorCheckingShowSQL']) echo $query."<br>";
 			$userEmail =doSelectSql($query);
@@ -245,6 +244,7 @@ class j02190confirmationform {
 				$result=jomresMailer( $output['PROP_EMAIL'], $output['PROP_NAME'], $useremail, $subject, $text,$mode=1);
 				$result=jomresMailer($output['PROP_EMAIL'], $output['PROP_NAME'], $output['PROP_EMAIL'], $subject, $text,$mode=1);// Let's send this to the property too, so that they have a seperate record
 				}
+			echo jr_gettext('_JOMRES_CONFIRMATION_EMAIL_SENT',_JOMRES_CONFIRMATION_EMAIL_SENT);
 			}
 		}
 
@@ -252,6 +252,8 @@ class j02190confirmationform {
 		{
 		$output=array();
 
+		$output[]		=jr_gettext('_JOMRES_CONFIRMATION_EMAIL_SENT',_JOMRES_CONFIRMATION_EMAIL_SENT);
+		
 		$output[]		=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS',_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS);
 		$output[]		=jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR);
 		$output[]		=jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1',_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1);

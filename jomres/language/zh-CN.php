@@ -6710,3 +6710,7 @@ define('_JOMRES_CONTACTOWNER_TO_ADMIN_DESC','Set this option to Yes if you want 
 * @ignore
 */
 define('_JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE','Alternative address for Contact Owner emails.');
+/**
+* @ignore
+*/
+define('_JOMRES_CONFIRMATION_EMAIL_SENT','Confirmation email has been sent. You may close this window now.');
