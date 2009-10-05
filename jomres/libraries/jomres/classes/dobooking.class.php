@@ -3601,6 +3601,24 @@ class dobooking
 			{
 			if (count($roomAndTariffArray)>0 )
 				{
+				// Now we're going to rejig ths roomandtariffarray so that it's ordered by the tariff uid, not the room uid
+				/////
+				$tmpArr=array();
+				foreach ($roomAndTariffArray as $element)
+					{
+					$room_uid = $element[0];
+					$tariff_uid = $element[1];
+					$tmpArr[$tariff_uid."_".$room_uid]=array($tariff_uid,$room_uid);
+					}
+				sort($tmpArr);
+				$roomAndTariffArray = array();
+				foreach ($tmpArr as $element)
+					{
+					$room_uid = $element[1];
+					$tariff_uid = $element[0];
+					$roomAndTariffArray[] = array($room_uid,$tariff_uid);
+					}
+				//////
 				$roomDeets=array();
 				$roomUidArray=array();
 				$tariffUidArray=array();
