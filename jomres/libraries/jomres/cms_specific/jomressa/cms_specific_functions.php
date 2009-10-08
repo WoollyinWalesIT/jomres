@@ -34,7 +34,7 @@ function jomres_cmsspecific_areweinadminarea()
 	// TODO
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
-	
+	/*
 	global $thisJRUser,$tmpBookingHandler,$jomresConfig_mailfrom,$jomresConfig_fromname,$jomresConfig_live_site,$jrConfig;
 	if ($jrConfig['useNewusers']=="0")
 		return -1;
@@ -133,6 +133,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		$id = $thisJRUser->id;
 		}
 	return $id;
+	*/
 	}
 	
 function jomres_cmsspecific_getRegistrationURL()
