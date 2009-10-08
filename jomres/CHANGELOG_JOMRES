@@ -1,3 +1,31 @@
+Jomres 4.2rc1
+
+Modified edit invoice to fix bug with javascript not updating totals, and made inputs shorter to fit nicer on page.
+Fixed bug where list invoices not using correct url (showed up in SA)
+SA fixed bug where ajax calls were still producing headers
+SA modified login for admin so that they get taken to control panel, not front page
+SA Fixed path to property feature images missing in tooltips
+Added no_html to edit profiles
+Commented out defunct rooms header in property description tab
+SA Added piranhas beta2 templates
+Added no_html to grant access link in show profiles
+SA Fixed path to images in pathway
+Added variable deposit feature to Tariffs and Currencies tab
+Added option to allow site admin to direct all Contact Owner emails to an alternative address, and hardened contact owner to ensure that the property is published before the feature can be used.
+Added max people input for SRP edit room/property type functionality as due to the way some folks were changing property types, the rooms/bookings were being limited to too few guests.
+Added another file to obsolete file handler
+Fixed bug where custom text constact was getting set to upper, so plugin names would not translate.
+Added ability to use touch templating to translate property types.
+Fix invoice changes not saving in administrator area.
+Fixed add service to bill not updating invoice total.
+Modified edit booking to show the extras with tax added if applicable.
+Added email sent message to confirmation form output.
+Modified rooms listing so that rooms are listed according to the associated tariff uid, instead of the room uid.
+Added feature whereby a listing can be a "realestate" listing only, which offers far fewer settings and removes the need to use Jomres alongside another real estate listing applicaton.
+Reduced the number of people in room and booking in Normal mode tariff editing. Should resolve the out of memory problems that some folks were getting on Property Admin page.
+Edit to allow 7 star propertys
+Made the jomresbutton class a little narrower, fits better on the page.
+
 Jomres 4.2beta2
 
 Adding first draft of Jomres SA to v4.2
@@ -29,7 +57,7 @@ Added star icon to dashboard to indicate start days of bookings.
 Fixed some issues where QBA subscriptions weren't being set up in paypal.
 Added fix for missing class import in admin edit_invoice
 Additional changes to show tax details in booking form.
-Some SA bug fixes and tweaks to allow dynamic calling of templates and css
+SA bug fixes and tweaks to allow dynamic calling of templates and css
 Modified paths in updates feature
 Fixed mailer function to differentiate between smtp and mail options.
 Corrected init define check in preview email, was using the old v3 defines, now it's using v4.
@@ -116,7 +144,6 @@ Room/feature info popup shows now below the icon
 Layout modified, room features/property features are now shown in the property header. The old code for showing the features in the tabs is still available, but commented out. 
 Modified editing mode, made it switchable via a dropdown next to the language dropdown, and is particular to the user, rather than the property. 
 Fixed bug where in editing guests, house is saved as street, and street is saved as house. Template issue where wrong names were used on inputs. Amazingly, this issue must have been in the system for at least a couple of years but I can't remember anybody mentioning it.
-
 Added note to license failure warning to remind users to click Save after changing license binding on the license server.
 
 
