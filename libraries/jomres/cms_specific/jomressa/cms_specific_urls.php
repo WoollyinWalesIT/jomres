@@ -41,5 +41,5 @@ define("JOMRES_SITEPAGE_URL_NOHTML",$jomresConfig_live_site.'/jomres/index.php?n
 define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/jomres/index.php?admin');
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink.'/jomres/index.php?a=k');
 define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/jomres/index.php?a=k");
-
+define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/jomres/index.php?a=k&format=raw");
 ?>
