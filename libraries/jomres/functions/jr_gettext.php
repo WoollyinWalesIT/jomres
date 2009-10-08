@@ -42,7 +42,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 
 	$editing = $tmpBookingHandler->user_settings['editing_on'];
 	
-	$tmpBookingHandler->close_jomres_session();
+	//$tmpBookingHandler->close_jomres_session();
 
 	$mrConfig=getPropertySpecificSettings($property_uid);
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
