@@ -49,6 +49,7 @@ class j02300regprop1 {
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
 			return;
+			
 		if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))
 			$selectedCountry	= jomresGetParam( $_REQUEST, 'selectedCountry', "" );
 		else
@@ -68,6 +69,13 @@ class j02300regprop1 {
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
 
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+
+		$output['HREALESTATE_YESNO']=jr_gettext('_JOMRES_REALESTATE_YESNO',_JOMRES_REALESTATE_YESNO);
+		$output['HREALESTATE_YESNO_DESC']= jr_gettext('_JOMRES_REALESTATE_YESNO_DESC',_JOMRES_REALESTATE_YESNO_DESC);
+
+		$realestateOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
+		$realestateOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
+		$output['REALESTATEDROPDOWN']= jomresHTML::selectList($realestateOptions, 'realestate', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['is_real_estate_listing']);
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
@@ -84,6 +92,8 @@ class j02300regprop1 {
 		$output[]		=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 		$output[]		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output[]		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
+		$output['HREALESTATE_YESNO']=jr_gettext('_JOMRES_REALESTATE_YESNO',_JOMRES_REALESTATE_YESNO);
+		$output['HREALESTATE_YESNO_DESC']= jr_gettext('_JOMRES_REALESTATE_YESNO_DESC',_JOMRES_REALESTATE_YESNO_DESC);
 
 		foreach ($output as $o)
 			{

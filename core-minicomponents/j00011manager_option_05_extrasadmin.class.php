@@ -43,6 +43,9 @@ class j00011manager_option_05_extrasadmin {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listExtras", 'EditOptions.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS',_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS,false,false));
 		}
 	

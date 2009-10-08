@@ -103,7 +103,7 @@ class jomres_tooltips
 				else
 					$div_string.=' class="jomres_bt_tooltip" ';
 					
-				$div_string.=' title="'.$hover_content.'"><img src="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" ';
+				$div_string.=' title="'.$hover_content.'"><img src="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" alt="Information tooltip"';
 				if (isset($type_arguments["width"]))
 					$div_string.='width="'.$width.'" ';
 				if (isset($type_arguments["height"]))

@@ -5412,7 +5412,7 @@ if (!defined('_PN_RESULTS'))
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Note that this is not a booking form, instead you are sending an email.<br/>Please enter the message you\'d like to send to ');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Please enter the message you\'d like to send to ');
 /**
 * @ignore
 */
@@ -6744,3 +6744,20 @@ define('_JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE','Alternative address for Cont
 * @ignore
 */
 define('_JOMRES_CONFIRMATION_EMAIL_SENT','Confirmation email has been sent. You may close this window now.');
+/**
+* @ignore
+*/
+define('_JOMRES_REALESTATE_TITLE','Real estate listing');
+
+/**
+* @ignore
+*/
+define('_JOMRES_REALESTATE_YESNO','Is this property a Real estate listing?');
+/**
+* @ignore
+*/
+define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the property, select No if it is a hotel/b&b/guest house/villa type property where you will be offering the property or rooms in the property for short term rental.');
+/**
+* @ignore
+*/
+define('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT','Contact agent');

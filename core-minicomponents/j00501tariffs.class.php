@@ -47,6 +47,7 @@ class j00501tariffs {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
+		
 		$lists=$componentArgs['lists'];
 		$paymentAmounts=$componentArgs['paymentAmounts'];
 		$tariffModelsDropdown=$componentArgs['tariffModelsDropdown'];
@@ -62,24 +63,26 @@ class j00501tariffs {
 
 		$configurationPanel->startPanel(_JOMRES_COM_A_TARIFFS);
 
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			$configurationPanel->setleft(JOMRES_COM_A_TARIFFMODE);
-			$configurationPanel->setmiddle($tariffModeDD);
-			$configurationPanel->setright(JOMRES_COM_A_TARIFFMODE_DESC);
-			$configurationPanel->insertSetting();
-				
-			$configurationPanel->setleft(_JOMRES_CURRENCYFORMAT);
-			$configurationPanel->setmiddle($cformatdropdown);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+				{
+				$configurationPanel->setleft(JOMRES_COM_A_TARIFFMODE);
+				$configurationPanel->setmiddle($tariffModeDD);
+				$configurationPanel->setright(JOMRES_COM_A_TARIFFMODE_DESC);
+				$configurationPanel->insertSetting();
+					
+				$configurationPanel->setleft(_JOMRES_CURRENCYFORMAT);
+				$configurationPanel->setmiddle($cformatdropdown);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_MODEL);
-			$configurationPanel->setmiddle($tariffModelsDropdown);
-			$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_MODEL_DESC);
-			$configurationPanel->insertSetting();
+				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_MODEL);
+				$configurationPanel->setmiddle($tariffModelsDropdown);
+				$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_MODEL_DESC);
+				$configurationPanel->insertSetting();
+				}
 			}
-			
 		if ($jrConfig['useGlobalCurrency'] !="1")
 			{
 			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYSYMBOL);
@@ -93,123 +96,116 @@ class j00501tariffs {
 			$configurationPanel->insertSetting();
 			}
 
-		$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
-		$configurationPanel->setmiddle($lists['perPersonPerNight']);
-		$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT);
-		$configurationPanel->setmiddle($lists['chargeDepositYesNo']);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE);
-		$configurationPanel->setmiddle($lists['depositIsPercentage']);
-		$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC);
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_VALUE);
-		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_depositValue" value="'.$mrConfig['depositValue'].'" />');
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE);
-		$configurationPanel->setmiddle($lists['use_variable_deposits']);
-		$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC);
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS);
-		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_variable_deposit_threashold" value="'.$mrConfig['variable_deposit_threashold'].'" />');
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(_JOMRES_COM_CHARGING_CONFIG);
-		$configurationPanel->setmiddle($paymentAmounts);
-		$configurationPanel->setright(_JOMRES_COM_CHARGING_CONFIG_DESC);
-		$configurationPanel->insertSetting();
-		
-		
-		
-		
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP);
-			$configurationPanel->setmiddle($lists['roundupDepositYesNo']);
+			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
+			$configurationPanel->setmiddle($lists['perPersonPerNight']);
+			$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT);
+			$configurationPanel->setmiddle($lists['chargeDepositYesNo']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-			}
+
+			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE);
+			$configurationPanel->setmiddle($lists['depositIsPercentage']);
+			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC);
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_VALUE);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_depositValue" value="'.$mrConfig['depositValue'].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE);
+			$configurationPanel->setmiddle($lists['use_variable_deposits']);
+			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC);
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_variable_deposit_threashold" value="'.$mrConfig['variable_deposit_threashold'].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
 			
+			$configurationPanel->setleft(_JOMRES_COM_CHARGING_CONFIG);
+			$configurationPanel->setmiddle($paymentAmounts);
+			$configurationPanel->setright(_JOMRES_COM_CHARGING_CONFIG_DESC);
+			$configurationPanel->insertSetting();
+
+			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+				{
+				$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP);
+				$configurationPanel->setmiddle($lists['roundupDepositYesNo']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				}
+
+			$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
+			$configurationPanel->setmiddle($lists['verbosetariffinfo']);
+			$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
+			$configurationPanel->insertSetting();
 			
+			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING);
+			$configurationPanel->setmiddle();
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
+			$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
+			$configurationPanel->setright('');
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING2);
+			$configurationPanel->setmiddle();
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX);
+			$configurationPanel->setmiddle($lists['roomTaxYesNo']);
+			$configurationPanel->setright(_JOMRES_COM_A_ROOMTAX_DESC);
+			$configurationPanel->insertSetting();
 
-		
-		$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
-		$configurationPanel->setmiddle($lists['verbosetariffinfo']);
-		$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING);
-		$configurationPanel->setmiddle();
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
-		$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
-		$configurationPanel->setright('');
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING2);
-		$configurationPanel->setmiddle();
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-		
-		$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX);
-		$configurationPanel->setmiddle($lists['roomTaxYesNo']);
-		$configurationPanel->setright(_JOMRES_COM_A_ROOMTAX_DESC);
-		$configurationPanel->insertSetting();
+			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_FIXED);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxFixed" value="'.$mrConfig['roomTaxFixed'].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_FIXED);
-		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxFixed" value="'.$mrConfig['roomTaxFixed'].'" />');
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_PERCENTAGE);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxPercentage" value="'.$mrConfig['roomTaxPercentage'].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_PERCENTAGE);
-		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxPercentage" value="'.$mrConfig['roomTaxPercentage'].'" />');
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+			/*
+			$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX_PERCENTAGE);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_euroTaxPercentage" value="'.$mrConfig['euroTaxPercentage'].'" />');
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			*/
+			/*
+			$codes= currencyCodesArray();
+			$conversionSelect='<select size=11 name="cfg_currencyCodes[]" id=currencyCodes multiple onMouseDown="GetCurrentListValues(this);" onchange="FillListValues(this);" style="width:200;">';
+			$codeOptionStr="";
+			$mrConfigCodesArray=explode(",",$mrConfig['currencyCodes']);
+			foreach ($codes as $key=>$code)
+				{
+				$selected="";
+				if (in_array($key,$mrConfigCodesArray) )
+					$selected="selected";
+				$codeOptionStr.='<option value="'.$key.'"  '.$selected.'>'.$key.' '.$code['country'].' '.$code['currencyname'].'</option>';
+				}
+			$conversionSelect.=$codeOptionStr;
+			$conversionSelect.='</select><br><font face=arial size=1><a href="javascript:SelectAllList(document.adminForm.currencyCodes);" style="color:blue;">select all</a> &nbsp;&nbsp;<a href="javascript:DeselectAllList(document.adminForm.currencyCodes);" style="color:blue;">deselect all</a></font>';
 
-
-
-/*
-		$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX_PERCENTAGE);
-		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_euroTaxPercentage" value="'.$mrConfig['euroTaxPercentage'].'" />');
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-*/
-		/*
-		$codes= currencyCodesArray();
-		$conversionSelect='<select size=11 name="cfg_currencyCodes[]" id=currencyCodes multiple onMouseDown="GetCurrentListValues(this);" onchange="FillListValues(this);" style="width:200;">';
-		$codeOptionStr="";
-		$mrConfigCodesArray=explode(",",$mrConfig['currencyCodes']);
-		foreach ($codes as $key=>$code)
-			{
-			$selected="";
-			if (in_array($key,$mrConfigCodesArray) )
-				$selected="selected";
-			$codeOptionStr.='<option value="'.$key.'"  '.$selected.'>'.$key.' '.$code['country'].' '.$code['currencyname'].'</option>';
+			$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
+			$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
+			$configurationPanel->setright($conversionSelect);
+			$configurationPanel->insertSetting();
+			*/
 			}
-		$conversionSelect.=$codeOptionStr;
-		$conversionSelect.='</select><br><font face=arial size=1><a href="javascript:SelectAllList(document.adminForm.currencyCodes);" style="color:blue;">select all</a> &nbsp;&nbsp;<a href="javascript:DeselectAllList(document.adminForm.currencyCodes);" style="color:blue;">deselect all</a></font>';
-
-		$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
-		$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
-		$configurationPanel->setright($conversionSelect);
-		$configurationPanel->insertSetting();
-		*/
-		
-
-		
+	
 		$configurationPanel->endPanel();
-	}
+		}
 
 	function outputConversionJavascript()
 		{

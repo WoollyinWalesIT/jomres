@@ -44,6 +44,8 @@ class j00501xtariffsenhanced {
 			}
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		if ($mrConfig['tariffmode'] == 2)
 			{
 			if (!isset($mrConfig['tariffsenhanceddefault']))

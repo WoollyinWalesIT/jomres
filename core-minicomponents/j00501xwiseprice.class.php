@@ -44,6 +44,8 @@ class j00501xwiseprice {
 			}
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		if ($mrConfig['singleRoomProperty'] == 0)
 			{
 			$yesno = array();

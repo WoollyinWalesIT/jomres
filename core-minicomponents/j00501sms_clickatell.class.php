@@ -42,6 +42,9 @@ class j00501sms_clickatell {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$configurationPanel=$componentArgs['configurationPanel'];
 		jr_import('jrportal_sms_clickatell_settings');
 		$sms_clickatell_settings = new jrportal_sms_clickatell_settings();

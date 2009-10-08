@@ -60,6 +60,9 @@ class j00010reception_option_07_01_blank {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$this->cpanelButton=jomres_mainmenu_option("", 'blank.png',"");
 		}
 	

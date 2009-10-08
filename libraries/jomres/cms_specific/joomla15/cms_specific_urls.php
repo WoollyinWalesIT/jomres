@@ -35,8 +35,8 @@ define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
 //$jomresItemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
 
-if ($jomresItemid == 0)
-	{
+//if ($jomresItemid == 0)
+//	{
 	$query = "SELECT id"
 		. "\n FROM #__menu"
 		. "\n WHERE "
@@ -54,7 +54,7 @@ if ($jomresItemid == 0)
 		{if (isset($jrConfig['jomresItemid']))
 			$jomresItemid = $jrConfig['jomresItemid'];
 		}
-	}
+//	}
 	
 $jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
 

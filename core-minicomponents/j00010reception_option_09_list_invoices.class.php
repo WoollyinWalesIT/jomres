@@ -43,6 +43,9 @@ class j00010reception_option_09_list_invoices {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=list_property_invoices"), 'Invoice.png', jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,false,false));
 		}
 	

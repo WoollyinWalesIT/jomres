@@ -1,0 +1,130 @@
+<patTemplate:tmpl name="pageoutput" >
+<script type="text/javascript" src="{LIVE_SITE}/jomres/javascript/tabber-minimized.js"></script>
+<link rel="stylesheet" href="{LIVE_SITE}/jomres/css/tabber.css" TYPE="text/css" MEDIA="screen" />
+
+<style type="text/css">
+
+
+</style>
+
+<script type="text/javascript">
+document.write('<style type="text/css">.tabber{display:none;}<\/style>');
+</script>
+
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery("div.address_info").corner("5px");
+		jQuery("div.viewproperty").corner("5px");
+		jQuery("div.jomres_button").corner("5px");
+		jQuery("div.property_details").corner("5px");
+		jQuery("div.more_info").corner("5px");
+		jQuery("td.viewproperty_rightcol").corner("5px");
+    });
+</script>
+
+<div class="panelwrapper" style="padding: 10px; margin: 10px">
+	<div class="innerwrapper">
+		<div class="viewproperty">
+			<table border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="viewproperty_rightcol" valign="top">
+						<table border="0" width="100%" cellpadding="0" cellspacing="0" class="top_info">
+							<tr>
+								<td>
+									<div class="jomres_button">
+										{CONTACTUS}
+									</div>
+								</td>
+								<td>
+									<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="slideshowlink"  unusedvars="nbsp">
+									<div class="jomres_button">
+										{SLIDESHOWLINK}
+									</div>
+									</patTemplate:tmpl>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<!-- This gallery link has now been reused and renamed to the external link -->
+									<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink"  unusedvars="nbsp">
+										{GALLERYLINK}
+									</patTemplate:tmpl>
+									<div class="address_info" style="clear:both;">
+										&nbsp;&nbsp;{COM_A_BASICTEMPLATE_SHOWADDRESS} {STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY} {TELEPHONE}
+									</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="viewproperty_leftcol" valign="top">
+						<div class="tabber">
+							<div class="tabbertab">
+								<div class="tab_panel_content">
+									<h2>{TITLE_PROPERTYDETAILS}</h2>
+										<p>{DESCRIPTION}</p>
+								</div>
+							</div>
+							<div class="tabbertab">
+								<div class="tab_panel_content">
+									<h2>{TITLE_MOREINFO}</h2>
+										<div class="leftinfo_title">
+											{HAREAACTIVITIES}
+										</div>
+										<div class="leftinfo_content">
+											{AREAACTIVITIES}
+										</div>
+										<div class="leftinfo_title">
+											{HPOLICIESDISCLAIMERS}
+										</div>
+										<div class="leftinfo_content">
+											{POLICIESDISCLAIMERS}
+										</div>
+										<div class="leftinfo_title">
+											{HDRIVINGDIRECTIONS}
+										</div>
+										<div class="leftinfo_content">
+											{DRIVINGDIRECTIONS}
+										</div>
+										<div class="leftinfo_title">
+											{HAIRPORTS}
+										</div>
+										<div class="leftinfo_content">
+											{AIRPORTS}
+										</div>
+										<div class="leftinfo_title">
+											{HOTHERTRANSPORT}
+										</div>
+										<div class="leftinfo_content">
+											{OTHERTRANSPORT}
+										</div>
+								</div>
+							</div>
+							<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
+							<div class="tabbertab">
+								<div class="tab_panel_content">
+									<h2>{SLIDESHOW_TITLE}</h2>
+									{SLIDESHOW}
+								</div>
+							</div>
+							</patTemplate:tmpl>
+						
+							<patTemplate:tmpl name="mapcontent" type="simpleCondition" requiredVars="map_title">
+							<div class="tabbertab">
+								<div class="tab_panel_content">
+									<h2>{MAP_TITLE}</h2>
+									{GOOGLE_MAPS}
+								</div>
+							</div>
+							</patTemplate:tmpl>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+</patTemplate:tmpl>

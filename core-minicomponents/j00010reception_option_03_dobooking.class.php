@@ -43,6 +43,11 @@ class j00010reception_option_03_dobooking {
 			{
 			$this->template_touchable=false; return;
 			}
+			
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
+	
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$output['BOOKAROOMLINK']=JOMRES_SITEPAGE_URL."&task=dobooking";

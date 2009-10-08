@@ -102,6 +102,9 @@ class j04200editproperty {
 				$output['LONG']=$property->long;
 				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
 				
+				$output['CURRENCY']=$mrConfig['currency'];
+				
+				$output['PRICE']=$property->property_key;
 				$output['METATITLE']=getEscaped(($property->metatitle ));
 				$output['METADESCRIPTION']=getEscaped(($property->metadescription ));
 
@@ -275,6 +278,7 @@ class j04200editproperty {
 		$output['STARSDROPDOWN']=$starsDropDownList;
 		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
 		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
+		
 
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
@@ -286,6 +290,8 @@ class j04200editproperty {
 		$output['HFAX']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX);
 		$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL);
 		$output['HSTARS']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS);
+		$output['HPRICE']=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
+		
 		$output['HFEATURES']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES);
 		$output['HPROPDESCRIPTION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION);
 		$output['HCHECKINTIMES']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES);
@@ -334,7 +340,10 @@ class j04200editproperty {
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'edit_property.html');
+		if ($mrConfig['is_real_estate_listing']==1)
+			$tmpl->readTemplatesFromInput( 'edit_property_realestate.html');
+		else
+			$tmpl->readTemplatesFromInput( 'edit_property.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		if ($jrConfig['useGlobalPFeatures']=="1")
 			$tmpl->addRows( 'globalPfeatures',$globalPfeatures);

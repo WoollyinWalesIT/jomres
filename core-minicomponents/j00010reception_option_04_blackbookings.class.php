@@ -43,6 +43,9 @@ class j00010reception_option_04_blackbookings {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listBlackBookings"), 'EditBlackBookings.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS,false,false));
 		}
 	

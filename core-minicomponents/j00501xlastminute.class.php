@@ -46,6 +46,8 @@ class j00501xlastminute {
 			
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		if ($mrConfig['singleRoomProperty'] == 1)
 			{
 			$yesno = array();

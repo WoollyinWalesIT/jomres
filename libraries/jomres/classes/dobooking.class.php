@@ -835,15 +835,15 @@ class dobooking
 				//if ($ex->maxquantity > 1)
 				//	$clickUnlock='jQuery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
 				if ($model['force']!="1")
-					$extra_deets['INPUTBOX']='<input id="'.$inputId.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');"; >';
+					$extra_deets['INPUTBOX']='<input id="'.$inputId.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 				else
 					{
 					$this->forcedExtras[] =$ex->uid;
 					$this->setExtras($ex->uid);
-					$extra_deets['INPUTBOX']='<input id="'.stripslashes($ex->name).'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" >';
+					$extra_deets['INPUTBOX']='<input id="'.stripslashes($ex->name).'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
 					}
 				if ($ex->maxquantity > 1)
-					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="inputbox"  AUTOCOMPLETE="OFF" onChange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.')";', $extraDefaultQuantity, "%02d" );
+					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="inputbox"  AUTOCOMPLETE="OFF" onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d" );
 
 				$extra_deets['AJAXFORM_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 				$extra_deets['AJAXFORM_EXTRAS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));
@@ -1239,7 +1239,7 @@ class dobooking
 				else
 					$defNo=0;
 				}
-			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype', 'size="1" class="inputbox" onChange="getResponse_guesttype(\''.$ct->id.'\',this.value)";' , $defNo, "0" );
+			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype', 'size="1" class="inputbox" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
 			$cust[]=$customerTypes;
 			}
 		return $cust;
@@ -1427,7 +1427,7 @@ class dobooking
 		$smokingOpts[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES);
 		$smokingOpts[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO);
 		$smokingOpts[] = jomresHTML::makeOption( '2', _JOMRES_FRONT_ROOMSMOKING_EITHER);
-		$smokingDropdown = jomresHTML::selectList( $smokingOpts, 'smoking', 'size="1" class="inputbox" onChange="getResponse_particulars(\'smoking\',this.value);" ', 'value', 'text', $smoking );
+		$smokingDropdown = jomresHTML::selectList( $smokingOpts, 'smoking', 'size="1" class="inputbox" onchange="getResponse_particulars(\'smoking\',this.value);" ', 'value', 'text', $smoking );
 		return $smokingDropdown;
 		}
 
@@ -2120,11 +2120,11 @@ class dobooking
 				if ($this->cfg_fixedPeriodBookings =="1" )
 					$output.=' onchange="getResponse_particulars(\'arrivalDate\',this.value);" ';
 				else
-					$output.=' onchange="ajaxADate(this.value,\''.$dateFormat.'\'); getResponse_particulars(\'arrivalDate\',this.value);" ';
+					$output.=' onchange="ajaxADate(this.value,\''.$dateFormat.'\'); getResponse_particulars(\'arrivalDate\',this.value);getResponse(\'departureDate\',this.value);" ';
 				}
 			else
 				$output.=' onchange="getResponse_particulars(\'departureDate\',this.value);" ';
-			$output.=' onchange="getResponse(\'departureDate\',this.value);" ';
+			//$output.=' onchange="getResponse(\'departureDate\',this.value);" ';
 			
 			// Popup on both input and image click
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
@@ -2749,7 +2749,7 @@ class dobooking
 				//$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes($customer->surname).", ".stripslashes($customer->firstname).", ".stripslashes($customer->street).". ".stripslashes($customer->town));
 				$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes($customer->surname).", ".stripslashes($customer->firstname) );
 				}
-			$dropDownList = jomresHTML::selectList( $ec, 'existingCustomers', ' onChange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="inputbox"', 'value', 'text', 0 );
+			$dropDownList = jomresHTML::selectList( $ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="inputbox"', 'value', 'text', 0 );
 			}
 		return  $dropDownList;
 		}

@@ -49,6 +49,8 @@ class j00501bookings1 {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$lists=$componentArgs['lists'];
 		//$tabs=$componentArgs['tabs'];
 		$smokingOptionDropdownList=$componentArgs['smokingOptionDropdownList'];

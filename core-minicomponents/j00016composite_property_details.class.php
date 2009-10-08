@@ -88,41 +88,50 @@ class j00016composite_property_details {
 			$output['GOOGLE_MAPS']=$MiniComponents->miniComponentData['01050']['x_geocoder'];
 			}
 		// j01020 tariffs (either the verbose or the compact view, depending on General Config)
-		if ($mrConfig['showTariffsInline']=="1")
+		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			$tariffslist[] = array('tariffs_list_title'=>$output['TITLE_TARIFF'],'INLINE_TARIFFS'=>$MiniComponents->miniComponentData['01020']['showtariffs']);
-			$output['INLINE_TARIFFS']=$MiniComponents->miniComponentData['01020']['showtariffs'];
+			if ($mrConfig['showTariffsInline']=="1")
+				{
+				$tariffslist[] = array('tariffs_list_title'=>$output['TITLE_TARIFF'],'INLINE_TARIFFS'=>$MiniComponents->miniComponentData['01020']['showtariffs']);
+				$output['INLINE_TARIFFS']=$MiniComponents->miniComponentData['01020']['showtariffs'];
+				}
 			}
-		
 		// j00017 SRP avl cal
 		// j00018 MRP avl cal
-		if ($mrConfig['showOnlyAvailabilityCalendar'])
+		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			if ($mrConfig['singleRoomProperty'])
+			if ($mrConfig['showOnlyAvailabilityCalendar'])
 				{
-				echo $MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
+				if ($mrConfig['singleRoomProperty'])
+					{
+					echo $MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
+					}
+				else
+					{
+					echo $MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
+					}
+				return;
 				}
-			else
+			}
+		if ($mrConfig['is_real_estate_listing']==0)
+			{
+			if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
 				{
-				echo $MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
+				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar']);
+				$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
 				}
-			return;
+			elseif ($mrConfig['showAvailabilityCalendar'])
+				{
+				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar']);
+				$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
+				}
 			}
-			
-		if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
-			{
-			$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar']);
-			$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
-			}
-		elseif ($mrConfig['showAvailabilityCalendar'])
-			{
-			$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar']);
-			$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
-			}
-
 		// j01055 Rooms list
-		if ($mrConfig['roomslistinpropertydetails']=="1")
-			$roomslist[]=array('ROOMS_LIST_TITLE'=>$output['TITLE_ROOMSLIST'],'ROOMS_LIST'=>$MiniComponents->miniComponentData['01055']['showroomdetails']);
+		if ($mrConfig['is_real_estate_listing']==0)
+			{
+			if ($mrConfig['roomslistinpropertydetails']=="1")
+				$roomslist[]=array('ROOMS_LIST_TITLE'=>$output['TITLE_ROOMSLIST'],'ROOMS_LIST'=>$MiniComponents->miniComponentData['01055']['showroomdetails']);
+			}
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$mcOutput=$MiniComponents->getAllEventPointsData('00015');
@@ -135,25 +144,35 @@ class j00016composite_property_details {
 			}
 			
 		$tmpl->addRows( 'mapcontent', $mapcontent );
-		$tmpl->addRows( 'tariffslist', $tariffslist );
+		if ($mrConfig['is_real_estate_listing']==0)
+			$tmpl->addRows( 'tariffslist', $tariffslist );
+		if ($mrConfig['is_real_estate_listing']==0)
 		$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
 		$tmpl->addRows( 'slideshowcontent', $slideshowcontent );
-		if ($mrConfig['singleRoomProperty']=="0")
-			$tmpl->addRows( 'roomslist', $roomslist );
+		if ($mrConfig['is_real_estate_listing']==0)
+			{
+			if ($mrConfig['singleRoomProperty']=="0")
+				$tmpl->addRows( 'roomslist', $roomslist );
+			}
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'feature_icons', $featureList);
-		$tmpl->addRows( 'roomtype_icons', $rtRows);
+		if ($mrConfig['is_real_estate_listing']==0)
+			$tmpl->addRows( 'roomtype_icons', $rtRows);
 		$tmpl->addRows( 'bookinglink', $bookinglink);
 		$tmpl->addRows( 'slideshowlink', $slideshowlink);
-		$tmpl->addRows( 'tariffslink', $tariffslink);
+		if ($mrConfig['is_real_estate_listing']==0)
+			$tmpl->addRows( 'tariffslink', $tariffslink);
 		$tmpl->addRows( 'gallerylink', $gallerylink);
 		if ($mrConfig['singleRoomProperty']=="0")
 			$tmpl->addRows( 'roomslistlink', $roomslistlink);
 		$tmpl->addRows( 'mappinglink', $mappinglink);
 
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'composite_property_details.html');
-
+		if ($mrConfig['is_real_estate_listing']==0)
+			$tmpl->readTemplatesFromInput( 'composite_property_details.html');
+		else
+			$tmpl->readTemplatesFromInput( 'realestate_property_details.html');
+			
 		$cachableContent = $tmpl->getParsedTemplate();
 		$task 				= get_showtime('task');
 		jr_import('jomres_cache');

@@ -44,6 +44,9 @@ class j00010reception_option_06_listnewbookings {
 			{
 			$this->template_touchable=false; return;
 			}
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listNewBookings", 'ListNewBookings.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS,false,false));
 		}
 	
