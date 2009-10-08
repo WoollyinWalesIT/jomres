@@ -75,7 +75,7 @@ class j04200editproperty {
 			foreach($propertyList as $property)
 				{
 				$starsDropDownList = '<span ><select id="stars" class="inputbox" style="border:0px" name="stars">';
-				for ($i=0, $n=5; $i <= $n; $i++)
+				for ($i=0, $n=7; $i <= $n; $i++)
 					{
 					if ($i==($property->stars))
 						$selected="selected";
