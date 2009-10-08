@@ -11,6 +11,10 @@ define('_JOMRES_INITCHECK', 1 );
 
 require_once($dir.'/integration.php'); 
 
+if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending response codes
+	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
+$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+$tmpBookingHandler->initBookingSession($jomressession);
 if (!defined('TEMPLATES_FRONTEND'))
 	{
 	define("TEMPLATES_ADMIN",_JOMRES_DETECTED_CMS_SPECIFIC_FILES."templates".JRDS."admin".JRDS);
