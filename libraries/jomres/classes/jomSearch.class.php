@@ -594,6 +594,16 @@ class jomSearch {
 			else
 				$query="SELECT property_uid FROM #__jomres_rates WHERE roomrateperday LIKE '%' $property_ors ";
 			$result=doSelectSql($query);
+			
+			
+			if (is_array($filter) )
+				{
+				$property_ors = str_replace("property_uid","propertys_uid",$property_ors);
+				$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_key >= ".$filter['from']." AND property_key <= ".$filter['to']."  $property_ors ";
+				$result2=doSelectSql($query);
+				}
+
+			
 			// We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
 			$res=array();
 			foreach ($result as $r)
@@ -603,6 +613,17 @@ class jomSearch {
 				if (!in_array($resultObj,$res))
 					$res[]=$resultObj;
 				}
+			if (count($result2)>0)
+				{
+				foreach ($result2 as $r)
+					{
+					$resultObj = new stdClass;
+					$resultObj->propertys_uid = $r->propertys_uid;
+					if (!in_array($resultObj,$res))
+						$res[]=$resultObj;
+					}
+				}
+
 			$this->resultBucket=$res;
 			//var_dump($this->resultBucket);exit;
 			}
@@ -974,12 +995,21 @@ function prepPriceRangeSearch($increments=10)
 	$query = "SELECT DISTINCT roomrateperday FROM #__jomres_rates ORDER by roomrateperday";
 	$rateList = doSelectSql($query);
 
+	$query = "SELECT DISTINCT property_key FROM #__jomres_propertys ORDER by property_key";
+	$realestateList = doSelectSql($query);
+
 	$result=array();
 	$result[]=$searchAll;
 	$allTariffs=array();
 	foreach ($rateList as $rate)
 		{
 		$allTariffs[]=$rate->roomrateperday;
+		}
+		
+	foreach ($realestateList as $rate)
+		{
+		
+		$allTariffs[]=$rate->property_key;
 		}
 		
 	$lowest = $allTariffs[0];
