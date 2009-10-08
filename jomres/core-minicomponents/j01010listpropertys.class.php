@@ -107,7 +107,7 @@ class j01010listpropertys {
 		if (count($propertys_uids) >0)
 			{
 			$g=genericOr($propertys_uids,'propertys_uid');
-			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id FROM #__jomres_propertys WHERE ";
+			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
 			$query.=$g;
 			$total_records=count($propertys_uids);
 			$record_per_page=$limit;
@@ -292,51 +292,62 @@ class j01010listpropertys {
 						$property_deets['FEATURELIST']=$featureList;
 						}
 
-					$tArr=array();
-					$ratesArray=array();
-
-					foreach ($tariffsArray as $k=>$v)
-						{
-						$key=key($v);
-						$val=$tariffsArray[$k][$key];
-						if (key($v)==intval($property->propertys_uid))
-							$tArr[]=$val;
-						}
-					foreach ($tArr as $t)
-						{
-						$date_elements	 = explode("/",$t['validfrom']);
-						$unixValidfrom= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-						$date_elements	 = explode("/",$t['validto']);
-						$unixValidto= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-						if ( $unixValidfrom <= $unixTodaysDate && $unixValidto >= $unixTodaysDate )
-							{
-							$ratesArray[]=$t['roomrateperday'];
-							}
-						}
-					if (count($ratesArray) >0)
-						{
-						sort($ratesArray,SORT_NUMERIC);
-						$lowestPrice=$ratesArray[0];
-						$lowestPrice=$current_property_details->get_gross_accommodation_price($lowestPrice,$property->propertys_uid);
-						if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
-							$lowestPrice = $lowestPrice * 7;
-							
-						}
-					else
-						$lowestPrice="-";
-
 					$currfmt = jomres_getSingleton('jomres_currency_format');
-					$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
-					
-					if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
-						$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+					if ($mrConfig['is_real_estate_listing']==0)
+						{
+						$tArr=array();
+						$ratesArray=array();
+
+						foreach ($tariffsArray as $k=>$v)
+							{
+							$key=key($v);
+							$val=$tariffsArray[$k][$key];
+							if (key($v)==intval($property->propertys_uid))
+								$tArr[]=$val;
+							}
+						foreach ($tArr as $t)
+							{
+							$date_elements	 = explode("/",$t['validfrom']);
+							$unixValidfrom= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+							$date_elements	 = explode("/",$t['validto']);
+							$unixValidto= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+							if ( $unixValidfrom <= $unixTodaysDate && $unixValidto >= $unixTodaysDate )
+								{
+								$ratesArray[]=$t['roomrateperday'];
+								}
+							}
+						if (count($ratesArray) >0)
+							{
+							sort($ratesArray,SORT_NUMERIC);
+							$lowestPrice=$ratesArray[0];
+							$lowestPrice=$current_property_details->get_gross_accommodation_price($lowestPrice,$property->propertys_uid);
+							if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
+								$lowestPrice = $lowestPrice * 7;
+								
+							}
+						else
+							$lowestPrice="-";
+
+						
+						$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
+						
+						if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
+							$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+						else
+							{
+							if ($mrConfig['perPersonPerNight']=="0" )
+								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+							else
+								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+							}
+						$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
+						}
 					else
 						{
-						if ($mrConfig['perPersonPerNight']=="0" )
-							$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
-						else
-							$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".$mrConfig['currency'].$currfmt->get_formatted($property->property_key);
 						}
+						
+						
 					$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
 					$propertyContactArray=$propertyAddressArray[1];
 					$propertyAddyArray=$propertyAddressArray[2];
@@ -344,35 +355,40 @@ class j01010listpropertys {
 					$property_deets['COUNTER']=$templateCounter;
 					$templateCounter++;
 					//$property_deets['PROP_TYPE']=$propertyAddressArray[3];
-
-					if ($mrConfig['visitorscanbookonline'] == "1")
+					if ($mrConfig['is_real_estate_listing']==0)
 						{
-						if ( $jrConfig['useSSLinBookingform'] == "1" )
-							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
-						else
-							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
-							
-						$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\">";
-						if ($mrConfig['singleRoomProperty'] =="1")
-							$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
-						else
-							$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false) ;
-						/*
-						if ( $jrConfig['useSSLinBookingform'] == "1" )
+						if ($mrConfig['visitorscanbookonline'] == "1")
 							{
-							$property_deets['LINKONLY'] = str_replace("http://","https://",$property_deets['LINKONLY']);
-							}
-						*/
-						
+							if ( $jrConfig['useSSLinBookingform'] == "1" )
+								$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
+							else
+								$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
+								
+							$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\">";
+							if ($mrConfig['singleRoomProperty'] =="1")
+								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
+							else
+								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false) ;
+							/*
+							if ( $jrConfig['useSSLinBookingform'] == "1" )
+								{
+								$property_deets['LINKONLY'] = str_replace("http://","https://",$property_deets['LINKONLY']);
+								}
+							*/
+							
 
+							}
+						else
+							{
+							$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
+							$bookinglink[]		= 	$link;
+							}
 						}
 					else
 						{
-						$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
+						$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT',_JOMRES_FRONT_MR_MENU_CONTACT_AGENT,false,false)."</a>";
 						$bookinglink[]		= 	$link;
 						}
-
-					
 					
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property_uid);
 					//$property_deets['PROP_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property->propertys_uid,stripslashes($propertyContactArray[0]),false,false);
@@ -384,7 +400,6 @@ class j01010listpropertys {
 
 					$property_deets['LIVESITE']=get_showtime('live_site');
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
-					$property_deets['PRICESFROM']= jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false) ;
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
 					$property_deets['PROPERTYNAME']= stripslashes($propertyContactArray[0]);
 					$property_deets['PROPERTYTOWN']= $ptown;

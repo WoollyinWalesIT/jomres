@@ -37,7 +37,8 @@ class jomres_sanity_check
 	function do_sanity_checks()
 		{
 		$this->warnings .= $this->checks_guest_types_pppn();
-		$this->warnings .= $this->checks_tariffs_exist();
+		if ($this->mrConfig['is_real_estate_listing']==0)
+			$this->warnings .= $this->checks_tariffs_exist();
 		return $this->warnings;
 		}
 		

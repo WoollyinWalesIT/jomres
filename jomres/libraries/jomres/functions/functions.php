@@ -1318,7 +1318,7 @@ function hotelSettings()
 	$property_uid=(int)getDefaultProperty();
 	$mrConfig=getPropertySpecificSettings($property_uid);
 	$option="com_jomres";
-
+	
 	$componentArgs=array();
 	$componentArgs['mrConfig']=$mrConfig;
 	$MiniComponents->triggerEvent('0500',$componentArgs); // Generate configuration options. Optional

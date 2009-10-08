@@ -48,6 +48,8 @@ class j00501odds {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$lists=$componentArgs['lists'];
 		$editIconSize=$componentArgs['editIconSize'];
 		$configurationPanel->startPanel(_JOMRES_COM_A_ODDS);

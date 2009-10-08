@@ -58,6 +58,7 @@ class j02310regprop2 {
 
 		$property_region				= jomresGetParam( $_POST, 'region', "" );
 		$property_country				= jomresGetParam( $_POST, 'country', "" );
+		$realestate						= (int)jomresGetParam( $_POST, 'realestate', 0 );
 
 		$propertyFeatures="";
 
@@ -168,7 +169,10 @@ class j02310regprop2 {
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'register_property2.html');
+		if ($realestate ==1)
+			$tmpl->readTemplatesFromInput( 'register_property2_realestate.html');
+		else
+			$tmpl->readTemplatesFromInput( 'register_property2.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		if ($jrConfig['useGlobalPFeatures']=="1")
 			$tmpl->addRows( 'globalPfeatures',$globalPfeatures);

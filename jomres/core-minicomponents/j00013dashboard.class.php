@@ -48,6 +48,8 @@ class j00013dashboard extends jomres_dashboard
 			}
 		$this->property_uid		= getDefaultProperty();
 		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("dashboard",$this->property_uid,false);
 		$cacheContent = $cache->readCache();

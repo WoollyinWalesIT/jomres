@@ -449,7 +449,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$output['CUSTOMFIELD_JAVASCRIPT']=generateCustomFieldsJavascript($customFields);
 		}
 	else
-		$output['CUSTOMFIELD_JAVASCRIPT']="<script>function checkCustomFields(){return true}</script>";
+		$output['CUSTOMFIELD_JAVASCRIPT']="<script type=\"text/javascript\">function checkCustomFields(){return true}</script>";
 	
 	
 	$pageoutput[]=$output;

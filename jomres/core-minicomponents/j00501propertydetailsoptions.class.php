@@ -47,6 +47,8 @@ class j00501propertydetailsoptions {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$lists=$componentArgs['lists'];
 		$configurationPanel->startPanel(_JOMRES_PATHWAY_PROPERTYDETAILS);
 		

@@ -44,6 +44,8 @@ class j00501suppliments {
 			}
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$lists=$componentArgs['lists'];
 		if ($mrConfig['singleRoomProperty'] != "1" )
 			{

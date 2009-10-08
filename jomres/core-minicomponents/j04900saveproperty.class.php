@@ -72,10 +72,11 @@ class j04900saveproperty {
 		$property_email					= jomresGetParam( $_POST, 'property_email', "" );
 		$metatitle						= jomresGetParam( $_POST, 'metatitle', "" );
 		$metadescription				= jomresGetParam( $_POST, 'metadescription', "" );
+		$price							= jomresGetParam( $_POST, 'price','' );
 		
 		$lat							=jomresGetParam( $_POST, 'lat', '' );
 		$long							= jomresGetParam( $_POST, 'long', '' );
-
+		$price=str_replace(",","",$price);
 		if ($jrConfig['allowHTMLeditor'] == "0")
 			{
 			$property_description			= jomresGetParam( $_POST, 'property_description', "" );
@@ -128,14 +129,14 @@ class j04900saveproperty {
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
 					`property_email`,`property_features`,
 					`property_description`,`property_checkin_times`,`property_area_activities`,
-					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,stars,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`)
+					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,property_key,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`)
 					VALUES
 					('$property_name','$property_street',
 					'$property_town','$property_region','$property_country','$property_postcode','$property_tel',
 					'$property_fax','$property_email','$featuresList',
 					'$property_description','$property_checkin_times','$property_area_activities',
 					'$property_driving_directions','$property_airports','$property_othertransport',
-					'$property_policies_disclaimers','".(int)$property_stars."','".(int)$property_type."','$apikey','".$lat."','".$long."','".$metatitle."','".$metadescription."'
+					'$property_policies_disclaimers','".(float)$price."','".(int)$property_type."','$apikey','".$lat."','".$long."','".$metatitle."','".$metadescription."'
 					)";
 			$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
 			
@@ -231,6 +232,7 @@ class j04900saveproperty {
 				`property_airports`='$property_airports',
 				`property_othertransport`='$property_othertransport',
 				`property_policies_disclaimers`='$property_policies_disclaimers',
+				`property_key`='".(float)$price."',
 				`lat`='$lat',
 				`long`='$long',
 				`metatitle`='$metatitle',

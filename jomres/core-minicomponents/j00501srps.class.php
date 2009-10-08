@@ -48,6 +48,8 @@ class j00501srps {
 		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];
 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		$weekdayDropdown=$componentArgs['weekdayDropdown'];
 		$fixedArrivalDatesRecurring=$componentArgs['fixedArrivalDatesRecurring'];
 

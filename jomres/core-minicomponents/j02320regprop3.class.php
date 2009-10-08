@@ -80,6 +80,7 @@ class j02320regprop3 {
 		$property_stars					= intval(jomresGetParam( $_POST, 'stars', "" ) );
 		$features_list					= jomresGetParam( $_POST, 'pid', array() );
 
+		$realestate						= (int)jomresGetParam( $_POST, 'realestate', 0 );
 		
 		if (count($features_list)>1)
 			$featuresList=implode(",",$features_list);
@@ -107,26 +108,35 @@ class j02320regprop3 {
 			)";
 		$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
 
-		if ($mrpsrp == "MRP")
-			$singleRoomProperty="0";
+		if ($realestate ==0)
+			{
+			if ($mrpsrp == "MRP")
+				$singleRoomProperty="0";
+			else
+				{
+				$singleRoomProperty="1";
+				$query="INSERT INTO #__jomres_rooms (
+					`room_classes_uid`,
+					`propertys_uid`,
+					`max_people`
+					)VALUES (
+					'".$roomClass."',
+					".(int)$newPropId.",
+					'100'
+					)";
+				if (!doInsertSql($query)) 
+					trigger_error ("Sql error when saving new room", E_USER_ERROR);
+				}
+			$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','singleRoomProperty','".$singleRoomProperty."')";
+			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
+			}
 		else
 			{
-			$singleRoomProperty="1";
-			$query="INSERT INTO #__jomres_rooms (
-				`room_classes_uid`,
-				`propertys_uid`,
-				`max_people`
-				)VALUES (
-				'".$roomClass."',
-				".(int)$newPropId.",
-				'100'
-				)";
-			if (!doInsertSql($query)) 
-				trigger_error ("Sql error when saving new room", E_USER_ERROR);
+			$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','is_real_estate_listing',1)";
+			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
 			}
+			
 
-		$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','singleRoomProperty','".$singleRoomProperty."')";
-		doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
 
 		if (!$thisJRUser->userIsManager)
 			{
@@ -149,7 +159,10 @@ class j02320regprop3 {
 		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForUser($thisJRUser->userid);
-		jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
+		if ($realestate ==0)
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
+		else
+			jomresRedirect( JOMRES_SITEPAGE_URL."&thisProperty=".$newPropId,"");
 		}
 
 	/**
