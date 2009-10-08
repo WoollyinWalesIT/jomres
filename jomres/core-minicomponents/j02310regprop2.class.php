@@ -89,7 +89,7 @@ class j02310regprop2 {
 		
 
 		$starsDropDownList="<select class=\"inputbox\" name=\"stars\">";
-		for ($i=0, $n=5; $i <= $n; $i++)
+		for ($i=0, $n=7; $i <= $n; $i++)
 			{
 			$starsDropDownList .= "<option value=\"".$i."\">".$i."</option>";
 			}
