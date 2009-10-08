@@ -232,7 +232,7 @@ class j04200editproperty {
 				$output['PROPERTY_POLICIES_DISCLAIMERS']='<textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">'.$defaultText.'</textarea>';
 				}
 			$starsDropDownList="<select class=\"inputbox\" name=\"stars\">";
-			for ($i=0, $n=5; $i <= $n; $i++)
+			for ($i=0, $n=7; $i <= $n; $i++)
 				{
 				$starsDropDownList .= "<option value=\"".$i."\">".$i."</option>";
 				}
