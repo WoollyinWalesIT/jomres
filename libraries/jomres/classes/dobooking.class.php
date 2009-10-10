@@ -1157,6 +1157,7 @@ class dobooking
 	 */
 	function setGuestVariantDetails($id,$qty)
 		{
+		$this->setErrorLog("setGuestVariantDetails: Setting guest type variant ".$id);
 		$result=$this->setVariant('guesttype',$id,$qty,0.00);
 		if ( $result )
 			return true;
@@ -1171,6 +1172,7 @@ class dobooking
 	 */
 	function initGuestVariant($id,$qty)
 		{
+		$this->setErrorLog("initGuestVariant: Initialising guest type variant ".$id." Quantity ".$qty);
 		$result=$this->setVariant('guesttype',$id,$qty,0.00);
 		if ( $result )
 			return true;

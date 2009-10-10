@@ -294,19 +294,21 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	
 		
 	$counter=0;
-	foreach ($guestTypes as $gst)
+	if (!$amend_contract)
 		{
-		$current=$bkg->getGuestVariantDetails($gst['ID']);
-		if ($current==false)
+		foreach ($guestTypes as $gst)
 			{
-			if ($counter==0)
-				$bkg->initGuestVariant($gst['ID'],$mrConfig['defaultNumberOfFirstGuesttype']);
-			else
-				$bkg->initGuestVariant($gst['ID'],0);
+			$current=$bkg->getGuestVariantDetails($gst['ID']);
+			if ($current==false)
+				{
+				if ($counter==0)
+					$bkg->initGuestVariant($gst['ID'],$mrConfig['defaultNumberOfFirstGuesttype']);
+				else
+					$bkg->initGuestVariant($gst['ID'],0);
+				}
+			$counter++;
 			}
-		$counter++;
 		}
-			
 	if (count($guestTypes)==0)
 		$output['BILLING_TOTALINPARTY']="";
 	$extra_details=$bkg->makeExtras($selectedProperty);
