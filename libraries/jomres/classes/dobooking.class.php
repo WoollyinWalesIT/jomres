@@ -3761,7 +3761,8 @@ class dobooking
 		
 		$room_imagetd="";
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
-			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30" /></td>';
+			$room_imagetd='<td>'.$roomStuff['IMAGE'].'</td>';
+			//$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30" /></td>';
 
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
@@ -3820,6 +3821,10 @@ class dobooking
 		$smoking=$room['smoking'];
 		$classAbbv =$this->sanitiseOutput(jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$room_classes_uid,$this->allRoomClasses[$room_classes_uid]['room_class_abbv'],false,false));
 
+		
+		$room_image=getImageForProperty("room",$this->property_uid,$roomUid);
+		$roomRow['IMAGE']=jomres_makeTooltip($room_image,"",$room_image,$room_image,"","imageonly",$type_arguments=array("width"=>30,"height"=>30,"border"=>0));
+		
 		if ($room_disabled_access == 1)
 			$disabledAccess=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,false,false) );
 		else
