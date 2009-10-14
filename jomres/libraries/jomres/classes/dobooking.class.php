@@ -2122,11 +2122,11 @@ class dobooking
 				if ($this->cfg_fixedPeriodBookings =="1" )
 					$output.=' onchange="getResponse_particulars(\'arrivalDate\',this.value);" ';
 				else
-					$output.=' onchange="ajaxADate(this.value,\''.$dateFormat.'\'); getResponse_particulars(\'arrivalDate\',this.value);getResponse(\'departureDate\',this.value);" ';
+					$output.=' onchange="ajaxADate(this.value,\''.$dateFormat.'\'); getResponse_particulars(\'arrivalDate\',this.value);" ';
 				}
 			else
 				$output.=' onchange="getResponse_particulars(\'departureDate\',this.value);" ';
-			//$output.=' onchange="getResponse(\'departureDate\',this.value);" ';
+			$output.=' onchange="getResponse(\'departureDate\',this.value);" ';
 			
 			// Popup on both input and image click
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
