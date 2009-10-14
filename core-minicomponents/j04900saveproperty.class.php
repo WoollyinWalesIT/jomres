@@ -74,8 +74,8 @@ class j04900saveproperty {
 		$metadescription				= jomresGetParam( $_POST, 'metadescription', "" );
 		$price							= jomresGetParam( $_POST, 'price','' );
 		
-		$lat							=jomresGetParam( $_POST, 'lat', '' );
-		$long							= jomresGetParam( $_POST, 'long', '' );
+		$lat							= parseFloat(jomresGetParam( $_POST, 'lat', '' ));
+		$long							= parseFloat(jomresGetParam( $_POST, 'long', '' ));
 		$price=str_replace(",","",$price);
 		if ($jrConfig['allowHTMLeditor'] == "0")
 			{
