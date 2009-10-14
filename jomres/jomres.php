@@ -39,6 +39,7 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once(dirname(__FILE__).'/integration.php');
+
 $thisJRUser=jomres_getSingleton('jr_user');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
