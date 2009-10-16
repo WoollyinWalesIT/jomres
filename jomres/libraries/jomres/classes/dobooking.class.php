@@ -3227,10 +3227,14 @@ class dobooking
 		$result=array();
 		$roomType=$this->allPropertyRooms[$room_uid]['room_classes_uid'];
 		//$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyRooms ".serialize($this->allPropertyRooms[$room_uid]));
+		//$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyTariffs ".serialize($this->allPropertyTariffs));
 		foreach ($this->allPropertyTariffs as $t)
 			{
+			$this->setErrorLog("getTariffsForRoomUidByClass::t['roomclass_uid'] ".$t['roomclass_uid']);
+			$this->setErrorLog("getTariffsForRoomUidByClass::roomType ".$roomType);
 			if ($t['roomclass_uid']==$roomType)
 				{
+				$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyRooms ".serialize($this->allPropertyRooms[$room_uid]));
 				$result[]=$this->convertArrayToObject($t);
 				}
 			}
@@ -3282,7 +3286,8 @@ class dobooking
 			foreach ($freeRoomsArray as $room_uid)
 				{
 				$rateDeets=$this->getTariffsForRoomUidByClass($room_uid);
-				//$this->setErrorLog("getTariffsForRoomUids::rateDeets:  ".serialize($room_uid) );
+				$this->setErrorLog("getTariffsForRoomUids::room uid:  ".serialize($room_uid) );
+				$this->setErrorLog("getTariffsForRoomUids::rate deets:  ".serialize($rateDeets) );
 				foreach ($rateDeets as $tariff)
 					{
 					if ($this->jrConfig['dynamicMinIntervalRecalculation']=="1")
@@ -3334,7 +3339,7 @@ class dobooking
 
 					//$weekendOnlyCheck=false;
 					$this->setErrorLog(" " );
-					$this->setErrorLog("Tariff title : ".$rate_title);
+					$this->setErrorLog("getTariffsForRoomUids::Tariff title : ".$rate_title);
 					$this->setErrorLog("getTariffsForRoomUids::Number of rooms already selected:".$numberOfRoomsAlreadySelected." Min rooms setting ".$minrooms_alreadyselected." max rooms setting ".$maxrooms_alreadyselected );
 					if ($numberOfRoomsAlreadySelected+1 >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
 						{
@@ -3436,7 +3441,11 @@ class dobooking
 					$this->setErrorLog("--------------------------------------------");
 					}
 				}
+				
 			}
+		else
+			$this->setErrorLog("getTariffsForRoomUids::count(freeRoomsArray) = 0");
+			
 		if (empty($roomAndTariffArray) )
 			$this->setErrorLog("getTariffsForRoomUids::No valid tariffs found for rooms otherwise found to be free");
 

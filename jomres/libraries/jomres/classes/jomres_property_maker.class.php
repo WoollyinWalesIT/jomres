@@ -31,12 +31,13 @@ class jomres_property_maker
 		$this->managers_uid = 0;
 		$this->init_default_details();
 		$this->cms_user_id = $cms_user_id;
+		$this->success = false;
 		$this->errors = array();
 		}
 
 	function set_property_detail($detail,$setting)
 		{
-		if (array_key_exists($detail,$this->property_details)
+		if (array_key_exists($detail,$this->property_details))
 			{
 			$this->property_details[$detail]=$setting;
 			return true;
@@ -61,15 +62,19 @@ class jomres_property_maker
 			$this->insert_room_property_type_setting();
 			if ($this->property_details['rate_per_night'] > 0.00)
 				{
+				$this->init_tariff();
 				$this->create_new_tariff();
 				}
+
 			addPropertyUidToManagersProperties($this->managers_uid,$this->property_uid);
+			$this->success = true;
 			}
 		else
 			{
 			$this->errors[] = "Sql error when inserting property";
 			return false;
 			}
+		return	$this->success;
 		}
 
 	function insert_config_settings()
@@ -149,6 +154,9 @@ class jomres_property_maker
 			'".$apikey."'
 			)";
 		$this->property_uid=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
+		if ($this->property_uid > 0)
+			return true;
+		return false;
 		}
 
 	function create_new_tariff()
@@ -174,27 +182,28 @@ class jomres_property_maker
 			)VALUES (
 			'".filter_var(RemoveXSS($this->property_details['tariff']['rate_title']),FILTER_SANITIZE_SPECIAL_CHARS)."',
 			'".filter_var(RemoveXSS($this->property_details['tariff']['rate_description']),FILTER_SANITIZE_SPECIAL_CHARS)."',
-			'".$this->property_details['tariif']['validfrom']."',
-			'".$this->property_details['tariif']['validto']."',
+			'".$this->property_details['tariff']['validfrom']."',
+			'".$this->property_details['tariff']['validto']."',
 			'".(float)$this->property_details['rate_per_night']."',
 			'".(int)$this->property_details['tariff']['mindays']."',
 			'".(int)$this->property_details['tariff']['maxdays']."',
 			'".(int)$this->property_details['tariff']['minpeople']."',
 			'".(int)$this->property_details['tariff']['max_people']."',
-			'".(int)$this->property_details['tariff']['roomtype']."',
+			'".(int)$this->property_details['tariff']['roomclass_uid']."',
 			'".(int)$this->property_details['tariff']['ignore_pppn']."',
 			'".(int)$this->property_details['tariff']['allow_ph']."',
 			'".(int)$this->property_details['tariff']['allow_we']."',
 			'".(int)$this->property_details['tariff']['weekendonly']."',
-			".$this->property_details['tariff']['validfrom_ts']."',
+			'".$this->property_details['tariff']['validfrom_ts']."',
 			'".$this->property_details['tariff']['validto_ts']."',
 			'".(int)$this->property_uid."'
 			)";
-		if (doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_TARIFF))
+		$result = doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_TARIFF);
+		if ($result)
 			return true;
 		else
 			{
-			$this->errors[] = "Could not insert tariff";
+			$this->errors[] = "Could not insert tariff ".$query;
 			return false;
 			}
 		}
@@ -223,7 +232,7 @@ class jomres_property_maker
 			}
 		return true;
 		}
-	function init_default_details
+	function init_default_details()
 		{
 		$this->property_details['roomClass']					= 5;  // The default room type. This information is held in the #__jomres_room_classes " table. Only needed if the property is an SRP
 		$this->property_details['max_in_room_or_property']		= 2;
@@ -257,9 +266,14 @@ class jomres_property_maker
 		// If this is set to something other than 0.00 when the property is created then a tariff will be created.
 		$this->property_details['rate_per_night']				= 0.00;
 
+
+		}
+		
+	function init_tariff()
+		{
 		// We aren't going to offer complex tariff settings in this maker, instead we'll create another script at a later time to perform that functionaity as there are likely to be users who want to modify tariffs on the fly to already created propertys
 		// For now, we'll stick to creating a simple tariff
-
+		// We'll call it later than init_default_details because we want to know the real $this->property_details['roomClass'], not the default
 		$this->property_details['tariff']['rate_title']			= "Tariff";
 		$this->property_details['tariff']['rate_description']	= "";
 
@@ -267,15 +281,16 @@ class jomres_property_maker
 		$this->property_details['tariff']['maxdays']			= 100;
 		$this->property_details['tariff']['minpeople']			= 1;
 		$this->property_details['tariff']['max_people']			= $this->property_details['max_in_room_or_property'];
-		$this->property_details['tariff']['roomtype']			= $this->property_details['roomClass'];
+		$this->property_details['tariff']['roomclass_uid']		= $this->property_details['roomClass'];
 		$this->property_details['tariff']['ignore_pppn']		= 0;
 		$this->property_details['tariff']['allow_ph']			= 0;   // Not currently used. A historic element, but we'll keep it anyway
 		$this->property_details['tariff']['allow_we']			= 1;
 		$this->property_details['tariff']['weekendonly']		= 0;
-		$this->property_details['tariff']['validfrom']			=date("Y/m/d");
-		$this->property_details['tariff']['validto']			=date("Y/m/d",strtotime("+10 years"));
-		$this->property_details['tariff']['validfrom_ts']		=str_replace("/","-",$this->property_details['tariif']['validfrom']);
-		$this->property_details['tariff']['validto_ts']			=str_replace("/","-",$this->property_details['tariif']['validto']);
+		date_default_timezone_set('UTC');
+		$this->property_details['tariff']['validfrom']			= date("Y/m/d");
+		$this->property_details['tariff']['validto']			= date("Y/m/d",strtotime("+10 years"));
+		$this->property_details['tariff']['validfrom_ts']		= str_replace("/","-",$this->property_details['tariff']['validfrom']);
+		$this->property_details['tariff']['validto_ts']			= str_replace("/","-",$this->property_details['tariff']['validto']);		
 		}
 	}
 ?>
