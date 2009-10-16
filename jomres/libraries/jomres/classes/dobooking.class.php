@@ -3760,12 +3760,13 @@ class dobooking
 			
 		
 		$room_imagetd="";
+
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
 			{
-			//$room_imagetd='<td>'.$roomStuff['IMAGE'].'</td>';
 			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30" /></td>';
+			//$room_imagetd='<td>'.$roomStuff['IMAGE'].'</td>';
 			}
-			
+
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30" /></td>';
