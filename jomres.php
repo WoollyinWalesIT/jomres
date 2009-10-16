@@ -104,7 +104,6 @@ if ($tag != "" && get_showtime('task') != "editBooking")
 	set_showtime('task',"tagSearch");
 
 $jomresPathway =jomres_getSingleton('jomres_pathway');
-//$jomresPathway=new jomres_pathway();
 
 if (get_showtime('task')!="error")
 	{
@@ -325,8 +324,6 @@ if ( $jrConfig['useSSLinBookingform'] == 1)
 	}
 
 init_javascript();
-
-
 
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{
@@ -602,6 +599,11 @@ if (!defined('JOMRES_NOHTML'))
 $performance_monitor->set_point("post-menu generation");
 
 $componentArgs=array();
+if (empty($property_uid))
+	$componentArgs['property_uid']=0;
+else
+	$componentArgs['property_uid']=$property_uid;
+	
 $MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done.
 $componentArgs=array();
 
@@ -618,10 +620,6 @@ if (!$no_html)
 
 if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
-
-$jomresPathway->addItem("Search",get_showtime('task'),"");
-
-
 
 if ($numberOfPropertiesInSystem>0)
 	{
@@ -1372,7 +1370,7 @@ if ($numberOfPropertiesInSystem>0)
 								else
 									{
 									set_showtime("task","");
-									$jomresPathway->addItem("Search","listProperties","");
+									
 									jomresShowSearch();
 									}
 								}
