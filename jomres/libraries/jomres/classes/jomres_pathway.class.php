@@ -61,9 +61,9 @@ class jomres_pathway
 			$task=get_showtime('task');
 			$link=JOMRES_SITEPAGE_URL."";
 			if ($task != "")
-				$link.="&task=".$task.$options."&itemId=".$itemId;
+				$link.="&task=".$task.$options;
 			$link=jomresUrl($link);
-			$this->joomlaPathway->addItem($pathwayText, $pathwayLink);
+			$this->joomlaPathway->addItem($pathwayText, $link);
 			}
 		}
 

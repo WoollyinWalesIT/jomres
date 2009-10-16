@@ -64,7 +64,13 @@ class j00012pathway {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
-			
+
+		$property_uid = $componentArgs['property_uid'];
+		
+		$jomresPathway =jomres_getSingleton('jomres_pathway');
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+
 		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
 
 		if (_JOMRES_DETECTED_CMS == "joomla15" )
@@ -79,33 +85,37 @@ class j00012pathway {
 
 		if ($no_html==0 && $popup==0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem> 1)
 			{
-						
 			$pathwayArray=array();
 			$pathway="";
-			
-			$ls="";
-			if (_JOMRES_DETECTED_CMS == "jomressa")
-				$ls=get_showtime('live_site')."/";
-					
-			$arrowImgSrc='<img src="'.$ls.'jomres/images/arrow_right_grey.png" border="0" alt="arrow" />';  // Change this to change the arrow
-			$selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
-			$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
+
+			$arrowImgSrc='<img src="'.get_showtime('live_site').'/jomres/images/arrow_right_grey.png" border="0" alt="arrow" />';  // Change this to change the arrow
+
 			if ($thisJRUser->userIsManager==TRUE)
 				$property_uid=(int)$thisJRUser->defaultproperty;
 			$task 				= get_showtime('task');
 			if ($selectedProperty>0)
 				$property_uid=(int)$selectedProperty;
 
+			$query="SELECT name,link FROM #__menu WHERE `link` LIKE JOMRES_SITEPAGE_URL.'%' LIMIT 1";
+			$menuNames =doSelectSql($query);
+			if (count($menuNames) > 0)
+				{
+				foreach ($menuNames as $menuName)
+					{
+					$name=$menuName->name;
+					$task="";
+					}
+				}
+
 			$tasks =array();
 			$tasks['XXXXXX']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL);
 			$tasks['listProperties']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL);
 			$tasks['viewproperty']=array('text'=>_JOMRES_PATHWAY_PROPERTYDETAILS.getPropertyName($property_uid),'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
-			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty'.$property_uid);
+			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
 
 			switch ($task)
 				{
 				case '':
-					//$pathwayArray[]=$tasks['XXXXXX'];
 					$pathwayArray[]=$tasks['listProperties'];
 				break;
 				case 'viewproperty':
@@ -122,8 +132,7 @@ class j00012pathway {
 			$counter=1;
 			foreach ($pathwayArray as $p)
 				{
-				if (defined('_JOMRES_NEWJOOMLA') )
-					$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
+				$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
 				if ($counter<count($pathwayArray))
 					$pathway.='<a href="'.jomresValidateUrl(jomresURL(''.$p['url'])).'" class="pathway">'.$p['text'].'</a>';
 				else
