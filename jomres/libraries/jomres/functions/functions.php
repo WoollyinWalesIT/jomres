@@ -751,7 +751,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		$mail->IsSMTP(); // telling the class to use SMTP
 
 	$mail->Host			= $jomresConfig_smtphost;
-	$mail->From			= $jomresConfig_smtpuser;
+	$mail->From			= $from;
 	$mail->CharSet		= 'UTF-8'; 
 	$mail->FromName		= $jomresConfig_sitename;
 	$mail->Subject		= $subject;
