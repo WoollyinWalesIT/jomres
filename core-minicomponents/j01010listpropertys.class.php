@@ -321,8 +321,8 @@ class j01010listpropertys {
 							sort($ratesArray,SORT_NUMERIC);
 							$lowestPrice=$ratesArray[0];
 							$lowestPrice=$current_property_details->get_gross_accommodation_price($lowestPrice,$property->propertys_uid);
-							if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
-								$lowestPrice = $lowestPrice * 7;
+							//if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
+							//	$lowestPrice = $lowestPrice * 7;
 								
 							}
 						else
