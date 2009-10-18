@@ -1,4 +1,17 @@
-Jomres 4.2rc1
+Jomres 4.2.1
+
+Removed a useless (?) close session that was causing much disk activity.
+Fixed language switching not working in SA
+Added a clause to dobooking to resolve an issue where amend booking multiplies the number of guests in the booking.
+Disabled new invoice icon in view users invoices as that functionality doesn't exist.
+Added a parseFloat function to ensure that lat/long elements passed to property details are true floats without commas.
+Fixed bug where from address in emails was wrong.
+Add property maker class
+Improved pathway handling
+Modified tooltips to resolve mootools conflict in popups
+
+
+Jomres 4.2stable
 
 Modified edit invoice to fix bug with javascript not updating totals, and made inputs shorter to fit nicer on page.
 Fixed bug where list invoices not using correct url (showed up in SA)
