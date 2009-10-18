@@ -20,7 +20,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 // http://uk2.php.net/manual/en/function.xml-parse-into-struct.php#79922
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
 class jomres_xml_parser

@@ -35,7 +35,7 @@ THE FILE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
 */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
 /**

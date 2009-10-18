@@ -1,6 +1,6 @@
 <?php
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 ##################################################################
 
 define('_JOMRES_SA_TITLE','Jomres Standalone');

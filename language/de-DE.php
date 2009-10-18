@@ -19,7 +19,7 @@ German Translation since Jomres V2: Roger Perren (http://www.blueforce.ch)
 
 */
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 ##################################################################
 
 /**
