@@ -25,14 +25,19 @@ class jomres_tooltips
 	{
 	/**
 	#
-	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
+	 * xxxx
 	#
 	 */
 	function jomres_tooltips()
 		{
 		$this->divs=array();
-		$browser = new browser();
-		$this->browser = $browser->BROWSER_AGENT;
+		// Previous to v4.2.1 we used a browser check to determine which browser we were on. If IE then use "most" position, else use "bottom". Subsequentially it seems that mootools will cause an error in the jquery beautytips library if included preventing the popup from showing, therefore we'll change the default to "most", and individual site managers can change the position here to "bottom" if they so require
+		// It's a shame as the popup looks much better when below the feature icons, but there you have it. Software development is often more about compromise than anything else.
+		//$browser = new browser();
+		//$this->browser = $browser->BROWSER_AGENT;
+		
+		$this->positions = "most";
+		//$this->positions = "bottom";
 		}
 
 	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments)
@@ -166,7 +171,7 @@ class jomres_tooltips
 						shadowColor: \'rgba(0,0,0,.9)\',
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\'most\'],
+						positions: [\''.$this->positions.'\'],
 						offsetParent: \'body\',
 						width: \'auto\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
@@ -181,16 +186,16 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_room_type" ';
+					
+				// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
+				/*
 				if ($this->browser == "IE")
 					$positions = "most";
 				else
 					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
+				*/
 				
-				$ls="";
-				if (_JOMRES_DETECTED_CMS == "jomressa")
-					$ls=get_showtime('live_site')."/";
-				
-				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$ls.$div_content.'" /></div>
+				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						cornerRadius: 10,        
 						strokeWidth: 0,
@@ -218,15 +223,15 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_features" ';
+
+				// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
+				/*
 				if ($this->browser == "IE")
 					$positions = "most";
 				else
 					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
-				$ls="";
-				if (_JOMRES_DETECTED_CMS == "jomressa")
-					$ls=get_showtime('live_site')."/";
-					
-				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.$ls.$div_content.'" /></div>
+				*/
+				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 						cornerRadius: 10,        
 						strokeWidth: 0,
