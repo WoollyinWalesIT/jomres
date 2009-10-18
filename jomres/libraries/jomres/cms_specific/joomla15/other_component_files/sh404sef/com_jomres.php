@@ -21,7 +21,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
  * Copyright Woollyinwales IT 2009
  */
 
-defined( '_JEXEC' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JEXEC' ) or die( 'Direct Access to this file is not allowed.' );
 if (!defined('_JOMRES_INITCHECK') )
 	define('_JOMRES_INITCHECK', 1 );
 // ------------------  standard plugin initialize function - don't change ---------------------------

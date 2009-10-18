@@ -18,7 +18,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 */
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
 // My little joke, "showtime" was my favourite server on Delta Force 2 when I used to play it back in the late nineties.
