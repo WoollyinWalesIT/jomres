@@ -141,10 +141,7 @@ jQuery(document).ready(function () {
 		<td>
 		<br />
 			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{HPROPERTY_TYPE}</td>
-					<td colspan="2" class="jradmin_field_la">{PROPERTY_TYPE_DROPDOWN}</td> 
-				</tr>
+
 				<tr>
 					<td class="jradmin_subheader_la">{ISTHISANMRP}</td>
 					<td colspan="2" class="jradmin_field_la">{ISTHISANMRP_DROPDOWN}<br />{ISTHISANMRP_DESC}</td> 
@@ -238,6 +235,7 @@ jQuery(document).ready(function () {
 		</td>
 	</tr>
 </table>
+<input type="hidden" name="propertyType" value="{PROPERTYTYPE}" />
 <input type="hidden" name="property_region" value="{PROPERTY_REGION}" />
 <input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}" />
 <input type="button" name="send" value="Submit" class="button" onclick="validatePropertyRegistration();"/>

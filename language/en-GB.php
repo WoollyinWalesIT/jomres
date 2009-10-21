@@ -6753,11 +6753,11 @@ define('_JOMRES_REALESTATE_TITLE','Real estate listing');
 /**
 * @ignore
 */
-define('_JOMRES_REALESTATE_YESNO','Is this property a Real estate listing?');
+define('_JOMRES_REALESTATE_YESNO','Is this property a for sale listing?');
 /**
 * @ignore
 */
-define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the property, select No if it is a hotel/b&b/guest house/villa type property where you will be offering the property or rooms in the property for short term rental and will be using this system for taking bookings.');
+define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the property, select No if it is a listing where you will be offering short term rentals and will be using this system for taking bookings.');
 /**
 * @ignore
 */
