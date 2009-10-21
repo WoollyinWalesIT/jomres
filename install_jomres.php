@@ -256,8 +256,30 @@ function doTableUpdates()
 		alterExtrasTaxrateCol();
 	if (!checkSubscribersSubscriptionPackageIdColExists() )
 		alterSubscribersSubscriptionPackageIdCol();
+		
+	if (!checkPfeaturesPtypeidColExists() )
+		alterPfeaturesPtypeidCol();
 	}
 
+function alterPfeaturesPtypeidCol()
+	{
+	echo "Editing __jomres_hotel_features table adding ptype_id column<br>";
+	$query = "ALTER TABLE `#__jomres_hotel_features` ADD `ptype_id` INT( 11 ) DEFAULT '0' NOT NULL AFTER `property_uid` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_subscriptions ptype_id</b><br>";
+	}
+
+function checkPfeaturesPtypeidColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_hotel_features LIKE 'ptype_id'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+	
 function alterSubscribersSubscriptionPackageIdCol()
 	{
 	echo "Editing __jomresportal_subscriptions table adding package_id column<br>";
@@ -1543,6 +1565,7 @@ function createJomresTables()
 		`hotel_feature_full_desc` TEXT NULL,
 		`image` text,
 		`property_uid` VARCHAR(11),
+		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		PRIMARY KEY(`hotel_features_uid`)
 		) ";
 	$result=doInsertSql($query,"");

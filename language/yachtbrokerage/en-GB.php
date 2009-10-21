@@ -118,7 +118,7 @@ define('_JOMRES_COM_MR_NEWROOMCLASS','New yacht type');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_NEWPROPERTY','New business');
+define('_JOMRES_COM_MR_NEWPROPERTY','New boat');
 /**
 * @ignore
 */
@@ -903,19 +903,19 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET','Type (Sail or Motor)');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN','Engine');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN','Town');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION','Length');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION','Region');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY','Hull');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY','Country');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE','Postcode');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE','Engine');
 /**
 * @ignore
 */
@@ -4572,11 +4572,11 @@ define('_JOMRES_SORTORDER_STARS','Stars');
 /**
 * @ignore
 */
-define('_JOMRES_PATHWAY_PROPERTYLIST','Brokerage list');
+define('_JOMRES_PATHWAY_PROPERTYLIST','Boat list');
 /**
 * @ignore
 */
-define('_JOMRES_PATHWAY_PROPERTYDETAILS','Brokerage details - ');
+define('_JOMRES_PATHWAY_PROPERTYDETAILS','Boat details');
 /**
 * @ignore
 */

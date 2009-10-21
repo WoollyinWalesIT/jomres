@@ -33,10 +33,22 @@ class j16000listPfeatures
 			$this->template_touchable=false; return;
 			}
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
-		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+		$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_id FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList=doSelectSql($query);
 		$rows=array();
-
+		
+		$ptypes=array();
+		$query="SELECT id, ptype FROM #__jomres_ptypes";
+		$ptypeList = doSelectSql($query);
+		if (count($ptypeList)>0)
+			{
+			$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
+			foreach($ptypeList as $type)
+				{
+				$ptypes[$type->id]=$type->ptype;
+				}
+			}
+		
 		$output['INDEX']="index2.php";
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
 		$output['HLINKTEXT']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
@@ -54,6 +66,9 @@ class j16000listPfeatures
 			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editPfeature&propertyFeatureUid='.$propertyFeature->hotel_features_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['PFEATURETITLE']=$propertyFeature->hotel_feature_abbv;
 			$r['PFEATUREDESCRIPTION']=$propertyFeature->hotel_feature_full_desc;
+
+			$r['PROPERTY_TYPE']=$ptypes[$propertyFeature->ptype_id];
+			
 			$r['IMAGE']=get_showtime('live_site').'/'.$propertyFeature->image;
 			$rows[]=$r;
 			}
