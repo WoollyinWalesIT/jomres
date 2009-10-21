@@ -895,23 +895,23 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_LINK','Business');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME','Name');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME','Boat/yacht Name');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET','Street');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET','Type (Sail or Motor)');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN','Town');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN','Engine');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION','Region');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION','Length');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY','Country');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY','Hull');
 /**
 * @ignore
 */
@@ -2062,11 +2062,11 @@ define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Fullsize image width');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Click for a map');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Offsite link (eg to manufacturer\'s information page)');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION','Business description');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION','Boat/yacht description');
 /**
 * @ignore
 */
@@ -3704,7 +3704,7 @@ define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1','Please provide the country and
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1','Please complete your business details.');
+define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1','Please complete your boat\'s details.');
 /**
 * @ignore
 */
@@ -3716,11 +3716,11 @@ define('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY','Created business');
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRATION_NOTALLOWED',"Sorry, you can't create a business on this system. You must be a logged in, registered user, and you must not have already created a business.");
+define('_JOMRES_REGISTRATION_NOTALLOWED',"Sorry, you can't create a boat on this system. You must be a logged in, registered user, and you must not have already created a business.");
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRATION_CREATEDPROPERTY','Created business: ');
+define('_JOMRES_REGISTRATION_CREATEDPROPERTY','Created boat: ');
 /**
 * @ignore
 */
@@ -5251,11 +5251,11 @@ define('_JOMRES_COM_EMAILERRORS_DESC',"Set this to Yes if you want to copy jomre
 /**
 * @ignore
 */
-define('_JOMRES_COM_ISTHISANMRP',"Is this property a hotel/bed and breakfast/guest house/pension? ");
+define('_JOMRES_COM_ISTHISANMRP',"Are you renting out places on this boat? ");
 /**
 * @ignore
 */
-define('_JOMRES_COM_ISTHISANMRP_DESC',"Configuration options differ depending on if you are renting out rooms in a property, or the property itself. Select MRP if you are offering rooms, select SRP if you are offering the entire property.ring the entire property. ");
+define('_JOMRES_COM_ISTHISANMRP_DESC',"Configuration options differ depending on if you are renting out boats from a brokerage, or the brokerage itself. Select MRP if you are offering boats, select SRP if you are offering the entire brokerage. ");
 // Jomres v3.0.6
 
 /**
@@ -6720,11 +6720,11 @@ define('_JOMRES_REALESTATE_TITLE','Real estate listing');
 /**
 * @ignore
 */
-define('_JOMRES_REALESTATE_YESNO','Is this property a Real estate listing?');
+define('_JOMRES_REALESTATE_YESNO','Is this property a boat for sale listing?');
 /**
 * @ignore
 */
-define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the property, select No if it is a hotel/b&b/guest house/villa type property where you will be offering the property or rooms in the property for short term rental and will be using this system for taking bookings.');
+define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the boat, select No if it is a rental item and will be using this system for taking bookings.');
 /**
 * @ignore
 */

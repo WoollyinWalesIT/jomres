@@ -72,7 +72,10 @@ class j02300regprop1 {
 
 		$output['HREALESTATE_YESNO']=jr_gettext('_JOMRES_REALESTATE_YESNO',_JOMRES_REALESTATE_YESNO);
 		$output['HREALESTATE_YESNO_DESC']= jr_gettext('_JOMRES_REALESTATE_YESNO_DESC',_JOMRES_REALESTATE_YESNO_DESC);
-
+		
+		$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
+		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
+		
 		$realestateOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 		$realestateOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 		$output['REALESTATEDROPDOWN']= jomresHTML::selectList($realestateOptions, 'realestate', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['is_real_estate_listing']);

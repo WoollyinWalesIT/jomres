@@ -59,7 +59,8 @@ class j02310regprop2 {
 		$property_region				= jomresGetParam( $_POST, 'region', "" );
 		$property_country				= jomresGetParam( $_POST, 'country', "" );
 		$realestate						= (int)jomresGetParam( $_POST, 'realestate', 0 );
-
+		$property_type					= intval(jomresGetParam( $_POST, 'propertyType', "" ));
+		
 		$propertyFeatures="";
 
 		$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";
@@ -95,8 +96,7 @@ class j02310regprop2 {
 			}
 		$starsDropDownList.="</select>";
 
-		$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
-		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
+
 		$propertyFeaturesArray=explode(",",$propertyFeatures);
 
 		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
@@ -119,6 +119,7 @@ class j02310regprop2 {
 
 		$output['STARSDROPDOWN']=$starsDropDownList;
 
+		$output['PROPERTYTYPE']						=$property_type;
 		$output['PROPERTY_NAME']					="";
 		$output['PROPERTY_STREET']					="";
 		$output['PROPERTY_TOWN']					="";
