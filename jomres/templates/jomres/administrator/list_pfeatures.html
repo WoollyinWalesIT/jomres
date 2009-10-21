@@ -3,13 +3,14 @@
 {JOMRESTOOLBAR}
 <table  class="jradmin_table" border="0">
 	<tr>
-		<th class="jomres_title" colspan="5">{PAGETITLE}</td>
+		<th class="jomres_title" colspan="7">{PAGETITLE}</td>
 	</tr>
 	<tr>
 		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
 		<th class="jomres_title">&nbsp;</th>
 		<th class="jomres_title">{HPFEATURETITLE}</th>
 		<th class="jomres_title">{HPFEATUREDESCRIPTION}</th>
+		<th class="jomres_title">{HPROPERTY_TYPE}</th>
 		<th class="jomres_title">{HJOMRES_A_ICON}</th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
@@ -18,6 +19,7 @@
 		<td class="jradmin_subheader_la">{LINKTEXT}</td> 
 		<td class="jradmin_subheader_la">{PFEATURETITLE}</td>
 		<td class="jradmin_subheader_la">{PFEATUREDESCRIPTION}</td>
+		<td class="jradmin_subheader_la">{PROPERTY_TYPE}</td>
 		<td class="jradmin_subheader_la"><img src="{IMAGE}" /></td>
 	</tr>
 	</patTemplate:tmpl>

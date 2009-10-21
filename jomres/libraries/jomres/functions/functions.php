@@ -2381,12 +2381,14 @@ function saveKey ( $mykey )
  * Shows the dropdown for selecting the property type in the edit property function
 #
 */
-function getPropertyTypeDropdown($propertyType="")
+function getPropertyTypeDropdown($propertyType="",$all=false)
 	{
 	$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `ptype` ASC";
 	$ptypeList = doSelectSql($query);
 	if (count($ptypeList)>0)
 		{
+		if ($all)
+			$ptypeOptions[]=jomresHTML::makeOption( 0, jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false));
 		foreach ($ptypeList as $ptype)
 			{
 			$ptypeOptions[]=jomresHTML::makeOption( $ptype->id,stripslashes($ptype->ptype) );

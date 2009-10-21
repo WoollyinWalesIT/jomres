@@ -34,20 +34,25 @@ class j16000editPfeature
 			}
 		$propertyFeatureUid = jomresGetParam( $_REQUEST, 'propertyFeatureUid',	0 );
 		$clone				= intval( jomresGetParam( $_REQUEST, 'clone',	false ) );
+		$ptypeid = 0;
 		if ($propertyFeatureUid >0)
 			{
-			$query = "SELECT hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features WHERE hotel_features_uid  = '".(int)$propertyFeatureUid."' AND property_uid = '0'";
+			$query = "SELECT hotel_feature_abbv,hotel_feature_full_desc,image,property_uid,ptype_id FROM #__jomres_hotel_features WHERE hotel_features_uid  = '".(int)$propertyFeatureUid."' AND property_uid = '0'";
 			$pFeatureList =doSelectSql($query);
 			foreach($pFeatureList as $pFeature)
 				{
 				$output['FEATURE_ABBV']=stripslashes($pFeature->hotel_feature_abbv);
 				$output['FEATURE_DESCRIPTION']=stripslashes($pFeature->hotel_feature_full_desc);
+				$ptypeid = $pFeature->ptype_id;
 				$image=$pFeature->image;
 				}
 			}
 		if ($clone)
 			$propertyFeatureUid=0;
-
+		
+		$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
+		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid,true);
+		
 		$map=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS;
 		$mrp=get_showtime('live_site').'/jomres/uploadedimages/pfeatures/';
 		$d = @dir($map);
