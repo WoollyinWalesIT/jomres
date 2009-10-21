@@ -584,47 +584,64 @@ class jomSearch {
 	function jomSearch_priceranges()
 		{
 		$filter=$this->filter['priceranges'];
+					
 		$this->makeOrs();
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$property_ors = str_replace("propertys_uid","property_uid",$property_ors);
-			if (is_array($filter) )
-				$query="SELECT property_uid FROM #__jomres_rates WHERE roomrateperday >= ".$filter['from']." AND roomrateperday <= ".$filter['to']."  $property_ors ";
-			else
-				$query="SELECT property_uid FROM #__jomres_rates WHERE roomrateperday LIKE '%' $property_ors ";
-			$result=doSelectSql($query);
-			
-			
-			if (is_array($filter) )
+			if ($filter !="%")
 				{
-				$property_ors = str_replace("property_uid","propertys_uid",$property_ors);
-				$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_key >= ".$filter['from']." AND property_key <= ".$filter['to']."  $property_ors ";
-				$result2=doSelectSql($query);
-				}
+				$property_ors = str_replace("propertys_uid","property_uid",$property_ors);
+				if (is_array($filter) )
+					$query="SELECT property_uid FROM #__jomres_rates WHERE roomrateperday >= ".$filter['from']." AND roomrateperday <= ".$filter['to']."  $property_ors ";
+				else
+					$query="SELECT property_uid FROM #__jomres_rates WHERE roomrateperday LIKE '%' $property_ors ";
+				$result=doSelectSql($query);
+				
+				
+				if (is_array($filter) )
+					{
+					$property_ors = str_replace("property_uid","propertys_uid",$property_ors);
+					$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_key >= ".$filter['from']." AND property_key <= ".$filter['to']."  $property_ors ";
+					$result2=doSelectSql($query);
+					}
 
-			
-			// We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
-			$res=array();
-			foreach ($result as $r)
-				{
-				$resultObj = new stdClass;
-				$resultObj->propertys_uid = $r->property_uid;
-				if (!in_array($resultObj,$res))
-					$res[]=$resultObj;
-				}
-			if (count($result2)>0)
-				{
-				foreach ($result2 as $r)
+				
+				// We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
+				$res=array();
+				foreach ($result as $r)
 					{
 					$resultObj = new stdClass;
-					$resultObj->propertys_uid = $r->propertys_uid;
+					$resultObj->propertys_uid = $r->property_uid;
 					if (!in_array($resultObj,$res))
 						$res[]=$resultObj;
 					}
-				}
+				if (count($result2)>0)
+					{
+					foreach ($result2 as $r)
+						{
+						$resultObj = new stdClass;
+						$resultObj->propertys_uid = $r->propertys_uid;
+						if (!in_array($resultObj,$res))
+							$res[]=$resultObj;
+						}
+					}
 
-			$this->resultBucket=$res;
+				$this->resultBucket=$res;
+				}
+			else
+				{
+				$ids = end($this->propertys_uid);
+				$res=array();
+				foreach ($ids as $r)
+					{
+					$resultObj = new stdClass;
+					$resultObj->propertys_uid = $r;
+					if (!in_array($resultObj,$res))
+						$res[]=$resultObj;
+					}
+				$this->resultBucket=$res;
+				}
 			//var_dump($this->resultBucket);exit;
 			}
 		$this->sortResult();
@@ -1008,10 +1025,11 @@ function prepPriceRangeSearch($increments=10)
 		
 	foreach ($realestateList as $rate)
 		{
-		
-		$allTariffs[]=$rate->property_key;
+		if ((float)$rate->property_key > 0.00)
+			$allTariffs[]=$rate->property_key;
 		}
-		
+
+	sort($allTariffs);
 	$lowest = $allTariffs[0];
 	$count=count($allTariffs)-1;
 	$highest = $allTariffs[$count];
