@@ -66,7 +66,7 @@ class jomres_property_maker
 				$this->create_new_tariff();
 				}
 
-			addPropertyUidToManagersProperties($this->managers_uid,$this->property_uid);
+			addPropertyUidToManagersProperties($this->cms_user_id,$this->property_uid);
 			$this->success = true;
 			}
 		else
