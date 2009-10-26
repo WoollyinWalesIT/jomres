@@ -2,7 +2,7 @@
 <script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}" type="text/javascript"></script>
 <script type="text/javascript">
 //<![CDATA[
-var map = null;
+var Gmap = null;
 var geocoder = null;
 
 function showAddress(address) {
@@ -14,9 +14,9 @@ function showAddress(address) {
 					{
 					//a = 1;
 					} else {
-					map.setCenter(point, 13);
+					Gmap.setCenter(point, 13);
 				var marker = new GMarker(point);
-				map.addOverlay(marker);
+				Gmap.addOverlay(marker);
 				}
 			}
 		);
@@ -38,12 +38,9 @@ jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
 		var WIDTH = 600;
         var HEIGHT = 400;
-		map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
-  
-		//var size = new GSize(573, 300);
-		//var map = new GMap2(document.getElementById("map"), {size: size});
-		map.addControl(new GSmallMapControl());
-		map.addControl(new GMapTypeControl());
+		Gmap = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
+		Gmap.addControl(new GSmallMapControl());
+		Gmap.addControl(new GMapTypeControl());
 		geocoder = new GClientGeocoder();
 		showAddress("{ADDRESS}");
 		};

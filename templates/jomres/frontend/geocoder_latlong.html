@@ -16,14 +16,14 @@
 jQuery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
 		var WIDTH = 600;
-        var HEIGHT = 400;
-		{VAR} map = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
-		map.addControl(new GSmallMapControl());
-		map.addControl(new GMapTypeControl());
-		map.setCenter(new GLatLng({LAT}, {LONG}), 13);
+		var HEIGHT = 400;
+		{VAR} Gmap = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
+		Gmap.addControl(new GSmallMapControl());
+		Gmap.addControl(new GMapTypeControl());
+		Gmap.setCenter(new GLatLng({LAT}, {LONG}), 13);
 		var point = new GLatLng({LAT}, {LONG});
 		var marker = new GMarker(point);
-		map.addOverlay(marker);
+		Gmap.addOverlay(marker);
 		};
 	
 	});
