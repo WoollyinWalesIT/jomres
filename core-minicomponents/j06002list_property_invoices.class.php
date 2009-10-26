@@ -54,12 +54,36 @@ class j06002list_property_invoices
 				}
 
 			$invoices=invoices_getinvoicesfor_property_byproperty_uid($stat,$defaultProperty);
+			
+			$property_guests = array();
+			$query="SELECT guests_uid,firstname,surname,mos_userid  FROM #__jomres_guests  WHERE property_uid = ".(int)$defaultProperty;
+			$guestList =doSelectSql($query);
+			if (count($guestList)>0)
+				{
+				foreach ($guestList as $guest)
+					{
+					$property_guests[$guest->mos_userid]['guests_uid']=$guest->guests_uid;
+					$property_guests[$guest->mos_userid]['firstname']=$guest->firstname;
+					$property_guests[$guest->mos_userid]['surname']=$guest->surname;
+					$property_guests[$guest->mos_userid]['cms_user_id']=$guest->mos_userid;
+					}
+				}
+			
 			if (count($invoices)>0)
 				{
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
 				
+				$invoice_id_array=array();
+				foreach ($invoices as $invoice)
+					{
+					$invoice_id_array[]=$invoice['id'];
+					}
+				$invoices_items = invoices_getalllineitems_forinvoice_ids($invoice_id_array);
+
+
+					
 				$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 				$output['HUSER']=_JRPORTAL_INVOICES_USER;
 				$output['HSTATUS']=_JRPORTAL_INVOICES_STATUS;
@@ -73,17 +97,46 @@ class j06002list_property_invoices
 				$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 				$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
 
-				$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
-				$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
-				$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
-				$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
-				$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
+				if ($thisJRUser->userIsManager)
+					{
+					$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_property_invoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
+					$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
+					$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
+					$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
+					$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
+					}
+				else
+					{
+					$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
+					$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
+					$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
+					$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
+					$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
 
+					}
+					
 				foreach ($invoices as $invoice)
 					{
 					$r=array();
-					$r['ID']=$invoice['id'];
+					$inv_id = $invoice['id'];
+					$r['ID']=$inv_id ;
+					$cms_user_id = $invoice['cms_user_id'];
+
+					if (!array_key_exists($cms_user_id,$property_guests))
+						$r['GUEST']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
+					else
+						{
+						//$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
+						$r['GUEST']=$property_guests[$cms_user_id]['firstname']." ".$property_guests[$cms_user_id]['firstname'];
+						}
 					
+					$invoice_items = $invoices_items[$inv_id];
+					$item_name_string = "";
+					foreach ($invoice_items as $invoice_item)
+						{
+						$item_name_string .= $invoice_item['name']."<br/>";
+						}
+					$r['ITEMS']=$item_name_string;
 					jr_import('jrportal_user_functions');
 					$user_obj = new jrportal_user_functions();
 					$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);

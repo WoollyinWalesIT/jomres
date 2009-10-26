@@ -3954,7 +3954,39 @@ function invoices_getalllineitems_forinvoice($id)
 			}
 		}
 	return $lineitems;
+	}
 	
+function invoices_getalllineitems_forinvoice_ids($ids=array())
+	{
+	$lineitems=array();
+	if (count($ids)==0)
+		return $lineitems;
+	
+	$gor=genericOr($ids,'inv_id');
+	$query = "SELECT * FROM #__jomresportal_lineitems WHERE ".$gor;
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$lineitems[$r->inv_id][$r->id]['id']			=$r->id;
+			$lineitems[$r->inv_id][$r->id]['name']			=$r->name;
+			$lineitems[$r->inv_id][$r->id]['description']	=$r->description;
+			$lineitems[$r->inv_id][$r->id]['init_price']	=$r->init_price;
+			$lineitems[$r->inv_id][$r->id]['init_qty']		=$r->init_qty;
+			$lineitems[$r->inv_id][$r->id]['init_discount']	=$r->init_discount;
+			$lineitems[$r->inv_id][$r->id]['init_total']	=$r->init_total;
+			$lineitems[$r->inv_id][$r->id]['recur_price']	=$r->recur_price;
+			$lineitems[$r->inv_id][$r->id]['recur_qty']		=$r->recur_qty;
+			$lineitems[$r->inv_id][$r->id]['recur_discount']=$r->recur_discount;
+			$lineitems[$r->inv_id][$r->id]['recur_total']	=$r->recur_total;
+			$lineitems[$r->inv_id][$r->id]['tax_code']		=$r->tax_code;
+			$lineitems[$r->inv_id][$r->id]['tax_description']=$r->tax_description;
+			$lineitems[$r->inv_id][$r->id]['tax_rate']		=$r->tax_rate;
+			$lineitems[$r->inv_id][$r->id]['inv_id']		=$r->inv_id;
+			}
+		}
+	return $lineitems;
 	}
 
 
