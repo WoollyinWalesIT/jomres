@@ -61,6 +61,8 @@ class j16000edit_template {
 		// We can't use patTemplate to output the template data here because.....it tries to parse the data from the template file _as_ it's own template data. No biggie
 		// Back to good ol' "echo" in this script.
 		$outputString = '
+		<script src="'.get_showtime('live_site').'/jomres/javascript/codemirror/js/codemirror.js" type="text/javascript"></script>
+
 		<form action="'.JOMRES_SITEPAGE_URL_ADMIN.'" method="post" name="adminForm">
 		<table class="jradmin_innerwrapper">
 			<tr>
@@ -74,7 +76,7 @@ class j16000edit_template {
 			</tr>
 			<tr>
 				<td colspan = "2" >
-					<textarea class="inputbox" cols="150" rows="100" name="templatedata">'.$output['TEMPLATEHTML'].'</textarea>
+					<textarea id="code" cols="150" rows="100" name="templatedata">'.$output['TEMPLATEHTML'].'</textarea>
 				</td>
 
 				
@@ -84,7 +86,21 @@ class j16000edit_template {
 		'.$output['JOMRESTOKEN'].'
 		<input type="hidden" name="templatename" value="'.$output['TEMPLATENAME'].'" />
 		<input type="hidden" name="task" value="save_template" />
-		</form>';
+		</form>
+    <script type="text/javascript">
+      var editor = CodeMirror.fromTextArea(\'code\', {
+        height: "1000px",
+        parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js",
+                     "'.get_showtime('live_site').'/jomres/javascript/codemirror/contrib/php/js/tokenizephp.js", "'.get_showtime('live_site').'/jomres/javascript/codemirror/contrib/php/js/parsephp.js",
+                     "'.get_showtime('live_site').'/jomres/javascript/codemirror/contrib/php/js/parsephphtmlmixed.js"],
+        stylesheet: ["'.get_showtime('live_site').'/jomres/javascript/codemirror/css/xmlcolors.css", "'.get_showtime('live_site').'/jomres/javascript/codemirror/css/jscolors.css", "'.get_showtime('live_site').'/jomres/javascript/codemirror/css/csscolors.css", "'.get_showtime('live_site').'/jomres/javascript/codemirror/css/phpcolors.css"],
+        path: "'.get_showtime('live_site').'/jomres/javascript/codemirror/js/",
+        continuousScanning: 500
+      });
+    </script>
+
+		
+		';
 		echo $outputString;
 		}
 
