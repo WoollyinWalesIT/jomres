@@ -6762,3 +6762,11 @@ define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the proper
 * @ignore
 */
 define('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT','Contact agent');
+/**
+* @ignore
+*/
+define('_JOMRES_INVOICE_MARKASPAID','Mark invoice as paid');
+/**
+* @ignore
+*/
+define('_JOMRES_INVOICE_MARKEDASPAID','Invoice marked as paid');

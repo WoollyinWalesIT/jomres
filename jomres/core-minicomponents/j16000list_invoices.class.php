@@ -63,6 +63,13 @@ class j16000list_invoices
 		$pageoutput=array();
 		$rows=array();
 		
+		$invoice_id_array=array();
+		foreach ($invoices as $invoice)
+			{
+			$invoice_id_array[]=$invoice['id'];
+			}
+		$invoices_items = invoices_getalllineitems_forinvoice_ids($invoice_id_array);
+		
 		$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 		$output['HUSER']=_JRPORTAL_INVOICES_USER;
 		$output['HSTATUS']=_JRPORTAL_INVOICES_STATUS;
@@ -76,16 +83,25 @@ class j16000list_invoices
 		$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 		$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
 
-			$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
-			$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
-			$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
-			$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
-			$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
-			
+		$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
+		$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
+		$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
+		$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
+		$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
+		
 		foreach ($invoices as $invoice)
 			{
 			$r=array();
 			$r['ID']=$invoice['id'];
+			$inv_id = $invoice['id'];
+			$invoice_items = $invoices_items[$inv_id];
+			$item_name_string = "";
+			foreach ($invoice_items as $invoice_item)
+				{
+				if ($item_name_string != "Commission<br/>")  // We can filter out other line items as Commission only needs to be named once in the invoices list. Also, invoices of commission should not have other items added to them.
+					$item_name_string .= $invoice_item['name']."<br/>";
+				}
+			$r['ITEMS']=$item_name_string;
 			
 			jr_import('jrportal_user_functions');
 			$user_obj = new jrportal_user_functions();

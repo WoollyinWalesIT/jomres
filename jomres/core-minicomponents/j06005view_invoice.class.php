@@ -89,9 +89,11 @@ class j06005view_invoice {
 				
 				$query = "SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice->contract_id. " LIMIT 1";
 				$guestUid = doSelectSql($query,1);
+	
 				$query="SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$invoice->property_uid."'";
 				$guest_uid =doSelectSql($query,1);
-				$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_guest_details',array('guest_uid'=>$guest_uid));
+
+				$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6005','show_guest_details',array('guest_uid'=>$guest_uid));
 				$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
 				}
 			else // Let's check that this property manager can view this commission/subscription invoice
@@ -102,10 +104,10 @@ class j06005view_invoice {
 					trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
 					return;
 					}
-
 				$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_site_business',array());
 				if (count($thisJRUser->authorisedProperties)>0)
 					$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array());
+				
 				}
 			}
 		else
@@ -133,7 +135,19 @@ class j06005view_invoice {
 		$output['HDOM']=jr_gettext('_JRPORTAL_INVOICES_RECUR_DOMONTH',_JRPORTAL_INVOICES_RECUR_DOMONTH);
 		$output['HCURRENCYCODE']=jr_gettext('_JRPORTAL_INVOICES_CURRENCYCODE',_JRPORTAL_INVOICES_CURRENCYCODE);
 		$output['HINVOICENO']=jr_gettext('_JOMRES_INVOICE_NUMBER',_JOMRES_INVOICE_NUMBER);
-		
+
+		if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1)
+			{
+			$markaspaid=jr_gettext('_JOMRES_INVOICE_MARKASPAID',_JOMRES_INVOICE_MARKASPAID,false,false);
+			$output['MARKASPAID_LINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=mark_booking_invoice_paid&no_html=1&id='.$invoice->id.'">'.$markaspaid.'</a>';
+			}
+
+		if ($thisJRUser->userIsManager && (int) $invoice->contract_id > 0)
+			{
+			$viewbooking=jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,false,false);
+			$output['VIEWBOOKING_LINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$invoice->contract_id.'">'.$viewbooking.'</a>';
+			}
+			
 		$output['ID']=$invoice->id;
 		
 		if ($invoice->status == "0")
@@ -244,6 +258,7 @@ class j06005view_invoice {
 		
 	function touch_template_language()
 		{
+
 		$output[]=jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT);
 		$output[]=jr_gettext('_JOMRES_COM_INVOICE_TITLE',_JOMRES_COM_INVOICE_TITLE);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_TITLE',_JRPORTAL_INVOICES_TITLE);
@@ -278,6 +293,10 @@ class j06005view_invoice {
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_STATUS_PAID',_JRPORTAL_INVOICES_STATUS_PAID);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_STATUS_CANCELLED',_JRPORTAL_INVOICES_STATUS_CANCELLED);
 		$output[]=jr_gettext('_JRPORTAL_INVOICES_STATUS_PENDING',_JRPORTAL_INVOICES_STATUS_PENDING);
+		$output[]=jr_gettext('_JOMRES_INVOICE_MARKASPAID',_JOMRES_INVOICE_MARKASPAID);
+		$output[]=jr_gettext('_JOMRES_INVOICE_MARKEDASPAID',_JOMRES_INVOICE_MARKEDASPAID);
+		$output[]=jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING);
+		
 
 		foreach ($output as $o)
 			{
