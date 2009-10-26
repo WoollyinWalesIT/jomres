@@ -28,8 +28,8 @@ class jomres_cache
 	 * Constructor for the jomres_booking object, sets a bunch of variables, finds configuration settings & gets the current state of the booking from the tmpbooking table
 	#
 	 */
-	//function jomres_cache($key="",$property_uid=0,$userSpecific=false)
-	function jomres_cache($args)
+	//function jomres_cache($args)
+	function jomres_cache($key="",$property_uid=0,$userSpecific=false)
 		{
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -39,9 +39,9 @@ class jomres_cache
 		$this->expiration = 3600;
 		if (strlen($key)>0 && $this->useCaching == "1")
 			{
-			$this->setKey($arg[0]);
-			$this->setPropertyUid($arg[1]);
-			$this->setUserID($arg[2]);
+			$this->setKey($key);
+			$this->setPropertyUid($property_uid);
+			$this->setUserID($userSpecific);
 			$this->generateFilename();
 			}
 		}
