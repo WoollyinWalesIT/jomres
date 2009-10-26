@@ -419,7 +419,7 @@ class j01010listpropertys {
 					$property_deets['LOWESTPRICE']=$price;
 					$property_deets['STARS']=$starslink;
 					//$property_deets['TEMPLATEPATH']=$templatepath;
-					$MiniComponents->triggerEvent('001011',array('property_uid'=>$property->propertys_uid) ); // Optional
+					$MiniComponents->triggerEvent('01011',array('property_uid'=>$property->propertys_uid) ); // Optional
 					$mcOutput=$MiniComponents->getAllEventPointsData('01011');
 					if (count($mcOutput)>0)
 						{
