@@ -108,6 +108,7 @@ class basic_property_details
 			$this->property_postcode		=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE',$data->property_postcode,$editable,false);
 			$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
 			$this->property_country			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$countryname,$editable,false);
+			$this->property_country_code	= $data->property_country;
 
 			$this->property_tel				=$data->property_tel;
 			$this->property_fax				=$data->property_fax;

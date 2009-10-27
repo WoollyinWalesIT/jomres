@@ -33,6 +33,7 @@ class showtime
 	public function __construct() 
 		{
 		self::$internal_debugging = false;
+		$this->custom_paths = array();
 		}
 
 	public static function getInstance()
@@ -62,6 +63,11 @@ class showtime
 		if (self::$internal_debugging)
 			echo "Getting ".$setting." which is ".$this->$setting."<br>";
 		return $this->$setting;
+		}
+		
+	public function set_custom_path_for_template($templatename,$path)
+		{
+		$this->custom_paths[$templatename]=$path;
 		}
 	}
 ?>
