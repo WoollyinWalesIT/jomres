@@ -6770,3 +6770,7 @@ define('_JOMRES_INVOICE_MARKASPAID','Mark invoice as paid');
 * @ignore
 */
 define('_JOMRES_INVOICE_MARKEDASPAID','Invoice marked as paid');
+/**
+* @ignore
+*/
+define('_JOMRES_APIKEY_REMAKE','Make new API key');

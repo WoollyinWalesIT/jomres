@@ -286,7 +286,7 @@ function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id)
 		{
 		foreach ($userList as $u)
 			{
-			$users[$id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->email);
+			$users[$u->id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->email);
 			}
 		}
 	return $users;
