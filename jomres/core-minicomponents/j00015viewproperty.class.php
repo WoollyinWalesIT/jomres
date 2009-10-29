@@ -152,7 +152,7 @@ class j00015viewproperty
 						}
 					}
 				}
-//var_dump($roomtypes);exit;
+
 			if ($mrConfig['showSlideshowInline']=="1" && ($jrConfig['slideshowLocation'] == 1 || $jrConfig['slideshowLocation'] == 3 ))
 				{
 				$componentArgs=array();
