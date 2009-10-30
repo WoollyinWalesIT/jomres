@@ -2391,7 +2391,7 @@ function getPropertyTypeDropdown($propertyType="",$all=false)
 			$ptypeOptions[]=jomresHTML::makeOption( 0, jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false));
 		foreach ($ptypeList as $ptype)
 			{
-			$ptypeOptions[]=jomresHTML::makeOption( $ptype->id,stripslashes($ptype->ptype) );
+			$ptypeOptions[]=jomresHTML::makeOption( $ptype->id,stripslashes(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.$ptype->id,$ptype->ptype,false,false)) );
 			}
 		$ptypeDropDownList= jomresHTML::selectList($ptypeOptions, 'propertyType', 'class="inputbox" size="1"', 'value', 'text',$propertyType);
 		}
