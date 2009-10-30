@@ -25,7 +25,6 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 
 class showtime
 	{
-	// Store the single instance of Database
 	private static $configInstance;
 	private static $internal_debugging;
 	
