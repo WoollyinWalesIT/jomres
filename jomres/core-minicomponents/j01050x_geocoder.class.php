@@ -49,6 +49,7 @@ class j01050x_geocoder {
 		$property_uid=(int)$componentArgs['property_uid'];
 		$output=array();
 		$pageoutput=array();
+		jr_import('browser');
 		$b = new browser();
 		$output['VAR']="";
 		if ($b->BROWSER_AGENT=="IE")
