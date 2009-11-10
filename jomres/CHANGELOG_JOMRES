@@ -1,3 +1,18 @@
+Jomres 4.2.2
+
+Modified create property functionality so that the property type is selected on the first page, allowing us to use a property type language file in the "edit property" section (so now eg you can use yacht/boat specific language instead of the generic property language when creating a new boat)
+Improved searching on price ranges when realestate properties used, and fixed bug where searching on Any price range wouldn't produce a result.
+Various further improvements for realestate propertys (ie boats)and new feature to associate property features with property types.
+Fixed bug where property maker was using the wrong id (manager id, not cms user id) when cross referencing new propertys with managers.
+Fixed a bug introduced in 4.2 which broke caching.
+Improved invoice views, added line items to invoice list and guest name, added mark invoice paid button.
+Added codemirror javascript for template editing, and various index.html files for obscuring directory contents.
+Renamed google maps variable to prevent collisions with map div id.
+Added custom paths to showtime class, and the ability to Jomres.phptools/patTemplate/Reader/Jomres.php to pick up this custom path and use it instead of the default path.
+Added api key output in show profiles and added a button to allow us to change the manager's api key. Similar has been added to API plugin to show the manager's API key in the frontend.
+
+
+
 Jomres 4.2.1
 
 Removed a useless (?) close session that was causing much disk activity.
