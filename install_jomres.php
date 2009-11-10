@@ -18,6 +18,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 */
 
 define('_JOMRES_INITCHECK', 1 );
+ini_set("display_errors",1);
 ini_set('error_reporting', E_ALL);
 
 if (!defined('JRDS'))
