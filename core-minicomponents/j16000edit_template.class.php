@@ -64,12 +64,10 @@ class j16000edit_template {
 		<script src="'.get_showtime('live_site').'/jomres/javascript/codemirror/js/codemirror.js" type="text/javascript"></script>
 
 		<form action="'.JOMRES_SITEPAGE_URL_ADMIN.'" method="post" name="adminForm">
+		<input type="button" value="SUBMIT" onclick="get_jr_val(document)" />
 		<table class="jradmin_innerwrapper">
 			<tr>
 				<td class="jomres_title" colspan = "2" >'.$output['PAGETITLE'].'</td>
-			</tr>
-			<tr>
-				<td colspan = "2" >'.$output['JOMRESTOOLBAR'].'</td>
 			</tr>
 			<tr>
 				<td colspan = "2" >'.$output['TEMPLATENAME'].'</td>
@@ -97,6 +95,13 @@ class j16000edit_template {
         path: "'.get_showtime('live_site').'/jomres/javascript/codemirror/js/",
         continuousScanning: 500
       });
+	  
+	  function get_jr_val(doc)
+		{
+		valoo = editor.getCode();
+		jQuery("#code").val(valoo);
+		document.adminForm.submit();
+		}
     </script>
 
 		
