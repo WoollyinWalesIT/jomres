@@ -321,9 +321,9 @@ function RemoveXSS($val)
 	$vinces[]='<!--'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
 	$vinces[]='-->'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
 	$vinces[]='<!-- -->'; // <XML ID="xss"><I><B>&lt;IMG SRC="javas<!-- -->cript:alert('XSS')"  data island with comment obfuscation
-	//$vinces[]='�?'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
-	//$vinces[]='¥'; //US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
-	//$vinces[]='ó'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	 //borks apache
+	//$vinces[]='â•?'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
+	//$vinces[]='Â¥'; //US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
+	//$vinces[]='Ã³'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	 //borks apache
 	$vinces[]="?_url"; //  open redirector exploit
 
 

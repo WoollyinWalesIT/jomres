@@ -56,7 +56,20 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	$br="";
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
+if (!defined($theConstant))
+	{
+	// http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=hello%20world&langpair=en%7Cit
+	$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theValue)."&langpair=en%7Cit";
 
+	$curl_handle=curl_init($gquery);
+	curl_setopt($curl_handle,CURLOPT_URL);
+	curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+	$response = trim(curl_exec($curl_handle));
+	curl_close($curl_handle);
+	
+	echo $response;exit;
+	}
 	if (count($customTextArray)>0)
 		{
 		if (array_key_exists($theConstant,$customTextArray) )

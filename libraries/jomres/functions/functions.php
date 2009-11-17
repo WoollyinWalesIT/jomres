@@ -3473,7 +3473,7 @@ function currencyCodesArray()
 	$codes["SOS"]=array('country'=>"Somalia",'currencyname'=>"Shillings");
 	$codes["SPL"]=array('country'=>"Seborga",'currencyname'=>"Luigini");
 	$codes["SRD"]=array('country'=>"Suriname",'currencyname'=>"Dollars");
-	$codes["STD"]=array('country'=>"São Tome and Principe",'currencyname'=>"Dobras");
+	$codes["STD"]=array('country'=>"SÃ£o Tome and Principe",'currencyname'=>"Dobras");
 	$codes["SVC"]=array('country'=>"El Salvador",'currencyname'=>"Colones");
 	$codes["SYP"]=array('country'=>"Syria",'currencyname'=>"Pounds");
 	$codes["SZL"]=array('country'=>"Swaziland",'currencyname'=>"Emalangeni");
@@ -3496,10 +3496,10 @@ function currencyCodesArray()
 	$codes["VND"]=array('country'=>"Viet Nam",'currencyname'=>"Dong");
 	$codes["VUV"]=array('country'=>"Vanuatu",'currencyname'=>"Vatu");
 	$codes["WST"]=array('country'=>"Samoa",'currencyname'=>"Tala");
-	$codes["XAF"]=array('country'=>"Communauté Financière Africaine BEAC",'currencyname'=>"Francs");
+	$codes["XAF"]=array('country'=>"CommunautÃ© FinanciÃ¨re Africaine BEAC",'currencyname'=>"Francs");
 	$codes["XCD"]=array('country'=>"East Caribbean",'currencyname'=>"Dollars");
-	$codes["XOF"]=array('country'=>"Communauté Financière Africaine BCEAO",'currencyname'=>"Francs");
-	$codes["XPF"]=array('country'=>"Comptoirs Français du Pacifique",'currencyname'=>"Francs");
+	$codes["XOF"]=array('country'=>"CommunautÃ© FinanciÃ¨re Africaine BCEAO",'currencyname'=>"Francs");
+	$codes["XPF"]=array('country'=>"Comptoirs FranÃ§ais du Pacifique",'currencyname'=>"Francs");
 	$codes["YER"]=array('country'=>"Yemen",'currencyname'=>"Rials");
 	$codes["ZAR"]=array('country'=>"South Africa",'currencyname'=>"Rand");
 	$codes["ZMK"]=array('country'=>"Zambia",'currencyname'=>"Kwacha");
