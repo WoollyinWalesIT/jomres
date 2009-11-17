@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Mini-component core file
  * @author Vince Wooll <sales@jomres.net>
