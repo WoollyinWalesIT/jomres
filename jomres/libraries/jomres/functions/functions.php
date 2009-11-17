@@ -21,6 +21,22 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 	
+
+// This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
+// The string will already have been cleaned by filter var sanitize string.
+function jomres_reconvertString($clean)
+	{
+	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
+	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
+	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
+	$clean = str_replace(" & "," &amp; " , $clean);
+
+	
+	//var_dump($clean);
+	return $clean;
+	}
+	
+	
 function get_showtime($setting)
 	{
 	$showtime = jomres_getSingleton('showtime');
@@ -270,19 +286,6 @@ function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content=
 	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
 	}
 
-// This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
-// The string will already have been cleaned by filter var sanitize string.
-function jomres_reconvertString($clean)
-	{
-	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
-	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
-	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
-	$clean = str_replace(" & "," &amp; " , $clean);
-
-	
-	//var_dump($clean);
-	return $clean;
-	}
 
 
 
