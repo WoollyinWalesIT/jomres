@@ -147,7 +147,7 @@ class jomres_temp_booking_handler
 			);
 			
 		$this->tmplang = array(
-			"jomreslang" => null
+			"jomreslang" => get_showtime('lang')
 		);
 		$this->user_settings = array(
 			"editing_on" => false
