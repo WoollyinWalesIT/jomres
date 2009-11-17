@@ -32,8 +32,7 @@ class j16000save_template
 			{
 			$this->template_touchable=false; return;
 			}
-		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-		
+		//if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$templatename		= jomresGetParam( $_REQUEST, 'templatename', '' );
 		$templateData		= $_REQUEST['templatedata'];
 		$templateData		= str_replace("text<x>area","textarea",$templateData);
