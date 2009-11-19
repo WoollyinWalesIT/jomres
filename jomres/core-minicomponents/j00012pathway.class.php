@@ -132,7 +132,8 @@ class j00012pathway {
 			$counter=1;
 			foreach ($pathwayArray as $p)
 				{
-				$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
+				if (_JOMRES_DETECTED_CMS == "joomla15" )
+					$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
 				if ($counter<count($pathwayArray))
 					$pathway.='<a href="'.jomresValidateUrl(jomresURL(''.$p['url'])).'" class="pathway">'.$p['text'].'</a>';
 				else
