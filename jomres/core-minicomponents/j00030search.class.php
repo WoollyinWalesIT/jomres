@@ -533,7 +533,7 @@ class j00030search {
 							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
 							$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$feature['id'],		stripslashes($feature['description']),false,false);
 
-							$tmp=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,get_showtime('live_site').$image,"","property_feature",array());
+							$tmp=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$image,"","property_feature",array());
 
 							$rows[]=$r;
 							$r.='<div style="float : left;" >'.$tmp.'<input type="checkbox" name="feature_uids[]" value="'.$pid.'" '.$ischecked.' /></div>';
