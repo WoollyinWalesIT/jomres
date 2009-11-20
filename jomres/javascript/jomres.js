@@ -252,6 +252,19 @@ function getResponse_extras(field,value,theId) {
 		function(data){
 			eval(data); 
 			show_log(field);
+			// Thanks Dimitris
+			var extra = document.getElementsByName('extras['+theId+']');
+			var combo = document.getElementsByName('quantity'+theId);
+			if (extra[0].checked == true)
+				{
+				combo[0].disabled=false;
+				combo[0].selectedIndex=0;
+				}
+			else
+				{
+				combo[0].disabled=true;
+				combo[0].selectedIndex=0;
+				}
 			}
 	);
 }
