@@ -62,6 +62,7 @@ class custom_text
 				//echo $theConstant." - ".$text->customtext."<br>
 				//";
 				}
+			//echo $property_uid." ".$current_custom_text."  CUSTOM<br>";
 			$this->property_uids_custom_text[(int)$property_uid]= $current_custom_text;
 			}
 		return $current_custom_text;

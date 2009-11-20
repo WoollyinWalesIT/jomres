@@ -164,4 +164,7 @@ $jrConfig['business_email']="BLANK";
 
 $jrConfig['contact_owner_emails_to_alternative'] ="0";
 $jrConfig['contact_owner_emails_to_alternative_email'] ="";
+
+$jrConfig['auto_translate']="0";
+
 ?>

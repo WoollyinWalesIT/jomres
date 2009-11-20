@@ -107,7 +107,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	padding: 0;
 	margin: 0 2px 2px 0;
 	height: 23px;
-	width: 130px;
+	width: 150px;
 	background-color: #6e717a; 
 	text-align: center;
 	}
@@ -130,6 +130,35 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	{
 	}
 
+.jomres_button_property_list {
+	/*background: url(../images/jomres_button.gif) no-repeat;*/
+	color: #ffffff;
+	padding: 0;
+	margin: 0 2px 2px 0;
+	height: 23px;
+	width: 230px;
+	background-color: #6e717a; 
+	text-align: center;
+	}
+
+.jomres_button_property_list a:link, .jomres_button_property_list a:visited 
+	{
+	color: #ffffff;
+	font-family: Tahoma,Arial,Helvetica,sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	padding: 0px 10px 0 20px;
+	text-decoration: none;	
+	height: 19px;
+	line-height: 23px;
+	text-transform: uppercase;
+	outline: 0;
+	}
+	
+.jomres_button_property_list a:hover
+	{
+	}
+	
 .jomres_orderbox 
 	{
 	margin-top: 5px;
@@ -212,7 +241,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 
 .propertylist_right 
 	{
-	width: 200px;
+	width: 250px;
 	background: #f7f7f7;
 	border-left: 1px solid #dddddd;
 	}		
