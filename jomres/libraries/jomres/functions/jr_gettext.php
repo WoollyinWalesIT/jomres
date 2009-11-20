@@ -56,20 +56,48 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	$br="";
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
-if (!defined($theConstant))
-	{
-	// http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=hello%20world&langpair=en%7Cit
-	$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theValue)."&langpair=en%7Cit";
-
-	$curl_handle=curl_init($gquery);
-	curl_setopt($curl_handle,CURLOPT_URL);
-	curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-	$response = trim(curl_exec($curl_handle));
-	curl_close($curl_handle);
+		
+	// New in 4.3, and experimental
+	/*
+	if (!defined($theConstant) && !array_key_exists($theConstant,$customTextArray) && $theText != "")
+		{
+		
+		$site_lang = $jrConfig['siteLang'];
+		$jomresConfig_lang = get_showtime('lang');
+		$site_tmp=explode("-",$site_lang);
+		$curr_lang_tmp = explode("-",$jomresConfig_lang);
+		
+		$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theText)."&langpair=".$site_tmp[0]."%7C".$curr_lang_tmp[0];
+		echo $gquery." ".$theConstant."<br>";
+		$curl_handle=curl_init($gquery);
+		curl_setopt($curl_handle,CURLOPT_URL);
+		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+		$response = trim(curl_exec($curl_handle));
+		curl_close($curl_handle);
+		$response = json_decode($response);
+		if ( (int)$response->responseStatus == 200)
+			{
+			$theText = (string)RemoveXSS($response->responseData->translatedText);
+			$theText = str_replace("'", "&#39;", $theText);
+			$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theText."','".(int)$property_uid."','".get_showtime('lang')."')";
+			
+			$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
+			$result=doInsertSql($query,$audit);
+			
+			$customTextObj->property_uids_custom_text[$theConstant] = $theText;
+			if (!$result)
+				{
+				echo $query. "<br>";
+				}
+			}
+		else
+			{
+			//echo $response->responseStatus."<br>";
+			}
+		}
+	*/
 	
-	echo $response;exit;
-	}
 	if (count($customTextArray)>0)
 		{
 		if (array_key_exists($theConstant,$customTextArray) )
