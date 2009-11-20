@@ -71,6 +71,7 @@ class basic_property_details
 		$customTextObj =jomres_getSingleton('custom_text');
 		$customTextObj->get_custom_text_for_property($property_uid);
 		$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
+		// echo $property_name."<br>";
 		$property_name = str_replace("&#39;", "'", $property_name);
 		return $property_name;
 		}

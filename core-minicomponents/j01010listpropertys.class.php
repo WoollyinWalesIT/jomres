@@ -391,7 +391,7 @@ class j01010listpropertys {
 						}
 					
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property->propertys_uid);
-					//$property_deets['PROP_NAME'] = jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME'.(int)$property->propertys_uid,stripslashes($propertyContactArray[0]),false,false);
+					//var_dump($property_deets['PROP_NAME']);exit;
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
 					$property_deets['PROP_TOWN']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.$propertyContactArray[2]).'">'.stripslashes($propertyContactArray[2]).'</a>';
 					$property_deets['PROP_POSTCODE']=stripslashes($propertyContactArray[3]);
@@ -401,7 +401,7 @@ class j01010listpropertys {
 					$property_deets['LIVESITE']=get_showtime('live_site');
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
-					$property_deets['PROPERTYNAME']= stripslashes($propertyContactArray[0]);
+					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
 					$property_deets['PROPERTYTOWN']= $ptown;
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
@@ -454,11 +454,10 @@ class j01010listpropertys {
 				}
 			else
 				{
-		    	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		    	$tmpl->readTemplatesFromInput( 'list_properties.html' );
-		    	$tmpl->displayParsedTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'list_properties.html' );
+				$tmpl->displayParsedTemplate();
 				}
-
 
 			if ($jrConfig['dumpTemplate']=="1")
 				$tmpl->dump();

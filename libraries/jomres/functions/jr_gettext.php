@@ -25,9 +25,13 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
 	$customTextObj =jomres_getSingleton('custom_text');
-	
+			
 	$property_uid = get_showtime('property_uid');
 	$customTextArray = $customTextObj->get_custom_text();
+	// if ($theConstant == "_JOMRES_CUSTOMTEXT_PROPERTY_NAME")
+		// {
+		// var_dump($theConstant);echo "<br>";var_dump($customTextArray);echo "<br>";
+		// }
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$thisJRUser=jomres_getSingleton('jr_user');
 
