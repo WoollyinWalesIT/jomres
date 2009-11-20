@@ -6774,3 +6774,12 @@ define('_JOMRES_INVOICE_MARKEDASPAID','Invoice marked as paid');
 * @ignore
 */
 define('_JOMRES_APIKEY_REMAKE','Make new API key');
+
+/**
+* @ignore
+*/
+define('_JOMRES_AUTOTRANSLATE_TITLE','Use Google for initial translations?');
+/**
+* @ignore
+*/
+define('_JOMRES_AUTOTRANSLATE_DESC','This feature is new and experimental, so use at your own risk. The purpose of the feature is to query Google\'s translation tool to automatically set up translations for a given property. Note that this feature sanitizes all input, so if you use a html editor for formatting your property details, then this will break that formatting.<br/>');

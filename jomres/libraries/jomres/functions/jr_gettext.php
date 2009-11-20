@@ -26,7 +26,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
 	$customTextObj =jomres_getSingleton('custom_text');
 			
-	$property_uid = get_showtime('property_uid');
+	$property_uid = (int)get_showtime('property_uid');
 	$customTextArray = $customTextObj->get_custom_text();
 	// if ($theConstant == "_JOMRES_CUSTOMTEXT_PROPERTY_NAME")
 		// {
@@ -61,46 +61,51 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
 		
-	// New in 4.3, and experimental
-	/*
-	if (!defined($theConstant) && !array_key_exists($theConstant,$customTextArray) && $theText != "")
+	// New in 4.3, and experimental, so it's disabled by default and there's no option to enable it
+	if ($jrConfig['auto_translate'] == "1")
 		{
-		
-		$site_lang = $jrConfig['siteLang'];
-		$jomresConfig_lang = get_showtime('lang');
-		$site_tmp=explode("-",$site_lang);
-		$curr_lang_tmp = explode("-",$jomresConfig_lang);
-		
-		$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theText)."&langpair=".$site_tmp[0]."%7C".$curr_lang_tmp[0];
-		echo $gquery." ".$theConstant."<br>";
-		$curl_handle=curl_init($gquery);
-		curl_setopt($curl_handle,CURLOPT_URL);
-		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-		$response = trim(curl_exec($curl_handle));
-		curl_close($curl_handle);
-		$response = json_decode($response);
-		if ( (int)$response->responseStatus == 200)
+		if (!defined($theConstant) && !array_key_exists($theConstant,$customTextArray) && $theText != "")
 			{
-			$theText = (string)RemoveXSS($response->responseData->translatedText);
-			$theText = str_replace("'", "&#39;", $theText);
-			$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theText."','".(int)$property_uid."','".get_showtime('lang')."')";
+			//echo $property_uid;
+			//var_dump($customTextObj->property_uids_custom_text);exit;
+			$site_lang = $jrConfig['siteLang'];
+			$jomresConfig_lang = get_showtime('lang');
+			$site_tmp=explode("-",$site_lang);
+			$curr_lang_tmp = explode("-",$jomresConfig_lang);
 			
-			$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
-			$result=doInsertSql($query,$audit);
-			
-			$customTextObj->property_uids_custom_text[$theConstant] = $theText;
-			if (!$result)
+			//$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theText)."&langpair=".$site_tmp[0]."%7C".$curr_lang_tmp[0];
+			// Autodetect the source language
+			$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theText)."&langpair=%7C".$curr_lang_tmp[0];
+			//echo $gquery." ".$theConstant."<br>";
+			$curl_handle=curl_init($gquery);
+			curl_setopt($curl_handle,CURLOPT_URL);
+			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+			$response = trim(curl_exec($curl_handle));
+			curl_close($curl_handle);
+			$response = json_decode($response);
+			// Are we good?
+			if ( (int)$response->responseStatus == 200)
 				{
-				echo $query. "<br>";
+				//echo $response->responseData->translatedText."<br/>";
+				$theText=filter_var($response->responseData->translatedText,FILTER_SANITIZE_SPECIAL_CHARS);
+				
+				$theText = str_replace("'", "&#39;", $theText);
+				$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theText."','".(int)$property_uid."','".get_showtime('lang')."')";
+				$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
+				// We'll disable this for now. The property features aren't associated with property ids so  it's generating lots of queries and saving lots of useless rows in the custom_text table
+				//$result=doInsertSql($query,$audit);
+				echo $property_uid." ".$theText."<br>";
+				$customTextObj->property_uids_custom_text[$property_uid][$theConstant] = $theText;
+				//var_dump($customTextObj->property_uids_custom_text[$property_uid]);exit;
 				}
-			}
-		else
-			{
-			//echo $response->responseStatus."<br>";
+			else
+				{
+				//echo $response->responseStatus."<br>";
+				}
+			//echo $theText."<br/>";
 			}
 		}
-	*/
 	
 	if (count($customTextArray)>0)
 		{

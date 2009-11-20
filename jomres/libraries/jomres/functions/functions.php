@@ -47,6 +47,7 @@ function get_showtime($setting)
 
 function set_showtime($setting,$value)
 	{
+	//echo $setting." - ".$value."<br>";
 	$showtime = jomres_getSingleton('showtime');
 	if (!$showtime->$setting=$value)
 		return false;
