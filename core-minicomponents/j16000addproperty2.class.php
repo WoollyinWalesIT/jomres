@@ -78,38 +78,22 @@ class j16000addproperty2
 		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
 		$propertyFeaturesArray=explode(",",$propertyFeatures);
 
-		if ($jrConfig['useGlobalPFeatures']=="1")
+		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+		$propertyFeaturesList=doSelectSql($query);
+		foreach($propertyFeaturesList as $propertyFeature)
 			{
-			$query = "SELECT	hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList=doSelectSql($query);
-			foreach($propertyFeaturesList as $propertyFeature)
-				{
-				$r=array();
-				$r['PID']=$propertyFeature->hotel_features_uid;
-				if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
-					$r['ischecked']="checked";
-					
-				$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
-				$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
-				$r['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,get_showtime('live_site')."/".$propertyFeature->image,"","property_feature",array());
+			$r=array();
+			$r['PID']=$propertyFeature->hotel_features_uid;
+			if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
+				$r['ischecked']="checked";
 
-				//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
-				$globalPfeatures[]=$r;
-				}
+			$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
+			$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
+			$r['FEATURE']=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$propertyFeature->image,"","property_feature",array());
+			//$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,$retString=TRUE);
+			$globalPfeatures[]=$r;
 			}
-		else
-			{
-			$listTxt="";
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid = '$propertyUid' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList =doSelectSql($query);
-			foreach($propertyFeaturesList as $propertyFeature)
-				{
-				$checked="";
-				if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
-			 			$checked="checked";
-				$listTxt.="<input class=\"jomres_input\" type=\"checkbox\" name=\"features_list[]\" value=\"".($propertyFeature->hotel_features_uid)."\" ".$checked." >".($propertyFeature->hotel_feature_abbv)."<br>";
-				}
-			}
+
 		if (isset($listTxt))
 			$output['FEATURES']=$listTxt;
 		$propertyImageLocation="";
