@@ -216,10 +216,10 @@ class j03110guestconfirmationemail {
 		$invoice_id = $MiniComponents->miniComponentData['03025']['insertbooking_invoice']['invoice_id'];
 		if ((int)$invoice_id > 0)
 			{
-			$invoice_template = $MiniComponents->specificEvent('06000','view_invoice',array('internal_call'=>true,'invoice_id'=>$invoice_id) );
+			$invoice_template = $MiniComponents->specificEvent('06005','view_invoice',array('internal_call'=>true,'invoice_id'=>$invoice_id) );
 			$output['INVOICE']	= $invoice_template;
 			}
-			
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
