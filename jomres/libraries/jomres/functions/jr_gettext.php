@@ -61,7 +61,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
 		
-	// New in 4.3, and experimental, so it's disabled by default and there's no option to enable it
+/* 	// New in 4.3, and experimental, so it's disabled by default and there's no option to enable it
 	if ($jrConfig['auto_translate'] == "1")
 		{
 		if (!defined($theConstant) && !array_key_exists($theConstant,$customTextArray) && $theText != "")
@@ -105,7 +105,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				}
 			//echo $theText."<br/>";
 			}
-		}
+		} */
 	
 	if (count($customTextArray)>0)
 		{
