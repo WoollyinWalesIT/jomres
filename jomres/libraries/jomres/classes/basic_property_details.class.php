@@ -65,7 +65,7 @@ class basic_property_details
 		{
 		if ($property_uid ==0)
 			$property_uid = $this->property_uid;
-		//$original_property_uid = get_showtime('property_uid');
+		$original_property_uid = get_showtime('property_uid');
 		set_showtime('property_uid',$property_uid);
 		$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
 		$property_name=doSelectSql($query,1);
@@ -74,7 +74,7 @@ class basic_property_details
 		$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
 		//echo $property_name."<br>";
 		$property_name = str_replace("&#39;", "'", $property_name);
-		//set_showtime('property_uid',$original_property_uid);
+		set_showtime('property_uid',$original_property_uid);
 		return $property_name;
 		}
 		
