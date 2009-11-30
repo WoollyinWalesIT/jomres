@@ -1,3 +1,22 @@
+Jomres 4.2.3
+
+Modified edit template to fix saving not posting updated field.
+Fixed default language bug
+All Jomres files encoded utf8 (although notepad++ disagrees)
+Fixed minor pathway bug in SA (was using a joomla function)
+Corrected call to $property->propertys_uid in list propertys
+Added global call to jomresConfig_lang for backward compatability
+Fixed bug where property feature icon wasn't showing in integrated search
+Fixed bug where property name wasn't translating in property list, added javascript to reset quantity selected to 1 when the quantity has already been selected once. Thanks Dimitris B
+Added jomres_button_property_list class so that we've got different length buttons on property list and property details. Did some more work on autotranslate but it's disabled by default and there is no option to enable it yet as it is still experimental.
+Modified backend addproperty to fix images not showing.
+Fixed bug in installer where property features weren't being created on install
+Added some calls to set showtime property uid so that the correct property name is used.
+Fixed a bug which was preventing invoices from being included in booking emails.
+Changed the way that the daterangestring in blackbookings is determined to resolve an issue on some servers where just the odd date is missed out.
+Changed headers to indicate Jomres' new GPL license & removed licensing code.
+
+
 Jomres 4.2.2
 
 Modified create property functionality so that the property type is selected on the first page, allowing us to use a property type language file in the "edit property" section (so now eg you can use yacht/boat specific language instead of the generic property language when creating a new boat)
