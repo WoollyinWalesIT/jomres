@@ -205,7 +205,7 @@ class j02134newblackbooking {
 	 * Sets the date range array
 	#
 	 */
-	function bb_getDateRange($start,$end)
+/* 	function bb_getDateRange($start,$end)
 		{
 		$interval=dateDiff("d",$start,$end);
 		$dateRangeArray=array();
@@ -223,8 +223,25 @@ class j02134newblackbooking {
 			}
 		$dateRangeString=implode(",",$dateRangeArray);
 		return $dateRangeArray;
-		}
+		} */
 
+	function bb_getDateRange($start,$end)
+		{
+		$interval=dateDiff("d",$start,$end);
+		$dateRangeArray=array();
+		$date_elements  = explode("/",$start);
+		$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+		$currentDay=$start;
+		for ($i=0, $n=$interval; $i < $n; $i++)
+			{
+			$currentDay=date("Y/m/d",$unixCurrentDate);
+			$dateRangeArray[]=$currentDay;
+			$unixCurrentDate=strtotime("+1 day",$unixCurrentDate);
+			}
+		$dateRangeString=implode(",",$dateRangeArray);
+		return $dateRangeArray;
+		}
+		
 	/**
 	#
 	 * Must be included in every mini-component
