@@ -142,7 +142,6 @@ if (componentsIntegrationExists())
 
 if ($folderChecksPassed && ACTION != "Migration") 
 	{
-	$lkey=jomresGetParam($_POST,'lkey','','string');
 	$trashtables=jomresGetParam($_POST,'trashtables',0,'integer');
 	$manual_install_confirmation=jomresGetParam($_POST,'manual_install_confirmation',"");
 	if ($manual_install_confirmation == "install")
@@ -150,30 +149,12 @@ if ($folderChecksPassed && ACTION != "Migration")
 	if ($manual_install_confirmation == "upgrade")
 		define('ACTION',"Upgrade");
 
-	$domain=jomresGetDomain();
-	if ($domain != 'localhost')
-		$connectivityTestResult=doConnectivityTest();
-	else
-		{
-		$connectivityTestResult=true;
-		}
-
-	if (!$connectivityTestResult)
-		echo "<h1>Error when testing connectivity with the jomres.net license server. Please rectify the issue and try again.</h1><br>";
-	else
-		{
-		
-		deleteCurrentLicenseFiles();
-		if (empty($lkey) )
-			$lkey = false;
-		if (!$lkey && $trashtables < 1 )
+	if ($_POST['go'] != "GO!" && $trashtables < 1 )
 			{
-			if ($domain == 'localhost')
-				$lkey='X-XXXX-11-XXXXXXXXXX-XXXXXXXX';
 			if (!function_exists ('gregoriantojd') )
 				echo '<h3><font="red">Note: You need the function gregoriantojd, which does not appear to be available to this version of php. Please see <a href="http://support.jomres.net/?cmd=knowledgebase&p=view&qid=73" target="_blank">the Jomres knowledgebase</a> for more information.<br></font></h3> ';
 			else
-				showGetKeyInput($lkey);
+				showGetKeyInput();
 			}
 		else
 			{
@@ -181,8 +162,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 				 trashTables();
 			else
 				{
-				makeLicenseKeyfile($lkey);
-				
+
 				if (!defined("ACTION") )
 					checkPropertyTableExists();
 
@@ -209,8 +189,6 @@ if ($folderChecksPassed && ACTION != "Migration")
 					$registry = new minicomponent_registry(true);
 					$registry->regenerate_registry();
 					echo "Data already installed, no need to re-create it<br>";
-					echo "Saving key<br>";
-					saveKey2db($lkey);
 					doTableUpdates();
 					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
 					showCompletedText();
@@ -221,7 +199,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 				}
 			}
 		}
-	}
+
 showfooter();
 
 function doTableUpdates()
@@ -521,12 +499,6 @@ function trashTables()
 	return false;
 	}
 
-function makeLicenseKeyfile($license_key)
-	{
-	$user_defined_string = '230a25e276da';
-	validateLicensekeyFile($license_key);
-	}
-	
 function updateMrConfig()
 	{
 	include('jomres_config.php' );
@@ -2076,39 +2048,15 @@ function showGetInstallUpgradeRequest()
 	<?php
 	}
 
-function showGetKeyInput($lkey)
+function showGetKeyInput()
 	{
 	$mrConfig=getPropertySpecificSettings();
-	if (!isset($lkey) || strlen($lkey)==0 || $lkey=="X-XXXX-11-XXXXXXXXXX-XXXXXXXX" )
-		{
-		$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-		$settingsList=doSelectSql($query);
-		if (count($settingsList) >0)
-			{
-			foreach ($settingsList as $lk)
-				{
-				$lkey=$lk->value;
-				}
-			}
-		}
-
 	?>
 	<form action="" method="post" name="adminForm">
 
-	<h3><font="red">Please enter the license key for this copy of Jomres in the field below and click Save Key to continue the installation or upgrade:<br></font></h3>
-
-	<input class="inputbox" type="text" name="lkey" value="<?php echo $lkey; ?>" size="50" />
-	<input type="hidden" name="option" value="com_jomres" />
-	<input type="hidden" name="task" value="saveLicenseKey" />
-	<input type="submit" value="Save key" class="button" >
+	<h3><font="red">Press the GO button when you are ready to proceed with installation<br></font></h3>
+	<input type="submit" name="go" value="GO!" class="button" >
 	</form>
-	<h3><font="red">If you do not have a license key, please visit <a href="http://license-server.jomres.net/" target="_blank">Jomres.net</a> to get one, you can <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=14" target="_blank">purchase a full license key here.</a><br></font></h3>
-	<?php
-	
-	if (jomresGetDomain() == "localhost")
-		echo "If you are running Jomres on localhost, then you can use the license key X-XXXX-11-XXXXXXXXXX-XXXXXXXX for testing purposes only. Live servers will still require a valid license key.";
-	
-	?>
 	<hr>
 
 	<form action="" method="post" name="adminForm">
