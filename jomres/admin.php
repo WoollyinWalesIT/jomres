@@ -99,20 +99,6 @@ else
 $jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
-/*
-global $customTextArray;
-$customTextArray=array();
-$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".get_showtime('lang')."'";
-$customTextList=doSelectSql($query);
-if (count($customTextList))
-	{
-	foreach ($customTextList as $text)
-		{
-		$customTextArray[$text->constant]=stripslashes($text->customtext);
-		}
-	}
-*/
-
 
 
 if (!JRPORTAL_AJAXCALL)
@@ -218,13 +204,8 @@ switch (get_showtime('task')) {
 			}
 		else
 			{
-			if ( get_showtime('task')!="getLicenseKey" )
-				{
-				$version=$mrConfig['version'];
-				HTML_jomres::controlPanel($version);
-				}
-			else
-				echo '<font="red">Error, license key file not found. Please enter your key to continue</font>';
+			$version=$mrConfig['version'];
+			HTML_jomres::controlPanel($version);
 			}
 		break;
 	}
