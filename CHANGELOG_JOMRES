@@ -1,4 +1,8 @@
-Jomres 4.2.3
+Jomres 4.3.1
+
+Minor fix to German language file
+
+Jomres 4.3
 
 Modified edit template to fix saving not posting updated field.
 Fixed default language bug
