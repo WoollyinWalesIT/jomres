@@ -129,9 +129,7 @@ class j16000updates
 					$license_key=$lk->value;
 					}
 				}
-			if (strlen($license_key)<1)
-				exit;
-			$license_key_hash=md5($license_key);
+
 			$liveSite="&live_site=".urlencode(get_showtime('live_site'));
 
 			$requiredEncoding=jomresGetParam( $_REQUEST, 'encoding', '' );
@@ -153,7 +151,7 @@ class j16000updates
 				return;
 				}
 			*/
-			$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion."&keyhash=".$license_key_hash.$liveSite;
+			$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion.$liveSite;
 			$newfilename=$this->updateFolder."/jomres.zip";
 
 			
@@ -197,7 +195,7 @@ class j16000updates
 				{
 				$zip->unZipAll($this->updateFolder.JRDS."unpacked");
 				if (!$this->test_download)
-					$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS, $this->overwriteAllowed, $funcloc = "/");
+					$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS, $this->overwriteAllowed, $funcloc = "/");
 
 				echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				if ($this->debugging)
@@ -457,8 +455,4 @@ class j16000updates
 		return null;
 		}
 	}
-
-
-
-
-
+	
