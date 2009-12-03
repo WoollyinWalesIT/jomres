@@ -1362,9 +1362,17 @@ if ($numberOfPropertiesInSystem>0)
 									}
 								else
 									{
-									set_showtime("task","");
-									
-									jomresShowSearch();
+									if ($jrConfig['is_single_property_installation'] == "1")
+										{
+										$all_property_uids = get_showtime('all_properties_in_system');
+										set_showtime('property_uid',$all_property_uids[0]);
+										$MiniComponents->triggerEvent('05020');
+										}
+									else
+										{
+										set_showtime("task","");
+										jomresShowSearch();
+										}
 									}
 								}
 							}

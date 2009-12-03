@@ -37,8 +37,11 @@ class j00011manager_option_09_newproperty {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)
-			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), 'AddProperty.png', jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,false,false));
+		if ($jrConfig['is_single_property_installation'] == "0")
+			{
+			if ( $jrConfig['selfRegistrationAllowed']=='1' || $thisJRUser->superPropertyManager)
+				$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=registerProp_step1"), 'AddProperty.png', jr_gettext('_JOMRES_COM_MR_NEWPROPERTY',_JOMRES_COM_MR_NEWPROPERTY,false,false));
+			}
 		}
 	
 	

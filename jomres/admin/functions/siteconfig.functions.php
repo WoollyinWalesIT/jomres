@@ -149,7 +149,8 @@ function showSiteConfig(  )
 	$lists['useNewusers']							= jomresHTML::selectList( $yesno, 'cfg_useNewusers', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useNewusers'] );
 	$lists['outputHeadersInline']					= jomresHTML::selectList( $yesno, 'cfg_outputHeadersInline', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['outputHeadersInline'] );
 	$lists['contact_owner_emails_to_alternative']	= jomresHTML::selectList( $yesno, 'cfg_contact_owner_emails_to_alternative', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['contact_owner_emails_to_alternative'] );
-		
+	$lists['is_single_property_installation']		= jomresHTML::selectList( $yesno, 'cfg_is_single_property_installation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['is_single_property_installation'] );
+
 		
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
 	}

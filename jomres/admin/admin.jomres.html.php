@@ -76,6 +76,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		-->
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_TITLE.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['is_single_property_installation'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_FAUXHEADERS.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['outputHeadersInline'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_FAUXHEADERS_DESC.'</td>
