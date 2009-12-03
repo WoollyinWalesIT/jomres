@@ -113,7 +113,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$unixTodaysDate		= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 
 	$mrConfig=getPropertySpecificSettings($selectedProperty);
-	property_header($selectedProperty);
+	if ($jrConfig['is_single_property_installation'] == "0")
+		property_header($selectedProperty);
 	$MiniComponents->triggerEvent('00102'); // First-form generation
 	$bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
 	if (!is_object($bkg) )
