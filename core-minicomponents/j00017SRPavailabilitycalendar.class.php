@@ -244,7 +244,7 @@ class j00017SRPavailabilitycalendar {
 		$thisMonthName= getThisMonthName(date("n",$stdate));
 		
 		$this->retVals.="\n<table class=rescal cellspacing=0>\n";
-		$this->retVals.="<tr class=\"availability_calendar_months\" >\n<th colspan=7 height=\"$height\"><font face=\"$face\" size=\"$size\">" . utf8_encode($thisMonthName) . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
+		$this->retVals.="<tr class=\"availability_calendar_months\" >\n<th colspan=7 height=\"$height\"><font face=\"$face\" size=\"$size\">" .$thisMonthName. " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		$this->retVals.="<tr class=\"availability_calendar_days\">\n<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
 			size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR)."</font></th>\n";
 		$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
