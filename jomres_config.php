@@ -171,4 +171,5 @@ $mrConfig['use_variable_deposits'] ="1";
 $mrConfig['variable_deposit_threashold'] ="60";
 
 $mrConfig['is_real_estate_listing'] ="0";
+
 ?>
