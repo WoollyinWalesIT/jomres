@@ -36,6 +36,7 @@ class currency_codes
 			'NIS'=>'NIS New Sheqel',
 			'NOK'=>'NOK Norway Kroner',
 			'NZD'=>'NZD New Zealand Dollars',
+			'PLN'=>'PLN Poland Zlotych',
 			'PHP'=>'PHP Philipino Pesos',
 			'RUB'=>'RUB Russia Rubles',
 			'SEK'=>'SEK Sweden Kronor',
