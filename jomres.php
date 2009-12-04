@@ -614,6 +614,7 @@ if (!$no_html)
 if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
 
+
 if ($numberOfPropertiesInSystem>0)
 	{
 	switch (get_showtime('task')) {
@@ -1351,9 +1352,9 @@ if ($numberOfPropertiesInSystem>0)
 									{
 									$MiniComponents->triggerEvent('00013');  // Show dashboard
 									}
-								else if ($numberOfPropertiesInSystem==1)
+								else if ($numberOfPropertiesInSystem==1 && $jrConfig['is_single_property_installation'] == "0")
 									{
-									//$MiniComponents->triggerEvent('0013');  // Show dashboard
+										//$MiniComponents->triggerEvent('0013');  // Show dashboard
 									property_header($property_uid);
 									set_showtime('task',"viewproperty");
 									$componentArgs=array();

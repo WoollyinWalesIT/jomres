@@ -1,3 +1,12 @@
+Jomres 4.3.2
+
+Added disabled=" " to ensure that extra quantity boxes in the booking form remain disabled until the checkbox has been clicked. Thanks Piranha.
+Added single property only option. Allows us to configure a Jomres installation so that all calls to Jomres that aren't going to some "task" force the page to go straight to the booking form of the first property.
+Added Polish currency code to currency_codes.class.php.
+fix http://bugs.jomres.net/view.php?id=14
+Fix http://bugs.jomres.net/view.php?id=16
+Switched off property header in booking form if single property installation is Yes.
+
 Jomres 4.3.1
 
 Minor fix to German language file
