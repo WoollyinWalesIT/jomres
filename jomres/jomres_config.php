@@ -13,13 +13,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-/**
-#
- * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-#
- */
 
-$mrConfig['version']='4.3.1';
+$mrConfig['version']='4.3.2';
 $mrConfig['newTariffModels'] = "1";
 $mrConfig['singlePersonSuppliment']='0';
 $mrConfig['singlePersonSupplimentCost']='10';
@@ -171,5 +166,4 @@ $mrConfig['use_variable_deposits'] ="1";
 $mrConfig['variable_deposit_threashold'] ="60";
 
 $mrConfig['is_real_estate_listing'] ="0";
-
 ?>
