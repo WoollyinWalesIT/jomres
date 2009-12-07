@@ -55,7 +55,8 @@ class j03030bookingcompleted {
 			$save_deets['JR_GATEWAY_AFTERWORD']=jr_gettext('_JR_GATEWAY_AFTERWORD',_JR_GATEWAY_AFTERWORD);
 		$save_deets['SAVEDMESSAGE']=jr_gettext('_JOMRES_FRONT_MR_BOOKINGMADE',_JOMRES_FRONT_MR_BOOKINGMADE);
 		$save_deets['PROPERTYUID']=$property_uid;
-		$save_deets['BACKTOPROPERTY']=jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK',_JOMRES_BACKTOPROPERTYDETAILSLINK);
+		if ($jrConfig['is_single_property_installation'] == "1")
+			$save_deets['BACKTOPROPERTY']=jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK',_JOMRES_BACKTOPROPERTYDETAILSLINK);
 		$save_details[]=$save_deets;
 		property_header($property_uid);
 		$tmpl = new patTemplate();
