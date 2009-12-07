@@ -46,13 +46,14 @@ class j00501srps {
 
 		$configurationPanel->startPanel("SRPs");
 
-		if (JOMRES_SINGLEPROPERTY) // Allows Solo users to change the type from SRP to MRP and vice versa. Nobody else can do this.
-			{
+		//if (JOMRES_SINGLEPROPERTY) // Allows Solo users to change the type from SRP to MRP and vice versa. Nobody else can do this.
+		//	{
 			$configurationPanel->setleft(_JOMRES_COM_A_SINGLEROOMPROPERTY);
 			$configurationPanel->setmiddle($lists['singleRoomProperty']);
 			$configurationPanel->setright(_JOMRES_COM_A_SINGLEROOMPROPERTY_DESC);
 			$configurationPanel->insertSetting();
-			}
+		//	}
+		
 		if ($mrConfig['tariffmode'] == "1")
 			{
 			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFPRICESAREWEEKLY);
