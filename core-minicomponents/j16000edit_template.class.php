@@ -32,7 +32,7 @@ class j16000edit_template {
 	
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_template');
+		//$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_template');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listTemplates",'');
 		$jrtb .= $jrtbar->toolbarItem('delete',JOMRES_SITEPAGE_URL_ADMIN."&task=delete_template&templatename=".$templatename."".jomresURLToken()."&no_html=1&id=".$id,'');
 		$jrtb .= $jrtbar->endTable();
@@ -55,7 +55,7 @@ class j16000edit_template {
 		<script src="'.get_showtime('live_site').'/jomres/javascript/codemirror/js/codemirror.js" type="text/javascript"></script>
 
 		<form action="'.JOMRES_SITEPAGE_URL_ADMIN.'" method="post" name="adminForm">
-		<input type="button" value="SUBMIT" onclick="get_jr_val(document)" />
+		<input type="button" value="SUBMIT" onclick="get_jr_val(document)" />'.$output['JOMRESTOOLBAR'].'
 		<table class="jradmin_innerwrapper">
 			<tr>
 				<td class="jomres_title" colspan = "2" >'.$output['PAGETITLE'].'</td>
