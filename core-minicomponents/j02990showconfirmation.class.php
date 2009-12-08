@@ -80,16 +80,25 @@ class j02990showconfirmation {
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
+		$customFields = array();
 		if (count($allCustomFields)>0)
 			{
+			
 			foreach ($allCustomFields as $f)
 				{
 				$required = $f['required'];
 				$fieldname = $f['fieldname'];
 				$formfieldname = $f['fieldname']."_".$f['uid'];
 				$tmpBookingHandler->saveCustomFields($allCustomFields);
+				
+				$fielddata = array();
+				$fielddata['DESCRIPTION']		= jr_gettext(JOMRES_CUSTOMTEXT.$f['uid'],$f['description']);
+				$fielddata['VALUE']				=jomresGetParam( $_POST, $formfieldname, '' );
+				
 				if ($required == "1" && strlen($_POST[$formfieldname])== 0)
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']), '' );
+				
+				$customFields[]=$fielddata;
 				}
 			}
 		$tmpBookingHandler->saveBookingData();
@@ -415,6 +424,7 @@ class j02990showconfirmation {
 		
 		$booking_particulars[]	=	$booking_parts;
 		$tmpl = new patTemplate();
+		$tmpl->addRows( 'customfields',$customFields);
 		$tmpl->addRows( 'booking_particulars', $booking_particulars );
 		$tmpl->addRows( 'booking_extras', $booking_extras);
 		$tmpl->addRows( 'booking_extratext', $extrastext);
