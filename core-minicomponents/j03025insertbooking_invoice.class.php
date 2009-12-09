@@ -45,6 +45,7 @@ class j03025insertbooking_invoice {
 		$deposit_required				= $tmpBookingHandler->getBookingFieldVal("deposit_required");
 		$extras							= $tmpBookingHandler->getBookingFieldVal("extras");
 		$extrasquantities				= $tmpBookingHandler->getBookingFieldVal("extrasquantities");
+		$third_party_extras				= unserialize($tmpBookingHandler->getBookingFieldVal("third_party_extras"));
 		$room_total						= $tmpBookingHandler->getBookingFieldVal("room_total");
 		$tax							= $tmpBookingHandler->getBookingFieldVal("tax");
 		$discounts						= $tmpBookingHandler->getBookingFieldVal("discounts");
@@ -152,7 +153,7 @@ class j03025insertbooking_invoice {
 		$extrasArray	=	explode(",",$extras);
 		foreach ($extrasArray as $extraUid)
 			{
-			$values = 
+			//$values = 
 			$query="SELECT name,price,tax_rate FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
 			$extrasList= doSelectSql($query);
 			foreach ($extrasList as $theExtras)
@@ -176,6 +177,28 @@ class j03025insertbooking_invoice {
 				$line_items[]=$line_item_data;
 				}
 			}
+
+		if (count($third_party_extras)>0)
+			{
+			foreach ($third_party_extras as $tpe)
+				{
+				if (!isset($tpe['tax_code_id']))
+					$tpe['tax_code_id']=0;
+				$line_item_data = array (
+					'tax_code_id'=>$tpe['tax_code_id'],
+					'name'=>$tpe['description'],
+					'description'=>'',
+					'init_price'=>number_format($tpe['untaxed_grand_total'],2, '.', ''),
+					'init_qty'=>'1',
+					'init_discount'=>"0",
+					'recur_price'=>"0.00",
+					'recur_qty'=>"0",
+					'recur_discount'=>"0.00"
+					);
+				$line_items[]=$line_item_data;
+				}
+			}
+			
 		$invoice_data= array();
 		$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
 		$invoice_data['subscription']=false;

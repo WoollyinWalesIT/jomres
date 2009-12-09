@@ -78,6 +78,7 @@ class dobooking
 		$this->extrasvalue				= 0.00;
 		$this->tax						= 0.00;
 		$this->extras					= "";
+		$this->third_party_extras		= array();
 		$this->total_discount			= 0.00;
 		$this->depositpaidsuccessfully	= false;
 		$this->booker_class				= '000';
@@ -159,7 +160,7 @@ class dobooking
 			$this->smoking					= $bookingDeets['smoking'];
 			$this->extrasvalue				= $bookingDeets['extrasvalue'];
 			$this->extrasvalues_items		= unserialize($bookingDeets['extrasvalues_items']);
-			
+			$this->third_party_extras		= unserialize($bookingDeets['third_party_extras']);
 			$this->tax						= $bookingDeets['tax'];
 			$this->extras					= $bookingDeets['extras'];
 			$this->extrasquantities			= $bookingDeets['extrasquantities'];
@@ -430,6 +431,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["extrasvalues_items"]			= serialize($this->extrasvalues_items);
 		$tmpBookingHandler->tmpbooking["extras"]						= $this->extras;
 		$tmpBookingHandler->tmpbooking["extrasquantities"]				= $this->extrasquantities;
+		$tmpBookingHandler->tmpbooking["third_party_extras"]			= serialize($this->third_party_extras);
 		$tmpBookingHandler->tmpbooking["total_discount"]				= $this->total_discount;
 		$tmpBookingHandler->tmpbooking["depositpaidsuccessfully"]		= $this->depositpaidsuccessfully;
 		$tmpBookingHandler->tmpbooking["tax"]							= $this->tax;
@@ -1352,7 +1354,7 @@ class dobooking
 	#
 	 * Returns true if the extra has already been selected
 	#
-	 */
+	*/
 	function extraAlreadySelected($extra)
 		{
 		$currentExtras=explode(",",$this->extras);
@@ -1375,6 +1377,22 @@ class dobooking
 			return false;
 		$this->extrasquantities[$extraID]=$value;
 		$this->setErrorLog("modifyExtraQuantity::Extras quantities = ".serialize($this->extrasquantities) );
+		}
+		
+	// New for v4.3.3
+	function add_third_party_extra($id=0,$description="No description",$total_value=0.00,$tax_code_id=0)
+		{
+		//if ($id == 0) return false;
+		if ( (float) $total_value ==0.00)
+			return false;
+		$this->third_party_extras[$id]=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=> (float) $total_value);
+		if ($tax_code_id>0)
+			$this->third_party_extras[$id]['tax_code_id']=$tax_code_id;
+		}
+		
+	function remove_third_party_extra($id)
+		{
+		unset ($this->third_party_extras[$id]); 
 		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4679,6 +4697,28 @@ class dobooking
 					//$this->setErrorLog("<b>calcExtras: Extras totals plus Tax</a>: ".$extrasTotal );
 					$this->setErrorLog("calcExtras: Extras totals: ".$extrasTotal );
 					}
+				}
+			}
+		//=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=>$total_value,'tax_code_id'=>$tax_code_id);
+		if (count($this->third_party_extras)>0)
+			{
+			foreach ($this->third_party_extras as $tpextra)
+				{
+				$tmpTotal = (float)$tpextra['untaxed_grand_total'];
+				if ((int)$tpextra['tax_code_id'] >0)
+					{
+					$tax_rate_id = $tpextra['tax_code_id'];
+					
+					$rate = $this->taxrates[$tax_rate_id]['rate'];
+					$this->setErrorLog("calcExtras Third party: rate is: ".$rate);
+					$thisTax = ($tmpTotal/100)*$rate;
+					$this->setErrorLog("calcExtras Third party: Adding : ".$thisTax." to original value ".$tmpTotal);
+					$tmpTotal = $tmpTotal + $thisTax;
+					}
+				else
+					$this->setErrorLog("calcExtras: Tax rate not set ");
+				$extrasTotal = $extrasTotal+$tmpTotal;
+				
 				}
 			}
 		//$this->extrasvalueplustax=$extrasTotalPlusTax;
