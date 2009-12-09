@@ -304,8 +304,11 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		}
 	if (count($guestTypes)==0)
 		$output['BILLING_TOTALINPARTY']="";
-	$extra_details=$bkg->makeExtras($selectedProperty);
-	if (count($extra_details)>0)
+	$ex=$bkg->makeExtras($selectedProperty);
+	$extra_details=$ex['core_extras'];
+	$third_party_extras=$ex['third_party_extras'];
+	
+	if (count($extra_details)>0 || count($third_party_extras)>0)
 		{
 		$output['EXTRAS_INFO']		='<img border="0" style="vertical-align:top;" src="'.get_showtime('live_site').'/components/com_jomres/images/info.png" />';
 		//$output['EXTRAS_SPACES']		="";
@@ -319,8 +322,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 												<th colspan="5">'.$output['AJAXFORM_EXTRAS_DESC'].'</th>
 											</tr>
 			';
+			$extrasHeader[]=$extrasH;
 
-		$extrasHeader[]=$extrasH;
 		$bkg->cfg_showExtras = true;
 		$output['SHOWEXTRAS']="true";
 		}
@@ -468,7 +471,10 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		}
 	//var_dump($tmpl);
 	//exit;
-
+	if (count($third_party_extras)>0)
+		{
+		$tmpl->addRows( 'third_party_extras', $third_party_extras );
+		}
 	if ($mrConfig['showExtras']=="1")
 		{
 		$tmpl->addRows( 'extras', $extra_details );

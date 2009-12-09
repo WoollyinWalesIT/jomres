@@ -744,7 +744,7 @@ class dobooking
 		{
 		$mrConfig=getPropertySpecificSettings();
 		$extra_details=array();
-		
+		$third_party_extras=array();
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($mrConfig['showExtras']=="1")
 			{
@@ -839,11 +839,29 @@ class dobooking
 				$extra_deets['AJAXFORM_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 				$extra_deets['AJAXFORM_EXTRAS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));
 				$extra_deets['EXTRAS_TOTAL']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL));
-
+				
 				$extra_details[]=$extra_deets;
 				}
 			}
-		return $extra_details;
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		if ($MiniComponents->eventFileExistsCheck('05030'))
+			{
+			$MiniComponents->triggerEvent('05030',$this);
+			
+			$mcOutput=$MiniComponents->getAllEventPointsData('05030');
+			
+			if (count($mcOutput)>0)
+				{
+				foreach ($mcOutput as $key=>$val)
+					{
+					$tpe=array();
+					$tpe['THIRD_PARTY_EXTRA']=$val;
+					$third_party_extras[]=$tpe;
+					}
+				
+				}
+			}
+		return array("core_extras"=>$extra_details,"third_party_extras"=>$third_party_extras);
 		}
 		/**
 		#
