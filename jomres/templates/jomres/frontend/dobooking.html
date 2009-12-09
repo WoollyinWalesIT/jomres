@@ -199,6 +199,9 @@ jQuery(document).ready(function() {
 						
 						<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 						{EXTRAS_HEADER}
+						<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
+							<tr>{THIRD_PARTY_EXTRA}</tr>
+						</patTemplate:tmpl>
 						<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
 							<tr>
 								<td>{INPUTBOX}</td>
@@ -208,6 +211,7 @@ jQuery(document).ready(function() {
 								<td>&nbsp;</td>
 							</tr>
 						</patTemplate:tmpl>
+
 							<tr>
 								<td colspan="4"><b>{EXTRAS_TOTAL}</b></td>
 								<td><b><div id="extrastotal" style="text-align:right;"></div></b></td>

@@ -346,9 +346,20 @@ switch ($field)
 		echo "&nbsp;";
 	break;
 	default:
-		$ajrq="ajrq:::Invalid data sent";
-		$retText="Invalid data sent";
-		$messagesClass=$errorClass;
+		if ($MiniComponents->eventSpecificlyExistsCheck('05040',$field) )
+			{
+			$reply = $MiniComponents->specificEvent('05040',$field,$bkg); // Custom task
+			if (!isset($reply['rebuild_rooms_list']))
+				$doNotRebuildRoomsListOnTheseFieldsArray[]=$field;
+			if (isset($reply['reply_to_echo']))
+				echo $reply['reply_to_echo'];
+			}
+		else
+			{
+			$ajrq="ajrq:::Invalid data sent";
+			$retText="Invalid data sent";
+			$messagesClass=$errorClass;
+			}
 	break;
 	}
 
