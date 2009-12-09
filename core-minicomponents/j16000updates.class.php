@@ -18,7 +18,10 @@ class j16000updates
 	function j16000updates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		if (function_exists('jomres_getSingleton'))
+			$MiniComponents =jomres_getSingleton('mcHandler');
+		else
+			global $MiniComponents,$jomresConfig_live_site;
 		$jomresConfig_offline			= true;
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
 			{
@@ -130,7 +133,11 @@ class j16000updates
 					}
 				}
 
-			$liveSite="&live_site=".urlencode(get_showtime('live_site'));
+			if (function_exists('jomres_getSingleton'))
+				$liveSite="&live_site=".urlencode(get_showtime('live_site'));
+			else
+				$liveSite="&live_site=".$jomresConfig_live_site;
+				
 
 			$requiredEncoding=jomresGetParam( $_REQUEST, 'encoding', '' );
 			$requiredVersion=jomresGetParam( $_REQUEST, 'version', '' );
@@ -197,7 +204,11 @@ class j16000updates
 				if (!$this->test_download)
 					$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS, $this->overwriteAllowed, $funcloc = "/");
 
-				echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+				if (function_exists('jomres_getSingleton'))
+					echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+				else
+					echo "Completed upgrade. Please ensure that you visit <a href=\"".$jomresConfig_live_site."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+					
 				if ($this->debugging)
 					{
 					echo "<br/><br/><br/><br/><br/><br/>";
