@@ -768,7 +768,7 @@ function checkPropertyTableExists()
 	$tablesFound=false;
 	$query="SHOW TABLES";
 	$result=doSelectSql($query,$mode=FALSE);
-	$string="Tables_in_".strtolower(get_showtime('db'));
+	$string="Tables_in_".get_showtime('db');
 	echo "Looking for ".get_showtime('dbprefix').'jomres_propertys<br>';
 	$nullcounter=0;
 	foreach ($result as $r)
