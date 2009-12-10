@@ -101,7 +101,7 @@ class jomres_config_site_singleton
 			$query="SHOW TABLES";
 			$jomres_db->setQuery($query);
 			$result=$jomres_db->loadObjectList();
-			$string="Tables_in_".strtolower($jomresConfig_db);
+			$string="Tables_in_".$jomresConfig_db;
 			foreach ($result as $r)
 				{
 				if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_site_settings') )
