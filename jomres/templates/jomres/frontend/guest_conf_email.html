@@ -36,7 +36,7 @@
 							<td>{HNUMBEROFGUESTS}</td>
 							<td>
 								<patTemplate:tmpl name="rows" unusedvars="nbsp">
-								<strong>{TITLE} {QUANTITY}</strong>
+								<strong>{TITLE} X {QUANTITY}</strong>
 								</patTemplate:tmpl>
 							</td>
 						</tr>
@@ -52,9 +52,16 @@
 							<td>{HTOTAL}<td>
 							<td><strong>{TOTAL}</strong></td>
 						</tr>
+						<patTemplate:tmpl name="custom_field_output" type="simpleCondition" requiredVars="description">
+						<tr>
+							<td>{DESCRIPTION}<td>
+							<td><strong>{VALUE}</strong></td>
+						</tr>
+						</patTemplate:tmpl>
 					</table>
 				</td>
 			</tr>
+
 			<tr>
 				<td>
 					{INVOICE}

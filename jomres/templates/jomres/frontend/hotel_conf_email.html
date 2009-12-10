@@ -58,8 +58,13 @@
 <p>&nbsp;</p>
 {HNUMBEROFGUESTS}
 <patTemplate:tmpl name="rows" unusedvars="nbsp">
-{TITLE}&nbsp;{QUANTITY}
+{TITLE}&nbsp;X {QUANTITY}
 </patTemplate:tmpl>
+<br/>
+<patTemplate:tmpl name="custom_field_output" type="simpleCondition" requiredVars="description">
+{DESCRIPTION} <strong> {VALUE}</strong><br/>
+</patTemplate:tmpl>
+
 <p>&nbsp;</p>
 <table>
 	<tr>
