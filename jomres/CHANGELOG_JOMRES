@@ -1,3 +1,17 @@
+Jomres 4.3.3
+
+Fixed a couple of parse errors in Norwegian and Chinese language files
+Re-enabled the MRP SRP property switch in Site Config -> SRPs tab.
+http://bugs.jomres.net/view.php?id=3 Fixed ability to not delete existing template customisations
+Added custom field data to confirmation form
+Custom field contents added to guest and hotel emails.
+Used the bugfix version of the updater to resolve upgrade issues in Jomres Core.
+Removed a strtolower in the site settings singleton to aid installation issues some folks were getting.
+Added code that allows us to insert rows into the extras area, and process new code in handlereq that's introduced as a new trigger. The rows trigger is 05030 and the handlereq code is 05040
+Added pricing functionality to third party extras handling and insert into invoice handling.
+Added third party extra information to the confirmation page.
+
+
 Jomres 4.3.2
 
 Added disabled=" " to ensure that extra quantity boxes in the booking form remain disabled until the checkbox has been clicked. Thanks Piranha.
