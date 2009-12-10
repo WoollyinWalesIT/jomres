@@ -211,10 +211,24 @@ class j03110guestconfirmationemail {
 			$output['INVOICE']	= $invoice_template;
 			}
 
+		$custom_field_output = array();
+		jr_import('jomres_custom_field_handler');
+		$custom_fields = new jomres_custom_field_handler();
+		$allCustomFields = $custom_fields->getAllCustomFields();
+		if (count($allCustomFields)>0)
+			{
+			foreach ($allCustomFields as $f)
+				{
+				$formfieldname = $f['fieldname']."_".$f['uid'];
+				$custom_field_output[]=array("DESCRIPTION"=>$f['description'],"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
+				}
+			}
+			
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot(JOMRES_TEMPLATEPATH_FRONTEND);
 		$tmpl->readTemplatesFromInput( 'guest_conf_email.html');
+		$tmpl->addRows( 'custom_field_output', $custom_field_output );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->addRows( 'booking_extras', $booking_extras);
