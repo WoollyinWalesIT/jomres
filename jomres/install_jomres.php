@@ -773,6 +773,7 @@ function checkPropertyTableExists()
 	$nullcounter=0;
 	foreach ($result as $r)
 		{
+		//echo "Found ".$r->$string."<br/>";
 		if (is_null($r->$string))
 			$nullcounter++;
 		}
@@ -1960,74 +1961,6 @@ function createExtraIndexs()
 
 	}
 
-function doConnectivityTest()
-	{
-	$home_url_site = "license-server.jomres.net";
-	$home_url_port = 80;
-	$result=false;
-	// Let's get some server information
-	$thisSvrName=$_SERVER['SERVER_NAME'];
-	$dmn=str_replace("http://","",$thisSvrName);
-	$domain=strtolower(str_replace("www.","",$dmn));
-
-	echo "<H3>Testing connectivity to Jomres.net license server at ".$home_url_site."</H3>";
-	echo '<div class="connectivitybackground">';
-	echo "<b>Current domain/servername: ".$domain." ";
-	echo "on IP ".$_SERVER['SERVER_ADDR']."</b><br>";
-
-	// Build request
-	$request = '';
-	$request = $home_url_site.'?'.$request;
-	// Build HTTP header
-	$header  = "GET $request HTTP/1.0\r\nHost: $home_url_site\r\nConnection: Close\r\nUser-Agent: testconnectivity (www.jomres.net)\r\n";
-	$header .= "\r\n\r\n";
-
-	// Some servers are configured to return very little information. We will parse phpinfo to try to find the value of the master Fopen settings (and hope that at least phpino is available).
-	// If master Fopen is Off then Fopen is also disabled, we'll try to switch to CURL. Local fopen is not used here but we'll keep it in case we need it sometime in the future.
-	$configSets=parseConfiguration();
-	$localFopen=$configSets["PHP Core"]['allow_url_fopen'][0];
-	$masterFopen=$configSets["PHP Core"]['allow_url_fopen'][1];
-
-	// Output the value of the master Fopen
-
-	echo "Master fopen = ";print_r($masterFopen); echo "<br>";
-
-	if ($masterFopen == "Off") // use CURL
-		{
-		echo "Attempting to use CURL to communicate with the license server<br>";
-		$return=get_content_curl($home_url_site,$request,$header,null);
-		if ($return)
-			{
-			echo "Connected successfully with license server<br>";
-			$result = true;
-			}
-		else
-			{
-			echo "<b>Failed to connect to license server using CURL</b><br>";
-			echo "<br>This may be because of a firewall or iptables preventing outgoing communications, or because this server is not connected to the internet</b><br>";
-			$result = false;
-			}
-		}
-	else // use Fopen
-		{
-		echo "Attempting to use fsock to communicate with the license server<br>";
-		$fpointer = @fsockopen($home_url_site, $home_url_port, $errno, $errstr, 5);
-		if ($fpointer)
-			{
-			echo "Connected successfully with license server<br>";
-			$result = true;
-			}
-		else
-			{
-			echo "<b>Failed to connect to license server using fsock<br>";
-			echo $errstr;
-			echo "<br>This may be because of a firewall or iptables preventing outgoing communications, or because this server is not connected to the internet</b><br>";
-			$result = false;
-			}
-		}
-	echo '</div>';
-	return $result;
-	}
 
 function showGetInstallUpgradeRequest()
 	{
