@@ -387,8 +387,6 @@ class jomres_temp_booking_handler
 			"variancevals"=>"",
 			"lastminute_id"=>"",
 			"agent_booking"=>"",
-			"arrivalDate"=>"",
-			"departureDate"=>"",
 			"stayDays"=>"",
 			"dateRangeString"=>"",
 			"guests_uid"=>"",
