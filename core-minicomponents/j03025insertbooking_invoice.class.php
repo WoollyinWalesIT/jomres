@@ -180,22 +180,25 @@ class j03025insertbooking_invoice {
 
 		if (count($third_party_extras)>0)
 			{
-			foreach ($third_party_extras as $tpe)
+			foreach ($third_party_extras as $plugin)
 				{
-				if (!isset($tpe['tax_code_id']))
-					$tpe['tax_code_id']=0;
-				$line_item_data = array (
-					'tax_code_id'=>$tpe['tax_code_id'],
-					'name'=>$tpe['description'],
-					'description'=>'',
-					'init_price'=>number_format($tpe['untaxed_grand_total'],2, '.', ''),
-					'init_qty'=>'1',
-					'init_discount'=>"0",
-					'recur_price'=>"0.00",
-					'recur_qty'=>"0",
-					'recur_discount'=>"0.00"
-					);
-				$line_items[]=$line_item_data;
+				foreach ($plugin as $tpe)
+					{
+					if (!isset($tpe['tax_code_id']))
+						$tpe['tax_code_id']=0;
+					$line_item_data = array (
+						'tax_code_id'=>$tpe['tax_code_id'],
+						'name'=>$tpe['description'],
+						'description'=>$tpe['description'],
+						'init_price'=>number_format($tpe['untaxed_grand_total'],2, '.', ''),
+						'init_qty'=>'1',
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					}
 				}
 			}
 			

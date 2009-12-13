@@ -299,20 +299,23 @@ class j02990showconfirmation {
 		$third_party_extras				= unserialize($tmpBookingHandler->getBookingFieldVal("third_party_extras"));
 		if (count($third_party_extras)>0)
 			{
-			foreach ($third_party_extras as $tpextra)
+			foreach ($third_party_extras as $plugin)
 				{
-				$extra_parts = array();
-				$tmpTotal = (float)$tpextra['untaxed_grand_total'];
-				if ((int)$tpextra['tax_code_id'] >0)
+				foreach ($plugin as $tpextra)
 					{
-					$tax_rate_id = $tpextra['tax_code_id'];
-					$rate = (float)$taxrates[$tax_rate_id]['rate'];
-					$thisTax = ($tmpTotal/100)*$rate;
-					$tmpTotal = $tmpTotal + $thisTax;
+					$extra_parts = array();
+					$tmpTotal = (float)$tpextra['untaxed_grand_total'];
+					if ((int)$tpextra['tax_code_id'] >0)
+						{
+						$tax_rate_id = $tpextra['tax_code_id'];
+						$rate = (float)$taxrates[$tax_rate_id]['rate'];
+						$thisTax = ($tmpTotal/100)*$rate;
+						$tmpTotal = $tmpTotal + $thisTax;
+						}
+					$extra_parts['NAME'] 		= 	$tpextra['description'];
+					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($tmpTotal);
+					$booking_extras[]			=	$extra_parts;
 					}
-				$extra_parts['NAME'] 		= 	$tpextra['description'];
-				$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($tmpTotal);
-				$booking_extras[]			=	$extra_parts;
 				}
 			}
 		

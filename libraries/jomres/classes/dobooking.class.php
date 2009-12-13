@@ -1384,19 +1384,24 @@ class dobooking
 		}
 		
 	// New for v4.3.3
-	function add_third_party_extra($id=0,$description="No description",$total_value=0.00,$tax_code_id=0)
+	function add_third_party_extra($plugin,$id=0,$description="No description",$total_value=0.00,$tax_code_id=0)
 		{
 		//if ($id == 0) return false;
-		if ( (float) $total_value ==0.00)
-			return false;
-		$this->third_party_extras[$id]=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=> (float) $total_value);
+		//if ( (float) $total_value ==0.00)
+		//	return false;
+		$this->third_party_extras[$plugin][$id]=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=> (float) $total_value);
 		if ($tax_code_id>0)
-			$this->third_party_extras[$id]['tax_code_id']=$tax_code_id;
+			$this->third_party_extras[$plugin][$id]['tax_code_id']=$tax_code_id;
 		}
 		
-	function remove_third_party_extra($id)
+	function remove_third_party_extra($plugin,$id)
 		{
-		unset ($this->third_party_extras[$id]); 
+		unset ($this->third_party_extras[$plugin][$id]); 
+		}
+		
+	function reset_choices_for_plugin($plugin)
+		{
+		unset ($this->third_party_extras[$plugin]);
 		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4706,23 +4711,26 @@ class dobooking
 		//=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=>$total_value,'tax_code_id'=>$tax_code_id);
 		if (count($this->third_party_extras)>0)
 			{
-			foreach ($this->third_party_extras as $tpextra)
+			foreach ($this->third_party_extras as $plugin)
 				{
-				$tmpTotal = (float)$tpextra['untaxed_grand_total'];
-				if ((int)$tpextra['tax_code_id'] >0)
+				foreach ($plugin as $tpextra)
 					{
-					$tax_rate_id = $tpextra['tax_code_id'];
+					$tmpTotal = (float)$tpextra['untaxed_grand_total'];
+					if ((int)$tpextra['tax_code_id'] >0)
+						{
+						$tax_rate_id = $tpextra['tax_code_id'];
+						
+						$rate = $this->taxrates[$tax_rate_id]['rate'];
+						$this->setErrorLog("calcExtras Third party: rate is: ".$rate);
+						$thisTax = ($tmpTotal/100)*$rate;
+						$this->setErrorLog("calcExtras Third party: Adding : ".$thisTax." to original value ".$tmpTotal);
+						$tmpTotal = $tmpTotal + $thisTax;
+						}
+					else
+						$this->setErrorLog("calcExtras: Tax rate not set ");
+					$extrasTotal = $extrasTotal+$tmpTotal;
 					
-					$rate = $this->taxrates[$tax_rate_id]['rate'];
-					$this->setErrorLog("calcExtras Third party: rate is: ".$rate);
-					$thisTax = ($tmpTotal/100)*$rate;
-					$this->setErrorLog("calcExtras Third party: Adding : ".$thisTax." to original value ".$tmpTotal);
-					$tmpTotal = $tmpTotal + $thisTax;
 					}
-				else
-					$this->setErrorLog("calcExtras: Tax rate not set ");
-				$extrasTotal = $extrasTotal+$tmpTotal;
-				
 				}
 			}
 		//$this->extrasvalueplustax=$extrasTotalPlusTax;
