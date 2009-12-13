@@ -79,6 +79,7 @@ class dobooking
 		$this->tax						= 0.00;
 		$this->extras					= "";
 		$this->third_party_extras		= array();
+		$this->third_party_extras_private_data		= array();
 		$this->total_discount			= 0.00;
 		$this->depositpaidsuccessfully	= false;
 		$this->booker_class				= '000';
@@ -161,6 +162,8 @@ class dobooking
 			$this->extrasvalue				= $bookingDeets['extrasvalue'];
 			$this->extrasvalues_items		= unserialize($bookingDeets['extrasvalues_items']);
 			$this->third_party_extras		= unserialize($bookingDeets['third_party_extras']);
+			$this->third_party_extras_private_data		= unserialize($bookingDeets['third_party_extras_private_data']);
+			
 			$this->tax						= $bookingDeets['tax'];
 			$this->extras					= $bookingDeets['extras'];
 			$this->extrasquantities			= $bookingDeets['extrasquantities'];
@@ -432,6 +435,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["extras"]						= $this->extras;
 		$tmpBookingHandler->tmpbooking["extrasquantities"]				= $this->extrasquantities;
 		$tmpBookingHandler->tmpbooking["third_party_extras"]			= serialize($this->third_party_extras);
+		$tmpBookingHandler->tmpbooking["third_party_extras_private_data"]			= serialize($this->third_party_extras_private_data);
 		$tmpBookingHandler->tmpbooking["total_discount"]				= $this->total_discount;
 		$tmpBookingHandler->tmpbooking["depositpaidsuccessfully"]		= $this->depositpaidsuccessfully;
 		$tmpBookingHandler->tmpbooking["tax"]							= $this->tax;
@@ -2143,7 +2147,7 @@ class dobooking
 		//$dateStatus="dateStatusFunc : dateStatus,";
 		while ($randomID==$randomID2){$randomID2=rand(1, 100);};
 		$output.="
-			<input class=\"inputbox\" size=\"10\" type=\"text\" readonly=\"readonly\" name=\"".$fieldName."\"";
+			<input class=\"inputbox\" size=\"10\" type=\"text\" readonly=\"readonly\" AUTOCOMPLETE=\"OFF\" name=\"".$fieldName."\"";
 			if ($fieldName=="arrivalDate")
 				{
 				if ($this->cfg_fixedPeriodBookings =="1" )
