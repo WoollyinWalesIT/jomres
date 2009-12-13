@@ -386,7 +386,6 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$componentArgs['output']=$output;
 	$MiniComponents->triggerEvent('00103',$output); // End-form generation
 
-
 	$bkg->storeBookingDetails();
 	$toload=array();
 	$load=array();
@@ -416,8 +415,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$toload[]=$load;
 		}
 	$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
-	
-	
+
 	jr_import('jomres_custom_field_handler');
 	$custom_fields = new jomres_custom_field_handler();
 	$allCustomFields = $custom_fields->getAllCustomFields();
