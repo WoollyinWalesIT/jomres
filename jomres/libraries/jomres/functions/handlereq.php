@@ -363,6 +363,13 @@ switch ($field)
 	break;
 	}
 
+// This is an optional trigger for third party plugins, intended to allow plugins to look at the last changed value (eg arrival or departure date) and if neccessary rebuild their output. 
+// Tours will need this because if arrival or depature dates change, then available tours and spaces will also change. The plugin itself will echo any output required.
+if ($MiniComponents->eventFileExistsCheck('05050'))
+	{
+	$componentArgs = array('bkg'=>$bkg,'field'=>$field,'value'=>$value);
+	$MiniComponents->triggerEvent('05050',$componentArgs);
+	}
 
 if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) && !empty($field) && $field != "show_log" && $field != "extras" && $field != "heartbeat" && $field != "extrasquantity" && $field != "coupon")
 	{
