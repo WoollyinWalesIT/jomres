@@ -1,3 +1,10 @@
+Jomres 4.3.4
+
+Removed arrival and departure dates from tmp booking handler's reset function.
+Added optional 05050 trigger for third party extras
+Added new variable for third party extra's private data and added nocomplate to the javascript calendar inputs
+Modified how tp extras are stored in the engine, they're now further associated with a plugin, allowing the plugin to reset all tp extra options for it's own data, if required.
+
 Jomres 4.3.3
 
 Fixed a couple of parse errors in Norwegian and Chinese language files
