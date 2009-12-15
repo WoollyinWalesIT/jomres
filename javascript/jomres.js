@@ -255,15 +255,18 @@ function getResponse_extras(field,value,theId) {
 			// Thanks Dimitris
 			var extra = document.getElementsByName('extras['+theId+']');
 			var combo = document.getElementsByName('quantity'+theId);
-			if (extra[0].checked == true)
+			if (combo[0])
 				{
-				combo[0].disabled=false;
-				combo[0].selectedIndex=0;
-				}
-			else
-				{
-				combo[0].disabled=true;
-				combo[0].selectedIndex=0;
+				if (extra[0].checked == true)
+					{
+					combo[0].disabled=false;
+					combo[0].selectedIndex=0;
+					}
+				else
+					{
+					combo[0].disabled=true;
+					combo[0].selectedIndex=0;
+					}
 				}
 			}
 	);
