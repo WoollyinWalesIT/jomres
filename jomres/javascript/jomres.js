@@ -331,12 +331,13 @@ function getResponse_guest() {
 	}
 
 function show_log(lastfield) {
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: 'show_log','lastfield': lastfield },
-		function(data){
-			eval(data);
-			jQuery('div.block_ui_bookingform').unblock();
-			}
-	);
+	//jQuery.get(ajaxurl+'&task=handlereq',{ field: 'show_log','lastfield': lastfield },
+	//	function(data){
+	//		eval(data);
+	//		jQuery('div.block_ui_bookingform').unblock();
+	//		}
+	//);
+	jQuery('div.block_ui_bookingform').unblock();
 }
 
 function blockInterface(field,fadetime){
@@ -416,9 +417,10 @@ function blockInterface(field,fadetime){
 
 	
 function showRoomsList(req){
-	var rooms = req.split("~");
-	buildSelected(rooms[0]) ; 
-	buildAvailable(rooms[1]); 
+	//var rooms = req.split("~");
+	//buildSelected(rooms[0]) ; 
+	//buildAvailable(rooms[1]);
+	eval(req);
 	ShowRoomsList();
 	return false;
 	}
