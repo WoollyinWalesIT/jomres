@@ -251,96 +251,7 @@ switch ($field)
 		$bkg->updateSelectedRoom($value);
 	break;
 	case 'show_log':
-		$ajrq="show_log";
-		//var_dump($bkg->cfg_showExtras);exit;
-		$bkg->setErrorLog("handlereq::Generating billing data" );
-		//
-		$arrivalDate=$bkg->getArrivalDate();
-		$departureDate=$bkg->getDepartureDate();
-		if ($bkg->checkArrivalDate($arrivalDate) && $bkg->checkDepartureDate($departureDate) )
-			{
-			$bkg->setOkToBook(false);
-			$bkg->writeToLogfile("Lastfield ".$lastfield);
-			$bkg->setErrorLog("Lastfield ".$lastfield);
-			
-			$currfmt = jomres_getSingleton('jomres_currency_format');
-			if (!in_array($lastfield,$doNotRebuildRoomsListOnTheseFieldsArray) )
-				{
-				$bkg->resetTotals();
-				$bkg->setErrorLog("handlereq:: Dates passed");
-				$bkg->generateBilling();
-				$bkg->setErrorLog("handlereq::Show deposit: ".$showDeposit );
-				if ($bkg->getGuestVariantCount() > 0)
-					echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
 
-				echo '; populateDiv("staydays","'.$bkg->getStayDays().'")';
-				//echo '; document.getElementById("staydays").innerHTML = "'.$bkg->getStayDays().'" ; fadeIn("staydays",1000); ';
-				
-				$room_per_night = $bkg->getRoompernight();
-				$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
-				
-				if ($tariffChargesStoredWeeklyYesNo=="0")
-					echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_per_night).'")';
-					//echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'")';
-					//echo '; document.getElementById("roompernight").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoompernight()).'" ; fadeIn("roompernight",1000);';
-				
-				$room_total = $bkg->getRoomtotal();
-				$room_total = $bkg->calculateRoomPriceIncVat($room_total);
-				
-				echo '; populateDiv("roomtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_total).'")';
-				//echo '; document.getElementById("roomtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getRoomtotal()).'" ; fadeIn("roomtotal",1000);';
-				
-				if ($bkg->cfg_showExtras)
-					echo '; populateDiv("extrastotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'")';
-					//echo '; document.getElementById("extrastotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'" ; fadeIn("extrastotal",1000);';
-					
-				//if ($euroTaxYesNo =="1" || $roomTaxYesNo =="1" )
-					echo '; populateDiv("taxtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'")';
-					//echo '; document.getElementById("taxtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'" ; fadeIn("taxtotal",1000);';
-					
-				echo '; populateDiv("grandtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'")';
-				//echo '; document.getElementById("grandtotal").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'" ; fadeIn("grandtotal",1000);';
-				if ($showDeposit=="1")
-					echo '; populateDiv("deposit","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'")';
-					//echo '; document.getElementById("deposit").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'" ; fadeIn("deposit",1000);';
-				if ($bkg->singlePersonSupplimentCalculated)
-					echo '; populateDiv("single_suppliment","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'")';
-					//echo '; document.getElementById("single_suppliment").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'" ; fadeIn("single_suppliment",1000);';
-				
-				if ($bkg->coupon_code != "")
-					echo '; populateDiv("coupon_discount_value","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'")';
-					//echo '; document.getElementById("coupon_discount_value").innerHTML = "'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'" ; fadeIn("coupon_discount_value",1000);';
-				
-				}
-			else
-				$bkg->setErrorLog("handlereq:: Field ".$lastfield." exempt from pricing rebuild");
-			}
-		else
-			$bkg->setErrorLog("handlereq:: bkg check of arrival or departure date failed");
-			$bkg->monitorBookingStatus();
-		if ($bkg->resetPricingOutput)
-			$bkg->outputZeroPrices();
-		if ( $bkg->getOkToBook() )
-			{
-			echo $oktobookClass;
-			echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage();';
-			//echo '; document.getElementById("messages").innerHTML = "'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"; checkSelectRoomMessage();';
-			
-			echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
-			}
-		else
-			{
-			$messagesClass=$errorClass;
-			echo $messagesClass;
-			echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage();';
-			//echo '; document.getElementById("messages").innerHTML = "'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"; fadeIn("messages",0);checkSelectRoomMessage();  ';
-			echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
-			}
-		if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )
-			{
-			$errorLog=$bkg->getErrorLog();
-			//echo '; document.getElementById("errorLog").innerHTML = "'.$bkg->sanitiseOutput($errorLog).'"';
-			}
 	break;
 	case "heartbeat":
 		echo "&nbsp;";
@@ -376,8 +287,78 @@ if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) 
 	bookingformlistRooms($isSingleRoomProperty,$bkg);
 	}
 
-if ($field != "heartbeat")
+if ($field != "heartbeat" && $field != "show_log")
 	{
+	$ajrq="show_log";
+	$bkg->setErrorLog("handlereq::Generating billing data" );
+	
+	$arrivalDate=$bkg->getArrivalDate();
+	$departureDate=$bkg->getDepartureDate();
+	if ($bkg->checkArrivalDate($arrivalDate) && $bkg->checkDepartureDate($departureDate) )
+		{
+		$bkg->setOkToBook(false);
+		$bkg->writeToLogfile("Lastfield ".$lastfield);
+		$bkg->setErrorLog("Lastfield ".$lastfield);
+		
+		$currfmt = jomres_getSingleton('jomres_currency_format');
+		if (!in_array($lastfield,$doNotRebuildRoomsListOnTheseFieldsArray) )
+			{
+			$bkg->resetTotals();
+			$bkg->setErrorLog("handlereq:: Dates passed");
+			$bkg->generateBilling();
+			$bkg->setErrorLog("handlereq::Show deposit: ".$showDeposit );
+			if ($bkg->getGuestVariantCount() > 0)
+				echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
+
+			echo '; populateDiv("staydays","'.$bkg->getStayDays().'")';
+
+			$room_per_night = $bkg->getRoompernight();
+			$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
+			
+			if ($tariffChargesStoredWeeklyYesNo=="0")
+				echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_per_night).'")';
+
+			$room_total = $bkg->getRoomtotal();
+			$room_total = $bkg->calculateRoomPriceIncVat($room_total);
+				
+			echo '; populateDiv("roomtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_total).'")';
+			if ($bkg->cfg_showExtras)
+				echo '; populateDiv("extrastotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'")';
+				
+			echo '; populateDiv("taxtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'")';
+			echo '; populateDiv("grandtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'")';
+			if ($showDeposit=="1")
+				echo '; populateDiv("deposit","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'")';
+			if ($bkg->singlePersonSupplimentCalculated)
+				echo '; populateDiv("single_suppliment","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'")';
+			if ($bkg->coupon_code != "")
+				echo '; populateDiv("coupon_discount_value","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'")';
+			}
+		else
+			$bkg->setErrorLog("handlereq:: Field ".$lastfield." exempt from pricing rebuild");
+		}
+	else
+		$bkg->setErrorLog("handlereq:: bkg check of arrival or departure date failed");
+		$bkg->monitorBookingStatus();
+	if ($bkg->resetPricingOutput)
+		$bkg->outputZeroPrices();
+	if ( $bkg->getOkToBook() )
+		{
+		echo $oktobookClass;
+		echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage();';
+		echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
+		}
+	else
+		{
+		$messagesClass=$errorClass;
+		echo $messagesClass;
+		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage();';
+		echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
+		}
+	if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )
+		{
+		$errorLog=$bkg->getErrorLog();
+		}
 	$bkg->setErrorLogFirst($ajrq);
 	$bkg->storeBookingDetails();
 	}
@@ -409,84 +390,97 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 	$bkg->writeToLogfile("Listing rooms");
 	$arrivalDate=$bkg->getArrivalDate();
 	$departureDate=$bkg->getDepartureDate();
-	//if ($bkg->checkArrivalDate($arrivalDate) && $bkg->checkDepartureDate($departureDate) )
-	//	{
-		if ($isSingleRoomProperty)
-			$bkg->requestedRoom=array();
-		//$bkg->setErrorLog("handlereq-bookingformlistRooms:: Building rooms list");
-		$bkg->setStayDays();
-		$bkg->setDateRangeString();
-		$roomAndTariffArray=array();
-		$freeRoomsArray=array();
-		$dateRangeIncludesWeekend=$bkg->dateRangeIncludesWeekends();
-		$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
-		if (count($freeRoomsArray) > 0 )
-			$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
-		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-		if (count($freeRoomsArray) > 0 ) // This must be before the rest of these functions
-			$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
-		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-		if (count($freeRoomsArray) > 0 )
-			$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
-		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-		// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
-		$selectedRoomUids=array();
-		foreach ($bkg->requestedRoom as $rt)
+
+	if ($isSingleRoomProperty)
+		$bkg->requestedRoom=array();
+	//$bkg->setErrorLog("handlereq-bookingformlistRooms:: Building rooms list");
+	$bkg->setStayDays();
+	$bkg->setDateRangeString();
+	$roomAndTariffArray=array();
+	$freeRoomsArray=array();
+	$dateRangeIncludesWeekend=$bkg->dateRangeIncludesWeekends();
+	$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
+	if (count($freeRoomsArray) > 0 )
+		$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
+	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+	if (count($freeRoomsArray) > 0 ) // This must be before the rest of these functions
+		$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
+	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+	if (count($freeRoomsArray) > 0 )
+		$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
+	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+	// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
+	$selectedRoomUids=array();
+	foreach ($bkg->requestedRoom as $rt)
+		{
+		$rtArray=explode("^",$rt);
+		$r[$rtArray[0]]=$rt;
+		$selectedRoomUids[]=$r;
+		}
+	foreach ($selectedRoomUids as $room_uid_holder)
+		{
+		foreach ($room_uid_holder as $key=>$room_uid)
 			{
-			$rtArray=explode("^",$rt);
-			$r[$rtArray[0]]=$rt;
-			$selectedRoomUids[]=$r;
-			}
-		foreach ($selectedRoomUids as $room_uid_holder)
-			{
-			foreach ($room_uid_holder as $key=>$room_uid)
+			if (is_array($freeRoomsArray) )
 				{
-				//var_dump($freeRoomsArray);echo "<br>";var_dump($key);echo "<br>";
-				if (is_array($freeRoomsArray) )
-					{
-					if (!in_array($key,$freeRoomsArray))
-						$bkg->removeFromSelectedRooms($room_uid);
-					}
+				if (!in_array($key,$freeRoomsArray))
+					$bkg->removeFromSelectedRooms($room_uid);
 				}
 			}
-		// End 2.6 addition for room updating
-		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-		if (count($freeRoomsArray) > 0 )
-			$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
-		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-		if (count($freeRoomsArray) > 0 )
-			$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
-		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Room and Tariff array count = ".count($roomAndTariffArray));
-		$output="";
-		//echo '; document.getElementById("totalinparty").innerHTML = "'.$bkg->getTotalInParty().'" ; fadeIn("totalinparty",1000); ';
+		}
 
-		if (!$isSingleRoomProperty)
-			{
-			$output.='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
-			//echo "<br>";
-			if ($bkg->numberOfCurrentlySelectedRooms()>0 )
-				$output.=$bkg->listCurrentlySelectedRooms();
-			else
-				$output.='<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
+	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+	if (count($freeRoomsArray) > 0 )
+		$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
+	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+	if (count($freeRoomsArray) > 0 )
+		$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
+	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Room and Tariff array count = ".count($roomAndTariffArray));
+	$output="";
 
-			$output.="~";
-			$output.='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div>';
-			//$output.="<br>";
-
-			//$bkg->writeToLogfile($output);
-			echo $output;
-			}
+	if (!$isSingleRoomProperty)
+		{
+		/*
+		$output.='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
+		if ($bkg->numberOfCurrentlySelectedRooms()>0 )
+			$output.=$bkg->listCurrentlySelectedRooms();
 		else
-			{
-			$output.='<div class="selectedRooms"></div>';
-			$output.='<div class="roomslist_availabletext"></div>';
-			}
-		$output=$bkg->generateRoomsList($roomAndTariffArray);
+			$output.='<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
+
+		$output.="~";
+		
+		$output.='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div>';
+		echo $output;
+		*/
+		$selected_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
+		if ($bkg->numberOfCurrentlySelectedRooms()>0 )
+			$currently_selected = $bkg->listCurrentlySelectedRooms();
+		else
+			$currently_selected = '<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
+		$available_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div><div id="rooms_listing"></div>';
+		
+		
+		$selected_rooms_text=$bkg->sanitise_for_eval($selected_rooms_text);
+		$currently_selected=$bkg->sanitise_for_eval($currently_selected);
+		$available_rooms_text=$bkg->sanitise_for_eval($available_rooms_text);
+		
+		$output="populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
+		$output.="populateDiv('availRooms','".$available_rooms_text."');";
 
 		echo $output;
-	//	}
-	//	else
-	//		$bkg->writeToLogfile("handlereq-bookingformlistRooms:: bkg check of arrival or departure date failed");
+		
+		}
+	else
+		{
+		$output.='<div class="selectedRooms"></div>';
+		$output.='<div class="roomslist_availabletext"></div>';
+		// populateDiv("messages","
+		 
+		}
+	$output=$bkg->generateRoomsList($roomAndTariffArray);
+	$output=$bkg->sanitise_for_eval($output);
+	$output="populateDiv('rooms_listing','".$output."');";
+	echo $output;
 	}
 
 ?>
