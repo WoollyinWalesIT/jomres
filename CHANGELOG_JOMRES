@@ -1,3 +1,15 @@
+Jomres 4.4
+
+Modified booking form javascript to convert the old two pass process (rebuild rooms list/pass other info -> calc prices) to only need to run one pass instead. The booking form runs much faster now.
+Added a new method to sanitize output before it's eval'd by jomres.js
+Fixed a bug where if an optional extra doesn't have a quantity, a javascript error is thrown. http://bugs.jomres.net/view.php?id=19
+Modify amend booking functionality to carry over extras quantities when editing bookings. http://bugs.jomres.net/view.php?id=23
+Removed two defunct property features from installer.
+Added property terms and conditions to confirmation email.
+Removed references to index2.php, now using index.php. (Joomla)
+Added translations for subscription packages http://bugs.jomres.net/view.php?id=12
+
+
 Jomres 4.3.4
 
 Removed arrival and departure dates from tmp booking handler's reset function.
