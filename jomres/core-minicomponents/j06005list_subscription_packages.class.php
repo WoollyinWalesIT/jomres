@@ -64,8 +64,8 @@ class j06005list_subscription_packages
 			{
 			$r=array();
 			$r['ID']			=$package['id'];
-			$r['NAME']			=$package['name'];
-			$r['DESCRIPTION']	=$package['description'];
+			$r['NAME']			=jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_NAME'.$package['id'],stripslashes($package['name']),false,false );
+			$r['DESCRIPTION']	=jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_DESC'.$package['id'],stripslashes($package['description']),false,false );
 			$r['PUBLISHED']		=$package['published'];
 			$r['FREQUENCY']		=$package['frequency'];
 			$r['TRIALPERIOD']	=$package['trial_period'];

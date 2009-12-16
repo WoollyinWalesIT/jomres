@@ -116,8 +116,8 @@ class j06005save_subscriber
 				
 				$subscription->cms_user_id	= $thisJRUser->id;
 				$subscription->package_id	= $package->id;
-				$subscription->name			= $package->name;
-				$subscription->description	= $package->description;
+				$subscription->name			= jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_NAME'.$package->id,stripslashes($package->name),false,false );
+				$subscription->description	= jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_DESC'.$package->id,stripslashes($package->description),false,false );
 				$subscription->frequency	= $package->frequency;
 				$subscription->trial_period	= $package->trial_period;
 				$subscription->trial_amount	= $package->trial_amount;

@@ -24,7 +24,27 @@ class j16000touch_templates
 			}
 		echo "<br/>Current lang ".get_showtime('lang')."<br/>";
 		
+		
+		
 		$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
+		
+		echo "<hr>";
+		$packages=subscriptions_packages_getallpackages();
+		if (count($packages)>0)
+			{
+			echo _JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE."<br/>";
+			foreach ($packages as $package)
+				{
+				$pack_name = jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_NAME'.$package['id'],stripslashes($package['name']) );
+				$pack_desc = jr_gettext('_JOMRES_CUSTOMTEXT_SUBSCRIPTIONPACKAGES_DESC'.$package['id'],stripslashes($package['description']) );
+				echo $pack_name;
+				echo "&nbsp;";
+				echo $pack_desc;
+				echo "<br/>";
+				}
+			}
+			
+		
 		echo "<hr>";
 		$query="SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = 0";
 		$roomtypes= doSelectSql($query);
