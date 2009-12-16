@@ -59,6 +59,7 @@ class j00101amendBooking
 					$tmpBookingHandler->updateBookingField("amend_property_uid",$c->property_uid);
 					$tmpBookingHandler->updateBookingField("amend_contract_total",$c->contract_total);
 					$tmpBookingHandler->updateBookingField("amend_contract_extras",$c->extrasvalue);
+					$tmpBookingHandler->updateBookingField("amend_contract_extrasquantities",$c->extrasquantities);
 					$tmpBookingHandler->updateBookingField("amend_contract_tax",$c->tax);
 					$tmpBookingHandler->updateBookingField("amend_contract_roomtotal",$c->room_total);
 					$tmpBookingHandler->updateBookingField("amend_contract_arrival",$c->arrival);
@@ -168,6 +169,7 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpbooking["smoking"]					= (int)$c->smoking;
 						$tmpBookingHandler->tmpbooking["extrasvalue"]				= (float)$c->extrasvalue;
 						$tmpBookingHandler->tmpbooking["extras"]					= (string)$c->extras;
+						$tmpBookingHandler->tmpbooking["extrasquantities"]			= unserialize($c->extrasquantities);
 						$tmpBookingHandler->tmpbooking["total_discount"] 			= $c->discount;
 						$tmpBookingHandler->tmpbooking["depositpaidsuccessfully"] 	= (string)$c->deposit_paid;
 						$tmpBookingHandler->tmpbooking["tax"]						= (float)$c->tax;
