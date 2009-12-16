@@ -35,6 +35,7 @@ class j03110guestconfirmationemail {
 			{
 			$this->template_touchable=true; return;
 			}
+		$output=array();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$mrConfig=getPropertySpecificSettings();
 		$currfmt = jomres_getSingleton('jomres_currency_format');
@@ -84,14 +85,18 @@ class j03110guestconfirmationemail {
 				}
 			}
 		
-		$query="SELECT property_name,property_tel,property_email FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
+		$query="SELECT property_name,property_tel,property_email,property_policies_disclaimers FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
 		$propertyEmail =doSelectSql($query);
 		foreach ($propertyEmail as $email)
 			{
 			$propertyName=stripslashes($email->property_name);
 			$propertyTel=stripslashes($email->property_tel);
 			$hotelemail=stripslashes($email->property_email);
+			$output['POLICIESDISCLAIMERS']=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($email->property_policies_disclaimers)),false,false);
 			}
+			
+		$output['HPOLICIESDISCLAIMERS']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
+	
 		$query="SELECT firstname,surname,tel_landline,tel_mobile FROM #__jomres_guests WHERE guests_uid = '".(int)$guests_uid."'";
 		$guestNameList =doSelectSql($query);
 		foreach ($guestNameList as $guestName)
@@ -142,11 +147,10 @@ class j03110guestconfirmationemail {
 			}
 		
 		$subject=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS',_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS,FALSE,FALSE)." ".stripslashes($propertyName);
-		$output=array();
+		
 
 		//$fileLocation=checkForImage('property',$property_uid);
 
-		$output=array();
 		if (strlen($specialReqs)>0)
 			{
 			$output['HSPECIAL_REQUIREMENTS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ,FALSE,FALSE);
@@ -223,6 +227,9 @@ class j03110guestconfirmationemail {
 				$custom_field_output[]=array("DESCRIPTION"=>$f['description'],"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
 				}
 			}
+			
+			
+
 			
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
