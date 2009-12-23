@@ -75,10 +75,12 @@ class j02190confirmationform {
 		if (count($guestDetails)>0)
 			{
 			foreach ( $guestDetails as $g)
-			$r=array();
-			$r['TITLE']=$g['title'];
-			$r['QUANTITY']=$g['qty'];
-			$rows[]=$r;
+				{
+				$r=array();
+				$r['TITLE']=$g['title'];
+				$r['QUANTITY']=$g['qty'];
+				$rows[]=$r;
+				}
 			}
 
 		$room_name="";
