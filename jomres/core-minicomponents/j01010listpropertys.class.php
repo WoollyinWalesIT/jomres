@@ -320,7 +320,7 @@ class j01010listpropertys {
 							$lowestPrice="-";
 
 						
-						$price=$mrConfig['currency'].$currfmt->get_formatted($lowestPrice);
+						$price=output_price($lowestPrice);
 						
 						if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
 							$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
@@ -335,7 +335,7 @@ class j01010listpropertys {
 						}
 					else
 						{
-						$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".$mrConfig['currency'].$currfmt->get_formatted($property->property_key);
+						$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
 						}
 						
 						

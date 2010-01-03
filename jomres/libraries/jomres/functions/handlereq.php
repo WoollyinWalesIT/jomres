@@ -316,23 +316,23 @@ if ($field != "heartbeat" && $field != "show_log")
 			$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
 			
 			if ($tariffChargesStoredWeeklyYesNo=="0")
-				echo '; populateDiv("roompernight","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_per_night).'")';
+				echo '; populateDiv("roompernight","'.output_price($room_per_night).'")';
 
 			$room_total = $bkg->getRoomtotal();
 			$room_total = $bkg->calculateRoomPriceIncVat($room_total);
 				
-			echo '; populateDiv("roomtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($room_total).'")';
+			echo '; populateDiv("roomtotal","'.output_price($room_total).'")';
 			if ($bkg->cfg_showExtras)
-				echo '; populateDiv("extrastotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getExtrasTotal()).'")';
+				echo '; populateDiv("extrastotal","'.output_price($bkg->getExtrasTotal()).'")';
 				
-			echo '; populateDiv("taxtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getTax()).'")';
-			echo '; populateDiv("grandtotal","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getGrandTotal()).'")';
+			echo '; populateDiv("taxtotal","'.output_price($bkg->getTax()).'")';
+			echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 			if ($showDeposit=="1")
-				echo '; populateDiv("deposit","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getDeposit()).'")';
+				echo '; populateDiv("deposit","'.output_price($bkg->getDeposit()).'")';
 			if ($bkg->singlePersonSupplimentCalculated)
-				echo '; populateDiv("single_suppliment","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->getSinglePersonSuppliment()).'")';
+				echo '; populateDiv("single_suppliment","'.output_price($bkg->getSinglePersonSuppliment()).'")';
 			if ($bkg->coupon_code != "")
-				echo '; populateDiv("coupon_discount_value","'.$bkg->getCurrencySymbol().$currfmt->get_formatted($bkg->coupon_discount_value).'")';
+				echo '; populateDiv("coupon_discount_value","'.output_price($bkg->coupon_discount_value).'")';
 			}
 		else
 			$bkg->setErrorLog("handlereq:: Field ".$lastfield." exempt from pricing rebuild");

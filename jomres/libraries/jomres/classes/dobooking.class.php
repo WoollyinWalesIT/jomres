@@ -806,7 +806,7 @@ class dobooking
 					$tax_output = " (".$rate."%)";
 				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) )).$tax_output;
 
-				$extra_deets['PRICE']=$mrConfig['currency'].$currfmt->get_formatted($inc_price);
+				$extra_deets['PRICE']=output_price($inc_price);
 				if ($ex->chargabledaily=="1")
 					$extra_deets['PERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_PERDAY',_JOMRES_COM_PERDAY,false,true));
 				else
@@ -923,7 +923,7 @@ class dobooking
 			$output['BILLING_TOTAL']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL));
 			if ($mrConfig['chargeDepositYesNo']=="1")
 				$output['DEPOSIT']				=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED));
-			$output['CURRENCY_SYMBOL']		=$mrConfig['currency'];
+			//$output['CURRENCY_SYMBOL']		=$mrConfig['currency'];
 
 			$output['BILLING_TOTALINPARTY']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY',_JOMRES_AJAXFORM_BILLING_TOTALINPARTY));
 			$output['AJAXFORM_PARTICULARS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS',_JOMRES_AJAXFORM_PARTICULARS));
@@ -3838,7 +3838,7 @@ class dobooking
 		if ($this->cfg_tariffmode != 0)
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
 		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
-		$overlib.='<td>'.$this->cfg_currency.$currfmt->get_formatted($room_price_inc_tax).'</td>';
+		$overlib.='<td>'.output_price($room_price_inc_tax).'</td>';
 		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
 		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
@@ -3974,9 +3974,9 @@ class dobooking
 		
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($tariff['ignore_pppn'] || $this->cfg_perPersonPerNight=="0" )
-			$output['ROOMRATEPERDAY']=$this->cfg_currency.$currfmt->get_formatted(($this->cfg_ratemultiplier*$tariff['roomrateperday']))." ".$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN,false,false) );
+			$output['ROOMRATEPERDAY']=output_price(($this->cfg_ratemultiplier*$tariff['roomrateperday']))." ".$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN,false,false) );
 		else
-			$output['ROOMRATEPERDAY']=$this->cfg_currency.$currfmt->get_formatted(($this->cfg_ratemultiplier*$tariff['roomrateperday']))." ".$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN,false,false) );
+			$output['ROOMRATEPERDAY']=output_price(($this->cfg_ratemultiplier*$tariff['roomrateperday']))." ".$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN,false,false) );
 
 		if ($tariff['allow_we']=="0")
 			$output['NOTWEEKENDS']=jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND',_JOMRES_FRONT_TARIFFS_NOTWEEKEND,false,false);
@@ -4304,15 +4304,15 @@ class dobooking
 			echo '; populateDiv("totalinparty","'.$this->getTotalInParty().'")';
 		echo '; populateDiv("staydays","'.$this->getStayDays().'")';
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="0")
-			echo '; populateDiv("roompernight","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-		echo '; populateDiv("roomtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			echo '; populateDiv("roompernight","'.output_price("0.00").'")';
+		echo '; populateDiv("roomtotal","'.output_price("0.00").'")';
 		if ($this->cfg_showExtras)
-			echo '; populateDiv("extrastotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-		echo '; populateDiv("taxtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-		echo '; populateDiv("single_suppliment","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
-		echo '; populateDiv("grandtotal","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			echo '; populateDiv("extrastotal","'.output_price("0.00").'")';
+		echo '; populateDiv("taxtotal","'.output_price("0.00").'")';
+		echo '; populateDiv("single_suppliment","'.output_price("0.00").'")';
+		echo '; populateDiv("grandtotal","'.output_price("0.00").'")';
 		if ($this->cfg_showDeposit=="1")
-			echo '; populateDiv("deposit","'.$this->getCurrencySymbol().$currfmt->get_formatted("0.00").'")';
+			echo '; populateDiv("deposit","'.output_price("0.00").'")';
 		echo '; populateDiv("discount","")';
 		echo '; populateDiv("coupon_discount_value","")';
 		}
@@ -5118,9 +5118,9 @@ class dobooking
 					$roomtype_abbr=$this->sanitiseOutput(jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomtype,$this->allRoomClasses[$roomtype]['room_class_abbv'],false,false));
 					$roomrate=$d['roomrate'];
 					//$discountedRate=$d['discountedRate'];
-					$discountOutput.= ' '.$roomtype_abbr._JOMCOMP_WISEPRICE_HASBEENDISCOUNTED.$this->getCurrencySymbol().$currfmt->get_formatted($roomrate)._JOMCOMP_WISEPRICE_TO.$this->getCurrencySymbol().$currfmt->get_formatted($d['discountedRate']).' <br/>';
+					$discountOutput.= ' '.$roomtype_abbr._JOMCOMP_WISEPRICE_HASBEENDISCOUNTED.output_price($roomrate)._JOMCOMP_WISEPRICE_TO.output_price($d['discountedRate']).' <br/>';
 					$tmpBookingHandler->updateBookingField("wisepricediscount",$discountOutput);
-					$discountsForTmpdata[]=array("type"=>"MRP","roomtypeabbr"=>$roomtype_abbr,"discountfrom"=>$currfmt->get_formatted($roomrate),"discountto"=>$currfmt->get_formatted($d['discountedRate']));
+					$discountsForTmpdata[]=array("type"=>"MRP","roomtypeabbr"=>$roomtype_abbr,"discountfrom"=>output_price($roomrate),"discountto"=>output_price($d['discountedRate']));
 					$tmpBookingHandler->saveBookingData();
 					}
 				else
@@ -5515,12 +5515,12 @@ class dobooking
 				$this->room_total=$this->room_total-$discount;
 				$this->total_discount=$discount;
 				$this->setErrorLog("<b>calcLastMinuteDiscount:: Room total modified to: ".$this->room_total."</b>");
-				$disc_txt=_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1.' '._JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2.': '.$this->getCurrencySymbol().$currfmt->get_formatted($discount);
+				$disc_txt=_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1.' '._JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2.': '.output_price($discount);
 				echo '; populateDiv("discount","'.$disc_txt.'")';
 				//echo '; document.getElementById("discount").innerHTML = "'.$disc_txt.'" ; fadeIn("discount",0);';
 				$tmpBookingHandler->updateBookingField("lastminutediscount",$disc_txt );
 				$tmpBookingHandler->updateBookingField("booking_discounted",true );
-				$discountsForTmpdata[]=array("type"=>"SRP","roomtypeabbr"=>"N/A","discountfrom"=>$currfmt->get_formatted($original_total),"discountto"=>$currfmt->get_formatted($this->room_total) );
+				$discountsForTmpdata[]=array("type"=>"SRP","roomtypeabbr"=>"N/A","discountfrom"=>output_price($original_total),"discountto"=>output_price($this->room_total) );
 				}
 			else
 				{

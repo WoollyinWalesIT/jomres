@@ -96,7 +96,7 @@ class j06000paypal {
 		$this->add_field('payer_id', $guests_uid);
 		$this->add_field('custom', get_showtime('jomressession'));
 		$this->add_field('currency_code', $settingArray['currencycode']);
-		$this->add_field('amount', number_format($deposit_required,2, '.', ''));
+		$this->add_field('amount', output_price($deposit_required));
 		$this->submit_paypal_post();
 
 		$this->log_ipn_results();

@@ -66,13 +66,13 @@ class j02160cancelbooking {
 				$output['HDAYSTOARRIVAL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL',_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL);
 
 				$output['ARRIVAL']=outputDate($arrival);
-				$output['CONTRACTTOTAL']=$mrConfig['currency'].$contract_total;
+				$output['CONTRACTTOTAL']=output_price($contract_total);
 				$output['DAYSTOARRIVAL']=dateDiff("d",$today,$arrival);
 
 				if ($deposit_paid=="1")
 					{
 					$output['HDEPOSITPAID']= jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID);
-					$output['DEPOSITAMOUNT']=$mrConfig['currency'].$deposit_required;
+					$output['DEPOSITAMOUNT']=output_price($deposit_required);
 					}
 				else
 					{

@@ -90,7 +90,7 @@ class j02114listcustomertypes {
 			$jrtb .= $jrtbar->endTable();
 			$rw['PUBLISHLINK']=$jrtb;
 
-			$rw['CURRENCY']=$mrConfig['currency'];
+			//$rw['CURRENCY']=$mrConfig['currency'];
 			if (empty($ex->order) )
 				$order=0;
 			else

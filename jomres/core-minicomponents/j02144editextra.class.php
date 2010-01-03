@@ -55,7 +55,6 @@ class j02144editextra {
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['EXTRAID']= $uid;
-		$output['CURRENCY']=$mrConfig['currency'];
 
 		$output['EXTRAMODEL_PERWEEK_CHECKED']="";
 		$output['EXTRAMODEL_PERDAYS_CHECKED']="";
@@ -129,7 +128,7 @@ class j02144editextra {
 				{
 				$output['EXDESCRIPTION']= stripslashes($ex->desc);
 				$output['EXNAME']= stripslashes($ex->name);
-				$output['EXPRICE']= number_format($ex->price,2, '.', '');
+				$output['EXPRICE']= $ex->price;
 				$output['MAXQUANTITYDROPDOWN'] = jomresHTML::integerSelectList( 01, 1000, 1, "maxquantity", 'size="1" class="inputbox"', $ex->maxquantity, "%02d" );
 				$output['TAXRATEDROPDOWN'] = taxrates_makerateDropdown( array(),$ex->tax_rate );
 				}

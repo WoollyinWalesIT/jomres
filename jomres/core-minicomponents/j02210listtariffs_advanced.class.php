@@ -96,7 +96,7 @@ class j02210listtariffs_advanced {
 				$rw['RATEDESCRIPTION']		=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_DESCRIPTION'.$tariff->rates_uid,stripslashes($tariff->rate_description));
 				$rw['VALIDFROM']		=outputDate($tariff->validfrom);
 				$rw['VALIDTO']			=outputDate($tariff->validto);
-				$rw['ROOMRATEPERDAY']	=$mrConfig['currency'].($tariff->roomrateperday);
+				$rw['ROOMRATEPERDAY']	=output_price($tariff->roomrateperday);
 				$rw['MINDAYS']			=$tariff->mindays;
 				$rw['MAXDAYS']			=$tariff->maxdays;
 				$rw['MINPEOPLE']		=$tariff->minpeople;

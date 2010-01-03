@@ -66,9 +66,9 @@ class j02142listextras {
 
 			$rw['EXNAME']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) );
 			$rw['EXDESC']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES) );
-			$rw['EXPRICE']=number_format($ex->price,2, '.', '');
+			$rw['EXPRICE']=output_price($ex->price);
 			//$rw['PUBLISHLINK']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=publishExtra&uid=".($ex->uid) ).'"><img src="'.$img.'" border="0"></a>';
-			$rw['CURRENCY']=$mrConfig['currency'];
+			//$rw['CURRENCY']=$mrConfig['currency'];
 			$rows[]=$rw;
 			}
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE',_JOMRES_COM_MR_EXTRA_TITLE);

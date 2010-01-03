@@ -169,7 +169,7 @@ class j02212edittariff_advanced {
 			$output['VALIDFROM']=generateDateInput("validfrom",$validfrom);
 			$output['VALIDTO']=generateDateInput("validto",$validto);
 			$output['RATEPERDAY']=$roomrateperday ;
-			$output['CURRENCY']=$mrConfig['currency'];
+			//$output['CURRENCY']=$mrConfig['currency'];
 			$output['MINDAYS']=$mindays ;
 			$output['MAXDAYS']=$maxdays ;
 			$output['MINPEOPLE']=$minpeople;

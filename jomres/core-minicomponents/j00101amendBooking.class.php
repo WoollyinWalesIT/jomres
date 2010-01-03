@@ -191,9 +191,9 @@ class j00101amendBooking
 					$mrConfig	= getPropertySpecificSettings($tmpBookingHandler->tmpbooking["amend_property_uid"]);
 					$output['HEADER']		= jr_gettext('_JOMCOMP_AMEND_HEADER',_JOMCOMP_AMEND_HEADER);
 					$output['HTOTAL']		= jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL);
-					$output['TOTAL']		= $mrConfig['currency'].$currfmt->get_formatted($c->contract_total);
+					$output['TOTAL']		= output_price($c->contract_total);
 					$output['HROOMTOTAL']	= jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL);
-					$output['ROOMTOTAL']	= $mrConfig['currency'].$currfmt->get_formatted($c->room_total);
+					$output['ROOMTOTAL']	= output_price($c->room_total);
 					$output['HARRIVAL']		= jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
 					$output['ARRIVAL']		= outputDate($c->arrival);
 					$output['HDEPARTURE']	= jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
@@ -208,19 +208,19 @@ class j00101amendBooking
 					if ($mrConfig['showExtras']=="1")
 						{
 						$output['HEXTRAS']	= jr_gettext('_JOMRES_AJAXFORM_BILLING_EXTRAS',_JOMRES_AJAXFORM_BILLING_EXTRAS);
-						$output['EXTRAS']	= $mrConfig['currency'].$currfmt->get_formatted($c->extrasvalue);
+						$output['EXTRAS']	= output_price($c->extrasvalue);
 						}
 
 					if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo'] =="1" )
 						{
 						$output['HTAX']		= jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX',_JOMRES_AJAXFORM_BILLING_TAX);
-						$output['TAX']		= $mrConfig['currency'].$currfmt->get_formatted($c->tax);
+						$output['TAX']		= output_price($c->tax);
 						}
 
 					if ($c->discount != 0)
 						{
 						$output['HDISCOUNT']= jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT);
-						$output['DISCOUNT']= $mrConfig['currency'].$currfmt->get_formatted($c->discount);
+						$output['DISCOUNT']= output_price($c->discount);
 						}
 
 					if ($mrConfig['chargeDepositYesNo']=="1")
@@ -230,7 +230,7 @@ class j00101amendBooking
 						else
 							$output['HDEPOSIT']	= jr_gettext('_JOMCOMP_AMEND_DEPOSITDUE',_JOMCOMP_AMEND_DEPOSITDUE);
 
-						$output['DEPOSIT']		= $mrConfig['currency'].$currfmt->get_formatted($tmpBookingHandler->tmpbooking["amend_deposit_required"]);
+						$output['DEPOSIT']		= output_price($tmpBookingHandler->tmpbooking["amend_deposit_required"]);
 						}
 
 					$pageoutput[]			= $output;

@@ -204,10 +204,10 @@ class j02190confirmationform {
 		$output['ROOM_NUMBER']=$room_number;
 		$output['ARRIVAL']=outputDate($arrival);
 		$output['DEPARTURE']=outputDate($departure);
-		$output['DEPOSIT_REQUIRED']=$mrConfig['currency'].number_format($deposit_required,2, '.', '');
-		$output['CONTRACT_TOTAL']=$mrConfig['currency'].number_format($contract_total,2, '.', '');
+		$output['DEPOSIT_REQUIRED']=output_price($deposit_required);
+		$output['CONTRACT_TOTAL']=output_price($contract_total);
 		$output['ROOMTYPE']=$room_class_abbv;
-		$output['PERNIGHT']=$mrConfig['currency'].number_format($rate_rules,2, '.', '');
+		$output['PERNIGHT']=output_price($rate_rules);
 		$output['LIVESITE']=get_showtime('live_site');
 		$pageoutput[]=$output;
 

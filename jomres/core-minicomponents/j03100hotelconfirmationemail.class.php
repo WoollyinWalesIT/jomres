@@ -103,7 +103,7 @@ class j03100hotelconfirmationemail {
 				{
 				$rTitle=stripslashes($rate->rate_title);
 				$rDesc=stripslashes($rate->rate_description);
-				$rRate=$currfmt->get_formatted($rate->roomrateperday);
+				$rRate=output_price($rate->roomrateperday);
 				$rateOutput.=$rTitle.' '.$rDesc.' '.$rRate;
 				}
 			}
@@ -143,14 +143,14 @@ class j03100hotelconfirmationemail {
 		$output['HMOBILE']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE',_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE,FALSE,FALSE);
 		$output['MOBILE']=$mobile;
 		$output['HTOTAL']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL',_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL,FALSE,FALSE);
-		$output['TOTAL']=$currency.number_format($contract_total, 2, '.', '');
+		$output['TOTAL']=output_price($contract_total);
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
 		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
 
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
-		$output['DEPOSIT']		=	$mrConfig['currency'].$currfmt->get_formatted($deposit_required);
+		$output['DEPOSIT']		=	output_price($deposit_required);
 
 		$guestDetails = getGuestDetailsForContract($componentArgs['contract_uid']);
 		$rows=array();

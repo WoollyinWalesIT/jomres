@@ -92,9 +92,7 @@ class j04200editproperty {
 				$output['LAT']=$property->lat;
 				$output['LONG']=$property->long;
 				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
-				
-				$output['CURRENCY']=$mrConfig['currency'];
-				
+
 				$output['PRICE']=$property->property_key;
 				$output['METATITLE']=getEscaped(($property->metatitle ));
 				$output['METADESCRIPTION']=getEscaped(($property->metadescription ));

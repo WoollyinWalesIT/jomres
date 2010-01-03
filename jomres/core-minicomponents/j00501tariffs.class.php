@@ -53,7 +53,33 @@ class j00501tariffs {
 			$mrConfig['margin']="0.00";
 
 		$configurationPanel->startPanel(_JOMRES_COM_A_TARIFFS);
+		
+		if ($jrConfig['useGlobalCurrency'] !="1")
+			{
+			if (!isset($mrConfig['property_currencycode'])) // for v4.5 converting the old currencyCode value to property_currencycode
+				$mrConfig['property_currencycode'] = $mrConfig['currencyCode'];
+			jr_import("currency_codes");
+			$c_codes = new currency_codes($mrConfig['property_currencycode']);
 
+			$dropdown = $c_codes->makeCodesDropdown();
+			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYCODE);
+			$configurationPanel->setmiddle($dropdown);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			
+			/*
+			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYSYMBOL);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_currency" value="'.$mrConfig['currency'].'" />');
+			$configurationPanel->setright(_JOMRES_COM_A_CURRENCYSYMBOL_DESC);
+			$configurationPanel->insertSetting();
+
+			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYCODE);
+			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_currencyCode" value="'.$mrConfig['currencyCode'].'" />');
+			$configurationPanel->setright(_JOMRES_COM_A_CURRENCYCODE_DESC);
+			$configurationPanel->insertSetting();
+			*/
+			}
+			
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
 			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
@@ -74,18 +100,9 @@ class j00501tariffs {
 				$configurationPanel->insertSetting();
 				}
 			}
-		if ($jrConfig['useGlobalCurrency'] !="1")
-			{
-			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYSYMBOL);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_currency" value="'.$mrConfig['currency'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_CURRENCYSYMBOL_DESC);
-			$configurationPanel->insertSetting();
+			
+			
 
-			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYCODE);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_currencyCode" value="'.$mrConfig['currencyCode'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_CURRENCYCODE_DESC);
-			$configurationPanel->insertSetting();
-			}
 
 		if ($mrConfig['is_real_estate_listing']==0)
 			{

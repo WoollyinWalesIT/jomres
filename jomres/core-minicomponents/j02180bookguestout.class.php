@@ -146,15 +146,14 @@ class j02180bookguestout {
 				$output['HEXTRASERVICE']=jr_gettext('_JOMRES_COM_ADDSERVICE_BOOKINGDESC',_JOMRES_COM_ADDSERVICE_BOOKINGDESC);
 
 				$output['HSINGLEPERSON_COST']=jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST);
-				$output['SINGLEPERSON_COST']=$mrConfig['currency'].$currfmt->get_formatted($single_person_suppliment);
+				$output['SINGLEPERSON_COST']=output_price($single_person_suppliment);
 
 				$output['CONTRACTUID']=$contractUid;
 				$output['SAVEBUTTON']=jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE',_JOMRES_FRONT_MR_BOOKOUT_TITLE,false);
 
 				$output['STAYNIGHTS']=$actualstayDays;
-				$output['CONTRACTAGREED']=$mrConfig['currency'].$currfmt->get_formatted($contractTotal);
-				$output['COSTPERNIGHT']=$mrConfig['currency'].$currfmt->get_formatted($agreedratepernight);
-				//$output['ROOMCOST']=$mrConfig['currency'].$totalCosts;
+				$output['CONTRACTAGREED']=output_price($contractTotal);
+				$output['COSTPERNIGHT']=output_price($agreedratepernight);
 
 				$extraServicesTotal=0;
 				$output_extras=array();
@@ -164,13 +163,13 @@ class j02180bookguestout {
 						{
 						$serviceValue=$service->service_value;
 						$ex['DESC']=$service->service_description;
-						$ex['VAL']=$mrConfig['currency'].$currfmt->get_formatted($serviceValue);
+						$ex['VAL']=output_price($serviceValue);
 
 						$extraServicesTotal=$extraServicesTotal+$serviceValue;
 						$output_extras[]=$ex;
 						}
 					$output['HEXTRASERVICE_TOTAL']=jr_gettext('_JOMRES_COM_ADDSERVICE_TOTALVALUE',_JOMRES_COM_ADDSERVICE_TOTALVALUE);
-					$output['EXTRASERVICE_TOTAL']=$mrConfig['currency'].$currfmt->get_formatted($extraServicesTotal);
+					$output['EXTRASERVICE_TOTAL']=output_price($extraServicesTotal);
 					}
 				else
 					$output['HEXTRASERVICE']=jr_gettext('_JOMRES_EXTRAS_NOEXTRAS',_JOMRES_EXTRAS_NOEXTRAS);
@@ -178,7 +177,7 @@ class j02180bookguestout {
 				// Time to generate the data to be displayed on the invoice
 				$grandTotal=$totalCosts+$extraServicesTotal;
 				$output['HGRANDTOTAL']=jr_gettext('_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL',_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL);
-				$output['GRANDTOTAL']=$mrConfig['currency'].$currfmt->get_formatted($grandTotal);
+				$output['GRANDTOTAL']=output_price($grandTotal);
 
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
 				$link = JOMRES_SITEPAGE_URL."&task=bookGuestOut&contract_uid=".$contractUid."&popup=1&dueDepart=".$contractUid;
