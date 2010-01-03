@@ -70,8 +70,8 @@ $mrConfig['fixedPeriodBookingsShortNumberOfDays']="4";
 $mrConfig['showExtras']="1";
 $mrConfig['defaultSmokingOption']="2";
 //$mrConfig['paypalDebugging']="0";
-$mrConfig['currency']="&#163;";
-$mrConfig['currencyCode']="GBP";
+//$mrConfig['currency']="&#163;";
+//$mrConfig['currencyCode']="GBP";
 $mrConfig['showSmoking']="0";
 $mrConfig['limitAdvanceBookingsYesNo']="0";
 $mrConfig['advanceBookingsLimit']='90';
@@ -166,4 +166,7 @@ $mrConfig['use_variable_deposits'] ="1";
 $mrConfig['variable_deposit_threashold'] ="60";
 
 $mrConfig['is_real_estate_listing'] ="0";
+$mrConfig['property_currencycode'] ="GBP"; // New for v4.5
+
+
 ?>
