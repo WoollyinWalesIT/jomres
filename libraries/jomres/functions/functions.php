@@ -14,6 +14,29 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 // ################################################################
 	
 
+function output_price($value,$currencycode="")
+	{
+	$price = $value;
+	
+	$mrConfig=getPropertySpecificSettings();
+	$currfmt = jomres_getSingleton('jomres_currency_format');
+	$price = $currfmt->get_formatted($price);
+	if ($currencycode=="")
+		{
+		if (!isset($mrConfig['property_currencycode'])) // for v4.5 converting the old currencyCode value to property_currencycode
+			$mrConfig['property_currencycode'] = $mrConfig['currencyCode'];
+		if ($mrConfig['property_currencycode'] == "")
+			$mrConfig['property_currencycode'] = "GBP";
+		$currencycode = $mrConfig['property_currencycode'];
+		}
+
+	jr_import("currency_codes");
+	$c_codes = new currency_codes($currencycode);
+	$symbols = $c_codes->getSymbol();
+	$price = $symbols['pre'].$price.$symbols['post'];
+	return $price;
+	}
+	
 // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
 // The string will already have been cleaned by filter var sanitize string.
 function jomres_reconvertString($clean)

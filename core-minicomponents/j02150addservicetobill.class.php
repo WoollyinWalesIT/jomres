@@ -46,7 +46,7 @@ class j02150addservicetobill {
 			$output['HSERVICEDESCRIPTION']=jr_gettext('_JOMRES_COM_ADDSERVICE_DESCRIPTION',_JOMRES_COM_ADDSERVICE_DESCRIPTION);
 			$output['HSERVICEVALUE']=jr_gettext('_JOMRES_COM_ADDSERVICE_VALUE',_JOMRES_COM_ADDSERVICE_VALUE);
 			$output['HTAXRATE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
-			$output['CURRENCY']=$mrConfig['currency'];
+			//$output['CURRENCY']=$mrConfig['currency'];
 			$output['CONTRACTUID']=$contract_uid;
 			$output['TAXRATEDROPDOWN'] = taxrates_makerateDropdown( array(),1 );
 			

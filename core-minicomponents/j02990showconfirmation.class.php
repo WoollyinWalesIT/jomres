@@ -114,24 +114,24 @@ class j02990showconfirmation {
 		$booking_parts['HGRANDTOTAL']	=	jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL);
 		$booking_parts['HROOMSBOOKED']	=	jr_gettext('_JOMRES_FRONT_MR_BOOKED',_JOMRES_FRONT_MR_BOOKED);
 
-		$booking_parts['TOTAL']			=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['contract_total']);
+		$booking_parts['TOTAL']			=	output_price($bookingDeets['contract_total']);
 
 		$booking_parts['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
-		$booking_parts['DEPOSIT']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['deposit_required']);
+		$booking_parts['DEPOSIT']		=	output_price($bookingDeets['deposit_required']);
 
 		$booking_parts['EDITBOOKING']	=	jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE);
 		$booking_parts['ARRIVAL']		=	outputDate($bookingDeets['arrivalDate']);
 		$booking_parts['DEPARTURE']		=	outputDate($bookingDeets['departureDate']);
 		$booking_parts['DAYSSTAYING']	= 	$bookingDeets['stayDays'];
 		if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo']=="1")
-			$booking_parts['TAX']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['tax']);
+			$booking_parts['TAX']		=	output_price($bookingDeets['tax']);
 		else
 			$booking_parts['TAX']		=	"";
 
 		if ((float)$bookingDeets['coupon_discount_value'] > 0.0)
 			{
 			$booking_parts['HCOUPON_DISCOUNTVALUE']	=	jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE);
-			$booking_parts['COUPON_DISCOUNT_VALUE']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['coupon_discount_value']);
+			$booking_parts['COUPON_DISCOUNT_VALUE']		=	output_price($bookingDeets['coupon_discount_value']);
 			}
 
 		if ($bookingDeets['booking_discounted'] == true)
@@ -227,7 +227,7 @@ class j02990showconfirmation {
 			$room_total=$room_total+$percentageToAdd;
 			}
 
-		$booking_parts['ROOMTOTAL']	=	$mrConfig['currency'].$currfmt->get_formatted($room_total);
+		$booking_parts['ROOMTOTAL']	=	output_price($room_total);
 
 
 		if ($mrConfig['showExtras']=="1")
@@ -290,7 +290,7 @@ class j02990showconfirmation {
 						$extra_tax_output = " (".$rate."%)";
 			
 					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra].$extra_tax_output;
-					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($inc_price*$extrasquantities[$extra]);
+					$extra_parts['PRICE'] 		= 	output_price($inc_price*$extrasquantities[$extra]);
 					$booking_extras[]			=	$extra_parts;
 					}
 				}
@@ -313,7 +313,7 @@ class j02990showconfirmation {
 						$tmpTotal = $tmpTotal + $thisTax;
 						}
 					$extra_parts['NAME'] 		= 	$tpextra['description'];
-					$extra_parts['PRICE'] 		= 	$mrConfig['currency'].$currfmt->get_formatted($tmpTotal);
+					$extra_parts['PRICE'] 		= 	output_price($tmpTotal);
 					$booking_extras[]			=	$extra_parts;
 					}
 				}
@@ -323,7 +323,7 @@ class j02990showconfirmation {
 			{
 			$extratext	=	array();
 			$extra_text['AJAXFORM_EXTRAS']		=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS);
-			$extra_text['EXTRASTOTAL']			=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['extrasvalue']);
+			$extra_text['EXTRASTOTAL']			=	output_price($bookingDeets['extrasvalue']);
 			$extra_text['HEXTRASTOTAL']			=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL);
 			$extrastext[]	=	$extra_text;
 			}
@@ -345,7 +345,7 @@ class j02990showconfirmation {
 		if ((int)$bookingDeets['single_person_suppliment'] > 0)
 			{
 			$booking_parts['HSINGLEPERSON_COST']	=	jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST);
-			$booking_parts['SINGLEPERSON_COST']		=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['single_person_suppliment']);
+			$booking_parts['SINGLEPERSON_COST']		=	output_price($bookingDeets['single_person_suppliment']);
 			}
 			
 		$booking_parts['LIVESITE']				=	get_showtime('live_site');

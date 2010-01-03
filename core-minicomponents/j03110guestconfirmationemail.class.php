@@ -141,7 +141,7 @@ class j03110guestconfirmationemail {
 				}
 			$extratext	=	array();
 			$extra_text['AJAXFORM_EXTRAS']		=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS);
-			$extra_text['EXTRASTOTAL']			=	$mrConfig['currency'].$currfmt->get_formatted($bookingDeets['extrasvalue']);
+			$extra_text['EXTRASTOTAL']			=	output_price($bookingDeets['extrasvalue']);
 			$extra_text['HEXTRASTOTAL']			=	jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL);
 			$extrastext[]	=	$extra_text;
 			}
@@ -192,7 +192,7 @@ class j03110guestconfirmationemail {
 		$output['TARIFFINFO']=$rateOutput;
 
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
-		$output['DEPOSIT']		=	$mrConfig['currency'].$currfmt->get_formatted($deposit_required);
+		$output['DEPOSIT']		=	output_price($deposit_required);
 		
 		$guestDetails = getGuestDetailsForContract($componentArgs['contract_uid']);
 		$rows=array();

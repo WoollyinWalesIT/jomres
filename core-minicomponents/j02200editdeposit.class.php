@@ -50,13 +50,13 @@ class j02200editdeposit {
 			$link =JOMRES_SITEPAGE_URL."&task=editCreditcard&popup=1&guestUid=$guestUid";
 			$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
 			$output['CREDITCARDLINK']=$link;
-			$output['HBOOKINGNUMBER']		=jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER);
+			$output['HBOOKINGNUMBER']	=jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER);
 			$output['HCONTRACT_TOTAL']	=jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL',_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL);
 			$output['HDEPOSITREQUIRED']	=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
 			$output['HDEPOSIT_REF']		=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF);
-			$output['BOOKINGNUMBER']		=$tag;
-			$output['CONTRACT_TOTAL']		=$mrConfig['currency'].$contract_total;
-			$output['DEPOSITREQUIRED']	=$mrConfig['currency'].$depositRequired;
+			$output['BOOKINGNUMBER']	=$tag;
+			$output['CONTRACT_TOTAL']	=output_price($contract_total);
+			$output['DEPOSITREQUIRED']	=output_price($depositRequired);
 			$output['CONTRACTUID']		=$contractUid;
 
 			$jrtbar =jomres_getSingleton('jomres_toolbar');

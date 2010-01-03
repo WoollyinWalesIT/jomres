@@ -122,8 +122,7 @@ class j04010editroom {
 			$output['SMOKING']			=$smokingDropdown;
 			$output['FEATURES']			=$featureListTxt;
 			$output['SUPPLIMENT']		=$singleperson_suppliment;
-			$output['CURRENCY']=$mrConfig['currency'];
-			
+
 			$output['HTYPE']			=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE);
 			$output['HNAME']			=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME);
 			$output['HNUMBER']			=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER);

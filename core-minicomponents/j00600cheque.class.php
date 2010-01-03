@@ -43,10 +43,10 @@ class j00600cheque {
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		
 		
-		$output['DEPOSIT']=$mrConfig['currency'].$currfmt->get_formatted($bookingdata['deposit_required']);
-		$output['TOTAL']=$mrConfig['currency'].$currfmt->get_formatted($bookingdata['contract_total']);
+		$output['DEPOSIT']=output_price($bookingdata['deposit_required']);
+		$output['TOTAL']=output_price($bookingdata['contract_total']);
 		$bal=(float)$bookingdata['contract_total']-(float)$bookingdata['deposit_required'];
-		$output['BALANCE']=$mrConfig['currency'].$currfmt->get_formatted($bal);
+		$output['BALANCE']=output_price($bal);
 
 		$propertyAddressArray=getPropertyAddressForPrint((int)$bookingdata['property_uid']);
 		$propertyContactArray=$propertyAddressArray[1];

@@ -137,7 +137,7 @@ class j03100adminconfirmationemail {
 		$output['HMOBILE']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE',_JOMRES_FRONT_MR_EMAIL_TEXT_MOBILE,FALSE);
 		$output['MOBILE']=$mobile;
 		$output['HTOTAL']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL',_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL,FALSE);
-		$output['TOTAL']=$currency.number_format($contract_total, 2, '.', '');
+		$output['TOTAL']=output_price($contract_total);
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
 		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE)."</a>";

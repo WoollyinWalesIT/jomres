@@ -80,8 +80,8 @@ class j06005mulistbookings {
 						$r['ARRIVAL']=outputDate($c->arrival);
 						$r['DEPARTURE']=outputDate($c->departure);
 						$r['lastchanged']=$c->timestamp;
-						$r['EXTRASVALUE']=$currency.$currfmt->get_formatted($c->extrasvalue);
-						$r['CONTRACT_TOTAL']=$currency.$currfmt->get_formatted($c->contract_total);
+						$r['EXTRASVALUE']=output_price($c->extrasvalue);
+						$r['CONTRACT_TOTAL']=output_price($c->contract_total);
 						$fileLocation=$jrConfig['ss_imageLocation'];
 						if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg') )
 							$r['IMAGE']='<img src="'.get_showtime('live_site').$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg" width="40">';
