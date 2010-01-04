@@ -1730,7 +1730,10 @@ class dobooking
 			if ($okToAddDate)
 			{
 			$counter++;
-			//if ($counter==$selectedDateisNthDate)
+			if ($counter==1)
+				{
+				$this->setArrivalDate($thisDate);
+				}
 			if ($thisDate == $selectedDate)
 				$selected = "selected";
 			$fixedPeriodDropdown.= "<option value=\"".$this->JSCalmakeInputDates($thisDate)."\" ".$selected." >".$this->JSCalmakeInputDates($thisDate)."</option>";
