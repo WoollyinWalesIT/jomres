@@ -172,6 +172,8 @@ function init_javascript()
 			}
 		if (!defined(JOMRES_NOHTML) )
 			{
+			$MiniComponents =jomres_getSingleton('mcHandler');
+			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			if (!defined("JOMRES_CALENDARJSCALLED") )
 				{
 				define ('JOMRES_CALENDARJSCALLED',1);
