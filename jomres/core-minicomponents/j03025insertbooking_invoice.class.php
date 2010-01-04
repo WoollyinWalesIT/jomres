@@ -217,7 +217,10 @@ class j03025insertbooking_invoice {
 		$invoice_handler->contract_id=$contract_uid;
 		$invoice_handler->property_uid=$property_uid;
 		$invoice_handler->create_new_invoice($invoice_data,$line_items);
-		$invoice_handler->mark_invoice_pending();
+		if ($mrConfig['depAmount'] == 0)
+			$invoice_handler->mark_invoice_pending();
+		else
+			$invoice_handler->mark_invoice_paid();
 		$this->results=array("invoice_id"=>$invoice_handler->id);
 		}
 
