@@ -390,7 +390,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$toload=array();
 	$load=array();
 	//$bkg->writeToLogfile("STORED BOOKING");
-	if ( $mrConfig['singleRoomProperty'] == "1" || (isset($thisdate) && !empty($thisdate))  )
+	if ( $mrConfig['singleRoomProperty'] == "1" && (isset($thisdate) && !empty($thisdate))  )
 		{
 		$load['ONLOAD']="hidediv('indicator');";
 		$load['COUNT']=1;
