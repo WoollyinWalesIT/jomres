@@ -139,6 +139,8 @@ class j16000addplugin
 			$result=curl_exec($curl_handle);
 			curl_close($curl_handle);
 			fclose($file_handle);
+			curl_close($curl_handle);
+			fclose($file_handle);
 			}
 
 		if (!file_exists($newfilename) || filesize($newfilename)==0 )
