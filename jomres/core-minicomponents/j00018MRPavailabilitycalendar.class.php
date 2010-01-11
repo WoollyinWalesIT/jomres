@@ -64,7 +64,7 @@ class  j00018MRPavailabilitycalendar {
 		$this->rooms_empty=0;
 		$this->rooms_quarter=(($this->numberOfRoomsInProperty/100)*.25)*100;
 		$this->rooms_half=(($this->numberOfRoomsInProperty/100)*.5)*100;
-		$this->rooms_threequarter=(($this->numberOfRoomsInProperty/100)*.75)*100;
+		$this->rooms_threequarter=(($this->numberOfRoomsInProperty/100)*.99)*100;
 		$this->rooms_full=$this->numberOfRoomsInProperty;
 
 		if ($mrConfig['showAvailabilityCalendar']=="1")
