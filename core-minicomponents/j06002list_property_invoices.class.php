@@ -60,6 +60,7 @@ class j06002list_property_invoices
 					}
 				}
 			
+
 			if (count($invoices)>0)
 				{
 				$output=array();
@@ -112,8 +113,7 @@ class j06002list_property_invoices
 					$inv_id = $invoice['id'];
 					$r['ID']=$inv_id ;
 					$cms_user_id = $invoice['cms_user_id'];
-
-					if (!array_key_exists($cms_user_id,$property_guests))
+					if (!array_key_exists($cms_user_id,$property_guests) || (int)$cms_user_id ==0 )
 						$r['GUEST']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
 					else
 						{

@@ -24,22 +24,27 @@ function jomres_cmsspecific_areweinadminarea()
 
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
-	global $thisJRUser,$jomresConfig_mailfrom,$jomresConfig_fromname;
+	global $jomresConfig_mailfrom,$jomresConfig_fromname;
+	$thisJRUser=jomres_getSingleton('jr_user');
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	if ($jrConfig['useNewusers']=="0")
 		return -1;
-	$id = 0;
 	
-	$thisJRUser->id=$id;
-	$tmpBookingHandler->updateGuestField('mos_userid',$id);
-	$tmpBookingHandler->saveGuestData();
+	$id = $thisJRUser->id;
 	
 	if (!$thisJRUser->userIsRegistered )
 		{
 		require_once( JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'user'.JRDS.'helper.php' );
 		$guestDeets = $tmpBookingHandler->getGuestData();
+		
+		//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
+		$query = "SELECT id FROM #__users WHERE email = ".$guestDeets['email']." LIMIT 1";
+		$existing=doSelectSql($query,1);
+		if ($existing)
+			return $existing;
+		
 		$valid=false;
 		while (!$valid)
 			{
@@ -56,6 +61,8 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		
 		$password = JUserHelper::genRandomPassword();
 		$encryptedPassword=JUserHelper::getCryptedPassword($password);
+		
+		
 		
 		$query = "INSERT INTO #__users (
 			`name`,
@@ -119,10 +126,6 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			if (!jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $guestDeets['email'], $subject, $text,$mode=0))
 				error_logging('Failure in sending registration email to guest. Target address: '.$hotelemail.' Subject'.$subject);
 			}
-		}
-	else
-		{
-		$id = $thisJRUser->id;
 		}
 	return $id;
 	}
