@@ -6755,4 +6755,12 @@ define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE','Is this a single property ins
 * @ignore
 */
 define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC','If this option is set to Yes, then the frontend view of Jomres to non-authorised users is greatly simplified. Default calls to Jomres from a menu option, instead of being given a list of propertys, just takes the guest to the booking form for the first property in the system. Property managers also will not see see the Property Details preview button or the Add new property button. Ideal if you only want to list one property and take bookings for it.<br/>');
+/**
+* @ignore
+*/
+define('_JOMRES_HTMP_PURIFIER','Use HTML purifier functionality?');
+/**
+* @ignore
+*/
+define('_JOMRES_HTMP_PURIFIER_DESC','Switch this on to enable Jomres to use the html purifier library (http://htmlpurifier.org/). The library is used as an extra layer of security when dealing with input and output data and it is recommended that you leave it enabled, however it will use more memory.');
 

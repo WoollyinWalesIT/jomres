@@ -348,6 +348,7 @@ function RemoveXSS($val)
 				}
 			}
 		}
+	$val = jomres_purify_html($val);
 	//$val=addslashes($val);  // Disabled as it wouldn't save windows paths
 	return $val;
 	}

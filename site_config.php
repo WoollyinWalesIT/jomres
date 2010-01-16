@@ -159,4 +159,5 @@ $jrConfig['contact_owner_emails_to_alternative_email'] ="";
 
 $jrConfig['auto_translate']="0";
 $jrConfig['is_single_property_installation'] ="0";
+$jrConfig['use_html_purifier'] ="1";
 ?>
