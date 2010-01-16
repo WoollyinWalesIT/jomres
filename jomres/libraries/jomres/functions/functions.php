@@ -178,7 +178,7 @@ function init_javascript()
 				{
 				define ('JOMRES_CALENDARJSCALLED',1);
 				jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/javascript/cal/css/',$jrConfig['jscalendarCSSfile']);
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar.js");
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"fullsize-calendar.js");
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
