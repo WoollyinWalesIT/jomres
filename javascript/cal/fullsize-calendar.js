@@ -128,7 +128,12 @@ Calendar.isRelated = function (el, evt) {
 		if (related == el) {
 			return true;
 		}
-		related = related.parentNode;
+		try {
+			related = related.parentNode;
+		}
+		catch( err ) {
+			return false;
+		}
 	}
 	return false;
 };
