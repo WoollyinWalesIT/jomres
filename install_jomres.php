@@ -725,6 +725,7 @@ function showCompletedText()
 	echo '<br>Thank you for installing Jomres. <a href="'.$fullurl.JOMRES_SITEPAGE_URL_ADMIN.'" target="_blank" >You may now go to your CMS\'s administrator area and configure Jomres</a><br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
 	echo '<br>If you wish you can go straight to your Jomres install and start editing your property.<a href="'.$fullurl.JOMRES_SITEPAGE_URL.'" target="_blank" >To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.</a><br>';
+	echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
 	}
 
 
