@@ -233,8 +233,16 @@ function doTableUpdates()
 		
 	if (!checkPfeaturesPtypeidColExists() )
 		alterPfeaturesPtypeidCol();
+		
+	if (_JOMRES_DETECTED_CMS == "joomla15" )
+		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
+	{
+	require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
+	}
+	
 function alterPfeaturesPtypeidCol()
 	{
 	echo "Editing __jomres_hotel_features table adding ptype_id column<br>";
