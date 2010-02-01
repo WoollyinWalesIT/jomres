@@ -710,6 +710,10 @@ function copyImages()
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'balcony.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'balcony.png');
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'zodiacexcursions.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'zodiacexcursions.png');
 
+	// Many thanks jeyjey
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'microwaves.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'microwaves.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'garden.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'pfeatures'.JRDS.'garden.png');
+	
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'double.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'double.png');
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'fourposter.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'fourposter.png');
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'single.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'single.png');
@@ -1794,6 +1798,8 @@ function insertSampleData()
 		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (78, 'Christmas', 'Christmas parties catered for', 'jomres/uploadedimages/pfeatures/xmas_partys.png', '0',0)","");
 		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (79, 'Zodiac Excursions', 'Zodiac excursions can be arranged from these premesis', 'jomres/uploadedimages/pfeatures/zodiacexcursions.png', '0',0)","");
 
+		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (80, 'Private Garden', 'Private garden for your enjoyment', 'jomres/uploadedimages/pfeatures/garden.png', '0',0)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (81, 'Microwave', 'Property has a microwave that can be used by the residents', 'jomres/uploadedimages/pfeatures/microwaves.png', '0',0)","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_propertys` (
 			`propertys_uid` ,`property_name` , `property_street` , `property_town` ,
