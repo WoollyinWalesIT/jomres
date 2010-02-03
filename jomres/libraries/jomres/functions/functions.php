@@ -2541,7 +2541,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb	= $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=".$row->contract_uid ),'');
+		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$row->contract_uid ),'');
 		$jrtb .= $jrtbar->endTable();
 		//$rw=$jrtb;
 
