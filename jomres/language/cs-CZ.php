@@ -9,7 +9,7 @@
 **/
 
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to '.__FILE__.' is not allowed.' );
 ##################################################################
 
 /**
@@ -193,7 +193,7 @@ define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION','Recepce');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN','Manažer kapacit');
+define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN','Správce kapacit');
 
 // Edit bookings
 /**
@@ -4370,7 +4370,7 @@ define('_JOMRES_COM_DUMPTEMPLATEDATA','Vypsat proměnné šablony?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC','Přejete-li si vypsat hodnoty DHTML proměnných na frontendu webu, zadejte hodnotu ANO. Uľitečné při ladění šablony.');
+define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC','Přejete-li si vypsat hodnoty DHTML proměnných na frontendu webu, zadejte hodnotu ANO. Užitečné při ladění šablony.');
 /**
 * @ignore
 */
@@ -4409,415 +4409,415 @@ define('_JOMRES_COM_A_MARGIN_DESC','Zisk marže, v procentech.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_LINKSASICONS','Show Jomres admin options as icons?');
+define('_JOMRES_COM_JRCONFIG_LINKSASICONS','Zobrazit menu administrátora jako ikony?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_LINKSASICONS_DESC','Set this to no if you want all the admin links shown as text.');
+define('_JOMRES_COM_JRCONFIG_LINKSASICONS_DESC','Nastavte na ANO, pokud chcete všechny administrátorské odkazy v textové podobě.');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKITNOW','Book it now: ');
+define('_JOMRES_BOOKITNOW','Zarezervujte nyní: ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_GLOBALEDITING','Global editing mode?');
+define('_JOMRES_COM_JRCONFIG_GLOBALEDITING','Celkový editační režím?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC','Take care with this function. If set to Yes, then the editing mode will affect the custom text for ALL properties in the system for the constant you are editing.');
+define('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC','Pozor na toto nastavení. Pokud zvolíte ANO, pak vše co nastavíte, bude mít vliv na všechny texty, související s konstatnou, kterou upravujete.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCY','Global currency symbol');
+define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCY','Hlavní symbol měny');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_ISWRAPPED','Component wrapped');
+define('_JOMRES_COM_JRCONFIG_ISWRAPPED','Spustit komponentu samostatně');
 /**
 * @ignore
 */
-define('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC','Set this to Yes if the component is wrapped so that module and header areas are not to be seen');
+define('_JOMRES_COM_JRCONFIG_ISWRAPPED_DESC','Nastavte na ano, pokud je komponenta spoštěna samostaně a moduly a hlavičky nejsou vidět.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER','Super Property Manager');
+define('_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER','Super správce');
 /**
 * @ignore
 */
-define('_JOMRES_COM_WEEKENDONLY','Weekends only');
+define('_JOMRES_COM_WEEKENDONLY','Pouze o víkendech');
 /**
 * @ignore
 */
-define('_JOMRES_COM_WEEKENDONLY_DESC','Tariff only valid if stay period includes a weekend day (friday or saturday) ');
+define('_JOMRES_COM_WEEKENDONLY_DESC','Cena je platná pouze tehdy, obsahuje-li pobyt alespoň jeden den víkendu.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_WEEKENDDAYS','Weekend days');
+define('_JOMRES_COM_WEEKENDDAYS','Víkendové dny');
 /**
 * @ignore
 */
-define('_JOMRES_COM_WEEKENDDAYS_DESC','Set your weekend days. Tariffs that allow or disallow weekends will take this setting into account when generating the rooms list.');
+define('_JOMRES_COM_WEEKENDDAYS_DESC','Nastavte dny víkendu. Tarify, které platí o víkendech, se budou řídit podle tohoto nastavení.');
 /**
 * @ignore
 */
-define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY','Select your country before adding any property information');
+define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY','Před zadáním dalších informací o kapacitě zadejte stát');
 /**
 * @ignore
 */
-define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','Save your property changes before uploading a property image');
+define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','Uložte nastavení o kapacitě před tím, než budete nahrávat fotografie.');
 /**
 * @ignore
 */
-define('_JOMRES_TARIFFSFROM','Prices from - ');
+define('_JOMRES_TARIFFSFROM','Ceny od - ');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_ALL','All');
+define('_JOMRES_SEARCH_ALL','Vše');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_GEO',		'Region');
+define('_JOMRES_SEARCH_TITLE_GEO',		'Oblast');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_FEATURES',	'Features');
+define('_JOMRES_SEARCH_TITLE_FEATURES',	'Vlastnosti');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_DESCR',	'Description');
+define('_JOMRES_SEARCH_TITLE_DESCR',	'Popis');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_AVL',		'Availability');
+define('_JOMRES_SEARCH_TITLE_AVL',		'Dostupnost');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_PTYPE',	'Type');
+define('_JOMRES_SEARCH_TITLE_PTYPE',	'Typ');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','Search by country');
+define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','Hledat podle země');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_REGIONSEARCH','Search by region');
+define('_JOMRES_SEARCH_GEO_REGIONSEARCH','Hledat podle regionu');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Search by town');
+define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Hledat podle města');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_FEATURE_INFO','Feature search.');
+define('_JOMRES_SEARCH_FEATURE_INFO','Vlastnosti vyhl.');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_BUTTON','Search');
+define('_JOMRES_SEARCH_BUTTON','Hledat');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_DESCRIPTION_INFO','Enter a search word into the box and press the button.');
+define('_JOMRES_SEARCH_DESCRIPTION_INFO','Vložte frázi, kterou chcete vyhledat a stiskněte talčítko.');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_DESCRIPTION_LABEL','Search word(s): ');
+define('_JOMRES_SEARCH_DESCRIPTION_LABEL','Vyhledat slovo(a): ');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_AVL_INFO','Please enter your intended arrival and departure dates and press the button to find properties that have accommodation available on your chosen dates.');
+define('_JOMRES_SEARCH_AVL_INFO','Prosím vložte váš předpokládaný příjezd a odjezd a stiskněte tlačítko. Vyhledáme kapacity s volným ubytováním ve vámi zadaném termínu.');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_PTYPES','List all properties by property type.');
+define('_JOMRES_SEARCH_PTYPES','Vypsat všechny kapacity dle jejich typu.');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_RTYPES','List all properties by room type.');
+define('_JOMRES_SEARCH_RTYPES','Vypsat všechny kapacity dle typu pokoje.');
 /**
 * @ignore
 */
-define('_JOMRES_SORTORDER_DEFAULT','Default');
+define('_JOMRES_SORTORDER_DEFAULT','Výchozí');
 /**
 * @ignore
 */
-define('_JOMRES_SORTORDER_PROPERTYNAME','Property Name');
+define('_JOMRES_SORTORDER_PROPERTYNAME','Název kapacity');
 /**
 * @ignore
 */
-define('_JOMRES_SORTORDER_PROPERTYREGION','Property Region');
+define('_JOMRES_SORTORDER_PROPERTYREGION','Oblast');
 /**
 * @ignore
 */
-define('_JOMRES_SORTORDER_PROPERTYTOWN','Property Town');
+define('_JOMRES_SORTORDER_PROPERTYTOWN','Město');
 /**
 * @ignore
 */
-define('_JOMRES_SORTORDER_STARS','Stars');
+define('_JOMRES_SORTORDER_STARS','Počet hvězdiček');
 /**
 * @ignore
 */
-define('_JOMRES_PATHWAY_PROPERTYLIST','Property list');
+define('_JOMRES_PATHWAY_PROPERTYLIST','Seznam kapacit');
 /**
 * @ignore
 */
-define('_JOMRES_PATHWAY_PROPERTYDETAILS','Property details - ');
+define('_JOMRES_PATHWAY_PROPERTYDETAILS','Podrobnosti o ubytování - ');
 /**
 * @ignore
 */
-define('_JOMRES_PATHWAY_BOOKINGFORM','Booking form');
+define('_JOMRES_PATHWAY_BOOKINGFORM','Rezervační formulář');
 
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON','Update your address details');
+define('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON','Upravte podrobnosti své adresy');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY','Re-checking room availability<br/>(Room selection will be reset)');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY','Znovuověření dostupnosti pokoje<br/>(Předchozí výběr pokojů se vymaže)');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP','Re-checking availability');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP','Ověření dostupnosti');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA','Modifying your optional extras');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA','Úprava vašich volitelných doplňků');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION','Changing your room selection');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION','Změna výběru pokoje');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS','Updating your address details');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS','Změna údajů v adrese');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR','Sorry, one or more address fields are incorrect.');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR','Omlouváme se, ale jedno nebo více polí v adrese je vyplněno špatně.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE','Room image');
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE','Fotografie pokoje');
 /**
 * @ignore
 */
-define('_JOMRES_CURRENCYFORMAT','Currency format');
+define('_JOMRES_CURRENCYFORMAT','Formát měny');
 /**
 * @ignore
 */
-define('_JOMRES_MANAGEROPTIONSASIMAGES','Show Managers\'s options as images');
+define('_JOMRES_MANAGEROPTIONSASIMAGES','Ukázat nastavení manažera jako piktogramy');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_SEARCHOPTIONSTAB','Search options');
+define('JOMRES_COM_A_SEARCHOPTIONSTAB','Nastavení hledání');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_CALENDARNOTE','Note! These options only affect the language format in modules. To adjust the javascript langauge format for a given property please edit that javascript calendar options within that property');
+define('JOMRES_COM_A_CALENDARNOTE','Pozor! Tyto volby mají vliv pouze na formát jazyka v modulech. Chcete-li nastavit formát pro javascript v rámci dané kapacity, upravte prosím vlastnosti javascript kalendáře přímo v nastavení dané kapacity.');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_AVAILABLELOGS','Available Logs');
+define('JOMRES_COM_A_AVAILABLELOGS','Přístupné Logy');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_LOGS_NOENTRIES','No log entries. This is normal, you need to manually modify jomres.php to trigger logging');
+define('JOMRES_COM_A_LOGS_NOENTRIES','Žádné záznamy v logu. Tato situace je naprosto normální, musíte upravit ručně soubor jomres.php.');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_DATETIME','Datetime');
+define('JOMRES_COM_A_DATETIME','Datum a čas');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_MESSAGE','Message');
+define('JOMRES_COM_A_MESSAGE','Zpráva');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.6.3
 
 /**
 * @ignore
 */
-define('JOMRES_COM_A_TARIFFMODE_NORMAL','Normal');
+define('JOMRES_COM_A_TARIFFMODE_NORMAL','Normální');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_TARIFFMODE_ADVANCED','Advanced');
+define('JOMRES_COM_A_TARIFFMODE_ADVANCED','Rozšířený');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_TARIFFMODE','Tariff Mode');
+define('JOMRES_COM_A_TARIFFMODE','Režim cen');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_TARIFFMODE_DESC','Set this to advanced if you want more control over your tariffs');
+define('JOMRES_COM_A_TARIFFMODE_DESC','Nastavte na rozšířený, pokud potřebujete pracovat se složitějšími ceníky');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS','Show rooms list in property details page?');
+define('_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS','Ukázat seznam pokojů na základní stránce kapacity?');
 /**
 * @ignore
 */
-define('JOMRES_PROPERTYTYPE','Property type');
+define('JOMRES_PROPERTYTYPE','Typ kapacity');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_SRPONLY','SRP only');
+define('JOMRES_COM_A_SRPONLY','Pouze celý object');
 /**
 * @ignore
 */
-define('JOMRES_MAXPEOPLEINROOM','Max people per room');
+define('JOMRES_MAXPEOPLEINROOM','Maximální počet osob na pokoji');
 /**
 * @ignore
 */
-define('JOMRES_MAXPEOPLEINBOOKING','Max people in booking');
+define('JOMRES_MAXPEOPLEINBOOKING','Maximální počet osob na rezervaci');
 
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_ADD','Add note');
+define('_JOMCOMP_BOOKINGNOTES_ADD','Vlož poznámku');
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_EDIT','Edit note');
+define('_JOMCOMP_BOOKINGNOTES_EDIT','Uprav poznámku');
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_DELETE','Delete note');
+define('_JOMCOMP_BOOKINGNOTES_DELETE','Vymaž poznámku');
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_VIEW','View notes');
+define('_JOMCOMP_BOOKINGNOTES_VIEW','Ukaž poznámky');
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE','Added new note');
+define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE','Vložena nová poznámka');
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT','Edited note');
+define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT','Upravená poznámka');
 /**
 * @ignore
 */
-define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE','Deleted note');
+define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE','Vymazaná poznámka');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_MENUTITLE','My options');
+define('_JOMCOMP_MYUSER_MENUTITLE','Moje nastavení');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_NOTLOGGEDIN','You are not logged in. If you log in/register with this site then you will be able to view your bookings information.');
+define('_JOMCOMP_MYUSER_NOTLOGGEDIN','Nejste přihlášen. Pokud se přihlásíte nebo zaregistrujete, zpřístupní se vám informace o rezervaci.');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_LISTBOOKINGS','List Bookings');
+define('_JOMCOMP_MYUSER_LISTBOOKINGS','Výpis rezervací');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_MYBOOKINGS','My Bookings');
+define('_JOMCOMP_MYUSER_MYBOOKINGS','Moje rezervace');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_LISTBOOKINGS_DEPOSITNOTPAID','List Bookings, no deposit paid');
+define('_JOMCOMP_MYUSER_LISTBOOKINGS_DEPOSITNOTPAID','Výpis rezervací bez zaplacených záloh');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_VIEWBOOKING','View Booking');
+define('_JOMCOMP_MYUSER_VIEWBOOKING','Zobrazit rezervace');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_VIEWFAVOURITES','View Favourites');
+define('_JOMCOMP_MYUSER_VIEWFAVOURITES','Zobrazit oblíbené');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE','You haven\'t added any favourites yet!');
+define('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE','Zatím nemáte žádné oblíbené položky!');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_ADDTOFAVOURITES','Add to Favourites');
+define('_JOMCOMP_MYUSER_ADDTOFAVOURITES','Vložit do oblíbených');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_PROPERTYTYPE','Property type');
+define('_JOMCOMP_MYUSER_PROPERTYTYPE','Typ kapacity');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES','Properties on site');
+define('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES','kapacity na stránce');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_TITLE','Wise price');
+define('_JOMCOMP_WISEPRICE_TITLE','Dynamická cena');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_ACTIVE','Active');
+define('_JOMCOMP_WISEPRICE_ACTIVE','Aktivní');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_TITLE_DESC','This plugin allows you to enable and configure your room prices dynamically.');
+define('_JOMCOMP_WISEPRICE_TITLE_DESC','Tento plugin vám umožní nastavovat ceny pokojů dynamicky.');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL','Most businesses will recalculate room prices based on the number of rooms of a required type that are available on a given date. This allows them to offer discounts on a room type that isn\'t busy during a given period with the aim of attracting business that might otherwise be missed.<br/>Enabling and configuring this plugin allows you to offer adjustable pricing based on the number of rooms of a selected type are available in the property on a given day.<br/> The days threashold defines the number of days that the arrival date must be within before room prices are adjusted by this feature, then the percentages options allow you to configure the percentage of rooms that can be available before a given discount is applied.');
+define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL','Většina firem se přepočítává ceny pokojů na základě počtu pokojů na požadovaného typu, které jsou k dispozici k určitému datu. To jim umožňuje nabízet slevy na ten druh pokoje, který není obsazen po určitou dobu s cílem zvýšit obsazenost. Povolení a konfigurace tohoto pluginu umožňuje nastavovat ceny pokojů v závislosti na počtu místností vybraného typu pokoje, které jsou k dispozici v kapacitě na daný den. Počet dnů odstupu definuje počet dnů před příjezdem, ve kterých můsí být pokoje volné. Procento znamená relativní počet pokojů z celku, které musí být volné, aby byla uvedá sleva uplatněna.');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_THREASHOLD','Threashold (number of days between arrival date and today)');
+define('_JOMCOMP_WISEPRICE_THREASHOLD','Počet do příjezdu');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_PERCENTAGE10','Percentage rooms occupied < 10%');
+define('_JOMCOMP_WISEPRICE_PERCENTAGE10','Procento obsazených pokojů < 10%');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_PERCENTAGE25','Percentage rooms occupied < 25%');
+define('_JOMCOMP_WISEPRICE_PERCENTAGE25','Procento obsazených pokojů < 25%');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_PERCENTAGE50','Percentage rooms occupied < 50%');
+define('_JOMCOMP_WISEPRICE_PERCENTAGE50','Procento obsazených pokojů < 50%');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_PERCENTAGE75','Percentage rooms occupied < 75%');
+define('_JOMCOMP_WISEPRICE_PERCENTAGE75','Procento obsazených pokojů < 75%');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_DISCOUNT','Discount %');
+define('_JOMCOMP_WISEPRICE_DISCOUNT','Sleva %');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_ROOMTYPE','Room type ');
+define('_JOMCOMP_WISEPRICE_ROOMTYPE','Typ pokoje ');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED',' has been discounted from ');
+define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED',' byla slevněna z původní ceny ');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_TO',' to ');
+define('_JOMCOMP_WISEPRICE_TO',' na ');
 /**
 * @ignore
 */
-define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',' Room price not discounted ');
+define('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',' Cena pokoje není slevněna ');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_MAPSKEY','Google maps API key');
+define('JOMRES_COM_A_MAPSKEY','Klíč API na Google maps');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_MAPSKEY_DESC','Get can get a google maps API key from <a href="http://www.google.com/apis/maps/signup.html" target="_blank">Google maps</a>. Once you have input your map key here, Jomres will show the map in your Property Details page.');
+define('JOMRES_COM_A_MAPSKEY_DESC','Klíč API můžete získat z <a href="http://www.google.com/apis/maps/signup.html" target="_blank">Google maps</a>. Jakmile uložíte API klíč, Jomres automaticky zobrazí mapu v detailu kapacity.');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_USE_SSL','Use SSL in booking form?');
+define('JOMRES_COM_A_USE_SSL','Použít SSL v rezervačním formuláři?');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_USE_SSL_DESC','You need to ensure that you have a valid SSL certificate for ');
+define('JOMRES_COM_A_USE_SSL_DESC','Musíte mít platný SSL certifikát, vystavený pro ');
 /**
 * @ignore
 */
-define('JOMRES_MAXPEOPLEINPROPERTY','Max people that property can accommodate');
+define('JOMRES_MAXPEOPLEINPROPERTY','Maximální počet osob, které mohou být v kapacitě ubytovány.');
 /**
 * @ignore
 */
@@ -4825,466 +4825,466 @@ define('_JOMCOMP_LASTMINUTE_CPANEL','Last minute');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_ACTIVE','Active?');
+define('_JOMCOMP_LASTMINUTE_ACTIVE','Aktivní?');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC','Set this to Yes if you want to offer last minute deals.');
+define('_JOMCOMP_LASTMINUTE_ACTIVE_DESC','Nastavte na ano, pokud chcte vytvářet Last Minute nabídky.');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_THREASHOLD','Threshold');
+define('_JOMCOMP_LASTMINUTE_THREASHOLD','Práh');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_THREASHOLD_DESC','If a booking is made and the arrival date is only N days from the date of booking, then the discount can be applied');
+define('_JOMCOMP_LASTMINUTE_THREASHOLD_DESC','Pokud je příjezd pouze N dnů před učiněním rezervace, může být poskytnuta sleva');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_DISCOUNT','Discount');
+define('_JOMCOMP_LASTMINUTE_DISCOUNT','Sleva');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_DISCOUNT_DESC','In percent');
+define('_JOMCOMP_LASTMINUTE_DISCOUNT_DESC','v procentech');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1','A discount has been applied to this booking!');
+define('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1','V této rezervaci byla uplatněna sleva!');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2','The cost of the stay has been reduced by ');
+define('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2','Náklady na pobyt byly sníženy ');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE','This property offers a last minute discount of  ');
+define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE','Tato kapacita nabízí slevu Last Minute ');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID',' percent if you book to arrive before ');
+define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID',' procent, pokud si zarezervujete svůj příjezd nejpozději ');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_ORMORE',' percent or more if you book to arrive before ');
+define('_JOMCOMP_LASTMINUTE_ORMORE',' procent nebop i více, pokud si zarezervujete svůj příjezd nejpozději ');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST','. Book now to make the most of this offer!');
+define('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST','. Zarezervujte nyní a získejte nejvíce výhod!');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_PROPERTYDETAILS_PRE','This property offers a last minute discount of  ');
+define('_JOMCOMP_LASTMINUTE_PROPERTYDETAILS_PRE','Tato kapacita nabízí slevu Last Minute   ');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_PROPERTYDETAILS_MID',' percent if you book to arrive before ');
+define('_JOMCOMP_LASTMINUTE_PROPERTYDETAILS_MID',' procent, pokud si zarezervujete svůj příjezd nejpozději  ');
 /**
 * @ignore
 */
-define('_JOMCOMP_LASTMINUTE_PROPERTYDETAILS_POST','. Book now to make the most of this offer!');
+define('_JOMCOMP_LASTMINUTE_PROPERTYDETAILS_POST','. Zarezervujte nyní a získejte nejvíce výhod!');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_VERBOSETARIFFINTO','Verbose tariff info');
+define('JOMRES_COM_A_VERBOSETARIFFINTO','Detailní informace o cenách');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC','Set this to Yes to show more detailed tariff information in the property details/tariff popup');
+define('JOMRES_COM_A_VERBOSETARIFFINTO_DESC','Nastavte na ANO, pokud chcete zobrazovat v detailu kapacity podrobný ceník.');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_MINIMALCONFIG','Minimise configuration options');
+define('JOMRES_COM_A_MINIMALCONFIG','Minimalizovat nastavení');
 /**
 * @ignore
 */
-define('JOMRES_COM_A_MINIMALCONFIG_DESC','Set this to Yes to reduce the number of options available to property managers in the General Configuration section. This is useful if you do not want property managers to play around with too many settings, instead you can edit jomres_config.php to define default property options.');
+define('JOMRES_COM_A_MINIMALCONFIG_DESC','Nastavte na ano, pokud chcte minimalizovat možnosti nastavení pro Manažery Kapacit v globánní konfiguraci. Velmi užitečné, pokud nechcete, aby si všichni manažeři kapacit hráli v velkým nožstvím nastavení. Místo toho upravte soubor jomres_config.php a nastavte vše zde.');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.7.5
 
 /**
 * @ignore
 */
-define('_JRPORTAL_CANCEL','Cancel');
+define('_JRPORTAL_CANCEL','Zrušit');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL','JRPortal Control Panel');
+define('_JRPORTAL_CPANEL','Ovládací panel JRPortal');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_CONFIGURATION','Configuration');
+define('_JRPORTAL_CPANEL_CONFIGURATION','Konfigurace');
 /**
 * @ignore
 */
-define('_JRPORTAL_CONFIG_DEFAULT_CRATE','Default Commission rate');
+define('_JRPORTAL_CONFIG_DEFAULT_CRATE','Výchozí výše provize');
 /**
 * @ignore
 */
-define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC','Choose the default commission rate that will be applied to a property in the event that another commission rate is not otherwise set.');
+define('_JRPORTAL_CONFIG_DEFAULT_CRATE_DESC','Zvolte výchozí výši provize, která bude aplikována v případě, že u kapacity nebude určena její individuální výše.');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_LISTCRATES','List Commission Rates');
+define('_JRPORTAL_CPANEL_LISTCRATES','Seznam provizních sazeb');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_PATETITLE','Commission Rates');
+define('_JRPORTAL_CPANEL_PATETITLE','Provizní sazba');
 /**
 * @ignore
 */
-define('_JRPORTAL_CRATE_TITLE','Title');
+define('_JRPORTAL_CRATE_TITLE','Název');
 /**
 * @ignore
 */
-define('_JRPORTAL_CRATE_TYPE','Type');
+define('_JRPORTAL_CRATE_TYPE','Typ');
 /**
 * @ignore
 */
-define('_JRPORTAL_CRATE_VALUE','Comission rate');
+define('_JRPORTAL_CRATE_VALUE','Provize');
 /**
 * @ignore
 */
-define('_JRPORTAL_CRATE_CURRENCYCODE','Currency code');
+define('_JRPORTAL_CRATE_CURRENCYCODE','Kód měny');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_LISTPROPERTIES','List Properties');
+define('_JRPORTAL_CPANEL_LISTPROPERTIES','Seznam kapacit');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_PROPERTYNAME','Property name');
+define('_JRPORTAL_PROPERTIES_PROPERTYNAME','Název kapacity');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_PROPERTYADDRESS','Property address');
+define('_JRPORTAL_PROPERTIES_PROPERTYADDRESS','Adresa');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_LEGEND','Properties who\'s background colour is red have not yet had a commission rate applied to them.');
+define('_JRPORTAL_PROPERTIES_LEGEND','U kapacit, kde je barva pozadí červaná, nebyly ještě aplikovány provizní sazby.');
 /**
 * @ignore
 */
-define('_JRPORTAL_CONFIG_LICENSEKEY','License number');
+define('_JRPORTAL_CONFIG_LICENSEKEY','Licenční číslo');
 /**
 * @ignore
 */
-define('_JRPORTAL_CONFIG_LICENSEKEY_DESC','Your license number for the portal plugin.');
+define('_JRPORTAL_CONFIG_LICENSEKEY_DESC','Číslo licence vašeho portálu - plug-in u .');
 /**
 * @ignore
 */
-define('_JRPORTAL_STATS_PATETITLE','Statistics');
+define('_JRPORTAL_STATS_PATETITLE','Statistika');
 /**
 * @ignore
 */
-define('_JRPORTAL_STATS_STATTYPE','Statistics for: ');
+define('_JRPORTAL_STATS_STATTYPE','Statistika pro: ');
 /**
 * @ignore
 */
-define('_JRPORTAL_STATS_PERIOD','Period: ');
+define('_JRPORTAL_STATS_PERIOD','období: ');
 /**
 * @ignore
 */
-define('_JRPORTAL_STATS_STATTYPE_PROPERTIES','Properties - Clicks');
+define('_JRPORTAL_STATS_STATTYPE_PROPERTIES','Vlastnosti - Kliky');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_VIEWPROPERTY','Property view');
+define('_JRPORTAL_PROPERTIES_VIEWPROPERTY','Zobrazení kapacity');
 
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_0','January');
+define('_JRPORTAL_MONTHS_LONG_0','leden');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_1','February');
+define('_JRPORTAL_MONTHS_LONG_1','únor');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_2','March');
+define('_JRPORTAL_MONTHS_LONG_2','březen');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_3','April');
+define('_JRPORTAL_MONTHS_LONG_3','duben');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_4','May');
+define('_JRPORTAL_MONTHS_LONG_4','květen');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_5','June');
+define('_JRPORTAL_MONTHS_LONG_5','červen');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_6','July');
+define('_JRPORTAL_MONTHS_LONG_6','červenec');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_7','August');
+define('_JRPORTAL_MONTHS_LONG_7','srpen');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_8','September');
+define('_JRPORTAL_MONTHS_LONG_8','září');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_9','October');
+define('_JRPORTAL_MONTHS_LONG_9','říjen');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_10','November');
+define('_JRPORTAL_MONTHS_LONG_10','listopad');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_11','December');
+define('_JRPORTAL_MONTHS_LONG_11','prosinec');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS','Number of bookings');
+define('_JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS','Počet rezervací');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_VALUEOFBOOKINGS','Value of bookings');
+define('_JRPORTAL_PROPERTIES_VALUEOFBOOKINGS','Hodnota rezervací');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_ROOMUSAGE','Room usage');
+define('_JRPORTAL_PROPERTIES_ROOMUSAGE','Obsazenost pokoje');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_COMMISSIONESTIMATE','Commission estimate');
+define('_JRPORTAL_PROPERTIES_COMMISSIONESTIMATE','Odhad provizí');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_COMMISSIONRATE','Commission Rate');
+define('_JRPORTAL_PROPERTIES_COMMISSIONRATE','Provizní sazba');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_LISTBOOKINGS','List bookings');
+define('_JRPORTAL_CPANEL_LISTBOOKINGS','Výpis rezervací');
 
 
 
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID','Property id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID','id kapacity');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID','Guest id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID','id hosta');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID','Affiliate id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID','id sloučení');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID','Invoice id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID','id faktury');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL','Booking total');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL','Celkem rezervací');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID','Contract id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID','id smlouvy');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER','Contract number');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER','Číslo smlouvy');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE','Currency Code');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE','Kód měny');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_CREATED','Created');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_CREATED','Vytvořeno');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED','Archived');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED','Archivováno');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED','Date archived');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED','Datum archivace');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_ADDPROPERTY','Add property');
+define('_JRPORTAL_CPANEL_ADDPROPERTY','Přidat kapacitu');
 /**
 * @ignore
 */
-define('_JRPORTAL_WORD_SOURCE','Source : ');
+define('_JRPORTAL_WORD_SOURCE','Zdroj : ');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADDPROPERTY_ISSRP','Is this a multiroom property?');
+define('_JRPORTAL_ADDPROPERTY_ISSRP','Jedná se o kapacitu s více pokoji?');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADDPROPERTY_ISSRP_DESC','Is this a property like a hotel/bed and breakfast/penzion? If so, select Yes. If it is a single room property like a villa/cottage then choose No.');
+define('_JRPORTAL_ADDPROPERTY_ISSRP_DESC','Jedná se kapacitu hotelu, penzionu nebo domu s více apartmány? Pokud je to tak, zvolte ANO. Pokud se jedná o jednoducho kapacitu (chata, chalupa bez členění na jednotlivé pokoje), vyberte Ne.');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_ADD_ADHOC_ITEM','Add item to bill');
+define('_JRPORTAL_CPANEL_ADD_ADHOC_ITEM','Vlož položku do účtu');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEMANAGER','Manager to invoice');
+define('_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEMANAGER','Manager faktur');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEPROPERTY','Associated property (if applicable)');
+define('_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEPROPERTY','Přidružená kapacita (pokud lze)');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_VALUE','Value');
+define('_JRPORTAL_ADD_ADHOC_ITEM_VALUE','Hodnota');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION','Description');
+define('_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION','Popis');
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_SUCCESS',"Successfully inserted billing item into ");
+define('_JRPORTAL_ADD_ADHOC_ITEM_SUCCESS',"Úspěšné vložení položky účtu do ");
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_VIEWNBILLORDERS',"View orders");
+define('_JRPORTAL_ADD_ADHOC_ITEM_VIEWNBILLORDERS',"Zobrazit objednávky");
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_FAILURE',"Failed to insert billing item into ");
+define('_JRPORTAL_ADD_ADHOC_ITEM_FAILURE',"Nepodařilo se vložit položku účtu do ");
 /**
 * @ignore
 */
-define('_JRPORTAL_ADD_ADHOC_ITEM_NOVALUE',"Error, you didn't set a value for the bill");
+define('_JRPORTAL_ADD_ADHOC_ITEM_NOVALUE',"Chyba, nenastavili jste hodnotu účtu");
 /**
 * @ignore
 */
-define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER','You can have property type specific language files by setting the description to the name of a sub folder, e.g. "yachtbrokerage" and copying a language file to that subfolder. You can then modify that language file for this property type so rooms become, for example, DVDs, etc.');
+define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER','Můžete založit svoje překladové soubory a použít je v popisu kapacity tak, že založíte podadresář s názevem kapacity a do něj umístíte jazykové soubory..');
 /**
 * @ignore
 */
-define('_JOMRES_EDITPROPERTY_CONNOTDELETE1','You cannot delete this property as it is the only property that you have access to. If you want to disable it, please use the un-publish feature in your toolbar. ');
+define('_JOMRES_EDITPROPERTY_CONNOTDELETE1','Nemůžete tuto kapacitu vymazat, je to jediná kapacita, ke které máte přístup. Pokud ji chcete zakázat, použijte volbu "Nepublikovat" na vaší liště. ');
 /**
 * @ignore
 */
-define('_JOMRES_EDITPROPERTY_CONNOTDELETE2','If this is a demo installation and you intend to upgrade to Jomres Solo (one property only limit) then you should create a new property first, then delete this one before changing your license key to the Solo license key that you will be assigned on purchase. ');
+define('_JOMRES_EDITPROPERTY_CONNOTDELETE2','Pokud pracujete s DEMO instalací a chystáte upgrade na Jomres Solo, nejprve vytvořte novou kapacitu, následně tuto smažete a pak teprve proveďte upgrade na Jomres Solo.. ');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_EMAILERRORS',"Email error log messages?");
+define('_JOMRES_COM_EMAILERRORS',"Zaslat chybová hlášení emailem?");
 /**
 * @ignore
 */
-define('_JOMRES_COM_EMAILERRORS_DESC',"Set this to Yes if you want to copy jomres.net automatically when an error log message is created. This allows us to be proactive in our approach to dealing with potential problems, hopefully resolving any issues before you are even aware of them. Note, this feature is disabled on 'localhost'. ");
+define('_JOMRES_COM_EMAILERRORS_DESC',"Nastavte na ANO pokud chcete dostat do emailové schránky kopii souboru jomres.net automaticky po tom, co nastaně chybová událost. Je to vhodné i pro pozdější podporu a odstranění chyby. Pozor - tato vlastnost je vždy v počátku na počítači 'localhost' zakázána. ");
 /**
 * @ignore
 */
-define('_JOMRES_COM_ISTHISANMRP',"Is this property a hotel/bed and breakfast/guest house/pension? ");
+define('_JOMRES_COM_ISTHISANMRP',"Jedná se o hotel/penzion/apartmánový dům? ");
 /**
 * @ignore
 */
-define('_JOMRES_COM_ISTHISANMRP_DESC',"Configuration options differ depending on if you are renting out rooms in a property, or the property itself. Select MRP if you are offering rooms, select SRP if you are offering the entire property.ring the entire property. ");
+define('_JOMRES_COM_ISTHISANMRP_DESC',"Chování aplikace záleží na tom, jaký typ nemovitosti nabízíte. Pokud se jedná o nemovitost, ve které je více jednotek (hotel, penzion), zvolte MRP. Pokud pronajímáte pouze celý objekt (chata, chalupa), zvolte SRP. . ");
 // Jomres v3.0.6
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_JOMRESEMAILCHECK',"Use Jomres email address checker? ");
+define('_JOMRES_COM_JOMRESEMAILCHECK',"Použít kontrolu emailu Jomres? ");
 /**
 * @ignore
 */
-define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Enforces a stricter check on emails sent. Some secure web servers will throw a 500 internal error if you try to send an email to a non-existant email address. Switching this on allows us to use checkdnsrr features of php before attempting to send an email, preventing these 500 errors. ");
+define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Zapíná striktní kontrolu emailů. Ochrana některých emailových serverů v případě, že zašlete mejl se špatnou nebo neexistující adresou, vrátí chybové hlášení s kódem 500. Pokud tomu chcete zabránit, zapněte tuto volbu. ");
 
 // Jomres v3.1
 
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Accommodation Total");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Ubytování celkem");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"night(s) at");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"nocí v");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per room ");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"za pokoj ");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total ");
+define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Přirážka za pobyt celkem ");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Price Summary ");
+define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Cena celkem ");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_ALERT',"Please read and agree to ");
+define('_JOMRES_CONFIRMATION_ALERT',"Přečtěte si prosím a vyjádřete souhlas");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_HEADER',"A summary of your booking is shown below.<br /> To make any changes, please click on the Amend Reservation button. ");
+define('_JOMRES_CONFIRMATION_HEADER',"Zhrnutí vaší rezervace níže<br /> Pokud chcete cokoliv změnit, stiskněte tlečítko Opravit rezervaci. ");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_AMENDTEXT',"If you need to change any of the above information then please click here");
+define('_JOMRES_CONFIRMATION_AMENDTEXT',"Pokud chcete změnit jakoukoliv informaci, uvedenou výše, stiskntě tlačítko");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_AMEND',"Amend Reservation");
+define('_JOMRES_CONFIRMATION_AMEND',"Opravit rezervaci");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_SPECIALS',"Please enter any special requests in the box below.");
+define('_JOMRES_CONFIRMATION_SPECIALS',"Do pole níže napište jakékoliv speciální přání nebo informaci.");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"I confirm that the above information is correct and agree to the ");
+define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"Potvrzuji, že výše uvedené informace jsou pravdivé a souhlasím s nimi. ");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_HOVERFORANIMAGE',"Hover over a thumbnail for a larger image");
+define('_JOMRES_SLIDESHOW_HOVERFORANIMAGE',"Přejeďte myší přes náhled obrázku a zobrazí se zvětšená fotografie");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION',"Show slideshow above property details or below.");
+define('_JOMRES_SLIDESHOW_LOCATION',"Zobrazit prezetaci fotografií kapacity.");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION_TOP',"Top");
+define('_JOMRES_SLIDESHOW_LOCATION_TOP',"Nahoru");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION_BOTTOM',"Bottom");
+define('_JOMRES_SLIDESHOW_LOCATION_BOTTOM',"Dolů");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION_BOTH',"Both");
+define('_JOMRES_SLIDESHOW_LOCATION_BOTH',"Oba");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"per person per night ");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"za osobu a noc ");
 
 // Jomres 3.1.10
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SITELANGUAGE_FILE',"Default language file");
+define('_JOMRES_COM_A_SITELANGUAGE_FILE',"Výchozí soubor jazyka");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SITELANGUAGE_FILE_DESC',"Choose the default language file that Jomres should use if the language hasn't been set by Joomfish.");
+define('_JOMRES_COM_A_SITELANGUAGE_FILE_DESC',"Vyberte výchozí soubor pro překlad Jomres, pokud nemá být použito nastavení z komponenty JoomFish!");
 // Jomres 3.1.11
 /**
 * @ignore
 */
-define('JOMRES_COM_A_AVAILABLELOGS_DESC',"The absolute path to the available logs. Remember, you will still need to enable logging by editing jomres.php manually. although error logging is automatic all other logs must be switched on by yourself.");
+define('JOMRES_COM_A_AVAILABLELOGS_DESC',"Absolutní cesta k log souboru. Pamatujte, že stále musíte ručně povolit logování v souboru jomres.php. Ačkoliv logování chyb je automatické, ostatní typy logování musí být nastaveny uživatelem.");
 // Jomres 3.1.13
 /**
 * @ignore
@@ -5300,119 +5300,119 @@ if (!defined('_PN_RT'))
 * @ignore
 */
 if (!defined('_PN_PAGE'))
-	define('_PN_PAGE','Page');
+	define('_PN_PAGE','Strana');
 /**
 * @ignore
 */
 if (!defined('_PN_OF'))
-	define('_PN_OF','of');
+	define('_PN_OF','z');
 /**
 * @ignore
 */
 if (!defined('_PN_START'))
-	define('_PN_START','Start');
+	define('_PN_START','Začátek');
 /**
 * @ignore
 */
 if (!defined('_PN_PREVIOUS'))
-	define('_PN_PREVIOUS','Prev');
+	define('_PN_PREVIOUS','Předchozí');
 /**
 * @ignore
 */
 if (!defined('_PN_NEXT'))
-	define('_PN_NEXT','Next');
+	define('_PN_NEXT','Další');
 /**
 * @ignore
 */
 if (!defined('_PN_END'))
-	define('_PN_END','End');
+	define('_PN_END','Konec');
 /**
 * @ignore
 */
 if (!defined('_PN_DISPLAY_NR'))
-	define('_PN_DISPLAY_NR','Display #');
+	define('_PN_DISPLAY_NR','Zobrazení č.');
 /**
 * @ignore
 */
 if (!defined('_PN_RESULTS'))
-	define('_PN_RESULTS','Results');
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Note that this is not a booking form, instead you are sending an email.<br/>Please enter the message you\'d like to send to ');
+	define('_PN_RESULTS','Výsledky');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Pozor, nejdná se o rezervační formulář, ale odeslání mejlu.<br/>Vložte zprávu, kterou chcete zaslat. ');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Contact hotel');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Chci kontaktovat hotel');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT','Property enquiry from ');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT','Dotaz na nemovitost z ');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS','Thank you for your enquiry, your message has been sent to the property\'s contact email address, and copied to your own address for your records. They will respond to you as soon as possible with their reply.');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS','Děkujeme za váš dotaz, který byl odeslán na emailovou adresu ubytovacího zařízení. Odpověď dostanete co nejdříve.');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING',' regarding ');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING',' týká se ');
 
-define('_JOMRES_FRONT_MR_MENU_CAPTCHA_MSG1','Type the characters that you see in the box');
+define('_JOMRES_FRONT_MR_MENU_CAPTCHA_MSG1','Napište znaky, které vidíte v rámečku');
 
-define('_JOMRES_FRONT_MR_MENU_CAPTCHA_MSG2','I cannot read the characters. Generate a ');
+define('_JOMRES_FRONT_MR_MENU_CAPTCHA_MSG2','Nemohu znaky přečíst. Vygeneruj ');
 
-define('_JOMRES_FRONT_MR_MENU_CAPTCHA_BUTTONTEXT','Send');
+define('_JOMRES_FRONT_MR_MENU_CAPTCHA_BUTTONTEXT','Odeslat');
 
-define('_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT','new image');
+define('_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT','nový obrázek');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Enquiry');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Dotaz');
 
-define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Please select your required accommodation from the list on the right');
-
-/**
-* @ignore
-*/
-define('_JOMRES_COM_MR_EB_ROOM_MINROOMS','Min rooms already selected');
-/**
-* @ignore
-*/
-define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC','Minimum number of rooms already selected in booking before tariff/room type combo can be offered. Allows you to have discounted tariffs when more than N rooms are already selected. ');
+define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Prosím vyberte požadované ubytování ze seznamu napravo');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS','Max rooms already selected');
+define('_JOMRES_COM_MR_EB_ROOM_MINROOMS','Minimální počet vybraných pokojů');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Maximum number of rooms already selected in booking before tariff/room combo is no longer offered. Allows you to stop offering this room type/tariff combination once N rooms have been selected in the booking form. ');
+define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC','Minimální počet pokojů, které musí být vybrány před tím, než bude uplatněn speciální ceník. Umožňuje nastavit, že se mají použít zlevněné ceny v okamžiku, kdy je vybráno N pokojů. ');
+
 /**
 * @ignore
 */
-define('_JOMRES_COM_SPS_EDITROOM_DESC','Note that Single person suppliments set here will not be used if Single Person Suppliments are set to Yes in General Configuration. The settings here are an alternative to having flat rates Single Person Suppliements, not an addition to the flat rate SPS.');
+define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS','Maximální počet vybraných pokojů');
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_NOBOOKINGS',"Available"); 
+define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Maximální počet pokojů, které musí být vybrány před tím, než bude uplatněn speciální ceník. Umožňuje nastavit, že se mají použít zlevněné ceny v okamžiku, kdy je vybráno N pokojů. ');
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_QUARTER',"Some bookings");
+define('_JOMRES_COM_SPS_EDITROOM_DESC','Upozornění! Příplatek za jednu osobu nastavený zde nebude použitý, pokud je nastavený Přípaletek za jednu osobu v hlavní konfiguraci na ANO. Nastavení je zde umístěno z důvodu, aby bylo umožněno pracovat s proměnnými příplatky za jednu osobu. .');
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_HALF',"Half booked");
+define('_JOMRES_AVLCAL_NOBOOKINGS',"Volný"); 
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_THREEQUARTER',"Mostly booked");
+define('_JOMRES_AVLCAL_QUARTER',"Nějaké rezervace");
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_FULLYBOOKED',"Fully booked");
+define('_JOMRES_AVLCAL_HALF',"Zpoloviny rezervováno");
+/**
+* @ignore
+*/
+define('_JOMRES_AVLCAL_THREEQUARTER',"Většinou obsazeno");
+/**
+* @ignore
+*/
+define('_JOMRES_AVLCAL_FULLYBOOKED',"Zcela rezervováno");
 
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_URL_PREFIX','Url prefix');
+define('_JOMRES_COM_SEF_URL_PREFIX','Prefix URL');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_URL_PREFIX_DESC','This is the first item displayed after the domain - Change to what you require - If you don\'t want to use it then blank it out');
+define('_JOMRES_COM_SEF_URL_PREFIX_DESC','Toto je první položka, zobrazená po doméně. Změňte, pokud potřebujete. Pokud nechcete používat, nechte prázdné');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_TASK_ALIAS_VIEWPROPERTY','View property task alias');
+define('_JOMRES_COM_SEF_TASK_ALIAS_VIEWPROPERTY','Název úlohy zobrazení kapacity');
 /**
 * @ignore
 */
@@ -5420,7 +5420,7 @@ define('_JOMRES_COM_SEF_TASK_ALIAS_VIEWPROPERTY_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_TASK_ALIAS_DOBOOKING','dobooking task alias');
+define('_JOMRES_COM_SEF_TASK_ALIAS_DOBOOKING','Název úlohy rezervace');
 /**
 * @ignore
 */
@@ -5428,7 +5428,7 @@ define('_JOMRES_COM_SEF_TASK_ALIAS_DOBOOKING_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_TASK_ALIAS_SEARCH','Search task alias');
+define('_JOMRES_COM_SEF_TASK_ALIAS_SEARCH','Název úlohy hledání');
 /**
 * @ignore
 */
@@ -5436,7 +5436,7 @@ define('_JOMRES_COM_SEF_TASK_ALIAS_SEARCH_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_PROPERTY_URL_COUNTRY','Add country to url');
+define('_JOMRES_COM_SEF_PROPERTY_URL_COUNTRY','Přidat zemi do url');
 /**
 * @ignore
 */
@@ -5444,7 +5444,7 @@ define('_JOMRES_COM_SEF_PROPERTY_URL_COUNTRY_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_PROPERTY_URL_REGION','Add region to url');
+define('_JOMRES_COM_SEF_PROPERTY_URL_REGION','Přidat zemi do url');
 /**
 * @ignore
 */
@@ -5452,7 +5452,7 @@ define('_JOMRES_COM_SEF_PROPERTY_URL_REGION_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_PROPERTY_URL_TOWN','Add town to url');
+define('_JOMRES_COM_SEF_PROPERTY_URL_TOWN','Přidat město do url');
 /**
 * @ignore
 */
@@ -5468,7 +5468,7 @@ define('_JOMRES_COM_SEF_PROPERTY_URL_PTYPE_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTYNAME','Add property name to url');
+define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTYNAME','Přidat název kapacity do url');
 /**
 * @ignore
 */
@@ -5476,15 +5476,15 @@ define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTYNAME_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTY_ID','Append property id to property name');
+define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTY_ID','Doplnit id kapacity do jejího názvu');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTY_ID_DESC','if property name is set to No then the id will not be used. If set to yes then the url will look like fawlty_towers-1');
+define('_JOMRES_COM_SEF_PROPERTY_URL_PROPERTY_ID_DESC','Pokud je nastaveno na NE, pak id kapacity nebude použito. Pokud je nastaveno na ANO, adresa url bude vypadat jako fawlty_towers-1');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_SEARCH_URL_COUNTRY','Search URL Structure - Add country to url');
+define('_JOMRES_COM_SEF_SEARCH_URL_COUNTRY','Prohledání struktury URL - Přidat zemi do url');
 /**
 * @ignore
 */
@@ -5492,15 +5492,15 @@ define('_JOMRES_COM_SEF_SEARCH_URL_COUNTRY_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_COUNTRY','Search URL Structure - Default country');
+define('_JOMRES_COM_SEF_DEFAULT_COUNTRY','Prohledání struktury URL - Výchozí země');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_COUNTRY_DESC','If all your properties are in one country then you will not have country in the search - enter a default country here if you want to display a country');
+define('_JOMRES_COM_SEF_DEFAULT_COUNTRY_DESC','Pokud jsou všechny kapacity v jedné zemi, pak ji není třeba zadávat. Zadejte proto výchozí zemi, která bude při vyhledávání automaticky použita.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_SEARCH_URL_REGION','Search URL Structure - Add region to url');
+define('_JOMRES_COM_SEF_SEARCH_URL_REGION','Prohledávání struktury URL - Přidat region do URL');
 /**
 * @ignore
 */
@@ -5508,15 +5508,15 @@ define('_JOMRES_COM_SEF_SEARCH_URL_REGION_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_REGION','Search URL Structure - Default region');
+define('_JOMRES_COM_SEF_DEFAULT_REGION','Prohledávání struktury URL - Výchozí region');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_REGION_DESC','If all your properties are in one region then you will not have region in the search - enter a default region here if you want to display a region');
+define('_JOMRES_COM_SEF_DEFAULT_REGION_DESC','Pokud jsou všechny kapacity v jednom, pak jej není třeba zadávat. Zadejte proto výchozí region, která bude při vyhledávání automaticky použit.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_SEARCH_URL_TOWN','Search URL Structure - Add town to url');
+define('_JOMRES_COM_SEF_SEARCH_URL_TOWN','Prohledávání struktury URL - Přidat město do url');
 /**
 * @ignore
 */
@@ -5524,7 +5524,7 @@ define('_JOMRES_COM_SEF_SEARCH_URL_TOWN_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_TOWN','Search URL Structure - Default town');
+define('_JOMRES_COM_SEF_DEFAULT_TOWN','Prohledávání struktury URL - Výchozí město');
 /**
 * @ignore
 */
@@ -5532,7 +5532,7 @@ define('_JOMRES_COM_SEF_DEFAULT_TOWN_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_SEARCH_URL_PTYPE','Search URL Structure - Property type');
+define('_JOMRES_COM_SEF_SEARCH_URL_PTYPE','Prohledávání struktury URL - Typ kapacity');
 /**
 * @ignore
 */
@@ -5540,47 +5540,47 @@ define('_JOMRES_COM_SEF_SEARCH_URL_PTYPE_DESC','');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_PTYPE','Search URL Structure - Default property type');
+define('_JOMRES_COM_SEF_DEFAULT_PTYPE','Prohledávání struktury URL - Výchozí typ kapacity');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_DEFAULT_PTYPE_DESC','Used in url if search is for all property types');
+define('_JOMRES_COM_SEF_DEFAULT_PTYPE_DESC','Použito v url, jestliže vyhledáváte ve všech typech kapacit');
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_NOTINSTALLED','Either she404sef is not installed, or you haven\'t yet copied '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS.'joomla15'.JRDS.'other_component_files'.JRDS.'sh404sef'.JRDS.'com_jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Once you have installed sh404sef and/or copied that file over, then you will be able to configure your sef urls from here. ');
+define('_JOMRES_COM_SEF_NOTINSTALLED','Buď není nainstalována komponenta she404sef, nebo jste nezkopírovali soubor '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'com_jomres.php do '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Jakmile nainstalujete sh404sef a/nebo zkopírujete soubor dle návodu, budete moci nastavovat vaše sef url adresy. ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CALENDARLANGUAGE_AUTO','Autodetect Javascript calendar language');
+define('_JOMRES_COM_A_CALENDARLANGUAGE_AUTO','Autodetekce jazyka Javascript kalendáře');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CALENDARLANGUAGE_AUTO_DESC','Enable autodetection of language for the javascript calendars? If we cannot autodetect the language then we will fall back to the language configured below');
+define('_JOMRES_COM_A_CALENDARLANGUAGE_AUTO_DESC','Pokud nebude možné detekovat jazyk, použije se nastavení níže.');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK','Per week');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERWEEK','za týden');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS','Per day');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYS','za týden');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING','Per booking');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERBOOKING','za rezervaci');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING','Per person per booking');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING','za osobu a rezervaci');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY','Per person per day');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY','za osobu a den');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK','Per person per week');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK','za osobu a týden');
 /**
 * @ignore
 */
@@ -5588,280 +5588,280 @@ define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS','Per days (min days)');
 /**
 * @ignore
 */
-define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM','Per days X rooms selected');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM','za dny X vybrané pokoje');
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRYREBUILD','Rebuild minicomponent registry');
+define('_JOMRES_REGISTRYREBUILD','Obnovit registr modulů');
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRYREBUILD_NOTES',"Normally the Jomres plugin registry is rebuilt automatically whenever you view the plugin manager and add or remove a plugin, however it's possible that you cannot use these features for some reason, therefore you can use this function to rebuild the registry manually. If you have access to the Plugin Manager and Upgrades feature then it's unlikely that you will need to use this function. You will need to rebuild the plugin registry whenever you add a new mini-component and didn't use the Plugin Manager to add it.");
+define('_JOMRES_REGISTRYREBUILD_NOTES',"Běžně je registr modulů Jomres obnovován automaticky pokaždé, když spustíte manažera modulů a přidáte nebo odstraníte modul. Pokud z jakéhokoliv důvodu nemůžete tuto možnost využít, je k dispozici ještě tato volba. Pokud máte přístup do Manažera Modulů a nástroje Uprgade, nebudete tuto volbu potřebovat. Naopak, pokud nainstalujete libovolný modul manuálně, musíte obnovit registr manuálně.");
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRYREBUILD_SUCCESS','Registry rebuilt successfully');
+define('_JOMRES_REGISTRYREBUILD_SUCCESS','Registr úspěšně obnoven');
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRYREBUILD_FAILURE','There was an error with rebuilding the registry of minicomponents. You should check your Jomres error log to see if there is a record of what triggered the error.');
+define('_JOMRES_REGISTRYREBUILD_FAILURE','Při obnovování registru došlo k chybě. Pro bližší informace a eventuelní nalezení chybného záznamu zkontrolujte prosím Jomres chybový log.');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_PRICERANGES','Search by price range.');
+define('_JOMRES_SEARCH_PRICERANGES','Vyhledávání dle rozsahu cen.');
 /**
 * @ignore
 */
-define('JOMRES_WORD_SAVING','Saving...');
+define('JOMRES_WORD_SAVING','Ukládám...');
 /**
 * @ignore
 */
-define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS','Use Composite Property details?');
+define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS','Použít kompozitní zobrazení informací o kapacitě?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS_DESC','Jomres 3.3 introduces the composite property details where all of the property details output is sent to one template file (composite_property_details.html). If you do not wish to use this set it to No (only existing users are expected to set this to No, new users will probably want to leave it set to Yes)');
+define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS_DESC','Jomres 3.3 umožňuje kompozitní zobrazení informací o nemovitosti, kde je celkový výstup formátován podle souboru šablony (composite_property_details.html). Jestliže nechcete využít tohoto nastavení, nastavte volbu na NE (zřejmě stávající uživatelé nastaví na Ne, noví uživatelé budou pravděpodobně volit Ano)');
 /**
 * @ignore
 */
-define('_JOMRES_PROFILELIST_INSTRUCTIONS','This is a list of all users on the system. Non-property managers will have a Guest icon, property managers will have Reception/Property Manager/Super property manager icons.<br/>When Jomres is first installed "admin" is automatically added as a property manager and is considered an authorised user.<br/>Non-super property managers must be assigned to at least one property otherwise they will see an error when they try to log on and use Jomres.<br/>Once a user is authorised then you can edit their profiles, assign them to propertys or give them super property manager rights.<br/>To authorise a user, click on the red Cross next to their name. To unauthrorise them, click the green Tick.<br/>To assign users to specific properties only, or give them super property manager rights, authorise them then click the edit icon (which is only visible once they\'ve been authorised). Users who\'ve registered their property(s) themselves will be automatically assigned to those propertys. Super property managers automatically have rights over all properties, and will see all configuration options even if the minimised configuration option is set in Site Config.');
+define('_JOMRES_PROFILELIST_INSTRUCTIONS','Toto je seznam všech uživatelů systému. Uživatelé, kteří nemají přiřazenu žádnou kapacitu, mají ikonu Host. Výšší úrovně oprávnění mají ikonu Recepce / Správce kapacit / Super správce. <br/> Jomres Při první instalaci je uživateli "admin" je automaticky přiděleno oprávnění správce kapacit a je považován za oprávněného uživatele. <br/> Krom super správce, musí mít každý oprávněný uživatel přiřazen alespoň jeden objekt(kapacitu). V opačném případě jeho přihlášení do Jomres vyvolá chybu.<br/> Jakmile je uživatel potvrzen, můžete upravit jeho profil, přiřadit jim kapacitu nebo jim dát práva super správce. <br/> Chcete-li povolit uživatele, klikněte na červený kříž vedle jejich jména. Pro zrušení autorizace klikněte na zalené zaškrtnutí. <br/> Chcete-li přiřadit uživatelům pouze specifické vlastnosti, nebo jim dát práva super správce, potom klikněte na ikonu editovat (ta je viditelná pouze u povolených uživatelů). Uživatelé, kteří už zaregistrovali svoji kapacitu, se k němu automaticky přiřadí. Super správci mají automaticky právo na nastavení všech vlastností, a uvidí i všechny možnosti konfigurace. Tato možnost může být ovlivněna nastavení v administrátosrké části konfigurace.');
 /**
 * @ignore
 */
-define('_JOMRES_PROFILEEDIT_INSTRUCTIONS','Here you can assign a manager to certain propertys. Ensure, if they\'re not going to be a super property manager, that they have rights to at least one property otherwise they will see an error when they log in. To give a receptionist/property manager rights over only certain propertys, ensure that the Super Property Manager dropdown is not set to Yes.');
+define('_JOMRES_PROFILEEDIT_INSTRUCTIONS','Zde můžete přiřadit manažerům jejich kapacity. Ujistěte se, že v případě, kdy se nejedná o super správce, má přiřazenu alespoň jednu kapacitu, jinak jejich přihlášení vyvolá chybu. Naopak, aby recepční nebo manažer kapacit měl přístup pouze ke svým kapacitám, je třeba, aby rozbalovací nabídka Super správce není nastavena na hodnotu Ano.');
 /**
 * @ignore
 */
-define('_JOMRES_PHRASE_PROCESSING','Please wait, your order is being processed...');
+define('_JOMRES_PHRASE_PROCESSING','Prosím čekejte, vaše objednávka se zpracovává...');
 /**
 * @ignore
 */
-define('_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE','You haven\'t made any bookings yet!');
+define('_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE','Zatím jste neudělali žádnou rezervaci!');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_TAB','Property type');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_TAB','Typ kapacity');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE','Edit your property type');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE','Upravit typ kapacity');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO','Select your property type');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO','Vybrat typ kapacity');
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING','Jomres logging');
+define('_JOMRES_COM_LOGGING','Jomres logy');
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING_WARNING','These options allow you to enable/disable logging within Jomres. Error logging is always enabled, but other logs such as Booking, Gateway, System and Request logs can be switched on and off. You are advised that <b>the ability to enable this logging is provided purely as a way of making debugging easier but it carries a big security risk</b> as it is easy for outside users to view your logs without being authorised therefore you are advised to leave it switched off most of the time. If you have enabled logging, then when you have disabled it, you should also ensure that the <i>'.JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i> folder does not contain any old log files. Note that enabling logging will also significantly slow your sytem down as it collects a lot of information.');
+define('_JOMRES_COM_LOGGING_WARNING','Tato nastavení umožňují ovládat zápisy do log souborů systému Jomres. Zápisy chyb jsou vždy povoleny, ale ostatní zápisy do log souboru, jako jsou rezervace, přihlášení, hlášení systému a požadavky mohou být nastaveny na ano nebo ne. Upozorňujeme, že <b>zapnutí logování je velmi výhodné z hlediska ladění programu a dohledávání chyb, ale nese s sebou velé bezpečnostní riziko</b> zejména v možnosti, že uživatelé bez příslušné auutorizace mohou otevřít logovací soubor a číst v něm. Proto prosím nechte nastavení logů vypnuté, není-li opravdu netné je používat. Pokud logování zapnete, ujistěte se, že složka <i>'.JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i> neobsahuje žádné staré log soubory. Uvědomte si, že zapnutí logování vede i ke zpomalení činnosti systému vzhledem ke shromažďování velkého množství informací.');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING_BOOKING','Booking form logging (Booking engine logs) ');
+define('_JOMRES_COM_LOGGING_BOOKING','Logování rezervačního formuláře (Logy rezervačního procesoru) ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING_GATEWAY','Gateway logs (eg paypal etc) ');
+define('_JOMRES_COM_LOGGING_GATEWAY','Logy brány (jako paypal atd.) ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING_REQUEST','Request log (all incoming server requests)');
+define('_JOMRES_COM_LOGGING_REQUEST','Logy požadavků (všechny příchozí požadavky serveru)');
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING_SYSTEM','System (misc log) ');
+define('_JOMRES_COM_LOGGING_SYSTEM','Systém (různé logy) ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (mainly for recording commission etc) ');
+define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portál (hlavně pro záznam provizí) ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Your enquiry...');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Váš dotaz...');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Booking form room list show room type image');
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Rezervační formulář ukázat obrázek typu pokoje');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_LISTLIMIT','Property List limit');
+define('_JOMRES_COM_A_LISTLIMIT','Limit výpisu kapacit');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_LISTLIMIT_DESC','The number of propertys to show on a page after a search');
+define('_JOMRES_COM_A_LISTLIMIT_DESC','Počet kapacit, vypsaných na jedné stránce po skončení vyhledávání');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE','Integrated search feature');
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE','Integrované vyhledávání');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','The Jomres integrated search feature allows your users to search through Jomres propertys according to a set of functions. If you have already used the search features of Jomres in Joomla you will be familiar with these settings.<br/>This feature allows us to offer search handling within Jomres for those users who don\'t want to use Joomla search modules, or for other CMS users who\'s CMS doesn\'t have it\'s own Jomres search modules.<br/>Just remember that if you choose to search for something via a link (ie not a dropdown) then other search options will not be implemented, only the element that corresponds with the link that you clicked.<br/>Note that by default the layout of this integrated search isn\'t very pretty. That\'s because the template file that performs the layout has to include all possible options, some of which are incompatible. To improve the layout and achieve the look you desire, you will need to edit <b>srch.html</b> in the folder <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b> ');
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','Integrované vyhledávání Jomres umožňuje uživatelům vyhledávat kapacity pomocí celé sady funkcí. Pokud jste již používali vyhledávací funkce Jomres v Joomle, budete toto nastavení znát. <br/> Tato funkce nám umožňuje nabídnout vyhledávání v systému Jomres pro ty uživatele, kteří nepoužívají vyhledávací moduly, obsažené v Joomla nebo pro ty uživatele, jejichž CMS vlastní vyhledávací modul nemá. <br/> Jen nezapomeňte, že pokud se rozhodnete hledat něco přes odkaz (tj. nikoli rozbalovací), pak další možnosti vyhledávání nebude možné provést, bude hledán pouze prvek, který odpovídá na odkazu, který jste klikli. <br/> Všimněte si, že ve výchozím nastavení zobrazení nevypadá integrované vyhledávání moc hezky. To proto, že soubor šablony, který zajišťuje zobrazení, musí obsahovat všechny možnosti, z nichž některé jsou vzájemně neslučitelné. Pro zlepšení a úpravu vzhledu do podoby, jakou si přejete, musíte upravit <b> srch.html </ b> ve složce <b> '. JOMRES_TEMPLATEPATH_FRONTEND.'</b> ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE','Activate this feature?');
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE','Aktivovat toto nastavení?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC','If this feature is enabled, then any call to Jomres that shows the property list will mean that the search options are also shown.');
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC','Pokud je toto nastavení povoleno, potom jakýkoliv požadavek, který zobrazuje výpis kapacit, bude zároveň zobrazovat i možnosti vyhledávání');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS','Use columns');
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS','Použij sloupce');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC',"Any search option that you have defined as link type (where pertinent) will be shown as columns (IE br put on the end of the link)");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC',"Jakákoliv možnost vyhledávání, kterou definujete jako typ odkaz (tam, kde je to relevantní) bude zobrazena jako sloupec. (IE vloží značku br na konec odkazu)");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS',"Feature columns");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS',"Vlastnosti sloupců");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS_DESC',"The number of feature icons that can be shown before a br is inserted to go to next row.");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_FEATURECOLS_DESC',"Počet piktogramů, které budou vloženy před značku br - tedy před přechodem na další řádek.");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO',"Search region by select combo dropdown");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO',"Vyhledávání regionů pomocí výběru v combo seznamu");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC',"Offer a search dropdown to filter through countries/regions/towns. If you are going to use this feature then you're best off not using the region/town searches below.");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC',"Nabízí možnost výběru v seznamu, vyfiltrovanému na země/regiony/města. Pokud chete toto nastavení používat, je lépe neoužívat vyhledávání regionů a měst níže.");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME',"Search by property name");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME',"Vyhladání kapacity podle jména");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC',"Show the search by property name input.");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC',"Zobrazit vyhledávání podle názevu kapacity");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN',"Show as dropdown?");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN',"Zobrazit jako pole se seznamem?");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC',"Nastavit na NE, pokud nechcete, aby se nezobrazoval seznam jako odkazy");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION',"Search by town/region");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION',"Vyhledávat podle města/regionu");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC',"Show the search by region input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC',"Zobrazit vyhledávání podle regionu");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN',"Show as dropdown?");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN',"Zobrazit jako pole se seznamem?");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC',"Nastavit na NE, pokud nechcete, aby se nezobrazoval seznam jako odkazy");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE',"Search by property type");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE',"Vyhledávání podle typu kapacity");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC',"Show the search by property type input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC',"Zobrazit vyhledávání podle typu kapacity");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN',"Show as dropdown?");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN',"Zobrazit jako pole se seznamem?");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC',"Nastavit na NE, pokud nechcete, aby se nezobrazoval seznam jako odkazy");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE',"Search by room type");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE',"Vyhledávání podle typu pokoje");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC',"Show the search by room type input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC',"Zobrazit vyhledávání podle typu pokoje");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN',"Show as dropdown?");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN',"Zobrazit jako pole se seznamem?");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC',"Set this to no to show the list as links");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC',"Nastavit na NE, pokud nechcete, aby se nezobrazoval seznam jako odkazy");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES',"Search by features");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES',"Vyhledávání podle vlastností");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC',"Show the search by feature input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC',"Zobrazit vyhledávání podle vlastností");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN',"Show as dropdown?");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN',"Zobrazit jako pole se seznamem?");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC',"Set this to no to show the list as tooltip images and checkboxes");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC',"Nastavit na NE, pokud nechcete, aby se nezobrazoval seznam jako odkazy");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION',"Search by description");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION',"Vyhledávání podle popisu");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC',"Show the search by description input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC',"Zobrazit vyhledávání podle popisu");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY',"Search by availability");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY',"Vyhledávání podle dostupnosti");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC',"Show the search by availability input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC',"Zobrazit vyhledávání podle dostupnosti");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES',"Search by price ranges");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES',"Vyhledávání dle rozsahu cen");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC',"Show the search by price ranges input");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC',"Zobrazit vyhledávání podle cen");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS',"Price range increments");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS',"Přírůstek cenového rozpění");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC',"Jomres will look at all the values in the tariffs then work out a series of price ranges based on the increments value you set here.");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC',"Jomres vyhledá všechny hodnoty v cenících, jejichž rozsahy odpovídají zde nastavené zvýšené ceně.");
 /**
 * @ignore
 */
-define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC','By default, if a property is not selected in Jomres it will perform a search. If this search was not triggered by a search module then that search will produce random results (deliberately). This option allows you to limit the number of returns in that random search.');
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC','Ve výchozím nastavení, pokud není vybraná žádná kapacita, Jomres spustí vyhledávání. Pokud toto vyhledávání nebylo spuštěno vyhledávacím modulem, pak dojde k záměrnému vygenerování náhodných výsledků (záměrně). Tato volba umožňuje omezit počet výsledů tohoto náhodného hledání.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_TITLE','Cron job settings and logs');
+define('_JOMRES_COM_A_CRON_TITLE','Nastavení a logy procesu Cron');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_DESC','Pseudocron job information. The pseudocron functionality is needed by invoicing and commission handling.');
+define('_JOMRES_COM_A_CRON_DESC','Inforamce o úloze Cron. Tato úloha je nezbytná pro funkčnost fakturace a zúčtování provizí');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Installed cron minicomponents. To run an individual cron job use the links specified below. Note that the cron jobs do not produce any output so you will not see any information on the page. Instead, refer to the job log below.');
+define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Intalované minikomponenty úlohy Cron. Ke spuštění dané úlohy použijte příslušný odkaz. Uvědomte si, že úloha nebude mít žádný výstup na obrazovku a nebudete tím pádem mít žádnou zpětnou vazbu. Místo toho nahlédněte do log souboru níže.');
 /**
 * @ignore
 */
@@ -5869,131 +5869,131 @@ global $jomresConfig_secret;
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_METHOD','Method');
+define('_JOMRES_COM_A_CRON_METHOD','Metoda');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s http://".JOMRES_SITEPAGE_URL_ADMIN."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s http://".JOMRES_SITEPAGE_URL_ADMIN."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_LOGGING','Display logging in the browser');
+define('_JOMRES_COM_A_CRON_LOGGING','Zobrazit logy v prohlížeči');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_LOGGING_DESC','Only works if the method is set to Minicomponent.');
+define('_JOMRES_COM_A_CRON_LOGGING_DESC','Pracuje pouze, pokud je metoda nastavena na minikomponentu.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Logging enabled');
+define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Záznam logu povolen');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC','Set this to Yes for logging to be enabled. The results of the logs will be output below.');
+define('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC','Nastavte ANO pro povolení záznamu do log souboru. Výsledky budou ve výstupním souboru uvedeném níže.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_VERBOSELOGS','Verbose logging');
+define('_JOMRES_COM_A_CRON_VERBOSELOGS','Podrobné protokolování');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC','Lots of logging output');
+define('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC','Výstup logů');
 /**
 * @ignore
 */
-define('_JOMRES_COM_TEMPLATEEDITING_TITLE','Template Editing');
+define('_JOMRES_COM_TEMPLATEEDITING_TITLE','Úprava šablony');
 /**
 * @ignore
 */
-define('_JOMRES_COM_TEMPLATEEDITING_DESC','This functionality allows us to edit Jomres frontend templates on the server, saving the results to the database. Advanced feature, be careful with it.');
+define('_JOMRES_COM_TEMPLATEEDITING_DESC','Tato funkce umožňuje upravit šablonu frontendu na serveru, ukládat výsledky do databáze. Funkce pouze pro pokročilé uživatele.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME','Template Name');
+define('_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME','Název šablony');
 /**
 * @ignore
 */
-define('_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED','Template has been customised?');
+define('_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED','Šablona byla upravena?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CUSTOMFIELDS_TITLE','Custom fields');
+define('_JOMRES_COM_CUSTOMFIELDS_TITLE','Uživatelská pole');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CUSTOMFIELDS_DESC','Here you can define simple custom fields that will be shown in the booking form.');
+define('_JOMRES_COM_CUSTOMFIELDS_DESC','Zde můžete nadefinovat uživatelská pole, která budou následně zobrazena v rezervačním formuláři.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CUSTOMFIELDS_FIELDNAME','Fieldname (no spaces)');
+define('_JOMRES_COM_CUSTOMFIELDS_FIELDNAME','Název pole (bez mezer)');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE','Default value');
+define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE','Výchozí hodnota');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION','Description');
+define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION','Popis');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED','Required');
+define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED','Vyžadováno');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EXTRA_QUANTITY','Maximum Quantity');
+define('_JOMRES_COM_MR_EXTRA_QUANTITY','Maximální množství');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC','If Maximum quantity is set to greater than 1 then guests will be offered a dropdown to choose the quantiy of the extras that they require.');
+define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC','Pokud je Maximální hodnota nastavena na hodnotu vyšší jak 1, pak se zobrazí pole se seznamem s výběrem hodnot. ');
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_ISSUE',"Issue invoices");
+define('_JRPORTAL_INVOICES_ISSUE',"Vystavení faktur");
 /**
 * @ignore
 */
-define('_JRPORTAL_TAXRATES_TITLE',"Tax rates");
+define('_JRPORTAL_TAXRATES_TITLE',"Dazby DPH");
 /**
 * @ignore
 */
-define('_JRPORTAL_TAXRATES_CODE',"Tax code");
+define('_JRPORTAL_TAXRATES_CODE',"Kód daně");
 /**
 * @ignore
 */
-define('_JRPORTAL_TAXRATES_DESCRIPTION',"Rate description");
+define('_JRPORTAL_TAXRATES_DESCRIPTION',"Popis daně");
 /**
 * @ignore
 */
-define('_JRPORTAL_TAXRATES_CANNOTDELETE',"You cannot delete this tax rate.");
+define('_JRPORTAL_TAXRATES_CANNOTDELETE',"Nemůžete vymazat tuto sazbu daně.");
 /**
 * @ignore
 */
-define('_JRPORTAL_TAXRATES_RATE',"Rate");
+define('_JRPORTAL_TAXRATES_RATE',"Daň");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_TITLE',"Invoices");
+define('_JRPORTAL_INVOICES_TITLE',"Faktury");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_STATUS_UNPAID',"Unpaid");
+define('_JRPORTAL_INVOICES_STATUS_UNPAID',"Nazaplacená");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_STATUS_PAID',"Paid");
+define('_JRPORTAL_INVOICES_STATUS_PAID',"Zaplacená");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_STATUS_CANCELLED',"Cancelled");
+define('_JRPORTAL_INVOICES_STATUS_CANCELLED',"Zrušená");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_STATUS_PENDING',"Pending");
+define('_JRPORTAL_INVOICES_STATUS_PENDING',"Čeká na vyřízení");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_USER',"User");
+define('_JRPORTAL_INVOICES_USER',"Uživatel");
 /**
 * @ignore
 */
@@ -6001,265 +6001,262 @@ define('_JRPORTAL_INVOICES_STATUS',"Status");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_RAISED',"Raised");
+define('_JRPORTAL_INVOICES_RAISED',"Zvýšení");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_DUE',"Due");
+define('_JRPORTAL_INVOICES_DUE',"Splatnost");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_SUBSCRIPTION',"Subscription");
+define('_JRPORTAL_INVOICES_SUBSCRIPTION',"Schválení");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_INITTOTAL',"Outstanding total");
+define('_JRPORTAL_INVOICES_INITTOTAL',"Celkem nezaplaceno");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_RECUR_TOTAL',"Recurring total");
+define('_JRPORTAL_INVOICES_RECUR_TOTAL',"Periodická platba");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_RECUR_FREQUENCY',"Recurring frequency");
+define('_JRPORTAL_INVOICES_RECUR_FREQUENCY',"Frekvence plateb");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_RECUR_DOMONTH',"Recurring day of month");
+define('_JRPORTAL_INVOICES_RECUR_DOMONTH',"Platební den");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_CURRENCYCODE',"Currency code");
+define('_JRPORTAL_INVOICES_CURRENCYCODE',"Kód měny");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS',"Line items");
+define('_JRPORTAL_INVOICES_LINEITEMS',"Položky řádku");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_NAME',"Name");
+define('_JRPORTAL_INVOICES_LINEITEMS_NAME',"Jméno");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION',"Description");
+define('_JRPORTAL_INVOICES_LINEITEMS_DESCRIPTION',"Popis");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE',"Initial Price");
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_PRICE',"Základní cena");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY',"Initial Quantity");
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY',"Základní množství");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT',"Initial Discount");
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT',"Základní sleva");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL',"Initial Total");
+define('_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL',"Celkem");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE',"Recurring Price");
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE',"Periodická platba");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY',"Recurring quantity");
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY',"Periodické množství");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT',"Recurring discount");
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT',"Periodická sleva");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL',"Recurring total");
+define('_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL',"Celkem per. platba");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE',"Tax code");
+define('_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE',"Kód daně");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION',"Tax description");
+define('_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION',"Popis daně");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',"Tax rate");
+define('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',"Sazba daně");
 
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Paypal settings");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Nastavení Paypal");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Currency code (eg EUR)");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Kód měny (např. EUR)");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Use sandbox?");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Použít schránku sandbox?");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Your paypal email address");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Vaše emailová adresa pro paypal");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Note: To use paypal you must go to your paypal account & disable Autoreturn. (Profile/Website Payment Preferences), and set IPN (Profile/Instant Payment Notification Preferences)to on URL of:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Poznámka: Pokud chcete používat PayPal, musíte se nejprve do něj přihlásit a zrušit funkci Autoreturn. (Profile/Website Payment Preferences), a nastavit IPN (Profile/Instant Payment Notification Preferences) na URL adresu:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"This invoice is now due. Please click the button to be taken to paypal.");
+define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Faktura je nyní splatná. Stiskem tlačítka ji zaplatíte pomocí PayPal.");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Override standard Jomres gateway settings?");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Ignorovat standardní nastavení platební brány Jomres?");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal settings override option is set to Yes then several things happen: General Configuration no longer shows any gateway settings, and two, when a booking is made the settings used here are used so that payment is sent to the address entered here, not that previously configured in General Configuration.");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"Pokud je nastaveno na ANO, stane se následující: V Hlavní konfiguraci se neobjeví žádná nastavení platební brány, a za druhé, pokud je provedena rezervace, je také platba odeslána na adresu uvedenou zde, nikoliv na tu uvedenou před tím v Hlavní konfiguraci.");
 /**
 * @ignore
 */
-define('_JRPORTAL_INVOICES_SHOWINVOICES',"Show my invoices");
+define('_JRPORTAL_INVOICES_SHOWINVOICES',"Ukaž mé faktury");
 
 
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_TITLE',"Discount coupons");
+define('_JRPORTAL_COUPONS_TITLE',"Slevové kupony");
 
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_DESC',"Discount codes can be generated and passed onto guests as an incentive to make bookings. Valid from and to dates refer to the dates that a booking can be made on, not the dates of the booking itself.");
+define('_JRPORTAL_COUPONS_DESC',"Kódy slevových kuponů mohou být vygenerovány a zaslány uživatelům systému, aby byla podpořena poptávka po rezevování kapacit. Datum platnosti se vztahuje na použití slevového kuponu, nikoliv na datum rezervace jako takové.");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_CODE',"Coupon code");
+define('_JRPORTAL_COUPONS_CODE',"Kód kuponu");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_VALIDFROM',"Valid from");
+define('_JRPORTAL_COUPONS_VALIDFROM',"Platnost od");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_VALIDTO',"Valid to");
+define('_JRPORTAL_COUPONS_VALIDTO',"Platnost do");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_AMOUNT',"Discount amount");
+define('_JRPORTAL_COUPONS_AMOUNT',"Výše slevy");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_ISPERCENTAGE',"Discount is a percentage");
+define('_JRPORTAL_COUPONS_ISPERCENTAGE',"Sleva je procentní");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_ROOMONLY',"Room only");
+define('_JRPORTAL_COUPONS_ROOMONLY',"Pouze pokoj");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_ROOMONLY_DESC',"Discount is only applied to the cost of the room. If No, then the discount is applied to the entire cost of the booking.");
+define('_JRPORTAL_COUPONS_ROOMONLY_DESC',"Sleva je nyní použita pouze na náklady za pokoj. Pokud je nastaveno na Ne, je sleva použita na náklady za celý pobyt.");
 /**
 * @ignore
 */
-define('_JRPORTAL_COUPONS_SQLERROR',"Sql error when trying to delete/insert a coupon");
+define('_JRPORTAL_COUPONS_SQLERROR',"Chyba Sql při pokusu o vymazání nebo vložení kuponu");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','If you have a coupon code, please enter it into the box and click the "Save coupon" link to save the coupon details against your booking.');
+define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','Pokud máte kód slevového kuponu, napište nebo zkopírujte jej do tohoto pole a stiskněte tlačítko Ulož slevu. Vaše sleva bude uplatněna na tuto rezervaci.');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Save coupon');
+define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Ulož slevu');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED','Coupon saved against booking');
+define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED','Sleva uložena do rezervace');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND','Coupon number not found');
+define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND','Kód slevového kuponu nenalezen');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Coupon discount value');
+define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Výše slevy na kuponu');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Booking discounted. Coupon code/discount value/coupon settings : ');
+define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Rezervace se slevou. Kód kuponu/sleva/nastavení kuponu: ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CACHING','Use the Jomres caching feature?');
+define('_JOMRES_COM_CACHING','Použít Jomres cache?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CACHING_DESC','Set this to No to disable the Jomres caching feature.');
+define('_JOMRES_COM_CACHING_DESC','Nastavte na NE, pokud chcete zakázat cachování v rámci programu Jomres.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CHOOSELANGUAGES','Choose languages');
+define('_JOMRES_COM_CHOOSELANGUAGES','Volba jazyka');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CHOOSELANGUAGES_INFO','Choose the language options to be shown in the language switch dropdown.');
+define('_JOMRES_COM_CHOOSELANGUAGES_INFO','Vyberte jazyky, které chcete vybírat v přepínacím seznamu jazyků.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN','Show the language selection dropdown?');
+define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN','Ukázat výběr jazyka?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS','Booked out and Cancelled bookings');
+define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS','Odhlášené a zrušené rezervace');
 /*
 * @ignore
 */
-define('_JRPORTAL_NEWUSER_DEAR',"Dear");
+define('_JRPORTAL_NEWUSER_DEAR',"Vážený/á");
 /**
 * @ignore
 */
-define('_JRPORTAL_NEWUSER_THANKYOU',"Thank you for registering ");
+define('_JRPORTAL_NEWUSER_THANKYOU',"Děkujeme za registraci ");
 /**
 * @ignore
 */
-define('_JRPORTAL_NEWUSER_USERNAME',"Your user name is : ");
+define('_JRPORTAL_NEWUSER_USERNAME',"Vaše uživatelské jméno je : ");
 /**
 * @ignore
 */
-define('_JRPORTAL_NEWUSER_PASSWORD',"Your password is : ");
+define('_JRPORTAL_NEWUSER_PASSWORD',"Vaše heslo : ");
 /**
 * @ignore
 */
-define('_JRPORTAL_NEWUSER_LOG_IN',"Please log in to view your bookings ");
+define('_JRPORTAL_NEWUSER_LOG_IN',"Prosím přihlašte se, aby jste mohli prohlížet Vaše rezervace ");
 /**
 * @ignore
 */
-define('_JOMRES_MR_AUDIT_UPDATE_COUPON','Coupon saved');
+define('_JOMRES_MR_AUDIT_UPDATE_COUPON','Kupón uložen');
 /**
 * @ignore
 */
-define('_JOMRES_MR_AUDIT_DELETE_COUPON','Coupon deleted');
+define('_JOMRES_MR_AUDIT_DELETE_COUPON','Kupón vymazán');
 
 // Not used yet
 /**
 * @ignore
 */
-define('_JOMRES_MENUHELPER_DASHBOARD','This is your dashboard, here you can see a general overview of your property\'s availability. ');
+define('_JOMRES_MENUHELPER_DASHBOARD','Toto je Váš ovládací panel, kde můžete spravovat veškeré informace o Vašich kapacitách');
 /**
 * @ignore
 */
-define('_JOMRES_COM_GROWL','Use Jomres messaging');
+define('_JOMRES_COM_GROWL','Použít Jomres zpracování zpráv');
 /**
 * @ignore
 */
-define('_JOMRES_COM_GROWL_DESC','Many manager updates provide feedback in the form of a javascript message when the page is reloaded, use this option to enable/disable that feature.');
+define('_JOMRES_COM_GROWL_DESC','Mnoho zprávců požaduje zpětnou vazbu o tom, že stránka byla znovu načtena. K tomu slouží tato volba.');
 /**
-* @ignore
-*/
-define('_JOMRES_COM_GROWL_DESC','Many manager updates provide feedback in the form of a javascript message when the page is reloaded, use this option to enable/disable that feature.');
 
 /**
 * @ignore
@@ -6269,11 +6266,11 @@ define('_JRPORTAL_SMS_CLICKATELL_TITLE',"Jomres -> Clickatell SMS");
 /**
 * @ignore
 */
-define('_JRPORTAL_SMS_CLICKATELL_USERNAME',"Username");
+define('_JRPORTAL_SMS_CLICKATELL_USERNAME',"Jméno");
 /**
 * @ignore
 */
-define('_JRPORTAL_SMS_CLICKATELL_PASSWORD',"Password");
+define('_JRPORTAL_SMS_CLICKATELL_PASSWORD',"Heslo");
 /**
 * @ignore
 */
@@ -6281,11 +6278,11 @@ define('_JRPORTAL_SMS_CLICKATELL_APIID',"API id");
 /**
 * @ignore
 */
-define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Notification mobile number");
+define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Číslo telefonu pro zaslání potvrzení");
 /**
 * @ignore
 */
-define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Please use the format 'Country code, mobile number'. For example a UK based mobile number would be something like '447979123456'. Leave this blank if you don't want any notification emails sent to your mobile phone.");
+define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Prosím, použijte formát 'Country code, mobile number'. Např: '420123456789'. Nevyplňujte, pokud nechcete dostávat zprávy o odeslání.");
 /**
 * @ignore
 */
@@ -6296,236 +6293,236 @@ define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
 <br/>
 <br/>
-<b>Obviously, you cannot use/test this gateway from localhost, you'll need to do that on a 'live' server.</b>
+<b>Tuto funkci nelze testovat na 'localhost'u, musíte být přihlášeni v živé aplikaci.</b>
 <br/>
 <br/>
-In order to use the Clickatell gateway you need a Clickatell account and at least one registered connection (API sub-product instance) between your application and our gateway. Each connection
-method is known as a sub-product. Here's how:<br/>
+Aby jste mohli používat Clickatell bránu, musíte mít účet a alespoň jedno zaregistrované spojení (API sub-product instance) mezi Vaší aplikací a naší bránou. Každé spojení
+je nazýváno jako sub-product. Zde je podrobný postup:<br/>
 <br/>
-<b>Step 1 - register for a Clickatell account</b><br/>
-If you do not already have a Clickatell account, you need to register for one as per below. Otherwise proceed to Step 2.<br/>
-* Go to http://www.clickatell.com/products/sms_gateway.php, and choose the appropriate API subproduct (connection method) you wish to use ( Clickatell Central (API) )<br/>
-* Click on the registration hyperlink.<br/>
-* Fill out the registration form.<br/>
-After successfully submitting the form you will automatically be logged into your new account and taken to a page where you can add your chosen API connection.<br/>
-<b>Step 2 - add a registered API connection (sub-product)</b><br/>
-If you are not already logged into your account, then you must do so at http://www.clickatell.com/login.php<br/>
-* Select \"Manage my Products\" from the top menu.<br/>
-* Select the API connection type you wish to use (HTTP API) from the drop down menu ('Add Connection').<br/>
-* Complete the form. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You'll need to set the IP callback to ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
-If you register more than one API connection, the description name you enter for each must be unique - you cannot have multiple APIs with the same name.<br/>
-After successfully submitting the form, your authentication details will be displayed, including each connection's unique API ID (api_id). These authentication details are required when connecting to the Clickatell gateway to send a message.<br/>
+<b>Step 1 - zaregistrujte si Clickatell účet</b><br/>
+Pokud ještě nemáte Clikatell účet, postupujte podle návodu níže. Jinak pokračujte Krokem 2.<br/>
+* Běžte na http://www.clickatell.com/products/sms_gateway.php, a vyberte API subproduct (metoda spojení) který chcte použít. ( Clickatell Central (API) )<br/>
+* Klikněte na odkaz k registraci.<br/>
+* Vyplňte regustrační formulář.<br/>
+Po úspěšné registraci budete přesměrování na stránku, kde můžete nakonfigurovat nové API spojení.<br/>
+<b>Krok 2 - přidání registrovaného API spojení(sub-product)</b><br/>
+Pokud ještě nejste přihlášeni, učiňte tak na stránce http://www.clickatell.com/login.php<br/>
+* Vyberte \"Manage my Products\" z horní nabídky.<br/>
+* Vyberte typ spojení API, které chcete použít (HTTP API) z příslušného pole se seznamem ('Add Connection').<br/>
+* Vyplňte zbytek formuláře. Ujistěte se, že jste zadali správnou adresu IP(IP adresu tohoto serveru), nastavte Callback na HTTP POST. Musíte nastavit IP callback na ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback a dále userid a heslo.<br/>
+Pokud zadáváte více než jedno API spojení, jejich popis musí být vždy jedninečný - nelze mít více API se stejným názvem.<br/>
+Po úspěšném odeslání formuláře se zobrazí všechny detaily vašeho připojení, včetně seznamu všech API a jejich jedinečného id. Všechny tyto údaje jsou potřebné pro přojení k bráně Clickatell a odeslání zpráv.<br/>
 <br/>
-Use your userid, password and api_id to populate the fields above.<br/>
+Použijte userid, heslo a api_id v vyplnění příslušných polí.<br/>
 
 <br/>
 ");
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED','Booking form room list show disabled access');
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED','Ukázat zakázaný přístup k rezervačnímu formuláři');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show max people');
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Ukázat maximální počet osob v rezervačním formuláři');
 /**
 * @ignore
 */
-define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
+define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Prosím uvědomte si, že uvedé ceny jsou pouze přibližné. Přesné ceny budou vypočteny teprve až vyberete pokoj nebo pokoje.");
 
 /**
 * @ignore
 */
-define('_JOMRES_LASTEDITED_DB','Database template Last edited');
+define('_JOMRES_LASTEDITED_DB','Poslední změna databáze šablon');
 /**
 * @ignore
 */
-define('_JOMRES_LASTEDITED_DISK','Disk template Last edited');
+define('_JOMRES_LASTEDITED_DISK','Poslední změna šablony na disku');
 /**
 * @ignore
 */
-define('_JOMRES_LASTEDITED_WARNINGICON','Database template warning');
+define('_JOMRES_LASTEDITED_WARNINGICON','Varování databáze šablon');
 /**
 * @ignore
 */
-define('_JOMRES_LASTEDITED_WARNINGICON_TEXT','Database template may be out of date');
+define('_JOMRES_LASTEDITED_WARNINGICON_TEXT','Databáze šablon může být zastaralá');
 /**
 * @ignore
 */
-define('_JOMRES_LASTEDITED_WARNING','If there is an icon against a template, then Jomres has detected that the template stored in the database <strong><i>may</i></strong> be older than that stored on disk, in which case it is possible that the template has been updated in a newer version of Jomres. If this is the case, then it is possible that your template may not be benefiting from a new feature in Jomres, or that existing functionality may no longer work as expected, and you should compare the file on disk to your customisations to ensure that you are not missing out on new features.');
+define('_JOMRES_LASTEDITED_WARNING','Jestliže u šablony vidíte piktogram, pak to znamná, že Jomres detekoval, že šablona, která je uložena v databázi <strong><i>může</i></strong> starší než ta, která je uložena na disku. V tomto případě je možné, že šablona byla aktualizována instalací nové verze Jomres. V tomto případě je možné, že šablona nebude moci plně využít funkce v nové verzi Jomres nebo instalované funkce nepracují tak, jak se očekávalo. Měli byste srovna soubory na disku s vaším nastavením, aby nedocházelo ke zbytečné ztrátě funkcionality.');
 
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',"Subscription packages");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',"Předplacené balíčky");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME',"Name");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME',"Jméno");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_DESCRIPTION',"Description");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_DESCRIPTION',"Popis");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PUBLISHED',"Published");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PUBLISHED',"Publikováno");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY',"Frequency");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY',"Četnost");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD',"Trial period");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD',"ZKušební období");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALAMOUNT',"Trial amount");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALAMOUNT',"Zkušební obnos");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FULLAMOUNT',"Full amount");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FULLAMOUNT',"Plný obnos");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_ROOMSLIMIT',"Rooms limit"); // Not currently used, saved for a rainy day
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_ROOMSLIMIT',"Limit pokojů"); // Not currently used, saved for a rainy day
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PROPERTYLIMIT',"Property limit");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_PROPERTYLIMIT',"Limit kapacit");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY_DESC',"Frequency: M/Q/B/A Monthly/Quarterly/Bianually/Anually");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_FREQUENCY_DESC',"Četnost: M/Q/B/A Měsíčně/Q(kvartálně)/B(půlročně)/A(ročně)");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD_DESC',"Trial period: Integer input, 0 (zero) to not set, 1 for one month, 2 for two months etc");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TRIALPERIOD_DESC',"Zkušební období: Vstup celé číslo, 0 (nula) nenastaveno, 1 jeden měsíc, 2 dva měsíce atd.");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE',"Subscribe");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE',"Předplatit");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE_DESC',"Please enter/update your subscriber information. Please note that all fields are required.");
+define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE_DESC',"Prosím vložte/změnte vaše údaje. Upozorňujeme, že všechna pole jsou povinná.");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_FIRSTNAME',"First name");
+define('_JRPORTAL_SUBSCRIBERS_FIRSTNAME',"Jméno");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_SURNAME',"Surname");
+define('_JRPORTAL_SUBSCRIBERS_SURNAME',"Příjmení");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_ADDRESS',"Address");
+define('_JRPORTAL_SUBSCRIBERS_ADDRESS',"Adresa");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_COUNTRY',"Country");
+define('_JRPORTAL_SUBSCRIBERS_COUNTRY',"Země");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_POSTCODE',"Postcode");
+define('_JRPORTAL_SUBSCRIBERS_POSTCODE',"PSČ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1',"You need a valid subscription to create new properties. At this moment in time, you have purchased subscriptions for ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1',"Potřebujete platnou registraci k vytvoření nových kapacit. V tomto okamžiku, jste si zakoupili předplatné na ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2'," published property(s). ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2'," zveřejněných kapacit. ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3',"You can increase the number of properties you can create by <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>purchasing more subscription packages here.</a>");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3',"Můžete zvýšit počet kapacit, které můžete vytvořit pomocí <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>zakoupením většiho množství předplatného.</a>");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4'," You have used ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4'," Používáte ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5'," property slots. ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5'," kapacitních složek. ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6',"To see a list of your current properties click <a href='".JOMRES_SITEPAGE_URL."&task=listyourproperties'>here</a>. ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES6',"Na výpis vašich aktuálních kapacit klikněte na <a href='".JOMRES_SITEPAGE_URL."&task=listyourproperties'>here</a>. ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7',"To see a list of the current subscription packages available, click <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>here</a>. ");
+define('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES7',"Na výpis všech dostupných balíčků předlatného klikněte na <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages'>here</a>. ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR',"Unfortunately, you cannot publish this property as you have reached your maximum number of available property slots.");
+define('_JRPORTAL_SUBSCRIPTIONS_PUBLISHERROR',"Bohužel, nemůžete zveřejnit tuto kapacitu, dosáhli jste maximálního počtu otevřených kapacitních složek.");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED',"Thank you for creating a subscription to list your property on our server. Once your invoice is marked as paid (there may be a delay depending on Paypal) please <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>click here to continue creating your property(s).</a>");
+define('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED',"Děkujeme Vám za objednávku zveřejnění Vašich kapacit na našem serveru. Jakmile bude Vaše faktura označna jako zaplacená, můžete pokračovat zde: <a href='".JOMRES_SITEPAGE_URL."&task=registerProp_step1'>a zadat údaje o vašich kapacitách.</a>");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE',"We are sorry that you have not chosen to subscribe to our service. Please let us know if there's any way we can help you further");
+define('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE',"Je nám líto, že jste se nerozhodli por využití našich služeb. Pokud V8m můžeme jakkoliv pomoci, neváhejte a kontaktujte nás.");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH',"We are sorry, but you've met the limit of the number of properties that you can have published on this system at any one time. You can raise the number of properties that you can publish by <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages&Itemid=".$Itemid."'>purchasing more subscription packages here.</a> ");
+define('_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH',"Omlouvám se, ale dosáhli jste maximálního počtu kapacit, které můžete mít zveřejněné v jednom okamžiku. Pokud chcte jejich počet zvýšit, kliněnte na <a href='".JOMRES_SITEPAGE_URL."&task=list_subscription_packages&Itemid=".$Itemid."'>objednávku dalších balíčků.</a> ");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_USE',"Use subscription handling functionality");
+define('_JRPORTAL_SUBSCRIPTIONS_USE',"Použít funkce předplatného");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_USE_DESC',"Set this to Yes to tell Jomres that it must use subscription package handling.");
+define('_JRPORTAL_SUBSCRIPTIONS_USE_DESC',"Nastavte na ANO, pokud má Jomres používat předplatné.");
 /**
 * @ignore
 */
-define('_JOMRES_COM_NEWUSER','Create new user on booking');
+define('_JOMRES_COM_NEWUSER','Při rezervaci vytvořit nového uživatele');
 /**
 * @ignore
 */
-define('_JOMRES_COM_NEWUSER_DESC','Create new user account on unregistered user booking.');
+define('_JOMRES_COM_NEWUSER_DESC','Pokud rezervaci zadává neregistrovaný uživatel, automaticky proběhne vytvoření nového uživatele.');
 /**
 * @ignore
 */
-define('_JOMRES_CLICKTOREGISTER','Click here to register your property');
+define('_JOMRES_CLICKTOREGISTER','Klikněte zde pro zadání vaší kapacity');
 
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Active subscriptions");
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Aktivní předplatné");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"Gateway subscription id");
+define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"id brány předplatného");
 
 /**
 * @ignore
 */
-define('_JRPORTAL_NEWUSER_SUBJECT',"Thank you for your booking - new user details follow");
+define('_JRPORTAL_NEWUSER_SUBJECT',"Děkujeme za rezervaci. Níže jsou uvedeny údaje nového uživatele");
 /**
 * @ignore
 */
-define('_JOMRES_LATLONG_DESC',"Jomres will pass your address to Google to generate the map position in the property details. If for whatever reason Google cannot find your address based on the information found above, you can ienter latitude and longitude in the lat/long fields instead. If you choose to enter the latitude and longitude, please note that I have found the Google earth lat and long information to be inaccurate so you are advised instead to visit <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">the itouchmap site</a> and use their information to determine your latitude and longitude. When entering your lat and long, the format should be something like '51.754564622' and '-4.997314810'.");
+define('_JOMRES_LATLONG_DESC',"Jomres předá vaši adresu do aplikace Google a nechá automaticky vygenerovat pozici na mapě. Ta se pak zobrazí v detailu kapacity. Pokud z jakéhokoliv důvodu nebude vaše adresa automaticky nalezena, můžete ji zadat sami do pole lat (šířka) a long (délka). Pokud budete informace zadávat ručně, data z aplikace Google Earth mohou být nepřesná. Doporučujeme spíše navštívit adresu <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">itouchmap</a> a použít jejich údaje.");
 
 /**
 * @ignore
 */
-define('_JOMRES_CONTROLPANEL','Control Panel');
+define('_JOMRES_CONTROLPANEL','Ovládací panel');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_FAUXHEADERS','Output Jomres javascript headers into the body of the html?');
+define('_JOMRES_COM_FAUXHEADERS','Vložit Jomres javascript do těla html místo do hlavičky?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_FAUXHEADERS_DESC','Set this to Yes if you are having problems with mootools and Jomres\'s jQuery conflicting in IE. This will force Jomres to output the javascript calls within the body of the page instead of the HEAD area, which isn\'t valid html, however it seems to resolve the probems with jquery and mootools conflicting with each other.');
+define('_JOMRES_COM_FAUXHEADERS_DESC','Nastavte na ANO, pokud dochází k problémům s MSIE a Javascriptem, umístěným v hlavičce stránky. Tato volba umístí Javascript až za tag body.');
 
 
 // Jomres v4.2
@@ -6533,174 +6530,93 @@ define('_JOMRES_COM_FAUXHEADERS_DESC','Set this to Yes if you are having problem
 /**
 * @ignore
 */
-define('_JOMRES_MANAGER_SHOWINVOICE','Show invoice');
+define('_JOMRES_MANAGER_SHOWINVOICE','Zobrazit fakturu');
 /**
 * @ignore
 */
-define('_JOMRES_MANAGER_SHOWINVOICES','Show invoices');
+define('_JOMRES_MANAGER_SHOWINVOICES','Zobrazit faktury');
 /**
 * @ignore
 */
-define('_JOMRES_USER_LISTMYPROPERTY','Add my property to this site');
+define('_JOMRES_USER_LISTMYPROPERTY','Vložit moji kapacitu na tuto stránku');
 /**
 * @ignore
 */
-define('_JOMRES_WARNINGS_DANGERWILLROBINSON','Warning : ');
+define('_JOMRES_WARNINGS_DANGERWILLROBINSON','Varování : ');
 
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_FREEBIENOTES',"You can have one free package on the system if you wish, by creating a package and setting both the trial amount and the full amount to 0.00");
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_FREEBIENOTES',"Můžete vytvořit i tzv. balíček zdarma a to tak, že po jeho vytvoření nastavíte jak zkušební částku, tak plnou částku na hodnotu 0.00");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID',"Sorry, but that package ID is not recognised.");
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID',"Omlouvám se, ale ID balíčku nebylo rozpoznáno.");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE',"Sorry, you are already subscribed to a free package, you cannot subscribe to that package again.");
+define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE',"Omlouvám se, ale už jste jednou použil balíček zdarma a nemůžete jej použít znovu.");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL'," Status <b>0:</b> Pending payment <b>1:</b> Created <b>2:</b> Cancelled <b>3:</b> End of Term");
+define('_JRPORTAL_SUBSCRIPTIONS_STATUS_EXPL'," Status <b>0:</b> Očekávaná platba <b>1:</b> Vytvořeno <b>2:</b> Zrušeno <b>3:</b> Termín ukončení");
 /**
 * @ignore
 */
-define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"My Account");
+define('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',"Můj účet");
 /**
 * @ignore
 */
-define('_JOMRES_COM_YOURBUSINESS','Your business details');
+define('_JOMRES_COM_YOURBUSINESS','Vaše obchodní údaje');
 /**
 * @ignore
 */
-define('_JOMRES_COM_YOURBUSINESS_NAME','business name');
+define('_JOMRES_COM_YOURBUSINESS_NAME','Obchodní jméno');
 /**
 * @ignore
 */
-define('_JOMRES_COM_YOURBUSINESS_VATNO','VAT number');
+define('_JOMRES_COM_YOURBUSINESS_VATNO','DIČ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_YOURBUSINESSADDRESS','Building number');
+define('_JOMRES_COM_YOURBUSINESSADDRESS','Číslo popisné');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_TAX_WARNING2','<font color=red>NOTE: The following tax rates are designed for use by the American market. If you want to use a flat rate tax (eg VAT) for your accommodation, please choose a tax rate from the option above.</FONT>');
+define('_JOMRES_COM_A_TAX_WARNING2','<font color=red>POZNÁMKA: Následující sazba daně je pro použití v USA. Pokud chcte používat režim evropské DPH, vyberte sazbu z nabídky nahoře</FONT>');
 /**
 * @ignore
 */
-define('_JOMRES_INVOICE_NUMBER','Invoice No. ');
+define('_JOMRES_INVOICE_NUMBER','Číslo faktury ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP','Select the dates that you want to apply the black booking for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
-<br/> 
-If the property has one or more bookings for the period selected, then you will not be able to book it out until the other bookings/black bookings, have been cancelled/booked out.');
+define('_JOMRES_FRONT_BLACKBOOKING_DESC_SRP','Vyberte data, která chcete použít pro anonymní rezervaci. Poté, co jste vyberete vhodná data, klikněte na tlačítko "Použít" a znovu proveďte kontrolu dostupnosti. <br/>
+<br/>Pokud v kapacitě je jedna nebo více rezervací za vybrané období, pak nebudete moci objednat až do té chvíle, kdy bude druhá rezervace / anonymní rezervace zrušena nebo odhlášena. ');
 
-define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK','Sorry, you cannot black book this property for those dates.');
+define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANNOTBLACKBOOK','Bohužel, na tento termín nelze provést nanonymní rezervaci.');
 
-define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK','You can blackbook this property for those dates.');
+define('_JOMRES_FRONT_BLACKBOOKING_SRP_CANBLACKBOOK','Na tento termín lze provést anonymní rezervaci.');
 /**
 * @ignore
 */
-define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Your property is configured to charge per person per night but you do not have any guest types created or published, please create and publish one or more guest types. ');
-
-/**
-* @ignore
-*/
-define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS','You don\'t have any tariffs configured yet, you will not be able take any bookings for your property.');
+define('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES','Platba za tuto kapacitu je nastavena na osobu a noc, ale nemáte vytvořený nebo zveřejněný žádný typ hosta. Prosím vytvořte, případně zveřejněte alespoň jeden typ hosta pro tuto kapacitu. ');
 
 /**
 * @ignore
 */
-define('_JOMRES_EDITINGMODE_ON','Editing mode on');
-/**
-* @ignore
-*/
-define('_JOMRES_EDITINGMODE_OFF','Editing mode off');
+define('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS','Zatím nemáte žádnou pložku v ceníku, nebude možné pro tuto kapacitu přijímat rezervace.');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE','Charge variable deposits?');
+define('_JOMRES_EDITINGMODE_ON','Režim úprav zapnutý');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC','Variable deposits allow you to define if you\'d like to charge the full amount if the booking\'s arrival date is within N days from "today". Set this option to Yes to enable the feature, and enter the number of days below, so for example if the arrival day is within 60 days, then the deposit amount charged will be the full amount, otherwise the amount will be based on the deposit options configured above.');
-/**
-* @ignore
-*/
-define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS','The number of days, within which the full amount will be charged as a deposit.');
-/**
-* @ignore
-*/
-define('_JOMRES_CONTACTOWNER_TO_ADMIN','Send Contact Owner emails to Alternative address?');
-/**
-* @ignore
-*/
-define('_JOMRES_CONTACTOWNER_TO_ADMIN_DESC','Set this option to Yes if you want Contact Owner emails to be sent to the below input. Leave it set to No to send the emails to the email address defined in the property configuration area.');
-/**
-* @ignore
-*/
-define('_JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE','Alternative address for Contact Owner emails.');
-/**
-* @ignore
-*/
-define('_JOMRES_CONFIRMATION_EMAIL_SENT','Confirmation email has been sent. You may close this window now.');
-/**
-* @ignore
-*/
-define('_JOMRES_REALESTATE_TITLE','Real estate listing');
+define('_JOMRES_EDITINGMODE_OFF','Režim úprav vypnutý');
 
 /**
 * @ignore
 */
-define('_JOMRES_REALESTATE_YESNO','Is this property a Real estate listing?');
-/**
-* @ignore
-*/
-define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the property, select No if it is a hotel/b&b/guest house/villa type property where you will be offering the property or rooms in the property for short term rental and will be using this system for taking bookings.');
-/**
-* @ignore
-*/
-define('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT','Contact agent');
-/**
-* @ignore
-*/
-define('_JOMRES_INVOICE_MARKASPAID','Mark invoice as paid');
-/**
-* @ignore
-*/
-define('_JOMRES_INVOICE_MARKEDASPAID','Invoice marked as paid');
-/**
-* @ignore
-*/
-define('_JOMRES_APIKEY_REMAKE','Make new API key');
-
-/**
-* @ignore
-*/
-define('_JOMRES_AUTOTRANSLATE_TITLE','Use Google for initial translations?');
-/**
-* @ignore
-*/
-define('_JOMRES_AUTOTRANSLATE_DESC','This feature is new and experimental, so use at your own risk. The purpose of the feature is to query Google\'s translation tool to automatically set up translations for a given property. Note that this feature sanitizes all input, so if you use a html editor for formatting your property details, then this will break that formatting.<br/>');
-
-/**
-* @ignore
-*/
-define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE','Is this a single property installation?');
-/**
-* @ignore
-*/
-define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC','If this option is set to Yes, then the frontend view of Jomres to non-authorised users is greatly simplified. Default calls to Jomres from a menu option, instead of being given a list of propertys, just takes the guest to the booking form for the first property in the system. Property managers also will not see see the Property Details preview button or the Add new property button. Ideal if you only want to list one property and take bookings for it.<br/>');
-/**
-* @ignore
-*/
-define('_JOMRES_HTMP_PURIFIER','Use HTML purifier functionality?');
-/**
-* @ignore
-*/
-define('_JOMRES_HTMP_PURIFIER_DESC','Switch this on to enable Jomres to use the html purifier library (http://htmlpurifier.org/). The library is used as an extra layer of security when dealing with input and output data and it is recommended that you leave it enabled, however it will use more memory.');
-
+define('_JOMRES_COM_INVOICE_PRINT','Vytiskni fakturu');
