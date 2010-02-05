@@ -92,8 +92,7 @@ function showSiteConfig(  )
 	$lists['isInIframe']				= jomresHTML::selectList( $yesno, 'cfg_isInIframe','class="inputbox" size="1"', 'value', 'text', $jrConfig['isInIframe']);
 	$lists['allowHTMLeditor']			= jomresHTML::selectList( $editoryesno, 'cfg_allowHTMLeditor','class="inputbox" size="1"', 'value', 'text', $jrConfig['allowHTMLeditor']);
 	$lists['dumpTemplate'] 				= jomresHTML::selectList( $yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['dumpTemplate'] );
-	if (substr($version,"Mambo") )
-		$lists['useSSLinBookingform']	= jomresHTML::selectList( $yesno, 'cfg_useSSLinBookingform', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useSSLinBookingform'] );
+	$lists['useSSLinBookingform']	= jomresHTML::selectList( $yesno, 'cfg_useSSLinBookingform', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useSSLinBookingform'] );
 	$lists['emailErrors'] 				= jomresHTML::selectList( $yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['emailErrors'] );
 	$lists['minimalconfiguration'] 		= jomresHTML::selectList( $yesno, 'cfg_minimalconfiguration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['minimalconfiguration'] );
 	$lists['useJomresEmailCheck'] 		= jomresHTML::selectList( $yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useJomresEmailCheck'] );
