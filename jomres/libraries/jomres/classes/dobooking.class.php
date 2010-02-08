@@ -689,14 +689,13 @@ class dobooking
 	 */
 	function setErrorLog($errorText)
 		{
-		$this->error.=$errorText." <br/> ";
-		//$this->writeToLogfile($errorText);
+		if (LOGGINGBOOKING)
+			$this->error.=$errorText." <br/> ";
 		}
 
 	function setErrorLogFirst($title)
 		{
 		$this->error="<b>".$title."</b><br/>".$this->error;
-		//$this->writeToLogfile($errorText);
 		}
 
 	/**
