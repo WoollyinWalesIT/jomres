@@ -115,7 +115,7 @@ class j03100hotelconfirmationemail {
 			{
 			$useremail=stripslashes($email->email);
 			}
-		$subject=_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE.stripslashes($propertyName);
+		$subject=_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE.stripslashes($propertyName)." ".$cartnumber;
 
 		$output=array();
 		if (strlen($specialReqs)>0)
