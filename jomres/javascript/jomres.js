@@ -1,5 +1,5 @@
 
-if ('undefined'==typeof(jQuery)){
+if ('undefined'!=typeof(jQuery)){
 jQuery.noConflict();
 }
 
