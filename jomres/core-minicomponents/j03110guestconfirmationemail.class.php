@@ -146,7 +146,7 @@ class j03110guestconfirmationemail {
 			$extrastext[]	=	$extra_text;
 			}
 		
-		$subject=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS',_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS,FALSE,FALSE)." ".stripslashes($propertyName);
+		$subject=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS',_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS,FALSE,FALSE)." ".stripslashes($propertyName)." ".$cartnumber;
 		
 
 		//$fileLocation=checkForImage('property',$property_uid);
