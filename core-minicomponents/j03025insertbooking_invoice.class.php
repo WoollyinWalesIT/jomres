@@ -221,6 +221,8 @@ class j03025insertbooking_invoice {
 			$invoice_handler->mark_invoice_pending();
 		else
 			$invoice_handler->mark_invoice_paid();
+		$query = "UPDATE #__jomres_contracts SET invoice_uid = ".$invoice_handler->id." WHERE contract_uid = ".$contract_uid;
+		doInsertSql($query,"");
 		$this->results=array("invoice_id"=>$invoice_handler->id);
 		}
 
