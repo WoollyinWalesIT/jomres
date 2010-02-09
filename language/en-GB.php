@@ -1969,7 +1969,7 @@ define('_JOMRES_COM_MR_ROOMFEATURE_DELETE','Delete room feature');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE','Unable to remove this room feature, it is assigned to some rooms. Remove the feature from those rooms and retry.');
+define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE','Unable to remove this room feature, it is assigned to a room or rooms. Remove the feature from those rooms and retry.');
 /**
 * @ignore
 */
