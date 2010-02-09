@@ -57,13 +57,13 @@ if ($folderChecksPassed)
 			JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres.php to ".
 			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."jomres.php 
 			automatically, please do this manually through FTP</h1><br/>";
-	/*
+
 	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."router.php",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."router.php"))
 		echo "<h1>Error, unable to copy ".
 			_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."router.php to ".
 			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."router.php 
 			automatically, please do this manually through FTP</h1><br/>";
-	*/
+
 	}
 	
 	$query="SELECT name FROM #__components WHERE `name` = 'Jomres' AND `link` = 'option=com_jomres'";
