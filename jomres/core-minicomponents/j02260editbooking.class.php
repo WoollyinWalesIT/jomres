@@ -580,10 +580,23 @@ class j02260editbooking {
 				<td>'.jr_gettext('_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL',_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL).'</td>
 				<td>'.output_price($otherServiceTotal+$booking_contract_total).'</td>
 			</tr>');
-			if ($booking_deposit_paid=="1")
-				$remaindertopay=($otherServiceTotal+$booking_contract_total)-$booking_deposit_required;
+			$query = "SELECT invoice_uid FROM #__jomres_contracts WHERE contract_uid = ".$booking_contract_uid. " LIMIT 1 ";
+			$invoice_uid = doSelectSql($query,1);
+			if ($invoice_uid > 0 )
+				{
+				jr_import("jrportal_invoice");
+				$invoice = new jrportal_invoice();
+				$invoice->id = $invoice_uid;
+				$remaindertopay=$invoice->get_invoice_balance();
+				}
 			else
-				$remaindertopay=$otherServiceTotal+$booking_contract_total;
+				{
+				if ($booking_deposit_paid=="1")
+					$remaindertopay=($otherServiceTotal+$booking_contract_total)-$booking_deposit_required;
+				else
+					$remaindertopay=$otherServiceTotal+$booking_contract_total;
+				}
+
 			$contentPanel->setcontent('
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY',_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY).'</td>
