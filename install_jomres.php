@@ -233,7 +233,8 @@ function doTableUpdates()
 		
 	if (!checkPfeaturesPtypeidColExists() )
 		alterPfeaturesPtypeidCol();
-		
+	if (!checkContractsInvoiceColExists() )
+		alterContractsInvoice();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
@@ -241,6 +242,25 @@ function doTableUpdates()
 function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
 	{
 	require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
+	}
+	
+function alterContractsInvoice()
+	{
+	echo "Editing __jomres_contracts table adding invoice_uid column<br>";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `invoice_uid` INT( 11 ) DEFAULT '0' NOT NULL AFTER `bookedout_timestamp` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_contracts invoice_uid</b><br>";
+	}
+
+function checkContractsInvoiceColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_contracts LIKE 'invoice_uid'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
 	}
 	
 function alterPfeaturesPtypeidCol()
@@ -1381,6 +1401,7 @@ function createJomresTables()
 		`coupon_id` INTEGER NULL,
 		`bookedout` BOOL NOT NULL DEFAULT '0',
 		`bookedout_timestamp` DATETIME NOT NULL,
+		`invoice_uid` int(11),
 		PRIMARY KEY(`contract_uid`)
 		) ";
 	$result=doInsertSql($query,"");

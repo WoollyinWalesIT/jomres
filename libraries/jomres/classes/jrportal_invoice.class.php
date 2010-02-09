@@ -162,14 +162,31 @@ class jrportal_invoice
 				`contract_id` 		= '$this->contract_id',
 				`property_uid` 		= '$this->property_uid'
 				WHERE `id`='$this->id'";
-				//echo $query;
-			
 			return doInsertSql($query,"");
 			}
 		error_logging( "ID of Invoice not available");
 		return false;
 		}
 
+	function get_invoice_balance()
+		{
+		if ($this->id > 0 )
+			{
+			$bal = 0.0;
+			$query = "SELECT * FROM #__jomresportal_lineitems WHERE inv_id = ".(int)$this->id;
+			$result=doSelectSql($query);
+			if (count($result)>0)
+				{
+				foreach ($result as $r)
+					{
+					$bal = $bal+(float)$r->init_total;
+					}
+				}
+			return $bal;
+			}
+		else
+			return false;
+		}
 	}
 
 ?>
