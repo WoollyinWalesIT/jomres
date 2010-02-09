@@ -84,6 +84,17 @@ class j02162savecancellation {
 			$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$saveMessage."','".date( 'Y-m-d H:i:s' )."','".(int)$defaultProperty."')";
 			doInsertSql($query,"");
 			
+			$query = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = ".(int)$contract_uid." LIMIT 1";
+			$invoice_uid =doSelectSql($query,1);
+			if ($invoice_uid > 0)
+				{
+				jr_import("invoicehandler");
+				$invoice = new invoicehandler();
+				$invoice->id = $invoice_uid;
+				$invoice->getInvoice();
+				$invoice->mark_invoice_cancelled();
+				}
+			
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), $saveMessage );
 			}
 		else
