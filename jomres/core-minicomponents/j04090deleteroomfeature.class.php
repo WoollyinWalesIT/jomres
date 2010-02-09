@@ -54,7 +54,8 @@ class j04090deleteroomfeature {
 			}
 		if (!$safeToDelete)
 			{
-			trigger_error (_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE, E_USER_ERROR);
+			echo _JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE;
+			return;
 			}
 		else
 			{
