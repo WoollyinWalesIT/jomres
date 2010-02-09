@@ -16,7 +16,6 @@ function JomresBuildRoute(&$query)
 	global $thisJRUser;
 	require_once('jomres/integration.php');
 	$jrConfig					=	getSiteSettings();
-	
 	$segments = array();
 	
 	$menu		=& JSite::getMenu();
@@ -38,7 +37,6 @@ function JomresBuildRoute(&$query)
 		$sql = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = ".(int)$pid." LIMIT 1";
 		$property_name = doSelectSql($sql,1);
 		}
-	
 	switch($query['task'])
 		{
 		case 'viewproperty':
@@ -85,7 +83,6 @@ function JomresBuildRoute(&$query)
 			$segments[] = "";
 			break;
 		}
-		
 	if (isset($query['calledByModule'] ))
 		{
 		$segments[] = $jrConfig['sef_task_alias_search'];
