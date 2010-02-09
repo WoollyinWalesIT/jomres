@@ -69,8 +69,8 @@ class j06005list_subscription_packages
 			$r['PUBLISHED']		=$package['published'];
 			$r['FREQUENCY']		=$package['frequency'];
 			$r['TRIALPERIOD']	=$package['trial_period'];
-			$r['TRIALAMOUNT']	=$package['trial_amount'];
-			$r['FULLAMOUNT']	=$package['full_amount'];
+			$r['TRIALAMOUNT']	=output_price($package['trial_amount'],$jrConfig['globalCurrencyCode']);
+			$r['FULLAMOUNT']	=output_price($package['full_amount'],$jrConfig['globalCurrencyCode']);
 			$r['ROOMSLIMIT']	=$package['rooms_limit'];
 			$r['PROPERTYLIMIT']	=$package['property_limit'];
 			$r['SUBSCRIBE']		='<a href="'.JOMRES_SITEPAGE_URL.'&task=subscribe&id='.$package['id'].'">'._JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE.'</a>';

@@ -16,16 +16,20 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 
 class currency_codes
 	{
-	function currency_codes($code="")
+	function currency_codes($code="",$global=false)
 		{
 		$this->code='';
 		if ($code != "")
 			$this->code = trim($code);
 			
+		if (!$global)
+			$this->input_name = 'cfg_property_currencycode';
+		else
+			$this->input_name = 'cfg_globalCurrencyCode';
+			
 		$this->codes=array(
 			'AFA'=>'AFA Afghanistan Afghani',
 			'ALL'=>'ALL Albanian Lek',
-			'DZD'=>'DZD Algerian Dinar',
 			'AON'=>'AON Angolan New Kwanza',
 			'ANG'=>'ANG (Netherlands) Antillian Guilder',
 			'AED'=>'AED (United) Arab Emirates Dirham',
@@ -37,23 +41,19 @@ class currency_codes
 			'BDT'=>'BDT Bangladeshi Taka',
 			'BBD'=>'BBD Barbados Dollar',
 			'BZD'=>'BZD Belize Dollar',
-			'XOF'=>'XOF Benin: CFA Franc BCEAO',
 			'BMD'=>'BMD Bermudian Dollar',
 			'BTN'=>'BTN Bhutan Ngultrum',
 			'BOB'=>'BOB Bolivian Boliviano',
 			'BWP'=>'BWP Botswana Pula',
 			'BRL'=>'BRL Brazilian Real',
-			'GBP'=>'GBP British Pound',
 			'BND'=>'BND Brunei Dollar',
 			'BGL'=>'BGL Bulgarian Lev',
 			'BIF'=>'BIF Burundi Franc',
-			'XOF'=>'XOF CFA Franc BCEAO',
-			'XAF'=>'XAF CFA Franc BEAC',
 			'KHR'=>'KHR Kampuchean (Cambodian) Riel',
 			'CAD'=>'CAD Canadian Dollar',
 			'CVE'=>'CVE Cape Verde Escudo ',
 			'KYD'=>'KYD Cayman Islands Dollar',
-			'XAF'=>'XAF CFA Franc BEAC',
+			'CHF'=>'CHF Swiss Franc',
 			'CLP'=>'CLP Chilean Peso',
 			'CNY'=>'CNY Chinese Yuan Renminbi',
 			'COP'=>'COP Colombian Peso',
@@ -66,6 +66,7 @@ class currency_codes
 			'DKK'=>'DKK Danish Krone',
 			'DJF'=>'DJF Djibouti Franc',
 			'DOP'=>'DOP Dominican Peso',
+			'DZD'=>'DZD Algerian Dinar',
 			'EUR'=>'EUR Euro',
 			'EGP'=>'EGP Egyption Pound',
 			'SVC'=>'SVC El Salvador Colon',
@@ -73,6 +74,7 @@ class currency_codes
 			'ETB'=>'ETB Ethiopian Birr',
 			'FKP'=>'FKP Falkland Islands Pound',
 			'FJD'=>'FJD Fiji Dollar',
+			'GBP'=>'GBP British Pound',
 			'GMD'=>'GMD Gambian Dalasi',
 			'GHC'=>'GHC Ghanaian Cedi',
 			'GIP'=>'GIP Gibraltar Pound',
@@ -97,12 +99,13 @@ class currency_codes
 			'KRW'=>'KRW Korean Won',
 			'KWD'=>'KWD Kuwaiti Dinar',
 			'LAK'=>'LAK Lao Kip',
-			'LVL'=>'LVL Latvian Lats',
 			'LBP'=>'LBP Lebanese Pound',
-			'LSL'=>'LSL Lesotho Loti ',
+			'LKR'=>'LKR Sri Lanka Rupee',
 			'LRD'=>'LRD Liberian Dollar',
-			'LYD'=>'LYD Libyan Dinar ',
+			'LSL'=>'LSL Lesotho Loti ',
 			'LTL'=>'LTL Lithuanian Litas',
+			'LYD'=>'LYD Libyan Dinar ',
+			'LVL'=>'LVL Latvian Lats',
 			'MOP'=>'MOP Macau Pataca',
 			'MGA'=>'MGA Malagasy Franc ',
 			'MWK'=>'MWK Malawi Kwacha',
@@ -134,7 +137,6 @@ class currency_codes
 			'QAR'=>'QAR Qatari Rial',
 			'ROL'=>'ROL Romanian Leu',
 			'RUB'=>'RUB Russian Rouble',
-			'WST'=>'WST Samoan Tala',
 			'STD'=>'STD Sao Tome and Principe Dobra',
 			'SAR'=>'SAR Saudi Riyal',
 			'SCR'=>'SCR Seychelles Rupee',
@@ -143,12 +145,10 @@ class currency_codes
 			'SBD'=>'SBD Solomon Islands Dollar ',
 			'SOS'=>'SOS Somali Schilling',
 			'ZAR'=>'ZAR South African Rand',
-			'LKR'=>'LKR Sri Lanka Rupee',
 			'SHP'=>'SHP St. Helena Pound',
 			'SDP'=>'SDP Sudanese Pound',
 			'SZL'=>'SZL Swaziland Lilangeni',
 			'SEK'=>'SEK Swedish Krona',
-			'CHF'=>'CHF Swiss Franc',
 			'SYP'=>'SYP Syrian Pound',
 			'TWD'=>'TWD Taiwan Dollar',
 			'THB'=>'THB Thai Baht',
@@ -160,10 +160,14 @@ class currency_codes
 			'UGS'=>'UGS Uganda Schilling',
 			'UAG'=>'UAG Ukraine Hryvnia ',
 			'UYP'=>'UYP Uruguayan Peso',
-			'AED'=>'AED United Arab Emirates Dirham',
 			'VUV'=>'VUV Vanuatu Vatu',
 			'VEB'=>'VEB Venezuelan Bolivar',
 			'VND'=>'VND Vietnamese Dong',
+			'WST'=>'WST Samoan Tala',
+			'XOF'=>'XOF Benin: CFA Franc BCEAO',
+			'XOF'=>'XOF CFA Franc BCEAO',
+			'XAF'=>'XAF CFA Franc BEAC',
+			'XAF'=>'XAF CFA Franc BEAC',
 			'ZMK'=>'ZMK Zambian Kwacha',
 			'ZWD'=>'ZWD Zimbabwe Dollar'
 			);
@@ -315,11 +319,12 @@ class currency_codes
 	function makeCodesDropdown()
 		{
 		$options = array();
+		ksort  ($this->codes);
 		foreach ($this->codes as $k=>$v)
 			{
 			$options[] = jomresHTML::makeOption( $k, $v );
 			}
-		return jomresHTML::selectList( $options, 'cfg_property_currencycode','class="inputbox" size="1"', 'value', 'text', $this->code);
+		return jomresHTML::selectList( $options, $this->input_name,'class="inputbox" size="1"', 'value', 'text', $this->code);
 		}
 	
 	function getCode($code="")
