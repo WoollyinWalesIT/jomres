@@ -36,7 +36,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown)
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -96,13 +96,8 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCY.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_globalCurrency" value="'.$jrConfig['globalCurrency'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CURRENCYCODE.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_globalCurrencyCode" value="'.$jrConfig['globalCurrencyCode'].'" /></td>
+			<td class="jradmin_subheader_la" valign="top">'.$currency_codes_dropdown.'</td>
 			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
 		</tr>
 		<tr align="center" valign="middle">

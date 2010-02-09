@@ -122,6 +122,10 @@ function showSiteConfig(  )
 	$geosearchList[] = jomresHTML::makeOption( 'region', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
 	$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_geosearchtype']);
 
+	jr_import("currency_codes");
+	$c_codes = new currency_codes($jrConfig['globalCurrencyCode'],true);
+	$currency_codes_dropdown = $c_codes->makeCodesDropdown();
+	
 	$lists['integratedSearch_enable']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_enable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_enable'] );
 	$lists['integratedSearch_useCols']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_useCols', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_useCols'] );
 	$lists['integratedSearch_selectcombo']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_selectcombo', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_selectcombo'] );
@@ -152,7 +156,7 @@ function showSiteConfig(  )
 	$lists['use_html_purifier']						= jomresHTML::selectList( $yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_html_purifier'] );
 
 		
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown);
 	}
 
 /**
