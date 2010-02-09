@@ -59,6 +59,7 @@ class j06001mark_booking_invoice_paid {
 		$invoice_handler->getInvoice();
 
 		$invoice_handler->mark_invoice_paid();
+
 		addBookingNote($invoice_handler->contract_id,$property_uid,jr_gettext('_JOMRES_INVOICE_MARKEDASPAID',_JOMRES_INVOICE_MARKEDASPAID,false,false));
 		jomresRedirect(JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$id,"");
 		}

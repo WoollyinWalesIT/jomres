@@ -6794,3 +6794,12 @@ define('_JOMRES_HTMP_PURIFIER','Use HTML purifier functionality?');
 */
 define('_JOMRES_HTMP_PURIFIER_DESC','Switch this on to enable Jomres to use the html purifier library (http://htmlpurifier.org/). The library is used as an extra layer of security when dealing with input and output data and it is recommended that you leave it enabled, however it will use more memory.');
 
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Balance payment');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Balance');
+

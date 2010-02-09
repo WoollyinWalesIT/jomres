@@ -22,9 +22,7 @@ jr_import('jrportal_invoice');
 
 class invoicehandler extends jrportal_invoice
 	{
-	
-	
-	
+
 	function create_new_invoice($invoice_data, $line_items=array() )
 		{
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
@@ -260,7 +258,23 @@ class invoicehandler extends jrportal_invoice
 		{
 		$this->status=1;
 		$this->paid=date( 'Y-m-d H:i:s' );
+		$balance = $this->get_line_items_balance();
+		$line_items= array();
+		$line_item_data = array (
+			'tax_code_id'=>0,
+			'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT',_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT,false,false),
+			'description'=>'',
+			'init_price'=>"-".number_format($balance,2, '.', ''),
+			'init_qty'=>"1",
+			'init_discount'=>"0",
+			'recur_price'=>"0.00",
+			'recur_qty'=>"0",
+			'recur_discount'=>"0.00"
+			);
+		$this->add_line_item($line_item_data);
+		
 		$this->commitUpdateInvoice();
+		
 		}
 		
 	function mark_invoice_pending()
@@ -273,6 +287,20 @@ class invoicehandler extends jrportal_invoice
 		{
 		$this->status=2;
 		$this->commitUpdateInvoice();
+		}
+		
+	function get_line_items_balance()
+		{
+		$query = "SELECT * FROM #__jomresportal_lineitems WHERE inv_id = ".(int)$this->id;
+		$result=doSelectSql($query);
+		if (count($result)==0)
+			return false;
+		$bal = 0.0;
+		foreach ($result as $r)
+			{
+			$bal = $bal+(float)$r->init_total;
+			}
+		return $bal;
 		}
 	}
 
