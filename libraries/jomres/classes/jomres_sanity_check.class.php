@@ -31,6 +31,9 @@ class jomres_sanity_check
 		$this->warnings .= $this->checks_guest_types_pppn();
 		if ($this->mrConfig['is_real_estate_listing']==0)
 			$this->warnings .= $this->checks_tariffs_exist();
+		
+		$this->warnings .=$this-> check_editing_mode();
+			
 		return $this->warnings;
 		}
 		
@@ -48,10 +51,7 @@ class jomres_sanity_check
 		
 	function checks_guest_types_pppn()
 		{
-
 		$ignore_on_tasks = array ('listCustomerTypes','editCustomerType','saveCustomerType','deleteCustomerType','saveCustomerTypeOrder');
-		
-		
 		if (!in_array(get_showtime('task'),$ignore_on_tasks) )
 			{
 			$query="SELECT `id` FROM `#__jomres_customertypes` where property_uid = ".(int)$this->property_uid." AND published = 1";
@@ -81,6 +81,19 @@ class jomres_sanity_check
 		return "";
 		}
 		
+	function check_editing_mode()
+		{
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$thisJRUser=jomres_getSingleton('jr_user');
+		
+		if ($this->jrConfig['editingModeAffectsAllProperties'] == "1" &&  $tmpBookingHandler->user_settings['editing_on'] == true && $thisJRUser->superPropertyManager)
+			{
+			$message = _JOMRES_WARNINGS_GLOBALEDITINGMODE;
+			return $this->construct_warning($message);
+			
+			
+			}
+		}
 	}
 
 ?>
