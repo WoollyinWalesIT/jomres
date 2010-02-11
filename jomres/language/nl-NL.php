@@ -6790,3 +6790,16 @@ define('_JOMRES_HTMP_PURIFIER','Use HTML purifier functionality?');
 */
 define('_JOMRES_HTMP_PURIFIER_DESC','Switch this on to enable Jomres to use the html purifier library (http://htmlpurifier.org/). The library is used as an extra layer of security when dealing with input and output data and it is recommended that you leave it enabled, however it will use more memory.');
 
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Balance payment');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Balance');
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Note, you are using Editing Mode with the Global Editing mode enabled. This is fine if you understand what Global Editing mode means, however if you don\'t you may cause yourself problems. If you are unsure if you should be using Jomres in this way, please see <a href="http://manual.jomres.net/Editing_mode" target="_blank">the editing mode manual page</a> for more information on this subject.');
+
