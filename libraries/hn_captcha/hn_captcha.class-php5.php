@@ -424,7 +424,16 @@ class hn_captcha
         {
             // Switch on/off Debugging
             $this->debug = ($debug===TRUE || $debug===FALSE) ? $debug : FALSE;
-
+		
+			// Vince added check for ImageTTFText
+			// Strangely enough the ImageTTFText function check further down doesn't seem to find the problem, so we'll add it here instead.
+			if (!function_exists('ImageTTFText'))
+				{
+				echo "Oops, the ImageTTFText function doesn't exist, possibly PHP wasn't built with Freetype support. This isn't going to end well.";
+				die();
+				}
+			// finish Vince added
+			
             // Test for GD-Library(-Version)
             $this->gd_version = $this->get_gd_version(TRUE);
             if($this->gd_version === 0) die("There is no GD-Library-Support enabled. The Captcha-Class cannot be used!");
