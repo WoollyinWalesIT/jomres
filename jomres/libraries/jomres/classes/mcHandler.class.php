@@ -35,6 +35,7 @@ class mcHandler {
 		$jrConfig=$siteConfig->get();
 
 		$this->miniComponentData=array();
+		$this->miniComponentDirectories=array();
 		$this->template_touch=false;
 		$this->log = array();
 		$this->logging_enbled = false;
@@ -56,12 +57,13 @@ class mcHandler {
 		jr_import('minicomponent_registry');
 		$registry = new minicomponent_registry();
 		$this->registeredClasses=$registry->get_registered_classes();
-		
+		$this->miniComponentDirectories=$registry->get_minicomponent_directories();
 		$startPath = $registry->registeredClasses["00001start"]["filepath"];
 		if (!file_exists($startPath."j00001start.class.php") )
 			{
 			$registry->regenerate_registry();
 			$this->registeredClasses=$registry->get_registered_classes();
+			$this->miniComponentDirectories=$registry->get_minicomponent_directories();
 			}
 		}
 

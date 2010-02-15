@@ -27,6 +27,7 @@ class minicomponent_registry
 		if (!strstr($scriptname,'install_jomres.php'))
 			{
 			$this->registeredClasses = array();
+			$this->miniComponentDirectories=array();
 			$this->eventPoints = array();
 			$this->new_filesize = 0;
 			$this->nonOverridableEventClasses=array();
@@ -46,6 +47,7 @@ class minicomponent_registry
 			$registry = new jomres_mc_registry();
 			$lastGenerated = $registry->mcRegistry_now;
 			$this->registeredClasses = unserialize($registry->mcRegistry_registry_serialized);
+			$this->miniComponentDirectories = unserialize($registry->miniComponentDirectories);
 			unset($registry);
 
 			$this->new_filesize=filesize($this->registry_file);
@@ -56,6 +58,12 @@ class minicomponent_registry
 		{
 		return $this->registeredClasses;
 		unset ($this->registeredClasses);
+		}
+		
+	function get_minicomponent_directories()
+		{
+		return $this->miniComponentDirectories;
+		unset ($this->miniComponentDirectories);
 		}
 		
 	function regenerate_registry()
@@ -93,6 +101,8 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 // ################################################################
 		";
 		$registered_classes = serialize($this->registeredClasses);
+		$this->miniComponentDirectories=array_unique($this->miniComponentDirectories);
+		$directories = serialize($this->miniComponentDirectories);
 		$class_structure_start = "
 class jomres_mc_registry
 	{
@@ -106,8 +116,9 @@ class jomres_mc_registry
 		$this->mcRegistry_now='.$this->now.';';
 		$registryVar='
 		$this->mcRegistry_registry_serialized=\''.$registered_classes.'\';';
-		
-		$fileText=$safety_string.$class_structure_start.$nowVar.$registryVar.$class_structure_end;
+		$directoryVar='
+		$this->miniComponentDirectories=\''.$directories.'\';';
+		$fileText=$safety_string.$class_structure_start.$nowVar.$registryVar.$directoryVar.$class_structure_end;
 		$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 		if (!strstr($scriptname,'install_jomres.php'))
 			{
@@ -247,6 +258,7 @@ class jomres_mc_registry
 						$this->error_detected = true;
 						error_logging("Minicomponent collision :: ".$text);
 						}
+					$this->miniComponentDirectories[] = $filePath;
 					$this->registeredClasses[$classfileEventPoint.$classfileEventName]=array('eventPoint'=>$classfileEventPoint, 'eventName'=>$classfileEventName,'filepath'=>$filePath,'eventtype'=>$eventType);
 					}
 				}
