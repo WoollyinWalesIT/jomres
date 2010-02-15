@@ -121,6 +121,13 @@ function get_plugin_settings($plugin,$prop_id=0)
 			
 function jr_import($class)
 	{
+	if (class_exists('j00001start'))  // Wont init properly if we call this any time sooner than when j00001start has been set up
+		{
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		$plugin_directories = $MiniComponents->miniComponentDirectories;
+		}
+	else
+		$plugin_directories = false;
 	if (!class_exists($class)) 
 		{
 		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.'custom_code'.JRDS.$class.".class.php") )
@@ -135,7 +142,23 @@ function jr_import($class)
 				}
 			else
 				{
-				trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+				if ($plugin_directories)
+					{
+					foreach ($plugin_directories as $directory)
+						{
+						if (file_exists($directory.$class.".class.php") )
+							$result = require($directory.$class.".class.php");
+						}
+					if (!class_exists($class)) // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed
+						{
+						echo "Error, class ".$class." doesn't exist.";
+						exit;
+						}
+					}
+				else
+					{
+					trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+					}
 				}
 			}
 		}
