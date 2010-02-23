@@ -30,6 +30,9 @@ class j01009filterproperties
 			{
 			$this->template_touchable=true; return;
 			}
+		$data_only=false;
+		if (isset($_REQUEST['dataonly']))
+			$data_only=true;
 		$propertys_uids=$componentArgs['propertys_uids'];
 		// get sroting value
 		$sortid = intval(jomresGetParam( $_COOKIE, 'jomsearch_sortby', 1));
@@ -90,11 +93,14 @@ class j01009filterproperties
 		$sortorder=array();
 		$sortorder[]=$order;
 
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'order.html' );
-		$tmpl->addRows( 'sort_order', $sortorder);
-		$tmpl->displayParsedTemplate();
+		if (!$data_only)
+			{
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->readTemplatesFromInput( 'order.html' );
+			$tmpl->addRows( 'sort_order', $sortorder);
+			$tmpl->displayParsedTemplate();
+			}
 		}
 
 	function touch_template_language()

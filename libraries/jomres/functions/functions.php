@@ -2134,6 +2134,8 @@ function JSCalConvertInputDates($inputDate,$siteCal=FALSE)
 */
 function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 	{
+	if (isset($_REQUEST['dataonly']))
+		return;
 	global $jomresSearchFormname;
 	if (isset($jomresSearchFormname) && !empty($jomresSearchFormname) )
 		$formname=$jomresSearchFormname;
