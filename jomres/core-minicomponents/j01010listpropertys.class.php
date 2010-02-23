@@ -34,6 +34,9 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
+		$data_only=false;
+		if (isset($_REQUEST['dataonly']))
+			$data_only=true;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -263,6 +266,7 @@ class j01010listpropertys {
 								
 							}
 						}
+
 					$property_deets['ROOMTYPES']=$rtRows;
 
 					if (count($propertyFeaturesArray)>0)
@@ -390,10 +394,15 @@ class j01010listpropertys {
 					$property_deets['PROP_COUNTRY']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.urlencode($propertyContactArray[5])).'">'.stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5]))).'</a>';
 
 					$property_deets['LIVESITE']=get_showtime('live_site');
+					$property_deets['UID']=$property->propertys_uid;
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
+					$property_deets['MOREINFORMATIONLINK_SEFSAFE']=JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
 					$property_deets['PROPERTYTOWN']= $ptown;
+					$property_deets['PROPERTYREGION']= stripslashes($propertyContactArray[4]);
+					$property_deets['PROPERTYCOUNTRY']= stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5])));
+					
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
 
@@ -426,32 +435,64 @@ class j01010listpropertys {
 				$property_details[]=$property_deets;
 				}
 
-			$tmpl = new patTemplate();
-			$tmpl->addRows( 'property_details', $property_details );
-			$tmpl->addRows( 'nav_output_top', $nav_output);
-			$tmpl->addRows( 'nav_output_bottom', $nav_output);
-			$mcOutput=$MiniComponents->getAllEventPointsData('01010');
-			if (count($mcOutput)>0)
+			if (!$data_only)
 				{
-				foreach ($mcOutput as $key=>$val)
+				$tmpl = new patTemplate();
+				$tmpl->addRows( 'property_details', $property_details );
+				$tmpl->addRows( 'nav_output_top', $nav_output);
+				$tmpl->addRows( 'nav_output_bottom', $nav_output);
+				$mcOutput=$MiniComponents->getAllEventPointsData('01010');
+				if (count($mcOutput)>0)
 					{
-					$tmpl->addRows( 'customOutput_'.$key, array($val) );
+					foreach ($mcOutput as $key=>$val)
+						{
+						$tmpl->addRows( 'customOutput_'.$key, array($val) );
+						}
 					}
-				}
-			$componentArgs=array('tmpl'=>$tmpl);
-			if ($MiniComponents->eventFileExistsCheck('00232'))
-				{
-				$MiniComponents->triggerEvent('00232',$componentArgs); //
+				$componentArgs=array('tmpl'=>$tmpl);
+				if ($MiniComponents->eventFileExistsCheck('00232'))
+					{
+					$MiniComponents->triggerEvent('00232',$componentArgs); //
+					}
+				else
+					{
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'list_properties.html' );
+					$tmpl->displayParsedTemplate();
+					}
+
+				if ($jrConfig['dumpTemplate']=="1")
+					$tmpl->dump();
 				}
 			else
 				{
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'list_properties.html' );
-				$tmpl->displayParsedTemplate();
-				}
+				include (JOMRES_TEMPLATEPATH_FRONTEND.JRDS.'main.php');
+				$jomres_remote_xml = new SimpleXMLElement($xmlstr);
+				foreach ($property_details as $property)
+					{
+					$xml_property = $jomres_remote_xml->addChild('property', $property['UID']);
+					$xml_property->addChild('property_name', $property['PROP_NAME']);
+					$xml_property->addChild('booking_link', $property['BOOKTHIS_TEXT']);
+					$xml_property->addChild('prop_street', $property['PROP_STREET']);
+					$xml_property->addChild('prop_town', $property['PROPERTYTOWN']);
+					$xml_property->addChild('prop_postcode', $property['PROP_POSTCODE']);
+					$xml_property->addChild('prop_region', $property['PROPERTYREGION']);
+					$xml_property->addChild('prop_country', $property['PROPERTYCOUNTRY']);
+					$xml_property->addChild('moreinformation', $property['MOREINFORMATION']);
+					$xml_property->addChild('image', $property['IMAGE']);
+					$xml_property->addChild('property_type', $property['PROPERTY_TYPE'] );
+					$xml_property->addChild('description', $property['PROPERTYDESC'] );
+					$xml_property->addChild('stars', $property['STARS'] );
+					
+					$xml_property->addChild('livesite', urlencode  (get_showtime('live_site') ));
+					$xml_property->addChild('lowestprice', urlencode  ($property['LOWESTPRICE']) );
+					$xml_property->addChild('moreinformationlink',urlencode  ( $property['MOREINFORMATIONLINK_SEFSAFE']));
+					}
 
-			if ($jrConfig['dumpTemplate']=="1")
-				$tmpl->dump();
+				$xmlString = $jomres_remote_xml->asXML(); // returns the SimpleXML object as a serialized XML string
+				echo $xmlString;
+				exit;
+				}
 	    	}
 		else
 			echo jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS,$editable=true,$islink=false) ;

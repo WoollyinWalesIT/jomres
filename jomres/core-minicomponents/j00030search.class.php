@@ -39,7 +39,11 @@ class j00030search {
 		$jrConfig=$siteConfig->get();
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		$customTextObj =jomres_getSingleton('custom_text');
-
+		
+		$data_only=false;
+		if (isset($_REQUEST['dataonly']))
+			$data_only=true;
+				
 		unset ($sch);
 		$doSearch=false;
 		$includedInModule=false;
@@ -283,41 +287,43 @@ class j00030search {
 			$output['FORMNAME']=$jomresSearchFormname;
 
 
-			
-			// -------------------------------------------------------------------------------------------------------------------------------------------
-			if (in_array("selectcombo",$searchOptions) && $showSearchOptions ) 
+			if (!$data_only)
 				{
-				if (!defined("_JOMRES_SELECTCOMBO") )
-					{
-					define("_JOMRES_SELECTCOMBO",1);
-					echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
-					echo "<script>
-					jQuery(function() {
-						jQuery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
-						jQuery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=region','#search_town');
-						});
-					</script>";
-					}
-				foreach ($sch->prep['country'] as $country)
-					{
-					$countryArray[]= jomresHTML::makeOption( $country['countrycode'], stripslashes($country['countryname']));
-					}
-
-				$output['SELECTCOMBO_COUNTRY']=
-				jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" ', 'value', 'text', $selectOption ).'
-				<br />';
-				$output['SELECTCOMBO_HIDDENDROPDOWNS_REGION']='
-				<select id="search_region" name="region">
-				<option value="">--  --</option>
-				</select>
-				<br />';
-				$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
-				<select id="search_town" name="town">
-				<option value="">--  --</option>
-				<br />';
-				$showButton=true;
-				}
+				// -------------------------------------------------------------------------------------------------------------------------------------------
 				
+				if (in_array("selectcombo",$searchOptions) && $showSearchOptions ) 
+					{
+					if (!defined("_JOMRES_SELECTCOMBO") )
+						{
+						define("_JOMRES_SELECTCOMBO",1);
+						echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
+						echo "<script>
+						jQuery(function() {
+							jQuery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
+							jQuery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=region','#search_town');
+							});
+						</script>";
+						}
+					foreach ($sch->prep['country'] as $country)
+						{
+						$countryArray[]= jomresHTML::makeOption( $country['countrycode'], stripslashes($country['countryname']));
+						}
+
+					$output['SELECTCOMBO_COUNTRY']=
+					jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" ', 'value', 'text', $selectOption ).'
+					<br />';
+					$output['SELECTCOMBO_HIDDENDROPDOWNS_REGION']='
+					<select id="search_region" name="region">
+					<option value="">--  --</option>
+					</select>
+					<br />';
+					$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
+					<select id="search_town" name="town">
+					<option value="">--  --</option>
+					<br />';
+					$showButton=true;
+					}
+				}
 			
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 			if (in_array("propertyname",$searchOptions) && $showSearchOptions ) 
@@ -691,16 +697,19 @@ class j00030search {
 			$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
 			
 			$pageoutput[]=$output;
+			
 
-			if (!$doSearch || ($calledByModule=="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1') )
+			if (!$data_only)
 				{
-				$stmpl = new patTemplate();
-				$stmpl->setRoot( $sch->templateFilePath );
-				$stmpl->readTemplatesFromInput( $sch->templateFile );
-				$stmpl->addRows( 'search', $pageoutput );
-				$stmpl->displayParsedTemplate();
+				if (!$doSearch || ($calledByModule=="mod_jomsearch_m0" && $jrConfig['integratedSearch_enable'] =='1') )
+					{
+					$stmpl = new patTemplate();
+					$stmpl->setRoot( $sch->templateFilePath );
+					$stmpl->readTemplatesFromInput( $sch->templateFile );
+					$stmpl->addRows( 'search', $pageoutput );
+					$stmpl->displayParsedTemplate();
+					}
 				}
-
 			if ($doSearch && !isset($_GET['srchOnly']) )
 				$sch->jomSearch_showresults();
 			unset ($sch);
