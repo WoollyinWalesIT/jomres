@@ -79,7 +79,7 @@ class dobooking
 		$this->tax						= 0.00;
 		$this->extras					= "";
 		$this->third_party_extras		= array();
-		$this->third_party_extras_private_data		= array();
+		$this->third_party_extras_private_data	= array();
 		$this->total_discount			= 0.00;
 		$this->depositpaidsuccessfully	= false;
 		$this->booker_class				= '000';
@@ -110,6 +110,8 @@ class dobooking
 		$this->tel_landline		= "";
 		$this->tel_mobile		= "";
 		$this->email			= "";
+		$this->guest_specific_discount	= 0;
+		$this->additional_line_items = array();
 
 		//$this->today					= date("Y/m/d");
 		// Should be better at detecting today's date subject DST
@@ -188,6 +190,7 @@ class dobooking
 			$this->coupon_details			= $bookingDeets['coupon_details'];
 			$this->coupon_discount_value	= $bookingDeets['coupon_discount_value'];
 			$this->booking_notes			= $bookingDeets['booking_notes'];
+			$this->additional_line_items	= unserialize($bookingDeets['additional_line_items']);
 			}
 
 		$dbdata=serialize($bookingDeets);
@@ -225,10 +228,12 @@ class dobooking
 		$this->town					= $userDeets['town'];
 		$this->region				= $userDeets['region'];
 		$this->country				= $userDeets['country'];
-		$this->postcode			= $userDeets['postcode'];
+		$this->postcode				= $userDeets['postcode'];
 		$this->tel_landline			= $userDeets['tel_landline'];
 		$this->tel_mobile			= $userDeets['tel_mobile'];
 		$this->email				= $userDeets['email'];
+		$this->guest_specific_discount	= $userDeets['discount'];
+		
 
 		$mrConfig=getPropertySpecificSettings($this->property_uid);
 
@@ -401,6 +406,8 @@ class dobooking
 		$tmpBookingHandler->tmpguest["tel_landline"]	=quote_smart($this->tel_landline);
 		$tmpBookingHandler->tmpguest["tel_mobile"]		=quote_smart($this->tel_mobile);
 		$tmpBookingHandler->tmpguest["email"]			=quote_smart($this->email);
+		$tmpBookingHandler->tmpguest["discount"]		=quote_smart($this->guest_specific_discount);
+
 		$tmpBookingHandler->saveGuestData();
 
 		$rr=implode(",",$this->requestedRoom);
@@ -453,7 +460,8 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["coupon_details"]				= $this->coupon_details;
 		$tmpBookingHandler->tmpbooking["coupon_discount_value"]			= $this->coupon_discount_value;
 		$tmpBookingHandler->tmpbooking["booking_notes"]					= $this->booking_notes;
-
+		$tmpBookingHandler->tmpbooking["additional_line_items"]			= serialize($this->additional_line_items);
+			
 		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
 		
 		$tmpBookingHandler->saveBookingData();
@@ -967,7 +975,6 @@ class dobooking
 			$output['SUBMIT']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false));
 			$output['LOOKRIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_LOOKRIGHT',_JOMRES_BOOKINGFORM_LOOKRIGHT,false,false));
 			$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
-			
 
 			$output['ESTIMATEWARNING']=$this->sanitiseOutput(jr_gettext('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING));
 
@@ -1409,6 +1416,25 @@ class dobooking
 		{
 		unset ($this->third_party_extras[$plugin]);
 		}
+		
+	
+		
+		
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	Additional line items
+	//
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	function add_additiional_line_item($context="UNKNOWN",$id=0,$description="No description",$total_value=0.00,$tax_code_id=0)
+		{
+		$this->additional_line_items[$context][$id]=array('id'=>$id,'description'=>$description,'untaxed_grand_total'=> (float) $total_value);
+		if ($tax_code_id>0)
+			$this->additional_line_items[$context][$id]['tax_code_id']=$tax_code_id;
+		}
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -2496,6 +2522,17 @@ class dobooking
 
 	/**
 	#
+	 * Set the object's discount variable
+	#
+	 */
+	function setGuest_discount($value)
+		{
+		$this->setErrorLog("setGuest_discount:: Setting guest's discount to ".$value);
+		$this->guest_specific_discount=$value;
+		}
+		
+	/**
+	#
 	 * A simple email structure check
 	#
 	 */
@@ -2520,7 +2557,7 @@ class dobooking
 		$this->setErrorLog("getExistingCustomerData::Booker class: ".$bookerClass);
 		if ( $bookerClass=="100")
 			{
-			$query = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid = '$this->property_uid' limit 1";
+			$query = "SELECT guests_uid,mos_userid,firstname,surname,house,street,town,county ,country,postcode,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE guests_uid = '$id' AND property_uid = '$this->property_uid' limit 1";
 			$result=doSelectSql($query,2);
 			if (count($result)>0 )
 				{
@@ -2541,6 +2578,7 @@ class dobooking
 				$this->setGuest_tel_mobile($result['tel_mobile']);
 				if ($this->checkEmail($result['email']) )
 					$this->setGuest_email($result['email']);
+				$this->setGuest_discount($result['discount']);
 				return $result;
 				}
 			else
@@ -2569,6 +2607,7 @@ class dobooking
 		$this->setGuest_tel_landline("");
 		$this->setGuest_tel_mobile("");
 		$this->setGuest_email("");
+		$this->setGuest_discount(0);
 		}
 
 	/**
@@ -2676,6 +2715,7 @@ class dobooking
 		$bkg->setGuest_tel_landline($guest_deets['TEL']);
 		$bkg->setGuest_tel_mobile($guest_deets['MOBILE']);
 		$bkg->setGuest_email($guest_deets['EMAIL']);
+		$bkg->setGuest_discount((int)$guest_deets['DISCOUNT']);
 		}
 
 	/**
@@ -2712,6 +2752,8 @@ class dobooking
 		$guest_tel_landline	=$this->tel_landline;
 		$guest_tel_mobile	=$this->tel_mobile;
 		$guest_email		=$this->email;
+		$guest_discount		=(int)$this->guest_specific_discount;
+		
 
 		//$this->mos_userid=$thisJRUser->id;
 		$id=$thisJRUser->id;
@@ -2740,6 +2782,9 @@ class dobooking
 					$guest_tel_landline	=	$data->tel_landline;
 					$guest_tel_mobile	=	$data->tel_mobile;
 					$guest_email		=	$data->email;
+					$query="SELECT discount FROM #__jomres_guests WHERE mos_userid = '$id' AND property_uid = '$this->property_uid' limit 1";
+					$discount =doSelectSql($query,1);
+					$guest_specific_discount	=	$discount;
 					}
 				}
 			}
@@ -2774,6 +2819,7 @@ class dobooking
 		$guest_deets['TEL']=$guest_tel_landline;
 		$guest_deets['MOBILE']=$guest_tel_mobile;
 		$guest_deets['EMAIL']=$guest_email;
+		$guest_deets['DISCOUNT']=$guest_specific_discount;
 		return $guest_deets;
 		}
 
@@ -3823,7 +3869,7 @@ class dobooking
 
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30" /></td>';
+			$room_imagetypetd='<td><img src="'.get_showtime('live_site')."/".$this->typeImage.'" height="30" width="30" /></td>';
 		
 		//$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">   // Disabled because it causes the rooms list to load twice (thereby making the room deselect itself)
 		$overlib='<tr>';
@@ -4609,10 +4655,28 @@ class dobooking
 			$note =_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." N/A ";
 			$this->addBookingNote($note);
 			}
+		
+		if ($this->guest_specific_discount >0)
+			{
+			$this->setErrorLog("makeNightlyRoomCharges:: Calculating guest's discount (VALUE) ".$this->guest_specific_discount );
+			$this->setErrorLog("makeNightlyRoomCharges:: Original room price value ".$this->room_total );
+			$percentage_to_remove = ($this->room_total/100)*(int)$this->guest_specific_discount;
+			$this->room_total = $this->room_total - $percentage_to_remove;
+			$this->setErrorLog("makeNightlyRoomCharges:: Percentage to remove ".$percentage_to_remove );
+			$this->setErrorLog("makeNightlyRoomCharges:: New room value ".$this->room_total );
+			echo $this->sanitiseOutput('; populateDiv("personal_discount","'.output_price($percentage_to_remove).'")');
+			$note = jr_gettext('_JOMRES_PERSONAL_DISCOUNT',_JOMRES_PERSONAL_DISCOUNT,false,false)." ".output_price($percentage_to_remove);
+			$this->addBookingNote($note);
+			
+			}
+		else
+			$this->setErrorLog("makeNightlyRoomCharges:: Guest does not benefit from any discount");
+			
 		$this->setErrorLog("makeNightlyRoomCharges::Room total calculated as ".$this->room_total);
 		$this->setErrorLog("makeNightlyRoomCharges:: Ended");
 		return true;
 		}
+
 
 	/**
 	#

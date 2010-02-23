@@ -109,7 +109,7 @@ if (get_showtime('task')!="error")
 		$tmpBookingHandler->updateGuestField('mos_userid',$thisJRUser->id);
 		if (get_showtime('task')!="handlereq" && get_showtime('task')!="completebk" && get_showtime('task')!="processpayment" && get_showtime('task')!="confirmbooking")
 			{
-			$query="SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' LIMIT 1";
+			$query="SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' LIMIT 1";
 			$guestData=doSelectSql($query,2);
 			if ($guestData)
 				{

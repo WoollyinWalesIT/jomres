@@ -44,7 +44,7 @@ class j02222editguest {
 			$link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."&task=editCreditcard&popup=1&guestUid=$guestUid",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
 			//$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
 			$output['CREDITCARDLINK']=$link;
-			$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name,email FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$defaultProperty."'";
+			$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,tel_fax,ccard_no,ccard_issued,ccard_expiry,ccard_iss_no,ccard_name,email,discount FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$defaultProperty."'";
 			$guestData =doSelectSql($query);
 			$numberOfReturns=count($guestData);
 			if ($numberOfReturns>0)
@@ -63,14 +63,16 @@ class j02222editguest {
 					$output['MOBILE']=$data->tel_mobile;
 					$output['FAX']=$data->tel_fax;
 					$output['EMAIL']=$data->email;
+					$output['DISCOUNT']=jomresHTML::integerSelectList( 0,100,1, 'discount','class="inputbox" size="1"', $data->discount);
 					}
 				}
-
 			}
 		else
 			{
 			$output['COUNTRY']=createSimpleCountriesDropdown("GB");
+			$output['DISCOUNT']=jomresHTML::integerSelectList( 0,100,1, 'discount','class="inputbox" size="1"', $data->discount);
 			}
+
 		$output['HFIRSTNAME']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME',_JOMRES_COM_MR_DISPGUEST_FIRSTNAME);
 		$output['HSURNAME']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
 		$output['HHOUSE']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE',_JOMRES_COM_MR_DISPGUEST_HOUSE);
@@ -83,6 +85,7 @@ class j02222editguest {
 		$output['HMOBILE']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_MOBILE',_JOMRES_COM_MR_DISPGUEST_MOBILE);
 		$output['HFAX']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FAX',_JOMRES_COM_MR_DISPGUEST_FAX);
 		$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
+		$output['HDISCOUNT']=jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT);
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
