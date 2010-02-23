@@ -41,14 +41,14 @@ function JomresBuildRoute(&$query)
 		{
 		case 'viewproperty':
 			$segments[] = $query['task'];
-			$segments[] = $property_name;
+			$segments[] = trim($property_name);
 			$segments[] = $query['property_uid'];
 			unset( $query['task'] );
 			unset( $query['property_uid'] );
 			break;
 		case 'dobooking':
 			$segments[] = "dobooking";
-			$segments[] = $property_name;
+			$segments[] = trim($property_name);
 			$segments[] = $query['selectedProperty'];
 			unset( $query['task'] );
 			unset( $query['selectedProperty'] );
