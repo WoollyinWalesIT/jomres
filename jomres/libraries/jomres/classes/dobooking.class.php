@@ -4087,7 +4087,7 @@ class dobooking
 						}
 					if($pass)
 						{
-						$total+=$rate->roomrateperday ;
+						$total=$rate->roomrateperday ;
 						}
 					}
 				}
