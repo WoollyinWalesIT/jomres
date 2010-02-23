@@ -1737,10 +1737,6 @@ define('_JOMRES_COM_INVOICE_LETTER_HOPEYOUENJOYEDSTAY','Doufáme, že příšte 
 * @ignore
 */
 define('_JOMRES_COM_INVOICE_LETTER_VAT','Odpovídající výše DPH je již zahrnuta ve všech cenících. Jakékoli změny jsou předmětem dalšího vyúčtování.');
-/**
-* @ignore
-*/
-define('_JOMRES_COM_INVOICE_PRINT','Tisk faktury');
 
 /**
 * @ignore
@@ -6620,3 +6616,117 @@ define('_JOMRES_EDITINGMODE_OFF','Režim úprav vypnutý');
 * @ignore
 */
 define('_JOMRES_COM_INVOICE_PRINT','Vytiskni fakturu');
+
+
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE','Charge variable deposits?');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC','Variable deposits allow you to define if you\'d like to charge the full amount if the booking\'s arrival date is within N days from "today". Set this option to Yes to enable the feature, and enter the number of days below, so for example if the arrival day is within 60 days, then the deposit amount charged will be the full amount, otherwise the amount will be based on the deposit options configured above.');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS','The number of days, within which the full amount will be charged as a deposit.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_CONTACTOWNER_TO_ADMIN','Send Contact Owner emails to Alternative address?');
+/**
+* @ignore
+*/
+define('_JOMRES_CONTACTOWNER_TO_ADMIN_DESC','Set this option to Yes if you want Contact Owner emails to be sent to the below input. Leave it set to No to send the emails to the email address defined in the property configuration area.');
+/**
+* @ignore
+*/
+define('_JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE','Alternative address for Contact Owner emails.');
+/**
+* @ignore
+*/
+define('_JOMRES_CONFIRMATION_EMAIL_SENT','Confirmation email has been sent. You may close this window now.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_REALESTATE_TITLE','Real estate listing');
+
+/**
+* @ignore
+*/
+define('_JOMRES_REALESTATE_YESNO','Is this property a for sale listing?');
+/**
+* @ignore
+*/
+define('_JOMRES_REALESTATE_YESNO_DESC','Select Yes if you are selling the property, select No if it is a listing where you will be offering short term rentals and will be using this system for taking bookings.');
+/**
+* @ignore
+*/
+define('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT','Contact agent');
+/**
+* @ignore
+*/
+define('_JOMRES_INVOICE_MARKASPAID','Mark invoice as paid');
+/**
+* @ignore
+*/
+define('_JOMRES_INVOICE_MARKEDASPAID','Invoice marked as paid');
+/**
+* @ignore
+*/
+define('_JOMRES_APIKEY_REMAKE','Make new API key');
+
+/**
+* @ignore
+*/
+define('_JOMRES_AUTOTRANSLATE_TITLE','Use Google for initial translations?');
+/**
+* @ignore
+*/
+define('_JOMRES_AUTOTRANSLATE_DESC','This feature is new and experimental, so use at your own risk. The purpose of the feature is to query Google\'s translation tool to automatically set up translations for a given property. Note that this feature sanitizes all input, so if you use a html editor for formatting your property details, then this will break that formatting.<br/>');
+
+/**
+* @ignore
+*/
+define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE','Is this a single property installation?');
+/**
+* @ignore
+*/
+define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC','If this option is set to Yes, then the frontend view of Jomres to non-authorised users is greatly simplified. Default calls to Jomres from a menu option, instead of being given a list of propertys, just takes the guest to the booking form for the first property in the system. Property managers also will not see see the Property Details preview button or the Add new property button. Ideal if you only want to list one property and take bookings for it.<br/>');
+
+/**
+* @ignore
+*/
+define('_JOMRES_HTMP_PURIFIER','Use HTML purifier functionality?');
+/**
+* @ignore
+*/
+define('_JOMRES_HTMP_PURIFIER_DESC','Switch this on to enable Jomres to use the html purifier library (http://htmlpurifier.org/). The library is used as an extra layer of security when dealing with input and output data and it is recommended that you leave it enabled, however it will use more memory.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Balance payment');
+/**
+* @ignore
+*/
+define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Balance');
+/**
+* @ignore
+*/
+define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Note, you are using Editing Mode with the Global Editing mode enabled. This is fine if you understand what Global Editing mode means, however if you don\'t you may cause yourself problems. If you are unsure if you should be using Jomres in this way, please see <a href="http://manual.jomres.net/Editing_mode" target="_blank">the editing mode manual page</a> for more information on this subject.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_SUPPORTKEY','Support key');
+/**
+* @ignore
+*/
+define('_JOMRES_SUPPORTKEY_DESC','Your support license key number (also known as your license number). You will need an up-to-date license to be able to download updates and plugins for Jomres.');
+/**
+* @ignore
+*/
+define('_JOMRES_PERSONAL_DISCOUNT','Personal discount');
