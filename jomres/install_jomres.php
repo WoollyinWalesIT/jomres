@@ -235,6 +235,9 @@ function doTableUpdates()
 		alterPfeaturesPtypeidCol();
 	if (!checkContractsInvoiceColExists() )
 		alterContractsInvoice();
+	if (!checkGuestsDiscountColExists() )
+		alterGuestsDiscountCol();
+
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
@@ -242,6 +245,25 @@ function doTableUpdates()
 function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
 	{
 	require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
+	}
+
+function alterGuestsDiscountCol()
+	{
+	echo "Editing __jomres_guests table adding discount column<br>";
+	$query = "ALTER TABLE `#__jomres_guests` ADD `discount` INT( 11 ) DEFAULT '0' NOT NULL AFTER `email` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_guests discount</b><br>";
+	}
+
+function checkGuestsDiscountColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_guests LIKE 'discount'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
 	}
 	
 function alterContractsInvoice()
@@ -1500,6 +1522,7 @@ function createJomresTables()
 		`type` BLOB,
 		`property_uid` VARCHAR(11),
 		`email` VARCHAR(100) NULL,
+		`discount` INT( 2 ) DEFAULT '0' NOT NULL,
 		PRIMARY KEY(guests_uid)
 		) ";
 	$result=doInsertSql($query,"");
@@ -2024,7 +2047,7 @@ function showGetKeyInput()
 	?>
 	<form action="" method="post" name="adminForm">
 
-	<h3><font="red">Press the GO button when you are ready to proceed with installation<br></font></h3>
+	<h3><font="red">Press the GO button when you are ready to proceed with installation/upgrade<br></font></h3>
 	<input type="submit" name="go" value="GO!" class="button" >
 	</form>
 	<hr>
