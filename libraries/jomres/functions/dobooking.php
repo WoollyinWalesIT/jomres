@@ -192,6 +192,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$bkg->resetRequestedRoom();
 	$bkg->initGuestDetails($bkg,$guest);
 		
+	if ($bkg->guest_specific_discount >0)
+		$output['PERSONAL_DISCOUNT']			=$bkg->sanitiseOutput(jr_gettext('_JOMRES_PERSONAL_DISCOUNT',_JOMRES_PERSONAL_DISCOUNT));
+	
 	$overrideSessionArrivalDate=false;
 	if ($thisdate != "")
 		$overrideSessionArrivalDate=true;

@@ -104,7 +104,8 @@ class jomres_temp_booking_handler
 			"coupon_details"=>array(),
 			"coupon_discount_value"=>"",
 			"cfg_showExtras"=>false,
-			"booking_notes"=>array()
+			"booking_notes"=>array(),
+			"additional_line_items"=>array()
 			);
 			
 		$this->tmpguest = array(
@@ -131,6 +132,7 @@ class jomres_temp_booking_handler
 			"type"=>"",
 			"property_uid"=>"",
 			"email"=>"",
+			"discount"=>"0",
 			"tag"=>"",
 			"timestamp"=>""
 			);
@@ -369,6 +371,7 @@ class jomres_temp_booking_handler
 			"type"=>"",
 			"property_uid"=>"",
 			"email"=>"",
+			"discount"=>"0",
 			"tag"=>"",
 			"timestamp"=>""
 			);
@@ -427,7 +430,8 @@ class jomres_temp_booking_handler
 			"coupon_details"=>array(),
 			"coupon_discount_value"=>"",
 			"cfg_showExtras"=>false,
-			"booking_notes"=>array()
+			"booking_notes"=>array(),
+			"additional_line_items"=>array()
 			);
 		$this->saveBookingData();
 		}

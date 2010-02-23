@@ -53,7 +53,7 @@ class j03025insertbooking_invoice {
 		$property_uid					= $tmpBookingHandler->getBookingFieldVal("property_uid");
 		$extrasvalues_items				= unserialize($tmpBookingHandler->getBookingFieldVal("extrasvalues_items"));
 		$depositpaidsuccessfully		= $tmpBookingHandler->getBookingFieldVal("depositpaidsuccessfully");
-		
+		$additional_line_items			= unserialize($tmpBookingHandler->getBookingFieldVal("additional_line_items"));
 
 		if ($resource=="1")
 			$depositPaid=true;
@@ -202,6 +202,30 @@ class j03025insertbooking_invoice {
 				}
 			}
 			
+		if (count($additional_line_items)>0)
+			{
+			foreach ($additional_line_items as $plugin)
+				{
+				foreach ($plugin as $tpe)
+					{
+					if (!isset($tpe['tax_code_id']))
+						$tpe['tax_code_id']=0;
+					$line_item_data = array (
+						'tax_code_id'=>$tpe['tax_code_id'],
+						'name'=>$tpe['description'],
+						'description'=>$tpe['description'],
+						'init_price'=>number_format($tpe['untaxed_grand_total'],2, '.', ''),
+						'init_qty'=>'1',
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					}
+				}
+			}
+
 		$invoice_data= array();
 		$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
 		$invoice_data['subscription']=false;
