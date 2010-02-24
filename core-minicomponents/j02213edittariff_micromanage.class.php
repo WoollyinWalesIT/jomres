@@ -226,6 +226,16 @@ class j02213edittariff_micromanage {
 						if ($epoch<$todaysepoch)
 							$fontcolour="grey";
 						$dowInit=substr($dayofweek,0,2);
+						switch ($dowInit)
+							{
+							case "Su": $dowInit = _JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR; break;
+							case "Mo": $dowInit = _JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR; break;
+							case "Tu": $dowInit = _JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR; break;
+							case "We": $dowInit = _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR; break;
+							case "Th": $dowInit = _JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR; break;
+							case "Fr": $dowInit = _JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR; break;
+							case "Sa": $dowInit = _JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR; break;
+							}
 						if ($dayofweek=="Saturday" || $dayofweek=="Sunday")
 							$datesInyearsArray[$currYear][$currMonth][$day]['dom']='<font color="'.$fontcolour.'"><b>'.$dowInit.' '.$day.'</b></font>';
 						else
