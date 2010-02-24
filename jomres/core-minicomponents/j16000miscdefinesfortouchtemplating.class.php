@@ -33,7 +33,7 @@ class j16000miscdefinesfortouchtemplating
 		$output=array();
 
 		$output[]		= jr_gettext('_JOMRES_CLICKTOREGISTER',_JOMRES_CLICKTOREGISTER);
-		
+		$output[]		= jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES);
 
 		foreach ($output as $o)
 			{
