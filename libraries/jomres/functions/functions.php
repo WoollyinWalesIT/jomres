@@ -3716,7 +3716,7 @@ function makeFeatureImages($image,$title,$description,$retString=false,$altLives
  */
 function propertyClicked($p_uid)
 	{
-	$sessionCookieName 	= md5( 'site'.get_showtime('live_site'));
+	//$sessionCookieName 	= md5( 'site'.get_showtime('live_site'));
 	$cookiename = "jomresp$p_uid";
 	$alreadyClicked = jomresGetParam( $_COOKIE, $cookiename, '0' );
 	if (!$alreadyClicked)
