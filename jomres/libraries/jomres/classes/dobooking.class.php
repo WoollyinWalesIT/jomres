@@ -4878,7 +4878,7 @@ class dobooking
 			$totalBedsInBooking=0;					// The total beds in the booking
 			$timesSPStoBeApplied=0;					// Times we need to multiple the SPS charge against the people numbers in the booking
 			if ($this->cfg_supplimentChargeIsPercentage=="1" )// Per person, the single person charge across the whole stay period
-				$SPSChargePerPerson=(($totalBooking/100)*$this->cfg_singlePersonSupplimentCost)*$this->stayDays;
+				$SPSChargePerPerson=(($totalBooking/100)*$this->cfg_singlePersonSupplimentCost);
 			else
 				$SPSChargePerPerson=$this->cfg_singlePersonSupplimentCost*$this->stayDays;
 			foreach ($this->requestedRoom as $r)
