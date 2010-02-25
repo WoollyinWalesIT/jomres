@@ -178,6 +178,7 @@ function jomresURL($link, $ssl=2)
 // Called by, eg, $output['TOKEN']='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
 function jomresSetToken()
 	{
+	/*
 	$token = md5(uniqid(rand(), TRUE));
 	if (!@session_start())
 		{
@@ -187,6 +188,8 @@ function jomresSetToken()
 	$_SESSION['jomresValidTokens'][] = $token;
 	session_write_close();
 	return $token;
+	*/
+	return "xxx";
 	}
 
 function jomresURLToken()
@@ -198,6 +201,8 @@ function jomresURLToken()
 // if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 function jomresCheckToken()
 	{
+	return true;
+	/*
 	if (!@session_start())
 		{
 		@ini_set('session.save_handler', 'files');
@@ -215,6 +220,7 @@ function jomresCheckToken()
 		}
 	session_write_close();
 	return false;
+	*/
 	}
 
 function jomres_parseRequest()  // A simple request parser to check that mosConf.... isn't in the request string.
