@@ -135,35 +135,35 @@ $jomresConfig_host				= $CONFIG->host;
 //$jomresConfig_readmore					= $CONFIG->readmore;
 //$jomresConfig_hits						= $CONFIG->hits;
 //$jomresConfig_icons						= $CONFIG->icons;
-//$jomresConfig_favicon					= $CONFIG->favicon;
+//$jomresConfig_favicon						= $CONFIG->favicon;
 //$jomresConfig_fileperms					= $CONFIG->fileperms;
 //$jomresConfig_dirperms					= $CONFIG->dirperms;
 $jomresConfig_helpurl				= $CONFIG->helpurl;
 //$jomresConfig_multilingual_content			= $CONFIG->multilingual_content;
 $jomresConfig_editor				= $CONFIG->editor;
-//$jomresConfig_locale					= $CONFIG->locale;
+//$jomresConfig_locale						= $CONFIG->locale;
 //$jomresConfig_meta_pagetitle				= $CONFIG->meta_pagetitle;
-//$jomresConfig_back_button				= $CONFIG->back_button;
+//$jomresConfig_back_button					= $CONFIG->back_button;
 //$jomresConfig_item_navigation				= $CONFIG->item_navigation;
 $jomresConfig_caching				= $CONFIG->caching;
 //$jomresConfig_cachepath					= $CONFIG->cachepath;
 $jomresConfig_cachetime				= $CONFIG->cachetime;
-//$jomresConfig_locale					= $CONFIG->locale;
+//$jomresConfig_locale						= $CONFIG->locale;
 $jomresConfig_offset				= $CONFIG->offset;
-//$jomresConfig_offset_user				= $CONFIG->offset_user;
+//$jomresConfig_offset_user					= $CONFIG->offset_user;
 //$jomresConfig_hideAuthor					= $CONFIG->hideAuthor;
 //$jomresConfig_hideCreateDate				= $CONFIG->hideCreateDate;
 //$jomresConfig_hideModifyDate				= $CONFIG->hideModifyDate;
-//$jomresConfig_hidePdf					= $CONFIG->hidePdf;
+//$jomresConfig_hidePdf						= $CONFIG->hidePdf;
 //$jomresConfig_hidePrint					= $CONFIG->hidePrint;
 //$jomresConfig_hideEmail					= $CONFIG->hideEmail;
-//$jomresConfig_enable_log_items				= $CONFIG->enable_log_items;
+//$jomresConfig_enable_log_items			= $CONFIG->enable_log_items;
 //$jomresConfig_enable_log_searches			= $CONFIG->enable_log_searches;
 //$jomresConfig_enable_stats				= $CONFIG->enable_stats;
 $jomresConfig_sef					= $CONFIG->sef;
 //$jomresConfig_vote						= $CONFIG->vote;
 $jomresConfig_gzip					= $CONFIG->gzip;
-//$jomresConfig_allowUserRegistration			= $CONFIG->allowUserRegistration;
+//$jomresConfig_allowUserRegistration		= $CONFIG->allowUserRegistration;
 $jomresConfig_error_reporting		= $CONFIG->error_reporting;
 //$jomresConfig_error_message				= $CONFIG->error_message;
 //$jomresConfig_link_titles					= $CONFIG->link_titles;
@@ -183,10 +183,12 @@ if ( !strstr($scriptname,'install_jomres.php') && $no_html == 0)
 		echo '<font color="red" face="arial" size="2">Note, you haven\'t yet logged into the front end as "admin". Virtually all property configuration is performed from the front end so you should add Jomres to the main menu if you haven\'t already and log in to the front end now.</font><br/>';
 		}
 	*/
-	if($CONFIG->session_handler !="none")
-		{
-		echo "You need to configure session handling to be set to 'none'. Go to administrator -> Site -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
-		}
+	
+	// removed in 4.4.1
+	// if($CONFIG->session_handler !="none")
+		// {
+		// echo "You need to configure session handling to be set to 'none'. Go to administrator -> Site -> Global Configuration -> System -> Session Handler and set this to 'none'. Until you do this, your booking form will not work.<br>";
+		// }
 	}
 
 

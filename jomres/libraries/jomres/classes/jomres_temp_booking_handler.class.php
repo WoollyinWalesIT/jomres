@@ -179,15 +179,40 @@ class jomres_temp_booking_handler
 
 	function initBookingSession($jomressession)
 		{
+		
+		// if (strlen($jomressession)>0)
+			// session_id($jomressession);
+		// if (!@session_start())
+			// {
+			// @ini_set('session.save_handler', 'files');
+			// session_start();
+			// }
+		// $this->jomressession=$jomressession=session_id();
+		// $this->sessionfile=$this->session_directory.$this->jomressession.".txt";
+		
 		if (strlen($jomressession)>0)
-			session_id($jomressession);
-		if (!@session_start())
+			$this->part = $jomressession;
+		else
 			{
-			@ini_set('session.save_handler', 'files');
-			session_start();
+			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$jrConfig=$siteConfig->get();
+			 $expire = time()+$jrConfig['lifetime'];
+			if (!isset($_COOKIE['jomressession']) || is_null($_COOKIE['jomressession']))
+				{
+				$this->part = generateJomresRandomString();
+				$result=setcookie('jomressession', $this->part, $expire,"/");
+				}
+			else
+				{
+				$this->part = $_COOKIE['jomressession'];
+				}
 			}
-		$this->jomressession=$jomressession=session_id();
+			
+		$secret=get_showtime('secret');
+		$hash = sha1($secret.$this->part);
+		$this->jomressession=$hash;
 		$this->sessionfile=$this->session_directory.$this->jomressession.".txt";
+		
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
