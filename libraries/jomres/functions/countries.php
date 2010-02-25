@@ -397,7 +397,7 @@ function countryNameArray()
 	"Croatia", "Haiti", "Hungary", "Indonesia", "Ireland", "Israel", "India",
 	"B. Ind. Oc. Tr.", "Iraq", "Iran",
 	"Iceland", "Italy", "Jamaica", "Jordan", "Japan", "Kenya", "Kyrgyzstan",
-	"Cambodia", "Kiribati", "Comoros", "St. Kitts ", "Korea, D. R.", "Korea, R.", "Kuwait", "Cayman Is.",
+	"Cambodia", "Kiribati", "Comoros", "St. Kitts and Nevis", "Korea, D. R.", "Korea, R.", "Kuwait", "Cayman Is.",
 	"Kazakstan", "Lao P.Democratic R.ublic", "Lebanon", "St. Lucia",
 	"Liechtenstein", "Sri Lanka", "Liberia", "Lesotho", "Lithuania", "Luxembourg",
 	"Latvia", "Libyan A. J.", "Morocco", "Monaco", "Moldova, R.ublic
@@ -478,7 +478,7 @@ function countryCodesArray()
 	"IR" => "Iran", "IS" => "Iceland", "IT" => "Italy",
 	"JM" => "Jamaica", "JO" => "Jordan", "JP" => "Japan",
 	"KE" => "Kenya", "KG" => "Kyrgyzstan", "KH" => "Cambodia",
-	"KI" => "Kiribati", "KM" => "Comoros","KN" => "St. Kitts ",
+	"KI" => "Kiribati", "KM" => "Comoros","KN" => "St. Kitts and Nevis",
 	"KP" => "Korea, D. R.", "KR" => "Korea, R.", "KW" => "Kuwait",
 	"KY" => "Cayman Is.", "KZ" => "Kazakstan", "LA" => "Lao P.D. R.",
 	"LB" => "Lebanon", "LC" => "St. Lucia", "LI" => "Liechtenstein",
