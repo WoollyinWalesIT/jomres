@@ -160,12 +160,14 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 
 	$bkg-> initCoupons();
 	$coupons=array();
+	$coupon_output = array();
+	$coupon_output_totals = array();
 	if ($bkg->use_coupons)
 		{
 		$coupon_output['COUPON_TITLE']=$bkg->sanitiseOutput(jr_gettext('_JRPORTAL_COUPONS_CODE',_JRPORTAL_COUPONS_CODE,false,false));
 		$coupon_output['COUPON_BUTTON']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON',_JOMRES_AJAXFORM_COUPON_APPLYBUTTON,false,false));
 		$coupon_output['COUPON_INSTRUCTIONS']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS',_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS));
-		$coupon_output['COUPON_DISCOUNT_VALUE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
+		$coupon_output_totals['COUPON_DISCOUNT_VALUE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
 		
 		$coupon_output['COUPON_CODE']="";
 		if ($amend_contract && isset($_REQUEST['contractuid']) && $thisJRUser->userIsManager && in_array( (int)$selectedProperty,$thisJRUser->authorisedProperties) )
@@ -181,6 +183,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 				}
 			}
 		$coupons[] = $coupon_output;
+		$coupons_totals[] = $coupon_output_totals;
 		}
 		
 	if ($bkg->cfg_singleRoomProperty != "1")
@@ -335,9 +338,6 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$output['SHOWEXTRAS']="false";
 		$bkg->cfg_showExtras = false;
 		}
-
-	
-	
 	
 	$bkg->setStayDays();
 	$bkg->setDateRangeString();
@@ -458,6 +458,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$tmpl = new patTemplate();
 	
 	$tmpl->addRows( 'coupons',$coupons);
+	$tmpl->addRows( 'coupons_totals',$coupons_totals);
 	$tmpl->addRows( 'smoking',$smokingOpts);
 	$tmpl->addRows( 'customfields',$customFields);
  	$tmpl->addRows( 'pageoutput',$pageoutput);

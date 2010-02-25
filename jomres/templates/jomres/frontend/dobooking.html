@@ -233,12 +233,14 @@ jQuery(document).ready(function() {
 								<b><div id="taxtotal" style="text-align:right;"></div></b>
 							</td>
 						</tr>
+						<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
 						<tr>
 							<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
 							<td>
 								<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
 							</td>
 						</tr>
+						</patTemplate:tmpl>
 						<tr>
 							<td><b>{PERSONAL_DISCOUNT}</b></td>
 							<td>
