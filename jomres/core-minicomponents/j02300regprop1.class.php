@@ -53,7 +53,19 @@ class j02300regprop1 {
 			jomresRedirect( JOMRES_SITEPAGE_URL."&task=list_subscription_packages","");
 
 		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
-		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
+		if ($jrConfig['limit_property_country'] == "0")
+			{
+			$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
+			$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
+			}
+		else
+			{
+			$output['REGIONDROPDOWN']=setupRegions($jrConfig['limit_property_country_country'],$propertyRegion);
+			$output['COUNTRIESDROPDOWN']= getSimpleCountry($jrConfig['limit_property_country_country']);
+			}
+			
+		
+			
 		$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 		$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
