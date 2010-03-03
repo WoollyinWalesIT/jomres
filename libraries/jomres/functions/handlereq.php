@@ -249,6 +249,7 @@ switch ($field)
 		$bkg->setOkToBook(false);
 		$value=$bkg->sanitiseInput("string",$value);
 		$bkg->updateSelectedRoom($value);
+		
 	break;
 	case 'show_log':
 
