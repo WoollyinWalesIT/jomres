@@ -265,9 +265,16 @@ class j04200editproperty {
 		$propertyImageLocation='<img src="'.$propImage.'" />';
 		
 		$output['STARSDROPDOWN']=$starsDropDownList;
-		$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
-		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
-		
+		if ($jrConfig['limit_property_country'] == "0")
+			{
+			$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
+			$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
+			}
+		else
+			{
+			$output['COUNTRIESDROPDOWN']= getSimpleCountry($jrConfig['limit_property_country_country']);
+			$output['REGIONDROPDOWN']=setupRegions($jrConfig['limit_property_country_country'],$propertyRegion);
+			}
 
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);

@@ -98,6 +98,21 @@ function createSimpleCountriesDropdown($selectedCountry)
 	return $countryDropdown;
 	}
 
+function limitCountriesDropdown()
+	{
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$countryCodes=countryCodesArray();
+	asort($countryCodes);
+	foreach ($countryCodes as $k=>$v)
+		{
+		$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+		}
+	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'cfg_limit_property_country_country', 'class="inputbox" ', 'value', 'text', $jrConfig['limit_property_country_country']);
+	return $countryDropdown;
+	}
+	
+	
 #
 /**
 #

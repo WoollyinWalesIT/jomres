@@ -53,7 +53,11 @@ class j02320regprop3 {
 		$property_street				= jomresGetParam( $_POST, 'property_street', "" );
 		$property_town					= jomresGetParam( $_POST, 'property_town', "" );
 		$property_region				= jomresGetParam( $_POST, 'property_region', "" );
-		$property_country				= jomresGetParam( $_POST, 'property_country', "" );
+		if ($jrConfig['limit_property_country'] == "0")
+			$property_country				= jomresGetParam( $_POST, 'property_country', "" );
+		else
+			$property_country				= $jrConfig['limit_property_country_country'];
+
 		$property_postcode				= jomresGetParam( $_POST, 'property_postcode', "" );
 		$property_tel					= jomresGetParam( $_POST, 'property_tel', "" );
 		$property_fax					= jomresGetParam( $_POST, 'property_fax', "" );
