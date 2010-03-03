@@ -6814,4 +6814,18 @@ define('_JOMRES_SUPPORTKEY_DESC','Your support license key number (also known as
 */
 define('_JOMRES_PERSONAL_DISCOUNT','Personal discount');
 
+/**
+* @ignore
+*/
+define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO','Limit property registration to one country?');
+/**
+* @ignore
+*/
+define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC','You can ensure that property registrations are limited to just one country by setting this option to Yes and setting the country in the following option.');
+/**
+* @ignore
+*/
+define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY','Properties are located in this country : ');
+
+
 
