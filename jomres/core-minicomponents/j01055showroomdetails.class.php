@@ -65,7 +65,7 @@ class j01055showroomdetails {
 			$headersList['HEADER_ROOMTYPE']= jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE);
 			$headersList['HEADER_SMOKING']= jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING);
 			$headersList['HEADER_ROOMNAME']= jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME);
-			if ($all)
+			if ($all && !isset($_REQUEST['tmpl'] ))
 				$headersList['HEADER_AVLCALLINK']= jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY);
 			else
 				$headersList['HEADER_AVLCALLINK']= "";
@@ -129,7 +129,7 @@ class j01055showroomdetails {
 				$roomRow['ROOMTYPE']= $classAbbv;
 				$roomRow['SMOKING']= $smoking;
 				$roomRow['ROOMNAME']= $room_name;
-				if ($all)
+				if ($all && !isset($_REQUEST['tmpl']))
 					$roomRow['AVLCALLINK']= $avl_link;
 				else
 					$roomRow['AVLCALLINK']= "";
