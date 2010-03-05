@@ -1,3 +1,55 @@
+Jomres 4.4.1
+
+http://bugs.jomres.net/view.php?id=27 Fix for all guest types and numbers in confirmation email
+Added a new function output_price. Currently users need to enter an http entity in the property and site config areas to output a currency symbol. In this version we've added a currency class which (should) have every currency code in the world, and their associated symbols, plus formatting for putting symbols before or after prices.
+Small change to fixed period dropdowns, making it so that the first valid date found when generating the dropdowns sets the arrival date in the booking to that. Improves the initialisation of the booking form for fixed period propertys.
+Moved call that generates css file to the init javascript function.
+Modified invoice creator so that if $mrConfig depAmount == 1 then when a booking is created, if the deposit amount is set to Full then the invoice should be marked as paid (when the booking is eventually created).
+Modified dobooking to trigger an initialising ajax call to the booking engine so that SRP have their room selected when the page first loads.
+Added code to ensure that 64bit servers correctly d/l plugins from the plugin server before attempting to extract them.
+Modified calculation that shows when a property is mostly full so that instead of using .75 it's using .99.
+Resolved minor bug in installer where it complains about a non-existent index
+Fix for issues where invoices aren't associated with cms user ids on booking creation, and where usernames aren't shown in the invoices list.
+Added a fix for a trivial but annoying bug in jscalendar seen in firefox only, in the booking form. http://www.dynarch.com/projects/calendar/old/#Kcomment-200
+Added html purifier library and supporting code in Jomres to add an extra layer of security for input and output filtering.
+Added note to remind users to log into the frontend to administer propertys to installer
+Modification to resolve issues where users have uninstalled via Joomla, then attempted to reinstall Jomres. If Jomres links aren't found in the components table, we'll attempt to re-add them.
+Added jeyjey's property feature icons. Many thanks.
+Fix bug report about stray itemid http://forum.jomres.net/index.php?topic=2815.0
+Removed a reference to mambo that was preventing the switch ssl option off from showing in the site config
+Added a new copy of cz-CZ.php. Many thanks Leonard.
+Modified logging functionality so that if booking logging isn't enabled then no logging info is stored in memory. Previously it would be stored in memory then if logging was enabled then it would be written to the log file.
+Added booking number to the confirmation email subject
+Change to fix some noConfict (mootools) issues
+Applies maakit's suggested change to cms_specific/joomla15/cms_specific_urls.php which enables Joomla's internal sef handling to kick in, and re-enabled copying of router.php in installation files
+Modified cms_specific/joomla15/cms_specific_urls.php to ensure that Jfactory is only used when Jomres run through Joomla
+Modified invoice handling so when the invoice is marked as paid an appropriate line item is added to reflect that so that the outstanding total is updated to show that 0 remains to be paid.
+Further changes to enable us to change the output on the view booking page, takes into account the invoice balance and updates the remainder to pay field to reflect the state of the invoice. If the invoice id isn't associated with the contract uid (only bookings from this update) then the old calculation will be used.
+Modified save cancellation functionality to mark an invoice as cancelled too.
+Modified the delete room feature script to output a message instead of throwing an error, in the event that a user tries to delete a room feature that's already applied to a room or rooms. Slight modification of the language file too.
+Modified the currency codes class to allow the site admin to set the sitewide currency code in the administrator area, and show the subscription packages using the new output_price function.
+Added a new sanity check to warn if editing mode is being used with global editing enabled, provides a link to the editing mode manual page.
+Added a check to captcha to see if php has been installed with Freetype support.
+Added minicomponent directories array to mcHander and it's registry class.
+Modified jr_import to check minicomponent/plugin directories for class files. Now there's no need to have a "00001start" minicomponent to include these class files.
+Fixed some missing /trs  http://forum.jomres.net/index.php?topic=2930.msg13155#msg13155 thanks Gargano.
+changed how prices are estimated in booking form for Advanced, Average model tariffs.
+Modified router.php to trim property names as names with a space on the end trigger a 404 error when sef is enabled
+Renamed avail room div to rooms_listing to ensure that the correct availability message is shown in SRPs
+Added personal discount feature so that specific guests can be given individual discounts
+main.php added to templates for xml parsing
+Added new functionality to enable us to use the search feature and return (some of) the data in xml format for use via a remote site.
+Fixed bug where micromanage tariff editing mode wasn't showing the short day of week for the current language, instead was always showing english short day of week.
+Added search by price ranges to miscdefinesfortouchtemplating plugin
+Modified system to use cookies instead of session_id, drops the requirement to run the system with Global Config needing to be set to None. With luck, any users who's servers are not configured to use sessions (admittedly, few and far between) will now be able to use Jomres.
+Changes to booking form to only show coupon code row in totals table if the property has some coupons created.
+Modified how SPS is calculated when set to percentage.
+Modified countries.php to change wording from St Kitts to St Kitts and Nevis
+Added a site config feature where site administrators can limit the "home" country of properties to just one country.
+Added support key checking for upgrades and plugins
+
+
+
 Jomres 4.4
 
 Modified booking form javascript to convert the old two pass process (rebuild rooms list/pass other info -> calc prices) to only need to run one pass instead. The booking form runs much faster now.
