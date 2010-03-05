@@ -38,193 +38,201 @@ class j16000updates
 		$this->movedFileLog = array();
 		$this->debugging = false;
 		$this->test_download = false;
+		$this->key_valid = false;
 		
 		$configfile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."jomres_config.php";  // This is just to pull in the Jomres version from mrConfig
 		include($configfile);
 		$thisVersion=$mrConfig['version'];
 		echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
-		
-		// Use your own FTP info
-		$this->ftp_user_name = 'userid';
-		$this->ftp_user_pass = 'password';
-		$this->ftp_server = 'localhost';
-		$this->ftp_root = JOMRESCONFIG_ABSOLUTE_PATH;
-		if (!$this->checkUpdateDirectory())
+		require_once ( JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS."a_updates_45".JRDS."jomres_check_support_key.class.php");
+		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=updates");
+		$this->key_valid = $key_validation->key_valid;
+
+		if ($this->key_valid)
 			{
-			echo "Can't create update folder $this->updateFolder";
-			return;
-			}
-		if (!isset($_REQUEST['ftp_user_name']))
-			{
-			if (!$this->checkJomresDirectories())
+			// Use your own FTP info
+			$this->ftp_user_name = 'userid';
+			$this->ftp_user_pass = 'password';
+			$this->ftp_server = 'localhost';
+			$this->ftp_root = JOMRESCONFIG_ABSOLUTE_PATH;
+			if (!$this->checkUpdateDirectory())
 				{
-				$detect_os = strtoupper($_SERVER["SERVER_SOFTWARE"]); // converted to uppercase
-				$pos = strpos($detect_os, "WIN32");
-				$IIS = strpos($detect_os, "IIS");
-				if ($pos === false && $IIS === false)
+				echo "Can't create update folder $this->updateFolder";
+				return;
+				}
+			if (!isset($_REQUEST['ftp_user_name']))
+				{
+				if (!$this->checkJomresDirectories())
 					{
-					if (!isset($_REQUEST['ftp_user_name']) )
+					$detect_os = strtoupper($_SERVER["SERVER_SOFTWARE"]); // converted to uppercase
+					$pos = strpos($detect_os, "WIN32");
+					$IIS = strpos($detect_os, "IIS");
+					if ($pos === false && $IIS === false)
 						{
-						echo "Error, you have one or more files that are not writable by php. It is probable that they are owned by your ftp user but not by the webserver's user. Please change the permissions of the files so that they can be modified by the webserver. You may need to contact your host if you cannot do this yourself.<br /><br />";
-						echo "We can try to modify the these files via ftp if you wish. Please enter your FTP server login details below.";
-						?>
-						<form action="" method="post" name="adminForm">
-						FTP Username<input  class="inputbox" size="39" type="text" name="ftp_user_name" value="<?php echo $this->ftp_user_name;?>" >
-						FTP Password<input  class="inputbox" size="39" type="text" name="ftp_user_pass" value="<?php echo $this->ftp_user_pass;?>" >
-						Server (typically localhost)<input  class="inputbox" size="39" type="text" name="ftp_server" value="<?php echo $this->ftp_server;?>" >
-						<input type="submit" name="ftpdetails" value="submit" class="button" />
-						<input type="hidden" name="task" value="updates" />
-						<input type="hidden" name="option" value="com_jomres" />
-						</form>
-						<?php
+						if (!isset($_REQUEST['ftp_user_name']) )
+							{
+							echo "Error, you have one or more files that are not writable by php. It is probable that they are owned by your ftp user but not by the webserver's user. Please change the permissions of the files so that they can be modified by the webserver. You may need to contact your host if you cannot do this yourself.<br /><br />";
+							echo "We can try to modify the these files via ftp if you wish. Please enter your FTP server login details below.";
+							?>
+							<form action="" method="post" name="adminForm">
+							FTP Username<input  class="inputbox" size="39" type="text" name="ftp_user_name" value="<?php echo $this->ftp_user_name;?>" >
+							FTP Password<input  class="inputbox" size="39" type="text" name="ftp_user_pass" value="<?php echo $this->ftp_user_pass;?>" >
+							Server (typically localhost)<input  class="inputbox" size="39" type="text" name="ftp_server" value="<?php echo $this->ftp_server;?>" >
+							<input type="submit" name="ftpdetails" value="submit" class="button" />
+							<input type="hidden" name="task" value="updates" />
+							<input type="hidden" name="option" value="com_jomres" />
+							</form>
+							<?php
+							}
+						else
+							{
+
+							$this->chmod_jomresfiles($this->directoryScanResults);
+							}
+
 						}
 					else
 						{
-
-						$this->chmod_jomresfiles($this->directoryScanResults);
+						// We're on a win box
+						echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. <br/>";
 						}
 
+					foreach ($this->directoryScanResults as $f)
+						{
+						echo $f."<br />";
+						}
+					return;
 					}
-				else
+				}
+			else
+				{
+				$this->ftp_user_name = jomresGetParam( $_REQUEST, 'ftp_user_name', '' );
+				$this->ftp_user_pass = jomresGetParam( $_REQUEST, 'ftp_user_pass', '' );
+				$this->ftp_server = jomresGetParam( $_REQUEST, 'ftp_server', '' );
+				$this->checkJomresDirectories();
+				$this->chmod_jomresfiles($this->directoryScanResults);
+				if (!$this->checkJomresDirectories())
 					{
-					// We're on a win box
-					echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. <br/>";
+					echo "Sorry, it is not possible for this script to chmod your files, you will need to upgrade manually.<br/>";
+					}
+				}
+
+			if (!isset($_REQUEST['encoding']) && !isset($_REQUEST['ftp_user_name']) )
+				{
+				$this->getUpdateInfo();
+				}
+			else if (!isset($_REQUEST['ftp_user_name']))
+				{
+				if ($jomresConfig_offline == "0" && jomresGetDomain() != "localhost")
+					{
+					echo "<h2>Error, your server is still online. This may interfere with the upgrade process so you are need to take it offline for the duration of the upgrade. Once you've finished the upgrade run install_jomres.php to make any table changes needed then you can put the server back online.<br/>To take the server offline you need to go to <a href='index2.php?option=com_config'>Global Configuration</a> and set Site Offline to Yes.</h2>";
+					return;
 					}
 
-				foreach ($this->directoryScanResults as $f)
+				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
+				$settingsList=doSelectSql($query);
+				if (count($settingsList) >0)
 					{
-					echo $f."<br />";
+					foreach ($settingsList as $lk)
+						{
+						$license_key=$lk->value;
+						}
 					}
-				return;
+
+				if (function_exists('jomres_getSingleton'))
+					$liveSite="&live_site=".urlencode(get_showtime('live_site'));
+				else
+					$liveSite="&live_site=".$jomresConfig_live_site;
+					
+
+				$requiredEncoding=jomresGetParam( $_REQUEST, 'encoding', '' );
+				$requiredVersion=jomresGetParam( $_REQUEST, 'version', '' );
+
+				/*
+				$curl_handle=curl_init();
+				curl_setopt($curl_handle,CURLOPT_URL,$this->updateServer."/gethash.php?"."encoding=".$requiredEncoding."&version=".$requiredVersion);
+				curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+				curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+				$expectedHash = trim(curl_exec($curl_handle));
+				curl_close($curl_handle);
+				*/
+				/*
+				$expectedHash = queryUpdateServer("gethash.php","encoding=".$requiredEncoding."&version=".$requiredVersion);
+				if (empty($expectedHash))
+					{
+					print "Did not receive the hash for the requested file. Quitting.";
+					return;
+					}
+				*/
+				$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion.$liveSite;
+				$newfilename=$this->updateFolder."/jomres.zip";
+
+				
+				$out = fopen($newfilename, 'wb');
+				if ($out == FALSE)
+					{
+					print "Couldn't create new file $newfilename. Possible file permission problem?<br/>";
+					exit;
+					}
+				$curl_handle = curl_init($updateFile);
+				curl_setopt($curl_handle, CURLOPT_FILE, $out);
+				curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+				curl_setopt($curl_handle, CURLOPT_URL, $updateFile);
+				curl_exec($curl_handle);
+				curl_close($curl_handle);
+				fclose($out);
+				curl_close($curl_handle);
+				fclose($out);
+				/// TO DO
+
+	//			echo $expectedHash. "<br>";
+	//			echo md5_file  ($newfilename);exit;
+	//			if (file_exists($newfilename) && filesize($newfilename)>0 && md5_file  ($newfilename) === $expectedHash)
+
+				if (file_exists($newfilename) && filesize($newfilename)>0 )
+					echo "Got it<br />";
+				else
+					{
+					echo "Something went wrong downloading the update files. Quitting";
+					return;
+					}
+
+				require_once (JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."dUnzip2.inc.php");
+
+				$zip = new dUnzip2($newfilename);
+				// Activate debug
+				$zip->debug = $this->debugging;
+				// Unzip all the contents of the zipped file to this folder
+				$zip->getList();
+				if (mkdir($this->updateFolder.JRDS."unpacked"))
+					{
+					$zip->unZipAll($this->updateFolder.JRDS."unpacked");
+					if (!$this->test_download)
+						$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS, $this->overwriteAllowed, $funcloc = "/");
+
+					if (function_exists('jomres_getSingleton'))
+						echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+					else
+						echo "Completed upgrade. Please ensure that you visit <a href=\"".$jomresConfig_live_site."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
+						
+					if ($this->debugging)
+						{
+						echo "<br/><br/><br/><br/><br/><br/>";
+						echo "UPGRADE LOG<br/>";
+						foreach ($this->movedFileLog as $record)
+							echo $record;
+						}
+					jomresRedirect(get_showtime('live_site')."/jomres/install_jomres.php", '');
+					}
+				else
+					echo "Error creating unpack folder";
 				}
 			}
 		else
-			{
-			$this->ftp_user_name = jomresGetParam( $_REQUEST, 'ftp_user_name', '' );
-			$this->ftp_user_pass = jomresGetParam( $_REQUEST, 'ftp_user_pass', '' );
-			$this->ftp_server = jomresGetParam( $_REQUEST, 'ftp_server', '' );
-			$this->checkJomresDirectories();
-			$this->chmod_jomresfiles($this->directoryScanResults);
-			if (!$this->checkJomresDirectories())
-				{
-				echo "Sorry, it is not possible for this script to chmod your files, you will need to upgrade manually.<br/>";
-				}
-			}
-
-		if (!isset($_REQUEST['encoding']) && !isset($_REQUEST['ftp_user_name']) )
-			{
-			$this->getUpdateInfo();
-			}
-		else if (!isset($_REQUEST['ftp_user_name']))
-			{
-			if ($jomresConfig_offline == "0" && jomresGetDomain() != "localhost")
-				{
-				echo "<h2>Error, your server is still online. This may interfere with the upgrade process so you are need to take it offline for the duration of the upgrade. Once you've finished the upgrade run install_jomres.php to make any table changes needed then you can put the server back online.<br/>To take the server offline you need to go to <a href='index2.php?option=com_config'>Global Configuration</a> and set Site Offline to Yes.</h2>";
-				return;
-				}
-
-			$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-			$settingsList=doSelectSql($query);
-			if (count($settingsList) >0)
-				{
-				foreach ($settingsList as $lk)
-					{
-					$license_key=$lk->value;
-					}
-				}
-
-			if (function_exists('jomres_getSingleton'))
-				$liveSite="&live_site=".urlencode(get_showtime('live_site'));
-			else
-				$liveSite="&live_site=".$jomresConfig_live_site;
-				
-
-			$requiredEncoding=jomresGetParam( $_REQUEST, 'encoding', '' );
-			$requiredVersion=jomresGetParam( $_REQUEST, 'version', '' );
-
-			/*
-			$curl_handle=curl_init();
-			curl_setopt($curl_handle,CURLOPT_URL,$this->updateServer."/gethash.php?"."encoding=".$requiredEncoding."&version=".$requiredVersion);
-			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-			$expectedHash = trim(curl_exec($curl_handle));
-			curl_close($curl_handle);
-			*/
-			/*
-			$expectedHash = queryUpdateServer("gethash.php","encoding=".$requiredEncoding."&version=".$requiredVersion);
-			if (empty($expectedHash))
-				{
-				print "Did not receive the hash for the requested file. Quitting.";
-				return;
-				}
-			*/
-			$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion.$liveSite;
-			$newfilename=$this->updateFolder."/jomres.zip";
-
-			
-			$out = fopen($newfilename, 'wb');
-			if ($out == FALSE)
-				{
-				print "Couldn't create new file $newfilename. Possible file permission problem?<br/>";
-				exit;
-				}
-			$curl_handle = curl_init($updateFile);
-			curl_setopt($curl_handle, CURLOPT_FILE, $out);
-			curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-			curl_setopt($curl_handle, CURLOPT_URL, $updateFile);
-			curl_exec($curl_handle);
-			curl_close($curl_handle);
-			fclose($out);
-			curl_close($curl_handle);
-			fclose($out);
-			/// TO DO
-
-//			echo $expectedHash. "<br>";
-//			echo md5_file  ($newfilename);exit;
-//			if (file_exists($newfilename) && filesize($newfilename)>0 && md5_file  ($newfilename) === $expectedHash)
-
-			if (file_exists($newfilename) && filesize($newfilename)>0 )
-				echo "Got it<br />";
-			else
-				{
-				echo "Something went wrong downloading the update files. Quitting";
-				return;
-				}
-
-			require_once (JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."dUnzip2.inc.php");
-
-			$zip = new dUnzip2($newfilename);
-			// Activate debug
-			$zip->debug = $this->debugging;
-			// Unzip all the contents of the zipped file to this folder
-			$zip->getList();
-			if (mkdir($this->updateFolder.JRDS."unpacked"))
-				{
-				$zip->unZipAll($this->updateFolder.JRDS."unpacked");
-				if (!$this->test_download)
-					$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS, $this->overwriteAllowed, $funcloc = "/");
-
-				if (function_exists('jomres_getSingleton'))
-					echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
-				else
-					echo "Completed upgrade. Please ensure that you visit <a href=\"".$jomresConfig_live_site."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
-					
-				if ($this->debugging)
-					{
-					echo "<br/><br/><br/><br/><br/><br/>";
-					echo "UPGRADE LOG<br/>";
-					foreach ($this->movedFileLog as $record)
-						echo $record;
-					}
-				jomresRedirect(get_showtime('live_site')."/jomres/install_jomres.php", '');
-				}
-			else
-				echo "Error creating unpack folder";
-			}
+			return;
 		}
 
-
-
+		
 	function getUpdateInfo()
 		{
 		print queryUpdateServer("updates_available.php","","updates");
