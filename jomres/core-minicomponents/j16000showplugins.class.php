@@ -18,11 +18,18 @@ class j16000showplugins
 	function j16000showplugins()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		jr_import('minicomponent_registry');
+		if (function_exists('jr_import'))
+			{
+			jr_import('minicomponent_registry');
+			$MiniComponents =jomres_getSingleton('mcHandler');
+			}
+		else
+			global $MiniComponents;
+
 		$registry = new minicomponent_registry(true);
 		$registry->regenerate_registry();
 		
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -39,8 +46,12 @@ class j16000showplugins
 				}
 			}
 
+		require_once ( JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS."a_updates_45".JRDS."jomres_check_support_key.class.php");
+		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
+		$this->key_valid = $key_validation->key_valid;
+		
 		$remote_plugins=array();
-		$remote_plugins_data=queryUpdateServer("","r=dp&cms="._JOMRES_DETECTED_CMS);
+		$remote_plugins_data=queryUpdateServer("","r=dp&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
 		$rp_array=explode("<br/>",$remote_plugins_data);
 		foreach ($rp_array as $rp)
 			{

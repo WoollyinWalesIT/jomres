@@ -68,13 +68,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
-		<!--
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SUPPORTKEY.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SUPPORTKEY_DESC.'</td>
 		</tr>
-		-->
 		<!--
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SITELANGUAGE_FILE.'</td>
