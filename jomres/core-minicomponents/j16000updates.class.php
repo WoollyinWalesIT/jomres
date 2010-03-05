@@ -139,6 +139,8 @@ class j16000updates
 						}
 					}
 
+				$license_key_string="&key=".$license_key;
+				
 				if (function_exists('jomres_getSingleton'))
 					$liveSite="&live_site=".urlencode(get_showtime('live_site'));
 				else
@@ -164,10 +166,9 @@ class j16000updates
 					return;
 					}
 				*/
-				$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion.$liveSite;
+				$updateFile = $this->updateServer."/index.php?encoding=".$requiredEncoding."&version=".$requiredVersion.$liveSite.$license_key_string;
 				$newfilename=$this->updateFolder."/jomres.zip";
 
-				
 				$out = fopen($newfilename, 'wb');
 				if ($out == FALSE)
 					{
