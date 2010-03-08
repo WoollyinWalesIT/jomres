@@ -1570,7 +1570,7 @@ function hotelSettings()
 	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb	= $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveHotelSettings');
-	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -2574,7 +2574,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 			<tr>
 			<td width="20" class="jradmin_field_ca"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
 
-			<td  class="jradmin_field_ca"width="25%"><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=$Itemid&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
+			<td  class="jradmin_field_ca"width="25%"><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
 			<td class="jradmin_field_ca"><?php echo $row->tag; ?></td>
 			<td class="jradmin_field_ca"><?php echo outputDate($row->arrival); ?></td>
 			<td class="jradmin_field_ca"><?php echo outputDate($row->departure); ?></td>
@@ -3808,7 +3808,7 @@ function showCalandarMonthDropdown()
 	echo "<table><tr>";
 	for ($i=1;$i<=16;$i++)
 		{
-		$link="<td><a href=\"".sefRelToAbs(JOMRES_SITEPAGE_URL."&Itemid=$Itemid&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
+		$link="<td><a href=\"".sefRelToAbs(JOMRES_SITEPAGE_URL."&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
 		echo $link;
 		$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
 		$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
