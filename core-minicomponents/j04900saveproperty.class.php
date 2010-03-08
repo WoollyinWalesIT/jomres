@@ -56,7 +56,7 @@ class j04900saveproperty {
 		$property_town					= jomresGetParam( $_POST, 'property_town', "" );
 		$property_region				= jomresGetParam( $_POST, 'region', "" );
 		if ($jrConfig['limit_property_country'] == "0")
-			$property_country				= jomresGetParam( $_POST, 'property_country', "" );
+			$property_country				= jomresGetParam( $_POST, 'country', "" );
 		else
 			$property_country				= $jrConfig['limit_property_country_country'];
 		$property_postcode				= jomresGetParam( $_POST, 'property_postcode', "" );
