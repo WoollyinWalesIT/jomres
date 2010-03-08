@@ -58,7 +58,7 @@ class j16000sms_clickatell_settings {
 		$output['USERNAME']	= $sms_clickatell_settings->sms_clickatellConfigOptions['username'];
 		$output['PASSWORD']	= $sms_clickatell_settings->sms_clickatellConfigOptions['password'];
 		$output['API_ID'] 	= $sms_clickatell_settings->sms_clickatellConfigOptions['api_id'];
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1">';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1" />';
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();

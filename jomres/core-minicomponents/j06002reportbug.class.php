@@ -106,7 +106,7 @@ class j06002reportbug {
 			$output['DEBUGINFO']=$debug;
 			$output['ADMINEMAIL']=$jomresConfig_mailfrom;
 
-			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'" />';
 
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
