@@ -149,7 +149,7 @@ class j01020showtariffs {
 						$theRate=number_format(($price_inc_vat),2, '.', '');
 						if ($mrConfig['showGoogleCurrencyLink']=="1")
 							{
-							$theLink='http://www.xe.com/pca/input.cgi?From='.$mrConfig['currencyCode'].'&Amount='.$theRate;
+							$theLink='http://www.xe.com/pca/input.cgi?From='.$mrConfig['property_currencycode'].'&Amount='.$theRate;
 							$theText=jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT',_JOMRES_CURRENCYCONVERSIONTEXT);
 							$output['GOOGLECURRENCYLINKS']='<a href='.$theLink.' rel="nofollow" target="_blank">'.$theText.'</a><br />';
 							}
