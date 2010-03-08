@@ -168,7 +168,7 @@ class j06000contactowner {
 				break;
 			}
 
-			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'" />';
 
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
