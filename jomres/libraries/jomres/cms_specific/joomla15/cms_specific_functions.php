@@ -167,36 +167,17 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 	global $faux_header_scripts;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	if ($jrConfig['outputHeadersInline'] == "1")
+	switch ($type) 
 		{
-		switch ($type) 
-			{
-			case "javascript":
-				$faux_header_scripts .= '<script type="text/javascript" src="'.$path.$filename.'"></script>
-				';
-			break;
-			case "css":
-				JHTML::stylesheet($filename, $path);
-			break;
-			default:
-				
-			break;
-			}
-		}
-	else
-		{
-		switch ($type) 
-			{
-			case "javascript":
-				JHTML::script($filename, $path, false);
-			break;
-			case "css":
-				JHTML::stylesheet($filename, $path);
-			break;
-			default:
-				
-			break;
-			}
+		case "javascript":
+			JHTML::script($filename, $path, false);
+		break;
+		case "css":
+			JHTML::stylesheet($filename, $path);
+		break;
+		default:
+			
+		break;
 		}
 	}
 	
