@@ -43,41 +43,56 @@ function JomresBuildRoute(&$query)
 			$segments[] = $query['task'];
 			$segments[] = trim($property_name);
 			$segments[] = $query['property_uid'];
-			unset( $query['task'] );
-			unset( $query['property_uid'] );
+			if (isset($query['task']))
+				unset( $query['task'] );
+			if (isset($query['property_uid']))
+				unset( $query['property_uid'] );
 			break;
 		case 'dobooking':
 			$segments[] = "dobooking";
 			$segments[] = trim($property_name);
 			$segments[] = $query['selectedProperty'];
-			unset( $query['task'] );
-			unset( $query['selectedProperty'] );
+			if (isset($query['task']))
+				unset( $query['task'] );
+			if (isset($query['selectedProperty']))
+				unset( $query['selectedProperty'] );
 			break;
 		case 'showTariffs':
 			$segments[] = $query['task'];
 			$segments[] = $query['property_uid'];
 			$segments[] = $query['op'];
-			unset( $query['task'] );
-			unset( $query['property_uid'] );
-			unset( $query['op'] );
+			if (isset($query['task']))
+				unset( $query['task'] );
+			if (isset($query['property_uid']))
+				unset( $query['property_uid'] );
+			if (isset($query['op']))
+				unset( $query['op'] );
 			break;
 		case 'slideshow':
 			$segments[] = $query['task'];
 			$segments[] = $query['property_uid'];
 			$segments[] = $query['op'];
-			unset( $query['task'] );
-			unset( $query['property_uid'] );
-			unset( $query['op'] );
-			unset( $query['popup'] );
+			if (isset($query['task']))
+				unset( $query['task'] );
+			if (isset($query['property_uid']))
+				unset( $query['property_uid'] );
+			if (isset($query['op']))
+				unset( $query['op'] );
+			if (isset($query['popup']))
+				unset( $query['popup'] );
 			break;
 		case 'showRoomsListing':
 			$segments[] = $query['task'];
 			$segments[] = $query['property_uid'];
 			$segments[] = $query['op'];
-			unset( $query['task'] );
-			unset( $query['property_uid'] );
-			unset( $query['op'] );
-			unset( $query['popup'] );
+			if (isset($query['task']))
+				unset( $query['task'] );
+			if (isset($query['property_uid']))
+				unset( $query['property_uid'] );
+			if (isset($query['op']))
+				unset( $query['op'] );
+			if (isset($query['popup']))
+				unset( $query['popup'] );
 			break;
 		default :
 			$segments[] = "";
@@ -104,8 +119,10 @@ function JomresBuildRoute(&$query)
 			$segments[] = $query['country'];
 			unset( $query['country'] );
 			}
-		unset( $query['send'] );
-		unset( $query['calledByModule'] );
+		if (isset($query['send']))
+			unset( $query['send'] );
+		if (isset($query['calledByModule']))
+			unset( $query['calledByModule'] );
 		}
 		
 	//	var_dump($segments);
