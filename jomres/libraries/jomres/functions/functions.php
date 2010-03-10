@@ -205,8 +205,12 @@ function init_javascript()
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.3.2.min.js");
+			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/ui-lightness/','jquery-ui-1.8rc3.custom.css');
+			
+			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.3.2.min.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-ui-1.8rc3.custom.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"interface.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
