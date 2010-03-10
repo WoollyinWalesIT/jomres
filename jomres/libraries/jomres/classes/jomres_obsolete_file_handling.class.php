@@ -147,31 +147,31 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.7.1.custom.min.js');
 		
 		
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'class.smtp.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'LICENSE');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-br.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'class.smtp.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'LICENSE');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-br.php');
 		
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ca.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-cz.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-de.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-dk.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-en.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-es.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-et.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-fi.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-fo.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-fr.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-hu.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-it.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ja.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-nl.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-no.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-pl.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ro.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ru.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-se.php');
-		$this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-tr.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ca.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-cz.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-de.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-dk.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-en.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-es.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-et.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-fi.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-fo.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-fr.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-hu.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-it.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ja.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-nl.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-no.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-pl.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ro.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ru.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-se.php');
+		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-tr.php');
 		}
 	
 	function add_obs_file($path_and_file)
