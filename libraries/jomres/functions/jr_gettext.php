@@ -177,7 +177,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				}
 		}
 	
-	$theText = jomres_purify_html($theText);
+	$theText = jomres_purify_html($theText,$editing);
 	
 	switch ($jrConfig['utfHTMLdecode'])
 		{
@@ -195,7 +195,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 
 
 // Added to this file because it's expected to be used by jr_gettext
-function jomres_purify_html($dirty)
+function jomres_purify_html($dirty,$editing)
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -203,7 +203,7 @@ function jomres_purify_html($dirty)
 	
 	$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
 	$performance_monitor->set_point("pre-purification ".time());
-	if ($jrConfig['use_html_purifier'] == "1")
+	if ($jrConfig['use_html_purifier'] == "1" && !$editing)
 		{
 		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'htmlpurifier'.JRDS.'HTMLPurifier.standalone.php');
 		// Allowed Elements in HTML
