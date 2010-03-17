@@ -30,8 +30,8 @@ class jomres_obsolete_file_handling
 		$this->dir_functions = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS;
 		$this->dir_libraries = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS;
 		
-		$this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'css'.JRDS;
-		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'javascript'.JRDS;
+		$this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'css'.JRDS;
+		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'javascript'.JRDS;
 		
 		$this->dir_templates_frontend = JOMRES_TEMPLATEPATH_FRONTEND.JRDS;
 		$this->dir_templates_backend =JOMRES_TEMPLATEPATH_BACKEND.JRDS;
@@ -172,6 +172,14 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-ru.php');
 		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-se.php');
 		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'language'.JRDS.'phpmailer.lang-tr.php');
+		
+		$this->add_obs_file($this->dir_javascript.'tabber-minimized.js');
+		$this->add_obs_file($this->dir_css.'tabber.css');
+		$this->add_obs_file($this->dir_javascript.'jquery-1.3.2.min.js');
+		$this->add_obs_file($this->dir_javascript.'fullsize-jquery.js');
+		$this->add_obs_file($this->dir_javascript.'mootools.js');
+		$this->add_obs_file($this->dir_javascript.'mootools and jquery conflict.txt');
+		
 		}
 	
 	function add_obs_file($path_and_file)
