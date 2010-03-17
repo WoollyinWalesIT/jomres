@@ -69,24 +69,34 @@ class j00016composite_property_details {
 		// j01060 slideshows
 		if ($mrConfig['showSlideshowInline']=="1")
 			{
-			$slideshowcontent[]=array('SLIDESHOW_TITLE'=>$output['TITLE_SLIDESHOW'],'SLIDESHOW'=>$MiniComponents->miniComponentData['01060']['slideshow']['slideshow']);
+			$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_SLIDESHOW']);
+			$slideshowcontent[]=array('SLIDESHOW_TITLE'=>$output['TITLE_SLIDESHOW'],'SLIDESHOW'=>$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'],'SLIDESHOW_TITLE_ANCHOR'=>$anchor);
+			$slideshowcontent_anchor[0]['SLIDESHOW_TITLE']=$slideshowcontent[0]['SLIDESHOW_TITLE'];
+			$slideshowcontent_anchor[0]['SLIDESHOW_TITLE_ANCHOR']=$anchor;
 			}
+
 		// j01050 geocoder (google maps)
 		
 		if (strlen($MiniComponents->miniComponentData['01050']['x_geocoder'])>0)
 			{
-			$mapcontent[]=array('MAP_TITLE'=>$output['TITLE_MAP'],'GOOGLE_MAPS'=>$MiniComponents->miniComponentData['01050']['x_geocoder']);
+			$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_MAP']);
+			$mapcontent[]=array('MAP_TITLE'=>$output['TITLE_MAP'],'GOOGLE_MAPS'=>$MiniComponents->miniComponentData['01050']['x_geocoder'],'MAP_TITLE_ANCHOR'=>$anchor);
 			$output['GOOGLE_MAPS']=$MiniComponents->miniComponentData['01050']['x_geocoder'];
+			$output['MAP_TITLE_ANCHOR']=$anchor;
 			}
 		// j01020 tariffs (either the verbose or the compact view, depending on General Config)
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
 			if ($mrConfig['showTariffsInline']=="1")
 				{
-				$tariffslist[] = array('tariffs_list_title'=>$output['TITLE_TARIFF'],'INLINE_TARIFFS'=>$MiniComponents->miniComponentData['01020']['showtariffs']);
-				$output['INLINE_TARIFFS']=$MiniComponents->miniComponentData['01020']['showtariffs'];
+				$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_TARIFF']);
+				$tariffslist[] = array('TARIFFS_LIST_TITLE'=>$output['TITLE_TARIFF'],'INLINE_TARIFFS'=>$MiniComponents->miniComponentData['01020']['showtariffs'],'TITLE_TARIFF_ANCHOR'=>$anchor);
+				$tariffslist_anchor[0]['TITLE_TARIFF']=$tariffslist[0]['TARIFFS_LIST_TITLE'];
+				$tariffslist_anchor[0]['TITLE_TARIFF_ANCHOR']=$anchor;
 				}
 			}
+		
+		
 		// j00017 SRP avl cal
 		// j00018 MRP avl cal
 		if ($mrConfig['is_real_estate_listing']==0)
@@ -106,23 +116,38 @@ class j00016composite_property_details {
 			}
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
+			$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_AVAILABILITYCALENDAR']);
 			if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
 				{
-				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar']);
+				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'],'AVLCALENDAR_TITLE_ANCHOR'=>$anchor);
 				$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'];
+				$availabilitycalendarcontent_anchor[0]['AVLCALENDAR_TITLE']=$availabilitycalendarcontent[0]['AVLCALENDAR_TITLE'];
+				$availabilitycalendarcontent_anchor[0]['AVLCALENDAR_TITLE_ANCHOR']=$anchor;
 				}
 			elseif ($mrConfig['showAvailabilityCalendar'])
 				{
-				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar']);
+				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'],'AVLCALENDAR_TITLE_ANCHOR'=>$anchor);
 				$output['AVAILABILITY_CALENDAR']=$MiniComponents->miniComponentData['00018']['MRPavailabilitycalendar'];
+				$availabilitycalendarcontent_anchor[0]['AVLCALENDAR_TITLE']=$availabilitycalendarcontent[0]['AVLCALENDAR_TITLE'];
+				$availabilitycalendarcontent_anchor[0]['AVLCALENDAR_TITLE_ANCHOR']=$anchor;
 				}
+			
 			}
+			
+
 		// j01055 Rooms list
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
 			if ($mrConfig['roomslistinpropertydetails']=="1")
-				$roomslist[]=array('ROOMS_LIST_TITLE'=>$output['TITLE_ROOMSLIST'],'ROOMS_LIST'=>$MiniComponents->miniComponentData['01055']['showroomdetails']);
+				{
+				$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_ROOMSLIST']);
+				$roomslist[]=array('ROOMS_LIST_TITLE'=>$output['TITLE_ROOMSLIST'],'ROOMS_LIST'=>$MiniComponents->miniComponentData['01055']['showroomdetails'],'TITLE_ROOMSLIST_ANCHOR'=>$anchor);
+				$roomslist_anchor[0]['TITLE_ROOMSLIST']=$roomslist[0]['ROOMS_LIST_TITLE'];
+				$roomslist_anchor[0]['TITLE_ROOMSLIST_ANCHOR']=$anchor;
+				}
 			}
+		
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$mcOutput=$MiniComponents->getAllEventPointsData('00015');
@@ -136,14 +161,25 @@ class j00016composite_property_details {
 			
 		$tmpl->addRows( 'mapcontent', $mapcontent );
 		if ($mrConfig['is_real_estate_listing']==0)
+			{
 			$tmpl->addRows( 'tariffslist', $tariffslist );
+			$tmpl->addRows( 'tariffslist_anchor', $tariffslist_anchor );
+			}
 		if ($mrConfig['is_real_estate_listing']==0)
-		$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
+			{
+			$tmpl->addRows( 'availabilitycalendarcontent_anchor', $availabilitycalendarcontent_anchor );
+			$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
+			}
+		$tmpl->addRows( 'slideshowcontent_anchor', $slideshowcontent_anchor );
 		$tmpl->addRows( 'slideshowcontent', $slideshowcontent );
+		
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
 			if ($mrConfig['singleRoomProperty']=="0")
+				{
 				$tmpl->addRows( 'roomslist', $roomslist );
+				$tmpl->addRows( 'roomslist_anchor', $roomslist_anchor );
+				}
 			}
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'feature_icons', $featureList);

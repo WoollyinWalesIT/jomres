@@ -1,15 +1,4 @@
 <patTemplate:tmpl name="pageoutput" >
-<script type="text/javascript" src="{LIVE_SITE}/jomres/javascript/tabber-minimized.js"></script>
-<link rel="stylesheet" href="{LIVE_SITE}/jomres/css/tabber.css" TYPE="text/css" MEDIA="screen" />
-
-<style type="text/css">
-
-
-</style>
-
-<script type="text/javascript">
-document.write('<style type="text/css">.tabber{display:none;}<\/style>');
-</script>
 
 <script type="text/javascript">
 	jQuery(function(){
@@ -19,6 +8,7 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 		jQuery("div.property_details").corner("5px");
 		jQuery("div.more_info").corner("5px");
 		jQuery("td.viewproperty_rightcol").corner("5px");
+		jQuery("#tabs").tabs();
     });
 </script>
 
@@ -76,122 +66,97 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 
 				<tr>
 					<td class="viewproperty_leftcol" valign="top">
-						<div class="tabber">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{TITLE_PROPERTYDETAILS}</h2>
-										<p>{DESCRIPTION}</p>
-										<!--
-										<div style="clear:both;">
-											{HRTYPES}
-										</div>
-										
-										<div>
-											<patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
-											{ROOM_TYPE}
-											</patTemplate:tmpl>
-										</div>
-										<div style="clear:both;">
-											{HFEATURES}
-										</div>
-										<div>
-											<patTemplate:tmpl name="feature_icons" type="simpleCondition" requiredVars="feature">
-												{FEATURE}
-											</patTemplate:tmpl>
-										</div>
-										-->
-										<patTemplate:tmpl name="customoutput_discounts">
-										<div class="jomres_message">
-											{LASTMINUTE}
-										</div>
-										<br/>
-										<br/>
-										</patTemplate:tmpl>
-								</div>
-							</div>
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{TITLE_MOREINFO}</h2>
-										<div class="leftinfo_title">
-											{HAREAACTIVITIES}
-										</div>
-										<div class="leftinfo_content">
-											{AREAACTIVITIES}
-										</div>
-										<div class="leftinfo_title">
-											{HPOLICIESDISCLAIMERS}
-										</div>
-										<div class="leftinfo_content">
-											{POLICIESDISCLAIMERS}
-										</div>
-										<div class="leftinfo_title">
-											{HCHECKINTIMES}
-										</div>
-										<div class="leftinfo_content">
-											{CHECKINTIMES}
-										</div>
-										<div class="leftinfo_title">
-											{HDRIVINGDIRECTIONS}
-										</div>
-										<div class="leftinfo_content">
-											{DRIVINGDIRECTIONS}
-										</div>
-										<div class="leftinfo_title">
-											{HAIRPORTS}
-										</div>
-										<div class="leftinfo_content">
-											{AIRPORTS}
-										</div>
-										<div class="leftinfo_title">
-											{HOTHERTRANSPORT}
-										</div>
-										<div class="leftinfo_content">
-											{OTHERTRANSPORT}
-										</div>
-								</div>
-							</div>
-							<patTemplate:tmpl name="availabilitycalendarcontent" type="simpleCondition" requiredVars="avlcalendar_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{AVLCALENDAR_TITLE}</h2>
-									{AVAILABILITY_CALENDAR}
-								</div>
-							</div>
-							</patTemplate:tmpl>
-							<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{SLIDESHOW_TITLE}</h2>
-									{SLIDESHOW}
-								</div>
-							</div>
-							</patTemplate:tmpl>
-						
-							<patTemplate:tmpl name="mapcontent" type="simpleCondition" requiredVars="map_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{MAP_TITLE}</h2>
-									{GOOGLE_MAPS}
-								</div>
-							</div>
-							</patTemplate:tmpl>
-							<patTemplate:tmpl name="tariffslist" type="simpleCondition" requiredVars="tariffs_list_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{TARIFFS_LIST_TITLE}</h2>
-									{INLINE_TARIFFS}
-								</div>
-							</div>
-							</patTemplate:tmpl>
-							<patTemplate:tmpl name="roomslist" type="simpleCondition" requiredVars="rooms_list_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{ROOMS_LIST_TITLE}</h2>
-									{ROOMS_LIST}
-								</div>
-							</div>
-							</patTemplate:tmpl>
-						</div>
+<!-- Start jquery tabs -->
+<div id="tabs">
+    <ul>
+        <li><a href="#{TITLE_PROPERTYDETAILS_ANCHOR}"><span>{TITLE_PROPERTYDETAILS}</span></a></li>
+        <li><a href="#{TITLE_MOREINFO_ANCHOR}"><span>{TITLE_MOREINFO}</span></a></li>
+		<patTemplate:tmpl name="availabilitycalendarcontent_anchor" type="simpleCondition" requiredVars="avlcalendar_title_anchor"><li><a href="#{AVLCALENDAR_TITLE_ANCHOR}"><span>{AVLCALENDAR_TITLE}</span></a></li></patTemplate:tmpl>
+		<patTemplate:tmpl name="slideshowcontent_anchor" type="simpleCondition" requiredVars="slideshow_title_anchor"><li><a href="#{SLIDESHOW_TITLE_ANCHOR}"><span>{SLIDESHOW_TITLE}</span></a></li></patTemplate:tmpl>
+		<li><a href="#{MAP_TITLE_ANCHOR}"><span>{TITLE_MAP}</span></a></li>
+		<patTemplate:tmpl name="tariffslist_anchor" type="simpleCondition" requiredVars="title_tariff_anchor"><li><a href="#{TITLE_TARIFF_ANCHOR}"><span>{TITLE_TARIFF}</span></a></li></patTemplate:tmpl>
+		<patTemplate:tmpl name="roomslist_anchor" type="simpleCondition" requiredVars="title_roomslist_anchor"><li><a href="#{TITLE_ROOMSLIST_ANCHOR}"><span>{TITLE_ROOMSLIST}</span></a></li></patTemplate:tmpl>
+		
+    </ul>
+    <div id="{TITLE_PROPERTYDETAILS_ANCHOR}">
+        <h2>{DESCRIPTION}</h2>
+			<patTemplate:tmpl name="customoutput_discounts">
+			<div class="jomres_message">
+				{LASTMINUTE}
+			</div>
+			</patTemplate:tmpl>
+	</div>
+	<div id="{TITLE_MOREINFO_ANCHOR}">
+		<h2>{TITLE_MOREINFO}</h2>
+			<div class="leftinfo_title">
+				{HAREAACTIVITIES}
+			</div>
+			<div class="leftinfo_content">
+				{AREAACTIVITIES}
+			</div>
+			<div class="leftinfo_title">
+				{HPOLICIESDISCLAIMERS}
+			</div>
+			<div class="leftinfo_content">
+				{POLICIESDISCLAIMERS}
+			</div>
+			<div class="leftinfo_title">
+				{HCHECKINTIMES}
+			</div>
+			<div class="leftinfo_content">
+				{CHECKINTIMES}
+			</div>
+			<div class="leftinfo_title">
+				{HDRIVINGDIRECTIONS}
+			</div>
+			<div class="leftinfo_content">
+				{DRIVINGDIRECTIONS}
+			</div>
+			<div class="leftinfo_title">
+				{HAIRPORTS}
+			</div>
+			<div class="leftinfo_content">
+				{AIRPORTS}
+			</div>
+			<div class="leftinfo_title">
+				{HOTHERTRANSPORT}
+			</div>
+			<div class="leftinfo_content">
+				{OTHERTRANSPORT}
+			</div>
+	</div>
+	<patTemplate:tmpl name="availabilitycalendarcontent" type="simpleCondition" requiredVars="avlcalendar_title">
+	<div id="{AVLCALENDAR_TITLE_ANCHOR}">
+		<h2>{AVLCALENDAR_TITLE}</h2>
+			{AVAILABILITY_CALENDAR}
+	</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
+	<div id="{SLIDESHOW_TITLE_ANCHOR}">
+		<h2>{SLIDESHOW_TITLE}</h2>
+			{SLIDESHOW}
+	</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="mapcontent" type="simpleCondition" requiredVars="map_title">
+	<div id="{MAP_TITLE_ANCHOR}">
+		<h2>{MAP_TITLE}</h2>
+			{GOOGLE_MAPS}
+	</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="tariffslist" type="simpleCondition" requiredVars="tariffs_list_title">
+	<div id="{TITLE_TARIFF_ANCHOR}">
+		<h2>{TARIFFS_LIST_TITLE}</h2>
+			{INLINE_TARIFFS}
+	</div>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="roomslist" type="simpleCondition" requiredVars="rooms_list_title">
+	<div id="{TITLE_ROOMSLIST_ANCHOR}">
+		<h2>{ROOMS_LIST_TITLE}</h2>
+			{ROOMS_LIST}
+	</div>
+	</patTemplate:tmpl>
+</div>
+<!-- End jquery tabs -->
 					</td>
 				</tr>
 			</table>
