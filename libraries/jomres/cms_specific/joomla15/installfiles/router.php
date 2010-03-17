@@ -11,6 +11,8 @@
 function JomresBuildRoute(&$query)
 	{
 	static $items;
+	$route_query = $query;  // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
+	
 	if (!defined('_JOMRES_INITCHECK'))
 		define('_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
@@ -25,112 +27,103 @@ function JomresBuildRoute(&$query)
 		$items		= $menu->getItems('componentid', $component->id);
 	}
 
-	if ($query['task'] == "dobooking" && isset($query['remus']) )
+	if ($route_query['task'] == "dobooking" && isset($route_query['remus']) )
 		return array();
 	
-	if (isset($query['property_uid']) || isset($query['selectedProperty']))
+	if (isset($route_query['property_uid']) || isset($route_query['selectedProperty']))
 		{
-		if (isset($query['selectedProperty']))
-			$pid = $query['selectedProperty'];
+		if (isset($route_query['selectedProperty']))
+			$pid = $route_query['selectedProperty'];
 		else
-			$pid = $query['property_uid'];
+			$pid = $route_query['property_uid'];
 		$sql = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = ".(int)$pid." LIMIT 1";
 		$property_name = doSelectSql($sql,1);
 		}
-	switch($query['task'])
+	switch($route_query['task'])
 		{
 		case 'viewproperty':
-			$segments[] = $query['task'];
+			$segments[] = $route_query['task'];
 			$segments[] = trim($property_name);
-			$segments[] = $query['property_uid'];
-			if (isset($query['task']))
-				unset( $query['task'] );
-			if (isset($query['property_uid']))
-				unset( $query['property_uid'] );
+			$segments[] = $route_query['property_uid'];
+			if (isset($route_query['task']))
+					unset( $route_query['task'] );
+			if (isset($route_query['property_uid']))
+					unset( $route_query['property_uid'] );
 			break;
 		case 'dobooking':
 			$segments[] = "dobooking";
 			$segments[] = trim($property_name);
-			$segments[] = $query['selectedProperty'];
-			if (isset($query['task']))
-				unset( $query['task'] );
-			if (isset($query['selectedProperty']))
-				unset( $query['selectedProperty'] );
+			$segments[] = $route_query['selectedProperty'];
+			if (isset($route_query['task']))
+					unset( $route_query['task'] );
+			if (isset($route_query['selectedProperty']))
+					unset( $route_query['selectedProperty'] );
 			break;
 		case 'showTariffs':
-			$segments[] = $query['task'];
-			$segments[] = $query['property_uid'];
-			$segments[] = $query['op'];
-			if (isset($query['task']))
-				unset( $query['task'] );
-			if (isset($query['property_uid']))
-				unset( $query['property_uid'] );
-			if (isset($query['op']))
-				unset( $query['op'] );
+			$segments[] = $route_query['task'];
+			$segments[] = $route_query['property_uid'];
+			$segments[] = $route_query['op'];
+			if (isset($route_query['task']))
+					unset( $route_query['task'] );
+			if (isset($route_query['property_uid']))
+					unset( $route_query['property_uid'] );
+			if (isset($route_query['op']))
+					unset( $route_query['op'] );
 			break;
 		case 'slideshow':
-			$segments[] = $query['task'];
-			$segments[] = $query['property_uid'];
-			$segments[] = $query['op'];
-			if (isset($query['task']))
-				unset( $query['task'] );
-			if (isset($query['property_uid']))
-				unset( $query['property_uid'] );
-			if (isset($query['op']))
-				unset( $query['op'] );
-			if (isset($query['popup']))
-				unset( $query['popup'] );
+			$segments[] = $route_query['task'];
+			$segments[] = $route_query['property_uid'];
+			$segments[] = $route_query['op'];
+			if (isset($route_query['task']))
+					unset( $route_query['task'] );
+			if (isset($route_query['property_uid']))
+					unset( $route_query['property_uid'] );
+			if (isset($route_query['op']))
+					unset( $route_query['op'] );
+			if (isset($route_query['popup']))
+					unset( $route_query['popup'] );
 			break;
 		case 'showRoomsListing':
-			$segments[] = $query['task'];
-			$segments[] = $query['property_uid'];
-			$segments[] = $query['op'];
-			if (isset($query['task']))
-				unset( $query['task'] );
-			if (isset($query['property_uid']))
-				unset( $query['property_uid'] );
-			if (isset($query['op']))
-				unset( $query['op'] );
-			if (isset($query['popup']))
-				unset( $query['popup'] );
-			break;
-		default :
-			$segments[] = "";
+			$segments[] = $route_query['task'];
+			$segments[] = $route_query['property_uid'];
+			$segments[] = $route_query['op'];
+			if (isset($route_query['task']))
+					unset( $route_query['task'] );
+			if (isset($route_query['property_uid']))
+					unset( $route_query['property_uid'] );
+			if (isset($route_query['op']))
+					unset( $route_query['op'] );
+			if (isset($route_query['popup']))
+					unset( $route_query['popup'] );
 			break;
 		}
-	if (isset($query['calledByModule'] ))
+	if (isset($route_query['calledByModule'] ))
 		{
 		$segments[] = $jrConfig['sef_task_alias_search'];
-		if (isset($query['town']))
+		if (isset($route_query['town']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN;
-			$segments[] = $query['town'];
-			unset( $query['town'] );
+			$segments[] = $route_query['town'];
+			unset( $route_query['town'] );
 			}
-		if (isset($query['region']))
+		if (isset($route_query['region']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION;
-			$segments[] = $query['region'];
-			unset( $query['region'] );
+			$segments[] = $route_query['region'];
+			unset( $route_query['region'] );
 			}
-		if (isset($query['country']))
+		if (isset($route_query['country']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY;
-			$segments[] = $query['country'];
-			unset( $query['country'] );
+			$segments[] = $route_query['country'];
+			unset( $route_query['country'] );
 			}
-		if (isset($query['send']))
-			unset( $query['send'] );
-		if (isset($query['calledByModule']))
-			unset( $query['calledByModule'] );
+		if (isset($route_query['send']))
+			unset( $route_query['send'] );
+		if (isset($route_query['calledByModule']))
+			unset( $route_query['calledByModule'] );
 		}
-		
-	//	var_dump($segments);
-	if (count($segments)==0)
-		{
-		var_dump($query);
-		echo "<br>";
-		}
+	$query = $route_query;
 	return $segments;
 	}
 
