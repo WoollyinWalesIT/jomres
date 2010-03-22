@@ -1,8 +1,27 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script type="text/javascript">
 	jQuery(function(){
-		jQuery("div.jomres_button").corner("5px");
-    });
+		//all hover and click logic for buttons
+		jQuery(".fg-button:not(.ui-state-disabled)")
+		.hover(
+			function(){ 
+				jQuery(this).addClass("ui-state-hover"); 
+			},
+			function(){ 
+				jQuery(this).removeClass("ui-state-hover"); 
+			}
+		)
+		.mousedown(function(){
+				jQuery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( jQuery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jQuery(this).removeClass("ui-state-active"); }
+				else { jQuery(this).addClass("ui-state-active"); }
+		})
+		.mouseup(function(){
+			if(! jQuery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				jQuery(this).removeClass("ui-state-active");
+			}
+		});
+	});
 </script>
 <form action="" method="post" name="adminForm">
 <table class="jradmin_innerwrapper">
@@ -26,7 +45,7 @@
 				</tr>
 				<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
-					<td class="viewproperty_rightcol"><div class="jomres_button">{SUBSCRIBE}</div></td>
+					<td class="viewproperty_rightcol"><div class="fg-button ui-state-default ui-priority-primary ui-corner-all">{SUBSCRIBE}</div></td>
 					<td class="jradmin_field_la">{NAME}</td>
 					<td class="jradmin_field_la">{DESCRIPTION}</td>
 					<td class="jradmin_field_ca">{FREQUENCY}</td>

@@ -3,30 +3,25 @@
 	jQuery(function(){
 		jQuery("div.header").corner("5px");
 		jQuery("div.panelwrapper").corner("5px");
-    });
+	});
 </script>
 
-<div class="panelwrapper" style="padding: 10px; margin: 10px">
-	<div class="innerwrapper">
-		<table class="header" width="100%">
-			<tr class="header_image" valign="top">
-            	<td class="header_property">
-				<b>{PROPERTY_NAME}</b>
-				&nbsp;
-				{STARS} {TOWN}, {REGION}, {COUNTRY}
-				<br/>
-                	
-					<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-					<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
-                   
-				</td>
-            	<td>
-					{TOOLTIP_PROPERTY_IMAGE}
-				</td>
-			</tr>
-		</table>
-
-	</div>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
+<table width="100%">
+	<tr valign="top">
+		<td >
+			<div class="contentheading">{PROPERTY_NAME}</div>
+			&nbsp;
+			{STARS} {TOWN}, {REGION}, {COUNTRY}
+			<br/>
+			<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+			<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
+		</td>
+		<td>
+			{TOOLTIP_PROPERTY_IMAGE}
+		</td>
+	</tr>
+</table>
 </div>
 
 

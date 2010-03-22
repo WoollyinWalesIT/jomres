@@ -77,7 +77,7 @@ function dateStatus(date) {
 </script>
 
 <form action="{JOMRES_SITEPAGE_URL}&task=confirmbooking" name="ajaxform" id="ajaxform" method="post">
-	<div class="panelwrapper">
+	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<div>
 			<div class="block_ui_bookingform">
 				<table border="0" width="100%">
@@ -89,7 +89,7 @@ function dateStatus(date) {
 					<tr>
 						<td valign="top">
 							<div id="arrivalcontainer">
-								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 									<tr>
 										<th colspan="4"><img border="0" style="vertical-align:top;" src="jomres/images/number1.png" /></th>
 									</tr>
@@ -113,7 +113,7 @@ function dateStatus(date) {
 									</tr>
 								</table>
 								<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
-								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 									<tr>
 										<th colspan="2">{COUPON_TITLE}</th>
 									</tr>
@@ -131,7 +131,7 @@ function dateStatus(date) {
 									</tr>
 								</table>
 								</patTemplate:tmpl>
-								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 									<tr>
 										<th colspan="2">
 											{BILLING_ROOMTOTAL}
@@ -168,7 +168,7 @@ function dateStatus(date) {
 					<tr>
 						<td valign="top">
 							<div id="extrascontainer">
-								<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 									{EXTRAS_HEADER}
 									<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 										<tr>{THIRD_PARTY_EXTRA}</tr>
@@ -194,7 +194,7 @@ function dateStatus(date) {
 					</tr>
 					<tr>
 						<td valign="top">
-							<table class="bform_table_totals" border="0" width="100%" cellpadding="0" cellspacing="0">
+							<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 								<tr>
 									<th colspan="6">{PRICE_SUMMARY}</th>
 								</tr>
@@ -254,7 +254,7 @@ function dateStatus(date) {
 						</td>
 					</tr>
 					<tr>
-						<td valign="top" id="bookingform_address">
+						<td valign="top" id="bookingform_address ui-tabs ui-widget ui-widget-content ui-corner-all">
 							<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 										<tr>
 											<th colspan="6" class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number2.png" /></th>
@@ -357,7 +357,7 @@ function dateStatus(date) {
 					</tr>
 					<tr>
 						<td>
-							<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+							<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 								<tr class="bookingform_footer" id="bookingform_footer">
 									<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number3.png" /> </th>
 								</tr>
@@ -372,7 +372,7 @@ function dateStatus(date) {
 						</td>
 					</tr>
 					<tr>
-						<td valign="top" class="bookingform_extras">
+						<td valign="top" class="bookingform_extras ui-tabs ui-widget ui-widget-content ui-corner-all">
 							&nbsp;
 						</td>
 					</tr>

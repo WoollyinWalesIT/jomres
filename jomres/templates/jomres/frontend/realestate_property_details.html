@@ -15,13 +15,31 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 	jQuery(function(){
 		jQuery("div.address_info").corner("5px");
 		jQuery("div.viewproperty").corner("5px");
-		jQuery("div.jomres_button").corner("5px");
 		jQuery("div.property_details").corner("5px");
 		jQuery("div.more_info").corner("5px");
 		jQuery("td.viewproperty_rightcol").corner("5px");
-    });
+		//all hover and click logic for buttons
+		jQuery(".fg-button:not(.ui-state-disabled)")
+		.hover(
+			function(){ 
+				jQuery(this).addClass("ui-state-hover"); 
+			},
+			function(){ 
+				jQuery(this).removeClass("ui-state-hover"); 
+			}
+		)
+		.mousedown(function(){
+				jQuery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( jQuery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jQuery(this).removeClass("ui-state-active"); }
+				else { jQuery(this).addClass("ui-state-active"); }	
+		})
+		.mouseup(function(){
+			if(! jQuery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				jQuery(this).removeClass("ui-state-active");
+			}
+		});
+	});
 </script>
-
 <div class="panelwrapper" style="padding: 10px; margin: 10px">
 	<div class="innerwrapper">
 		<div class="viewproperty">
@@ -31,7 +49,7 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 						<table border="0" width="100%" cellpadding="0" cellspacing="0" class="top_info">
 							<tr>
 								<td>
-									<div class="jomres_button">
+									<div class="fg-button ui-state-default ui-priority-primary ui-corner-all">
 										{CONTACTUS}
 									</div>
 								</td>
