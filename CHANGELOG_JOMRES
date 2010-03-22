@@ -1,5 +1,29 @@
 Jomres 4.4.1
 
+Fixed bug in upgrade functionality where key wasn't being passed.
+Several changes to remove some stray Itemid's from urls within the system.
+Modification to ensure new property_currencycode property config option is used to set the currency code in the currency conversion url.
+Removed output headers inline mootools fix as no longer required.
+Fixed bug where property country wasn't be set correctly when fixed countries option was set to No.
+Fixed a few missing / in token hidden fields.
+Updated jquery to 1.4.2, added UI library and associated css files. Had to update the Block UI library too to ensure that the booking form would continue to work.
+PHPMailer v2.2 replaced with PHPMailer v5.1. I've had one client say that their hosts have disabled their site due to the older version of php mailer, which was PHP4 compatible. Whilst the only vulnerability for PHPmailer I can find refers to an older version of the script, and the 2.2 version doesn't suffer from the same vulnerability it's nevertheless prudent to upgrade to the PHP5 version as we're not supporting PHP4 any more.
+Modified new purifier handling to not purify text if editing mode is enabled.
+Changed property details tabs to use jquery tabs.
+Removed add property button from administrator area button. Causing too much confusion for new users.
+Changes to router.php to resolve "Cannot unset string offsets" bug.
+Corrected Polish currency code.
+Changed name of Yugoslav dropdown for language selection to Srpski
+Updated version of Yugoslav lang file, many thanks bokikroki
+Added jquery ui css themese as selectable options in administrator area. There are now 25 themes for you to choose from.
+Many modifications to frontend templates to make use of new ui framework.
+Modified terms popup to not show Joomla headers/modules/menus etc
+j00015discounts.class.php removed and it's functionality added to the composite property details script
+
+
+
+Jomres 4.4.1beta1
+
 http://bugs.jomres.net/view.php?id=27 Fix for all guest types and numbers in confirmation email
 Added a new function output_price. Currently users need to enter an http entity in the property and site config areas to output a currency symbol. In this version we've added a currency class which (should) have every currency code in the world, and their associated symbols, plus formatting for putting symbols before or after prices.
 Small change to fixed period dropdowns, making it so that the first valid date found when generating the dropdowns sets the arrival date in the booking to that. Improves the initialisation of the booking form for fixed period propertys.
