@@ -78,7 +78,7 @@ class  j00018MRPavailabilitycalendar {
 			$monthsToYearEnd=12-$currentMonth;
 			$this->retVals.='
 			<center>
-			<table id="panelwrapper">
+			<table id="panelwrapper" style="background-color:#ffffff">
 				<tr>
 					<td>
 						<table class="innerwrapper">
