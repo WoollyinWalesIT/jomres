@@ -6779,5 +6779,13 @@ define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC','You can ensure tha
 * @ignore
 */
 define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY','Properties are located in this country : ');
+/**
+* @ignore
+*/
+define('_JOMRES_JQUERYTHEME','Jquery theme');
+/**
+* @ignore
+*/
+define('_JOMRES_JQUERYTHEME_DESC','Choose a jquery theme to use for the property details tabs.');
 
 
