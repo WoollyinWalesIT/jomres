@@ -32,7 +32,7 @@ class j16000addplugin
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
 		$pluginName=str_replace("<x>","",$pluginName);
 
-		require_once ( JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS."a_updates_45".JRDS."jomres_check_support_key.class.php");
+		jr_import('jomres_check_support_key');
 		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=addplugin&no_html=1&plugin=".$pluginName);
 		$this->key_valid = $key_validation->key_valid;
 

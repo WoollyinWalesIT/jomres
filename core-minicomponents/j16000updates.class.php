@@ -44,7 +44,7 @@ class j16000updates
 		include($configfile);
 		$thisVersion=$mrConfig['version'];
 		echo "<br /><br /><br /><center><h2>This Jomres version: $thisVersion</h2></center><br />";
-		require_once ( JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS."a_updates_45".JRDS."jomres_check_support_key.class.php");
+		jr_import('jomres_check_support_key');
 		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=updates");
 		$this->key_valid = $key_validation->key_valid;
 
