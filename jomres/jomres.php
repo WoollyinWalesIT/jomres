@@ -268,7 +268,10 @@ if ($property_uid > 0)
 	$pdeets=getPropertyAddressForPrint($property_uid);
 	$thisJomresPropertyDetails=$pdeets[3];
 	$published=$thisJomresPropertyDetails['published'];
+	if (!$thisJRUser->userIsManager && $published == 0)
+		return;
 	}
+	
 
 // Getting the language file
 if (!empty($property_uid) || isset($_REQUEST['propertyType']))
