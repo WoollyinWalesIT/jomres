@@ -164,4 +164,5 @@ $jrConfig['use_html_purifier'] ="1";
 $jrConfig['limit_property_country'] ="0";
 $jrConfig['limit_property_country_country'] ="GB";
 
+$jrConfig['jquery_ui_theme'] = "ui-lightness";
 ?>
