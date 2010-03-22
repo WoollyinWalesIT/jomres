@@ -390,7 +390,7 @@ class j02990showconfirmation {
 		else
 			$booking_parts['HTAX']			=	"";
 
-		$booking_parts['TERMS']				=	makePopupLink(JOMRES_SITEPAGE_URL."&task=terms&popup=1&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS), TRUE,750,500);
+		$booking_parts['TERMS']				=	makePopupLink(JOMRES_SITEPAGE_URL."&task=terms&popup=1&tmpl=component&property_uid=$property_uid",jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS), TRUE,750,500);
 		$booking_parts['TERMSPRETEXT']		=	jr_gettext('_JOMRES_CONFIRMATION_TERMS_PRETEXT',_JOMRES_CONFIRMATION_TERMS_PRETEXT);
 		$booking_parts['TERMSTEXT']			=	jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS,false);
 		$booking_parts['ALERT']				=	jr_gettext('_JOMRES_CONFIRMATION_ALERT',_JOMRES_CONFIRMATION_ALERT,false);
