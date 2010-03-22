@@ -180,6 +180,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'mootools.js');
 		$this->add_obs_file($this->dir_javascript.'mootools and jquery conflict.txt');
 		
+		$this->add_obs_file($this->dir_minicomponents.'j00015discounts.class.php');
+		
+		
 		}
 	
 	function add_obs_file($path_and_file)
