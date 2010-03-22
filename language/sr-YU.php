@@ -8,6 +8,8 @@
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 **/
 
+//German Translation since Jomres V2: Roger Perren (http://www.blueforce.ch)
+
 ##################################################################
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 ##################################################################
@@ -22,19 +24,19 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_MRARRIVEDESC','Prikazi danasnje prijave');
+define('_JOMRES_COM_MR_MRARRIVEDESC','Prikaži današnje prijave');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_MRDEPARTDESC','Prikazi danasnje odjave');
+define('_JOMRES_COM_MR_MRDEPARTDESC','Prikaži danasnje odjave');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_MRBOOKENQSDESC','Prikazi zahtjeve za rezervacijom');
+define('_JOMRES_COM_MR_MRBOOKENQSDESC','Prikaži zahteve za rezervacijom');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_MROTHERENQSDESC','Prikazi ostale zahtjeve');
+define('_JOMRES_COM_MR_MROTHERENQSDESC','Prikaži ostale zahteve');
 /**
 * @ignore
 */
@@ -42,11 +44,11 @@ define('_JOMRES_COM_MR_QUICKRESDESC','Brza rezervacija');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_LISTLIVEBOOKINGS','Prikazi aktivne rezervacije');
+define('_JOMRES_COM_MR_LISTLIVEBOOKINGS','Prikaži aktivne rezervacije');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_SHOWPROFILES','Prikazi profile');
+define('_JOMRES_COM_MR_SHOWPROFILES','Prikaži profile');
 /**
 * @ignore
 */
@@ -54,24 +56,24 @@ define('_JOMRES_COM_MR_LANG_DESC','Jezici');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_GENERALCONFIGDESC','Opste konfiguracije');
+define('_JOMRES_COM_MR_GENERALCONFIGDESC','Opšte konfiguracije');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_DISCOUNTDESC','Popusti - podesavanja');
+define('_JOMRES_COM_MR_DISCOUNTDESC','Popusti - podešavanja');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_ROOMSCONFIGDESC','Sobe/Objekti - podesavanja');
+define('_JOMRES_COM_MR_ROOMSCONFIGDESC','Sobe/Objekti - podešavanja');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_PROPERTYCONFIGDESC','Objekti - podesavanja');
+define('_JOMRES_COM_MR_PROPERTYCONFIGDESC','Objekti - podešavanja');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_RATESCONFIGDESC','Tarife - podesavanja');
+define('_JOMRES_COM_MR_RATESCONFIGDESC','Tarife - podešavanja');
 /**
 * @ignore
 */
@@ -83,11 +85,11 @@ define('_JOMRES_COM_MR_BACK_LIVEBOOKINGS','Nazad na moju listu rezervacija');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_CONFIG','Podesavanja');
+define('_JOMRES_COM_MR_CONFIG','podešavanja');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_LOADSAMPLEDESC','Ucitaj test podatke');
+define('_JOMRES_COM_MR_LOADSAMPLEDESC','Učitaj test podatke');
 
 /**
 * @ignore
@@ -129,7 +131,7 @@ define('_JOMRES_COM_MR_NEWGUEST','Novi gost');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_SAVE','Sacuvaj');
+define('_JOMRES_COM_MR_SAVE','Sačuvaj');
 
 // View bookings
 /**
@@ -148,7 +150,7 @@ define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE','Odlazak');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_ASSIGNUSER_TITLE','Dodijeli korisniku administratorska prava');
+define('_JOMRES_COM_MR_ASSIGNUSER_TITLE','Dodeli korisniku administratorska prava');
 /**
 * @ignore
 */
@@ -160,7 +162,7 @@ define('_JOMRES_COM_MR_ASSIGNUSER_NAME','Ime');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_ASSIGNUSER_USERNAME','Korisnicko ime');
+define('_JOMRES_COM_MR_ASSIGNUSER_USERNAME','Korisničko ime');
 /**
 * @ignore
 */
@@ -200,7 +202,7 @@ define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION','Recepcija');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN','Menadzer objekta');
+define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN','Menadžer objekta');
 
 // Edit bookings
 /**
@@ -230,7 +232,7 @@ define('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM','Soba');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT','Placanje');
+define('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT','Plaćanje');
 /**
 * @ignore
 */
@@ -242,7 +244,7 @@ define('_JOMRES_COM_MR_EB_ARRIVALSURNAME_EXPL','Prezime');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ARRIVALBUTTON_EXPL','Gost se ocekuje danas. Kliknite ovo dugme ako je gost stigao');
+define('_JOMRES_COM_MR_EB_ARRIVALBUTTON_EXPL','Gost se očekuje danas. Kliknite ovo dugme ako je gost stigao');
 /**
 * @ignore
 */
@@ -250,11 +252,11 @@ define('_JOMRES_COM_MR_EB_ROOM_BOOKINGNOTES','Biljeske');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ','Specijalni zahtjevi');
+define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ','Specijalni zahtevi');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER','Neki specijalni zahtjevi mogu zahtijevati extra placanja.');
+define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER','Neki specijalni zahtjevi mogu zahtevati extra plaćanja.');
 /**
 * @ignore
 */
@@ -262,12 +264,12 @@ define('_JOMRES_COM_MR_EB_ROOM_BOOKINGADULTS','Odrasli');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ROOM_BOOKINGCHILDREN','Djeca');
+define('_JOMRES_COM_MR_EB_ROOM_BOOKINGCHILDREN','Deca');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING','Ponisti rezervaciju');
+define('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING','Poništi rezervaciju');
 /**
 * @ignore
 */
@@ -275,7 +277,7 @@ define('_JOMRES_COM_MR_EB_GUEST_JOMRES_USER_EXPL','Website korisnicki id');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL','Broj kuce ili naziv kuce');
+define('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL','Broj kuće ili naziv kuće');
 /**
 * @ignore
 */
@@ -287,7 +289,7 @@ define('_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL','Grad');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Postanski broj');
+define('_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Poštanski broj');
 /**
 * @ignore
 */
@@ -311,19 +313,19 @@ define('_JOMRES_COM_MR_EB_GUEST_JOMRES_PREFERENCES_EXPL','Opcije');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_JOMRES_CAR_REGNO_EXPL','Registracione tablice automobila');
+define('_JOMRES_COM_MR_EB_GUEST_JOMRES_CAR_REGNO_EXPL','Registarske tablice automobila');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_REASON_CUSTOMERCANCELLED','Musterija ponisten');
+define('_JOMRES_COM_MR_EB_GUEST_REASON_CUSTOMERCANCELLED','Mušterija poništen');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_REASON_HOTELCANCELLED','Hotel ponisten');
+define('_JOMRES_COM_MR_EB_GUEST_REASON_HOTELCANCELLED','Hotel poništen');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_REASON_BUTTON','Odaberite razlog ponistavanja');
+define('_JOMRES_COM_MR_EB_GUEST_REASON_BUTTON','Odaberite razlog poništavanja');
 /**
 * @ignore
 */
@@ -331,52 +333,52 @@ define('_JOMRES_COM_MR_EB_GUEST_REASON_CHARGES_DIFFERENCE','Dani do dolaska');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_REASON_CHARGES_DUE','<b>Troskovi ponistenja</b>');
+define('_JOMRES_COM_MR_EB_GUEST_REASON_CHARGES_DUE','<b>Troškovi poništenja</b>');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN','Ne mozete ponistiti ovu rezervaciju jer je gost vec prijavljen');
+define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN','Ne možete poništiti ovu rezervaciju jer je gost već prijavljen');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_GREATERTHAN_30_DAYS_DEPOSITPAID','Depozit je placen, nemate vise dugovanja');
+define('_JOMRES_COM_MR_EB_GUEST_GREATERTHAN_30_DAYS_DEPOSITPAID','Depozit je plaćen, nemate više dugovanja');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_GREATERTHAN_30_DAYS_DEPOSITNOTPAID','Depozit nije placen, depozit dugujete');
+define('_JOMRES_COM_MR_EB_GUEST_GREATERTHAN_30_DAYS_DEPOSITNOTPAID','Depozit nije plaćen, depozit dugujete');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_30_DAYS_DEPOSITPAID','Depozit je placen, 50% ugovora dugujete');
+define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_30_DAYS_DEPOSITPAID','Depozit je plaćen, 50% iznosa dugujete');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_30_DAYS_DEPOSITNOTPAID','Depozit nije placen, 50% ugovora dugujete');
+define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_30_DAYS_DEPOSITNOTPAID','Depozit nije plaćen, 50% iznosa dugujete');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_15_DAYS_DEPOSITPAID','Depozit je placen, 100% ugovora je vas dug');
+define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_15_DAYS_DEPOSITPAID','Depozit je placen, 100% iznosa je vaš dug');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_15_DAYS_DEPOSITNOTPAID','Depozit nije placen, 100% ugovora je vas dug');
+define('_JOMRES_COM_MR_EB_GUEST_LESSTHAN_15_DAYS_DEPOSITNOTPAID','Depozit nije plaćen, 100% ugovora je vaš dug');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_REMAINDERDUE','Podsjetnik do');
+define('_JOMRES_COM_MR_EB_GUEST_REMAINDERDUE','Podsetnik do');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT','Depozit nije placen');
+define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT','Depozit nije plaćen');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON','Potvrdi ponistenje');
+define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON','Potvrdi poništenje');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_GUEST_CANCELLED','Rezervacija ponistena');
+define('_JOMRES_COM_MR_EB_GUEST_CANCELLED','Rezervacija poništena');
 /**
 * @ignore
 */
@@ -413,7 +415,7 @@ define('_JOMRES_COM_MR_EB_ROOM_FLOOR','Sprat');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_ROOM_DISABLED','Nedozvoljeni pristup aktivirati?');
+define('_JOMRES_COM_MR_EB_ROOM_DISABLED','Aktivirati nedozvoljeni pristup ?');
 /**
 * @ignore
 */
@@ -438,7 +440,7 @@ define('_JOMRES_COM_MR_EB_PAYM_CURRENCY','&pound;');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT','Ã‚Â£');
+define('_JOMRES_COM_MR_EB_PAYM_CURRENCY_ALT','Â£');
 /**
 * @ignore
 */
@@ -462,7 +464,7 @@ define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF','Oznaka depozita');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_PAYM_PAYMENT_REF','Oznaka placanja');
+define('_JOMRES_COM_MR_EB_PAYM_PAYMENT_REF','Oznaka plaćanja');
 /**
 * @ignore
 */
@@ -474,13 +476,16 @@ define('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED','Depozit');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE','Depozit sacuvan');
+define('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE','Depozit sačuvan');
 
 // Edit Language
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_LANG_CHMODWARNING','<center><h1><font color=red>Upozorenje...</FONT></h1><BR><B>Morate chmod vas fajl na 766 da biste vas jezik update-ovali</B></center><BR><BR>');
+define('_JOMRES_COM_MR_LANG_CHMODWARNING','
+<center><h1><font color=red>Upozorenje...</FONT></h1><BR>
+  <B>Morate chmod vaš fajl na 766 da biste vaš jezik update-ovali</B>
+</center><BR><BR>');
 
 
 /**
@@ -567,7 +572,7 @@ define('_JOMRES_COM_MR_QUICKRES_STEP2_TOOMANYGUESTS','Izvinite, nase slobodne so
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_QUICKRES_STEP2_NOROOMSINRANGE','<font color="red" face="arial" size="3">Izvinite, objekat ne mozete imati za ovaj period. Molim vas pogledajte na kalendar i provjerite kada je slobodan.</font>');
+define('_JOMRES_COM_MR_QUICKRES_STEP2_NOROOMSINRANGE','<font color="red" face="arial" size="3">Izvinite, objekat ne mozete imati za ovaj period. Molim vas pogledajte na kalendar i proverite kada je slobodan.</font>');
 /**
 * @ignore
 */
@@ -719,7 +724,7 @@ define('_JOMRES_COM_MR_QUICKRES_STEP4_MAXPEOPLE','Maximum ljudi');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS','Dana ostajete');
+define('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS','Broj dana');
 /**
 * @ignore
 */
@@ -753,7 +758,7 @@ define('_JOMRES_COM_MR_QUICKRES_STEP4_NOTARIFFS','Izvinite, nijedna tarifa ne po
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE','Prikazi podesavanja soba i objekata');
+define('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE','Prikazi podešavanja soba i objekata');
 
 /**
 * @ignore
@@ -865,7 +870,7 @@ define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK','Tip sobe');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV','Tip sobe - skracenica');
+define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV','Tip sobe - skraćenica');
 /**
 * @ignore
 */
@@ -914,7 +919,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY','Zemlja');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE','Postanski broj');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE','Poštanski broj');
 /**
 * @ignore
 */
@@ -930,7 +935,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL','Email');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE','Website');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE','Web sajt');
 /**
 * @ignore
 */
@@ -959,7 +964,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK','Opcije objekta');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV','Opcije objekta - skracenica');
+define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV','Opcije objekta - skraćenica');
 /**
 * @ignore
 */
@@ -996,15 +1001,15 @@ define('_JOMRES_COM_MR_LISTTARIFF_RATEDESCRIPTION','Opis');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_LISTTARIFF_VALIDFROM','Vazi od');
+define('_JOMRES_COM_MR_LISTTARIFF_VALIDFROM','Važi od');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_LISTTARIFF_VALIDTO','Vazi do');
+define('_JOMRES_COM_MR_LISTTARIFF_VALIDTO','Važi do');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY','Tarifa za noc');
+define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY','Tarifa za noć');
 /**
 * @ignore
 */
@@ -1135,7 +1140,7 @@ define('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE','Rezervacija sacuvana');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_JAVASCRIPTWARNING','Molim vas provjerite da li ste formu popunili ispravno.');
+define('_JOMRES_FRONT_MR_JAVASCRIPTWARNING','Molim vas proverite da li ste formu popunili ispravno.');
 /**
 * @ignore
 */
@@ -1165,7 +1170,7 @@ define('_JOMRES_FRONT_MR_MENU_ADMINISTER','Administriraj');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAROOM','Rezervisite sobu');
+define('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAROOM','Rezervišite sobu');
 /**
 * @ignore
 */
@@ -1211,7 +1216,7 @@ define('_JOMRES_FRONT_MR_MENU_ADMIN_PUBLICHOLIDAYS','Praznici - admin');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_QUICKRES_STEP1_INSTRUCTIONS','Molim vas odaberite tip sobe koji vas zanima, vaÂš datum dolaska i broj nocenja. Na kraju, unesite broj odraslih osoba i djece.');
+define('_JOMRES_FRONT_MR_QUICKRES_STEP1_INSTRUCTIONS','Molim vas odaberite tip sobe koji vas zanima, va datum dolaska i broj nocenja. Na kraju, unesite broj odraslih osoba i djece.');
 /**
 * @ignore
 */
@@ -1227,7 +1232,7 @@ define('_JOMRES_FRONT_MR_QUICKRES_STEP3_INSTRUCTIONS2','Molim vas unesite vase p
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY','Provjerite dostupnost');
+define('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY','Provera dostupnosti');
 /**
 * @ignore
 */
@@ -1261,7 +1266,7 @@ define('_JOMRES_FRONT_MR_DISPGUEST_SURNAME','Prezime');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL','Broj kuce');
+define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL','Broj kuće');
 /**
 * @ignore
 */
@@ -1273,7 +1278,7 @@ define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL','Grad');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Postanski broj');
+define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Poštanski broj (PAK)');
 /**
 * @ignore
 */
@@ -1289,21 +1294,21 @@ define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_FAX_EXPL','Fax');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Nema soba koje sadrze sve parametre koje ste vi trazili');
+define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Nema soba koje sadrže sve parametre koje ste vi tražili');
 
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_DISPGUEST_ENTERDETAILS','Unesite vase podatke');
+define('_JOMRES_FRONT_MR_DISPGUEST_ENTERDETAILS','Unesite vaše podatke');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_DISPGUEST_CHECKDETAILS','Potvrdite vase podatke');
+define('_JOMRES_FRONT_MR_DISPGUEST_CHECKDETAILS','Potvrdite vaše podatke');
 
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_BOOKINGMADE','<center>Hvala vam sto ste odabrali nas i nadamo se da cete uzivati u boravku.<br><br> <b>Ovo je samo preliminarna rezervacija, i nece biti potvrdjeno dok ne primite potvrdno pismo.</center>');
+define('_JOMRES_FRONT_MR_BOOKINGMADE','<center>Hvala vam što ste odabrali nas i nadamo se da ćete uživati u boravku.<br><br> <b>Ovo je samo preliminarna rezervacija, i neće biti potvrdjena dok ne primite potvrdno pismo.</center>');
 /**
 * @ignore
 */
@@ -1320,7 +1325,7 @@ define('_JOMRES_FRONT_MR_EMAIL_TEXT_ADULTS','Broj odraslih osoba: ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_EMAIL_TEXT_CHILDREN','Broj djece: ');
+define('_JOMRES_FRONT_MR_EMAIL_TEXT_CHILDREN','Broj dece: ');
 /**
 * @ignore
 */
@@ -1332,7 +1337,7 @@ define('_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE','Odlazak: ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_EMAIL_TEXT_NUMBEROFNIGHTS','Nocenja: ');
+define('_JOMRES_FRONT_MR_EMAIL_TEXT_NUMBEROFNIGHTS','Noćenja: ');
 /**
 * @ignore
 */
@@ -1356,7 +1361,7 @@ define('_JOMRES_FRONT_MR_EMAIL_TEXT_TARIFFUID','Tarifa: ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL','Vrijednost ugovora je: ');
+define('_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL','Vrednost ugovora je: ');
 /**
 * @ignore
 */
@@ -1365,19 +1370,19 @@ define('_JOMRES_FRONT_MR_EMAIL_TEXT_DEPOSIT','Depozit potreban: ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_CUSTOMERDETAILSNOTSTORED','Izvinite, moramo izmeniti vase detalje pre nego sto izvrsimo rezervaciju. Molim vas kliknite na link "My Details" i popunite adresu. Hvala.');
+define('_JOMRES_FRONT_MR_CUSTOMERDETAILSNOTSTORED','Izvinite, moramo izmeniti vaše detalje pre nego što izvršimo rezervaciju. Molim vas kliknite na link "My Details" i popunite adresu. Hvala.');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_CUSTOMERDETAILSSAVED','Hvala, vasi podaci su sacuvani.');
+define('_JOMRES_FRONT_MR_CUSTOMERDETAILSSAVED','Hvala, vaši podaci su sačuvani.');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_WELCOME_STRANGER','Dobrodosli. Pre nego sto rezervisete sobu, morate izmeniti podatke na "My Details" link.');
+define('_JOMRES_FRONT_MR_WELCOME_STRANGER','Dobrodošli. Pre nego sto rezervisete sobu, morate izmeniti podatke na "My Details" odeljku.');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_WELCOME_FRIEND','Dobrodosli ');
+define('_JOMRES_FRONT_MR_WELCOME_FRIEND','Dobrodošli ');
 
 /**
 * @ignore
@@ -1523,23 +1528,23 @@ define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON','Suplimenti za jednu osobu');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC','Provjerite da li je postavljeno na Da ako zelite da vrsite naplatu suplimenata za jednu osobu');
+define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC','proverite da li je postavljeno na Da ako zelite da vrsite naplatu suplimenata za jednu osobu');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST','Troskovi suplimenata jedne osobe');
+define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST','Troškovi dodataka po osobi:');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_COT','Cot suppliments.');
+define('_JOMRES_COM_A_SUPPLIMENTS_COT','Obezbediti krevetac');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_COT_DESC','Provjerite da li je postavljeno na Da ako zelite da naplacujete cot suppliments');
+define('_JOMRES_COM_A_SUPPLIMENTS_COT_DESC','proverite da li je postavljeno na Da ako želite da naplaćujete obezbedjivanje kreveca');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SUPPLIMENTS_COT_COST','Cot dodatna naplata');
+define('_JOMRES_COM_A_SUPPLIMENTS_COT_COST','Dodatak za krevetac');
 /**
 * @ignore
 */
@@ -1547,27 +1552,27 @@ define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE','Depozit u procentima?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC','Da li depozit mora biti procenat cijele rezervacije? Ako ne zelite, onda je depozit definisane velicine');
+define('_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC','Da li depozit mora biti procenat cele rezervacije? Ako ne želite, onda je depozit definisane veličine');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_DEPOSIT_VALUE','Depozit velicina');
+define('_JOMRES_COM_A_DEPOSIT_VALUE','Veličina depozita');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_TARIFFS_PER','Po gostu, po noci');
+define('_JOMRES_COM_A_TARIFFS_PER','Po osobi, po noćenju');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_TARIFFS_PER_DESC','Odaberite Da ako zelite da naplacujete per-person-per-night. Ako ne zelite, onda ce troskovi biti izracunati po per-room-per-night osnovi');
+define('_JOMRES_COM_A_TARIFFS_PER_DESC','Odaberite Da ako želite da naplaćujete po osobi po noćenju. Ako ne želite, troškovi će biti izračunati po osnovi po sobi po noćenju');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CANCELLATIONPOLICY','Globa se moze otkupiti?');
+define('_JOMRES_COM_A_CANCELLATIONPOLICY','Globa se može otkupiti?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CANCELLATIONPOLICY_DESC','Odaberite Da ako zelite da novac konfiskovan nakon ponistenja rezervacije mozete koristiti sledeci put od strane korisnika. ');
+define('_JOMRES_COM_A_CANCELLATIONPOLICY_DESC','Odaberite Da ako želite da novać konfiskovan nakon poništenja rezervacije možete koristiti sledeći put od strane korisnika. ');
 /**
 * @ignore
 */
@@ -1579,7 +1584,7 @@ define('_JOMRES_COM_A_UPLOADS_FILETYPES','Tipovi fajlova');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_UPLOADS_FILETYPES_DESC','Odredite ovdje koje tipove fajlova cete dozvoliti da se upload-uju. Koristite mala slova i zarez za spisak bez praznina. Primer: zip,txt,exe,htm,html');
+define('_JOMRES_COM_A_UPLOADS_FILETYPES_DESC','Odredite ovdje koje tipove fajlova ćete dozvoliti da se upload-uju. Koristite mala slova i zarez za spisak bez praznina. Primer: zip,txt,exe,htm,html');
 /**
 * @ignore
 */
@@ -1637,43 +1642,43 @@ define('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1','Hvala vam na rezervaciji')
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2','. U nastavku se nalaze detalji vase rezervacije. Molim vas provjerite da li su podaci ispravni i kontaktirajte nas ako postoji greska.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2','. U nastavku se nalaze detalji vaše rezervacije. Molim vas proverite da li su podaci ispravni i kontaktirajte nas ako postoji greška.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN','Vasa soba ce biti sacuvana do vaseg prijavljivanja, prijavljivanja su nakon 2 sata poslepodne.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN','Vaša soba će biti sačuvana do vašeg prijavljivanja, prijavljivanja su nakon 2 sata poslepodne.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD','Ocekujemo vas dolazak ');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD','Očekujemo vas dolazak ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY','Zelimo vam lijep odmor.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY','Želimo vam prijatan boravak.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO','Sada vam moramo skrenuti paznju na sledece.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO','Sada vam moramo skrenuti paznju na sledeće.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT','Podsjecamo vas da je rezervacija legalni ugovor, pa ako ste zbog nekog razloga ponistili rezervaciju ili skratili vas boravak moracete i dalje platiti cijeli iznos vaseg ugovora.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT','Podsećamo vas da je rezervacija legalni ugovor, pa ako ste zbog nekog razloga poništili rezervaciju ili skratili vaš boravak moraćete i dalje platiti celi iznos vašeg ugovora.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE','Nije dozvoljen ugovor iz kojeg se uklanjaju obroci ili smanjuju dani za naplatu za koje vi niste boravili u sobi. Zbog ovoga preporucujemo vam da iskoristite osiguranje za vrijeme odmora.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE','Nije dozvoljen ugovor iz kojeg se uklanjaju obroci ili smanjuju dani za naplatu za koje vi niste boravili u sobi. Zbog ovoga, preporučujemo vam da iskoristite osiguranje za vreme odmora.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO','<i>Ponistenje i smanjenje naplate</i> Ako otkazete vas odmor vase otkazivanje mora biti potvrdjeno pismeno. Troskovi ponistenja su sledeci:');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO','<i>Poništenje i smanjenje naplate</i> Ako otkažete vaš odmor vaše otkazivanje mora biti potvrdjeno pismeno. Troškovi poništenja su sledećci:');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS','30 dana ili vise');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS','30 dana ili više');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY',' Depozit samo.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY',' Samo depozit.');
 /**
 * @ignore
 */
@@ -1693,24 +1698,24 @@ define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT',' 100% ugov
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_VAT','PDV 17% je ukljucen u sve tarife.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_VAT','PDV je uključen u sve tarife.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_CONFIRMATION_PRINT','Stampaj potvrdno pismo');
+define('_JOMRES_COM_CONFIRMATION_PRINT','Štampaj garantno pismo');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_INVOICE_TITLE','Predracun stampaj');
+define('_JOMRES_COM_INVOICE_TITLE','Štampaj predračun');
 /**
 * @ignore
 */
-define('_JOMRES_COM_INVOICE_DEAR','Postovani ');
+define('_JOMRES_COM_INVOICE_DEAR','Poštovani ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_INVOICE_RATE_RULES','Cijena po nocenju - po sobi ');
+define('_JOMRES_COM_INVOICE_RATE_RULES','Cena po noćenju - po sobi ');
 /**
 * @ignore
 */
@@ -1780,7 +1785,8 @@ define('_JOMRES_COM_ADDSERVICE_SAVEMESSAGE','Elementi dodati na racun');
 /**
 * @ignore
 */
-define('_JOMRES_COM_DEFAULTHOTELNOTFOUND','<h1><font color=red> Hotel nije pronadjen</h1><br>Ne mozete nastaviti. Kontaktirajte vaseg administratora sajta.</font>');
+define('_JOMRES_COM_DEFAULTHOTELNOTFOUND','<h1><font color=red> Hotel nije pronadjen</h1><br>
+Ne mozete nastaviti. Kontaktirajte vaseg administratora sajta.</font>');
 
 
 /**
@@ -1874,7 +1880,7 @@ define('_JOMRES_COM_A_CALENDARCSS_DESC','Odaberite CSS fajl koji cete koristiti 
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CHECKPUBLICHOLIDAYS','Provjerite praznike?');
+define('_JOMRES_COM_A_CHECKPUBLICHOLIDAYS','proverite praznike?');
 /**
 * @ignore
 */
@@ -2061,7 +2067,7 @@ define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Sirina velike slike');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Kliknite za mapu');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Mapa');
 /**
 * @ignore
 */
@@ -2069,7 +2075,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION','Opis objekta');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES','Broj prijava');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES','Vreme prijavljivanja');
 /**
 * @ignore
 */
@@ -2077,7 +2083,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES','Prostor aktivnosti'
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS','Uputstva za vozace');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS','Uputstva za vozače');
 /**
 * @ignore
 */
@@ -2089,20 +2095,20 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT','Ostali transporti')
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS','Polise i obrazlozenja');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS','Polisom i obrazloženjima');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPERTYKEY','Vas Jomres.net property key');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPERTYKEY','Vaš Jomres.net property key');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPERTYKEY_DESC','Kada budete spremni da postavite website na web, posjetite <a href="http://www.jomres.net" target="_blank">Jomres.net</a> za vas property key. Sa njim jomres moze registrovati vase objekte na Jomres Network, cime dosezete siroku populaciju za vas posao.');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPERTYKEY_DESC','Kada budete spremni da postavite website na web, posetite <a href="http://www.jomres.net" target="_blank">Jomres.net</a> za vaš property key. Sa njim jomres može registrovati vaše objekte na Jomres Network, čime dosežete široku populaciju za vaš posao.');
 
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_PROPERTIESLISTING_OURPROPERTIES','Nasi objekti');
+define('_JOMRES_COM_MR_PROPERTIESLISTING_OURPROPERTIES','Naši objekti');
 /**
 * @ignore
 */
@@ -2110,7 +2116,7 @@ define('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS','Adresa');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_VISITORSCANBOOKONLINE','Posjetioci mogu rezervisati online');
+define('_JOMRES_COM_A_VISITORSCANBOOKONLINE','Posetioci mogu rezervisati online');
 /**
 * @ignore
 */
@@ -2187,7 +2193,7 @@ define('_JOMRES_COM_A_MAXCHILDREN','Maximalan broj djece');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_MAXCHILDREN_DESC','Odredite maximalan broj djece u formi za rezervacije. Ako je postavljeno na nulu, dropdown polje se nece prikazivati.');
+define('_JOMRES_COM_A_MAXCHILDREN_DESC','Odredite maximalan broj dece u formi za rezervacije. Ako je postavljeno na nulu, padajuće polje se neće prikazivati.');
 /**
 * @ignore
 */
@@ -2195,7 +2201,7 @@ define('_JOMRES_FRONT_MR_CONTINUE','Procesuiraj');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_REVIEWBOOKING','Prikazi rezervaciju');
+define('_JOMRES_FRONT_MR_REVIEWBOOKING','Prikaži rezervaciju');
 /**
 * @ignore
 */
@@ -2207,7 +2213,9 @@ define('_JOMRES_FRONT_MR_DISCOUNT','Popusti');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_CONF_CHMODWARNING','<center><h1><font color=red>Upozorenje...</FONT></h1><BR><B>Morate chmod vas fajl site_config.php na 777 ako zelite da mijenjate vasu konfiguraciju</B></center><BR><BR>');
+define('_JOMRES_COM_MR_CONF_CHMODWARNING','
+<center><h1><font color=red>Upozorenje...</FONT></h1><BR><B>Morate chmod vas fajl site_config.php na 777 ako zelite da mijenjate vasu konfiguraciju</B></center><BR><BR>
+');
 
 /**
 * @ignore
@@ -2224,7 +2232,7 @@ define('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY','Sreda');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_WEEKDAYS_THURSDAY','Cetvrtak');
+define('_JOMRES_COM_MR_WEEKDAYS_THURSDAY','Četvrtak');
 /**
 * @ignore
 */
@@ -2253,7 +2261,7 @@ define('_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR','Sre');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR','Cet');
+define('_JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR','Čet');
 /**
 * @ignore
 */
@@ -2378,11 +2386,11 @@ define('_JOMRES_FRONT_MESSAGES_TITLE','Stvari koje morate uraditi: ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MESSAGES_REVIEWDATES','Provjerite odabrane dane ');
+define('_JOMRES_FRONT_MESSAGES_REVIEWDATES','proverite odabrane dane ');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MESSAGES_REVIEWNUMBERS','Provjerite broj gostiju ');
+define('_JOMRES_FRONT_MESSAGES_REVIEWNUMBERS','proverite broj gostiju ');
 /**
 * @ignore
 */
@@ -2394,11 +2402,11 @@ define('_JOMRES_FRONT_MESSAGES_CHOOSEAROOM','Odaberite');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MESSAGES_REVIEWCHOSENROOM','Provjerite sobu koju ste odabrali');
+define('_JOMRES_FRONT_MESSAGES_REVIEWCHOSENROOM','proverite sobu koju ste odabrali');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MESSAGES_REVIEWBOOKING','Provjerite vasu rezervaciju. Ako ste zadovoljni, potvrdite vasu rezervaciju');
+define('_JOMRES_FRONT_MESSAGES_REVIEWBOOKING','proverite vasu rezervaciju. Ako ste zadovoljni, potvrdite vasu rezervaciju');
 
 /**
 * @ignore
@@ -2521,7 +2529,7 @@ define('_JOMRES_COM_MR_VRCT_PUBLISHED','Objavljeno');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MR_VRCT_SETTINGS','Podesavanja');
+define('_JOMRES_COM_MR_VRCT_SETTINGS','podešavanja');
 
 /**
 * @ignore
@@ -2709,7 +2717,7 @@ define('_JOMRES_MR_AUDIT_DELETE_PROPERTY_FEATURE','Izbrisana opcija objekta');
 /**
 * @ignore
 */
-define('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS','Izmenjena podesavanja objekta');
+define('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS','Izmenjena podešavanja objekta');
 /**
 * @ignore
 */
@@ -3028,7 +3036,7 @@ define('_JOMRES_COM_A_CURRENCYCODE_DESC','Pr GBP. Ovo se koristi u email-u muste
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CLICKFORMOREINFORMATION','Klikni za vise informacija');
+define('_JOMRES_COM_A_CLICKFORMOREINFORMATION','Detalji');
 /**
 * @ignore
 */
@@ -3099,7 +3107,7 @@ define('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT','Auditer je sacuvao zapise');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_TARIFFS','Nase Tarife');
+define('_JOMRES_FRONT_TARIFFS','Naše Tarife');
 /**
 * @ignore
 */
@@ -3123,15 +3131,15 @@ define('_JOMRES_FRONT_TARIFFS_ENDS','Dostupna do');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_TARIFFS_PPPN','Po osobi po nocenju');
+define('_JOMRES_FRONT_TARIFFS_PPPN','Po osobi po noćenju');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_TARIFFS_PN','Po nocenju');
+define('_JOMRES_FRONT_TARIFFS_PN','Po noćenju');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_TARIFFS_NOTWEEKEND','Ne ukljucujuci vikende');
+define('_JOMRES_FRONT_TARIFFS_NOTWEEKEND','Ne uključujuci vikende');
 /**
 * @ignore
 */
@@ -3161,7 +3169,7 @@ define('_JOMRES_COM_A_EDITINGMODEON','Izmene ukljucene?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_EDITING_CURRENTTEXT','Tekuci tekst');
+define('_JOMRES_COM_A_EDITING_CURRENTTEXT','Tekući tekst');
 /**
 * @ignore
 */
@@ -3182,7 +3190,7 @@ define('_JOMRES_COM_A_AUDITING_SHOWING','Broj nearhiviranih zapisa: ');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_AUDITING_CANTSHOWSQL','Postoji vise od 200 zapisa aktivnih, pa stoga nije moguce prikazati SQL aktivnosti. Ako zelite da analizirate SQL, moracete direktno u audit tabele. Ako zelite da provjerite SQL regularno, predlazemo da arhivirate regularno');
+define('_JOMRES_COM_A_AUDITING_CANTSHOWSQL','Postoji vise od 200 zapisa aktivnih, pa stoga nije moguce prikazati SQL aktivnosti. Ako zelite da analizirate SQL, moracete direktno u audit tabele. Ako zelite da proverite SQL regularno, predlazemo da arhivirate regularno');
 
 /**
 * @ignore
@@ -3241,7 +3249,8 @@ define('_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY','Podsjetnik za placanje');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_BOOKINGMADE_PAYPAL','<center>Vasa paypal transakcija je izvrsena, i potvrda vase narudzbe ce vam biti poslata na vas email. Mozete se logovati na vas paypal nalog da biste provjerili detalje transakcije. </b><br></center>');
+define('_JOMRES_FRONT_MR_BOOKINGMADE_PAYPAL','
+<center>Vasa paypal transakcija je izvrsena, i potvrda vase narudzbe ce vam biti poslata na vas email. Mozete se logovati na vas paypal nalog da biste provjerili detalje transakcije. </b><br></center>');
 /**
 * @ignore
 */
@@ -3289,7 +3298,7 @@ define('_JOMRES_COM_A_CANCEL','Ponisti');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_BLACKBOOKING_DESC','Molim vas odaberite sobu ili sobe koje ne zelite da budu u upotrebi, i potrebne datume. <br>Ako soba nema oznaku, onda ne moze biti koriscena za crne rezervacije dok neka od rezervacija ne bude otkazana ili zavrsena.<br/> Kada ste odabrali trazene datume, kliknite na plavo dugme "apply" da provjerite dostupnost sobe. ');
+define('_JOMRES_FRONT_BLACKBOOKING_DESC','Molim vas odaberite sobu ili sobe koje ne zelite da budu u upotrebi, i potrebne datume. <br>Ako soba nema oznaku, onda ne moze biti koriscena za crne rezervacije dok neka od rezervacija ne bude otkazana ili zavrsena.<br/> Kada ste odabrali trazene datume, kliknite na plavo dugme "apply" da proverite dostupnost sobe. ');
 /**
 * @ignore
 */
@@ -3388,7 +3397,7 @@ define('_JOMRES_JR_A_IMAGEHANDLING_IMAGESALREADYINDIR','Slike su vec u direktori
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SLIDESHOWS','Slideshow');
+define('_JOMRES_COM_A_SLIDESHOWS','Slajd-šou');
 /**
 * @ignore
 */
@@ -3412,19 +3421,20 @@ define('_JOMRES_COM_A_SLIDESHOW_THUMBSIZE','Slideshow thumbnail visina');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_SLIDESHOW','Slideshow');
+define('_JOMRES_FRONT_SLIDESHOW','Slajd-šou');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES','<br />Izvinite, nema slika za ovaj objekat. Molim vas upload-ujte slike koristeci upload opciju ako zelite da koristite slideshow.');
+define('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES','<br />
+Izvinite, nema slika za ovaj objekat. Molim vas upload-ujte slike koristeći upload opciju ako želite da koristite slajd-šou.');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SLIDESHOWPOPUP_WIDTH','Popup window sirina');
+define('_JOMRES_COM_A_SLIDESHOWPOPUP_WIDTH','Iskačući prozor- širina');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_SLIDESHOWPOPUP_HEIGHT','Popup window visina');
+define('_JOMRES_COM_A_SLIDESHOWPOPUP_HEIGHT','Iskačući prozor-  visina');
 /**
 * @ignore
 */
@@ -3452,7 +3462,8 @@ define('_JOMRES_FRONT_IMAGEUPLOADS','Upload slideshow slike');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Koristite ovu formu ako zelite da upload-ujete vise slika objekta.<br/><b>Obavjestenje</b> slike sa istim imenima ce biti prekopirane. Ovim nacinom ne mozete unijeti slike za sobe ili header sliku objekta, to cete morati uraditi iz Property Admin sekcije.<br/><b>Obavjestenje</b> Slike uploadovane ovdje ce biti zapisane u /images/stories/jomres/*property_uid* folder.');
+define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Koristite ovu formu ako zelite da upload-ujete vise slika objekta.<br/><b>Obavjestenje</b> slike sa istim imenima ce biti prekopirane. Ovim nacinom ne mozete unijeti slike za sobe ili header sliku objekta, to cete morati uraditi iz Property Admin sekcije.<br/>
+<b>Obavjestenje</b> Slike uploadovane ovdje ce biti zapisane u /images/stories/jomres/*property_uid* folder.');
 /**
 * @ignore
 */
@@ -3487,7 +3498,7 @@ define('_JOMRES_A_GLOBAL_SEARCHOPTION','Odaberite plugin za pretragu koji zelite
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_NORESULTS','<b>Zao nam je, vasa pretraga nije vratila rezultate. Molim vas izmijenite pretragu i pokusajte ponovo.</b>');
+define('_JOMRES_FRONT_NORESULTS','<b>Zao nam je, vaša pretraga nije dala rezultate. Molimo vas, izmenite pretragu i pokušajte ponovo.</b>');
 /**
 * @ignore
 */
@@ -3495,7 +3506,7 @@ define('_JOMRES_AREYOUSURE','Da li ste sigurni da to zelite da uradite?');
 /**
 * @ignore
 */
-define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Rezervisite sobu');
+define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Rezervišite sobu');
 /**
 * @ignore
 */
@@ -3517,7 +3528,7 @@ define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS','Adresa');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS','Detaljne informacije');
+define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS','Cene i detalji');
 /**
 * @ignore
 */
@@ -3691,7 +3702,7 @@ define('_JOMRES_COM_USESITEHELP_BOOKING','Izmenite ovde sitehelp tekst.');
 /**
 * @ignore
 */
-define('_JOMRES_JAVASCRIPT_','Objekti oznaceni sa crvenom zvezdom su obavezni.');
+define('_JOMRES_JAVASCRIPT_','Polja označena crvenom zvezdom su obavezna.');
 /**
 * @ignore
 */
@@ -3712,7 +3723,7 @@ define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1','Molim vas popunite detalje o
 /**
 * @ignore
 */
-define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2','Elementi oznaceni crvenom zvezdom su obavezni.');
+define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2','Elementi označeni crvenom zvezdicom su obavezni.');
 /**
 * @ignore
 */
@@ -3743,7 +3754,7 @@ define('_JOMRES_DAILY',' Po danu');
 /**
 * @ignore
 */
-define('_JOMRES_COM_MONTHS_STARTOFYEAR','Prikazati kalendar od pocetka godine?');
+define('_JOMRES_COM_MONTHS_STARTOFYEAR','Prikazati kalendar od početka godine?');
 /**
 * @ignore
 */
@@ -3808,42 +3819,42 @@ define('_JOMRES_METADATA_FREQUENCY','Frekvencija');
 /**
 * @ignore
 */
-define('_JOMRES_METADATA_FREQUENCY_DESC','Broj puta koliko se rijec mora ponoviti pre nego se ukljuci u meta data.');
+define('_JOMRES_METADATA_FREQUENCY_DESC','Broj puta koliko se reč mora ponoviti pre nego što se uključi u meta data.');
 /**
 * @ignore
 */
-define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT','Random limit pretrage');
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT','Limit nasumične pretrage');
 /**
 * @ignore
 */
-define('_JOMRES_SHOWGOOGLECURRENCYLINKS','Prikazi google konverxiju valuta link u listu tarifa?');
+define('_JOMRES_SHOWGOOGLECURRENCYLINKS','Prikaži google konverxiju valuta link u listu tarifa?');
 /**
 * @ignore
 */
-define('_JOMRES_CURRENCYCONVERSIONTEXT','Konvertuj rate u :');
+define('_JOMRES_CURRENCYCONVERSIONTEXT','Konvertor valuta:');
 /**
 * @ignore
 */
-define('_JOMRES_COM_ALLOWHTMLEDITOR','Dozvolite korisnicima da vrse izmjene koristeci html editore?');
+define('_JOMRES_COM_ALLOWHTMLEDITOR','Dozvolite korisnicima da vrše izmjene koristeci html editore?');
 
 // v2
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_INSTRUCTIONS','Koristite ovu formu da biste prijavili rezervaciju. Kursor misa preko "i" prikazace vam vise informacija. Unesite elemente rezervacije kao sto su dan dolaska i odlaska broj gostiju, odaberite sobu ili sobe koje zelite sa liste dostupnih. Kliknite na bilo koju sobu da biste je odabrali za rezervaciju. Kada to zavrsite, mozete dodati extra opcije koje zelite. Kada popunite dovoljno potrebnih informacija bice vam prikazano dugme za potvrdu rezervacije.');
+define('_JOMRES_AJAXFORM_INSTRUCTIONS','Koristite ovu formu da biste prijavili rezervaciju. Kursor misa preko "i" prikazaće vam više informacija. Unesite elemente rezervacije kao što su dan dolaska i odlaska broj gostiju, odaberite sobu ili sobe koje želite sa liste dostupnih. Kliknite na bilo koju sobu da biste je odabrali za rezervaciju. Kada to završite, možete dodati extra opcije koje želite. Kada popunite dovoljno potrebnih informacija biće vam prikazano dugme za potvrdu rezervacije.');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP','Koristite ovu formu da biste prijavili rezervaciju. Kursor misa preko "i" prikazace vam vise informacija. Unesite elemente rezervacije kao sto su dan dolaska i odlaska broj gostiju, odaberite sobu ili sobe koje zelite sa liste dostupnih. Kliknite na bilo koju sobu da biste je odabrali za rezervaciju. Kada to zavrsite, mozete dodati extra opcije koje zelite. Kada popunite dovoljno potrebnih informacija bice vam prikazano dugme za potvrdu rezervacije.');
+define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP','Koristite ovu formu da biste prijavili rezervaciju. Kursor miša preko "i" prikazaće vam više informacija. Unesite elemente rezervacije kao što su dan dolaska i odlaska broj gostiju, odaberite sobu ili sobe koje želite sa liste dostupnih. Kliknite na bilo koju sobu da biste je odabrali za rezervaciju. Kada to završite, možete dodati extra opcije koje želite. Kada popunite dovoljno potrebnih informacija biće vam prikazano dugme za potvrdu rezervacije.');
 
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_PARTICULARS','Opis knjizenja rezervacije');
+define('_JOMRES_AJAXFORM_PARTICULARS','Opis knjiženja rezervacije');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_PARTICULARS_DESC','Odaberite detalje vasih zahtjeva za rezervaciju');
+define('_JOMRES_AJAXFORM_PARTICULARS_DESC','Odaberite detalje vaših zahteva za rezervaciju');
 /**
 * @ignore
 */
@@ -3851,11 +3862,11 @@ define('_JOMRES_AJAXFORM_AVAILABLE','Dostupnost ');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_AVAILABLE_DESC','Odaberite sobe koje zelite');
+define('_JOMRES_AJAXFORM_AVAILABLE_DESC','Odaberite sobe koje želite');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP','Pogledajte ovdje da li je objekat dostupan u ovom momentu.');
+define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP','Pogledajte ovde da li je objekat dostupan u ovom momentu.');
 /**
 * @ignore
 */
@@ -3863,21 +3874,21 @@ define('_JOMRES_AJAXFORM_EXTRAS','Opcije extra');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_EXTRAS_DESC','Odaberite bilo koju extra opciju koju zelite da ukljucite u rezervaciju');
+define('_JOMRES_AJAXFORM_EXTRAS_DESC','Odaberite bilo koju extra opciju koju želite da uključite u rezervaciju');
 /**
 * @ignore
 */
-define('_JOMRES_COM_PERDAY','Po noci');
+define('_JOMRES_COM_PERDAY','Po noći');
 
 
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ADDRESS','Vasa adresa');
+define('_JOMRES_AJAXFORM_ADDRESS','Vaša adresa');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ADDRESS_DESC','Molim vas unesite vase informacije. Sva polja su obavezna osim polja za mobilni telefon');
+define('_JOMRES_AJAXFORM_ADDRESS_DESC','Molim vas unesite vaše informacije. Sva polja su obavezna osim polja za mobilni telefon');
 
 /**
 * @ignore
@@ -3890,12 +3901,13 @@ define('_JOMRES_AJAXFORM_SELECTEDROOMS','Odabrane sobe');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE','<br>Najblizi datum dolaska je: ');
+define('_JOMRES_AJAXFORM_EARLIESTPOSSIBLEARRIVALDATE','<br>
+Najbliži datum dolaska je: ');
 
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_BILLING_ROOM','Po noci:');
+define('_JOMRES_AJAXFORM_BILLING_ROOM','Po noćenju:');
 /**
 * @ignore
 */
@@ -3915,20 +3927,20 @@ define('_JOMRES_AJAXFORM_BILLING_DISCOUNT','Popust:');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_BILLING_TOTAL','Grand Total:');
+define('_JOMRES_AJAXFORM_BILLING_TOTAL','Ukupna cena:');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY','Gosti');
+define('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY','Gosta');
 
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_CLICKHERECAPTION','Kliknite sada ako zelite da dodate sobu vasoj selekciji');
+define('_JOMRES_AJAXFORM_CLICKHERECAPTION','Kliknite ovde ako želite da dodate sobu u vaš izbor');
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE','Kliknite sad ako zelite da uklonite sobu iz vase selekcije');
+define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE','Kliknite ovde ako želite da skloniite sobu iz vašgg izbora');
 /**
 * @ignore
 */
@@ -4162,7 +4174,7 @@ define('_JOMRES_DTV_RANGES','Raspon datuma');
 /**
 * @ignore
 */
-define('_JOMRES_DTV_STAYDAYS','Dana ostajete');
+define('_JOMRES_DTV_STAYDAYS','Ostajete dana');
 /**
 * @ignore
 */
@@ -4200,7 +4212,7 @@ define('_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK','Registrovani korisnici samo mogu
 /**
 * @ignore
 */
-define('_JOMRES_REGISTEREDUSERSONLYBOOK','Izvinite, morate biti registrovani korisnik da biste rezervisali online. Kliknite ovdje da biste se registrovali. ');
+define('_JOMRES_REGISTEREDUSERSONLYBOOK','Izvinite, morate biti registrovani korisnik da biste rezervisali online. Kliknite ovde da biste se registrovali. ');
 
 /**
 * @ignore
@@ -4314,7 +4326,7 @@ define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME','Prezime je obavezno');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO','Broj kuce ili ime kuce je obavezno');
+define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO','Broj kuće ili ime kuće je obavezno');
 /**
 * @ignore
 */
@@ -4363,7 +4375,7 @@ define('_JOMRES_SRP_WEHAVEVACANCIES','Imamo slobodne sobe!');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET','Nijedna soba nije selektovana jos');
+define('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET','Nijedna soba nije izabrana');
 
 /**
 * @ignore
@@ -4372,7 +4384,7 @@ define('_JOMRES_BOOKING_NUMBER','Broj rezervacije');
 /**
 * @ignore
 */
-define('_JOMRES_COM_INPUTOKTOBOOK_BACKGROUND','Ok za rezervaciju');
+define('_JOMRES_COM_INPUTOKTOBOOK_BACKGROUND','OK za rezervaciju');
 /**
 * @ignore
 */
@@ -4380,7 +4392,7 @@ define('_JOMRES_COM_DUMPTEMPLATEDATA','Izbrisati template varijable?');
 /**
 * @ignore
 */
-define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC','Izaberite ovo da omogucite DHTML dump template variabli za svaki FRONTEND template file. Korisno je ako zelite da provjerite da li odredjeni elementi mogu da se koriste za odredjeni template.');
+define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC','Izaberite ovo da omogucite DHTML dump template variabli za svaki FRONTEND template file. Korisno je ako zelite da proverite da li odredjeni elementi mogu da se koriste za odredjeni template.');
 /**
 * @ignore
 */
@@ -4466,7 +4478,7 @@ define('_JOMRES_COM_WEEKENDONLY_DESC','Tariff only valid if stay period includes
 /**
 * @ignore
 */
-define('_JOMRES_COM_WEEKENDDAYS','Weekend days');
+define('_JOMRES_COM_WEEKENDDAYS','Dani vikenda');
 /**
 * @ignore
 */
@@ -4474,19 +4486,19 @@ define('_JOMRES_COM_WEEKENDDAYS_DESC','Set your weekend days. Tariffs that allow
 /**
 * @ignore
 */
-define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY','Select your country before adding any property information');
+define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY','Izaberite zemlju pre nego što dodate informacije o objektu');
 /**
 * @ignore
 */
-define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','Save your property changes before uploading a property image');
+define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','Sačuvajte promene pre nego što dodate sliku objekta');
 /**
 * @ignore
 */
-define('_JOMRES_TARIFFSFROM','Prices from - ');
+define('_JOMRES_TARIFFSFROM','Cene od - ');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_ALL','All');
+define('_JOMRES_SEARCH_ALL','Sve');
 /**
 * @ignore
 */
@@ -4494,43 +4506,43 @@ define('_JOMRES_SEARCH_TITLE_GEO',		'Region');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_FEATURES',	'Features');
+define('_JOMRES_SEARCH_TITLE_FEATURES',	'Karakteristike');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_DESCR',	'Description');
+define('_JOMRES_SEARCH_TITLE_DESCR',	'Opis');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_AVL',		'Availability');
+define('_JOMRES_SEARCH_TITLE_AVL',		'Dostupnost');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_TITLE_PTYPE',	'Type');
+define('_JOMRES_SEARCH_TITLE_PTYPE',	'Tip');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','Search by country');
+define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','Pretraga po zeljami');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_REGIONSEARCH','Search by region');
+define('_JOMRES_SEARCH_GEO_REGIONSEARCH','Pretraga po regionima');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Search by town');
+define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Izlistaj po mestu: ');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_FEATURE_INFO','Feature search.');
+define('_JOMRES_SEARCH_FEATURE_INFO','Pretraga karakteristika');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_BUTTON','Search');
+define('_JOMRES_SEARCH_BUTTON','Pretraži');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_DESCRIPTION_INFO','Enter a search word into the box and press the button.');
+define('_JOMRES_SEARCH_DESCRIPTION_INFO','Pretraga reči');
 /**
 * @ignore
 */
@@ -4538,11 +4550,11 @@ define('_JOMRES_SEARCH_DESCRIPTION_LABEL','Search word(s): ');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_AVL_INFO','Please enter your intended arrival and departure dates and press the button to find properties that have accommodation available on your chosen dates.');
+define('_JOMRES_SEARCH_AVL_INFO','');
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_PTYPES','List all properties by property type.');
+define('_JOMRES_SEARCH_PTYPES','Izlistaj po vrsti objekta: ');
 /**
 * @ignore
 */
@@ -4574,7 +4586,7 @@ define('_JOMRES_PATHWAY_PROPERTYLIST','Property list');
 /**
 * @ignore
 */
-define('_JOMRES_PATHWAY_PROPERTYDETAILS','Property details - ');
+define('_JOMRES_PATHWAY_PROPERTYDETAILS','Opis objekta ');
 /**
 * @ignore
 */
@@ -4587,7 +4599,8 @@ define('_JOMRES_BOOKINGFORM_UPDATEADDRESSBUTTON','Update your address details');
 /**
 * @ignore
 */
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY','Re-checking room availability<br/>(Room selection will be reset)');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY','Re-checking room availability<br/>
+(Room selection will be reset)');
 /**
 * @ignore
 */
@@ -4611,7 +4624,7 @@ define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR','Sorry, one or mo
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE','Room image');
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE','Slika sobe');
 /**
 * @ignore
 */
@@ -5056,15 +5069,15 @@ define('_JRPORTAL_PROPERTIES_VIEWPROPERTY','Property view');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_0','January');
+define('_JRPORTAL_MONTHS_LONG_0','Januar');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_1','February');
+define('_JRPORTAL_MONTHS_LONG_1','Februar');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_2','March');
+define('_JRPORTAL_MONTHS_LONG_2','Mart');
 /**
 * @ignore
 */
@@ -5072,47 +5085,47 @@ define('_JRPORTAL_MONTHS_LONG_3','April');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_4','May');
+define('_JRPORTAL_MONTHS_LONG_4','Maj');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_5','June');
+define('_JRPORTAL_MONTHS_LONG_5','Jun');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_6','July');
+define('_JRPORTAL_MONTHS_LONG_6','Jul');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_7','August');
+define('_JRPORTAL_MONTHS_LONG_7','Avgust');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_8','September');
+define('_JRPORTAL_MONTHS_LONG_8','Septembar');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_9','October');
+define('_JRPORTAL_MONTHS_LONG_9','Oktobar');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_10','November');
+define('_JRPORTAL_MONTHS_LONG_10','Novembar');
 /**
 * @ignore
 */
-define('_JRPORTAL_MONTHS_LONG_11','December');
+define('_JRPORTAL_MONTHS_LONG_11','Decembar');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS','Number of bookings');
+define('_JRPORTAL_PROPERTIES_NUMBEROFBOOKINGS','Broj rezervacija');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_VALUEOFBOOKINGS','Value of bookings');
+define('_JRPORTAL_PROPERTIES_VALUEOFBOOKINGS','Vrednost rezervacija');
 /**
 * @ignore
 */
-define('_JRPORTAL_PROPERTIES_ROOMUSAGE','Room usage');
+define('_JRPORTAL_PROPERTIES_ROOMUSAGE','Zauzetost soba');
 /**
 * @ignore
 */
@@ -5124,18 +5137,18 @@ define('_JRPORTAL_PROPERTIES_COMMISSIONRATE','Commission Rate');
 /**
 * @ignore
 */
-define('_JRPORTAL_CPANEL_LISTBOOKINGS','List bookings');
+define('_JRPORTAL_CPANEL_LISTBOOKINGS','Izlistaj rezervacije');
 
 
 
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID','Property id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID','Objekat id');
 /**
 * @ignore
 */
-define('_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID','Guest id');
+define('_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID','Gost id');
 /**
 * @ignore
 */
@@ -5269,51 +5282,51 @@ define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Enforces a stricter check on emails 
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Accommodation Total");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Cena smeštaja");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"night(s) at");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"noćenja");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per room ");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"po sobi ");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total ");
+define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Produženje boravaka");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Price Summary ");
+define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Ukupna cena");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_ALERT',"Please read and agree to ");
+define('_JOMRES_CONFIRMATION_ALERT',"Molimo pročitajte i potvrdite saglasnost");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_HEADER',"A summary of your booking is shown below.<br /> To make any changes, please click on the Amend Reservation button. ");
+define('_JOMRES_CONFIRMATION_HEADER',"Detalji vaše rezervacije su sumirani ispod.<br /> Da bi ste bilo šta promenili, molimo kliknite na dugme Amend Reservation. ");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_AMENDTEXT',"If you need to change any of the above information then please click here");
+define('_JOMRES_CONFIRMATION_AMENDTEXT',"Ukoliko želite da izmenite pilo koju informaciju prikazanu iznad, kliknite ovde ");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_AMEND',"Amend Reservation");
+define('_JOMRES_CONFIRMATION_AMEND',"Izmeni rezervaciju");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_SPECIALS',"Please enter any special requests in the box below.");
+define('_JOMRES_CONFIRMATION_SPECIALS',"Ukoliko imate bilo kakve dodatne zahteve, unesite ih u polje ispod.");
 /**
 * @ignore
 */
-define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"I confirm that the above information is correct and agree to the ");
+define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"Potvrdjujem da su gore unete informacije tačne i slažem se ");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_HOVERFORANIMAGE',"Hover over a thumbnail for a larger image");
+define('_JOMRES_SLIDESHOW_HOVERFORANIMAGE',"Stanite pokazivačem iznad sličice za uvećanje");
 /**
 * @ignore
 */
@@ -5321,19 +5334,19 @@ define('_JOMRES_SLIDESHOW_LOCATION',"Show slideshow above property details or be
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION_TOP',"Top");
+define('_JOMRES_SLIDESHOW_LOCATION_TOP',"Vrh");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION_BOTTOM',"Bottom");
+define('_JOMRES_SLIDESHOW_LOCATION_BOTTOM',"Dno");
 /**
 * @ignore
 */
-define('_JOMRES_SLIDESHOW_LOCATION_BOTH',"Both");
+define('_JOMRES_SLIDESHOW_LOCATION_BOTH',"Oba");
 /**
 * @ignore
 */
-define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"per person per night ");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"po osobi po noćenju ");
 
 // Jomres 3.1.10
 /**
@@ -5401,9 +5414,10 @@ if (!defined('_PN_DISPLAY_NR'))
 if (!defined('_PN_RESULTS'))
 	define('_PN_RESULTS','Results');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Note that this is not a booking form, instead you are sending an email.<br/>Please enter the message you\'d like to send to ');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Note that this is not a booking form, instead you are sending an email.<br/>
+Please enter the message you\'d like to send to ');
 
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Contact hotel');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Kontaktiraj hotel');
 
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT','Property enquiry from ');
 
@@ -5421,7 +5435,7 @@ define('_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT','new image');
 
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Enquiry');
 
-define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Please select your required accommodation from the list on the right');
+define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Molimo izaberite željeni smeštaj');
 
 /**
 * @ignore
@@ -5447,23 +5461,23 @@ define('_JOMRES_COM_SPS_EDITROOM_DESC','Note that Single person suppliments set 
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_NOBOOKINGS',"Available"); 
+define('_JOMRES_AVLCAL_NOBOOKINGS',"Slobodno"); 
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_QUARTER',"Some bookings");
+define('_JOMRES_AVLCAL_QUARTER',"Nešto je rezervisano");
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_HALF',"Half booked");
+define('_JOMRES_AVLCAL_HALF',"Polu-rezervisano");
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_THREEQUARTER',"Mostly booked");
+define('_JOMRES_AVLCAL_THREEQUARTER',"Uglavnom rezervisano");
 /**
 * @ignore
 */
-define('_JOMRES_AVLCAL_FULLYBOOKED',"Fully booked");
+define('_JOMRES_AVLCAL_FULLYBOOKED',"Rezervisano sve");
 
 
 /**
@@ -5613,7 +5627,7 @@ define('_JOMRES_COM_SEF_DEFAULT_PTYPE_DESC','Used in url if search is for all pr
 /**
 * @ignore
 */
-define('_JOMRES_COM_SEF_NOTINSTALLED','Either she404sef is not installed, or you haven\'t yet copied '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS.'joomla15'.JRDS.'other_component_files'.JRDS.'sh404sef'.JRDS.'com_jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Once you have installed sh404sef and/or copied that file over, then you will be able to configure your sef urls from here. ');
+define('_JOMRES_COM_SEF_NOTINSTALLED','Either she404sef is not installed, or you haven\'t yet copied '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'com_jomres.php to '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext. Once you have installed sh404sef and/or copied that file over, then you will be able to configure your sef urls from here. ');
 /**
 * @ignore
 */
@@ -5673,7 +5687,7 @@ define('_JOMRES_REGISTRYREBUILD_FAILURE','There was an error with rebuilding the
 /**
 * @ignore
 */
-define('_JOMRES_SEARCH_PRICERANGES','Search by price range.');
+define('_JOMRES_SEARCH_PRICERANGES','Opseg cene');
 /**
 * @ignore
 */
@@ -5689,7 +5703,8 @@ define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS_DESC','Jomres 3.3 introduces the 
 /**
 * @ignore
 */
-define('_JOMRES_PROFILELIST_INSTRUCTIONS','This is a list of all users on the system. Non-property managers will have a Guest icon, property managers will have Reception/Property Manager/Super property manager icons.<br/>When Jomres is first installed "admin" is automatically added as a property manager and is considered an authorised user.<br/>Non-super property managers must be assigned to at least one property otherwise they will see an error when they try to log on and use Jomres.<br/>Once a user is authorised then you can edit their profiles, assign them to propertys or give them super property manager rights.<br/>To authorise a user, click on the red Cross next to their name. To unauthrorise them, click the green Tick.<br/>To assign users to specific properties only, or give them super property manager rights, authorise them then click the edit icon (which is only visible once they\'ve been authorised). Users who\'ve registered their property(s) themselves will be automatically assigned to those propertys. Super property managers automatically have rights over all properties, and will see all configuration options even if the minimised configuration option is set in Site Config.');
+define('_JOMRES_PROFILELIST_INSTRUCTIONS','This is a list of all users on the system. Non-property managers will have a Guest icon, property managers will have Reception/Property Manager/Super property manager icons.<br/>When Jomres is first installed "admin" is automatically added as a property manager and is considered an authorised user.<br/>Non-super property managers must be assigned to at least one property otherwise they will see an error when they try to log on and use Jomres.<br/>Once a user is authorised then you can edit their profiles, assign them to propertys or give them super property manager rights.<br/>To authorise a user, click on the red Cross next to their name. To unauthrorise them, click the green Tick.<br/>
+To assign users to specific properties only, or give them super property manager rights, authorise them then click the edit icon (which is only visible once they\'ve been authorised). Users who\'ve registered their property(s) themselves will be automatically assigned to those propertys. Super property managers automatically have rights over all properties, and will see all configuration options even if the minimised configuration option is set in Site Config.');
 /**
 * @ignore
 */
@@ -5750,7 +5765,7 @@ define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Your enquiry...');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Booking form room list show room type image');
+define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Listing foma za rezervaciju soba prikazuje sliku tipa sobe');
 /**
 * @ignore
 */
@@ -6391,7 +6406,7 @@ define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show ma
 /**
 * @ignore
 */
-define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
+define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"NAPOMINJEMO da cene soba, procene i puna cena rezervacije neće biti izračunata dok ne dodate sobu(e) u svoj izbor.");
 
 /**
 * @ignore
@@ -6679,6 +6694,10 @@ define('_JOMRES_EDITINGMODE_ON','Editing mode on');
 * @ignore
 */
 define('_JOMRES_EDITINGMODE_OFF','Editing mode off');
+/**
+* @ignore
+*/
+define('_JOMRES_COM_INVOICE_PRINT','Print invoice');
 
 /**
 * @ignore
@@ -6802,5 +6821,4 @@ define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC','You can ensure tha
 * @ignore
 */
 define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY','Properties are located in this country : ');
-
 
