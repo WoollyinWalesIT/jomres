@@ -207,7 +207,7 @@ class jomres_language
 		$langs['ru-RU']="Russian";
 		$langs['sk-SK']="Slovak";
 		$langs['sl-SI']="Slovenian";
-		$langs['sr-YU']="Yugslav";
+		$langs['sr-YU']="Srpski";
 		$langs['zh-CN']="Chinese";
 		return $langs;
 		}
