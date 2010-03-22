@@ -85,7 +85,7 @@ jQuery(document).ready(function() {
 </script>
 
 <form action="{JOMRES_SITEPAGE_URL}&task=confirmbooking" name="ajaxform" id="ajaxform" method="post">
-<div class="panelwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
 	<div>
 		<div class="block_ui_bookingform">
 			<table border="0" width="100%">
@@ -96,8 +96,8 @@ jQuery(document).ready(function() {
 				</tr>
 				<tr>
 					<td valign="top">
-					<div id="arrivalcontainer">
-						<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+					<div id="arrivalcontainer" >
+						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
 								<th colspan="4"><img border="0" style="vertical-align:top;" src="jomres/images/number1.png" width="32" height="32" /> {AJAXFORM_PARTICULARS}</th>
 							</tr>
@@ -124,7 +124,7 @@ jQuery(document).ready(function() {
 							</patTemplate:tmpl>
 						</table>
 						<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
-						<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
 								<th colspan="2">{COUPON_TITLE}</th>
 							</tr>
@@ -140,7 +140,7 @@ jQuery(document).ready(function() {
 							</tr>
 						</table>
 						</patTemplate:tmpl>
-						<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
 								<th colspan="4">{BILLING_ROOMTOTAL}</th>
 							</tr>
@@ -165,7 +165,7 @@ jQuery(document).ready(function() {
 			</tr>
 			<tr>
 				<td class="bformrightcol2" valign="top">
-					<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+					<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<th class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number2.png" width="32" height="32" /> <strong>{AJAXFORM_AVAILABLE_DESC}</strong> {LOOKRIGHT}</th>
 						</tr>
@@ -197,7 +197,7 @@ jQuery(document).ready(function() {
 				<td valign="top">
 					<div id="extrascontainer">
 						
-						<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 						{EXTRAS_HEADER}
 						<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 							<tr>{THIRD_PARTY_EXTRA}</tr>
@@ -223,7 +223,7 @@ jQuery(document).ready(function() {
 			</patTemplate:tmpl>
 			<tr>
 				<td valign="top">
-					<table class="bform_table_totals" border="0" width="100%" cellpadding="0" cellspacing="0">
+					<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<th colspan="6">{PRICE_SUMMARY}</th>
 						</tr>
@@ -284,7 +284,7 @@ jQuery(document).ready(function() {
 			</tr>
 			<tr>
 				<td valign="top" id="bookingform_address">
-					<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+					<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<th colspan="6" class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number3.png" width="32" height="32" /> {AJAXFORM_ADDRESS}</th>
 						</tr>
@@ -382,7 +382,7 @@ jQuery(document).ready(function() {
 			</tr>
 			<tr>
 				<td>
-					<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+					<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr class="bookingform_footer" id="bookingform_footer">
 							<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" width="32" height="32" /> </th>
 						</tr>
@@ -397,7 +397,7 @@ jQuery(document).ready(function() {
 				</td>
 			</tr>
 			<tr>
-				<td valign="top" class="bookingform_extras">
+				<td valign="top" class="bookingform_extras ui-tabs ui-widget ui-widget-content ui-corner-all">
 					&nbsp;
 				</td>
 			</tr>

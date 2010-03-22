@@ -62,7 +62,7 @@
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #000000; background: #000000 url(images/ui-bg_glass_60_000000_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #96f226; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #96f226; text-decoration: none; }
 .ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #696969; background: #4c4c4c url(images/ui-bg_flat_0_4c4c4c_40x100.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; }
-.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ffffff; text-decoration: none;  outline: none;}
 .ui-widget :active { outline: none; }
 
 /* Interaction Cues
