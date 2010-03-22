@@ -205,7 +205,8 @@ function init_javascript()
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
 				}
-			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/ui-lightness/','jquery-ui-1.8rc3.custom.css');
+				
+			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$jrConfig['jquery_ui_theme'].'/','jquery-ui-1.8rc3.custom.css');
 			
 			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.3.2.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");

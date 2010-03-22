@@ -70,6 +70,33 @@ function showSiteConfig(  )
 	$jsInputDateFormats[] =  jomresHTML::makeOption("%m-%d-%Y", "02-01-2006");
 	$jsInputFormatDropdownList= jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['cal_input']);
 
+	$jqueryUIthemes = array();
+	$jqueryUIthemes[] =  jomresHTML::makeOption("black-tie", "Black Tie");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("blitzer", "Blitzer");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("cupertino", "Cupertino");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("dark-hive", "Dark Hive");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("dot-luv", "Dot luv");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("eggplant", "Eggplant");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("excite-bike", "Excite bike");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("flick", "Flick");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("hot-sneaks", "Hot sneaks");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("humanity", "Humanity");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("le-frog", "Le frog");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("mint-choc", "Mint choc");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("overcast", "Overcast");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("pepper-grinder", "Pepper grinder");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("redmond", "Redmond");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("smoothness", "Smoothness");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("south-street", "South street");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("start", "Start");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("sunny", "Sunny");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("swanky-purse", "Swanky purse");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("trontastic", "Trontastic");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("ui-darkness", "UI Darkness");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("ui-lightness", "UI Lightness");
+	$jqueryUIthemes[] =  jomresHTML::makeOption("vader", "Vader");
+	$jqueryUIthemesDropdownList= jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['jquery_ui_theme']);
+
 	if (!isset($jrConfig['cssColourScheme']) )
 		$jrConfig['cssColourScheme']="blue";
 
@@ -158,7 +185,7 @@ function showSiteConfig(  )
 	
 
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList);
 	}
 
 /**
