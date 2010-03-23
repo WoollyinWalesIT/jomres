@@ -268,8 +268,6 @@ if ($property_uid > 0)
 	$pdeets=getPropertyAddressForPrint($property_uid);
 	$thisJomresPropertyDetails=$pdeets[3];
 	$published=$thisJomresPropertyDetails['published'];
-	if (!$thisJRUser->userIsManager && $published == 0)
-		return;
 	}
 	
 
@@ -295,10 +293,20 @@ $jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 
+if (!$thisJRUser->userIsManager && $published == 0)
+	{
+	jr_import('jomres_sanity_check');
+	$warning = new jomres_sanity_check(false);
+	echo $warning->construct_warning(_JOMRES_PROPERTYNOTOUBLISHED);
+	unset($property_uid);
+	$task="";
+	set_showtime('task',"");
+	}
+
 //$performance_monitor->set_point("post-lang file inclusion");
 
 // This little routine sets the custom text for an individual property.
-if (!empty($property_uid))
+if (isset($property_uid) && !empty($property_uid))
 	{
 	$customTextObj->get_custom_text_for_property($property_uid);
 	$basic_property_details =jomres_getSingleton('basic_property_details');

@@ -15,15 +15,18 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 
 class jomres_sanity_check
 	{
-	function jomres_sanity_check ()
+	function jomres_sanity_check ($autorun=true)
 		{
 		if (get_showtime('no_html',$no_html) == 1 || get_showtime('popup',$popup) == 1)
 			return;
-		$this->warnings = "";
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-		$this->jrConfig=$siteConfig->get();
-		$this->mrConfig=getPropertySpecificSettings();
-		$this->property_uid=getDefaultProperty();
+		if ($autorun)
+			{
+			$this->warnings = "";
+			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$this->jrConfig=$siteConfig->get();
+			$this->mrConfig=getPropertySpecificSettings();
+			$this->property_uid=getDefaultProperty();
+			}
 		}
 
 	function do_sanity_checks()
@@ -41,7 +44,7 @@ class jomres_sanity_check
 		{
 		$warning = "";
 		
-		$warning .="<div class=\"warning\" >";
+		$warning .="<div class=\"ui-state-error\" >";
 		$warning .=_JOMRES_WARNINGS_DANGERWILLROBINSON." ";
 		$warning .=$message;
 		$warning .="</div>";
