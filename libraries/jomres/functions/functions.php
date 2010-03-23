@@ -18,6 +18,9 @@ function output_price($value,$currencycode="")
 	{
 	$price = $value;
 	
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$mrConfig=getPropertySpecificSettings();
 	$currfmt = jomres_getSingleton('jomres_currency_format');
 	$price = $currfmt->get_formatted($price);
@@ -31,6 +34,8 @@ function output_price($value,$currencycode="")
 		}
 
 	jr_import("currency_codes");
+	if ($jrConfig['useGlobalCurrency']=="1")
+		$currencycode = $jrConfig['globalCurrencyCode'];
 	$c_codes = new currency_codes($currencycode);
 	$symbols = $c_codes->getSymbol();
 	$price = $symbols['pre'].$price.$symbols['post'];
