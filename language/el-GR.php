@@ -6767,8 +6767,6 @@ define('_JOMRES_SUPPORTKEY_DESC','Your support license key number (also known as
 * @ignore
 */
 define('_JOMRES_PERSONAL_DISCOUNT','Personal discount');
-
-
 /**
 * @ignore
 */
@@ -6789,4 +6787,8 @@ define('_JOMRES_JQUERYTHEME','Jquery theme');
 * @ignore
 */
 define('_JOMRES_JQUERYTHEME_DESC','Choose a jquery theme to use for the property details tabs.');
+/**
+* @ignore
+*/
+define('_JOMRES_PROPERTYNOTOUBLISHED','We are sorry, but that property is not currently available.');
 

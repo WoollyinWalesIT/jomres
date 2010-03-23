@@ -6805,4 +6805,8 @@ define('_JOMRES_JQUERYTHEME','Jquery theme');
 * @ignore
 */
 define('_JOMRES_JQUERYTHEME_DESC','Choose a jquery theme to use for the property details tabs.');
+/**
+* @ignore
+*/
+define('_JOMRES_PROPERTYNOTOUBLISHED','We are sorry, but that property is not currently available.');
 
