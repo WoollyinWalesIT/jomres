@@ -132,7 +132,7 @@ class j04005roomsconfig {
 				$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomType->room_classes_uid,		stripslashes($roomType->room_class_abbv),false,false);
 						
 				$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
-				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 1000, 1, "numberofRooms[$roomtype_id]", 'size="1" class="inputbox"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
+				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 150, 1, "numberofRooms[$roomtype_id]", 'size="1" class="inputbox"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
 				$r['ROOMRATEPERDAY']='<input class="inputbox" style="text-align:right" size="4" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
 				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'size="1" class="inputbox"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
 				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'size="1" class="inputbox"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
