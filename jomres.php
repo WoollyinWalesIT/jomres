@@ -293,7 +293,7 @@ $jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 
-if (!$thisJRUser->userIsManager && $published == 0)
+if (!$thisJRUser->userIsManager && $published == 0 && $task != "")
 	{
 	jr_import('jomres_sanity_check');
 	$warning = new jomres_sanity_check(false);
