@@ -40,7 +40,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		$guestDeets = $tmpBookingHandler->getGuestData();
 		
 		//If the email address already exists in the system, we'll not bother carrying on, just return this user's "mos_id"
-		$query = "SELECT id FROM #__users WHERE email = ".$guestDeets['email']." LIMIT 1";
+		$query = "SELECT id FROM #__users WHERE email = '".$guestDeets['email']."' LIMIT 1";
 		$existing=doSelectSql($query,1);
 		if ($existing)
 			return $existing;
