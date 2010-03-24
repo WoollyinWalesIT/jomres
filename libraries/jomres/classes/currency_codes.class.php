@@ -169,7 +169,8 @@ class currency_codes
 			'XAF'=>'XAF CFA Franc BEAC',
 			'XAF'=>'XAF CFA Franc BEAC',
 			'ZMK'=>'ZMK Zambian Kwacha',
-			'ZWD'=>'ZWD Zimbabwe Dollar'
+			'ZWD'=>'ZWD Zimbabwe Dollar',
+			'MDL'=>'MDL Moldovan leu'
 			);
 			
 		// Some of these symbols or their pre/post assignments may be wrong, if so, please email support@jomres.net and I'll put them right
@@ -312,7 +313,8 @@ class currency_codes
 			'VEB'=>array("pre"=>"Bs F","post"=>""),
 			'VND'=>array("pre"=>"₫","post"=>""),
 			'ZMK'=>array("pre"=>"ZK","post"=>""),
-			'ZWD'=>array("pre"=>"$","post"=>"")
+			'ZWD'=>array("pre"=>"$","post"=>""),
+			'ZWD'=>array("pre"=>"Lei","post"=>"")
 			);
 		}
 	
