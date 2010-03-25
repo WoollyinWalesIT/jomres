@@ -59,8 +59,8 @@ class j16000listcrates
 
 			jr_import('currency_codes');
 			$currency_codes = new currency_codes();
-			$currency_codes->id=$crate['currencycode'];
-			$r['CURRENCYCODE']=$currency_codes->getCode();
+			$currency_code=$crate['currencycode'];
+			$r['CURRENCYCODE']=$currency_codes->codes[$currency_code];
 			$rows[]=$r;
 			}
 
