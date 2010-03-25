@@ -47,9 +47,9 @@ class j16000editcrate
 		$output['TYPE']=$dd;
 		$output['VALUE']=$crateObj->value;
 		jr_import('currency_codes');
-		$currency_codes = new currency_codes();
-		$currency_codes->id=$crateObj->currencycode;
-		$dd=$currency_codes->makeCodesDropdown();
+		$currency_codes = new currency_codes($crateObj->currencycode);
+		$currency_codes->input_name = "currencycode";
+		$dd=$currency_codes->makeCodesDropdown($crateObj->currencycode);
 		$output['CURRENCYCODE']=$dd;
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
