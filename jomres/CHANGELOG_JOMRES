@@ -1,3 +1,16 @@
+Jomres 4.4.2
+
+Changed some paths for finding key validation class
+Modified  jomres.php to show nothing if a property isn't published and the user isn't a manager.
+Modification so in the event of a user attempting to view a non-published property a message is output and a random search is run.
+Modified room number dropdown to present up to 150 rooms for each room type, not 1000.
+Corrected missing quotes around email address sought for.
+Fixed bug where global currency code wasn't being used if enabled.
+Added Moldovan currency to currency_codes.class.php
+Fixed bug where currency codes weren't being displayed in commission rate list, and wasn't being saved when editing commission rates.
+Configuration panel handling rewritten to use jquery ui tabs
+Fixed an error in the json response for the select combo, seems that jquery 1.4 demands that the keys be surrounded by double quotes, as well as the values (a good thing really).
+
 Jomres 4.4.1
 
 Fixed bug in upgrade functionality where key wasn't being passed.
