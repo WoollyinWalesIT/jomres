@@ -182,6 +182,14 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_minicomponents.'j00015discounts.class.php');
 		
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'index.html');
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'jquery.history_remote.pack.js');
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'jquery.tabs.css');
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'jquery.tabs.pack.js');
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'jquery.tabs-ie.css');
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'tab2.png');
+		$this->add_obs_file($this->dir_javascript.JRDS.'jquerytabs'.JRDS.'Thumbs.db');
+		
 		
 		}
 	

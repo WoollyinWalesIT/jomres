@@ -46,60 +46,13 @@ class jomres_content_tabs
 	*/
 	function startTabs()
 		{
-		$currentTab=jomresGetParam( $_COOKIE,'jomres_content_tab', '' );
-		#### Not currently working, jquery ui tabs #####
-		//echo '
-		//<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-ui-1.7.1.custom.min.js"></script>';
-		
-
-		echo '
-		<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquerytabs/jquery.tabs.pack.js"></script>';
-		echo '
-		<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquerytabs/jquery.history_remote.pack.js"></script>';
-		echo '
-		<link rel="stylesheet" href="'.get_showtime('live_site').'/jomres/javascript/jquerytabs/jquery.tabs.css" type="text/css" media="print, projection, screen">';
-		echo '
-		<!--[if lte IE 7]><link rel="stylesheet" href="'.get_showtime('live_site').'/jomres/javascript/jquerytabs/jquery.tabs-ie.css" type="text/css" media="print, projection, screen"><![endif]-->';
-
-		if ($this->useCookies)
-			{
-			echo "<script type=\"text/javascript\" defer=\"true\">
-			jQuery(document).ready(function() {
-				jQuery('#content_tabs').tabs({ fxFade: true, fxSpeed: 'fast', fxAutoHeight: true});
-				jQuery('#content_tabs').triggerTab('".$currentTab."');
-				});
-			</script>
-			";
-			}
-		else
-			{
-			#### Not currently working, jquery ui tabs #####
-			/*
-			echo '
-				<script type="text/javascript">
-					jQuery(function(){
-						// Tabs
-						jQuery(\'#content_tabs\').tabs();
-						
-						//hover states on the static widgets
-						jQuery(\'#dialog_link, ul#icons li\').hover(
-							function() { jQuery(this).addClass(\'ui-state-hover\'); }, 
-							function() { jQuery(this).removeClass(\'ui-state-hover\'); }
-						);
-						
-					});
-				</script>
-				';
-			*/
-
-			echo "<script type=\"text/javascript\" defer=\"true\">
-			jQuery(document).ready(function() {
-				jQuery('#content_tabs').tabs();
-				});
-			</script>
-			";
-
-			}
+		echo "<script type=\"text/javascript\" defer=\"true\">
+		jQuery(document).ready(function() {
+			//jQuery('#content_tabs').tabs();
+			jQuery(\"#content_tabs\").tabs({ fx: { opacity: 'toggle' } });
+			});
+		</script>
+		";
 		echo "<div id=\"content_tabs\"> <!-- start tabs panel -->";
 		}
 
@@ -115,17 +68,11 @@ class jomres_content_tabs
 		if (strlen($anchor)==0)
 			$anchor=generateJomresRandomString(10);
 		$tabCookieString="";
-		if ($this->useCookies)
-			$tabCookieString='onClick="jQuery.cookie(\'jomres_content_tab\', \''.$anchor.'\');"';
 		$this->panelNames[]=$anchor;
-		$this->paneLink[]='<li>
-			<a href="'.$_SERVER["REQUEST_URI"]."#".$anchor.'" '.$tabCookieString.'>'.$tabpage.'</a>
-		</li>
+		$this->paneLink[]='<li><a href="#'.$anchor.'"><span>'.$tabpage.'</span></a></li>
 		';
 		$this->panes[]='<div id="'.$anchor.'"><!-- start content tab panel -->';
 		}
-
-
 
 	/**
 	#
