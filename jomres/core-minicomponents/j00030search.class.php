@@ -310,15 +310,15 @@ class j00030search {
 						}
 
 					$output['SELECTCOMBO_COUNTRY']=
-					jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" ', 'value', 'text', $selectOption ).'
+					jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', $selectOption ).'
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_REGION']='
-					<select id="search_region" name="region">
+					<select id="search_region" name="region" class="inputbox">
 					<option value="">--  --</option>
 					</select>
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
-					<select id="search_town" name="town">
+					<select id="search_town" name="town" class="inputbox">
 					<option value="">--  --</option>
 					<br />';
 					$showButton=true;
