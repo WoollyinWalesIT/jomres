@@ -6844,3 +6844,53 @@ define('_JOMRES_JQUERYTHEME_DESC','Choose a jquery theme to use for the property
 * @ignore
 */
 define('_JOMRES_PROPERTYNOTOUBLISHED','We are sorry, but that property is not currently available.');
+
+/**
+* @ignore
+*/
+define('_JOMRES_REVIEWS','Reviews');
+define('_JOMRES_REVIEWS_TITLE','Review title');
+define('_JOMRES_REVIEWS_DATE','posted on ');
+define('_JOMRES_REVIEWS_RATING','Rating (1 = poor 10 = excellent) ');
+define('_JOMRES_REVIEWS_NOREVIEWS','There are no reviews for this property yet.');
+define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST','Would you like to be the first to review this property?');
+define('_JOMRES_REVIEWS_IAGREE','I agree with this review');
+define('_JOMRES_REVIEWS_IDISAGREE','I disagree with this review');
+define('_JOMRES_REVIEWS_AVERAGE_RATING','Average Rating: ');
+define('_JOMRES_REVIEWS_TOTAL_VOTES','Total Votes:');
+define('_JOMRES_REVIEWS_ADD_REVIEW','Add a new review.');
+define('_JOMRES_REVIEWS_REVIEWBODY','Tell us what you think about this property : ');
+define('_JOMRES_REVIEWS_REVIEWBODY_SAID','This reviewer told us : ');
+define('_JOMRES_REVIEWS_PROS','Pros: ');
+define('_JOMRES_REVIEWS_CONS','Cons: ');
+define('_JOMRES_REVIEWS_SUBMITTEDDATE','Submitted On: ');
+define('_JOMRES_REVIEWS_ALREADYREVIEWED','You have already reviewed this property, you can\'t post another review about it.');
+define('_JOMRES_REVIEWS_CANNOTREVIEW','Sorry, but you are not allowed to post reviews on this site.');
+
+define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',' guests agree with this review. ');
+define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',' guests do not agree with this review.');
+define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW_SINGULAR',' guest agrees with this review. ');
+define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW_SINGULAR','guest does not agree with this review.');
+
+define('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM','Thank you for sharing your opinion of this review.');
+define('_JOMRES_REVIEWS_ALREADY_CONFIRMED','Thank you, but you have already shared your opinion of this review.');
+define('_JOMRES_REVIEWS_COMPLETEALLFIELDS','Please ensure that all fields have been filled.');
+
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE','Please summarise your review by entering a title');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION','Please enter a more complete review in the description box');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS','Please enter the good parts of your experience of being a guest at this property');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS','Please enter any negative thoughts you might have of your experience');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING','Please rate your experience out of ten, 1 is poor, 10 is excellent');
+
+define('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY','Review summary');
+define('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL','Your experience in more detail');
+
+define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW','Thank you for submitting your review.');
+define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED','Thank you for submitting your review. It will be published soon by one of our hard working moderators.');
+
+
+define('_JOMRES_REVIEWS_ADMIN_CONTROL','Use Jomres review functionality?');
+define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH','Automatically publish reviews?');
+define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC','If you set this to No you will need to manually publish reviews');
+define('_JOMRES_REVIEWS_ADMIN_TESTMODE','Set reviews to test mode?');
+define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC','Normally property managers cannot review propertys. With test mode enabled, they can. Naturally this is not ideal in a production environment.');

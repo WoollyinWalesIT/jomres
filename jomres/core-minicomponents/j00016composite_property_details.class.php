@@ -199,6 +199,20 @@ class j00016composite_property_details {
 		if ($discount_text != "")
 			$discount_output[] = array("DISCOUNT_OUTPUT"=>$discount_text);
 		
+		
+		$reviews_output = array();
+		
+		if ($jrConfig['use_reviews'] == "1")
+			{
+			$MiniComponents->specificEvent('06000',"show_property_reviews");
+			$reviews_title=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
+			
+			$anchor = ereg_replace("[^A-Za-z0-9]", "", _JOMRES_REVIEWS);
+			$reviewslist[]=array('REVIEWS_TITLE'=>$reviews_title,'REVIEWS_LIST'=>$MiniComponents->miniComponentData['06000']['show_property_reviews'],'TITLE_REVIEWSLIST_ANCHOR'=>$anchor);
+			$reviewslist_anchor[0]['TITLE_REVIEWSLIST']=$reviews_title;
+			$reviewslist_anchor[0]['TITLE_REVIEWSLIST_ANCHOR']=$anchor;
+			}
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$mcOutput=$MiniComponents->getAllEventPointsData('00015');
@@ -234,6 +248,12 @@ class j00016composite_property_details {
 				$tmpl->addRows( 'roomslist', $roomslist );
 				$tmpl->addRows( 'roomslist_anchor', $roomslist_anchor );
 				}
+			}
+
+		if ($jrConfig['use_reviews'] == "1")
+			{
+			$tmpl->addRows( 'reviews', $reviewslist );
+			$tmpl->addRows( 'reviews_anchor', $reviewslist_anchor );
 			}
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'feature_icons', $featureList);

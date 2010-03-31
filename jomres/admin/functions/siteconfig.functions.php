@@ -183,6 +183,10 @@ function showSiteConfig(  )
 	$lists['use_html_purifier']						= jomresHTML::selectList( $yesno, 'cfg_use_html_purifier', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_html_purifier'] );
 	$lists['limit_property_country']				= jomresHTML::selectList( $yesno, 'cfg_limit_property_country', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['limit_property_country'] );
 	
+	$lists['use_reviews']							= jomresHTML::selectList( $yesno, 'cfg_use_reviews', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_reviews'] );
+	$lists['autopublish_reviews']					= jomresHTML::selectList( $yesno, 'cfg_autopublish_reviews', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['autopublish_reviews'] );
+	$lists['reviews_test_mode']						= jomresHTML::selectList( $yesno, 'cfg_reviews_test_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['reviews_test_mode'] );
+	
 
 
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList);

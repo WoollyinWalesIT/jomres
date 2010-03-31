@@ -97,6 +97,23 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_CONTROL.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['use_reviews'].'</td>
+			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['autopublish_reviews'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['reviews_test_mode'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE_DESC.'</td>
+		</tr>
+		
+		
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_TITLE.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['is_single_property_installation'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_DESC.'</td>

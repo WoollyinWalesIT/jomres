@@ -1,0 +1,76 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script language="JavaScript" type="text/javascript">
+
+var confirmation_thanks = "{_JOMRES_REVIEWS_THANKS_FOR_CONFIRM}";
+var confirmation_already = "{_JOMRES_REVIEWS_ALREADY_CONFIRMED}";
+
+var show_thanks = {SHOW_THANKS};
+
+jQuery(document).ready(function(){
+	if (!show_thanks)
+		{
+		jQuery("#thanks_field").hide();
+		}
+});
+
+function confirm_review(rating_id,state)
+	{
+	div_name = '#agree_thumbs'+rating_id;
+	// 
+	jQuery.get('{AJAXURL}&task=review_confirm&rating_id='+rating_id+'&state='+state, function(data) {
+		jQuery('.result').html(data);
+		
+		if (data == 1)
+			{
+			jQuery(div_name).empty();
+			jQuery(div_name).addClass('ui-state-highlight');
+			jQuery(div_name).text( confirmation_thanks );
+			}
+		else
+			{
+			jQuery(div_name).empty();
+			jQuery(div_name).addClass('ui-state-error');
+			jQuery(div_name).text( confirmation_already );
+			}
+		});
+	}
+</script>
+
+<div id="thanks_field" > <div class="ui-state-highlight">{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}</div><br /></div>
+
+<div class="fg-toolbar ui-widget-header ui-corner-all">
+{_JOMRES_REVIEWS_AVERAGE_RATING} : {AVERAGE_RATING}<br/>
+{_JOMRES_REVIEWS_TOTAL_VOTES} : {NUMBER_OF_REVIEWS}<br/><br/>
+{_JOMRES_REVIEWS_ADD_REVIEW}<br/>
+</div>
+<div class=" ui-widget ui-widget-content ui-corner-all">
+	<div style="padding:5px">
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<div class="ui-widget-content ui-corner-all">
+			<div style="padding:5px">
+				<div class="fg-toolbar ui-widget-header ui-corner-all">
+					{REVIEW_TITLE} {RATING_STARS}
+				</div>
+				<div>
+					{USERNAME} {_JOMRES_REVIEWS_DATE} {RATING_DATE} <br/>
+					<strong>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</strong><br/>
+					{REVIEW_DESCRIPTION}<br/>
+					<strong>{_JOMRES_REVIEWS_PROS}</strong><br/>
+					{PROS}<br/>
+					<strong>{_JOMRES_REVIEWS_CONS}</strong><br/>
+					{CONS}<br/>
+					<br/>
+					<div id="agree_thumbs{RATING_ID}"><a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IAGREE}"  onClick="confirm_review({RATING_ID},1);" style="outline: none;"><img src="{THUMB_UP}"/></a> 
+					&nbsp;&nbsp;
+					<a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IDISAGREE}"  onClick="confirm_review({RATING_ID},0);"  style="outline: none;"><img src="{THUMB_DOWN}"/></a></div><br/>
+					{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW} {NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}<br/>
+				</div>
+			</div>
+		</div>
+		</patTemplate:tmpl>
+	</div>
+</div>
+
+
+
+</patTemplate:tmpl>
