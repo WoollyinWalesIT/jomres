@@ -165,4 +165,9 @@ $jrConfig['limit_property_country'] ="0";
 $jrConfig['limit_property_country_country'] ="GB";
 
 $jrConfig['jquery_ui_theme'] = "smoothness";
+
+$jrConfig['use_reviews'] = "1";
+$jrConfig['autopublish_reviews'] = "1";
+$jrConfig['reviews_test_mode'] = "0";
+
 ?>

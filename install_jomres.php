@@ -237,11 +237,64 @@ function doTableUpdates()
 		alterContractsInvoice();
 	if (!checkGuestsDiscountColExists() )
 		alterGuestsDiscountCol();
-
+	if (!checkReviewsTablesExist() )
+		createReviewsTables();
+		
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+	
+function createReviewsTables()
+	{
+	echo "Creating reviews tables<br>";
+	$query = "CREATE TABLE `#__jomres_reviews_ratings` (
+	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`item_id` int( 11 ) default NULL ,
+	`user_id` int( 11 ) default NULL ,
+	`review_title` varchar( 255 ) default NULL ,
+	`review_description` text,
+	`pros` text,
+	`cons` text,
+	`rating` tinyint( 4 ) default NULL ,
+	`rating_ip` varchar( 20 ) default NULL ,
+	`rating_date` datetime default NULL ,
+	`published` BOOL NOT NULL DEFAULT '0',
+	PRIMARY KEY ( `rating_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
+
+	$query = "CREATE TABLE `#__jomres_reviews_ratings_confirm` (
+	`confirm_rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`item_id` int( 11 ) default NULL ,
+	`rating_id` int( 11 ) default NULL ,
+	`confirm_user_id` int( 11 ) default NULL ,
+	`confirm` tinyint( 1 ) default NULL ,
+	`confirm_ip` varchar( 20 ) default NULL ,
+	`confirm_date` datetime default NULL ,
+	PRIMARY KEY ( `confirm_rating_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
+	}
+
+function checkReviewsTablesExist()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_reviews_ratings') )
+			return true;
+		}
+	return false;
+	}
+
+	
 function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
 	{
 	require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
@@ -1694,7 +1747,35 @@ function createJomresTables()
 	)";
 	doInsertSql($query,"");
 
+	$query = "CREATE TABLE `#__jomres_reviews_ratings` (
+	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`item_id` int( 11 ) default NULL ,
+	`user_id` int( 11 ) default NULL ,
+	`review_title` varchar( 255 ) default NULL ,
+	`review_description` text,
+	`pros` text,
+	`cons` text,
+	`rating` tinyint( 4 ) default NULL ,
+	`rating_ip` varchar( 20 ) default NULL ,
+	`rating_date` datetime default NULL ,
+	`published` BOOL NOT NULL DEFAULT '0',
+	PRIMARY KEY ( `rating_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
 
+	$query = "CREATE TABLE `#__jomres_reviews_ratings_confirm` (
+	`confirm_rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`item_id` int( 11 ) default NULL ,
+	`rating_id` int( 11 ) default NULL ,
+	`confirm_user_id` int( 11 ) default NULL ,
+	`confirm` tinyint( 1 ) default NULL ,
+	`confirm_ip` varchar( 20 ) default NULL ,
+	`confirm_date` datetime default NULL ,
+	PRIMARY KEY ( `confirm_rating_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
 	}
 
 function insertSampleData()

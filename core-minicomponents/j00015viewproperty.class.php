@@ -446,6 +446,8 @@ class j00015viewproperty
 		$output[]=jr_gettext('_JOMRES_FRONT_GALLERYLINK',_JOMRES_FRONT_GALLERYLINK);
 		$output[]=jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW);
 		$output[]=jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS);
+		
+		$output[]=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS);
 
 
 		foreach ($output as $o)
