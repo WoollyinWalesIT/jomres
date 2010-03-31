@@ -47,6 +47,7 @@ function output_price($value,$currencycode="")
 function jomres_reconvertString($clean)
 	{
 	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
+	$clean = str_replace("&#60;br /&#62;", "<br />", $clean);
 	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
 	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
 	$clean = str_replace(" & "," &amp; " , $clean);
