@@ -293,14 +293,18 @@ $jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 
-if (!$thisJRUser->userIsManager && $published == 0 && $task != "" && get_showtime('no_html') != "1" )
+
+if ($property_uid >0)
 	{
-	jr_import('jomres_sanity_check');
-	$warning = new jomres_sanity_check(false);
-	echo $warning->construct_warning(_JOMRES_PROPERTYNOTOUBLISHED);
-	unset($property_uid);
-	$task="";
-	set_showtime('task',"");
+	if (!$thisJRUser->userIsManager && $published == 0 && $task != "")
+		{
+		jr_import('jomres_sanity_check');
+		$warning = new jomres_sanity_check(false);
+		echo $warning->construct_warning(_JOMRES_PROPERTYNOTOUBLISHED);
+		unset($property_uid);
+		$task="";
+		set_showtime('task',"");
+		}
 	}
 
 //$performance_monitor->set_point("post-lang file inclusion");
