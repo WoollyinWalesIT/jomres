@@ -6894,3 +6894,9 @@ define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH','Automatically publish reviews?');
 define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC','If you set this to No you will need to manually publish reviews');
 define('_JOMRES_REVIEWS_ADMIN_TESTMODE','Set reviews to test mode?');
 define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC','Normally property managers cannot review propertys. With test mode enabled, they can. Naturally this is not ideal in a production environment.');
+
+define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO','This is a list of all properties. To see a property\'s reviews, click on that property. From there you will be able to publish or delete a review.');
+define('_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED','Number of unpublished reviews');
+define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL','Total number of reviews');
+define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW','Publish/Unpublish review');
+define('_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW','Delete review');
