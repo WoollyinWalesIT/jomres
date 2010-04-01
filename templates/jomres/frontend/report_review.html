@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<script language="JavaScript" type="text/javascript">
+jQuery.validator.setDefaults({
+	highlight: function(input) {
+		jQuery(input).addClass("ui-state-highlight");
+	},
+	unhighlight: function(input) {
+		jQuery(input).removeClass("ui-state-highlight");
+	}
+});
+
+jQuery(document).ready(function(){
+	jQuery("#reviewForm").validate({
+		rules: {
+			report: "required",
+		},
+	messages: {
+			report: "{_JOMRES_REVIEWS_REPORT_REVIEW_ERROR}",
+			},
+		errorLabelContainer: "#messageBox",
+		wrapper: "li",
+		submitHandler: function(form) {
+			form.submit();
+			},
+		
+	});
+	jQuery("#messageBox").hide();
+});
+
+</script>
+
+
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+	<ul id="messageBox" class="ui-state-error"></ul> 
+	<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_REPORT_REVIEW}</legend>
+	<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform">
+		<fieldset>
+			<p>
+				<textarea name="report" cols="70" rows="5" class="inputbox required"></textarea>
+			</p>
+			{_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL}
+		</fieldset>
+		<fieldset>
+			<p>
+				<button class="submit" type="submit">{_JOMRES_REVIEWS_SUBMIT}</button>
+			</p>
+		</fieldset>
+		<input type="hidden" name="rating_id" value="{RATING_ID}" />
+		<input type="hidden" name="no_html" value="1" />
+		<input type="hidden" name="task" value="save_review_report" />
+	</form>
+</fieldset>
+
+
+</patTemplate:tmpl>

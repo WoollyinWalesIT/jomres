@@ -12,9 +12,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-class j06000review_confirm
+class j06005review_confirm
 	{
-	function j06000review_confirm()
+	function j06005review_confirm()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)

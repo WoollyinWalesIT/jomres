@@ -42,6 +42,7 @@ class j16000view_property_reviews
 		$Reviews = new jomres_reviews();
 		$all_reviews = $Reviews->get_all_reviews_index_by_property_uid();
 		$property_reviews = $all_reviews[$property_uid];
+		$all_reports = $Reviews->get_all_reports_index_by_rating_id();
 		
 		$all_users = jomres_cmsspecific_getCMSUsers();
 		
@@ -64,8 +65,9 @@ class j16000view_property_reviews
 		$output['_JOMRES_REVIEWS_PROS']=_JOMRES_REVIEWS_PROS;
 		$output['_JOMRES_REVIEWS_CONS']=_JOMRES_REVIEWS_CONS;
 		$output['_JOMRES_REVIEWS_RATING']=_JOMRES_REVIEWS_RATING;
-
-
+		$output['_JOMRES_REVIEWS_REPORT_REVIEW_TITLE']=_JOMRES_REVIEWS_REPORT_REVIEW_TITLE;
+		$output['_JOMRES_REVIEWS_REPORT_INSTRUCTIONS']=_JOMRES_REVIEWS_REPORT_INSTRUCTIONS;
+		
 
 		foreach ($property_reviews as $review)
 			{
@@ -80,6 +82,17 @@ class j16000view_property_reviews
 			$r['rating'] = $review["rating"];
 			$r['rating_date'] = $review["rating_date"];
 			$r['published'] = $review["published"];
+			
+			$r['reports'] = '';
+			if (isset($all_reports[$r['rating_id']]))
+				{
+				$review_reports = $all_reports[$r['rating_id']];
+				foreach ($review_reports as $report)
+					{
+					$report_userid = $all_users[$report['user_id']]['username'];
+					$r['reports'].= _JOMRES_REVIEWS_REPORT_CREATED_BY.$report_userid." ".$report['report_date']."<br/>".$report['report'];
+					}
+				}
 			
 			$r['publish_icon']=$unpublish_icon;
 			if ($r['published']==0)

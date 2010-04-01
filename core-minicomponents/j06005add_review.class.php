@@ -12,9 +12,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-class j06000add_review
+class j06005add_review
 	{
-	function j06000add_review()
+	function j06005add_review()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
@@ -51,26 +51,26 @@ class j06000add_review
 			$this_user_can_review_this_property = $Reviews->this_user_can_review_this_property();
 			if ($this_user_can_review_this_property)
 				{
-				$output['_JOMRES_REVIEWS']						=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
-				$output['_JOMRES_REVIEWS_TITLE']				=jr_gettext('_JOMRES_REVIEWS_TITLE',_JOMRES_REVIEWS_TITLE,false,false);
-				$output['_JOMRES_REVIEWS_REVIEWBODY']			=jr_gettext('_JOMRES_REVIEWS_REVIEWBODY',_JOMRES_REVIEWS_REVIEWBODY,false,false);
+				$output['_JOMRES_REVIEWS']									=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
+				$output['_JOMRES_REVIEWS_TITLE']							=jr_gettext('_JOMRES_REVIEWS_TITLE',_JOMRES_REVIEWS_TITLE,false,false);
+				$output['_JOMRES_REVIEWS_REVIEWBODY']						=jr_gettext('_JOMRES_REVIEWS_REVIEWBODY',_JOMRES_REVIEWS_REVIEWBODY,false,false);
 				
 				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE']			=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE',_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE,false,false);
-				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION']			=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION',_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION,false,false);
-				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS']			=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS',_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS,false,false);
-				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS']			=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS',_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS,false,false);
+				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION']		=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION',_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION,false,false);
+				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS']				=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS',_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS,false,false);
+				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS']				=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS',_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS,false,false);
 				$output['_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING']			=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING',_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING,false,false);
-				
+				$output['_JOMRES_REVIEWS_SUBMIT']							=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT,false,false);
 
 				$output['_JOMRES_REVIEWS_ADDREVIEW_SUMMARY']				=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY',_JOMRES_REVIEWS_ADDREVIEW_SUMMARY,false,false);
 				$output['_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL']				=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL',_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL,false,false);
 				
-				$output['_JOMRES_REVIEWS_RATING']				=jr_gettext('_JOMRES_REVIEWS_RATING',_JOMRES_REVIEWS_RATING,false,false);
-				$output['_JOMRES_REVIEWS_PROS']					=jr_gettext('_JOMRES_REVIEWS_PROS',_JOMRES_REVIEWS_PROS,false,false);
-				$output['_JOMRES_REVIEWS_CONS']					=jr_gettext('_JOMRES_REVIEWS_CONS',_JOMRES_REVIEWS_CONS,false,false);
-				$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false);
-				$output['_JOMRES_REVIEWS_COMPLETEALLFIELDS']			=jr_gettext('_JOMRES_REVIEWS_COMPLETEALLFIELDS',_JOMRES_REVIEWS_COMPLETEALLFIELDS,false,false);
-				$output['JOMRES_SITEPAGE_URL']					=JOMRES_SITEPAGE_URL;
+				$output['_JOMRES_REVIEWS_RATING']							=jr_gettext('_JOMRES_REVIEWS_RATING',_JOMRES_REVIEWS_RATING,false,false);
+				$output['_JOMRES_REVIEWS_PROS']								=jr_gettext('_JOMRES_REVIEWS_PROS',_JOMRES_REVIEWS_PROS,false,false);
+				$output['_JOMRES_REVIEWS_CONS']								=jr_gettext('_JOMRES_REVIEWS_CONS',_JOMRES_REVIEWS_CONS,false,false);
+				$output['_JOMRES_REVIEWS_ADD_REVIEW']						=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false);
+				$output['_JOMRES_REVIEWS_COMPLETEALLFIELDS']				=jr_gettext('_JOMRES_REVIEWS_COMPLETEALLFIELDS',_JOMRES_REVIEWS_COMPLETEALLFIELDS,false,false);
+				$output['JOMRES_SITEPAGE_URL']								=JOMRES_SITEPAGE_URL;
 				$output['PROPERTY_UID'] = $property_uid;
 				
 				$pageoutput[]=$output;
