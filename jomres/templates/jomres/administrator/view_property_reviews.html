@@ -1,0 +1,67 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<script language="JavaScript" type="text/javascript">
+
+var publish_image = "{UNPUBLISH_IMAGE}";
+var unpublish_image = "{PUBLISH_IMAGE}";
+
+function publish_review(rating_id,state)
+	{
+	jQuery.get('{AJAXURL}&task=review_publish&rating_id='+rating_id+'&state='+state, function(data) {
+		if (data == 1)
+			{
+			div_name = '#publish_icon'+rating_id;
+			jQuery(div_name).fadeTo("slow", 0.2);
+			}
+		else alert ("Nope, that didn't work");
+		});
+	}
+
+function delete_review(rating_id)
+	{
+	jQuery.get('{AJAXURL}&task=review_delete&rating_id='+rating_id, function(data) {
+		if (data == 1)
+			{
+			row_id = '#rating_id'+rating_id;
+			jQuery(row_id).fadeOut();
+			}
+		else alert ("Nope, that didn't work");
+		});
+	}
+</script>
+
+<h2>{HPROPERTYNAME} : {PROPERTY_NAME}</h2>
+
+		
+<table class="jradmin_table">
+	<tr>
+		<td class="jradmin_subheader_la" >&nbsp;</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_MR_AUDIT_LISTING_USER}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_SUBMITTEDDATE}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_TITLE}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</a></td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_PROS}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_CONS}</td>
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_RATING}</a></td>
+		
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr id="{ROW_ID}">
+		<td class="jradmin_field_la" >{RATING_ID}</td>
+		<td class="jradmin_field_la"><div id="publish_icon{RATING_ID}"><a href="javascript:void(0);" style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img src="{PUBLISH_ICON}" /></a></div></td>
+		<td class="jradmin_field_la"><a href="javascript:void(0);" style="outline: none;" onClick="delete_review({RATING_ID});"><img src="{DELETE_ICON}" /></a></td>
+		<td class="jradmin_field_la">{USER_ID}</td>
+		<td class="jradmin_field_la">{RATING_DATE}</td>
+		<td class="jradmin_field_la">{REVIEW_TITLE}</td>
+		<td class="jradmin_field_la">{REVIEW_DESCRIPTION}</a></td>
+		<td class="jradmin_field_la">{PROS}</td>
+		<td class="jradmin_field_la">{CONS}</td>
+		<td class="jradmin_field_la">{RATING}</a></td>
+		
+	</tr>
+	</patTemplate:tmpl>
+</table>
+
+</patTemplate:tmpl>

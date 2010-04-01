@@ -102,10 +102,75 @@ class jomres_reviews {
 		return false;
 		}
 
+	public function delete_review($rating_id) 
+		{
+		if ((int)$rating_id > 0)
+			{
+			$query = "DELETE FROM #__jomres_reviews_ratings WHERE `rating_id`=".(int)$rating_id."";
+			$result = doInsertSql($query,'');
+			if($result)
+				{
+				$query = "DELETE FROM #__jomres_reviews_ratings_confirm WHERE `rating_id`=".(int)$rating_id."";
+				$result = doInsertSql($query,'');
+				if($result)
+					return true;
+				}
+			}
+		else
+			{
+			return false;
+			}
+		}
+		
+	public function publish_review($rating_id)
+		{
+		$query = "UPDATE #__jomres_reviews_ratings SET published = 1 WHERE rating_id = ".$rating_id;
+		$result = doInsertSql($query,"");
+		if ($result)
+			return true;
+		else
+			return false;
+		}
+		
+	public function unpublish_review($rating_id)
+		{
+		$query = "UPDATE #__jomres_reviews_ratings SET published = 0 WHERE rating_id = ".$rating_id;
+		$result = doInsertSql($query,"");
+		if ($result)
+			return true;
+		else
+			return false;
+		}
+		
 	private function processString($text) {
 		return addslashes(stripslashes(trim($text)));
 	}
 
+	public function get_all_reviews_index_by_property_uid()
+		{
+		$reviews = array();
+		$query = "SELECT * FROM #__jomres_reviews_ratings";
+		$result = DoSelectSql($query);
+		if (count($result)>0)
+			{
+			foreach ($result as $res)
+				{
+				$property_uid = $res->item_id;
+				$reviews[$property_uid][$res->rating_id]['rating_id']=$res->rating_id;
+				$reviews[$property_uid][$res->rating_id]['property_uid']=$res->item_id;
+				$reviews[$property_uid][$res->rating_id]['user_id']=$res->user_id;
+				$reviews[$property_uid][$res->rating_id]['review_title']=$res->review_title;
+				$reviews[$property_uid][$res->rating_id]['review_description']=$res->review_description;
+				$reviews[$property_uid][$res->rating_id]['pros']=$res->pros;
+				$reviews[$property_uid][$res->rating_id]['cons']=$res->cons;
+				$reviews[$property_uid][$res->rating_id]['rating']=$res->rating;
+				$reviews[$property_uid][$res->rating_id]['rating_ip']=$res->rating_ip;
+				$reviews[$property_uid][$res->rating_id]['rating_date']=$res->rating_date;
+				$reviews[$property_uid][$res->rating_id]['published']=$res->published;
+				}
+			}
+		return $reviews;
+		}
 
 	public function validateData($record) {
 		if(!isset($record['rating'])) {
