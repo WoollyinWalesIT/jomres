@@ -12,14 +12,14 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-class j06000save_review
+class j06005save_review
 	{
-	function j06000save_review()
+	function j06005save_review()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=true; return;
+			$this->template_touchable=false; return;
 			}
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -70,32 +70,6 @@ class j06000save_review
 				{
 				echo jr_gettext('_JOMRES_REVIEWS_CANNOTREVIEW',_JOMRES_REVIEWS_CANNOTREVIEW	);
 				}
-			}
-		}
-
-	function touch_template_language()
-		{
-		$output=array();
-
-		$output[]						=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_NOREVIEWS',_JOMRES_REVIEWS_NOREVIEWS	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST',_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING',_JOMRES_REVIEWS_AVERAGE_RATING	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES',_JOMRES_REVIEWS_TOTAL_VOTES	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_IAGREE',_JOMRES_REVIEWS_IAGREE	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_IDISAGREE',_JOMRES_REVIEWS_IDISAGREE	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_PROS',_JOMRES_REVIEWS_PROS	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_CONS',_JOMRES_REVIEWS_CONS	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_SUBMITTEDDATE',_JOMRES_REVIEWS_SUBMITTEDDATE	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW	);
-		$output[]						=jr_gettext('_JOMRES_REVIEWS_NUMBER_NOCOMMENTERS',_JOMRES_REVIEWS_NUMBER_NOCOMMENTERS	);
-
-		foreach ($output as $o)
-			{
-			echo $o;
-			echo "<br/>";
 			}
 		}
 

@@ -277,6 +277,17 @@ function createReviewsTables()
 	)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
+		
+	$query = "CREATE TABLE `#__jomres_reviews_reports` (
+	`report_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`rating_id` int( 11 ) default NULL ,
+	`user_id` int( 11 ) default NULL ,
+	`report` text,
+	`report_date` datetime default NULL ,
+	PRIMARY KEY ( `rating_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
 	}
 
 function checkReviewsTablesExist()
@@ -1776,6 +1787,17 @@ function createJomresTables()
 	)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
+		
+	$query = "CREATE TABLE `#__jomres_reviews_reports` (
+	`report_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`rating_id` int( 11 ) default NULL ,
+	`user_id` int( 11 ) default NULL ,
+	`report` text,
+	`report_date` datetime default NULL ,
+	PRIMARY KEY ( `report_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
 	}
 
 function insertSampleData()

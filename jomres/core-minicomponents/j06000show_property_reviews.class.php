@@ -31,7 +31,8 @@ class j06000show_property_reviews
 		if (isset($_GET['ja']))
 			$just_added = (int)$_GET['ja'];
 		
-
+		
+		
 		if (!isset($_GET['property_uid']))
 			{
 			$property_uid = get_showtime('property_uid');
@@ -118,7 +119,8 @@ class j06000show_property_reviews
 					$r['_JOMRES_REVIEWS_TITLE']						=jr_gettext('_JOMRES_REVIEWS_TITLE',_JOMRES_REVIEWS_TITLE,false,false);
 					$r['_JOMRES_REVIEWS_REVIEWBODY_SAID']			=jr_gettext('_JOMRES_REVIEWS_REVIEWBODY_SAID',_JOMRES_REVIEWS_REVIEWBODY_SAID,false,false);
 					$r['_JOMRES_REVIEWS_DATE']						=jr_gettext('_JOMRES_REVIEWS_DATE',_JOMRES_REVIEWS_DATE,false,false);
-					$r['_JOMRES_REVIEWS_RATING']						=jr_gettext('_JOMRES_REVIEWS_RATING',_JOMRES_REVIEWS_RATING);
+					$r['_JOMRES_REVIEWS_RATING']					=jr_gettext('_JOMRES_REVIEWS_RATING',_JOMRES_REVIEWS_RATING);
+					$r['_JOMRES_REVIEWS_REPORT_REVIEW']				=jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW',_JOMRES_REVIEWS_REPORT_REVIEW,false,false);
 
 					$r['RATING_ID']	=$review['rating_id'];
 					$r['USERNAME']	=$site_userids[$review['user_id']]['username'];
@@ -130,6 +132,8 @@ class j06000show_property_reviews
 					$r['RATING_STARS']="";
 					for ($i=1;$i<=$review['rating'];$i++)
 						$r['RATING_STARS'].='<img src="'.$star.'"/>';
+					
+					$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
 					
 					$confirm_states = $Reviews->showConfirm($review['rating_id']);
 					
@@ -229,6 +233,9 @@ class j06000show_property_reviews
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING',_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY',_JOMRES_REVIEWS_ADDREVIEW_SUMMARY);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL',_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW',_JOMRES_REVIEWS_REPORT_REVIEW);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL',_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT);
 
 		foreach ($output as $o)
 			{

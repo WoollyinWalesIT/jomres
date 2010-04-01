@@ -6900,3 +6900,11 @@ define('_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED','Number of unpublished reviews'
 define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL','Total number of reviews');
 define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW','Publish/Unpublish review');
 define('_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW','Delete review');
+
+define('_JOMRES_REVIEWS_REPORT_REVIEW','Report review');
+define('_JOMRES_REVIEWS_REPORT_REVIEW_TITLE','Review reports');
+define('_JOMRES_REVIEWS_REPORT_REVIEW_ERROR','Please enter your report');
+define('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL','See something in this review which is objectional or inaccurate? Report it and we will look into it for you.');
+define('_JOMRES_REVIEWS_SUBMIT','Submit');
+define('_JOMRES_REVIEWS_REPORT_CREATED_BY','Report created by ');
+define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS','Reports are posted by users who may disagree with the content of a review. The only way to remove a report is to delete the review.');

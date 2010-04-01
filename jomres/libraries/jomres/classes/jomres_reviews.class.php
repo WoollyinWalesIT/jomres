@@ -18,6 +18,15 @@ class jomres_reviews {
 	$this->property_uid = 0;
 	}
 
+	public function this_user_can_report()
+		{
+		$thisJRUser = jomres_getSingleton('jr_user');
+		if ($thisJRUser->userIsRegistered)
+			return true;
+		return false;
+		}
+	
+	
 	public function this_user_can_review()
 		{
 		$thisJRUser = jomres_getSingleton('jr_user');
@@ -96,12 +105,26 @@ class jomres_reviews {
 			cons='".trim($cons)."',
 			published = ".$published."
 			";
-		$result = doInsertSql($query);
+		$result = doInsertSql($query,'');
 		if($result)
 			return $result;
 		return false;
 		}
-
+		
+	public function save_review_report($rating_id,$report)
+		{
+		$query ="INSERT INTO #__jomres_reviews_reports SET 
+			`rating_id`='".(int)$rating_id."',
+			`user_id`=".(int)$this->userid.",
+			`report`='".(string)$report."',
+			`report_date`='".date( 'Y-m-d H:i:s' )."'
+			";
+		$result = doInsertSql($query,'');
+		if($result)
+			return $result;
+		return false;
+		}
+		
 	public function delete_review($rating_id) 
 		{
 		if ((int)$rating_id > 0)
@@ -113,7 +136,17 @@ class jomres_reviews {
 				$query = "DELETE FROM #__jomres_reviews_ratings_confirm WHERE `rating_id`=".(int)$rating_id."";
 				$result = doInsertSql($query,'');
 				if($result)
-					return true;
+					{
+					$all_reports = $this->get_all_reports_index_by_rating_id();
+					if (isset($all_reports[$rating_id]))
+						{
+						$query="DELETE FROM #__jomres_reviews_reports WHERE `rating_id`=".(int)$rating_id."";
+						$result = doInsertSql($query,'');
+						if($result)
+							return true;
+						}
+					else return true;
+					}
 				}
 			}
 		else
@@ -149,7 +182,7 @@ class jomres_reviews {
 	public function get_all_reviews_index_by_property_uid()
 		{
 		$reviews = array();
-		$query = "SELECT * FROM #__jomres_reviews_ratings";
+		$query = "SELECT * FROM #__jomres_reviews_ratings ORDER BY rating_date";
 		$result = DoSelectSql($query);
 		if (count($result)>0)
 			{
@@ -246,36 +279,37 @@ class jomres_reviews {
 			} 
 		else 
 			{
-			$sql = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' order by rating_date desc";
-			$sql = str_replace("#__",$this->db_prefix,$sql);
-			$return['sqlCnt'] = $sql;
-			$rs = @mysql_query($sql);
-			if(!$rs) {
-				throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
-			}
-			$arr = mysql_fetch_array($rs);
-			$totalRows = $arr['cnt'];
-			$return['totalRows'] = $totalRows;
+			// Not currently used, therefore commented out until it can be tested
+			// $sql = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' order by rating_date desc";
+			// $sql = str_replace("#__",$this->db_prefix,$sql);
+			// $return['sqlCnt'] = $sql;
+			// $rs = @mysql_query($sql);
+			// if(!$rs) {
+				// throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
+			// }
+			// $arr = mysql_fetch_array($rs);
+			// $totalRows = $arr['cnt'];
+			// $return['totalRows'] = $totalRows;
 
-			if(!$max) $max = 10;
-			$return['max'] = $max;
-			if(!$pageNum) $pageNum = 0;
-			$return['pageNum'] = $pageNum;
-			$startRow = $pageNum * $max;
-			$return['startRow'] = $startRow;
-			$totalPages = ceil($totalRows/$max)-1;
-			$return['totalPages'] = $totalPages;
+			// if(!$max) $max = 10;
+			// $return['max'] = $max;
+			// if(!$pageNum) $pageNum = 0;
+			// $return['pageNum'] = $pageNum;
+			// $startRow = $pageNum * $max;
+			// $return['startRow'] = $startRow;
+			// $totalPages = ceil($totalRows/$max)-1;
+			// $return['totalPages'] = $totalPages;
 
-			$sql = "SELECT * FROM __jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."'";
-			$sql .= " Limit ".$startRow.", ".$max;
-			$return['sql'] = $sql;
-			$sql = str_replace("#__",$this->db_prefix,$sql);
-			$rs = @mysql_query($sql);
+			// $sql = "SELECT * FROM __jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."'";
+			// $sql .= " Limit ".$startRow.", ".$max;
+			// $return['sql'] = $sql;
+			// $sql = str_replace("#__",$this->db_prefix,$sql);
+			// $rs = @mysql_query($sql);
 			
-			if(!$rs) {
-				throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
+			// if(!$rs) {
+				// throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
+			//}
 			}
-		}
 
 		foreach ($rs as $r)
 			{
@@ -310,6 +344,25 @@ class jomres_reviews {
 		$query = "SELECT item_id FROM #__jomres_reviews_ratings WHERE `rating_id` = ".(int)$rating_id." LIMIT 1";
 		return doSelectSql($query,1);
 		}
-		
+	
+	public function get_all_reports_index_by_rating_id()
+		{
+		$reports = array();
+		$query = "SELECT * FROM #__jomres_reviews_reports";
+		$result = doSelectSql($query);
+		if (count($result)>0)
+			{
+			foreach ($result as $res)
+				{
+				$rating_id = $res->rating_id;
+				$reports[$rating_id][$res->report_id]['report_id']=$res->report_id;
+				$reports[$rating_id][$res->report_id]['rating_id']=$res->rating_id;
+				$reports[$rating_id][$res->report_id]['user_id']=$res->user_id;
+				$reports[$rating_id][$res->report_id]['report']=$res->report;
+				$reports[$rating_id][$res->report_id]['report_date']=$res->report_date;
+				}
+			}
+		return $reports;
+		}
 }
 ?>

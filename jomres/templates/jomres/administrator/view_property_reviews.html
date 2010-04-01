@@ -32,7 +32,8 @@ function delete_review(rating_id)
 
 <h2>{HPROPERTYNAME} : {PROPERTY_NAME}</h2>
 
-		
+{_JOMRES_REVIEWS_REPORT_INSTRUCTIONS}<br/>
+
 <table class="jradmin_table">
 	<tr>
 		<td class="jradmin_subheader_la" >&nbsp;</td>
@@ -45,7 +46,7 @@ function delete_review(rating_id)
 		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_PROS}</td>
 		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_CONS}</td>
 		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_RATING}</a></td>
-		
+		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</a></td>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr id="{ROW_ID}">
@@ -59,7 +60,7 @@ function delete_review(rating_id)
 		<td class="jradmin_field_la">{PROS}</td>
 		<td class="jradmin_field_la">{CONS}</td>
 		<td class="jradmin_field_la">{RATING}</a></td>
-		
+		<td class="jradmin_field_la">{REPORTS}</a></td>
 	</tr>
 	</patTemplate:tmpl>
 </table>
