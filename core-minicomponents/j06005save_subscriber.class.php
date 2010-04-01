@@ -291,7 +291,7 @@ class j06005save_subscriber
 		$this->add_field('address1', $subscriber->address);
 		$this->add_field('zip', $subscriber->postcode);
 		
-		echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.3.2.min.js"></script>';
+		echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.4.2.min.js"></script>';
 		echo '<script type="text/javascript">jQuery.noConflict();</script>';
 		?>
 
