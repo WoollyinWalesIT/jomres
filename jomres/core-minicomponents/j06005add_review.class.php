@@ -43,11 +43,10 @@ class j06005add_review
 			$output = array();
 			$pageoutput = array();
 			$rows = array();
-			$this_user_can_review = false;
-			
+
 			jr_import('jomres_reviews');
 			$Reviews = new jomres_reviews();
-			$this_user_can_review = $Reviews->this_user_can_review();
+			$Reviews->property_uid = $property_uid;
 			$this_user_can_review_this_property = $Reviews->this_user_can_review_this_property();
 			if ($this_user_can_review_this_property)
 				{

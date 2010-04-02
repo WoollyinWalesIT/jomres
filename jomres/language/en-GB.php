@@ -6859,6 +6859,7 @@ define('_JOMRES_REVIEWS_IDISAGREE','I disagree with this review');
 define('_JOMRES_REVIEWS_AVERAGE_RATING','Average Rating: ');
 define('_JOMRES_REVIEWS_TOTAL_VOTES','Total Votes:');
 define('_JOMRES_REVIEWS_ADD_REVIEW','Add a new review.');
+define('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN','You need to be logged in to post a review.');
 define('_JOMRES_REVIEWS_REVIEWBODY','Tell us what you think about this property : ');
 define('_JOMRES_REVIEWS_REVIEWBODY_SAID','This reviewer told us : ');
 define('_JOMRES_REVIEWS_PROS','Pros: ');
@@ -6866,6 +6867,7 @@ define('_JOMRES_REVIEWS_CONS','Cons: ');
 define('_JOMRES_REVIEWS_SUBMITTEDDATE','Submitted On: ');
 define('_JOMRES_REVIEWS_ALREADYREVIEWED','You have already reviewed this property, you can\'t post another review about it.');
 define('_JOMRES_REVIEWS_CANNOTREVIEW','Sorry, but you are not allowed to post reviews on this site.');
+
 
 define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',' guests agree with this review. ');
 define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',' guests do not agree with this review.');
