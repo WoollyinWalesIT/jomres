@@ -246,13 +246,26 @@ class jomres_reviews {
 		}
 
 	public function showRating($item_id) {
+		$arr =array();
 		$sql = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' AND published = 1 GROUP BY item_id";
-		$sql = str_replace("#__",$this->db_prefix,$sql);
-		$rs = @mysql_query($sql);
-		if(!$rs) {
-			throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
-		}
-		$arr = mysql_fetch_array($rs);
+		$result = doSelectSql($sql);
+		if (count($result)>0)
+			{
+			foreach ($result as $res)
+				{
+				$arr['property_uid']=$res->item_id;
+				$arr['avg_rating']=$res->avg_rating;
+				$arr['counter']=$res->counter;
+				$arr['sumrating']=$res->sumrating;
+				}
+			}
+		else
+			{
+			$arr['property_uid']=$this->property_uid;
+			$arr['avg_rating']=0;
+			$arr['counter']=0;
+			$arr['sumrating']=0;
+			}
 		return $arr;
 	}
 

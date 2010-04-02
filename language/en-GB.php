@@ -6867,7 +6867,7 @@ define('_JOMRES_REVIEWS_CONS','Cons: ');
 define('_JOMRES_REVIEWS_SUBMITTEDDATE','Submitted On: ');
 define('_JOMRES_REVIEWS_ALREADYREVIEWED','You have already reviewed this property, you can\'t post another review about it.');
 define('_JOMRES_REVIEWS_CANNOTREVIEW','Sorry, but you are not allowed to post reviews on this site.');
-
+define('_JOMRES_REVIEWS_CLICKTOSHOW','Click to show reviews');
 
 define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',' guests agree with this review. ');
 define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',' guests do not agree with this review.');
