@@ -36,7 +36,7 @@
 function toggle_review_div(uid)
 	{
 	div_id = "#property_reviews"+uid;
-	jQuery('div.'+div_id).toggle();
+	jQuery('div.'+div_id).toggle("slow");
 	}
 </script>
 <br />
@@ -120,7 +120,7 @@ function toggle_review_div(uid)
 					</tr>
 					<tr>
 						<td>
-							<a href="javascript:void(0);" onClick="toggle_review_div({UID});">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+							<a href="javascript:void(0);" onClick="toggle_review_div({UID});" style="outline: none;">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
 							<div id="property_reviews{UID}" style="display: none">
 								{REVIEWS}
 							</div>

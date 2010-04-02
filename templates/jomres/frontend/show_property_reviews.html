@@ -52,19 +52,19 @@ function confirm_review(rating_id,state)
 					{REVIEW_TITLE} {RATING_STARS}
 				</div>
 				<div>
-					{USERNAME} {_JOMRES_REVIEWS_DATE} {RATING_DATE} <br/>
+					{USERNAME}  <br/>
 					<strong>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</strong><br/>
-					{REVIEW_DESCRIPTION}<br/>
+					<p>{REVIEW_DESCRIPTION}</p>
 					<strong>{_JOMRES_REVIEWS_PROS}</strong><br/>
-					{PROS}<br/>
+					<p>{PROS}</p>
 					<strong>{_JOMRES_REVIEWS_CONS}</strong><br/>
-					{CONS}<br/>
+					<p>{CONS}</p>
 					<br/>
 					<div id="agree_thumbs{RATING_ID}"><a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IAGREE}"  onClick="confirm_review({RATING_ID},1);" style="outline: none;"><img src="{THUMB_UP}"/></a> 
 					&nbsp;&nbsp;
 					<a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IDISAGREE}"  onClick="confirm_review({RATING_ID},0);"  style="outline: none;"><img src="{THUMB_DOWN}"/></a></div><br/>
 					{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW} {NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}<br/>
-					{REPORT_REVIEWLINK}
+					{REPORT_REVIEWLINK}<span style="float:right">{_JOMRES_REVIEWS_DATE} {RATING_DATE}</span>
 				</div>
 			</div>
 		</div>

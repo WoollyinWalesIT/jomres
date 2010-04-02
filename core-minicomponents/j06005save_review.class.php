@@ -51,18 +51,25 @@ class j06005save_review
 			$output = array();
 			$pageoutput = array();
 			$rows = array();
-			$this_user_can_review = false;
-			
+
 			jr_import('jomres_reviews');
 			$Reviews = new jomres_reviews();
 			$Reviews->property_uid = $property_uid;
-			
-			$this_user_can_review = $Reviews->this_user_can_review();
+
 			$this_user_can_review_this_property = $Reviews->this_user_can_review_this_property();
 			
 			if ($this_user_can_review_this_property)
 				{
 				$rating_id = $Reviews->save_review($rating,$review_title,$review_description,$pros,$cons);
+				if ($jrConfig['autopublish_reviews'] =="1")
+					$thanks=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW',_JOMRES_REVIEWS_THANKS_FOR_REVIEW,false,false);
+				else
+					$thanks=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED',_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED,false,false);
+					
+				$saveMessage=$thanks;
+				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging->set_message($saveMessage);
+				
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&ja=1&property_uid=".$property_uid) ,"" );
 				exit;
 				}
