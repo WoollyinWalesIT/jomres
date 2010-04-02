@@ -68,6 +68,7 @@ class j06000show_property_reviews
 			$output['_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW']	=jr_gettext('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW,false,false);
 			$output['_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW']=jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW,false,false);
 			$output['_JOMRES_REVIEWS_THANKS_FOR_CONFIRM']=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM',_JOMRES_REVIEWS_THANKS_FOR_CONFIRM,false,false);
+			$output['_JOMRES_REVIEWS_ALREADY_CONFIRMED']=jr_gettext('_JOMRES_REVIEWS_ALREADY_CONFIRMED',_JOMRES_REVIEWS_ALREADY_CONFIRMED);
 			
 			$output['_JOMRES_REVIEWS_THANKS_FOR_REVIEW']="";
 			$output['SHOW_THANKS']="false";
@@ -85,7 +86,6 @@ class j06000show_property_reviews
 			$Reviews->property_uid = $property_uid;
 			$this_user_can_review_this_property = $Reviews->this_user_can_review_this_property();
 			$itemReviews = $Reviews->showReviews($property_uid);
-			
 			$itemRating = $Reviews->showRating($property_uid);
 			$this_user_can_review = $Reviews->this_user_can_review();
 			
@@ -144,16 +144,13 @@ class j06000show_property_reviews
 					$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
 					
 					$confirm_states = $Reviews->showConfirm($review['rating_id']);
-					
+
 					if (!in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
 						{
 						$r['THUMB_UP']=$thumb_up;
 						$r['THUMB_DOWN']=$thumb_down;
 						}
-					
-					
-					
-					
+
 					if ($confirm_states['agree']!=0)
 						{
 						$r['NUMBER_AGREE']=$confirm_states['agree'];

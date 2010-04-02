@@ -6,15 +6,10 @@ class jomres_reviews {
 	private static $instance;
 
 	public function __construct() {
-		if(self::$instance) {
-			return self::$instance;
-		} else {
-			self::$instance = $this;
-		}
 	$this->db_prefix=get_showtime('dbprefix');
 	$thisJRUser = jomres_getSingleton('jr_user');
-	$this->ip= $this->processString($_SERVER['REMOTE_ADDR']);
-	$this->userid = $thisJRUser->id;
+	$this->ip = $this->processString($_SERVER['REMOTE_ADDR']);
+	$this->userid = $thisJRUser->userid;
 	$this->property_uid = 0;
 	}
 
