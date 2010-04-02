@@ -11,7 +11,9 @@ function publish_review(rating_id,state)
 		if (data == 1)
 			{
 			div_name = '#publish_icon'+rating_id;
-			jQuery(div_name).fadeTo("slow", 0.2);
+			jQuery(div_name).fadeTo("slow", 0.1);
+			jQuery(div_name).fadeTo("slow", 0.4);
+			jQuery(div_name).fadeTo("slow", 0.0);
 			}
 		else alert ("Nope, that didn't work");
 		});
