@@ -21,6 +21,7 @@ class j06000show_property_reviews
 			{
 			$this->template_touchable=true; return;
 			}
+		$thisJRUser = jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$data_only = false;
@@ -95,12 +96,20 @@ class j06000show_property_reviews
 			$star = get_showtime('live_site')."/jomres/images/star.png";
 			$add_review_icon = get_showtime('live_site')."/jomres/images/add_review.png";
 			
-			if ( $this_user_can_review_this_property && $this_user_can_review )
+			
+			if ( $this_user_can_review_this_property)
 				{
 				$url=jomresURL(JOMRES_SITEPAGE_URL."&task=add_review&amp;property_uid=".$property_uid);
 				$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<a href = "'.$url.'"><img src="'.$add_review_icon.'"/>'.jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false).'</a>';
 				}
-			else $output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN,false,false);
+			else 
+				{
+				if (!$thisJRUser->userIsRegistered) 
+					$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN,false,false);
+				else
+					$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ALREADYREVIEWED',_JOMRES_REVIEWS_ALREADYREVIEWED,false,false);
+				}
+			
 			if ($itemReviews['totalRows']>0)
 				{
 				$output['AVERAGE_RATING']=number_format($itemRating['avg_rating'], 1, '.', '');
@@ -236,6 +245,7 @@ class j06000show_property_reviews
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL',_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW);
 
 		foreach ($output as $o)
 			{
