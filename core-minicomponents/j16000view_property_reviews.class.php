@@ -50,7 +50,7 @@ class j16000view_property_reviews
 		$publish_icon = get_showtime('live_site')."/jomres/images/jomresimages/small/Cancel.png";
 		$delete_icon = get_showtime('live_site')."/jomres/images/jomresimages/small/WasteBasket.png";
 		
-		$output['NPUBLISH_IMAGE']=$unpublish_icon;
+		$output['UNPUBLISH_IMAGE']=$unpublish_icon;
 		$output['PUBLISH_IMAGE']=$publish_icon;
 		$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN."&format=raw&no_html=1";
 		$output['HPROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
