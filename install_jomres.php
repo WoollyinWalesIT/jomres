@@ -284,7 +284,7 @@ function createReviewsTables()
 	`user_id` int( 11 ) default NULL ,
 	`report` text,
 	`report_date` datetime default NULL ,
-	PRIMARY KEY ( `rating_id` )
+	PRIMARY KEY ( `report_id` )
 	)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";

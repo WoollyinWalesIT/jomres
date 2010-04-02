@@ -44,7 +44,6 @@ class jomres_reviews {
 			if (!$thisJRUser->userIsManager && $thisJRUser->userIsRegistered)
 				$can_post = true;
 			}
-			
 		return $can_post;
 		}
 
@@ -52,11 +51,15 @@ class jomres_reviews {
 		{
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
+		$thisJRUser = jomres_getSingleton('jr_user');
 		// This test mode allows property managers to make reviews where normally they wouldn't be allowed to.
 		if ($jrConfig['reviews_test_mode']=="1")
 			return true;
 		if ($this->property_uid == 0)
 			return false;
+		if (!$thisJRUser->userIsRegistered)
+			return false;
+
 		$sql = "SELECT count(*) FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' and rating_ip = '".$this->ip."'";
 		$result1 = (int) doSelectSql($sql,1);
 		$sql = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' and user_id = '".(int)$this->userid."'";
