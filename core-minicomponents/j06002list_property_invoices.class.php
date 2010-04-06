@@ -118,7 +118,7 @@ class j06002list_property_invoices
 					else
 						{
 						//$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
-						$r['GUEST']=$property_guests[$cms_user_id]['firstname']." ".$property_guests[$cms_user_id]['firstname'];
+						$r['GUEST']=$property_guests[$cms_user_id]['firstname']." ".$property_guests[$cms_user_id]['surname'];
 						}
 					
 					$invoice_items = $invoices_items[$inv_id];
