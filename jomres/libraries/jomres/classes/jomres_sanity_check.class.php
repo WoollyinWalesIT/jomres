@@ -70,7 +70,7 @@ class jomres_sanity_check
 		
 	function checks_tariffs_exist()
 		{
-		$ignore_on_tasks = array ('propertyadmin','editTariff');
+		$ignore_on_tasks = array ('propertyadmin','editTariff','saveTariff');
 		if (!in_array(get_showtime('task'),$ignore_on_tasks) )
 			{
 			$query="SELECT `rates_uid` FROM `#__jomres_rates` where property_uid = ".(int)$this->property_uid."";
