@@ -14,6 +14,14 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 // ################################################################
 	
 
+function jomres_generate_tab_anchor($string)
+	{
+	$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+	$anchor = str_replace(" ","_",$anchor);
+	return $anchor;
+	}
+	
+	
 function output_price($value,$currencycode="")
 	{
 	$price = $value;

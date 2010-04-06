@@ -66,10 +66,11 @@ class j00016composite_property_details {
 		$roomslistlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['roomslistlink'];
 		$mappinklink		=$MiniComponents->miniComponentData['00015']['viewproperty']['mappinklink'];
 
+
 		// j01060 slideshows
 		if ($mrConfig['showSlideshowInline']=="1")
 			{
-			$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_SLIDESHOW']);
+			$anchor = jomres_generate_tab_anchor($output['TITLE_SLIDESHOW']);
 			$slideshowcontent[]=array('SLIDESHOW_TITLE'=>$output['TITLE_SLIDESHOW'],'SLIDESHOW'=>$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'],'SLIDESHOW_TITLE_ANCHOR'=>$anchor);
 			$slideshowcontent_anchor[0]['SLIDESHOW_TITLE']=$slideshowcontent[0]['SLIDESHOW_TITLE'];
 			$slideshowcontent_anchor[0]['SLIDESHOW_TITLE_ANCHOR']=$anchor;
@@ -79,7 +80,8 @@ class j00016composite_property_details {
 		
 		if (strlen($MiniComponents->miniComponentData['01050']['x_geocoder'])>0)
 			{
-			$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_MAP']);
+			//$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_MAP']);
+			$anchor = jomres_generate_tab_anchor($output['TITLE_MAP']);
 			$mapcontent[]=array('MAP_TITLE'=>$output['TITLE_MAP'],'GOOGLE_MAPS'=>$MiniComponents->miniComponentData['01050']['x_geocoder'],'MAP_TITLE_ANCHOR'=>$anchor);
 			$output['GOOGLE_MAPS']=$MiniComponents->miniComponentData['01050']['x_geocoder'];
 			$output['MAP_TITLE_ANCHOR']=$anchor;
@@ -89,7 +91,8 @@ class j00016composite_property_details {
 			{
 			if ($mrConfig['showTariffsInline']=="1")
 				{
-				$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_TARIFF']);
+				//$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_TARIFF']);
+				$anchor = jomres_generate_tab_anchor($output['TITLE_TARIFF']);
 				$tariffslist[] = array('TARIFFS_LIST_TITLE'=>$output['TITLE_TARIFF'],'INLINE_TARIFFS'=>$MiniComponents->miniComponentData['01020']['showtariffs'],'TITLE_TARIFF_ANCHOR'=>$anchor);
 				$tariffslist_anchor[0]['TITLE_TARIFF']=$tariffslist[0]['TARIFFS_LIST_TITLE'];
 				$tariffslist_anchor[0]['TITLE_TARIFF_ANCHOR']=$anchor;
@@ -116,7 +119,8 @@ class j00016composite_property_details {
 			}
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_AVAILABILITYCALENDAR']);
+			//$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_AVAILABILITYCALENDAR']);
+			$anchor = jomres_generate_tab_anchor($output['TITLE_AVAILABILITYCALENDAR']);
 			if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
 				{
 				$availabilitycalendarcontent[] = array('AVLCALENDAR_TITLE'=>$output['TITLE_AVAILABILITYCALENDAR'],'AVAILABILITY_CALENDAR'=>$MiniComponents->miniComponentData['00017']['SRPavailabilitycalendar'],'AVLCALENDAR_TITLE_ANCHOR'=>$anchor);
@@ -140,7 +144,8 @@ class j00016composite_property_details {
 			{
 			if ($mrConfig['roomslistinpropertydetails']=="1")
 				{
-				$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_ROOMSLIST']);
+				//$anchor = ereg_replace("[^A-Za-z0-9]", "", $output['TITLE_ROOMSLIST']);
+				$anchor = jomres_generate_tab_anchor($output['TITLE_ROOMSLIST']);
 				$roomslist[]=array('ROOMS_LIST_TITLE'=>$output['TITLE_ROOMSLIST'],'ROOMS_LIST'=>$MiniComponents->miniComponentData['01055']['showroomdetails'],'TITLE_ROOMSLIST_ANCHOR'=>$anchor);
 				$roomslist_anchor[0]['TITLE_ROOMSLIST']=$roomslist[0]['ROOMS_LIST_TITLE'];
 				$roomslist_anchor[0]['TITLE_ROOMSLIST_ANCHOR']=$anchor;
@@ -207,7 +212,8 @@ class j00016composite_property_details {
 			$MiniComponents->specificEvent('06000',"show_property_reviews");
 			$reviews_title=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
 			
-			$anchor = ereg_replace("[^A-Za-z0-9]", "", _JOMRES_REVIEWS);
+			//$anchor = ereg_replace("[^A-Za-z0-9]", "", _JOMRES_REVIEWS);
+			$anchor = jomres_generate_tab_anchor(_JOMRES_REVIEWS);
 			$reviewslist[]=array('REVIEWS_TITLE'=>$reviews_title,'REVIEWS_LIST'=>$MiniComponents->miniComponentData['06000']['show_property_reviews'],'TITLE_REVIEWSLIST_ANCHOR'=>$anchor);
 			$reviewslist_anchor[0]['TITLE_REVIEWSLIST']=$reviews_title;
 			$reviewslist_anchor[0]['TITLE_REVIEWSLIST_ANCHOR']=$anchor;
