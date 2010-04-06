@@ -348,25 +348,25 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
 	$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
 	$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
-	if (isset($remus) && !empty($remus) )
-		{
-		for ($i=0;$i<count($roomAndTariffArray);$i++)
-			{
-			$rmandtariff=$roomAndTariffArray[$i];
-			if ($rmandtariff[0]==$remus)
-				{
-				$tariff=$rmandtariff[1];
-				break;
-				}
-			}
-		$bkg->updateSelectedRoom($remus."^".$tariff);
-		$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
-		$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
-		$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
-		$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
-		$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
-		$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
-		}
+	// if (isset($remus) && !empty($remus) )
+		// {
+		// for ($i=0;$i<count($roomAndTariffArray);$i++)
+			// {
+			// $rmandtariff=$roomAndTariffArray[$i];
+			// if ($rmandtariff[0]==$remus)
+				// {
+				// $tariff=$rmandtariff[1];
+				// break;
+				// }
+			// }
+		// $bkg->updateSelectedRoom($remus."^".$tariff);
+		// $freeRoomsArray=$bkg->getAllRoomUidsForProperty();
+		// $freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
+		// $freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
+		// $freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
+		// $freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
+		// $roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
+		// }
 	if ($mrConfig['singleRoomProperty'] == "0" )
 		{
 		$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS)).'</div>';
