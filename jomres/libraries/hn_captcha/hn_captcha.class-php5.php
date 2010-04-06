@@ -1136,9 +1136,11 @@ class hn_captcha
         /** @private **/
         private function sanitized_output($txt)
         {
-            $trans = get_html_translation_table(HTML_ENTITIES);
-            $txt = strtr($txt, $trans);
-            return str_replace(array('&lt;','&gt;','&amp;nbsp;'), array('<','>','&nbsp;'), $txt);
+			// We'll disable the sanitisation here. It seems this library wanted to sanitise it's internal language strings before outputting them to a page. As we're using our own strings, this sanitisation should be not applicable.
+			return $txt;
+            // $trans = get_html_translation_table(HTML_ENTITIES);
+            // $txt = strtr($txt, $trans);
+            // return str_replace(array('&lt;','&gt;','&amp;nbsp;'), array('<','>','&nbsp;'), $txt);
         }
 
         /**
