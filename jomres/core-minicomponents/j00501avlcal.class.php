@@ -70,6 +70,7 @@ class j00501avlcal {
 			$configurationPanel->setright(_JOMRES_COM_CALENDAROUTPUT_DESC);
 			$configurationPanel->insertSetting();
 
+			/*
 			$configurationPanel->setleft(_JOMRES_COM_AVLCAL_TODAYCOLOUR);;
 			$configurationPanel->setmiddle(jomres_makeColourPickerInput('avlcal_todaycolor',$mrConfig['avlcal_todaycolor']));
 			$configurationPanel->setright();
@@ -125,7 +126,8 @@ class j00501avlcal {
 			$configurationPanel->setmiddle(jomres_makeColourPickerInput('avlcal_weekendborder',$mrConfig['avlcal_weekendborder']));
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-
+			*/
+			
 			$configurationPanel->endPanel();
 			}
 		}
