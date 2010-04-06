@@ -355,7 +355,7 @@ class j02213edittariff_micromanage {
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
-		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL."&task=saveTariff";
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
