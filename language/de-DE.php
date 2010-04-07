@@ -6006,7 +6006,7 @@ define('_JOMRES_COM_A_CRON_METHOD','Methode');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"Falls Sie keine Crinjobs auf dem Server haben, dann setzen Sie es auf Minikomponente, andererseits erstellen Sie einen Cronjob und geben Sie folgendes an:<br /> <i>curl -s http://".JOMRES_SITEPAGE_URL_ADMIN."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"Falls Sie keine Crinjobs auf dem Server haben, dann setzen Sie es auf Minikomponente, andererseits erstellen Sie einen Cronjob und geben Sie folgendes an:<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 /**
 * @ignore
 */
