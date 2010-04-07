@@ -5869,7 +5869,7 @@ define('_JOMRES_COM_A_CRON_METHOD','Metoda');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s http://".JOMRES_SITEPAGE_URL_ADMIN."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 /**
 * @ignore
 */
