@@ -5929,7 +5929,7 @@ define('_JOMRES_COM_A_CRON_METHOD','Method');
 /**
 * @ignore
 */
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 /**
 * @ignore
 */
@@ -6808,3 +6808,70 @@ define('_JOMRES_JQUERYTHEME_DESC','Choose a jquery theme to use for the property
 define('_JOMRES_PROPERTYNOTOUBLISHED','We are sorry, but that property is not currently available.');
 
 
+/**
+* @ignore
+*/
+define('_JOMRES_REVIEWS','Reviews');
+define('_JOMRES_REVIEWS_TITLE','Review title');
+define('_JOMRES_REVIEWS_DATE','posted on ');
+define('_JOMRES_REVIEWS_NOREVIEWS','There are no reviews for this property yet.');
+define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST','Would you like to be the first to review this property?');
+define('_JOMRES_REVIEWS_IAGREE','I agree with this review');
+define('_JOMRES_REVIEWS_IDISAGREE','I disagree with this review');
+define('_JOMRES_REVIEWS_AVERAGE_RATING','Average Rating: ');
+define('_JOMRES_REVIEWS_TOTAL_VOTES','Total Votes:');
+define('_JOMRES_REVIEWS_ADD_REVIEW','Add a new review.');
+define('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN','You need to be logged in to post a review.');
+define('_JOMRES_REVIEWS_REVIEWBODY','Tell us what you think about this property : ');
+define('_JOMRES_REVIEWS_REVIEWBODY_SAID','This reviewer told us : ');
+define('_JOMRES_REVIEWS_PROS','Pros: ');
+define('_JOMRES_REVIEWS_CONS','Cons: ');
+define('_JOMRES_REVIEWS_SUBMITTEDDATE','Submitted On: ');
+define('_JOMRES_REVIEWS_ALREADYREVIEWED','You have already reviewed this property, you can\'t post another review about it.');
+define('_JOMRES_REVIEWS_CANNOTREVIEW','Sorry, but you are not allowed to post reviews on this site.');
+define('_JOMRES_REVIEWS_CLICKTOSHOW','Click to show reviews');
+define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',' guests agree with this review. ');
+define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',' guests do not agree with this review.');
+define('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW_SINGULAR',' guest agrees with this review. ');
+define('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW_SINGULAR','guest does not agree with this review.');
+define('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM','Thank you for sharing your opinion of this review.');
+define('_JOMRES_REVIEWS_ALREADY_CONFIRMED','Thank you, but you have already shared your opinion of this review.');
+define('_JOMRES_REVIEWS_COMPLETEALLFIELDS','Please ensure that all fields have been filled.');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE','Please summarise your review by entering a title');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION','Please enter a more complete review in the description box');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS','Please enter the good parts of your experience of being a guest at this property');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS','Please enter any negative thoughts you might have of your experience');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1','Please rate the hostpitality you received from the staff');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2','Please rate your opinion of the property\s locale');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3','Please provide your opinion of the cleanliness of the property');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4','Please rate the accommodation. Was it comfortable or threadbare');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5','Please provide your opinion of whether it was value for money');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6','Please rate the services');
+define('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY','Review summary');
+define('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL','Your experience in more detail');
+define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW','Thank you for submitting your review.');
+define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED','Thank you for submitting your review. It will be published soon by one of our hard working moderators.');
+define('_JOMRES_REVIEWS_ADMIN_CONTROL','Use Jomres review functionality?');
+define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH','Automatically publish reviews?');
+define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC','If you set this to No you will need to manually publish reviews');
+define('_JOMRES_REVIEWS_ADMIN_TESTMODE','Set reviews to test mode?');
+define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC','Normally property managers cannot review propertys. With test mode enabled, they can. Naturally this is not ideal in a production environment.');
+define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO','This is a list of all properties. To see a property\'s reviews, click on that property. From there you will be able to publish or delete a review.');
+define('_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED','Number of unpublished reviews');
+define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL','Total number of reviews');
+define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW','Publish/Unpublish review');
+define('_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW','Delete review');
+define('_JOMRES_REVIEWS_REPORT_REVIEW','Report review');
+define('_JOMRES_REVIEWS_REPORT_REVIEW_TITLE','Review reports');
+define('_JOMRES_REVIEWS_REPORT_REVIEW_ERROR','Please enter your report');
+define('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL','See something in this review which is objectional or inaccurate? Report it and we will look into it for you.');
+define('_JOMRES_REVIEWS_SUBMIT','Submit');
+define('_JOMRES_REVIEWS_REPORT_CREATED_BY','Report created by ');
+define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS','Reports are posted by users who may disagree with the content of a review. The only way to remove a report is to delete the review.');
+define('_JOMRES_REVIEWS_RATING','Ratings (1 = poor 10 = excellent) ');
+define('_JOMRES_REVIEWS_RATING_1','Hospitality  ');
+define('_JOMRES_REVIEWS_RATING_2','Location ');
+define('_JOMRES_REVIEWS_RATING_3','Cleanliness ');
+define('_JOMRES_REVIEWS_RATING_4','Accommodation ');
+define('_JOMRES_REVIEWS_RATING_5','Value for money ');
+define('_JOMRES_REVIEWS_RATING_6','Services ');
