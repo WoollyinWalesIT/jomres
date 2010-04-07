@@ -152,7 +152,6 @@ class j06000show_property_reviews
 					$rating_detail = array();
 					if (array_key_exists($review['rating_id'],$review_details ) && !is_null($review_details[$review['rating_id']]) )
 						{
-						echo "Here<br>";
 						$r['_JOMRES_REVIEWS_RATING_1']					=jr_gettext('_JOMRES_REVIEWS_RATING_1',_JOMRES_REVIEWS_RATING_1);
 						$r['_JOMRES_REVIEWS_RATING_2']					=jr_gettext('_JOMRES_REVIEWS_RATING_2',_JOMRES_REVIEWS_RATING_2);
 						$r['_JOMRES_REVIEWS_RATING_3']					=jr_gettext('_JOMRES_REVIEWS_RATING_3',_JOMRES_REVIEWS_RATING_3);
