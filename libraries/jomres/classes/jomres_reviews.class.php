@@ -140,11 +140,12 @@ class jomres_reviews {
 						{
 						$query="DELETE FROM #__jomres_reviews_reports WHERE `rating_id`=".(int)$rating_id."";
 						$result = doInsertSql($query,'');
-						if($result)
-							return true;
 						}
-					else return true;
 					}
+				$query = "DELETE FROM #_jomres_reviews_ratings_detail WHERE `rating_id`=".(int)$rating_id."";
+				$result = doInsertSql($query,'');
+				if($result)
+					return true;
 				}
 			}
 		else
@@ -267,12 +268,21 @@ class jomres_reviews {
 	public function showReviews($item_id, $max=-1, $pageNum=0) {
 		$return = array();
 		$confirm = array();
+		$arr = array();
 		
 		$sql = "SELECT item_id, rating_id, AVG(confirm) as avg_rating, COUNT(confirm) as counter, SUM(confirm) as total FROM #__jomres_reviews_ratings_confirm WHERE item_id = '".(int)$this->property_uid."' GROUP BY rating_id";
 		$rs =doSelectSql($sql);
 		foreach($rs as $r) 
 			{
-			$confirm[$arr['rating_id']] = $r->rating_id;
+			$confirm[$r->rating_id] = $r->rating_id;
+			}
+
+		$rating_details = array();
+		$sql = "SELECT rating_id, detail_rating FROM #__jomres_reviews_ratings_detail WHERE `item_id` = '".(int)$this->property_uid."'  ORDER BY rating_id";
+		$rs =doSelectSql($sql);
+		foreach($rs as $r) 
+			{
+			$rating_details[$r->rating_id][] = $r->detail_rating;
 			}
 
 		if($max=="-1") 
@@ -330,6 +340,7 @@ class jomres_reviews {
 			$rating_id = $r->rating_id;
 			$return['fields'][$arr['rating_id']] = $arr;
 			$return['confirm'][$arr['rating_id']] = $confirm[$arr['rating_id']];
+			$return['rating_details'][$arr['rating_id']] = $rating_details[$arr['rating_id']];
 			}
 		return $return;
 	}
@@ -375,5 +386,37 @@ class jomres_reviews {
 			}
 		return $reports;
 		}
-}
+		
+	public function save_rating_detail($property_uid, $rating_id , $rating_1 , $rating_2 , $rating_3 , $rating_4 , $rating_5 , $rating_6)
+		{
+		$query = "INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`=".(int)$property_uid.", `rating_id` = ".(int)$rating_id.",`detail_rating`=".(int)$rating_1."";
+		$result = doInsertSql($query,"");
+		$query = "INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`=".(int)$property_uid.",`rating_id` = ".(int)$rating_id.",`detail_rating`=".(int)$rating_2."";
+		$result = doInsertSql($query,"");
+		$query = "INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`=".(int)$property_uid.",`rating_id` = ".(int)$rating_id.",`detail_rating`=".(int)$rating_3."";
+		$result = doInsertSql($query,"");
+		$query = "INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`=".(int)$property_uid.",`rating_id` = ".(int)$rating_id.",`detail_rating`=".(int)$rating_4."";
+		$result = doInsertSql($query,"");
+		$query = "INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`=".(int)$property_uid.",`rating_id` = ".(int)$rating_id.",`detail_rating`=".(int)$rating_5."";
+		$result = doInsertSql($query,"");
+		$query = "INSERT INTO #__jomres_reviews_ratings_detail SET `item_id`=".(int)$property_uid.",`rating_id` = ".(int)$rating_id.",`detail_rating`=".(int)$rating_6."";
+		$result = doInsertSql($query,"");
+		
+		}
+		
+	// public function get_highest_rated_and_ratings($limit)
+		// {
+		// $query = "SELECT * FROM #__jomres_reviews_ratings ORDER BY item_id";
+		// $result = doSelectSql($query);
+		// if (count($result)>0)
+			// {
+			// foreach ($result as $res)
+				// {
+				
+				// }
+			// }
+		// else
+			// return false;
+		// }
+	}
 ?>

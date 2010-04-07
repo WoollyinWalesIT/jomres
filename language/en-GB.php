@@ -6851,7 +6851,7 @@ define('_JOMRES_PROPERTYNOTOUBLISHED','We are sorry, but that property is not cu
 define('_JOMRES_REVIEWS','Reviews');
 define('_JOMRES_REVIEWS_TITLE','Review title');
 define('_JOMRES_REVIEWS_DATE','posted on ');
-define('_JOMRES_REVIEWS_RATING','Rating (1 = poor 10 = excellent) ');
+
 define('_JOMRES_REVIEWS_NOREVIEWS','There are no reviews for this property yet.');
 define('_JOMRES_REVIEWS_NOREVIEWS_BETHEFIRST','Would you like to be the first to review this property?');
 define('_JOMRES_REVIEWS_IAGREE','I agree with this review');
@@ -6882,7 +6882,12 @@ define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE','Please summarise your review by 
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION','Please enter a more complete review in the description box');
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS','Please enter the good parts of your experience of being a guest at this property');
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS','Please enter any negative thoughts you might have of your experience');
-define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING','Please rate your experience out of ten, 1 is poor, 10 is excellent');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1','Please rate the hostpitality you received from the staff');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2','Please rate your opinion of the property\s locale');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3','Please provide your opinion of the cleanliness of the property');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4','Please rate the accommodation. Was it comfortable or threadbare');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5','Please provide your opinion of whether it was value for money');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6','Please rate the services');
 
 define('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY','Review summary');
 define('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL','Your experience in more detail');
@@ -6910,3 +6915,15 @@ define('_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL','See something in this review 
 define('_JOMRES_REVIEWS_SUBMIT','Submit');
 define('_JOMRES_REVIEWS_REPORT_CREATED_BY','Report created by ');
 define('_JOMRES_REVIEWS_REPORT_INSTRUCTIONS','Reports are posted by users who may disagree with the content of a review. The only way to remove a report is to delete the review.');
+
+define('_JOMRES_REVIEWS_RATING','Ratings (1 = poor 10 = excellent) ');
+
+define('_JOMRES_REVIEWS_RATING_1','Hospitality  ');
+define('_JOMRES_REVIEWS_RATING_2','Location ');
+define('_JOMRES_REVIEWS_RATING_3','Cleanliness ');
+define('_JOMRES_REVIEWS_RATING_4','Accommodation ');
+define('_JOMRES_REVIEWS_RATING_5','Value for money ');
+define('_JOMRES_REVIEWS_RATING_6','Services ');
+
+
+

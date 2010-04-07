@@ -221,6 +221,7 @@ function init_javascript()
 				}
 				
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$jrConfig['jquery_ui_theme'].'/','jquery-ui-1.8rc3.custom.css');
+			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
 			
 			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.3.2.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");
@@ -233,6 +234,7 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.bt.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.corner.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.hoverIntent.minified.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.rating.pack.js");
 			
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jeditable.pack.js");

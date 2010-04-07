@@ -115,7 +115,8 @@ class j06000show_property_reviews
 				$output['AVERAGE_RATING']=number_format($itemRating['avg_rating'], 1, '.', '');
 				$output['NUMBER_OF_REVIEWS']=$itemRating['counter'];
 				$site_userids =  jomres_cmsspecific_getCMSUsers();
-
+				$review_details = $itemReviews['rating_details'];
+				
 				foreach ($itemReviews['fields'] as $review)
 					{
 					$r=array();
@@ -144,7 +145,63 @@ class j06000show_property_reviews
 					$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
 					
 					$confirm_states = $Reviews->showConfirm($review['rating_id']);
-
+					
+					$rating_detail = array();
+					if (array_key_exists($review['rating_id'],$review_details ) && !is_null($review_details[$review['rating_id']]) )
+						{
+						echo "Here<br>";
+						$r['_JOMRES_REVIEWS_RATING_1']					=jr_gettext('_JOMRES_REVIEWS_RATING_1',_JOMRES_REVIEWS_RATING_1);
+						$r['_JOMRES_REVIEWS_RATING_2']					=jr_gettext('_JOMRES_REVIEWS_RATING_2',_JOMRES_REVIEWS_RATING_2);
+						$r['_JOMRES_REVIEWS_RATING_3']					=jr_gettext('_JOMRES_REVIEWS_RATING_3',_JOMRES_REVIEWS_RATING_3);
+						$r['_JOMRES_REVIEWS_RATING_4']					=jr_gettext('_JOMRES_REVIEWS_RATING_4',_JOMRES_REVIEWS_RATING_4);
+						$r['_JOMRES_REVIEWS_RATING_5']					=jr_gettext('_JOMRES_REVIEWS_RATING_5',_JOMRES_REVIEWS_RATING_5);
+						$r['_JOMRES_REVIEWS_RATING_6']					=jr_gettext('_JOMRES_REVIEWS_RATING_6',_JOMRES_REVIEWS_RATING_6);
+						
+						$r['rating_1']='';
+						$r['rating_2']='';
+						$r['rating_3']='';
+						$r['rating_4']='';
+						$r['rating_5']='';
+						$r['rating_6']='';
+					
+						for ($i=1;$i<=10;$i++)
+							{
+							$r['rating_1'].='<input name="'.$review['rating_id'].'_1" type="radio" class="star" disabled="disabled"';
+							$r['rating_2'].='<input name="'.$review['rating_id'].'_2" type="radio" class="star" disabled="disabled"';
+							$r['rating_3'].='<input name="'.$review['rating_id'].'_3" type="radio" class="star" disabled="disabled"';
+							$r['rating_4'].='<input name="'.$review['rating_id'].'_4" type="radio" class="star" disabled="disabled"';
+							$r['rating_5'].='<input name="'.$review['rating_id'].'_5" type="radio" class="star" disabled="disabled"';
+							$r['rating_6'].='<input name="'.$review['rating_id'].'_6" type="radio" class="star" disabled="disabled"';
+							if ($i == $review_details[$review['rating_id']][0])
+								$r['rating_1'].=' checked="checked" ';
+							if ($i == $review_details[$review['rating_id']][1])
+								$r['rating_2'].=' checked="checked" ';
+							if ($i == $review_details[$review['rating_id']][2])
+								$r['rating_3'].=' checked="checked" ';
+							if ($i == $review_details[$review['rating_id']][3])
+								$r['rating_4'].=' checked="checked" ';
+							if ($i == $review_details[$review['rating_id']][4])
+								$r['rating_5'].=' checked="checked" ';
+							if ($i == $review_details[$review['rating_id']][5])
+								$r['rating_6'].=' checked="checked" ';
+							$r['rating_1'].='/>';
+							$r['rating_2'].='/>';
+							$r['rating_3'].='/>';
+							$r['rating_4'].='/>';
+							$r['rating_5'].='/>';
+							$r['rating_6'].='/>';
+							}
+						$r['rating_1'].='';
+						$r['rating_2'].='';
+						$r['rating_3'].='';
+						$r['rating_4'].='';
+						$r['rating_5'].='';
+						$r['rating_6'].='';
+						
+						}
+					//if (in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
+					
+					
 					if (!in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
 						{
 						$r['THUMB_UP']=$thumb_up;
