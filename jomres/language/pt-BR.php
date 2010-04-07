@@ -1811,3 +1811,4 @@ define('_JOMRES_REVIEWS_RATING_3','Cleanliness ');
 define('_JOMRES_REVIEWS_RATING_4','Accommodation ');
 define('_JOMRES_REVIEWS_RATING_5','Value for money ');
 define('_JOMRES_REVIEWS_RATING_6','Services ');
+define('_JOMRES_REVIEWS_REVIEWED_BY','Reviewed by : ');
