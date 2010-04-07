@@ -1,3 +1,22 @@
+Jomres 4.5
+
+Added review functionality. Registered users (not just guests of a given property) can leave reviews (including independantly reviewing such things as hospitality and cleanliness). Other registered users can agree or disagree with reviews, or report them. Reviews can either be autopublished, or manually published via a new button in the administrator area.
+
+Added css classes to select combo inputs
+Fixed bug where new unpublished property check was interfering with selectcombo feature in module 0
+Added <br/> to jomres_reconvertString when &#60;br /&#62; found.
+Added nl2br to jomresGetParam function
+Added check to jomres.php to ensure that property_uid > 0 before trying to not show an unpublished property.
+Fixed bug where subscription isn't sent to paypal due to jomres references the wrong jquery javascript file.
+Changed how tab anchors are generated to work with non-latin languages
+Fix property invoice list showing firstname firstname to firstname surname.
+Disabled some internal sanitisation routines of the captcha class that are no applicable to be used in Jomres, as they were causing some text to output incorrectly in the contact owner form.
+Disabled some code that adds a room to the selected rooms list if coming from a room's availability calendar. Due to switching from two ajax calls to one, the totals will not be calculated when the booking form is first generated and if this code is left in place potentially a guest might get a room for "free".
+Disabled some in puts in the Property Configuration area that are only applicable to the dashboard.
+Added "task" to form in micromanage tariff editing because of an obscure issue where some servers wouldn't pass the "task" value so micromanage tariffs wouldn't save.
+Added saveTariff as an exclusion to the sanity check to ensure that the no tariffs message wouldn't be shown if you're saving a tariff.
+
+
 Jomres 4.4.2
 
 Changed some paths for finding key validation class

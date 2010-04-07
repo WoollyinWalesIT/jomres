@@ -152,12 +152,12 @@ class j06000show_property_reviews
 					$rating_detail = array();
 					if (array_key_exists($review['rating_id'],$review_details ) && !is_null($review_details[$review['rating_id']]) )
 						{
-						$r['_JOMRES_REVIEWS_RATING_1']					=jr_gettext('_JOMRES_REVIEWS_RATING_1',_JOMRES_REVIEWS_RATING_1);
-						$r['_JOMRES_REVIEWS_RATING_2']					=jr_gettext('_JOMRES_REVIEWS_RATING_2',_JOMRES_REVIEWS_RATING_2);
-						$r['_JOMRES_REVIEWS_RATING_3']					=jr_gettext('_JOMRES_REVIEWS_RATING_3',_JOMRES_REVIEWS_RATING_3);
-						$r['_JOMRES_REVIEWS_RATING_4']					=jr_gettext('_JOMRES_REVIEWS_RATING_4',_JOMRES_REVIEWS_RATING_4);
-						$r['_JOMRES_REVIEWS_RATING_5']					=jr_gettext('_JOMRES_REVIEWS_RATING_5',_JOMRES_REVIEWS_RATING_5);
-						$r['_JOMRES_REVIEWS_RATING_6']					=jr_gettext('_JOMRES_REVIEWS_RATING_6',_JOMRES_REVIEWS_RATING_6);
+						$r['_JOMRES_REVIEWS_RATING_1']					=jr_gettext('_JOMRES_REVIEWS_RATING_1',_JOMRES_REVIEWS_RATING_1,false,false);
+						$r['_JOMRES_REVIEWS_RATING_2']					=jr_gettext('_JOMRES_REVIEWS_RATING_2',_JOMRES_REVIEWS_RATING_2,false,false);
+						$r['_JOMRES_REVIEWS_RATING_3']					=jr_gettext('_JOMRES_REVIEWS_RATING_3',_JOMRES_REVIEWS_RATING_3,false,false);
+						$r['_JOMRES_REVIEWS_RATING_4']					=jr_gettext('_JOMRES_REVIEWS_RATING_4',_JOMRES_REVIEWS_RATING_4,false,false);
+						$r['_JOMRES_REVIEWS_RATING_5']					=jr_gettext('_JOMRES_REVIEWS_RATING_5',_JOMRES_REVIEWS_RATING_5,false,false);
+						$r['_JOMRES_REVIEWS_RATING_6']					=jr_gettext('_JOMRES_REVIEWS_RATING_6',_JOMRES_REVIEWS_RATING_6,false,false);
 						
 						$r['rating_1']='';
 						$r['rating_2']='';
@@ -302,7 +302,12 @@ class j06000show_property_reviews
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW);
-
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_1',_JOMRES_REVIEWS_RATING_1);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_2',_JOMRES_REVIEWS_RATING_2);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_3',_JOMRES_REVIEWS_RATING_3);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_4',_JOMRES_REVIEWS_RATING_4);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_5',_JOMRES_REVIEWS_RATING_5);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_6',_JOMRES_REVIEWS_RATING_6);
 		foreach ($output as $o)
 			{
 			echo $o;
