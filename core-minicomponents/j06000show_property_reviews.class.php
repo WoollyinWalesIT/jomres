@@ -131,6 +131,7 @@ class j06000show_property_reviews
 					$r['_JOMRES_REVIEWS_DATE']						=jr_gettext('_JOMRES_REVIEWS_DATE',_JOMRES_REVIEWS_DATE,false,false);
 					$r['_JOMRES_REVIEWS_RATING']					=jr_gettext('_JOMRES_REVIEWS_RATING',_JOMRES_REVIEWS_RATING);
 					$r['_JOMRES_REVIEWS_REPORT_REVIEW']				=jr_gettext('_JOMRES_REVIEWS_REPORT_REVIEW',_JOMRES_REVIEWS_REPORT_REVIEW,false,false);
+					$r['_JOMRES_REVIEWS_REVIEWED_BY']				=jr_gettext('_JOMRES_REVIEWS_REVIEWED_BY',_JOMRES_REVIEWS_REVIEWED_BY,false,false);
 
 					$r['RATING_ID']	=$review['rating_id'];
 					$r['USERNAME']	=$site_userids[$review['user_id']]['username'];
@@ -308,6 +309,8 @@ class j06000show_property_reviews
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_4',_JOMRES_REVIEWS_RATING_4);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_5',_JOMRES_REVIEWS_RATING_5);
 		$output[]						=jr_gettext('_JOMRES_REVIEWS_RATING_6',_JOMRES_REVIEWS_RATING_6);
+		$output[]						=jr_gettext('_JOMRES_REVIEWS_REVIEWED_BY',_JOMRES_REVIEWS_REVIEWED_BY);
+		
 		foreach ($output as $o)
 			{
 			echo $o;

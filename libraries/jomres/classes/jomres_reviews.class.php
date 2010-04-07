@@ -9,7 +9,7 @@ class jomres_reviews {
 	$this->db_prefix=get_showtime('dbprefix');
 	$thisJRUser = jomres_getSingleton('jr_user');
 	$this->ip = $this->processString($_SERVER['REMOTE_ADDR']);
-	$this->userid = $thisJRUser->userid;
+	$this->userid = $thisJRUser->id;
 	$this->property_uid = 0;
 	}
 
