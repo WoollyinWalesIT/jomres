@@ -24,6 +24,7 @@ class j06000show_property_reviews
 		$thisJRUser = jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
+		$thisJRUser = jomres_getSingleton('jr_user');
 		$data_only = false;
 		
 		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
@@ -142,7 +143,9 @@ class j06000show_property_reviews
 					for ($i=1;$i<=$review['rating'];$i++)
 						$r['RATING_STARS'].='<img src="'.$star.'"/>';
 					
-					$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
+					$r['REPORT_REVIEWLINK'] = "";
+					if ($thisJRUser->userIsRegistered)
+						$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
 					
 					$confirm_states = $Reviews->showConfirm($review['rating_id']);
 					
