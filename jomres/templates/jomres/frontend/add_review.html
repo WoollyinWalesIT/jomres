@@ -17,14 +17,24 @@ jQuery(document).ready(function(){
 			review_description: "required",
 			pros: "required",
 			cons: "required",
-			rating: "required"
+			rating_1: "required",
+			rating_2: "required",
+			rating_3: "required",
+			rating_4: "required",
+			rating_5: "required",
+			rating_6: "required",
 		},
 	messages: {
 			review_title: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_TITLE}",
 			review_description: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION}",
 			pros: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS}",
 			cons: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS}",
-			rating: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING}",
+			rating_1: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1}",
+			rating_2: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2}",
+			rating_3: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3}",
+			rating_4: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4}",
+			rating_5: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5}",
+			rating_6: "{_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6}",
 			},
 		errorLabelContainer: "#messageBox",
 		wrapper: "li",
@@ -66,19 +76,93 @@ jQuery(document).ready(function(){
 			</p>
 		</fieldset>
 		<fieldset>
-			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING}</legend>
+			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING_1}</legend>
 			<p>
-				<table>
-					<tr>
-						<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
-					</tr>
-					<tr>
-						<td><input name="rating" type="radio" value="1" {CHECKED1}  /></td><td><input name="rating" type="radio" value="2" {CHECKED2} /></td><td><input name="rating" type="radio" value="3" {CHECKED3} /></td>
-						<td><input name="rating" type="radio" value="4" {CHECKED4} /></td><td><input name="rating" type="radio" value="5" {CHECKED5} /></td><td><input name="rating" type="radio" value="6" {CHECKED6} /></td>
-						<td><input name="rating" type="radio" value="7" {CHECKED7} /></td><td><input name="rating" type="radio" value="8" {CHECKED8} /></td><td><input name="rating" type="radio" value="9" {CHECKED9} /></td>
-						<td><input name="rating" type="radio" value="10" {CHECKED10} validate="required:true"/></td>
-					</tr>
-				</table>
+				<input name="rating_1" type="radio" value="1" class="star" />
+				<input name="rating_1" type="radio" value="2" class="star"/>
+				<input name="rating_1" type="radio" value="3" class="star"/>
+				<input name="rating_1" type="radio" value="4" class="star"/>
+				<input name="rating_1" type="radio" value="5" class="star" checked="checked"/>
+				<input name="rating_1" type="radio" value="6" class="star"/>
+				<input name="rating_1" type="radio" value="7" class="star"/>
+				<input name="rating_1" type="radio" value="8" class="star"/>
+				<input name="rating_1" type="radio" value="9" class="star"/>
+				<input name="rating_1" type="radio" value="10" class="star" validate="required:true"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING_2}</legend>
+			<p>
+				<input name="rating_2" type="radio" value="1" class="star" />
+				<input name="rating_2" type="radio" value="2" class="star"/>
+				<input name="rating_2" type="radio" value="3" class="star"/>
+				<input name="rating_2" type="radio" value="4" class="star"/>
+				<input name="rating_2" type="radio" value="5" class="star" checked="checked"/>
+				<input name="rating_2" type="radio" value="6" class="star"/>
+				<input name="rating_2" type="radio" value="7" class="star"/>
+				<input name="rating_2" type="radio" value="8" class="star"/>
+				<input name="rating_2" type="radio" value="9" class="star"/>
+				<input name="rating_2" type="radio" value="10" class="star" validate="required:true"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING_3}</legend>
+			<p>
+				<input name="rating_3" type="radio" value="1" class="star" />
+				<input name="rating_3" type="radio" value="2" class="star"/>
+				<input name="rating_3" type="radio" value="3" class="star"/>
+				<input name="rating_3" type="radio" value="4" class="star"/>
+				<input name="rating_3" type="radio" value="5" class="star" checked="checked"/>
+				<input name="rating_3" type="radio" value="6" class="star"/>
+				<input name="rating_3" type="radio" value="7" class="star"/>
+				<input name="rating_3" type="radio" value="8" class="star"/>
+				<input name="rating_3" type="radio" value="9" class="star"/>
+				<input name="rating_3" type="radio" value="10" class="star" validate="required:true"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING_4}</legend>
+			<p>
+				<input name="rating_4" type="radio" value="1" class="star" />
+				<input name="rating_4" type="radio" value="2" class="star"/>
+				<input name="rating_4" type="radio" value="3" class="star"/>
+				<input name="rating_4" type="radio" value="4" class="star"/>
+				<input name="rating_4" type="radio" value="5" class="star" checked="checked"/>
+				<input name="rating_4" type="radio" value="6" class="star"/>
+				<input name="rating_4" type="radio" value="7" class="star"/>
+				<input name="rating_4" type="radio" value="8" class="star"/>
+				<input name="rating_4" type="radio" value="9" class="star"/>
+				<input name="rating_4" type="radio" value="10" class="star" validate="required:true"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING_5}</legend>
+			<p>
+				<input name="rating_5" type="radio" value="1" class="star" />
+				<input name="rating_5" type="radio" value="2" class="star"/>
+				<input name="rating_5" type="radio" value="3" class="star"/>
+				<input name="rating_5" type="radio" value="4" class="star"/>
+				<input name="rating_5" type="radio" value="5" class="star" checked="checked"/>
+				<input name="rating_5" type="radio" value="6" class="star"/>
+				<input name="rating_5" type="radio" value="7" class="star"/>
+				<input name="rating_5" type="radio" value="8" class="star"/>
+				<input name="rating_5" type="radio" value="9" class="star"/>
+				<input name="rating_5" type="radio" value="10" class="star" validate="required:true"/>
+			</p>
+		</fieldset>
+		<fieldset>
+			<legend class="ui-widget ui-widget-header ui-corner-all">{_JOMRES_REVIEWS_RATING_6}</legend>
+			<p>
+				<input name="rating_6" type="radio" value="1" class="star" />
+				<input name="rating_6" type="radio" value="2" class="star"/>
+				<input name="rating_6" type="radio" value="3" class="star"/>
+				<input name="rating_6" type="radio" value="4" class="star"/>
+				<input name="rating_6" type="radio" value="5" class="star" checked="checked"/>
+				<input name="rating_6" type="radio" value="6" class="star"/>
+				<input name="rating_6" type="radio" value="7" class="star"/>
+				<input name="rating_6" type="radio" value="8" class="star"/>
+				<input name="rating_6" type="radio" value="9" class="star"/>
+				<input name="rating_6" type="radio" value="10" class="star" validate="required:true"/>
 			</p>
 		</fieldset>
 		<fieldset>

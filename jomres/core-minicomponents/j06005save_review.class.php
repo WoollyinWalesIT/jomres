@@ -32,8 +32,14 @@ class j06005save_review
 			{
 			$property_uid = (int)$_POST['property_uid'];
 			}
+		//var_dump($_POST);exit;
+		$rating_1 = (int)jomresGetParam( $_POST, 'rating_1',0 );
+		$rating_2 = (int)jomresGetParam( $_POST, 'rating_2',0 );
+		$rating_3 = (int)jomresGetParam( $_POST, 'rating_3',0 );
+		$rating_4 = (int)jomresGetParam( $_POST, 'rating_4',0 );
+		$rating_5 = (int)jomresGetParam( $_POST, 'rating_5',0 );
+		$rating_6 = (int)jomresGetParam( $_POST, 'rating_6',0 );
 		
-		$rating = (int)jomresGetParam( $_POST, 'rating',0 );
 		$review_title = jomresGetParam( $_POST, 'review_title','' );
 		$review_description = jomresGetParam( $_POST, 'review_description', '' );
 		$pros = jomresGetParam( $_POST, 'pros', '' );
@@ -41,7 +47,13 @@ class j06005save_review
 		
 		// We won't pass a message back, the only way the user will have got this far is if they've bypassed the javascript or don't have javascript enabled. 
 		// Either way, they've bypassed the methods we've built to guide them through the submission process. We can still take a valid submission, but we won't take invalid ones.
-		if ( ($rating <1 || $rating > 10) || $review_title =="" || $review_description =="" || $pros =="" || $cons =="" )
+		if (($rating_1 <1 || $rating_1 > 10) || 
+			($rating_2 <1 || $rating_2 > 10) || 
+			($rating_3 <1 || $rating_3 > 10) || 
+			($rating_4 <1 || $rating_4 > 10) || 
+			($rating_5 <1 || $rating_5 > 10) || 
+			($rating_6 <1 || $rating_6 > 10) || 
+			$review_title =="" || $review_description =="" || $pros =="" || $cons =="" )
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=add_review&property_uid=".$property_uid) ,"" );
 			
 		//property_header($property_uid);
@@ -60,7 +72,12 @@ class j06005save_review
 			
 			if ($this_user_can_review_this_property)
 				{
-				$rating_id = $Reviews->save_review($rating,$review_title,$review_description,$pros,$cons);
+				
+				$overall_rating = (int)($rating_1 + $rating_2 + $rating_3 + $rating_4 + $rating_5 + $rating_6) / 6;
+
+				$rating_id = $Reviews->save_review($overall_rating,$review_title,$review_description,$pros,$cons);
+				$Reviews->save_rating_detail($property_uid, $rating_id , $rating_1 , $rating_2 , $rating_3 , $rating_4 , $rating_5 , $rating_6);
+				
 				if ($jrConfig['autopublish_reviews'] =="1")
 					$thanks=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW',_JOMRES_REVIEWS_THANKS_FOR_REVIEW,false,false);
 				else

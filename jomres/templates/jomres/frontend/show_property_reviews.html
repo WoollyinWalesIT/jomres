@@ -60,6 +60,27 @@ function confirm_review(rating_id,state)
 					<strong>{_JOMRES_REVIEWS_CONS}</strong><br/>
 					<p>{CONS}</p>
 					<br/>
+					<table>
+						<tr>
+							<td>{_JOMRES_REVIEWS_RATING_1}</td><td>{RATING_1}</td>
+						</tr>
+						<tr>
+							<td>{_JOMRES_REVIEWS_RATING_2} </td><td>{RATING_2}</td>
+						</tr>
+						<tr>
+							<td>{_JOMRES_REVIEWS_RATING_3}</td><td>{RATING_3}</td>
+						</tr>
+						<tr>
+							<td>{_JOMRES_REVIEWS_RATING_4}</td><td>{RATING_4}</td>
+						</tr>
+						<tr>
+							<td>{_JOMRES_REVIEWS_RATING_5}</td><td>{RATING_5}</td>
+						</tr>
+						<tr>
+							<td>{_JOMRES_REVIEWS_RATING_6}</td><td>{RATING_6}</td>
+						</tr>
+					</table>
+					<br/>
 					<div id="agree_thumbs{RATING_ID}"><a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IAGREE}"  onClick="confirm_review({RATING_ID},1);" style="outline: none;"><img src="{THUMB_UP}"/></a> 
 					&nbsp;&nbsp;
 					<a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IDISAGREE}"  onClick="confirm_review({RATING_ID},0);"  style="outline: none;"><img src="{THUMB_DOWN}"/></a></div><br/>

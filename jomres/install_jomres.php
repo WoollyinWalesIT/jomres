@@ -239,11 +239,41 @@ function doTableUpdates()
 		alterGuestsDiscountCol();
 	if (!checkReviewsTablesExist() )
 		createReviewsTables();
+	if (!checkReviewDetailTableExists() )
+		createReviewDetailTable();
 		
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function createReviewDetailTable()
+	{
+	echo "Creating review detail tables<br>";
+	$query = "CREATE TABLE `#__jomres_reviews_ratings_detail` (
+	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`item_id` int( 11 ) default NULL ,
+	`rating_id` int( 11 ) default NULL ,
+	`detail_rating` int( 11 ) default NULL ,
+	PRIMARY KEY ( `detail_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
+	}
+	
+function checkReviewDetailTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_reviews_ratings_detail') )
+			return true;
+		}
+	return false;
+	}
 	
 function createReviewsTables()
 	{
@@ -1798,6 +1828,16 @@ function createJomresTables()
 	)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
+
+	$query = "CREATE TABLE `#__jomres_reviews_ratings_detail` (
+	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`item_id` int( 11 ) default NULL ,
+	`rating_id` int( 11 ) default NULL ,
+	`detail_rating`  tinyint( 4 ) default NULL ,
+	PRIMARY KEY ( `detail_id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
 	}
 
 function insertSampleData()
