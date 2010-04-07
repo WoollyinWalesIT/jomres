@@ -54,7 +54,8 @@ class jomres_reviews {
 			return false;
 		if (!$thisJRUser->userIsRegistered)
 			return false;
-
+		if ($thisJRUser->userIsManager)
+			return false;
 		$sql = "SELECT count(*) FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' and rating_ip = '".$this->ip."'";
 		$result1 = (int) doSelectSql($sql,1);
 		$sql = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' and user_id = '".(int)$this->userid."'";

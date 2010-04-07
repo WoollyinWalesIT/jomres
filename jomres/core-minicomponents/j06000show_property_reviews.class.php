@@ -77,7 +77,7 @@ class j06000show_property_reviews
 				{
 				if ($jrConfig['autopublish_reviews'] =="1")
 					$output['_JOMRES_REVIEWS_THANKS_FOR_REVIEW']=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW',_JOMRES_REVIEWS_THANKS_FOR_REVIEW,false,false);
-				else
+				else if (!$thisJRUser->userIsManager)
 					$output['_JOMRES_REVIEWS_THANKS_FOR_REVIEW']=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED',_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED,false,false);
 				$output['SHOW_THANKS']="true";
 				}
