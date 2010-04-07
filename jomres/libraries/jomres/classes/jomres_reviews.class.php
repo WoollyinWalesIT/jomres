@@ -48,7 +48,7 @@ class jomres_reviews {
 		$jrConfig=$siteConfig->get();
 		$thisJRUser = jomres_getSingleton('jr_user');
 		// This test mode allows property managers to make reviews where normally they wouldn't be allowed to.
-		if ($jrConfig['reviews_test_mode']=="1")
+		if ($jrConfig['reviews_test_mode']=="1" && $thisJRUser->userIsRegistered )
 			return true;
 		if ($this->property_uid == 0)
 			return false;
