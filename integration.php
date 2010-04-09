@@ -417,7 +417,8 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 			break;
 		default :	// treat everything else as a string.
 			$dirty = (string) $dirty;
-			$dirty=nl2br($dirty);
+			if($jrConfig['allowHTMLeditor']!="1")
+				$dirty=nl2br($dirty);
 			$jomres_db =jomres_getSingleton('jomres_database');
 			if (function_exists('filter_var'))
 				{
