@@ -67,7 +67,7 @@ class j00510paypal {
 		$output['JR_GATEWAY_CONFIG_SANDBOX']=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_SANDBOX'.$plugin,'Use sandbox?');
 		$output['JR_GATEWAY_CONFIG_SANDBOX_DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_SANDBOX_DESC'.$plugin,'Set this to Yes if you want to use the paypal sandbox');
 		$output['JR_GATEWAY_CONFIG_PAYPAL_EMAIL']=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_PAYPAL_EMAIL'.$plugin,'Your paypal email address');
-		$output['JR_GATEWAY_CONFIG_NOTES']=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_NOTES'.$plugin,'Note: To use paypal you must go to your paypal account & disable Autoreturn. (Profile/Website Payment Preferences), and set IPN (Profile/Instant Payment Notification Preferences)to on URL of:<b>&nbsp;').JOMRES_SITEPAGE_URL."task=completebk&plugin=paypal&action=ipn</b>";
+		$output['JR_GATEWAY_CONFIG_NOTES']=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_NOTES'.$plugin,'Note: To use paypal you must go to your paypal account & disable Autoreturn. (Profile/Website Payment Preferences), and set IPN (Profile/Instant Payment Notification Preferences)to on URL of:<b>&nbsp;').JOMRES_SITEPAGE_URL."&task=completebk&plugin=paypal&action=ipn</b>";
 		$output['JR_GATEWAY_CONFIG_PAYPAL_USEIPN']=jr_gettext('_JOMRES_CUSTOMTEXT_GATEWAY_CONFIG_PAYPAL_USEIPN'.$plugin,'Use IPN?');
 
 		$output['JR_GATEWAY_CONFIG_PAYPAL_PENDINGOK']=jr_gettext('_JOMRES_JR_GATEWAY_CONFIG_PAYPAL_PENDINGOK'.$plugin,'Pending ok?');
