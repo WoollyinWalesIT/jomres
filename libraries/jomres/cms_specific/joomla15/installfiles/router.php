@@ -103,19 +103,19 @@ function JomresBuildRoute(&$query)
 		if (isset($route_query['town']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN;
-			$segments[] = $route_query['town'];
+			$segments[] = JomresFilterString($route_query['town']);
 			unset( $route_query['town'] );
 			}
 		if (isset($route_query['region']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION;
-			$segments[] = $route_query['region'];
+			$segments[] = JomresFilterString($route_query['region']);
 			unset( $route_query['region'] );
 			}
 		if (isset($route_query['country']))
 			{
 			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY;
-			$segments[] = $route_query['country'];
+			$segments[] = JomresFilterString($route_query['country']);
 			unset( $route_query['country'] );
 			}
 		if (isset($route_query['send']))
@@ -176,4 +176,12 @@ function JomresParseRoute($segments)
 		}
 	return $vars;
 	}
+	
+function JomresFilterString($dirtyString)
+	{
+	$stripCharsArray=array(',','~','!','@','%','^','*','(',')','+','<','>',':',';','{','}','[',']','---','--','-','..,','.',' ');
+	$cleanStringForURL=str_replace($stripCharsArray,'_',$dirtyString);
+	return $cleanStringForURL;
+	}
+
 ?>
