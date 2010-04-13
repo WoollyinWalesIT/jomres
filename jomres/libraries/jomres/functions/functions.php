@@ -4213,6 +4213,8 @@ function invoices_getinvoicesfor_property_byproperty_uid($status=null,$property_
 			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
 			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoices[$r->id]['currencycode']=$r->currencycode;
+			$invoices[$r->id]['contract_id']=$r->contract_id;
+			$invoices[$r->id]['property_uid']=$r->property_uid;
 			}
 		}
 	return $invoices;

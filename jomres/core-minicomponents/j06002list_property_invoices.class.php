@@ -114,7 +114,14 @@ class j06002list_property_invoices
 					$r['ID']=$inv_id ;
 					$cms_user_id = $invoice['cms_user_id'];
 					if (!array_key_exists($cms_user_id,$property_guests) || (int)$cms_user_id ==0 )
-						$r['GUEST']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
+						{
+						$query="SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice['contract_id']." LIMIT 1";
+						$guest_uid =doSelectSql($query,1);
+						$query = "SELECT firstname,surname FROM #__jomres_guests WHERE guests_uid = ".(int)$guest_uid." LIMIT 1";
+						$guest_name =doSelectSql($query,2);
+						$r['GUEST']=$guest_name['firstname']." ".$guest_name['surname'];
+						//$r['GUEST']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
+						}
 					else
 						{
 						//$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
