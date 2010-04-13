@@ -207,8 +207,8 @@ class j06000show_property_reviews
 					
 					if (!in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
 						{
-						$r['THUMB_UP']=$thumb_up;
-						$r['THUMB_DOWN']=$thumb_down;
+						$r['THUMB_UP']='<a href ="javascript:void(0);" title="'.$r['_JOMRES_REVIEWS_IAGREE'].'"  onClick="confirm_review('.$review['rating_id'].',1);" style="outline: none;"><img src="'.$thumb_up.'"/></a>';
+						$r['THUMB_DOWN']='<a href ="javascript:void(0);" title="'.$r['_JOMRES_REVIEWS_IDISAGREE'].'"  onClick="confirm_review('.$review['rating_id'].',0);"  style="outline: none;"><img src="'.$thumb_down.'"/></a>';
 						}
 
 					if ($confirm_states['agree']!=0)
