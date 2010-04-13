@@ -30,6 +30,10 @@ class jomres_temp_booking_handler
 	*/
 	function jomres_temp_booking_handler()
 		{
+		if (defined('JOMRES_SESSONSTARTED'))
+			return;
+		define('JOMRES_SESSONSTARTED',1);
+
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->task=get_showtime('task');
@@ -179,17 +183,6 @@ class jomres_temp_booking_handler
 
 	function initBookingSession($jomressession)
 		{
-		
-		// if (strlen($jomressession)>0)
-			// session_id($jomressession);
-		// if (!@session_start())
-			// {
-			// @ini_set('session.save_handler', 'files');
-			// session_start();
-			// }
-		// $this->jomressession=$jomressession=session_id();
-		// $this->sessionfile=$this->session_directory.$this->jomressession.".txt";
-		
 		if (strlen($jomressession)>0)
 			$this->part = $jomressession;
 		else
@@ -207,11 +200,11 @@ class jomres_temp_booking_handler
 				$this->part = $_COOKIE['jomressession'];
 				}
 			}
-			
+
+		$this->jomressession=$this->part;
 		$secret=get_showtime('secret');
 		$hash = sha1($secret.$this->part);
-		$this->jomressession=$hash;
-		$this->sessionfile=$this->session_directory.$this->jomressession.".txt";
+		$this->sessionfile=$this->session_directory.$hash.".txt";
 		
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
@@ -256,10 +249,11 @@ class jomres_temp_booking_handler
 
 	function close_jomres_session()
 		{
-		$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
+		$data=array('IP'=>$_SERVER,'tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 		$fp=fopen($this->sessionfile,'w+');
 		if (!fwrite($fp, serialize($data)) )
 			error_log(" Error writing to session file ");
+		//echo "<h1>Saving file ".$this->sessionfile."</h1>";
 		fclose($fp);
 		}
 
@@ -294,7 +288,7 @@ class jomres_temp_booking_handler
 
 	function getJomressession()
 		{
-		return session_id();
+		return $this->jomressession;
 		}
 	
 	function getBookingPropertyId()
