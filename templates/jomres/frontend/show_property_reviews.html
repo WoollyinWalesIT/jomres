@@ -83,9 +83,11 @@ function confirm_review(rating_id,state)
 						<strong>{_JOMRES_REVIEWS_CONS}</strong><br/>
 						<p>{CONS}</p><br/>
 						<br/>
-						<div id="agree_thumbs{RATING_ID}"><a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IAGREE}"  onClick="confirm_review({RATING_ID},1);" style="outline: none;"><img src="{THUMB_UP}"/></a> 
+						<div id="agree_thumbs{RATING_ID}">
+						{THUMB_UP}
 						&nbsp;&nbsp;
-						<a href ="javascript:void(0);" title="{_JOMRES_REVIEWS_IDISAGREE}"  onClick="confirm_review({RATING_ID},0);"  style="outline: none;"><img src="{THUMB_DOWN}"/></a></div><br/>
+						{THUMB_DOWN}
+						</div><br/>
 						{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW} {NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}<br/>
 						{REPORT_REVIEWLINK}<span style="float:right">{_JOMRES_REVIEWS_DATE} {RATING_DATE}</span>
 						<br/>
