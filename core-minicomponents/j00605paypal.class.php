@@ -81,7 +81,7 @@ class j00605paypal {
 				$this->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';
 				}
 
-			$this_script = JOMRES_SITEPAGE_URL.'&task=completebk&plugin='.$plugin.'&jsid='.get_showtime('jomressession');
+			$this_script = JOMRES_SITEPAGE_URL_NOSEF.'&task=completebk&plugin='.$plugin.'&jsid='.get_showtime('jomressession');
 
 			$bookingDeets=gettempBookingdata();
 

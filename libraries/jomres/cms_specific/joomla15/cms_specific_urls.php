@@ -77,6 +77,7 @@ define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid="
 
 
 define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=com_jomres&format=raw");
+define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres");
 
 if (class_exists('JFactory'))
 	{
