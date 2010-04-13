@@ -680,6 +680,11 @@ if ($numberOfPropertiesInSystem>0)
 		break;
 		#########################################################################################
 		case 'processpayment':
+			
+			$data=array('tmpbooking'=>$tmpBookingHandler->tmpbooking,'tmpguest'=>$tmpBookingHandler->tmpguest);
+			$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='".serialize($data)."',`date`='".date( 'Y-m-d H:i:s' )."'";
+			doInsertSql($query,'');
+			
 			$bookingdata = gettempBookingdata();
 			$MiniComponents->triggerEvent('00599',array ('bookingdata'=> $bookingdata) ); // Optional
 			
