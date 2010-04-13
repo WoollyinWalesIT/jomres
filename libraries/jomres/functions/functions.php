@@ -18,6 +18,8 @@ function jomres_generate_tab_anchor($string)
 	{
 	$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
 	$anchor = str_replace(" ","_",$anchor);
+	if (strlen($anchor)==0) // Give up trying to filter out unwanted chars, instead we'll just replace any spaces and return the string
+		$anchor = str_replace(" ","_",$string);
 	return $anchor;
 	}
 	
