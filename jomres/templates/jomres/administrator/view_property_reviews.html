@@ -2,20 +2,23 @@
 
 <script language="JavaScript" type="text/javascript">
 
-var publish_image = "{UNPUBLISH_IMAGE}";
-var unpublish_image = "{PUBLISH_IMAGE}";
+var publish_image = "{PUBLISH_IMAGE}";
+var unpublish_image = "{UNPUBLISH_IMAGE}";
 
 function publish_review(rating_id,state)
 	{
-	jQuery.get('{AJAXURL}&task=review_publish&rating_id='+rating_id+'&state='+state, function(data) {
+	div_name = '#publish_icon'+rating_id;
+	curr_img = jQuery(div_name).attr("src") == publish_image ? unpublish_image : publish_image;
+	if (curr_img == unpublish_image)
+		cmd = '{AJAXURL}&task=review_publish&rating_id='+rating_id+'&state=0';
+	else
+		cmd = '{AJAXURL}&task=review_publish&rating_id='+rating_id+'&state=1';
+	jQuery.get(cmd, function(data) {
 		if (data == 1)
 			{
-			div_name = '#publish_icon'+rating_id;
-			jQuery(div_name).fadeTo("slow", 0.1);
-			jQuery(div_name).fadeTo("slow", 0.4);
-			jQuery(div_name).fadeTo("slow", 0.0);
+			
+			jQuery(div_name).attr("src",curr_img);
 			}
-		else alert ("Nope, that didn't work");
 		});
 	}
 
@@ -27,7 +30,6 @@ function delete_review(rating_id)
 			row_id = '#rating_id'+rating_id;
 			jQuery(row_id).fadeOut();
 			}
-		else alert ("Nope, that didn't work");
 		});
 	}
 </script>
@@ -53,7 +55,7 @@ function delete_review(rating_id)
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr id="{ROW_ID}">
 		<td class="jradmin_field_la" >{RATING_ID}</td>
-		<td class="jradmin_field_la"><div id="publish_icon{RATING_ID}"><a href="javascript:void(0);" style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img src="{PUBLISH_ICON}" /></a></div></td>
+		<td class="jradmin_field_la"><a href="javascript:void(0);"  style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img id="publish_icon{RATING_ID}" src="{PUBLISH_ICON}" /></a></td>
 		<td class="jradmin_field_la"><a href="javascript:void(0);" style="outline: none;" onClick="delete_review({RATING_ID});"><img src="{DELETE_ICON}" /></a></td>
 		<td class="jradmin_field_la">{USER_ID}</td>
 		<td class="jradmin_field_la">{RATING_DATE}</td>

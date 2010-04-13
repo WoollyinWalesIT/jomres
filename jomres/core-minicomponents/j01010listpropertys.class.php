@@ -100,6 +100,8 @@ class j01010listpropertys {
 
 		if (count($propertys_uids) >0)
 			{
+			$output = array();
+			
 			$g=genericOr($propertys_uids,'propertys_uid');
 			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
 			$query.=$g;
@@ -128,6 +130,8 @@ class j01010listpropertys {
 			$nav['WRITEPAGESLINKS'] = $paging;
 			$nav['WRITEPAGESCOUNTER'] = $page->writePagesCounterJR();
 			$nav_output[]=$nav;
+			$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
+			$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 
 			$propertyDeets = @doSelectSql($query);
 
@@ -454,7 +458,9 @@ class j01010listpropertys {
 
 			if (!$data_only)
 				{
+				$pageoutput[] = $output;
 				$tmpl = new patTemplate();
+				$tmpl->addRows( 'pageoutput', $pageoutput );
 				$tmpl->addRows( 'property_details', $property_details );
 				$tmpl->addRows( 'nav_output_top', $nav_output);
 				$tmpl->addRows( 'nav_output_bottom', $nav_output);
