@@ -1,4 +1,4 @@
-<patTemplate:tmpl name="list_properties">
+<patTemplate:tmpl name="pageoutput">
 
 <patTemplate:tmpl name="nav_output_top" unusedvars="nbsp">
 <div>
@@ -9,6 +9,10 @@
 </div>
 </patTemplate:tmpl>
 <script type="text/javascript">
+	
+	var clicktohide = '{CLICKTOHIDE}';
+	var clicktoshow = '{CLICKTOSHOW}';
+	
 	jQuery(function(){
 		//all hover and click logic for buttons
 		jQuery(".fg-button:not(.ui-state-disabled)")
@@ -36,7 +40,9 @@
 function toggle_review_div(uid)
 	{
 	div_id = "#property_reviews"+uid;
+	div_click_link = '#property_reviews_link'+uid;
 	jQuery('div.'+div_id).toggle("slow");
+	jQuery(div_click_link).text(jQuery(div_click_link).text() == clicktoshow ? clicktohide : clicktoshow);
 	}
 </script>
 <br />
@@ -120,7 +126,7 @@ function toggle_review_div(uid)
 					</tr>
 					<tr>
 						<td>
-							<a href="javascript:void(0);" onClick="toggle_review_div({UID});" style="outline: none;">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+							<a href="javascript:void(0);" onClick="toggle_review_div({UID});" style="outline: none;"><div id="property_reviews_link{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</div></a>
 							<div id="property_reviews{UID}" style="display: none">
 								{REVIEWS}
 							</div>
