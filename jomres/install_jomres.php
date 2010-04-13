@@ -241,10 +241,41 @@ function doTableUpdates()
 		createReviewsTables();
 	if (!checkReviewDetailTableExists() )
 		createReviewDetailTable();
-		
+	if (!checkBookingdataArchiveTableExists() )
+		createBookingdataArchiveTable();
+
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
+
+function createBookingdataArchiveTable()
+	{
+	echo "Creating booking data archive tables<br>";
+	$query = "CREATE TABLE `#__jomres_booking_data_archive` (
+	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`data` text,
+	`date` datetime default NULL ,
+	PRIMARY KEY ( `id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add _jomres_booking_data_archive table</b><br>";
+	}
+	
+function checkBookingdataArchiveTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_booking_data_archive') )
+			return true;
+		}
+	return false;
+	}
+
 
 function createReviewDetailTable()
 	{
@@ -1838,6 +1869,15 @@ function createJomresTables()
 	)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
+		
+	$query = "CREATE TABLE `#__jomres_booking_data_archive` (
+	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`data` text,
+	`date` datetime default NULL ,
+	PRIMARY KEY ( `id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add _jomres_booking_data_archive table</b><br>";
 	}
 
 function insertSampleData()
