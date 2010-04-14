@@ -170,9 +170,9 @@ class j00015viewproperty
 
 			
 			$property['TITLE_PROPERTYDETAILS']		=jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS',_JOMRES_PATHWAY_PROPERTYDETAILS,false,false);
-			$property['TITLE_PROPERTYDETAILS_ANCHOR']=ereg_replace("[^A-Za-z0-9]", "", $property['TITLE_PROPERTYDETAILS']);
+			$property['TITLE_PROPERTYDETAILS_ANCHOR']=jomres_generate_tab_anchor($property['TITLE_PROPERTYDETAILS']);
 			$property['TITLE_MOREINFO']				=jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,false,false);
-			$property['TITLE_MOREINFO_ANCHOR']		=ereg_replace("[^A-Za-z0-9]", "", $property['TITLE_MOREINFO']);
+			$property['TITLE_MOREINFO_ANCHOR']		=jomres_generate_tab_anchor($property['TITLE_MOREINFO']);
 
 			$property['TITLE_AVAILABILITYCALENDAR']	=jr_gettext('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY',_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY,false,false);
 			$property['TITLE_ROOMSLIST']			=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,false,false);
