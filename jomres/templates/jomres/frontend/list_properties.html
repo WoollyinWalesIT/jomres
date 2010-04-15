@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput">
 
-<patTemplate:tmpl name="nav_output_top" unusedvars="nbsp">
+<patTemplate:tmpl name="nav_output_top" unusedvars="strip">
 <div>
 	{WRITEPAGESCOUNTER}
 </div>
@@ -47,62 +47,61 @@ function toggle_review_div(uid)
 </script>
 <br />
 
-	<patTemplate:tmpl name="property_details"  unusedvars="nbsp">
+	<patTemplate:tmpl name="property_details"  unusedvars="strip">
 	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 20px;">
-		<div>
-			<div>
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<td>
-							<a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;&nbsp;{STARS}&nbsp;&nbsp;{PROPERTY_TYPE}
-						</td>
-						<td>
-							{PROP_TOWN}, {PROP_REGION},{PROP_COUNTRY}
-						</td>
-					</tr>
-				</table>
+		<table width="100%">
+	<tr valign="top">
+		<td >
+			<div class="contentheading" style="padding:5px">
+            	<a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS}&nbsp;
+                <span style="font-size:11px;">{PROPERTY_TYPE}</span>
+            </div>
+			<div style="padding-bottom:5px;padding-left:5px;">
+            	{PROP_TOWN}, {PROP_REGION},{PROP_COUNTRY}
+            </div>
+            <div class="propertylist_desc" style="padding:5px;">
+				{PROPERTYDESC}
 			</div>
-			<div>
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<td valign="top">
-							<div>
-								<div class="propertylist_desc">
-									{PROPERTYDESC}
-								</div>
-								<div>
-									{PRICESFROM}&nbsp;{LOWESTPRICE}
-								</div>
-								<div class="propertylist_discount">
-									<div class="{LASTMINUTECLASS}">
-										{LASTMINUTE}
-									</div>
-								</div>
-								<div class="propertylist_rooms">
+			<div class="propertylist_discount" style="padding:5px;">
+				<div class="{LASTMINUTECLASS}">
+					{LASTMINUTE}
+				</div>
+			</div>
+			<div class="propertylist_rooms">
 									{ROOMTYPES}
 								</div>
+                                 <div style="clear:both;"></div>
 								<div class="propertylist_features">
 									{FEATURELIST}
 								</div>
-							</div>
-						</td>
-						<td class="propertylist_right" valign="top">
-								<div class="propertylist_info">
-									<table>
+                                <div style="clear:both;"></div>
+                                <div style="padding:5px;clear:both;">
+							{_JOMRES_REVIEWS} : {_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS} <a href="javascript:void(0);" onClick="toggle_review_div({UID});" style="outline: none;"><div id="property_reviews_link{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</div></a>
+						</div>
+		</td>
+		<td width="30%">
+			<table>
 										<tr>
 											<td>
-												<div class="propertylist_image">
+												 <div align="right">
+				<strong>{PRICESFROM}&nbsp;{LOWESTPRICE}</strong>
+			</div>
+											</td>
+										</tr>
+                                        <tr>
+											<td>
+												<div class="propertylist_image" style="float:right;">
 													<a href="{MOREINFORMATIONLINK}">{TOOLTIP_IMAGE}</a>
 												</div>
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td align="center">
 												<div class="fg-toolbar fg-buttonset">
-													<div class="fg-button ui-state-default ui-priority-primary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-circle-plus"></span>
+													<div class="fg-button ui-state-default ui-priority-primary ui-corner-all fg-button-icon-left" style="float:right;width:105px;"><span class="ui-icon ui-icon-circle-plus"></span>
 														{LINKONLY}{BOOKTHIS_TEXT}</a>
 													</div>
-													<div class="fg-button ui-state-default ui-priority-secondary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-bullet"></span>
+													<div class="fg-button ui-state-default ui-priority-secondary ui-corner-all fg-button-icon-left" style="float:right;width:105px;margin-top:5px;"><span class="ui-icon ui-icon-bullet"></span>
 														<a href="{MOREINFORMATIONLINK}">{MOREINFORMATION}</a>
 													</div>
 
@@ -111,30 +110,22 @@ function toggle_review_div(uid)
 										</tr>
 										<tr>
 									</table>
-								</div>
-						</td>
-					</tr>
-					
-				</table>
-			</div>
-			<div>
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
+		</td>
+	</tr>
+</table>
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td valign="top">
-							{_JOMRES_REVIEWS} : {_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}
-						</td>
+						
 					</tr>
 					<tr>
 						<td>
-							<a href="javascript:void(0);" onClick="toggle_review_div({UID});" style="outline: none;"><div id="property_reviews_link{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</div></a>
+							
 							<div id="property_reviews{UID}" style="display: none">
 								{REVIEWS}
 							</div>
 						</td>
 					</tr>
 				</table>
-			</div>
-		</div>
 	</div>
 	</patTemplate:tmpl>
 
