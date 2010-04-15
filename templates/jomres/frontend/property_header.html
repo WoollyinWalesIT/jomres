@@ -5,25 +5,20 @@
 		jQuery("div.panelwrapper").corner("5px");
 	});
 </script>
-
+<br />
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
 <table width="100%">
 	<tr valign="top">
 		<td >
-			<div class="contentheading" style="padding:5px">{PROPERTY_NAME}</div>
-			&nbsp;
-			{STARS} {TOWN}, {REGION}, {COUNTRY}
-			<br/>
+			<div class="contentheading" style="padding:5px">{PROPERTY_NAME}&nbsp;{STARS}</div>
+			<div style="padding-bottom:5px;padding-left:5px;">{TOWN}, {REGION}, {COUNTRY}</div>
 			<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
 			<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
 		</td>
-		<td>
+		<td style="float:right;">
 			{TOOLTIP_PROPERTY_IMAGE}
 		</td>
 	</tr>
 </table>
 </div>
-
-
 </patTemplate:tmpl>
-
