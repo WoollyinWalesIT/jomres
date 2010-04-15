@@ -1,3 +1,17 @@
+Jomres 4.5.1
+
+Added an option to cms_specific/joomla15/cms_specific_urls.php 'nofollowtmpl' to tell Jomres to not adopt the tmpl=component when building urls. Useful if, for example, you want Jomres to not include tmpl=component in it's links after it's been called via a url with tmpl=component in the url.
+Modified cms_specific/joomla15/cms_specific_upgrade.php to upgrade router.php
+Added some filtering to router.php
+Modification to reviews to not show thumbs images when user not logged in.
+Fix for paypal handling, resolving issues created as a result of the SEF fix for router.php in cms_specific_urls.php, and the switch to cookie based session handling.
+Added functionality to save temp booking data to the database. You can't yet do anything with that data, but it is saved if needed at a later point (I'll probably build a plugin to use this data at a later date)
+Small change to invoice list functionality to show names of guests who aren't registered users of the system in the invoice list.
+Fixed issue where link and pay now by paypal button not showing in invoice in email from hotel
+Improved review functionality. Modified property list so that "click to show reviews" link changes to hide when reviews shown, removed error message when a review is published/unpublished, changed how the publish/unpublish button works so that image is swapped on click, and you can publish/unpublish without reloading the page.
+Modified anchor generation function to try to resolve issues with russian lang tabs
+list property and header templates modified slightly, and jomres logo image adjusted to look better in tooltip popup.
+
 Jomres 4.5
 
 Added review functionality. Registered users (not just guests of a given property) can leave reviews (including independantly reviewing such things as hospitality and cleanliness). Other registered users can agree or disagree with reviews, or report them. Reviews can either be autopublished, or manually published via a new button in the administrator area.
