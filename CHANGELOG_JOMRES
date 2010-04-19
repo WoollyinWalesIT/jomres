@@ -11,6 +11,8 @@ Fixed issue where link and pay now by paypal button not showing in invoice in em
 Improved review functionality. Modified property list so that "click to show reviews" link changes to hide when reviews shown, removed error message when a review is published/unpublished, changed how the publish/unpublish button works so that image is swapped on click, and you can publish/unpublish without reloading the page.
 Modified anchor generation function to try to resolve issues with russian lang tabs
 list property and header templates modified slightly, and jomres logo image adjusted to look better in tooltip popup.
+Added ability to add nocustomtemplate to a page's url so that Jomres will not use any templates which were created by the Template Editing feature. Might help with debugging issues with customised user templates.
+Disabled nl2br in jomresGetParam function
 
 Jomres 4.5
 
