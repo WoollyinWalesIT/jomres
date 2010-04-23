@@ -135,7 +135,7 @@ class currency_codes
 			'PHP'=>'PHP Philippine Peso',
 			'PLN'=>'PLN Polish Zloty',
 			'QAR'=>'QAR Qatari Rial',
-			'ROL'=>'ROL Romanian Leu',
+			'RON'=>'RON Romanian New Leu',
 			'RUB'=>'RUB Russian Rouble',
 			'STD'=>'STD Sao Tome and Principe Dobra',
 			'SAR'=>'SAR Saudi Riyal',
