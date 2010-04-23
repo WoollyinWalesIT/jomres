@@ -196,7 +196,9 @@ class j01010listpropertys {
 				$propertyFeaturesList= doSelectSql($query);
 				foreach ($propertyFeaturesList as $f)
 					{
-					$featuresArray[$f->hotel_features_uid]=array('hotel_feature_abbv'=>$f->hotel_feature_abbv,'hotel_feature_full_desc'=>$f->hotel_feature_full_desc,'image'=>$f->image);
+					$hotel_feature_abbv=jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$f->hotel_features_uid,stripslashes($f->hotel_feature_abbv),false,false);
+					$hotel_feature_full_desc=jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$f->hotel_features_uid, stripslashes($f->hotel_feature_full_desc),false,false);
+					$featuresArray[$f->hotel_features_uid]=array('hotel_feature_abbv'=>$hotel_feature_abbv,'hotel_feature_full_desc'=>$hotel_feature_full_desc,'image'=>$f->image);
 					}
 				}
 			}
