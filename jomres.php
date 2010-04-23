@@ -560,6 +560,31 @@ if (!defined('JOMRES_NOHTML'))
 					echo $cachableContent;
 					}
 				}
+			
+			// Third party plugin buttons
+			$MiniComponents->triggerEvent('09002',$componentArgs); // 
+			$mcOutput=$MiniComponents->getAllEventPointsData('09002');
+			if (count($mcOutput)>0)
+				{
+				$rows		=array();
+				$pageoutput	=array();
+				$output=array();
+		
+				foreach ($mcOutput as $key=>$val)
+					{
+					$r=array();
+					$r["OPTIONS"]=$val;
+					$rows[]=$r;
+					}
+					
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+				$tmpl->readTemplatesFromInput( 'toolbar_thirdparty.html');
+				$tmpl->addRows( 'pageoutput',$pageoutput);
+				$tmpl->addRows( 'rows',$rows);
+				echo $tmpl->getParsedTemplate();
+				}
 			}
 		}
 	else
