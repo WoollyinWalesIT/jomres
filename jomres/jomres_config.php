@@ -168,5 +168,5 @@ $mrConfig['variable_deposit_threashold'] ="60";
 $mrConfig['is_real_estate_listing'] ="0";
 $mrConfig['property_currencycode'] ="GBP"; // New for v4.5
 
-
+$mrConfig['show_booking_form_in_property_details'] ="1" // New for v4.5.2
 ?>

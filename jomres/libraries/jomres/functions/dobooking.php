@@ -113,7 +113,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$unixTodaysDate		= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 
 	$mrConfig=getPropertySpecificSettings($selectedProperty);
-	if ($jrConfig['is_single_property_installation'] == "0")
+	if ($jrConfig['is_single_property_installation'] == "0" && !defined('DOBOOKING_IN_DETAILS') )
 		property_header($selectedProperty);
 	$MiniComponents->triggerEvent('00102'); // First-form generation
 	$bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
@@ -500,7 +500,13 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$tmpl->readTemplatesFromInput( 'dobooking_srp.html');
 		else
 			$tmpl->readTemplatesFromInput( 'dobooking.html');
-		$tmpl->displayParsedTemplate();
+		if (!defined('DOBOOKING_IN_DETAILS'))
+			$tmpl->displayParsedTemplate();
+		else
+			{
+			$booking_form = $tmpl->getParsedTemplate();
+			define("BOOKING_FORM_FOR_PROPERTY_DETAILS",$booking_form);
+			}
 		}
 
 	if ($jrConfig['dumpTemplate']=="1")

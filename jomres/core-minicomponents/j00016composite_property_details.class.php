@@ -38,6 +38,8 @@ class j00016composite_property_details {
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];  
 		$mrConfig=getPropertySpecificSettings($property_uid);
+		if (!isset($mrConfig['show_booking_form_in_property_details']))
+			$mrConfig['show_booking_form_in_property_details']="1";
 		$componentArgs['property_uid']=$property_uid;
 		
 		// We will pass some of the old templates back as generated templates, whereas some of the data will be passed back as arrays to be processed into the new template.
@@ -152,6 +154,22 @@ class j00016composite_property_details {
 				}
 			}
 
+		// Booking form tab
+		if ($mrConfig['is_real_estate_listing']==0 && $mrConfig['show_booking_form_in_property_details'] =="1" && $mrConfig['visitorscanbookonline']=='1' )
+			{
+			define("DOBOOKING_IN_DETAILS",1);
+			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'dobooking.php');
+			
+			$book_now_text=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false);
+			if ($mrConfig['singleRoomProperty'] ==  '1')
+				$book_now_text=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false);
+					
+			$anchor = jomres_generate_tab_anchor($book_now_text);
+			$bookingform[]=array('BOOKINGFORM_TITLE'=>$book_now_text,'BOOKINGFORM'=>BOOKING_FORM_FOR_PROPERTY_DETAILS,'TITLE_BOOKINGFORM_ANCHOR'=>$anchor);
+			$bookingform_anchor[0]['TITLE_BOOKINGFORM']=$bookingform[0]['BOOKINGFORM_TITLE'];
+			$bookingform_anchor[0]['TITLE_BOOKINGFORM_ANCHOR']=$anchor;
+			}
+
 		$discount_text	= "";
 		$discount_output = array();
 		if ($mrConfig['singleRoomProperty'] == 1)  // Using last minute calculations
@@ -241,6 +259,13 @@ class j00016composite_property_details {
 			$tmpl->addRows( 'availabilitycalendarcontent_anchor', $availabilitycalendarcontent_anchor );
 			$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
 			}
+			
+		if ($mrConfig['is_real_estate_listing']==0 && $mrConfig['show_booking_form_in_property_details'] =="1"  && $mrConfig['visitorscanbookonline']=='1')
+			{
+			$tmpl->addRows( 'bookingform', $bookingform );
+			$tmpl->addRows( 'bookingform_anchor', $bookingform_anchor );
+			}
+			
 		if ($discount_text != "")
 			$tmpl->addRows( 'discount_output', $discount_output );
 			
@@ -254,6 +279,8 @@ class j00016composite_property_details {
 				$tmpl->addRows( 'roomslist', $roomslist );
 				$tmpl->addRows( 'roomslist_anchor', $roomslist_anchor );
 				}
+				
+			
 			}
 
 		if ($jrConfig['use_reviews'] == "1")

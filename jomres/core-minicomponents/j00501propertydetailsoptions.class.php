@@ -49,6 +49,11 @@ class j00501propertydetailsoptions {
 			$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
 			$configurationPanel->setright(_JOMRES_COM_A_SHOWONLYAVLCAL_DESC);
 			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS);
+			$configurationPanel->setmiddle($lists['show_booking_form_in_property_details']);
+			$configurationPanel->setright(_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC);
+			$configurationPanel->insertSetting();
 			}
 		
 		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) && $mrConfig['singleRoomProperty'] != "1" )

@@ -1792,3 +1792,6 @@ define('_JOMRES_REVIEWS_RATING_5','Value for money ');
 define('_JOMRES_REVIEWS_RATING_6','Services ');
 define('_JOMRES_REVIEWS_REVIEWED_BY','Reviewed by : ');
 define('_JOMRES_REVIEWS_CLICKTOHIDE','Hide reviews');
+define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS','Show Booking form in property details page?');
+define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC','Set this to Yes to show the booking form in the property details page. If you set it to No, then a link will appear in the property details page instead pointing to the booking form.');
+
