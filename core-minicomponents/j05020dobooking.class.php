@@ -26,7 +26,7 @@ class j05020dobooking {
 	 * Constructor: Includes the handlereq.php file
 	#
 	 */
-	function j05020dobooking()
+	function j05020dobooking($componentArgs=array())
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');

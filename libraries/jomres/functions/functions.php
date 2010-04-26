@@ -1561,6 +1561,9 @@ function hotelSettings()
 
 	$lists['use_variable_deposits'] 		= jomresHTML::selectList( $yesno, 'cfg_use_variable_deposits', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['use_variable_deposits'] );
 
+	$lists['show_booking_form_in_property_details'] 		= jomresHTML::selectList( $yesno, 'cfg_show_booking_form_in_property_details', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['show_booking_form_in_property_details'] );
+
+	
 	$componentArgs=array();
 	$componentArgs['mrConfig']=$mrConfig;
 	$componentArgs['lists']=$lists;
