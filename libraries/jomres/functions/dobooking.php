@@ -59,7 +59,7 @@ else
 	{
 	if (isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )
 		$tmpBookingHandler->tmpbooking["confirmationSeen"]=null;
-	$thisdate	=jomresGetParam( $_REQUEST, 'arrivalDate', "" );
+	$thisdate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
 	}
 $thisdate=str_replace("-","/",$thisdate);
 
