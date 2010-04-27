@@ -4586,4 +4586,23 @@ function parseFloat($ptString) {
             return $result;
 }
 
+if (!function_exists('is_iPhone'))
+	{
+	function is_iPhone($agent='') 
+	{
+	if(empty($agent)) $agent = $_SERVER['HTTP_USER_AGENT'];
+	if(!empty($agent) and preg_match("~Mozilla/[^ ]+ \((iPhone|iPod); U; CPU [^;]+ Mac OS X; [^)]+\) AppleWebKit/[^ ]+ \(KHTML, like Gecko\) Version/[^ ]+ Mobile/[^ ]+ Safari/[^ ]+~",$agent,$match)) 
+		{
+		return "YES";
+		} elseif(stristr($agent,'iphone') or stristr($agent,'ipod'))
+			{
+			return "MAYBE";
+			} 
+			else 
+			{
+			return "NO";
+			}
+		}
+	}
+
 ?>
