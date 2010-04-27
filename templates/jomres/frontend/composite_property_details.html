@@ -91,8 +91,8 @@ jQuery( ".selector" ).tabs( "option", "fx", { opacity: 'toggle' } );
 						<ul>
 							<li><a href="#{TITLE_PROPERTYDETAILS_ANCHOR}"><span>{TITLE_PROPERTYDETAILS}</span></a></li>
 							<li><a href="#{TITLE_MOREINFO_ANCHOR}"><span>{TITLE_MOREINFO}</span></a></li>
-							<patTemplate:tmpl name="bookingform_anchor" type="simpleCondition" requiredVars="title_bookingform_anchor"><li><a href="#{TITLE_BOOKINGFORM_ANCHOR}"><span>{TITLE_BOOKINGFORM}</span></a></li></patTemplate:tmpl>
 							<patTemplate:tmpl name="reviews_anchor" type="simpleCondition" requiredVars="title_reviewslist_anchor"><li><a href="#{TITLE_REVIEWSLIST_ANCHOR}"><span>{TITLE_REVIEWSLIST}</span></a></li></patTemplate:tmpl>
+							<patTemplate:tmpl name="bookingform_anchor" type="simpleCondition" requiredVars="title_bookingform_anchor"><li><a href="#{TITLE_BOOKINGFORM_ANCHOR}"><span>{TITLE_BOOKINGFORM}</span></a></li></patTemplate:tmpl>
 							<patTemplate:tmpl name="availabilitycalendarcontent_anchor" type="simpleCondition" requiredVars="avlcalendar_title_anchor"><li><a href="#{AVLCALENDAR_TITLE_ANCHOR}"><span>{AVLCALENDAR_TITLE}</span></a></li></patTemplate:tmpl>
 							<patTemplate:tmpl name="slideshowcontent_anchor" type="simpleCondition" requiredVars="slideshow_title_anchor"><li><a href="#{SLIDESHOW_TITLE_ANCHOR}"><span>{SLIDESHOW_TITLE}</span></a></li></patTemplate:tmpl>
 							<li><a href="#{MAP_TITLE_ANCHOR}"><span>{TITLE_MAP}</span></a></li>
@@ -148,16 +148,18 @@ jQuery( ".selector" ).tabs( "option", "fx", { opacity: 'toggle' } );
 								</p>
 						</div>
 
-						<patTemplate:tmpl name="bookingform" type="simpleCondition" requiredVars="bookingform_title">
-						<div id="{TITLE_BOOKINGFORM_ANCHOR}">
-								{BOOKINGFORM}
-						</div>
-						</patTemplate:tmpl>
+
 						
 						
 						<patTemplate:tmpl name="reviews" type="simpleCondition" requiredVars="reviews_title">
 						<div id="{TITLE_REVIEWSLIST_ANCHOR}">
 								{REVIEWS_LIST}
+						</div>
+						</patTemplate:tmpl>
+						
+						<patTemplate:tmpl name="bookingform" type="simpleCondition" requiredVars="bookingform_title">
+						<div id="{TITLE_BOOKINGFORM_ANCHOR}">
+								{BOOKINGFORM}
 						</div>
 						</patTemplate:tmpl>
 						
