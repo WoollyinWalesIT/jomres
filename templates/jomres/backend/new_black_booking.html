@@ -19,8 +19,13 @@
 					<td class="jradmin_subheader_la">{BBDATEENDS}</td>
 					<td class="jradmin_field_ca">{BBENDSJSBOX}</td>
 				</tr>
+				<tr>
+					<td colspan="2">{INSTRUCTIONS}</td>
+				</tr>
+				
 			</table>
 			<br />
+			<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone"  unusedvars="nbsp">
 			<table class="jradmin_table">
 				<tr>
 					<td colspan="2" class="jradmin_subheader_la">{REASON}</td>
@@ -28,12 +33,10 @@
 				<tr>
 					<td colspan="2" class="jradmin_field_ca"><textarea cols="30" rows="4" name="bbReason"></textarea></td>
 				</tr>
-				<tr>
-					<td>{INSTRUCTIONS}</td>
-				</tr>
+
 			</table>
 			<br />
-			<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone"  unusedvars="nbsp">
+			
 				<table class="jradmin_table">
 					<tr>
 						<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
