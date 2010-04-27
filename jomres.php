@@ -31,7 +31,21 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once(dirname(__FILE__).'/integration.php');
-
+if (!isset($_REQUEST['tmpl']))
+	{
+	$is_iphone = is_iPhone();
+	if ($is_iphone == "YES")
+		{
+		$st="?";
+		foreach ($_GET as $key=>$val)
+			{
+			$st .= $key."=".$val."&";
+			}
+		header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component");
+		die();
+		}
+	}
+	
 $thisJRUser=jomres_getSingleton('jr_user');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
