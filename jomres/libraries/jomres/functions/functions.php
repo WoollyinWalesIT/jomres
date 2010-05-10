@@ -16,7 +16,11 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 
 function jomres_generate_tab_anchor($string)
 	{
-	$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+	if (function_exists('filter_var'))
+		$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+	else
+		$anchor = getEscaped($string);
+
 	$anchor = str_replace(" ","_",$anchor);
 	if (strlen($anchor)==0) // Give up trying to filter out unwanted chars, instead we'll just replace any spaces and return the string
 		$anchor = str_replace(" ","_",$string);
