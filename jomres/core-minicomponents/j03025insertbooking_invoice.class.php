@@ -162,12 +162,25 @@ class j03025insertbooking_invoice {
 				$quantity_multiplier = (int)$extrasvalues_items[(int)$extraUid]['quantity_multiplier'];
 				$quant = $extrasquantities[$extraUid];
 				$quantities = $quantity_multiplier*$quant;
-
+				$extra_price=$theExtras->price;
+				if ($mrConfig['prices_inclusive'] == 1)
+					{
+					jr_import("jrportal_taxrate");
+					$taxrate = new jrportal_taxrate();
+					$taxrate->id =$theExtras->tax_rate;
+					if ($taxrate->getTaxRate())
+						{
+						$rate = (float)$taxrate->rate;
+						$divisor	= ($rate/100)+1;
+						$nett_price=$extra_price/$divisor;
+						$extra_price = $nett_price;
+						}
+					}
 				$line_item_data = array (
 					'tax_code_id'=>$theExtras->tax_rate,
 					'name'=>$theExtras->name,
 					'description'=>'',
-					'init_price'=>number_format($theExtras->price,2, '.', ''),
+					'init_price'=>number_format($extra_price,2, '.', ''),
 					'init_qty'=>$quantities,
 					'init_discount'=>"0",
 					'recur_price'=>"0.00",

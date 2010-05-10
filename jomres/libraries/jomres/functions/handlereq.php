@@ -325,8 +325,19 @@ if ($field != "heartbeat" && $field != "show_log")
 			echo '; populateDiv("roomtotal","'.output_price($room_total).'")';
 			if ($bkg->cfg_showExtras)
 				echo '; populateDiv("extrastotal","'.output_price($bkg->getExtrasTotal()).'")';
-				
-			echo '; populateDiv("taxtotal","'.output_price($bkg->getTax()).'")';
+			
+			$room_tax = $bkg->getTax();
+			$extra_tax=0.00;
+			if (count($bkg->extra_taxs)>0)
+				{
+				foreach ($bkg->extra_taxs as $extax)
+					{
+					$extra_tax = $extra_tax + $extax;
+					}
+				}
+
+			echo '; populateDiv("extra_tax","'.output_price($extra_tax).'")';
+			echo '; populateDiv("taxtotal","'.output_price($room_tax).'")';
 			echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 			if ($showDeposit=="1")
 				echo '; populateDiv("deposit","'.output_price($bkg->getDeposit()).'")';

@@ -1796,4 +1796,7 @@ define('_JOMRES_REVIEWS_REVIEWED_BY','Reviewed by : ');
 define('_JOMRES_REVIEWS_CLICKTOHIDE','Hide reviews');
 define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS','Show Booking form in property details page?');
 define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC','Set this to Yes to show the booking form in the property details page. If you set it to No, then a link will appear in the property details page instead pointing to the booking form.');
+define('_JOMRES_COM_A_TAXINCLUSIVE','Are prices set inclusive of tax?');
+define('_JOMRES_COM_A_TAXINCLUSIVE_DESC','Prices set are inclusive? If your prices include tax, then select Yes. If they are not, select No.');
+define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS','Extras tax:');
 
