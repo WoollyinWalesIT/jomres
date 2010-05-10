@@ -2933,7 +2933,7 @@ class dobooking
 			// See if we're actually removing a room from the list of those selected
 			if (in_array($roomAndTariff,$this->requestedRoom) )
 				{
-				//$this->checkExistingRoomsTariffsForRoomsTariffsWhereMinRoomSettingIsNoLongerMet($roomAndTariff);
+				$this->checkExistingRoomsTariffsForRoomsTariffsWhereMinRoomSettingIsNoLongerMet($roomAndTariff);
 				if ( $this->removeFromSelectedRooms($roomAndTariff) )
 					return true;
 				else
@@ -2967,12 +2967,7 @@ class dobooking
 		{
 		$rtArray=explode("^",$roomAndTariff);
 		$tariff_id_to_be_removed=$rtArray[1];
-		
-		$this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::Start");
-		$current_number_selected = count($this->requestedRoom);
-		$this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::Number currently selected ".$current_number_selected);
 		$restrictions_in_place = false;
-		$minimum_rooms = 0;
 		$restricted_tariffs = array();
 		foreach ($this->requestedRoom as $rt)
 			{
@@ -2984,58 +2979,18 @@ class dobooking
 				{
 				$this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::Restrictions are in place. One room in selection has a min rooms > 0 ");
 				$restrictions_in_place = true;
-				$minimum_rooms = $min_rooms;
-				$restricting_tariff_id = $tariff_id;
-				$restricted_tariffs[]=$tariff_id;
 				}
 			}
-			
-		if ($restricting_tariff_id == $tariff_id_to_be_removed)
+		
+		if ($restrictions_in_place)
 			{
+			$this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::As one tariff has restrictions, and because a tariff is being removed, we are now clearing all selected rooms from the list ");
 			foreach ($this->requestedRoom as $rt)
 				{
 				$rtArray=explode("^",$rt);
-				$tariff_id=$rtArray[1];
-				if (in_array($tariff_id,$restricted_tariffs))
-					{
-					$this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::This tariff is no longer valid, room and tariff combo removed from selected rooms ".$rt);
-					$this->removeFromSelectedRooms($rt);
-					}
+				$this->removeFromSelectedRooms($rt);
 				}
 			}
-			
-			// If there's a restriction in place we will drop all the rooms with min rooms > minimum_rooms
-			// This option limits us to the assumption that the booker is first choosing a full price room, then any rooms after are not full price. If a second room is chosen at full price, this might break things.
-			// We need to assume that the configurer has set the restricting tariff to be min_rooms = 0 and max rooms = 1
-			// $restricting_tariff_uid_found = false;
-			// if ($restrictions_in_place)
-				// {
-				// foreach ($this->requestedRoom as $rt)
-					// {
-					// $rtArray=explode("^",$rt);
-					// $tariff_id=$rtArray[1];
-					// if ($tariff_id == $restricting_tariff_id)
-						// {
-						// $this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::restricting_tariff_uid_found = true ");
-						// $restricting_tariff_uid_found = true;
-						// }
-					// }
-				// }
-			//At this point, the restricting tariff uid isn't found, we'll drop all the tariffs which are restricted by the restricting tariff
-			// if ($restricting_tariff_uid_found)
-				// {
-				// foreach ($this->requestedRoom as $rt)
-					// {
-					// $rtArray=explode("^",$rt);
-					// $tariff_id=$rtArray[1];
-					// if (in_array($tariff_id,$restricted_tariffs))
-						// {
-						// $this->setErrorLog("checkExistingRoomsTariffsForRoomsTariffsWhereMinMaxSettingIsNoLongerMet::This tariff is no longer valid, room and tariff combo removed from selected rooms ".$rt);
-						// $this->removeFromSelectedRooms($rt);
-						// }
-					// }
-				// }
-			//}
 		}
 
 	/**
