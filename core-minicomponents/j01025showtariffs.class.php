@@ -113,7 +113,10 @@ class j01025showtariffs {
 						$mrConfig['ratemultiplier']+=0;
 
 					$currfmt = jomres_getSingleton('jomres_currency_format');
-					$price_inc_vat = $current_property_details->get_gross_accommodation_price($tariff->roomrateperday,$property_uid);
+					if ($mrConfig['prices_inclusive'] == 1)
+						$price_inc_vat = $tariff->roomrateperday;
+					else
+						$price_inc_vat = $current_property_details->get_gross_accommodation_price($tariff->roomrateperday,$property_uid);
 					
 					if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
 						$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);

@@ -503,6 +503,7 @@ class dobooking
 
 	function getAllTariffsData()
 		{
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		//$arrival_ts=str_replace("/","-",$this->arrivalDate);
 		$arrivalDate_ts  = str_replace("/","-",$this->arrivalDate);
 		$departureDate_ts = str_replace("/","-",$this->departureDate);
@@ -528,8 +529,14 @@ class dobooking
 		//$this->setErrorLog(serialize($tariffs) );
 		foreach ($tariffs as $t)
 			{
+			$roomrate = $t->roomrateperday;
+			if ($mrConfig['prices_inclusive'] == 1)
+				{
+				$divisor	= ($this->accommodation_tax_rate/100)+1;
+				$roomrate=$roomrate/$divisor;
+				}
 			$this->allPropertyTariffs[$t->rates_uid] = array('rates_uid'=>$t->rates_uid,'rate_title'=>$t->rate_title,'rate_description'=>$t->rate_description,'validfrom'=>$t->validfrom,'validto'=>$t->validto,
-			'roomrateperday'=>$t->roomrateperday,'mindays'=>$t->mindays,'maxdays'=>$t->maxdays,'minpeople'=>$t->minpeople,'maxpeople'=>$t->maxpeople,'roomclass_uid'=>$t->roomclass_uid,
+			'roomrateperday'=>$roomrate,'mindays'=>$t->mindays,'maxdays'=>$t->maxdays,'minpeople'=>$t->minpeople,'maxpeople'=>$t->maxpeople,'roomclass_uid'=>$t->roomclass_uid,
 			'ignore_pppn'=>$t->ignore_pppn,'allow_ph'=>$t->allow_ph,'allow_we'=>$t->allow_we,'weekendonly'=>$t->weekendonly,'dayofweek'=>$t->dayofweek,'minrooms_alreadyselected'=>$t->minrooms_alreadyselected,'maxrooms_alreadyselected'=>$t->maxrooms_alreadyselected);
 			}
 		}
@@ -775,6 +782,11 @@ class dobooking
 				
 				$price = $ex->price;
 				$rate = (float)$this->taxrates[$ex->tax_rate]['rate'];
+				if ($mrConfig['prices_inclusive'] == 1)
+					{
+					$divisor	= ($rate/100)+1;
+					$price=$price/$divisor;
+					}
 				$tax = ($price/100)*$rate;
 				$inc_price = $price+$tax;
 				
@@ -923,6 +935,9 @@ class dobooking
 				$output['BILLING_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_EXTRAS',_JOMRES_AJAXFORM_BILLING_EXTRAS));
 			//if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo'] =="1" )
 				$output['BILLING_TAX']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX',_JOMRES_AJAXFORM_BILLING_TAX));
+				
+			$output['EXTRAS_TAX']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS',_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS));
+			
 			$output['BILLING_DISCOUNT']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT));
 			
 
@@ -4780,6 +4795,8 @@ class dobooking
 
 	function calcExtras()
 		{
+		$this->extra_taxs=array();
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		$extrasTotal=0.00;
 		//$this->setErrorLog("calcExtras: Current extras: ".$this->extras);
 		if (!empty($this->extras) )
@@ -4850,7 +4867,17 @@ class dobooking
 						{
 						$rate = $this->taxrates[$tax_rate_id]['rate'];
 						$this->setErrorLog("calcExtras: rate is: ".$rate);
-						$thisTax = ($tmpTotal/100)*$rate;
+						if ($mrConfig['prices_inclusive'] == 1)
+							{
+							$divisor	= ($rate/100)+1;
+							$nett_price=$tmpTotal/$divisor;
+							$thisTax = $tmpTotal-$nett_price;
+							$tmpTotal = $nett_price;
+							}
+						else
+							$thisTax = ($tmpTotal/100)*$rate;
+						
+						$this->extra_taxs[]=$thisTax;
 						$this->setErrorLog("calcExtras: Adding : ".$thisTax." to original value ".$tmpTotal);
 						$tmpTotal = $tmpTotal + $thisTax;
 						}
@@ -4875,10 +4902,18 @@ class dobooking
 					if ((int)$tpextra['tax_code_id'] >0)
 						{
 						$tax_rate_id = $tpextra['tax_code_id'];
-						
 						$rate = $this->taxrates[$tax_rate_id]['rate'];
 						$this->setErrorLog("calcExtras Third party: rate is: ".$rate);
-						$thisTax = ($tmpTotal/100)*$rate;
+						if ($mrConfig['prices_inclusive'] == 1)
+							{
+							$divisor	= ($rate/100)+1;
+							$nett_price=$tmpTotal/$divisor;
+							$thisTax = $tmpTotal-$nett_price;
+							$tmpTotal = $nett_price;
+							}
+						else
+							$thisTax = ($tmpTotal/100)*$rate;
+						$this->extra_taxs[]=$thisTax;
 						$this->setErrorLog("calcExtras Third party: Adding : ".$thisTax." to original value ".$tmpTotal);
 						$tmpTotal = $tmpTotal + $thisTax;
 						}

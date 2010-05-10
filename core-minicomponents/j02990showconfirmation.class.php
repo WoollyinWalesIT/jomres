@@ -282,6 +282,13 @@ class j02990showconfirmation {
 					$price = $thisPrice['price'];
 					$tax_rate_id = (int)$thisPrice['tax_rate'];
 					$rate = (float)$taxrates[$tax_rate_id]['rate'];
+					if ($mrConfig['prices_inclusive'] == 1)
+						{
+						$divisor	= ($rate/100)+1;
+						$nett_price=$price/$divisor;
+						$price = $nett_price;
+						}
+					
 					$tax = ($price/100)*$rate;
 					$inc_price = $price+$tax;
 					
