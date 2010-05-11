@@ -5256,8 +5256,10 @@ class dobooking
 					$roomtype=$d['roomType'];
 					$roomtype_abbr=$this->sanitiseOutput(jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomtype,$this->allRoomClasses[$roomtype]['room_class_abbv'],false,false));
 					$roomrate=$d['roomrate'];
+					$roomrate_foroutput= $roomrate+(($roomrate/100)*$this->accommodation_tax_rate);
+					$discountedate_foroutput= $d['discountedRate']+(($d['discountedRate']/100)*$this->accommodation_tax_rate);
 					//$discountedRate=$d['discountedRate'];
-					$discountOutput.= ' '.$roomtype_abbr._JOMCOMP_WISEPRICE_HASBEENDISCOUNTED.output_price($roomrate)._JOMCOMP_WISEPRICE_TO.output_price($d['discountedRate']).' <br/>';
+					$discountOutput.= ' '.$roomtype_abbr._JOMCOMP_WISEPRICE_HASBEENDISCOUNTED.output_price($roomrate_foroutput)._JOMCOMP_WISEPRICE_TO.output_price($discountedate_foroutput).' <br/>';
 					$tmpBookingHandler->updateBookingField("wisepricediscount",$discountOutput);
 					$discountsForTmpdata[]=array("type"=>"MRP","roomtypeabbr"=>$roomtype_abbr,"discountfrom"=>output_price($roomrate),"discountto"=>output_price($d['discountedRate']));
 					$tmpBookingHandler->saveBookingData();
