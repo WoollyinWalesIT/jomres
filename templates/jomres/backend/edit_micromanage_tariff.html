@@ -68,17 +68,16 @@
 	</tr>
 </table>
 <br/>
+<hr>
 <table class="jradmin_innerwrapper">
 	<tr>
 		<td>
+			{PICKER_DAYSOFWEEK}
+		</td>
+	</tr>
+	<tr>
+		<td>
 			<table class="jradmin_table">
-				<tr>
-				<patTemplate:tmpl name="prefills" unusedvars="nbsp">
-					<td class="jradmin_field_ca">
-					{INPUT}
-					</td>
-				</patTemplate:tmpl>
-				</tr>
 				<tr>
 				<patTemplate:tmpl name="prefillbuttons" unusedvars="nbsp">
 					<td class="jradmin_subheader_ca">
@@ -86,13 +85,135 @@
 					</td>
 				</patTemplate:tmpl>
 				</tr>
+				<tr>
+				<patTemplate:tmpl name="prefills" unusedvars="nbsp">
+					<td class="jradmin_field_ca">
+					{INPUT}
+					</td>
+				</patTemplate:tmpl>
+				</tr>
+
 			</table>
 		</td>
 	</tr>
+</table>
+
+<script>
+function jomres_micromanage_rate_picker()
+	{
+	from_value = jQuery('input[name=picker_from]').val();
+	to_value = jQuery('input[name=picker_to]').val();
+	new_rate = jQuery('#picker_value').val();
+
+	epoch_from = jomres_micromanage_picker_get_epoch(from_value);
+	epoch_to = jomres_micromanage_picker_get_epoch(to_value);
+	var i = epoch_from;
+	var r_colour = random_colour();
 	
+	while (i <= epoch_to)
+		{
+		jQuery("input[name=tariffinput["+i/1000+"]]").css("border","2px solid #"+r_colour);
+		jQuery("input[name=tariffinput["+i/1000+"]]").val(new_rate);
+		tomorrow = new Date( i.getTime() + 86400000 ); 
+		i = tomorrow;
+		}
+	}
+
+function jomres_micromanage_picker_get_epoch(jsdate)
+	{
+	dformat = "{DATE_FORMAT}";
+	var day=0
+	var mon=0
+	var year=0
+	if (dformat=="%d/%m/%Y"){
+		dateArray=jsdate.split("/")
+		day=dateArray[0]
+		mon=dateArray[1]
+		year=dateArray[2]
+		}
+	if (dformat=="%Y/%m/%d"){
+		dateArray=jsdate.split("/")
+		day=dateArray[2]
+		mon=dateArray[1]
+		year=dateArray[0]
+		}
+	if (dformat=="%m/%d/%Y"){
+		dateArray=jsdate.split("/")
+		day=dateArray[1]
+		mon=dateArray[0]
+		year=dateArray[2]
+		}
+	if (dformat=="%d-%m-%Y"){
+		dateArray=jsdate.split("-")
+		day=dateArray[0]
+		mon=dateArray[1]
+		year=dateArray[2]
+		}
+	if (dformat=="%Y-%m-%d"){
+		dateArray=jsdate.split("-")
+		day=dateArray[2]
+		mon=dateArray[1]
+		year=dateArray[0]
+		}
+	if (dformat=="%m-%d-%Y"){
+		dateArray=jsdate.split("-")
+		day=dateArray[1]
+		mon=dateArray[0]
+		year=dateArray[2]
+		}
+	return new Date(Date.UTC(year,mon-1,day,0,0,0)); 
+	}
+
+	// http://www.namepros.com/code/37251-javascript-random-hex-color.html
+	function random_colour()
+		{
+		colours = new Array(14)
+		colours[0]="0"
+		colours[1]="1"
+		colours[2]="2"
+		colours[3]="3"
+		colours[4]="4"
+		colours[5]="5"
+		colours[5]="6"
+		colours[6]="7"
+		colours[7]="8"
+		colours[8]="9"
+		colours[9]="a"
+		colours[10]="b"
+		colours[11]="c"
+		colours[12]="d"
+		colours[13]="e"
+		colours[14]="f"
+
+		digit = new Array(5)
+		colour=""
+		for (i=0;i<6;i++){
+			digit[i]=colours[Math.round(Math.random()*14)]
+			colour = colour+digit[i]
+			}
+		return colour;
+		}
+</script>
+<hr width="50%">
+
+<table class="jradmin_table">
+	<tr>
+		<td colspan="3">{PICKER_DATERANGES}</td>
+	</tr>
+	<tr>
+		<td class="jradmin_subheader_ca">{PICKER_DATERANGES_START}</td><td class="jradmin_subheader_ca">{PICKER_DATERANGES_END}</td><td class="jradmin_subheader_ca">{PICKER_DATERANGES_RATE}</td><td class="jradmin_subheader_ca">&nbsp;<td>
+	</tr>
+	<tr>
+		<td class="jradmin_field_ca">{PICKER_FROM}</td>
+		<td class="jradmin_field_ca">{PICKER_TO}</td>
+		<td class="jradmin_field_ca"><input type="text" size="5" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" id="picker_value" value="55" /></td>
+		<td class="jradmin_field_ca"><input type="button" id="set_value" value="{PICKER_DATERANGES_SET}" onClick="jomres_micromanage_rate_picker()" /></td>
+	</tr>
 </table>
 
 
+
+<hr>
 <table class="jradmin_innerwrapper">
 	<patTemplate:tmpl name="daterows" unusedvars="nbsp">
 	<tr>

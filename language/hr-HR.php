@@ -1799,4 +1799,10 @@ define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC','Set this to Yes to
 define('_JOMRES_COM_A_TAXINCLUSIVE','Are prices set inclusive of tax?');
 define('_JOMRES_COM_A_TAXINCLUSIVE_DESC','Prices set are inclusive? If your prices include tax, then select Yes. If they are not, select No.');
 define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS','Extras tax:');
+define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK','The day of week fields allow you to set a rate for a given day of week, once you click the day of week button all days of the week will be set to that rate.');
+define('_JOMRES_MICROMANAGE_PICKER_DATERANGES','The date pickers and the rate input allow you to set one price for a given date range. Choose a start and end date, input a price, and click the Set Rates button.');
+define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_START','Start range');
+define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_END','End range');
+define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE','Rate');
+define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_SET','Set rates');
 
