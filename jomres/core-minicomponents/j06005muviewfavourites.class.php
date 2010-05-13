@@ -47,6 +47,7 @@ class j06005muviewfavourites {
 
 					$query="SELECT ptype FROM #__jomres_ptypes WHERE id = '".(int)type_id."' LIMIT 1";
 					$ptype=doSelectSql($query,1);
+					
 					$mrConfig=getPropertySpecificSettings($f->property_uid);
 					$propertyAddressArray=getPropertyAddressForPrint($f->property_uid);
 					$propertyContactArray=$propertyAddressArray[1];
@@ -60,17 +61,18 @@ class j06005muviewfavourites {
 					$countryname=getSimpleCountry($propertyContactArray[5]);
 					$r['PROP_COUNTRY']=ucwords($countryname);
 					$r['PROP_TEL']=$propertyAddyArray[0];
-					$r['TYPE']=$ptype;
+					$r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$type_id,$ptype,false,false);
 					$counter++;
 					 if ($counter % 2)
 						$r['STYLE'] ="odd";
 					else
 						$r['STYLE'] ="even";
-					$fileLocation=$jrConfig['ss_imageLocation'];
-					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg') )
-						$r['IMAGE']='<img src="'.get_showtime('live_site').$fileLocation.$f->property_uid.'_property_'.$f->property_uid.'.jpg" width="40">';
-					else
-						$r['IMAGE']='&nbsp;';
+					
+					$property_image=get_showtime('live_site')."/jomres/images/jrlogo.png";
+					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$f->property_uid."_property_".$f->property_uid.".jpg") )
+						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$f->property_uid."_property_".$f->property_uid.".jpg";
+					$r['IMAGE']='<img src="'.$property_image.'" width="40">';
+					
 					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$f->property_uid;
 					$rows[]=$r;
 					}
