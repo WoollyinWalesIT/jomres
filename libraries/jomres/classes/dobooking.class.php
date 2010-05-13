@@ -3485,7 +3485,7 @@ class dobooking
 					$this->setErrorLog(" " );
 					$this->setErrorLog("getTariffsForRoomUids::Tariff title : ".$rate_title);
 					$this->setErrorLog("getTariffsForRoomUids::Number of rooms already selected:".$numberOfRoomsAlreadySelected." Min rooms setting ".$minrooms_alreadyselected." max rooms setting ".$maxrooms_alreadyselected );
-					if ($numberOfRoomsAlreadySelected+1 >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
+					if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
 						{
 						$this->setErrorLog("getTariffsForRoomUids:: Passed test 1" );
 						$roomsAlreadySelectedTests=TRUE;
