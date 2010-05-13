@@ -70,6 +70,13 @@ class j02213edittariff_micromanage {
 		$output['HROOMTYPEDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS);
 		$output['HIGNOREPPPNDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN',_JOMRES_COM_MR_LISTTARIFF_IGNOREPPN);
 		$output['HALLOWWEEKENDSDROPDOWN']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ALLOWWE',_JOMRES_COM_MR_LISTTARIFF_ALLOWWE);
+		$output['HWEEKENDONLY']=jr_gettext('_JOMRES_COM_WEEKENDONLY',_JOMRES_COM_WEEKENDONLY);
+		
+		$output['HMINROOMS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS',_JOMRES_COM_MR_EB_ROOM_MINROOMS);
+		$output['HMAXROOMS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS',_JOMRES_COM_MR_EB_ROOM_MAXROOMS);
+		$output['MINROOMS_DESC']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC',_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC);
+		$output['MAXROOMS_DESC']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC',_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC);
+		
 		$output['HFIXED_DAYOFWEEK']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL)." ".jr_gettext('_JOMRES_DTV_DOW',_JOMRES_DTV_DOW);
 		
 		$def_mindays=1;
@@ -80,7 +87,9 @@ class j02213edittariff_micromanage {
 		$def_tarifftypename="Change me";
 		$def_we=1;
 		$def_ignore_pppn=0;
-
+		$def_minrooms_alreadyselected = 0;
+		$def_maxrooms_alreadyselected = 100;
+		$def_weekendonly=0;
 
 		//$weekendsArray=array('monday'=>false,'tuesday'=>false,'wednesday'=>false,'thursday'=>false,'friday'=>false,'saturday'=>true,'sunday'=>true);
 		$allow_we=$def_we;
@@ -98,7 +107,7 @@ class j02213edittariff_micromanage {
 				$rateIdArray[]=$r->tariff_id;
 				}
 			$gor=genericOr($rateIdArray,'rates_uid');
-			$query="SELECT rates_uid,validfrom,validto,roomrateperday,mindays,maxdays,minpeople,maxpeople,roomclass_uid,ignore_pppn,allow_we,dayofweek FROM #__jomres_rates WHERE ".$gor."";
+			$query="SELECT * FROM #__jomres_rates WHERE ".$gor."";
 			$rates=doSelectSql($query);
 			$rateDetails=array();
 			foreach ($rates as $r)
@@ -107,8 +116,11 @@ class j02213edittariff_micromanage {
 				$output['MAXDAYS']=$r->maxdays;
 				$output['MINPEOPLE']=$r->minpeople;
 				$output['MAXPEOPLE']=$r->maxpeople;
+				$output['MINROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'minrooms_alreadyselected','class="inputbox" size="1"', $r->minrooms_alreadyselected);
+				$output['MAXROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'maxrooms_alreadyselected','class="inputbox" size="1"', $r->maxrooms_alreadyselected);
 				$ignore_pppn=$r->ignore_pppn;
 				$allow_we=$r->allow_we;
+				$weekendonly= $r->weekendonly;
 				$roomclassid=$r->roomclass_uid;
 				$rateDetails[$r->rates_uid]=array(
 					'validFrom'=>$r->validfrom,
@@ -133,58 +145,63 @@ class j02213edittariff_micromanage {
 			$output['MAXDAYS']=$def_maxdays;
 			$output['MINPEOPLE']=$def_minpeople;
 			$output['MAXPEOPLE']=$def_maxpeople;
+			$output['MINROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'minrooms_alreadyselected','class="inputbox" size="1"', $def_minrooms_alreadyselected);
+			$output['MAXROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'maxrooms_alreadyselected','class="inputbox" size="1"', $def_maxrooms_alreadyselected);
 			$roomclassid=$def_roomclass_uid;
+			$weekendonly=$def_weekendonly;
 			}
 
-		$def_roomrateperday=$defaultTariffValue;
-
-			if ($mrConfig['singleRoomProperty'] ==  '1')
-				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '".(int)$roomTypeSearchParameter."' AND `srp_only` = '1' ORDER BY room_class_abbv ";
-			else
-				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '".(int)$roomTypeSearchParameter."' AND `srp_only` = '0' ORDER BY room_class_abbv ";
-
-			if ($mrConfig['singleRoomProperty']=="0")
-				{
-				$roomClasses=doSelectSql($query);
-				$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
-				$dropDownList .= "<option value=\"\"></option>";
-				foreach ($roomClasses as $roomClass)
-					{
-					$selected="";
-					$room_classes_uid=$roomClass->room_classes_uid;
-					//$room_class_abbv=$roomClass->room_class_abbv;
-					$room_class_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
-					
-					if ($roomClass->room_classes_uid==$roomclassid)
-						$selected="selected";
-					$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
-					}
-				$dropDownList.="</select>";
-				$output['ROOMTYPEDROPDOWN']=$dropDownList;
-				}
-			else
-				{
-				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
-				$original_room_classes_uid =doSelectSql($query,1);
-				
-				$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE `room_classes_uid` = '".$original_room_classes_uid."' ORDER BY room_class_abbv ";
-				$room_class_abbv=doSelectSql($query,1);
-				$output['ROOMTYPEDROPDOWN']='<input type="hidden" name="roomClass" value="'.$original_room_classes_uid.'" />'.$room_class_abbv;
-				}
-
-		/*
 		$pppnOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 		$pppnOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
-		$output['IGNOREPPPNDROPDOWN']= jomresHTML::selectList($pppnOptions, 'ignore_pppn', 'class="inputbox" size="1"', 'value', 'text', $ignore_pppn);
+		$ignoreDropdown= jomresHTML::selectList($pppnOptions, 'ignore_pppn', 'class="inputbox" size="1"', 'value', 'text', $ignore_pppn);
 
 		$weOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 		$weOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
-		$output['ALLOWWEDROPDOWN']= jomresHTML::selectList($weOptions, 'allow_we', 'class="inputbox" size="1"', 'value', 'text', $allow_we);
-		*/
+		$allowWEDropdown= jomresHTML::selectList($weOptions, 'allow_we', 'class="inputbox" size="1"', 'value', 'text', $allow_we);
 
+		$weoOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
+		$weoOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
+		$weekendonlyDropdown= jomresHTML::selectList($weoOptions, 'weekendonly', 'class="inputbox" size="1"', 'value', 'text', $weekendonly);
+		
+		$output['IGNOREPPPNDROPDOWN']=$ignoreDropdown;
+		$output['ALLOWWEEKENDSDROPDOWN']=$allowWEDropdown;
+		$output['WEEKENDONLY']=$weekendonlyDropdown;
+		
+		$def_roomrateperday=$defaultTariffValue;
 
-		
-		
+		if ($mrConfig['singleRoomProperty'] ==  '1')
+			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '".(int)$roomTypeSearchParameter."' AND `srp_only` = '1' ORDER BY room_class_abbv ";
+		else
+			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '".(int)$roomTypeSearchParameter."' AND `srp_only` = '0' ORDER BY room_class_abbv ";
+
+		if ($mrConfig['singleRoomProperty']=="0")
+			{
+			$roomClasses=doSelectSql($query);
+			$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
+			$dropDownList .= "<option value=\"\"></option>";
+			foreach ($roomClasses as $roomClass)
+				{
+				$selected="";
+				$room_classes_uid=$roomClass->room_classes_uid;
+				$room_class_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
+				
+				if ($roomClass->room_classes_uid==$roomclassid)
+					$selected="selected";
+				$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
+				}
+			$dropDownList.="</select>";
+			$output['ROOMTYPEDROPDOWN']=$dropDownList;
+			}
+		else
+			{
+			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
+			$original_room_classes_uid =doSelectSql($query,1);
+			
+			$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE `room_classes_uid` = '".$original_room_classes_uid."' ORDER BY room_class_abbv ";
+			$room_class_abbv=doSelectSql($query,1);
+			$output['ROOMTYPEDROPDOWN']='<input type="hidden" name="roomClass" value="'.$original_room_classes_uid.'" />'.$room_class_abbv;
+			}
+
 		// Let's make our years/months/days array
 		$dowInitArrays=array();
 		$today = getdate();
@@ -305,12 +322,12 @@ class j02213edittariff_micromanage {
 					if ($dkey<=15)
 						{
 						$days1.='<td>'.$d['dom'].'</td>';
-						$inputs1.='<td><input type="text" size="2" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
+						$inputs1.='<td><input type="text" size="5" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
 						}
 					else
 						{
 						$days2.='<td>'.$d['dom'].'</td>';
-						$inputs2.='<td><input type="text" size="2" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
+						$inputs2.='<td><input type="text" size="5" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
 						}
 					}
 				$dr['DAYS1']=$days1;

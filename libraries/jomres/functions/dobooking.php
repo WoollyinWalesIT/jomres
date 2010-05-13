@@ -416,7 +416,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$load['ONLOAD']="hidediv('guestdeets');";
 		$load['COUNT']=3;
 		$toload[]=$load;
-		$load['ONLOAD']="show_log();";
+		$load['ONLOAD']="jQuery.get(ajaxurl+'&task=handlereq',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
 		$load['COUNT']=4;
 		$toload[]=$load;
 		}

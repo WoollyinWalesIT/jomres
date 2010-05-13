@@ -48,14 +48,13 @@ class j02215savetariff_micromanage {
 		$maxpeople			=intval(jomresGetParam( $_POST, 'maxpeople', 0 ));
 		$roomClass			=intval(jomresGetParam( $_POST, 'roomClass', 0 ));
 		$fixed_dayofweek	=intval(jomresGetParam( $_POST, 'fixed_dayofweek', 0 ));
-
-		/*
-		$ignore_pppn		=intval(jomresGetParam( $_POST, 'ignore_pppn', 0 ));
-		$allow_we			=intval(jomresGetParam( $_POST, 'allow_we', 0 ));
-		*/
-		$ignore_pppn		= 0 ;
-		$allow_we			= 1 ;
 		
+		$ignore_pppn       = intval( jomresGetParam( $_POST, 'ignore_pppn', 0 ) );
+		$allow_we          = intval( jomresGetParam( $_POST, 'allow_we', 0 ) );
+		$weekendonly       = intval( jomresGetParam( $_POST, 'weekendonly', 0 ) );
+		$minrooms_alreadyselected       = intval( jomresGetParam( $_POST, 'minrooms_alreadyselected', 0 ) );
+		$maxrooms_alreadyselected       = intval( jomresGetParam( $_POST, 'maxrooms_alreadyselected', 100 ) );
+
 		// security check
 		if ($tarifftypeid > 0)
 			{
@@ -137,11 +136,15 @@ class j02215savetariff_micromanage {
 			$validto_ts=str_replace("/","-",$t['end']);
 			$query="INSERT INTO #__jomres_rates (
 			`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,`mindays`,`maxdays`,
-			`minpeople`,`maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`dayofweek`,`validfrom_ts`,`validto_ts`,`property_uid`)
+			`minpeople`,`maxpeople`,`roomclass_uid`,
+			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`,
+			`validfrom_ts`,`validto_ts`,`property_uid`
+			)
 			VALUES
 			('$tarifftypename','','".$t['start']."','".$t['end']."','".$t['value']."','".(int)$mindays."','".(int)$maxdays."',
-			'".(int)$minpeople."','".(int)$maxpeople."','".(int)$roomClass."','".(int)$ignore_pppn."','0','".(int)$allow_we."',".(int)$fixed_dayofweek.",'".$validfrom_ts."',
-			'".$validto_ts."','".(int)$defaultProperty."')";
+			'".(int)$minpeople."','".(int)$maxpeople."','".(int)$roomClass."',
+			'".(int)$ignore_pppn."','0','".(int)$allow_we."','".(int)$weekendonly."',".(int)$fixed_dayofweek.",'".(int)$minrooms_alreadyselected."','".(int)$maxrooms_alreadyselected."',
+			'".$validfrom_ts."','".$validto_ts."','".(int)$defaultProperty."')";
 			//echo $query."<br>";
 			$newRateIds[]=doInsertSql($query,'');
 			}
