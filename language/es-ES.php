@@ -1624,7 +1624,7 @@ define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO','Use global currency?');
 define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC','Set this to yes to force all properties to use the same currency (e.g. & # 8 3 6 4 ;) ');
 define('_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED','Booking form room list show disabled access');
 define('_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE','Booking form room list show max people');
-define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
+define('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',"Please note that room prices listed are estimates and the full price of the booking will not be calculated until you have added a room or rooms to your selection.");
 define('_JOMRES_LASTEDITED_DB','Database template Last edited');
 define('_JOMRES_LASTEDITED_DISK','Disk template Last edited');
 define('_JOMRES_LASTEDITED_WARNINGICON','Database template warning');
