@@ -169,7 +169,7 @@ class j00501tariffs {
 			$configurationPanel->setright(_JOMRES_COM_A_TAXINCLUSIVE_DESC);
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING2);
+/* 			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING2);
 			$configurationPanel->setmiddle();
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
@@ -187,7 +187,7 @@ class j00501tariffs {
 			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_PERCENTAGE);
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxPercentage" value="'.$mrConfig['roomTaxPercentage'].'" />');
 			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting(); */
 
 			/*
 			$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX_PERCENTAGE);
