@@ -362,6 +362,10 @@ class j00017SRPavailabilitycalendar {
 				else
 					$this->retVals.="<td height=\"$height\" width=\"$width\" valign=\"middle\" bgcolor=\"$bgcolor\"><font face=\"$face\" size=\"$size\" color=\"$fcolor\">";
 
+				$task=get_showtime('task');
+				if ($task != "remoteavailability" && $jrConfig['show_booking_form_in_property_details'] == '1')
+					$this->showlinks = false;
+					
 				if (!$showOutMonthDates && $bgcolor ==$outbgcolor)
 					$this->retVals.="&nbsp;";
 				else
@@ -374,8 +378,8 @@ class j00017SRPavailabilitycalendar {
 							if (!$noshowroom && $bgcolor !=$outbgcolor)
 								{
 								if ($mrConfig['fixedArrivalDay']==date("w",$currdate) )
-									if ($mrConfig['visitorscanbookonline'] && $this->showlinks && $jrConfig['show_booking_form_in_property_details'] == '0')
-										{
+									if ($mrConfig['visitorscanbookonline'] && $this->showlinks )
+										{										
 										$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 										if (!$mrConfig['singleRoomProperty'])
 											$link.='&remus='.$roomUid;
@@ -398,7 +402,7 @@ class j00017SRPavailabilitycalendar {
 							}
 						else
 							{
-							if (!$noshowroom && $bgcolor !=$outbgcolor && $mrConfig['visitorscanbookonline'] && $this->showlinks && $jrConfig['show_booking_form_in_property_details'] == '0')
+							if (!$noshowroom && $bgcolor !=$outbgcolor && $mrConfig['visitorscanbookonline'] && $this->showlinks)
 								{
 								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 								if (!$mrConfig['singleRoomProperty'])
