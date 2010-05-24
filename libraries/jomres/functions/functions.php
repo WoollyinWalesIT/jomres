@@ -1867,8 +1867,8 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".get_showtime('jomressession'));
 	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
-	if ($contract_total == 0.00)
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
+	// if ($contract_total == 0.00)
+		// jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
 	$userIsManager=checkUserIsManager();
 	$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
