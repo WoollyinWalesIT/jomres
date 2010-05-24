@@ -358,6 +358,10 @@ class  j00018MRPavailabilitycalendar {
 				else
 					$this->retVals.= "<td height=\"$height\" width=\"$width\" valign=\"middle\" bgcolor=\"$bgcolor\"><font face=\"$face\" size=\"$size\" color=\"$fcolor\">";
 
+				$task=get_showtime('task');
+				if ($task != "remoteavailability" && $jrConfig['show_booking_form_in_property_details'] == '1')
+					$this->showlinks = false;
+					
 				if (!$showOutMonthDates && $bgcolor ==$outbgcolor)
 					$this->retVals.= "&nbsp;";
 				else
@@ -374,7 +378,7 @@ class  j00018MRPavailabilitycalendar {
 									$validDayOfWeek=false;
 								}
 								
-							if ($validDayOfWeek && $jrConfig['show_booking_form_in_property_details'] == '0')
+							if ($validDayOfWeek)
 								{
 								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 								if (!$mrConfig['singleRoomProperty'])
