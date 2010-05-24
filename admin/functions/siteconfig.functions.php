@@ -142,7 +142,9 @@ function showSiteConfig(  )
 	$lists['loggingSystem']			= jomresHTML::selectList( $yesno, 'cfg_loggingSystem', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingSystem'] );
 	$lists['loggingRequest']		= jomresHTML::selectList( $yesno, 'cfg_loggingRequest', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingRequest'] );
 	$lists['loggingPortal']			= jomresHTML::selectList( $yesno, 'cfg_loggingPortal', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['loggingPortal'] );
-
+	
+	$lists['show_booking_form_in_property_details']		= jomresHTML::selectList( $yesno, 'cfg_show_booking_form_in_property_details', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['show_booking_form_in_property_details'] );
+	
 	$geosearchList = array();
 	$geosearchList[] = jomresHTML::makeOption( '', '' );
 	$geosearchList[] = jomresHTML::makeOption( 'town', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );

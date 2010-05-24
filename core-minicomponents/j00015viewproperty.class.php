@@ -45,8 +45,8 @@ class j00015viewproperty
 		if (!isset($property_uid) || empty($property_uid) )
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		$mrConfig=getPropertySpecificSettings($property_uid);
-		if (!isset($mrConfig['show_booking_form_in_property_details']))
-			$mrConfig['show_booking_form_in_property_details']="1";
+		if (!isset($jrConfig['show_booking_form_in_property_details']))
+			$jrConfig['show_booking_form_in_property_details']="1";
 		$userIsManager=checkUserIsManager();
 		if (!$userIsManager)
 			propertyClicked($property_uid);
@@ -245,7 +245,7 @@ class j00015viewproperty
 
 			$bookinglink = array();
 
-			if ($mrConfig['visitorscanbookonline']=='1' && $mrConfig['show_booking_form_in_property_details'] != "1")
+			if ($mrConfig['visitorscanbookonline']=='1' && $jrConfig['show_booking_form_in_property_details'] != "1")
 				{
 				$link				=	array();
 				$url=JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=$property_uid";
