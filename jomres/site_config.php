@@ -170,4 +170,6 @@ $jrConfig['use_reviews'] = "1";
 $jrConfig['autopublish_reviews'] = "1";
 $jrConfig['reviews_test_mode'] = "0";
 
+$jrConfig['show_booking_form_in_property_details'] ="1"; // New for v4.5.2
+
 ?>

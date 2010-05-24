@@ -374,7 +374,7 @@ class j00017SRPavailabilitycalendar {
 							if (!$noshowroom && $bgcolor !=$outbgcolor)
 								{
 								if ($mrConfig['fixedArrivalDay']==date("w",$currdate) )
-									if ($mrConfig['visitorscanbookonline'] && $this->showlinks)
+									if ($mrConfig['visitorscanbookonline'] && $this->showlinks && $jrConfig['show_booking_form_in_property_details'] == '0')
 										{
 										$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 										if (!$mrConfig['singleRoomProperty'])

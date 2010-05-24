@@ -374,7 +374,7 @@ class  j00018MRPavailabilitycalendar {
 									$validDayOfWeek=false;
 								}
 								
-							if ($validDayOfWeek)
+							if ($validDayOfWeek && $jrConfig['show_booking_form_in_property_details'] == '0')
 								{
 								$link=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid.'&arrivalDate='.$sqlDate2;
 								if (!$mrConfig['singleRoomProperty'])

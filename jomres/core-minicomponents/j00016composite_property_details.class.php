@@ -38,8 +38,8 @@ class j00016composite_property_details {
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];  
 		$mrConfig=getPropertySpecificSettings($property_uid);
-		if (!isset($mrConfig['show_booking_form_in_property_details']))
-			$mrConfig['show_booking_form_in_property_details']="1";
+		if (!isset($jrConfig['show_booking_form_in_property_details']))
+			$jrConfig['show_booking_form_in_property_details']="1";
 		$componentArgs['property_uid']=$property_uid;
 		
 		// We will pass some of the old templates back as generated templates, whereas some of the data will be passed back as arrays to be processed into the new template.
@@ -61,7 +61,7 @@ class j00016composite_property_details {
 		$output				=$MiniComponents->miniComponentData['00015']['viewproperty']['property_deets'][0];
 		$featureList		=$MiniComponents->miniComponentData['00015']['viewproperty']['featurelist'];
 		$rtRows				=$MiniComponents->miniComponentData['00015']['viewproperty']['roomtypes'];
-		if ($mrConfig['show_booking_form_in_property_details'] =="0")
+		if ($jrConfig['show_booking_form_in_property_details'] =="0")
 			$bookinglink		=$MiniComponents->miniComponentData['00015']['viewproperty']['bookinglink'];
 		$slideshowlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['slideshowlink'];
 		$tariffslink		=$MiniComponents->miniComponentData['00015']['viewproperty']['tariffslink'];
@@ -156,7 +156,7 @@ class j00016composite_property_details {
 			}
 
 		// Booking form tab
-		if ($mrConfig['is_real_estate_listing']==0 && $mrConfig['show_booking_form_in_property_details'] =="1" && $mrConfig['visitorscanbookonline']=='1' )
+		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="1" && $mrConfig['visitorscanbookonline']=='1' )
 			{
 			define("DOBOOKING_IN_DETAILS",1);
 			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'dobooking.php');
@@ -261,7 +261,7 @@ class j00016composite_property_details {
 			$tmpl->addRows( 'availabilitycalendarcontent', $availabilitycalendarcontent );
 			}
 			
-		if ($mrConfig['is_real_estate_listing']==0 && $mrConfig['show_booking_form_in_property_details'] =="1"  && $mrConfig['visitorscanbookonline']=='1')
+		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="1"  && $mrConfig['visitorscanbookonline']=='1')
 			{
 			$tmpl->addRows( 'bookingform', $bookingform );
 			$tmpl->addRows( 'bookingform_anchor', $bookingform_anchor );

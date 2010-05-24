@@ -80,6 +80,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SITELANGUAGE_FILE_DESC.'</td>
 		</tr>
 		-->
+		<!--
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC.'</td>
+		</tr>
+		-->
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['limit_property_country'].'</td>
