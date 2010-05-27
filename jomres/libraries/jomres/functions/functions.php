@@ -13,6 +13,33 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 	
+function jomres_search_dir($path, $pattern) 
+	{
+	global $jomres_dir_contents;
+	$jomres_dir_contents = array();
+	$path = rtrim(str_replace("\\",JRDS, $path), JRDS) . JRDS;
+	$matches = Array();
+	$entries = Array();
+	$dir = dir($path);
+	while (false !== ($entry = $dir->read()))
+		{
+		$entries[] = $entry;
+		}
+	$dir->close();
+	foreach ($entries as $entry) 
+		{
+		$fullname = $path . $entry;
+		if ($entry != '.' && $entry != '..' && $entry != ".svn" && is_dir($fullname)) 
+			{
+			jomres_sdir($fullname, $pattern, $callback);
+			} 
+		else if (is_file($fullname) && stristr($entry,$pattern )) 
+			{
+			$jomres_dir_contents[] = $fullname;
+			}
+		}
+	return $jomres_dir_contents;
+	}
 
 function jomres_generate_tab_anchor($string)
 	{
