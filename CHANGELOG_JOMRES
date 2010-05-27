@@ -1,3 +1,41 @@
+Jomres 4.5.2
+
+Modified singleton abstract to look in the custom_code directory for any class files before looking in the core /jomres/libraries/jomres/classes directory.
+Modified inclusion for countries.php to search the custom_code dir.
+Changes to availability calendars to ensure that if is single property option is set to yes, then the availability calendar is shown under the booking form.
+Fixed minor issue where feature popup wasn't translated in property list.
+Removed a stray $ that was preventing the rate to be included in the url in the tariff list when linking to xe.com.
+ROL Romanian lui changed to RON new lui in currency codes
+Added new toolbar_thirdparty.html and changes to jomres.php to offer third party toolbar under the manager's toolbar, for third party plugin developers.
+Prompted by a user's ticket, I decided to see how easy it would be to put the booking form into a tab in the property details page, instead of in a page of it's own. It turned out to be remarkably easy.
+Fixed bug which only appeared on Single property setups where an availability calendar search is performed and the user is taken direct to the booking form. Arrival date wasn't parsed through JSCalConvertInputDates to convert the date to a YYYY/MM/DD format therefore dates were being set to impossibly long periods (millions of days) resulting in an out of memory error.
+Small modification to composite property details to switch off the Book now link in the top toolbar if option to show the booking form in the property details page is enabled.
+Minor reordering of tabs
+Small change so that if iphone is detected by Jomres, then the browser isredirected to the site but with tmpl = component, thereby switching off headers/modules etc, leaving just Jomres.
+Small change to blackbooking template to not show the reasons field until the black booking dates have been selected.
+Removed links from installer as they sometimes wouldn't work if the Joomla installation is in a subdir off the main site's root. Because of how the live_site is detected by the Standalone functionality, the live site cannot be properly detected during installation until we're actually integrated into a CMS/framework. Trivial problem, but it would instil concern among some users.
+Modified system so that in tariffs and currencies you can configure the system so that prices input are the gross price, system will then figure tax from those prices in the booking form.
+Added a restricted rooms clearing feature in event that one of the rooms in the selected rooms list has a restriction of > 1 then the entire room selection is cleared. It's not an elegant solution, but it should resolve the initial problem where rooms limited by restrictions can be left in a booking.
+Small modification to tab building function for those poor souls who haven't got PHP5.2.
+Added some code to ensure that the wiseprice discount info output to the booking form includes tax.
+Further change to anchor making function to remove stray ' chars.
+Modified micromanage functionality, added Advanced options for ignore_pppn, weekendonly, allow_we and min and max rooms already selected options to micromanage. In time, it's likely that Advanced editing mode can be dropped altogether, depending on if we can add improved price configuration functionality to Micromanage.
+Modified number of rooms already selected functionality slightly.
+Added date range picking functionality to micromanage tariff editing mode.
+Fixed some broken images in the favourites output minicomponent. Thanks Piranha.
+Switched htmlpurifier off by default as it appears to be causing errors on lower spec'd servers.
+Fixed incorrect define in spanish lang file.
+Added a couple of new icons for partners, although the code isn't written yet.
+Configuration of new "booking form in property details" functionality changed. Whether to show the booking form in a separate page now controlled by jrConfig, and option to change this hidden in administrator area, making it less easy to change to put the form on a separate page. Calendar output scripts changed to not show links to the booking form.
+Modified booking functionality to allow bookings of 0.00 value to be inserted.
+Small modification to SRP to add a missing clause for the property details in booking form option
+Revised changes to availability calendars so that links to the booking form are still shown if remoteavailability is used.
+Commented out the "american" room tax options in tariffs and currencies. They haven't received any attention regarding adding tax to the invoice, and there are easier ways to add fixed taxes to the booking like using forced optional extras. 
+Commented out some code that seems to be resetting the fixed period arrival date to today's date for no good reason, and modified dobooking.php to not try to reconvert dates in the url.
+Added Czech Koruna to currency codes
+Modified dobooking to use JS cal conversion function (again). This effectively undoes the change to rev 902, but the issue is identified now so depending on user's requirements it is possible to make a simple change to restore the 902 functionality. See the notes in the file for more information.
+
+
 Jomres 4.5.1
 
 Added an option to cms_specific/joomla15/cms_specific_urls.php 'nofollowtmpl' to tell Jomres to not adopt the tmpl=component when building urls. Useful if, for example, you want Jomres to not include tmpl=component in it's links after it's been called via a url with tmpl=component in the url.
