@@ -164,9 +164,6 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="")
 	{
-	global $faux_header_scripts;
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
 	switch ($type) 
 		{
 		case "javascript":
