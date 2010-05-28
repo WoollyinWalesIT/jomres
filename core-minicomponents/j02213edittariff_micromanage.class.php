@@ -219,6 +219,7 @@ class j02213edittariff_micromanage {
 		$datesInyearsArray = array();
 		$currdate=getdate($firstOfJan);
 		$currMonth=1;
+		date_default_timezone_set('UTC');
 		for ($y = 0;$y <$numberOfYearsToGenerate;$y++)
 			{
 			$currYear=$firstYear+$y;
@@ -332,12 +333,12 @@ class j02213edittariff_micromanage {
 					if ($dkey<=15)
 						{
 						$days1.='<td>'.$d['dom'].'</td>';
-						$inputs1.='<td><input type="text" size="5" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
+						$inputs1.='<td><input type="text" size="3" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
 						}
 					else
 						{
 						$days2.='<td>'.$d['dom'].'</td>';
-						$inputs2.='<td><input type="text" size="5" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
+						$inputs2.='<td><input type="text" size="3" class="'.$d['class'].'" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" name="tariffinput['.$d['epoch'].']" value="'.$d['value'].'" /></td>';
 						}
 					}
 				$dr['DAYS1']=$days1;
