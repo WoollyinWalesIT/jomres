@@ -317,7 +317,8 @@ class j00017SRPavailabilitycalendar {
 				$link="";
 				$deposit_paid=TRUE;
 				$bgcolor=$inbgcolor;
-				$sqlDate2=date("Y-m-d",$currdate);
+				$sqlDate2=date("Y/m/d",$currdate);
+				$sqlDate2 = JSCalmakeInputDates($sqlDate2);
 				$sqlDate=date("Y/m/d",$currdate);
 				//$currdow=date("w",$sqlDate);
 				$currentMonth=date("m",$currdate);

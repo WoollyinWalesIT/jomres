@@ -317,7 +317,8 @@ class  j00018MRPavailabilitycalendar {
 				$bgcolor=$this->colour_empty;
 				$contract_uid="";
 				$link="";
-				$sqlDate2=date("Y-m-d",$currdate);
+				$sqlDate2=date("Y/m/d",$currdate);
+				$sqlDate2 = JSCalmakeInputDates($sqlDate2);
 				$sqlDate=date("Y/m/d",$currdate);
 				//$currdow=date("w",$sqlDate);
 				$currentMonth=date("m",$currdate);
