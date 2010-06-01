@@ -76,7 +76,7 @@ class jomres_gateway_handler
 			if ($pp_sent_invoice_id > 0)
 				{
 				// Make sure duplicate transactions are ignored
-				$query = 'SELECT transaction_id FROM #__invoices_transactions WHERE payment_ref = "'.$pp_sent_txn_id.'" AND payment_result = "Payment: Completed"';
+				$query = 'SELECT transaction_id FROM #__jomresportal_invoices_transactions WHERE payment_ref = "'.$pp_sent_txn_id.'" AND payment_result = "Payment: Completed"';
 				$transaction = doSelectSql($query);
 				if (count($transaction)==0)
 					{
