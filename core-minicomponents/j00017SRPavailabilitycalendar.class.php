@@ -366,6 +366,9 @@ class j00017SRPavailabilitycalendar {
 				if ($task != "remoteavailability" && $jrConfig['show_booking_form_in_property_details'] == '1')
 					$this->showlinks = false;
 					
+				if ($mrConfig['showOnlyAvailabilityCalendar'] == "1" )
+					$this->showlinks = true;
+					
 				if (!$showOutMonthDates && $bgcolor ==$outbgcolor)
 					$this->retVals.="&nbsp;";
 				else
