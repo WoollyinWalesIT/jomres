@@ -60,13 +60,9 @@ else
 	if (isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )
 		$tmpBookingHandler->tmpbooking["confirmationSeen"]=null;
 	
-	// $thisdate	=jomresGetParam( $_REQUEST, 'arrivalDate', "" );
-	
-	// Commented out, but may be required depending on your circumstances. Using the below line, users coming from the availability calendar links will be given a wrong date in the booking form (although new dates can be selected) however in this version the links are by default disabled because the booking form is now in the property details page so that is less likely to be an issue, and more of an issue is the booking form remembering any dates they've entered into the search modules. The below line will correctly use those dates to prepare the booking form.
 	$thisdate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
-	
-	
 	}
+
 $thisdate=str_replace("-","/",$thisdate);
 
 $MiniComponents->triggerEvent('00101'); // Pre-form generation. Optional
