@@ -78,15 +78,18 @@ class j01010listpropertys {
 
 		if ($MiniComponents->eventFileExistsCheck('01009') )
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
-		// Added to prevent out of memory messages. Note, this function means the if there are more than 100 returns only a 70 of those elements are saved for display
+		// Added to prevent out of memory messages.
+		// Modified for 4.5.3 as the previous loop wasn't taking missing keys into account.
 		if (count($propertys_uids) >$maximumProperties)
 			{
 			$counter=1;
 			$tmpArray=array();
-			while ($counter<=$maximumProperties)
+			foreach ($propertys_uids as $key=>$val)
 				{
-				$tmpArray[]=$propertys_uids[$counter];
+				$tmpArray[]=$propertys_uids[$key];
 				$counter++;
+				if ($counter == $maximumProperties)
+					break;
 				}
 			$propertys_uids=$tmpArray;
 			}
