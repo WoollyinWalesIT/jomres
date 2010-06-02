@@ -103,10 +103,7 @@ class j02990showconfirmation {
 			}
 		$tmpBookingHandler->saveBookingData();
 			
-		$query			=	"SELECT property_name FROM #__jomres_propertys WHERE `propertys_uid` = '".(int)$property_uid."' LIMIT 1";
-		$propertyList	=	doSelectSql($query);
-		foreach ($propertyList as $property)
-			$booking_parts['PROPERTYNAME'] 	= $property->property_name;;
+		$booking_parts['PROPERTYNAME'] = getPropertyName($bookingDeets['property_uid']);
 
 		$booking_parts['PROPERTY']		=	$bookingDeets['property_uid'];
 
@@ -194,7 +191,7 @@ class j02990showconfirmation {
 				if (count($roomclass)>0)
 					{
 					foreach ($roomclass as $class)
-						$fulldesc	= jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFNAME'.$room_classes_uid,stripslashes($class->room_class_full_desc) );
+						$fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$room_classes_uid,stripslashes($class->room_class_full_desc),false,false);
 					}
 				else
 					{
@@ -203,7 +200,7 @@ class j02990showconfirmation {
 					if (count($roomclass)>0)
 						{
 						foreach ($roomclass as $class)
-							$fulldesc	= jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFNAME'.$room_classes_uid,stripslashes($class->room_class_full_desc) );;
+							$fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$room_classes_uid,stripslashes($class->room_class_full_desc),false,false);
 						}
 					}
 				}
