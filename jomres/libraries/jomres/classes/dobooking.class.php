@@ -4147,7 +4147,7 @@ class dobooking
 						
 						if($pass)
 							{
-							$tmp_rate=$rate->roomrateperday;
+							$tmp_rate = $this->allPropertyTariffs[$rate->rates_uid]['roomrateperday'];
 							$total+=$tmp_rate ;
 							}
 						else
