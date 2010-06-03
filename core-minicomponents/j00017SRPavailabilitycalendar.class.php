@@ -95,7 +95,7 @@ class j00017SRPavailabilitycalendar {
 								<td>
 									<table>
 										';
-										if ($mrConfig['visitorscanbookonline']=="1"	&& !$noshowroom && $this->showlinks)
+										if ($mrConfig['visitorscanbookonline']=="1"	&& !$noshowroom && $this->showlinks && $jrConfig['show_booking_form_in_property_details'] != '1')
 											{
 											$this->retVals.='<tr>';
 											$this->retVals.='<td colspan="6">'.jr_gettext('_JOMRES_FRONT_CALENDAR_CLICKDATES',_JOMRES_FRONT_CALENDAR_CLICKDATES).'</td>';
