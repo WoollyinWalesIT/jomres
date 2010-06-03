@@ -247,7 +247,7 @@ class j03025insertbooking_invoice {
 		if ($jrConfig['useGlobalCurrency'] == "1")
 			$invoice_data['currencycode'] = $jrConfig['globalCurrencyCode'];
 		else
-			$invoice_data['currencycode'] = $mrConfig['currencyCode'];
+			$invoice_data['currencycode'] = $mrConfig['property_currencycode'];
 
 		jr_import('invoicehandler');
 		$invoice_handler = new invoicehandler();
