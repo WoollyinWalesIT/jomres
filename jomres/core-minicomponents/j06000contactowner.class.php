@@ -68,7 +68,7 @@ class j06000contactowner {
 		
 		$this->QUERY_STRING = strlen(trim($_SERVER['QUERY_STRING'])) > 0 ? '?'.strip_tags($_SERVER['QUERY_STRING']) : '';
 		$output=array();
-		$output['FORMSTART']='<form name="regForm" action="'.$_SERVER['PHP_SELF'].$this->QUERY_STRING.'" method="POST">'."\n";
+		$output['FORMSTART']='<form name="regForm" action="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=contactowner" method="POST">'."\n";
 		// ConfigArray
 		$captchaDebugging = false;
 
