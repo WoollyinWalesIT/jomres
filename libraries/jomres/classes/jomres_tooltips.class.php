@@ -173,77 +173,108 @@ class jomres_tooltips
 					';
 			break;
 			case "room_type":
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="jomres_bt_tooltip_room_type" ';
+				if (!isset($type_arguments["use_javascript"]))
+					$type_arguments["use_javascript"] = true;
+				$use_javascript = $type_arguments["use_javascript"];
+				if ($use_javascript)
+					{
+					$div_string.='<div id="'.$div.'"';
+					if (strlen($class)>0)
+						$div_string.=' class="'.$class.'" ';
+					else
+						$div_string.=' class="jomres_bt_tooltip_room_type" ';
+						
+					// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
+					/*
+					if ($this->browser == "IE")
+						$positions = "most";
+					else
+						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
+					*/
 					
-				// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
-				/*
-				if ($this->browser == "IE")
-					$positions = "most";
+					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
+						<script type="text/javascript">jQuery("#'.$div.'").bt({
+							cornerRadius: 10,        
+							strokeWidth: 0,
+							shadow: true,     //only shown in new browser
+							shadowOffsetX: 3,
+							shadowOffsetY: 3,
+							shadowBlur: 8,
+							shadowColor: \'rgba(0,0,0,.9)\',
+							shadowOverlap: false,
+							noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+							positions: [\''.$this->positions.'\'],
+							offsetParent: \'body\',
+							width: \'200px\',
+							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
+							cssStyles: 
+								{
+								color: \'#F9FB61\'
+								}
+							});</script>
+						';
+					}
 				else
-					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
-				*/
-				
-				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt({
-						cornerRadius: 10,        
-						strokeWidth: 0,
-						shadow: true,     //only shown in new browser
-						shadowOffsetX: 3,
-						shadowOffsetY: 3,
-						shadowBlur: 8,
-						shadowColor: \'rgba(0,0,0,.9)\',
-						shadowOverlap: false,
-						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\''.$this->positions.'\'],
-						offsetParent: \'body\',
-						width: \'200px\',
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: 
-							{
-							color: \'#F9FB61\'
-							}
-						});</script>
-					';
+					{
+					$div_string.='<div id="'.$div.'"';
+					if (strlen($class)>0)
+						$div_string.=' class="'.$class.'" >';
+					else
+						$div_string.=' class="jomres_bt_tooltip_features" >';
+					$div_string.='<img src="'.get_showtime('live_site')."/".$div_content.'" /><b>'.$hover_title.'</b></div>';
+					}
 			break;
 			case "property_feature":
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="jomres_bt_tooltip_features" ';
+				if (!isset($type_arguments["use_javascript"]))
+					$type_arguments["use_javascript"] = true;
+				$use_javascript = $type_arguments["use_javascript"];
+				if ($use_javascript)
+					{
+					$div_string.='<div id="'.$div.'"';
+					if (strlen($class)>0)
+						$div_string.=' class="'.$class.'" ';
+					else
+						$div_string.=' class="jomres_bt_tooltip_features" ';
 
-				// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
-				/*
-				if ($this->browser == "IE")
-					$positions = "most";
+					// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
+					/*
+					if ($this->browser == "IE")
+						$positions = "most";
+					else
+						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
+					*/
+					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
+						<script type="text/javascript">jQuery("#'.$div.'").bt({
+							cornerRadius: 10,        
+							strokeWidth: 0,
+							shadow: true,     //only shown in new browser
+							shadowOffsetX: 3,
+							shadowOffsetY: 3,
+							shadowBlur: 8,
+							shadowColor: \'rgba(0,0,0,.9)\',
+							shadowOverlap: false,
+							noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+							positions: [\''.$this->positions.'\'],
+							offsetParent: \'body\',
+							width: \'200px\',
+							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
+							cssStyles: 
+								{
+								color: \'#F9FB61\'
+								}
+							});</script>
+						';
+					}
 				else
-					$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
-				*/
-				$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt({
-						cornerRadius: 10,        
-						strokeWidth: 0,
-						shadow: true,     //only shown in new browser
-						shadowOffsetX: 3,
-						shadowOffsetY: 3,
-						shadowBlur: 8,
-						shadowColor: \'rgba(0,0,0,.9)\',
-						shadowOverlap: false,
-						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\''.$this->positions.'\'],
-						offsetParent: \'body\',
-						width: \'200px\',
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: 
-							{
-							color: \'#F9FB61\'
-							}
-						});</script>
-					';
+					{
+					$div_string.='<div id="'.$div.'"';
+					if (strlen($class)>0)
+						$div_string.=' class="'.$class.'" >';
+					else
+						$div_string.=' class="jomres_bt_tooltip_features" >';
+					$div_string.='<img src="'.get_showtime('live_site')."/".$div_content.'" /><b>'.$hover_title.'</b></div>';
+					
+					}
 			break;
 			default:
 				$div_string.='<div id="'.$div.'"';
