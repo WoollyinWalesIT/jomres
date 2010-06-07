@@ -138,7 +138,16 @@ class basic_property_details
 			$this->classAbbvs[(int)$roomClass->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_desc),false,false);
 			$this->classAbbvs[(int)$roomClass->room_classes_uid]['image'] = $roomClass->image;
 			}
-			
+		
+		$this->this_property_room_classes = array();
+		$query = "SELECT roomtype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE propertytype_id =".(int)$this->ptype_id;
+		$roomtypes =doSelectSql($query);
+		foreach ($roomtypes as $roomClass)
+			{
+			$this->this_property_room_classes[(int)$roomClass->roomtype_id] = $this->classAbbvs[$roomClass->roomtype_id];
+			}
+
+		
 		$bang = explode (",",$this->property_features);
 		$propertyFeaturesArray = array();
 		foreach ($bang as $b)

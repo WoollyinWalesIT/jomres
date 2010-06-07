@@ -45,7 +45,11 @@ class j16000deleteGlobalroomTypes
 					}
 				}
 			if ($success)
+				{
+				$query = "DELETE FROM #__jomres_roomtypes_propertytypes_xref WHERE roomtype_id = ".(int)$id;
+				doInsertSql($query,'');
 				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listGlobalroomTypes",$saveMessage);
+				}
 			}
 		}
 		

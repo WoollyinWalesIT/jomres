@@ -26,6 +26,18 @@ class j16000listGlobalroomTypes
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$query = "SELECT room_classes_uid, room_class_abbv, room_class_full_desc,image FROM #__jomres_room_classes  WHERE property_uid = '0' ORDER BY room_class_abbv";
 		$roomtypeList=doSelectSql($query);
+		
+		$query="SELECT * FROM #__jomres_ptypes";
+		$ptypeList = doSelectSql($query);
+		$all_ptypes = array();
+		if (count($ptypeList) > 0)
+			{
+			foreach ($ptypeList as $ptype)
+				{
+				$all_ptypes[$ptype->id] = $ptype->ptype;
+				}
+			}
+		
 		$rows=array();
 		$output['INDEX']="index2.php";
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK;
@@ -38,12 +50,24 @@ class j16000listGlobalroomTypes
 
 		foreach($roomtypeList as $roomtype)
 			{
+			$selected_ptype_rows = "";
+			$query = "SELECT propertytype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE roomtype_id =".(int)$roomtype->room_classes_uid;
+			$rtxrefList =doSelectSql($query);
+			if (count($rtxrefList)>0)
+				{
+				foreach ($rtxrefList as $ptype)
+					{
+					$selected_ptype_rows.=$all_ptypes[$ptype->propertytype_id]. " ";
+					}
+				}
+			
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$roomtype->room_classes_uid.'" onClick="jomres_isChecked(this.checked);">';
 			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editGlobalroomTypes&rmTypeUid='.$roomtype->room_classes_uid.'">'.$editIcon.'</a>';
 			$r['LINKTEXTCLONE']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editGlobalroomTypes&$rmTypeUid='.$roomtype->room_classes_uid.'&clone=1">'.$cloneIcon.'</a>';
 			$r['RTTITLE']=$roomtype->room_class_abbv;
 			$r['RTDESCRIPTION']=$roomtype->room_class_full_desc;
 			$r['IMAGE']=get_showtime('live_site')."/".$roomtype->image;
+			$r['PROPERTY_TYPES']=$selected_ptype_rows;
 			$rows[]=$r;
 			}
 		$output['COUNTER']=count($rows);
