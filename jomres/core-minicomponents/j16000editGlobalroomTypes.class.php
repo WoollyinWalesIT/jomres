@@ -29,8 +29,22 @@ class j16000editGlobalroomTypes
 		$yesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
 		$yesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
 		
+		$query="SELECT * FROM #__jomres_ptypes";
+		$ptypeList = doSelectSql($query);
+		
+		$selected_ptype_rows = array();
 		if ($rmTypeUid>0)
 			{
+			$query = "SELECT propertytype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE roomtype_id =".(int)$rmTypeUid;
+			$rtxrefList =doSelectSql($query);
+			if (count($rtxrefList)>0)
+				{
+				foreach ($rtxrefList as $ptype)
+					{
+					$selected_ptype_rows[]=$ptype->propertytype_id;
+					}
+				}
+			
 			$query = "SELECT room_class_abbv, room_class_full_desc,image,srp_only FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$rmTypeUid."' AND property_uid = '0'";
 			$rtList =doSelectSql($query);
 			foreach($rtList as $rt)
@@ -49,6 +63,22 @@ class j16000editGlobalroomTypes
 			}
 		if ($clone)
 			$propertyFeatureUid=FALSE;
+
+		
+		$all_ptype_rows = array();
+		if (count($ptypeList) > 0)
+			{
+			foreach ($ptypeList as $ptype)
+				{
+				$row=array();
+				$row['propertytype_id'] = $ptype->id;
+				$row['propertytype_desc']=$ptype->ptype;
+				$row['checked'] = "";
+				if (in_array( $ptype->id , $selected_ptype_rows) )
+					$row['checked'] = " checked ";
+				$all_ptype_rows[]=$row;
+				}
+			}
 
 		$d = @dir(JOMRES_IMAGELOCATION_ABSPATH.'rmtypes'.JRDS);
 
@@ -106,6 +136,7 @@ class j16000editGlobalroomTypes
 		$tmpl->readTemplatesFromInput( 'edit_room_type.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
+		$tmpl->addRows( 'all_ptype_rows',$all_ptype_rows);
 		$tmpl->displayParsedTemplate();
 		}
 		

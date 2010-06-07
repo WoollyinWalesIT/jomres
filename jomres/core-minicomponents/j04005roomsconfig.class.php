@@ -38,17 +38,30 @@ class j04005roomsconfig {
 		$mrConfig=getPropertySpecificSettings();
 		$output=array();
 		$defaultProperty=getDefaultProperty();
-
+		
+		$basic_property_details =jomres_getSingleton('basic_property_details');
+		$basic_property_details->gather_data($defaultProperty);
+		$property_type_id = $basic_property_details->ptype_id;
+		
+		$room_classes_array = array();
+		if (count($basic_property_details->this_property_room_classes)>0)
+			{
+			foreach ( $basic_property_details->this_property_room_classes as $key=>$val )
+				{
+				$room_classes_array[]= $key;
+				}
+			$genericOrClasses = genericOr($room_classes_array,"room_classes_uid");
+			}
+		
 		$propertyRowInfo="";
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 
 		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."' ORDER BY room_number ";
 		$roomsList =doSelectSql($query);
-		if ($mrConfig['singleRoomProperty'] ==  '1')
-			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '0' AND `srp_only` = '1' ORDER BY room_class_abbv ";
-		else
-			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '0' AND `srp_only` = '0' ORDER BY room_class_abbv ";
+		
+		
+		$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '0' AND ".$genericOrClasses." ORDER BY room_class_abbv ";
 		$roomsClassList =doSelectSql($query);
 		$query = "SELECT propertys_uid,property_name,property_street,property_town,property_postcode,property_region,property_country,property_tel,property_fax,property_email,property_features,published,apikey FROM #__jomres_propertys  WHERE propertys_uid = '".(int)$defaultProperty."' ORDER BY property_name ";
 		$propertysList =doSelectSql($query);
