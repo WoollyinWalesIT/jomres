@@ -46,7 +46,7 @@ function jomres_generate_tab_anchor($string)
 	$unwanted = array("'","\"",',');
 	$string = str_replace($unwanted,"-",$string);
 	if (function_exists('filter_var'))
-		$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS);
+		$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_HIGH);
 	else
 		$anchor = getEscaped($string);
 
