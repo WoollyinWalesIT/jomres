@@ -307,7 +307,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
-		<tr align="center" valign="middle">
+		<!--<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CALENDARLANGUAGE_AUTO.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['autoDetectJSCalendarLang'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CALENDARLANGUAGE_AUTO_DESC.'</td>
@@ -322,6 +322,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'.$jsCalCSSfile.'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CALENDARCSS_DESC.'</td>
 		</tr>
+		-->
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDARINPUT.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$jsInputFormatDropdownList.'</td>
