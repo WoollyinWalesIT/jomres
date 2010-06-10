@@ -5697,7 +5697,13 @@ class dobooking
 
 							if ( count($datesTilBooking) <= $wisepricethreshold && $mrConfig['wisepriceactive'] == "1")
 								{
-								$tmpRate=$rate->roomrateperday;
+								$tmpRate = $rate->roomrateperday;
+								if ($mrConfig['prices_inclusive'] == 1)
+									{
+									$divisor	= ($this->accommodation_tax_rate/100)+1;
+									$tmpRate=$tmpRate/$divisor;
+									}
+								//$tmpRate=$rate->roomrateperday;
 								$roomType=$rate->roomclass_uid;
 								$percentageBooked=$this->getPercentageOfRoomsBookedForRoomtype($rate->roomclass_uid);
 								$r= $this->getDiscountedRoomrate ($tmpRate,$percentageBooked);
@@ -5719,8 +5725,14 @@ class dobooking
 								}
 							else
 								{
-								$this->setErrorLog("te_setAverageRate::Rejigging room rate from ".$rate->roomrateperday." to  ".$rate->roomrateperday*$roomsOfType[$rate->roomclass_uid]);
-								$tmp_rate=$rate->roomrateperday;
+								$tmp_rate = $rate->roomrateperday;
+								if ($mrConfig['prices_inclusive'] == 1)
+									{
+									$divisor	= ($this->accommodation_tax_rate/100)+1;
+									$tmp_rate=$tmp_rate/$divisor;
+									}
+								$this->setErrorLog("te_setAverageRate::Rejigging room rate from ".$rate->roomrateperday." to  ".tmp_rate*$roomsOfType[$rate->roomclass_uid]);
+								//$tmp_rate=$rate->roomrateperday;
 								$tmp_rate=$tmp_rate*$roomsOfType[$rate->roomclass_uid];
 								$total+=$tmp_rate;
 								}
