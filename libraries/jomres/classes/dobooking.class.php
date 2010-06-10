@@ -2219,8 +2219,8 @@ class dobooking
 	$dateFormat = str_replace("m","mm",$dateFormat);
 	$dateFormat = str_replace("d","dd",$dateFormat);
 
-	if (!defined('_JOMRES_CALENDAR_FORMAT'))
-		define('_JOMRES_CALENDAR_FORMAT','dd/mm/yy');
+	if (!defined('_JOMRES_CALENDAR_RTL'))
+		define('_JOMRES_CALENDAR_RTL','false');
 
 	$alt_field_string = "";
 	$depature_date_doc_ready = "";
@@ -2263,6 +2263,7 @@ class dobooking
 			nextText: "'._JOMRES_CALENDAR_NEXT.'",
 			currentText: "'._JOMRES_CALENDAR_TODAY.'",
 			'.$alt_field_string.'
+			isRTL: '._JOMRES_CALENDAR_RTL.',
 			dayNamesMin: 
 				[
 				"'._JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR.'",
