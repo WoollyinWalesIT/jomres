@@ -246,14 +246,14 @@ function init_javascript()
 			{
 			$MiniComponents =jomres_getSingleton('mcHandler');
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
-			if (!defined("JOMRES_CALENDARJSCALLED") )
+/* 			if (!defined("JOMRES_CALENDARJSCALLED") )
 				{
 				define ('JOMRES_CALENDARJSCALLED',1);
 				jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/javascript/cal/css/',$jrConfig['jscalendarCSSfile']);
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"fullsize-calendar.js");
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar-setup.js");
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
-				}
+				} */
 				
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$jrConfig['jquery_ui_theme'].'/','jquery-ui-1.8rc3.custom.css');
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
@@ -1899,7 +1899,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		
 	});
 	</script>
-	<input type="text" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly"/>
+	<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly"/>
 	';
 	return $output;
 	}
