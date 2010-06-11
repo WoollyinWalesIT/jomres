@@ -2242,9 +2242,7 @@ class dobooking
 		}
 	else
 		$onchange.=' getResponse_particulars(\'departureDate\',this.value); ';
-	//$onchange.=' getResponse(\'departureDate\',this.value); ';
-	
-	
+
 	$output .= '<script type="text/javascript">
 	jQuery(function() {
 		jQuery("#'.$uniqueID.'").datepicker( { 
@@ -2287,7 +2285,7 @@ class dobooking
 		
 	});
 	</script>
-	<input type="text" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" />
+	<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" />
 	';
 	return $output;
 		}
