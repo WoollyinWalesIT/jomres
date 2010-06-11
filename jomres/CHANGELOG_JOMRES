@@ -1,3 +1,26 @@
+Jomres 4.5.3
+
+modification to micromanage handling to ensure dates/times worked on are set to UTC.
+Fixed a wrong database table name. Don't think the issue caused any problems, but it's nice to be right anyway.
+Added check to see if show only availability calendar option is enabled, if it is we'll need to show the booking form links.
+Modified availability calendars so that dates are converted to the JavaScript calendar input format before the url to the booking form is constructed.
+Removed some commented out lines that revision 911 now makes superfluous.
+Added translation of property name and room type full descriptions to "accommodation" panel in booking confirmation form.
+Modified a loop that filters returns when a search results produces > 100 properties. The old loop didn't take account of missing keys in the property uid list, the new one does.
+Fixed bug where room rate wasn't correctly figured for gross prices when in micromanage and average mode enabled.
+Removed click on free date message in availability calendars if the booking form is in the property details.
+added JOMRES_SITEPAGE_URL_NOSEF to standalone cms_specific_urls.php
+Modified how the captcha form initialises it's action, as the old approach, which came from the captcha handing's functionality, was getting mangled by Joomla's sef handling.
+Fixed bug where wrong currency code was being recorded in an invoice.
+Enabled option to switch booking form from property details to it's own page.
+Added an option to show tools tips without the actual JavaScript, instead showing the title next to the icon.
+Added table and code to cross reference room types with property types, and dropped the old SRP option in room type configuration. This gives us greater flexibility when creating room types and they probably should be renamed to something like "links" or somesuch in the future. There shouldn't be any need for properties to modify their tariffs or rooms, however site managers of existing installations will need to edit their room types and associate existing room types with property types.
+Added FILTER_FLAG_STRIP_HIGH to the generate tab anchor function. Whilst firefox and IE happily work with utf8 chars in an anchor, Safari doesn't. 
+Implemented jquery ui's datepicker functionality to replace the older dhtml date picker which hasn't been updated in years and is starting to show it's age (for ex. August in Chrome doesn't seem to show). I'll leave the older code in-situ for now in case somebody wants it, but in time, once I'm sure that the new code works flawlessly, we will remove it.
+Resolved http://forum.jomres.net/index.php?topic=3443.msg16041#msg16041 problem where when wiseprice active, in micromanage and tariff model is Average, then the price summary has the tax added. What was in fact happening is in micromanage, because tariffs are linked then the prices originally determined (and adjusted for the gross price setting) by getAllTariffsData are not used, instead the db is queried again. Adding adjustment to the te_setAverageRate method seems to resolve this.
+Resolved a security issue reported by OSDCS which allowed a user to bypass the selected gateway and see the booking inserted without paying a deposit.
+
+
 Jomres 4.5.2
 
 Modified singleton abstract to look in the custom_code directory for any class files before looking in the core /jomres/libraries/jomres/classes directory.
