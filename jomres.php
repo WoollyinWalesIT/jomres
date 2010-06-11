@@ -720,6 +720,8 @@ if ($numberOfPropertiesInSystem>0)
 		#########################################################################################
 		case 'processpayment':
 			
+			$plugin = jomres_validate_gateway_plugin();
+			
 			$data=array('tmpbooking'=>$tmpBookingHandler->tmpbooking,'tmpguest'=>$tmpBookingHandler->tmpguest);
 			$query = "INSERT INTO #__jomres_booking_data_archive SET `data`='".serialize($data)."',`date`='".date( 'Y-m-d H:i:s' )."'";
 			doInsertSql($query,'');
@@ -731,7 +733,7 @@ if ($numberOfPropertiesInSystem>0)
 			$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 			$paypal_settings->get_paypal_settings();
 			
-			if (!$thisJRUser->userIsManager && $mrConfig['useOnlinepayment']=="1" || $paypal_settings->paypalConfigOptions['override'] == "1")
+			if ($plugin != "NA")
 				{
 				$query="SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = ".(int)$property_uid." AND `plugin` = '".(string)$plugin."' AND setting = 'active' AND value = '1'";
 				$gatewayDeets=doSelectSql($query);
@@ -1511,4 +1513,44 @@ function removeBOM($str="")
 	return $str;
 	}
 
+function jomres_validate_gateway_plugin()
+	{
+	$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+	$paypal_settings->get_paypal_settings();
+	$mrConfig=getPropertySpecificSettings();
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$property_uid = get_showtime('property_uid');
+	if ($mrConfig['useOnlinepayment']=="1" || $paypal_settings->paypalConfigOptions['override'] == "1")
+		{
+		if (!isset($_POST['plugin']) || $_POST['plugin'] == "" )
+			{
+			gateway_log("Error, gateway name not sent, probable hack attempt");
+			trigger_error ("Error, gateway name not sent, probable hack attempt", E_USER_ERROR);
+			die();
+			}
+		if (!isset($tmpBookingHandler->tmpbooking["gateway"] ))
+			{
+			$plugin 			= jomresGetParam( $_POST, 'plugin', "" );
+			$tmpBookingHandler->tmpbooking["gateway"] = $plugin;
+			}
+		else
+			{
+			$plugin 			= $tmpBookingHandler->tmpbooking["gateway"];
+			}
+		
+		$query="SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = ".(int)$property_uid." AND `plugin` = '".(string)$plugin."' AND setting = 'active' AND value = '1'";
+		$gatewayDeets=doSelectSql($query);
+		if (count($gatewayDeets) != 1)
+			{
+			gateway_log("Error, gateway passed either doesn't exist, or is not active, probable hack attempt");
+			trigger_error ("Error, gateway passed either doesn't exist, or is not active, probable hack attempt", E_USER_ERROR);
+			die();
+			}
+		}
+	else
+		{
+		$plugin = "NA";
+		}
+	return $plugin;
+	}
 ?>
