@@ -246,7 +246,7 @@ class j01010listpropertys {
 					$featureList=array();
 					$ptown=stripslashes($property->property_town);
 					$stars=$property->stars;
-					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', htmlspecialchars(trim(stripslashes($property->property_description)), ENT_QUOTES),false,false ));
+					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($property->property_description)), ENT_QUOTES),false,false );
 
 					jr_import('jomres_reviews');
 					$Reviews = new jomres_reviews();
