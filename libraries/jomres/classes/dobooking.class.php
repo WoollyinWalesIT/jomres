@@ -5052,8 +5052,8 @@ class dobooking
 	function calcSinglePersonSuppliment()
 		{
 		$totalBooking=$this->getRoomtotal();
-		$result=$this->getVariantsOfType("guesttype");
-		if ($this->cfg_singlePersonSuppliment=="1" && count($result) > 0 )
+		$guests=$this->getVariantsOfType("guesttype");
+		if ($this->cfg_singlePersonSuppliment=="1" && count($guests) > 0 )
 			{
 			$this->singlePersonSupplimentCalculated = true;
 			$this->single_person_suppliment=0.00;
@@ -5081,7 +5081,7 @@ class dobooking
 				$timesSPStoBeApplied=$totalBedsInBooking-$this->total_in_party;
 				$this->setErrorLog("calcSinglePersonSuppliment::Single person suppliment will be applied ".$timesSPStoBeApplied." times." );
 				}
-			$this->single_person_suppliment=$SPSChargePerPerson*$timesSPStoBeApplied;
+			$this->single_person_suppliment=$SPSChargePerPerson*$timesSPStoBeApplied/count($guests);
 			$this->setErrorLog("calcSinglePersonSuppliment::Single person suppliment charge: ".$this->single_person_suppliment );
 			}
 		else
