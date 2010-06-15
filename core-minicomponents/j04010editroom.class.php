@@ -174,7 +174,7 @@ class j04010editroom {
 			$max_people =doSelectSql($query,1);
 			
 			echo '<form action="'.JOMRES_SITEPAGE_URL.'" method="post" name="adminForm">';
-			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1' ORDER BY room_class_abbv ";
+			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 ORDER BY room_class_abbv ";
 			$roomClasses=doSelectSql($query);
 			$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
 			foreach ($roomClasses as $roomClass)

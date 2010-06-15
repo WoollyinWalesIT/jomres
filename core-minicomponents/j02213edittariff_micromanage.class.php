@@ -176,6 +176,16 @@ class j02213edittariff_micromanage {
 		
 		$def_roomrateperday=$defaultTariffValue;
 
+		if ($mrConfig['singleRoomProperty'] ==  '1') 
+			{
+			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'"; 
+			$original_room_classes_uid =doSelectSql($query,1); 
+			$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE `room_classes_uid` = '".$original_room_classes_uid."' ORDER BY room_class_abbv "; 
+			$room_class_abbv=doSelectSql($query,1); 
+			$output['ROOMTYPEDROPDOWN']='<input type="hidden" name="roomClass" value="'.$original_room_classes_uid.'" />'.$room_class_abbv; 
+			}
+		else
+			{
 			$basic_property_details =jomres_getSingleton('basic_property_details');
 			$basic_property_details->gather_data($defaultProperty);
 			$property_type_id = $basic_property_details->ptype_id;
@@ -206,7 +216,8 @@ class j02213edittariff_micromanage {
 				}
 			$dropDownList.="</select>";
 			$output['ROOMTYPEDROPDOWN']=$dropDownList;
-
+			}
+			
 		// Let's make our years/months/days array
 		$dowInitArrays=array();
 		$today = getdate();
