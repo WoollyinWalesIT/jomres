@@ -113,38 +113,47 @@ class j02212edittariff_advanced {
 
 			if ($clone)
 				$tariffUid=FALSE;
-
-			$basic_property_details =jomres_getSingleton('basic_property_details');
-			$basic_property_details->gather_data($usersProperty);
-			$property_type_id = $basic_property_details->ptype_id;
-			
-			$room_classes_array = array();
-			if (count($basic_property_details->this_property_room_classes)>0)
+			if ($mrConfig['singleRoomProperty'] ==  '1') 
 				{
-				foreach ( $basic_property_details->this_property_room_classes as $key=>$val )
+				$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'"; 
+				$original_room_classes_uid =doSelectSql($query,1); 
+				$query = "SELECT room_class_abbv FROM #__jomres_room_classes WHERE `room_classes_uid` = '".$original_room_classes_uid."' ORDER BY room_class_abbv "; 
+				$room_class_abbv=doSelectSql($query,1); 
+				$output['ROOMTYPEDROPDOWN']='<input type="hidden" name="roomClass" value="'.$original_room_classes_uid.'" />'.$room_class_abbv; 
+				}
+			else
+				{
+				$basic_property_details =jomres_getSingleton('basic_property_details');
+				$basic_property_details->gather_data($usersProperty);
+				$property_type_id = $basic_property_details->ptype_id;
+				
+				$room_classes_array = array();
+				if (count($basic_property_details->this_property_room_classes)>0)
 					{
-					$room_classes_array[]= $key;
+					foreach ( $basic_property_details->this_property_room_classes as $key=>$val )
+						{
+						$room_classes_array[]= $key;
+						}
+					$genericOrClasses = genericOr($room_classes_array,"room_classes_uid");
 					}
-				$genericOrClasses = genericOr($room_classes_array,"room_classes_uid");
-				}
 
-			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '0' AND ".$genericOrClasses." ORDER BY room_class_abbv ";
-			$roomClasses =doSelectSql($query);
-			
-			$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
-			//$dropDownList .= "<option value=\"\"></option>";   // Disabled so that tariff _has_ to be associated with a room type. 
-			foreach ($roomClasses as $roomClass)
-				{
-				$selected="";
-				$room_classes_uid=$roomClass->room_classes_uid;
-				$room_class_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
-				if ($room_classes_uid==$roomclass_uid)
-					$selected="selected";
-				$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
+				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '0' AND ".$genericOrClasses." ORDER BY room_class_abbv ";
+				$roomClasses =doSelectSql($query);
+				
+				$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
+				//$dropDownList .= "<option value=\"\"></option>";   // Disabled so that tariff _has_ to be associated with a room type. 
+				foreach ($roomClasses as $roomClass)
+					{
+					$selected="";
+					$room_classes_uid=$roomClass->room_classes_uid;
+					$room_class_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
+					if ($room_classes_uid==$roomclass_uid)
+						$selected="selected";
+					$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
+					}
+				$dropDownList.="</select>";
+				$output['ROOMTYPEDROPDOWN']=$dropDownList;
 				}
-			$dropDownList.="</select>";
-			$output['ROOMTYPEDROPDOWN']=$dropDownList;
-
 			$pppnOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 			$pppnOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 			$ignoreDropdown= jomresHTML::selectList($pppnOptions, 'ignore_pppn', 'class="inputbox" size="1"', 'value', 'text', $ignore_pppn);
