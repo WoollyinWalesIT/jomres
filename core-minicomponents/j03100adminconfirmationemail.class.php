@@ -80,7 +80,7 @@ class j03100adminconfirmationemail {
 		$propertyEmail =doSelectSql($query);
 		foreach ($propertyEmail as $email)
 			{
-			$propertyName=stripslashes($email->property_name);
+			$propertyName=getPropertyName($property_uid);
 			$propertyTel=stripslashes($email->property_tel);
 			}
 		$query="SELECT firstname,surname,tel_landline,tel_mobile FROM #__jomres_guests WHERE guests_uid = '".(int)$guests_uid."'";

@@ -72,7 +72,7 @@ class j16000listpropertys
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$p['id'].'" onClick="isChecked(this.checked);">';
 			$r['VIEWLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=viewproperty&id='.$p['id'].'">'.$editIcon.'</a>';
 
-			$r['PROPERTYNAME']=$p['property_name'];
+			$r['PROPERTYNAME']=getPropertyName($p['id']);;
 			$r['PROPERTYADDRESS']=$p['property_street'].', '.$p['property_town'].', '.$p['property_region'].', '.$p['property_country'].', '.$p['property_postcode'];
 			if (!in_array($p['id'],$portalPropertyIds) )
 				$crid=$jrConfig['defaultCrate'];
