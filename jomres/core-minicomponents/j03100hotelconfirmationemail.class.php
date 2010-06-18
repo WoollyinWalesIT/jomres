@@ -80,7 +80,7 @@ class j03100hotelconfirmationemail {
 		$propertyEmail =doSelectSql($query);
 		foreach ($propertyEmail as $email)
 			{
-			$propertyName=stripslashes($email->property_name);
+			$propertyName=getPropertyName($property_uid);
 			$propertyTel=stripslashes($email->property_tel);
 			$hotelemail=stripslashes($email->property_email);
 			}

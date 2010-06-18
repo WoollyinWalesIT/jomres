@@ -89,7 +89,7 @@ class j03110guestconfirmationemail {
 		$propertyEmail =doSelectSql($query);
 		foreach ($propertyEmail as $email)
 			{
-			$propertyName=stripslashes($email->property_name);
+			$propertyName=getPropertyName($property_uid);
 			$propertyTel=stripslashes($email->property_tel);
 			$hotelemail=stripslashes($email->property_email);
 			$output['POLICIESDISCLAIMERS']=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($email->property_policies_disclaimers)),false,false);
