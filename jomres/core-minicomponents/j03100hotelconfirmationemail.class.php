@@ -172,6 +172,8 @@ class j03100hotelconfirmationemail {
 			$invoice_template = $MiniComponents->specificEvent('06005','view_invoice',array('internal_call'=>true,'invoice_id'=>$invoice_id) );
 			$output['INVOICE']	= $invoice_template;
 			}
+
+		$output['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking["booking_notes"]["suppliment_note"];
 			
 		$custom_field_output = array();
 		jr_import('jomres_custom_field_handler');

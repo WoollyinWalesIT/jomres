@@ -59,6 +59,7 @@ class j03110guestconfirmationemail {
 
 		$rmids=array();
 		$requestedRoom =$tempBookingDataList[0]->requestedRoom;
+		
 		$rooms=explode(",",$requestedRoom);
 		foreach ($rooms as $r)
 			{
@@ -215,6 +216,8 @@ class j03110guestconfirmationemail {
 			$output['INVOICE']	= $invoice_template;
 			}
 
+		$output['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking["booking_notes"]["suppliment_note"];
+			
 		$custom_field_output = array();
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();

@@ -213,6 +213,9 @@ class j02990showconfirmation {
 		$roomtype['FULLDESC']		=	$roomadd." x ".$fulldesc;
 		$booking_rooms[]			= 	$roomtype;
 		
+		if ($mrConfig['singleRoomProperty']!="1")
+			$booking_parts['ALLOCATION']	= $bookingDeets['booking_notes']['suppliment_note'];
+		
 		$room_total = $bookingDeets['room_total'];
 		$taxrates = taxrates_getalltaxrates();
 		if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
@@ -226,6 +229,7 @@ class j02990showconfirmation {
 
 		$booking_parts['ROOMTOTAL']	=	output_price($room_total);
 
+		
 
 		if ($mrConfig['showExtras']=="1")
 			{

@@ -155,6 +155,10 @@ class j05020dobooking {
 		$output[]		=jr_gettext('_JRPORTAL_NEWUSER_PASSWORD',_JRPORTAL_NEWUSER_PASSWORD);
 		$output[]		=jr_gettext('_JRPORTAL_NEWUSER_LOG_IN',_JRPORTAL_NEWUSER_LOG_IN);
 		
+		$output[]		=jr_gettext('_JOMRES_ROOMALLOCATIONS_ROOM',_JOMRES_ROOMALLOCATIONS_ROOM);
+		$output[]		=jr_gettext('_JOMRES_ROOMALLOCATIONS_GUESTS',_JOMRES_ROOMALLOCATIONS_GUESTS);
+		$output[]		=jr_gettext('_JOMRES_ROOMALLOCATIONS_INFORMATION',_JOMRES_ROOMALLOCATIONS_INFORMATION);
+
 		foreach ($output as $o)
 			{
 			echo $o;
