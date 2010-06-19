@@ -1817,3 +1817,7 @@ define('_JOMRES_CALENDAR_TODAY','Today');
 define('_JOMRES_CALENDAR_PREV','Previous');
 define('_JOMRES_CALENDAR_NEXT','Next');
 define('_JOMRES_CALENDAR_RTL','false');
+define('_JOMRES_ROOMALLOCATIONS_ROOM','Room ');
+define('_JOMRES_ROOMALLOCATIONS_GUESTS','guest(s). ');
+define('_JOMRES_ROOMALLOCATIONS_INFORMATION','This how we have assigned your guest numbers to their rooms. If you would like to change this allocation, you will need to contact the hotel after making the booking. Extra charges may apply if you change your assignments.');
+

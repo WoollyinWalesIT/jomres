@@ -156,7 +156,9 @@ class j03100adminconfirmationemail {
 				$rows[]=$r;
 				}
 			}
-
+		
+		$output['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking["booking_notes"]["suppliment_note"];
+		
 		$invoice_id = $MiniComponents->miniComponentData['03025']['insertbooking_invoice']['invoice_id'];
 		if ((int)$invoice_id > 0)
 			{
