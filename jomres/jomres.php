@@ -1515,6 +1515,10 @@ function removeBOM($str="")
 
 function jomres_validate_gateway_plugin()
 	{
+	$thisJRUser=jomres_getSingleton('jr_user');
+	if ($thisJRUser->userIsManager)
+		return "NA";
+	
 	$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 	$paypal_settings->get_paypal_settings();
 	$mrConfig=getPropertySpecificSettings();
