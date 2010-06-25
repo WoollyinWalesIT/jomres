@@ -43,7 +43,9 @@ function jomres_search_dir($path, $pattern)
 
 function jomres_generate_tab_anchor($string)
 	{
-	$unwanted = array("'","\"",',');
+	// Commented out code that tries to make the anchor of the tabs based on the name of the tab. Too many non-latin users were reporting problems with tabs.
+	// Instead we'll just use the random string generator to create the anchor.
+/* 	$unwanted = array("'","\"",',');
 	$string = str_replace($unwanted,"-",$string);
 	if (function_exists('filter_var'))
 		$anchor = filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS,FILTER_FLAG_STRIP_HIGH);
@@ -52,7 +54,9 @@ function jomres_generate_tab_anchor($string)
 
 	$anchor = str_replace(" ","_",$anchor);
 	if (strlen($anchor)==0) // Give up trying to filter out unwanted chars, instead we'll just replace any spaces and return the string
-		$anchor = str_replace(" ","_",$string);
+		$anchor = str_replace(" ","_",$string); */
+		
+	$anchor = =generateJomresRandomString(15);
 	return $anchor;
 	}
 	
