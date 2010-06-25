@@ -345,10 +345,11 @@ if ($field != "heartbeat" && $field != "show_log")
 				echo '; populateDiv("single_suppliment","'.output_price($bkg->getSinglePersonSuppliment()).'")';
 			if ($bkg->coupon_code != "")
 				echo '; populateDiv("coupon_discount_value","'.output_price($bkg->coupon_discount_value).'")';
-			echo '; populateDiv("room_allocations","'.$bkg->getRoomAllocationOutput().'")';
+			
 			}
 		else
 			$bkg->setErrorLog("handlereq:: Field ".$lastfield." exempt from pricing rebuild");
+		
 		}
 	else
 		$bkg->setErrorLog("handlereq:: bkg check of arrival or departure date failed");
@@ -372,6 +373,7 @@ if ($field != "heartbeat" && $field != "show_log")
 		{
 		$errorLog=$bkg->getErrorLog();
 		}
+	echo '; populateDiv("room_allocations","'.$bkg->getRoomAllocationOutput().'")';
 	$bkg->setErrorLogFirst($ajrq);
 	$bkg->storeBookingDetails();
 	}

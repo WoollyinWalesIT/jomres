@@ -3123,13 +3123,20 @@ class dobooking
 
 			// Let's find the max_people options for each room
 			$allSelectedRoomsMaxPeople = array();
+			$room_spread_array=array();
 			foreach ($this->requestedRoom as $r)
 				{
 				$rm_idArr=explode("^",$r);
 				$rm_id=$rm_idArr[0];
 				$allSelectedRoomsMaxPeople[$rm_id]=$this->allPropertyRooms[$rm_id]['max_people'];
+				$max_count = (int) $this->allPropertyRooms[$rm_id]['max_people'];
+				for ($i=1;$i<=$max_count;$i++)
+					{
+					$key = $i."_".$rm_id;
+					$room_spread_array[$key]=0;
+					}
 				}
-
+			ksort($room_spread_array);
 			$numberOfSelectedRooms = count($allSelectedRoomsMaxPeople);
 			// if $numberOfSelectedRooms == $totalNumberOfGuests then we can put one person in each room and return
 			if ( $numberOfSelectedRooms == $totalNumberOfGuests) 
@@ -3144,40 +3151,25 @@ class dobooking
 				}
 			else // There are more guests than there are rooms, we'll need to put one person in each room, then see what's left over.
 				{
-				$this->setErrorLog('checkAllGuestsAllocatedToRooms:: $allSelectedRoomsMaxPeople > 0 '.serialize($allSelectedRoomsMaxPeople));
+				// First we'll populate the room spread array. We've sorted the keys so that room 1 for each room is at the beginning of the array, ensuring that whereever possible there's at least one person in each room
 				$remainingGuests = $totalNumberOfGuests;
-				foreach ($allSelectedRoomsMaxPeople as $rm_id=>$room)
+				foreach ($room_spread_array as $key=>$val)
 					{
-					if ( $this->room_allocations[$rm_id]['number_allocated'] != 1) // We only do this when we're prefilling the rooms on first initialisation
+					if ($remainingGuests > 0)
 						{
-						if ($remainingGuests>0)
-							{
-							$this->room_allocations[$rm_id]['number_allocated']=1;
-							$remainingGuests--;
-							}
-						else // Effectively, the guest has chosen more rooms than there are guests. Instead of doing nothing, we'll populate the remaining room(s) with 0, to keep the data consistent.
-							$this->room_allocations[$rm_id]['number_allocated']=0;
-						}
-					$this->setErrorLog("checkAllGuestsAllocatedToRooms::remainingGuests Loop one ".$remainingGuests);
-					}
-				// At this point, there might be some guests left over, so we'll find the rooms that have > 1 max people and put one person in each room until remainingGuests = 0;
-				if ($remainingGuests >0)
-					{
-					foreach ($allSelectedRoomsMaxPeople as $rm_id=>$max_people)
-						{
-						if ($max_people > 1 && $this->room_allocations[$rm_id]['number_allocated'] < $max_people)
-							{
-							$this->room_allocations[$rm_id]['number_allocated']++;
-							}
+						$room_spread_array [$key] = 1;
 						$remainingGuests--;
-						$this->setErrorLog("checkAllGuestsAllocatedToRooms::remainingGuests Loop two ".$remainingGuests);
-						if ($remainingGuests ==0)
-							break;
 						}
 					}
-				else
-					$this->setErrorLog("checkAllGuestsAllocatedToRooms::remainingGuests Loop 2 No more guests to allocate");
 					
+				foreach ($room_spread_array as $key=>$val)
+					{
+					$tmp_arr = explode("_",$key);
+					$room_index = $tmp_arr[0];
+					$rm_id = $tmp_arr[1];
+					$this->room_allocations[$rm_id]['number_allocated']= $this->room_allocations[$rm_id]['number_allocated']+$val;
+					}
+
 				$this->setErrorLog('checkAllGuestsAllocatedToRooms:: $this->room_allocations > 0 '.serialize($this->room_allocations));
 				return true;
 				}
@@ -5194,7 +5186,11 @@ class dobooking
 			$rm_id=$rm_idArr[0];
 			$allRoomsMaxPeople[$rm_id]=$this->allPropertyRooms[$rm_id]['max_people'];
 			}
-
+		foreach ($guests as $g)
+			{
+			$totalNumberOfGuests = $totalNumberOfGuests+$g['qty'];
+			}
+				
 		if ($this->cfg_singlePersonSuppliment=="1") // Property-wide SPS
 			{
 			$this->setErrorLog("calcSinglePersonSuppliment::calculating property-wide single person supplements ");
@@ -5229,7 +5225,9 @@ class dobooking
 				$suppliment = $SPSChargePerPerson;
 				
 			$this->setErrorLog("calcSinglePersonSuppliment::suppliment: ".$suppliment);
-
+			
+			
+			
 			if ($allRoomsMaxPeople[$rm_id]['max_people']>1 && $allocation['number_allocated']==1)
 				$this->room_allocations[$rm_id]['suppliment']=$suppliment;
 			else
@@ -5244,6 +5242,13 @@ class dobooking
 			$suppliment = $allocation['suppliment'];
 			$this->single_person_suppliment = $this->single_person_suppliment + $suppliment;
 			}
+			
+/* 		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['prices_inclusive'] == 1)
+			{
+			$divisor	= ($this->accommodation_tax_rate/100)+1;
+			$this->single_person_suppliment=$this->single_person_suppliment/$divisor;
+			} */
 			
 		$this->singlePersonSupplimentCalculated = true;
 		$this->setErrorLog("calcSinglePersonSuppliment::Single person suppliment charge: ".$this->single_person_suppliment );
