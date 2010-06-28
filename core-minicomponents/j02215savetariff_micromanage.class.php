@@ -35,6 +35,7 @@ class j02215savetariff_micromanage {
 			$this->template_touchable=false; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+		date_default_timezone_set('UTC');
 		$defaultProperty=getDefaultProperty();
 		jr_import('jomres_cache');
 		$cache = new jomres_cache();
