@@ -1526,6 +1526,9 @@ function jomres_validate_gateway_plugin()
 	$property_uid = get_showtime('property_uid');
 	if ($mrConfig['useOnlinepayment']=="1" || $paypal_settings->paypalConfigOptions['override'] == "1")
 		{
+		if ( $paypal_settings->paypalConfigOptions['override'] == "1")
+			return "paypal";
+		
 		if (!isset($_POST['plugin']) || $_POST['plugin'] == "" )
 			{
 			gateway_log("Error, gateway name not sent, probable hack attempt");
