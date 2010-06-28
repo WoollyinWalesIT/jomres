@@ -403,53 +403,58 @@ class j02990showconfirmation {
 		$booking_parts['TERMSTEXT']			=	jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS,false);
 		$booking_parts['ALERT']				=	jr_gettext('_JOMRES_CONFIRMATION_ALERT',_JOMRES_CONFIRMATION_ALERT,false);
 
-		if (!$userIsManager && $mrConfig['useOnlinepayment'] !="0" )
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings->get_paypal_settings();
+		
+		if ($paypal_settings->paypalConfigOptions['override'] != "1")
 			{
-			$gatewaylist 	= 	array();
-			$gatewaydir		=	get_showtime('live_site')."/administrator/jomres/plugins/gateways/";
-			$query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '".(int)$property_uid."' AND setting = 'active' AND value = '1'";
-			$gatewayDeets	=	doSelectSql($query);
-			if (count($gatewayDeets)>0)
+			if (!$userIsManager && $mrConfig['useOnlinepayment'] !="0" )
 				{
-				$gateways	=	array();
-				if (count($gatewayDeets) >1)
+				$gatewaylist 	= 	array();
+				$gatewaydir		=	get_showtime('live_site')."/administrator/jomres/plugins/gateways/";
+				$query = "SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = '".(int)$property_uid."' AND setting = 'active' AND value = '1'";
+				$gatewayDeets	=	doSelectSql($query);
+				if (count($gatewayDeets)>0)
 					{
-					$booking_parts['GATEWAYCHOICEINTRO']=jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE',_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE);
-					$counter	=	1;
-					foreach ($gatewayDeets as $gateway)
+					$gateways	=	array();
+					if (count($gatewayDeets) >1)
 						{
-						$checked	=	"";
-						if ($counter==1)
-							$checked="checked";
-						$result		=	$MiniComponents->specificEvent('03108',$gateway->plugin,null);
-						if (count($result)>1)
+						$booking_parts['GATEWAYCHOICEINTRO']=jr_gettext('_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE',_JOMRES_COM_A_GATEWAY_BOOKING_CHOOSE);
+						$counter	=	1;
+						foreach ($gatewayDeets as $gateway)
 							{
-							$gw['GWNAME']	=	$result['gatewayname'];
-							$tmpgatewaydir	=	$result['filepath'];
+							$checked	=	"";
+							if ($counter==1)
+								$checked="checked";
+							$result		=	$MiniComponents->specificEvent('03108',$gateway->plugin,null);
+							if (count($result)>1)
+								{
+								$gw['GWNAME']	=	$result['gatewayname'];
+								$tmpgatewaydir	=	$result['filepath'];
+								}
+							else
+								{
+								$gw['GWNAME']	=	$gateway->plugin;
+								$tmpgatewaydir	=	$result;
+								}
+							$gw['GWINPUT']		=	'<input type="radio" name="plugin" value="'.$gateway->plugin.'" class="inputbox" '.$checked.' />'.$gw['GWNAME'];
+							$gatewaydir			=	str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$tmpgatewaydir);
+							$gw['GWIMAGE']		=	'<img src="'.$gatewaydir.'j00510'.$gateway->plugin.'.gif" border="0">';
+							$gateways[]			=	$gw;
+							$counter++;
 							}
-						else
-							{
-							$gw['GWNAME']	=	$gateway->plugin;
-							$tmpgatewaydir	=	$result;
-							}
-						$gw['GWINPUT']		=	'<input type="radio" name="plugin" value="'.$gateway->plugin.'" class="inputbox" '.$checked.' />'.$gw['GWNAME'];
-						$gatewaydir			=	str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$tmpgatewaydir);
-						$gw['GWIMAGE']		=	'<img src="'.$gatewaydir.'j00510'.$gateway->plugin.'.gif" border="0">';
-						$gateways[]			=	$gw;
-						$counter++;
 						}
-					}
-				else
-					{
-					foreach ($gatewayDeets as $gateway)
+					else
 						{
-						$gw['GWINPUT']		=	'<input type="hidden" name="plugin" value="'.$gateway->plugin.'">';
-						$gateways[]			=	$gw;
+						foreach ($gatewayDeets as $gateway)
+							{
+							$gw['GWINPUT']		=	'<input type="hidden" name="plugin" value="'.$gateway->plugin.'">';
+							$gateways[]			=	$gw;
+							}
 						}
 					}
 				}
 			}
-
 		$booking_parts['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		$booking_parts['PROCESSURL']=JOMRES_SITEPAGE_URL.'&task=processpayment';
 		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
