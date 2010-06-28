@@ -56,7 +56,7 @@ function jomres_generate_tab_anchor($string)
 	if (strlen($anchor)==0) // Give up trying to filter out unwanted chars, instead we'll just replace any spaces and return the string
 		$anchor = str_replace(" ","_",$string); */
 		
-	$anchor = =generateJomresRandomString(15);
+	$anchor =generateJomresRandomString(15);
 	return $anchor;
 	}
 	
