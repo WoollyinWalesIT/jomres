@@ -1,3 +1,17 @@
+Jomres 4.5.4
+
+Some changes to make tariff editing work better for SRPs after the room type changes of 4.5.3
+Experimental tweak to single person supplements to divide the booking fee by the number of people in the booking after the number of times SPS has been found to find the SPS value for multiple rooms.
+Fixed some missing calls to get the translated property name (thx Piranha).
+Fix for system error when manager tries to make a booking, caused by new plugin validation check in 4.5.3
+Rewrote chunks of the booking engine to internally assign guests to rooms to improve single person supplement functionality.
+Commented out code that tries to make the anchor of the tabs based on the name of the tab. Too many non-latin users were reporting problems with tabs.
+Instead we'll just use the random string generator to create the anchor.
+Small change to micromanage saving to ensure that dates are saved in UTC.
+Fix for fatal error when paypal override enabled.
+Modified showconfirmation to ensure that gateway options previously configured are no longer available once paypal override set to Yes in administration area.
+Fixed issue where if Advanced tariffs, Average and tariff charges are stored weekly, then the Tariff estimate would show the daily price instead of the weekly price.
+
 Jomres 4.5.3
 
 modification to micromanage handling to ensure dates/times worked on are set to UTC.
