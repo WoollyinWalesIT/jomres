@@ -4333,7 +4333,7 @@ class dobooking
 		$query = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE ".$gor;
 		$tarifftypeids = doSelectSql($query);
 
-		if (count($tarifftypeids)>0)
+		if (count($tarifftypeids)>0)  // Micromanage mode tariffs
 			{
 			foreach ($tarifftypeids as $t)
 				{
@@ -4419,7 +4419,7 @@ class dobooking
 			}
 
 		$rpn=($total)/$stayDays;
-		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
+		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1" && count($tarifftypeids)>0)
 			{
 			$rpn=$rpn/7;
 			}
