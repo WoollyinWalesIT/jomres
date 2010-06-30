@@ -1831,3 +1831,4 @@ define('_JOMRES_CALENDAR_RTL','true');
 define('_JOMRES_ROOMALLOCATIONS_ROOM','Room ');
 define('_JOMRES_ROOMALLOCATIONS_GUESTS','guest(s). ');
 define('_JOMRES_ROOMALLOCATIONS_INFORMATION','This how we have assigned your guest numbers to their rooms. If you would like to change this allocation, you will need to contact the hotel after making the booking. Extra charges may apply if you change your assignments.');
+define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED',"Note that your property is not yet published, only you can see the property, site visitors will not see it");

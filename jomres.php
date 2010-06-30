@@ -282,6 +282,7 @@ if ($property_uid > 0)
 	$pdeets=getPropertyAddressForPrint($property_uid);
 	$thisJomresPropertyDetails=$pdeets[3];
 	$published=$thisJomresPropertyDetails['published'];
+	set_showtime('this_property_published',$published);
 	}
 	
 
