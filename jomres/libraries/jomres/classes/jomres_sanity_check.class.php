@@ -35,8 +35,8 @@ class jomres_sanity_check
 		if ($this->mrConfig['is_real_estate_listing']==0)
 			$this->warnings .= $this->checks_tariffs_exist();
 		
-		$this->warnings .=$this-> check_editing_mode();
-			
+		$this->warnings .=$this->check_editing_mode();
+		$this->warnings .=$this->check_published();
 		return $this->warnings;
 		}
 		
@@ -95,6 +95,17 @@ class jomres_sanity_check
 			return $this->construct_warning($message);
 			
 			
+			}
+		}
+		
+	function check_published()
+		{
+		$thisJRUser=jomres_getSingleton('jr_user');
+		$published = get_showtime('this_property_published');
+		if (isset($published) && $published != "1" && $thisJRUser->userIsManager)
+			{
+			$message = _JOMRES_SANITY_CHECK_NOT_PUBLISHED;
+			return $this->construct_warning($message);
 			}
 		}
 	}
