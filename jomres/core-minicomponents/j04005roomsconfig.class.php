@@ -69,7 +69,7 @@ class j04005roomsconfig {
 
 		if (count($roomsClassList) == 0)
 			{
-			echo "Error, no global room types created yet. Note that this feature is only available if you have global room types set to Yes in the backend Site Configuration panel, and you must create at least one global room type. If you already have global room types, then edit those rooms types to indicate if they are SRP specific or not.";
+			echo "Error, can't find any room types for this property type. You will need to edit your room types and associate them with a property type first.";
 			return;
 			}
 
