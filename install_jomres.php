@@ -2138,13 +2138,15 @@ function insertSampleData()
 		$result=doInsertSql("INSERT INTO `#__jomres_room_bookings` ( `room_bookings_uid` , `room_uid` , `date` , `contract_uid` , `black_booking` , `reception_booking` , `internet_booking`,`property_uid` )VALUES ('1', '2', '2005-03-14', '1', '0', '1', '0','1'), ('2', '2', '2005-03-15', '1', '0', '1', '0','1')","");
 
 
-		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('1', 'Hotel/Villa/Apartment', 'hotel', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('1', 'Hotel/B&B', 'hotel', '1')","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('2', 'Yacht Brokerage', 'yachtbrokerage', '1')","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('3', 'Vehicle Rental', 'vehiclerental', '1')","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('4', 'Camp Site', 'campsite', '1')","");
+		
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('5', 'Villa/Cottage/Apartment', 'villa', '1')","");
 
 		$query="INSERT INTO `#__jomresportal_taxrates` (`id`, `code`, `description`, `rate`) VALUES (1, '01', 'VAT', 17.5)";
 		doInsertSql($query,"");
