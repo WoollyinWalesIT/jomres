@@ -3,12 +3,19 @@ if ('undefined'!=typeof(jQuery)){
 jQuery.noConflict();
 }
 
+function isAvailable(date){
+
+	var dateAsString = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate();
+	var result = jQuery.inArray( dateAsString, bookedDays ) ==-1 ? [true] : [false];
+	return result
+	}
+
 function switch_editing_mode(url,val)
 	{
 	var original_url = window.location.href;
 	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
 		window.location = original_url;
-	});
+		});
 	}
 	
 /*
