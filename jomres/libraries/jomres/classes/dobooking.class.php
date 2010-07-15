@@ -625,7 +625,25 @@ class dobooking
 		$string=str_replace("'","\'",$string);
 		return $string;
 		}
+		
+	function get_fullybooked_dates()
+		{
+		$total_number_of_rooms = count($this->allPropertyRooms);
+		$fully_booked_dates = array();
+		foreach ($this->allBookings as $date=>$bookings)
+			{
+			$number_of_bookings_this_date = count($bookings);
+			if ( $number_of_bookings_this_date == $total_number_of_rooms)
+				{
+				//$tmpdate = str_replace("/","-", $date);
+				$tmpdate = date('Y-n-j', strtotime($date));
+				$fully_booked_dates[]=$tmpdate;
+				}
+			}
+		return $fully_booked_dates;
+		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	//	Generic variant handling
@@ -2289,8 +2307,8 @@ class dobooking
 				],
 			onSelect: function() {
 					'.$onchange.'
-				}
-
+				},
+			beforeShowDay: isAvailable
 			} );
 
 	});

@@ -455,6 +455,24 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	else
 		$output['CUSTOMFIELD_JAVASCRIPT']="<script type=\"text/javascript\">function checkCustomFields(){return true}</script>";
 	
+	$booked_dates = $bkg->get_fullybooked_dates();
+	$booked_dates_output = "var bookedDays = []";
+	$number_of_booked_dates = count($booked_dates);
+	if ($number_of_booked_dates>0)
+		{
+		$booked_dates_output = "var bookedDays = [";
+		$counter = 1;
+		foreach ($booked_dates as $date)
+			{
+			$booked_dates_output .='"'.$date.'"';
+			$counter++;
+			if ($counter <= $number_of_booked_dates)
+				$booked_dates_output .=',';
+			}
+		$booked_dates_output .='];';
+		//var bookedDays = ["2010-6-10","2010-6-12","2010-6-14"];
+		}
+	$output['BOOKEDDATES']= $booked_dates_output;
 	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
