@@ -312,7 +312,7 @@ class j00013dashboard extends jomres_dashboard
 		{
 		$mrConfig=getPropertySpecificSettings();
 		$output="";
-		$bookinglink=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.$sqlDate2;
+		$bookinglink=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.JSCalmakeInputDates(date("Y/m/d",$currdate));
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 
