@@ -48,6 +48,7 @@ class j02211listtariffs_micromanage {
 		foreach($tariffList as $tariff)
 			{
 			$rw=array();
+			$tariff_type_id = $tariff->id;
 			$query="SELECT tariff_id,roomclass_uid FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id = '".(int)$tariff->id."' LIMIT 1";
 			$tariffRoomClass =doSelectSql($query,2);
 			$query="SELECT mindays,maxdays,minpeople,maxpeople FROM #__jomres_rates WHERE rates_uid = '".(int)$tariffRoomClass['tariff_id']."' LIMIT 1";
@@ -73,6 +74,7 @@ class j02211listtariffs_micromanage {
 			$rw['LINKTEXT']=$jrtb;
 
 			$rw['RATETITLE']			=$tariff->name;
+			$rw['RATETITLE']			=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_type_id,stripslashes($tariff->name));
 			$rw['MINDAYS']				=$tariffDetails['mindays'];
 			$rw['MAXDAYS']				=$tariffDetails['maxdays'];
 			$rw['MINPEOPLE']			=$tariffDetails['minpeople'];
