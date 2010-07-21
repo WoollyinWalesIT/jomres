@@ -361,6 +361,7 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 	$output['LIVESITE']=get_showtime('live_site');
+	$output['DATEPICKERLANG']=JOMRESDATEPICKERLANG;
 	$messaging = array();
 	$sticky_messaging = array();
 	if ($jrConfig['useJomresMessaging'] == '1')

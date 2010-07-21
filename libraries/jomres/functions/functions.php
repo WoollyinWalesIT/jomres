@@ -237,35 +237,23 @@ function init_javascript()
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
-		if ($jrConfig['autoDetectJSCalendarLang'] == "1")
-			{
-			
-			$calfileSought="calendar-".get_showtime('lang').".js";
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'javascript'.JRDS.'cal'.JRDS.'lang'.JRDS.$calfileSought))
-				$jrConfig['jscalendarLangfile']=$calfileSought;
-			else
-				$jrConfig['jscalendarLangfile']="calendar-en-GB.js";
-			}
 		if (!defined(JOMRES_NOHTML) )
 			{
+			$jomreslang =jomres_getSingleton('jomres_language');
+			define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
+			$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
 			$MiniComponents =jomres_getSingleton('mcHandler');
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
-/* 			if (!defined("JOMRES_CALENDARJSCALLED") )
-				{
-				define ('JOMRES_CALENDARJSCALLED',1);
-				jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/javascript/cal/css/',$jrConfig['jscalendarCSSfile']);
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"fullsize-calendar.js");
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/',"calendar-setup.js");
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/cal/lang/',$jrConfig['jscalendarLangfile']);
-				} */
-				
+
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$jrConfig['jquery_ui_theme'].'/','jquery-ui-1.8rc3.custom.css');
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
-			
-			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.3.2.min.js");
+
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-ui-1.8rc3.custom.min.js");
+			
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
+
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"interface.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
@@ -283,7 +271,6 @@ function init_javascript()
 			if ($thisJRUser->userIsManager)
 				{
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"MiniColorPicker.js");
-
 				}
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"excanvas.compiled.js");
 			}
@@ -1880,27 +1867,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 			numberOfMonths: 1,
 			showOtherMonths: true, 
 			selectOtherMonths: true,
-			showButtonPanel: true,
-			prevText: "'._JOMRES_CALENDAR_PREV.'",
-			nextText: "'._JOMRES_CALENDAR_NEXT.'",
-			currentText: "'._JOMRES_CALENDAR_TODAY.'",
-			'.$alt_field_string.'
-			isRTL: '._JOMRES_CALENDAR_RTL.',
-			dayNamesMin: 
-				[
-				"'._JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_MONDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_TUESDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_WEDNESDAY_ABBR.'",
-				"'._JOMRES_COM_MR_WEEKDAYS_THURSDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR.'","'._JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR.'"
-				],
-			monthNames: 
-				[
-				"'._JRPORTAL_MONTHS_LONG_0.'","'._JRPORTAL_MONTHS_LONG_1.'","'._JRPORTAL_MONTHS_LONG_2.'","'._JRPORTAL_MONTHS_LONG_3.'","'._JRPORTAL_MONTHS_LONG_4.'","'._JRPORTAL_MONTHS_LONG_5.'",
-				"'._JRPORTAL_MONTHS_LONG_6.'","'._JRPORTAL_MONTHS_LONG_7.'","'._JRPORTAL_MONTHS_LONG_8.'","'._JRPORTAL_MONTHS_LONG_9.'","'._JRPORTAL_MONTHS_LONG_10.'","'._JRPORTAL_MONTHS_LONG_11.'"
-				],
-			monthNamesShort: 
-				[
-				"'._JRPORTAL_MONTHS_LONG_0.'","'._JRPORTAL_MONTHS_LONG_1.'","'._JRPORTAL_MONTHS_LONG_2.'","'._JRPORTAL_MONTHS_LONG_3.'","'._JRPORTAL_MONTHS_LONG_4.'","'._JRPORTAL_MONTHS_LONG_5.'",
-				"'._JRPORTAL_MONTHS_LONG_6.'","'._JRPORTAL_MONTHS_LONG_7.'","'._JRPORTAL_MONTHS_LONG_8.'","'._JRPORTAL_MONTHS_LONG_9.'","'._JRPORTAL_MONTHS_LONG_10.'","'._JRPORTAL_MONTHS_LONG_11.'"
-				]
+			showButtonPanel: true
 			} );
 		
 	});
