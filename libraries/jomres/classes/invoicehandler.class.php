@@ -92,8 +92,9 @@ class invoicehandler extends jrportal_invoice
 		
 	function update_invoice($invoice_data, $line_items=array())
 		{
-		$this->init_total = 0.00;
-		$this->recur_total = 0.00;
+		$query = "DELETE FROM #__jomresportal_lineitems WHERE inv_id =".$this->id;
+		$result = doInsertSql($query."");
+
 		
 		if (!isset($invoice_data['id']) )
 			{
@@ -104,6 +105,9 @@ class invoicehandler extends jrportal_invoice
 			$this->id=$invoice_data['id'];
 		$this->getInvoice();
 		
+		$this->init_total = 0.00;
+		$this->recur_total = 0.00;
+		
 		if (!isset($invoice_data['status']) )
 			$this->status=$default_status;
 		else
@@ -113,10 +117,11 @@ class invoicehandler extends jrportal_invoice
 			$this->due_date=  date( 'Y-m-d H:i:s' );
 		else
 			$this->due_date=$invoice_data['due_date'];
-			
+		var_dump($line_items);
 		foreach ($line_items as $item)
 			{
 			$this->add_line_item($item);
+			echo $this->init_total."<br>";
 			}
 		$this->commitUpdateInvoice();
 		}
