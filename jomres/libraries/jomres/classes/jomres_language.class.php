@@ -78,6 +78,7 @@ class jomres_language
 			}
 
 		$langfile_crossref = $this->define_langfile_to_languages_array();
+		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
 		if ( !array_key_exists($jomresConfig_lang,$langfile_crossref) )
 			$jomresConfig_lang				= $this->get_shortcode_to_longcode($jomresConfig_lang);
 
@@ -242,6 +243,37 @@ class jomres_language
 		if (array_key_exists($lang,$langs) )
 			return $langs[$lang];
 		return "en-GB";
+		}
+		
+	function define_langfile_to_datepicker_files_array()
+		{
+		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
+		$langs=array();
+		$langs['en-GB']="en-GB";
+		$langs['cs-CZ']="cs";
+		$langs['da-DK']="da";
+		$langs['de-DE']="de";
+		$langs['el-GR']="el";
+		$langs['en-CA']="en-GB";
+		$langs['en-US']="en-GB";
+		$langs['es-ES']="es";
+		$langs['fr-FR']="fr";
+		$langs['he-IL']="he";
+		$langs['hr-HR']="hr";
+		$langs['hu-HU']="hu";
+		$langs['it-IT']="it";
+		$langs['nb-NO']="no";
+		$langs['nl-NL']="nl";
+		$langs['pl-PL']="pl";
+		$langs['pt-BR']="pt-BR";
+		$langs['pt-PT']="pt-BR";
+		$langs['ro-RO']="ro";
+		$langs['ru-RU']="ru";
+		$langs['sk-SK']="sk";
+		$langs['sl-SI']="sl";
+		$langs['sr-YU']="sr";
+		$langs['zh-CN']="";
+		return $langs;
 		}
 	}
 
