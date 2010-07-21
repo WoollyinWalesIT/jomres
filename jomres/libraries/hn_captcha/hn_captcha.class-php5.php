@@ -698,7 +698,7 @@ class hn_captcha
             if(!$only_body)
             {
                 $s .= '<div id="captcha">';
-                $s .= '<form class="captcha" name="captcha1" action="'.$_SERVER['PHP_SELF'].$this->QUERY_STRING.'" method="POST">'."\n";
+                $s .= '<form class="captcha" name="captcha1" action="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=contactowner" method="POST">'."\n";
             }
             $s .= '<input type="hidden" name="hncaptcha" value="'.$try.'">'."\n";
             $s .= '<p class="captcha_notvalid">'.$this->notvalid_msg().'</p>';
