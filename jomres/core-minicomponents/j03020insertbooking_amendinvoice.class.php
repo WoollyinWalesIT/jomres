@@ -38,6 +38,7 @@ class j03020insertbooking_amendinvoice {
 		$this->results=array();
 		$contract_uid=$componentArgs['contract_uid'];
 		$userIsManager=checkUserIsManager();
+		$mrConfig=getPropertySpecificSettings();
 		
 		$line_items= array();
 		
@@ -61,20 +62,7 @@ class j03020insertbooking_amendinvoice {
 				if ( $new_contract_total != $old_contract_total)
 					{
 					$line_item_data = array (
-						'tax_code_id'=>0,
-						'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL,false,false),
-						'description'=>'',
-						'init_price'=>"-".number_format($old_contract_total,2, '.', ''),
-						'init_qty'=>"1",
-						'init_discount'=>"0",
-						'recur_price'=>"0.00",
-						'recur_qty'=>"0",
-						'recur_discount'=>"0.00"
-						);
-					$line_items[]=$line_item_data;
-					
-					$line_item_data = array (
-						'tax_code_id'=>0,
+						'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
 						'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL,false,false),
 						'description'=>'',
 						'init_price'=>number_format($new_contract_total,2, '.', ''),
@@ -85,17 +73,19 @@ class j03020insertbooking_amendinvoice {
 						'recur_discount'=>"0.00"
 						);
 					$line_items[]=$line_item_data;
-					}
-				jr_import('invoicehandler');
-				$invoice_handler = new invoicehandler();
-				$invoice_handler->id=$invoice_id;
-				$invoice_handler->getInvoice();
-				
-				$invoice_data= array();
-				$invoice_data['id']			= $invoice_id;
 
-				$invoice_handler->update_invoice($invoice_data,$line_items);
-				$this->results=array("invoice_id"=>$invoice_handler->id);
+					jr_import('invoicehandler');
+					$invoice_handler = new invoicehandler();
+					$invoice_handler->id=$invoice_id;
+					$invoice_handler->getInvoice();
+					
+					$invoice_data= array();
+					$invoice_data['id']			= $invoice_id;
+
+					$invoice_handler->update_invoice($invoice_data,$line_items);
+					$this->results=array("invoice_id"=>$invoice_handler->id);
+					}
+
 				}
 			}
 		}
