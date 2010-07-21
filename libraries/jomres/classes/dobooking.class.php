@@ -1759,53 +1759,56 @@ class dobooking
 			$okToAddDate=TRUE;
 			// If fixed period bookings are used, we need to ensure that all dates within a period are free
 			if ($this->cfg_fixedPeriodBookings=="1" && $this->cfg_singleRoomProperty=="1")
-			{
-			$stayDays=$this->cfg_fixedPeriodBookingsNumberOfDays;
-			$dateRangeArray=array();
-			$arrivalDate=$thisDate;
-			$date_elements	= explode("/",$arrivalDate);
-			$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-			$secondsInDay = 86400;
-			//$currentUnixDay=$unixCurrentDate;
-			$currentDay=$arrivalDate;
-			for ($i=0, $n=$stayDays; $i < $n; $i++)
 				{
-				$currentDay=date("Y/m/d",$unixCurrentDate);
-				$dateRangeArray[]=$currentDay;
-				$unixCurrentDate=$unixCurrentDate+$secondsInDay;
-				}
-
-			foreach ($dateRangeArray as $eachDate)
-				{
-				if (!$amend_contract)
-				{
-				$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date = '$eachDate' AND property_uid = '$this->property_uid'";
-				$datelist=doSelectSql($query);
-				if (count($datelist)>0)
+				$stayDays=$this->cfg_fixedPeriodBookingsNumberOfDays;
+				$dateRangeArray=array();
+				$arrivalDate=$thisDate;
+				$date_elements	= explode("/",$arrivalDate);
+				$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+				$secondsInDay = 86400;
+				//$currentUnixDay=$unixCurrentDate;
+				$currentDay=$arrivalDate;
+				for ($i=0, $n=$stayDays; $i < $n; $i++)
 					{
-					$okToAddDate=FALSE;
+					$currentDay=date("Y/m/d",$unixCurrentDate);
+					$dateRangeArray[]=$currentDay;
+					$unixCurrentDate=$unixCurrentDate+$secondsInDay;
 					}
-				}
-				else
+
+				foreach ($dateRangeArray as $eachDate)
 					{
-					if (isset($this->allBookings[$eachDate][$this->allPropertyRoomUids[0]]))
+					if (!$amend_contract)
+					{
+					$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date = '$eachDate' AND property_uid = '$this->property_uid'";
+					$datelist=doSelectSql($query);
+					if (count($datelist)>0)
 						{
 						$okToAddDate=FALSE;
 						}
 					}
+					else
+						{
+						if (isset($this->allBookings[$eachDate][$this->allPropertyRoomUids[0]]))
+							{
+							$okToAddDate=FALSE;
+							}
+						}
+					}
 				}
-			}
 			if ($okToAddDate)
-			{
-			$counter++;
-			// if ($counter==1)
-				// {
-				// $this->setArrivalDate($thisDate);
-				// }
-			if ($thisDate == $selectedDate)
-				$selected = "selected";
-			$fixedPeriodDropdown.= "<option value=\"".$this->JSCalmakeInputDates($thisDate)."\" ".$selected." >".$this->JSCalmakeInputDates($thisDate)."</option>";
-			}
+				{
+				$counter++;
+				if ($counter==1)
+					{
+					$this->setArrivalDate($thisDate);
+					}
+				if ($thisDate == $selectedDate)
+					{
+					$this->setArrivalDate($thisDate);
+					$selected = "selected";
+					}
+				$fixedPeriodDropdown.= "<option value=\"".$this->JSCalmakeInputDates($thisDate)."\" ".$selected." >".$this->JSCalmakeInputDates($thisDate)."</option>";
+				}
 			}
 		$fixedPeriodDropdown.="</select>";
 		return $fixedPeriodDropdown;
