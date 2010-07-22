@@ -66,6 +66,8 @@ if (!defined('JOMRESPATH_BASE'))
 $jomresConfig_absolute_path = substr(JOMRESPATH_BASE, 0, strlen(JOMRESPATH_BASE)-7);
 define('JOMRESCONFIG_ABSOLUTE_PATH',$jomresConfig_absolute_path);
 
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
+require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'jr_gettext.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
 $showtime = jomres_getSingleton('showtime');
 $performance_monitor =jomres_getSingleton('jomres_performance_monitor');
@@ -77,8 +79,7 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."site_config.php");
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."detect_cms.php");
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."init_config_vars.php");
 
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'functions.php');
-require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'jr_gettext.php');
+
 
 define('JOMRES_SYSTEMLOG_PATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.'temp'.JRDS);
 
