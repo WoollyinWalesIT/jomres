@@ -18,6 +18,13 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
 	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
 	}
 
+
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php') )
+	{
+	define("_JOMRES_DETECTED_CMS","wordpress3");
+	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+	}
+	
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'moduleinterface.php') )
 	{
 	define("_JOMRES_DETECTED_CMS","cmsms152");

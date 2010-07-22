@@ -34,6 +34,10 @@ class minicomponent_registry
 			$this->error_detected=false;
 			$this->unWantedFolderContents=array('.','..','cvs','.svn','registry.php');
 			$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS;
+			if (!is_dir($this->remote_plugin_directory))
+				{
+				mkdir($this->remote_plugin_directory);
+				}
 			$this->registry_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php";
 			$this->now = time();
 			$this->force_reload_allowed=$force_reload_allowed;
