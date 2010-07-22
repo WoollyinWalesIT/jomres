@@ -1867,8 +1867,18 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 			numberOfMonths: 1,
 			showOtherMonths: true, 
 			selectOtherMonths: true,
-			showButtonPanel: true
-			} );
+			showButtonPanel: true';
+		if ($fieldName=="arrivalDate")
+			{
+			$output .=',onSelect: function(selectedDate) {
+				var nextDayDate = jQuery("#'.$uniqueID.'").datepicker(\'getDate\', \'+1d\');  
+				nextDayDate.setDate(nextDayDate.getDate() + 1);  
+				jQuery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'setDate\', nextDayDate);  
+				//alert(date);
+				}';
+			}
+
+	$output .='} );
 		
 	});
 	</script>
