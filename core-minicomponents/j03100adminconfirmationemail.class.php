@@ -140,7 +140,7 @@ class j03100adminconfirmationemail {
 		$output['TOTAL']=output_price($contract_total);
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
-		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE)."</a>";
+		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL_NOSEF."&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
 
 		$guestDetails = getGuestDetailsForContract($componentArgs['contract_uid']);
