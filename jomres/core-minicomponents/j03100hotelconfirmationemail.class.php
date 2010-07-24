@@ -146,7 +146,7 @@ class j03100hotelconfirmationemail {
 		$output['TOTAL']=output_price($contract_total);
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
-		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
+		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL_NOSEF."&task=editBooking&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
 
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
