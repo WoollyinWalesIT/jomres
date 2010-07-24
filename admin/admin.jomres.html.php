@@ -36,7 +36,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown)
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -513,6 +513,17 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_SHOW.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['show_search_order'].'</td>
+			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_DEFAULT.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$sortArrayDropdown.'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC.'</td>
+		</tr>
+		
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_PROPERTYLISTDESC.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_propertyListDescriptionLimit" value="'.$jrConfig['propertyListDescriptionLimit'].'" /></td>
