@@ -2290,9 +2290,11 @@ class dobooking
 			showButtonPanel: true,
 			onSelect: function() {
 					'.$onchange.'
-				},
-			beforeShowDay: isAvailable
-			} );
+				}';
+			if ($fieldName=="arrivalDate")
+				$output .=',beforeShowDay: isAvailable';
+			
+			$output .='} );
 
 	});
 	</script>
