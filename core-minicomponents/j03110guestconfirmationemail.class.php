@@ -136,7 +136,8 @@ class j03110guestconfirmationemail {
 
 					$query			=	"SELECT price, name FROM #__jomres_extras WHERE uid = '$extra'";
 					$thisPrice 		=	doSelectSql($query,2);
-					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra];
+					
+					$extra_parts['NAME'] 		= 	jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($thisPrice['name'])), ENT_QUOTES) )." X ".$extrasquantities[$extra];
 					$booking_extras[]			=	$extra_parts;
 					}
 				}
