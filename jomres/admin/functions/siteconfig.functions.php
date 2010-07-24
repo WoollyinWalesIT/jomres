@@ -45,20 +45,19 @@ function showSiteConfig(  )
 
 	$langDropdown=getJomresLanguagesDropdown();
 
-	/*
-	$slideshowLocation = array();
-	$slideshowLocation[] = jomresHTML::makeOption( '1', _JOMRES_SLIDESHOW_LOCATION_TOP );
-	$slideshowLocation[] = jomresHTML::makeOption( '2', _JOMRES_SLIDESHOW_LOCATION_BOTTOM );
-	$slideshowLocation[] = jomresHTML::makeOption( '3', _JOMRES_SLIDESHOW_LOCATION_BOTH );
-	$slideshowLocationDropdown = jomresHTML::selectList($slideshowLocation, 'cfg_slideshowLocation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['slideshowLocation']);
-	*/
-	
 	$editoryesno = array();
 	$editoryesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
 	$editoryesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
-	//$editoryesno[] = jomresHTML::makeOption( '2', "Flash editor (all fields)" );
-	//$editoryesno[] = jomresHTML::makeOption( '3', "Flash editor (property description only, faster)" );
-
+	
+	$sortArray = array();  // The search order dropdown list, this configure's the default.
+	$sortArray[]=jomresHTML::makeOption("1", jr_gettext('_JOMRES_SORTORDER_DEFAULT',_JOMRES_SORTORDER_DEFAULT,false,false));
+	$sortArray[]=jomresHTML::makeOption("2", jr_gettext('_JOMRES_SORTORDER_PROPERTYNAME',_JOMRES_SORTORDER_PROPERTYNAME,false,false));
+	$sortArray[]=jomresHTML::makeOption("3", jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION',_JOMRES_SORTORDER_PROPERTYREGION,false,false));
+	$sortArray[]=jomresHTML::makeOption("4", jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN',_JOMRES_SORTORDER_PROPERTYTOWN,false,false));
+	$sortArray[]=jomresHTML::makeOption("5", jr_gettext('_JOMRES_SORTORDER_STARS',_JOMRES_SORTORDER_STARS,false,false));
+	$sortArrayDropdown = jomresHTML::selectList( $sortArray, 'cfg_search_order_default', 'id="sortby" size="1"', 'value', 'text', $jrConfig['search_order_default'] );
+	
+	
 	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 	$licensekey=doSelectSql($query,1);
 
@@ -188,10 +187,11 @@ function showSiteConfig(  )
 	$lists['use_reviews']							= jomresHTML::selectList( $yesno, 'cfg_use_reviews', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_reviews'] );
 	$lists['autopublish_reviews']					= jomresHTML::selectList( $yesno, 'cfg_autopublish_reviews', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['autopublish_reviews'] );
 	$lists['reviews_test_mode']						= jomresHTML::selectList( $yesno, 'cfg_reviews_test_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['reviews_test_mode'] );
+	$lists['show_search_order']						= jomresHTML::selectList( $yesno, 'cfg_show_search_order', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['show_search_order'] );
 	
 
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown);
 	}
 
 /**

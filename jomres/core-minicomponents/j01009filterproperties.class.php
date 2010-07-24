@@ -30,12 +30,15 @@ class j01009filterproperties
 			{
 			$this->template_touchable=true; return;
 			}
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+
 		$data_only=false;
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
 		$propertys_uids=$componentArgs['propertys_uids'];
 		// get sroting value
-		$sortid = intval(jomresGetParam( $_COOKIE, 'jomsearch_sortby', 1));
+		$sortid = intval(jomresGetParam( $_COOKIE, 'jomsearch_sortby', $jrConfig['search_order_default']));
 		switch ($sortid)
 			{
 			#########################################################################################
@@ -93,7 +96,7 @@ class j01009filterproperties
 		$sortorder=array();
 		$sortorder[]=$order;
 
-		if (!$data_only)
+		if (!$data_only && $jrConfig['show_search_order'] =="1")
 			{
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
