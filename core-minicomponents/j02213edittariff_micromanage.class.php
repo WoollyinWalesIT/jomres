@@ -210,7 +210,7 @@ class j02213edittariff_micromanage {
 				$selected="";
 				$room_classes_uid=$roomClass->room_classes_uid;
 				$room_class_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
-				if ($room_classes_uid==$roomclass_uid)
+				if ($room_classes_uid==$roomclassid)
 					$selected="selected";
 				$dropDownList .= "<option ".$selected." value=\"".$room_classes_uid."\">".$room_class_abbv."</option>";
 				}
