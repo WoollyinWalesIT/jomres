@@ -48,6 +48,9 @@ $typeid= jomresGetParam( $_GET, 'typeid', '','string' );
 $typeid= getEscaped( $typeid );
 $lastfield= jomresGetParam( $_GET, 'lastfield', '','string' );
 $lastfield= getEscaped( $lastfield );
+$firstrun= jomresGetParam( $_GET, 'firstrun', '','string' );
+$firstrun= getEscaped( $firstrun );
+
 $retText="";
 
 $doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email");
@@ -261,7 +264,8 @@ switch ($field)
 			{
 			// We now need to remove all selected rooms from the $bkg->requestedRoom that are using this tariff id so that we can repopulat it with updateSelectedRoom
 			$selected_rooms=explode("^",$room);
-			$clearing_tariff_id = $selected_rooms[1];
+			$clearing_tariff_id = (int)$selected_rooms[1];
+			$room_id = (int)$selected_rooms[0];
 			if (count($bkg->requestedRoom)>0)
 				{
 				foreach ($bkg->requestedRoom as $index=>$rm)
@@ -275,6 +279,8 @@ switch ($field)
 						}
 					}
 				}
+			if ($room_id == 0)
+				$bkg->checkAllGuestsAllocatedToRooms();
 			}
 		foreach ($room_selections as $room)
 			{
@@ -403,7 +409,8 @@ if ($field != "heartbeat" && $field != "show_log")
 		$messagesClass=$errorClass;
 		echo $messagesClass;
 		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage();';
-		echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
+		if ($firstrun != "1")
+			echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 		echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 		}
 	if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )
@@ -512,8 +519,8 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 		$output="populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
 		$output.="populateDiv('availRooms','".$available_rooms_text."');";
 
-		echo $output;
-		
+		if ($bkg->cfg_booking_form_rooms_list_style == "1")
+			echo $output;
 		}
 	else
 		{
