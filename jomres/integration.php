@@ -969,7 +969,7 @@ class jomresHTML
 			$txt = $arr[$i]->$text;
 			$selected ='';
 			if ($k == $default)
-				$selected .=' selected="selected"';
+				$selected .=' selected="selected" ';
 			$output .= '<option value="'.$k.'" '.$selected.'>'.$txt.'</option>';
 		}
 		$output .= "</select></span>";

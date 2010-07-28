@@ -170,5 +170,6 @@ $mrConfig['property_currencycode'] ="GBP"; // New for v4.5
 
 
 $mrConfig['prices_inclusive'] ="0"; // New for v4.5.2
+$mrConfig['booking_form_rooms_list_style'] ="2";
 
 ?>

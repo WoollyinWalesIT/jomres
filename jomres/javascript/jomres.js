@@ -253,6 +253,18 @@ function getResponse_rooms(field,value) {
 			}
 	);
 }
+
+function getResponse_multiroom_select(field,value) {
+	HideRoomsList();
+	blockInterface(field,200);
+	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+		function(data){
+			showRoomsList(data); 
+			show_log(field);
+			}
+	);
+}
+
 function getResponse_extras(field,value,theId) {
 	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
@@ -372,6 +384,7 @@ function blockInterface(field,fadetime){
 		message = blockui_recheckingroomavailability;
 	if (field == "smoking")
 		message = blockui_recheckingroomavailability;
+
 	if (show_extras == true){
 		if (field == "extras" )
 			message = blockui_changingextra;
@@ -380,7 +393,8 @@ function blockInterface(field,fadetime){
 		}
 	if (field == "requestedRoom")
 		message = blockui_changingroomselection;
-		
+	if (field == "multiroom_select")
+		message = blockui_changingroomselection;
 	if (field == "guestdetails")
 		message = blockui_updatingaddress;
 	if (field == "firstname")
