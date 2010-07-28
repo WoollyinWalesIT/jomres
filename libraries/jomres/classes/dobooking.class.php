@@ -331,6 +331,10 @@ class dobooking
 		$this->cfg_bookingform_requiredfields_tel			= $mrConfig['bookingform_requiredfields_tel'];
 		$this->cfg_bookingform_requiredfields_mobile		= $mrConfig['bookingform_requiredfields_mobile'];
 		$this->cfg_bookingform_requiredfields_email			= $mrConfig['bookingform_requiredfields_email'];
+		
+		if (!isset($mrConfig['booking_form_rooms_list_style']))
+			$mrConfig['booking_form_rooms_list_style']		= "1";
+		$this->cfg_booking_form_rooms_list_style			= $mrConfig['booking_form_rooms_list_style'];
 
 		if (is_null($this->smoking) || strlen($this->smoking) == 0)
 			$this->smoking					= $this->cfg_defaultSmokingOption;
@@ -777,6 +781,36 @@ class dobooking
 			}
 		}
 
+	function getGrowlMessages()
+		{
+		$messages = ';';
+		if (isset($this->growlmessages['messages']) && count($this->growlmessages['messages'])>0)
+			{
+			foreach ($this->growlmessages['messages'] as $message)
+				{
+				if ($message != "")
+					$messages .= 'jQuery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
+				}
+			}
+		if (isset($this->growlmessages['guest_feedback']) && count($this->growlmessages['guest_feedback'])>0)
+			{
+			$messages .= 'jQuery.jGrowl(\''.$this->growlmessages['guest_feedback'].'\', { life: 10000 });';
+			}
+		$messages = substr($messages,0,-1);
+		return $messages;
+		}
+		
+	function setPopupMessage($message)
+		{
+		$msg = $this->sanitiseOutput($message);
+		$this->growlmessages['messages'][]=$msg;
+		}
+		
+	function setGuestPopupMessage($message)
+		{
+		$msg = $this->sanitiseOutput($message);
+		$this->growlmessages['guest_feedback']=$msg;
+		}
 	/**
 	#
 	 * Returns true if this property is an SRP
@@ -2201,14 +2235,14 @@ class dobooking
 	 */
 	function dateDiff($first_date,$second_date)
 		{
-		$this->setErrorLog("dateDiff:: First date ".$first_date." Second date ".$second_date);
+		//$this->setErrorLog("dateDiff:: First date ".$first_date." Second date ".$second_date);
 		$first_date_ex = explode("/",$first_date);
 		$second_date_ex = explode("/",$second_date);
 		$fd=gregoriantojd($first_date_ex[1], $first_date_ex[2], $first_date_ex[0]);
 		$sd=gregoriantojd($second_date_ex[1], $second_date_ex[2], $second_date_ex[0]);
 
 		$days=$sd-$fd;
-		$this->setErrorLog("dateDiff::Date difference: ".$days);
+		//$this->setErrorLog("dateDiff::Date difference: ".$days);
 		return $days;
 		}
 
@@ -3603,11 +3637,11 @@ class dobooking
 		//$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyTariffs ".serialize($this->allPropertyTariffs));
 		foreach ($this->allPropertyTariffs as $t)
 			{
-			$this->setErrorLog("getTariffsForRoomUidByClass::t['roomclass_uid'] ".$t['roomclass_uid']);
-			$this->setErrorLog("getTariffsForRoomUidByClass::roomType ".$roomType);
+			//$this->setErrorLog("getTariffsForRoomUidByClass::t['roomclass_uid'] ".$t['roomclass_uid']);
+			//$this->setErrorLog("getTariffsForRoomUidByClass::roomType ".$roomType);
 			if ($t['roomclass_uid']==$roomType)
 				{
-				$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyRooms ".serialize($this->allPropertyRooms[$room_uid]));
+				//$this->setErrorLog("getTariffsForRoomUidByClass::allPropertyRooms ".serialize($this->allPropertyRooms[$room_uid]));
 				$result[]=$this->convertArrayToObject($t);
 				}
 			}
@@ -3646,7 +3680,7 @@ class dobooking
 	function getTariffsForRoomUids($freeRoomsArray)
 		{
 		$roomAndTariffArray=array();
-		$this->setErrorLog("getTariffsForRoomUids::Number of elements in the freeRoomsArray at tariff checking: ".count($freeRoomsArray)."&nbsp;&nbsp;If this is empty then there are no free rooms on this date" );
+		//$this->setErrorLog("getTariffsForRoomUids::Number of elements in the freeRoomsArray at tariff checking: ".count($freeRoomsArray)."&nbsp;&nbsp;If this is empty then there are no free rooms on this date" );
 		//$this->setErrorLog("getTariffsForRoomUids::The variable freeRoomsArray is type ".gettype($freeRoomsArray) );
 		//$this->setErrorLog("getTariffsForRoomUids::It contains this many elements:  ".count($freeRoomsArray) );
 		$numberOfRoomsAlreadySelected = count($this->requestedRoom);
@@ -3659,14 +3693,14 @@ class dobooking
 			foreach ($freeRoomsArray as $room_uid)
 				{
 				$rateDeets=$this->getTariffsForRoomUidByClass($room_uid);
-				$this->setErrorLog("getTariffsForRoomUids::room uid:  ".serialize($room_uid) );
-				$this->setErrorLog("getTariffsForRoomUids::rate deets:  ".serialize($rateDeets) );
+				//$this->setErrorLog("getTariffsForRoomUids::room uid:  ".serialize($room_uid) );
+				//$this->setErrorLog("getTariffsForRoomUids::rate deets:  ".serialize($rateDeets) );
 				foreach ($rateDeets as $tariff)
 					{
 					if ($this->jrConfig['dynamicMinIntervalRecalculation']=="1")
 						$collectedTariffs[]=$tariff;
 					$rates_uid = $tariff->rates_uid;
-					$this->setErrorLog("getTariffsForRoomUids::Checking current tariff uid:  ".$rates_uid);
+					//$this->setErrorLog("getTariffsForRoomUids::Checking current tariff uid:  ".$rates_uid);
 					$rate_title = stripslashes($tariff->rate_title);
 					//$rate_description = stripslashes($tariff->rate_description);
 					//$roomrateperday = stripslashes($tariff->roomrateperday);
@@ -3694,7 +3728,7 @@ class dobooking
 						$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
 					//$minrooms_alreadyselected = $tariff->minrooms_alreadyselected;
 					//$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
-					$this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
+					//$this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
 
 					$date_elements  = explode("/",$this->arrivalDate);
 					$unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
@@ -3711,26 +3745,26 @@ class dobooking
 					$roomsAlreadySelectedTests=FALSE;
 
 					//$weekendOnlyCheck=false;
-					$this->setErrorLog(" " );
-					$this->setErrorLog("getTariffsForRoomUids::Tariff title : ".$rate_title);
-					$this->setErrorLog("getTariffsForRoomUids::Number of rooms already selected:".$numberOfRoomsAlreadySelected." Min rooms setting ".$minrooms_alreadyselected." max rooms setting ".$maxrooms_alreadyselected );
+					//$this->setErrorLog(" " );
+					//$this->setErrorLog("getTariffsForRoomUids::Tariff title : ".$rate_title);
+					//$this->setErrorLog("getTariffsForRoomUids::Number of rooms already selected:".$numberOfRoomsAlreadySelected." Min rooms setting ".$minrooms_alreadyselected." max rooms setting ".$maxrooms_alreadyselected );
 					if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
 						{
-						$this->setErrorLog("getTariffsForRoomUids:: Passed test 1" );
+						//$this->setErrorLog("getTariffsForRoomUids:: Passed test 1" );
 						$roomsAlreadySelectedTests=TRUE;
 						}
 					else
 						{
 						if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
 							{
-							$this->setErrorLog("getTariffsForRoomUids:: Passed test 2" );
+							//$this->setErrorLog("getTariffsForRoomUids:: Passed test 2" );
 							$roomsAlreadySelectedTests=TRUE;
 							}
 						}
 
-					$this->setErrorLog(" " );
-					$this->setErrorLog("getTariffsForRoomUids::Unix arrival date".$unixArrivalDate." Unix valid from".$unixValidFromDate." Unix valid to".$unixValidToDate."");
-					$this->setErrorLog("getTariffsForRoomUids::Arrival date ".date("Y/m/d",$unixArrivalDate )."  -- Valid from".date("Y/m/d",$unixValidFromDate )." Valid to".date("Y/m/d",$unixValidToDate )."");
+					//$this->setErrorLog(" " );
+					//$this->setErrorLog("getTariffsForRoomUids::Unix arrival date".$unixArrivalDate." Unix valid from".$unixValidFromDate." Unix valid to".$unixValidToDate."");
+					//$this->setErrorLog("getTariffsForRoomUids::Arrival date ".date("Y/m/d",$unixArrivalDate )."  -- Valid from".date("Y/m/d",$unixValidFromDate )." Valid to".date("Y/m/d",$unixValidToDate )."");
 
 					if ($unixArrivalDate >= $unixValidFromDate && $unixArrivalDate <= $unixValidToDate )
 						$datesValid=TRUE;
@@ -3749,7 +3783,7 @@ class dobooking
 					$dowCheck =TRUE;
 					if ($allow_we == "0" && $dateRangeIncludesWeekend)
 						{
-						$this->setErrorLog("getTariffsForRoomUids::Allow WE =1 and dateRangeIncludesWeekend");
+						//$this->setErrorLog("getTariffsForRoomUids::Allow WE =1 and dateRangeIncludesWeekend");
 				 		$dowCheck =FALSE;
 						}
 
@@ -3764,23 +3798,23 @@ class dobooking
 							}
 						}
 
-					$this->setErrorLog("getTariffsForRoomUids::Day of week check, tariff dow = ".$tariff_dayofweek );
+					//$this->setErrorLog("getTariffsForRoomUids::Day of week check, tariff dow = ".$tariff_dayofweek );
 					//$this->setErrorLog("getTariffsForRoomUids::Day of week check, arrival date dow =".$this->getDayOfWeek($unixArrivalDate));
 					if ($tariff_dayofweek < 7 )
 						{
 						if ( $this->getDayOfWeek($this->arrivalDate) == $tariff_dayofweek)
 							{
 							$dowCheck =TRUE;
-							$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> TRUE </b>");
+							//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> TRUE </b>");
 							}
 						else
 							{
 							$dowCheck =FALSE;
-							$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> FALSE </b>");
+							//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> FALSE </b>");
 							}
 						}
 
-					if ($roomsAlreadySelectedTests)
+/* 					if ($roomsAlreadySelectedTests)
 						$this->setErrorLog("getTariffsForRoomUids::roomsAlreadySelectedTests = true");
 					else
 						$this->setErrorLog("getTariffsForRoomUids::roomsAlreadySelectedTests <b>not</b> passed");
@@ -3802,16 +3836,16 @@ class dobooking
 						$this->setErrorLog("getTariffsForRoomUids::Day of week valid");
 					else
 						$this->setErrorLog("getTariffsForRoomUids::Day of week <b>not</b> valid");
-
+ */
 
 					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
 						{
-						$this->setErrorLog("<b>getTariffsForRoomUids::Tariff is valid</b>");
+						//$this->setErrorLog("<b>getTariffsForRoomUids::Tariff is valid</b>");
 						$roomAndTariffArray[]=array($room_uid,$rates_uid);
 						}
-					else
-						$this->setErrorLog("getTariffsForRoomUids::Tariff is NOT valid");
-					$this->setErrorLog("--------------------------------------------");
+					//else
+						//$this->setErrorLog("getTariffsForRoomUids::Tariff is NOT valid");
+					//$this->setErrorLog("--------------------------------------------");
 					}
 				}
 
@@ -3819,9 +3853,9 @@ class dobooking
 		else
 			$this->setErrorLog("getTariffsForRoomUids::count(freeRoomsArray) = 0");
 
-		if (empty($roomAndTariffArray) )
+/* 		if (empty($roomAndTariffArray) )
 			$this->setErrorLog("getTariffsForRoomUids::No valid tariffs found for rooms otherwise found to be free");
-
+ */
 		//$this->setErrorLog("Contents of the roomAndTariffArray AFTER tariff checking: ".serialize($roomAndTariffArray));
 		if ($this->jrConfig['dynamicMinIntervalRecalculation']=="1")
 			$this->setMinInterval($collectedTariffs);
@@ -3973,7 +4007,7 @@ class dobooking
 	function generateRoomsList($roomAndTariffArray)
 		{
 		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table class="bformleftcol" valign="top" width="100%">';
-		if ((int)$this->cfg_returnRoomsLimit > 0 )
+		if ((int)$this->cfg_returnRoomsLimit > 0 && $this->cfg_booking_form_rooms_list_style == "1")
 			{
 			$this->setErrorLog("generateRoomsList:: Limiting rooms list ");
 			$roomAndTariffArray=$this->limitRoomsList($roomAndTariffArray);
@@ -4010,9 +4044,10 @@ class dobooking
 				for ($i=0;$i<count($roomAndTariffArray);$i++)
 					{
 					$roomuid=$roomAndTariffArray[$i][0];
-					$this->setErrorLog("generateRoomsList::Room uid".$roomuid);
+					//$this->setErrorLog("generateRoomsList::Room uid".$roomuid);
 					$tariffuid=$roomAndTariffArray[$i][1];
 					$result=$this->makeRoomTariffDetails($roomuid,$tariffuid);
+												
 					if ($this->cfg_singleRoomProperty == "0" )
 						{
 						$roomDeets=array();
@@ -4020,10 +4055,17 @@ class dobooking
 						$roomTariffOutputText=$result['roomandtariffinfo'];
 						$roomUidArray[]=$roomuid;
 						$tariffUidArray[]=$tariffuid;
-						$roomDeets[] = $this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
-						foreach ($roomDeets as $rm)
+						if ($this->cfg_booking_form_rooms_list_style == "1")
 							{
-							$return_output .= $rm;
+							$roomDeets[] = $this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
+							foreach ($roomDeets as $rm)
+								{
+								$return_output .= $rm;
+								}
+							}
+						if ($this->cfg_booking_form_rooms_list_style == "2")
+							{
+							$this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
 							}
 						}
 					else
@@ -4055,6 +4097,94 @@ class dobooking
 		}
 
 
+	function generate_room_type_dropdowns()
+		{
+		
+		$dropdown_output = array();
+		// We need to strip out rooms from the available arrays if they've already 
+		// been selected in conjunction with another tariff
+		if (count($this->requestedRoom)>0)
+			{
+			// Parse each of the already selected rooms
+			foreach ($this->requestedRoom as $rm)
+				{
+				$room=explode("^",$rm);
+				$already_selected_tariff_id=$room[1];
+				$already_selected_room_id=$room[0];
+				// For each of the collected tariffs, let's go thru every roomTariffOutputId 
+				foreach ($this->room_type_style_output as $tariff_id=>$tariff_and_roomtypes)
+					{
+					// If we're not in the collected tariffs set that are the part of the already selected set
+					if ($tariff_id != $already_selected_tariff_id)
+						{
+						$current_room_count = count($tariff_and_roomtypes['roomTariffOutputId']);
+						// Loop thru tariff_and_roomtypes['roomTariffOutputId'] and strip out all rooms that have the same
+						// id as already_selected_room_id
+						foreach ($tariff_and_roomtypes['roomTariffOutputId'] as $key=>$roomTariffOutputId) 
+							{
+							$collected_room_data = explode("^",$roomTariffOutputId);
+							$this_room_id = $collected_room_data[0];
+							if ($this_room_id == $already_selected_room_id)
+								{
+								unset($this->room_type_style_output[$tariff_id]['roomTariffOutputId'][$key]);
+								}
+							}
+						}
+					}
+				}
+			}
+
+		//Fix any broken indecies
+		foreach ($this->room_type_style_output as $tariff_id=>$tariff_and_roomtypes)
+			{
+			$a_new_array=array();
+			foreach ($this->room_type_style_output[$tariff_id]['roomTariffOutputId']as $roomTariffOutputId)
+				{
+				$a_new_array[] = $roomTariffOutputId;
+				}
+			$this->room_type_style_output[$tariff_id]['roomTariffOutputId'] = $a_new_array;
+			}
+		
+		
+		foreach ($this->room_type_style_output as $tariff_id=>$tariff_and_roomtypes)
+			{
+			$number_of_rooms = count($tariff_and_roomtypes['roomTariffOutputId']);
+			
+			// This allows us to set the newly generated dropdown to the chosen number (1, 2, 3 etc)
+			$already_selected_string = "";
+			foreach ($this->requestedRoom as $rm)
+				{
+				$room=explode("^",$rm);
+				$already_selected_tariff_id=$room[1];
+				if ($already_selected_tariff_id == $tariff_id)
+					{
+					$already_selected_string .= $rm.",";
+					}
+				}
+			//
+			//$this->setPopupMessage("room_type_style_output ".$tariff_id." ".serialize($already_selected_array));
+			$room_and_tariff_outputIds_string = "";
+			$rooms_list_style_dropdown = array();
+			$rooms_list_style_dropdown[] = jomresHTML::makeOption( "0^".$tariff_id,  sprintf("%02d",0 ) );
+			for ($i=1;$i<=$number_of_rooms;$i++)
+				{
+				$room_and_tariff_outputIds_string .= $tariff_and_roomtypes['roomTariffOutputId'][$i-1].",";
+				$rooms_list_style_dropdown[] = jomresHTML::makeOption( $room_and_tariff_outputIds_string,  sprintf("%02d",$i) );
+				}
+			$dropdown_output[$tariff_id]['dropdown'] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="inputbox" size="1"  AUTOCOMPLETE="OFF" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
+			$dropdown_output[$tariff_id]['room_type']=$tariff_and_roomtypes['room_type'];
+			$dropdown_output[$tariff_id]['tariff_title']=$tariff_and_roomtypes['tariff_title'];
+			$dropdown_output[$tariff_id]['room_price_inc_tax']=output_price($tariff_and_roomtypes['room_price_inc_tax']);
+			}
+		
+	$return_output = '<table>';
+	foreach ($dropdown_output as $output)
+		{
+		$return_output .= "<tr><td>".$output['dropdown']." ".$output['room_type']." - ".$output['tariff_title']."</td><td>".$output['room_price_inc_tax']."</td><tr>";
+		}
+	return $return_output;
+	}
+	
 	/**
 	#
 	 * Find out if this tariff has already been selected
@@ -4119,16 +4249,22 @@ class dobooking
 	 */
 	function makeRoomOverlibdata($roomUid,$tariffUid,$roomTariffOutputId,$roomTariffOutputText,$removing=false)
 		{
-
+		if ($this->cfg_booking_form_rooms_list_style == "2")
+			{
+			if (!isset($this->rooms_list_style_roomstariffs))
+				{
+				$this->rooms_list_style_roomstariffs = array();
+				$this->rooms_list_style_roomstariffs_constructed_data = array();
+				$this->room_type_style_output = array();
+				}
+			}
+		
 		$tariffStuff=$this->GetTariffDetails($tariffUid);
 		$roomStuff=$this->GetRoomDetails($roomUid);
 		if (!$removing)
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION',_JOMRES_AJAXFORM_CLICKHERECAPTION,false,false));
 		else
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE',_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE,false,false));
-
-
-
 
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 
@@ -4142,21 +4278,15 @@ class dobooking
 
 
 		$room_imagetd="";
-
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
 			{
 			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30" /></td>';
-			//$room_imagetd='<td>'.$roomStuff['IMAGE'].'</td>';
 			}
-
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypetd='<td><img src="'.get_showtime('live_site')."/".$this->typeImage.'" height="30" width="30" /></td>';
 
-		//$overlib='<tr onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">   // Disabled because it causes the rooms list to load twice (thereby making the room deselect itself)
 		$overlib='<tr>';
-
-
 		$overlib.='<td><div class="fg-button ui-state-default ui-priority-primary ui-corner-all"><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$caption.'</a></div></td>';
 		if ($this->cfg_bookingform_roomlist_showroomno == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>';
@@ -4168,6 +4298,8 @@ class dobooking
 		if ($this->cfg_tariffmode != 0)
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
 		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
+		$this->room_type_style_output[$tariffUid]['room_price_inc_tax'] = $room_price_inc_tax;
+
 		$overlib.='<td>'.output_price($room_price_inc_tax).'</td>';
 		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
@@ -4175,7 +4307,29 @@ class dobooking
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['MAXPEOPLE'].'</a></td>';
 		$overlib.='</tr>';
 
-		return $overlib;
+		if ($this->cfg_booking_form_rooms_list_style == "1")
+			{
+			return $overlib;
+			}
+			
+		if ($this->cfg_booking_form_rooms_list_style == "2")
+			{
+			$this->rooms_list_style_roomstariffs[$tariffUid] = array("room_type_id"=>$tariffStuff['TARIFF_ROOMTYPE'],"room_id"=>$roomUid,"tariff_id"=>$tariffUid,"roomTariffOutputId"=>$roomTariffOutputId,"tariffStuff"=>$tariffStuff,"roomStuff"=>$roomStuff);
+
+			foreach ($this->allRoomClasses as $room_type_id=>$room_type)
+				{
+				foreach ($this->rooms_list_style_roomstariffs as $tariff_id=>$room_and_tariff_data)
+					{
+					if ($room_and_tariff_data['room_type_id']== $room_type_id)
+						{
+						$this->room_type_style_output[$tariff_id]['tariff_title']=$room_and_tariff_data['tariffStuff']['TITLE'];
+						$this->room_type_style_output[$tariff_id]['room_type']=$room_and_tariff_data['roomStuff']['ROOMTYPE'];
+						$this->room_type_style_output[$tariff_id]['roomTariffOutputId'][]=$room_and_tariff_data['roomTariffOutputId'];
+						$this->room_type_style_output[$tariff_id]['roomTariffOutputId'] = array_unique($this->room_type_style_output[$tariff_id]['roomTariffOutputId']);
+						}
+					}
+				}
+			}
 		}
 
 	function calculateRoomPriceIncVat($price)
@@ -4261,17 +4415,7 @@ class dobooking
 	 */
 	function GetTariffDetails($tariffUid)
 		{
-		/*
-		$query="SELECT `rate_title`,`rate_description`,`validfrom`,`validto`,
-			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
-			`ignore_pppn`,`allow_ph`,`allow_we`
-			FROM #__jomres_rates WHERE rates_uid = '$tariffUid'";
-		$tariff =doSelectSql($query,2);
-		*/
 		$tariff =$this->allPropertyTariffs[$tariffUid];
-
-		//$validfrom=$tariff['validfrom'];
-		//$validto=$tariff['validto'];
 
 		$output['HTITLE']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,false,false));
 		$output['HDESC']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_DESC',_JOMRES_FRONT_TARIFFS_DESC,false,false));
@@ -4303,6 +4447,7 @@ class dobooking
 		$output['MINPEOPLE']=$this->sanitiseOutput($tariff['minpeople']);
 		$output['MAXPEOPLE']=$this->sanitiseOutput($tariff['maxpeople']);
 		$output['RATEPERNIGHT']=$this->sanitiseOutput($tariff['roomrateperday']);
+		$output['TARIFF_ROOMTYPE']=$tariff['roomclass_uid'];
 
 		if (empty($this->cfg_ratemultiplier) )
 			$this->cfg_ratemultiplier=1;
@@ -4331,7 +4476,7 @@ class dobooking
 	function estimate_AverageRate($roomUid,$tariffUid)
 		{
 		$mrConfig=getPropertySpecificSettings();
-		$this->setErrorLog("estimate_AverageRate:: Started");
+		//$this->setErrorLog("estimate_AverageRate:: Started");
 		$dateRangeArray=explode(",",$this->dateRangeString);
 		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
 		$total=0.00;
@@ -4388,8 +4533,8 @@ class dobooking
 							$tmp_rate = $this->allPropertyTariffs[$rate->rates_uid]['roomrateperday'];
 							$total+=$tmp_rate ;
 							}
-						else
-							$this->setErrorLog("estimate_AverageRate::Tariff id failed to pass checks ".$total);
+						//else
+							//$this->setErrorLog("estimate_AverageRate::Tariff id failed to pass checks ".$total);
 						}
 					}
 				}
@@ -4409,7 +4554,7 @@ class dobooking
 				foreach ($dateRangeArray as $date )
 					{
 					$pass=false;
-					$this->setErrorLog("estimate_AverageRate::Searching date ".$date.' on current tariff uid: '.$rate->rates_uid);
+					//$this->setErrorLog("estimate_AverageRate::Searching date ".$date.' on current tariff uid: '.$rate->rates_uid);
 					$date_elements  = explode("/",$date);
 					$unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 					if (count($numberOfGuestTypes) >0)
@@ -5583,7 +5728,7 @@ class dobooking
 	function getPercentageOfRoomsBookedForRoomtype($roomtypeid)
 		{
 		$this->setErrorLog("getPercentageOfRoomsBookedForRoomtype:: Started");
-		$this->setErrorLog("getPercentageOfRoomsBookedForRoomtype:: Room type id ".$roomtypeid );
+		//$this->setErrorLog("getPercentageOfRoomsBookedForRoomtype:: Room type id ".$roomtypeid );
 		$roomsOfThisType=array();
 		$roomsOfThisTypeBooked=array();
 		foreach ($this->allPropertyRooms as $key=>$val)
@@ -5593,7 +5738,7 @@ class dobooking
 				$roomsOfThisType[]=$key;
 				}
 			}
-		$this->setErrorLog("getPercentageOfRoomsBookedForRoomtype:: this->allBookings : ". serialize($this->allBookings));
+		//$this->setErrorLog("getPercentageOfRoomsBookedForRoomtype:: this->allBookings : ". serialize($this->allBookings));
 		foreach ($this->allBookings as $key=>$val)
 			{
 			foreach ($val as $k=>$v)
@@ -5608,7 +5753,7 @@ class dobooking
 		$totalRoomsOfType=count($roomsOfThisType);
 		$totalRoomsOfTypeBooked=count($roomsOfThisTypeBooked);
 		$percentageBooked=($totalRoomsOfTypeBooked/$totalRoomsOfType)*100;
-		$this->setErrorLog("<b>getPercentageOfRoomsBookedForRoomtype:: totalRoomsOfType: $totalRoomsOfType totalRoomsOfTypeBooked: $totalRoomsOfTypeBooked percentageBooked: $percentageBooked</b>");
+		//$this->setErrorLog("<b>getPercentageOfRoomsBookedForRoomtype:: totalRoomsOfType: $totalRoomsOfType totalRoomsOfTypeBooked: $totalRoomsOfTypeBooked percentageBooked: $percentageBooked</b>");
 		return $percentageBooked;
 		}
 

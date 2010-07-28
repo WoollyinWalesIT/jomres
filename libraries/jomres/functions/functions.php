@@ -1491,6 +1491,11 @@ function hotelSettings()
 	$iconsizes[] = jomresHTML::makeOption( 'large', 'large' );
 	$editIconSize = jomresHTML::selectList( $iconsizes, 'cfg_editiconsize', 'size="1" class="inputbox"', 'value', 'text', $mrConfig['editiconsize']);
 
+	$booking_form_rooms_list = array();
+	$booking_form_rooms_list[] = jomresHTML::makeOption( '1', _JOMRES_ROOMMSLIST_STYLE_CLASSIC );
+	$booking_form_rooms_list[] = jomresHTML::makeOption( '2', _JOMRES_ROOMMSLIST_STYLE_ROOMTYPES );
+	$booking_form_rooms_list_style = jomresHTML::selectList( $booking_form_rooms_list, 'cfg_booking_form_rooms_list_style', 'size="1" class="inputbox"', 'value', 'text', $mrConfig['booking_form_rooms_list_style']);
+
 	$fixedArrivalDatesRecurring = jomresHTML::integerSelectList( 01, 208, 1, 'cfg_fixedArrivalDatesRecurring', 'size="1" class="inputbox"', $mrConfig['fixedArrivalDatesRecurring'], "%02d" );
 
 	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
@@ -1605,6 +1610,7 @@ function hotelSettings()
 	$componentArgs['jomresConfig_live_site']=get_showtime('live_site');
 	$componentArgs['tariffModeDD']=$tariffModeDD;
 	$componentArgs['Itemid']=$Itemid;
+	$componentArgs['booking_form_rooms_list_style']=$booking_form_rooms_list_style;
 	ob_start();
 
 	// The following javascript is for selecting currency codes

@@ -169,6 +169,7 @@ jQuery(document).ready(function() {
 			</tr>
 			<tr>
 				<td class="bformrightcol2" valign="top">
+					<patTemplate:tmpl name="classic_rooms_list" type="simpleCondition" requiredVars="ajaxform_available_desc">
 					<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<th class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number2.png" width="32" height="32" /> <strong>{AJAXFORM_AVAILABLE_DESC}</strong> {LOOKRIGHT}</th>
@@ -194,6 +195,25 @@ jQuery(document).ready(function() {
 							<td><div class="small">{ESTIMATEWARNING}</div></td>
 						</tr>
 					</table>
+					</patTemplate:tmpl>
+					<patTemplate:tmpl name="roomtype_dropdown_list" type="simpleCondition" requiredVars="ajaxform_available_desc">
+					
+					<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<th class="bform_small">{AJAXFORM_AVAILABLE_DESC}</th>
+						</tr>
+							<tr class="roomslist_header">
+								<td valign="top">
+									<div id="availRooms" class="roomslist">
+										{AVAILABLEROOMS}
+									</div>
+								</td>
+						</tr>
+						<tr>
+							<td><div class="small">{ESTIMATEWARNING}</div></td>
+						</tr>
+					</table>
+					</patTemplate:tmpl>
 				</td>
 			</tr>
 			<patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">

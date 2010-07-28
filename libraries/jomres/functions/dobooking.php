@@ -371,16 +371,23 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		// }
 	if ($mrConfig['singleRoomProperty'] == "0" )
 		{
-		$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS)).'</div>';
-		if ($bkg->numberOfCurrentlySelectedRooms()>0 )
-			$rm.=$bkg->listCurrentlySelectedRooms();
-		else
-			$rm.='<div class="roomslist_noroomsselected">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET)).'</div>';
-		$output['SELECTEDROOM']=$rm;
+		if ($mrConfig['booking_form_rooms_list_style'] == "1")
+			{
+			$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS)).'</div>';
+			if ($bkg->numberOfCurrentlySelectedRooms()>0 )
+				$rm.=$bkg->listCurrentlySelectedRooms();
+			else
+				$rm.='<div class="roomslist_noroomsselected">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET)).'</div>';
+			$output['SELECTEDROOM']=$rm;
 
-		$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS)).'</div>';
-		//$rm.="<br>";
-		$rm.=$bkg->generateRoomsList($roomAndTariffArray);
+			$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS)).'</div>';
+			//$rm.="<br>";
+			$rm.=$bkg->generateRoomsList($roomAndTariffArray);
+			}
+		elseif ($mrConfig['booking_form_rooms_list_style'] == "2")
+			{
+			$bkg->generateRoomsList($roomAndTariffArray);
+			}
 		}
 	else
 		$rm=$bkg->generateRoomsList($roomAndTariffArray);
@@ -474,9 +481,41 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		}
 	$output['BOOKEDDATES']= $booked_dates_output;
 	
+	
+	// v4.5.5
+	if (!isset($mrConfig['booking_form_rooms_list_style']))
+		$mrConfig['booking_form_rooms_list_style'] = "1";
+
+	if ($mrConfig['booking_form_rooms_list_style'] == "1")
+		{
+		$classic_rooms_list = array();
+		$classic_rooms_list_output = array();
+		$classic_rooms_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
+		$classic_rooms_list['LOOKRIGHT'] = $output['LOOKRIGHT'];
+		$classic_rooms_list['SELECTEDROOM'] = $output['SELECTEDROOM'];
+		$classic_rooms_list['AVAILABLEROOMS'] = $output['AVAILABLEROOMS'];
+		$classic_rooms_list['ESTIMATEWARNING'] = $output['ESTIMATEWARNING'];
+		$classic_rooms_list_output[]=$classic_rooms_list;
+		}
+	if ($mrConfig['booking_form_rooms_list_style'] == "2") // Room type dropdown selection feature
+		{
+		$roomtype_dropdown_list = array();
+		$roomtype_dropdown_list_output = array();
+		$roomtype_dropdown_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
+		
+		$roomtype_dropdown_list_output[]=$roomtype_dropdown_list;
+		
+		}
+	
+	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	
+	if ($mrConfig['booking_form_rooms_list_style'] == "1")
+		$tmpl->addRows( 'classic_rooms_list',$classic_rooms_list_output);
+	if ($mrConfig['booking_form_rooms_list_style'] == "2")
+		$tmpl->addRows( 'roomtype_dropdown_list',$roomtype_dropdown_list_output);
+		
 	$tmpl->addRows( 'coupons',$coupons);
 	$tmpl->addRows( 'coupons_totals',$coupons_totals);
 	$tmpl->addRows( 'smoking',$smokingOpts);

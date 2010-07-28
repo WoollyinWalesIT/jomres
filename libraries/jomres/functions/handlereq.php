@@ -251,6 +251,41 @@ switch ($field)
 		$bkg->updateSelectedRoom($value);
 		
 	break;
+	case 'multiroom_select':
+		$ajrq=" -- Selected multiple rooms -- ";
+		$bkg->setOkToBook(false);
+		$value=$bkg->sanitiseInput("string",$value);
+		$room_selections = explode(",",$value);
+		
+		foreach ($room_selections as $room)
+			{
+			// We now need to remove all selected rooms from the $bkg->requestedRoom that are using this tariff id so that we can repopulat it with updateSelectedRoom
+			$selected_rooms=explode("^",$room);
+			$clearing_tariff_id = $selected_rooms[1];
+			if (count($bkg->requestedRoom)>0)
+				{
+				foreach ($bkg->requestedRoom as $index=>$rm)
+					{
+					$currently_selected_rooms=explode("^",$rm);
+					$current_tariff_id = $currently_selected_rooms[1];
+					if ($current_tariff_id == $clearing_tariff_id)
+						{
+						//$bkg->setPopupMessage( "Removing ".$bkg->requestedRoom[$index]);
+						unset($bkg->requestedRoom[$index]);
+						}
+					}
+				}
+			}
+		foreach ($room_selections as $room)
+			{
+			if ($room != "")
+				{
+				$bkg->setErrorLog("handlereq::room type list style:: Adding ".$room);
+				$bkg->updateSelectedRoom($room);
+				}
+			}
+		$bkg->setErrorLog("handlereq::Currently selected rooms ".serialize($bkg->requestedRoom));
+	break;
 	case 'show_log':
 
 	break;
@@ -360,6 +395,7 @@ if ($field != "heartbeat" && $field != "show_log")
 		{
 		echo $oktobookClass;
 		echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage();';
+		echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false));
 		echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 		}
 	else
@@ -367,6 +403,7 @@ if ($field != "heartbeat" && $field != "show_log")
 		$messagesClass=$errorClass;
 		echo $messagesClass;
 		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage();';
+		echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 		echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 		}
 	if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )
@@ -377,6 +414,9 @@ if ($field != "heartbeat" && $field != "show_log")
 	$bkg->setErrorLogFirst($ajrq);
 	$bkg->storeBookingDetails();
 	}
+
+echo $bkg->getGrowlMessages();
+
 ob_end_flush();
 
 // End run
@@ -443,10 +483,12 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 				}
 			}
 		}
-
-	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-	if (count($freeRoomsArray) > 0 )
-		$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
+	if ($bkg->cfg_booking_form_rooms_list_style == "1")
+		{
+		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+		if (count($freeRoomsArray) > 0 )
+			$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
+		}
 	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
 	if (count($freeRoomsArray) > 0 )
 		$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
@@ -455,18 +497,6 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 
 	if (!$isSingleRoomProperty)
 		{
-		/*
-		$output.='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
-		if ($bkg->numberOfCurrentlySelectedRooms()>0 )
-			$output.=$bkg->listCurrentlySelectedRooms();
-		else
-			$output.='<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
-
-		$output.="~";
-		
-		$output.='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div>';
-		echo $output;
-		*/
 		$selected_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
 		if ($bkg->numberOfCurrentlySelectedRooms()>0 )
 			$currently_selected = $bkg->listCurrentlySelectedRooms();
@@ -492,10 +522,17 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 		// populateDiv("messages","
 		 
 		}
+
 	$output=$bkg->generateRoomsList($roomAndTariffArray);
 	$output=$bkg->sanitise_for_eval($output);
 	$output="populateDiv('rooms_listing','".$output."');";
+	if ($bkg->cfg_booking_form_rooms_list_style == "2")
+		{
+		$output="populateDiv('availRooms','".$bkg->sanitise_for_eval($bkg->generate_room_type_dropdowns())."');";
+		}
+	
 	echo $output;
 	}
+
 
 ?>
