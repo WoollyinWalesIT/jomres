@@ -1491,6 +1491,8 @@ function hotelSettings()
 	$iconsizes[] = jomresHTML::makeOption( 'large', 'large' );
 	$editIconSize = jomresHTML::selectList( $iconsizes, 'cfg_editiconsize', 'size="1" class="inputbox"', 'value', 'text', $mrConfig['editiconsize']);
 
+	if (!isset($mrConfig['booking_form_rooms_list_style']))
+		$mrConfig['booking_form_rooms_list_style'] = "1";
 	$booking_form_rooms_list = array();
 	$booking_form_rooms_list[] = jomresHTML::makeOption( '1', _JOMRES_ROOMMSLIST_STYLE_CLASSIC );
 	$booking_form_rooms_list[] = jomresHTML::makeOption( '2', _JOMRES_ROOMMSLIST_STYLE_ROOMTYPES );
