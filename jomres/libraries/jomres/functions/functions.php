@@ -1874,8 +1874,12 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 			changeYear: true,
 			numberOfMonths: 1,
 			showOtherMonths: true, 
-			selectOtherMonths: true,
-			showButtonPanel: true';
+			selectOtherMonths: true,';
+			if ($jrConfig['calendarstartofweekday'] == "1")
+				$output .= 'firstDay: 0,';
+			else
+				$output .= 'firstDay: 1,';
+		$output .= '	showButtonPanel: true';
 		if ($fieldName=="arrivalDate")
 			{
 			$output .=',onSelect: function(selectedDate) {

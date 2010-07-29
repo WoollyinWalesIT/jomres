@@ -150,6 +150,12 @@ function showSiteConfig(  )
 	$geosearchList[] = jomresHTML::makeOption( 'region', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
 	$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_geosearchtype']);
 
+	$calendarStartDays = array();
+	$calendarStartDays[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_WEEKDAYS_SUNDAY );
+	$calendarStartDays[] = jomresHTML::makeOption( '2', _JOMRES_COM_MR_WEEKDAYS_MONDAY );
+	$calendarStartDaysDropdownList = jomresHTML::selectList($calendarStartDays, 'cfg_calendarstartofweekday', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['calendarstartofweekday']);
+
+	
 	jr_import("currency_codes");
 	$c_codes = new currency_codes($jrConfig['globalCurrencyCode'],true);
 	$currency_codes_dropdown = $c_codes->makeCodesDropdown();
@@ -191,7 +197,7 @@ function showSiteConfig(  )
 	
 
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList);
 	}
 
 /**

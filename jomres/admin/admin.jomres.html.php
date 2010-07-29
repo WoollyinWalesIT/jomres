@@ -36,7 +36,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList)
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -328,6 +328,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'.$jsInputFormatDropdownList.'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDARINPUT_DESC.'</td>
 		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAR_STARTDAY.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$calendarStartDaysDropdownList.'</td>
+			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+		</tr>
+		
 		<tr align="center" valign="middle">
 			<th colspan="3">&nbsp;</th>
 		</tr>
