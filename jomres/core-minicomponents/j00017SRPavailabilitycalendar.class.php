@@ -281,7 +281,7 @@ class j00017SRPavailabilitycalendar {
 			$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
 				size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR)."</font></th>\n";
 			$this->retVals.="<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"
-				size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR)."</font></th>
+				size=\"$size\">". jr_gettext('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR',_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR)."</font></th>
 				\n</tr>\n";
 			}
 		
