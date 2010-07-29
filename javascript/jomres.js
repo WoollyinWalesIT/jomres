@@ -123,7 +123,8 @@ function enableSubmitButton (button) {
 		document.getElementById("roomalert_top").className="roomalert_off";
 		document.getElementById("roomalert_bottom").className="roomalert_off";
 		}
-	document.getElementById('submitbutton').focus();
+	// Disabled as causes a js error in ie if the booking form is in the property details.
+	//document.getElementById('submitbutton').focus();
 	}
 
 	
