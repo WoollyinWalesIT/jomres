@@ -1840,3 +1840,6 @@ define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_CALCTOTALS','Calculating 
 define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_DONE','Finished form update'); */
 
 define('_JOMRES_COM_CALENDAR_STARTDAY','Calendar week start day, Sunday or Monday');
+
+define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY','Only property guests can review?');
+define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC','Set this to Yes if you want to restrict reviews to only those users who have been a guest already in this property.');
