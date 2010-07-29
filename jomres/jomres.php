@@ -730,7 +730,10 @@ if ($numberOfPropertiesInSystem>0)
 			
 			$bookingdata = gettempBookingdata();
 			$MiniComponents->triggerEvent('00599',array ('bookingdata'=> $bookingdata) ); // Optional
-			
+
+			// We'll let bookings of 0 value passed the gateway plugin handling as some users offer 100% discounts via coupons
+			if ($bookingdata['contract_total'] == 0.00)
+				$plugin = "NA";
 			
 			$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
 			$paypal_settings->get_paypal_settings();
