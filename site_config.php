@@ -176,4 +176,7 @@ $jrConfig['search_order_default'] = "1";
 $jrConfig['show_search_order'] = "1";
 
 $jrConfig['calendarstartofweekday'] = "1";
+
+$jrConfig['only_guests_can_review'] = "0";
+
 ?>

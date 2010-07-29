@@ -116,8 +116,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'.$lists['reviews_test_mode'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE_DESC.'</td>
 		</tr>
-		
-		
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['only_guests_can_review'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC.'</td>
+		</tr>
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_TITLE.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['is_single_property_installation'].'</td>

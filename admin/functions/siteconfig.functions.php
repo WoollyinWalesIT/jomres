@@ -195,6 +195,9 @@ function showSiteConfig(  )
 	$lists['reviews_test_mode']						= jomresHTML::selectList( $yesno, 'cfg_reviews_test_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['reviews_test_mode'] );
 	$lists['show_search_order']						= jomresHTML::selectList( $yesno, 'cfg_show_search_order', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['show_search_order'] );
 	
+	$lists['only_guests_can_review']				= jomresHTML::selectList( $yesno, 'cfg_only_guests_can_review', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['only_guests_can_review'] );
+
+	
 
 
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList);
