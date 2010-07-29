@@ -64,6 +64,8 @@ class j02144editextra {
 		$output['EXTRAMODEL_PERPERSONPERWEEK_CHECKED']="";
 		$output['EXTRAMODEL_PERDAYSMINDAYS_CHECKED']="";
 		$output['EXTRAMODEL_PERDAYSPERROOM_CHECKED']="";
+		$output['EXTRAMODEL_PERROOMPERBOOKING_CHECKED']="";
+		
 		
 		$force=0;
 		$output['EXTRAMODEL_FORCE1']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
@@ -74,7 +76,8 @@ class j02144editextra {
 		$output['EXTRAMODEL_FORCE6']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
 		$output['EXTRAMODEL_FORCE7']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
 		$output['EXTRAMODEL_FORCE8']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
-
+		$output['EXTRAMODEL_FORCE9']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $force );
+		
 		
 		$mindays = 1;
 		if ($uid>0)
@@ -118,6 +121,10 @@ class j02144editextra {
 				case '8':
 					$output['EXTRAMODEL_PERDAYSPERROOM_CHECKED']="checked";
 					$output['EXTRAMODEL_FORCE8']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
+				case '9':
+					$output['EXTRAMODEL_PERROOMPERBOOKING_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE9']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
 				break;
 				}
 
@@ -175,6 +182,10 @@ class j02144editextra {
 					$output['EXTRAMODEL_PERDAYSPERROOM_CHECKED']="checked";
 					$output['EXTRAMODEL_FORCE8']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
 				break;
+				case '9':
+					$output['EXTRAMODEL_PERROOMPERBOOKING_CHECKED']="checked";
+					$output['EXTRAMODEL_FORCE9']=jomresHTML::selectList( $yesno, 'force[]', 'class="inputbox" size="1"', 'value', 'text', $model['force'] );
+				break;
 				}
 			
 			}
@@ -190,6 +201,7 @@ class j02144editextra {
 		$output['EXTRAMODEL_PERPERSONPERWEEK']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK);
 		$output['EXTRAMODEL_PERDAYSMINDAYS']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS);
 		$output['EXTRAMODEL_PERDAYSPERROOM']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM);
+		$output['EXTRAMODEL_PERROOMPERBOOKING']=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING);
 		
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
@@ -217,6 +229,9 @@ class j02144editextra {
 		$output[]		=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY','Calculated per person per day');
 		$output[]		=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK','Calculated per person per week');
 		$output[]		=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS','Calculated per days (min days)');
+		$output[]		=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING);
+		
+		
 
 		foreach ($output as $o)
 			{

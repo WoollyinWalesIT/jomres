@@ -881,6 +881,9 @@ class dobooking
 					case '8': // per days per room
 						$model_text=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM));
 					break;
+					case '8': // per room
+						$model_text=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING));
+					break;
 					}
 				$tax_output = "";
 				if ($rate > 0)
@@ -5199,6 +5202,11 @@ class dobooking
 							$num_rooms=$this->numberOfCurrentlySelectedRooms();
 							$calc=($this->stayDays*$thisPrice)*$num_rooms;
 							$this->extrasvalues_items[$extra]['quantity_multiplier']=$this->stayDays*$num_rooms;
+						break;
+						case '9': // per room
+							$num_rooms=$this->numberOfCurrentlySelectedRooms();
+							$calc=$thisPrice*$num_rooms;
+							$this->extrasvalues_items[$extra]['quantity_multiplier']=$num_rooms;
 						break;
 						}
 					$quantity=$this->extrasquantities[$extra];
