@@ -1838,3 +1838,5 @@ define('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES','Room types');
 define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_AVAILABLEROOMS','Rebuilding available rooms list');
 define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_CALCTOTALS','Calculating totals');
 define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_DONE','Finished form update'); */
+
+define('_JOMRES_COM_CALENDAR_STARTDAY','Calendar week start day, Sunday or Monday');

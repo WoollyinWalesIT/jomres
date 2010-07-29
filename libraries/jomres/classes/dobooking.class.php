@@ -2321,8 +2321,12 @@ class dobooking
 			numberOfMonths: 1,
 			showOtherMonths: true,
 			selectOtherMonths: true,
-			showButtonPanel: true,
-			onSelect: function() {
+			showButtonPanel: true,';
+			if ($this->jrConfig['calendarstartofweekday'] == "1")
+				$output .= 'firstDay: 0,';
+			else
+				$output .= 'firstDay: 1,';
+			$output .= 'onSelect: function() {
 					'.$onchange.'
 				}';
 			if ($fieldName=="arrivalDate")

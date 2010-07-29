@@ -174,4 +174,6 @@ $jrConfig['show_booking_form_in_property_details'] ="1"; // New for v4.5.2
 
 $jrConfig['search_order_default'] = "1";
 $jrConfig['show_search_order'] = "1";
+
+$jrConfig['calendarstartofweekday'] = "1";
 ?>
