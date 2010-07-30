@@ -1,4 +1,39 @@
-Jomres 4.5.4
+Jomres 4.5.5 30/7/2010
+
+Note that there are changes to both dobooking.html and dobooking_srp.html, please ensure that your version (if you've modified it) incorporates the new changes otherwise your booking form will not work.
+
+Minor changes to advanced editing and installer to clarify room types need to be associated with property types.
+Added sanity check to warn users that the property is not yet published.
+Re-enabled the SRP only option for room types.
+Added commented out code to show how to disable popup in tooltips for room types and property features.
+Modified booking engine functionality to disable a date in the calendar if all rooms for that date are booked.
+Fixed issue where dashboard date when click wasn't used in the booking form.
+Modified jr_gettext functionality in micromanage list tariffs and dobooking to enable translation of tariffs.
+Couple of changes to dobooking to enable the date to be selected correctly when coming from both a date setting link, and a non-date setting link, specific to fixed period dropdowns.
+Disabled translation of a button when in editing mode, as it breaks the button.
+Implemented jquery date picker localisation files into Jomres.
+Modified amend booking functionality to correct invoices once the booking has been amended.
+Started adding files and functionality to install Jomres on WordPress 3. Functionality is not complete, as can't yet find how to reliably add our javascript files to wordpress, so this will remain a work in progress for now.
+Added code to ensure non-booking form date picker pairs in search modules will set the departure date to one day after the arrival date.
+Changed outgoing email's url to JOMRES_SITEPAGE_URL_NOSEF as Joomla's sef strips out the live_site.
+Modified guest email to translate extra correctly.
+Small modification to new date blocking functionality in the booking form. Disabled date blocking on the departure date. If a guest selects a day before a day that's fully booked, they can't actively choose the next date as the departure date because the room is booked the next day. It doesn't actually matter as the javascript's already done it for them, nevertheless it might confuse some people.
+Added options to change the default search order, and whether or not to show the dropdown.
+Added new functionality to the booking form. Property managers can now choose whether or not to display the classic rooms list, or choose rooms types from a dropdown.
+Some minor functionality changes for new room type list dropdowns in the booking form.
+Fixed a bug where the wrong room type was offered in the room type dropdown in micromanage edit tariff.
+Fixed an IE issue where it complains about focus when the booking form is in the property details.
+Added option to set start day of js and availability calendars from sunday to monday.
+Added an option to allow site managers to only allow guests who have bookings with a property, to make reviews.
+Modification to allow us to bypass gateways if the value of the contract is 0.00, so managers offering 100% discounts via vouchers can take bookings. Previously, this would have gone to a gateway but of course gateways will not handle 0 amounts as there's nothing in it for them.
+Fixed http://forum.jomres.net/index.php?topic=3748 Thanks krsjan.
+Added an extra model "per room".
+Don't show the pay now link if the total is 0. (invoice page).
+Clarified Jomres license to indicate that "jomres" is trademarked, that php files are released as GPL2/MIT and that all images, css and javascript copyright me are not freely distributable.
+Removed unused definitions from language files.
+
+
+Jomres 4.5.4 29/6/2010
 
 Some changes to make tariff editing work better for SRPs after the room type changes of 4.5.3
 Experimental tweak to single person supplements to divide the booking fee by the number of people in the booking after the number of times SPS has been found to find the SPS value for multiple rooms.
