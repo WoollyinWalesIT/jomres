@@ -21,7 +21,6 @@ define('_JOMRES_COM_MR_NEWPROPERTY','New property');
 define('_JOMRES_COM_MR_NEWPROPERTYFEATURE','New property feature');
 define('_JOMRES_COM_MR_NEWGUEST','New guest');
 define('_JOMRES_COM_MR_SAVE','Save');
-// View bookings
 define('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME','Name');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL','Arrival');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE','Departure');
@@ -37,7 +36,6 @@ define('_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE','User modified');
 define('_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE','N/A');
 define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION','Reception');
 define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN','Property manager');
-// Edit bookings
 define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE','All bookings');
 define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_NEWBOOKINGS','New bookings');
 define('_JOMRES_COM_MR_EDITBOOKINGTITLE','Edit Booking');
@@ -81,11 +79,9 @@ define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF','Deposit ref');
 define('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER','Booking');
 define('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED','Deposit');
 define('_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE','Deposit saved');
-// Edit Language
 define('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE','Our rooms');
 define('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME','Property');
 define('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMTYPE','Room/property type');
-// Display guest form
 define('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS','Edit guest details');
 define('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME','First name');
 define('_JOMRES_COM_MR_DISPGUEST_SURNAME','Surname');
@@ -105,7 +101,6 @@ define('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE','Make your choice');
 define('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS','Nights');
 define('_JOMRES_COM_MR_QUICKRES_STEP4_NUMBEROFGUESTS','Number of guests');
 define('_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE','Total');
-// Rooms tab
 define('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE','View rooms & property config');
 define('_JOMRES_COM_MR_VRCT_TAB_ROOM','Rooms');
 define('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES','Rm features');
@@ -204,7 +199,6 @@ define('_JOMRES_FRONT_MR_BOOKIN_GUESTBOOKEDIN','Guest booked in ');
 define('_JOMRES_FRONT_MR_BOOKIN_NOGUESTSDUEIN','No guests are due to arrive today');
 define('_JOMRES_FRONT_MR_BOOKOUT_TITLE','Book out guest ');
 define('_JOMRES_FRONT_MR_BOOKOUT_NOGUESTSDUEOUT','No guests are due to depart today');
-// Config panel
 define('_JOMRES_COM_A_SUPPLIMENTS','Supplements');
 define('_JOMRES_COM_A_TARIFFS','Tariffs & Currency');
 define('_JOMRES_COM_A_DISCOUNTS','Discounting');
@@ -500,7 +494,6 @@ define('_JOMRES_COM_CHARGING_CONFIG_DESC','Use this option to decide what should
 define('_JOMRES_COM_MONTHSTOSHOW','Cal months to show');
 define('_JOMRES_COM_MONTHSTOSHOW_DESC','In the room availability, How many months of the calendar should be shown?');
 define('_JOMRES_INVOICE_SIGNEDONBEHALFOF','Signed on behalf of ');
-// V1.4
 define('_JOMRES_COM_A_GATEWAYLIST','Gateways');
 define('_JOMRES_COM_A_CANCEL','Cancel');
 define('_JOMRES_FRONT_BLACKBOOKING_DESC','Select the dates that you want to apply the black bookings for. When you have selected the appropriate dates, click the "apply" button to re-check availability. <br/> 
@@ -546,7 +539,6 @@ define('_JOMRES_AREYOUSURE','Are you sure you wish to do this?');
 define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Book a room');
 define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Book now');
 define('_JOMRES_COM_MR_DISPGUEST_CCV','Security number');
-//v1.4c
 define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE','Show tariffs inline?');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS','Address');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS','Detailed information');
@@ -560,13 +552,10 @@ define('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF','Flat rate tariffs');
 define('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES','Averages');
 define('_JOMRES_COM_A_TARIFFS_MODEL','Select the tariffs model you want to use');
 define('_JOMRES_COM_A_TARIFFS_MODEL_DESC',"You have two choices of tariff calculation methods. The first, the 'flat rate' method allows you to offer a number of different tariffs to the guest and the rate for the stay is the same for the entire time. This is useful if you want to offer several different tariffs for the same date, eg Bed and Breakfast tariff and B&B and Evening meal tariff. Choose the 'averages' tariff if you want to adjust your prices dependant on the date in question. Jomres will find all of the tariffs for each day in the booking, add them together then return the average rate across the period");
-// v1.4e
 define('_JOMRES_COM_A_SHOWDEPARTUREINPUT','Show departure date input?');
 define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC',"Set this to No if you don't want to show the departure date input box. Only use this if you know what you're doing, as the depareture date in bookings will always be set to the day after the arrival date.");
-// v1.4f
 define('_JOMRES_COM_PROPERTYLISTDESC','Description limit');
 define('_JOMRES_COM_PROPERTYLISTDESC_DESC',"This limits the number of characters shown in the property listing when drawing from the property description.");
-// v1.4g+
 define('_JOMRES_COM_A_DATEFORMATSTYLE','Used date() format style?');
 define('_JOMRES_COM_A_DATEFORMATSTYLE_DESC','Set this to Yes to format output dates according to date() (See <a href="http://www.php.net/manual/en/function.date.php">Here</a>). Set it to No to use strftime() formatting (see <a href="http://www.php.net/manual/en/function.strftime.php">Here</a> eg. %b %d %Y ');
 define('_JOMRES_COM_MR_VRCT_PUBLISH','Publish');
@@ -586,7 +575,6 @@ define('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY','Created property');
 define('_JOMRES_REGISTRATION_NOTALLOWED',"Sorry, you can't create a property on this system. You must be a logged in, registered user before you can proceed.");
 define('_JOMRES_REGISTRATION_CREATEDPROPERTY','Created property: ');
 define('_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER','For user: ');
-// v1.4i
 define('_JOMRES_COM_MONTHS_STARTOFYEAR','Show calendar from beginning of year?');
 define('_JOMRES_COM_MONTHS_STARTOFYEAR_DESC','The availability calendar shows from the beginning of the current year.');
 define('_JOMRES_NUMBEROFROOMSAVAILABLE','Number of rooms available');
@@ -596,7 +584,6 @@ define('_JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT','Random search limit');
 define('_JOMRES_SHOWGOOGLECURRENCYLINKS','Show currency conversion links in tariff listing?');
 define('_JOMRES_CURRENCYCONVERSIONTEXT','Convert rate');
 define('_JOMRES_COM_ALLOWHTMLEDITOR','Allow users to edit using html editors?');
-// v2
 define('_JOMRES_AJAXFORM_INSTRUCTIONS','Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers, then select the room(s) you require from the list of those available. Click any available rooms to add them to your booking. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 define('_JOMRES_AJAXFORM_INSTRUCTIONS_SRP','Use this form to place your booking. Modify your booking particulars like arrival and departure dates & guest numbers. When done, you can add any optional extras you may require and provide your address details. When the form has enough information it will then give you a submit button so that you can confirm your booking.');
 define('_JOMRES_AJAXFORM_PARTICULARS','Booking particulars');
@@ -702,12 +689,9 @@ define('_JOMRES_COM_DUMPTEMPLATEDATA','Dump template vars?');
 define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC','Set this to enable a DHTML dump of template variables for each FRONTEND template file as that page is viewed. Useful if you want to see if a certain element is available to be used in a given template.');
 define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE','Figure is percentage');
 define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC','Set this to Yes if the single person calculation figure is a percentage. If no then it will be applied as a flat sum.');
-//v2rc2
 define('_JOMRES_COM_LIMITROOMSLIST','Available rooms/tariff limit');
 define('_JOMRES_COM_LIMITROOMSLIST_DESC','Use this input to limit the number of available rooms & tariffs that are listed in the booking form. Set it to zero if you do not want limiting enabled. ');
 define('_JOMRES_SRP_WEHAVENOVACANCIES','No vacancies at this time!');
-// Introduced in v2.5
-// v2.6
 define('_JOMRES_BOOKITNOW','');
 define('_JOMRES_COM_JRCONFIG_GLOBALEDITING','Global editing mode?');
 define('_JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC','Take care with this function. If set to Yes, then the editing mode will affect the custom text for ALL properties in the system for the constant you are editing.');
@@ -893,10 +877,8 @@ define('_JOMRES_COM_EMAILERRORS',"Email error log messages?");
 define('_JOMRES_COM_EMAILERRORS_DESC',"Set this to Yes if you want to copy jomres.net automatically when an error log message is created. This allows us to be proactive in our approach to dealing with potential problems, hopefully resolving any issues before you are even aware of them. Note, this feature is disabled on 'localhost'. ");
 define('_JOMRES_COM_ISTHISANMRP',"Is this property a hotel/bed and breakfast/guest house/pension? ");
 define('_JOMRES_COM_ISTHISANMRP_DESC',"Configuration options differ depending on if you are renting out rooms in a property, or the property itself. Select MRP if you are offering rooms, select SRP if you are offering the entire property. ");
-// Jomres v3.0.6
 define('_JOMRES_COM_JOMRESEMAILCHECK',"Use Jomres email address checker? ");
 define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Enforces a stricter check on emails sent. Some secure web servers will throw a 500 internal error if you try to send an email to a non-existant email address. Switching this on allows us to use checkdnsrr features of php before attempting to send an email, preventing these 500 errors. ");
-// Jomres v3.1
 define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Accommodation Total");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"night(s) at");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per room ");
@@ -909,11 +891,8 @@ define('_JOMRES_CONFIRMATION_AMEND',"Amend Reservation");
 define('_JOMRES_CONFIRMATION_SPECIALS',"Please enter any special requests in the box below.");
 define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"I confirm that the above information is correct and agree to the ");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"per person per night ");
-// Jomres 3.1.10
 define('_JOMRES_COM_A_SITELANGUAGE_FILE',"Default language file");
 define('_JOMRES_COM_A_SITELANGUAGE_FILE_DESC',"Choose the default language file that Jomres should use if the language hasn't been set by Joomfish.");
-// Jomres 3.1.11
-// Jomres 3.1.13
 if (!defined('_PN_OF'))
 	define('_PN_OF','of');
 if (!defined('_PN_START'))
@@ -1156,7 +1135,6 @@ define('_JRPORTAL_NEWUSER_PASSWORD',"Your password is : ");
 define('_JRPORTAL_NEWUSER_LOG_IN',"Please log in to view your bookings ");
 define('_JOMRES_MR_AUDIT_UPDATE_COUPON','Coupon saved');
 define('_JOMRES_MR_AUDIT_DELETE_COUPON','Coupon deleted');
-// Not used yet
 define('_JOMRES_COM_GROWL','Use Jomres messaging');
 define('_JOMRES_COM_GROWL_DESC','Many manager updates provide feedback in the form of a javascript message when the page is reloaded, use this option to enable/disable that feature.');
 define('_JRPORTAL_SMS_CLICKATELL_TITLE',"Jomres -> Clickatell SMS");
@@ -1241,7 +1219,6 @@ define('_JOMRES_LATLONG_DESC',"Jomres will pass your address to Google to genera
 define('_JOMRES_CONTROLPANEL','Control Panel');
 define('_JOMRES_COM_FAUXHEADERS','Output Jomres javascript headers into the body of the html?');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Set this to Yes if you are having problems with mootools and Jomres\'s jQuery conflicting in IE. This will force Jomres to output the javascript calls within the body of the page instead of the HEAD area, which isn\'t valid html, however it seems to resolve the probems with jquery and mootools conflicting with each other.');
-// Jomres v4.2
 define('_JOMRES_MANAGER_SHOWINVOICE','Show invoice');
 define('_JOMRES_MANAGER_SHOWINVOICES','Show invoices');
 define('_JOMRES_USER_LISTMYPROPERTY','Add my property to this site');
@@ -1384,7 +1361,6 @@ define('_JOMRES_ROOMALLOCATIONS_ROOM','Room ');
 define('_JOMRES_ROOMALLOCATIONS_GUESTS','guest(s). ');
 define('_JOMRES_ROOMALLOCATIONS_INFORMATION','This how we have assigned your guest numbers to their rooms. If you would like to change this allocation, you will need to contact the hotel after making the booking. Extra charges may apply if you change your assignments.');
 define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED',"Note that your property is not yet published, only you can see the property, site visitors will not see it");
-// 4.5.5
 define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT','Default search result order');
 define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC','Change this option to change the order that search results are presented by default.');
 define('_JOMRES_PROPERTYLIST_FILTERS_SHOW','Show search result order dropdown');
@@ -1392,10 +1368,10 @@ define('_JOMRES_ROOMMSLIST_STYLE','Rooms list style');
 define('_JOMRES_ROOMMSLIST_STYLE_DESC','In the booking form, using the "classic" rooms list style you offer individual rooms to guests. With the room type view, guests choose the number of rooms of type X (eg. 2 x doubles) instead');
 define('_JOMRES_ROOMMSLIST_STYLE_CLASSIC','Classic');
 define('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES','Room types');
-/* define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_START','(Re)checking availability');
+define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_START','(Re)checking availability');
 define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_AVAILABLEROOMS','Rebuilding available rooms list');
 define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_CALCTOTALS','Calculating totals');
-define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_DONE','Finished form update'); */
+define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_DONE','Finished form update');
 define('_JOMRES_COM_CALENDAR_STARTDAY','Calendar week start day, Sunday or Monday');
 define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY','Only property guests can review?');
 define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC','Set this to Yes if you want to restrict reviews to only those users who have been a guest already in this property.');
