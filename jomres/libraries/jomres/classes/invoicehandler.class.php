@@ -4,8 +4,8 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 4 
 * @package Jomres
-* @copyright	2005-2009 Vince Wooll
-* Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
+* @copyright	2005-2010 Vince Wooll
+* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
 **/
 
 
@@ -117,11 +117,11 @@ class invoicehandler extends jrportal_invoice
 			$this->due_date=  date( 'Y-m-d H:i:s' );
 		else
 			$this->due_date=$invoice_data['due_date'];
-		var_dump($line_items);
+		//var_dump($line_items);
 		foreach ($line_items as $item)
 			{
 			$this->add_line_item($item);
-			echo $this->init_total."<br>";
+			//echo $this->init_total."<br>";
 			}
 		$this->commitUpdateInvoice();
 		}
