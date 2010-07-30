@@ -240,7 +240,7 @@ class j06005view_invoice {
 			$tmpl->readTemplatesFromInput( 'frontend_view_invoice.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
-		if ($invoice->subscription == "0")
+		if ($invoice->subscription == "0" && $invoice->init_total > 0.00)
 			{
 			$tmpl->addRows( 'immediate_pay',$immediate_pay);
 			}
