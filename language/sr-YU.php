@@ -1397,3 +1397,15 @@ define('_JOMRES_SANITY_CHECK_NOT_PUBLISHED',"Note that your property is not yet 
 define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT','Default search result order');
 define('_JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC','Change this option to change the order that search results are presented by default.');
 define('_JOMRES_PROPERTYLIST_FILTERS_SHOW','Show search result order dropdown');
+define('_JOMRES_ROOMMSLIST_STYLE','Rooms list style');
+define('_JOMRES_ROOMMSLIST_STYLE_DESC','In the booking form, using the "classic" rooms list style you offer individual rooms to guests. With the room type view, guests choose the number of rooms of type X (eg. 2 x doubles) instead');
+define('_JOMRES_ROOMMSLIST_STYLE_CLASSIC','Classic');
+define('_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES','Room types');
+define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_START','(Re)checking availability');
+define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_AVAILABLEROOMS','Rebuilding available rooms list');
+define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_CALCTOTALS','Calculating totals');
+define('_JOMRES_BOOKINGFORM_PROGRESSMESSAGE_REBUILDING_DONE','Finished form update');
+define('_JOMRES_COM_CALENDAR_STARTDAY','Calendar week start day, Sunday or Monday');
+define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY','Only property guests can review?');
+define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC','Set this to Yes if you want to restrict reviews to only those users who have been a guest already in this property.');
+define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING','Per room');
