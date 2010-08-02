@@ -783,21 +783,24 @@ class dobooking
 
 	function getGrowlMessages()
 		{
-		$messages = ';';
-		if (isset($this->growlmessages['messages']) && count($this->growlmessages['messages'])>0)
+		if ($this->jrConfig['useJomresMessaging'] == '1')
 			{
-			foreach ($this->growlmessages['messages'] as $message)
+			$messages = ';';
+			if (isset($this->growlmessages['messages']) && count($this->growlmessages['messages'])>0)
 				{
-				if ($message != "")
-					$messages .= 'jQuery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
+				foreach ($this->growlmessages['messages'] as $message)
+					{
+					if ($message != "")
+						$messages .= 'jQuery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
+					}
 				}
+			if (isset($this->growlmessages['guest_feedback']) && count($this->growlmessages['guest_feedback'])>0)
+				{
+				$messages .= 'jQuery.jGrowl(\''.$this->growlmessages['guest_feedback'].'\', { life: 10000 });';
+				}
+			$messages = substr($messages,0,-1);
+			return $messages;
 			}
-		if (isset($this->growlmessages['guest_feedback']) && count($this->growlmessages['guest_feedback'])>0)
-			{
-			$messages .= 'jQuery.jGrowl(\''.$this->growlmessages['guest_feedback'].'\', { life: 10000 });';
-			}
-		$messages = substr($messages,0,-1);
-		return $messages;
 		}
 		
 	function setPopupMessage($message)
