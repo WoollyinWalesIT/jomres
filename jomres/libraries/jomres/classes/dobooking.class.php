@@ -5539,12 +5539,21 @@ class dobooking
 			$number_of_guests = $val['number_allocated'];
 			$room_number = "";
 			$room_name="";
-			if ($this->cfg_bookingform_roomlist_showroomno == "1")
-				$room_number=$this->allPropertyRooms[$rm_id]['room_number'];
-			if ($this->cfg_bookingform_roomlist_showroomname == "1")
-				$room_name=$this->allPropertyRooms[$rm_id]['room_name'];
-			
-			$output .="<tr><td>".$text_room." : ".$room_number." ".$room_name."</td><td>X</td><td>".$number_of_guests." ".$text_guests."</td></tr>";
+
+			if ($this->cfg_booking_form_rooms_list_style == "2")
+				{
+				$room_type_id = $this->allPropertyRooms[$rm_id]['room_classes_uid']; 
+				$room_type = $this->allRoomClasses[$room_type_id]['room_class_abbv'];
+				$output .="<tr><td>".$text_room." : ".$room_type."</td><td>X</td><td>".$number_of_guests." ".$text_guests."</td></tr>";
+				}
+			else
+				{
+				if ($this->cfg_bookingform_roomlist_showroomno == "1")
+					$room_number=$this->allPropertyRooms[$rm_id]['room_number'];
+				if ($this->cfg_bookingform_roomlist_showroomname == "1")
+					$room_name=$this->allPropertyRooms[$rm_id]['room_name'];
+				$output .="<tr><td>".$text_room." : ".$room_number." ".$room_name."</td><td>X</td><td>".$number_of_guests." ".$text_guests."</td></tr>";
+				}
 			}
 		// Don't let there be a carriage return in this output string, otherwise the javascript will bork.
 		$output .="</table><br/>".$text_information;
