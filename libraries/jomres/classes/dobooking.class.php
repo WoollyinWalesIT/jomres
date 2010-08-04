@@ -4185,12 +4185,20 @@ class dobooking
 			$dropdown_output[$tariff_id]['room_type']=$tariff_and_roomtypes['room_type'];
 			$dropdown_output[$tariff_id]['tariff_title']=$tariff_and_roomtypes['tariff_title'];
 			$dropdown_output[$tariff_id]['room_price_inc_tax']=output_price($tariff_and_roomtypes['room_price_inc_tax']);
+			
+			$dropdown_output[$tariff_id]['max_guests_per_room']=$tariff_and_roomtypes['max_guests_per_room'];
+			$dropdown_output[$tariff_id]['max_guests_per_booking']=$tariff_and_roomtypes['max_guests_per_booking'];
 			}
-		
-	$return_output = '<table>';
+
+
+	$nor = jr_gettext('_JOMRES_NUMBER_OF_ROOMS',_JOMRES_NUMBER_OF_ROOMS,false,false);
+	$gpr_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_ROOM',_JOMRES_MAX_GUESTS_PER_ROOM,false,false);
+	$gpb_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false);
+	
+	$return_output = '<table><tr><td>'.$nor.'</td><td></td><td>'.$gpr_text.'</td><td>'.$gpb_text.'</td><td></td></tr>';
 	foreach ($dropdown_output as $output)
 		{
-		$return_output .= "<tr><td>".$output['dropdown']." ".$output['room_type']." - ".$output['tariff_title']."</td><td>".$output['room_price_inc_tax']."</td><tr>";
+		$return_output .= "<tr><td>".$output['dropdown']." </td><td> ".$output['room_type']." - ".$output['tariff_title']." </td><td style=\"text-align:right;\"> ".$output['max_guests_per_room']."</td><td style=\"text-align:right;\">".$output['max_guests_per_booking']."</td><td>".$output['room_price_inc_tax']."</td><tr>";
 		}
 	return $return_output;
 	}
@@ -4336,6 +4344,8 @@ class dobooking
 						$this->room_type_style_output[$tariff_id]['room_type']=$room_and_tariff_data['roomStuff']['ROOMTYPE'];
 						$this->room_type_style_output[$tariff_id]['roomTariffOutputId'][]=$room_and_tariff_data['roomTariffOutputId'];
 						$this->room_type_style_output[$tariff_id]['roomTariffOutputId'] = array_unique($this->room_type_style_output[$tariff_id]['roomTariffOutputId']);
+						$this->room_type_style_output[$tariff_id]['max_guests_per_room']=$room_and_tariff_data['roomStuff']['MAXPEOPLE'];
+						$this->room_type_style_output[$tariff_id]['max_guests_per_booking']=$room_and_tariff_data['tariffStuff']['MAXPEOPLE'];
 						}
 					}
 				}
