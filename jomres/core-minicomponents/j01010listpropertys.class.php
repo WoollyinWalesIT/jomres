@@ -151,16 +151,23 @@ class j01010listpropertys {
 				$g_pid =genericOr($propertysToShow,'property_uid');
 
 				// Tariffs
-				$tariffsArray=array();
-				$query = "SELECT property_uid,validfrom,validto,roomrateperday FROM #__jomres_rates WHERE ".$g_pid;
+				$pricesFromArray=array();
+				$searchDate = date("Y/m/d");
+				if (isset($_REQUEST['arrivalDate']))
+					{
+					$searchDate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
+					}
+				$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE ".$g_pid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') ";
 
 				$tariffList = doSelectSql($query);
-				$ratesArray=array();
 				if (count($tariffList) > 0)
 					{
 					foreach ($tariffList as $t)
 						{
-						$tariffsArray[][$t->property_uid]=array('validfrom'=>$t->validfrom,'validto'=>$t->validto,'roomrateperday'=>$t->roomrateperday);
+						if ( !isset($pricesFromArray[$t->property_uid]) )
+							$pricesFromArray[$t->property_uid]=$t->roomrateperday;
+						elseif ( isset($pricesFromArray[$t->property_uid]) && $pricesFromArray[$t->property_uid] > $t->roomrateperday )
+							$pricesFromArray[$t->property_uid]=$t->roomrateperday;
 						}
 					}
 
@@ -312,61 +319,36 @@ class j01010listpropertys {
 							}
 						$property_deets['FEATURELIST']=$featureList;
 						}
-
+					
+					$output_lowest = false;
 					$currfmt = jomres_getSingleton('jomres_currency_format');
 					if ($mrConfig['is_real_estate_listing']==0)
 						{
-						$tArr=array();
-						$ratesArray=array();
-
-						foreach ($tariffsArray as $k=>$v)
+						if (isset($pricesFromArray[$property->propertys_uid]))
 							{
-							$key=key($v);
-							$val=$tariffsArray[$k][$key];
-							if (key($v)==intval($property->propertys_uid))
-								$tArr[]=$val;
-							}
-						foreach ($tArr as $t)
-							{
-							$date_elements	 = explode("/",$t['validfrom']);
-							$unixValidfrom= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-							$date_elements	 = explode("/",$t['validto']);
-							$unixValidto= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-							if ( $unixValidfrom <= $unixTodaysDate && $unixValidto >= $unixTodaysDate )
-								{
-								$ratesArray[]=$t['roomrateperday'];
-								}
-							}
-						if (count($ratesArray) >0)
-							{
-							sort($ratesArray,SORT_NUMERIC);
-							$lowestPrice=$ratesArray[0];
-							if ($mrConfig['prices_inclusive'] == 0)
-								$lowestPrice=$current_property_details->get_gross_accommodation_price($lowestPrice,$property->propertys_uid);
-							}
-						else
-							$lowestPrice="-";
-
-						
-						$price=output_price($lowestPrice);
-						
-						if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
-							$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
-						else
-							{
-							if ($mrConfig['perPersonPerNight']=="0" )
-								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+							$output_lowest = true;
+							$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property->propertys_uid],$property->propertys_uid));
+							if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
+								$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 							else
-								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+								{
+								if ($mrConfig['perPersonPerNight']=="0" )
+									$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+								else
+									$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+								}
+							$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
 							}
-						$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
+						else
+							{
+							$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
+							}
 						}
 					else
 						{
 						$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
 						}
-						
-						
+
 					$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
 					$propertyContactArray=$propertyAddressArray[1];
 					$propertyAddyArray=$propertyAddressArray[2];
@@ -440,7 +422,11 @@ class j01010listpropertys {
 					
 	
 					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
-					$property_deets['LOWESTPRICE']=$price;
+					if ($output_lowest)
+						$property_deets['LOWESTPRICE']=$price;
+					else
+						$property_deets['LOWESTPRICE']='';
+						
 					$property_deets['STARS']=$starslink;
 					//$property_deets['TEMPLATEPATH']=$templatepath;
 					$MiniComponents->triggerEvent('01011',array('property_uid'=>$property->propertys_uid) ); // Optional
