@@ -236,9 +236,11 @@ class  j00018MRPavailabilitycalendar {
 		$dateElements=explode("/",$todaysDate);
 		$unixTodaysDate=mktime(0, 0, 0,$dateElements[1],$dateElements[2],$dateElements[0]);
 
-		//$thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.date("M",$stdate),strftime( "%B",$stdate),true);
+
 		$thisMonthName= getThisMonthName(date("n",$stdate));
-		
+		if ($thisMonthName == "")
+			$thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.date("M",$stdate),strftime( "%B",$stdate),true);
+			
 		$this->retVals.="\n<table class=\"rescal\" cellspacing=\"0\">\n";
 		$this->retVals.="<tr class=\"availability_calendar_months\" >\n<th colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		if ($jrConfig['calendarstartofweekday'] == "1")
