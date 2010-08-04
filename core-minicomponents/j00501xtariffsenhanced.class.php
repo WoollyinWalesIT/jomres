@@ -31,7 +31,7 @@ class j00501xtariffsenhanced {
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$configurationPanel=$componentArgs['configurationPanel'];
 		$mrConfig=getPropertySpecificSettings();
@@ -45,20 +45,35 @@ class j00501xtariffsenhanced {
 				$mrConfig['tariffsenhancedyearstoshow']=2;
 			$configurationPanel->startPanel(JOMRES_COM_A_TARIFFMODE_TARIFFTYPES);
 
-			$configurationPanel->setleft("Tariff default");
+			$configurationPanel->setleft(jr_gettext('_JOMRES_MICROMANAGE_TARIFFDEFAULT',_JOMRES_MICROMANAGE_TARIFFDEFAULT,FALSE));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_tariffsenhanceddefault" value="'.$mrConfig['tariffsenhanceddefault'].'" />');
-			$configurationPanel->setright("This only applies to new tariffs");
+			$configurationPanel->setright(jr_gettext('_JOMRES_MICROMANAGE_TARIFFDEFAULT_DESC',_JOMRES_MICROMANAGE_TARIFFDEFAULT_DESC,FALSE));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft("Years to show");
+			$configurationPanel->setleft(jr_gettext('_JOMRES_MICROMANAGE_YEARSTOSHOW',_JOMRES_MICROMANAGE_YEARSTOSHOW,FALSE));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_tariffsenhancedyearstoshow" value="'.$mrConfig['tariffsenhancedyearstoshow'].'" />');
-			$configurationPanel->setright("Defines the number of years to show when editing a tariff type");
+			$configurationPanel->setright(jr_gettext('_JOMRES_MICROMANAGE_YEARSTOSHOW_DESC',_JOMRES_MICROMANAGE_YEARSTOSHOW_DESC,FALSE));
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->endPanel();
 			}
 		}
 
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]		=jr_gettext('_JOMRES_MICROMANAGE_TARIFFDEFAULT',_JOMRES_MICROMANAGE_TARIFFDEFAULT);
+		$output[]		=jr_gettext('_JOMRES_MICROMANAGE_TARIFFDEFAULT_DESC',_JOMRES_MICROMANAGE_TARIFFDEFAULT_DESC);
+		$output[]		=jr_gettext('_JOMRES_MICROMANAGE_YEARSTOSHOW',_JOMRES_MICROMANAGE_YEARSTOSHOW);
+		$output[]		=jr_gettext('_JOMRES_MICROMANAGE_YEARSTOSHOW_DESC',_JOMRES_MICROMANAGE_YEARSTOSHOW_DESC);
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	/**
 	#
 	 * Must be included in every mini-component

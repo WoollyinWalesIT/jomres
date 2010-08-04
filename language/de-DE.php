@@ -1454,3 +1454,7 @@ define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING','Per room');
 define('_JOMRES_MAX_GUESTS_PER_ROOM','Guests per room : ');
 define('_JOMRES_MAX_GUESTS_PER_BOOKING','Guests per booking : ');
 define('_JOMRES_NUMBER_OF_ROOMS','Number of rooms');
+define('_JOMRES_MICROMANAGE_TARIFFDEFAULT','Tariff default price');
+define('_JOMRES_MICROMANAGE_TARIFFDEFAULT_DESC',"This only applies to new tariffs");
+define('_JOMRES_MICROMANAGE_YEARSTOSHOW',"Years to show");
+define('_JOMRES_MICROMANAGE_YEARSTOSHOW_DESC',"Defines the number of years to show when editing a micromanage tariff");
