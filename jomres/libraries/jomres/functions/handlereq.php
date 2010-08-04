@@ -119,7 +119,9 @@ switch ($field)
 			{
 			$bkg->setGuestVariantDetails($typeid,$value);
 			$bkg->resetRequestedRoom();
+			$bkg->checkAllGuestsAllocatedToRooms();
 			}
+			
 	break;
 	case "arrivalDate":
 		$ajrq="ajrq:::arrivalDate";
