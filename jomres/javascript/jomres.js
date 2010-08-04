@@ -542,87 +542,106 @@ function SRPcheckShowGuestDeetsNow() {
 //	 Departure date adjustment stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function ajaxADate(arrivalDate,dformat){
-	var newday=0
+	var currentDepartureDateText = jQuery(document.ajaxform.departureDate).val();
+	var currentDepartureDatesplit_dates = jomres_split_date(currentDepartureDateText,dformat)
+	currentDepartureDateday = currentDepartureDatesplit_dates[0];
+	currentDepartureDatemon = currentDepartureDatesplit_dates[1];
+	currentDepartureDateyear = currentDepartureDatesplit_dates[2];
+	var currentDepartureDated = new Date(currentDepartureDateyear,currentDepartureDatemon-1,currentDepartureDateday); 
+	
 	var day=0
 	var mon=0
 	var year=0
+	var split_dates = jomres_split_date(arrivalDate,dformat)
+	day = split_dates[0];
+	mon = split_dates[1];
+	year = split_dates[2];
+	
+	var d = new Date(year,mon-1,day); with (d) setDate(getDate()+mininterval);
+
+	sday=String(d.getDate());
+	smonth=String(d.getMonth()+1);
+	if (sday.length == 1)
+		fday="0"+sday;
+	else
+		fday=sday;
+	if (smonth.length == 1)
+		fmonth="0"+smonth;
+	else
+		fmonth=smonth;
+
 	if (dformat=="%d/%m/%Y"){
-		dateArray=arrivalDate.split("/")
+		dd=fday+"/"+fmonth+"/"+String(d.getFullYear())
+		}
+	if (dformat=="%Y/%m/%d"){
+		dd= String(d.getFullYear())+"/"+fmonth+"/"+fday
+		}
+	if (dformat=="%m/%d/%Y"){
+		dd=fmonth+"/"+ fday+"/"+String(d.getFullYear())
+		}
+	if (dformat=="%d-%m-%Y"){
+		dd=fday+"-"+fmonth+"-"+String(d.getFullYear())
+		}
+	if (dformat=="%Y-%m-%d"){
+		dd= String(d.getFullYear())+"-"+fmonth+"-"+fday
+		}
+	if (dformat=="%m-%d-%Y"){
+		dd=fmonth+"-"+ fday+"-"+String(d.getFullYear())
+		}
+
+
+	var one_day=1000*60*60*24;
+	var difference = Math.ceil((d.getTime()-currentDepartureDated.getTime())/(one_day))+mininterval;
+	if (difference > mininterval)
+		document.ajaxform.departureDate.value=dd;
+	}	
+
+function jomres_split_date(date,dformat)
+	{
+	if (dformat=="%d/%m/%Y"){
+		dateArray=date.split("/")
 			day=dateArray[0]
 			mon=dateArray[1]
 			year=dateArray[2]
 			}
 	if (dformat=="%Y/%m/%d"){
-		dateArray=arrivalDate.split("/")
+		dateArray=date.split("/")
 		day=dateArray[2]
 		mon=dateArray[1]
 		year=dateArray[0]
 		}
 	if (dformat=="%m/%d/%Y"){
-		dateArray=arrivalDate.split("/")
+		dateArray=date.split("/")
 		day=dateArray[1]
 		mon=dateArray[0]
 		year=dateArray[2]
 		}
 	if (dformat=="%d-%m-%Y"){
-		dateArray=arrivalDate.split("-")
+		dateArray=date.split("-")
 		day=dateArray[0]
 		mon=dateArray[1]
 		year=dateArray[2]
 		}
 	if (dformat=="%Y-%m-%d"){
-		dateArray=arrivalDate.split("-")
+		dateArray=date.split("-")
 		day=dateArray[2]
 		mon=dateArray[1]
 		year=dateArray[0]
 		}
 	if (dformat=="%m-%d-%Y"){
-		dateArray=arrivalDate.split("-")
+		dateArray=date.split("-")
 		day=dateArray[1]
 		mon=dateArray[0]
 		year=dateArray[2]
 		}
 	if (dformat=="%d.%m.%Y"){
-		dateArray=arrivalDate.split(".")
+		dateArray=date.split(".")
 		day=dateArray[0]
 		mon=dateArray[1]
 		year=dateArray[2]
 		}
-		
-	var d = new Date(year,mon-1,day); with (d) setDate(getDate()+mininterval);
-		sday=String(d.getDate());
-		smonth=String(d.getMonth()+1);
-		if (sday.length == 1)
-			fday="0"+sday;
-		else
-			fday=sday;
-		if (smonth.length == 1)
-			fmonth="0"+smonth;
-		else
-			fmonth=smonth;
-		if (dformat=="%d/%m/%Y"){
-			dd=fday+"/"+fmonth+"/"+String(d.getFullYear())
-			}
-		if (dformat=="%Y/%m/%d"){
-			dd= String(d.getFullYear())+"/"+fmonth+"/"+fday
-			}
-		if (dformat=="%m/%d/%Y"){
-			dd=fmonth+"/"+ fday+"/"+String(d.getFullYear())
-			}
-		if (dformat=="%d-%m-%Y"){
-			dd=fday+"-"+fmonth+"-"+String(d.getFullYear())
-			}
-		if (dformat=="%Y-%m-%d"){
-			dd= String(d.getFullYear())+"-"+fmonth+"-"+fday
-			}
-		if (dformat=="%m-%d-%Y"){
-			dd=fmonth+"-"+ fday+"-"+String(d.getFullYear())
-			}
-			
-	document.ajaxform.departureDate.value=dd;
-	}	
-
-
+	return  [ day, mon , year ];
+	}
 ///////////////////////////////////////
 //
 //	Validate the form input
