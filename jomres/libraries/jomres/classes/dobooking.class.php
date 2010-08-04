@@ -4155,7 +4155,7 @@ class dobooking
 			$this->room_type_style_output[$tariff_id]['roomTariffOutputId'] = $a_new_array;
 			}
 		
-		
+		ksort($this->room_type_style_output);
 		foreach ($this->room_type_style_output as $tariff_id=>$tariff_and_roomtypes)
 			{
 			$number_of_rooms = count($tariff_and_roomtypes['roomTariffOutputId']);
