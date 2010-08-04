@@ -69,7 +69,8 @@ class j16000updates
 					$IIS = strpos($detect_os, "IIS");
 					if ($pos === false && $IIS === false)
 						{
-						if (!isset($_REQUEST['ftp_user_name']) )
+						echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. It's likely that files were uploaded via ftp and are owned by the ftp user, not the web server's user. You are advised to change ownership of the files to the web server's user then try again.<br/>";
+/* 						if (!isset($_REQUEST['ftp_user_name']) )
 							{
 							echo "Error, you have one or more files that are not writable by php. It is probable that they are owned by your ftp user but not by the webserver's user. Please change the permissions of the files so that they can be modified by the webserver. You may need to contact your host if you cannot do this yourself.<br /><br />";
 							echo "We can try to modify the these files via ftp if you wish. Please enter your FTP server login details below.";
@@ -88,7 +89,7 @@ class j16000updates
 							{
 
 							$this->chmod_jomresfiles($this->directoryScanResults);
-							}
+							} */
 
 						}
 					else
@@ -110,10 +111,10 @@ class j16000updates
 				$this->ftp_user_pass = jomresGetParam( $_REQUEST, 'ftp_user_pass', '' );
 				$this->ftp_server = jomresGetParam( $_REQUEST, 'ftp_server', '' );
 				$this->checkJomresDirectories();
-				$this->chmod_jomresfiles($this->directoryScanResults);
+				//$this->chmod_jomresfiles($this->directoryScanResults);
 				if (!$this->checkJomresDirectories())
 					{
-					echo "Sorry, it is not possible for this script to chmod your files, you will need to upgrade manually.<br/>";
+					echo "Error, it's not possible to upgrade Jomres on this server as one or more files is not writable by php. It's likely that files were uploaded via ftp and are owned by the ftp user, not the web server's user. You are advised to change ownership of the files to the web server's user then try again.<br/>";
 					}
 				}
 
@@ -349,7 +350,7 @@ class j16000updates
 
 	function chmod_jomresfiles($unwritableFiles)
 		{
-		// Connect to the FTP
+/* 		// Connect to the FTP
 		$conn_id = $this->chmod_open();
 		// CHMOD each file and echo the results
 
@@ -375,7 +376,7 @@ class j16000updates
 		else
 			echo "Nope. ".$this->ftp_root."/jomres is still unwritable<br/>";
 		// Close the connection
-		$this->chmod_close($conn_id);
+		$this->chmod_close($conn_id); */
 		}
 
 	function chmod_open()
