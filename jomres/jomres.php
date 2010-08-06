@@ -208,7 +208,6 @@ if ($numberOfPropertiesInSystem==1)
 			$property_uid=$defaultProperty;
 		else
 			$property_uid=$parray[0];
-
 		}
 	}
 else if ($thisJRUser->userIsManager)
@@ -270,9 +269,6 @@ if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProper
 	}
 
 // Finish getting the property specific settings
-
-
-
 
 if ($property_uid > 0)
 	{
@@ -347,6 +343,8 @@ if ( $jrConfig['useSSLinBookingform'] == 1)
 	}
 
 init_javascript();
+
+$MiniComponents->triggerEvent('00005'); // Optional
 
 if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	{
