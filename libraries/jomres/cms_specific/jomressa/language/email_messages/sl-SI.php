@@ -9,7 +9,7 @@
 **/
 
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 
 // These definitions are in a file of their own as we need the file to be called when the email's generated, not when the system's first run

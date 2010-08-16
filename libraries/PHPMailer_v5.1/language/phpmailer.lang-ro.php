@@ -5,6 +5,7 @@
 * @package PHPMailer
 * @author Catalin Constantin <catalin@dazoot.ro>
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'Eroare SMTP: Nu a functionat autentificarea.';
 $PHPMAILER_LANG['connect_host']         = 'Eroare SMTP: Nu m-am putut conecta la adresa SMTP.';

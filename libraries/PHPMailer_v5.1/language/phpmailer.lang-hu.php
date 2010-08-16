@@ -3,6 +3,7 @@
 * PHPMailer language file: refer to English translation for definitive list
 * Hungarian Version
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'SMTP Hiba: Sikertelen autentikáció.';
 $PHPMAILER_LANG['connect_host']         = 'SMTP Hiba: Nem tudtam csatlakozni az SMTP host-hoz.';

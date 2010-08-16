@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * This filter extracts <style> blocks from input HTML, cleans them up
  * using CSSTidy, and then places them in $purifier->context->get('StyleBlocks')

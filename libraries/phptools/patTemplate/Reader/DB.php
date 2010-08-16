@@ -1,4 +1,7 @@
 <?PHP
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * patTemplate Reader that reads from a database using PEAR::DB
  *

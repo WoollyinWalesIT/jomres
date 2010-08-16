@@ -4,6 +4,7 @@
 * Simplified Chinese Version
 * @author liqwei <liqwei@liqwei.com>
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate'] = 'SMTP 错误：登录失败。';
 $PHPMAILER_LANG['connect_host'] = 'SMTP 错误：无法连接到 SMTP 主机。';

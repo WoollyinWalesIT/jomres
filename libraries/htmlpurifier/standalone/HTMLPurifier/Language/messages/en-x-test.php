@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 // private language message file for unit testing purposes
 
 $fallback = 'en';

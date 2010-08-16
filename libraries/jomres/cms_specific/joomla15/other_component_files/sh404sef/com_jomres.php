@@ -13,7 +13,7 @@
  * Copyright Woollyinwales IT 2009
  */
 
-defined( '_JEXEC' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JEXEC' ) or die( '' );
 if (!defined('_JOMRES_INITCHECK') )
 	define('_JOMRES_INITCHECK', 1 );
 // ------------------  standard plugin initialize function - don't change ---------------------------

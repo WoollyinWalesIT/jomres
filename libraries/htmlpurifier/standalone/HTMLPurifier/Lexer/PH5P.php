@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * Experimental HTML5-based parser using Jeroen van der Meer's PH5P library.
  * Occupies space in the HTML5 pseudo-namespace, which may cause conflicts.

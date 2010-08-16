@@ -9,7 +9,7 @@
 **/
 
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 
 if (!isset($_REQUEST['no_html']))
@@ -343,6 +343,8 @@ if ( $jrConfig['useSSLinBookingform'] == 1)
 	}
 
 init_javascript();
+
+set_showtime('include_room_booking_functionality',true);
 
 $MiniComponents->triggerEvent('00005'); // Optional
 

@@ -1,4 +1,7 @@
 <?PHP
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * patTemplate function to dynamically change the
  * value of _any_ attribute of the parent tag.

@@ -9,7 +9,7 @@
 **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )

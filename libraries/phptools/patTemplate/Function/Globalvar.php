@@ -1,4 +1,7 @@
 <?PHP
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * patTemplate function that enables adding global variables
  * from within a template.

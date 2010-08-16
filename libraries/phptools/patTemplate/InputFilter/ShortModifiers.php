@@ -1,4 +1,7 @@
 <?PHP
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * patTemplate input filter to allow the short modifier syntax
  * that is used by Smarty

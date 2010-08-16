@@ -9,7 +9,7 @@
 **/
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');

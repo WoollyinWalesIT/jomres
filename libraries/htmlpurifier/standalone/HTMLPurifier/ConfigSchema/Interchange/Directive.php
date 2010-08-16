@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * Interchange component class describing configuration directives.
  */

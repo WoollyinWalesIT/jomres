@@ -9,7 +9,7 @@
 **/
 
 // ################################################################
-defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+defined( "_JOMRES_INITCHECK" ) or die( "" );
 // ################################################################
 function admin_page_render()
 	{

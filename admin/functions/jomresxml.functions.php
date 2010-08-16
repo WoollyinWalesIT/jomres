@@ -10,7 +10,7 @@
 
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this location is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 $logFiles=array('system'=>'jomres_system_log.xml','request'=>'jomres_request_log.xml','gateway'=>'jomres_gateway_log.xml','booking'=>'jomres_booking_log.xml','error'=>'jomres_error_log.xml','jrportalquery'=>'jrportalquery_log.xml');

@@ -5,6 +5,7 @@
 * Türkçe Versiyonu
 * ÝZYAZILIM - Elçin Özel - Can Yýlmaz - Mehmet Benlioðlu
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'SMTP Hatasý: Doðrulanamýyor.';
 $PHPMAILER_LANG['connect_host']         = 'SMTP Hatasý: SMTP hosta baðlanýlamýyor.';

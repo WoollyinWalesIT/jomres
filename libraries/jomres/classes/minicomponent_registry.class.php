@@ -10,7 +10,7 @@
 
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 /**
 #
@@ -101,7 +101,7 @@ class minicomponent_registry
 		
 		$safety_string="<?php
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 		";
 		$registered_classes = serialize($this->registeredClasses);

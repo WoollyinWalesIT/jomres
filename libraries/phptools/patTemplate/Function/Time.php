@@ -1,4 +1,7 @@
 <?PHP
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * patTemplate function that calculates the current time
  * or any other time and returns it in the specified format.
