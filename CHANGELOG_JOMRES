@@ -1,3 +1,23 @@
+
+Jomres 4.5.6 16/8/2010
+
+Added check to booking engine to see if jomres messaging is enabled.
+Small modification to handle req to ensure that the guest allocation is reset to blank once the guest number have changed.
+Modified upgrade functionality to remove chmod function. In very rare instances some of the contents of the /jomres folder might not be writeable by the web server (which is why we use the web installer, and discourage use of ftp for installation of Jomres). In older versions, as a last ditch effort, we'd ask the user for their ftp details to try to chmod any file to 777 that isn't writeable to facilitate the upgrade. This is a less than ideal process for security reasons as some users may not be aware that any file given these permissions should manually change those back after the upgrade. To remove the risk of site managers not changing the permissions back, we've removed the functionality altogether, instead replacing the code with a warning that the files need to have their ownership changed to that of the web server's user.
+Added ksort to ensure the room type dropdown list always maintains the same order.
+Modified room allocation functionality to output room type instead of room name if we're using dropdowns.
+In rare situations the month name isn't found by the appropriate function, so in the event that '' is returned, we'll use an older method to create the month name. 
+Some changes to room type dropdowns to improve layout and information available.
+Modification to jomres.js. If the difference between the departureDate in the booking form and the arrivalDate is > mininterval, don't adjust the departure date.
+Added some missing translations for micromanage tariff editing's property configuration tab.
+List properties modified with a nice little query from Piranha that simplifies the tariff query to output the "prices from" in the property list page.
+Added a new trigger 00005 that is called before the action really starts, before the manager's menus are generated in jomres.php.
+Restored some mistakenly removed definitions that define month names.
+small change to dobooking to ensure that srps have the departure date set too when the form is first loaded.
+Updated romanian currency code in currency code class file.
+Added the beginning of new functionality that'll allow bookings to go through minus room bookings.
+Hardened Jomres files against unauthorised access.
+
 Jomres 4.5.5 30/7/2010
 
 Note that there are changes to both dobooking.html and dobooking_srp.html, please ensure that your version (if you've modified it) incorporates the new changes otherwise your booking form will not work.
