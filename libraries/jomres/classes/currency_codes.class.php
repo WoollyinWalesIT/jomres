@@ -282,7 +282,7 @@ class currency_codes
 			'PHP'=>array("pre"=>"Php","post"=>""),
 			'PLN'=>array("pre"=>"zł","post"=>""),
 			'QAR'=>array("pre"=>"ر.ق","post"=>""),
-			'ROL'=>array("pre"=>"lei","post"=>""),
+			'RON'=>array("pre"=>"lei","post"=>""),
 			'RUB'=>array("pre"=>"руб","post"=>""),
 			'WST'=>array("pre"=>"WS$","post"=>""),
 			'STD'=>array("pre"=>"Db","post"=>""),
