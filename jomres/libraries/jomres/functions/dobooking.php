@@ -124,11 +124,20 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		echo "Error creating booking object";
 		return;
 		}
-
+	
+	if (!get_showtime('include_room_booking_functionality'))
+		$bkg->cfg_showdepartureinput = "0";
+		
 	$text=$bkg->makeOutputText();
 	$guest=$bkg->makeGuestData();
 
+
+		
 	$output=array_merge($text,$guest);
+	
+	if ($bkg->cfg_showdepartureinput == "0")
+		$output['HDEPARTUREDATE'] = "";
+	
 	$requiredIcons=$bkg->makeRequiredIcons();
 	$output=array_merge($output,$requiredIcons);
 	$guestTypes=$bkg->makeCustomerTypes($selectedProperty);
@@ -392,8 +401,11 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	else
 		$rm=$bkg->generateRoomsList($roomAndTariffArray);
 	//$rm=$bkg->generateRoomsList($roomAndTariffArray);
-	$output['AVAILABLEROOMS']=$rm;
-	$output['ROOMSLIST']=$output['SELECTEDROOM'].'<br>'.$output['AVAILABLEROOMS'].'</div><div id="availRooms" class="roomslist">';
+	if (get_showtime('include_room_booking_functionality'))
+		{
+		$output['AVAILABLEROOMS']=$rm;
+		$output['ROOMSLIST']=$output['SELECTEDROOM'].'<br>'.$output['AVAILABLEROOMS'].'</div><div id="availRooms" class="roomslist">';
+		}
 	$componentArgs=array();
 	$componentArgs['output']=$output;
 	$MiniComponents->triggerEvent('00103',$output); // End-form generation
@@ -402,35 +414,52 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$toload=array();
 	$load=array();
 	//$bkg->writeToLogfile("STORED BOOKING");
-	if ( $mrConfig['singleRoomProperty'] == "1" && (isset($thisdate) && !empty($thisdate))  )
+	
+	if (get_showtime('include_room_booking_functionality'))
 		{
-		$load['ONLOAD']="hidediv('indicator');";
-		$load['COUNT']=1;
-		$toload[]=$load;
-		// As of 4.4 we've done away with the two ajax call process to run the booking form, however we still need to initialise the arrival date through ajax for SRPs
-		$tmpsrptrigger="jQuery.get(ajaxurl+'&task=handlereq',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."' ', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."},function(data){showRoomsList(data); show_log('');});";
-		$tmpsrptrigger = $bkg->sanitise_for_eval($tmpsrptrigger);
-		$load['ONLOAD']=$tmpsrptrigger;
-		$load['COUNT']=2;
-		$toload[]=$load;
+		if ( $mrConfig['singleRoomProperty'] == "1" && (isset($thisdate) && !empty($thisdate))  )
+			{
+			$load['ONLOAD']="hidediv('indicator');";
+			$load['COUNT']=1;
+			$toload[]=$load;
+			// As of 4.4 we've done away with the two ajax call process to run the booking form, however we still need to initialise the arrival date through ajax for SRPs
+			$tmpsrptrigger="jQuery.get(ajaxurl+'&task=handlereq',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."' ', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."},function(data){showRoomsList(data); show_log('');});";
+			$tmpsrptrigger = $bkg->sanitise_for_eval($tmpsrptrigger);
+			$load['ONLOAD']=$tmpsrptrigger;
+			$load['COUNT']=2;
+			$toload[]=$load;
+			}
+		else
+			{
+			$load['ONLOAD']="hidediv('indicator');";
+			$load['COUNT']=1;
+			$toload[]=$load;
+			$load['ONLOAD']="hidediv('extrascontainer');";
+			$load['COUNT']=2;
+			$toload[]=$load;
+			$load['ONLOAD']="hidediv('guestdeets');";
+			$load['COUNT']=3;
+			$toload[]=$load;
+			$load['ONLOAD']="jQuery.get(ajaxurl+'&task=handlereq&firstrun=1',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
+			$load['COUNT']=4;
+			$toload[]=$load;
+			}
 		}
 	else
 		{
 		$load['ONLOAD']="hidediv('indicator');";
 		$load['COUNT']=1;
 		$toload[]=$load;
-		$load['ONLOAD']="hidediv('extrascontainer');";
-		$load['COUNT']=2;
-		$toload[]=$load;
-		$load['ONLOAD']="hidediv('guestdeets');";
-		$load['COUNT']=3;
-		$toload[]=$load;
-		$load['ONLOAD']="jQuery.get(ajaxurl+'&task=handlereq&firstrun=1',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
-		$load['COUNT']=4;
 		$toload[]=$load;
 		}
+
 	$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
 
+	if (get_showtime('include_room_booking_functionality'))
+		$output['JOMRES_ROOMSLISTENABLED']="true";
+	else
+		$output['JOMRES_ROOMSLISTENABLED']="false";
+	
 	jr_import('jomres_custom_field_handler');
 	$custom_fields = new jomres_custom_field_handler();
 	$allCustomFields = $custom_fields->getAllCustomFields();
@@ -486,28 +515,42 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if (!isset($mrConfig['booking_form_rooms_list_style']))
 		$mrConfig['booking_form_rooms_list_style'] = "1";
 
-	if ($mrConfig['booking_form_rooms_list_style'] == "1")
+	if (get_showtime('include_room_booking_functionality'))
 		{
-		$classic_rooms_list = array();
-		$classic_rooms_list_output = array();
-		$classic_rooms_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
-		$classic_rooms_list['LOOKRIGHT'] = $output['LOOKRIGHT'];
-		$classic_rooms_list['SELECTEDROOM'] = $output['SELECTEDROOM'];
-		$classic_rooms_list['AVAILABLEROOMS'] = $output['AVAILABLEROOMS'];
-		$classic_rooms_list['ESTIMATEWARNING'] = $output['ESTIMATEWARNING'];
-		$classic_rooms_list_output[]=$classic_rooms_list;
+		if ($mrConfig['booking_form_rooms_list_style'] == "1")
+			{
+			$classic_rooms_list = array();
+			$classic_rooms_list_output = array();
+			$classic_rooms_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
+			$classic_rooms_list['LOOKRIGHT'] = $output['LOOKRIGHT'];
+			$classic_rooms_list['SELECTEDROOM'] = $output['SELECTEDROOM'];
+			$classic_rooms_list['AVAILABLEROOMS'] = $output['AVAILABLEROOMS'];
+			$classic_rooms_list['ESTIMATEWARNING'] = $output['ESTIMATEWARNING'];
+			$classic_rooms_list_output[]=$classic_rooms_list;
+			}
+		if ($mrConfig['booking_form_rooms_list_style'] == "2") // Room type dropdown selection feature
+			{
+			$roomtype_dropdown_list = array();
+			$roomtype_dropdown_list_output = array();
+			$roomtype_dropdown_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
+			$roomtype_dropdown_list_output[]=$roomtype_dropdown_list;
+			}
 		}
-	if ($mrConfig['booking_form_rooms_list_style'] == "2") // Room type dropdown selection feature
+		
+	$rooms_list_accommodation_panel_output = array();
+	if (get_showtime('include_room_booking_functionality'))
 		{
-		$roomtype_dropdown_list = array();
-		$roomtype_dropdown_list_output = array();
-		$roomtype_dropdown_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
+		$rooms_list_accommodation_panel = array();
 		
-		$roomtype_dropdown_list_output[]=$roomtype_dropdown_list;
-		
+		$rooms_list_accommodation_panel['BILLING_ROOMTOTAL']=$output['BILLING_ROOMTOTAL'];
+		$rooms_list_accommodation_panel['ACCOMMODATION_NIGHTS']=$output['ACCOMMODATION_NIGHTS'];
+		$rooms_list_accommodation_panel['ACCOMMODATION_PERROOM']=$output['ACCOMMODATION_PERROOM'];
+		$rooms_list_accommodation_panel['BILLING_TOTALINPARTY']=$output['BILLING_TOTALINPARTY'];
+		$rooms_list_accommodation_panel['ACCOMMODATION_TOTAL']=$output['ACCOMMODATION_TOTAL'];
+
+		$rooms_list_accommodation_panel_output[] = $rooms_list_accommodation_panel;
 		}
-	
-	
+
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	
@@ -516,6 +559,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if ($mrConfig['booking_form_rooms_list_style'] == "2")
 		$tmpl->addRows( 'roomtype_dropdown_list',$roomtype_dropdown_list_output);
 		
+	$tmpl->addRows( 'rooms_list_accommodation_panel_output',$rooms_list_accommodation_panel_output);
 	$tmpl->addRows( 'coupons',$coupons);
 	$tmpl->addRows( 'coupons_totals',$coupons_totals);
 	$tmpl->addRows( 'smoking',$smokingOpts);
@@ -533,8 +577,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$tmpl->addRows( 'customOutput_'.$key, array($val) );
 			}
 		}
-	//var_dump($tmpl);
-	//exit;
+
 	if (count($third_party_extras)>0)
 		{
 		$tmpl->addRows( 'third_party_extras', $third_party_extras );
@@ -555,10 +598,15 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	else
 		{
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		if ( ($mrConfig['singleRoomProperty'] == "1" ) )
-			$tmpl->readTemplatesFromInput( 'dobooking_srp.html');
-		else
+		if (!get_showtime('include_room_booking_functionality'))
 			$tmpl->readTemplatesFromInput( 'dobooking.html');
+		else
+			{
+			if ( ($mrConfig['singleRoomProperty'] == "1" ) )
+				$tmpl->readTemplatesFromInput( 'dobooking_srp.html');
+			else
+				$tmpl->readTemplatesFromInput( 'dobooking.html');
+			}
 		if (!defined('DOBOOKING_IN_DETAILS'))
 			$tmpl->displayParsedTemplate();
 		else
