@@ -4681,79 +4681,81 @@ class dobooking
 
 		// Let's see if the form is ready to be booked.
 
-		if ($this->stayDays < $this->mininterval && !$amend_contract && $this->booker_class != "100")
+		if (get_showtime('include_room_booking_functionality'))
 			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2).' '.$this->stayDays));
-			}
-		if (count($this->requestedRoom)==0 && $this->getSingleRoomPropertyStatus())
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
-			}
-		if (!$this->checkSmoking($this->smoking) )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID',_JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID,false,false)));
-			}
-		if (!$this->checkArrivalDate($this->arrivalDate) )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID,false,false)));
-			}
-		if (!$this->checkDepartureDate($this->departureDate) )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID,false,false)));
-			}
-
-		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
-		foreach ($numberOfGuestTypes as $r)
-			{
-			if (!$this->checkGuestVariantIdAndQty($r['id'],$r['qty']) )
+			if ($this->stayDays < $this->mininterval && !$amend_contract && $this->booker_class != "100")
 				{
 				$this->resetPricingOutput=true;
-				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT',_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT,false,false)));
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2).' '.$this->stayDays));
+				}
+			if (count($this->requestedRoom)==0 && $this->getSingleRoomPropertyStatus())
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
+				}
+			if (!$this->checkSmoking($this->smoking) )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID',_JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID,false,false)));
+				}
+			if (!$this->checkArrivalDate($this->arrivalDate) )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID,false,false)));
+				}
+			if (!$this->checkDepartureDate($this->departureDate) )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID,false,false)));
+				}
+
+			$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
+			foreach ($numberOfGuestTypes as $r)
+				{
+				if (!$this->checkGuestVariantIdAndQty($r['id'],$r['qty']) )
+					{
+					$this->resetPricingOutput=true;
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT',_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT,false,false)));
+					}
+				}
+			if ($this->total_in_party <1 && count($numberOfGuestTypes)>0 )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS',_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS,false,false)));
+				}
+			if ( count($numberOfGuestTypes) > 0 && !$this->tariffsCanHostTotalInParty() )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS',_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS,false,false)));
+				}
+			if ( $this->total_in_party < count($this->requestedRoom ) && count($numberOfGuestTypes)>0  )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS',_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS,false,false)));
+				}
+			//if ($this->total_in_party > $this->beds_available && count($result)>0 && count($this->requestedRoom ) > 0)
+			if ($this->total_in_party > $this->beds_available && count($numberOfGuestTypes)>0 )
+				{
+				$this->resetPricingOutput=true;
+				if ($this->cfg_singleRoomProperty != "1")
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS',_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS,false,false)));
+				else
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
+				}
+			if ( count($numberOfGuestTypes) > 0 && count($this->requestedRoom ) > 0 && !$this->selectedRoomsCanHostTotalInParty() )
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS',_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS,false,false)));
+				}
+			if (count($this->requestedRoom ) <1 )
+				{
+				$this->resetPricingOutput=true;
+				if ($this->cfg_singleRoomProperty != "1")
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM',_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM,false,false)));
+				else
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE',_JOMRES_COM_MR_QUICKRES_STEP4_TITLE,false,false)));
 				}
 			}
-		if ($this->total_in_party <1 && count($numberOfGuestTypes)>0 )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS',_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS,false,false)));
-			}
-		if ( count($numberOfGuestTypes) > 0 && !$this->tariffsCanHostTotalInParty() )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS',_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS,false,false)));
-			}
-		if ( $this->total_in_party < count($this->requestedRoom ) && count($numberOfGuestTypes)>0  )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS',_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS,false,false)));
-			}
-		//if ($this->total_in_party > $this->beds_available && count($result)>0 && count($this->requestedRoom ) > 0)
-		if ($this->total_in_party > $this->beds_available && count($numberOfGuestTypes)>0 )
-			{
-			$this->resetPricingOutput=true;
-			if ($this->cfg_singleRoomProperty != "1")
-				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS',_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS,false,false)));
-			else
-				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
-			}
-		if ( count($numberOfGuestTypes) > 0 && count($this->requestedRoom ) > 0 && !$this->selectedRoomsCanHostTotalInParty() )
-			{
-			$this->resetPricingOutput=true;
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS',_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS,false,false)));
-			}
-		if (count($this->requestedRoom ) <1 )
-			{
-			$this->resetPricingOutput=true;
-			if ($this->cfg_singleRoomProperty != "1")
-				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM',_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM,false,false)));
-			else
-				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE',_JOMRES_COM_MR_QUICKRES_STEP4_TITLE,false,false)));
-			}
-
 		/*
 		if (empty($this->firstname) && $this->cfg_bookingform_requiredfields_name=="1" )
 			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME,false,false)));
@@ -4946,6 +4948,9 @@ class dobooking
 	 */
 	function setVariantValues()
 		{
+		if (!get_showtime('include_room_booking_functionality'))
+			return true;
+			
 		if ($this->setGuestTypeVariantValues() )
 			return true;
 		else
@@ -5017,6 +5022,12 @@ class dobooking
 	 */
 	function makeNightlyRoomCharges()
 		{
+		if (!get_showtime('include_room_booking_functionality'))
+			{
+			$this->room_total = 0.00;
+			return true;
+			}
+			
 		$this->setErrorLog("makeNightlyRoomCharges:: Started");
 		$total=0.00;
 		$result=$this->getVariantsOfType("guesttype");
@@ -5625,6 +5636,9 @@ class dobooking
 	 */
 	function makeRatePerNight()
 		{
+		if (!get_showtime('include_room_booking_functionality'))
+			return true;
+	
 		$result=false;
 		//$this->setErrorLog("makeRatePerNight::Currently selected rooms: ".count($this->requestedRoom) );
 		if (count($this->requestedRoom) > 0 )
@@ -6178,7 +6192,7 @@ class dobooking
 		$this->forcedExtras = array();
 		$this->calcExtras();
 		$this->setErrorLog("generateBilling:: Checking requested room count ");
-		if (count($this->requestedRoom)>0)
+		if (count($this->requestedRoom)>0 || !get_showtime('include_room_booking_functionality'))
 			{
 			$this->setErrorLog("generateBilling:: Starting makeRatePerNight");
 			if ( $this->makeRatePerNight() )

@@ -356,16 +356,19 @@ if ($field != "heartbeat" && $field != "show_log")
 
 			echo '; populateDiv("staydays","'.$bkg->getStayDays().'")';
 
-			$room_per_night = $bkg->getRoompernight();
-			$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
-			
-			if ($tariffChargesStoredWeeklyYesNo=="0")
-				echo '; populateDiv("roompernight","'.output_price($room_per_night).'")';
-
-			$room_total = $bkg->getRoomtotal();
-			$room_total = $bkg->calculateRoomPriceIncVat($room_total);
+			if (get_showtime('include_room_booking_functionality'))
+				{
+				$room_per_night = $bkg->getRoompernight();
+				$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
 				
-			echo '; populateDiv("roomtotal","'.output_price($room_total).'")';
+				if ($tariffChargesStoredWeeklyYesNo=="0" && get_showtime('include_room_booking_functionality'))
+					echo '; populateDiv("roompernight","'.output_price($room_per_night).'")';
+
+				$room_total = $bkg->getRoomtotal();
+				$room_total = $bkg->calculateRoomPriceIncVat($room_total);
+				echo '; populateDiv("roomtotal","'.output_price($room_total).'")';
+				}
+
 			if ($bkg->cfg_showExtras)
 				echo '; populateDiv("extrastotal","'.output_price($bkg->getExtrasTotal()).'")';
 			
@@ -451,96 +454,99 @@ function updateBookingFormAddressDetails(&$bkg)
 	
 function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 	{
-	$bkg->writeToLogfile("Listing rooms");
-	$arrivalDate=$bkg->getArrivalDate();
-	$departureDate=$bkg->getDepartureDate();
+	if (get_showtime('include_room_booking_functionality'))
+		{
+		$bkg->writeToLogfile("Listing rooms");
+		$arrivalDate=$bkg->getArrivalDate();
+		$departureDate=$bkg->getDepartureDate();
 
-	if ($isSingleRoomProperty)
-		$bkg->requestedRoom=array();
-	//$bkg->setErrorLog("handlereq-bookingformlistRooms:: Building rooms list");
-	$bkg->setStayDays();
-	$bkg->setDateRangeString();
-	$roomAndTariffArray=array();
-	$freeRoomsArray=array();
-	$dateRangeIncludesWeekend=$bkg->dateRangeIncludesWeekends();
-	$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
-	if (count($freeRoomsArray) > 0 )
-		$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
-	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-	if (count($freeRoomsArray) > 0 ) // This must be before the rest of these functions
-		$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
-	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-	if (count($freeRoomsArray) > 0 )
-		$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
-	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-	// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
-	$selectedRoomUids=array();
-	foreach ($bkg->requestedRoom as $rt)
-		{
-		$rtArray=explode("^",$rt);
-		$r[$rtArray[0]]=$rt;
-		$selectedRoomUids[]=$r;
-		}
-	foreach ($selectedRoomUids as $room_uid_holder)
-		{
-		foreach ($room_uid_holder as $key=>$room_uid)
-			{
-			if (is_array($freeRoomsArray) )
-				{
-				if (!in_array($key,$freeRoomsArray))
-					$bkg->removeFromSelectedRooms($room_uid);
-				}
-			}
-		}
-	if ($bkg->cfg_booking_form_rooms_list_style == "1")
-		{
+		if ($isSingleRoomProperty)
+			$bkg->requestedRoom=array();
+		//$bkg->setErrorLog("handlereq-bookingformlistRooms:: Building rooms list");
+		$bkg->setStayDays();
+		$bkg->setDateRangeString();
+		$roomAndTariffArray=array();
+		$freeRoomsArray=array();
+		$dateRangeIncludesWeekend=$bkg->dateRangeIncludesWeekends();
+		$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
+		if (count($freeRoomsArray) > 0 )
+			$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
+		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+		if (count($freeRoomsArray) > 0 ) // This must be before the rest of these functions
+			$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
 		if (count($freeRoomsArray) > 0 )
-			$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
-		}
-	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
-	if (count($freeRoomsArray) > 0 )
-		$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
-	$bkg->setErrorLog("handlereq-bookingformlistRooms:: Room and Tariff array count = ".count($roomAndTariffArray));
-	$output="";
-
-	if (!$isSingleRoomProperty)
-		{
-		$selected_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
-		if ($bkg->numberOfCurrentlySelectedRooms()>0 )
-			$currently_selected = $bkg->listCurrentlySelectedRooms();
-		else
-			$currently_selected = '<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
-		$available_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div><div id="rooms_listing"></div>';
-		
-		
-		$selected_rooms_text=$bkg->sanitise_for_eval($selected_rooms_text);
-		$currently_selected=$bkg->sanitise_for_eval($currently_selected);
-		$available_rooms_text=$bkg->sanitise_for_eval($available_rooms_text);
-		
-		$output="populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
-		$output.="populateDiv('availRooms','".$available_rooms_text."');";
-
+			$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
+		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+		// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
+		$selectedRoomUids=array();
+		foreach ($bkg->requestedRoom as $rt)
+			{
+			$rtArray=explode("^",$rt);
+			$r[$rtArray[0]]=$rt;
+			$selectedRoomUids[]=$r;
+			}
+		foreach ($selectedRoomUids as $room_uid_holder)
+			{
+			foreach ($room_uid_holder as $key=>$room_uid)
+				{
+				if (is_array($freeRoomsArray) )
+					{
+					if (!in_array($key,$freeRoomsArray))
+						$bkg->removeFromSelectedRooms($room_uid);
+					}
+				}
+			}
 		if ($bkg->cfg_booking_form_rooms_list_style == "1")
-			echo $output;
-		}
-	else
-		{
-		$output.='<div class="selectedRooms"></div>';
-		$output.='<div class="roomslist_availabletext"></div>';
-		// populateDiv("messages","
-		 
-		}
+			{
+			$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+			if (count($freeRoomsArray) > 0 )
+				$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
+			}
+		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+		if (count($freeRoomsArray) > 0 )
+			$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
+		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Room and Tariff array count = ".count($roomAndTariffArray));
+		$output="";
 
-	$output=$bkg->generateRoomsList($roomAndTariffArray);
-	$output=$bkg->sanitise_for_eval($output);
-	$output="populateDiv('rooms_listing','".$output."');";
-	if ($bkg->cfg_booking_form_rooms_list_style == "2")
-		{
-		$output="populateDiv('availRooms','".$bkg->sanitise_for_eval($bkg->generate_room_type_dropdowns())."');";
+		if (!$isSingleRoomProperty)
+			{
+			$selected_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
+			if ($bkg->numberOfCurrentlySelectedRooms()>0 )
+				$currently_selected = $bkg->listCurrentlySelectedRooms();
+			else
+				$currently_selected = '<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
+			$available_rooms_text='<div class="roomslist_availabletext">'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div><div id="rooms_listing"></div>';
+			
+			
+			$selected_rooms_text=$bkg->sanitise_for_eval($selected_rooms_text);
+			$currently_selected=$bkg->sanitise_for_eval($currently_selected);
+			$available_rooms_text=$bkg->sanitise_for_eval($available_rooms_text);
+			
+			$output="populateDiv('selectedRooms','".$selected_rooms_text.$currently_selected."');";
+			$output.="populateDiv('availRooms','".$available_rooms_text."');";
+
+			if ($bkg->cfg_booking_form_rooms_list_style == "1")
+				echo $output;
+			}
+		else
+			{
+			$output.='<div class="selectedRooms"></div>';
+			$output.='<div class="roomslist_availabletext"></div>';
+			// populateDiv("messages","
+			 
+			}
+
+		$output=$bkg->generateRoomsList($roomAndTariffArray);
+		$output=$bkg->sanitise_for_eval($output);
+		$output="populateDiv('rooms_listing','".$output."');";
+		if ($bkg->cfg_booking_form_rooms_list_style == "2")
+			{
+			$output="populateDiv('availRooms','".$bkg->sanitise_for_eval($bkg->generate_room_type_dropdowns())."');";
+			}
+		
+		echo $output;
 		}
-	
-	echo $output;
 	}
 
 

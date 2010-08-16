@@ -446,7 +446,8 @@ function showRoomsList(req){
 	//buildSelected(rooms[0]) ; 
 	//buildAvailable(rooms[1]);
 	eval(req);
-	ShowRoomsList();
+	if (rooms_list_enabled)
+		ShowRoomsList();
 	return false;
 	}
 
