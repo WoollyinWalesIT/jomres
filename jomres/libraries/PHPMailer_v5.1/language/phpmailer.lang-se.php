@@ -4,6 +4,7 @@
 * Swedish Version
 * Author: Johan Linnér <johan@linner.biz>
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'SMTP fel: Kunde inte autentisera.';
 $PHPMAILER_LANG['connect_host']         = 'SMTP fel: Kunde inte ansluta till SMTP-server.';

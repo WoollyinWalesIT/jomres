@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * Generic schema interchange format that can be converted to a runtime
  * representation (HTMLPurifier_ConfigSchema) or HTML documentation. Members

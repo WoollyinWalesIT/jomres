@@ -4,6 +4,7 @@
 * Japanese Version
 * By Mitsuhiro Yoshida - http://mitstek.com/
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate'] = 'SMTPエラー: 認証できませんでした。';
 $PHPMAILER_LANG['connect_host'] = 'SMTPエラー: SMTPホストに接続できませんでした。';

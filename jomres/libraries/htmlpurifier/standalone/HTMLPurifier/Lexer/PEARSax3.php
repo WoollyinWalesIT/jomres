@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * Proof-of-concept lexer that uses the PEAR package XML_HTMLSax3 to parse HTML.
  *

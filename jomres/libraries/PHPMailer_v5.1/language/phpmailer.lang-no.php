@@ -3,6 +3,7 @@
 * PHPMailer language file: refer to English translation for definitive list
 * Norwegian Version
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'SMTP Feil: Kunne ikke authentisere.';
 $PHPMAILER_LANG['connect_host']         = 'SMTP Feil: Kunne ikke koble til SMTP host.';

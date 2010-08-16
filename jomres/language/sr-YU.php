@@ -9,7 +9,7 @@
 **/
 //German Translation since Jomres V2: Roger Perren (http://www.blueforce.ch)
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 define('_JOMRES_COM_MR_QUICKRESDESC','Brza rezervacija');
 define('_JOMRES_COM_MR_SHOWPROFILES','Prikaži profile');

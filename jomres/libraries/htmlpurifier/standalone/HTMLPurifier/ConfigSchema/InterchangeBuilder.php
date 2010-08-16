@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 class HTMLPurifier_ConfigSchema_InterchangeBuilder
 {
 

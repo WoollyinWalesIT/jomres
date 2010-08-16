@@ -3,6 +3,7 @@
 * PHPMailer language file: refer to English translation for definitive list
 * French Version
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'Erreur SMTP : Echec de l\'authentification.';
 $PHPMAILER_LANG['connect_host']         = 'Erreur SMTP : Impossible de se connecter au serveur SMTP.';

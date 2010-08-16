@@ -14,7 +14,7 @@ http://www.jomres.net/index.php?option=com_content&task=view&id=214&Itemid=86 an
 ################################################################
 */
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 define('_JOMRES_COM_MR_QUICKRESDESC','Quick reservation');
 define('_JOMRES_COM_MR_SHOWPROFILES','Show profiles');

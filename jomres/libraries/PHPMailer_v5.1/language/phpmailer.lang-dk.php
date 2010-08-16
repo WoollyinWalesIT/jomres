@@ -4,6 +4,7 @@
 * Danish Version
 * Author: Mikael Stokkebro <info@stokkebro.dk>
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'SMTP fejl: Kunne ikke logge på.';
 $PHPMAILER_LANG['connect_host']         = 'SMTP fejl: Kunne ikke tilslutte SMTP serveren.';

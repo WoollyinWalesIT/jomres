@@ -12,7 +12,7 @@ ini_set('error_reporting', E_ALL|E_STRICT);
 ini_set("display_errors",1);
 $dir =  dirname(realpath(__FILE__));
 if (!file_exists($dir.'/jomres_standalone_config.php'))
-	die ("Not an SA installation");
+	die ("");
 ob_start();
 session_start();
 

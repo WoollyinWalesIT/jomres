@@ -10,6 +10,8 @@
 
 //Originally based on Xoriant Reviews by Manish Khanchandani http://www.phpclasses.org/browse/package/5542.html, it's been hugely rewritten for use in Jomres.
 
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+
 class jomres_reviews {
 	private static $instance;
 

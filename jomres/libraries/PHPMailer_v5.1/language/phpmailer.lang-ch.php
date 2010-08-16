@@ -4,6 +4,7 @@
 * Chinese Version
 * By LiuXin: www.80x86.cn/blog/
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate'] = 'SMTP 错误：身份验证失败。';
 $PHPMAILER_LANG['connect_host'] = 'SMTP 错误: 不能连接SMTP主机。';

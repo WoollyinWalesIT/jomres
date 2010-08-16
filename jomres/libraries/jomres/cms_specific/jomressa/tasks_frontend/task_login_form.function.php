@@ -9,8 +9,9 @@
 **/
 
 // ################################################################
-defined( "_JOMRES_INITCHECK" ) or die( "Direct Access is not allowed." );
+defined( "_JOMRES_INITCHECK" ) or die( "" );
 // ################################################################
+
 function task_login_form()
 	{
 	$JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');

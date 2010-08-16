@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 class HTMLPurifier_Printer_CSSDefinition extends HTMLPurifier_Printer
 {
 

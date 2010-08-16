@@ -1,5 +1,7 @@
 <?php
-
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
 /**
  * Fluent interface for validating the contents of member variables.
  * This should be immutable. See HTMLPurifier_ConfigSchema_Validator for

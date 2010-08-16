@@ -13,7 +13,7 @@
 // I did my best to form the composed phrases in a good style but as if I'm not able to proof all responds there could be some rubbish.
 // If you find anything that should be corrected (in the German language file) send it to apartment@gr7.org.
 ##################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 ##################################################################
 define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE','Tarife im Rahmen, nicht als PopUp anzeigen?');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS','Adressinformation');

@@ -4,6 +4,7 @@
 * Spanish version
 * Versión en español
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'Error SMTP: No se pudo autentificar.';
 $PHPMAILER_LANG['connect_host']         = 'Error SMTP: No puedo conectar al servidor SMTP.';

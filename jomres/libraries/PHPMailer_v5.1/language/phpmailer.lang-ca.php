@@ -4,6 +4,7 @@
 * Catalan Version
 * By Ivan: web AT microstudi DOT com
 */
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $PHPMAILER_LANG['authenticate']         = 'Error SMTP: No s\'hapogut autenticar.';
 $PHPMAILER_LANG['connect_host']         = 'Error SMTP: No es pot connectar al servidor SMTP.';

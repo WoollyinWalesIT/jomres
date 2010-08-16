@@ -10,7 +10,7 @@
 
 
 // ################################################################
-defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 	
 function jomres_search_dir($path, $pattern) 
@@ -2551,9 +2551,9 @@ function saveKey ( $mykey )
 				jomresRedirect(JOMRES_SITEPAGE_URL."", "FATAL ERROR: Key File Not writeable" );
 				}
 			$txt = "<?php if (defined('JPATH_BASE'))";
-			$txt .= "	defined( '_JEXEC' ) or die( 'Direct Access to this file is not allowed.' );\n";
+			$txt .= "	defined( '_JEXEC' ) or die( '' );\n";
 			$txt .= "else";
-			$txt .= "	defined( '_VALID_MOS' ) or die( 'Direct Access to this file is not allowed.' );\n";
+			$txt .= "	defined( '_VALID_MOS' ) or die( '' );\n";
 			$txt.='$mykey="'.$mykey.'";?>';
 
 		if ($fp = fopen( $keyFile, "w"))

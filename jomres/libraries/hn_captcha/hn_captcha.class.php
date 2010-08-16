@@ -1,5 +1,5 @@
 <?php
-
+defined( '_JOMRES_INITCHECK' ) or die( '' );
 
     if(strcmp('5.0.0', phpversion()) < 0)
     {
