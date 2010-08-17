@@ -71,19 +71,22 @@ class j03025insertbooking_invoice {
 			
 		$line_items= array();
 		
-		$line_item_data = array (
-			'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
-			'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL,false,false),
-			'description'=>'',
-			'init_price'=>number_format($room_total,2, '.', ''),
-			'init_qty'=>"1",
-			'init_discount'=>"0",
-			'recur_price'=>"0.00",
-			'recur_qty'=>"0",
-			'recur_discount'=>"0.00"
-			);
-		$line_items[]=$line_item_data;
-		
+		if (get_showtime('include_room_booking_functionality'))
+			{
+			$line_item_data = array (
+				'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
+				'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL,false,false),
+				'description'=>'',
+				'init_price'=>number_format($room_total,2, '.', ''),
+				'init_qty'=>"1",
+				'init_discount'=>"0",
+				'recur_price'=>"0.00",
+				'recur_qty'=>"0",
+				'recur_discount'=>"0.00"
+				);
+			$line_items[]=$line_item_data;
+			}
+			
 		if ($depositPaid)
 			{
 			$line_item_data = array (
@@ -99,7 +102,6 @@ class j03025insertbooking_invoice {
 				);
 			$line_items[]=$line_item_data;
 			}
-			
 
 		if (count($discounts) > 0)
 			{
