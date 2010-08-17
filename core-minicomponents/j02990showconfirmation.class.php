@@ -102,7 +102,8 @@ class j02990showconfirmation {
 				}
 			}
 		$tmpBookingHandler->saveBookingData();
-			
+		
+
 		$booking_parts['PROPERTYNAME'] = getPropertyName($bookingDeets['property_uid']);
 
 		$booking_parts['PROPERTY']		=	$bookingDeets['property_uid'];
@@ -459,6 +460,34 @@ class j02990showconfirmation {
 		$booking_parts['PROCESSURL']=JOMRES_SITEPAGE_URL.'&task=processpayment';
 		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
 		
+		
+		// v 4.5.7 stripping out the room specific stuff into a new array.
+		$booking_room_specific = array();
+		if (get_showtime('include_room_booking_functionality'))
+			{
+			$booking_room_specific['AJAXFORM_PARTICULARS']= $booking_parts['AJAXFORM_PARTICULARS'];
+			$booking_room_specific['HARRIVAL']= $booking_parts['HARRIVAL'];
+			$booking_room_specific['ARRIVAL']= $booking_parts['ARRIVAL'];
+			$booking_room_specific['HDEPARTURE']= $booking_parts['HDEPARTURE'];
+			$booking_room_specific['DEPARTURE']= $booking_parts['DEPARTURE'];
+			$booking_room_specific['HDAYSSTAYING']= $booking_parts['HDAYSSTAYING'];
+			$booking_room_specific['DAYSSTAYING']= $booking_parts['DAYSSTAYING'];
+			$booking_room_specific['HTOTALINPARTY']= $booking_parts['HTOTALINPARTY'];
+			$booking_room_specific['TOTALINPARTY']= $booking_parts['TOTALINPARTY'];
+			$booking_room_specific['BILLING_ROOMTOTAL']= $booking_parts['BILLING_ROOMTOTAL'];
+			$booking_room_specific['PROPERTYNAME']= $booking_parts['PROPERTYNAME'];
+			$booking_room_specific['HROOMSBOOKED']= $booking_parts['HROOMSBOOKED'];
+			$booking_room_specific['NUMROOMS']= $booking_parts['NUMROOMS'];
+			$booking_room_specific['FULLDESC']= $booking_parts['FULLDESC'];
+			$booking_room_specific['ALLOCATION']= $booking_parts['ALLOCATION'];
+			$booking_room_specific['DISCOUNT']= $booking_parts['DISCOUNT'];
+			$booking_room_specific['HSINGLEPERSON_COST']= $booking_parts['HSINGLEPERSON_COST'];
+			$booking_room_specific['SINGLEPERSON_COST']= $booking_parts['SINGLEPERSON_COST'];
+			$booking_room_specific['ACCOMMODATION_TOTAL']= $booking_parts['ACCOMMODATION_TOTAL'];
+			$booking_room_specific['ROOMTOTAL']= $booking_parts['ROOMTOTAL'];
+			}
+			
+			
 		$booking_particulars[]	=	$booking_parts;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'customfields',$customFields);
