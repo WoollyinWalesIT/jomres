@@ -70,6 +70,8 @@ class jomres_sanity_check
 		
 	function checks_tariffs_exist()
 		{
+		if (!get_showtime('include_room_booking_functionality'))
+			return "";
 		$ignore_on_tasks = array ('propertyadmin','editTariff','saveTariff');
 		if (!in_array(get_showtime('task'),$ignore_on_tasks) )
 			{
