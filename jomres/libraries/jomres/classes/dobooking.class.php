@@ -4756,47 +4756,28 @@ class dobooking
 					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE',_JOMRES_COM_MR_QUICKRES_STEP4_TITLE,false,false)));
 				}
 			}
-		/*
-		if (empty($this->firstname) && $this->cfg_bookingform_requiredfields_name=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME,false,false)));
-		if (empty($this->surname) && $this->cfg_bookingform_requiredfields_surname=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME,false,false)));
-		if (empty($this->house) && $this->cfg_bookingform_requiredfields_houseno=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO,false,false)));
-		if (empty($this->street) && $this->cfg_bookingform_requiredfields_street=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET,false,false)));
-		if (empty($this->town) && $this->cfg_bookingform_requiredfields_town=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN,false,false)));
-		if (empty($this->region) && $this->cfg_bookingform_requiredfields_region=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION,false,false)));
-		if (empty($this->postcode) && $this->cfg_bookingform_requiredfields_postcode=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE,false,false)));
-		if (empty($this->country) && $this->cfg_bookingform_requiredfields_country=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_COUNTRY,false,false)));
-		if (empty($this->tel_landline) && $this->cfg_bookingform_requiredfields_tel =="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_LANDLINE,false,false)));
-		if (empty($this->tel_mobile) && $this->cfg_bookingform_requiredfields_mobile=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_CELLPHONE,false,false)));
-		if (empty($this->email) && $this->cfg_bookingform_requiredfields_email=="1" )
-			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL',_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL,false,false)));
-		else
+
+		if (!get_showtime('include_room_booking_functionality'))
 			{
-			if (!$this->checkEmail($this->email)&& $this->cfg_bookingform_requiredfields_email=="1" )
-				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_INVALID',_JOMRES_BOOKINGFORM_MONITORING_EMAIL_INVALID,false,false)));
-			// Code disabled as many emai servers will not respond with positive, but left in place in the event that you may wish to re-enable it.
-			//else
-			//	{
-			//	if (function_exists('getmxrr' )&& $this->cfg_bookingform_requiredfields_email=="1" )
-			//		{
-			//		list($username,$domain) = split("@",$this->email);
-			//		if (!getmxrr($domain,$mxrecords) && $this->cfg_bookingform_requiredfields_email=="1")
-			//			{
-			//			$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL',_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL,false,false)));
-			//			}
-			//		}
-			//	}
+			$quantity = 0;
+			if (count($this->third_party_extras)>0)
+				{
+				foreach ($this->third_party_extras as $tpe)
+					{
+					if (count($tpe) > 0)
+						$quantity = 1; // We don't care how extras there are, so long as at least one has been selected.
+					//$this->setPopupMessage("jintour ".serialize($this->third_party_extras));
+					}
+				}
+			$extrasArray=explode(",",$this->extras);
+			foreach ($extrasArray as $extra)
+				{
+				$quantity=$quantity+$this->extrasquantities[$extra];
+				//$this->setPopupMessage($quantity);
+				}
+			if ($quantity == 0)
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_SELECT',_JOMRES_AJAXFORM_EXTRAS_SELECT,false,false)));
 			}
-		*/
 
 		if ( $this->getMonitoringNumberOfMessages() == 0)
 			$this->ok_to_book				= true;
