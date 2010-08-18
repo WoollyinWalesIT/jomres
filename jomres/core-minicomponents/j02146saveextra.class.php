@@ -68,7 +68,10 @@ class j02146saveextra {
 		$model=$extramodel[0];
 		$query="DELETE FROM #__jomcomp_extrasmodels_models WHERE extra_id = '".(int)$uid."'";
 		doInsertSql($query,'');
-		$query="INSERT INTO #__jomcomp_extrasmodels_models (`extra_id`,`model`,`params`,`force`,`property_uid`) VALUES ('".(int)$uid."','$model','".(int)$mindays."','".(int)$f."','".(int)$defaultProperty."')";
+		if (get_showtime('include_room_booking_functionality'))
+			$query="INSERT INTO #__jomcomp_extrasmodels_models (`extra_id`,`model`,`params`,`force`,`property_uid`) VALUES ('".(int)$uid."','$model','".(int)$mindays."','".(int)$f."','".(int)$defaultProperty."')";
+		else
+			$query="INSERT INTO #__jomcomp_extrasmodels_models (`extra_id`,`model`,`params`,`force`,`property_uid`) VALUES ('".(int)$uid."',1,1,0,'".(int)$defaultProperty."')";
 		doInsertSql($query,'');
 
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listExtras"), $saveMessage );
