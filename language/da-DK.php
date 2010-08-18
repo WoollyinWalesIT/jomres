@@ -1421,3 +1421,13 @@ define('_JRPORTAL_MONTHS_LONG_8','September');
 define('_JRPORTAL_MONTHS_LONG_9','October');
 define('_JRPORTAL_MONTHS_LONG_10','November');
 define('_JRPORTAL_MONTHS_LONG_11','December');
+
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS',"Property management process");
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC',"There are different management processes depending on the way you want to list your property/business.");
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL',"Rental");
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL_DESC',"Choose the rental option if you are booking out rooms in a property (eg. Hotel/B&B/Villa/Apartment)");
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE',"Realestate/simple listing");
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',"Choose the real estate option if you are not offering any booking functionality at all, (eg. A property/item for sale)");
+
+define('JOMRES_COM_A_MINIMALCONFIG_DESC','Set this to Yes to reduce the number of options available to property managers in the General Configuration section. This is useful if you do not want property managers to play around with too many settings, instead you can edit jomres_config.php to define default property options.');
+

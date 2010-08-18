@@ -40,9 +40,15 @@ function submitCountry(){
 					<td class="jradmin_field_ca">&nbsp;</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca">{HREALESTATE_YESNO}</td>
+					<td class="jradmin_field_ca">{MANAGEMENTPROCESS}</td>
 					<td class="jradmin_field_ca">{REALESTATEDROPDOWN}</td>
-					<td class="jradmin_field_ca">{HREALESTATE_YESNO_DESC}</td>
+					<td class="jradmin_field_ca">{MANAGEMENTPROCESS_DESC}<br/>
+					<ul>
+					<patTemplate:tmpl name="rows">
+					<li>{DESCRIPTION}</li>
+					</patTemplate:tmpl>
+					</ul>
+					</td>
 				</tr>
 			</table>
 		</td>

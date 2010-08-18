@@ -63,9 +63,7 @@ class j02300regprop1 {
 			$output['REGIONDROPDOWN']=setupRegions($jrConfig['limit_property_country_country'],$propertyRegion);
 			$output['COUNTRIESDROPDOWN']= getSimpleCountry($jrConfig['limit_property_country_country']);
 			}
-			
-		
-			
+
 		$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
 		$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
@@ -73,21 +71,30 @@ class j02300regprop1 {
 
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
-		$output['HREALESTATE_YESNO']=jr_gettext('_JOMRES_REALESTATE_YESNO',_JOMRES_REALESTATE_YESNO);
-		$output['HREALESTATE_YESNO_DESC']= jr_gettext('_JOMRES_REALESTATE_YESNO_DESC',_JOMRES_REALESTATE_YESNO_DESC);
+		$output['MANAGEMENTPROCESS']=jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS',_JOMRES_PROPERTYMANAGEMENTPROCESS);
+		$output['MANAGEMENTPROCESS_DESC']= jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC',_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC);
 		
 		$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
 		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
-		
-		$realestateOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
-		$realestateOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
-		$output['REALESTATEDROPDOWN']= jomresHTML::selectList($realestateOptions, 'realestate', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['is_real_estate_listing']);
-		
+ 
+		$MiniComponents->triggerEvent('02299');
+		$property_management_process = array();
+		foreach ( $MiniComponents->miniComponentData['02299'] as $management_process)
+			{
+			$r = array();
+			$property_management_process[]=jomresHTML::makeOption( $management_process['next_step'], $management_process['title'] );
+			$r['description'] = $management_process['description'];
+			$rows[]=$r;
+			}
+
+		$output['REALESTATEDROPDOWN']= jomresHTML::selectList($property_management_process, 'management_process', 'class="inputbox" size="1"', 'value', 'text', '0' );
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 		$tmpl->readTemplatesFromInput( 'register_property1.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();
 		}
 
@@ -100,6 +107,11 @@ class j02300regprop1 {
 		$output[]		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
 		$output['HREALESTATE_YESNO']=jr_gettext('_JOMRES_REALESTATE_YESNO',_JOMRES_REALESTATE_YESNO);
 		$output['HREALESTATE_YESNO_DESC']= jr_gettext('_JOMRES_REALESTATE_YESNO_DESC',_JOMRES_REALESTATE_YESNO_DESC);
+		
+		$output[]		=jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS',_JOMRES_PROPERTYMANAGEMENTPROCESS);
+		$output[]		=jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC',_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC);
+		$output[]		=jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL',_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL);
+		$output[]		=jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE',_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE);
 
 		foreach ($output as $o)
 			{
