@@ -383,7 +383,8 @@ if ($field != "heartbeat" && $field != "show_log")
 				}
 
 			echo '; populateDiv("extra_tax","'.output_price($extra_tax).'")';
-			echo '; populateDiv("taxtotal","'.output_price($room_tax).'")';
+			if (get_showtime('include_room_booking_functionality'))
+				echo '; populateDiv("taxtotal","'.output_price($room_tax).'")';
 			echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 			if ($showDeposit=="1")
 				echo '; populateDiv("deposit","'.output_price($bkg->getDeposit()).'")';
