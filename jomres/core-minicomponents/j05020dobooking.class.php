@@ -38,15 +38,18 @@ class j05020dobooking {
 		
 		$property_uid = get_showtime('property_uid');
 		$mrConfig=getPropertySpecificSettings();
-		if ( $mrConfig['singleRoomProperty'] || $mrConfig['fixedPeriodBookings'] == "1" )
+		if (get_showtime('include_room_booking_functionality'))
 			{
-			showSingleRoomPropAvl($property_uid);
-			}
-		elseif ($mrConfig['showRoomsInPropertyDetails'])
-			{
-			$componentArgs=array('all'=>"all",'property_uid'=>$property_uid,"showlinks"=>false);
-			$MiniComponents->triggerEvent('00018',$componentArgs);
-			//showRoomDetails("all",$property_uid);
+			if ( $mrConfig['singleRoomProperty'] || $mrConfig['fixedPeriodBookings'] == "1" )
+				{
+				showSingleRoomPropAvl($property_uid);
+				}
+			elseif ($mrConfig['showRoomsInPropertyDetails'])
+				{
+				$componentArgs=array('all'=>"all",'property_uid'=>$property_uid,"showlinks"=>false);
+				$MiniComponents->triggerEvent('00018',$componentArgs);
+				//showRoomDetails("all",$property_uid);
+				}
 			}
 		}
 
