@@ -244,8 +244,15 @@ function init_javascript()
 			$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
 			$MiniComponents =jomres_getSingleton('mcHandler');
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
-
-			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$jrConfig['jquery_ui_theme'].'/','jquery-ui-1.8rc3.custom.css');
+			
+			if (!isset($jrConfig['jquery_ui_theme_detected']))
+				$jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css";
+			
+			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
+			$subdir = $themeArr[0];
+			$filename = $themeArr[1];
+			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$subdir.'/',$filename);
+			
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
 
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");
