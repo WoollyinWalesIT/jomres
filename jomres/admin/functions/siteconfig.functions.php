@@ -70,31 +70,13 @@ function showSiteConfig(  )
 	$jsInputFormatDropdownList= jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['cal_input']);
 
 	$jqueryUIthemes = array();
-	$jqueryUIthemes[] =  jomresHTML::makeOption("black-tie", "Black Tie");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("blitzer", "Blitzer");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("cupertino", "Cupertino");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("dark-hive", "Dark Hive");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("dot-luv", "Dot luv");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("eggplant", "Eggplant");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("excite-bike", "Excite bike");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("flick", "Flick");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("hot-sneaks", "Hot sneaks");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("humanity", "Humanity");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("le-frog", "Le frog");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("mint-choc", "Mint choc");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("overcast", "Overcast");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("pepper-grinder", "Pepper grinder");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("redmond", "Redmond");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("smoothness", "Smoothness");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("south-street", "South street");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("start", "Start");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("sunny", "Sunny");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("swanky-purse", "Swanky purse");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("trontastic", "Trontastic");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("ui-darkness", "UI Darkness");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("ui-lightness", "UI Lightness");
-	$jqueryUIthemes[] =  jomresHTML::makeOption("vader", "Vader");
-	$jqueryUIthemesDropdownList= jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['jquery_ui_theme']);
+	$cssFiles=searchCSSThemesDirForCSSFiles();
+	foreach ($cssFiles as $file)
+		{
+		$jqueryUIthemes[] =  jomresHTML::makeOption($file['subdir']."^".$file['cssfile'], $file['subdir']);
+		}
+	
+	$jqueryUIthemesDropdownList= jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme_detected', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['jquery_ui_theme_detected']);
 
 	if (!isset($jrConfig['cssColourScheme']) )
 		$jrConfig['cssColourScheme']="blue";
@@ -295,4 +277,46 @@ function getJomresLanguagesDropdown()
 		}
 	}
 
+	
+	function searchCSSThemesDirForCSSFiles()
+		{
+		$cssFiles = array();
+		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'css'.JRDS.'jquery_ui_themes'.JRDS;
+		$d = @dir($jrePath);
+		$docs = array();
+		if($d)
+			{
+			while (FALSE !== ($entry = $d->read()))
+				{
+				$filename = $entry;
+				if( substr($entry,0,1) != '.' )
+					{
+					$docs[] =$entry;
+					}
+				}
+			$d->close();
+			if (count($docs)>0)
+				{
+				sort($docs);
+				foreach ($docs as $doc)
+					{
+					$listdir=$jrePath.$doc.JRDS;
+					$dr = @dir($listdir);
+					if($dr)
+						{
+						while (FALSE !== ($entry = $dr->read()))
+							{
+							$filename = $entry;
+							$tmpArr = explode(".",$filename);
+							$extension = $tmpArr[count($tmpArr)-1];
+							if ($extension == "css")
+								$cssFiles[] = array("cssfile"=>$filename,"subdir"=>$doc);
+							}
+						$dr->close();
+						}
+					}
+				}
+			}
+		return $cssFiles;
+		}
 ?>
