@@ -64,7 +64,8 @@ class j00016composite_property_details {
 		if ($jrConfig['show_booking_form_in_property_details'] =="0")
 			$bookinglink		=$MiniComponents->miniComponentData['00015']['viewproperty']['bookinglink'];
 		$slideshowlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['slideshowlink'];
-		$tariffslink		=$MiniComponents->miniComponentData['00015']['viewproperty']['tariffslink'];
+		if (get_showtime('include_room_booking_functionality'))
+			$tariffslink		=$MiniComponents->miniComponentData['00015']['viewproperty']['tariffslink'];
 		$gallerylink		=$MiniComponents->miniComponentData['00015']['viewproperty']['gallerylink'];
 		$roomslistlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['roomslistlink'];
 		$mappinklink		=$MiniComponents->miniComponentData['00015']['viewproperty']['mappinklink'];
