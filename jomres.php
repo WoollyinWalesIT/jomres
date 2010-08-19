@@ -656,8 +656,6 @@ else
 $MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done.
 $componentArgs=array();
 
-if (!isset($jrConfig['cssColourScheme']) )
-	$jrConfig['cssColourScheme']="blue";
 if (!$no_html)
 	{
 	//$componentArgs=array();

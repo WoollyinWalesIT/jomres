@@ -73,7 +73,10 @@ function showSiteConfig(  )
 	$cssFiles=searchCSSThemesDirForCSSFiles();
 	foreach ($cssFiles as $file)
 		{
-		$jqueryUIthemes[] =  jomresHTML::makeOption($file['subdir']."^".$file['cssfile'], $file['subdir']);
+		if (isset($file['customPath']))
+			$jqueryUIthemes[] =  jomresHTML::makeOption($file['subdir']."^".$file['cssfile']."^".$file['customPath'], $file['subdir']);
+		else
+			$jqueryUIthemes[] =  jomresHTML::makeOption($file['subdir']."^".$file['cssfile'], $file['subdir']);
 		}
 	
 	$jqueryUIthemesDropdownList= jomresHTML::selectList($jqueryUIthemes, 'cfg_jquery_ui_theme_detected', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['jquery_ui_theme_detected']);
@@ -317,6 +320,12 @@ function getJomresLanguagesDropdown()
 					}
 				}
 			}
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		$colourSchemeDataArray=$MiniComponents->triggerEvent('00021'); // optional
+		
+		if (is_array($colourSchemeDataArray))
+			$cssFiles = array_merge($cssFiles,$colourSchemeDataArray) ;
+			var_dump($cssFiles);
 		return $cssFiles;
 		}
 ?>
