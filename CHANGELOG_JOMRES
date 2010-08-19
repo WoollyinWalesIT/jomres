@@ -1,3 +1,13 @@
+Jomres 4.5.7 19/8/2010
+
+Further changes to Jomres to support non-room based bookings. These changes are required to support the Jintour plugin.
+
+Added a function to detect each dir in the ui themes subdirectory and find an appropriate css file.
+When dealing with larger numbers finding number ranges for the search feature caused an out of memory error. With help from http://www.php.net/manual/en/function.range.php#85331 we've changed the foreach method of finding ranges with a for loop, which seems to fix the problem.
+Added a missing var definition to the srp booking form.
+Added new functionality to allow plugins to insert their own property management process information into regprop step 1.
+Fixed missing define from language file re minimised config options desc.
+
 
 Jomres 4.5.6 16/8/2010
 
