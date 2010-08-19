@@ -251,7 +251,11 @@ function init_javascript()
 			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
 			$subdir = $themeArr[0];
 			$filename = $themeArr[1];
-			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$subdir.'/',$filename);
+			if (isset($themeArr[2]))
+				$themePath = $themeArr[2]."/";
+			else
+				$themePath = get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$subdir.'/';
+			jomres_cmsspecific_addheaddata("css",$themePath,$filename);
 			
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
 
