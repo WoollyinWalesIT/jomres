@@ -1051,11 +1051,11 @@ function prepPriceRangeSearch($increments=10)
 function my_range( $start, $end, $step = 1) 
 	{
 	$range = array();
-	foreach (range( $start, $end ) as $index) 
+	for($i = $start; $i < $end; $i+=$step)
 		{
-		if (! (($index - $start) % $step) ) 
+		if (! (($i - $start) % $step) ) 
 			{
-			$range[] = $index;
+			$range[] = $i;
 			}
 		}
 	return $range;
