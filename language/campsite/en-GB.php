@@ -1436,3 +1436,6 @@ define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',"Choose the real esta
 
 define('JOMRES_COM_A_MINIMALCONFIG_DESC','Set this to Yes to reduce the number of options available to property managers in the General Configuration section. This is useful if you do not want property managers to play around with too many settings, instead you can edit jomres_config.php to define default property options.');
 
+define('_JOMRES_AJAXFORM_EXTRAS_SELECT','Please select an option for your booking');
+
+
