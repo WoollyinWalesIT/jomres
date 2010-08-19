@@ -325,7 +325,6 @@ function getJomresLanguagesDropdown()
 		
 		if (is_array($colourSchemeDataArray))
 			$cssFiles = array_merge($cssFiles,$colourSchemeDataArray) ;
-			var_dump($cssFiles);
 		return $cssFiles;
 		}
 ?>
