@@ -131,9 +131,14 @@ switch ($field)
 		if ( isset($value) )
 			{
 			$bkg->setArrivalDate($value);
-			if ($fixedPeriodBookings != "1" )
+			// if ($fixedPeriodBookings != "1" || $bkg->stayDays < $bkg->cfg_minimuminterval)
+				// $bkg->setDepartureDateToNextDay($value);
+			if ($fixedPeriodBookings != "1" && $bkg->checkDepartureDate($bkg->getDepartureDate()) )
+				$bkg->setDepartureDate($bkg->getDepartureDate());
+			elseif ($fixedPeriodBookings != "1" && !$bkg->checkDepartureDate($bkg->getDepartureDate()) )
 				$bkg->setDepartureDateToNextDay($value);
 			$bkg->JSCalmakeInputDates($bkg->getDepartureDate() );
+			//echo '; populateDiv("'.get_showtime('departure_date_unique_id').'","'.$bkg->JSCalmakeInputDates($bkg->getDepartureDate() ).'")';
 			}
 		$bkg->resetRequestedRoom();
 	break;
@@ -150,6 +155,7 @@ switch ($field)
 			$bkg->setDepartureDate($departureDate);
 			$bkg->JSCalmakeInputDates($bkg->getDepartureDate() );
 			}
+		
 		$bkg->resetRequestedRoom();
 	break;
 	case "departureDate":
