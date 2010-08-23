@@ -462,9 +462,11 @@ class j02990showconfirmation {
 		
 		
 		// v 4.5.7 stripping out the room specific stuff into a new array.
-		$booking_room_specific = array();
+		
 		if (get_showtime('include_room_booking_functionality'))
 			{
+			$booking_room_specific = array();
+			$booking_room_specific_info = array();
 			$booking_room_specific['AJAXFORM_PARTICULARS']= $booking_parts['AJAXFORM_PARTICULARS'];
 			$booking_room_specific['HARRIVAL']= $booking_parts['HARRIVAL'];
 			$booking_room_specific['ARRIVAL']= $booking_parts['ARRIVAL'];
@@ -485,12 +487,14 @@ class j02990showconfirmation {
 			$booking_room_specific['SINGLEPERSON_COST']= $booking_parts['SINGLEPERSON_COST'];
 			$booking_room_specific['ACCOMMODATION_TOTAL']= $booking_parts['ACCOMMODATION_TOTAL'];
 			$booking_room_specific['ROOMTOTAL']= $booking_parts['ROOMTOTAL'];
+			$booking_room_specific_info[]=$booking_room_specific;
 			}
 			
 			
 		$booking_particulars[]	=	$booking_parts;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'customfields',$customFields);
+		$tmpl->addRows( 'booking_room_specific_info', $booking_room_specific_info );
 		$tmpl->addRows( 'booking_particulars', $booking_particulars );
 		$tmpl->addRows( 'booking_extras', $booking_extras);
 		$tmpl->addRows( 'booking_extratext', $extrastext);
