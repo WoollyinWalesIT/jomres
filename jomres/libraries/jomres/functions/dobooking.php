@@ -423,7 +423,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$load['COUNT']=1;
 			$toload[]=$load;
 			// As of 4.4 we've done away with the two ajax call process to run the booking form, however we still need to initialise the arrival date through ajax for SRPs
-			$tmpsrptrigger="jQuery.get(ajaxurl+'&task=handlereq',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."' ', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."},function(data){showRoomsList(data); show_log('');});";
+			$tmpsrptrigger="jQuery.get(ajaxurl+'&task=handlereq',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
 			$tmpsrptrigger = $bkg->sanitise_for_eval($tmpsrptrigger);
 			$load['ONLOAD']=$tmpsrptrigger;
 			$load['COUNT']=2;
