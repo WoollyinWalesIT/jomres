@@ -82,7 +82,7 @@ if ($jrConfig['useSubscriptions']=="1" && $nohtml == "0")
 		echo '<font color="red" face="arial" size="1">Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.</font><br/>';
 		}
 	}
-	
+
 if (strstr($_SERVER['SCRIPT_NAME'],'index3.php') || $nohtml == "1")
 	define('JRPORTAL_AJAXCALL',true);
 else
@@ -213,9 +213,23 @@ switch (get_showtime('task')) {
 			}
 		break;
 	}
+
+$head_contents = '';
+$MiniComponents->triggerEvent('16003');
+if (is_array($MiniComponents->miniComponentData['16003']))
+	{
+	foreach ($MiniComponents->miniComponentData['16003'] as $concatenate)
+		{
+		$head_contents .= $concatenate;
+		}
+	}
+
 if (defined("JOMRES_RETURNDATA") )
 	{
-	define("JOMRES_RETURNDATA_CONTENT", ob_get_contents() ) ;
+	$contents = ob_get_contents();
+	$contents = $head_contents.$contents;
+	define("JOMRES_RETURNDATA_CONTENT", $contents ) ;
+	unset($contents);
 	ob_end_clean();
 	}
 else

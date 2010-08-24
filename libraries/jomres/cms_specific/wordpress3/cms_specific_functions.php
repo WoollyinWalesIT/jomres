@@ -170,8 +170,9 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 	switch ($type) 
 		{
 		case "javascript":
-				//JHTML::script($filename, $path, false);
-				wp_register_script($filename, $path.$filename, array('jquery'), '1.0');
+				echo "<script type='text/javascript' src='".$path.$filename."'></script>
+				";
+				//wp_enqueue_script($filename, $path.$filename, array('jquery'), '1.0');
 		break;
 		case "css":
 			echo '<link type="text/css" rel="stylesheet" href="' . $path.$filename. '" />' . "\n";
