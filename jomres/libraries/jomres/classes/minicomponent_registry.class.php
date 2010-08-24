@@ -74,6 +74,7 @@ class minicomponent_registry
 		{
 		$this->registeredClasses = array();
 		$this->getMiniComponentCoreClasses();
+		$this->getMiniComponentCMSSpecificClasses();
 		$this->getMiniComponentRemoteClasses();
 		$this->getMiniComponentComponentClasses();
 		asort($this->registeredClasses);
@@ -213,6 +214,22 @@ class jomres_mc_registry
 			}
 		}
 
+
+	function getMiniComponentCMSSpecificClasses()
+		{
+		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'cms_specific'.JRDS._JOMRES_DETECTED_CMS.JRDS;
+		$d = @dir($jrePath);
+		if($d)
+			{
+			while (FALSE !== ($entry = $d->read()))
+				{
+				$filename = $entry;
+				$this->registerComponentFile($jrePath,$filename,"cms_specific_component");
+				}
+			$d->close();
+			}
+		}
+		
 	// Reads in class files from the events folder and inserts them into the registeredClasses array
 	function getMiniComponentCoreClasses()
 		{
@@ -249,7 +266,10 @@ class jomres_mc_registry
 					return;
 				else
 					{
-					if (array_key_exists($classfileEventPoint.$classfileEventName,$this->registeredClasses) && ($this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='component' || $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='remotecomponent') )
+					if (array_key_exists($classfileEventPoint.$classfileEventName,$this->registeredClasses) 
+						&& ($this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='component' 
+						|| $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='remotecomponent')
+						|| $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='cms_specific_component')
 						{
 						$text="";
 						$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'."</font><br>";

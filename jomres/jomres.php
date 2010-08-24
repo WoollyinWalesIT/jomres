@@ -1494,9 +1494,22 @@ if ($no_html==0 && $jrConfig['errorChecking']==1)
 
 	
 // The idea here is to decide if we're going to output the data here (at the end of jomres.php runing) or dump out data into a define that the bridging script can then use to pass back to the cms
+$head_contents = '';
+$MiniComponents->triggerEvent('16003');
+if (is_array($MiniComponents->miniComponentData['16003']))
+	{
+	foreach ($MiniComponents->miniComponentData['16003'] as $concatenate)
+		{
+		$head_contents .= $concatenate;
+		}
+	}
+
 if (defined("JOMRES_RETURNDATA") )
 	{
-	define("JOMRES_RETURNDATA_CONTENT", ob_get_contents() ) ;
+	$contents = ob_get_contents();
+	$contents = $head_contents.$contents;
+	define("JOMRES_RETURNDATA_CONTENT", $contents ) ;
+	unset($contents);
 	ob_end_clean();
 	}
 else
