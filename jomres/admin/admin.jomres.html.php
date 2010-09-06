@@ -217,7 +217,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_ALLOWHTMLEDITOR.'</td>
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['allowHTMLeditor'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_ALLOWHTMLEDITOR_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_SELFREGISTRATION.'</td>

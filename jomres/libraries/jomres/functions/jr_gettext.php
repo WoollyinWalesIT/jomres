@@ -121,6 +121,10 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$jrConfig['editingModeAffectsAllProperties'] = "1";
 			$editing = true;
 			}
+			
+		if($jrConfig['allowHTMLeditor']!="1")
+			$theText=jomres_remove_HTML($theText);
+
 		if ($thisJRUser->userIsManager && ($editing || ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ($accessLevel ==2))
 			{
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
@@ -128,53 +132,55 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$indexphp="index2.php";
 			$title=' title="'._JOMRES_COM_MR_VRCT_ROOM_LINKTEXT.'" ';
 			$defaultText=substr($defaultText,0,100);
+			
 
-				if ($isLink)
+			
+			if ($isLink)
+				{
+				$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
+				$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".get_showtime('live_site')."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
+				$theText=$editingLink.$theText;
+				}
+			else
+				{
+				if ($jrConfig['editinplace']==1 && $_REQUEST['no_html'] != '1' )
 					{
-					$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
-					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" ><img src=\"".get_showtime('live_site')."/jomres/images/jricon.png\" width=\"10\" height=\"10\" border=\"0\"></a>";
-					$theText=$editingLink.$theText;
+					if (!defined('JOMRESJQUERY_EDITINPLACE'))
+						{
+						define("JOMRESJQUERY_EDITINPLACE",1);
+						echo '
+							<script type="text/javascript">
+						jQuery(document).ready(function() {';
+						if ($_REQUEST['task']=="touch_templates")
+							echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editinplace&no_html=1", ';
+						else
+							echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL.'&task=editinplace&no_html=1", ';
+						echo "	{
+							indicator : '".JOMRES_WORD_SAVING."',
+							id			: 'theConstant',
+							name		: 'newtext',
+							type		: 'textarea',
+							cancel		: 'x',
+							submit		: 'OK',
+							tooltip		: '".htmlspecialchars(_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT)."',
+							height		: '20',
+							width		: '200',
+							style		: 'inherit'
+							});
+						});
+						</script>
+						";
+						}
+					$theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.htmlspecialchars($theText).'</div></span>';
 					}
 				else
 					{
-					if ($jrConfig['editinplace']==1 && $_REQUEST['no_html'] != '1' )
-						{
-						if (!defined('JOMRESJQUERY_EDITINPLACE'))
-							{
-							define("JOMRESJQUERY_EDITINPLACE",1);
-							echo '
-								<script type="text/javascript">
-							jQuery(document).ready(function() {';
-							if ($_REQUEST['task']=="touch_templates")
-								echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editinplace&no_html=1", ';
-							else
-								echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL.'&task=editinplace&no_html=1", ';
-							echo "	{
-								indicator : '".JOMRES_WORD_SAVING."',
-								id			: 'theConstant',
-								name		: 'newtext',
-								type		: 'textarea',
-								cancel		: 'x',
-								submit		: 'OK',
-								tooltip		: '".htmlspecialchars(_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT)."',
-								height		: '20',
-								width		: '200',
-								style		: 'inherit'
-								});
-							});
-							</script>
-							";
-							}
-						$theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.htmlspecialchars($theText).'</div></span>';
-						}
-					else
-						{
-						$link = JOMRES_SITEPAGE_URL_NOHTML.'&task=editCustomText&popup=1&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
-						$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" >$theText</a>";
-						$theText=$editingLink.$br;
-						}
+					$link = JOMRES_SITEPAGE_URL_NOHTML.'&task=editCustomText&popup=1&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
+					$editingLink="<a class=\"jomrestexteditable\" $title href=\"$link\" target=\"_blank\" >$theText</a>";
+					$theText=$editingLink.$br;
 					}
 				}
+			}
 		}
 	
 	$theText = jomres_purify_html($theText,$editing);
