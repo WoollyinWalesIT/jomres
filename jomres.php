@@ -1545,7 +1545,7 @@ function jomres_validate_gateway_plugin()
 		if ( $paypal_settings->paypalConfigOptions['override'] == "1")
 			return "paypal";
 		
-		if (!isset($_POST['plugin']) || $_POST['plugin'] == "" )
+		if (!isset($_REQUEST['plugin']) || $_REQUEST['plugin'] == "" )
 			{
 			gateway_log("Error, gateway name not sent, probable hack attempt");
 			trigger_error ("Error, gateway name not sent, probable hack attempt", E_USER_ERROR);
@@ -1553,7 +1553,7 @@ function jomres_validate_gateway_plugin()
 			}
 		if (!isset($tmpBookingHandler->tmpbooking["gateway"] ))
 			{
-			$plugin 			= jomresGetParam( $_POST, 'plugin', "" );
+			$plugin 			= jomresGetParam( $_REQUEST, 'plugin', "" );
 			$tmpBookingHandler->tmpbooking["gateway"] = $plugin;
 			}
 		else
