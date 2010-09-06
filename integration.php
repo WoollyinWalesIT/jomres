@@ -308,7 +308,7 @@ function RemoveXSS($val)
 	$vinces[]="?_url"; //  open redirector exploit
 
 
-	$val=str_ireplace($vinces,"",$val);
+	$val=str_ireplace($vinces,"<x>",$val);
 	$val=str_replace(array("\r","\t","\n"),"" , $val);
 	// end vinces
 
@@ -318,7 +318,8 @@ function RemoveXSS($val)
 	$search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$search .= '1234567890!@#$%^&*()';
 	$search .= '~`";:?+/={}[]-_|\'\\';
-	for ($i = 0; $i < strlen($search); $i++)
+	$lensearch = strlen($search);
+	for ($i = 0; $i < $lensearch; $i++)
 		{
 		// ;? matches the ;, which is optional
 		// 0{0,7} matches any padded zeros, which are optional and go up to 8 chars
@@ -368,16 +369,13 @@ function RemoveXSS($val)
 
 function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used
 	{
-
 	global $R;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	//echo $element .' - ';
 	if (isset($request[$element]) )
 		$dirty=$request[$element];
 	else
 		return $def;
-	//var_dump($dirty);
 	$clean=null;
 	if (is_null($dirty))
 		$dirty=$def;
@@ -421,32 +419,17 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 					}
 				}
 			break;
-		default :	// treat everything else as a string.
+		default : // treat everything else as a string.
 			$dirty = (string) $dirty;
-			// if($jrConfig['allowHTMLeditor']!="1")
-				// $dirty=nl2br($dirty);
 			$jomres_db =jomres_getSingleton('jomres_database');
-			if (function_exists('filter_var'))
-				{
-				if ($mask != _MOS_ALLOWHTML )
-					{
-					$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS);
-					$clean = jomres_reconvertString($clean);
-					}
-				else
-					$clean=getEscaped(RemoveXSS($dirty));
-				}
-			else
-				{
-				$clean=getEscaped(RemoveXSS($dirty));
-				if ($jrConfig['allowHTMLeditor']=="0" || $mask != _MOS_ALLOWHTML )
-					$clean =strip_tags ($clean);
-				}
+			$dirty=getEscaped(RemoveXSS($dirty)); // remove any XSS data
+			if($jrConfig['allowHTMLeditor']!="1")
+				$dirty=jomres_remove_HTML($dirty); // Strip out any html
+			$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
 			break;
 		}
 	return $clean;
 	}
-
 
 function getEscaped( $text ) {
 	$text=str_replace("'","&#39;",$text);
@@ -454,6 +437,73 @@ function getEscaped( $text ) {
 		return mysql_real_escape_string( $text );
 	else
 		return $text;
+	}
+
+// http://www.php.net/manual/en/function.strip-tags.php#97386
+// Like many other functions in Jomres, it has been renamed to jomres_ becomes it's not unusual for other software developers to use the same functions in their libraries. Renaming the function thus prevents php from throwing duplicate function name errors
+function jomres_remove_HTML($s , $keep = 'p|br' , $expand = 'script|style|noframes|select|option')
+	{
+	/**///prep the string
+	$s = ' ' . $s;
+	
+	/**///initialize keep tag logic
+	if(strlen($keep) > 0)
+		{
+		$k = explode('|',$keep);
+		for($i=0;$i<count($k);$i++)
+			{
+			$s = str_replace('<' . $k[$i],'[{(' . $k[$i],$s);
+			$s = str_replace('</' . $k[$i],'[{(/' . $k[$i],$s);
+			}
+		}
+	
+	//begin removal
+	/**///remove comment blocks
+	while(stripos($s,'<!--') > 0)
+		{
+		$pos[1] = stripos($s,'<!--');
+		$pos[2] = stripos($s,'-->', $pos[1]);
+		$len[1] = $pos[2] - $pos[1] + 3;
+		$x = substr($s,$pos[1],$len[1]);
+		$s = str_replace($x,'',$s);
+		}
+	
+	/**///remove tags with content between them
+	if(strlen($expand) > 0)	
+		{
+		$e = explode('|',$expand);
+		for($i=0;$i<count($e);$i++)
+			{
+			while(stripos($s,'<' . $e[$i]) > 0)
+				{
+				$len[1] = strlen('<' . $e[$i]);
+				$pos[1] = stripos($s,'<' . $e[$i]);
+				$pos[2] = stripos($s,$e[$i] . '>', $pos[1] + $len[1]);
+				$len[2] = $pos[2] - $pos[1] + $len[1];
+				$x = substr($s,$pos[1],$len[2]);
+				$s = str_replace($x,'',$s);
+				}
+			}
+		}
+	
+	/**///remove remaining tags
+	while(stripos($s,'<') > 0)
+		{
+		$pos[1] = stripos($s,'<');
+		$pos[2] = stripos($s,'>', $pos[1]);
+		$len[1] = $pos[2] - $pos[1] + 1;
+		$x = substr($s,$pos[1],$len[1]);
+		$s = str_replace($x,'',$s);
+		}
+	
+	/**///finalize keep tag
+	for($i=0;$i<count($k);$i++)
+		{
+		$s = str_replace('[{(' . $k[$i],'<' . $k[$i],$s);
+		$s = str_replace('[{(/' . $k[$i],'</' . $k[$i],$s);
+		}
+
+	return trim($s);
 	}
 
 /**
@@ -500,6 +550,7 @@ function strip_tags_except($text,$strip=TRUE)
 		}
 	return $text;
 	}
+
 
 
 class dummy_params_class
