@@ -327,7 +327,10 @@ class j01010listpropertys {
 						if (isset($pricesFromArray[$property->propertys_uid]))
 							{
 							$output_lowest = true;
-							$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property->propertys_uid],$property->propertys_uid));
+							if ($mrConfig['prices_inclusive']=="0")
+								$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property->propertys_uid],$property->propertys_uid));
+							else
+								$price=output_price ($pricesFromArray[$property->propertys_uid]);
 							if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1")
 								$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 							else
