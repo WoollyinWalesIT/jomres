@@ -36,7 +36,7 @@ class j02299regprop1_a_roombookings {
 			$this->template_touchable=true; return;
 			}
 
-		$this->next_step = "regprop2";
+		$this->next_step = "rental";
 		$this->title = jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL',_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL,FALSE);
 		$this->description =jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL_DESC',_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL_DESC,FALSE);
 		}

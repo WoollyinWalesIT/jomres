@@ -36,7 +36,7 @@ class j02299regprop1_realestate {
 			$this->template_touchable=true; return;
 			}
 
-		$this->next_step = "regprop2";
+		$this->next_step = "realestate";
 		$this->title = jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE',_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE,FALSE);
 		$this->description =jr_gettext('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC,FALSE);
 		}
