@@ -162,7 +162,7 @@ class jomres_reviews {
 						$result = doInsertSql($query,'');
 						}
 					}
-				$query = "DELETE FROM #_jomres_reviews_ratings_detail WHERE `rating_id`=".(int)$rating_id."";
+				$query = "DELETE FROM #__jomres_reviews_ratings_detail WHERE `rating_id`=".(int)$rating_id."";
 				$result = doInsertSql($query,'');
 				if($result)
 					return true;
