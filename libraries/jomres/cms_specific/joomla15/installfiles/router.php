@@ -38,8 +38,7 @@ function JomresBuildRoute(&$query)
 			$pid = $route_query['selectedProperty'];
 		else
 			$pid = $route_query['property_uid'];
-		$sql = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = ".(int)$pid." LIMIT 1";
-		$property_name = doSelectSql($sql,1);
+		$property_name=getPropertyName($pid);
 		}
 	switch($route_query['task'])
 		{

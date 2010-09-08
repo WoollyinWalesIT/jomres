@@ -102,7 +102,7 @@ if ($property_uid || $selectedProperty)
 	$jr_property = doSelectSql($query);
 	foreach ($jr_property as $element) 
 		{
-		$property_name 		= 	$element->property_name;
+		$property_name 		= 	getPropertyName($property);
 		$property_country 	= 	getSimpleCountry($element->property_country);
 		$property_region 	= 	$element->property_region;
 		$property_town 		= 	$element->property_town;
