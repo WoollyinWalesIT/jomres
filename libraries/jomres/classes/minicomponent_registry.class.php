@@ -266,21 +266,23 @@ class jomres_mc_registry
 					return;
 				else
 					{
-					if (array_key_exists($classfileEventPoint.$classfileEventName,$this->registeredClasses) 
-						&& ($this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='component' 
-						|| $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='remotecomponent')
-						|| $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='cms_specific_component')
+					if (array_key_exists($classfileEventPoint.$classfileEventName,$this->registeredClasses) )
 						{
-						$text="";
-						$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'."</font><br>";
-						$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventName']."</b><br>";
-						$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['filepath']."</b><br>";
-						$text .= 'Collides with this and possibly more mini-components: '."<br>";
-						$text .= '<b>'.$classfileEventName."</b><br>";
-						$text .= '<b>'.$filePath."</b><br>";
-						echo $text;
-						$this->error_detected = true;
-						error_logging("Minicomponent collision :: ".$text);
+							if (($this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='component' 
+							|| $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='remotecomponent')
+							|| $this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventtype']=='cms_specific_component')
+							{
+							$text="";
+							$text .= '<font color="red" face="arial" size="1">Warning: Event override collision. You have two or more mini-components attempting to perform the same override function. System behaviour may be unpredictable'."</font><br>";
+							$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['eventName']."</b><br>";
+							$text .= '<b>'.$this->registeredClasses[$classfileEventPoint.$classfileEventName]['filepath']."</b><br>";
+							$text .= 'Collides with this and possibly more mini-components: '."<br>";
+							$text .= '<b>'.$classfileEventName."</b><br>";
+							$text .= '<b>'.$filePath."</b><br>";
+							echo $text;
+							$this->error_detected = true;
+							error_logging("Minicomponent collision :: ".$text);
+						}
 						}
 					$this->miniComponentDirectories[] = $filePath;
 					$this->registeredClasses[$classfileEventPoint.$classfileEventName]=array('eventPoint'=>$classfileEventPoint, 'eventName'=>$classfileEventName,'filepath'=>$filePath,'eventtype'=>$eventType);

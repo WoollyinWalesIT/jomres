@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="component" version="1.6.0">
+		<name>Jomres</name>
+		<creationDate>2005-03-18</creationDate>
+		<author>Vince Wooll</author>
+		<authorEmail>sales@jomres.net</authorEmail>
+		<authorUrl>http://www.jomres.net</authorUrl>
+		<copyright>Copyright Vince Wooll 2010</copyright>
+		<license>http://www.gnu.org/licenses/gpl.html</license>
+		<version>5</version>
+		<releaseDate>2010-10-01</releaseDate>
+		<releaseType>Major update</releaseType>
+		<downloadUrl>http://www.jomres.net</downloadUrl>
+		<description>Jomres, the hotel booking system for Joomla</description>
+		<client>site</client>
+
+		<!-- Custom Install Script to execute -->
+		<!-- Note: This will be copied from the root of the installation package to the administrator directory automatically -->
+		<!-- <installfile>install.helloworld.php</installfile> -->
+ 
+		<!-- Custom Uninstall Script to execute -->
+		<!-- Note: This will be copied from the root of the installation package to the administrator directory automatically -->
+		<!-- <uninstallfile>uninstall.helloworld.php</uninstallfile> -->
+
+		<administration>
+				<menu img="jomres/images/jricon.png">Jomres</menu>
+				<submenu>
+						<menu link="option=com_jomres">Jomres</menu>
+				</submenu>
+		</administration>
+</install>
