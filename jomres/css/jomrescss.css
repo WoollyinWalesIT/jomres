@@ -401,9 +401,10 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	text-align: left;
 }
 
-.bform_table td 
+.bform_table td, tr 
 	{
 	padding: 3px;
+	border: 0 none;
 	}
 
 .bform_table_totals 
