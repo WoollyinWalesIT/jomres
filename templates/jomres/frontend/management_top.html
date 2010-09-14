@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" >
+
+<style>
+body {
+  margin-left: 10%; margin-right: 10%;
+  color: black; background: white;
+}
+a {color:#0089bb; text-decoration: underline}
+a:hover {color:black; text-decoration: underline;}
+
+
+</style>
+
+
+<div style="width:1200px;margin-left: auto ;margin-right: auto ; border=1px"><!-- upload a file called logo.png or logo.jpg to the uploadedimages directory to use that instead of the default Jomres logo -->
+<img src="{LOGO_RELATIVE_URL}" />
+</div>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" ><!-- management view content area start -->
+
+	<div id = "jomres_content_area"> <!-- opens the jomres content area -->
+	<noscript>
+	<blockquote>
+	<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+	<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so please enable before continuing. For assistance in enabling JavaScript, please contact the webmaster.</font></p>
+	</blockquote>
+	</noscript>
+	 
+	<table border="0" width="100%" cellpadding="0" cellspacing="0">
+		<tr> 
+			<td style="text-align:right; width: 100px;">{MANAGEMENT_VIEW_DROPDOWN}</td>
+			<td style="text-align:right;">{EDITING_MODE_DROPDOWN}</td>
+			<td style="text-align:right; width: 100px;">{LANGDROPDOWN}</td>
+		</tr>
+	</table>
+
+	<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
+		<!-- <a href="javascript:void(0);" onclick="jQuery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+		<script type="text/javascript">
+			jQuery.jGrowl("{MESSAGE}", { life: 10000 });
+		</script>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
+		<!-- <a href="javascript:void(0);" onclick="jQuery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+		<script type="text/javascript">
+			jQuery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
+		</script>
+	</patTemplate:tmpl>
+
+</patTemplate:tmpl>

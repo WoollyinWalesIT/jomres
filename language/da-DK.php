@@ -1433,4 +1433,7 @@ define('JOMRES_COM_A_MINIMALCONFIG_DESC','Set this to Yes to reduce the number o
 
 define('_JOMRES_AJAXFORM_EXTRAS_SELECT','Please select an option for your booking');
 define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Switches on html editors in property details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text.');
+define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
+define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
+
 

@@ -348,7 +348,28 @@ set_showtime('include_room_booking_functionality',true);
 
 $MiniComponents->triggerEvent('00005'); // Optional
 
-if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
+
+if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
+	{
+	jr_import('jomres_management_view');
+	$jomres_management_view = new jomres_management_view();
+	if (isset($_POST['management_view']))
+		{
+		if ((bool)$_POST['management_view'] == false)
+			$request = str_replace("tmpl=component","",$_SERVER["REQUEST_URI"]);
+		if ((bool)$_POST['management_view'] == true)
+			$request =  jomresURL($_SERVER["REQUEST_URI"]."&amp;tmpl=component");
+			
+		$jomres_management_view->set_view((bool)$_POST['management_view']);
+		
+		$tmpBookingHandler->close_jomres_session();
+		jomresRedirect( $request,"");
+		}
+	}
+	
+$management_view = $jomres_management_view->get_view();
+
+if (!defined('JOMRES_NOHTML'))
 	{
 	$output=array();
 	
@@ -357,6 +378,21 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$result = $editing_mode->make_editing_mode_dropdown();
 	if ($result)
 		$output['EDITING_MODE_DROPDOWN']=$result;
+	
+	if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
+		{
+		if ($thisJRUser->userIsManager)
+			{
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
+				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
+			elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
+				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
+			else
+				$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
+			$management_dropdown = $jomres_management_view->get_dropdown();
+			$output['MANAGEMENT_VIEW_DROPDOWN']=$management_dropdown;
+			}
+		}
 
 	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
@@ -392,7 +428,10 @@ if (!defined('JOMRES_NOHTML') && JOMRES_WRAPPED != 1)
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-	$tmpl->readTemplatesFromInput( 'top.html');
+	if ($management_view)
+		$tmpl->readTemplatesFromInput( 'management_top.html');
+	else
+		$tmpl->readTemplatesFromInput( 'top.html');
 	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'messages',$messaging);
 	$tmpl->addRows( 'sticky_messages',$sticky_messaging);
@@ -503,25 +542,25 @@ if (!defined('JOMRES_NOHTML'))
 					$output['CLICKCOUNT']=0;
 				$output['SEARCHIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="Find" border="0" title="'.$output['HTAGSEARCH'].'" />';
 				$output['CLICKCOUNTIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
-
-				$componentArgs=array();
+				
 				$MiniComponents->triggerEvent('00010'); // 
 				$mcOutput=$MiniComponents->getAllEventPointsData('00010');
-				if (count($mcOutput)>0)
+				
+				foreach ($mcOutput as $key=>$val)
 					{
-					foreach ($mcOutput as $key=>$val)
-						{
-						$r=array();
-						$r["OPTIONS"]=$val;
-						$rows[]=$r;
-						}
+					$r=array();
+					$r["OPTIONS"]=$val;
+					$rows[]=$r;
 					}
-					
 
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-				$tmpl->readTemplatesFromInput( 'toolbar_reception.html');
+				if ($management_view)
+					$tmpl->readTemplatesFromInput('toolbar_reception_manager_view.html');
+				else
+					$tmpl->readTemplatesFromInput('toolbar_reception.html');
+
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->addRows( 'rows',$rows);
 				$cachableContent = $tmpl->getParsedTemplate();
@@ -551,8 +590,12 @@ if (!defined('JOMRES_NOHTML'))
 
 					$componentArgs['published']=$published;
 					$componentArgs['property_uid']=$property_uid;
-					$MiniComponents->triggerEvent('00011',$componentArgs); // 
+					
+					set_showtime('frontend_buttons',array());
+					
+					$MiniComponents->triggerEvent('00011'); // 
 					$mcOutput=$MiniComponents->getAllEventPointsData('00011');
+					
 					if (count($mcOutput)>0)
 						{
 						foreach ($mcOutput as $key=>$val)
@@ -562,12 +605,15 @@ if (!defined('JOMRES_NOHTML'))
 							$rows[]=$r;
 							}
 						}
-						
 
 					$pageoutput[]=$output;
 					$tmpl = new patTemplate();
 					$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-					$tmpl->readTemplatesFromInput( 'toolbar_manager.html');
+					if ($management_view)
+						$tmpl->readTemplatesFromInput('toolbar_manager_manager_view.html');
+					else
+						$tmpl->readTemplatesFromInput('toolbar_manager.html');
+
 					$tmpl->addRows( 'pageoutput',$pageoutput);
 					$tmpl->addRows( 'rows',$rows);
 					$cachableContent = $tmpl->getParsedTemplate();
@@ -1460,7 +1506,10 @@ if ($numberOfPropertiesInSystem>0)
 			$tmpl->addRows( 'bottom',$pageoutput);
 			}
 		*/
-		$tmpl->readTemplatesFromInput( 'bottom.html');
+		if ($management_view)
+			$tmpl->readTemplatesFromInput( 'management_bottom.html');
+		else
+			$tmpl->readTemplatesFromInput( 'bottom.html');
 		$tmpl->displayParsedTemplate();
 		}
 	}

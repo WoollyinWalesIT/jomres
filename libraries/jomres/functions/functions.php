@@ -299,6 +299,12 @@ function jomresValidateUrl($url)
 	
 function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/') 
 	{
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	
+	$showtime_button_array = get_showtime('frontend_buttons');
+	$showtime_button_array[]=array('link'=>$link,'image'=>$image,'text'=>$text);
+	set_showtime('frontend_buttons',$showtime_button_array);
+	
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$link = jomresURL($link);
