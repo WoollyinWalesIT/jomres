@@ -152,8 +152,10 @@ class jomres_temp_booking_handler
 			"jomreslang" => get_showtime('lang')
 		);
 		$this->user_settings = array(
-			"editing_on" => false
+			"editing_on" => false,
+			"property_management_view" => false
 		);
+
 		$this->customFieldValues = array();
 		}
 	
