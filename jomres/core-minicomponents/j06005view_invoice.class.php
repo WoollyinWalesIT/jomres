@@ -157,8 +157,8 @@ class j06005view_invoice {
 			$output['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 		else
 			$output['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-		$output['INITTOTAL']=$invoice->init_total;
-		$output['RECURTOTAL']=$invoice->recur_total;
+		$output['INITTOTAL']=output_price($invoice->init_total,$invoice->currencycode);
+		$output['RECURTOTAL']=output_price($invoice->recur_total,$invoice->currencycode);
 		$output['FREQ']=$invoice->recur_frequency;
 		$output['CURRENCYCODE']=$invoice->currencycode;
 		
@@ -210,14 +210,14 @@ class j06005view_invoice {
 				$r['ID']				=$li['id'];
 				$r['LI_NAME']			=$li['name'];
 				$r['LI_DESCRIPTION']	=$li['description'];
-				$r['LI_INIT_PRICE']		=$li['init_price'];
+				$r['LI_INIT_PRICE']		=output_price($li['init_price'],$invoice->currencycode);
 				$r['LI_INIT_QTY']		=$li['init_qty'];
-				$r['LI_INIT_DISCOUNT']	=$li['init_discount'];
-				$r['LI_INIT_TOTAL']		=$li['init_total'];
-				$r['LI_RECUR_PRICE']	=$li['recur_price'];
+				$r['LI_INIT_DISCOUNT']	=output_price($li['init_discount'],$invoice->currencycode);
+				$r['LI_INIT_TOTAL']		=output_price($li['init_total'],$invoice->currencycode);
+				$r['LI_RECUR_PRICE']	=output_price($li['recur_price'],$invoice->currencycode);
 				$r['LI_RECUR_QTY']		=$li['recur_qty'];
-				$r['LI_RECUR_DISCOUNT']	=$li['recur_discount'];
-				$r['LI_RECUR_TOTAL']	=$li['recur_total'];
+				$r['LI_RECUR_DISCOUNT']	=output_price($li['recur_discount'],$invoice->currencycode);
+				$r['LI_RECUR_TOTAL']	=output_price($li['recur_total'],$invoice->currencycode);
 				$r['LI_TAX_CODE']		=$li['tax_code'];
 				$r['LI_TAX_DESCRIPTION']=$li['tax_description'];
 				$r['LI_TAX_RATE']		=$li['tax_rate'];
