@@ -783,9 +783,10 @@ class dobooking
 
 	function getGrowlMessages()
 		{
+		$messages = ';';
 		if ($this->jrConfig['useJomresMessaging'] == '1')
 			{
-			$messages = ';';
+			
 			if (isset($this->growlmessages['messages']) && count($this->growlmessages['messages'])>0)
 				{
 				foreach ($this->growlmessages['messages'] as $message)
@@ -799,6 +800,15 @@ class dobooking
 				$messages .= 'jQuery.jGrowl(\''.$this->growlmessages['guest_feedback'].'\', { life: 10000 });';
 				}
 			$messages = substr($messages,0,-1);
+			return $messages;
+			}
+		elseif (isset($this->growlmessages['messages']) && count($this->growlmessages['messages'])>0) // normal messages are useful when developing the booking engine, so even if popups are disabled by default, we still want to see messages coded by the developer. 
+			{
+			foreach ($this->growlmessages['messages'] as $message)
+				{
+				if ($message != "")
+					$messages .= 'jQuery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
+				}
 			return $messages;
 			}
 		}
@@ -6086,188 +6096,6 @@ class dobooking
 		$this->setErrorLog("te_setAverageRate:: Ended");
 		return true;
 		}
-		
-	/**
-	#
-	 * The alterntive method of handling price calculations. When a booking is made the price for rooms is calculated as the sum of the value of the rooms for each night/number of rooms
-	#
-	 */
-	/* function te_setAverageRate()
-		{
-		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$this->setErrorLog("te_setAverageRate:: Started");
-		$dateRangeArray=explode(",",$this->dateRangeString);
-		$tariffsArray=array();
-		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
-		$total=0.00;
-		$stayDays=$this->stayDays;
-		//$datesToRateArray=array();
-		//$rates=array();
-		//$rmClassArray=array();
-		$disc=array();
-		if (!isset($mrConfig['wisepriceactive']) || empty($mrConfig['wisepriceactive']) )
-			$mrConfig['wisepriceactive']='0';
-		if (!isset($mrConfig['wisepricethreshold']) || empty($mrConfig['wisepricethreshold']) )
-			$mrConfig['wisepricethreshold']='60';
-		$wisepricethreshold = (int)$mrConfig['wisepricethreshold'];
-		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
-		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
-		$roomsOfType=array();
-		foreach ($this->requestedRoom as $rt)
-			{
-			$rm=explode("^",$rt);
-			$tariffsArray[]=$rm[1];
-			$room_uid = $rm[0];
-			$room_type=$this->allPropertyRooms[$room_uid]['room_classes_uid'];
-			$this->setErrorLog("te_setAverageRate::room class id found: ".$room_type );
-			if (array_key_exists($room_type,$roomsOfType) )
-				{
-				$counter=$roomsOfType[$room_type];
-				$counter++;
-				$roomsOfType[$room_type]=$counter;
-				$this->setErrorLog("te_setAverageRate::counter: ".$counter );
-				}
-			else
-				$roomsOfType[$room_type]=1;
-			}
-		
-		$this->setErrorLog("te_setAverageRate::Rooms of this type found: ".serialize($roomsOfType) );
-		$gor=genericOr($tariffsArray,'tariff_id');
-		$query = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE ".$gor;
-		$this->setErrorLog("te_setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".$query);
-		$tarifftypeids = doSelectSql($query);
-
-		if (count($tarifftypeids)>0)
-			{
-			foreach ($tarifftypeids as $t)
-				{
-				$query="SELECT tariff_id FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id ='".$t->tarifftype_id."'";
-				$this->setErrorLog("setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".$query);
-				$allTariffIds = doSelectSql($query);
-				$this->setErrorLog("setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".serialize($allTariffIds));
-				$xreffed=array();
-				foreach ($allTariffIds as $xref)
-					{
-					$xreffed[]=$xref->tariff_id;
-					}
-				$gor=genericOr($xreffed,'rates_uid');
-				$query="SELECT `rates_uid`,`validfrom` ,`validto`,`mindays`,`maxdays`,minpeople,maxpeople,`roomrateperday`,roomclass_uid FROM #__jomres_rates WHERE ".$gor;
-				$this->setErrorLog("te_setAverageRate::Querying rates table ".$query);
-				$rateList = doSelectSql($query);
-				foreach ($rateList as $rate)
-					{
-					$date_elements  = explode("/",$rate->validfrom);
-					$unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					$date_elements  = explode("/",$rate->validto);
-					$unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					//$rates[]=array('validfrom'=>$unixValidFromDate,'validto'=>$unixValidToDate,'roomrateperday'=>$rate->roomrateperday,'rates_uid'=>$rate->rates_uid);
-					foreach ($dateRangeArray as $date )
-						{
-						$pass=false;
-						$this->setErrorLog("te_setAverageRate::Searching date ".$date.' on current tariff uid: '.$rate->rates_uid);
-						$date_elements  = explode("/",$date);
-						$unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
-								// Useful for testing tariffs.
-								//$this->setErrorLog("setAverageRate::Unix day ".$unixDay.' unix valid from day: '.$unixValidFromDate. ' Test: >=');
-								//$this->setErrorLog("setAverageRate::Unix day ".$unixDay.' unix valid to day: '.$unixValidToDate. ' Test: <=');
-								if ($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate)
-									$this->setErrorLog("te_setAverageRate::<b>Dates pass</b> ");
-								else
-									$this->setErrorLog("te_setAverageRate::<b>Dates FAIL</b> ");
-								//$this->setErrorLog("setAverageRate::stay days ".$date.' rate min days: '.$rate->rates_uid. ' Test: >=');
-								//$this->setErrorLog("setAverageRate::stay days ".$date.' rate max days: '.$rate->rates_uid. ' Test: <=');
-								//$this->setErrorLog("setAverageRate::min days ".$rate->mindays.' max days: '.$rate->maxdays. ' stay days'.$stayDays);
-								if ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays)
-									$this->setErrorLog("te_setAverageRate::<b>Stay days pass</b> ");
-								else
-									$this->setErrorLog("te_setAverageRate::<b>Stay days FAIL</b> ");
-								//$this->setErrorLog("setAverageRate::Total in party ".$this->total_in_party.' rate min people: '.$rate->minpeople. ' Test: >=');
-								//$this->setErrorLog("setAverageRate::Total in party ".$this->total_in_party.' rate max people: '.$rate->maxpeople . ' Test: <=');
-								if ($this->total_in_party >= $rate->minpeople &&  $this->total_in_party <= $rate->maxpeople)
-									$this->setErrorLog("te_setAverageRate::<b>People numbers pass</b> ");
-								else
-									$this->setErrorLog("te_setAverageRate::<b>People numbers FAIL</b> ");
-
-						if (count($numberOfGuestTypes) >0)
-							{
-							if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) && ($this->total_in_party >= $rate->minpeople &&  $this->total_in_party <= $rate->maxpeople ) )
-								$pass=true;
-							}
-						else
-							{
-							if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) )
-								$pass=true;
-							}
-						if($pass)
-							{
-							$this->setErrorLog("te_setAverageRate::Number of rooms of this type : ".$roomsOfType[$rate->roomclass_uid]);
-
-							if ( count($datesTilBooking) <= $wisepricethreshold && $mrConfig['wisepriceactive'] == "1")
-								{
-								$tmpRate = $rate->roomrateperday;
-								if ($mrConfig['prices_inclusive'] == 1)
-									{
-									$divisor	= ($this->accommodation_tax_rate/100)+1;
-									$tmpRate=$tmpRate/$divisor;
-									}
-								//$tmpRate=$rate->roomrateperday;
-								$roomType=$rate->roomclass_uid;
-								$percentageBooked=$this->getPercentageOfRoomsBookedForRoomtype($rate->roomclass_uid);
-								$r= $this->getDiscountedRoomrate ($tmpRate,$percentageBooked);
-								$total=$total+($r*$roomsOfType[$rate->roomclass_uid]);
-								$isDiscounted=false;
-								if ($r < $tmpRate)
-									{
-									$isDiscounted=true;
-									$tmpBookingHandler->updateBookingField("booking_discounted",true );
-									}
-								$disc[$roomType]=array(
-									"roomrate"=>$tmpRate,
-									"discountedRate"=>$r,
-									"roomType"=>$rate->roomclass_uid,
-									"isDiscounted"=>$isDiscounted,
-									);
-								$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
-								$tmpBookingHandler->saveBookingData();
-								}
-							else
-								{
-								$tmp_rate = $rate->roomrateperday;
-								if ($mrConfig['prices_inclusive'] == 1)
-									{
-									$divisor	= ($this->accommodation_tax_rate/100)+1;
-									$tmp_rate=$tmp_rate/$divisor;
-									}
-								$this->setErrorLog("te_setAverageRate::Rejigging room rate from ".$rate->roomrateperday." to  ".$tmp_rate*$roomsOfType[$rate->roomclass_uid]);
-								//$tmp_rate=$rate->roomrateperday;
-								$tmp_rate=$tmp_rate*$roomsOfType[$rate->roomclass_uid];
-								$total+=$tmp_rate;
-								}
-							$this->setErrorLog("te_setAverageRate::Setting  ".$rid.'_'.$date.' to '.$total);
-							//$total+=$rate->roomrateperday ;
-							$this->setErrorLog("te_setAverageRate::Cumulative total  ".$total);
-							}
-						else
-							$this->setErrorLog("te_setAverageRate::Tariff id failed to pass checks ".$total);
-						}
-					}
-				}
-			}
-		$this->setErrorLog( "te_setAverageRate::Total = ".$total. " Number of days = ".$this->stayDays.' Number of rooms '.count($this->requestedRoom) );
-		$rpn=($total/$stayDays)/count($this->requestedRoom);
-		//$rpn=($total/count($this->requestedRoom))/$stayDays;
-		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
-			{
-			$this->setErrorLog("te_setAverageRate::Tariffs are stored weekly ");
-			$rpn=$rpn/7;
-			}
-		$this->rate_pernight=$rpn;
-		$this->setErrorLog("te_setAverageRate::Setting average rate ".$rpn );
-		$this->setErrorLog("te_setAverageRate:: Ended");
-		return true;
-		} */
 
 	function calcLastMinuteDiscount()
 		{
