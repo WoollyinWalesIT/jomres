@@ -3055,7 +3055,7 @@ class dobooking
 		asort($countryCodes);
 		foreach ($countryCodes as $k=>$v)
 			{
-			$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+			$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
 			}
 		$countryDropdown= jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $selectedCountry);
 		return $countryDropdown;
