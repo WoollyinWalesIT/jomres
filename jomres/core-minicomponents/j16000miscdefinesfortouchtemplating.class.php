@@ -34,12 +34,30 @@ class j16000miscdefinesfortouchtemplating
 
 		$output[]		= jr_gettext('_JOMRES_CLICKTOREGISTER',_JOMRES_CLICKTOREGISTER);
 		$output[]		= jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES);
-
+		
+		$countryCodes=countryCodesArray();
+		foreach ($countryCodes as $k=>$v)
+			{
+			$output[]		= jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v);
+			}
+		
+		$FIPS=regionNamesArray();
+		foreach ($FIPS as $countryCode=>$v)
+			{
+			//echo getSimpleCountry($countryCode)."<br/>";
+			sort($v);
+			foreach ($v as $key=>$val)
+				{
+				$output[]		= jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$countryCode."_".$key,$val) ;
+				}
+			}
+		
 		foreach ($output as $o)
 			{
 			echo $o;
 			echo "<br/>";
 			}
+			
 		}
 
 	// This must be included in every Event/Mini-component

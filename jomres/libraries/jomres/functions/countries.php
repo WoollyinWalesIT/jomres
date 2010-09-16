@@ -33,7 +33,7 @@ function getSimpleCountry($selectedCountry)
 	foreach ($countryCodes as $k=>$v)
 		{
 		if ($k==$selectedCountry)
-			$countryName=$v;
+			$countryName=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false);
 		}
 	return $countryName;
 	}
@@ -63,7 +63,7 @@ function configCountries()
 	asort($countryCodes);
 	foreach ($countryCodes as $k=>$v)
 		{
-		$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+		$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
 		}
 	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'cfg_defaultcountry', 'class="inputbox"', 'value', 'text', $selectedCountry);
 	return $countryDropdown;
@@ -92,7 +92,7 @@ function createSimpleCountriesDropdown($selectedCountry)
 	asort($countryCodes);
 	foreach ($countryCodes as $k=>$v)
 		{
-		$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+		$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
 		}
 	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'guest_country', 'class="inputbox" ', 'value', 'text', $selectedCountry);
 	return $countryDropdown;
@@ -106,7 +106,7 @@ function limitCountriesDropdown()
 	asort($countryCodes);
 	foreach ($countryCodes as $k=>$v)
 		{
-		$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
+		$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
 		}
 	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'cfg_limit_property_country_country', 'class="inputbox" ', 'value', 'text', $jrConfig['limit_property_country_country']);
 	return $countryDropdown;
@@ -127,7 +127,6 @@ function limitCountriesDropdown()
  */
 function createCountriesDropdown($selectedCountry)
 	{
-
 	//$countryNames=countryNameArray();
 	$countryCodes=countryCodesArray();
 	asort($countryCodes);
@@ -135,7 +134,7 @@ function createCountriesDropdown($selectedCountry)
 	//$countryDropdown="<select id=\"country\" name=\"country\"  class=\"inputbox\" onchange='OnChange(this.form.country)'>";
 	foreach ($countryCodes as $k=>$v)
 		{
-		$loopedCountry=$v;
+		$loopedCountry=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) ;
 		if ($selectedCountry != "" && $selectedCountry==$k)
 			$selected="selected";
 		else
@@ -161,6 +160,32 @@ function createCountriesDropdown($selectedCountry)
 function setupRegions($countryCode="GB",$currentRegion="Pembrokeshire")
 	{
  	//Adapted from geoip, original Copyright (C) 2003 MaxMind LLC
+	$FIPS=regionNamesArray();
+	$regionArray=$FIPS[$countryCode];
+	$regionDropdown="";
+	if (count($regionArray)>0)
+		{
+		sort($regionArray);
+		$regionDropdown = '<span><select id="region" class="inputbox" name="region">';
+		$number_of_regions = count($regionArray);
+		for ($i=0, $n=$number_of_regions; $i < $n; $i++)
+			{
+			$loopedRegion=jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$countryCode."_".$i,$regionArray[$i],false,false) ;
+			if ($currentRegion != "" && $currentRegion==$loopedRegion)
+				$selected="selected";
+			else
+				$selected="";
+			$regionDropdown .= "<option  value=\"".$loopedRegion."\" ".$selected.">".$loopedRegion."</option>";
+			}
+		$regionDropdown.="</select></span>";
+		}
+	return $regionDropdown;
+	}
+
+// Old tunisian data // "TN" => array("Al Qasrayn","Al Qayrawan","Jundubah","Qafsah","Al Kaf","Al Mahdiyah","Al Munastir","Bajah","Banzart","Nabul","Silyanah","Susah","Aryanah","Bin","Madanin","Qabis","Qibili","Safaqis","Sidi Bu Zayd","Tatawin","Tawzar","Tunis","Zaghwan"),
+
+function regionNamesArray()
+	{
 	$FIPS = array(
 		"AD" => array("Canillo","Encamp","La Massana","Ordino","Sant Julia de Loria","Andorra la Vella","Escaldes-Engordany"),
 		"AE" => array("Abu Zaby","Dubayy","Al Fujayrah","Ra's al Khaymah","Ash Shariqah","Umm al Qaywayn"),
@@ -353,29 +378,8 @@ function setupRegions($countryCode="GB",$currentRegion="Pembrokeshire")
 		"ZR" => array("Bandundu","Equateur","Kasai-Occidental","Kasai-Oriental","Shaba","Kinshasa","Kivu","Bas-Zaire","Haut-Zaire"),
 		"ZW" => array("Manicaland","Midlands","Mashonaland Central","Mashonaland East","Mashonaland West","Matabeleland North","Matabeleland S.","Masvingo","Bulawayo","Harare")
 	);
-
-	$regionArray=$FIPS[$countryCode];
-	$regionDropdown="";
-	if (count($regionArray)>0)
-		{
-		sort($regionArray);
-		$regionDropdown = '<span><select id="region" class="inputbox" name="region">';
-		for ($i=0, $n=count($regionArray); $i < $n; $i++)
-			{
-			$loopedRegion=$regionArray[$i];
-			if ($currentRegion != "" && $currentRegion==$loopedRegion)
-				$selected="selected";
-			else
-				$selected="";
-			$regionDropdown .= "<option  value=\"".$regionArray[$i]."\" ".$selected.">".$loopedRegion."</option>";
-			}
-		$regionDropdown.="</select></span>";
-		}
-	return $regionDropdown;
+	return $FIPS;
 	}
-
-// Old tunisian data // "TN" => array("Al Qasrayn","Al Qayrawan","Jundubah","Qafsah","Al Kaf","Al Mahdiyah","Al Munastir","Bajah","Banzart","Nabul","Silyanah","Susah","Aryanah","Bin","Madanin","Qabis","Qibili","Safaqis","Sidi Bu Zayd","Tatawin","Tawzar","Tunis","Zaghwan"),
-#
 /**
 #
  * Creates an array of country names
