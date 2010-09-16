@@ -593,7 +593,7 @@ if (!defined('JOMRES_NOHTML'))
 					
 					set_showtime('frontend_buttons',array());
 					
-					$MiniComponents->triggerEvent('00011'); // 
+					$MiniComponents->triggerEvent('00011',$componentArgs); // 
 					$mcOutput=$MiniComponents->getAllEventPointsData('00011');
 					
 					if (count($mcOutput)>0)
