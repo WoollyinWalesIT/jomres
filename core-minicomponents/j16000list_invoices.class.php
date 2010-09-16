@@ -118,8 +118,8 @@ class j16000list_invoices
 				$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 			else
 				$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-			$r['INITTOTAL']		=$invoice['init_total'];
-			$r['RECURTOTAL']	=$invoice['recur_total'];
+			$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
+			$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
 			$r['FREQ']			=$invoice['recur_frequency'];
 			$r['CURRENCYCODE']	=$invoice['currencycode'];
 			
