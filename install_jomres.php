@@ -2107,6 +2107,18 @@ function insertSampleData()
 		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only` )VALUES ('7', '3 Bedrooms', '3 Bedrooms','jomres/uploadedimages/rmtypes/3bedrooms.png','0','1'), ('8', '4 Bedrooms', '4 Bedrooms','jomres/uploadedimages/rmtypes/4bedrooms.png','0','1')","");
 		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only` )VALUES ('9', '5 Bedrooms', '5 Bedrooms','jomres/uploadedimages/rmtypes/5bedrooms.png','0','1'), ('10', '6+ Bedrooms', '6+ Bedrooms','jomres/uploadedimages/rmtypes/6plusbedrooms.png','0','1')","");
 
+		
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (1,4,1)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (2,1,1)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (3,3,1)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (4,2,1)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (5,5,5)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (6,6,5)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (7,7,5)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (8,8,5)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (9,9,5)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (10,10,5)","");
+
 
 		//$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`property_uid`,`image` )VALUES ('3', 'D/B', 'Double Bed','0','/jomres/uploadedimages/rmtypes/double.png'), ('4', 'T/B', 'Twin Beds','0','/jomres/uploadedimages/rmtypes/twin.png')","");
 
