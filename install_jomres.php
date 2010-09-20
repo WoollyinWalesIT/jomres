@@ -245,10 +245,30 @@ function doTableUpdates()
 		createBookingdataArchiveTable();
 	if (!checkRoomtypePropertytypeXrefTableExists() )
 		createRoomtypePropertytypeXrefTable();
+	if (!checkManagerTimezoneColExists() )
+		alterManagerTimezoneCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function alterManagerTimezoneCol()
+	{
+	echo "Editing __jomres_managers table adding users_timezone column<br>";
+	$query = "ALTER TABLE `#__jomres_managers` ADD `users_timezone` CHAR(100) DEFAULT 'Europe/Berlin' AFTER `apikey` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_managers users_timezone</b><br>";
+	}
+
+function checkManagerTimezoneColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_managers LIKE 'users_timezone'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
 
 function createRoomtypePropertytypeXrefTable()
 	{

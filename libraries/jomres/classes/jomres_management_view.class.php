@@ -63,8 +63,7 @@ class jomres_management_view
 		
 		$javascript = "onchange=\"this.form.submit();\"";
 		$dropdown = jomresHTML::selectList( $management_options, 'management_view','class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->management_view);
-		//var_dump($dropdown);exit;
-		
+
 		$selecthtml = '<form action="" method="post" name="management_view">';
 		$selecthtml.= $dropdown;
 		$selecthtml.= '</form>';

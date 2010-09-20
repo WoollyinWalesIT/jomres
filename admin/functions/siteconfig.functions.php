@@ -181,6 +181,7 @@ function showSiteConfig(  )
 	$lists['show_search_order']						= jomresHTML::selectList( $yesno, 'cfg_show_search_order', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['show_search_order'] );
 	
 	$lists['only_guests_can_review']				= jomresHTML::selectList( $yesno, 'cfg_only_guests_can_review', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['only_guests_can_review'] );
+	$lists['use_timezone_switcher']					= jomresHTML::selectList( $yesno, 'cfg_use_timezone_switcher', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_timezone_switcher'] );
 
 	
 
