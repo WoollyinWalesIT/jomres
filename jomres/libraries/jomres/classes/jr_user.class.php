@@ -42,7 +42,8 @@ class jr_user
 		$this->superPropertyManager 			= FALSE;
 		$this->superPropertyManagersAreGods 	= TRUE;   // Change this to false to prevent super property managers from having rights to ALL properties
 		$this->userIsRegistered					= FALSE;
-		
+		$this->users_timezone					= "America/Lima";
+		$this->jomres_manager_id				= 0;
 		$sessionid = session_id();
 		if( $sessionid == "" )
 			{
@@ -55,7 +56,7 @@ class jr_user
 			{
 			$this->userIsRegistered=TRUE;
 
-			$query = "SELECT userid,username,access_level,property_uid,currentproperty,pu FROM #__jomres_managers WHERE userid = '".(int)$this->id."' LIMIT 1";
+			$query = "SELECT * FROM #__jomres_managers WHERE userid = '".(int)$this->id."' LIMIT 1";
 			$authorisedUsers=doSelectSql($query);
 			if (count($authorisedUsers) > 0)
 				{
@@ -68,6 +69,11 @@ class jr_user
 					$this->accesslevel=$authUser->access_level;
 					$this->defaultproperty=$authUser->currentproperty;
 					$this->currentproperty=$authUser->currentproperty;
+					if (isset($authUser->users_timezone))
+						$this->users_timezone=$authUser->users_timezone;
+					$this->jomres_manager_id = $authUser->manager_uid;
+					
+					
 					if ($authUser->pu == "1")
 						{
 						$this->superPropertyManager = true;

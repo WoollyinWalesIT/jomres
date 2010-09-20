@@ -1405,5 +1405,5 @@ define('_JOMRES_AJAXFORM_EXTRAS_SELECT','Please select an option for your bookin
 define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Switches on html editors in property details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text.');
 define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
 define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
-
+define('_JOMRES_COM_TIMEZONE_SWITCHER',"Show the timezone switcher in the property manager's toolbar?");
 

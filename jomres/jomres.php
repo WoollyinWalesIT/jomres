@@ -31,6 +31,7 @@ global $thisJomresPropertyDetails,$customTextObj;
 global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRequest;
 
 require_once(dirname(__FILE__).'/integration.php');
+
 if (!isset($_REQUEST['tmpl']))
 	{
 	$is_iphone = is_iPhone();
@@ -54,6 +55,8 @@ if ($jrConfig['errorChecking'] =="1")
 	$performance_monitor->switch_on();
 else
 	$performance_monitor->switch_off();
+
+
 
 $MiniComponents =jomres_getSingleton('mcHandler');
 
@@ -162,6 +165,9 @@ else
 	$thisJRUser->authorisedProperties = array();
 	}
 
+jr_import('jomres_timezones');
+$tz = new jomres_timezones();
+	
 /*
 removed in 4.2
 // The admins_first_login.txt file in the temp folder is used as a check to remind new users that they need to log into the Jomres front end
@@ -391,6 +397,11 @@ if (!defined('JOMRES_NOHTML'))
 				$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
 			$management_dropdown = $jomres_management_view->get_dropdown();
 			$output['MANAGEMENT_VIEW_DROPDOWN']=$management_dropdown;
+			if ($jrConfig['use_timezone_switcher'] == "1")
+				{
+				$output['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
+				$output['TIMEZONEBLURB']= outputDate(date("Y/m/d"))." ".date("H:i:s");
+				}
 			}
 		}
 
