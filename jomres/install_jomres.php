@@ -1825,6 +1825,7 @@ function createJomresTables()
 		`currentproperty` INT( 11 ) DEFAULT '0' NOT NULL,
 		`pu` INT( 1 ) DEFAULT '0' NOT NULL,
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
+		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		PRIMARY KEY	(`manager_uid`)
 		) ";
 	$result=doInsertSql($query,"");
