@@ -23,7 +23,6 @@ class j10002partners_choose
 			{
 			$this->template_touchable=false; return;
 			}
-		return true;
 		$htmlFuncs =jomres_getSingleton('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=partners_choose', 'partners.png', _JOMRES_PARTNERS_TITLE);
 		}
