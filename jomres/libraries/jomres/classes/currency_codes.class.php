@@ -30,6 +30,7 @@ class currency_codes
 		$this->codes=array(
 			'AFA'=>'AFA Afghanistan Afghani',
 			'ALL'=>'ALL Albanian Lek',
+			'AZN'=>'AZN Azerbaijan New Manat',
 			'AON'=>'AON Angolan New Kwanza',
 			'ANG'=>'ANG (Netherlands) Antillian Guilder',
 			'AED'=>'AED (United) Arab Emirates Dirham',
@@ -178,6 +179,7 @@ class currency_codes
 		$this->symbols=array(
 			'AFA'=>array("pre"=>"؋","post"=>"") ,
 			'ALL'=>array("pre"=>"L","post"=>""),
+			'AZN'=>array("pre"=>"","post"=>"&nbsp;AZN"),
 			'DZD'=>array("pre"=>"دج","post"=>""),
 			'AON'=>array("pre"=>"Kz","post"=>""),
 			'ANG'=>array("pre"=>"NAƒ","post"=>""),
@@ -317,6 +319,7 @@ class currency_codes
 			'ZMK'=>array("pre"=>"ZK","post"=>""),
 			'ZWD'=>array("pre"=>"$","post"=>""),
 			'ZWD'=>array("pre"=>"Lei","post"=>"")
+			
 			);
 		}
 	
