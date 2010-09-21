@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<h3>Partner : {USERNAME}</h3>
+
+<table>
+	<tr>
+		<th> Search property</th>
+		<th> Search results </th>
+		<th> Current discounts</th>
+	</tr>
+	<tr>
+		<td>
+			Enter a few characters from the property name and press enter to see the results of the search<br/>
+			<input class="inputbox" type="text" size="15" id="propertyname_input" value=""/>
+		</td>
+		<td>
+			<div id="property_results" style="float:left"></div>
+		</td>
+		<td>
+			
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+var ajaxurl	= "{AJAXURL}";
+
+jQuery('#propertyname_input').change(function() {
+	var search_string = jQuery('#propertyname_input').val();
+	jQuery.get(ajaxurl,{ 'value': search_string },
+		function(data){
+			jQuery('#property_results').html(data); 
+			}
+		);
+	});
+</script>
+
+</patTemplate:tmpl>

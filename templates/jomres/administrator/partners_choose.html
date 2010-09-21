@@ -1,0 +1,38 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<table>
+	<tr>
+		<th> Existing partners</th>
+		<th> Search users </th>
+		<th> Search results</th>
+	</tr>
+	<tr>
+		<td>
+			<patTemplate:tmpl name="existing" unusedvars="nbsp">
+				{LINK}<br/>
+			</patTemplate:tmpl>
+		</td>
+		<td>
+			Enter a few characters from the user name and press enter to see the results of the search<br/>
+			<input class="inputbox" type="text" size="15" id="username_input" value=""/>
+		</td>
+		<td>
+			<div id="usernames" style="float:left"></div>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+var ajaxurl	= "{AJAXURL}";
+
+jQuery('#username_input').change(function() {
+	var search_string = jQuery('#username_input').val();
+	jQuery.get(ajaxurl,{ 'value': search_string },
+		function(data){
+			jQuery('#usernames').html(data); 
+			}
+		);
+	});
+</script>
+
+</patTemplate:tmpl>
