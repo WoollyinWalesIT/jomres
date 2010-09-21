@@ -245,11 +245,54 @@ function doTableUpdates()
 		createBookingdataArchiveTable();
 	if (!checkRoomtypePropertytypeXrefTableExists() )
 		createRoomtypePropertytypeXrefTable();
+	if (!checkPartnerTablesExist() )
+		createPartnerTables();
 	if (!checkManagerTimezoneColExists() )
 		alterManagerTimezoneCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
+
+function createPartnerTables()
+	{
+	echo "Creating __jomres_partners table<br>";
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_userid` int(11) NOT NULL,
+		PRIMARY KEY(`id`)
+		)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_partners table</b><br>";
+	
+	echo "Creating __jomres_partners_discounts table<br>";
+	$query = "CREATE TABLE `#__jomres_partners_discounts` (
+	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`partner_id` int(11) NOT NULL,
+	`property_id` int(11) NOT NULL,
+	`valid_from` datetime default NULL ,
+	`valid_to` datetime default NULL ,
+	`discount` FLOAT NOT NULL DEFAULT '0.00',
+	PRIMARY KEY ( `id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
+	}	
+	
+function checkPartnerTablesExist()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_partners') )
+			return true;
+		}
+	return false;
+	}
+	
 
 function alterManagerTimezoneCol()
 	{
@@ -1937,6 +1980,26 @@ function createJomresTables()
 		)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_roomtypes_propertytypes_xref table</b><br>";
+		
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_userid` int(11) NOT NULL,
+		PRIMARY KEY(`id`)
+		)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_partners table</b><br>";
+		
+	$query = "CREATE TABLE `#__jomres_partners_discounts` (
+	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`partner_id` int(11) NOT NULL,
+	`property_id` int(11) NOT NULL,
+	`valid_from` datetime default NULL ,
+	`valid_to` datetime default NULL ,
+	`discount` FLOAT NOT NULL DEFAULT '0.00',
+	PRIMARY KEY ( `id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
 	}
 
 function insertSampleData()
