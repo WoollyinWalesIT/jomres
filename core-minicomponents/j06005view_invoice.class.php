@@ -33,10 +33,12 @@ class j06005view_invoice {
 		// This plugin is being called by another script, typically the emailer functionality, therefore we'll bypass the access checking further down
 		$bypass_security_check = false;
 		$return_template = false;
+		$show_paypal_link = true;
 		if (isset($componentArgs['internal_call']) && $componentArgs['internal_call'] == true)
 			{
 			$bypass_security_check = true;
 			$id = $componentArgs['invoice_id'];
+			$show_paypal_link = $componentArgs['show_paypal_link'];
 			$return_template = true;
 			$popup		=1;
 			}
@@ -178,23 +180,26 @@ class j06005view_invoice {
 		$output['HLI_TAX_DESCRIPTION']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION',_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION);
 		$output['HLI_TAX_RATE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
 
-		if (!$thisJRUser->userIsManager)
+		if ($show_paypal_link)
 			{
-			$settingArray = get_plugin_settings("paypal",$invoice->property_uid);
-			if ($settingArray)
+			if (!$thisJRUser->userIsManager)
 				{
-				if (isset($settingArray['active']) && $settingArray['active'] == "1")
+				$settingArray = get_plugin_settings("paypal",$invoice->property_uid);
+				if ($settingArray)
 					{
-					if ($invoice->subscription == "0" && $invoice->status != "1")
+					if (isset($settingArray['active']) && $settingArray['active'] == "1")
 						{
-						$ip=array();
-						$immediate_pay=array();
-						$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
-						$ip['INV_ID']	=$invoice->id;
-						$ip['LIVESITE']=get_showtime('live_site').'/';
-						$ip['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
-						
-						$immediate_pay[]=$ip;
+						if ($invoice->subscription == "0" && $invoice->status != "1")
+							{
+							$ip=array();
+							$immediate_pay=array();
+							$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
+							$ip['INV_ID']	=$invoice->id;
+							$ip['LIVESITE']=get_showtime('live_site').'/';
+							$ip['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
+							
+							$immediate_pay[]=$ip;
+							}
 						}
 					}
 				}
