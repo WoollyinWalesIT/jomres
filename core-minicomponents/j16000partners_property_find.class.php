@@ -22,8 +22,8 @@ class j16000partners_property_find
 			{
 			$this->template_touchable=false; return;
 			}
-		$search_string	= strtolower(jomresGetParam( $_REQUEST, 'value', '' ));
-		
+		$search_string	= strtolower(jomresGetParam( $_REQUEST, 'term', '' ));
+
 		$keywords= mysql_real_escape_string($search_string);
 		$words = explode( ' ', $keywords );
 		$wheres = array();
@@ -42,18 +42,12 @@ class j16000partners_property_find
 		$query.=" WHERE ( $where ) ";
 		$results=doSelectSql($query);
 
-		if (count($results)==0)
-			echo "No results";
-		else
+		$result_array=array();
+		foreach ($results as $res)
 			{
-			$return = '<table>';
-			foreach ($results as $res)
-				{
-				$return .='<tr><td>'.$res->property_name.'</td></tr>';
-				}
-			$return .='</table>';
-			echo $return;
+			$result_array[] =$res->property_name." : ".$res->propertys_uid;
 			}
+		echo json_encode($result_array);
 		}
 		
 	// This must be included in every Event/Mini-component

@@ -12,9 +12,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-class j16000partners_choose
+class j16000partner_save_discount_settings
 	{
-	function j16000partners_choose()
+	function j16000partner_save_discount_settings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -22,33 +22,20 @@ class j16000partners_choose
 			{
 			$this->template_touchable=false; return;
 			}
-		$output=array();
 
-		$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN."&format=raw&no_html=1&task=";
-		$output['LIVESITE']=JOMRES_SITEPAGE_URL_ADMIN."";
 		
-		$all_users = jomres_cmsspecific_getCMSUsers();
-		$rows = array();
-		$query = "SELECT id,cms_userid FROM #__jomres_partners";
-		$existing = doSelectSql($query);
-		if (count($existing)>0)
-			{
-			foreach ($existing as $partner)
-				{
-				$row = array();
-				$cms_userid = $partner->cms_userid;
-				$row['LINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=partner_show&id='.$cms_userid.'">'.$all_users[$cms_userid]["username"].'</a><br/>';
-				$rows[]=$row;
-				}
-			}
+		$discount_id	= (int)jomresGetParam( $_GET, 'discount_id', 0 );
+		$valid_from		= str_replace("/","-",JSCalConvertInputDates(jomresGetParam( $_GET, 'valid_from', '' )));
+		$valid_to		= str_replace("/","-",JSCalConvertInputDates(jomresGetParam( $_GET, 'valid_to', '' )));
+		$discount		= (float)jomresGetParam( $_GET, 'discount', 0 );
+		$partner_id		= (int)jomresGetParam( $_GET, 'partner_id', 0 );
+		$property_id	= (int)jomresGetParam( $_GET, 'property_id', 0 );
 		
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'partners_choose.html' );
-		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'rows',$rows);
-		$tmpl->displayParsedTemplate();
+		if ($discount_id > 0)
+			$query = "UPDATE #__jomres_partners_discounts SET `valid_from`= '".$valid_from."',`valid_to`= '".$valid_to."',`discount`= ".$discount." WHERE `id` = ".(int)$discount_id;
+		else
+			$query = "INSERT INTO #__jomres_partners_discounts (`partner_id`,`property_id`,`valid_from`,`valid_to`,`discount`) VALUES (".(int)$partner_id.",".(int)$property_id.",'".$valid_from."','".$valid_to."',".(float)$discount.")";
+		$result = doInsertSql($query,"");
 		}
 		
 	// This must be included in every Event/Mini-component

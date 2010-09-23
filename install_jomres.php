@@ -269,8 +269,8 @@ function createPartnerTables()
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`partner_id` int(11) NOT NULL,
 	`property_id` int(11) NOT NULL,
-	`valid_from` datetime default NULL ,
-	`valid_to` datetime default NULL ,
+	`valid_from` date default NULL ,
+	`valid_to` date default NULL ,
 	`discount` FLOAT NOT NULL DEFAULT '0.00',
 	PRIMARY KEY ( `id` )
 	)";
@@ -1127,6 +1127,28 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+	echo "Creating __jomres_partners table<br>";
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_userid` int(11) NOT NULL,
+		PRIMARY KEY(`id`)
+		)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_partners table</b><br>";
+	
+	echo "Creating __jomres_partners_discounts table<br>";
+	$query = "CREATE TABLE `#__jomres_partners_discounts` (
+	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+	`partner_id` int(11) NOT NULL,
+	`property_id` int(11) NOT NULL,
+	`valid_from` date default NULL ,
+	`valid_to` date default NULL ,
+	`discount` FLOAT NOT NULL DEFAULT '0.00',
+	PRIMARY KEY ( `id` )
+	)";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
+		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_sms_clickatell_messages` (
 		id int(10) NOT NULL auto_increment,
 		username  varchar(20) NOT NULL default '',
