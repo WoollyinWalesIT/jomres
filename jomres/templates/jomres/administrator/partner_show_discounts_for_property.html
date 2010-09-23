@@ -1,0 +1,36 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<table>
+	<tr>
+		<th class="jomres_title" > Property id</th>
+		<th class="jomres_title" > Property name </th>
+		<th class="jomres_title" > Valid from </th>
+		<th class="jomres_title" > Valid to </th>
+		<th class="jomres_title" > Discount (%) </th>
+		<th class="jomres_title" > &nbsp; </th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td class="jradmin_subheader_la">
+			{PROPERTY_ID}
+		</td>
+		<td class="jradmin_subheader_la">
+			{PROPERTY_NAME}
+		</td>
+		<td class="jradmin_subheader_la">
+			{VALID_FROM}
+		</td>
+		<td class="jradmin_subheader_la">
+			{VALID_TO}
+		</td>
+		<td class="jradmin_subheader_la">
+			<input name="discount_{DISCOUNT_ID}" class="jomres_inputbox" type="text" value="{DISCOUNT}" />
+		</td>
+		<td class="jradmin_subheader_la">
+			<a href="javascript:void(0);" onClick="save_discount_settings({DISCOUNT_ID},{PROPERTY_ID})"><img src="{LIVESITE}/jomres/images/jomresimages/small/Save.png" /></a>&nbsp;
+			<a href="javascript:void(0);" onClick="delete_discount({DISCOUNT_ID},{PROPERTY_ID})"><img src="{LIVESITE}/jomres/images/jomresimages/small/WasteBasket.png" /></a>
+		</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>

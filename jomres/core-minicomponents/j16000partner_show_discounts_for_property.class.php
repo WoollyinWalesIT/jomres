@@ -12,9 +12,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
-class j16000partner_show
+class j16000partner_show_discounts_for_property
 	{
-	function j16000partner_show()
+	function j16000partner_show_discounts_for_property()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -22,45 +22,36 @@ class j16000partner_show
 			{
 			$this->template_touchable=false; return;
 			}
-		if (isset($_GET['name']))
-			{
-			$name	= jomresGetParam( $_GET, 'name', '' );
-			$all_users = jomres_cmsspecific_getCMSUsers();
-			foreach ($all_users as $user)
-				{
-				if (strtolower($user['username']) == $name)
-					$cms_userid	= (int)$user['id'];
-				}
-			}
-		else
-			$cms_userid	= (int)jomresGetParam( $_REQUEST, 'id', 0 );
+
+		$partner_id	= (int)jomresGetParam( $_GET, 'partner_id', 0 );
+		$property_id	= (int)jomresGetParam( $_GET, 'property_id', 0 );
 		
-		if ($cms_userid > 0)
+		if ($partner_id > 0 && $property_id > 0)
 			{
 			$output=array();
-			$query = "SELECT * FROM #__jomres_partners WHERE cms_userid = ".(int)$cms_userid;
+			$query = "SELECT * FROM #__jomres_partners_discounts WHERE partner_id = ".(int)$partner_id." AND property_id =".(int)$property_id;
 			$result = doSelectSql($query);
-			if (count($result)==0)
-				{
-				$query = "INSERT INTO #__jomres_partners (`cms_userid`) VALUES (".(int)$cms_userid.")";
-				$result = doInsertSql($query,"");
-				}
-			elseif (count($result)>1) // Hmm, that aint right.
-					return;
-			
-			$componentArgs=array();
-			$componentArgs['cms_userid']=$cms_userid;
-			$output['DISCOUNT_LIST']= $MiniComponents->specificEvent('16000','partner_list_discounts',$componentArgs);
 
-			
+			$rows=array();
+			foreach ($result as $res)
+				{
+				$r = array();
+				$current_property_details =jomres_getSingleton('basic_property_details');
+				$current_property_details->gather_data( (int)$res->property_id );
+
+				$r['DISCOUNT_ID']	=$res->id;
+				$r['PROPERTY_ID']	=$res->property_id;
+				$r['PROPERTY_NAME']	=$current_property_details->property_name;
+				
+				$r['VALID_FROM']	=generateDateInput("valid_from_".$res->id,str_replace("-","/",$res->valid_from));
+				$r['VALID_TO']		=generateDateInput("valid_to_".$res->id,str_replace("-","/",$res->valid_to));
+				$r['DISCOUNT']		=$res->discount;
+				$r['LIVESITE']	=get_showtime('live_site');
+				$rows[]=$r;
+				}
 			
 			$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN."&format=raw&no_html=1&task=";
 			
-			$all_users = jomres_cmsspecific_getCMSUsers();
-
-			$query = "SELECT id FROM #__jomres_partners WHERE cms_userid=".$cms_userid;
-			$partner_id = doSelectSql($query,2);
-
 			
 			$output['USERNAME']=$all_users[$cms_userid]['username'];
 			$output['CMSUSERID']=$cms_userid;
@@ -68,8 +59,9 @@ class j16000partner_show
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'partner_show.html' );
+			$tmpl->readTemplatesFromInput( 'partner_show_discounts_for_property.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'rows', $rows );
 			$tmpl->displayParsedTemplate();
 			}
 		}
