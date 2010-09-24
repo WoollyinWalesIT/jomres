@@ -33,5 +33,5 @@ define("JOMRES_SITEPAGE_URL_ADMIN",$jomresConfig_live_site.'/jomres/index.php?ad
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink.'/jomres/index.php?a=k');
 define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/jomres/index.php?a=k");
 define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/jomres/index.php?a=k&format=raw");
-define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?a=k");
+define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/jomres/index.php?a=k");
 ?>
