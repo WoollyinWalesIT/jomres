@@ -486,7 +486,7 @@ class j03020insertbooking {
 			$bookingNotes = $tempBookingData->booking_notes;
 			foreach ($bookingNotes as $k=>$v)
 				{
-				$note = "Context ".$k." ".$v."<br/>";
+				$note = " ".$k." ".$v."<br/>";
 				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".$note."','$dt','".(int)$property_uid."')";
 				doInsertSql($query,"");
 				}
