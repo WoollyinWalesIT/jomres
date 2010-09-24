@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Core file
  * @author Vince Wooll <sales@jomres.net>
@@ -1430,4 +1430,21 @@ define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE',"Venda de propriedade/list
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',"Escolha esta opção se não estiver a oferecer qualquer tipo de reserva (por ex., uma propriedade/artigo para venda)");
 define('JOMRES_COM_A_MINIMALCONFIG_DESC','Defina Sim para reduzir o número de opções disponíveis aos gestores de propriedades na secção de Configuração Geral. Útil se não quiser que os gestores de propriedades lidem com demasiadas configurações. Em vez desta opção, pode editar o ficheiro jomres_config.php para definir as opções de configuração por defeito.');
 define('_JOMRES_AJAXFORM_EXTRAS_SELECT','P.f. seleccione uma opção para a sua reserva');
+define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Switches on html editors in property details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text.');
+define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
+define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
+define('_JOMRES_COM_TIMEZONE_SWITCHER',"Show the timezone switcher in the property manager's toolbar?");
+
+define('_JOMRES_PARTNER_DISCOUNT',"Partner discount ");
+define('_JOMRES_PARTNER_CHOOSE_SEARCHTITLE',"Search user");
+define('_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS',"Enter a few characters to search for a user.<br/> When you select a user you will automatically add them as a Partner and you will be taken to the next page where you can assign properties and discounts to the user.");
+define('_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE',"Existing partners");
+define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS',"Choose a partner to be taken to the partner administration page.");
+
+define('_JOMRES_PARTNER_SHOW_TITLE',"Partner :");
+define('_JOMRES_PARTNER_SHOW_SEARCHTITLE',"Search for a property");
+define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS',"Enter a few characters from the property name and select a property.<br/> When you select the property you will add it to the partner's portfolio, however they will not yet enjoy any discounts, you will need to set those youself.");
+define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES',"Current properties");
+define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS',"Click on a property to edit the partner's discount settings for that property.");
+
 
