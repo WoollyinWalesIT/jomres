@@ -1,32 +1,31 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 
-<h3>Partner : {USERNAME}</h3>
+<h3>{_JOMRES_PARTNER_SHOW_TITLE} {USERNAME}</h3>
 
 <table width="100%">
 	<tr>
-		<th class="jomres_title" colspan="2">Search property</th>
+		<th class="jomres_title" colspan="2">{_JOMRES_PARTNER_SHOW_SEARCHTITLE}</th>
 	</tr>
 	<tr>
 		<td colspan="2">
 			<br/>
 			<div class="ui-widget">
-				<label for="propertyname_input"> Add a property </label>
-				<input id="propertyname_input" /><br/>
-				Enter a few characters from the property name and select a property
+				<input id="propertyname_input" />
 			</div>
+			<br/>
+			{_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS}
 		</td>
 	</tr>
-	<tr><th class="jomres_title"  colspan="2">Current properties</th></tr>
+	<tr><th class="jomres_title"  colspan="2">{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES}</th></tr>
 	<tr>
 		<td>
+			{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS}<br/>
 			<div id="discount_list">{DISCOUNT_LIST}</div>
 		</td>
 		<td>
 			<div id="property_discounts"></div>
 		</td>
 	</tr>
-
-
 </table>
 
 <script>

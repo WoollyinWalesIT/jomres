@@ -38,6 +38,15 @@ class j16000partner_show
 		if ($cms_userid > 0)
 			{
 			$output=array();
+
+			$output['_JOMRES_PARTNER_SHOW_TITLE']=_JOMRES_PARTNER_SHOW_TITLE;
+			$output['_JOMRES_PARTNER_SHOW_SEARCHTITLE']=_JOMRES_PARTNER_SHOW_SEARCHTITLE;
+			$output['_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS']=_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS;
+			$output['_JOMRES_PARTNER_SHOW_TITLE']=_JOMRES_PARTNER_SHOW_TITLE;
+			$output['_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES']=_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES;
+			$output['_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS']=_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS;
+			
+			
 			$query = "SELECT * FROM #__jomres_partners WHERE cms_userid = ".(int)$cms_userid;
 			$result = doSelectSql($query);
 			if (count($result)==0)
@@ -51,8 +60,6 @@ class j16000partner_show
 			$componentArgs=array();
 			$componentArgs['cms_userid']=$cms_userid;
 			$output['DISCOUNT_LIST']= $MiniComponents->specificEvent('16000','partner_list_discounts',$componentArgs);
-
-			
 			
 			$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN."&format=raw&no_html=1&task=";
 			

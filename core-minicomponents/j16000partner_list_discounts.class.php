@@ -26,12 +26,19 @@ class j16000partner_list_discounts
 			$cms_userid	= (int)jomresGetParam( $_GET, 'id', 0 );
 		else
 			$cms_userid	= (int)$componentArgs['cms_userid'];
-		
+
 		if ($cms_userid > 0)
 			{
-			$query = "SELECT DISTINCT property_id FROM #__jomres_partners_discounts WHERE `partner_id` = ".(int)$cms_userid;
+			$query = "SELECT DISTINCT property_id,valid_from,valid_to,discount FROM #__jomres_partners_discounts WHERE `partner_id` = ".(int)$cms_userid;
 			$result = doSelectSql($query);
 			$output=array();
+			
+			$output['_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID']=_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID;
+			$output['_JOMRES_SORTORDER_PROPERTYNAME']=_JOMRES_SORTORDER_PROPERTYNAME;
+			$output['_JOMRES_COM_MR_LISTTARIFF_VALIDFROM']=_JOMRES_COM_MR_LISTTARIFF_VALIDFROM;
+			$output['_JOMRES_COM_MR_LISTTARIFF_VALIDTO']=_JOMRES_COM_MR_LISTTARIFF_VALIDTO;
+			$output['_JOMRES_AJAXFORM_BILLING_DISCOUNT']=_JOMRES_AJAXFORM_BILLING_DISCOUNT;
+			
 			$rows=array();
 			foreach ($result as $res)
 				{
@@ -40,13 +47,11 @@ class j16000partner_list_discounts
 				$current_property_details =jomres_getSingleton('basic_property_details');
 				$current_property_details->gather_data( (int)$res->property_id );
 
-				// $r['discount_id']	=$res->id;
-				// $r['partner_id']	=$res->partner_id;
-				$r['property_id']	=$res->property_id;
-				$r['property_name']	='<a href="javascript:void(0);" onClick="show_property_discounts('.$res->property_id.')">'.$current_property_details->property_name.'</a>';
-				// $r['valid_from']	=$res->valid_from;
-				// $r['valid_to']		=$res->valid_to;
-				// $r['discount']		=$res->discount;
+				$r['PROPERTY_ID']	=$res->property_id;
+				$r['PROPERTY_NAME']	='<a href="javascript:void(0);" onClick="show_property_discounts('.$res->property_id.')">'.$current_property_details->property_name.'</a>';
+				$r['VALID_FROM']	=$res->valid_from;
+				$r['VALID_TO']		=$res->valid_to;
+				$r['DISCOUNT']		=$res->discount;
 				$rows[]=$r;
 				}
 			

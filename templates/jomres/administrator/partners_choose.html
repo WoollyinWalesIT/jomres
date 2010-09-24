@@ -2,26 +2,23 @@
 
 <table>
 	<tr>
-		<th class="jomres_title">Search users </th>
-		<th class="jomres_title">Search results</th>
+		<th class="jomres_title">{_JOMRES_PARTNER_CHOOSE_SEARCHTITLE}</th>
 	</tr>
 	<tr>
 		<td class="jradmin_subheader_la">
 			<div class="ui-widget">
-				<label for="username_input"> Search for a user </label>
-				<input id="username_input" /><br/>
-				Enter a few characters to search for a user.<br/> When you select a user you will automatically add them as a Partner and you will be taken to the next page where you can assign properties and discounts to the user
+				<input id="username_input" />
 			</div>
-		</td>
-		<td class="jradmin_subheader_la">
-			<div id="usernames" style="float:left"></div>
+			<br/>{_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS}
 		</td>
 	</tr>
 	<tr>
-		<th colspan="2" class="jomres_title">Existing partners</th>
+		<th colspan="2" class="jomres_title">{_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE}</th>
 	</tr>
 	<tr>
 		<td colspan="2" class="jradmin_subheader_la">
+		{_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS}<br/>
+		
 			<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				{LINK}<br/>
 			</patTemplate:tmpl>
