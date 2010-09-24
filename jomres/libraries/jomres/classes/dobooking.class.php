@@ -5126,11 +5126,36 @@ class dobooking
 			echo $this->sanitiseOutput('; populateDiv("personal_discount","'.output_price($percentage_to_remove).'")');
 			$note = jr_gettext('_JOMRES_PERSONAL_DISCOUNT',_JOMRES_PERSONAL_DISCOUNT,false,false)." ".output_price($percentage_to_remove);
 			$this->addBookingNote($note);
-
 			}
 		else
 			$this->setErrorLog("makeNightlyRoomCharges:: Guest does not benefit from any discount");
 
+			
+		///////// Partner price recalculations 
+		$tmp_string = str_replace("/","-",$this->dateRangeString);
+		$dateRangeArray=explode(",",$tmp_string);
+		$first_date = $dateRangeArray[0];
+		$last_element = count($dateRangeArray)-1;
+		$last_date = $dateRangeArray[$last_element];
+
+		$query = "SELECT discount FROM #__jomres_partners_discounts WHERE partner_id = ".(int)$this->mos_userid." AND property_id = ".(int)$this->property_uid." and valid_from <= '".$first_date."' AND valid_to >= '".$last_date."'";
+		$result = doSelectSql($query);
+		if (count($result)>0)
+			{
+			$discountsForTmpdata = array();
+			foreach ($result as $res)
+				{
+				$original_total = $this->room_total;
+				$percentage_to_remove = ($this->room_total/100)*(int)$res->discount;
+				$this->room_total = $this->room_total - $percentage_to_remove;
+				$note = jr_gettext('_JOMRES_PARTNER_DISCOUNT',_JOMRES_PARTNER_DISCOUNT,false,false)." ".output_price($percentage_to_remove);
+				$this->addBookingNote($note);
+				$this->setGuestPopupMessage($note);
+				}
+			}
+
+		// End partner price recalculations
+		
 		$this->setErrorLog("makeNightlyRoomCharges::Room total calculated as ".$this->room_total);
 		$this->setErrorLog("makeNightlyRoomCharges:: Ended");
 		return true;
@@ -6166,6 +6191,7 @@ class dobooking
 							$this->calcLastMinuteDiscount();
 						$this->setErrorLog("generateBilling:: Starting calcTotals");
 						$this->calcTotals();
+						
 						$this->setErrorLog("generateBilling:: Starting calcDeposit");
 						$this->calcDeposit();
 						if ($this->cfg_singleRoomProperty ==0)

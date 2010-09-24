@@ -2,8 +2,11 @@
 
 <table>
 	<tr>
-		<th class="jomres_title" > Property id</th>
-		<th class="jomres_title" > Property name </th>
+		<th class="jomres_title" > {_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID}</th>
+		<th class="jomres_title" > {_JOMRES_SORTORDER_PROPERTYNAME} </th>
+		<th class="jomres_title" > {_JOMRES_COM_MR_LISTTARIFF_VALIDFROM} </th>
+		<th class="jomres_title" > {_JOMRES_COM_MR_LISTTARIFF_VALIDTO} </th>
+		<th class="jomres_title" > {_JOMRES_AJAXFORM_BILLING_DISCOUNT} </th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
@@ -12,6 +15,15 @@
 		</td>
 		<td class="jradmin_subheader_la">
 			{PROPERTY_NAME}
+		</td>
+		<td class="jradmin_subheader_la">
+			{VALID_FROM}
+		</td>
+		<td class="jradmin_subheader_la">
+			{VALID_TO}
+		</td>
+		<td class="jradmin_subheader_la">
+			{DISCOUNT} (%)
 		</td>
 	</tr>
 	</patTemplate:tmpl>

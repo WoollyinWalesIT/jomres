@@ -29,6 +29,13 @@ class j16000partner_show_discounts_for_property
 		if ($partner_id > 0 && $property_id > 0)
 			{
 			$output=array();
+			
+			$output['_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID']=_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID;
+			$output['_JOMRES_SORTORDER_PROPERTYNAME']=_JOMRES_SORTORDER_PROPERTYNAME;
+			$output['_JOMRES_COM_MR_LISTTARIFF_VALIDFROM']=_JOMRES_COM_MR_LISTTARIFF_VALIDFROM;
+			$output['_JOMRES_COM_MR_LISTTARIFF_VALIDTO']=_JOMRES_COM_MR_LISTTARIFF_VALIDTO;
+			$output['_JOMRES_AJAXFORM_BILLING_DISCOUNT']=_JOMRES_AJAXFORM_BILLING_DISCOUNT;
+			
 			$query = "SELECT * FROM #__jomres_partners_discounts WHERE partner_id = ".(int)$partner_id." AND property_id =".(int)$property_id;
 			$result = doSelectSql($query);
 
