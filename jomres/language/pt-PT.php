@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Core file
  * @author Vince Wooll <sales@jomres.net>
@@ -28,17 +28,17 @@ define('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME','Nome');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL','Data de chegada');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE','Data de partida');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_BLANK','em branco');
-define('_JOMRES_COM_MR_ASSIGNUSER_TITLE','Designar funçőes de administrador');
+define('_JOMRES_COM_MR_ASSIGNUSER_TITLE','Designar funções de administrador');
 define('_JOMRES_COM_MR_ASSIGNUSER_ID','ID');
 define('_JOMRES_COM_MR_ASSIGNUSER_NAME','Nome');
 define('_JOMRES_COM_MR_ASSIGNUSER_USERNAME','Nome de utilizador');
 define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER','Autorizado');
 define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL','Propriedade por defeito');
 define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS','Alterar');
-define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL','Nivel de acesso');
+define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL','Nível de acesso');
 define('_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE','Utilizador modificado');
 define('_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE','N/A');
-define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION','Recepçăo');
+define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION','Recepção');
 define('_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN','Gerente da propriedade');
 // Edit bookings
 define('_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE','Todas as reservas');
@@ -59,7 +59,7 @@ define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL','Telef. fixo');
 define('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL','Telemóvel');
 define('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL','Endereço email');
 define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ','Pedidos especiais: ');
-define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER','Note que pedidos especiais poderăo ter preço acrescido');
+define('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER','Note que pedidos especiais poderão ter preço acrescido');
 define('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL','Nr/design casa');
 define('_JOMRES_COM_MR_EB_GUEST_JOMRES_STREET_EXPL','Rua');
 define('_JOMRES_COM_MR_EB_GUEST_JOMRES_TOWN_EXPL','Localidade');
@@ -67,7 +67,7 @@ define('_JOMRES_COM_MR_EB_GUEST_JOMRES_POSTCODE_EXPL','Cód. postal');
 define('_JOMRES_COM_MR_EB_GUEST_JOMRES_LANDLINE_EXPL','Telef. fixo');
 define('_JOMRES_COM_MR_EB_GUEST_JOMRES_MOBILE_EXPL','Telemóvel');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_CANCELBOOKING','Cancelar reserva');
-define('_JOMRES_COM_MR_EB_GUEST_MOSRES_USER_EXPL','Website userid');
+define('_JOMRES_COM_MR_EB_GUEST_MOSRES_USER_EXPL','Iserid do website');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_HOUSE_EXPL','Número ou nome da casa');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_STREET_EXPL','Rua');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_TOWN_EXPL','Cidade');
@@ -77,7 +77,7 @@ define('_JOMRES_COM_MR_EB_GUEST_MOSRES_MOBILE_EXPL','Telemóvel');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_FAX_EXPL','Fax');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_EMAIL_EXPL','Email');
 define('_JOMRES_COM_MR_EB_GUEST_MOSRES_PREFERENCES_EXPL','Preferências');
-define('_JOMRES_COM_MR_EB_GUEST_MOSRES_CAR_REGNO_EXPL','Matricula do carro');
+define('_JOMRES_COM_MR_EB_GUEST_MOSRES_CAR_REGNO_EXPL','Matrícula do carro');
 define('_JOMRES_COM_MR_EB_GUEST_DAYSTOARRIVAL','Dias até à chegada');
 define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_ALREADYBOOKEDIN','Năo pode cancelar esta reserva. O cliente já deu entrada.');
 define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_NODEPOSIT','Cancelar reserva');
@@ -85,7 +85,7 @@ define('_JOMRES_COM_MR_EB_GUEST_CANCELLATION_BUTTON','Confirmar o cancelamento d
 define('_JOMRES_COM_MR_EB_GUEST_CANCELLED','Reserva cancelada');
 define('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL','Tipo de reserva');
 define('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK','Preta');
-define('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION','Balcăo');
+define('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION','Balcão');
 define('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET','Internet');
 define('_JOMRES_COM_MR_EB_ROOM_NAME','Nome do quarto');
 define('_JOMRES_COM_MR_EB_ROOM_NUMBER','Número do quarto');
@@ -93,7 +93,7 @@ define('_JOMRES_COM_MR_EB_ROOM_FLOOR','Andar');
 define('_JOMRES_COM_MR_EB_ROOM_DISABLED','Desactivar acesso disponível?');
 define('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE','Máx pessoas');
 define('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV','Tipo de quarto');
-define('_JOMRES_COM_MR_EB_ROOM_CLASS_DESC','Descriçăo do tipo de quarto');
+define('_JOMRES_COM_MR_EB_ROOM_CLASS_DESC','Descrição do tipo de quarto');
 define('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST','Características do quarto');
 define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID','Pagamento efectuado');
 define('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE','Introduzir pagamento');
@@ -128,12 +128,12 @@ define('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS','Dias de permanência');
 define('_JOMRES_COM_MR_QUICKRES_STEP4_NUMBEROFGUESTS','Número de pessoas');
 define('_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE','Total');
 // Rooms tab
-define('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE','Ver configuraçőes apartamentos/propriedade');
+define('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE','Ver configurações de apartamentos/propriedade');
 define('_JOMRES_COM_MR_VRCT_TAB_ROOM','Apartamentos');
-define('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES','Caracteristicas dos apartamentos');
+define('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES','Características dos apartamentos');
 define('_JOMRES_COM_MR_VRCT_TAB_ROOMTYPES','Tipos de apartamentos');
 define('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS','Propriedade');
-define('_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES','Caracteristicas da propriedade');
+define('_JOMRES_COM_MR_VRCT_TAB_PROPERTYFEATURES','Características da propriedade');
 define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK','Quarto');
 define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE','Tipo');
 define('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME','Nome');
@@ -150,7 +150,7 @@ define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_INSERT','Característica do quarto
 define('_JOMRES_COM_MR_VRCT_ROOMFEATURES_SAVE_UPDATE','Característica do quarto alterada');
 define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK','Tipo de quarto');
 define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV','Abreviatura de tipo de quarto');
-define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC','Descriçăo do tipo de quarto');
+define('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_DESC','Descrição do tipo de quarto');
 define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT','Tipo de quarto adicionado');
 define('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_UPDATE','Tipo de quarto alterado');
 define('_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT','Editar');
@@ -168,13 +168,13 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES','Características');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT','Propriedade adicionada');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE','Propriedade actualizada');
 define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK','Característica da propriedade');
-define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV','Abreviaçăo da característica da propriedade');
-define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC','Descriçăo completa das características da propriedade');
+define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV','Abreviatura da característica da propriedade');
+define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC','Descrição completa das características da propriedade');
 define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_INSERT','Característica da propriedade adicionada');
 define('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_SAVE_UPDATE','Característica da propriedade actualizada');
 define('_JOMRES_COM_MR_LISTTARIFF_TITLE','Tarifa');
 define('_JOMRES_COM_MR_LISTTARIFF_RATETITLE','Título da Tarifa');
-define('_JOMRES_COM_MR_LISTTARIFF_RATEDESCRIPTION','Descriçăo');
+define('_JOMRES_COM_MR_LISTTARIFF_RATEDESCRIPTION','Descrição');
 define('_JOMRES_COM_MR_LISTTARIFF_VALIDFROM','Válida de');
 define('_JOMRES_COM_MR_LISTTARIFF_VALIDTO','Valida até');
 define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY','Taxa por noite');
@@ -200,7 +200,7 @@ define('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS','Listar reservas');
 define('_JOMRES_FRONT_MR_MENU_ADMIN_LISTNEWBOOKINGS','Listar NOVAS reservas');
 define('_JOMRES_FRONT_MR_MENU_ADMIN_HOME','Calendário de reservas');
 define('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN','Clientes');
-define('_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN','Configuraçőes');
+define('_JOMRES_FRONT_MR_MENU_ADMIN_PROPERTYADMIN','Configurações');
 define('_JOMRES_FRONT_MR_SUBMITBUTTON_CHECKAVAILABILITY','Ver disponibilidade');
 define('_JOMRES_FRONT_MR_SUBMITBUTTON_CONFIRMYOURDETAILS','Confirmar os seus dados');
 define('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME','Primeiro nome');
@@ -212,8 +212,8 @@ define('_JOMRES_FRONT_MR_EB_GUEST_MOSRES_POSTCODE_EXPL','Código postal');
 define('_JOMRES_FRONT_MR_EB_GUEST_MOSRES_LANDLINE_EXPL','Telefone fixo');
 define('_JOMRES_FRONT_MR_EB_GUEST_MOSRES_MOBILE_EXPL','Telemóvel');
 define('_JOMRES_FRONT_MR_EB_GUEST_MOSRES_FAX_EXPL','Fax');
-define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Năo existem apartamentos disponíveis que satisfaçam os parâmetros especificados');
-define('_JOMRES_FRONT_MR_BOOKINGMADE','<center>Obrigado pela sua reserva, e desejamos-lhe desde já uma excelente estadia. A recepçăo irá brevemente entrar em contacto consigo por telefone ou email para confirmar o método de pagamento.<br><br> <b>Tenha em atençăo que se trata apenas de uma reserva preliminar, que será válida após receber uma confirmaçăo nossa, o que faremos o mais rapidamente possível.</b><br></center>');
+define('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE','Não existem apartamentos disponíveis que satisfaçam os parâmetros especificados');
+define('_JOMRES_FRONT_MR_BOOKINGMADE','<center>Obrigado pela sua reserva, e desejamos-lhe desde já uma excelente estadia. A recepção irá brevemente entrar em contacto consigo por telefone ou email para confirmar o método de pagamento.<br><br> <b>Tenha em atenção que se trata apenas de uma reserva preliminar, que será válida após receber uma confirmação nossa, o que faremos o mais rapidamente possível.</b><br></center>');
 define('_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE','Reserva feita para a propriedade: ');
 define('_JOMRES_FRONT_MR_EMAIL_TEXT_ROOM','Reserva feita para o quarto: ');
 define('_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL','Chegada: ');
@@ -251,14 +251,14 @@ define('_JOMRES_COM_CONFIRMATION_DEAR','Caro ');
 define('_JOMRES_COM_CONFIRMATION_RATE_RULES','Custo por noite - por quarto ');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS','Detalhes da reserva');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1','Obrigado por reservar no');
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2','. Abaixo está um sumário dos detalhes da sua reserva. Por favor confirme que os seus dados estăo correctos e contacte-nos se existir algum erro.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2','. Abaixo está um sumário dos detalhes da sua reserva. Por favor confirme que os seus dados estão correctos e contacte-nos se existir algum erro.');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_CHECKIN','O seu quarto estará reservado até à sua chegada, sendo o check-in depois das 14 h.');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_LOOKFORWARD','Ficamos à espera de lhe dar as boas vindas em ');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_HAVEAPLEASANTSTAY','Esperemos que tenha uma estadia agradável.');
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO','Agora temos de chamar a sua atençăo para a seguinte linha.');
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT','Relembramos-lhe que uma reserva é um contrato legamente obrigatório, logo se por qualquer motivo necessita de cancelar ou atrasar a sua reserva, será responsável por pagar a sua totalidade.');
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE','Não é permitido tomar refeiçőes ou ocupar apartamentos que não se encontrem dentro do período da reserva. Tendo isto em mente, recomendamos vivamente que utilize um seguro de férias.');
-define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO','<i>Despesas de cancelamento ou alteração</i> Se cancelar as suas férias entăo terá de ser por escrito. As taxas para cancelamentos săo as seguintes:');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINTINTRO','Agora temos de chamar a sua atenção para a seguinte linha.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_BINDINGCONTRACT','Relembramos-lhe que uma reserva é um contrato legalmente vinculativo, logo se por qualquer motivo necessita de cancelar ou atrasar a sua reserva, será responsável por pagar a sua totalidade.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_NOALLOWANCE','Não serão feitas deduções por refeições não tomadas nem por quartos não ocupados durante todo o período da reserva. Assim, recomendamos vivamente que utilize um seguro de férias.');
+define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_CANCELLATIONCHARGES_INTRO','<i>Despesas de cancelamento ou alteração</i> Se cancelar as suas férias entăo terá de ser por escrito. As taxas para cancelamentos são as seguintes:');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_30DAYSPLUS','30 dias ou mais');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_DEPOSITONLY',' Apenas o depósito.');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_1530DAYS','15 a 30 dias');
@@ -266,7 +266,7 @@ define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_50PERCENT',' 50% do tota
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_ARRIVALDATETO14DAYS','Até 14 dias da data de chegada');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_SMALLPRINT_100_PERCENT',' 100% do total do contrato.');
 define('_JOMRES_COM_CONFIRMATION_RESERVATION_VAT','IVA incluído à taxa em vigor.');
-define('_JOMRES_COM_CONFIRMATION_PRINT','Imprima a carta de confirmaçăo');
+define('_JOMRES_COM_CONFIRMATION_PRINT','Imprima a carta de confirmação');
 define('_JOMRES_COM_INVOICE_TITLE','Impressão de Factura');
 define('_JOMRES_COM_INVOICE_STAYNIGHTS','Número de noites: ');
 define('_JOMRES_COM_INVOICE_CONTRACTAGREED','Contrato inicialmente acordado: ');
@@ -276,16 +276,16 @@ define('_JOMRES_COM_INVOICE_LETTER_INTRO1','Obrigado por ter escolhido ');
 define('_JOMRES_COM_INVOICE_LETTER_HOPEYOUENJOYEDSTAY','Esperamos voltar a vê-lo.');
 define('_JOMRES_COM_INVOICE_PRINT','Imprimir pagamento');
 define('_JOMRES_COM_ADDSERVICE_TITLE','Adicionar serviço a cobrar');
-define('_JOMRES_COM_ADDSERVICE_DESCRIPTION','Descriçăo do serviço');
+define('_JOMRES_COM_ADDSERVICE_DESCRIPTION','Descrição do serviço');
 define('_JOMRES_COM_ADDSERVICE_VALUE','Valor do serviço');
 define('_JOMRES_COM_ADDSERVICE_BOOKINGDESC','Outros items cobrados');
-define('_JOMRES_COM_ADDSERVICE_TOTALVALUE','Outros items cobrados. Valor total: ');
+define('_JOMRES_COM_ADDSERVICE_TOTALVALUE','Outros itens cobrados. Valor total: ');
 define('_JOMRES_COM_ADDSERVICE_SAVEMESSAGE','Item adicionado à conta');
 define('_JOMRES_UPLOAD_IMAGE','Upload de imagem');
 define('_JOMRES_FILE_UPLOAD','Upload de ficheiro');
 define('_JOMRES_FILE_ERROR_TYPE','Só é permitido o upload de ficheiros do tipo:\n');
 define('_JOMRES_FILE_ERROR_EMPTY','Por favor escolha um ficheiro para transferir');
-define('_JOMRES_FILE_ERROR_NAME','O ficheiro só pode conter caracteres alfanuméricos e sem espaços..');
+define('_JOMRES_FILE_ERROR_NAME','O ficheiro só pode conter caracteres alfanuméricos e sem espaços.');
 define('_JOMRES_FILE_ERROR_SIZE','Tamanho máximo excedido.');
 define('_JOMRES_FILE_NOT_UPLOADED','O ficheiro não foi transferido.');
 define('_JOMRES_FILE_UPDATED','O ficheiro foi transferido.');
@@ -300,30 +300,30 @@ define('_JOMRES_COM_A_ERRORCHECKING_DESC','Mude para Sim para ver um <i>Log</i> 
 define('_JOMRES_FILE_DELETE','Apagar esta imagem');
 define('_JOMRES_FILE_DELETED','Ficheiro apagado');
 define('_JOMRES_COM_MR_ROOM_DELETE','Apagar quarto');
-define('_JOMRES_COM_MR_ROOM_UNABLETODELETE','Năo é possível apagar este quarto, ainda se encontram reservas para ele. Cancele as reservas e tente outra vez.');
+define('_JOMRES_COM_MR_ROOM_UNABLETODELETE','Não é possível apagar este quarto, ainda se encontram reservas para ele. Cancele as reservas e tente outra vez.');
 define('_JOMRES_COM_MR_ROOM_DELETED','Quarto apagado');
 define('_JOMRES_COM_MR_ROOMFEATURE_DELETE','Apagar característica do quarto');
-define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE','Não foi possível remover a caracteristica deste quarto, pois é a mesma para vários apartamentos. Remova a característica para esses apartamentos e tente novamente.');
+define('_JOMRES_COM_MR_ROOMFEATURE_UNABLETODELETE','Não foi possível remover a característica deste quarto, pois é a mesma para vários apartamentos. Remova a característica para esses apartamentos e tente novamente.');
 define('_JOMRES_COM_MR_ROOMFEATURE_DELETED','Característica do quarto apagada');
 define('_JOMRES_COM_MR_PROPERTYFEATURE_DELETE','Apagar característica da propriedade');
 define('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE','Năo foi possível remover caracteristica da propriedade, pois está ligada a uma propriedade. Remova a caracteristica dessa propriedade e tente novamente.');
 define('_JOMRES_COM_MR_PROPERTYFEATURE_DELETED','Característica da propriedade apagada');
 define('_JOMRES_COM_MR_ROOMCLASS_DELETE','Apagar tipo de quarto');
 define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS','Náo é possível apagar este tipo pois está atribuido a um quarto. Atribua a esse quarto um outro tipo e tente outra vez.');
-define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS','Náo é possível apagar este tipo de quarto pois está atribuido a uma tarifa. Tente atribuir a tarifa a outro tipo de quarto e tente outra vez.');
+define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS','Não é possível apagar este tipo de quarto pois está associado a uma tarifa. Tente atribuir a tarifa a outro tipo de quarto e tente outra vez.');
 define('_JOMRES_COM_MR_ROOMCLASS_DELETED','Tipo de quarto apagado');
 define('_JOMRES_COM_MR_PROPERTY_DELETE','Propriedade apagada');
 define('_JOMRES_COM_MR_PROPERTY_DELETED','Propriedade apagada');
-define('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS','Năo tem autorização para apagar esta propriedade.');
+define('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS','Não tem autorização para apagar esta propriedade.');
 define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Largura da imagem em tamanho real');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','Mapa');
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION','Descriçăo da propriedade');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION','Descrição da propriedade');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES','Horas de check in');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES','Actividades na área');
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS','Direcçőes para os automobilistas');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS','Direcções para os automobilistas');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS','Aeroportos');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT','Outros transportes');
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS','Condiçőes');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS','Condições');
 define('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS','Endereço');
 define('_JOMRES_COM_A_VISITORSCANBOOKONLINE','Os visitantes podem reservar online');
 define('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC','Escolha sim para garantir que os visitantes podem reservar apartamentos online.');
@@ -351,23 +351,23 @@ define('_JOMRES_COM_MR_WEEKDAYS_FRIDAY_ABBR','Sex');
 define('_JOMRES_COM_MR_WEEKDAYS_SATURDAY_ABBR','Sáb');
 define('_JOMRES_COM_MR_WEEKDAYS_SUNDAY_ABBR','Dom');
 define('_JOMRES_COM_A_AVLCAL','Calendário de disponibilidade');
-define('_JOMRES_COM_AVLCAL_TODAYCOLOUR','Cor do tipo de letra para o dia corrente');
-define('_JOMRES_COM_AVLCAL_INMONTHFACE','Cor do tipo de letra para os dias no ecrã do mês ');
-define('_JOMRES_COM_AVLCAL_OUTMONTHFACE','Cor do tipo de letra para os dias que não estão no ecrã do mês');
-define('_JOMRES_COM_AVLCAL_INBGCOLOUR','Cor de fundo para a célula para os dias em que uma propriedade/quarto está disponível');
-define('_JOMRES_COM_AVLCAL_OUTBGCOLOUR','Cor de fundo para a célula para os dias que não estão no ecrã do mês');
-define('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR','Cor de fundo da célula para os dias ocupados');
-define('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR','Cor de fundo da célula para apartamentos reservados provisóriamentes (reservas para as quais nao tenha havido depósito)');
-define('_JOMRES_COM_AVLCAL_PASTCOLOUR','Cor de fundo da célula para datas passadas');
+define('_JOMRES_COM_AVLCAL_TODAYCOLOUR','Cor do tipo de letra, para o dia corrente');
+define('_JOMRES_COM_AVLCAL_INMONTHFACE','Cor do tipo de letra, para os dias no ecrã do mês ');
+define('_JOMRES_COM_AVLCAL_OUTMONTHFACE','Cor do tipo de letra, para os dias que não estão no ecrã do mês');
+define('_JOMRES_COM_AVLCAL_INBGCOLOUR','Cor de fundo para a célula, para os dias em que uma propriedade/quarto está disponível');
+define('_JOMRES_COM_AVLCAL_OUTBGCOLOUR','Cor de fundo para a célula, para os dias que não estão no ecrã do mês');
+define('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR','Cor de fundo da célula, para os dias ocupados');
+define('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR','Cor de fundo da célula, para apartamentos reservados provisoriamentes (reservas para as quais não tenha havido depósito)');
+define('_JOMRES_COM_AVLCAL_PASTCOLOUR','Cor de fundo da célula, para datas passadas');
 define('_JOMRES_COM_AVLCAL_OCCUPIEDCOLOUR_KEY','Ocupado/Não disponível');
 define('_JOMRES_COM_AVLCAL_INMONTHFACE_KEY','Disponível para reservas');
 define('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY','Reservas provisórias');
 define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO','Dia de chegada pré-definido');
 define('_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC','Apenas para sites que oferecem períodos fixos de reservas. Escolha o dia em que a chegada tem de ocorrer.');
 define('_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY','Dia de chagada fixo');
-define('_JOMRES_FRONT_MR_FIXEDPRIOD1','Periodo durante o qual tenciona ficar (dias)');
-define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR','Ver calendários de disponiblidades?');
-define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC','Escolha Sim para ver o calendário das disponiblidades');
+define('_JOMRES_FRONT_MR_FIXEDPRIOD1','Período durante o qual tenciona ficar (dias)');
+define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR','Ver calendários de disponibilidades?');
+define('_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC','Escolha Sim para ver o calendário das disponibilidades');
 define('_JOMRES_FRONT_AVAILABILITY','Disponibilidade');
 define('_JOMRES_FRONT_CALENDAR_CLICKDATES','Clique numa data livre para ver o formulário da reserva.');
 define('_JOMRES_FRONT_BLACKBOOKING','Indisponibilidades');
@@ -377,7 +377,7 @@ define('_JOMRES_FRONT_BLACKBOOKING_NEW','Nova indisponibilidade');
 define('_JOMRES_FRONT_DELETEGUEST','Remover cliente');
 define('_JOMRES_FRONT_DELETEGUEST_GUESTDELETED','Cliente removido');
 define('_JOMRES_MR_AUDIT_ARCHIVE','Arquivar todos os registos');
-define('_JOMRES_MR_AUDIT_ARCHIVED_MESSAGE',' registos arquivados');
+define('_JOMRES_MR_AUDIT_ARCHIVED_MESSAGE','registos arquivados');
 define('_JOMRES_MR_AUDIT_ARCHIVED_AUDIT','O auditor arquivou os registos verificados');
 define('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST','Impossível apagar este cliente uma vez que existem reservas abertas por ele. Cancele-as e tente outra vez.');
 define('_JOMRES_MR_AUDIT_UNKNOWNUSER','Utiliz. desconhecido');
@@ -385,7 +385,7 @@ define('_JOMRES_COM_INVOICE_ACTUALROOMCOST','Custo actual do Quarto: ');
 define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO','Olá');
 define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_THANKS','Obrigado por fazer a sua reserva em ');
 define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY','Sumário das seguintes reservas:');
-define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS','Se tiver alguma questăo relativamente ŕs reservas ou outro dos nossos serviços, por favor contacte-nos');
+define('_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS','Se tiver alguma questão relativamente às reservas ou outro dos nossos serviços, por favor contacte-nos');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING','Chegada pendente');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY','A chegar hoje');
 define('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT','Actualmente residente');
@@ -398,9 +398,9 @@ define('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING','Fumador');
 define('_JOMRES_FRONT_ROOMSMOKING_EITHER','Ambivalente');
 define('_JOMRES_COM_CALENDAROUTPUT','Formato do Calendário');
 define('_JOMRES_COM_CALENDAROUTPUT_DESC','Permite ao utilizador modificar o formato das datas de saída do Mosres');
-define('_JOMRES_COM_CALENDARINPUT',' Formato de introduçăo do Calendário');
+define('_JOMRES_COM_CALENDARINPUT',' Formato de introdução do Calendário');
 define('_JOMRES_COM_CALENDARINPUT_DESC','Permite ao utilizador mudar o formato das datas do Mosres.');
-define('_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT','Os periodos fixados para reserva permitem intervalos curtos');
+define('_JOMRES_COM_A_FIXEDPERIODBOOKINGSSHORT','Os períodos fixados para reserva permitem intervalos curtos');
 define('_JOMRES_COM_A_FIXEDPERIOD_SHORTBREAK_DAYS','Extensão do período mais curto');
 // Translate from here
 // V1.4
@@ -437,7 +437,7 @@ define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK','Mostrar ligação para as tarifa
 define('_JOMRES_COM_A_POPUPSALLOWED','<i>Popups</i> permitidos?');
 define('_JOMRES_COM_A_POPUPSALLOWED_DESC','Se definido para Não, as ligações que normalmente se teriam aberto num <i>popup</i> abrir-se-ão em linha. EXPERIMENTAL! ');
 define('_JOMRES_FRONT_IMAGEUPLOADS','Carga de imagens em conjunto');
-define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Use este formulário para carregar múltiplas imagens desta propriedade.<br/><b>Note que quaisquer imagens com o mesmo nome serão sobrepostas</b>. Note também que este formulário não carrega imagens específicas de quartos na imagem do cabeçalho da propriedade, e que terá para isso de as carregar a partor da Secção de Admin de Propriedade.<br/><b>Note</b> que as imagens carregadas serão colocadas na pasta /images/stories/jomres/*property_uid*. Se esta pasta não existir, será criada, a menos evidentemente que tenha sido especificado um directório alternativo na configuração.');
+define('_JOMRES_FRONT_IMAGEUPLOADS_INFO','Use este formulário para carregar múltiplas imagens desta propriedade.<br/><b>Note que quaisquer imagens com o mesmo nome serão sobrepostas</b>. Note também que este formulário não carrega imagens específicas de quartos na imagem do cabeçalho da propriedade, e que terá para isso de as carregar a partir da Secção de Admin de Propriedade.<br/><b>Note</b> que as imagens carregadas serão colocadas na pasta /images/stories/jomres/*property_uid*. Se esta pasta não existir, será criada, a menos evidentemente que tenha sido especificado um directório alternativo na configuração.');
 define('_JOMRES_FRONT_MR_MENU_ADMIN_EXTRAS','Admin. Extras');
 define('_JOMRES_COM_MR_EXTRA_DESC','Descrição');
 define('_JOMRES_COM_MR_EXTRA_NAME','Nome');
@@ -515,20 +515,20 @@ define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC','Defina Sim se quiser limi
 define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS','Dias fixados para limitar reservas antecipadas:');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE','Mostrar informação de endereço abaixo desta ligação');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE','Mostrar informação detalhada de propriedade abaixo desta ligação');
-define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE','Mostrar quartos e disponibilidade abaixo dsta ligação');
+define('_JOMRES_COM_A_BASICTEMPLATE_SHOWROOMS_TITLE','Mostrar quartos e disponibilidade abaixo désta ligação');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWTARIFFS_TITLE','Mostrar informação de tarifas abaixo desta ligação');
 define('_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF','Tarifas de taxa uniforme');
 define('_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES','Médias');
 define('_JOMRES_COM_A_TARIFFS_MODEL','Que modelo de tarifas quer usar?');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS','Nº de estrelas');
-define('_JOMRES_COM_A_TARIFFS_MODEL_DESC',"Tem duas opções de método de cálculo de tarifas. O primeiro, o 'taxa uniforme' permite-lhe oferecer diversas tarifas diferentes ao hóspede, sendo a taxa da estadia a mesma para todo o período desta. Isto é útil se quiser oferecer diversas tarifas diferentes para a mesma data, por ex. tarifa Cama e Pequeno Almoço e tarifa Cama, Pequeno Almoço e Jantar. Escolha a tarifa 'médias' se pretender ajustar os seus preços em função da data em questão. O Jomres encontrrá todas as tarifas para cada dia da reserva, adiciona-as e apresenta a taxa média durante todo o período.");
+define('_JOMRES_COM_A_TARIFFS_MODEL_DESC',"Tem duas opções de método de cálculo de tarifas. O primeiro, o 'taxa uniforme' permite-lhe oferecer diversas tarifas diferentes ao hóspede, sendo a taxa da estadia a mesma para todo o período desta. Isto é útil se quiser oferecer diversas tarifas diferentes para a mesma data, por ex. tarifa Cama e Pequeno Almoço e tarifa Cama, Pequeno Almoço e Jantar. Escolha a tarifa 'médias' se pretender ajustar os seus preços em função da data em questão. O Jomres encontrará todas as tarifas para cada dia da reserva, adiciona-as e apresenta a taxa média durante todo o período.");
 // v1.4e
 define('_JOMRES_COM_A_SHOWDEPARTUREINPUT','Mostrar <i>input</i> de data de partida?');
 define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC',"Defina Não se não quiser mostrar o campo para introdução de data de partida. Use esta opção apenas se souber bem o que está a fazer, porque deste modo a data de partida nas reservas será sempre definida como a do dia a seguir ao de chegada.");
 // v1.4f
 define('_JOMRES_COM_PROPERTYLISTDESC','Limite da descrição');
 
-define('_JOMRES_COM_PROPERTYLISTDESC_DESC',"Limita o número de caracteres mostrados na listagem da propriedade, quando se selccciona a descrição desta.");
+define('_JOMRES_COM_PROPERTYLISTDESC_DESC',"Limita o número de caracteres mostrados na listagem da propriedade, quando se selecciona a descrição desta.");
 // v1.4g
 define('_JOMRES_COM_A_DATEFORMATSTYLE','Formato da data() usada?');
 define('_JOMRES_COM_A_DATEFORMATSTYLE_DESC','Seleccione Sim para formatar as datas de acordo com o parâmetro date() (veja <a href="http://www.php.net/manual/en/function.date.php">aqui</a>). Defina para Não para utilizar o formato strftime() (veja <a href="http://www.php.net/manual/en/function.strftime.php">Here</a> eg. %b %d %Y ');
@@ -571,7 +571,7 @@ define('_JOMRES_AJAXFORM_AVAILABLE_DESC','Seleccione os quartos que pretende');
 define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP','Veja aqui se a propriedade está disponível nesta altura.');
 define('_JOMRES_FRONT_PTYPE','Tipo de propriedade');
 define('_JOMRES_AJAXFORM_EXTRAS','Extras opcionais');
-define('_JOMRES_AJAXFORM_EXTRAS_DESC','Seleccione quaidquer extras que queira incluir na sua reserva');
+define('_JOMRES_AJAXFORM_EXTRAS_DESC','Seleccione quaisquer extras que queira incluir na sua reserva');
 define('_JOMRES_COM_PERDAY','por noite');
 define('_JOMRES_AJAXFORM_ADDRESS','Os seus dados');
 define('_JOMRES_AJAXFORM_ADDRESS_DESC','P.f. introduza os elementos necessários. Atenção aos campos obrigatórios.');
@@ -595,7 +595,7 @@ define('_JOMRES_VARIANCES_NOTES_TT','Notas que queira tomar acerca deste tipo de
 define('_JOMRES_VARIANCES_MAXIMUM','Máximo');
 define('_JOMRES_VARIANCES_MAXIMUM_TT','Nr máximo de clientes deste tipo que podem ser seleccionados no formulário de reserva');
 define('_JOMRES_VARIANCES_ISPERCENTAGE','Em percentagem?');
-define('_JOMRES_VARIANCES_ISPERCENTAGE_TT','O valor calculado é uma percentagem do valor Base calculado para o quarto. Se for definido para Não, entâo o valor especificado é simplesmente adicionado ou subtraído ao valor base do quarto.');
+define('_JOMRES_VARIANCES_ISPERCENTAGE_TT','O valor calculado é uma percentagem do valor Base calculado para o quarto. Se for definido para Não, então o valor especificado é simplesmente adicionado ou subtraído ao valor base do quarto.');
 define('_JOMRES_VARIANCES_POSNEG','Adicionar variação?');
 define('_JOMRES_VARIANCES_POSNEG_TT','O valor calculado é adicionado ou retirado ao valor Base calculado para o quarto. Defina para Não se quiser que este seja um desconto ao valor Base. ');
 define('_JOMRES_VARIANCES_VARIANCE','Variação');
@@ -644,7 +644,7 @@ define('_JOMRES_BOOKINGFORM_MONITORING_GUEST_TYPE_INCORRECT','Variante tipo de h
 define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_GUEST_NUMBERS','Seleccione o número/tipo de hóspedes');
 define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_IN_PARTY_FOR_TARIFFS','Tem demasiadas pessoas no grupo para as tarifas seleccionadas');
 define('_JOMRES_BOOKINGFORM_MONITORING_MORE_ROOMS_THAN_GUESTS','Escolheu mais quartos do que o número de hóspedes');
-define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS','Demasidos hóspedes para as camas disponíveis');
+define('_JOMRES_BOOKINGFORM_MONITORING_TOO_MANY_GUESTS_FOR_BEDS','Demasiados hóspedes para as camas disponíveis');
 define('_JOMRES_BOOKINGFORM_MONITORING_CHOOSE_MORE_ROOMS','Precisa de escolher mais quartos');
 define('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM','Seleccione um quarto');
 define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME','O primeiro nome é requerido');
@@ -661,15 +661,15 @@ define('_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL','O endereço email é req
 define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_INVALID','O endereço email não é válido');
 define('_JOMRES_BOOKINGFORM_MONITORING_CANNOT_VALIDATE_EMAIL','Não é possível validar o domínio email');
 define('_JOMRES_SRP_WEHAVEVACANCIES','Temos alojamentos disponíveis!');
-define('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET','No rooms selected yet');
+define('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET','Ainda não há quartos seleccionados');
 define('_JOMRES_BOOKING_NUMBER','Reserva nr');
 define('_JOMRES_COM_INPUTOKTOBOOK_BACKGROUND','Ok para reservar, cor de fundo da caixa de mensagem');
-define('_JOMRES_COM_DUMPTEMPLATEDATA','<i>Dump</i> das varíaveis de tema?');
+define('_JOMRES_COM_DUMPTEMPLATEDATA','<i>Dump</i> das variáveis de tema?');
 define('_JOMRES_COM_DUMPTEMPLATEDATA_DESC','Utilize para permitir um <i>dump</i> DHTML de variáveis de tema para cada tema de <i>front end</i> à medida que essa página for vista. Útil se quiser ver se um determinado elemento está disponível para ser usado num dado tema (template).');
 define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE','O valor é percentagem?');
 define('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC','Defina como Sim se o valor de cálculo por pessoa só é uma percentagem. Caso contrário, será aplicado o valor directo indicado.');
 //v2rc2
-define('_JOMRES_COM_LIMITROOMSLIST','Limte de quartos disponíveis/tarifa');
+define('_JOMRES_COM_LIMITROOMSLIST','Limite de quartos disponíveis/tarifa');
 define('_JOMRES_COM_LIMITROOMSLIST_DESC','Use este parâmetro para limitar o número de quartos & tarifas disponíveis entre as que são listadas no formulário de reserva. Defina para zero se não quiser definir nenhum limite. ');
 define('_JOMRES_SRP_WEHAVENOVACANCIES','Não há disponibilidades nesta data!');
 // Introduced in v2.5
@@ -711,14 +711,14 @@ define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY','A rever
 define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_RECHECKINGROOMAVIALABILITY_SRP','A reverificar disponibilidade');
 define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGEXTRA','A modificar os seus extras opcionais');
 define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_CHANGINGROOMSELECTION','A alterar a sua selecção de quartos');
-define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS','A actualizar os seus detalhs de morada');
+define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_UPDATINGADDRESS','A actualizar os seus detalhes de morada');
 define('_JOMRES_BOOKINGFORM_BLOCKUIMESSAGES_ADDRESSINPUTERROR','Desculpe, um ou mais campos de endereço está(ão) incorrecto(s).');
 define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE','Imagem do quarto');
 define('_JOMRES_CURRENCYFORMAT','Formato de moeda');
 define('_JOMRES_MANAGEROPTIONSASIMAGES','Mostrar as opções dos Gerentes como imagens');
 define('JOMRES_COM_A_SEARCHOPTIONSTAB','Opções de pesquisa');
 define('JOMRES_COM_A_AVAILABLELOGS','Logs disponíveis');
-define('JOMRES_COM_A_LOGS_NOENTRIES','Não há entradas de <i>logs</i>. Isto é normal, porque precisa de modificar manualmente o ficheiro jomres.php para activar o regisrto de <i>logs</i>');
+define('JOMRES_COM_A_LOGS_NOENTRIES','Não há entradas de <i>logs</i>. Isto é normal, porque precisa de modificar manualmente o ficheiro jomres.php para activar o registo de <i>logs</i>');
 define('JOMRES_COM_A_MESSAGE','Mensagem');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// Jomres 2.6.3
 define('JOMRES_COM_A_TARIFFMODE_NORMAL','Normal');
@@ -727,14 +727,14 @@ define('JOMRES_COM_A_TARIFFMODE_TARIFFTYPES','Micromanage');
 define('JOMRES_COM_A_TARIFFMODE','Modo de configuração de tarifa');
 define('JOMRES_COM_A_TARIFFMODE_DESC',"<b>Aviso: Alternar entre tipos diferentes de tipos de tarifa pode resultar em perda de dados.<br /> Veja a nota abaixo sobre isto</b>.
 <br/>
-Tem três opções para configurar as suas taridas.<br/>
+Tem três opções para configurar as suas tarifas.<br/>
 Modo normal: Terá uma tarifa para cada tipo de quarto, válida para os próximos 10 anos.<br/>
 Micromanage: Pode modificar o valor de cada e em cada dia diferente para cada tipo de quarto/propriedade. <br/>
 Avançado: O \"velho\" método Jomres de gerir tarifas. <br/>
 <br/>
 Os diferentes modos permitem escolher o método e configurar tarifas que melhor se adapte à sua preferência.<br/>
 O modo Normal é o mais simples e fácil de entender porque cruza referências de quartos e tarifas com tipos de quarto/propriedade e permite configurar quartos e preços na mesma página.<br/>
-O Micro manage permite varias as tarifas numa base diária sem ter que gerir quartos ou tarifas; é feito por cruzamento de referências de muitas tarifas diferentes entre si. isto resulta num certo número de tarifas que são criadas para si cobrindo um determinado oeríodo de tempo, mas não pode sobrepor tarifas umas em relação às outras.<br/>
+O Micro manage permite variar as tarifas numa base diária sem ter que gerir quartos ou tarifas; é feito por cruzamento de referências de muitas tarifas diferentes entre si. isto resulta num certo número de tarifas que são criadas para si cobrindo um determinado período de tempo, mas não pode sobrepor tarifas umas em relação às outras.<br/>
 O modo Avançado deixa-o criar um quarto e associá-lo com um tipo de quarto. Cria então uma tarifa e associa essa tarifa com um tipo de quarto. Utilizando este método é possível \"sobrepor\" tarifas umas sobre as outras, por exemplo um quarto do tipo \"Cama dupla\" pode ter uma tarifa para <i>bed & breakfast</i> (dormida e pequeno almoço) e outra para dormida, pequeno almoço e jantar. O m
 etodo avançado requer um pouco mais de atenção ao pormenor, porque é possível dissociar um quarto ou tarifa de um tipo de quarto/propriedade, ou incorrectamente definir datas De e PARA, mas dá-lhe opções de configuração que os outros modos não proporcionam. <br/>
 <br/>
@@ -755,7 +755,7 @@ define('_JOMCOMP_BOOKINGNOTES_ADD','Adicionar nota');
 define('_JOMCOMP_BOOKINGNOTES_EDIT','Editar nota');
 define('_JOMCOMP_BOOKINGNOTES_DELETE','Apagar nota');
 define('_JOMCOMP_BOOKINGNOTES_VIEW','Ver notas');
-define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE','Nova nota adiciona');
+define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE','Nova nota adicionada');
 define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_EDIT','Nota editada');
 define('_JOMCOMP_BOOKINGNOTES_AUDITMESSAGE_DELETE','Nota apagada');
 define('_JOMCOMP_MYUSER_MENUTITLE','As minhas opções');
@@ -854,7 +854,7 @@ define('_JRPORTAL_ADD_ADHOC_ITEM_FAILURE',"Erro ao inserir item a cobrar em ");
 define('_JRPORTAL_ADD_ADHOC_ITEM_NOVALUE',"Erro, não especificou um valor para a conta");
 define('_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER','Pode ter ficheiro de idioma específicos para tipo de propriedade, definindo a descrição como o nome de uma sub-pasta, por ex. "alugueriates" e copiando um ficheiro de idioma para essa sub-pasta. Poderá então modificar esse ficheiro de idioma para este tipo de propriedade de modo a que quartos se tornem, ainda por exemplo, DVDs, etc.');
 define('_JOMRES_EDITPROPERTY_CONNOTDELETE1','Não pode eliminar esta propriedade, porque é a única à qual tem acesso. Se quiser desactivá-la, utilize a opção despublicar na barra de ferramentas. ');
-define('_JOMRES_EDITPROPERTY_CONNOTDELETE2','Se esta instalação for uma demonstração e tenciona actualizar para Jomres Solo (limite de apenas uma propriedade) então deve primeiro criar uma nova propriedade, depois apagar esta antes de alterar a sua chave de licençapara a de Solo, que lhe será atribuída no momento da compra do software. ');
+define('_JOMRES_EDITPROPERTY_CONNOTDELETE2','Se esta instalação for uma demonstração e tenciona actualizar para Jomres Solo (limite de apenas uma propriedade) então deve primeiro criar uma nova propriedade, depois apagar esta antes de alterar a sua chave de licença para a de Solo, que lhe será atribuída no momento da compra do software. ');
 define('_JOMRES_COM_EMAILERRORS',"Mensagens de registo de erros de email?");
 define('_JOMRES_COM_EMAILERRORS_DESC',"Defina Sim se quiser copiar o jomres.net automaticamente quando for criada uma mensagem de registo de erro. Isto permite-nos ser proactivos na nossa tentativa de lidar com problemas potenciais, na esperança de resolvê-los antes ainda que você se aperceba deles. Note que esta definição não está activa em 'localhost'. ");
 define('_JOMRES_COM_ISTHISANMRP',"Esta propriedade é um hotel/<i>bed and breakfst</i>/pousada/pensão? ");
@@ -878,7 +878,7 @@ define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"Confirmo que a informação acima e
 define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"por pessoa por noite ");
 // Jomres 3.1.10
 define('_JOMRES_COM_A_SITELANGUAGE_FILE',"Ficheiro de idioma por defeito");
-define('_JOMRES_COM_A_SITELANGUAGE_FILE_DESC',"Escolha o ficheiro de idioma que o Jomres deva usar por defeito, se o odioma não tiver sido definido pelo Joomfish.");
+define('_JOMRES_COM_A_SITELANGUAGE_FILE_DESC',"Escolha o ficheiro de idioma que o Jomres deva usar por defeito, se o idioma não tiver sido definido pelo Joomfish.");
 // Jomres 3.1.11
 // Jomres 3.1.13
 if (!defined('_PN_OF'))
@@ -907,7 +907,7 @@ define('_JOMRES_BOOKINGFORM_LOOKRIGHT','P.f. seleccione o alojamento desejado na
 define('_JOMRES_COM_MR_EB_ROOM_MINROOMS','Mín. de quartos já seleccionado');
 define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC','Já foi seleccionado o número mínimo de quartos antes de ser disponibilizada a combinação tarifa/tipo de quarto. Permite-lhe ter tarifas descontadas quando mais de N quartos já estiverem seleccionados. ');
 define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS','Máx. de quartos já seleccionado');
-define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Número máximo de quartos já eleccionado na reserva antes da combinação tarifa/quarto ser disponibilizada. Permite-lhe deixar de oferecer esta combinação tipo de quarto/tarifa após N quartos terem sido seleccionados no formulário de reserva. ');
+define('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC','Número máximo de quartos já seleccionado na reserva antes da combinação tarifa/quarto ser disponibilizada. Permite-lhe deixar de oferecer esta combinação tipo de quarto/tarifa após N quartos terem sido seleccionados no formulário de reserva. ');
 define('_JOMRES_COM_SPS_EDITROOM_DESC','Note que os suplementos de pessoa só aqui definidos não serão usados se a opção Suplementos por Pessoa Só estiver definida como Sim na Configuração Geral. As definições aqui feitas são uma alternativa a ter Suplementos por Pessoa só com taxas fixas, e não como uma adição a SPS com taxa fixa.');
 define('_JOMRES_AVLCAL_NOBOOKINGS',"Disponível"); 
 define('_JOMRES_AVLCAL_QUARTER',"Algumas reservas");
@@ -918,7 +918,7 @@ define('_JOMRES_COM_SEF_URL_PREFIX','Prefixo URL');
 define('_JOMRES_COM_SEF_URL_PREFIX_DESC','Este é o primeiro item mostrado após o domínio - Mude para o que quiser - Se não pretender fazê-lo deixe-o em branco');
 define('_JOMRES_COM_SEF_TASK_ALIAS_VIEWPROPERTY','Ver o <i>alias</i> ds tarefa de propriedade');
 define('_JOMRES_COM_SEF_TASK_ALIAS_VIEWPROPERTY_DESC','');
-define('_JOMRES_COM_SEF_TASK_ALIAS_DOBOOKING','<i>alias</i> fazerreserva');
+define('_JOMRES_COM_SEF_TASK_ALIAS_DOBOOKING','<i>alias</i> fazer reserva');
 define('_JOMRES_COM_SEF_TASK_ALIAS_DOBOOKING_DESC','');
 define('_JOMRES_COM_SEF_TASK_ALIAS_SEARCH','<i>alias</i> de tarefa de pesquisa');
 define('_JOMRES_COM_SEF_TASK_ALIAS_SEARCH_DESC','');
@@ -962,9 +962,10 @@ define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK','Por pessoa por semana')
 define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS','Por dias (mín. dias)');
 define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM','Por dias X quartos seleccionados');
 define('_JOMRES_REGISTRYREBUILD','Reconstruir o registo de minicomponente');
-define('_JOMRES_REGISTRYREBUILD_NOTES',"Normalmente o registo de plugins Jomres é reconstruído automaticamente sempre que vir o gestor de plugins e adicionar ou remover um. No entanto, é possível que por alguma razão não possa usar esta característica. Portanto, pode ujsar esta função para reconstruir manualmente o registo. Se tem acesso ao gestor de plugins e aos <i>upgrades</i> não será provável que precisa da função. Precisará de reconstruir o registo sempre que adicionar um novo mini-componente e não o fizer utilizando o gestor de plugins.");
+define('_JOMRES_REGISTRYREBUILD_NOTES',"Normalmente o registo de plugins Jomres é reconstruído automaticamente sempre que vir o gestor de plugins e adicionar ou remover um. No entanto, é possível que por alguma razão não possa usar esta característica. Portanto, pode usar esta função para reconstruir manualmente o registo. Se tem acesso ao gestor de plugins e aos <i>upgrades</i> não será provável que precisa da função. Precisará de reconstruir o registo sempre que adicionar um novo mini-componente e não o fizer utilizando o gestor de plugins.");
 define('_JOMRES_REGISTRYREBUILD_SUCCESS','Registo reconstruído com êxito');
 define('_JOMRES_REGISTRYREBUILD_FAILURE','Houve um erro ao reconstruir o registo de mini-componentes. Deve verificar a listagem de erros Jomres para ver se existe alguma referência ao que originou este erro.');
+define('_JOMRES_COM_PTYPES_LIST_TITLE_EDIT','Editar tipo de propriedade');
 define('_JOMRES_SEARCH_PRICERANGES','Pesquisa por gama de preços.');
 define('JOMRES_WORD_SAVING','A guardar...');
 define('_JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO','Usar moeda global?');
@@ -977,12 +978,13 @@ define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS','Usar pormenores da Propriedade 
 define('_JOMRES_COM_COMPOSITE_PROPERTY_DETAILS_DESC','O Jomres 3.3 introduziu os pormenores da propriedade composta, onde a saída de todos os detalhes da propriedade é enviada para um ficheiro de tema (composite_property_details.html). Se não quiser usar esta função defina Não (espera-se que somente os utilizadores existentes definam Não, os novos provavelmente defini-la-ão como Sim)');
 define('_JOMRES_PROFILELIST_INSTRUCTIONS','Esta é uma lista de todos os utilizadores do sistema. Os não-gestores de propriedade serão assinalados por um ícone de convidado, os restantes terão um ícone Recepção/Gestor de Propriedade/Super-gestor de propriedade.<br/>Na primeira vez que o Jomres é instalado é automaticamente adicionado um "admin" como gestor de propriedade e é considerado um utilizador autorizado.<br/>Devem ser designados não-super gestores de propriedade a, pelo menos, uma propriedade; de outro modo verão um erro quando tentarem fazer login e usar o Jomres.<br/>A partir do momento em que um utilizador é autorizado, poe editar o seu perfil, atribuir-lhe propriedades ou conceder-lhe privilégios de super-gestor de propriedade.<br/>Para autorizar um utilizador, clique na cruz vermelha a seguir ao nome. Para lhe retirar autorização, clique na marca de verificação verde.<br/>Para atribuir utilizadores apenas a propriedades específicas, ou dar-lhes privilégios de super-gestor de propriedades, autorize-os, depois clique no ícone editar (que é visível apenas depois de terem sido autorizados). Utilizadores que tenham registado as suas propriedades por si próprios serão automaticamente associados com essa propriedade. Os super-gestores de propriedades tem automaticamente privilégios sobre todas as propriedades, e verão todas as opções de configuração mesmo que a opção de minimizar configuração tenha sido definida na Configuração do Site.');
 define('_JOMRES_PROFILEEDIT_INSTRUCTIONS','Pode aqui designar um gerente para uma determinada propriedade. Assegure-se de que não sejam um super-gestor de propriedades, de que tenha privilégios sobre pelo menos uma propriedade, pois de outro modo verão um erro quando fizerem login. Para atribuir privilégios a um gestor de propriedades/recepcionista apenas sobre determinadas propriedades, assegure-se de que o <i>dropdown</i> super-gestor de propriedades não esteja definido como Sim.');
+define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_BBSERVICERESUMES','Data de reinício do serviço');
 define('_JOMCOMP_MYUSER_VIEWBOOKINGS_NONE','Ainda não fez nenhuma reserva!');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_TAB','Tipo de propriedade');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE','Edite o tipo da sua propriedade');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO','Seleccione o tipo da sua propriedade');
 define('_JOMRES_COM_LOGGING','<i>Logging</i>Jomres');
-define('_JOMRES_COM_LOGGING_WARNING','Estas opções permitem-lhe activar/desactivar o <i>logging</i> Jomres. A relação de erros está sempre activada, mas outras, como sejam as de reservas, <i>gateways</i>, do sistema e dos pedidos podem ser ligadas ou desligadas. Fica avisado de que a <b>capacidade de activar estas listagens é concedida puramente como uma forma de facilitar a detecção de erros, mas comporta um grande risco de segurança</b> porque é fácil a utilizadores externos ver as suas listagens sem estar autorizados; portanto, fica alertado para que deve manter as listagens desactivadas a maior parte do tempo. Se as tiver activado, então quando as desactivar deve assegurar-se de que a pasta <i>'.JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i> não contén nenjuma das antigas listagens. Note que activar as listagens reduzirá significativamente o desempenho do seu sistema, porque recolhe uma grande quantidade de informação.');
+define('_JOMRES_COM_LOGGING_WARNING','Estas opções permitem-lhe activar/desactivar o <i>logging</i> Jomres. A relação de erros está sempre activada, mas outras, como sejam as de reservas, <i>gateways</i>, do sistema e dos pedidos podem ser ligadas ou desligadas. Fica avisado de que a <b>capacidade de activar estas listagens é concedida puramente como uma forma de facilitar a detecção de erros, mas comporta um grande risco de segurança</b> porque é fácil a utilizadores externos ver as suas listagens sem estar autorizados; portanto, fica alertado para que deve manter as listagens desactivadas a maior parte do tempo. Se as tiver activado, então quando as desactivar deve assegurar-se de que a pasta <i>'.JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i> não contém nenhuma das antigas listagens. Note que activar as listagens reduzirá significativamente o desempenho do seu sistema, porque recolhe uma grande quantidade de informação.');
 define('_JOMRES_COM_LOGGING_BOOKING','Listagem de formulários de reserva (motor de Reservas) ');
 define('_JOMRES_COM_LOGGING_GATEWAY','Listagens de Gateway (por ex., paypal, etc) ');
 define('_JOMRES_COM_LOGGING_REQUEST','Listagens de pedidos (todos os que chegam ao servidor)');
@@ -993,7 +995,7 @@ define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Mostrar imagem de tipo de 
 define('_JOMRES_COM_A_LISTLIMIT','Limite da lista de propriedades');
 define('_JOMRES_COM_A_LISTLIMIT_DESC','Número de propriedades a mostrar na página após uma pesquisa');
 define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE','Característica de pesquisa integrada');
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','A característica de pesquisa integrada Jomres permite aos seus utilizadores pesquisar nas propriedades de acordo com um conjunto de funções. Se já utilizou a função de pesquisa Jomres em Joomla, estará familiarizado com estas definições.<br/>Esta característica permite-nos oferecer manuseamento de pesquisas no Jomres para os utilizadores que não querem usar os módulos de pesquisa Joomla, para utilizadores de outros CMS em que essses sistemas não disponham de módulos análogos.<br/>Lembre-se apenas de que se escolher pesquisar algo através de um <i>link</i> (i.e., não um <i>dropdown</i>) não serão implementadas outras opções de pesquisa, mas somente o elemento que corresponde ao <i>link</i> no qual clicou.<br/>Note que por defeito o <i>layout</i> desta pesquisa integrada não é muito atractivo. Isto deve-se a que o ficheiro de tema que executa o layout tem de incluir todas as opções possíveis, algumas das quais são incompatíveis. Para melhorar o layout e conseguir o aspecto que possa desejar, precisará de editar <b>srch.html</b> na pasta <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b> ');
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC','A característica de pesquisa integrada Jomres permite aos seus utilizadores pesquisar nas propriedades de acordo com um conjunto de funções. Se já utilizou a função de pesquisa Jomres em Joomla, estará familiarizado com estas definições.<br/>Esta característica permite-nos oferecer manuseamento de pesquisas no Jomres para os utilizadores que não querem usar os módulos de pesquisa Joomla, para utilizadores de outros CMS em que esses sistemas não disponham de módulos análogos.<br/>Lembre-se apenas de que se escolher pesquisar algo através de um <i>link</i> (i.e., não um <i>dropdown</i>) não serão implementadas outras opções de pesquisa, mas somente o elemento que corresponde ao <i>link</i> no qual clicou.<br/>Note que por defeito o <i>layout</i> desta pesquisa integrada não é muito atractivo. Isto deve-se a que o ficheiro de tema que executa o layout tem de incluir todas as opções possíveis, algumas das quais são incompatíveis. Para melhorar o layout e conseguir o aspecto que possa desejar, precisará de editar <b>srch.html</b> na pasta <b>'.JOMRES_TEMPLATEPATH_FRONTEND.'</b> ');
 define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE','Activar esta função?');
 define('_JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC','Se for activada, qualquer chamada ao Jomres que mostre a lista de propriedades significará que as opções de pesquisa são também mostradas.');
 define('_JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS','Usar colunas');
@@ -1055,12 +1057,12 @@ define('_JOMRES_COM_CUSTOMFIELDS_DEFAULTVALUE','Valor por defeito');
 define('_JOMRES_COM_CUSTOMFIELDS_DESCRIPTION','Descrição');
 define('_JOMRES_COM_CUSTOMFIELDS_REQUIRED','Requerido');
 define('_JOMRES_COM_MR_EXTRA_QUANTITY','Quantidade máxima');
-define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC','Se a quantidade máxima for definida para mior do que 1, os visitantes terão um <i>dropdown</i> para escolher a quantidade de extras que podem pedir.');
+define('_JOMRES_COM_MR_EXTRA_QUANTITY_DESC','Se a quantidade máxima for definida para maior do que 1, os visitantes terão um <i>dropdown</i> para escolher a quantidade de extras que podem pedir.');
 define('_JRPORTAL_INVOICES_ISSUE',"Emitir facturas");
 define('_JRPORTAL_TAXRATES_TITLE',"Taxas");
 define('_JRPORTAL_TAXRATES_CODE',"Código de taxa");
 define('_JRPORTAL_TAXRATES_DESCRIPTION',"Descrição de taxa");
-define('_JRPORTAL_TAXRATES_CANNOTDELETE',"Não poe eliminar esta taxa.");
+define('_JRPORTAL_TAXRATES_CANNOTDELETE',"Não pode eliminar esta taxa.");
 define('_JRPORTAL_TAXRATES_RATE',"Val. taxa");
 define('_JRPORTAL_INVOICES_TITLE',"Facturas");
 define('_JRPORTAL_INVOICES_STATUS_UNPAID',"Não pagas");
@@ -1096,7 +1098,8 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Código de moeda (por 
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Usar sandbox?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"O seu endereço email Paypal");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Nota: Para usar o Paypal deve aceder à sua conta e desactivar o Autoreturn (Profile/Website Payment Preferences), e definir o IPN (Profile/Instant Payment Notification Preferences)para o URL:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
-define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Esta factura está em pagamento. P.f. clique no botão para ser encaminhado para a Paypal.");
+// define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Esta factura está em pagamento. P.f. clique no botão para ser encaminhado para a Paypal.");
+define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY'," ");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Sobrepor-se às definições normais do gateway Jomres?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"Se esta opção for definida Sim, diversas coisas sucederão: A Configuração Geral já não mostra quaisquer definições de gateway, e quando for feita uma reserva as definições aqui contidas são as utilizadas, de forma que o pagamento é feito para o endereço aqui introduzido, e não para o que possa ter sido anteriormente definido na Configuração Geral.");
 define('_JRPORTAL_INVOICES_SHOWINVOICES',"Mostrar as minhas facturas");
@@ -1152,13 +1155,13 @@ define('_JOMRES_MR_AUDIT_UPDATE_COUPON','Cupão guardado');
 define('_JOMRES_MR_AUDIT_DELETE_COUPON','Cupão eliminado');
 // Not used yet
 define('_JOMRES_COM_GROWL','Usar sist. mensagens Jomres');
-define('_JOMRES_COM_GROWL_DESC','Muitas actualizações para gestão proporcionam <i>feedback</i> sob a forma de uma mensagem Javascript quando a página é recarregada. User esta opção para activar ou desactivar esta característica.');
+define('_JOMRES_COM_GROWL_DESC','Muitas actualizações para gestão proporcionam <i>feedback</i> sob a forma de uma mensagem Javascript quando a página é recarregada. Use esta opção para activar ou desactivar esta característica.');
 define('_JRPORTAL_SMS_CLICKATELL_TITLE',"Jomres -> Clickatell SMS");
 define('_JRPORTAL_SMS_CLICKATELL_USERNAME',"Nome de utilizador");
 define('_JRPORTAL_SMS_CLICKATELL_PASSWORD',"Palavra-chave");
 define('_JRPORTAL_SMS_CLICKATELL_APIID',"Id API");
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Telemóvel a notificar");
-define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"P.f. user o formato 'Código de País, nr de telemóvel'. Por exemplo, a um telemóvel com base em Portugal a introdução deve corresponder a algo como '351123456789'. Deixe este campo em branco se não quiser que lhe sejam enviados emails de notificação para o telemóvel.");
+define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"P.f. use o formato 'Código de País, nr de telemóvel'. Por exemplo, a um telemóvel com base em Portugal a introdução deve corresponder a algo como '351123456789'. Deixe este campo em branco se não quiser que lhe sejam enviados emails de notificação para o telemóvel.");
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
 <br/>
@@ -1192,7 +1195,7 @@ define('_JOMRES_LASTEDITED_DB','Tema editado pela última vez na base de dados')
 define('_JOMRES_LASTEDITED_DISK','Tema editado pela última vez no disco');
 define('_JOMRES_LASTEDITED_WARNINGICON','Aviso de tema na base de dados');
 define('_JOMRES_LASTEDITED_WARNINGICON_TEXT','O tema pode estar desactualizado na base de dados');
-define('_JOMRES_LASTEDITED_WARNING','Se for visível um ícone num tema, isso significa que o Jomres detectou que o tema guardado na base de dados <strong><i>pode</i></strong> ser mais antigo que o guardado no disco. Neste caso, é possível que o tema tenha sido actualizado por uma nova versão do Jomres. Caso isto de verifique, é possível que o seu tema possa ter entretanto benerficiado de uma nova característica ou função no Jomres, ou que a funcionalidade existente possa não apresentar os resultados esperados, portanto deve comparar o ficheiro em disco com as suas adaptações para ter a certeza de que não lhe falta nenhuima das novas características.');
+define('_JOMRES_LASTEDITED_WARNING','Se for visível um ícone num tema, isso significa que o Jomres detectou que o tema guardado na base de dados <strong><i>pode</i></strong> ser mais antigo que o guardado no disco. Neste caso, é possível que o tema tenha sido actualizado por uma nova versão do Jomres. Caso isto de verifique, é possível que o seu tema possa ter entretanto beneficiado de uma nova característica ou função no Jomres, ou que a funcionalidade existente possa não apresentar os resultados esperados, portanto deve comparar o ficheiro em disco com as suas adaptações para ter a certeza de que não lhe falta nenhuma das novas características.');
 define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE',"Pacotes de subscrição");
 define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME',"Nome");
 define('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_DESCRIPTION',"Descrição");
@@ -1278,7 +1281,7 @@ define('_JOMRES_INVOICE_MARKASPAID','Marcar factura como paga');
 define('_JOMRES_INVOICE_MARKEDASPAID','Factura marcada como paga');
 define('_JOMRES_APIKEY_REMAKE','Criar nova chave API');
 define('_JOMRES_AUTOTRANSLATE_TITLE','Usar Google para traduções iniciais?');
-define('_JOMRES_AUTOTRANSLATE_DESC','Esta característica é nova e experimental, portanto use-a por sua conta e risco. O objectivo é interpelar a ferramenta de tradução Google para fazer automaticamente traduções de uma dada propriedade. Note que esta característica limpa todo o <i>input</i>, portanto se usar um editor de html para formatar os pormenores da sua propriedade, esta opção dstruirá essa formatação.<br/>');
+define('_JOMRES_AUTOTRANSLATE_DESC','Esta característica é nova e experimental, portanto use-a por sua conta e risco. O objectivo é interpelar a ferramenta de tradução Google para fazer automaticamente traduções de uma dada propriedade. Note que esta característica limpa todo o <i>input</i>, portanto se usar um editor de html para formatar os pormenores da sua propriedade, esta opção destruirá essa formatação.<br/>');
 define('_JOMRES_SINGLEPROPERTYINSTALLATION_TITLE','Esta instalação é para uma única propriedade (SRP)?');
 define('_JOMRES_SINGLEPROPERTYINSTALLATION_DESC','Se esta opção for definida Sim, a vista de <i>frontend</i> do Jomres para utilizadores não autorizados é grandemente simplificada. As chamadas por defeito ao Jomres desde uma opção de menu, em lugar de obter uma lista de propriedades limita-se a remeter o utilizador para o formulário de reserva da primeira propriedade do sistema. Os gestores de propriedades também não verão o botão de antevisão ds características da propriedade enquadrado na opção de botão para adicionar nova propriedade. Ideal se quer somente listar uma propriedade e aceitar reservas para ela.<br/>');
 define('_JOMRES_HTMP_PURIFIER','Usar a funcionalidade de depurador HTML?');
@@ -1326,10 +1329,10 @@ define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_DESCRIPTION','P.f. introduza uma avalia�
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_PROS','P.f. introduza os aspectos positivos da sua experiência como hóspede desta propriedade');
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_CONS','P.f. introduza quaisquer aspectos negativos que possa ter da sua experiência');
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_1','P.f. classifique a hospitalidade de que foi alvo pelo pessoal');
-define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2','P.f. classifique a sua opinião sobrte a localização da propriedade');
-define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3','P.f. dê opinião sobre a limpesa de instalações da propriedade');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_2','P.f. classifique a sua opinião sobre a localização da propriedade');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_3','P.f. dê opinião sobre a limpeza de instalações da propriedade');
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_4','P.f. classifique o alojamento. Foi confortável ou razoável');
-define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5','Please provide your opinion of whether it was value for money');
+define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_5','P.f. dê a sua opinião sobre se valeu ou não o dinheiro dispendido');
 define('_JOMRES_REVIEWS_ADDREVIEW_ERROR_RATING_6','P.f. classifique os serviços');
 define('_JOMRES_REVIEWS_ADDREVIEW_SUMMARY','Resumo da Apreciação');
 define('_JOMRES_REVIEWS_ADDREVIEW_MOREDETAIL','A sua experiência em maior pormenor');
@@ -1338,12 +1341,12 @@ define('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED','Obrigado por enviar a sua 
 define('_JOMRES_REVIEWS_ADMIN_CONTROL','Usar a funcionalidade de apreciação Jomres?');
 define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH','Publicar automaticamente as apreciações?');
 define('_JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC','Se definir Não, precisará de publicar manualmente as apreciações');
-define('_JOMRES_REVIEWS_ADMIN_TESTMODE','Colocar apreciações em modo exprimental?');
+define('_JOMRES_REVIEWS_ADMIN_TESTMODE','Colocar apreciações em modo experimental?');
 define('_JOMRES_REVIEWS_ADMIN_TESTMODE_DESC','Normalmente, os gestores de propriedades não podem emitir apreciações sobre estas. Com esta opção activada, podem. Obviamente este procedimento não é ideal num ambiente de funcionamento normal.');
 define('_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO','Esta é uma lista de todas as propriedades. Para ver avaliações de uma propriedade, clique sobre ela. A partir daí pode publicar ou apagar uma avaliação.');
 define('_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED','Avaliações não publicadas');
 define('_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL','Total de avaliações');
-define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW','Publicar/dspublicar avaliação');
+define('_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW','Publicar/despublicar avaliação');
 define('_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW','Apagar avaliação');
 define('_JOMRES_REVIEWS_REPORT_REVIEW','Denunciar avaliação');
 define('_JOMRES_REVIEWS_REPORT_REVIEW_TITLE','Denúncias de avaliações');
@@ -1421,13 +1424,10 @@ define('_JRPORTAL_MONTHS_LONG_10','Novembro');
 define('_JRPORTAL_MONTHS_LONG_11','Dezembro');
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS',"Processo de gestão da propriedade");
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS_DESC',"Há vários processos, em função do modo como quer listar a sua propriedade/negócio.");
-define('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL',"Aluguewr");
+define('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL',"Aluguer");
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS_RENTAL_DESC',"Escolha a opção aluguer se se trata de reservas de quartos numa propriedade (por ex. Hotel/B&B/Villa/Apartamentos)");
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE',"Venda de propriedade/listagem simples");
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',"Escolha esta opção se não estiver a oferecer qualquer tipo de reserva (por ex., uma propriedade/artigo para venda)");
 define('JOMRES_COM_A_MINIMALCONFIG_DESC','Defina Sim para reduzir o número de opções disponíveis aos gestores de propriedades na secção de Configuração Geral. Útil se não quiser que os gestores de propriedades lidem com demasiadas configurações. Em vez desta opção, pode editar o ficheiro jomres_config.php para definir as opções de configuração por defeito.');
 define('_JOMRES_AJAXFORM_EXTRAS_SELECT','P.f. seleccione uma opção para a sua reserva');
-define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Switches on html editors in property details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text.');
-define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
-define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
-define('_JOMRES_COM_TIMEZONE_SWITCHER',"Show the timezone switcher in the property manager's toolbar?");
+
