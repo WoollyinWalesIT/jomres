@@ -1446,3 +1446,16 @@ define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
 define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
 define('_JOMRES_COM_TIMEZONE_SWITCHER',"Show the timezone switcher in the property manager's toolbar?");
 
+define('_JOMRES_PARTNER_DISCOUNT',"Partner discount ");
+define('_JOMRES_PARTNER_CHOOSE_SEARCHTITLE',"Search user");
+define('_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS',"Enter a few characters to search for a user.<br/> When you select a user you will automatically add them as a Partner and you will be taken to the next page where you can assign properties and discounts to the user.");
+define('_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE',"Existing partners");
+define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS',"Choose a partner to be taken to the partner administration page.");
+
+define('_JOMRES_PARTNER_SHOW_TITLE',"Partner :");
+define('_JOMRES_PARTNER_SHOW_SEARCHTITLE',"Search for a property");
+define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS',"Enter a few characters from the property name and select a property.<br/> When you select the property you will add it to the partner's portfolio, however they will not yet enjoy any discounts, you will need to set those youself.");
+define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES',"Current properties");
+define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS',"Click on a property to edit the partner's discount settings for that property.");
+
+
