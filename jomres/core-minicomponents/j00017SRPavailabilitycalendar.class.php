@@ -110,7 +110,7 @@ class j00017SRPavailabilitycalendar {
 								</td>
 							</tr>
 							<tr class="availability_calendar_calendars">
-								<td>
+								<td><center>
 									<table>
 										<tr>';
 			if ($showFullYear)
@@ -140,7 +140,7 @@ class j00017SRPavailabilitycalendar {
 			$this->retVals.='
 										</tr>
 									</table>
-								</td>
+								</center></td>
 							</tr>
 						</table>
 					</td>
