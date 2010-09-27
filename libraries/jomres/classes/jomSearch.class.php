@@ -308,7 +308,7 @@ class jomSearch {
 				{
 				foreach ($result as $feature)
 					{
-					if (!empty($feature['id']) && !empty($feature['title']) )
+					if ( !empty($feature['title']) )
 						$this->prep['features'][]=array('id'=>$feature['id'],'image'=>$feature['image'],'title'=>$feature['title'],'description'=>$feature['description']);
 					}
 				}
@@ -512,6 +512,8 @@ class jomSearch {
 	function jomSearch_features()
 		{
 		$filter=$this->filter['feature_uids'];
+		if ((int)$filter[0] == 0)
+			return;
 		$this->makeOrs();
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
@@ -818,6 +820,7 @@ function prepFeatureSearch()
 	{
 	// Prepares the Feature data required for a search
 	$result=array();
+	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 	$query = "SELECT  hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features  WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 	$propertyFeaturesList=doSelectSql($query);
 
@@ -835,6 +838,12 @@ function prepFeatureSearch()
 			}
 		}
 
+	$r=array();
+	$r['id']=0;
+	$r['title']=$searchAll;
+	$r['description']=$searchAll;
+	$r['image']='';
+	$result[]=$r;
 
 	foreach($propertyFeaturesList as $propertyFeature)
 		{

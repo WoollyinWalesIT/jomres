@@ -191,6 +191,9 @@ class j00030search {
 
 			if (!empty($_REQUEST['feature_uids'] ) )
 				{
+				if ($_REQUEST['feature_uids'] ==$searchAll)
+					$sch->filter['feature_uids']		=	"%";
+				else
 					{
 					$sch->filter['feature_uids']= jomresGetParam( $_REQUEST, 'feature_uids', array() );
 					}
@@ -511,7 +514,7 @@ class j00030search {
 							}
 						$output['feature']=jomresHTML::selectList( $featureArray, 'feature_uids[]', 'size="1" ', 'value', 'text', $selectOption );
 						}
-					else  // Show the features as overlib
+					else  // Show the features as javascript popup
 						{
 						$r="";
 						$counter=0;
