@@ -3858,14 +3858,22 @@ class dobooking
 					else
 						$this->setErrorLog("getTariffsForRoomUids::Day of week <b>not</b> valid");
  */
-
-					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
+					if ($this->tariffModel == "1")
 						{
-						//$this->setErrorLog("<b>getTariffsForRoomUids::Tariff is valid</b>");
-						$roomAndTariffArray[]=array($room_uid,$rates_uid);
+						if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
+							{
+							$roomAndTariffArray[]=array($room_uid,$rates_uid);
+							}
 						}
-					//else
-						//$this->setErrorLog("getTariffsForRoomUids::Tariff is NOT valid");
+					else
+						{
+						if ( (float)$tariff->roomrateperday > 0)
+							if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
+								{
+								$roomAndTariffArray[]=array($room_uid,$rates_uid);
+								}
+							}
+						}
 					//$this->setErrorLog("--------------------------------------------");
 					}
 				}
