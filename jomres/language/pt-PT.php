@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Core file
  * @author Vince Wooll <sales@jomres.net>
@@ -478,6 +478,13 @@ define('_JOMRES_MR_AUDIT_INSERT_EXTRA','Extra criado');
 define('_JOMRES_MR_AUDIT_UPDATE_EXTRA','Extra actualiz.');
 define('_JOMRES_MR_AUDIT_DELETE_EXTRA','Extra eliminado');
 define('_JOMRES_MR_AUDIT_PUBLISH_EXTRA','Extra publicado');
+define('_JOMRES_EXTRAS_NOEXTRAS','Não há extras a incluir na conta');
+define('_JOMRES_INVOICE_SIGNEDONBEHALFOF','Assinado em representação de ');
+define('_JOMRES_MR_AUDIT_LISTING_FILTER_DATE','Filtrar por data');
+define('_JOMRES_FRONT_MR_BOOKING_EXTRAS_HELP','Extras opcionais.');
+define('_JOMRES_FRONT_MR_MENU_ADMIN_LANGUAGE','Editar idioma');
+define('_JOMRES_FRONT_MR_SEARCH_HERE','Pesquisar aqui por: ');
+define('_JOMRES_FRONT_MR_MENU_ADMIN_BLACKBOOKINGS_ROOMSSUBJECT','Quartos constantes da lista de indisponibilidades');
 define('_JOMRES_MR_AUDIT_BLACKBOOKING','Indisponib. introduzida');
 define('_JOMRES_MR_AUDIT_BLACKBOOKING_DELETE','Indisponib. eliminada');
 define('_JOMRES_MR_AUDIT_LISTING_TIME','Hora');
@@ -634,7 +641,7 @@ define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY','Tarifas guardadas como valores sem
 define('_JOMRES_COM_A_TARIFFPRICESAREWEEKLY_DESC','Tem a opção de guardar as tarifas como valores diários ou semanais. Se os guardar como semanais, TEM DE definir esta opção como Sim.');
 define('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK','Taxa por semana');
 define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING','Recorr. das datas de chegada fixas: ');
-define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC','Quando são seleccionadas datas de chegada fixas, o nr de datas que pode ser mostrado na lista <i>dropdown</i>');
+define('_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC','Quando são seleccionadas datas de chegada fixas, o nr de datas que pode ser mostrado na lista <i>dropdown</i>. Note que a lista de datas não incluirá nenhuma data se uma reserva não for possível devido a reservas anteriores, e que a lista será na realidade duas vezes mais longa que o número seleccionado, porque terá um número similar no histórico de datas (quando isto se aplicar)');
 define('_JOMRES_BOOKINGFORM_MONITORING_SMOKING_INVALID','Opção fumador inválida');
 define('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID','Data de chegada incorrecta');
 define('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID','Data de partida incorrecta');
@@ -695,7 +702,7 @@ define('_JOMRES_SEARCH_FEATURE_INFO','Pesquisa de características.');
 define('_JOMRES_SEARCH_BUTTON','Pesquisar');
 define('_JOMRES_SEARCH_DESCRIPTION_INFO','Introduza uma palavra de pesquisa e tecle no botão.');
 define('_JOMRES_SEARCH_DESCRIPTION_LABEL','Palavra(s) de pesquisa: ');
-define('_JOMRES_SEARCH_AVL_INFO','P.f. introduza as datas em que tenciona chegar e partir e pressione o botão para encontrar propriedades que tenham alojamento disponível nesse período de tempo.');
+define('_JOMRES_SEARCH_AVL_INFO','P.f. introduza as datas em que tenciona chegar e partir, para complementar pesquisa de disponibilidade');
 define('_JOMRES_SEARCH_PTYPES','Listar todas as propriedades por tipo.');
 define('_JOMRES_SEARCH_RTYPES','Listar todas as propriedades por tipo de quarto.');
 define('_JOMRES_SORTORDER_DEFAULT','Por defeito');
