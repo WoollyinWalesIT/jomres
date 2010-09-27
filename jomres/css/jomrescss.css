@@ -296,7 +296,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	}
 
 /*Property header*/
-.header
+/* .header
 	{	
 	height: 110px;
 	background: #eeeeee;
@@ -304,7 +304,7 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	border-top: 1px solid #aaaaaa;
 	border-left: 1px solid #aaaaaa;
 	text-align: center;
-	}
+	} */
 
 .header_property
 	{
