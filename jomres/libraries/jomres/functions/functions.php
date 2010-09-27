@@ -261,7 +261,7 @@ function init_javascript()
 
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-ui-1.8rc3.custom.min.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
 			
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
 
