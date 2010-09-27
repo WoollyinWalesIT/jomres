@@ -3868,6 +3868,7 @@ class dobooking
 					else
 						{
 						if ( (float)$tariff->roomrateperday > 0)
+							{
 							if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
 								{
 								$roomAndTariffArray[]=array($room_uid,$rates_uid);
