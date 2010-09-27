@@ -107,8 +107,10 @@ class j06000show_property_reviews
 				{
 				if (!$thisJRUser->userIsRegistered) 
 					$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN,false,false);
-				else
+				elseif (!$thisJRUser->userIsManager)
+					{
 					$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ALREADYREVIEWED',_JOMRES_REVIEWS_ALREADYREVIEWED,false,false);
+					}
 				}
 			
 			if ($itemReviews['totalRows']>0)
