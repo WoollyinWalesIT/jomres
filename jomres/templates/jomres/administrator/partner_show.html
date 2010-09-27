@@ -67,7 +67,11 @@ function save_discount_settings(discount_id,property_id) {
 	var discount = jQuery('[name='+discount_input+']').val();
 	jQuery.get(ajaxurl+'partner_save_discount_settings',{ 'discount_id': discount_id, 'valid_from' : valid_from, 'valid_to' : valid_to, 'discount' : discount },
 		function(data){
-			show_property_discounts(property_id);
+			jQuery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
+				function(data){
+					jQuery('#discount_list').html(data);
+					}
+				);
 			}
 		);
 	}
