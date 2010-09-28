@@ -1,3 +1,41 @@
+Jomres 4.5.8 24/9/2010
+
+Added a new view of the Jomres content area which allows the property manager to view just Jomres. This is both a faster interface (you're not running any of the Joomla modules) and allows more flexibility when branding the interface.
+Added functionality to allow us to translate country and region names via touch templates.
+Added a timezone switching feature to the managers toolbar. Disabled by default, this should allow users on one continent to work on a server on a vastly different timezone.
+
+
+Fixed bug where booking_room_specific_info array was not passed to the confirmation template.
+Modified handle req to adjust the departure date only if the date is < arrival date - min interval.
+Added functionality to allow us to have cms specific minicomponents.
+Modified gateway validation function to use $_REQUEST instead of $_POST, allows us to pass the gateway name in the url, instead of just via a form's post method.
+Fixed Jomres SA's cms_specific_urls.php so that JOMRES_SITEPAGE_URL_NOSEF sets the url correctly.
+Small change to dobooking_srp.html to make sure invisible items stay invisible.
+Modified pricing output functionality in list properties to check to see if gross pricing is set before calculating the inclusive price.
+Clarified and simplified string filtering. Ensured that if html editors are not allowed, that all input and output text has virtually all html stripped before it is saved/used.
+Modified new management process selection feature to ensure that the correct template is shown in new property step 2.
+Changed how micromanage->averaged prices are calculated when same room types are chosen with two different tariffs.
+Fixed a faulty delete review query.
+Modified router.php to use the translated property name.
+Added initial functionality to allow Jomres to be integrated into Joomla 1.6. After Jomres phase of installation is performed, the site manager then needs to go to the Joomla extension manager and use the Discover feature to continue installing jomres. Other functionality like creating news users on bookings hasn't been tested and wouldn't be expected to work at this time.
+Fixed issue where it wasn't possible to edit created extras.
+Further work to resolve rounding issues. Removed number_format functionality from insert booking minicomponent, ensuring that calculated prices are inserted with as many decimals as possible, then added output price functionality to view and list invoice functionality.
+Small change to booking engine's growl output functionality to ensure that dev popups are shown, and removed some old code.
+Fixed typo in the language file. Propertys shmoperties.
+Added rounding fix output to administrator area list invoices, however the same cannot be added to the edit invoice area because the currency code will prevent the discount calculation javascript from working.
+Updated install_jomres.php to associate room types with property types on first installation.
+Added new version of pt-PT.php, many thanks Mario Oliveira
+Added Azerbaijan New Manat to currency codes class.
+Added an internal feature to disable the paypal link when calling the view invoice function as part of the hotel's email.
+Removed context word from booking notes.
+Tweak guest's toolbar to use jquery ui widget css.
+Upgraded jgrowl, which manages the popup messages. Modified it slightly (L191) to not use the "messages" class as the message using the header class within the context of the popup is ugly. Css file updated too, and jomrescss.css modified to remove the "header" class.
+Added centering for SRP availability calendar.
+Upgraded jquery ui to 1.8.5
+Modified search functionality to add the "All" option to the feature search dropdown.
+Modification to booking engine so that when in micromanage, we can filter out tariffs that are set to 0, allowing us to layer tariffs over each other, offering different minimum intervals.
+
+
 Jomres 4.5.7 19/8/2010
 
 Further changes to Jomres to support non-room based bookings. These changes are required to support the Jintour plugin.
