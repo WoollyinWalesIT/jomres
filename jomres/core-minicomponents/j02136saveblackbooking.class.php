@@ -161,8 +161,7 @@ class j02136saveblackbooking {
 			{
 			$currentDay=date("Y/m/d",$unixCurrentDate);
 			$dateRangeArray[]=$currentDay;
-			//echo $currentDay;
-			$unixCurrentDate=$unixCurrentDate+$secondsInDay;
+			$unixCurrentDate=strtotime("+1 day",$unixCurrentDate);
 			}
 		$dateRangeString=implode(",",$dateRangeArray);
 		return $dateRangeArray;
