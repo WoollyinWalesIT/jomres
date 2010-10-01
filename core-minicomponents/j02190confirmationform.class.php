@@ -40,7 +40,7 @@ class j02190confirmationform {
 		$contract_uid = jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		$sendemail = jomresGetParam( $_REQUEST, 'sendemail', 0 );
 		$today = date("Y/m/d");
-		$query="SELECT arrival,departure,guest_uid,rate_rules,contract_total,deposit_required,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
+		$query="SELECT arrival,departure,guest_uid,rate_rules,contract_total,deposit_required,tag,property_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 		$contractData =doSelectSql($query);
 		foreach ($contractData as $contract)
 			{
@@ -51,6 +51,7 @@ class j02190confirmationform {
 			$contract_total=$contract->contract_total;
 			$deposit_required=$contract->deposit_required;
 			$propertyUid=$contract->property_uid;
+			$booking_number=$contract->tag;
 			}
 		// To be used in the future
 		/*
@@ -170,6 +171,7 @@ class j02190confirmationform {
 		$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL);
 		$output['HWEBSITE']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_WEBSITE);
 		$output['RESV_DETAILS']=jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS',_JOMRES_COM_CONFIRMATION_RESERVATION_DETAILS);
+		$output['HBOOKINGNO']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER);
 
 		$propertyAddressArray=getPropertyAddressForPrint($propertyUid);
 		$propertyContactArray=$propertyAddressArray[1];
@@ -200,6 +202,7 @@ class j02190confirmationform {
 		$output['GUEST_REGION']=$guestDetailsArray[6];
 		$output['GUEST_COUNTRY']=$guestDetailsArray[7];
 
+		$output['BOOKINGNO']=$booking_number;
 		$output['ROOM_NAME']=$room_name;
 		$output['ROOM_NUMBER']=$room_number;
 		$output['ARRIVAL']=outputDate($arrival);
