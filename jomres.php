@@ -371,9 +371,10 @@ if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
 		$tmpBookingHandler->close_jomres_session();
 		jomresRedirect( $request,"");
 		}
+	$management_view = $jomres_management_view->get_view();
 	}
 	
-$management_view = $jomres_management_view->get_view();
+
 
 if (!defined('JOMRES_NOHTML'))
 	{
