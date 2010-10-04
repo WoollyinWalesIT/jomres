@@ -34,7 +34,7 @@ class j00010reception_option_01_home {
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."", 'Home.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME',_JOMRES_FRONT_MR_MENU_ADMIN_HOME,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=dashboard", 'Home.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_HOME',_JOMRES_FRONT_MR_MENU_ADMIN_HOME,false,false));
 		}
 	
 	

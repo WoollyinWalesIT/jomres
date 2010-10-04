@@ -29,6 +29,14 @@ class jomres_management_view
 			{
 			$this->set_view($_POST['management_view']);
 			}
+		$sef_setting = get_showtime('sef');
+		if ($sef_setting == "1")
+			{
+			if (!isset($_REQUEST['task']))
+				{
+				jomresRedirect($_SERVER["REQUEST_URI"]."?task=dashboard");
+				}
+			}
 		}
 
 	function get_view()
