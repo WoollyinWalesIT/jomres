@@ -34,7 +34,10 @@ class jomres_management_view
 			{
 			if (!isset($_REQUEST['task']))
 				{
-				jomresRedirect($_SERVER["REQUEST_URI"]."?task=dashboard");
+				if (strstr($_SERVER["REQUEST_URI"],"index.php?option=com_jomres"))
+					jomresRedirect($_SERVER["REQUEST_URI"]."&task=dashboard");
+				else
+					jomresRedirect($_SERVER["REQUEST_URI"]."?task=dashboard");
 				}
 			}
 		}
