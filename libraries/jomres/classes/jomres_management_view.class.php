@@ -32,13 +32,17 @@ class jomres_management_view
 		$sef_setting = get_showtime('sef');
 		if ($sef_setting == "1")
 			{
-			if (!isset($_REQUEST['task']))
+			$this->management_view = false;
+/* 			if (!isset($_REQUEST['task']))
 				{
-				if (strstr($_SERVER["REQUEST_URI"],"index.php?option=com_jomres"))
-					jomresRedirect($_SERVER["REQUEST_URI"]."&task=dashboard");
-				else
-					jomresRedirect($_SERVER["REQUEST_URI"]."?task=dashboard");
-				}
+				// With Joomla's sef functionality on, the url will get messed up. We'll reparse $_GET generate a new url from that.
+				$url = get_showtime('live_site')."/index.php?";
+				foreach ($_GET as $key=>$val)
+					{
+					$url .=$key."=".$val."&";
+					}
+				jomresRedirect($url);
+				} */
 			}
 		}
 
@@ -63,6 +67,9 @@ class jomres_management_view
 		
 	function get_dropdown()
 		{
+		$sef_setting = get_showtime('sef');
+		if ($sef_setting == "1")
+			return "";
 		$tempOptions = array();
 		$tempOptions[1] = _JOMRES_COM_MANAGEMENTVIEW_MANAGMENT ;
 		$tempOptions[0] = _JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW;
