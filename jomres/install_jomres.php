@@ -258,17 +258,17 @@ function createPartnerTables()
 	echo "Creating __jomres_partners table<br>";
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
 		`id` int(11) NOT NULL auto_increment,
-		`cms_userid` int(11) NOT NULL,
+		`cms_userid` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_partners table</b><br>";
 	
 	echo "Creating __jomres_partners_discounts table<br>";
-	$query = "CREATE TABLE `#__jomres_partners_discounts` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_partners_discounts` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
-	`partner_id` int(11) NOT NULL,
-	`property_id` int(11) NOT NULL,
+	`partner_id` int(11),
+	`property_id` int(11),
 	`valid_from` date default NULL ,
 	`valid_to` date default NULL ,
 	`discount` FLOAT NOT NULL DEFAULT '0.00',
@@ -318,8 +318,8 @@ function createRoomtypePropertytypeXrefTable()
 	echo "Creating room type/property type xref table<br>";
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_roomtypes_propertytypes_xref` (
 		`id` int(11) NOT NULL auto_increment,
-		`roomtype_id` int(11) NOT NULL,
-		`propertytype_id` int(11) NOT NULL,
+		`roomtype_id` int(11),
+		`propertytype_id` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
@@ -575,13 +575,13 @@ function createSubscriptionsTables()
 	{
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`name` VARCHAR( 100 ) NOT NULL ,
-	`description` VARCHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 100 ),
+	`description` VARCHAR( 255 ),
 	`published` BOOL NOT NULL DEFAULT '1',
 	`frequency` CHAR(1) DEFAULT 'M',
 	`trial_period` SMALLINT NOT NULL DEFAULT '0',
 	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
-	`full_amount` FLOAT NOT NULL,
+	`full_amount` FLOAT,
 	`rooms_limit` int(11) NOT NULL default '0',
 	`property_limit` int(11) NOT NULL default '0',
 	`tax_code_id` int(11) NOT NULL default '0'
@@ -591,29 +591,29 @@ function createSubscriptionsTables()
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`cms_user_id` int(11) NOT NULL default '0',
-	`gateway_subscription_id` CHAR( 255 ) NOT NULL ,
+	`gateway_subscription_id` CHAR( 255 ),
 	`package_id` INT NULL DEFAULT '0',
-	`name` VARCHAR( 20 ) NOT NULL ,
-	`description` VARCHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 20 ),
+	`description` VARCHAR( 255 ),
 	`frequency` CHAR(1) DEFAULT 'M',
 	`trial_period` SMALLINT NOT NULL DEFAULT '0',
 	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
-	`full_amount` FLOAT NOT NULL,
+	`full_amount` FLOAT,
 	`rooms_limit` int(11) NOT NULL default '0',
 	`property_limit` int(11) NOT NULL default '0',
 	`status` SMALLINT NOT NULL DEFAULT '0',
-	`raised_date` datetime NOT NULL
+	`raised_date` datetime
 	)";
 	doInsertSql($query,"");
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`cms_user_id` int(11) NOT NULL default '0',
-	`firstname` VARCHAR( 255 ) NOT NULL ,
-	`surname` VARCHAR( 255 ) NOT NULL ,
-	`address` VARCHAR( 255 ) NOT NULL ,
-	`country` VARCHAR( 255 ) NOT NULL ,
-	`postcode` VARCHAR( 255 ) NOT NULL 
+	`firstname` VARCHAR( 255 ),
+	`surname` VARCHAR( 255 ),
+	`address` VARCHAR( 255 ),
+	`country` VARCHAR( 255 ),
+	`postcode` VARCHAR( 255 )
 	)";
 	doInsertSql($query,"");
 	}
@@ -636,7 +636,7 @@ function checkSubscriptionsTablesExist()
 function alterCustomTemplatesTimestampCol()
 	{
 	echo "Editing __jomres_custom_templates table adding last_edited column<br>";
-	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `last_edited` DATETIME NOT NULL AFTER `value` ";
+	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `last_edited` DATETIME AFTER `value` ";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_custom_templates last_edited</b><br>";
 	}
@@ -657,7 +657,7 @@ function checkCustomTemplatesTimestampColExists()
 function alterPropertysTimestampCol()
 	{
 	echo "Editing __jomres_propertys table adding timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_propertys` ADD `timestamp` DATETIME NOT NULL AFTER `metadescription` ";
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `timestamp` DATETIME AFTER `metadescription` ";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_propertys timestamp</b><br>";
 	}
@@ -684,9 +684,9 @@ function createClickatellMessagesTable()
 	  number varchar(25) NOT NULL default '',
 	  message varchar(160) NOT NULL default '',
 	  property_uid int(10) NOT NULL default '0',
-	  send_time datetime NOT NULL,
+	  send_time datetime,
 	  ack INT( 3 ) NULL DEFAULT '0',
-	  apiMsgid VARCHAR( 255 ) NOT NULL,
+	  apiMsgid VARCHAR( 255 ),
 	  PRIMARY KEY  (id)
 	)";
 	$result=doInsertSql($query,'');
@@ -1127,37 +1127,15 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
-	echo "Creating __jomres_partners table<br>";
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
-		`id` int(11) NOT NULL auto_increment,
-		`cms_userid` int(11) NOT NULL,
-		PRIMARY KEY(`id`)
-		)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_partners table</b><br>";
-	
-	echo "Creating __jomres_partners_discounts table<br>";
-	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_partners_discounts` (
-	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
-	`partner_id` int(11) NOT NULL,
-	`property_id` int(11) NOT NULL,
-	`valid_from` date default NULL ,
-	`valid_to` date default NULL ,
-	`discount` FLOAT NOT NULL DEFAULT '0.00',
-	PRIMARY KEY ( `id` )
-	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
-		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_sms_clickatell_messages` (
 		id int(10) NOT NULL auto_increment,
 		username  varchar(20) NOT NULL default '',
 		number varchar(25) NOT NULL default '',
 		message varchar(160) NOT NULL default '',
 		property_uid int(10) NOT NULL default '0',
-		send_time datetime NOT NULL,
+		send_time datetime,
 		ack INT( 3 ) NULL DEFAULT '0',
-		apiMsgid VARCHAR( 255 ) NOT NULL,
+		apiMsgid VARCHAR( 255 ),
 		PRIMARY KEY  (id)
 	)";
 	doInsertSql($query,"");
@@ -1166,12 +1144,12 @@ function createJomresTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
 		`coupon_id` INT NOT NULL AUTO_INCREMENT ,
 		`property_uid` INT,
-		`coupon_code` VARCHAR( 255 ) NOT NULL ,
-		`valid_from` DATE NOT NULL ,
-		`valid_to` DATE NOT NULL ,
-		`amount` FLOAT NOT NULL ,
-		`is_percentage` BOOL NOT NULL ,
-		`rooms_only` BOOL NOT NULL ,
+		`coupon_code` VARCHAR( 255 ),
+		`valid_from` DATE,
+		`valid_to` DATE,
+		`amount` FLOAT,
+		`is_percentage` BOOL,
+		`rooms_only` BOOL,
 		PRIMARY KEY ( `coupon_id` )
 		)";
 	$result=doInsertSql($query,"");
@@ -1194,7 +1172,7 @@ function createJomresTables()
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`template_name` VARCHAR( 255 ) ,
 		`value` TEXT NULL,
-		`last_edited` datetime NOT NULL,
+		`last_edited` datetime,
 		PRIMARY KEY ( `uid` )
 		) ";
 	$result=doInsertSql($query,"");
@@ -1206,14 +1184,14 @@ function createJomresTables()
 		id int(10) NOT NULL auto_increment,
 		invoice_id int(10) NOT NULL default '0',
 		transaction_id int(10) NOT NULL default '0',
-		time_added datetime NOT NULL,
+		time_added datetime ,
 		gateway_id varchar(20) NOT NULL default '',
-		payment_result text NOT NULL,
+		payment_result text ,
 		payment_currency varchar(20) NOT NULL default '',
 		payment_amount float NOT NULL default '0',
 		payment_fees float NOT NULL default '0',
 		payment_ref varchar(100) NOT NULL default '',
-		notes text NOT NULL,
+		notes text,
 		PRIMARY KEY  (id)
 	)";
 	doInsertSql($query,"");
@@ -1221,23 +1199,23 @@ function createJomresTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
-		`name` varchar(20) NOT NULL,
-		`description` varchar(255) NOT NULL,
-		`init_price` float NOT NULL default '0',
-		`init_qty` int(11) NOT NULL default '0',
-		`init_discount` float NOT NULL default '0',
-		`recur_price` float NOT NULL default '0',
-		`recur_qty` int(11) NOT NULL default '0',
-		`recur_discount` float NOT NULL default '0',
-		`tax_code_id` int(11) NOT NULL,
+		`name` varchar(20) ,
+		`description` varchar(255) ,
+		`init_price` float default '0',
+		`init_qty` int(11) default '0',
+		`init_discount` float default '0',
+		`recur_price` float default '0',
+		`recur_qty` int(11) default '0',
+		`recur_discount` float default '0',
+		`tax_code_id` int(11),
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
-		`name` varchar(20) NOT NULL,
-		`description` varchar(255) NOT NULL,
+		`name` varchar(20),
+		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
 		`init_qty` int(11) NOT NULL default '0',
 		`init_discount` float NOT NULL default '0',
@@ -1246,8 +1224,8 @@ function createJomresTables()
 		`recur_qty` int(11) NOT NULL default '0',
 		`recur_discount` float NOT NULL default '0',
 		`recur_total` float NOT NULL default '0',
-		`tax_code` char(10) NOT NULL,
-		`tax_description` char(200) NOT NULL,
+		`tax_code` char(10),
+		`tax_description` char(200),
 		`tax_rate` float NOT NULL default '0',
 		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
 		PRIMARY KEY  (`id`)
@@ -1258,17 +1236,17 @@ function createJomresTables()
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
 		`status` tinyint(4) NOT NULL default '0',
-		`raised_date` datetime NOT NULL,
-		`due_date` datetime NOT NULL,
-		`paid` datetime NOT NULL,
+		`raised_date` datetime,
+		`due_date` datetime,
+		`paid` datetime,
 		`subscription` tinyint(1) NOT NULL default '0',
 		`init_total` float NOT NULL default '0',
 		`recur_total` float NOT NULL default '0',
 		`recur_frequency` tinyint(4) NOT NULL default '0',
 		`recur_dayofmonth` tinyint(4) NOT NULL default '1',
-		`currencycode` char(3) NOT NULL,
+		`currencycode` char(3),
 		`subscription_id` int(11) NOT NULL default '0',
-		`contract_id` int(11) NOT NULL,
+		`contract_id` int(11),
 		`property_uid` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 	)";
@@ -1276,8 +1254,8 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_taxrates` (
 		`id` int(11) NOT NULL auto_increment,
-		`code` char(20) NOT NULL,
-		`description` varchar(255) NOT NULL,
+		`code` char(20),
+		`description` varchar(255),
 		`rate` float NOT NULL default '0',
 		PRIMARY KEY  (`id`)
 	)";
@@ -1311,8 +1289,8 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
 		`id` int(11) NOT NULL auto_increment,
-		`manager_id` int(11) NOT NULL,
-		`property_uid` int(11) NOT NULL,
+		`manager_id` int(11),
+		`property_uid` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
@@ -1343,9 +1321,9 @@ function createJomresTables()
 		}
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
 		`id` int(11) AUTO_INCREMENT,
-		`manager_uid` INTEGER NOT NULL,
-		`jos_id` INTEGER NOT NULL,
-		`portal_booking_id` INTEGER NOT NULL,
+		`manager_uid` INTEGER,
+		`jos_id` INTEGER,
+		`portal_booking_id` INTEGER,
 		`username` varchar(255),
 		`email` varchar(255),
 		`created` datetime,
@@ -1418,11 +1396,11 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_extrasmodels_models` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`extra_id` INT NOT NULL,
-		`model` INT NOT NULL,
+		`extra_id` INT,
+		`model` INT,
 		`params` varchar(255),
 		`force` BOOL NOT NULL DEFAULT '0',
-		`property_uid` INT NOT NULL,
+		`property_uid` INT,
 		PRIMARY KEY (`id`)
 		)";
 	$result=doInsertSql($query,"");
@@ -1431,8 +1409,8 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_mufavourites` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`my_id` INT NOT NULL,
-		`property_uid` INT NOT NULL,
+		`my_id` INT,
+		`property_uid` INT,
 		PRIMARY KEY (`id`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -1442,10 +1420,10 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_notes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`contract_uid` INT NOT NULL,
+		`contract_uid` INT,
 		`note` TEXT,
 		`timestamp` datetime,
-		`property_uid` INT NOT NULL,
+		`property_uid` INT,
 		PRIMARY KEY (`id`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -1460,7 +1438,7 @@ function createJomresTables()
 		`maximum` VARCHAR(255) NULL,
 		`is_percentage` INT( 11 ) NOT NULL DEFAULT '0',
 		`posneg` INT( 11 ) NOT NULL DEFAULT '0',
-		`variance` DOUBLE NOT NULL,
+		`variance` DOUBLE,
 		`published` TINYINT NOT NULL DEFAULT '1',
 		`property_uid` VARCHAR(11),
 		`order` INT( 11 ) NOT NULL DEFAULT '0',
@@ -1473,7 +1451,7 @@ function createJomresTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_pcounter` (
 		`count` int ,
 		`p_uid` int(11) NOT NULL PRIMARY KEY,
-		`p_view` int(11) NOT NULL
+		`p_view` int(11)
 		) ";
 	$result=doInsertSql($query,"");
 	if (!$result )
@@ -1481,10 +1459,10 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_pluginsettings` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`prid` INT( 11 ) NOT NULL ,
-		`plugin` VARCHAR( 255 ) NOT NULL ,
+		`prid` INT( 11 ),
+		`plugin` VARCHAR( 255 ),
 		`setting` TEXT NULL,
-		`value` VARCHAR( 255 ) NOT NULL ,
+		`value` VARCHAR( 255 ),
 		PRIMARY KEY (`id`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -1493,8 +1471,8 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_ptypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`ptype` VARCHAR( 255 ) NOT NULL ,
-		`ptype_desc` VARCHAR( 255 ) NOT NULL ,
+		`ptype` VARCHAR( 255 ),
+		`ptype_desc` VARCHAR( 255 ),
 		`published` TINYINT DEFAULT '1',
 		PRIMARY KEY (`id`)
 		) ";
@@ -1506,9 +1484,9 @@ function createJomresTables()
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`constant` VARCHAR( 255 ) ,
 		`customtext` TEXT NULL,
-		`property_uid` INT( 11 ) NOT NULL ,
-		`language` VARCHAR( 255 ) NOT NULL ,
-		`reserved` VARCHAR( 255 ) NOT NULL ,
+		`property_uid` INT( 11 ),
+		`language` VARCHAR( 255 ),
+		`reserved` VARCHAR( 255 ),
 		PRIMARY KEY ( `uid` )
 		) ";
 	$result=doInsertSql($query,"");
@@ -1517,7 +1495,7 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_extras` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
-		`name` VARCHAR( 255 ) NOT NULL ,
+		`name` VARCHAR( 255 ),
 		`desc` TEXT NULL,
 		`price` DOUBLE DEFAULT '0',
 		`tax_rate` INT NULL DEFAULT '0',
@@ -1535,7 +1513,7 @@ function createJomresTables()
 		`uid` int(11) auto_increment,
 		`date` date,
 		`time` time,
-		`owner` int( 11 ) NOT NULL ,
+		`owner` int( 11 ),
 		`op` VARCHAR(100),
 		`args` TEXT NULL,
 		`property_uid` VARCHAR(11),
@@ -1549,7 +1527,7 @@ function createJomresTables()
 		`uid` int(11) auto_increment,
 		`date` date,
 		`time` time,
-		`owner` int( 11 ) NOT NULL ,
+		`owner` int( 11 ),
 		`op` VARCHAR(100),
 		`args` TEXT NULL,
 		`property_uid` VARCHAR(11),
@@ -1561,7 +1539,7 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_settings` (
 		`uid` int(11) auto_increment,
-		`property_uid` int( 11 ) NOT NULL ,
+		`property_uid` int( 11 ),
 		`akey`	VARCHAR(255),
 		`value`	VARCHAR(255),
 		PRIMARY KEY	(`uid`)
@@ -1572,8 +1550,8 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_images` (
 		`uid` int(11) auto_increment,
-		`roomid` int( 11 ) NOT NULL ,
-		`filelocation` text NOT NULL,
+		`roomid` int( 11 ),
+		`filelocation` text,
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY	(`uid`)
 		) ";
@@ -1581,32 +1559,6 @@ function createJomresTables()
 	if (!$result )
 		echo "<b>Error creating table table __jomres_room_images </b><br>";
 
-	// Depreciated?
-	/*
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_property_images` (
-		`uid` int(11) auto_increment,
-		`propertyid` int( 11 ) NOT NULL ,
-		`filelocation` text NOT NULL,
-		`property_uid` VARCHAR(11),
-		PRIMARY KEY	(`uid`)
-		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_property_images </b><br>";
-	
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_tempBookingOut` (
-		`uid` int(11) auto_increment,
-		`contract_uid` int(11) NOT NULL,
-		`contract_agreed_row` TEXT NULL,
-		`extra_services_row` TEXT NULL,
-		`grand_total_row` TEXT NULL,
-		PRIMARY KEY	(`uid`)
-		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_tempBookingOut </b><br>";
-	*/
-	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
 		`extraservice_uid` int(11) auto_increment,
 		`service_description` VARCHAR(255),
@@ -1623,7 +1575,7 @@ function createJomresTables()
 		`contract_uid` int(11) auto_increment,
 		`arrival` CHAR( 10 ) DEFAULT NULL,
 		`departure` CHAR( 10 ) DEFAULT NULL,
-		`rates_uid` INTEGER NOT NULL,
+		`rates_uid` INTEGER,
 		`guest_uid` INTEGER NULL,
 		`rate_rules` TEXT DEFAULT NULL,
 		`rooms_tariffs` VARCHAR( 255 ),
@@ -1641,14 +1593,14 @@ function createJomresTables()
 		`booked_in` TINYINT DEFAULT '0' NOT NULL,
 		`booked_out` TINYINT DEFAULT '0' NOT NULL,
 		`true_arrival` VARCHAR( 10 ) DEFAULT NULL,
-		`property_uid` INTEGER NOT NULL,
+		`property_uid` INTEGER,
 		`cot_required` TINYINT DEFAULT '0' NOT NULL,
 		`single_person_suppliment` VARCHAR( 11 ) DEFAULT '0',
 		`multi_room_booking` TINYINT DEFAULT '0' NOT NULL,
 		`smoking` TINYINT DEFAULT '0' NOT NULL,
 		`extras` TEXT NULL,
 		`extrasquantities` VARCHAR( 255 ),
-		`extrasvalue` DOUBLE NOT NULL,
+		`extrasvalue` DOUBLE,
 		`tax` DOUBLE( 11, 2 ) DEFAULT '0' NOT NULL,
 		`tag` VARCHAR( 255 ),
 		`timestamp` datetime,
@@ -1662,7 +1614,7 @@ function createJomresTables()
 		`username` VARCHAR(50) NULL,
 		`coupon_id` INTEGER NULL,
 		`bookedout` BOOL NOT NULL DEFAULT '0',
-		`bookedout_timestamp` DATETIME NOT NULL,
+		`bookedout_timestamp` DATETIME,
 		`invoice_uid` int(11),
 		PRIMARY KEY(`contract_uid`)
 		) ";
@@ -1670,46 +1622,9 @@ function createJomresTables()
 	if (!$result )
 		echo "<b>Error creating table table __jomres_contracts </b><br>";
 
-	/*
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_cancellations` (
-		`cancellation_uid` int(11) NOT NULL auto_increment,
-		`guest_uid` VARCHAR( 40 ) NOT NULL ,
-		`forfeit_retained` BOOL NULL,
-		`forfeit` TEXT NULL,
-		`date_cancelled` VARCHAR( 10 ) DEFAULT NULL,
-		`forfeit_redeemed`	TINYINT DEFAULT '0' NOT NULL,
-		`date_forfeit_redeemed` VARCHAR( 10 ) DEFAULT NULL,
-		`contract_uid` VARCHAR( 40 ) NOT NULL ,
-		`reception_id`VARCHAR( 40 ) NOT NULL ,
-		`property_uid` VARCHAR(11),
-		PRIMARY KEY(`cancellation_uid`)
-		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_cancellations </b><br>";
-
-	$query="CREATE TABLE IF NOT EXISTS `#__jomres_bookedout` (
-		`bookout_uid` int(11) NOT NULL auto_increment,
-		`guest_uid` VARCHAR( 40 ) NOT NULL ,
-		`paid_in_full` BOOL NULL,
-		`totalcharge` TEXT NULL,
-		`items` TEXT NULL,
-		`date_bookedout` VARCHAR( 10 ) DEFAULT NULL,
-		`contract_uid` VARCHAR( 40 ) NOT NULL ,
-		`reception_id`VARCHAR( 40 ) NOT NULL ,
-		`room_uid`VARCHAR( 40 ) NOT NULL ,
-		`property_uid` VARCHAR(11),
-		PRIMARY KEY(`bookout_uid`)
-		) ";
-		
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_bookedout </b><br>";
-	*/
-	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_rates` (
 		`rates_uid` int(11) NOT NULL auto_increment,
-		`rate_title` VARCHAR(255) NOT NULL,
+		`rate_title` VARCHAR(255),
 		`rate_description` TEXT NULL,
 		`validfrom` varchar(10),
 		`validto` varchar(10),
@@ -1719,7 +1634,7 @@ function createJomresTables()
 		`minpeople` INTEGER NULL,
 		`maxpeople` INTEGER NULL,
 		`roomclass_uid`	varchar(10),
-		`ignore_pppn`BOOL NOT NULL,
+		`ignore_pppn`BOOL,
 		`allow_ph`BOOL DEFAULT '1' NOT NULL,
 		`allow_we`BOOL DEFAULT '1' NOT NULL,
 		`weekendonly`BOOL DEFAULT '0' NOT NULL,
@@ -1774,7 +1689,7 @@ function createJomresTables()
 		`room_uid` INTEGER NULL,
 		`date` VARCHAR(10) NULL,
 		`contract_uid` INTEGER NULL,
-		`black_booking` BOOL NOT NULL,
+		`black_booking` BOOL,
 		`reception_booking` BOOL NULL,
 		`internet_booking` BOOL NULL,
 		`property_uid` VARCHAR(11),
@@ -1790,7 +1705,7 @@ function createJomresTables()
 		`room_class_full_desc` VARCHAR(255) NULL,
 		`image` TEXT NULL,
 		`property_uid` VARCHAR(11),
-		`srp_only` BOOL NOT NULL,
+		`srp_only` BOOL,
 		PRIMARY KEY(`room_classes_uid`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -1799,8 +1714,8 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_rooms` (
 		`room_uid` int(11) NOT NULL auto_increment,
-		`room_classes_uid` INTEGER NOT NULL,
-		`propertys_uid` INTEGER NOT NULL,
+		`room_classes_uid` INTEGER,
+		`propertys_uid` INTEGER,
 		`room_features_uid` VARCHAR(255) NULL,
 		`room_name` TEXT NULL,
 		`room_number` VARCHAR(255) NULL,
@@ -1840,12 +1755,12 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers` (
 		`manager_uid` int(11) NOT NULL auto_increment,
-		`userid` int(11) NOT NULL,
+		`userid` int(11),
 		`username` VARCHAR(255),
 		`property_uid` int(11),
 		`access_level` int(2),
 		`currentproperty` INT( 11 ) DEFAULT '0' NOT NULL,
-		`pu` INT( 1 ) DEFAULT '0' NOT NULL,
+		`pu` INT( 1 ) DEFAULT '0',
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		PRIMARY KEY	(`manager_uid`)
@@ -1856,11 +1771,11 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_propertys` (
 		`propertys_uid` int(11) NOT NULL auto_increment,
-		`property_name` VARCHAR(255) NOT NULL,
+		`property_name` VARCHAR(255),
 		`property_street` VARCHAR(255) NULL,
 		`property_town` VARCHAR(255) NULL,
-		`property_region` VARCHAR(255) NOT NULL,
-		`property_country` VARCHAR(255) NOT NULL,
+		`property_region` VARCHAR(255) ,
+		`property_country` VARCHAR(255) ,
 		`property_postcode` VARCHAR(20) NULL,
 		`property_tel` VARCHAR(255) NULL,
 		`property_fax` VARCHAR(255) NULL,
@@ -1876,14 +1791,14 @@ function createJomresTables()
 		`property_policies_disclaimers`TEXT NULL,
 		`property_key` VARCHAR( 255 ) NULL,
 		`published` TINYINT( 1 ) DEFAULT '0' NOT NULL,
-		`stars` int NOT NULL,
+		`stars` int,
 		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
 		`lat` VARCHAR(12) NULL,
 		`long` VARCHAR(12) NULL,
-		`metatitle` VARCHAR(150) NOT NULL,
-		`metadescription` VARCHAR(150) NOT NULL,
-		`timestamp` DATETIME NOT NULL,
+		`metatitle` VARCHAR(150),
+		`metadescription` VARCHAR(150),
+		`timestamp` DATETIME,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -1893,13 +1808,13 @@ function createJomresTables()
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-	`name` VARCHAR( 100 ) NOT NULL ,
-	`description` VARCHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 100 ),
+	`description` VARCHAR( 255 ),
 	`published` BOOL NOT NULL DEFAULT '1',
 	`frequency` CHAR(1) DEFAULT 'M',
 	`trial_period` SMALLINT NOT NULL DEFAULT '0',
 	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
-	`full_amount` FLOAT NOT NULL,
+	`full_amount` FLOAT,
 	`rooms_limit` int(11) NOT NULL default '0',
 	`property_limit` int(11) NOT NULL default '0',
 	`tax_code_id` int(11) NOT NULL default '0'
@@ -1909,29 +1824,29 @@ function createJomresTables()
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`cms_user_id` int(11) NOT NULL default '0',
-	`gateway_subscription_id` CHAR( 255 ) NOT NULL ,
+	`gateway_subscription_id` CHAR( 255 ),
 	`package_id` INT NULL DEFAULT '0',
-	`name` VARCHAR( 20 ) NOT NULL ,
-	`description` VARCHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 20 ),
+	`description` VARCHAR( 255 ),
 	`frequency` CHAR(1) DEFAULT 'M',
 	`trial_period` SMALLINT NOT NULL DEFAULT '0',
 	`trial_amount` FLOAT NOT NULL DEFAULT '0.00',
-	`full_amount` FLOAT NOT NULL,
+	`full_amount` FLOAT,
 	`rooms_limit` int(11) NOT NULL default '0',
 	`property_limit` int(11) NOT NULL default '0',
 	`status` SMALLINT NOT NULL DEFAULT '0',
-	`raised_date` datetime NOT NULL
+	`raised_date` datetime
 	)";
 	doInsertSql($query,"");
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`cms_user_id` int(11) NOT NULL default '0',
-	`firstname` VARCHAR( 255 ) NOT NULL ,
-	`surname` VARCHAR( 255 ) NOT NULL ,
-	`address` VARCHAR( 255 ) NOT NULL ,
-	`country` VARCHAR( 255 ) NOT NULL ,
-	`postcode` VARCHAR( 255 ) NOT NULL 
+	`firstname` VARCHAR( 255 ),
+	`surname` VARCHAR( 255 ),
+	`address` VARCHAR( 255 ),
+	`country` VARCHAR( 255 ),
+	`postcode` VARCHAR( 255 ) 
 	)";
 	doInsertSql($query,"");
 
@@ -1997,8 +1912,8 @@ function createJomresTables()
 	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_roomtypes_propertytypes_xref` (
 		`id` int(11) NOT NULL auto_increment,
-		`roomtype_id` int(11) NOT NULL,
-		`propertytype_id` int(11) NOT NULL,
+		`roomtype_id` int(11),
+		`propertytype_id` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
@@ -2006,18 +1921,18 @@ function createJomresTables()
 		
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
 		`id` int(11) NOT NULL auto_increment,
-		`cms_userid` int(11) NOT NULL,
+		`cms_userid` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_partners table</b><br>";
 		
-	$query = "CREATE TABLE `#__jomres_partners_discounts` (
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_partners_discounts` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
-	`partner_id` int(11) NOT NULL,
-	`property_id` int(11) NOT NULL,
-	`valid_from` datetime default NULL ,
-	`valid_to` datetime default NULL ,
+	`partner_id` int(11),
+	`property_id` int(11),
+	`valid_from` datetime,
+	`valid_to` datetime,
 	`discount` FLOAT NOT NULL DEFAULT '0.00',
 	PRIMARY KEY ( `id` )
 	)";
@@ -2470,11 +2385,11 @@ function insertPortalTables()
 	{
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_extrasmodels_models` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`extra_id` INT NOT NULL,
-		`model` INT NOT NULL,
+		`extra_id` INT,
+		`model` INT,
 		`params` varchar(255),
 		`force` BOOL NOT NULL DEFAULT '0',
-		`property_uid` INT NOT NULL,
+		`property_uid` INT,
 	PRIMARY KEY (`id`)
 	)";
 
@@ -2486,7 +2401,7 @@ function insertPortalTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
 		`name` char(255),
-		`property_uid` int not null,
+		`property_uid` int,
 	PRIMARY KEY (`id`)
 	)";
 	if (!doInsertSql($query,'') )
@@ -2496,10 +2411,10 @@ function insertPortalTables()
 		}
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftype_rate_xref` (
 		`id` INT NOT NULL AUTO_INCREMENT,
-		`tarifftype_id` int not null,
-		`tariff_id` int not null,
-		`roomclass_uid` int not null,
-		`property_uid` int not null,
+		`tarifftype_id` int,
+		`tariff_id` int,
+		`roomclass_uid` int,
+		`property_uid` int,
 	PRIMARY KEY (`id`)
 	)";
 	if (!doInsertSql($query,'') )
@@ -2529,9 +2444,9 @@ function insertPortalTables()
 		}
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
 		`id` INTEGER NOT NULL AUTO_INCREMENT,
-		`manager_uid` INTEGER NOT NULL,
-		`jos_id` INTEGER NOT NULL,
-		`portal_booking_id` INTEGER NOT NULL,
+		`manager_uid` INTEGER,
+		`jos_id` INTEGER,
+		`portal_booking_id` INTEGER,
 		`username` varchar(255),
 		`email` varchar(255),
 		`created` datetime,
@@ -2724,7 +2639,7 @@ function alterTables()
 		echo "<b>Error, unable to add __jomres_contracts bookedout</b><br>";
 		
 	//echo "Editing __jomres_contracts table adding bookedout_timestamp column<br>";
-	$query = "ALTER TABLE `#__jomres_contracts` ADD `bookedout_timestamp` DATETIME NOT NULL";
+	$query = "ALTER TABLE `#__jomres_contracts` ADD `bookedout_timestamp` DATETIME";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_contracts bookedout_timestamp</b><br>";
 		
@@ -2915,12 +2830,12 @@ function addNewTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
 		`coupon_id` INT NOT NULL AUTO_INCREMENT ,
 		`property_uid` INT,
-		`coupon_code` VARCHAR( 255 ) NOT NULL ,
-		`valid_from` DATE NOT NULL ,
-		`valid_to` DATE NOT NULL ,
-		`amount` FLOAT NOT NULL ,
-		`is_percentage` BOOL NOT NULL ,
-		`rooms_only` BOOL NOT NULL ,
+		`coupon_code` VARCHAR( 255 ),
+		`valid_from` DATE ,
+		`valid_to` DATE,
+		`amount` FLOAT,
+		`is_percentage` BOOL,
+		`rooms_only` BOOL,
 		PRIMARY KEY ( `coupon_id` )
 		)";
 	if (!doInsertSql($query))
@@ -2951,14 +2866,14 @@ function addNewTables()
 		id int(10) NOT NULL auto_increment,
 		invoice_id int(10) NOT NULL default '0',
 		transaction_id int(10) NOT NULL default '0',
-		time_added datetime NOT NULL,
+		time_added datetime,
 		gateway_id varchar(20) NOT NULL default '',
-		payment_result text NOT NULL,
+		payment_result text,
 		payment_currency varchar(20) NOT NULL default '',
 		payment_amount float NOT NULL default '0',
 		payment_fees float NOT NULL default '0',
 		payment_ref varchar(100) NOT NULL default '',
-		notes text NOT NULL,
+		notes text,
 		PRIMARY KEY  (id)
 	)";
 	if (!doInsertSql($query))
@@ -2967,15 +2882,15 @@ function addNewTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
-		`name` varchar(20) NOT NULL,
-		`description` varchar(255) NOT NULL,
+		`name` varchar(20),
+		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
 		`init_qty` int(11) NOT NULL default '0',
 		`init_discount` float NOT NULL default '0',
 		`recur_price` float NOT NULL default '0',
 		`recur_qty` int(11) NOT NULL default '0',
 		`recur_discount` float NOT NULL default '0',
-		`tax_code_id` int(11) NOT NULL,
+		`tax_code_id` int(11),
 		PRIMARY KEY  (`id`)
 	)";
 	if (!doInsertSql($query))
@@ -2983,8 +2898,8 @@ function addNewTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
-		`name` varchar(20) NOT NULL,
-		`description` varchar(255) NOT NULL,
+		`name` varchar(20),
+		`description` varchar(255),
 		`init_price` float NOT NULL default '0',
 		`init_qty` int(11) NOT NULL default '0',
 		`init_discount` float NOT NULL default '0',
@@ -2993,8 +2908,8 @@ function addNewTables()
 		`recur_qty` int(11) NOT NULL default '0',
 		`recur_discount` float NOT NULL default '0',
 		`recur_total` float NOT NULL default '0',
-		`tax_code` char(10) NOT NULL,
-		`tax_description` char(200) NOT NULL,
+		`tax_code` char(10),
+		`tax_description` char(200),
 		`tax_rate` float NOT NULL default '0',
 		`inv_id` int(11) NOT NULL COMMENT 'Invoice ID',
 		PRIMARY KEY  (`id`)
@@ -3006,17 +2921,17 @@ function addNewTables()
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
 		`status` tinyint(4) NOT NULL default '0',
-		`raised_date` datetime NOT NULL,
-		`due_date` datetime NOT NULL,
-		`paid` datetime NOT NULL,
+		`raised_date` datetime,
+		`due_date` datetime,
+		`paid` datetime,
 		`subscription` tinyint(1) NOT NULL default '0',
 		`init_total` float NOT NULL default '0',
 		`recur_total` float NOT NULL default '0',
 		`recur_frequency` tinyint(4) NOT NULL default '0',
 		`recur_dayofmonth` tinyint(4) NOT NULL default '1',
-		`currencycode` char(3) NOT NULL,
+		`currencycode` char(3),
 		`subscription_id` int(11) NOT NULL default '0',
-		`contract_id` int(11) NOT NULL,
+		`contract_id` int(11),
 		`property_uid` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 		)";
@@ -3025,8 +2940,8 @@ function addNewTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_taxrates` (
 		`id` int(11) NOT NULL auto_increment,
-		`code` char(20) NOT NULL,
-		`description` varchar(255) NOT NULL,
+		`code` char(20),
+		`description` varchar(255),
 		`rate` float NOT NULL default '0',
 		PRIMARY KEY  (`id`)
 		)";
@@ -3037,8 +2952,8 @@ function addNewTables()
 	CREATE TABLE IF NOT EXISTS `#__jomcomp_cron` (
 		`id` INT NOT NULL AUTO_INCREMENT,
 		`job` char( 100 ) ,
-		`schedule` char(2) not null ,
-		`last_ran` int(12) not null ,
+		`schedule` char(2),
+		`last_ran` int(12),
 		`parameters` varchar(255) null,
 		`locked` BOOL NOT NULL DEFAULT '0',
 		PRIMARY KEY ( `id` )
@@ -3057,8 +2972,8 @@ function addNewTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
 		`id` int(11) NOT NULL auto_increment,
-		`manager_id` int(11) NOT NULL,
-		`property_uid` int(11) NOT NULL,
+		`manager_id` int(11),
+		`property_uid` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query))
@@ -3084,9 +2999,9 @@ function addNewTables()
 		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
 		`id` int(11) AUTO_INCREMENT,
-		`manager_uid` INTEGER NOT NULL,
-		`jos_id` INTEGER NOT NULL,
-		`portal_booking_id` INTEGER NOT NULL,
+		`manager_uid` INTEGER,
+		`jos_id` INTEGER,
+		`portal_booking_id` INTEGER,
 		`username` varchar(255),
 		`email` varchar(255),
 		`created` datetime,
