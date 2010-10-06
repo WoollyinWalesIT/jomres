@@ -1137,7 +1137,7 @@ function createJomresTables()
 		echo "<b>Error, unable to add __jomres_partners table</b><br>";
 	
 	echo "Creating __jomres_partners_discounts table<br>";
-	$query = "CREATE TABLE `#__jomres_partners_discounts` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_partners_discounts` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`partner_id` int(11) NOT NULL,
 	`property_id` int(11) NOT NULL,
