@@ -88,46 +88,46 @@ if ($folderChecksPassed)
 		{
 		$parent=$result;
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Show Global Room types','','0','$parent','option=com_jomres&task=listGlobalroomTypes','Show Global Room types','com_jomres','4','jomres/images/jricon.png','0')
+		('Show Global Room types','','0','$parent','option=com_jomres&task=listGlobalroomTypes','Show Global Room types','com_jomres','4','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Show Global Property Features','','0','$parent','option=com_jomres&task=listPfeatures','Show Global Property Features','com_jomres','3','jomres/images/jricon.png','0')
+		('Show Global Property Features','','0','$parent','option=com_jomres&task=listPfeatures','Show Global Property Features','com_jomres','3','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Show Property types','','0','$parent','option=com_jomres&task=listPropertyTypes','Show Property types','com_jomres','2','jomres/images/jricon.png','0')
+		('Show Property types','','0','$parent','option=com_jomres&task=listPropertyTypes','Show Property types','com_jomres','2','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Show Profiles','','0','$parent','option=com_jomres&task=listMosUsers','Show Profiles','com_jomres','1','jomres/images/jricon.png','0')
+		('Show Profiles','','0','$parent','option=com_jomres&task=listMosUsers','Show Profiles','com_jomres','1','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Edit Site Configuration','','0','$parent','option=com_jomres&task=showSiteConfig','Edit Site Configuration','com_jomres','0','jomres/images/jricon.png','0')
+		('Edit Site Configuration','','0','$parent','option=com_jomres&task=showSiteConfig','Edit Site Configuration','com_jomres','0','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Logs','','0','$parent','option=com_jomres&task=listLogs','Logs','com_jomres','0','jomres/images/jricon.png','0')
+		('Logs','','0','$parent','option=com_jomres&task=listLogs','Logs','com_jomres','0','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		
 		$query="INSERT INTO #__components
-		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`)
+		(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`)
 		VALUES
-		('Plugins','','0','$parent','option=com_jomres&task=showplugins','Plugins','com_jomres','0','jomres/images/jricon.png','0')
+		('Plugins','','0','$parent','option=com_jomres&task=showplugins','Plugins','com_jomres','0','jomres/images/jricon.png','0','')
 		";
 		$result=doInsertSql($query,"");
 		}
