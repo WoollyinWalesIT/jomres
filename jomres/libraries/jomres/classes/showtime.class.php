@@ -53,7 +53,9 @@ class showtime
 		{
 		if (self::$internal_debugging)
 			echo "Getting ".$setting." which is ".$this->$setting."<br>";
-		return $this->$setting;
+		if (isset($this->$setting))
+			return $this->$setting;
+		return null;
 		}
 		
 	public function set_custom_path_for_template($templatename,$path)
