@@ -38,7 +38,7 @@ function JomresBuildRoute(&$query)
 			$pid = $route_query['selectedProperty'];
 		else
 			$pid = $route_query['property_uid'];
-		$property_name=getPropertyName($pid);
+		$property_name=str_replace("&#39;","",getPropertyName($pid));
 		}
 	switch($route_query['task'])
 		{
