@@ -1,10 +1,5 @@
 /* CSS Document */
 
-.warning {
-	color: #000;
-	background-color: #fce31d;
-	background-image: none;
-	}
 
 div.blockMsg {
 	width:  30%;
@@ -95,13 +90,7 @@ div.blockMsg {
 	{	
 	width: 100%;
 	}
-	
-div.address_info  { color: #000000;  background-color: #eeeeee; text-align: center; }
-div.address_info a:link { color: #000000; text-decoration:underline;}
-div.tab_panel_content  {  background-color: #FFFFFF; text-align: center; color: #000;}
-div.tab_panel_content a:link { text-decoration:underline;}
 
-/* For the new Jomres buttons and tabs (v4.4.1) We'll leave jomres_button in place in case somebody wants their old look, but it's officially depreciated */
 
 	.fg-button { outline: 0; margin:0 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
 	.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
@@ -128,172 +117,19 @@ div.tab_panel_content a:link { text-decoration:underline;}
 	.fg-toolbar .fg-button { font-size: 1em;  }
 
 
-.jomres_button {
-	/*background: url(../images/jomres_button.gif) no-repeat;*/
-	color: #ffffff;
-	padding: 0;
-	margin: 0 2px 2px 0;
-	height: 23px;
-	width: 150px;
-	background-color: #6e717a; 
-	text-align: center;
-	}
-
-.jomres_button a:link, .jomres_button a:visited 
-	{
-	color: #ffffff;
-	font-family: Tahoma,Arial,Helvetica,sans-serif;
-	font-size: 9px;
-	font-weight: bold;
-	padding: 0px 10px 0 20px;
-	text-decoration: none;	
-	height: 19px;
-	line-height: 23px;
-	text-transform: uppercase;
-	outline: 0;
-	}
-	
-.jomres_button a:hover
-	{
-	}
-
-.jomres_button_property_list {
-	/*background: url(../images/jomres_button.gif) no-repeat;*/
-	color: #ffffff;
-	padding: 0;
-	margin: 0 2px 2px 0;
-	height: 23px;
-	width: 230px;
-	background-color: #6e717a; 
-	text-align: center;
-	}
-
-.jomres_button_property_list a:link, .jomres_button_property_list a:visited 
-	{
-	color: #ffffff;
-	font-family: Tahoma,Arial,Helvetica,sans-serif;
-	font-size: 9px;
-	font-weight: bold;
-	padding: 0px 10px 0 20px;
-	text-decoration: none;	
-	height: 19px;
-	line-height: 23px;
-	text-transform: uppercase;
-	outline: 0;
-	}
-	
-.jomres_button_property_list a:hover
-	{
-	}
-	
-.jomres_orderbox 
-	{
-	margin-top: 5px;
-	}
-	
-.dateinput_button 
-	{
-	outline: 0;
-	}	
-
 .jomrestexteditable 
 	{
 	color: #99f;
 	background-color: #fff;	
 	}
 
-#pathway_text {
-	margin: 0;
-	padding: 0;
-	}
-	
+
 .pathway img {
 	position: relative;
 	top: 2px;
 	left: 0;
 	}
- 
-/*Property list*/
-.propertylist {
-	margin-bottom: 10px;
-}	
 
-.propertylist_info 
-	{
-	padding: 10px 5px 0px 5px;
-	}		
-
-.propertylist_left 
-	{
-	background-color: #FFFFFF;
-	}
-
-.pheadwrap 
-	{
-	background-color: #eeeeee;
-	padding: 10px 5px 0px 5px;
-	}
-	
-.propertylist_header 
-	{
-	width: 100%;
-	height: 20px;
-	line-height: 20px;
-	text-indent: 5px;
-	}
-
-.propertylist_header a:link, .propertylist_header a:visited 
-	{
-	font-size: 12px;
-	font-weight: bold;
-	}
-
-.propertylist_headerr 
-	{
-	padding: 0 5px 0;
-	font-weight: bold;
-	color: #135cae;
-	font-size: 10px;
-	text-align: right;
-	}
-
-.propertylist_desc 
-	{
-	}
-
-.propertylist_discount
-	{
-	margin-bottom: 4px;
-	}
-
-.propertylist_right 
-	{
-	width: 270px;
-	border-left: 1px solid #dddddd;
-	}		
-
-.propertylist_image a img 
-	{
-	margin: 0;
-	padding: 0;
-	}
-
-.propertylist_rooms 
-	{
-	margin: 0 0 4px 0;
-	}		
-
-.propertylist_features 
-	{
-	margin: 0;
-	float: left;
-	}		
-
-.propertylist_small
-	{
-	font-size: 11px;
-	text-align: right;
-	}
 
 /*Property header*/
 /* .header
