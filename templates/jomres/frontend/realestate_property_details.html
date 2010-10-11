@@ -1,23 +1,12 @@
 <patTemplate:tmpl name="pageoutput" >
-<script type="text/javascript" src="{LIVE_SITE}/jomres/javascript/tabber-minimized.js"></script>
-<link rel="stylesheet" href="{LIVE_SITE}/jomres/css/tabber.css" TYPE="text/css" MEDIA="screen" />
-
-<style type="text/css">
-
-
-</style>
 
 <script type="text/javascript">
-document.write('<style type="text/css">.tabber{display:none;}<\/style>');
-</script>
+//getter
+var fx = jQuery( ".selector" ).tabs( "option", "fx" );
+//setter
+jQuery( ".selector" ).tabs( "option", "fx", { opacity: 'toggle' } );
 
-<script type="text/javascript">
 	jQuery(function(){
-		jQuery("div.address_info").corner("5px");
-		jQuery("div.viewproperty").corner("5px");
-		jQuery("div.property_details").corner("5px");
-		jQuery("div.more_info").corner("5px");
-		jQuery("td.viewproperty_rightcol").corner("5px");
 		//all hover and click logic for buttons
 		jQuery(".fg-button:not(.ui-state-disabled)")
 		.hover(
@@ -31,118 +20,181 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 		.mousedown(function(){
 				jQuery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
 				if( jQuery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jQuery(this).removeClass("ui-state-active"); }
-				else { jQuery(this).addClass("ui-state-active"); }	
+				else { jQuery(this).addClass("ui-state-active"); }
 		})
 		.mouseup(function(){
 			if(! jQuery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
 				jQuery(this).removeClass("ui-state-active");
 			}
 		});
-	});
+
+		jQuery("#tabs").tabs({ fx: { opacity: 'toggle' } });
+    });
 </script>
-<div class="panelwrapper" style="padding: 10px; margin: 10px">
-	<div class="innerwrapper">
-		<div class="viewproperty">
-			<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="viewproperty_rightcol" valign="top">
-						<table border="0" width="100%" cellpadding="0" cellspacing="0" class="top_info">
-							<tr>
-								<td>
-									<div class="fg-button ui-state-default ui-priority-primary ui-corner-all">
-										{CONTACTUS}
+
+<div >
+	<table border="0" width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="viewproperty_rightcol" valign="top">
+				<table border="0" width="100%" cellpadding="0" cellspacing="0" class="top_info">
+					<tr>
+						<td>
+							<div class="fg-toolbar ui-widget-header ui-corner-all ui-helper-clearfix">
+								<div class="fg-buttonset ui-helper-clearfix">
+									<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="bookinglink"  unusedvars="nbsp">
+									<div class="fg-button ui-state-default ui-priority-primary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-circle-plus"></span>
+										{BOOKINGLINK}
 									</div>
-								</td>
-								<td>
+									</patTemplate:tmpl>
 									<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="slideshowlink"  unusedvars="nbsp">
-									<div class="jomres_button">
+									<div class="fg-button ui-state-default ui-priority-secondary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-bullet"></span>
 										{SLIDESHOWLINK}
 									</div>
 									</patTemplate:tmpl>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<!-- This gallery link has now been reused and renamed to the external link -->
-									<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink"  unusedvars="nbsp">
-										{GALLERYLINK}
-									</patTemplate:tmpl>
-									<div class="address_info" style="clear:both;">
-										&nbsp;&nbsp;{COM_A_BASICTEMPLATE_SHOWADDRESS} {STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY} {TELEPHONE}
+									<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="tariffslink"  unusedvars="nbsp">
+									<div class="fg-button ui-state-default ui-priority-secondary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-bullet"></span>
+										{TARIFFSLINK}
 									</div>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-
-				<tr>
-					<td class="viewproperty_leftcol" valign="top">
-						<div class="tabber">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{TITLE_PROPERTYDETAILS}</h2>
-										<p>{DESCRIPTION}</p>
+									</patTemplate:tmpl>
+									<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="roomslistlink"  unusedvars="nbsp">
+									<div class="fg-button ui-state-default ui-priority-secondary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-bullet"></span>
+										{ROOMSLISTLINK}
+									</div>
+									</patTemplate:tmpl>
+									<div class="fg-button ui-state-default ui-priority-secondary ui-corner-all fg-button-icon-left"><span class="ui-icon ui-icon-bullet"></span>
+										{CONTACTUS}
+									</div>
 								</div>
 							</div>
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{TITLE_MOREINFO}</h2>
-										<div class="leftinfo_title">
-											{HAREAACTIVITIES}
-										</div>
-										<div class="leftinfo_content">
-											{AREAACTIVITIES}
-										</div>
-										<div class="leftinfo_title">
-											{HPOLICIESDISCLAIMERS}
-										</div>
-										<div class="leftinfo_content">
-											{POLICIESDISCLAIMERS}
-										</div>
-										<div class="leftinfo_title">
-											{HDRIVINGDIRECTIONS}
-										</div>
-										<div class="leftinfo_content">
-											{DRIVINGDIRECTIONS}
-										</div>
-										<div class="leftinfo_title">
-											{HAIRPORTS}
-										</div>
-										<div class="leftinfo_content">
-											{AIRPORTS}
-										</div>
-										<div class="leftinfo_title">
-											{HOTHERTRANSPORT}
-										</div>
-										<div class="leftinfo_content">
-											{OTHERTRANSPORT}
-										</div>
-								</div>
-							</div>
-							<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{SLIDESHOW_TITLE}</h2>
-									{SLIDESHOW}
-								</div>
-							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div class="ui-widget ui-widget-content ui-corner-all" style="margin-top:10px;padding:5px" >
+							<!-- This gallery link has now been reused and renamed to the external link -->
+							<patTemplate:tmpl name="gallerylink" type="simpleCondition" requiredVars="gallerylink"  unusedvars="nbsp">
+								{GALLERYLINK}
 							</patTemplate:tmpl>
-						
-							<patTemplate:tmpl name="mapcontent" type="simpleCondition" requiredVars="map_title">
-							<div class="tabbertab">
-								<div class="tab_panel_content">
-									<h2>{MAP_TITLE}</h2>
-									{GOOGLE_MAPS}
-								</div>
+							<div style="clear:both;">
+								&nbsp;&nbsp;{COM_A_BASICTEMPLATE_SHOWADDRESS} {STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY} {TELEPHONE} 
+							</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="viewproperty_leftcol " valign="top">
+				<!-- Start jquery tabs -->
+					<div id="tabs">
+						<ul>
+							<li><a href="#{TITLE_PROPERTYDETAILS_ANCHOR}"><span>{TITLE_PROPERTYDETAILS}</span></a></li>
+							<li><a href="#{TITLE_MOREINFO_ANCHOR}"><span>{TITLE_MOREINFO}</span></a></li>
+							<patTemplate:tmpl name="reviews_anchor" type="simpleCondition" requiredVars="title_reviewslist_anchor"><li><a href="#{TITLE_REVIEWSLIST_ANCHOR}"><span>{TITLE_REVIEWSLIST}</span></a></li></patTemplate:tmpl>
+							<patTemplate:tmpl name="bookingform_anchor" type="simpleCondition" requiredVars="title_bookingform_anchor"><li><a href="#{TITLE_BOOKINGFORM_ANCHOR}"><span>{TITLE_BOOKINGFORM}</span></a></li></patTemplate:tmpl>
+							<patTemplate:tmpl name="availabilitycalendarcontent_anchor" type="simpleCondition" requiredVars="avlcalendar_title_anchor"><li><a href="#{AVLCALENDAR_TITLE_ANCHOR}"><span>{AVLCALENDAR_TITLE}</span></a></li></patTemplate:tmpl>
+							<patTemplate:tmpl name="slideshowcontent_anchor" type="simpleCondition" requiredVars="slideshow_title_anchor"><li><a href="#{SLIDESHOW_TITLE_ANCHOR}"><span>{SLIDESHOW_TITLE}</span></a></li></patTemplate:tmpl>
+							<li><a href="#{MAP_TITLE_ANCHOR}"><span>{TITLE_MAP}</span></a></li>
+							<patTemplate:tmpl name="tariffslist_anchor" type="simpleCondition" requiredVars="title_tariff_anchor"><li><a href="#{TITLE_TARIFF_ANCHOR}"><span>{TITLE_TARIFF}</span></a></li></patTemplate:tmpl>
+							<patTemplate:tmpl name="roomslist_anchor" type="simpleCondition" requiredVars="title_roomslist_anchor"><li><a href="#{TITLE_ROOMSLIST_ANCHOR}"><span>{TITLE_ROOMSLIST}</span></a></li></patTemplate:tmpl>
+
+						</ul>
+						<div id="{TITLE_PROPERTYDETAILS_ANCHOR}">
+							<p>{DESCRIPTION}</p>
+							<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
+							<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
+								<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+								{DISCOUNT_OUTPUT}</p>
 							</div>
 							</patTemplate:tmpl>
 						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div style="clear:both;"></div>
-	</div>
+						<div id="{TITLE_MOREINFO_ANCHOR}">
+								<div class="contentheading">
+									{HAREAACTIVITIES}
+								</div>
+								<p>
+									{AREAACTIVITIES}
+								</p>
+								<div class="contentheading">
+									{HPOLICIESDISCLAIMERS}
+								</div>
+								<p>
+									{POLICIESDISCLAIMERS}
+								</p>
+								<div class="contentheading">
+									{HCHECKINTIMES}
+								</div>
+								<p>
+									{CHECKINTIMES}
+								</p>
+								<div class="contentheading">
+									{HDRIVINGDIRECTIONS}
+								</div>
+								<p>
+									{DRIVINGDIRECTIONS}
+								</p>
+								<div class="contentheading">
+									{HAIRPORTS}
+								</div>
+								<p>
+									{AIRPORTS}
+								</p>
+								<div class="contentheading">
+									{HOTHERTRANSPORT}
+								</div>
+								<p>
+									{OTHERTRANSPORT}
+								</p>
+						</div>
+
+						<patTemplate:tmpl name="reviews" type="simpleCondition" requiredVars="reviews_title">
+						<div id="{TITLE_REVIEWSLIST_ANCHOR}">
+								{REVIEWS_LIST}
+						</div>
+						</patTemplate:tmpl>
+						
+						<patTemplate:tmpl name="bookingform" type="simpleCondition" requiredVars="bookingform_title">
+						<div id="{TITLE_BOOKINGFORM_ANCHOR}">
+								{BOOKINGFORM}
+						</div>
+						</patTemplate:tmpl>
+						
+						<patTemplate:tmpl name="availabilitycalendarcontent" type="simpleCondition" requiredVars="avlcalendar_title">
+						<div id="{AVLCALENDAR_TITLE_ANCHOR}">
+							<!-- <div class="contentheading">{AVLCALENDAR_TITLE}</div> -->
+								{AVAILABILITY_CALENDAR}
+						</div>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
+						<div id="{SLIDESHOW_TITLE_ANCHOR}">
+							<!-- <div class="contentheading">{SLIDESHOW_TITLE}</div> -->
+								{SLIDESHOW}
+						</div>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="mapcontent" type="simpleCondition" requiredVars="map_title">
+						<div id="{MAP_TITLE_ANCHOR}">
+							<!-- <div class="contentheading">{MAP_TITLE}</div> -->
+								{GOOGLE_MAPS}
+						</div>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="tariffslist" type="simpleCondition" requiredVars="tariffs_list_title">
+						<div id="{TITLE_TARIFF_ANCHOR}">
+							<!-- <div class="contentheading">{TARIFFS_LIST_TITLE}</div> -->
+								{INLINE_TARIFFS}
+						</div>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="roomslist" type="simpleCondition" requiredVars="rooms_list_title">
+						<div id="{TITLE_ROOMSLIST_ANCHOR}">
+							<!-- <div class="contentheading">{ROOMS_LIST_TITLE}</div> -->
+								{ROOMS_LIST}
+						</div>
+						</patTemplate:tmpl>
+					</div>
+					<!-- End jquery tabs -->
+				</td>
+			</tr>
+		</table>
+	<div style="clear:both;"></div>
 </div>
 </patTemplate:tmpl>
