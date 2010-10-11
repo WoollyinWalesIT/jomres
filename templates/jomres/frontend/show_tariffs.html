@@ -1,44 +1,43 @@
 <patTemplate:tmpl name="output" unusedvars="nbsp">
 	<patTemplate:tmpl name="show_tariffs">
-	<table>
-		<tr class="tariff_header">
-			<td colspan="2">{HTITLE}</td>
-			<td colspan="2">{TITLE}</td>
+	<table class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 20px;" width="100%">
+		<tr >
+			<td class = "ui-widget-header" colspan="2">{HTITLE}</td>
+			<td class = "ui-widget-header" colspan="2">{TITLE}</td>
 		</tr>
 		<tr >
-			<td colspan="2">{HDESC}</td>
+			<td colspan="2"><strong>{HDESC}</strong></td>
 			<td colspan="2">{DESC}</td>
 		</tr>
 		<tr>
-			<td colspan="1">{HROOMTYPE}</td>
+			<td colspan="1"><strong>{HROOMTYPE}</strong></td>
 			<td colspan="1">{ROOMCLASSABBV} </td>
 			<td colspan="2">{ROOMCLASSFULLDESC} </td>
 		</tr>
 		<tr>
-			<td>{HSTARTS}</td>
+			<td><strong>{HSTARTS}</strong></td>
 			<td>{VALIDFROM}</td>
-			<td>{HENDS}</td>
+			<td><strong>{HENDS}</strong></td>
 			<td>{VALIDTO}</td>
 		</tr>
 		<tr>
-			<td>{HMINDAYS}</td>
+			<td><strong>{HMINDAYS}</strong></td>
 			<td>{MINDAYS}</td>
-			<td>{HMAXDAYS}</td>
+			<td><strong>{HMAXDAYS}</strong></td>
 			<td>{MAXDAYS}</td>
 		</tr>
 		<tr>
-			<td>{HMINPEEPS}</td>
+			<td><strong>{HMINPEEPS}</strong></td>
 			<td>{MINPEOPLE}</td>
-			<td>{HMAXPEEPS}</td>
+			<td><strong>{HMAXPEEPS}</strong></td>
 			<td>{MAXPEOPLE}</td>
 		</tr>
 		<tr>
 			<td colspan="4"><b>{ROOMRATEPERDAY}<b></td>
 		</tr>
 		<tr>
-			<td colspan="4">{NOTWEEKENDS}</td>
+			<td colspan="4"><strong>{NOTWEEKENDS}</strong></td>
 		</tr>
-		<tr><td colspan="4">{CONVERSIONBLURB}</td></tr>
 		<tr><td colspan="4">{GOOGLECURRENCYLINKS}</td></tr>
 	</table>
 	</patTemplate:tmpl>
