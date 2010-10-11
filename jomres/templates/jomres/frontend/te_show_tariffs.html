@@ -1,17 +1,17 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <!-- if you want to show min & max people and days, just uncomment the lines commented out below-->
-	<table>
-		<tr class="roomslist_header">
-			<td>{HTITLE}</td>
-			<td>{HROOMTYPE}</td>
-			<td>{HSTARTS}</td>
-			<td>{HENDS}</td>
-			<td>&nbsp;</td>
+	<table class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 20px;" width="100%">
+		<tr>
+			<td class = "ui-widget-header">{HTITLE}</td>
+			<td class = "ui-widget-header">{HROOMTYPE}</td>
+			<td class = "ui-widget-header">{HSTARTS}</td>
+			<td class = "ui-widget-header">{HENDS}</td>
+			<td class = "ui-widget-header">&nbsp;</td>
 			<!--<td>{HMINDAYS}</td>
 			<td>{HMAXDAYS}</td>
 			<td>{HMINPEEPS}</td>
 			<td>{HMAXPEEPS}</td>-->
-			<td>{CONVERSIONBLURB}</td>
+			<td class = "ui-widget-header">{CONVERSIONBLURB}</td>
 		</tr>
 		<patTemplate:tmpl name="show_tariffs">
 		<tr>

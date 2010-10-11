@@ -2331,6 +2331,7 @@ class dobooking
 			dateFormat: "'.$dateFormat.'",
 			minDate: 0, maxDate: "+5Y",
 			buttonImage: \''.get_showtime('live_site').'/jomres/images/calendar.png\',
+			autoSize:true,
 			buttonImageOnly: true,
 			showOn: "both",
 			changeMonth: true,

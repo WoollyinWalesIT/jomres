@@ -1,5 +1,8 @@
 /* CSS Document */
 
+div.ui-widget input{
+ font-size:16px;
+}
 
 div.blockMsg {
 	width:  30%;
@@ -131,102 +134,26 @@ div.blockMsg {
 	}
 
 
-/*Property header*/
-/* .header
-	{	
-	height: 110px;
-	background: #eeeeee;
-	margin-top: 5px;
-	border-top: 1px solid #aaaaaa;
-	border-left: 1px solid #aaaaaa;
-	text-align: center;
-	} */
-
-.header_property
-	{
-	color: #000000;
-	font-size: 18px;
-	text-indent: 10px;
-	line-height: 50px; 
-	text-align: left; 
-	}
-
-.header_image 
-	{
-	}
-
-/* Property detail*/
-.viewproperty {
-	margin-bottom: 5px;
-}	
 
 .viewproperty_leftcol 
 	{
 	background: #ffffff;
 	}
 
-.leftinfo_title 
-	{
-	color: #000;
-	text-transform: uppercase;
-	font-weight: bolder;
-	}
-
-.leftinfo_content 
-	{
-	font-weight: normal;
-	}
 
 .viewproperty_rightcol 
 	{
 	background: #ffffff;
 	padding: 10px;
 	}
-	
-.rightinfo_title 
-	{
-	font-size: 10px;
-	font-weight: bold;
-	margin-top: 3px;
-	}
 
-.rightinfo_content 
-	{
-	font-size: 10px;
-	font-weight: normal;
-	}
-
-/* Booking form */	
-.bformleftcol 
-	{
-	color: #000;
-	background: #ffffff;
-	vertical-align: top;
-	}
-	
-.bformrightcol 
-	{
-	width: 150px!important;
-	background: #f1f1f1;
-	vertical-align: top;
-	padding: 0;
-	border: none;
-	}
-	
 .bform_table 
 	{
-	background: #ffffff;
-	border: 1px solid #cccccc;
-	margin-bottom: 5px;
 	}
 
 .bform_table th
 	{
-	background: #f7f7f7;
 	color: #000;
-	text-indent: 5px;
-	font-size: 11px;
-	height: 20px;
 	line-height: 20px;
 	}
 	
@@ -236,12 +163,6 @@ div.blockMsg {
 	font-weight: normal;
 	text-align: left;
 }
-
-.bform_table td, tr 
-	{
-	padding: 3px;
-	border: 0 none;
-	}
 
 .bform_table_totals 
 	{
@@ -264,12 +185,6 @@ div.blockMsg {
 	padding: 3px;
 	}
 
-.bookingform_footer  
-	{
-	background: #f1f1f1;
-	text-align: right;
-	}
-
 #availRooms
 	{
 	}
@@ -280,14 +195,6 @@ div.blockMsg {
 	margin-top: 3px;
 	}
 	
-.broomslist_header 
-	{
-	} 
-
-.broomslist 
-	{
-	padding: 3px;
-	}
 
 .roomslist_noroomsselected 
 	{
@@ -299,115 +206,6 @@ div.blockMsg {
 	margin: 0;
 	}
 
-div.roomsListInnerWrapper, div.roomsListWrapper
-	{
-	padding: 0;
-	}
-	
-.roomslist_availabletext 
-	{
-	font-weight: bold;
-	padding: 0;
-	margin: 0;
-	}
-
-.roomslist_selectedtext 	
-	{
-	font-weight: bold;
-	padding: 0;
-	margin: 0;
-	}
-	
-.roomalert_off 
-	{
-	background: #f1f1f1;
-	}	
-	
-/* The rooms list buttons as passed back in the booking form from the ajax */
-#roombuttoncontainer 
-	{
-	text-align: left;
-	width: 100px;
-	}
-
-#roombutton dl 
-	{ 
-	list-style-type: none; 
-	}
-
-#roombutton dt 
-	{
-	list-style: none;
-	text-align: left;
-	margin-bottom: 2px;
-	font-weight: normal;
-	height: 25px;
-	}
-
-#roombutton dt a 
-	{
-	text-decoration: none;
-	display: block;
-	width: 135px;
-	color: #000;
-	background: url(../images/KeyCard.png) no-repeat;
-	padding: 0 2px 0 5px;
-	margin-left: 0px;
-	text-align: right;
-	}
-
-#roombutton dt a:hover 
-	{
-	text-decoration: none;
-	display: block;
-	color: #000;
-	background-image: url(../images/KeyCardAdd.png);
-	background-repeat: no-repeat;
-	text-align: right;
-	}
-
-#roombuttoncontainer_selected 
-	{
-	text-align: left;
-	width: 100px;
-	margin-bottom: 3px;
-	}
-
-#roombutton_selected dl 
-	{ 
-	list-style-type: none; 
-	}
-
-#roombutton_selected dt 
-	{
-	list-style: none;
-	text-align: left;
-	margin-top: 2px;
-	font-weight: normal;
-	height: 25px;
-	text-align: right;
-	}
-
-#roombutton_selected dt a 
-	{
-	text-decoration: none;
-	display: block;
-	width: 135px;
-	color: #000;
-	background-image: url(../images/KeyCardAdd.png);
-	background-repeat: no-repeat;
-	padding: 0 2px 0 5px;
-	margin-left: 0;
-	}
-
-#roombutton_selected dt a:hover 
-	{
-	text-decoration: none;
-	display: block;
-	color: #fff;
-	background-image: url(../images/KeyCardDelete.png);
-	background-repeat: no-repeat;
-	}
 
 /* Booking confirmation */
 .confirmation_table 
@@ -432,16 +230,6 @@ div.roomsListInnerWrapper, div.roomsListWrapper
 	padding: 1px 5px 1px 5px;
 	}
 
-.confirmation_special_req_header 
-	{
-	margin-top: 5px;
-	text-indent: 5px;
-	} 
-
-.confirmation_special_req_foot 
-	{
-	font-size: 9px;
-	}
 
 .confirmation_gateway_header 
 	{
@@ -529,21 +317,23 @@ a.rescal:link, a.rescal:visited
 	font-size: 10px;
 	}
 
+a.rescal:link, a.rescal:visited, tr.rescal, td.rescal {
+	display : block;
+	}
+
+a.rescal:hover {
+	background-color : grey;
+	color : black;
+	}
+
+	
 a.rescal:hover  
 	{
 	background-color: white;
 	color: black;
 	}
 
- /* Show tariffs template */
-.tariff_header 
-	{
-	background: #f1f1f1;
-	color : #000000;
-	}
-
-
-/* Slideshows */	
+/* Slideshows */
 .slideshow 
 	{
 	background: #f1f1f1;
@@ -567,11 +357,6 @@ a.rescal:hover
 	font-size: 11px;
 	}
 
-.roomslist_header
-   {
-   background: #f1f1f1;
-   color : #000;
-   }
 
 .jradmin_rowtoolbar 	
 	{
@@ -583,10 +368,6 @@ a.rescal:hover
 	background: #d9dee2;
 	}
 	
-.jradmin_wrapper 
-	{
-	width: 550px;
-	}
 
 .jradmin_table 
 	{
@@ -687,22 +468,5 @@ div.block_ui_bookingform h3
 	text-align: center;
 	padding-top: 10px;
 	}
-	
-a.rescal:link, a.rescal:visited, tr.rescal, td.rescal {
-	display : block;
-	}
-a.rescal:hover {
-	background-color : grey;
-	color : black;
-	}
-	
-#jomresmenu a{
-	text-decoration:none;
-	border-color: #fff;
-	}
 
-#jomresmenu a:hover {
-	text-decoration:none;
-	border-color: #feff04;
-	}
-	
+
