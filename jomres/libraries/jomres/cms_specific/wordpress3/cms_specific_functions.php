@@ -159,8 +159,7 @@ function jomres_cmsspecific_getcurrentusers_id()
 	{
 	$id=0;
 	$user = wp_get_current_user();
-	var_dump($user);exit;
-	$id=$user->get('id');
+	$id=$user->ID;
 	return $id;
 	}
 
@@ -307,17 +306,17 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName="")
 // Returns an indexed array of the CMS's users
 function jomres_cmsspecific_getCMSUsers()
 	{
-/* 	$users=array();
-	$query="SELECT id,name,username FROM #__users";
+	$users=array();
+	$query="SELECT id,user_nicename,user_login FROM #__users";
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{
 		foreach ($userList as $u)
 			{
-			$users[$u->id]=array("id"=>$u->id,"username"=>$u->username);
+			$users[$u->id]=array("id"=>$u->id,"username"=>$u->user_login);
 			}
 		}
-	return $users; */
+	return $users;
 	}
 
 function jomres_cmsspecific_makeSEF_URL($link)
