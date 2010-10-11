@@ -44,11 +44,13 @@ class jr_user
 		$this->userIsRegistered					= FALSE;
 		$this->users_timezone					= "America/Lima";
 		$this->jomres_manager_id				= 0;
-		$sessionid = session_id();
-		if( $sessionid == "" )
-			{
-			return false;
-			}
+		
+		// Disabled as session id not set in wordpress, and I don't think we need it any more.
+		// $sessionid = session_id();
+		// if( $sessionid == "" )
+			// {
+			// return false;
+			// }
 
 		$this->id=jomres_cmsspecific_getcurrentusers_id();
 
