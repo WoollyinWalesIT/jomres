@@ -342,10 +342,14 @@ if ( $jrConfig['useSSLinBookingform'] == 1)
 		{
 		set_showtime('live_site',str_replace("http://","https://",get_showtime('live_site')));
 		}
-	else
+	elseif ( (get_showtime('task') == "viewproperty" && $jrConfig['show_booking_form_in_property_details'] == "1") || ($numberOfPropertiesInSystem==1 && $jrConfig['is_single_property_installation'] == "0") )
 		{
-		set_showtime('live_site',str_replace("https://","http://",get_showtime('live_site')));
+		set_showtime('live_site',str_replace("http://","https://",get_showtime('live_site')));
 		}
+		else
+			{
+			set_showtime('live_site',str_replace("https://","http://",get_showtime('live_site')));
+			}
 	}
 
 init_javascript();
