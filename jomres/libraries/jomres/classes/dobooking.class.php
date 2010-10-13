@@ -6195,10 +6195,11 @@ class dobooking
 						$this->setErrorLog("generateBilling:: Starting calcSinglePersonSuppliment");
 						$this->calcSinglePersonSuppliment();
 						$this->setErrorLog("generateBilling:: Starting calcTax");
-						$this->calcTax();
 						$this->setErrorLog("generateBilling:: Starting calcLastMinuteDiscount");
 						if ($this->cfg_singleRoomProperty ==1)
 							$this->calcLastMinuteDiscount();
+						$this->calcTax();
+
 						$this->setErrorLog("generateBilling:: Starting calcTotals");
 						$this->calcTotals();
 						
