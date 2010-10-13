@@ -63,7 +63,7 @@ function configCountries()
 	asort($countryCodes);
 	foreach ($countryCodes as $k=>$v)
 		{
-		$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
+		$thecountryCodes[]=jomresHTML::makeOption( $k, $v );
 		}
 	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'cfg_defaultcountry', 'class="inputbox"', 'value', 'text', $selectedCountry);
 	return $countryDropdown;
@@ -92,7 +92,7 @@ function createSimpleCountriesDropdown($selectedCountry)
 	asort($countryCodes);
 	foreach ($countryCodes as $k=>$v)
 		{
-		$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
+		$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
 		}
 	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'guest_country', 'class="inputbox" ', 'value', 'text', $selectedCountry);
 	return $countryDropdown;
@@ -106,7 +106,7 @@ function limitCountriesDropdown()
 	asort($countryCodes);
 	foreach ($countryCodes as $k=>$v)
 		{
-		$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
+		$thecountryCodes[]=jomresHTML::makeOption( $k, $v );
 		}
 	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'cfg_limit_property_country_country', 'class="inputbox" ', 'value', 'text', $jrConfig['limit_property_country_country']);
 	return $countryDropdown;
@@ -134,7 +134,7 @@ function createCountriesDropdown($selectedCountry)
 	//$countryDropdown="<select id=\"country\" name=\"country\"  class=\"inputbox\" onchange='OnChange(this.form.country)'>";
 	foreach ($countryCodes as $k=>$v)
 		{
-		$loopedCountry=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) ;
+		$loopedCountry=$v;
 		if ($selectedCountry != "" && $selectedCountry==$k)
 			$selected="selected";
 		else
@@ -456,7 +456,7 @@ function countryNameArray()
 * @copyright  2005-2006 Vince Wooll
 #
  */
-function countryCodesArray()
+function countryCodesArray($translate=true)
 	{
 	$countryCodes = array(
 
@@ -534,6 +534,15 @@ function countryCodesArray()
 	"YT" => "Mayotte", "YU" => "Yugoslavia", "ZA" => "S. Africa", "ZM" => "Zambia",
 	"ZR" => "Zaire", "ZW" => "Zimbabwe"
 	);
+	if ($translate)
+		{
+		$new_arr = array();
+		foreach ($countryCodes as $key=>$val)
+			{
+			$new_arr[$key]=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$val,$val,false,false);
+			}
+		}
+	$countryCodes = $new_arr;
 	asort($countryCodes);
 	return $countryCodes;
 	}
