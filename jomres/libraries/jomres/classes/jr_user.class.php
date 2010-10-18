@@ -44,13 +44,7 @@ class jr_user
 		$this->userIsRegistered					= FALSE;
 		$this->users_timezone					= "America/Lima";
 		$this->jomres_manager_id				= 0;
-		
-		// Disabled as session id not set in wordpress, and I don't think we need it any more.
-		// $sessionid = session_id();
-		// if( $sessionid == "" )
-			// {
-			// return false;
-			// }
+		$this->userIsSuspended					= FALSE;
 
 		$this->id=jomres_cmsspecific_getcurrentusers_id();
 
@@ -74,7 +68,8 @@ class jr_user
 					if (isset($authUser->users_timezone))
 						$this->users_timezone=$authUser->users_timezone;
 					$this->jomres_manager_id = $authUser->manager_uid;
-					
+					if ($authUser->suspended == "1")
+						$this->userIsSuspended = true;
 					
 					if ($authUser->pu == "1")
 						{

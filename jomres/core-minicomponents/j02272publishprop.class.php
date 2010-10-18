@@ -54,11 +54,11 @@ class j02272publishprop {
 		$cache->trashCacheForUser($thisJRUser->userid);
 		if (in_array($defaultProperty,$thisJRUser->authorisedProperties))
 			{
-			$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+			$query="SELECT published FROM #__jomres_propertys WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
 			$published = doSelectSql($query,1);
 			if ($published)
 				{
-				$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+				$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
 				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
 				}
 			else
@@ -69,7 +69,7 @@ class j02272publishprop {
 					$existingPublishedProperties = subscribers_getManagersPublishedProperties($thisJRUser->id);
 					if ($allowedProperties > count($existingPublishedProperties) || ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods) )
 						{
-						$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+						$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
 						if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
 						}
 					else
@@ -77,7 +77,7 @@ class j02272publishprop {
 					}
 				else
 					{
-					$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid LIKE '".(int)$defaultProperty."'";
+					$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
 					if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
 					}
 				}
