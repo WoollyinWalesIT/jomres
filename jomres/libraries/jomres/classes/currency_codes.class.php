@@ -314,7 +314,7 @@ class currency_codes
 			'UYP'=>array("pre"=>"$","post"=>""),
 			'AED'=>array("pre"=>"د.إ","post"=>""),
 			'VUV'=>array("pre"=>"Vt","post"=>""),
-			'VEB'=>array("pre"=>"Bs F","post"=>""),
+			'VEB'=>array("pre"=>"Bs","post"=>""),
 			'VND'=>array("pre"=>"₫","post"=>""),
 			'ZMK'=>array("pre"=>"ZK","post"=>""),
 			'ZWD'=>array("pre"=>"$","post"=>""),
