@@ -249,10 +249,34 @@ function doTableUpdates()
 		createPartnerTables();
 	if (!checkManagerTimezoneColExists() )
 		alterManagerTimezoneCol();
+	if (!checkManagerSuspendedColExists() )
+		alterManagerSuspendedCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+
+function alterManagerSuspendedCol()
+	{
+	echo "Editing __jomres_managers table adding suspended column<br>";
+	$query = "ALTER TABLE `#__jomres_managers` ADD `suspended` tinyint( 1 ) default 0 AFTER `apikey` ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_managers suspended</b><br>";
+	}
+
+function checkManagerSuspendedColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_managers LIKE 'suspended'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+	
+	
+	
 function createPartnerTables()
 	{
 	echo "Creating __jomres_partners table<br>";
@@ -1762,6 +1786,7 @@ function createJomresTables()
 		`currentproperty` INT( 11 ) DEFAULT '0' NOT NULL,
 		`pu` INT( 1 ) DEFAULT '0',
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
+		`suspended` tinyint( 1 ) default 0,
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		PRIMARY KEY	(`manager_uid`)
 		) ";
