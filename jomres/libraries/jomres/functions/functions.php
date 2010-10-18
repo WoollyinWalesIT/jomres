@@ -793,8 +793,9 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$jomresConfig_smtphost=get_showtime('smtphost');
 	$jomresConfig_smtppass=get_showtime('smtppass');
 	$jomresConfig_smtpuser=get_showtime('smtpuser');
+	$jomresConfig_smtpport=get_showtime('smtpport');
 	$jomresConfig_mailer=get_showtime('mailer');
-	$jomresConfig_debug=get_showtime('debug');
+	$jomresConfig_debug=true;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -858,13 +859,20 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		}
 	// Need to change this before release?
 	if (get_showtime('mailer')=="smtp")
+		{
 		$mail->IsSMTP(); // telling the class to use SMTP
-
+		$mail->Username			= $jomresConfig_smtpuser;
+		$mail->Password			= $jomresConfig_smtppass;
+		}
 	$mail->Host			= $jomresConfig_smtphost;
 	$mail->From			= $from;
 	$mail->CharSet		= 'UTF-8'; 
 	$mail->FromName		= $jomresConfig_sitename;
 	$mail->Subject		= $subject;
+	$mail->Port			= $jomresConfig_smtpport;
+	
+	
+	
 	//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
 	$mail->MsgHTML($body);
