@@ -461,6 +461,19 @@ $performance_monitor->set_point("pre-menu generation");
 // Manager specific tasks
 if (!defined('JOMRES_NOHTML'))
 	{
+	
+	if ($thisJRUser->userIsSuspended)
+		{
+		jr_import('jomres_suspensions');
+		$jomres_suspensions=new jomres_suspensions();
+		$jomres_suspensions->set_manager_id($thisJRUser->userid);
+
+		if (!$jomres_suspensions->suspended_manager_allowed_task(get_showtime('task')))
+			{
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=suspended"), "" );
+			}
+		}
+	
 	if ($thisJRUser->userIsManager)
 		{
 		if (get_showtime('task') != "invoiceForm" && get_showtime('task')!= "confirmationForm" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup && !$no_html)
@@ -731,6 +744,7 @@ if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
 
 
+	
 if ($numberOfPropertiesInSystem>0)
 	{
 	switch (get_showtime('task')) {
@@ -1480,7 +1494,7 @@ if ($numberOfPropertiesInSystem>0)
 									}
 								else if ($numberOfPropertiesInSystem==1 && $jrConfig['is_single_property_installation'] == "0")
 									{
-										//$MiniComponents->triggerEvent('0013');  // Show dashboard
+									//$MiniComponents->triggerEvent('0013');  // Show dashboard
 									property_header($property_uid);
 									set_showtime('task',"viewproperty");
 									$componentArgs=array();

@@ -31,6 +31,7 @@ class jomres_sanity_check
 
 	function do_sanity_checks()
 		{
+		$this->warnings .=$this->check_suspended();
 		$this->warnings .= $this->checks_guest_types_pppn();
 		if ($this->mrConfig['is_real_estate_listing']==0)
 			$this->warnings .= $this->checks_tariffs_exist();
@@ -50,6 +51,17 @@ class jomres_sanity_check
 		$warning .="</div>";
 		
 		return $warning;
+		}
+		
+	function check_suspended()
+		{
+		$thisJRUser=jomres_getSingleton('jr_user');
+		$published = get_showtime('this_property_published');
+		if ($thisJRUser->userIsSuspended)
+			{
+			$message = _JOMRES_SUSPENSIONS_MANAGER_SUSPENDED;
+			return $this->construct_warning($message);
+			}
 		}
 		
 	function checks_guest_types_pppn()

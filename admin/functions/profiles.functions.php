@@ -30,6 +30,8 @@ function listMosUsers()
 	$tickIcon	= '<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/Tick.png" border="0">';
 	$crossIcon	= '<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/Cancel.png" border="0">';
 	$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
+	$suspendedIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/user_suspended.png" border="0">';
+	$activeIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/user_active.png" border="0">';
 	
 	$img_guest=get_showtime('live_site')."/jomres/images/Tourists.png";
 	$img_reception=get_showtime('live_site')."/jomres/images/Services.png";
@@ -40,11 +42,14 @@ function listMosUsers()
 	$output=array();
 
 	$output['INSTRUCTIONS']=_JOMRES_PROFILELIST_INSTRUCTIONS;
+	$output['SUSPENSIONS']=_JOMRES_SUSPENSIONS_MANAGERLIST_INFO;
+	
 	$output['HLINKTEXT']=	_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT;
 	$output['HGRANTLINK']=	_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER;
 	$output['HACCESSLEVEL']=_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL;
 	$output['HUSERNAME']=_JOMRES_COM_MR_ASSIGNUSER_USERNAME;
 	$output['HNUMBEROFPROPERTIES']='<img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/propertyTypes.png">';
+	$output['HSUSPENSION']=_JOMRES_SUSPENSIONS_TITLE;
 	
 	
 	$output['KEY']='
@@ -60,16 +65,17 @@ function listMosUsers()
 	$img_output_superpropertymanager='<img src = "'.$img_superpropertymanager.'"  style="border:none;">';
 	
 	$managers=array();
-	$query="SELECT manager_uid,userid,currentproperty,access_level,pu FROM #__jomres_managers";
+	$query="SELECT manager_uid,userid,currentproperty,access_level,pu,suspended FROM #__jomres_managers";
 	$jomresUserList  = doSelectSql($query);
 	foreach ($jomresUserList as $user)
 		{
-		$managers[$user->userid]=array('manager_uid'=>$user->manager_uid,'userid'=>$user->userid,'access_level'=>$user->access_level,'pu'=>$user->pu);
+		$managers[$user->userid]=array('manager_uid'=>$user->manager_uid,'userid'=>$user->userid,'access_level'=>$user->access_level,'pu'=>$user->pu,'suspended'=>$user->suspended);
 		}
 	foreach($userList as $user)
 		{
 		$r=array();
 		$accesslevel_img =$img_output_guest;
+		$active_icon = $activeIcon;
 		$authorise="y";
 		$authorise_img=$crossIcon;
 		if (count($managers)>0 )
@@ -91,12 +97,25 @@ function listMosUsers()
 					
 				if ($managers[$user['id']]['pu'] == "1")
 					$accesslevel_img =$img_output_superpropertymanager;
-
+				
+				if ($managers[$user['id']]['pu'] == "0")
+					{
+					if ($managers[$user['id']]['suspended'] == "1")
+						$r['SUSPENSIONLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=property_manager_unsuspend&no_html=1&userid='.$user['id'].'">'.$suspendedIcon.'</a>';
+					else
+						$r['SUSPENSIONLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=property_manager_suspend&no_html=1&userid='.$user['id'].'">'.$activeIcon.'</a>';
+					}
+				else
+					$r['SUSPENSIONLINK']='';
+					
+					
 				$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '".(int)$user['id']."'";
 				$propertyList= doSelectSql($query);
 				$numberOfProperties=count($propertyList);
 				}
+			
  			}
+
 		
 		$r['ACCESSLEVELIMAGE']=$accesslevel_img;
 		$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&no_html=1&userid='.$user['id'].'&grantAct='.$authorise.'">'.$authorise_img.'</a>';
@@ -104,6 +123,8 @@ function listMosUsers()
 			$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editProfile&id='.$user['id'].'">'.$editIcon.'</a>';
 		else
 			$r['LINKTEXT']="&nbsp;";
+
+		
 		$r['USERNAME']=$user['username'];
 		$r['NUMBEROFPROPERTIES']=$numberOfProperties;
 		$rows[]=$r;

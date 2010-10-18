@@ -24,7 +24,7 @@ class j06000show_property_reviews
 		$thisJRUser = jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$thisJRUser = jomres_getSingleton('jr_user');
+
 		$data_only = false;
 		
 		$task 				= jomresGetParam( $_REQUEST, 'task', "" );
