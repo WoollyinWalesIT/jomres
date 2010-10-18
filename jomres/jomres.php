@@ -1616,16 +1616,15 @@ function jomres_validate_gateway_plugin()
 			trigger_error ("Error, gateway name not sent, probable hack attempt", E_USER_ERROR);
 			die();
 			}
-		if (!isset($tmpBookingHandler->tmpbooking["gateway"] ))
+		if (!isset($_REQUEST['plugin']))
+			{
+			$plugin 			= $tmpBookingHandler->tmpbooking["gateway"];
+			}
+		else
 			{
 			$plugin 			= jomresGetParam( $_REQUEST, 'plugin', "" );
 			$tmpBookingHandler->tmpbooking["gateway"] = $plugin;
 			}
-		else
-			{
-			$plugin 			= $tmpBookingHandler->tmpbooking["gateway"];
-			}
-		
 		$query="SELECT id,plugin FROM #__jomres_pluginsettings WHERE prid = ".(int)$property_uid." AND `plugin` = '".(string)$plugin."' AND setting = 'active' AND value = '1'";
 		$gatewayDeets=doSelectSql($query);
 		if (count($gatewayDeets) != 1)
@@ -1639,6 +1638,7 @@ function jomres_validate_gateway_plugin()
 		{
 		$plugin = "NA";
 		}
+	
 	return $plugin;
 	}
 ?>
