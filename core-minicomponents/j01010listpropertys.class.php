@@ -288,9 +288,7 @@ class j01010listpropertys {
 
 					$rtRows="";
 					$rArr=$rtArray[$property->propertys_uid];
-					if (count($rArr)<1)
-						$rtRows[]['feature']="Error, rooms found but not linked to room types. You will not be able to book a room from this property";
-					else
+					if ($rArr[0] != 0)
 						{
 						foreach ($rArr as $rtd)
 							{
