@@ -97,26 +97,7 @@ $MiniComponents->triggerEvent('00005'); // Optional
 if (!JRPORTAL_AJAXCALL)
 	{
 	echo $jomreslang->get_languageselection_dropdown()."<br/>";
-	/*
-	?>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery-1.3.2.min.js"></script>
-	<script language="javascript" type="text/javascript">jQuery.noConflict();</script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.cookee.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jomres.js"></script>
-	<script language="javascript"type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/tablesort.js"></script>
-	<script  language="javascript"type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/tablepaginator.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/graphs.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.jeditable.pack.js"></script>
 
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jquery.bt.min.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/excanvas-compressed.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="<?php echo get_showtime('live_site'); ?>/jomres/css/jomrescss.css" title="" />
-	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
-	<?php
-	*/
-	
 	init_javascript();
 	// And a couple that are only used in the admin area
 	?>
