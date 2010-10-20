@@ -92,6 +92,7 @@ $jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 
+$MiniComponents->triggerEvent('00005'); // Optional
 
 if (!JRPORTAL_AJAXCALL)
 	{
