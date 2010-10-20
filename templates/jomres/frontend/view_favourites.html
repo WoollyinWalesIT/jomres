@@ -1,25 +1,15 @@
 <patTemplate:tmpl name="pageoutput" >
-<style>
-.odd {
-	background-color: #f1e8e6;
-	}
-.even {
-	background-color: #f1f3f5;
-	}
-</style>
 <div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
-
-<table>
-    <tr class="sectiontableheader">
-		<td colspan="7">{TITLE}</td>
-    </tr>
-    <tr class="sectiontableheader">
-		<td>{HPNAME}</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>{HPTYPES}</td>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
+<table width="100%">
+    <tr class="ui-widget-header">
+		<td>{HPNAME}</td><td>&nbsp;</td><td>{HPTYPES}</td><td>&nbsp;</td>
     </tr>
       <patTemplate:tmpl name="rows" unusedvars="nbsp">
-    <tr class="{STYLE}">
-		<td><b><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></b></td><td>{IMAGE}</td><td>{PROP_TOWN}</td><td>{PROP_REGION}</td><td>{PROP_COUNTRY}</td><td>{PROP_TEL}</td><td>{TYPE}</td>
+    <tr>
+		<td><b><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></b></td><td>{IMAGE} <br/>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY} <br/>{PROP_TEL}</td><td>{TYPE}</td><td><a href="{REMOVELINK}">{REMOVETEXT}</a></td>
     </tr>
       </patTemplate:tmpl>
 </table>
+</div>
 </patTemplate:tmpl>

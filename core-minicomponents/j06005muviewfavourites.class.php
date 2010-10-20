@@ -25,8 +25,10 @@ class j06005muviewfavourites {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
+		
 		if ($thisJRUser->userIsRegistered)
 			{
+			$customTextObj =jomres_getSingleton('custom_text');
 			$pageoutput=array();
 			$output=array();
 			$rows=array();
@@ -42,38 +44,52 @@ class j06005muviewfavourites {
 
 				foreach ($favourites as $f)
 					{
-					$query="SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '".(int)$f->property_uid."' LIMIT 1";
-					$type_id=doSelectSql($query,1);
-
-					$query="SELECT ptype FROM #__jomres_ptypes WHERE id = '".(int)type_id."' LIMIT 1";
+					$customTextObj->get_custom_text_for_property($property->propertys_uid);
+					$current_property_details =jomres_getSingleton('basic_property_details');
+					$current_property_details->gather_data($f->property_uid);
+					$r['PROPERTYNAME']=$current_property_details->get_property_name($f->property_uid);
+					
+					$r['PROP_STREET']=$current_property_details->property_street;
+					$r['PROP_TOWN']=$current_property_details->property_town;
+					$r['PROP_POSTCODE']=$current_property_details->property_postcode;
+					$r['PROP_REGION']=$current_property_details->property_region;
+					$r['PROP_COUNTRY']=$current_property_details->property_country;
+					$r['PROP_TEL']=$current_property_details->property_tel;
+					
+					
+					$query="SELECT ptype FROM #__jomres_ptypes WHERE id = '".(int)$current_property_details->ptype_id."' LIMIT 1";
 					$ptype=doSelectSql($query,1);
+  					$r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$current_property_details->ptype_id,$ptype,false,false);
 					
-					$mrConfig=getPropertySpecificSettings($f->property_uid);
-					$propertyAddressArray=getPropertyAddressForPrint($f->property_uid);
-					$propertyContactArray=$propertyAddressArray[1];
-					$propertyAddyArray=$propertyAddressArray[2];
+					// $query="SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '".(int)$f->property_uid."' LIMIT 1";
+					// $type_id=doSelectSql($query,1);
 
-					$r['PROPERTYNAME']=$propertyContactArray[0];
-					$r['PROP_STREET']=$propertyContactArray[1];
-					$r['PROP_TOWN']=$propertyContactArray[2];
-					$r['PROP_POSTCODE']=$propertyContactArray[3];
-					$r['PROP_REGION']=$propertyContactArray[4];
-					$countryname=getSimpleCountry($propertyContactArray[5]);
-					$r['PROP_COUNTRY']=ucwords($countryname);
-					$r['PROP_TEL']=$propertyAddyArray[0];
-					$r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$type_id,$ptype,false,false);
-					$counter++;
-					 if ($counter % 2)
-						$r['STYLE'] ="odd";
-					else
-						$r['STYLE'] ="even";
+					// 
 					
+					// $mrConfig=getPropertySpecificSettings($f->property_uid);
+					// $propertyAddressArray=getPropertyAddressForPrint($f->property_uid);
+					// $propertyContactArray=$propertyAddressArray[1];
+					// $propertyAddyArray=$propertyAddressArray[2];
+
+					//$r['PROPERTYNAME']=$propertyContactArray[0];
+					// $r['PROP_STREET']=$propertyContactArray[1];
+					// $r['PROP_TOWN']=$propertyContactArray[2];
+					// $r['PROP_POSTCODE']=$propertyContactArray[3];
+					// $r['PROP_REGION']=$propertyContactArray[4];
+					// $countryname=getSimpleCountry($propertyContactArray[5]);
+					// $r['PROP_COUNTRY']=ucwords($countryname);
+					// $r['PROP_TEL']=$propertyAddyArray[0];
+					// $r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$type_id,$ptype,false,false);
+
 					$property_image=get_showtime('live_site')."/jomres/images/jrlogo.png";
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$f->property_uid."_property_".$f->property_uid.".jpg") )
 						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$f->property_uid."_property_".$f->property_uid.".jpg";
 					$r['IMAGE']='<img src="'.$property_image.'" width="40">';
 					
 					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$f->property_uid;
+					$r['REMOVELINK']=JOMRES_SITEPAGE_URL.'&task=muremovefavourite&no_html=1&property_uid='.$f->property_uid;
+					$r['REMOVETEXT']=jr_gettext('_JOMCOMP_MYUSER_REMOVE',_JOMCOMP_MYUSER_REMOVE,false,false);
+					
 					$rows[]=$r;
 					}
 
@@ -99,7 +115,7 @@ class j06005muviewfavourites {
 		$output['H1']		=jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE',_JOMCOMP_MYUSER_VIEWFAVOURITES_NONE);
 		$output['HPTYPES']=jr_gettext('_JOMCOMP_MYUSER_PROPERTYTYPE',_JOMCOMP_MYUSER_PROPERTYTYPE);
 		$output['HPNAME']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME',_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME);
-
+		$r['REMOVETEXT']=jr_gettext('_JOMCOMP_MYUSER_REMOVE',_JOMCOMP_MYUSER_REMOVE);
 		foreach ($output as $o)
 			{
 			echo $o;
