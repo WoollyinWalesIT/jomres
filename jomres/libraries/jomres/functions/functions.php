@@ -2893,10 +2893,12 @@ function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = 
 		{
 		case 'property':
 			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty.".jpg";
+			$fileFullPath_thumbnail=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty."_thumbnail.jpg";
 			$returnTask="editProperty&propertyUid=".$defaultProperty;
 		break;
 		case 'room':
 			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid.".jpg";
+			$fileFullPath_thumbnail=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid."_thumbnail.jpg";
 			$returnTask="editRoom&roomUid=".$itemUid;
 		break;
 		}
@@ -2911,6 +2913,8 @@ function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = 
 				}
 			else
 				{
+				unlink($fileFullPath_thumbnail);
+				
 				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message($saveMessage);
@@ -3056,10 +3060,13 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 			}
 		$maxwidth = $jrConfig['maxwidth'];
 		$maxHeight = $jrConfig['maxwidth'];
+		
+		
 		// load the class
 		jr_import('images');
 		$img = new images();
 		// open a file
+		$ok_to_delete = false;
 		if ($img->getImageFromPost($formelement) )
 			{
 			// make the image fit
@@ -3074,11 +3081,24 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 			// add a red stroke of 2 pixels to the image
 			//$img->strokeImage(2,"FF0000");
 			// save the image
-			//var_dump(JOMRES_IMAGE_UPLOAD_PATH.$newName);exit;
-			if (!$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$newName) )
+			if (!$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$newName,$ok_to_delete) )
 				{
 				echo "Unable to save file ".JOMRES_IMAGE_UPLOAD_PATH.$newName." ";
 				return false;
+				}
+			else
+				{
+				// We've managed to do the upload of the image, let's now use the same functionality to create the thumbnail. Everything's worked so far so there's no need to perform the same checks so this should be much simpler.
+				$ok_to_delete = true;
+				$filename= split("\.", $newName);
+				$numExtensions=(count($filename))-1;
+				$fileExt=$filename[$numExtensions];
+				$filename = $filename[0];
+				$thumbnail_name = $filename."_thumbnail.".$fileExt;
+				
+				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
+				$img->transformToFit(floor($maxwidth/4),floor($maxHeight/4));
+				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name,$ok_to_delete) ;
 				}
 			}
 		else
@@ -3240,6 +3260,49 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 			}
 	return $fileLocation;
 	}
+	
+function getThumbnailForImage($imagefullrelpath)
+	{
+	$filedata= split("/", $imagefullrelpath);
+	$count = count($filedata);
+	$image_name = $filedata[$count-1];
+	$filename= split("\.", $image_name);
+	$filename = $filename[0];
+	$thumbnail_image_name = $filename."_thumbnail.jpg";
+	
+	// Now we need to recombine the image path again. We already know parts of it.
+	$path = str_replace(JOMRES_IMAGELOCATION_RELPATH,"",$imagefullrelpath);
+	$pathdata= split("/", $path);
+	$thumbnail_image_abspath = JOMRES_IMAGELOCATION_ABSPATH;
+	$thumbnail_image_relpath = JOMRES_IMAGELOCATION_RELPATH;
+	if (count($pathdata)>1)
+		{
+		//
+		foreach ($pathdata as $val)
+			{
+			if ($val != $image_name)
+				{
+				$thumbnail_image_abspath .= $val.JRDS;
+				$thumbnail_image_relpath .= $val.'/';
+				}
+			}
+		$thumbnail_image_abspath .=$thumbnail_image_name;
+		$thumbnail_image_relpath .=$thumbnail_image_name;
+		}
+	else
+		{
+		$thumbnail_image_abspath = JOMRES_IMAGELOCATION_ABSPATH.$thumbnail_image_name;
+		$thumbnail_image_relpath = JOMRES_IMAGELOCATION_RELPATH.$thumbnail_image_name;
+		}
+	// We'll now test to see if the thumbnail image exists. If it doesn't, we'll simply pass back false. The calling script then decide to show the original image or the thumbnail
+	if ( file_exists($thumbnail_image_abspath) )
+		return $thumbnail_image_relpath;
+	else
+		return false;
+	
+	}
+	
+	
 /**
 #
  * Constructs the mrConfig data when passed a property uid.
