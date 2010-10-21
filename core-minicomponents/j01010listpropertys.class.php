@@ -412,7 +412,8 @@ class j01010listpropertys {
 					
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
-
+					$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
+					
 					$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 						$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
@@ -422,7 +423,7 @@ class j01010listpropertys {
 					$property_deets['PROPERTY_TYPE'] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$property->ptype_id,$ptype,false,false);
 					
 	
-					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
+					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("imagethumb"=>$property_deets['IMAGETHUMB'],"width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 					if ($output_lowest)
 						$property_deets['LOWESTPRICE']=$price;
 					else

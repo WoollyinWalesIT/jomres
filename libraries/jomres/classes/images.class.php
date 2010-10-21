@@ -248,18 +248,20 @@ class images{
 	/**
 	*	@desc actually save the image to disk
 	**/
-	function saveImage($destImage){
+	function saveImage($destImage,$delete=false){
 		if (imagejpeg($this->orgImage, $destImage, $this->jpgCompression) )
 			{
 			unlink($this->fileToBeDeletedAtEnd);
 			return true;
 			}
-		else
+		elseif ($delete)
 			{
 			unlink($this->fileToBeDeletedAtEnd);
 			return false;
 			}
 	}
+	
+	
 	
 }
 // <!-- Initially Developed by Greg - Doutromundo.com -->

@@ -97,6 +97,7 @@ class j01055showroomdetails {
 				$smoking=$room->smoking;
 
 				$room_image=getImageForProperty("room",$property_uid,$room->room_uid);
+				$imagethumb=getThumbnailForImage($room_image);
 
 				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,false,false)."</a>";
 				$classAbbv = $classAbbvs[(int)$room_classes_uid];
@@ -123,7 +124,7 @@ class j01055showroomdetails {
 						$featurelist[]=$roomFeatureDescriptionsArray;
 						}
 					}
-				$roomRow['IMAGE']=jomres_makeTooltip($room_image,"",$room_image,$room_image,"","imageonly",$type_arguments=array("width"=>30,"height"=>30,"border"=>0));
+				$roomRow['IMAGE']=jomres_makeTooltip($room_image,"",$room_image,$room_image,"","imageonly",$type_arguments=array("imagethumb"=>$imagethumb,"width"=>30,"height"=>30,"border"=>0));
 			
 				$roomRow['ROOMNUMBER']= $room_number;
 				$roomRow['ROOMTYPE']= $classAbbv;

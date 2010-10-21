@@ -132,6 +132,10 @@ class jomres_tooltips
 					';
 			break;
 			case "imageonly":
+				$imagethumb=false;
+				if (isset($type_arguments["imagethumb"]))
+					$imagethumb=$type_arguments["imagethumb"];
+
 				if (isset($type_arguments["width"]))
 					$width=$type_arguments["width"];
 				if (isset($type_arguments["height"]))
@@ -143,15 +147,26 @@ class jomres_tooltips
 					$div_string.=' class="'.$class.'" ';
 				else
 					$div_string.=' class="jomres_bt_tooltip_imageonly" ';
-				$div_string.=' ><img src="'.$div_content.'" ';
-				if (isset($type_arguments["width"]))
-					$div_string.='width="'.$width.'" ';
-				if (isset($type_arguments["height"]))
-					$div_string.='height="'.$height.'" ';
-				if (isset($type_arguments["border"]))
-					$div_string.='border="'.$border.'"';
 					
-					$div_string.='/></div>';
+				if (!$imagethumb)
+					{
+					$div_string.=' ><img src="'.$div_content.'" ';
+					if (isset($type_arguments["width"]))
+						$div_string.='width="'.$width.'" ';
+					if (isset($type_arguments["height"]))
+						$div_string.='height="'.$height.'" ';
+					if (isset($type_arguments["border"]))
+						$div_string.='border="'.$border.'"';
+						$div_string.='/></div>';
+					}
+				else
+					{
+					$div_string.=' ><img src="'.$imagethumb.'" ';
+					if (isset($type_arguments["border"]))
+						$div_string.='border="'.$border.'"';
+						$div_string.='/></div>';
+					}
+					
 					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
 						{
 						cornerRadius: 10,        

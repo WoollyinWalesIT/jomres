@@ -155,7 +155,7 @@ function listImages($property_uid)
 		while (FALSE !== ($entry = $d->read()))
 			{
 			$filename = $entry;
-			if(is_file($abs.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
+			if(is_file($abs.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs' && !strstr($entry, '_thumbnail'))
 				{
 				$docs[] =$filename;
 				}
