@@ -286,7 +286,7 @@ class jomres_tooltips
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
 					<script type="text/javascript">jQuery("#'.$div.'").bt({
 							offsetParent: \'body\',
-							width: \'200px\',
+							width: \'600px\',
 							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 
 							cssStyles: 
