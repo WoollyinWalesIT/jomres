@@ -82,11 +82,7 @@ class j06005mulistbookings {
 						$r['lastchanged']=$c->timestamp;
 						$r['EXTRASVALUE']=output_price($c->extrasvalue);
 						$r['CONTRACT_TOTAL']=output_price($c->contract_total);
-						$fileLocation=$jrConfig['ss_imageLocation'];
-						if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg') )
-							$r['IMAGE']='<img src="'.get_showtime('live_site').$fileLocation.$c->property_uid.'_property_'.$c->property_uid.'.jpg" width="40">';
-						else
-							$r['IMAGE']='&nbsp;';
+						$r['IMAGE']='<img src="'.getImageForProperty("property",$c->property_uid,$c->property_uid).'" width="40">';
 						$r['VIEWLINK']=JOMRES_SITEPAGE_URL."&task=muviewbooking&contract_uid=".$c->contract_uid;
 						$r['VIEWLINK_TEXT']=jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,$editable=false,$isLink=true);
 						$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$c->property_uid;
