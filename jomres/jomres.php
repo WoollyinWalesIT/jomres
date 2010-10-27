@@ -279,7 +279,6 @@ if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProper
 if ($property_uid > 0)
 	{
 	set_showtime('property_uid',$property_uid);
-	//$tmpBookingHandler->tmpbooking["property_uid"]=$property_uid;
 	$tmpBookingHandler->saveBookingData();
 	$pdeets=getPropertyAddressForPrint($property_uid);
 	$thisJomresPropertyDetails=$pdeets[3];
@@ -310,7 +309,6 @@ $jomreslang =jomres_getSingleton('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 
-
 if ($property_uid >0)
 	{
 	if (!$thisJRUser->userIsManager && $published == 0 && $task != "")
@@ -323,8 +321,6 @@ if ($property_uid >0)
 		set_showtime('task',"");
 		}
 	}
-
-//$performance_monitor->set_point("post-lang file inclusion");
 
 // This little routine sets the custom text for an individual property.
 if (isset($property_uid) && !empty($property_uid))
@@ -364,13 +360,11 @@ $performance_monitor->set_point("pre-menu generation");
 
 if (!defined('JOMRES_NOHTML'))
 	{
-	
 	if ($thisJRUser->userIsSuspended)
 		{
 		jr_import('jomres_suspensions');
 		$jomres_suspensions=new jomres_suspensions();
 		$jomres_suspensions->set_manager_id($thisJRUser->userid);
-
 		if (!$jomres_suspensions->suspended_manager_allowed_task(get_showtime('task')))
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=suspended"), "" );
 		}
