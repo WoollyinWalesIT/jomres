@@ -167,7 +167,7 @@ else
 
 jr_import('jomres_timezones');
 $tz = new jomres_timezones();
-	
+
 /*
 removed in 4.2
 // The admins_first_login.txt file in the temp folder is used as a check to remind new users that they need to log into the Jomres front end
@@ -356,109 +356,12 @@ init_javascript();
 
 set_showtime('include_room_booking_functionality',true);
 
-$MiniComponents->triggerEvent('00005'); // Optional
+$MiniComponents->triggerEvent('00005');
 
-
-if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
-	{
-	jr_import('jomres_management_view');
-	$jomres_management_view = new jomres_management_view();
-	if (isset($_POST['management_view']))
-		{
-		if ((bool)$_POST['management_view'] == false)
-			$request = str_replace("tmpl=component","",$_SERVER["REQUEST_URI"]);
-		if ((bool)$_POST['management_view'] == true)
-			$request =  jomresURL($_SERVER["REQUEST_URI"]."&amp;tmpl=component");
-			
-		$jomres_management_view->set_view((bool)$_POST['management_view']);
-		
-		$tmpBookingHandler->close_jomres_session();
-		jomresRedirect( $request,"");
-		}
-	$management_view = $jomres_management_view->get_view();
-	}
-	
-
-
-if (!defined('JOMRES_NOHTML'))
-	{
-	$output=array();
-	
-	$output['editing_mode_dropdown']='';
-	$editing_mode =jomres_getSingleton('jomres_editing_mode');
-	$result = $editing_mode->make_editing_mode_dropdown();
-	if ($result)
-		$output['EDITING_MODE_DROPDOWN']=$result;
-	
-	if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
-		{
-		if ($thisJRUser->userIsManager)
-			{
-			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
-				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
-			elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
-				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
-			else
-				$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
-			$management_dropdown = $jomres_management_view->get_dropdown();
-			$output['MANAGEMENT_VIEW_DROPDOWN']=$management_dropdown;
-			if ($jrConfig['use_timezone_switcher'] == "1")
-				{
-				$output['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
-				$output['TIMEZONEBLURB']= outputDate(date("Y/m/d"))." ".date("H:i:s");
-				}
-			}
-		}
-
-	$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
-	$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
-	$output['LIVESITE']=get_showtime('live_site');
-	$output['DATEPICKERLANG']=JOMRESDATEPICKERLANG;
-	$messaging = array();
-	$sticky_messaging = array();
-	if ($jrConfig['useJomresMessaging'] == '1')
-		{
-		$jomres_messaging =jomres_getSingleton('jomres_messages');
-		$messages = $jomres_messaging->get_messages();
-		
-		if (count($messages)>0)
-			{
-			foreach ($messages as $mes)
-				{
-				$m['MESSAGE']=$mes;
-				$messaging[] = $m;
-				}
-			}
-		$jomres_sticky_messaging =jomres_getSingleton('jomres_sticky_messages');
-		$sticky_messages = $jomres_sticky_messaging->get_messages();
-		
-		if (count($sticky_messages)>0)
-			{
-			foreach ($sticky_messages as $mes)
-				{
-				$m['MESSAGE']=$mes;
-				$sticky_messaging[] = $m;
-				}
-			}
-		}
-	$pageoutput[]=$output;
-	$tmpl = new patTemplate();
-	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-	if ($management_view)
-		$tmpl->readTemplatesFromInput( 'management_top.html');
-	else
-		$tmpl->readTemplatesFromInput( 'top.html');
-	$tmpl->addRows( 'pageoutput',$pageoutput);
-	$tmpl->addRows( 'messages',$messaging);
-	$tmpl->addRows( 'sticky_messages',$sticky_messaging);
-	$tmpl->displayParsedTemplate();
-	$pageoutput=array();
-	$output=array();
-	}
+$MiniComponents->triggerEvent('00060',array('tz'=>$tz,'jomreslang'=>$jomreslang)); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 
 $performance_monitor->set_point("pre-menu generation");
 
-// Manager specific tasks
 if (!defined('JOMRES_NOHTML'))
 	{
 	
@@ -469,254 +372,21 @@ if (!defined('JOMRES_NOHTML'))
 		$jomres_suspensions->set_manager_id($thisJRUser->userid);
 
 		if (!$jomres_suspensions->suspended_manager_allowed_task(get_showtime('task')))
-			{
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=suspended"), "" );
-			}
 		}
-	
+
 	if ($thisJRUser->userIsManager)
 		{
 		if (get_showtime('task') != "invoiceForm" && get_showtime('task')!= "confirmationForm" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup && !$no_html)
 			{
-			// Show the reception menu
-			//$MiniComponents->triggerEvent('00010'); // Depreciated in v4a2
-			jr_import('jomres_cache');
-			$cache = new jomres_cache("reception_menu",0,true);
-			$cacheContent = $cache->readCache();
-			if ($cacheContent && !isset($_REQUEST['thisProperty']))
-				{
-				echo $cacheContent;
-				}
-			else
-				{
-				$rows		=array();
-				$pageoutput	=array();
-				$output=array();
-				if (get_showtime('task') != "invoiceForm" && get_showtime('task') != "confirmationForm" && get_showtime('task') != "showRoomDetails" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup)
-					{
-					$propertyOptions=array();
-					$initialsOptions=array();
-					$propertyInitialFilter	= jomresGetParam( $_REQUEST, 'propertyInitialFilter', '' );
-					foreach ($thisJRUser->authorisedPropertyDetails as $pn)
-						{
-						$initials[]=strtoupper(substr($pn['property_name'],0,1) );
-						}
-					if (count($initials) > 1)
-						$initials=array_unique($initials);
-					if (count($initials) >0)
-						asort($initials);
-					$initialsOptions[]=jomresHTML::makeOption( '', "&nbsp;" );
-					if (count($initials) >0)
-						{
-						foreach ($initials as $initl )
-							{
-							$link=jomresURL(JOMRES_SITEPAGE_URL.'&propertyInitialFilter='.$initl.'');
-							$initialsOptions[]=jomresHTML::makeOption( $link, $initl );
-							}
-						$filterDropdown=jomresHTML::selectList($initialsOptions, 'propertyInitialFilter', 'size="1" OnChange="location.href=propertyDropdown.propertyInitialFilter.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL."&propertyInitialFilter=".$propertyInitialFilter) );
-						}
-					if (strlen($propertyInitialFilter)>0)
-						{
-						$query="SELECT propertys_uid,property_name,property_othertransport FROM #__jomres_propertys WHERE property_name LIKE '$propertyInitialFilter%' ORDER BY property_name";
-						$propertysList =doSelectSql($query);
-						}
-					else
-						{
-						// Rather than rewriting a whole bunch of the following code, we will make use of new data provided by the thisJRUser class, then refactor it to look like it came from a db query. v2.6.1
-						$tmpArray = array();
-						foreach ($thisJRUser->authorisedPropertyDetails as $key=>$val)
-							{
-							
-							$obj = new stdClass();
-							$obj->propertys_uid=$key;
-							$basic_property_details =jomres_getSingleton('basic_property_details');
-							$obj->property_name=$basic_property_details->get_property_name($key);
-
-							//$obj->property_name=$val['property_name'];
-							$tmpArray[]=$obj;
-							}
-						$propertysList =$tmpArray;
-						}
-					$counter=0;
-					foreach ($propertysList as $property)
-						{
-						if ($counter==0)
-							$thisProperty=$property->propertys_uid;
-						$counter++;
-						$pname=$property->property_name.' '.$property->propertys_uid;
-						$link=jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid);
-						$propertyOptions[]=jomresHTML::makeOption( $link, stripslashes($pname) );
-						}
-					if ( $propertyInitialFilter && $numberOfPropertiesInSystem > 1 )
-						{
-						$thisJRUser->set_currentproperty($thisProperty);
-						jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");
-						}
-					$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid) );
-					if (!JOMRES_SINGLEPROPERTY)
-						$output['PROPERTYDROPDOWN']=''.$propertyDropdown.$filterDropdown.'';
-					}
-
-				$output['HTAGSEARCH']= jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,false);
-				$query="SELECT count FROM #__jomres_pcounter WHERE `p_uid` = '".(int)$property_uid."' LIMIT 1 ";
-				$clickList= doSelectSql($query);
-				if (count($clickList)>0)
-					{
-					foreach ($clickList as $click)
-						{
-						$output['CLICKCOUNT']=$click->count;
-						}
-					}
-				else
-					$output['CLICKCOUNT']=0;
-				$output['SEARCHIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="Find" border="0" title="'.$output['HTAGSEARCH'].'" />';
-				$output['CLICKCOUNTIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
-				
-				$MiniComponents->triggerEvent('00010'); // 
-				$mcOutput=$MiniComponents->getAllEventPointsData('00010');
-				
-				foreach ($mcOutput as $key=>$val)
-					{
-					$r=array();
-					$r["OPTIONS"]=$val;
-					$rows[]=$r;
-					}
-
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-				if ($management_view)
-					$tmpl->readTemplatesFromInput('toolbar_reception_manager_view.html');
-				else
-					$tmpl->readTemplatesFromInput('toolbar_reception.html');
-
-				$tmpl->addRows( 'pageoutput',$pageoutput);
-				$tmpl->addRows( 'rows',$rows);
-				$cachableContent = $tmpl->getParsedTemplate();
-				$cache->setCache($cachableContent);
-				unset($cache);
-				echo $cachableContent;
-				$componentArgs=array();
-				}
-			
-			if ($accessLevel=="2")
-				{
-				jr_import('jomres_cache');
-				$cache = new jomres_cache("manager_menu",0,true);
-				
-				$cacheContent = $cache->readCache();
-				if ($cacheContent)
-					echo $cacheContent;
-				else
-					{
-					$rows		=array();
-					$pageoutput	=array();
-					$output=array();
-					
-					jr_import('jomres_sanity_check');
-					$sanity_checks = new jomres_sanity_check();
-					$output['WARNINGS'] = $sanity_checks->do_sanity_checks();
-
-					$componentArgs['published']=$published;
-					$componentArgs['property_uid']=$property_uid;
-					
-					set_showtime('frontend_buttons',array());
-					
-					$MiniComponents->triggerEvent('00011',$componentArgs); // 
-					$mcOutput=$MiniComponents->getAllEventPointsData('00011');
-					
-					if (count($mcOutput)>0)
-						{
-						foreach ($mcOutput as $key=>$val)
-							{
-							$r=array();
-							$r["OPTIONS"]=$val;
-							$rows[]=$r;
-							}
-						}
-
-					$pageoutput[]=$output;
-					$tmpl = new patTemplate();
-					$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-					if ($management_view)
-						$tmpl->readTemplatesFromInput('toolbar_manager_manager_view.html');
-					else
-						$tmpl->readTemplatesFromInput('toolbar_manager.html');
-
-					$tmpl->addRows( 'pageoutput',$pageoutput);
-					$tmpl->addRows( 'rows',$rows);
-					$cachableContent = $tmpl->getParsedTemplate();
-					$cache->setCache($cachableContent);
-					unset($cache);
-					echo $cachableContent;
-					}
-				}
-			
-			// Third party plugin buttons
-			$MiniComponents->triggerEvent('09002',$componentArgs); // 
-			$mcOutput=$MiniComponents->getAllEventPointsData('09002');
-			if (count($mcOutput)>0)
-				{
-				$rows		=array();
-				$pageoutput	=array();
-				$output=array();
-		
-				foreach ($mcOutput as $key=>$val)
-					{
-					$r=array();
-					$r["OPTIONS"]=$val;
-					$rows[]=$r;
-					}
-					
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-				$tmpl->readTemplatesFromInput( 'toolbar_thirdparty.html');
-				$tmpl->addRows( 'pageoutput',$pageoutput);
-				$tmpl->addRows( 'rows',$rows);
-				echo $tmpl->getParsedTemplate();
-				}
+			$MiniComponents->triggerEvent('00006'); // Reception's toolbar
+			$MiniComponents->triggerEvent('00007'); // Manager's toolbar
 			}
 		}
 	else
-		{ // User is not a manager. We can check that it's valid to show search options
+		{
 		if ( JOMRES_WRAPPED != 1)
-			{
-			$componentArgs=array();
-			$output=array();
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
-			$publishedProperties = count(doSelectSql($query));
-			$output['PUBLISHEDPROPERTIESTXT']=jr_gettext('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES',_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES,$editable=false,$isLink=false);
-			$output['PUBLISHEDPROPERTIES']=$publishedProperties;
-			$output['TITLE']=jr_gettext('_JOMCOMP_MYUSER_MENUTITLE',_JOMCOMP_MYUSER_MENUTITLE,$editable=false,$isLink=false);
-			
-			$componentArgs['thisJRUser']=$thisJRUser;
-			$MiniComponents->triggerEvent('00009',$componentArgs); // 
-			$mcOutput=$MiniComponents->getAllEventPointsData('00009');
-			$counter=0;
-			foreach ($mcOutput as $key=>$val)
-				{
-				if ($mcOutput[$key] != "" && $mcOutput[$key] != null)
-					$counter++;
-				}
-			if ($counter>0)
-				{
-				foreach ($mcOutput as $key=>$val)
-					{
-					$r=array();
-					$r["OPTIONS"]=$val;
-					$rows[]=$r;
-					}
-
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'toolbar_guest.html');
-				$tmpl->addRows( 'pageoutput',$pageoutput);
-				$tmpl->addRows( 'rows',$rows);
-				$tmpl->displayParsedTemplate();
-				}
-			}
+			$MiniComponents->triggerEvent('00008'); // User's toolbar
 		}
 	}
 
@@ -730,15 +400,6 @@ else
 	
 $MiniComponents->triggerEvent('00012',$componentArgs); // Optional other stuff to do before switch is done.
 $componentArgs=array();
-
-if (!$no_html)
-	{
-	//$componentArgs=array();
-	//$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
-	//$componentArgs=array();
-	global $faux_header_scripts;
-	echo $faux_header_scripts;
-	}
 
 if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
@@ -1525,22 +1186,7 @@ if ($numberOfPropertiesInSystem>0)
 
 	if (!$no_html)
 		{
-		//global $jomres_tooltips;
-		$jomres_tooltips =jomres_getSingleton('jomres_tooltips');
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		/*
-		if (!is_null($jomres_tooltips))
-			{
-			$pageoutput=array(array('javascript'=>$jomres_tooltips->get_javascript()));
-			$tmpl->addRows( 'bottom',$pageoutput);
-			}
-		*/
-		if ($management_view)
-			$tmpl->readTemplatesFromInput( 'management_bottom.html');
-		else
-			$tmpl->readTemplatesFromInput( 'bottom.html');
-		$tmpl->displayParsedTemplate();
+		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 		}
 	}
 else
