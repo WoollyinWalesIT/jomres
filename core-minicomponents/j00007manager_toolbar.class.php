@@ -24,7 +24,7 @@ class j00007manager_toolbar {
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$accessLevel=$thisJRUser->accesslevel;
-
+		$published=$componentArgs['published'];
 		if ($accessLevel=="2")
 			{
 			jr_import('jomres_cache');
