@@ -518,6 +518,7 @@ class j00030search {
 						{
 						$r="";
 						$counter=0;
+						array_shift($sch->prep['features']); // Gets rid of the "searchAll" option
 						foreach ($sch->prep['features'] as $feature)
 							{
 							$counter++;
