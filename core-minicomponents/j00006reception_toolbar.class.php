@@ -98,13 +98,13 @@ class j00006reception_toolbar {
 					$thisJRUser->set_currentproperty($thisProperty);
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");
 					}
-				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property_uid) );
+				$propertyDropdown= jomresHTML::selectList($propertyOptions, 'thisProperty', 'size="1" OnChange="location.href=propertyDropdown.thisProperty.options[selectedIndex].value"', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.get_showtime('property_uid')) );
 				if (!JOMRES_SINGLEPROPERTY)
 					$output['PROPERTYDROPDOWN']=''.$propertyDropdown.$filterDropdown.'';
 				}
 
 			$output['HTAGSEARCH']= jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,false);
-			$query="SELECT count FROM #__jomres_pcounter WHERE `p_uid` = '".(int)$property_uid."' LIMIT 1 ";
+			$query="SELECT count FROM #__jomres_pcounter WHERE `p_uid` = '".(int)get_showtime('property_uid')."' LIMIT 1 ";
 			$clickList= doSelectSql($query);
 			if (count($clickList)>0)
 				{
