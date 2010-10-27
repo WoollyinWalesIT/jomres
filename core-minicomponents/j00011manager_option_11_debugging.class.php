@@ -34,7 +34,7 @@ class j00011manager_option_11_debugging {
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=$currentPage"), 'bug_icon.png', jr_gettext('_JOMRES_CUSTOMTEXT_REPORTBUG',"Report Bug",false,false));
+		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=".get_showtime('task')), 'bug_icon.png', jr_gettext('_JOMRES_CUSTOMTEXT_REPORTBUG',"Report Bug",false,false));
 		}
 	
 	
