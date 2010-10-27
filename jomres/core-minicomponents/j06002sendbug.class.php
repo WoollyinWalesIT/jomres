@@ -44,22 +44,14 @@ class j06002sendbug {
 			$subject = jomresGetParam( $_REQUEST, 'subject', '' );
 			$fromname = jomresGetParam( $_REQUEST, 'fromname', '' );
 			$fromemail = jomresGetParam( $_REQUEST, 'fromemail', '' );
-			$contents = jomresGetParam( $_REQUEST, 'contents', '' );
-			/*
-			if (defined('_JOMRES_NEWJOOMLA') )
-				{
-				$result=JUtility::sendMail($fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
-				}
-			else
-				$result=mosMail( $fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
-			*/
-			
+			$contents =$_REQUEST['contents'];
+			$contents = str_replace("\n","<br/>\n",$contents);
+
 			$result = jomresMailer( $fromemail, $fromname, $toemail, $subject, $contents,$mode=1);
 
 			if ($result)
 				{
 				$jomres_messaging =jomres_getSingleton('jomres_messages');
-				//$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message("Bug report sent.");
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL));
 				}

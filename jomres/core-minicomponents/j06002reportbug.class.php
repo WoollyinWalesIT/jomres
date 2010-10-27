@@ -36,6 +36,8 @@ class j06002reportbug {
 			$this->template_touchable=false; return;
 			}
 		global $_VERSION;
+		
+		
 		$jomresConfig_fromname=get_showtime('fromname');
 		$jomresConfig_mailfrom=get_showtime('mailfrom');
 		$jomresConfig_sitename=get_showtime('sitename');
@@ -47,6 +49,11 @@ class j06002reportbug {
 		if (!$thisJRUser->superPropertyManager)
 			return;
 		$mrConfig=getPropertySpecificSettings();
+		$first_version = $mrConfig['version'];
+		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
+		$current_version = $mrConfig['version'];
+
+		//$showtime = jomres_getSingleton('showtime');
 		if ($thisJRUser->superPropertyManager)
 			{
 			$link = mysql_connect($jomresConfig_host, $jomresConfig_user, $jomresConfig_password);
@@ -58,8 +65,37 @@ class j06002reportbug {
 			$image="/jomres/images/jomresimages/small/EmailSend.png";
 			$sitename="Site name : ".$jomresConfig_sitename;
 			$joomlaUrl="CMS url : ".get_showtime('live_site');
-			$jomresVersion="Jomres version : ".$mrConfig['version'];
-			$joomlaVersion="CMS version : ".$_VERSION->PRODUCT.' '.$_VERSION->RELEASE.'.'.$_VERSION->DEV_LEVEL.' '.$_VERSION->DEV_STATUS;
+			
+			$jomresFirstVersion="Jomres first version : ".$first_version;
+			$jomresCurrentVersion="Jomres current version : ".$current_version;
+			$license_key = "License key : ".$mrConfig['jomres_licensekey'];
+			
+			$joomlaVersion='';
+			$sh404sef = '';
+			$sef = '';
+			$joomla_sef = '';
+			
+			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
+				{
+				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php'))
+					{
+					$_VERSION = new JVersion();
+					$joomlaVersion="CMS version : ".$_VERSION->PRODUCT.' '.$_VERSION->RELEASE.'.'.$_VERSION->DEV_LEVEL.' '.$_VERSION->DEV_STATUS;
+					}
+
+				if (get_showtime('sef') =="1")
+					$joomla_sef = 'Joomla SEF functionality is switched on';
+				else
+					$joomla_sef = 'Joomla SEF functionality is switched off';
+				
+				
+				if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'))
+					$sh404sef = 'The sh404sef component directory exists. Is this component enabled? Yes/No';
+					
+				if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sef'))
+					$sef = 'The sef component directory exists. Is this component enabled? Yes/No';
+				}
+			
 			$phpVersion="PHP Version : ".phpversion();
 			$safeMode="Safe Mode : ".$safemode;
 			$mySqlVersion="MySql version : ".$serverinfo;
@@ -67,13 +103,44 @@ class j06002reportbug {
 			$serverSoftware="Server software : ".$_SERVER['SERVER_SOFTWARE'];
 			$opSys="Operating system : ".php_uname ();
 
-			$currentPage="Report triggered at page : ".get_showtime('live_site')."/".$currentPage;
+			$currentPage="Report triggered at page : ".get_showtime('live_site')."/ -- ".$currentPage;
 			$yourreport="Your bug report : ";
 			$adminLogin="Admin userid : admin";
 			$adminPassword="Admin password : ";
 			$guestLogin="Guest login  :";
 			$guestPassword="Guest password :";
 
+			
+			$xml_file = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'jomres_error_log.xml';
+			
+			$error_log = '';
+			if (file_exists($xml_file) )
+				{
+				if (!($fp = fopen($xml_file, 'r')))
+					{
+					die("Could not open $xml_file for parsing!\n");
+					}
+				$xml="";
+				while ($data = fgets($fp, 8192))
+					{
+					$xml.=$data;
+					}
+
+				jr_import('jomres_xml_parser');
+				$p = new jomres_xml_parser($xml);
+				$result=$p->getOutput($xml);
+				$counter=0;
+				$error_log = "\n\nError log last 5 lines : \n\n";
+				for ($i=0;$i<5;$i++)
+					{
+					$error_log .= $result['errorlog'][$i]['datetime'];
+					$error_log .= $result['errorlog'][$i]['task'];
+					$error_log .= $result['errorlog'][$i]['message']."\n";
+					}
+				}
+
+			
+			
 			$debug=$yourreport."\n";
 			$debug.="\n";
 			$debug.="\n";
@@ -88,15 +155,24 @@ class j06002reportbug {
 			$debug.=$currentPage."\n";
 			$debug.=$sitename."\n";
 			$debug.=$joomlaUrl."\n";
-			$debug.=$jomresVersion."\n";
+			$debug.=$jomresFirstVersion."\n";
+			$debug.=$jomresCurrentVersion."\n";
+			$debug.=$license_key."\n";
+			
 			$debug.=$joomlaVersion."\n";
+			$debug.=$sh404sef."\n";
+			$debug.=$sef."\n";
+			$debug.=$joomla_sef."\n";
+
 			$debug.=$phpVersion."\n";
 			$debug.=$safeMode."\n";
 			$debug.=$mySqlVersion."\n";
 			$debug.=$userAgent."\n";
 			$debug.=$serverSoftware."\n";
 			$debug.=$opSys."\n";
-
+			$debug.=$error_log."\n";
+			
+			
 			$jrtbar =jomres_getSingleton('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->customToolbarItem("SEND",jomresURL(JOMRES_SITEPAGE_URL."&task=sendbug&currentPage=$currentPage"),$text="Send Bug",$submitOnClick=true,$submitTask="sendbug",$image);
