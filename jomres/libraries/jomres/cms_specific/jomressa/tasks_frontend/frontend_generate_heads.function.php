@@ -29,13 +29,13 @@ function frontend_generate_heads()
 	$type = "charset";$content=array('charset'=>$charset);
 	$jomresSitefactory->setHead($type,$content);
 
-	$title = get_showtime('sitename');
-	$type = "title";$content=array('title'=>$title);
-	$jomresSitefactory->setHead($type,$content);
+	// $title = get_showtime('sitename');
+	// $type = "title";$content=array('title'=>$title);
+	// $jomresSitefactory->setHead($type,$content);
 
-	$keywords = "keyword keyword keyword";
-	$type = "keywords";$content=array('keywords'=>$keywords);
-	$jomresSitefactory->setHead($type,$content);
+	// $keywords = "keyword keyword keyword";
+	// $type = "keywords";$content=array('keywords'=>$keywords);
+	// $jomresSitefactory->setHead($type,$content);
 
 	$revisit = "10";
 	$type = "revisit";$content=array('revisit'=>$revisit);
