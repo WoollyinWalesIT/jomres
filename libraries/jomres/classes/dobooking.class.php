@@ -4216,10 +4216,10 @@ class dobooking
 	$gpr_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_ROOM',_JOMRES_MAX_GUESTS_PER_ROOM,false,false);
 	$gpb_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false);
 	
-	$return_output = '<table><tr><td>'.$nor.'</td><td></td><td>'.$gpr_text.'</td><td>'.$gpb_text.'</td><td></td></tr>';
+	$return_output = '<table width=\"100%\" style=\"text-align:center;\"><tr><td>'.$nor.'</td><td></td><td>'.$gpr_text.'</td><td>'.$gpb_text.'</td><td></td></tr>';
 	foreach ($dropdown_output as $output)
 		{
-		$return_output .= "<tr><td>".$output['dropdown']." </td><td> ".$output['room_type']." - ".$output['tariff_title']." </td><td style=\"text-align:right;\"> ".$output['max_guests_per_room']."</td><td style=\"text-align:right;\">".$output['max_guests_per_booking']."</td><td>".$output['room_price_inc_tax']."</td><tr>";
+		$return_output .= "<tr><td>".$output['dropdown']." </td><td> ".$output['room_type']." - ".$output['tariff_title']." </td><td> ".$output['max_guests_per_room']."</td><td>".$output['max_guests_per_booking']."</td><td>".$output['room_price_inc_tax']."</td><tr>";
 		}
 	return $return_output;
 	}
