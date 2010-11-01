@@ -178,7 +178,7 @@ class JomresPage
 		if($this->total_page<=1)
 			return;
 		if(trim($user_link)=="")
-			$user_link=_PN_NEXT." &gt;&gt;&nbsp;";
+			$user_link=jr_gettext('_PN_NEXT',_PN_NEXT,false,false)." &gt;&gt;&nbsp;";
 		if(!$this->is_last_page()&& $this->show_prev_next)
 			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+1).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_prev_next && $this->show_disabled_links)
@@ -192,7 +192,7 @@ class JomresPage
 		if($this->total_page<=1)
 			return;
 		if(trim($user_link)=="")
-			$user_link="&lt;&lt; "._PN_PREVIOUS."&nbsp;";
+			$user_link="&lt;&lt; ".jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false)."&nbsp;";
 		if(!$this->is_first_page()&& $this->show_prev_next)
 			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-1).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_prev_next && $this->show_disabled_links)
@@ -206,7 +206,7 @@ class JomresPage
 		if($this->scroll_page>=$this->total_page)
 			return;
 		if(trim($user_link)=="")
-			$user_link=_PN_PREVIOUS."[$this->scroll_page]&nbsp;";
+			$user_link=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false)."[$this->scroll_page]&nbsp;";
 		if($this->page>$this->scroll_page &&$this->show_scroll_prev_next)
 			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_scroll_prev_next && $this->show_disabled_links)
@@ -220,7 +220,7 @@ class JomresPage
 		if($this->scroll_page>=$this->total_page)
 			return;
 		if(trim($user_link)=="")
-			$user_link=_PN_NEXT."[$this->scroll_page]&nbsp;";
+			$user_link=jr_gettext('_PN_NEXT',_PN_NEXT,false,false)."[$this->scroll_page]&nbsp;";
 		if($this->total_page>$this->page+$this->scroll_page &&$this->show_scroll_prev_next)
 			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
 		elseif($this->show_scroll_prev_next && $this->show_disabled_links)

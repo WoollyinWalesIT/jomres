@@ -519,7 +519,8 @@ class j01010listpropertys {
 		$output[]		=jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION) ;
 		$output[]		=jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM) ;
 		$output[]		=jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS);
-
+		$output[]		=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS);
+		$output[]		=jr_gettext('_PN_NEXT',_PN_NEXT);
 		foreach ($output as $o)
 			{
 			echo $o;
