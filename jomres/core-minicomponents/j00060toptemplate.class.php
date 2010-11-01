@@ -23,12 +23,14 @@ class j00060toptemplate {
 			{
 			$this->template_touchable=false; return;
 			}
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$thisJRUser=jomres_getSingleton('jr_user');
 		
 		$tz = $componentArgs['tz'];
 		$jomreslang = $componentArgs['jomreslang'];
+		
 		
 		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
 			{
@@ -79,6 +81,9 @@ class j00060toptemplate {
 					}
 				}
 
+			$output['NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false,false);
+			$output['PREVIOUS']=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false);
+		
 			$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
 			$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 			$output['LIVESITE']=get_showtime('live_site');
@@ -127,6 +132,18 @@ class j00060toptemplate {
 
 		}
 
+	function touch_template_language()
+		{
+		$output=array();
+		$output[]	=	jr_gettext('_PN_NEXT',_PN_NEXT);
+		$output[]	=	jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS);
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	/**
 	#
 	 * Must be included in every mini-component

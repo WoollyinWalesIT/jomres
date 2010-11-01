@@ -3,6 +3,7 @@ if ('undefined'!=typeof(jQuery)){
 jQuery.noConflict();
 }
 
+
 function isAvailable(date){
 
 	var dateAsString = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate();
