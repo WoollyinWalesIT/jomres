@@ -12,9 +12,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j06002list_property_invoices
+class 
 	{
-	function j06002list_property_invoices()
+	function j06001list_property_invoices()
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
