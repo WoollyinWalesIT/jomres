@@ -487,7 +487,7 @@ class jomressa_access_user
 		{
 		$subject = $this->messages($subj);
 		$body = $this->messages($msg);
-		$result = jomressa_sendmail(get_showtime('frommail'),get_showtime('fromname'),$mail_address,$subject,$body);
+		$result = jomressa_sendmail(get_showtime('mailfrom'),get_showtime('fromname'),$mail_address,$subject,$body);
 		if ($send_admin)
 			jomressa_sendmail(get_showtime('frommail'),get_showtime('fromname'),get_showtime('mailfrom'),"COPY OF ".$subject,$body);
 		return $result;
