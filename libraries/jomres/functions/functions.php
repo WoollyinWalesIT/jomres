@@ -14,15 +14,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
-function removeBOM($str="")
-	{
-	if(substr($str, 0,3) == pack("CCC",0xef,0xbb,0xbf))
-		{
-		$str=substr($str, 3);
-		}
-	return $str;
-	}
-
 function jomres_validate_gateway_plugin()
 	{
 	$thisJRUser=jomres_getSingleton('jr_user');
