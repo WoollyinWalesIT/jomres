@@ -39,6 +39,7 @@ if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	define('JOMRES_IMAGELOCATION_RELPATH',get_showtime('live_site').'/jomres/uploadedimages/');
 	}
 $task = jomresGetParam( $_REQUEST, 'task', "" );
+$task = str_replace("&#60;x&#62;","",$task);
 set_showtime('task',$task);
 
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'functions'.JRDS.'jomresxml.functions.php');
@@ -138,6 +139,7 @@ if (!JRPORTAL_AJAXCALL)
 else
 	$indexphp="index3.php";
 	
+
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
