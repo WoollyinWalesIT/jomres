@@ -99,6 +99,7 @@ $plugin 			= jomresGetParam( $_REQUEST, 'plugin', "" );
 $task 				= jomresGetParam( $_REQUEST, 'task', "" );
 $Itemid				= intval( jomresGetParam( $_REQUEST, 'Itemid', 0 ) );
 
+$task = str_replace("&#60;x&#62;","",$task);
 set_showtime('task',$task);
 set_showtime('no_html',$no_html);
 set_showtime('popup',$popup);
