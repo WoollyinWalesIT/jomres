@@ -28,8 +28,12 @@ class jr_user
 	 * Constructor. Sets the user up based on the $my variable
 	#
 	 */
-	function jr_user()
+	private static $configInstance;
+	private static $internal_debugging;
+	
+	public function __construct() 
 		{
+		self::$internal_debugging = false;
 		$this->id 								= 0;
 		$this->userid 							= FALSE;
 		$this->username 						= FALSE;
@@ -157,6 +161,38 @@ class jr_user
 
 			}
 		}
+
+	public static function getInstance()
+		{
+		if (!self::$configInstance)
+			{
+			self::$configInstance = new showtime();
+			}
+		return self::$configInstance;
+		}
+		
+	public function __clone()
+		{
+		trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
+		}
+		
+	public function __set($setting,$value)
+		{
+		if (self::$internal_debugging)
+			echo "Setting ".$setting." to ".$value." <br>";
+		$this->$setting = $value;
+		return true;
+		}
+		
+	public function __get($setting)
+		{
+		if (self::$internal_debugging)
+			echo "Getting ".$setting." which is ".$this->$setting."<br>";
+		if (isset($this->$setting))
+			return $this->$setting;
+		return null;
+		}
+	 
 
 	/**
 	#
