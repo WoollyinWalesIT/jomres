@@ -76,17 +76,15 @@ class j04010editroom {
 			 	}
 			if ($clone)
 				$roomUid=0;
-			if ($mrConfig['singleRoomProperty'] ==  '1')
-				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '".(int)$roomTypeSearchParameter."' AND `srp_only` = '1' ORDER BY room_class_abbv ";
-			else
-				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '".(int)$roomTypeSearchParameter."' AND `srp_only` = '0' ORDER BY room_class_abbv ";
 
-			$roomsClassList =doSelectSql($query);
+			$basic_property_details =jomres_getSingleton('basic_property_details');
+			$basic_property_details->gather_data($defaultProperty);
+
 			$classOptions[]=jomresHTML::makeOption( '', "" );
-			foreach ($roomsClassList as $roomClass)
+			foreach ($basic_property_details->this_property_room_classes as $key=>$roomClass)
 				{
-		  		$classOptions[]=jomresHTML::makeOption( $roomClass->room_classes_uid,$roomClass->room_class_abbv);
-				}
+		  		$classOptions[]=jomresHTML::makeOption( $key,$roomClass['abbv']);
+				} 
 			$classDropDownList= jomresHTML::selectList($classOptions, 'roomClasses', 'class="inputbox" size="1"', 'value', 'text', $room_classes_uid);
 			$disabledOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 			$disabledOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );
