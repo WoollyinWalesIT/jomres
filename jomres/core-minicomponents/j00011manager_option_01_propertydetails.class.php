@@ -34,7 +34,7 @@ class j00011manager_option_01_propertydetails {
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=editProperty", 'TariffsConfig.png', jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS',_JOMRES_PATHWAY_PROPERTYDETAILS,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=".$componentArgs['property_uid'], 'TariffsConfig.png', jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS',_JOMRES_PATHWAY_PROPERTYDETAILS,false,false));
 		}
 	
 	
