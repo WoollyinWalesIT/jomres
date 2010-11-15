@@ -129,7 +129,8 @@ class j02310regprop2 {
 		$output['PROPERTY_POLICIES_DISCLAIMERS']	="";
 		$output['PROPERTY_REGION']					=$property_region;
 		$output['PROPERTY_COUNTRY']					=$property_country;
-
+		$output['HPRICE']							=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
+		
 		$output['INPUTBOXERRORBORDER']				=$mrConfig['inputBoxErrorBorder'];
 		$output['INPUTBOXERRORBACKGROUND']			=$mrConfig['inputBoxErrorBackground'];
 		$output['JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2']				=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2);

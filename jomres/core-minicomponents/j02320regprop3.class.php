@@ -74,7 +74,9 @@ class j02320regprop3 {
 		//$isthisanmrp					= intval(jomresGetParam( $_POST, 'isthisanmrp', 0 ));
 		$property_stars					= intval(jomresGetParam( $_POST, 'stars', "" ) );
 		$features_list					= jomresGetParam( $_POST, 'pid', array() );
-
+		$price							= jomresGetParam( $_POST, 'price','' );
+		$price=str_replace(",","",$price);
+		
 		$realestate						= (int)jomresGetParam( $_POST, 'realestate', 0 );
 		
 		if (count($features_list)>1)
@@ -92,14 +94,14 @@ class j02320regprop3 {
 			`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
 			`property_email`,`property_features`,`property_mappinglink`,
 			`property_description`,`property_checkin_times`,`property_area_activities`,
-			`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,stars,ptype_id,apikey)
+			`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`property_key`,stars,ptype_id,apikey)
 			VALUES
 			('$property_name','$property_street',
 			'$property_town','$property_region','$property_country','$property_postcode','$property_tel',
 			'$property_fax','$property_email','$featuresList',
 			'$property_mappinglink','$property_description','$property_checkin_times','$property_area_activities',
 			'$property_driving_directions','$property_airports','$property_othertransport',
-			'$property_policies_disclaimers','".(int)$property_stars."','".(int)$property_type."','".$apikey."'
+			'$property_policies_disclaimers','".(float)$price."','".(int)$property_stars."','".(int)$property_type."','".$apikey."'
 			)";
 		$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
 
