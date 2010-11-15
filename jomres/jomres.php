@@ -374,8 +374,9 @@ if (!defined('JOMRES_NOHTML'))
 		{
 		if (get_showtime('task') != "invoiceForm" && get_showtime('task')!= "confirmationForm" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup && !$no_html)
 			{
+			$componentArgs=array('published'=>$published,'property_uid'=>$property_uid);
 			$MiniComponents->triggerEvent('00006'); // Reception's toolbar
-			$MiniComponents->triggerEvent('00007',array('published'=>$published)); // Manager's toolbar
+			$MiniComponents->triggerEvent('00007',$componentArgs); // Manager's toolbar
 			}
 		}
 	else
