@@ -44,7 +44,6 @@ class j00007manager_toolbar {
 				$output['WARNINGS'] = $sanity_checks->do_sanity_checks();
 
 				$componentArgs['published']=$published;
-				$componentArgs['property_uid']=$property_uid;
 
 				set_showtime('frontend_buttons',array());
 
