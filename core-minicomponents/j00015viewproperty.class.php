@@ -70,7 +70,7 @@ class j00015viewproperty
 		$property_airports=$current_property_details->property_airports;
 		$property_othertransport=$current_property_details->property_othertransport;
 		$property_policiesdisclaimers=$current_property_details->property_policies_disclaimers;
-
+		
 		if ( ($pr_published=="1" && !$userIsManager) || $userIsManager )
 			{
 			$property=array();
@@ -311,7 +311,9 @@ class j00015viewproperty
 			$property['POLICIESDISCLAIMERS']=$property_policiesdisclaimers;
 			if (empty($property['POLICIESDISCLAIMERS']))
 				$property['HPOLICIESDISCLAIMERS']="";
-
+			
+			$property['REAL_ESTATE_PROPERTY_PRICE']=output_price($current_property_details->real_estate_property_price);
+			
 			$property_deets[]=$property;
 
 			$tmpl = new patTemplate();

@@ -117,6 +117,7 @@ class basic_property_details
 			$this->metadescription			=$data->metadescription;
 			$this->property_features		=$data->property_features;
 			$this->property_mappinglink		=$data->property_mappinglink;
+			$this->real_estate_property_price = $data->property_key;
 
 			$this->property_description		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($data->property_description)),$editable,false));
 			$this->property_checkin_times	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($data->property_checkin_times)),$editable,false));
