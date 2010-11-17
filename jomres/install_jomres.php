@@ -251,10 +251,30 @@ function doTableUpdates()
 		alterManagerTimezoneCol();
 	if (!checkManagerSuspendedColExists() )
 		alterManagerSuspendedCol();
+	if (!checkInvoicesIsCommisionColExists() )
+		alterInvoicesIsCommisionCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function checkInvoicesIsCommisionColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'is_commission'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterInvoicesIsCommisionCol()
+	{
+	echo "Editing __jomresportal_invoices table adding is_commission column<br>";
+	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `is_commission` INT NULL DEFAULT '0' ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_invoices is_commission</b><br>";
+	}
 
 function alterManagerSuspendedCol()
 	{
@@ -1272,6 +1292,7 @@ function createJomresTables()
 		`subscription_id` int(11) NOT NULL default '0',
 		`contract_id` int(11),
 		`property_uid` INT NULL DEFAULT '0',
+		`is_commission` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");

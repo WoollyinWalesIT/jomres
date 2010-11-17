@@ -41,7 +41,7 @@
 				dataType: "html",
 				type: "GET",
 				error: function(e)   { 
-					jQuery('#'+ jQuery.jheartbeat.options.div_id).append("Error Requesting Data"); 
+					jQuery('#'+ jQuery.jheartbeat.options.div_id).append(""); 
 				},
 				success: function(data){ 
 					jQuery('#'+ jQuery.jheartbeat.options.div_id).html(data); 
