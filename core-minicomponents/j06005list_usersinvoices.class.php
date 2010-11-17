@@ -48,6 +48,13 @@ class j06005list_usersinvoices
 		//var_dump($invoices);exit;
 			if (count($invoices)>0)
 				{
+				$invoice_id_array=array();
+				foreach ($invoices as $invoice)
+					{
+					$invoice_id_array[]=$invoice['id'];
+					}
+				$invoices_items = invoices_getalllineitems_forinvoice_ids($invoice_id_array);
+
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
@@ -73,8 +80,18 @@ class j06005list_usersinvoices
 
 				foreach ($invoices as $invoice)
 					{
-
+	
 					$r=array();
+					
+					$inv_id = $invoice['id'];
+					$invoice_items = $invoices_items[$inv_id];
+					$item_name_string = "";
+					foreach ($invoice_items as $invoice_item)
+						{
+						$item_name_string .= $invoice_item['name']."<br/>";
+						}
+					$r['ITEMS']=$item_name_string;
+
 					$r['ID']=$invoice['id'];
 					
 					jr_import('jrportal_user_functions');
@@ -96,8 +113,8 @@ class j06005list_usersinvoices
 						$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 					else
 						$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-					$r['INITTOTAL']		=$invoice['init_total'];
-					$r['RECURTOTAL']	=$invoice['recur_total'];
+					$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
+					$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
 					$r['FREQ']			=$invoice['recur_frequency'];
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
 					$settingArray = get_plugin_settings("paypal",$invoice['property_uid']);
@@ -106,6 +123,9 @@ class j06005list_usersinvoices
 						if ($invoice['subscription'] == "0" && $invoice['status'] != "1")
 							$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
 						}
+					
+					
+					
 					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
 					$rows[]=$r;
 					}

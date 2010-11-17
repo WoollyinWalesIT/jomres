@@ -12,7 +12,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class 
+class j06001list_property_invoices
 	{
 	function j06001list_property_invoices()
 		{
