@@ -32,6 +32,7 @@ class jrportal_invoice
 		$this->subscription_id		= 0;
 		$this->contract_id			= 0;
 		$this->property_uid			= 0;
+		$this->is_commission		= 0;
 		}
 
 	function getInvoice()
@@ -40,7 +41,7 @@ class jrportal_invoice
 			{
 			$query = "SELECT
 				`id`,`cms_user_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
-				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`,`property_uid`
+				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`,`property_uid`,`is_commission`
 				FROM #__jomresportal_invoices WHERE `id`='$this->id' LIMIT 1";
 
 			$result=doSelectSql($query);
@@ -63,6 +64,8 @@ class jrportal_invoice
 					$this->subscription_id		= $r->subscription_id;
 					$this->contract_id			= $r->contract_id;
 					$this->property_uid			= $r->property_uid;
+					$this->is_commission		= $r->is_commission;
+					
 					}
 				return true;
 				}
@@ -107,7 +110,8 @@ class jrportal_invoice
 				`currencycode`,
 				`subscription_id`,
 				`contract_id`,
-				`property_uid`
+				`property_uid`,
+				`is_commission`
 				)
 				VALUES
 				(
@@ -124,7 +128,8 @@ class jrportal_invoice
 				'$this->currencycode',
 				'$this->subscription_id',
 				'$this->contract_id',
-				'$this->property_uid'
+				'$this->property_uid',
+				".(int)$this->is_commission."
 				)";
 			$id=doInsertSql($query,"");
 			if ($id)
@@ -160,7 +165,10 @@ class jrportal_invoice
 				`currencycode` 		= '$this->currencycode',
 				`subscription_id` 	= '$this->subscription_id',
 				`contract_id` 		= '$this->contract_id',
-				`property_uid` 		= '$this->property_uid'
+				`property_uid` 		= '$this->property_uid',
+				`is_commission`		= '$this->is_commission'
+				
+				
 				WHERE `id`='$this->id'";
 			return doInsertSql($query,"");
 			}
