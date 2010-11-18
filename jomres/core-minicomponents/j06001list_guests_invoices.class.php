@@ -55,6 +55,7 @@ class j06001list_guests_invoices
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
+				$basic_property_details =jomres_getSingleton('basic_property_details');
 				
 				$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 				$output['HUSER']=_JRPORTAL_INVOICES_USER;
@@ -79,6 +80,8 @@ class j06001list_guests_invoices
 					{
 					$r=array();
 					$r['ID']=$invoice['id'];
+					
+					$r['PROPERTY_NAME'] = $basic_property_details->get_property_name($invoice['property_uid']);
 					
 					jr_import('jrportal_user_functions');
 					$user_obj = new jrportal_user_functions();

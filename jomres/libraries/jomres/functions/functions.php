@@ -322,6 +322,7 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.bt.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.hoverIntent.minified.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.rating.pack.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.validate.min.js");
 
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
 				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jeditable.pack.js");
@@ -2137,13 +2138,6 @@ function insertGuestDeets($jomressession)
 	$ccv		=	quote_smart($xCustomers['ccv']);
 	$type		=	quote_smart($xCustomers['type']);
 
-	/*
-	$defaultProperty=getDefaultProperty();
-	if (!$userIsManager)
-		{
-		$defaultProperty=$property_uid;
-		}
-	*/
 	$defaultProperty=getDefaultProperty();
 	if (!$userIsManager && $thisJRUser->id >0)
 		{
@@ -2194,7 +2188,23 @@ function insertGuestDeets($jomressession)
 		$query.=")";
 		$returnid=doInsertSql($query,FALSE);
 		}
-
+	
+	// New for 4.5.9. We need now to look in the new guest profile table and see if this user already exists. If they do not, we'll take these details and add them to the profile table too, then in future the profile table's data will be used as the primary source of this guest's information, continuing to ensure that guest details are not shared between properties. No property should ever be able to access a guest's details unless that guest has already booked with that property.
+	// First, we'll look at this user's id. If it's the same as mos_userid above, then the user making the booking is a guest.
+	if ($thisJRUser->id == $mos_userid)
+		{
+		$query="SELECT id,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '".(int)$thisJRUser->id."' LIMIT 1";
+		$guestData=doSelectSql($query,2);
+		if (!$guestData) // The guest doesn't have information in the profile table yet.
+			{
+			$query="INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('".(int)$thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+			doInsertSql($query,'');
+			}
+		
+		}
+	
+	
+	
 
 	if (!$returnid)
 		{ echo "Error saving users details";exit; }
@@ -4446,6 +4456,7 @@ function invoices_getinvoicesfor_juser_byproperty_uid($juser=0,$status=null,$pro
 			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
 			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoices[$r->id]['currencycode']=$r->currencycode;
+			$invoices[$r->id]['property_uid']=$r->property_uid;
 			}
 		}
 	return $invoices;

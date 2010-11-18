@@ -1,0 +1,115 @@
+<patTemplate:tmpl name="pageoutput" >
+<script language="JavaScript" type="text/javascript">
+jQuery.validator.setDefaults({
+	highlight: function(input) {
+		jQuery(input).addClass("ui-state-highlight");
+	},
+	unhighlight: function(input) {
+		jQuery(input).removeClass("ui-state-highlight");
+	}
+});
+
+jQuery(document).ready(function(){
+	jQuery("#reviewForm").validate({
+		rules: {
+			firstname: "required",
+			surname: "required",
+			house: "required",
+			street: "required",
+			postcode: "required",
+			town: "required",
+			region: "required",
+			email: "required",
+		},
+	messages: {
+			firstname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_FIRSTNAME}",
+			surname: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_SURNAME}",
+			house: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_HOUSENO}",
+			street: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_STREET}",
+			postcode: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_POSTCODE}",
+			town: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_TOWN}",
+			region: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_REGION}",
+			email: "{_JOMRES_BOOKINGFORM_MONITORING_REQUIRED_EMAIL}",
+			},
+		errorLabelContainer: "#messageBox",
+		wrapper: "li",
+		submitHandler: function(form) {
+			form.submit();
+			},
+		
+	});
+	jQuery("#messageBox").hide();
+});
+</script>
+
+<ul id="messageBox" class="ui-state-error"></ul> 
+
+<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform">
+<fieldset class="ui-widget ui-widget-content ui-corner-all">
+	<fieldset>
+		<legend class="ui-widget ui-widget-header ui-corner-all">{PAGETITLE}</legend>
+		<p>
+		<label for="firstname">{HFIRSTNAME}</label><br/>
+			<input name="firstname" type="text" size="73" value="{FIRSTNAME}" class="inputbox required " />
+		</p>
+		<p>
+		<label for="review_title">{HSURNAME}</label><br/>
+			<input name="surname" type="text" size="73" value="{SURNAME}" class="inputbox required " />
+		</p>
+	</fieldset>
+	<fieldset>
+		<p>
+		<label for="review_title">{HHOUSE}</label><br/>
+			<input name="house" type="text" size="73" value="{HOUSE}" class="inputbox required " />
+		</p>
+		<p>
+		<label for="review_title">{HSTREET}</label><br/>
+			<input name="street" type="text" size="73" value="{STREET}" class="inputbox required " />
+		</p>
+		<p>
+		<label for="review_title">{HPOSTCODE}</label><br/>
+			<input name="postcode" type="text" size="73" value="{POSTCODE}" class="inputbox required " />
+		</p>
+		<p>
+		<label for="review_title">{HTOWN}</label><br/>
+			<input name="town" type="text" size="73" value="{TOWN}" class="inputbox required " />
+		</p>
+		<p>
+		<label for="review_title">{HREGION}</label><br/>
+			<input name="region" type="text" size="73" value="{REGION}" class="inputbox required " />
+		</p>
+		<p>
+		<label for="review_title">{HCOUNTRY}</label><br/>
+			{COUNTRY}
+		</p>
+	</fieldset>
+	<fieldset>
+		<p>
+		<label for="review_title">{HLANDLINE}</label><br/>
+			<input name="landline" type="text" size="73" value="{LANDLINE}" class="inputbox" />
+		</p>
+		<p>
+		<label for="review_title">{HMOBILE}</label><br/>
+			<input name="mobile" type="text" size="73" value="{MOBILE}" class="inputbox" />
+		</p>
+		<p>
+		<label for="review_title">{HFAX}</label><br/>
+			<input name="fax" type="text" size="73" value="{FAX}" class="inputbox" />
+		</p>
+		<p>
+		<label for="review_title">{HEMAIL}</label><br/>
+			<input name="email" type="text" size="73" value="{EMAIL}" class="inputbox required " />
+		</p>
+	</fieldset>
+	<fieldset>
+		<p>
+			<button class="submit" type="submit">{_JOMRES_REVIEWS_SUBMIT}</button>
+		</p>
+	</fieldset>	
+</fieldset>
+
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="task" value="save_my_account" />
+</form>
+
+</patTemplate:tmpl>

@@ -1438,3 +1438,4 @@ define('_JOMCOMP_MYUSER_REMOVE','Remove favourite');
 define('_JOMRES_DATA_ARCHIVE_TITLE','Booking data archive');
 define('_JOMRES_DATA_ARCHIVE_TITLE_DESC','The booking data archive is a raw dump of booking information captured after the confirm booking button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_booking_data_archive table.');
 
+define('_JOMRES_MY_ACCOUNT_EDIT','Edit account');

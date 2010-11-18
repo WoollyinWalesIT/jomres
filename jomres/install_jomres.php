@@ -253,10 +253,60 @@ function doTableUpdates()
 		alterManagerSuspendedCol();
 	if (!checkInvoicesIsCommisionColExists() )
 		alterInvoicesIsCommisionCol();
+	if (!checkGuestProfileTableExists() )
+		createGuestProfileTable();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function createGuestProfileTable()
+	{
+	echo "Creating _jomres_guest_profile table<br>";
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_user_id` VARCHAR(255) NULL,
+		`firstname` VARCHAR(255) NULL,
+		`surname` VARCHAR(255) NULL,
+		`house` VARCHAR(255) NULL,
+		`street` VARCHAR(255) NULL,
+		`town` VARCHAR(255) NULL,
+		`county` VARCHAR(255) NULL,
+		`country` VARCHAR(255) NULL,
+		`postcode` VARCHAR(45) NULL,
+		`tel_landline` VARCHAR(255) NULL,
+		`tel_mobile` VARCHAR(255) NULL,
+		`tel_fax` VARCHAR(255) NULL,
+		`preferences` TEXT NULL,
+		`car_regno` VARCHAR(20) NULL,
+		`ccard_no` BLOB,
+		`ccard_issued` BLOB,
+		`ccard_expiry` BLOB,
+		`ccard_iss_no` BLOB,
+		`ccard_name` BLOB,
+		`ccv` BLOB,
+		`type` BLOB,
+		`email` VARCHAR(100) NULL,
+		PRIMARY KEY(id)
+		) ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add _jomres_guest_profile table</b><br>";
+	}
+	
+function checkGuestProfileTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_guest_profile') )
+			return true;
+		}
+	return false;
+	}
+	
 function checkInvoicesIsCommisionColExists()
 	{
 	$query="SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'is_commission'";
@@ -1171,6 +1221,34 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+	$query = "CREATE TABLE IF NOT EXISTS `#_jomres_guest_profile` (
+		`id` int(11) NOT NULL auto_increment,
+		`cms_user_id` VARCHAR(255) NULL,
+		`firstname` VARCHAR(255) NULL,
+		`surname` VARCHAR(255) NULL,
+		`house` VARCHAR(255) NULL,
+		`street` VARCHAR(255) NULL,
+		`town` VARCHAR(255) NULL,
+		`county` VARCHAR(255) NULL,
+		`country` VARCHAR(255) NULL,
+		`postcode` VARCHAR(45) NULL,
+		`tel_landline` VARCHAR(255) NULL,
+		`tel_mobile` VARCHAR(255) NULL,
+		`tel_fax` VARCHAR(255) NULL,
+		`preferences` TEXT NULL,
+		`car_regno` VARCHAR(20) NULL,
+		`ccard_no` BLOB,
+		`ccard_issued` BLOB,
+		`ccard_expiry` BLOB,
+		`ccard_iss_no` BLOB,
+		`ccard_name` BLOB,
+		`ccv` BLOB,
+		`type` BLOB,
+		`email` VARCHAR(100) NULL,
+		PRIMARY KEY(id)
+		)";
+	doInsertSql($query,"");
+		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_sms_clickatell_messages` (
 		id int(10) NOT NULL auto_increment,
 		username  varchar(20) NOT NULL default '',
