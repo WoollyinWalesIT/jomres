@@ -21,6 +21,7 @@ ob_start("removeBOM");
 //ini_set("display_errors",1);
 //ini_set('error_reporting', E_ALL|E_STRICT);
 @ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
+date_default_timezone_set('UTC');
 
 global $thisJRUser,$task,$jomresPathway;
 global $property_uid,$Itemid,$jomressession;
@@ -127,11 +128,29 @@ if (get_showtime('task')!="error")
 		$tmpBookingHandler->updateGuestField('mos_userid',$thisJRUser->id);
 		if (get_showtime('task')!="handlereq" && get_showtime('task')!="completebk" && get_showtime('task')!="processpayment" && get_showtime('task')!="confirmbooking")
 			{
-			$query="SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' LIMIT 1";
+			$not_in_profile_table = false;
+			$has_booked_before = false;
+			$query="SELECT id,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = '".(int)$thisJRUser->id."' LIMIT 1";
 			$guestData=doSelectSql($query,2);
+			if (!$guestData)
+				{
+				$not_in_profile_table = true;
+				$query="SELECT guests_uid,firstname,surname,house,street,town,postcode,county,country,tel_landline,tel_mobile,email,discount FROM #__jomres_guests WHERE mos_userid = '".(int)$thisJRUser->id."' LIMIT 1";
+				$guestData=doSelectSql($query,2);
+				if ($guestData)
+					$has_booked_before = true;
+				}
+
 			if ($guestData)
 				{
-				$tmpBookingHandler->updateGuestField('guests_uid',$guestData['guests_uid']);
+				if ($not_in_profile_table)
+					{
+					$query="INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('".(int)$thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
+					doInsertSql($query,'');
+					}
+				if ($has_booked_before)
+					$tmpBookingHandler->updateGuestField('guests_uid',$guestData['id']);
+				
 				$tmpBookingHandler->updateGuestField('firstname',$guestData['firstname']);
 				$tmpBookingHandler->updateGuestField('surname',$guestData['surname']);
 				$tmpBookingHandler->updateGuestField('house',$guestData['house']);
@@ -146,9 +165,9 @@ if (get_showtime('task')!="error")
 				}
 			else
 				{
-				$query="SELECT email FROM #__users WHERE id = '".(int)$thisJRUser->id."'";
-				$guestData=doSelectSql($query,2);
-				$tmpBookingHandler->updateGuestField('email',$guestData['email']);
+				$user_details = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
+				
+				$tmpBookingHandler->updateGuestField('email',$user_details[$thisJRUser->id]['email']);
 				}
 			}
 		}
