@@ -1,0 +1,63 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<table width="100%">
+	<tr>
+		<th class="jomres_title">{_JOMRES_MANAGER_CHOOSE_SEARCHTITLE}</th>
+	</tr>
+	<tr>
+		<td class="jradmin_subheader_la">
+			<div class="ui-widget">
+				<input id="username_input" />
+			</div>
+			<br/>{_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS}
+		</td>
+	</tr>
+	<tr>
+		<th colspan="2" class="jomres_title">{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</th>
+	</tr>
+	<tr>
+		<td colspan="2" class="jradmin_subheader_la">
+		{_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS}<br/>
+			<table class="jradmin_table" border="0">
+				<tr>
+					<th class="jomres_title">{HUSERNAME}</th>
+					<th class="jomres_title">{HGRANTLINK}</th>
+					<th class="jomres_title">{HLINKTEXT}</th>
+					<th class="jomres_title">{HACCESSLEVEL}</th>
+					<th class="jomres_title">{HNUMBEROFPROPERTIES}</th> 
+					<th class="jomres_title">{HSUSPENSION}</th> 
+				</tr>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				<tr>
+					<td class="jradmin_field_la">{USERNAME}</td>
+					<td class="jradmin_field_la">{GRANTLINK}</td>
+					<td class="jradmin_field_la">{LINKTEXT}</td>
+					<td class="jradmin_field_la">{ACCESSLEVELIMAGE}</td>
+					<td class="jradmin_field_la">{NUMBEROFPROPERTIES}</td>
+					<td class="jradmin_field_la">{SUSPENSIONLINK}</td>
+				</tr>
+			</patTemplate:tmpl>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+var ajaxurl	= "{AJAXURL}";
+var livesite= "{LIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
+
+	jQuery(function() {
+		jQuery( "#username_input" ).autocomplete({
+			source: ajaxurl+'managers_find',
+			minLength: 2,
+			select: function( event, ui ) {
+				location.href = livesite+ui.item.value;
+			}
+		});
+	});
+
+
+</script>
+
+
+</patTemplate:tmpl>

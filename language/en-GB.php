@@ -1439,3 +1439,8 @@ define('_JOMRES_DATA_ARCHIVE_TITLE','Booking data archive');
 define('_JOMRES_DATA_ARCHIVE_TITLE_DESC','The booking data archive is a raw dump of booking information captured after the confirm booking button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_booking_data_archive table.');
 
 define('_JOMRES_MY_ACCOUNT_EDIT','Edit account');
+
+define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE',"Search users");
+define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS',"Enter a few characters from their username to search for a user.<br/> When you select a user you will automatically add them as a Manager and you will be taken to the next page where you can assign properties and access rights to the user.");
+define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',"Existing managers");
+define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS',"Choose a manager to be taken to the manager administration page.");
