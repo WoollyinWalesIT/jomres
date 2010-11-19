@@ -48,7 +48,7 @@ class j06000cron_invoice
 			$invoice_data= array();
 			$invoice_data['cms_user_id']=$key;
 			$invoice_data['due']=date("Y-m-d H-i-s");
-			$invoice_data['is_commission']='1');
+			$invoice_data['is_commission']='1';
 			foreach ($data as $d)
 				{
 				$processed_items[]=$d['id'];
