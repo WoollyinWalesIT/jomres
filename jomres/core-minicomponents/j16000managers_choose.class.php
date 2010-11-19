@@ -37,7 +37,6 @@ class j16000managers_choose
 		$img_manager=get_showtime('live_site')."/jomres/images/User_Agent_Male.png";
 		$img_superpropertymanager=get_showtime('live_site')."/jomres/images/User_Ninja.png";
 				$output['KEY']='
-		<img src = "'.$img_guest.'"  style="border:none;">'._JOMRES_COM_MR_EDITBOOKING_TAB_GUEST.'
 		<img src = "'.$img_reception.'"  style="border:none;">'._JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION.'
 		<img src = "'.$img_manager.'"  style="border:none;">'._JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN.'
 		<img src = "'.$img_superpropertymanager.'"  style="border:none;">'._JOMRES_COM_USERIS_SUPERPROPERTYMANAGER.'
