@@ -23,6 +23,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  * Lists profiles, performing assignation functionality where valid
 #
  */
+// Defunct as of v4.6
+/* 
 function listMosUsers()
 	{
 	$userList = jomres_cmsspecific_getCMSUsers();
@@ -138,7 +140,7 @@ function listMosUsers()
 	$tmpl->addRows( 'rows',$rows);
 	$tmpl->displayParsedTemplate();
 	}
-
+ */
 
 function editProfile()
 	{
@@ -235,7 +237,7 @@ function editProfile()
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveProfile",$image);
-	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",'');
+	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose",'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 	
@@ -283,9 +285,9 @@ function saveProfile()
 			$property_uid = doSelectSql($query,1);
 			$query="UPDATE #__jomres_managers SET `currentproperty`='$property_uid' WHERE userid = '".$userid."'";
 			if (!doInsertSql($query,FALSE)) trigger_error ("Unable to set current property, mysql db failure", E_USER_ERROR);
-			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 			}
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 		}
 		
 	
@@ -300,6 +302,20 @@ function grantMosUser()
 	{
 	$userid = (int)jomresGetParam( $_GET, 'userid', 0 );
 	$grantAct = jomresGetParam( $_GET, 'grantAct', '' );
+	
+	if (isset($_GET['name']))
+		{
+		$name	= jomresGetParam( $_GET, 'name', '' );
+		$all_users = jomres_cmsspecific_getCMSUsers();
+		foreach ($all_users as $user)
+			{
+			if (strtolower($user['username']) == $name)
+				$userid	= (int)$user['id'];
+			}
+		}
+	else
+		$userid	= (int)jomresGetParam( $_REQUEST, 'userid', 0 );
+			
 	if ($userid>0)
 		{
 		$userList = jomres_cmsspecific_getCMSUsers();
@@ -314,12 +330,13 @@ function grantMosUser()
 			$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`,`currentproperty`,`apikey`)VALUES ('".(int)$userid."','$username','-1','1','-1','$apikey')";
 		else
 			$query="DELETE FROM #__jomres_managers WHERE userid = '".(int)$userid."'";
+
 		if (doInsertSql($query,'') )
 			{
 			if ($grantAct=="y")
 				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=editProfile&id=".(int)$userid,_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 			else
-				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
+				jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose",_JOMRES_COM_MR_ASSIGNUSER_USERMODIFIEDMESAGE );
 			}
 		}
 	else
