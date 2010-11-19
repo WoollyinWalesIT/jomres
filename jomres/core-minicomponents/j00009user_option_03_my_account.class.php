@@ -34,7 +34,9 @@ class j00009user_option_03_my_account {
 			{
 			$this->template_touchable=true; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=edit_my_account", '', jr_gettext('_JOMRES_MY_ACCOUNT_EDIT',_JOMRES_MY_ACCOUNT_EDIT,false,false) );
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if ($thisJRUser->userIsRegistered)
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=edit_my_account", '', jr_gettext('_JOMRES_MY_ACCOUNT_EDIT',_JOMRES_MY_ACCOUNT_EDIT,false,false) );
 		}
 	
 	function touch_template_language()
