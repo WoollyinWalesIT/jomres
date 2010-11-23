@@ -40,9 +40,13 @@ class j06000cron_invoice
 				$items[$r->cms_user_id][$counter]['recur_qty']=$r-> recur_qty ;
 				$items[$r->cms_user_id][$counter]['recur_discount']=$r-> recur_discount ;
 				$items[$r->cms_user_id][$counter]['tax_code_id']=$r-> tax_code_id ;
+				$items[$r->cms_user_id][$counter]['property_uid']=$r-> property_uid ;
 				$counter++;
 				}
 			}
+		
+		
+		
 		foreach ( $items as $key=>$data)
 			{
 			$invoice_data= array();

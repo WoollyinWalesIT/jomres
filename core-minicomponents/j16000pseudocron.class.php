@@ -113,7 +113,7 @@ class j16000pseudocron
 		echo "<hr>";echo "<hr>";
 		$query = "SELECT ";
 
-		$query = "SELECT log_details FROM #__jomcomp_cronlog";
+		$query = "SELECT log_details FROM #__jomcomp_cronlog ORDER BY id DESC LIMIT 100";
 		$logDetails = doSelectSql($query);
 		foreach ($logDetails as $log)
 			{

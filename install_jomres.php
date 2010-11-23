@@ -255,8 +255,30 @@ function doTableUpdates()
 		alterInvoicesIsCommisionCol();
 	if (!checkGuestProfileTableExists() )
 		createGuestProfileTable();
+	if (!checkPropertyUIDInOrphanLineItemsColExists() )
+		alterPropertyUIDInOrphanLineItemsCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+
+function checkPropertyUIDInOrphanLineItemsColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomresportal_orphan_lineitems  LIKE 'property_uid'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterPropertyUIDInOrphanLineItemsCol()
+	{
+	echo "Editing __jomresportal_orphan_lineitems table adding property_uid column<br>";
+	$query = "ALTER TABLE `#__jomresportal_orphan_lineitems` ADD `property_uid` INT NULL DEFAULT '0' ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_orphan_lineitems property_uid</b><br>";
 	}
 
 function createGuestProfileTable()
@@ -1321,7 +1343,7 @@ function createJomresTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
-		`name` varchar(20) ,
+		`name` varchar(255) ,
 		`description` varchar(255) ,
 		`init_price` float default '0',
 		`init_qty` int(11) default '0',
@@ -1330,6 +1352,7 @@ function createJomresTables()
 		`recur_qty` int(11) default '0',
 		`recur_discount` float default '0',
 		`tax_code_id` int(11),
+		`property_uid` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 	)";
 	doInsertSql($query,"");
@@ -3015,6 +3038,7 @@ function addNewTables()
 		`recur_qty` int(11) NOT NULL default '0',
 		`recur_discount` float NOT NULL default '0',
 		`tax_code_id` int(11),
+		`property_uid` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 	)";
 	if (!doInsertSql($query))

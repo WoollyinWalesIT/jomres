@@ -55,8 +55,10 @@ class j06005view_invoice {
 
 		if (!$bypass_security_check)
 			{
-			if ((int)$invoice->contract_id > 0) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
+			
+			if ( (int)$invoice->contract_id > 0 && $invoice->is_commission == 0 ) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
 				{
+				
 				if ($thisJRUser->userIsManager)
 					{
 					$property_uid=getDefaultProperty();
