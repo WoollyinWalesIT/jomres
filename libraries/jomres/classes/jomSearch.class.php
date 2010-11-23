@@ -178,7 +178,10 @@ class jomSearch {
 			$query = "SELECT property_country FROM  #__jomres_propertys WHERE published = '1' ORDER BY  property_country ASC";
 			$activeCountriesList=doSelectSql($query);
 			$tmpCountryArray=array();
-
+			
+			$allLegitimateRegions = regionNamesArray();
+			
+			
 			//$this->prep['country'][$this->searchAll]=array('countrycode'=>$this->searchAll,'countryname'=>$this->searchAll);
 			$tmpCountryArray[]=$this->searchAll;
 
@@ -186,8 +189,11 @@ class jomSearch {
 				{
 				if (!in_array($country->property_country,$tmpCountryArray) )
 					{
-					$this->prep['country'][$allCountries[$country->property_country]]=array('countrycode'=>$country->property_country,'countryname'=>$allCountries[$country->property_country]);
-					$tmpCountryArray[]=$country->property_country;
+					if (array_key_exists($country->property_country,$allLegitimateRegions))
+						{
+						$this->prep['country'][$allCountries[$country->property_country]]=array('countrycode'=>$country->property_country,'countryname'=>$allCountries[$country->property_country]);
+						$tmpCountryArray[]=$country->property_country;
+						}
 					}
 				}
 
