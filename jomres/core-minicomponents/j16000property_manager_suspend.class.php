@@ -30,7 +30,7 @@ class j16000property_manager_suspend {
 		$jomres_suspensions->suspend_manager();
 		$jomres_suspensions->unpublish_managers_properties();
 
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=listMosUsers"), "" );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose"), "" );
 		}
 
 	// This must be included in every Event/Mini-component
