@@ -431,6 +431,10 @@ function getIntegratedSearchModuleVals()
 	$vals['priceranges']			= $jrConfig['integratedSearch_priceranges'] ;
 	$vals['pricerange_increments']	= $jrConfig['integratedSearch_pricerange_increments'] ;
 	$vals['selectcombo']			= $jrConfig['integratedSearch_selectcombo'] ;
+	
+	$vals['guestnumber']			= $jrConfig['integratedSearch_guestnumber'] ;
+	$vals['stars']					= $jrConfig['integratedSearch_stars'] ;
+	
 	return $vals;
 	}
 

@@ -140,7 +140,6 @@ else
 	$indexphp="index3.php";
 	
 
-
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
 		convertCustomTextAll();

@@ -481,7 +481,19 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_integratedSearch_pricerange_increments" value="'.$jrConfig['integratedSearch_pricerange_increments'].'"></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC.'</td>
-		<tr>');
+		<tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_guestnumber'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_stars'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC.'</td>
+		</tr>
+		
+		');
 	$contentPanel->setcontent('
 		<tr align="center" valign="middle">
 			<th colspan="3">&nbsp;</th>

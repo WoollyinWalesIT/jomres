@@ -92,31 +92,13 @@ class j00030search {
 			if ($jrConfig['integratedSearch_enable'] =='1')
 				{
 				$calledByModule="mod_jomsearch_m0";
-				// $doSearch=true;
-				// $searchRestarted=true;
-				// //var_dump($doSearch);exit;
-				// $includedInModule=true;
-				// $componentArgs=array('doSearch'=>$doSearch,'includedInModule'=>$includedInModule,'calledByModule'=>$calledByModule);
-				// $MiniComponents->triggerEvent('00030',$componentArgs);
 				}
 			}
 
 		$calledByModule=mysql_real_escape_string($calledByModule);
 
 		$customTextObj =jomres_getSingleton('custom_text');
-		/*
-		$customTextArray=array();
-		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".get_showtime('lang')."'";
-		$customTextList=doSelectSql($query);
-		if (count($customTextList))
-			{
-			foreach ($customTextList as $text)
-				{
-				$customTextArray[$text->constant]=stripslashes($text->customtext);
-				}
-			}
-		*/
-		
+
 			$infoIcon="/jomres/images/information.png";
 			$output=array();
 			$pageoutput=array();
@@ -230,12 +212,34 @@ class j00030search {
 					$sch->filter['priceranges']		= array("from"=>(int)$rangeArr[0],"to"=>(int)$rangeArr[1],"raw"=>$ranges);
 					}
 				}
+
+			if (!empty($_REQUEST['guestnumber'] ) )
+				{
+				if ($_REQUEST['guestnumber'] == $searchAll)
+					$sch->filter['guestnumber']		=	"%";
+				else
+					{
+					$sch->filter['guestnumber']		= (int)jomresGetParam( $_REQUEST, 'guestnumber',"" );
+					}
+				}
+
+			if (!empty($_REQUEST['stars'] ) )
+				{
+				if ($_REQUEST['stars'] == $searchAll)
+					$sch->filter['stars']		=	"%";
+				else
+					{
+					$sch->filter['stars']		= (int)jomresGetParam( $_REQUEST, 'stars',"" );
+					}
+				}
 				
 			if ($option == "com_jomres" && (!empty($_REQUEST['propertyname']) || !empty($_REQUEST['country'] ) || !empty($_REQUEST['region']) || !empty($_REQUEST['town'])) )
 				{
 				jomres_cmsspecific_setmetadata("title",$metaTitle);
 				}
-			//var_dump($sch->searchOptions);
+			
+			//var_dump($sch->searchOptions);exit;
+			
 			if (!empty($_REQUEST['arrivalDate']) && in_array('availability',$sch->searchOptions) )
 				{
 				$sch->filter['arrival']		= $sch->prep['arrival'];
@@ -282,6 +286,13 @@ class j00030search {
 					$output['JOMRES_SEARCH_PRICERANGES']				=makeFeatureImages($infoIcon,_JOMRES_SEARCH_BUTTON, jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES,false),$retString=TRUE);
 				else
 					$output['JOMRES_SEARCH_PRICERANGES']				=jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES,false);
+				}
+				
+			if (in_array("guestnumber",$searchOptions) && $showSearchOptions && get_showtime('task')!="bookaroom") {
+				$output['HGUESTNUMBER']					=jr_gettext('_JOMRES_SEARCH_GUESTNUMBER',_JOMRES_SEARCH_GUESTNUMBER,false);
+				}
+			if (in_array("stars",$searchOptions) && $showSearchOptions && get_showtime('task')!="bookaroom") {
+				$output['HSTARS']					=jr_gettext('_JOMRES_SEARCH_STARS',_JOMRES_SEARCH_STARS,false);
 				}
 		
 			$output['LIVESITE']=get_showtime('live_site');
@@ -645,13 +656,57 @@ class j00030search {
 					}
 				}
 			// -------------------------------------------------------------------------------------------------------------------------------------------
-//
+
 			if (in_array("availability",$searchOptions))
 				{
 				$output['ARRIVALDATE']= generateDateInput("arrivalDate",$sch->prep['arrival'],"ad",TRUE);
 				$output['DEPARTUREDATE']= generateDateInput("departureDate",$sch->prep['departure'],FALSE,TRUE,false);
 				$showButton=true;
 				}
+				
+			// -------------------------------------------------------------------------------------------------------------------------------------------
+			if (in_array("guestnumber",$searchOptions)&& $showSearchOptions ) 
+				{
+				$guestnumberArray=array();
+				if (count($sch->prep['guestnumber'])>0)
+					{
+					if (empty($sch->filter['guestnumber']) )
+						$selectOption=$sch->prep['guestnumber'][0]['id'];
+					else
+						$selectOption=$sch->filter['guestnumber'];
+						foreach ($sch->prep['guestnumber'] as $guestnumber)
+							{
+							$guestnumberArray[]= jomresHTML::makeOption( $guestnumber['id'], $guestnumber['guestnumber']);
+							}
+						$output['guestnumber']=jomresHTML::selectList( $guestnumberArray, 'guestnumber', 'size="1" ', 'value', 'text', $selectOption );
+						$showButton=true;
+				}
+			else
+				$output['guestnumber']="EMPTY";
+				}
+			
+			// -------------------------------------------------------------------------------------------------------------------------------------------
+			if (in_array("stars",$searchOptions)&& $showSearchOptions ) 
+				{
+				$starsArray=array();
+				if (count($sch->prep['stars'])>0)
+					{
+					if (empty($sch->filter['stars']) )
+						$selectOption=$sch->prep['stars'][0]['id'];
+					else
+						$selectOption=$sch->filter['stars'];
+
+						foreach ($sch->prep['stars'] as $stars)
+							{
+							$starsArray[]= jomresHTML::makeOption( $stars['id'], $stars['stars']);
+							}
+						$output['stars']=jomresHTML::selectList( $starsArray, 'stars', 'size="1" ', 'value', 'text', $selectOption );
+						$showButton=true;
+				}
+			else
+				$output['stars']="EMPTY";
+				}
+
 			// -------------------------------------------------------------------------------------------------------------------------------------------
 			//if ($option=="com_jomres" && !$includedInModule)
 			//	var_dump($sch);
@@ -680,6 +735,12 @@ class j00030search {
 						$sch->jomSearch_town();
 					if (in_array("ptype",$searchOptions) && !empty($sch->filter['ptype']) )
 						$sch->jomSearch_ptypes();
+					if (in_array("guestnumber",$searchOptions) && !empty($sch->filter['guestnumber']) )
+						$sch->jomSearch_guestnumber();
+					if (in_array("stars",$searchOptions) && !empty($sch->filter['stars']) )
+						$sch->jomSearch_stars();
+
+						
 					if (in_array("priceranges",$searchOptions) && !empty($sch->filter['priceranges']) )
 						$sch->jomSearch_priceranges();
 					if (in_array("feature_uids",$searchOptions) && !empty($sch->filter['feature_uids']) )
@@ -737,6 +798,9 @@ class j00030search {
 		$output[]		=jr_gettext('_JOMRES_SEARCH_AVL_INFO',_JOMRES_SEARCH_AVL_INFO);
 		$output[]		=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
 		$output[]		=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+		$output[]		=jr_gettext('_JOMRES_SEARCH_GUESTNUMBER',_JOMRES_SEARCH_GUESTNUMBER);
+		$output[]		=jr_gettext('_JOMRES_SEARCH_STARS',_JOMRES_SEARCH_STARS);
+
 		
 		$output[]		=jr_gettext('_JOMRES_SEARCH_PTYPES',_JOMRES_SEARCH_PTYPES);
 		
