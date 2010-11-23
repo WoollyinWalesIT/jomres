@@ -116,6 +116,9 @@ $jrConfig['integratedSearch_availability']			='0';
 $jrConfig['integratedSearch_priceranges']			='0';
 $jrConfig['integratedSearch_pricerange_increments']	='20';
 
+$jrConfig['integratedSearch_guestnumber']			='0';
+$jrConfig['integratedSearch_stars']					='0';
+
 // Plugin settings
 
 // Pseudocron settings

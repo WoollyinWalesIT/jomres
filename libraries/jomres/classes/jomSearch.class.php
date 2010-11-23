@@ -60,7 +60,7 @@ class jomSearch {
 			$vals = jomres_cmsspecific_getSearchModuleParameters($calledByModule);
 
 			$moduleclass_sfx 	= $vals['moduleclass_sfx'];
-			//$useoverlibLabels 	= $params->get( 'useoverlibLabels',0 );
+
 			$useCols 			= $vals['useCols'];
 			$featurecols 		= $vals['featurecols'];
 			$geosearchtype 		= $vals['geosearchtype'];
@@ -70,7 +70,9 @@ class jomSearch {
 			$features 			= $vals['features'];
 			$description 		= $vals['description'];
 			$availability 		= $vals['availability'];
-
+			$guestnumber		= $vals['guestnumber'];
+			$stars 				= $vals['stars'];
+			
 			$geosearch_dropdown 	= $vals['geosearch_dropdown'];
 			$propertyname_dropdown 	= $vals['propertyname_dropdown'];
 			$ptype_dropdown 		= $vals['ptype_dropdown'];
@@ -81,71 +83,7 @@ class jomSearch {
 			$pricerange_increments	= $vals['pricerange_increments'];
 			$selectcombo			= $vals['selectcombo'];
 
-			/*
-			if (defined('_JOMRES_NEWJOOMLA'))
-				{
-				$vals=array();
-				$arr=explode("\n",$p);
-				foreach ($arr as $str)
-					{
-					$dat=explode("=",$str);
-					$key = $dat[0];
-					$val = $dat[1];
-					if (strlen($key)>0)
-						$vals[$key]=$val;
-					}
-				$moduleclass_sfx 	= $vals['moduleclass_sfx'];
-				//$useoverlibLabels 	= $params->get( 'useoverlibLabels',0 );
-				$useCols 			= $vals['useCols'];
-				$featurecols 		= $vals['featurecols'];
 
-				$geosearchtype 		= $vals['geosearchtype'];
-				$pn					= $vals['propertyname'];
-				$ptype 				= $vals['ptype'];
-				$room_type 			= $vals['room_type'];
-				$features 			= $vals['features'];
-				$description 		= $vals['description'];
-				$availability 		= $vals['availability'];
-
-				$geosearch_dropdown 	= $vals['geosearch_dropdown'];
-				$propertyname_dropdown 	= $vals['propertyname_dropdown'];
-				$ptype_dropdown 		= $vals['ptype_dropdown'];
-				$room_type_dropdown 	= $vals['room_type_dropdown'];
-				$features_dropdown 		= $vals['features_dropdown'];
-				
-				$priceranges			= $vals['priceranges'];
-				$pricerange_increments	= $vals['pricerange_increments'];
-				$selectcombo			= $vals['selectcombo'];
-				}
-			else
-				{
-				$params = new mosParameters( $p );
-
-				$moduleclass_sfx 	= $params->get( 'moduleclass_sfx','' );
-				//$useoverlibLabels 	= $params->get( 'useoverlibLabels',0 );
-				$useCols 			= $params->get( 'useCols',0 );
-				$featurecols 		= $params->get( 'featurecols',10 );
-
-				$geosearchtype 		= $params->get( 'geosearchtype','' );
-				$pn					= $params->get( 'propertyname',0 );
-				$ptype 				= $params->get( 'ptype',0 );
-				$room_type 			= $params->get( 'room_type',0 );
-				$features 			= $params->get( 'features',0 );
-				$description 		= $params->get( 'description',0 );
-				$availability 		= $params->get( 'availability',0 );
-
-				$geosearch_dropdown 	= $params->get( 'geosearch_dropdown',1 );
-				$propertyname_dropdown 	= $params->get( 'propertyname_dropdown',1 );
-				$ptype_dropdown 		= $params->get( 'ptype_dropdown',1 );
-				$room_type_dropdown 	= $params->get( 'room_type_dropdown',1 );
-				$features_dropdown 		= $params->get( 'features_dropdown',1);
-				
-				$priceranges 			= $params->get( 'priceranges',0 );
-				$pricerange_increments	= $params->get( 'pricerange_increments',0 );
-				
-				$selectcombo 			= $params->get( 'selectcombo',0 );
-				}
-			*/
 			}
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
 		if ($option!="com_jomres" && !JOMRES_OVERLIB_CALLED)
@@ -174,7 +112,11 @@ class jomSearch {
 			$searchOptions[]="availability";
 		if ($priceranges)
 			$searchOptions[]="priceranges";
-			
+		if ($guestnumber)
+			$searchOptions[]="guestnumber";
+		if ($stars)
+			$searchOptions[]="stars";
+
 		if ($selectcombo)
 			{
 			$searchOptions[]="selectcombo";
@@ -352,7 +294,32 @@ class jomSearch {
 					$this->prep['priceranges'][]=$r;
 					}
 				}
-			}			
+			}
+			
+		if (in_array("guestnumber",$this->searchOptions) )
+			{
+			$result=prepGuestnumberSearch();
+			if ( $result && count($result)>0)
+				{
+				$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
+				$this->prep['guestnumber'][]=array('id'=>0 ,'guestnumber'=>$searchAll);
+				foreach ($result as $guestnumber)
+					{
+					$this->prep['guestnumber'][]=array('id'=>(int)$guestnumber ,'guestnumber'=>(int)$guestnumber);
+					}
+				}
+			}
+			
+		if (in_array("stars",$this->searchOptions) )
+			{
+			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
+			$this->prep['stars'][]=array('id'=>0 ,'stars'=>$searchAll);
+			$this->prep['stars'][]=array('id'=>1 ,'stars'=>1);
+			$this->prep['stars'][]=array('id'=>2 ,'stars'=>2);
+			$this->prep['stars'][]=array('id'=>3 ,'stars'=>3);
+			$this->prep['stars'][]=array('id'=>4 ,'stars'=>4);
+			$this->prep['stars'][]=array('id'=>5 ,'stars'=>5);
+			}
 		}
 
 	/**
@@ -414,7 +381,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_country LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_country = '$filter' $property_ors AND published='1' ORDER BY property_name";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -434,7 +401,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($this->filter['region']) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']."' $property_ors AND published='1' ORDER BY property_name ";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region = '".$this->filter['region']."' $property_ors AND published='1' ORDER BY property_name ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -454,7 +421,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town = '$filter' $property_ors AND published='1' ORDER BY property_name";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -528,7 +495,7 @@ class jomSearch {
 					}
 				$st=substr($st,0,-28);
 				}
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_features LIKE $st  $property_ors AND published = '1'";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_features = $st  $property_ors AND published = '1'";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
@@ -546,7 +513,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_rooms WHERE  room_classes_uid LIKE '$filter'  $property_ors ";
+			$query="SELECT propertys_uid FROM #__jomres_rooms WHERE  room_classes_uid = '$filter'  $property_ors ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
@@ -564,12 +531,56 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE ptype_id LIKE '$filter'  $property_ors AND published = '1'";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE ptype_id = '$filter'  $property_ors AND published = '1'";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
 		}
 
+	/**
+	#
+	 * Performs a search based on property types
+	#
+	 */
+	function jomSearch_guestnumber()
+		{
+		$filter=(int)$this->filter['guestnumber'];
+		$this->makeOrs('property_uid');
+		$property_ors=$this->ors;
+		if(!empty($filter) && $property_ors )
+			{
+			$query="SELECT property_uid FROM #__jomres_rates WHERE maxpeople = ".$filter." ".$property_ors;
+			$result=doSelectSql($query);
+			// We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
+			foreach ($result as $r)
+				{
+				$resultObj = new stdClass;
+				$resultObj->propertys_uid = $r->property_uid;
+				if (!in_array($resultObj,$res))
+					$res[]=$resultObj;
+				}
+			$this->resultBucket=$res;
+			}
+		$this->sortResult();
+		}
+		
+	/**
+	#
+	 * Performs a search based on property types
+	#
+	 */
+	function jomSearch_stars()
+		{
+		$filter=(int)$this->filter['stars'];
+		$this->makeOrs();
+		$property_ors=$this->ors;
+		if(!empty($filter) && $property_ors )
+			{
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE stars = '$filter' $property_ors";
+			$this->resultBucket=doSelectSql($query);
+			}
+		$this->sortResult();
+		}
 	/**
 	#
 	 * Performs a search based on price ranges
@@ -718,7 +729,7 @@ class jomSearch {
 	 * Constructs a set of ORs to be used in queries based on the last array of property uids in the propertys_uid array
 	#
 	 */
-	function makeOrs()
+	function makeOrs($column="propertys_uid")
 		{
 		$property_uids=end($this->propertys_uid);
 		if (!empty($property_uids) )
@@ -726,7 +737,7 @@ class jomSearch {
 			$st=" AND (";
 			foreach ($property_uids as $property)
 				{
-				$st.="propertys_uid = '".(int)$property."' OR ";
+				$st.=$column." = '".(int)$property."' OR ";
 				}
 			$st=substr($st,0,-3);
 			$this->ors=$st.") ";
@@ -811,6 +822,21 @@ function prepGeographicSearch()
 	return $result;
 	}
 
+	
+	
+function prepGuestnumberSearch()
+	{
+	$result = array();
+	$query = "SELECT DISTINCT maxpeople FROM #__jomres_rates ORDER by maxpeople ASC";
+	$rateList = doSelectSql($query);
+	foreach ($rateList as $rate)
+		{
+		$result[] =$rate->maxpeople; 
+		}
+	return $result;
+	}
+	
+	
 /**
 #
  * Prepares data for searching on features.
