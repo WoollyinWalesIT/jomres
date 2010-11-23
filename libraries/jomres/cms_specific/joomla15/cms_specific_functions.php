@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 function jomres_cmsspecific_areweinadminarea()
 	{
 	$administrator_area=false;
-	if (substr($_SERVER['SCRIPT_NAME'],"/administrator/"))
+	if (strstr($_SERVER['SCRIPT_NAME'],"/administrator/"))
 		$administrator_area=true;
 	return $administrator_area;
 	}
