@@ -4336,7 +4336,40 @@ function invoices_getalllineitems_forinvoice_ids($ids=array())
 	return $lineitems;
 	}
 
+function invoices_getallcommissioninvoices($dec,$status=null)
+	{
+	$invoices=array();
+	$clause="";
+	if (isset($status))
+		$clause= " WHERE `status` = ".(int)$status." ";
+	else
+		$clause = " WHERE ";
+	if ($dec)
+		$clause.="  is_commission = 1 ORDER BY raised_date DESC";
+	$query="SELECT * FROM #__jomresportal_invoices".$clause;
 
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$invoices[$r->id]['id']=$r->id;
+			$invoices[$r->id]['cms_user_id']=$r->cms_user_id;
+			$invoices[$r->id]['status']=$r->status;
+			$invoices[$r->id]['raised_date']=$r->raised_date;
+			$invoices[$r->id]['due_date']=$r->due_date;
+			$invoices[$r->id]['paid']=$r->paid;
+			$invoices[$r->id]['subscription']=$r->subscription;
+			$invoices[$r->id]['init_total']=$r->init_total;
+			$invoices[$r->id]['recur_total']=$r->recur_total;
+			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
+			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
+			$invoices[$r->id]['currencycode']=$r->currencycode;
+			}
+		}
+	return $invoices;
+	}
+	
 function invoices_getallinvoices($dec,$status=null)
 	{
 	$invoices=array();
