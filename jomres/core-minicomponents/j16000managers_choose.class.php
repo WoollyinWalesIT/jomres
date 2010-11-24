@@ -57,6 +57,7 @@ class j16000managers_choose
 		$output['_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS']=_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS;
 		$output['INSTRUCTIONS']=_JOMRES_PROFILELIST_INSTRUCTIONS;
 		$output['SUSPENSIONS']=_JOMRES_SUSPENSIONS_MANAGERLIST_INFO;
+		$output['_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED']=_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED;
 		
 		$output['HLINKTEXT']=	_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT;
 		$output['HGRANTLINK']=	_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER;
@@ -105,7 +106,7 @@ class j16000managers_choose
 				$numberOfProperties=count($propertyList);
 
 				$r['ACCESSLEVELIMAGE']=$accesslevel_img;
-				$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&no_html=1&userid='.$cms_userid.'&grantAct=n">'.$crossIcon.'</a>';
+				$r['GRANTLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=grantMosUser&no_html=1&userid='.$cms_userid.'&grantAct=n">'.$tickIcon.'</a>';
 				if ($access_level>0)
 					$r['LINKTEXT']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editProfile&id='.$cms_userid.'">'.$editIcon.'</a>';
 				else

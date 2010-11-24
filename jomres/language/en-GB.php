@@ -28,7 +28,7 @@ define('_JOMRES_COM_MR_ASSIGNUSER_TITLE','Assign user admin functions');
 define('_JOMRES_COM_MR_ASSIGNUSER_ID','ID');
 define('_JOMRES_COM_MR_ASSIGNUSER_NAME','Name');
 define('_JOMRES_COM_MR_ASSIGNUSER_USERNAME','User name');
-define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER','Currently authorised');
+define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER','Currently authorised (click to de-authorise the user)');
 define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL','Default property');
 define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS','Change this');
 define('_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL','Access level');
@@ -1426,7 +1426,7 @@ define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES',"Current properties");
 define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS',"Click on a property to edit the partner's discount settings for that property.");
 
 // 4.6
-define('_JOMRES_SUSPENSIONS_TITLE',"State");
+define('_JOMRES_SUSPENSIONS_TITLE',"Suspended? <br/>(click to suspend a manager, this will auto-unpublish all of their properties ) ");
 define('_JOMRES_SUSPENSIONS_MANAGERLIST_INFO',"Click on the Suspend Icon (the icon with the man and the green tick) to suspend a manager. This means that the manager will not be able to perform property management functions and all of their properties will be unpublished. Super property managers cannot be suspended.");
 define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED',"This account has been suspended, it is not currently possible to administer your propert(ies) using this account.");
 define('_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE',"Manager account suspended");
@@ -1449,3 +1449,5 @@ define('_JOMRES_SEARCH_GUESTNUMBER','Number of guests');
 define('_JOMRES_SEARCH_STARS','Number of stars');
 
 define('_JRPORTAL_INVOICES_COMMISSION_TITLE',"Commission invoices");
+define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',"Number of properties");
+
