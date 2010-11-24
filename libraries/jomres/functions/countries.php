@@ -439,7 +439,7 @@ function countryNameArray()
 	"Uganda", "U. States Minor Out. Is.", "United States", "Uruguay",
 	"Uzbekistan", "Vatican City", "St. Vincent", "Venezuela", "Virgin Is., British", "Virgin Is., U.S.",
 	"Vietnam", "Vanuatu", "Wallis", "Samoa", "Yemen", "Mayotte",
-	"Yugoslavia", "S. Africa", "Zambia", "Zaire", "Zimbabwe"
+	"Yugoslavia", "S. Africa", "Zambia", "Zaire", "Zimbabwe","Serbia","Montenegro"
 	);
 	return $countryNames;
 	}
@@ -531,8 +531,8 @@ function countryCodesArray($translate=true)
 	"UZ" => "Uzbekistan", "VA" => "Vatican City", "VC" => "St. Vincent",
 	"VE" => "Venezuela", "VG" => "Virgin Is., British", "VI" => "Virgin Is., U.S.",
 	"VN" => "Vietnam","VU" => "Vanuatu", "WF" => "Wallis", "WS" => "Samoa", "YE" => "Yemen",
-	"YT" => "Mayotte", "YU" => "Yugoslavia", "ZA" => "S. Africa", "ZM" => "Zambia",
-	"ZR" => "Zaire", "ZW" => "Zimbabwe"
+	"YT" => "Mayotte", "ZA" => "S. Africa", "ZM" => "Zambia",
+	"ZR" => "Zaire", "ZW" => "Zimbabwe","RS" => "Serbia", "MN" => "Montenegro"
 	);
 	if ($translate)
 		{
