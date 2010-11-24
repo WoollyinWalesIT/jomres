@@ -163,7 +163,7 @@ switch (get_showtime('task')) {
 		changeUserAccessLevel();
 		break;
 	case "listMosUsers":
-		listMosUsers($option);
+		$MiniComponents->specificEvent('16000','managers_choose');
 		break;
 	case "editProfile":
 		editProfile();
