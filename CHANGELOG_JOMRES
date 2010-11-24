@@ -1,3 +1,68 @@
+Jomres 4.6beta1 23/11/2010
+
+Modified how dates date range array is calculated in blackbooking functionality, certain timezones were not crossing over correctly 5th November.
+Added booking number to confirmation letter. 
+Moved a management view option into a detected cms block so that Jomres SA doesn't trip over it and report an error.
+Disabling management_view if Joomla's sef enabled. 
+Fixed minor bug where installer couldn't create discounts table if it already exists (added  IF NOT EXISTS to the query).
+Modified installer to resolve issues where Jomres reports errors installing on mysql server if strict mode is enabled.
+updated cms specific installation script to take into account mysql strict mode.
+Added a check for the setting to exist before returning it in the showtime class.
+Modified how urls are detected within Jomres. If Joomla's internal SEF is enabled and the Jomres use ssl option is switched on we need to apply the 'live_site' variable to the url otherwise Jomres can't str_replace some urls with https. Means you can't have SEF urls within Jomres, and ssl in the booking form.
+Modified cms_specific_functions.php to correctly find the current user's id in wordpress.
+Disabled session id check in jr_user class as session id not set in wordpress, and I don't think we need it any more.
+Removed old jquery corner javascript from Jomres libraries.
+realestate property template updated to bring it into in line with the rest of Jomres' jquery ui handling.
+Updating Jomres css file, removing obsolete classes.
+Further css tidying up. Moved call for jomrescss.css to futher down in the init_javascript function to enable it to override jquery ui settings. Show tariffs and rooms templates updated with jquery ui classes.
+Modified str_replace of http to https functionality to take into account single property installations and the booking form in the property details page.
+Italian language file fully translated and brought up to date with the current version of Jomres. Many thanks Luca.
+Modified add plugin functionality to only bypass remote download of plugin aspect of system, so thirdparty plugins should still install if the license is out of date.
+Modified dobooking to ensure that last minute discount is calculated BEFORE taxes are figured out.
+Modified countries.php so that the country names can be alphabetically sorted even if they've been translated.
+Modified gateway validation routine to ensure that correct gateway plugin is checked and used by Jomres.
+Modified currency codes class to change "Bs F" to "Bs". Thanks for the update Yubisay.
+French language file updated, many thanks Mario
+Added suspended column to user manager's table.
+Fixed a bug where smtp emails weren't being sent when auth settings required.
+Added new functionality to suspend property manager accounts. This gives us a base to work on for future functionality as we improve the commission handling in the system.
+Added 00005 trigger point to admin.php. The main purpose for this addition is to allow plugins to include a language file post language detection to ensure that we're including the correct language file. Previously we'd use 00001 however this is no longer appropriate as the language is detected later in the workflow now.
+Modified guest views. Added remove favourite feature and generally tidied up a few templates to make proper use of the jquery ui css. Also modified view favourite functionality to make better use of the basic property details class which provides fuller translation of property address details.
+Modified list properties to not show the broken link to a non-existing room type image. For jintour specific properties.
+Created new admin feature to see raw booking data stored in the booking data archive.
+Added thumbnail handling to Jomres.
+Modified SA to not generate title and keyword heads as Jomres will generally manage that.
+Minor fix to searching functionality to pop the searchAll option off the beginning of the features array when showing features as icons instead of dropdowns.
+Moved manager/reception/user toolbars out into their own minicomponents, moved top and bottom templates out into their own minicomponents. This allows us to totally remove these toolbars programatically, if we so wish.
+Improved bug reporting functionality to include more information.
+Undid property name translations from router.php, in Joomla SEF mode this is causing Jomres to not be able to find the property's property uid when doing booking confirmations.
+Small change to improve room type dropdown layout output.
+Modified singleton abstract to search remote plugin dirs for classfiles to create as singletons if they're so constructed for such use.
+changed data sent to paypal when paying immediately. swapped output_price with number_format.
+Minor tweak to lang file to ensure that new user creation function is only valid in Joomla.
+Renamed j06002list_property_invoices.class.php to j06001list_property_invoices.class.php to ensure that receptionists can see invoices.
+Fixed an issue in SA where the wrong from email address was being used when sending forgot password links.
+corrected collection of 'task', removed <x> added by filtering code.
+Small change to a query to ensure that SRPs that are changing their property type (ie for room type associations) don't see MRP room types in the dropdown.
+Fixed bug where using the edit invoice feature in the backend wasn't setting the subscription as paid if the invoice was a subscription invoice. NA normally as usually a different mechanism is triggered to mark invoices as paid.
+Modified jr_user to become a full Jomres singleton, as it was found to be causing intermittent bugs in a new plugin in it's older php4 class style. 
+Modified how the property's room types are generated in the room type dropdown (SRP).
+Modified property creation functionality to allow input of realestate type property prices at creation time, and corrected a bug where the price wasn't being shown in the property details.
+Modified the invoice table to include an 'is_commission' column. 
+Improved guest's invoice layout to show invoice line item contents.
+New functionality to allow a logged in guest to change their details via an Edit Account link.
+Finally solved the 'paging' problem (or lack thereof) in Show Profiles. Realised that even if we used paging, searching for a user to create as a manager would still be laborious so instead adopted the last version's functionality that searches for partners to search for managers. 
+Added search by guest numbers (looks at max people column in tariffs) and search by star numbers. Only works in integrated search atm, modules will need to be updated separately.
+Modified language switcher to always show the language dropdown when in the administrator area.
+Some further changes to make viewing of commission invoices possible by the property mananger, plus added a commission invoices button and functionality to the administrator area. Also tweaked pseudocron to stop it from showing too many log events.
+Added serbia & montenegro to countries file.
+added a switch that outputs prices for real estate properties in the property list.
+Added an experimental change to the booking form, we pause for two seconds to collate data before it's passed to the confirmation page. This seems to resolve isolated incidents where the guest details aren't always captured at booking time.
+Added a check to the dashboard. If $_REQUEST requestedMonth is set, then don't use the cache.
+
+
+
+
 Jomres 4.5.8 24/9/2010
 
 Added a new view of the Jomres content area which allows the property manager to view just Jomres. This is both a faster interface (you're not running any of the Joomla modules) and allows more flexibility when branding the interface.
