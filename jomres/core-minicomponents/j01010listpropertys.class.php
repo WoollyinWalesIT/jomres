@@ -347,6 +347,7 @@ class j01010listpropertys {
 						}
 					else
 						{
+						$output_lowest = true;
 						$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
 						}
 
