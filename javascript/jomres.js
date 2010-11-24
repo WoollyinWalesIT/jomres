@@ -747,7 +747,7 @@ function checkaddressfields(){
 function validate(){
 	if (checkaddressfields()){
 		getResponse_guest();
-		setTimeout('submitBooking()', 1000);
+		setTimeout('submitBooking()', 2000);
 		}
 	}
 
