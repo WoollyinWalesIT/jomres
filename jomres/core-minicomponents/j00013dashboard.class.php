@@ -44,11 +44,10 @@ class j00013dashboard extends jomres_dashboard
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("dashboard",$this->property_uid,false);
 		$cacheContent = $cache->readCache();
-		if ($cacheContent)
+		if ($cacheContent && !isset($_REQUEST['requestedMonth']) )
 			echo $cacheContent;
 		else
 			{
-			
 			$this->cfg_todaycolor	= $mrConfig['avlcal_todaycolor'];  ## font color for the current date
 			$this->cfg_inmonthface	= $mrConfig['avlcal_inmonthface'];  ## font color for days in the display month
 			$this->cfg_outmonthface	= $mrConfig['avlcal_outmonface'];  ## font color for days not in the display month
