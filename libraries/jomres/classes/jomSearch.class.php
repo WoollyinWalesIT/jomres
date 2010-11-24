@@ -387,7 +387,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_country = '$filter' $property_ors AND published='1' ORDER BY property_name";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_country LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -407,7 +407,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($this->filter['region']) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region = '".$this->filter['region']."' $property_ors AND published='1' ORDER BY property_name ";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']."' $property_ors AND published='1' ORDER BY property_name ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -427,7 +427,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town = '$filter' $property_ors AND published='1' ORDER BY property_name";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -501,7 +501,7 @@ class jomSearch {
 					}
 				$st=substr($st,0,-28);
 				}
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_features = $st  $property_ors AND published = '1'";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_features LIKE $st  $property_ors AND published = '1'";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
@@ -519,7 +519,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_rooms WHERE  room_classes_uid = '$filter'  $property_ors ";
+			$query="SELECT propertys_uid FROM #__jomres_rooms WHERE  room_classes_uid LIKE '$filter'  $property_ors ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
@@ -537,7 +537,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE ptype_id = '$filter'  $property_ors AND published = '1'";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE ptype_id LIKE '$filter'  $property_ors AND published = '1'";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
@@ -555,7 +555,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT property_uid FROM #__jomres_rates WHERE maxpeople = ".$filter." ".$property_ors;
+			$query="SELECT property_uid FROM #__jomres_rates WHERE maxpeople LIKE ".$filter." ".$property_ors;
 			$result=doSelectSql($query);
 			// We need to create a new result array with classes called propertys_uid in, cos that's what resultBucket needs. Annoying fiddly stuff because we've not consistently named the property uids column in various tables, but there you have it. It's not going to change now.
 			foreach ($result as $r)
@@ -582,7 +582,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE stars = '$filter' $property_ors";
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE stars LIKE '$filter' $property_ors";
 			$this->resultBucket=doSelectSql($query);
 			}
 		$this->sortResult();
