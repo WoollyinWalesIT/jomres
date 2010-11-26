@@ -34,12 +34,23 @@ class j03025insertbooking_invoice {
 			{
 			$this->template_touchable=false; return;
 			}
+		$userIsManager=checkUserIsManager();
 		$mrConfig=getPropertySpecificSettings();
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->results=array();
 		$contract_uid=$componentArgs['contract_uid'];
+
+		if ( isset($tmpBookingHandler->tmpbooking["amend_contract"]) )
+			{
+			$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
+			$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
+			}
+		else
+			$amend_contract  = false;
+		
+		jr_import('invoicehandler');
 		
 		$single_person_suppliment		= $tmpBookingHandler->getBookingFieldVal("single_person_suppliment");
 		$deposit_required				= $tmpBookingHandler->getBookingFieldVal("deposit_required");
@@ -67,64 +78,25 @@ class j03025insertbooking_invoice {
 		else
 			$discount=$tmpBookingHandler->getBookingFieldVal("wisepricediscount");
 
+		$new_contract_total = 0.00;
+		if ($amend_contract && $amend_contractuid != 0 && $userIsManager)
+			{
+			$new_contract_total		= (float)$tmpBookingHandler->getBookingFieldVal("override_contract_total");
+			}
 		
-			
 		$line_items= array();
 		
-		if (get_showtime('include_room_booking_functionality'))
+		
+		
+		if ($new_contract_total == 0.00)
 			{
-			$line_item_data = array (
-				'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
-				'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL,false,false),
-				'description'=>'',
-				'init_price'=>$room_total,
-				'init_qty'=>"1",
-				'init_discount'=>"0",
-				'recur_price'=>"0.00",
-				'recur_qty'=>"0",
-				'recur_discount'=>"0.00"
-				);
-			$line_items[]=$line_item_data;
-			}
-			
-		if ($depositPaid)
-			{
-			$line_item_data = array (
-				'tax_code_id'=>0,
-				'name'=>jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED,false,false),
-				'description'=>'',
-				'init_price'=>"-".$deposit_required,
-				'init_qty'=>"1",
-				'init_discount'=>"0",
-				'recur_price'=>"0.00",
-				'recur_qty'=>"0",
-				'recur_discount'=>"0.00"
-				);
-			$line_items[]=$line_item_data;
-			}
-
-		if (count($discounts) > 0)
-			{
-			foreach ($discounts as $d)
+			if (get_showtime('include_room_booking_functionality'))
 				{
-				$totalDiscountForRoom = (float)$d['discountfrom'] - (float)$d['discountto'];
 				$line_item_data = array (
-					'tax_code_id'=>0,
-					'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT,false,false),
+					'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
+					'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL',_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL,false,false),
 					'description'=>'',
-					'init_price'=>$totalDiscountForRoom,
-					'init_qty'=>"1",
-					'init_discount'=>"0",
-					'recur_price'=>"0.00",
-					'recur_qty'=>"0",
-					'recur_discount'=>"0.00"
-					);
-				$line_items[]=$line_item_data;
-				$line_item_data = array (
-					'tax_code_id'=>0,
-					'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT,false,false),
-					'description'=>'',
-					'init_price'=>"-".$totalDiscountForRoom,
+					'init_price'=>$room_total,
 					'init_qty'=>"1",
 					'init_discount'=>"0",
 					'recur_price'=>"0.00",
@@ -133,136 +105,217 @@ class j03025insertbooking_invoice {
 					);
 				$line_items[]=$line_item_data;
 				}
-			}
-			
-		if ($single_person_suppliment > 0)
-			{
-			$line_item_data = array (
-				'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
-				'name'=>jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST,false,false),
-				'description'=>'',
-				'init_price'=>$single_person_suppliment,
-				'init_qty'=>"1",
-				'init_discount'=>"0",
-				'recur_price'=>"0.00",
-				'recur_qty'=>"0",
-				'recur_discount'=>"0.00"
-				);
-			$line_items[]=$line_item_data;
-			}
-			
-		$this->taxrates = taxrates_getalltaxrates();
-		$extrasArray	=	explode(",",$extras);
-		foreach ($extrasArray as $extraUid)
-			{
-			//$values = 
-			$query="SELECT name,price,tax_rate FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
-			$extrasList= doSelectSql($query);
-			foreach ($extrasList as $theExtras)
-				{
 				
-				$quantity_multiplier = (int)$extrasvalues_items[(int)$extraUid]['quantity_multiplier'];
-				$quant = $extrasquantities[$extraUid];
-				$quantities = $quantity_multiplier*$quant;
-				$extra_price=$theExtras->price;
-				if ($mrConfig['prices_inclusive'] == 1)
+			if ($depositPaid)
+				{
+				$line_item_data = array (
+					'tax_code_id'=>0,
+					'name'=>jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED,false,false),
+					'description'=>'',
+					'init_price'=>"-".$deposit_required,
+					'init_qty'=>"1",
+					'init_discount'=>"0",
+					'recur_price'=>"0.00",
+					'recur_qty'=>"0",
+					'recur_discount'=>"0.00"
+					);
+				$line_items[]=$line_item_data;
+				}
+
+			if (count($discounts) > 0)
+				{
+				foreach ($discounts as $d)
 					{
-					jr_import("jrportal_taxrate");
-					$taxrate = new jrportal_taxrate();
-					$taxrate->id =$theExtras->tax_rate;
-					if ($taxrate->getTaxRate())
+					$totalDiscountForRoom = (float)$d['discountfrom'] - (float)$d['discountto'];
+					$line_item_data = array (
+						'tax_code_id'=>0,
+						'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT,false,false),
+						'description'=>'',
+						'init_price'=>$totalDiscountForRoom,
+						'init_qty'=>"1",
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					$line_item_data = array (
+						'tax_code_id'=>0,
+						'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT,false,false),
+						'description'=>'',
+						'init_price'=>"-".$totalDiscountForRoom,
+						'init_qty'=>"1",
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					}
+				}
+				
+			if ($single_person_suppliment > 0)
+				{
+				$line_item_data = array (
+					'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
+					'name'=>jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST,false,false),
+					'description'=>'',
+					'init_price'=>$single_person_suppliment,
+					'init_qty'=>"1",
+					'init_discount'=>"0",
+					'recur_price'=>"0.00",
+					'recur_qty'=>"0",
+					'recur_discount'=>"0.00"
+					);
+				$line_items[]=$line_item_data;
+				}
+				
+			$this->taxrates = taxrates_getalltaxrates();
+			$extrasArray	=	explode(",",$extras);
+			foreach ($extrasArray as $extraUid)
+				{
+				//$values = 
+				$query="SELECT name,price,tax_rate FROM #__jomres_extras WHERE uid = '".(int)$extraUid."' ORDER BY name";
+				$extrasList= doSelectSql($query);
+				foreach ($extrasList as $theExtras)
+					{
+					
+					$quantity_multiplier = (int)$extrasvalues_items[(int)$extraUid]['quantity_multiplier'];
+					$quant = $extrasquantities[$extraUid];
+					$quantities = $quantity_multiplier*$quant;
+					$extra_price=$theExtras->price;
+					if ($mrConfig['prices_inclusive'] == 1)
 						{
-						$rate = (float)$taxrate->rate;
-						$divisor	= ($rate/100)+1;
-						$nett_price=$extra_price/$divisor;
-						$extra_price = $nett_price;
+						jr_import("jrportal_taxrate");
+						$taxrate = new jrportal_taxrate();
+						$taxrate->id =$theExtras->tax_rate;
+						if ($taxrate->getTaxRate())
+							{
+							$rate = (float)$taxrate->rate;
+							$divisor	= ($rate/100)+1;
+							$nett_price=$extra_price/$divisor;
+							$extra_price = $nett_price;
+							}
+						}
+					$line_item_data = array (
+						'tax_code_id'=>$theExtras->tax_rate,
+						'name'=>$theExtras->name,
+						'description'=>'',
+						'init_price'=>$extra_price,
+						'init_qty'=>$quantities,
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					}
+				}
+
+			if (count($third_party_extras)>0)
+				{
+				foreach ($third_party_extras as $plugin)
+					{
+					foreach ($plugin as $tpe)
+						{
+						if (!isset($tpe['tax_code_id']))
+							$tpe['tax_code_id']=0;
+						$line_item_data = array (
+							'tax_code_id'=>$tpe['tax_code_id'],
+							'name'=>$tpe['description'],
+							'description'=>$tpe['description'],
+							'init_price'=>$tpe['untaxed_grand_total'],
+							'init_qty'=>'1',
+							'init_discount'=>"0",
+							'recur_price'=>"0.00",
+							'recur_qty'=>"0",
+							'recur_discount'=>"0.00"
+							);
+						$line_items[]=$line_item_data;
 						}
 					}
-				$line_item_data = array (
-					'tax_code_id'=>$theExtras->tax_rate,
-					'name'=>$theExtras->name,
-					'description'=>'',
-					'init_price'=>$extra_price,
-					'init_qty'=>$quantities,
-					'init_discount'=>"0",
-					'recur_price'=>"0.00",
-					'recur_qty'=>"0",
-					'recur_discount'=>"0.00"
-					);
-				$line_items[]=$line_item_data;
 				}
-			}
-
-		if (count($third_party_extras)>0)
-			{
-			foreach ($third_party_extras as $plugin)
+				
+			if (count($additional_line_items)>0)
 				{
-				foreach ($plugin as $tpe)
+				foreach ($additional_line_items as $plugin)
 					{
-					if (!isset($tpe['tax_code_id']))
-						$tpe['tax_code_id']=0;
-					$line_item_data = array (
-						'tax_code_id'=>$tpe['tax_code_id'],
-						'name'=>$tpe['description'],
-						'description'=>$tpe['description'],
-						'init_price'=>$tpe['untaxed_grand_total'],
-						'init_qty'=>'1',
-						'init_discount'=>"0",
-						'recur_price'=>"0.00",
-						'recur_qty'=>"0",
-						'recur_discount'=>"0.00"
-						);
-					$line_items[]=$line_item_data;
+					foreach ($plugin as $tpe)
+						{
+						if (!isset($tpe['tax_code_id']))
+							$tpe['tax_code_id']=0;
+						$line_item_data = array (
+							'tax_code_id'=>$tpe['tax_code_id'],
+							'name'=>$tpe['description'],
+							'description'=>$tpe['description'],
+							'init_price'=>$tpe['untaxed_grand_total'],
+							'init_qty'=>'1',
+							'init_discount'=>"0",
+							'recur_price'=>"0.00",
+							'recur_qty'=>"0",
+							'recur_discount'=>"0.00"
+							);
+						$line_items[]=$line_item_data;
+						}
 					}
 				}
 			}
+		else
+			{
+			$line_item_data = array (
+				'tax_code_id'=>(int)$mrConfig['accommodation_tax_code'],
+				'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL,false,false),
+				'description'=>'',
+				'init_price'=>number_format($new_contract_total,2, '.', ''),
+				'init_qty'=>"1",
+				'init_discount'=>"0",
+				'recur_price'=>"0.00",
+				'recur_qty'=>"0",
+				'recur_discount'=>"0.00"
+				);
+			$line_items[]=$line_item_data;
+			}
+
+		if ($amend_contract && $amend_contractuid != 0 && $userIsManager)
+			{
+			$query="SELECT id FROM #__jomresportal_invoices WHERE contract_id = ".$amend_contractuid;
+			$invoice_id=doSelectSql($query,1);
+
+			$invoice_handler = new invoicehandler();
+			$invoice_handler->id=$invoice_id;
+			$invoice_handler->getInvoice();
 			
-		if (count($additional_line_items)>0)
+			$invoice_data= array();
+			$invoice_data['id']			= $invoice_id;
+			$invoice_handler->update_invoice($invoice_data,$line_items);
+			$this->results=array("invoice_id"=>$invoice_handler->id);
+			}
+		else
 			{
-			foreach ($additional_line_items as $plugin)
-				{
-				foreach ($plugin as $tpe)
-					{
-					if (!isset($tpe['tax_code_id']))
-						$tpe['tax_code_id']=0;
-					$line_item_data = array (
-						'tax_code_id'=>$tpe['tax_code_id'],
-						'name'=>$tpe['description'],
-						'description'=>$tpe['description'],
-						'init_price'=>$tpe['untaxed_grand_total'],
-						'init_qty'=>'1',
-						'init_discount'=>"0",
-						'recur_price'=>"0.00",
-						'recur_qty'=>"0",
-						'recur_discount'=>"0.00"
-						);
-					$line_items[]=$line_item_data;
-					}
-				}
+			$invoice_data= array();
+			$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
+			$invoice_data['subscription']=false;
+			
+
+			if ($jrConfig['useGlobalCurrency'] == "1")
+				$invoice_data['currencycode'] = $jrConfig['globalCurrencyCode'];
+			else
+				$invoice_data['currencycode'] = $mrConfig['property_currencycode'];
+
+			
+			$invoice_handler = new invoicehandler();
+			$invoice_handler->contract_id=$contract_uid;
+			$invoice_handler->property_uid=$property_uid;
+			$invoice_handler->create_new_invoice($invoice_data,$line_items);
+			if ($mrConfig['depAmount'] == 0)
+				$invoice_handler->mark_invoice_pending();
+			else
+				$invoice_handler->mark_invoice_paid();
+			$query = "UPDATE #__jomres_contracts SET invoice_uid = ".$invoice_handler->id." WHERE contract_uid = ".$contract_uid;
+			doInsertSql($query,"");
+			$this->results=array("invoice_id"=>$invoice_handler->id);
 			}
 
-		$invoice_data= array();
-		$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
-		$invoice_data['subscription']=false;
-		
-
-		if ($jrConfig['useGlobalCurrency'] == "1")
-			$invoice_data['currencycode'] = $jrConfig['globalCurrencyCode'];
-		else
-			$invoice_data['currencycode'] = $mrConfig['property_currencycode'];
-
-		jr_import('invoicehandler');
-		$invoice_handler = new invoicehandler();
-		$invoice_handler->contract_id=$contract_uid;
-		$invoice_handler->property_uid=$property_uid;
-		$invoice_handler->create_new_invoice($invoice_data,$line_items);
-		if ($mrConfig['depAmount'] == 0)
-			$invoice_handler->mark_invoice_pending();
-		else
-			$invoice_handler->mark_invoice_paid();
-		$query = "UPDATE #__jomres_contracts SET invoice_uid = ".$invoice_handler->id." WHERE contract_uid = ".$contract_uid;
-		doInsertSql($query,"");
-		$this->results=array("invoice_id"=>$invoice_handler->id);
 		}
 
 	/**

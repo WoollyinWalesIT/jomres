@@ -34,6 +34,7 @@ class j03020insertbooking_amendinvoice {
 			{
 			$this->template_touchable=false; return;
 			}
+		return;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->results=array();
 		$contract_uid=$componentArgs['contract_uid'];
