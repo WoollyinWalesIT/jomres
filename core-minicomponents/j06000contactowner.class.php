@@ -71,6 +71,10 @@ class j06000contactowner {
 		$output['FORMSTART']='<form name="regForm" action="'.JOMRES_SITEPAGE_URL_NOSEF.'&task=contactowner" method="POST">'."\n";
 		// ConfigArray
 		$captchaDebugging = false;
+		
+		$lang=get_showtime('lang');
+		$shorcode=explode('-',$lang);
+		$shorcode=$shorcode[0];
 
 		$CAPTCHA_INIT = array(
 			// string: absolute path (with trailing slash!) to a php-writeable tempfolder which is also accessible via HTTP!
@@ -91,7 +95,7 @@ class j06000contactowner {
 			'noise'				=> TRUE,	// boolean: TRUE = noisy chars | FALSE = grid
 			'websafecolors'		=> FALSE,   // boolean
 			'refreshlink'		=> TRUE,	// boolean
-			'lang'				=> 'en',	// string:  ['en'|'de'|'fr'|'it'|'fi']
+			'lang'				=> $shorcode,	// string:  ['en'|'de'|'fr'|'it'|'fi']
 			'maxtry'			=> 9,	   // integer: [1-9]
 			'badguys_url'		=> 'http://www.google.com',	 // string: URL
 			'secretstring'		=> $jomresConfig_secret,
