@@ -237,6 +237,9 @@ class j03020insertbooking {
 				$this->insertBookingEventValues['requestedRoom']		= $roomsRequested;
 				$this->insertBookingEventValues['contract_uid']			= $amend_contractuid;
 				$this->insertBookingEventValues['insertSuccessful']		= $this->insertSuccessful;
+				
+				$MiniComponents->triggerEvent('03025',$componentArgs); // Generate invoice
+				
 				if ($this->insertSuccessful)
 					gateway_log("j03020insertbooking :: Booking amendment successful ");
 				else
