@@ -253,7 +253,7 @@ class j02260editbooking {
 			if (!$popup)
 				{
 				$output['HAMENDBOOKING']=jr_gettext('_JOMRES_CONFIRMATION_AMEND',_JOMRES_CONFIRMATION_AMEND,$editable=false,$isLink=true) ;
-				$link=JOMRES_SITEPAGE_URL.'&task=amendBooking&contractUid='.$booking_contract_uid;
+				$link=JOMRES_SITEPAGE_URL.'&task=amendBooking&no_html=1&contractUid='.$booking_contract_uid;
 				$targetTask='amendBooking';
 				$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/HotelReservationEdit.png';
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
