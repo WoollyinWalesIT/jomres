@@ -156,7 +156,8 @@ class j01020showtariffs {
 							$theText=jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT',_JOMRES_CURRENCYCONVERSIONTEXT);
 							$output['GOOGLECURRENCYLINKS']='<a href='.$theLink.' rel="nofollow" target="_blank">'.$theText.'</a><br />';
 							}
-						$tariff_deets[]=$output;
+						if ($tariff->roomrateperday > 0)
+							$tariff_deets[]=$output;
 						}
 					}
 				}
