@@ -67,6 +67,7 @@ class j00101amendBooking
 					$tmpBookingHandler->updateBookingField("confirmationSeen",true);
 
 					$variances		= $c->rate_rules;
+					
 					$varianceArray	= explode(",",$variances);
 					$totalinparty	= 0;
 					$tmpBookingHandler->tmpbooking["variancetypes"]				= "";
@@ -82,7 +83,7 @@ class j00101amendBooking
 							$tmpBookingHandler->tmpbooking["varianceuids"]		.= ",".$vDeets[1];
 							$tmpBookingHandler->tmpbooking["varianceqty"]		.= ",".$vDeets[2];
 							$tmpBookingHandler->tmpbooking["variancevals"]		.= ",".$vDeets[3];
-							$totalinparty		= $total + $vDeets[2];
+							$totalinparty		= $totalinparty + $vDeets[2];
 							}
 						}
 
