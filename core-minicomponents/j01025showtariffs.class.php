@@ -140,7 +140,8 @@ class j01025showtariffs {
 						$theText=jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT',_JOMRES_CURRENCYCONVERSIONTEXT);
 						$r['GOOGLECURRENCYLINKS']='<a href='.$theLink.' rel="nofollow" target="_blank">'.$theText.'</a><br />';
 						}
-					$tariff_deets[]=$r;
+					if ($tariff->roomrateperday > 0)
+						$tariff_deets[]=$r;
 					}
 				}
 			}
