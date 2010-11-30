@@ -27,7 +27,7 @@ function jrsa_import($class)
 				}
 			else
 				{
-				trigger_error("Error, class file "._JOMRES_DETECTED_CMS_SPECIFIC_FILES.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+				trigger_error("Error, class file ".JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
 				}
 			}
 		}
@@ -82,7 +82,7 @@ function jomressa_startTask($task,$args=null)
 			}
 		else
 			{
-			$result = "Error, task "._JOMRES_DETECTED_CMS_SPECIFIC_FILES.'tasks'.$task_dir.JRDS.$task.".function.php"." not found";
+			$result = "Error, task ".$task_dir.JRDS.$task.".function.php"." not found";
 			echo $result;
 			}
 		}

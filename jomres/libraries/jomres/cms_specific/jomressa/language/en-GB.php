@@ -49,4 +49,5 @@ define('_JOMRES_SA_FORMS_REGISTRATION_DESC' , "Please fill in the following fiel
 define('_JOMRES_SA_FORMS_FORGOT_TITLE' , "Forgot your password/login?");
 define('_JOMRES_SA_FORMS_FORGOT_DESC' , "Please enter the e-mail address you used during registration.");
 
-
+define('_JOMRES_SA_FORMS_ENTERNEWPASSWORD' , "Enter your new password");
+define('_JOMRES_SA_FORMS_FORGOT_NOACTIVATIONKEY' , "Error, that activation key has not been recognised.");
