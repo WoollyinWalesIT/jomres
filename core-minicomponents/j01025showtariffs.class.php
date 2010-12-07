@@ -136,7 +136,10 @@ class j01025showtariffs {
 
 					if ($mrConfig['showGoogleCurrencyLink']=="1")
 						{
-						$theLink='http://www.xe.com/pca/input.cgi?From='.$mrConfig['property_currencycode'].'&Amount='.$theRate;
+						$currency=$mrConfig['property_currencycode'];
+						if ($jrConfig['useGlobalCurrency']=="1")
+							$currency=$jrConfig['globalCurrencyCode'];
+						$theLink='http://www.xe.com/pca/input.cgi?From='.$currency.'&Amount='.$theRate;
 						$theText=jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT',_JOMRES_CURRENCYCONVERSIONTEXT);
 						$r['GOOGLECURRENCYLINKS']='<a href='.$theLink.' rel="nofollow" target="_blank">'.$theText.'</a><br />';
 						}
