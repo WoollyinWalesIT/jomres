@@ -59,7 +59,10 @@ if (!defined('JOMRESPATH_BASE'))
 				define("JRDS" , "\\");
 			}
 		}
-	$dir_path = str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) ) ;
+	if (isset($_SERVER['SCRIPT_FILENAME']))
+		$dir_path = str_replace( $_SERVER['SCRIPT_FILENAME'], "", dirname(realpath(__FILE__)) ) ;
+	else
+		$dir_path = str_replace( $_SERVER['SCRIPT_NAME'], "", dirname(realpath(__FILE__)) ) ;
 	define('JOMRESPATH_BASE', $dir_path );
 	}
 
