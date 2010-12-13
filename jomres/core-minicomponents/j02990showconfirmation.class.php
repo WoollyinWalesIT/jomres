@@ -297,8 +297,10 @@ class j02990showconfirmation {
 					$extra_tax_output = "";
 					if ($rate > 0)
 						$extra_tax_output = " (".$rate."%)";
-			
-					$extra_parts['NAME'] 		= 	$thisPrice['name']." X ".$extrasquantities[$extra].$extra_tax_output;
+					
+					$extra_name = jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$extra , htmlspecialchars(trim(stripslashes($thisPrice['name'])), ENT_QUOTES) );
+					
+					$extra_parts['NAME'] 		= 	$extra_name." X ".$extrasquantities[$extra].$extra_tax_output;
 					$extra_parts['PRICE'] 		= 	output_price($inc_price*$extrasquantities[$extra]);
 					$booking_extras[]			=	$extra_parts;
 					}
