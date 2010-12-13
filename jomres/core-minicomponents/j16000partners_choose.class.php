@@ -42,7 +42,9 @@ class j16000partners_choose
 				{
 				$row = array();
 				$cms_userid = $partner->cms_userid;
-				$row['LINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=partner_show&id='.$cms_userid.'">'.$all_users[$cms_userid]["username"].'</a><br/>';
+				$row['LINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=partner_show&id='.$cms_userid.'">'.$all_users[$cms_userid]["username"].'</a>';
+				$row['DELETELINK'] = '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=partner_delete&no_html=1&id='.$cms_userid.'"><img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/WasteBasket.png" /></a><br/>';
+				
 				$rows[]=$row;
 				}
 			}

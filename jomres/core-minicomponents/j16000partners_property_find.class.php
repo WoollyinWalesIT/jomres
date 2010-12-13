@@ -45,7 +45,11 @@ class j16000partners_property_find
 		$result_array=array();
 		foreach ($results as $res)
 			{
-			$result_array[] =$res->property_name." : ".$res->propertys_uid;
+			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details->gather_data( (int)$res->propertys_uid );
+			$property_name = $current_property_details->property_name;
+			
+			$result_array[] =$property_name." : ".$res->propertys_uid;
 			}
 		echo json_encode($result_array);
 		}
