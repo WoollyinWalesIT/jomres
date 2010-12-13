@@ -1,3 +1,27 @@
+Jomres 4.6.0 stable 13/12/2010
+
+Some additional changes to improve new functionality that allows us to set some dates in a micromanage tariff to zero. This new code filters tariffs out if the tariff is zero within certain dates. Gives us dynamic minimum intervals.
+
+Modified contact owner script to ensure that it uses the correct language strings.
+Small change to stop manager's toolbar from popping up unnecessarily when amending a booking.
+Improved amend booking functionality to include line items when a booking is modified.
+Added an extra space because "prices from" in the property list in english runs up against the price itself.
+Swapped labels around, house number was showing under street and vikki versa in guest details template.
+Small change to list user's invoices so that template is still shown if the list is empty.
+Modified show tariffs to not show a tariff if the price is zero.
+fixed amend booking so that number of guests in the party shows up in the top advisory when amending a booking.
+Added forgot password functionality to Jomres SA.
+Fixed small bug where global currency code wasn't used when generating the link to xe.com for currency conversion. Ty Aladar.
+Modified the method of detecting the absolute path. Looks like some servers have changed what $_SERVER SCRIPT_NAME reports, borking our older method of figuring out the path. This change adds a check for SCRIPT_FILENAME instead and uses that if available. Need to monitor this change.
+Fixed a missing close table in the hotel confirmation email template.
+Added trashcache code to savecustomertypes minicomponent. 
+Added new functionality to delete a partner from the partner's list.
+Fixed a minor bug where the super property manager's image wasn't showing as a ninja in show profiles.
+Fixed showconfirmation to ensure that extra names are translated.
+Added the old backend addproperty script to the obsolete file handling list.
+Replaced overzealous filtering in editinplace with simpler sanitization to discern the name of the constant being edited.
+
+
 Jomres 4.6beta1 23/11/2010
 
 Modified how dates date range array is calculated in blackbooking functionality, certain timezones were not crossing over correctly 5th November.
