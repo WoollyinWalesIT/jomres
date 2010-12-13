@@ -98,7 +98,10 @@ class j16000managers_choose
 						$r['SUSPENSIONLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=property_manager_suspend&no_html=1&userid='.$cms_userid.'">'.$activeIcon.'</a>';
 					}
 				else
+					{
 					$r['SUSPENSIONLINK']='';
+					$accesslevel_img =$img_output_superpropertymanager;
+					}
 						
 						
 				$query="SELECT property_uid FROM #__jomres_managers_propertys_xref WHERE manager_id = '".(int)$cms_userid."'";
