@@ -31,15 +31,12 @@ class j06002editinplace
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)getDefaultProperty();
 		if ($jrConfig['allowHTMLeditor'] == "1")
-			{
 			$customText = jomresGetParam( $_POST, 'newtext', "" , _MOS_ALLOWHTML );
-			$theConstant = jomresGetParam( $_POST, 'theConstant', '' );
-			}
 		else
-			{
 			$customText = jomresGetParam( $_POST, 'newtext', '','string' );
-			$theConstant = jomresGetParam( $_POST, 'theConstant', '' );
-			}
+
+		$theConstant =filter_var($_POST['theConstant'],FILTER_SANITIZE_SPECIAL_CHARS);
+
 		$result=updateCustomText($theConstant,$customText,$property_uid);
 		if ($result)
 			echo $customText;
