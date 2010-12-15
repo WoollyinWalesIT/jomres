@@ -190,35 +190,38 @@ class j03020insertbooking {
 				$dt=date("Y-m-d H-i-s");
 				$query="INSERT INTO #__jomcomp_notes (`contract_uid`,`note`,`timestamp`,`property_uid`) VALUES ('".(int)$contract_uid."','".RemoveXSS("Amend booking - contract updated ".$amend_contractuid)."','$dt','".(int)$property_uid."')";
 				doInsertSql($query,"");
-
-				// Delete exisiting room booking - may be the same but easier to delete and insert
-				$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '$amend_contractuid'";
-				if (!doInsertSql($query,""))
-					trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
-
-				$rates_uids		= array();
-				$dateRangeArray	= explode(",",$dateRangeString);
-				for ($i=0, $n=count($dateRangeArray); $i < $n; $i++)
+				
+				if (get_showtime('include_room_booking_functionality'))
 					{
-					$roomBookedDate		= $dateRangeArray[$i];
-					$internetBooking	= 0;
-					$receptionBooking	= 1;
-					$selected			= explode(",",$requestedRoom);
-					foreach ($selected as $roomsRequested)
-						{
-						$rm				= explode("^",$roomsRequested);
-						$rmuid			= $rm[0];
-						$rates_uids[]	= $rm[1];
+					// Delete exisiting room booking - may be the same but easier to delete and insert
+					$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '$amend_contractuid'";
+					if (!doInsertSql($query,""))
+						trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
 
-						$query="INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('$rmuid','$roomBookedDate','$amend_contractuid','$internetBooking','$receptionBooking','$property_uid')";
-						if (!doInsertSql($query,"") )
+					$rates_uids		= array();
+					$dateRangeArray	= explode(",",$dateRangeString);
+					for ($i=0, $n=count($dateRangeArray); $i < $n; $i++)
+						{
+						$roomBookedDate		= $dateRangeArray[$i];
+						$internetBooking	= 0;
+						$receptionBooking	= 1;
+						$selected			= explode(",",$requestedRoom);
+						foreach ($selected as $roomsRequested)
 							{
-							trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
-							$this->insertSuccessful =false;
+							$rm				= explode("^",$roomsRequested);
+							$rmuid			= $rm[0];
+							$rates_uids[]	= $rm[1];
+
+							$query="INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('$rmuid','$roomBookedDate','$amend_contractuid','$internetBooking','$receptionBooking','$property_uid')";
+							if (!doInsertSql($query,"") )
+								{
+								trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
+								$this->insertSuccessful =false;
+								}
 							}
 						}
 					}
-
+					
 				jomres_audit(get_showtime('jomressession'),"Amend booking - updated room booking ".$amend_contractuid);
 				$jomres_messaging =jomres_getSingleton('jomres_messages');
 				$jomres_messaging->set_message("Amend booking - updated room booking ".$amend_contractuid);
@@ -404,40 +407,45 @@ class j03020insertbooking {
 					trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
 					$this->insertSuccessful =false;
 					}
-				$rates_uids=array();
-				$dateRangeArray=explode(",",$dateRangeString);
-				for ($i=0, $n=count($dateRangeArray); $i < $n; $i++)
+					
+				if (get_showtime('include_room_booking_functionality'))
 					{
-					$roomBookedDate=$dateRangeArray[$i];
-					if ($userIsManager)
+					$rates_uids=array();
+					$dateRangeArray=explode(",",$dateRangeString);
+					for ($i=0, $n=count($dateRangeArray); $i < $n; $i++)
 						{
-						$internetBooking=0;
-						$receptionBooking=1;
-						}
-					else
-						{
-						$internetBooking=1;
-						$receptionBooking=0;
-						}
-					$selected=explode(",",$requestedRoom);
-					foreach ($selected as $roomsRequested)
-						{
-						$rm=explode("^",$roomsRequested);
-						$rmuid=$rm[0];
-						$rates_uids[]=$rm[1];
-						$query="INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('".(int)$rmuid."','$roomBookedDate','".(int)$contract_uid."','".(int)$internetBooking."','".(int)$receptionBooking."','".(int)$property_uid."')";
-						if (!doInsertSql($query,"") )
+						$roomBookedDate=$dateRangeArray[$i];
+						if ($userIsManager)
 							{
-							trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
-							$this->insertSuccessful =false;
+							$internetBooking=0;
+							$receptionBooking=1;
 							}
-						jomres_audit(get_showtime('jomressession'),"Booked room ".$cartnumber);
+						else
+							{
+							$internetBooking=1;
+							$receptionBooking=0;
+							}
+						$selected=explode(",",$requestedRoom);
+						foreach ($selected as $roomsRequested)
+							{
+							$rm=explode("^",$roomsRequested);
+							$rmuid=$rm[0];
+							$rates_uids[]=$rm[1];
+							$query="INSERT INTO #__jomres_room_bookings (`room_uid`,`date`,`contract_uid`,`internet_booking`,`reception_booking`,`property_uid`) VALUES ('".(int)$rmuid."','$roomBookedDate','".(int)$contract_uid."','".(int)$internetBooking."','".(int)$receptionBooking."','".(int)$property_uid."')";
+							if (!doInsertSql($query,"") )
+								{
+								trigger_error ("Failed to insert booking when inserting to contracts table ", E_USER_ERROR);
+								$this->insertSuccessful =false;
+								}
+							jomres_audit(get_showtime('jomressession'),"Booked room ".$cartnumber);
+							}
 						}
-					}
 
-				if (count($rates_uids)>1)
-					$rates_uids=array_unique($rates_uids);
-				jomres_audit($cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+					if (count($rates_uids)>1)
+						$rates_uids=array_unique($rates_uids);
+					jomres_audit($cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+					}
+				
 				$componentArgs=array();
 				$componentArgs['cartnumber']=$cartnumber;
 				$componentArgs['tempBookingDataList']=$tempBookingDataList;
