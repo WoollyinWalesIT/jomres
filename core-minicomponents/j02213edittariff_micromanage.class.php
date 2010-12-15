@@ -79,11 +79,6 @@ class j02213edittariff_micromanage {
 		$output['PICKER_DATERANGES_RATE']=jr_gettext('_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE',_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE);
 		$output['PICKER_DATERANGES_SET']=jr_gettext('_JOMRES_MICROMANAGE_PICKER_DATERANGES_SET',_JOMRES_MICROMANAGE_PICKER_DATERANGES_SET,false,false);
 		
-		$output['HMINROOMS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS',_JOMRES_COM_MR_EB_ROOM_MINROOMS);
-		$output['HMAXROOMS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS',_JOMRES_COM_MR_EB_ROOM_MAXROOMS);
-		$output['MINROOMS_DESC']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC',_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC);
-		$output['MAXROOMS_DESC']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC',_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC);
-		
 		$output['HFIXED_DAYOFWEEK']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL)." ".jr_gettext('_JOMRES_DTV_DOW',_JOMRES_DTV_DOW);
 		
 		$def_mindays=1;
@@ -98,6 +93,15 @@ class j02213edittariff_micromanage {
 		$def_maxrooms_alreadyselected = 100;
 		$def_weekendonly=0;
 
+		$already_selected = array();
+		if ($mrConfig['singleRoomProperty'] ==  '0') 
+			{
+			$already_selected['HMINROOMS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS',_JOMRES_COM_MR_EB_ROOM_MINROOMS);
+			$already_selected['HMAXROOMS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS',_JOMRES_COM_MR_EB_ROOM_MAXROOMS);
+			$already_selected['MINROOMS_DESC']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC',_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC);
+			$already_selected['MAXROOMS_DESC']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC',_JOMRES_COM_MR_EB_ROOM_MAXROOMS_DESC);
+			}
+		
 		//$weekendsArray=array('monday'=>false,'tuesday'=>false,'wednesday'=>false,'thursday'=>false,'friday'=>false,'saturday'=>true,'sunday'=>true);
 		$allow_we=$def_we;
 		$ignore_pppn=$def_ignore_pppn;
@@ -123,8 +127,8 @@ class j02213edittariff_micromanage {
 				$output['MAXDAYS']=$r->maxdays;
 				$output['MINPEOPLE']=$r->minpeople;
 				$output['MAXPEOPLE']=$r->maxpeople;
-				$output['MINROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'minrooms_alreadyselected','class="inputbox" size="1"', $r->minrooms_alreadyselected);
-				$output['MAXROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'maxrooms_alreadyselected','class="inputbox" size="1"', $r->maxrooms_alreadyselected);
+				$already_selected['MINROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'minrooms_alreadyselected','class="inputbox" size="1"', $r->minrooms_alreadyselected);
+				$already_selected['MAXROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'maxrooms_alreadyselected','class="inputbox" size="1"', $r->maxrooms_alreadyselected);
 				$ignore_pppn=$r->ignore_pppn;
 				$allow_we=$r->allow_we;
 				$weekendonly= $r->weekendonly;
@@ -152,8 +156,8 @@ class j02213edittariff_micromanage {
 			$output['MAXDAYS']=$def_maxdays;
 			$output['MINPEOPLE']=$def_minpeople;
 			$output['MAXPEOPLE']=$def_maxpeople;
-			$output['MINROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'minrooms_alreadyselected','class="inputbox" size="1"', $def_minrooms_alreadyselected);
-			$output['MAXROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'maxrooms_alreadyselected','class="inputbox" size="1"', $def_maxrooms_alreadyselected);
+			$already_selected['MINROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'minrooms_alreadyselected','class="inputbox" size="1"', $def_minrooms_alreadyselected);
+			$already_selected['MAXROOMS_ALREADYSELECTED']=jomresHTML::integerSelectList( 0,100,1, 'maxrooms_alreadyselected','class="inputbox" size="1"', $def_maxrooms_alreadyselected);
 			$roomclassid=$def_roomclass_uid;
 			$weekendonly=$def_weekendonly;
 			}
@@ -394,6 +398,7 @@ class j02213edittariff_micromanage {
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL."&task=saveTariff";
 		
+		$already_selected_rows = array($already_selected);
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
@@ -403,6 +408,7 @@ class j02213edittariff_micromanage {
 		$tmpl->addRows( 'prefilltitles',$prefilltitles);
 		$tmpl->addRows( 'prefillbuttons',$prefillbuttons);
 		$tmpl->addRows( 'daterows',$daterows);
+		$tmpl->addRows( 'already_selected_rows',$already_selected_rows);
 		$tmpl->displayParsedTemplate();
 		}
 
