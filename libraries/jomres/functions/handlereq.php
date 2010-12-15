@@ -128,16 +128,26 @@ switch ($field)
 		$bkg->setOkToBook(false);
 		$value=$bkg->JSCalConvertInputDates($value);
 		$value=$bkg->sanitiseInput("date",$value);
+		
+		$arr_dep_date=$bkg->JSCalConvertInputDates($_GET['arr_dep_date']);
+		$arr_dep_date=$bkg->sanitiseInput("date",$arr_dep_date);
+		
 		if ( isset($value) )
 			{
 			$bkg->setArrivalDate($value);
+			
+			if (isset($arr_dep_date) && $fixedPeriodBookings != "1")
+				{
+				$bkg->setDepartureDate($arr_dep_date);
+				}
+			
 			// if ($fixedPeriodBookings != "1" || $bkg->stayDays < $bkg->cfg_minimuminterval)
 				// $bkg->setDepartureDateToNextDay($value);
-			if ($fixedPeriodBookings != "1" && $bkg->checkDepartureDate($bkg->getDepartureDate()) )
+/* 			if ($fixedPeriodBookings != "1" && $bkg->checkDepartureDate($bkg->getDepartureDate()) )
 				$bkg->setDepartureDate($bkg->getDepartureDate());
 			elseif ($fixedPeriodBookings != "1" && !$bkg->checkDepartureDate($bkg->getDepartureDate()) )
 				$bkg->setDepartureDateToNextDay($value);
-			$bkg->JSCalmakeInputDates($bkg->getDepartureDate() );
+			$bkg->JSCalmakeInputDates($bkg->getDepartureDate() ); */
 			//echo '; populateDiv("'.get_showtime('departure_date_unique_id').'","'.$bkg->JSCalmakeInputDates($bkg->getDepartureDate() ).'")';
 			}
 		$bkg->resetRequestedRoom();
