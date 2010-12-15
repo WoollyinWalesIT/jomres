@@ -2342,7 +2342,7 @@ class dobooking
 		if ($this->cfg_fixedPeriodBookings =="1" )
 			$onchange.=' getResponse_particulars(\'arrivalDate\',this.value); ';
 		else
-			$onchange.=' ajaxADate(this.value,\''.$this->cfg_cal_input.'\'); getResponse_particulars(\'arrivalDate\',this.value); ';
+			$onchange.=' ajaxADate(this.value,\''.$this->cfg_cal_input.'\'); getResponse_particulars(\'arrivalDate\',this.value,\''.$uniqueID.'\'); ';
 		}
 	else
 		$onchange.=' getResponse_particulars(\'departureDate\',this.value); ';
@@ -3937,6 +3937,7 @@ class dobooking
 		{
 		$tariff_valid = true;
 		$mrConfig=getPropertySpecificSettings();
+		//$this->setErrorLog("check_other_dates_for_this_tariff_type_valid::Stay days ".$this->stayDays);
 		if ( $mrConfig['tariffmode']=="2")
 			{
 			// Now, we need to find all the other tariff ids that are appropriate for this tariff's type

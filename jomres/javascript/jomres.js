@@ -223,10 +223,11 @@ else {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Ajax get response stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function getResponse_particulars(field,value) {
+function getResponse_particulars(field,value,arrivalDate_id) {
+	departureDate = jQuery("#"+arrivalDate_id+"_XXX").val();
 	HideRoomsList();
 	blockInterface(field,200);
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field, 'value': value },
+	jQuery.get(ajaxurl+'&task=handlereq&arr_dep_date='+departureDate,{ field: field, 'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
