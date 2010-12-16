@@ -1,3 +1,10 @@
+Jomres 4.6.0.1 15/12/2010
+
+Modified Jomres to ensure that a room booking isn't created when a property is a jintour property
+Modified micromanage output, removed min and max rooms already selected output if the property is an SRP
+Improved booking engine by passing the departure date along with the arrival date via ajax when the arrival date is changed.
+
+
 Jomres 4.6.0 stable 13/12/2010
 
 Some additional changes to improve new functionality that allows us to set some dates in a micromanage tariff to zero. This new code filters tariffs out if the tariff is zero within certain dates. Gives us dynamic minimum intervals.
