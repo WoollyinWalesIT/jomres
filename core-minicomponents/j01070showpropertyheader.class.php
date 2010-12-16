@@ -143,7 +143,9 @@ class j01070showpropertyheader
 					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->metatitle));
 				else
 					{
-					jomres_cmsspecific_setmetadata("title",$current_property_details->get_property_name($property_uid));
+					$property_name = $current_property_details->get_property_name($property_uid);
+					$property_name = str_replace("<x>","",$property_name);
+					jomres_cmsspecific_setmetadata("title",$property_name);
 					}
 
 				jomres_cmsspecific_setmetadata('description',stripslashes($current_property_details->metadescription));
