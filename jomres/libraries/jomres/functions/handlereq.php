@@ -135,12 +135,14 @@ switch ($field)
 		if ( isset($value) )
 			{
 			$bkg->setArrivalDate($value);
-			
-			if (isset($arr_dep_date) && $fixedPeriodBookings != "1")
+			if (isset($arr_dep_date) && $fixedPeriodBookings != "1" && get_showtime('include_room_booking_functionality'))
 				{
 				$bkg->setDepartureDate($arr_dep_date);
 				}
-			
+			else if (!get_showtime('include_room_booking_functionality'))
+				{
+				$bkg->setDepartureDateToNextDay($value);
+				}
 			// if ($fixedPeriodBookings != "1" || $bkg->stayDays < $bkg->cfg_minimuminterval)
 				// $bkg->setDepartureDateToNextDay($value);
 /* 			if ($fixedPeriodBookings != "1" && $bkg->checkDepartureDate($bkg->getDepartureDate()) )
