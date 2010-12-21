@@ -309,7 +309,7 @@ class j03025insertbooking_invoice {
 			$invoice_handler->create_new_invoice($invoice_data,$line_items);
 			if ($mrConfig['depAmount'] == 0)
 				$invoice_handler->mark_invoice_pending();
-			else
+			elseif ($depositpaidsuccessfully && $invoice_handler->init_total == $deposit_required )
 				$invoice_handler->mark_invoice_paid();
 			$query = "UPDATE #__jomres_contracts SET invoice_uid = ".$invoice_handler->id." WHERE contract_uid = ".$contract_uid;
 			doInsertSql($query,"");
