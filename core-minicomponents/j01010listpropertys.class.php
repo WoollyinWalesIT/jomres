@@ -396,10 +396,10 @@ class j01010listpropertys {
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property->propertys_uid);
 					//var_dump($property_deets['PROP_NAME']);exit;
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
-					$property_deets['PROP_TOWN']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.$propertyContactArray[2]).'">'.stripslashes($propertyContactArray[2]).'</a>';
+					$property_deets['PROP_TOWN']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.html_entity_decode($propertyContactArray[2])).'">'.html_entity_decode($propertyContactArray[2]).'</a>';
 					$property_deets['PROP_POSTCODE']=stripslashes($propertyContactArray[3]);
-					$property_deets['PROP_REGION']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.urlencode($propertyContactArray[4])).'">'.stripslashes($propertyContactArray[4]).'</a>';
-					$property_deets['PROP_COUNTRY']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.urlencode($propertyContactArray[5])).'">'.stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5]))).'</a>';
+					$property_deets['PROP_REGION']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&region='.html_entity_decode($propertyContactArray[4])).'">'.html_entity_decode($propertyContactArray[4]).'</a>';
+					$property_deets['PROP_COUNTRY']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&country='.html_entity_decode($propertyContactArray[5])).'">'.html_entity_decode(getSimpleCountry($propertyContactArray[5])).'</a>';
 
 					$property_deets['LIVESITE']=get_showtime('live_site');
 					$property_deets['UID']=$property->propertys_uid;
@@ -407,9 +407,9 @@ class j01010listpropertys {
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
 					$property_deets['MOREINFORMATIONLINK_SEFSAFE']=JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
-					$property_deets['PROPERTYTOWN']= $ptown;
-					$property_deets['PROPERTYREGION']= stripslashes($propertyContactArray[4]);
-					$property_deets['PROPERTYCOUNTRY']= stripslashes(stripslashes(getSimpleCountry($propertyContactArray[5])));
+					$property_deets['PROPERTYTOWN']= html_entity_decode($ptown);
+					$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
+					$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
 					
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
