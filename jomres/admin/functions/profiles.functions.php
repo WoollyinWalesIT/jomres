@@ -309,7 +309,7 @@ function grantMosUser()
 		$all_users = jomres_cmsspecific_getCMSUsers();
 		foreach ($all_users as $user)
 			{
-			if (strtolower($user['username']) == $name)
+			if (strtolower($user['username']) == strtolower($name))
 				$userid	= (int)$user['id'];
 			}
 		}
