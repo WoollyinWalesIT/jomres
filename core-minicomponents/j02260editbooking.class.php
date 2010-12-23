@@ -532,11 +532,17 @@ class j02260editbooking {
 				$quantity = $extrasquantities[$extraUid];
 				
 				$price = $theExtras->price;
-				$tax_rate_id = (int)$theExtras->tax_rate;
-				$rate = (float)$taxrates[$tax_rate_id]['rate'];
-				$tax = ($price/100)*$rate;
-				$inc_price = $price+$tax;
+				if ($mrConfig['prices_inclusive'] =="0")
+					{
+					$tax_rate_id = (int)$theExtras->tax_rate;
+					$rate = (float)$taxrates[$tax_rate_id]['rate'];
+					$tax = ($price/100)*$rate;
 					
+					$inc_price = $price+$tax;
+					}
+				else
+					$inc_price = $price;
+				
 				$extra_tax_output = "";
 				if ($rate > 0)
 					$extra_tax_output = " (".$rate."%)";
