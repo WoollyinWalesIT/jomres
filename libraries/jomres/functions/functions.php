@@ -112,13 +112,19 @@ function jomres_generate_tab_anchor($string)
 	
 function output_price($value,$currencycode="")
 	{
-	$price = $value;
+	$price = (float)$value;
 	
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
 	$mrConfig=getPropertySpecificSettings();
 	$currfmt = jomres_getSingleton('jomres_currency_format');
+	$wholepart=intval($price);
+	$decimalpart=$price-$wholepart; 
+	  
+	// To resolve issues of rounding (not sure if this is the best way, we'll need to monitor it). If the cents/pence/etc value is greater than .99 then we'll simply add 1 to the whole part.
+	if ($decimalpart > .99)
+		$price = $wholepart+1;
 	$price = $currfmt->get_formatted($price);
 	if ($currencycode=="")
 		{
