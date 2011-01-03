@@ -38,46 +38,11 @@ class j00501propertydetailsoptions {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
-		if ($mrConfig['is_real_estate_listing']==1)
-			return;
 		$lists=$componentArgs['lists'];
 		$configurationPanel->startPanel(_JOMRES_PATHWAY_PROPERTYDETAILS);
 		
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_SHOWONLYAVLCAL);
-			$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
-			$configurationPanel->setright(_JOMRES_COM_A_SHOWONLYAVLCAL_DESC);
-			$configurationPanel->insertSetting();
-			
-
-			}
-		
-		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) && $mrConfig['singleRoomProperty'] != "1" )
-			{
-			$configurationPanel->setleft(_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS);
-			$configurationPanel->setmiddle($lists['roomslistinpropertydetails']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_SHOWROOMSLISTLINK);
-			$configurationPanel->setmiddle($lists['showRoomsListingLink']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			}
-
-		$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
-		$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
-			
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-			{
-			$configurationPanel->setleft(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR);
-			$configurationPanel->setmiddle($lists['showAvailabilityCalendar']);
-			$configurationPanel->setright(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC);
-			$configurationPanel->insertSetting();
-			
 			$configurationPanel->setleft(_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE);
 			$configurationPanel->setmiddle($lists['showSlideshowInline']);
 			$configurationPanel->setright();
@@ -87,22 +52,54 @@ class j00501propertydetailsoptions {
 			$configurationPanel->setmiddle($lists['showSlideshowLink']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE);
-			$configurationPanel->setmiddle($lists['showTariffsInline']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK);
-			$configurationPanel->setmiddle($lists['showTariffsLink']);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
 			}
-			
+		
+		if ($mrConfig['is_real_estate_listing']==0)
+			{
+			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+				{
+				$configurationPanel->setleft(_JOMRES_COM_A_SHOWONLYAVLCAL);
+				$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
+				$configurationPanel->setright(_JOMRES_COM_A_SHOWONLYAVLCAL_DESC);
+				$configurationPanel->insertSetting();
+				}
 
+			if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) && $mrConfig['singleRoomProperty'] != "1" )
+				{
+				$configurationPanel->setleft(_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS);
+				$configurationPanel->setmiddle($lists['roomslistinpropertydetails']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_SHOWROOMSLISTLINK);
+				$configurationPanel->setmiddle($lists['showRoomsListingLink']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				}
 
-
-			
+			$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
+			$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+				
+			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+				{
+				$configurationPanel->setleft(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR);
+				$configurationPanel->setmiddle($lists['showAvailabilityCalendar']);
+				$configurationPanel->setright(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC);
+				$configurationPanel->insertSetting();
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE);
+				$configurationPanel->setmiddle($lists['showTariffsInline']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				
+				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK);
+				$configurationPanel->setmiddle($lists['showTariffsLink']);
+				$configurationPanel->setright();
+				$configurationPanel->insertSetting();
+				}
+			}
 		$configurationPanel->endPanel();
 		}
 

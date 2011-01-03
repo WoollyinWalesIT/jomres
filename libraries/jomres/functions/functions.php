@@ -1760,8 +1760,11 @@ function hotelSettings()
 */
 function saveHotelSettings()
 	{
+	
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$property_uid=(int)getDefaultProperty();
+	$mrConfig=getPropertySpecificSettings($property_uid);
+	
 	//$updateText="";
 	$tariffmodeChange=false;
 	if ( $_POST['oldsetting_cfg_tariffmode'] == "1" && $_POST['cfg_tariffmode'] == "2") // Advanced  -> micromanage
@@ -1844,7 +1847,7 @@ function saveHotelSettings()
 		}
 	*/
 	//var_dump($tariffmodeChange);exit;
-	if ( $tariffmodeChange)
+	if ( $tariffmodeChange && $mrConfig['is_real_estate_listing'] != 1 )
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"), '' );
 	else
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=hotelSettings&property_uid=$property_uid"), '' );
