@@ -89,111 +89,21 @@ jQuery( ".selector" ).tabs( "option", "fx", { opacity: 'toggle' } );
 		<tr>
 			<td class="viewproperty_leftcol " valign="top">
 				<!-- Start jquery tabs -->
-					<div id="tabs">
-						<ul>
-							<li><a href="#{TITLE_PROPERTYDETAILS_ANCHOR}"><span>{TITLE_PROPERTYDETAILS}</span></a></li>
-							<li><a href="#{TITLE_MOREINFO_ANCHOR}"><span>{TITLE_MOREINFO}</span></a></li>
-							<patTemplate:tmpl name="reviews_anchor" type="simpleCondition" requiredVars="title_reviewslist_anchor"><li><a href="#{TITLE_REVIEWSLIST_ANCHOR}"><span>{TITLE_REVIEWSLIST}</span></a></li></patTemplate:tmpl>
-							<patTemplate:tmpl name="bookingform_anchor" type="simpleCondition" requiredVars="title_bookingform_anchor"><li><a href="#{TITLE_BOOKINGFORM_ANCHOR}"><span>{TITLE_BOOKINGFORM}</span></a></li></patTemplate:tmpl>
-							<patTemplate:tmpl name="availabilitycalendarcontent_anchor" type="simpleCondition" requiredVars="avlcalendar_title_anchor"><li><a href="#{AVLCALENDAR_TITLE_ANCHOR}"><span>{AVLCALENDAR_TITLE}</span></a></li></patTemplate:tmpl>
-							<patTemplate:tmpl name="slideshowcontent_anchor" type="simpleCondition" requiredVars="slideshow_title_anchor"><li><a href="#{SLIDESHOW_TITLE_ANCHOR}"><span>{SLIDESHOW_TITLE}</span></a></li></patTemplate:tmpl>
-							<li><a href="#{MAP_TITLE_ANCHOR}"><span>{TITLE_MAP}</span></a></li>
-							<patTemplate:tmpl name="tariffslist_anchor" type="simpleCondition" requiredVars="title_tariff_anchor"><li><a href="#{TITLE_TARIFF_ANCHOR}"><span>{TITLE_TARIFF}</span></a></li></patTemplate:tmpl>
-							<patTemplate:tmpl name="roomslist_anchor" type="simpleCondition" requiredVars="title_roomslist_anchor"><li><a href="#{TITLE_ROOMSLIST_ANCHOR}"><span>{TITLE_ROOMSLIST}</span></a></li></patTemplate:tmpl>
-
-						</ul>
-						<div id="{TITLE_PROPERTYDETAILS_ANCHOR}">
-							<p>{DESCRIPTION}</p>
-							<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
-							<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
-								<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-								{DISCOUNT_OUTPUT}</p>
-							</div>
-							</patTemplate:tmpl>
-						</div>
-						<div id="{TITLE_MOREINFO_ANCHOR}">
-								<div class="contentheading">
-									{HAREAACTIVITIES}
-								</div>
-								<p>
-									{AREAACTIVITIES}
-								</p>
-								<div class="contentheading">
-									{HPOLICIESDISCLAIMERS}
-								</div>
-								<p>
-									{POLICIESDISCLAIMERS}
-								</p>
-								<div class="contentheading">
-									{HCHECKINTIMES}
-								</div>
-								<p>
-									{CHECKINTIMES}
-								</p>
-								<div class="contentheading">
-									{HDRIVINGDIRECTIONS}
-								</div>
-								<p>
-									{DRIVINGDIRECTIONS}
-								</p>
-								<div class="contentheading">
-									{HAIRPORTS}
-								</div>
-								<p>
-									{AIRPORTS}
-								</p>
-								<div class="contentheading">
-									{HOTHERTRANSPORT}
-								</div>
-								<p>
-									{OTHERTRANSPORT}
-								</p>
-						</div>
-
-						<patTemplate:tmpl name="reviews" type="simpleCondition" requiredVars="reviews_title">
-						<div id="{TITLE_REVIEWSLIST_ANCHOR}">
-								{REVIEWS_LIST}
-						</div>
-						</patTemplate:tmpl>
-						
-						<patTemplate:tmpl name="bookingform" type="simpleCondition" requiredVars="bookingform_title">
-						<div id="{TITLE_BOOKINGFORM_ANCHOR}">
-								{BOOKINGFORM}
-						</div>
-						</patTemplate:tmpl>
-						
-						<patTemplate:tmpl name="availabilitycalendarcontent" type="simpleCondition" requiredVars="avlcalendar_title">
-						<div id="{AVLCALENDAR_TITLE_ANCHOR}">
-							<!-- <div class="contentheading">{AVLCALENDAR_TITLE}</div> -->
-								{AVAILABILITY_CALENDAR}
-						</div>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="slideshowcontent" type="simpleCondition" requiredVars="slideshow_title">
-						<div id="{SLIDESHOW_TITLE_ANCHOR}">
-							<!-- <div class="contentheading">{SLIDESHOW_TITLE}</div> -->
-								{SLIDESHOW}
-						</div>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="mapcontent" type="simpleCondition" requiredVars="map_title">
-						<div id="{MAP_TITLE_ANCHOR}">
-							<!-- <div class="contentheading">{MAP_TITLE}</div> -->
-								{GOOGLE_MAPS}
-						</div>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="tariffslist" type="simpleCondition" requiredVars="tariffs_list_title">
-						<div id="{TITLE_TARIFF_ANCHOR}">
-							<!-- <div class="contentheading">{TARIFFS_LIST_TITLE}</div> -->
-								{INLINE_TARIFFS}
-						</div>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="roomslist" type="simpleCondition" requiredVars="rooms_list_title">
-						<div id="{TITLE_ROOMSLIST_ANCHOR}">
-							<!-- <div class="contentheading">{ROOMS_LIST_TITLE}</div> -->
-								{ROOMS_LIST}
-						</div>
-						</patTemplate:tmpl>
+				<div id="tabs">
+					<ul>
+					<patTemplate:tmpl name="tabs_titles">
+					<li><a href="#{TAB_ANCHOR}"><span>{TAB_TITLE}</span></a></li>
+					</patTemplate:tmpl>
+					</ul>
+					<patTemplate:tmpl name="tabs_content">
+					<div id="{TAB_ANCHOR}">
+						<p>
+							{TAB_CONTENT}
+						</p>
 					</div>
-					<!-- End jquery tabs -->
+					</patTemplate:tmpl>
+				</div>
+				<!-- End jquery tabs -->
 				</td>
 			</tr>
 		</table>
