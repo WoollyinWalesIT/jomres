@@ -154,10 +154,10 @@ class j00501tariffs {
 			$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING);
+/* 			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING);
 			$configurationPanel->setmiddle();
 			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
+			$configurationPanel->insertSetting(); */
 
 			$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
 			$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
