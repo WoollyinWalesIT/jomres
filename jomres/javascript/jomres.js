@@ -454,16 +454,12 @@ function showRoomsList(req){
 	}
 
 function HideRoomsList(){
-	jQuery("div.roomsListWrapper").fadeOut("slow",1000); 
-	//jQuery("div.roomsListWrapper").hide("slow"); 
-	//jQuery("div.roomsListWrapper").find("div.roomsListInnerWrapper:visible").slideUp("slow"); 
+	jQuery("#roomsListWrapper").hide('blind', { direction: 'vertical' }, 1000);
 	return false;
 	}
 
 function ShowRoomsList(){
-	jQuery("div.roomsListWrapper").fadeIn("slow",1000); 
-	//jQuery("div.roomsListWrapper").show("slow"); 
-	//jQuery("div.roomsListWrapper").find("div.roomsListInnerWrapper").slideDown("slow");
+	jQuery("#roomsListWrapper").show('blind', { direction: 'vertical' }, 1000);
 	return false;
 	}
 	
