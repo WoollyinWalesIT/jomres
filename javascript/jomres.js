@@ -118,12 +118,7 @@ function enableSubmitButton (button) {
 		button.onclick = button.oldOnclick;
 		button.buttonDisabled = false;
 		}
-	var exists = document.getElementById("roomalert_top");
-	if (exists != null) {
-		document.getElementById("submitbutton").className="oktobook";
-		document.getElementById("roomalert_top").className="roomalert_off";
-		document.getElementById("roomalert_bottom").className="roomalert_off";
-		}
+
 	// Disabled as causes a js error in ie if the booking form is in the property details.
 	//document.getElementById('submitbutton').focus();
 	}
@@ -634,7 +629,6 @@ function checkaddressfields(){
 	
 	if (pass)
 		pass = checkCustomFields();
-	
 	if (!pass){
 		jQuery('div.recheckaddress').show();
 		return false;
@@ -658,11 +652,11 @@ function submitBooking(){
 	}
 	
 function setInputFillToOkColour(field){
-	jQuery(field).removeClass("errorbackground");
+	jQuery(field).removeClass("ui-state-highlight");
 	}
 	
 function setInputFillToErrorColour(field){
-	jQuery(field).addClass("errorbackground");
+	jQuery(field).addClass("ui-state-highlight");
 	}
 	
 function submitenter(myfield,e){
