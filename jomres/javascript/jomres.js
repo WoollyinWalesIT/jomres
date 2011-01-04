@@ -338,7 +338,6 @@ function getResponse_guest() {
 
 	if (result){
 		var addressString= firstname+"~"+surname+"~"+house+"~"+street+"~"+town+"~"+region+"~"+postcode+"~"+country+"~"+tel_landline+"~"+tel_mobile+"~"+eemail;
-		blockInterface("guestdetails",200);
 		jQuery.get(url,{ field: 'addressstring','value': addressString },
 			function(data){
 				eval(data);
@@ -637,10 +636,7 @@ function checkaddressfields(){
 		pass = checkCustomFields();
 	
 	if (!pass){
-		jQuery('div.recheckaddress').show(); 
-		blockInterface("addresserror",2500);
-		jQuery('div.block_ui_bookingform').unblock();
-		//disableSubmitButton(document.ajaxform.confirmbooking);
+		jQuery('div.recheckaddress').show();
 		return false;
 		}
 	else{
