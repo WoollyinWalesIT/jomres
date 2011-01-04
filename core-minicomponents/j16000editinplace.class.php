@@ -24,7 +24,7 @@ class j16000editinplace
 			$this->template_touchable=false; return;
 			}
 		$customText = jomresGetParam( $_POST, 'newtext', '','string' );
-		$theConstant = jomresGetParam( $_POST, 'theConstant', '' );
+		$theConstant =filter_var($_POST['theConstant'],FILTER_SANITIZE_SPECIAL_CHARS);
 
 		$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = 0 AND language = '".get_showtime('lang')."'";
 		$textList=doSelectSql($query);
