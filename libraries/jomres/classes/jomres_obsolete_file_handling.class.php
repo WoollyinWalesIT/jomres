@@ -151,6 +151,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8rc3.custom.min.js');
 		$this->add_obs_file($this->dir_javascript.'jquery.corner.js');
 		$this->add_obs_file($this->dir_javascript.'interface.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.blockUI.js');
 		
 		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'class.phpmailer.php');
 		$this->add_obs_file($this->dir_libraries.'PHPMailer_v2.0.0'.JRDS.'class.smtp.php');
