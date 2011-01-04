@@ -226,7 +226,6 @@ else {
 function getResponse_particulars(field,value,arrivalDate_id) {
 	departureDate = jQuery("#"+arrivalDate_id+"_XXX").val();
 	HideRoomsList();
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq&arr_dep_date='+departureDate,{ field: field, 'value': value },
 		function(data){
 			showRoomsList(data); 
@@ -237,7 +236,6 @@ function getResponse_particulars(field,value,arrivalDate_id) {
 
 function getResponse_guesttype(typeid,value) {
 	HideRoomsList();
-	blockInterface('guesttype',200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: 'guesttype', 'typeid': typeid ,'value': value },
 		function(data){
 			showRoomsList(data); 
@@ -248,7 +246,6 @@ function getResponse_guesttype(typeid,value) {
 
 function getResponse_rooms(field,value) {
 	HideRoomsList();
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			showRoomsList(data); 
@@ -259,7 +256,6 @@ function getResponse_rooms(field,value) {
 
 function getResponse_multiroom_select(field,value) {
 	HideRoomsList();
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			showRoomsList(data); 
@@ -269,7 +265,6 @@ function getResponse_multiroom_select(field,value) {
 }
 
 function getResponse_extras(field,value,theId) {
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			eval(data); 
@@ -295,7 +290,6 @@ function getResponse_extras(field,value,theId) {
 }
 
 function getResponse_extrasquantity(field,value,theId) {
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
 		function(data){
 			eval(data); 
@@ -315,7 +309,6 @@ function getResponse(field,value) {
 }
 
 function getResponse_existing(field,value) {
-	blockInterface(field,200);
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			eval(data); 
@@ -356,93 +349,8 @@ function getResponse_guest() {
 	}
 
 function show_log(lastfield) {
-	//jQuery.get(ajaxurl+'&task=handlereq',{ field: 'show_log','lastfield': lastfield },
-	//	function(data){
-	//		eval(data);
-	//		jQuery('div.block_ui_bookingform').unblock();
-	//		}
-	//);
-	jQuery('div.block_ui_bookingform').unblock();
 }
 
-function blockInterface(field,fadetime){
-	//jQuery.extend(jQuery.blockUI.defaults.overlayCSS, { backgroundColor: '#fff', opacity: '0.5'  });
-	
-	jQuery.blockUI.defaults.overlayCSS.backgroundColor = '#000';
-	jQuery.blockUI.defaults.overlayCSS.opacity = '0.5';
-	
-	jQuery.blockUI.defaults.pageMessage = "Please be patient...";
-	jQuery.blockUI.defaults.fadeTime = fadetime;
-	jQuery.unblockUI({ fadeOut:true });
-	
-	if (field == "guesttype")
-		message = blockui_recheckingroomavailability;
-	if (field == "arrivalDate")
-		message = blockui_recheckingroomavailability;
-	if (field == "arrival_period")
-		message = blockui_recheckingroomavailability;
-	if (field == "departureDate")
-		message = blockui_recheckingroomavailability;
-	if (field == "departure_period")
-		message = blockui_recheckingroomavailability;
-	if (field == "smoking")
-		message = blockui_recheckingroomavailability;
-
-	if (show_extras == true){
-		if (field == "extras" )
-			message = blockui_changingextra;
-		if (field == "extrasquantity")
-			message = blockui_changingextra;
-		}
-	if (field == "requestedRoom")
-		message = blockui_changingroomselection;
-	if (field == "multiroom_select")
-		message = blockui_changingroomselection;
-	if (field == "guestdetails")
-		message = blockui_updatingaddress;
-	if (field == "firstname")
-		message = blockui_recheckingroomavailability;
-	if (field == "surname")
-		message = blockui_recheckingroomavailability;
-	if (field == "house")
-		message = blockui_recheckingroomavailability;
-	if (field == "street")
-		message = blockui_recheckingroomavailability;
-	if (field == "town")
-		message = blockui_recheckingroomavailability;
-	if (field == "region")
-		message = blockui_recheckingroomavailability;
-	if (field == "postcode")
-		message = blockui_recheckingroomavailability;
-	if (field == "country")
-		message = blockui_recheckingroomavailability;
-	if (field == "tel_landline")
-		message = blockui_recheckingroomavailability;
-	if (field == "tel_mobile")
-		message = blockui_recheckingroomavailability;
-	if (field == "email")
-		message = blockui_recheckingroomavailability;
-		
-	if (field == "addresserror")
-		message = blockui_addressinputerror;
-	if (field == "existingCustomers")
-		message = blockui_updatingaddress;
-
-	if (field == "")
-		message = blockui_recheckingroomavailability;
-	//jQuery('div.block_ui_bookingform').block('<img src="'+rel_path+'/jomres/images/31.gif" /> <h3>'+message+'</h3>',{ border:'1px solid #016191'}); 
-
-	jQuery('div.block_ui_bookingform').block({
-	message: '<img src="'+rel_path+'/jomres/images/31.gif" /> <h3>'+message+'</h3>', 
-	css:	{
-			padding: '15px', 
-			'-webkit-border-radius': '10px', 
-			'-moz-border-radius': '10px'
-			}
-		});
-	}
-
-	
 function showRoomsList(req){
 	//var rooms = req.split("~");
 	//buildSelected(rooms[0]) ; 
