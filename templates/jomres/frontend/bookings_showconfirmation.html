@@ -4,7 +4,8 @@
 		{
 		if (document.bookingForm.agreecheck.checked)
 			{
-			document.bookingForm.action = "{PROCESSURL}"
+			document.bookingForm.action = "{PROCESSURL}";
+			document.bookingForm.submit();
 			return true;
 			}
 		else
@@ -15,7 +16,8 @@
 		}
 	function editbooking()
 		{
-		document.bookingForm.action = "{BOOKINGFORMURL}"
+		document.bookingForm.action = "{BOOKINGFORMURL}";
+		document.bookingForm.submit();
 		}
 
 </script>
@@ -173,7 +175,7 @@
 			<tr>
 				<td style="text-align:right;">
 					{AMENDTEXT}
-					<input type="submit" value="{AMEND}" class="button" onclick="editbooking()"/>
+					<button class="fg-button ui-state-default ui-corner-all" type="button" onclick="editbooking()">{AMEND}</button>
 				</td>
 			</tr>
 			<tr>
@@ -223,7 +225,7 @@
 						</tr>
 						<tr>
 							<td style="text-align:right;">
-								<input type="submit" id="send" name="send" value="{THEBUTTON}" class="button" onclick="return validate()" />
+								<button id="send" name="send" class="fg-button ui-state-default ui-corner-all" type="button" onclick="return validate()">{THEBUTTON}</button>
 							</td>
 						</tr>
 					</table>
