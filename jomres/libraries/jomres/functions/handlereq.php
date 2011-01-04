@@ -37,8 +37,8 @@ $roomTaxYesNo=$mrConfig['roomTaxYesNo'];
 $fixedPeriodBookings=$mrConfig['fixedPeriodBookings'];
 
 $messagesClass='; document.getElementById("messages").className="messages";';
-$errorClass='; document.getElementById("messages").className="ERROR";';
-$oktobookClass='; document.getElementById("messages").className="oktobook";';
+$errorClass='; document.getElementById("messages").className="ui-state-error";';
+$oktobookClass='; document.getElementById("messages").className="ui-state-highlight";';
 
 $field= jomresGetParam( $_GET, 'field', '','string' );
 $field=getEscaped( $field );

@@ -1,29 +1,5 @@
 <patTemplate:tmpl name="pageoutput">
 <style  type="text/css">
-.messages{
-	width: 100%;
-	background: {ERRORBACKGROUNDCOLOUR};
-	border-right: 1px solid #636363;
-	border-left: 1px solid #e7e934;
-	border-top: 1px solid #faf3e2;
-	border-bottom: 1px solid #636363;
-	text-indent: 5px;
-	}
-
-.roomalert_on
-	{
-	background: {ERRORBACKGROUNDCOLOUR};
-	}
-
-.errorbackground {
-	color: #000;
-	background-color: {ERRORBACKGROUNDCOLOUR};
-	background-image: none;
-	}
-
-.oktobook {
-	background-color: {INPUTOKTOBOOK_BACKGROUND};
-	}
 
 #totalinparty {
 	color: #000000;
@@ -63,7 +39,7 @@ var show_extras		= {SHOWEXTRAS};
 var rooms_list_enabled		= {JOMRES_ROOMSLISTENABLED};
 
 
-var inputerrorbackground = "{ERRORBACKGROUNDCOLOUR}";
+var inputerrorbackground = "ui-state-error";
 
 function dateStatus(date) {
 	var min = new Date({EARLIESTYEAR},{EARLIESTMON},{EARLIESTDAY});
@@ -93,8 +69,10 @@ jQuery(document).ready(function() {
 		<div class="block_ui_bookingform">
 			<table border="0" width="100%">
 				<tr>
-					<td valign="top" class="messages">
-						<div id="messages">&nbsp;</div>
+					<td valign="top">
+						<div class="ui-widget ui-corner-all">
+							<div id="messages">&nbsp;</div>
+						</div>
 					</td>
 				</tr>
 				<tr>
