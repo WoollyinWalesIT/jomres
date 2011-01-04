@@ -28,7 +28,7 @@ class j16000partners_add_property_to_partner_portfolio
 		$property_arr = explode(" : ",$property);
 		//echo "Pretending to add ".$property_arr[1]." to the user's portfolio";
 		
-		$query = "SELECT id FROM #__jomres_partners_discounts WHERE property_id =".(int)$property_arr[1] ;
+		$query = "SELECT id FROM #__jomres_partners_discounts WHERE =".(int)$property_arr[1]." and partner_id=".(int)$cms_userid ;
 		$result = doSelectSql($query);
 		if (count($result) == 0)
 			{
