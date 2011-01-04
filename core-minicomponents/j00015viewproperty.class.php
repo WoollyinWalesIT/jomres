@@ -201,7 +201,7 @@ class j00015viewproperty
 					{
 					$link				=	array();
 					$pagelink =	jomresURL(JOMRES_SITEPAGE_URL."&task=showTariffs&property_uid=$property_uid".$output_now);
-					$link['TARIFFSLINK']=	jomres_makeTooltip('_JOMRES_FRONT_TARIFFS','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=showTariffs&popup=1&no_html=1&property_uid=$property_uid".$output_now));
+					$link['TARIFFSLINK']=	'<a href="'.$pagelink.'" class="fg-button ui-state-default ui-corner-all" >'.jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=false,$isLink=false).'</a>';
 							
 					$tariffslink[]		= 	$link;
 					}
@@ -212,7 +212,7 @@ class j00015viewproperty
 				$pagelink =	jomresURL(JOMRES_SITEPAGE_URL."&task=slideshow&popup=1&property_uid=$property_uid".$output_now);
 				// Uncomment the following line to make the slideshow appear in a tooltip .
 				//$link['SLIDESHOWLINK']=	jomres_makeTooltip('_JOMRES_FRONT_SLIDESHOW','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=slideshow&popup=1&no_html=1&property_uid=$property_uid".$output_now));
-				$link['SLIDESHOWLINK']=	'<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=false,$isLink=false).'</a>';
+				$link['SLIDESHOWLINK']=	'<a href="'.$pagelink.'"  class="fg-button ui-state-default ui-corner-all" >'.jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=false,$isLink=false).'</a>';
 				
 				$slideshowlink[]	= 	$link;
 				}
@@ -227,7 +227,7 @@ class j00015viewproperty
 
 				$link['GALLERYLINK']= preg_replace("
 					#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie",
-					"'<a href=\"$1\" target=\"_blank\">$3</a>$4'",
+					"'<a href=\"$1\" target=\"_blank\" class=\"fg-button ui-state-default ui-corner-all\">$3</a>$4'",
 					$mrConfig['galleryLink']
 					);
 				$gallerylink[]		= 	$link;
@@ -238,7 +238,7 @@ class j00015viewproperty
 				if(filter_var($mappinglink, FILTER_VALIDATE_URL) === TRUE)
 					{
 					$pagelink =	jomresURL($mappinglink);
-					$link['MAPPINGLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>$mappinglink));
+					$link['MAPPINGLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK','','','<a href="'.$pagelink.'" class="fg-button ui-state-default ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>$mappinglink));
 					$mappinglink[]		= 	$link;
 					}
 				}
@@ -256,15 +256,15 @@ class j00015viewproperty
 				else
 					$url=jomresURL($url);
 					
-				$link['BOOKINGLINK']="<a href=\"".$url."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false)."</a>";
+				$link['BOOKINGLINK']="<a href=\"".$url."\" class=\"fg-button ui-state-default ui-corner-all\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false)."</a>";
 				if ($mrConfig['singleRoomProperty'] ==  '1')
-					$link['BOOKINGLINK']="<a href=\"".$url."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false)."</a>";
+					$link['BOOKINGLINK']="<a href=\"".$url."\" class=\"fg-button ui-state-default ui-corner-all\">".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false)."</a>";
 
 				$bookinglink[]		= 	$link;
 				}
 			else
 				{
-				$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid&amp;arrivalDate=2009-01-01")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
+				$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid&amp;arrivalDate=2009-01-01")."\" class=\"fg-button ui-state-default ui-corner-all\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
 				$bookinglink[]		= 	$link;
 				}
 			if ($mrConfig['is_real_estate_listing']==0)
@@ -273,15 +273,15 @@ class j00015viewproperty
 					{
 					$link				=	array();
 					$pagelink =	jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid".$output_now);
-					$link['ROOMSLISTLINK']=	jomres_makeTooltip('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE','','','<a href="'.$pagelink.'">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=false,$isLink=false).'</a>',"","ajaxpage",array('url'=>JOMRES_SITEPAGE_URL_NOHTML."&task=showRoomsListing&popup=1&no_html=1&property_uid=$property_uid".$output_now));
+					$link['ROOMSLISTLINK']=	'<a href="'.$pagelink.'" class="fg-button ui-state-default ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=false,$isLink=false).'</a>';
 					$roomslistlink[]	= 	$link;
 					}
 				}
 
 			if ($mrConfig['is_real_estate_listing']==0)
-				$property['CONTACTUS']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
+				$property['CONTACTUS']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid")."\" class=\"fg-button ui-state-default ui-corner-all\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
 			else
-				$property['CONTACTUS']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid")."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT',_JOMRES_FRONT_MR_MENU_CONTACT_AGENT,false,false)."</a>";
+				$property['CONTACTUS']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid")."\"  class=\"fg-button ui-state-default ui-corner-all\" >".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT',_JOMRES_FRONT_MR_MENU_CONTACT_AGENT,false,false)."</a>";
 			$property['POSTCODE']=$property_postcode;
 			$property['TELEPHONE']=$property_tel;
 			$property['FAX']=$property_fax;
