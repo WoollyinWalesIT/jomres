@@ -50,9 +50,9 @@ class j00501odds {
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 		
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+/* 			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_INPUTERROR_BACKGROUND);
+		$configurationPanel->setleft(_JOMRES_COM_INPUTERROR_BACKGROUND);
 			$configurationPanel->setmiddle(jomres_makeColourPickerInput('inputBoxErrorBackground',$mrConfig['inputBoxErrorBackground']));
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
@@ -66,7 +66,7 @@ class j00501odds {
 			$configurationPanel->setmiddle($editIconSize);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
-			}
+			} */
 			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
