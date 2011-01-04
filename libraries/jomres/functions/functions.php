@@ -335,10 +335,6 @@ function init_javascript()
 
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.jgrowl.css');
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jgrowl.js");
-			if ($thisJRUser->userIsManager)
-				{
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"MiniColorPicker.js");
-				}
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"excanvas.compiled.js");
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			}
