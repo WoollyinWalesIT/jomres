@@ -569,10 +569,13 @@ class j02260editbooking {
 			{
 			foreach($extraBillingData as $extras)
 				{
+				
 				$service_description=$extras->service_description;
 				$service_value=$extras->service_value;
-				$contentPanel->setcontent($service_description.' '.output_price($service_value).'<br>');
-				$otherServiceTotal=$otherServiceTotal+$service_value;
+				$xs_tax = ($extras->service_value/100)*(float)$extras->tax_rate_val;
+				$contentPanel->setcontent($service_description.' '.output_price($service_value+$xs_tax).'<br>');
+				$otherServiceTotal=$otherServiceTotal+($service_value+$xs_tax);
+				
 				}
 			}
 			$contentPanel->setcontent('

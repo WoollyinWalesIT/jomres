@@ -257,11 +257,32 @@ function doTableUpdates()
 		createGuestProfileTable();
 	if (!checkPropertyUIDInOrphanLineItemsColExists() )
 		alterPropertyUIDInOrphanLineItemsCol();
+	if (!checkExtraServicesTaxColExists() )
+		alterExtraServicesTaxCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function checkExtraServicesTaxColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_extraServices  LIKE 'tax_rate_val'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
 
+function alterExtraServicesTaxCol()
+	{
+	echo "Editing __jomres_extraServices table adding tax_rate_val column<br>";
+	$query = "ALTER TABLE `#__jomres_extraServices` ADD `tax_rate_val` CHAR (10) DEFAULT '0' ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_extraServices tax_rate_val</b><br>";
+	}
+	
+	
 function checkPropertyUIDInOrphanLineItemsColExists()
 	{
 	$query="SHOW COLUMNS FROM #__jomresportal_orphan_lineitems  LIKE 'property_uid'";

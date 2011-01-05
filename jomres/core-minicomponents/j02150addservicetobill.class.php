@@ -74,10 +74,15 @@ class j02150addservicetobill {
 			$service_description	=	ucfirst(jomresGetParam( $_POST, 'service_description', '' ));
 			$service_value			=	jomresGetParam( $_POST, 'service_value', 0.00 );
 			$taxrate				=	jomresGetParam( $_POST, 'taxrate', 0 );
+			jr_import('jrportal_taxrate');
+			$tax_rate_class = new jrportal_taxrate();
+			$tax_rate_class->id = $taxrate;
+			$tax_rate_class->getTaxRate();
+			$tax_value = $tax_rate_class->rate;
 			
 			if ($contract_uid && $service_description && $service_value != 0)
 				{
-				$query="INSERT INTO #__jomres_extraServices (`service_description`,`service_value`,`contract_uid`) VALUES ('$service_description','".(float)$service_value."','".(int)$contract_uid."')";
+				$query="INSERT INTO #__jomres_extraServices (`service_description`,`service_value`,`contract_uid`,`tax_rate_val`) VALUES ('$service_description','".(float)$service_value."','".(int)$contract_uid."',".$tax_value.")";
 				if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_ADDSERVICE',_JOMRES_MR_AUDIT_ADDSERVICE,FALSE)))
 					trigger_error ("Unable to insert into extraServices table, mysql db failure", E_USER_ERROR);
 				else
