@@ -48,7 +48,7 @@ class j00016composite_property_details {
 		$output				=$MiniComponents->miniComponentData['00015']['viewproperty']['property_deets'][0];
 		$featureList		=$MiniComponents->miniComponentData['00015']['viewproperty']['featurelist'];
 		$rtRows				=$MiniComponents->miniComponentData['00015']['viewproperty']['roomtypes'];
-		if ($jrConfig['show_booking_form_in_property_details'] =="0")
+		if ($jrConfig['show_booking_form_in_property_details'] =="0" && $mrConfig['is_real_estate_listing']==0)
 			$bookinglink		=$MiniComponents->miniComponentData['00015']['viewproperty']['bookinglink'];
 		$slideshowlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['slideshowlink'];
 		if (get_showtime('include_room_booking_functionality'))
