@@ -81,7 +81,7 @@ class jomres_language
 		$this->datepicker_crossref = $this->define_langfile_to_datepicker_files_array();
 		if ( !array_key_exists($jomresConfig_lang,$langfile_crossref) )
 			$jomresConfig_lang				= $this->get_shortcode_to_longcode($jomresConfig_lang);
-
+//var_dump($jomresConfig_lang);
 		$tmpBookingHandler->tmplang['jomreslang']= $jomresConfig_lang;
 		$tmpBookingHandler->close_jomres_session();
 		

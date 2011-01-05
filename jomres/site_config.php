@@ -186,4 +186,5 @@ $jrConfig['only_guests_can_review'] = "0";
 $jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css"; 
 $jrConfig['use_timezone_switcher'] = "0";
 
+$jrConfig['load_jquery'] = "1";
 ?>

@@ -186,9 +186,7 @@ function showSiteConfig(  )
 	
 	$lists['only_guests_can_review']				= jomresHTML::selectList( $yesno, 'cfg_only_guests_can_review', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['only_guests_can_review'] );
 	$lists['use_timezone_switcher']					= jomresHTML::selectList( $yesno, 'cfg_use_timezone_switcher', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_timezone_switcher'] );
-
-	
-
+	$lists['load_jquery']							= jomresHTML::selectList( $yesno, 'cfg_load_jquery', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery'] );
 
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList);
 	}

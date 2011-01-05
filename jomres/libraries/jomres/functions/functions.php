@@ -314,14 +314,13 @@ function init_javascript()
 			
 			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
 
-			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.2.min.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.3.min.js");
+			if (jomres_cmsspecific_areweinadminarea())
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.3.min.js");
+			elseif ($jrConfig['load_jquery'] == "1")
+				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.3.min.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
-			
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
-
-			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"interface.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"heartbeat.js");
