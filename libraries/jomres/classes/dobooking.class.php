@@ -6140,11 +6140,12 @@ class dobooking
 		$this->setErrorLog( "te_setAverageRate::Total = ".$total. " Number of days = ".$this->stayDays.' Number of rooms '.count($this->requestedRoom) );
 		$rpn=($total/$stayDays)/count($this->requestedRoom);
 		//$rpn=($total/count($this->requestedRoom))/$stayDays;
-		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
+		// No longer appropriate for this method, as Micromanage mode makes dates stored weekly redundant.
+/* 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
 			{
 			$this->setErrorLog("te_setAverageRate::Tariffs are stored weekly ");
 			$rpn=$rpn/7;
-			}
+			} */
 		$this->rate_pernight=$rpn;
 		$this->setErrorLog("te_setAverageRate::Setting average rate ".$rpn );
 		$this->setErrorLog("te_setAverageRate:: Ended");
