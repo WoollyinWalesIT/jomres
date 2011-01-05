@@ -235,6 +235,11 @@ class j04900saveproperty {
 				`ptype_id`='".(int)$property_type."'
 				WHERE propertys_uid='".(int)$propertyUid."'";
 			doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_PROPERTY',_JOMRES_MR_AUDIT_UPDATE_PROPERTY,FALSE));
+			
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_STREET",$property_street,TRUE);
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_TOWN",$property_town,TRUE);
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE",$property_postcode,TRUE);
+			
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION",$property_description,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES",$property_checkin_times,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES",$property_area_activities,TRUE);
