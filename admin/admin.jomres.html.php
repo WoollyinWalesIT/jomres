@@ -74,6 +74,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SUPPORTKEY_DESC.'</td>
 		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['load_jquery'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
+		</tr>
 		<!--
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SITELANGUAGE_FILE.'</td>
@@ -152,7 +157,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['showLangDropdown'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL.'</td>
