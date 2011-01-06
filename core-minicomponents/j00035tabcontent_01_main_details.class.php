@@ -81,6 +81,10 @@ class j00035tabcontent_01_main_details
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'feature_icons', $featureList);
+		if ($mrConfig['is_real_estate_listing']==0)
+			$tmpl->addRows( 'roomtype_icons', $rtRows);
+   
 		if ($discount_text != "")
 			$tmpl->addRows( 'discount_output', $discount_output );
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
