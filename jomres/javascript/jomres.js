@@ -352,6 +352,9 @@ function showRoomsList(req){
 	eval(req);
 	if (rooms_list_enabled)
 		ShowRoomsList();
+	if (jQuery("#noroomsselected").length)
+		document.getElementById("noroomsselected").className=error_class;
+
 	return false;
 	}
 
