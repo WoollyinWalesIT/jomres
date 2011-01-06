@@ -4345,7 +4345,7 @@ class dobooking
 			$room_imagetypetd='<td><img src="'.get_showtime('live_site')."/".$this->typeImage.'" height="30" width="30" /></td>';
 
 		$overlib='<tr>';
-		$overlib.='<td><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$caption.'</a></div></td>';
+		$overlib.='<td><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$caption.'</a></div></td>';
 		if ($this->cfg_bookingform_roomlist_showroomno == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>';
 		$overlib.=$room_imagetd;
