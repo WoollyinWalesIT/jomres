@@ -523,11 +523,11 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 
 		if (!$isSingleRoomProperty)
 			{
-			$selected_rooms_text='<div>'.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'</div>';
+			$selected_rooms_text=''.jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false,false).'';
 			if ($bkg->numberOfCurrentlySelectedRooms()>0 )
-				$currently_selected = $bkg->listCurrentlySelectedRooms();
+				$currently_selected = '<div >'.$bkg->listCurrentlySelectedRooms().'</div>';
 			else
-				$currently_selected = '<div class="ui-state-error">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
+				$currently_selected = '<div id="noroomsselected">'.jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET,false,false).'</div>';
 			$available_rooms_text='<div>'.jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS,false,false).'</div><div id="rooms_listing"></div>';
 			
 			
