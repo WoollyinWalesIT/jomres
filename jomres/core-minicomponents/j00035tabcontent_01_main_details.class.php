@@ -26,6 +26,8 @@ class j00035tabcontent_01_main_details
 
 		$discount_text	= "";
 		$discount_output = array();
+		$featureList		=$MiniComponents->miniComponentData['00015']['viewproperty']['featurelist'];
+		$rtRows				=$MiniComponents->miniComponentData['00015']['viewproperty']['roomtypes'];
 		if ($mrConfig['singleRoomProperty'] == 1)  // Using last minute calculations
 			{
 			$this->returnValue=array();

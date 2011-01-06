@@ -41,13 +41,9 @@ class j00016composite_property_details {
 		if (!isset($jrConfig['show_booking_form_in_property_details']))
 			$jrConfig['show_booking_form_in_property_details']="1";
 		$componentArgs['property_uid']=$property_uid;
-		
-		
-		
+
 		$MiniComponents->triggerEvent('00015',$componentArgs);
 		$output				=$MiniComponents->miniComponentData['00015']['viewproperty']['property_deets'][0];
-		$featureList		=$MiniComponents->miniComponentData['00015']['viewproperty']['featurelist'];
-		$rtRows				=$MiniComponents->miniComponentData['00015']['viewproperty']['roomtypes'];
 		if ($jrConfig['show_booking_form_in_property_details'] =="0" && $mrConfig['is_real_estate_listing']==0)
 			$bookinglink		=$MiniComponents->miniComponentData['00015']['viewproperty']['bookinglink'];
 		$slideshowlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['slideshowlink'];
@@ -55,7 +51,8 @@ class j00016composite_property_details {
 			$tariffslink		=$MiniComponents->miniComponentData['00015']['viewproperty']['tariffslink'];
 		$gallerylink		=$MiniComponents->miniComponentData['00015']['viewproperty']['gallerylink'];
 		$roomslistlink		=$MiniComponents->miniComponentData['00015']['viewproperty']['roomslistlink'];
-		$mappinklink		=$MiniComponents->miniComponentData['00015']['viewproperty']['mappinklink'];
+		$mappinglink		=$MiniComponents->miniComponentData['00015']['viewproperty']['mappinglink'];
+		$contactuslink		=$MiniComponents->miniComponentData['00015']['viewproperty']['contactuslink'];
 
 		$componentArgs['viewproperty_data']=$MiniComponents->miniComponentData['00015']['viewproperty'];
 		$componentArgs['currrent_output']=$output;
@@ -92,6 +89,7 @@ class j00016composite_property_details {
 		if ($mrConfig['singleRoomProperty']=="0")
 			$tmpl->addRows( 'roomslistlink', $roomslistlink);
 		$tmpl->addRows( 'mappinglink', $mappinglink);
+		$tmpl->addRows( 'contactuslink', $contactuslink);
 
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		if ($mrConfig['is_real_estate_listing']==0)

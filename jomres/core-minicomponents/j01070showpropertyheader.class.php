@@ -160,37 +160,15 @@ class j01070showpropertyheader
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 
-				$mcOutput=$MiniComponents->getAllEventPointsData('01070');
-				if (count($mcOutput)>0)
-					{
-					foreach ($mcOutput as $key=>$val)
-						{
-						$tmpl->addRows( 'customOutput_'.$key, array($val) );
-						}
-					}
-				$componentArgs=array('tmpl'=>$tmpl);
-				
-				if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00220') )
-					{
-					$templatePath=$MiniComponents->triggerEvent('00220',$componentArgs); //
-					}
-				elseif ($MiniComponents->eventFileExistsCheck('00222') )
-					{
-					$templatePath=$MiniComponents->triggerEvent('00222',$componentArgs); //
-					}
-				else
-					{
-					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-					$tmpl->addRows( 'pageoutput',$pageoutput);
-					$tmpl->addRows('featurelist',$featureList);
-					$tmpl->addRows('roomtypes',$roomtypes);
-					$tmpl->readTemplatesFromInput( 'property_header.html');
-					$cachableContent = $tmpl->getParsedTemplate();
-					$cache->setCache($cachableContent);
-					unset($cache);
-					echo $cachableContent;
-					
-					}
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->addRows( 'pageoutput',$pageoutput);
+				$tmpl->addRows('featurelist',$featureList);
+				$tmpl->addRows('roomtypes',$roomtypes);
+				$tmpl->readTemplatesFromInput( 'property_header.html');
+				$cachableContent = $tmpl->getParsedTemplate();
+				$cache->setCache($cachableContent);
+				unset($cache);
+				echo $cachableContent;
 
 				if ($jrConfig['dumpTemplate']=="1")
 					$tmpl->dump();

@@ -367,7 +367,7 @@ class j01010listpropertys {
 							else
 								$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
 								
-							$property_deets['LINKONLY']="<a href=\"".$url."\" title=\"".jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,$editable=false,$isLink=true)."\" class=\"fg-button ui-state-default ui-corner-all\">";
+							$property_deets['LINK']=$url;
 							if ($mrConfig['singleRoomProperty'] =="1")
 								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
 							else
@@ -456,25 +456,9 @@ class j01010listpropertys {
 				$tmpl->addRows( 'property_details', $property_details );
 				$tmpl->addRows( 'nav_output_top', $nav_output);
 				$tmpl->addRows( 'nav_output_bottom', $nav_output);
-				$mcOutput=$MiniComponents->getAllEventPointsData('01010');
-				if (count($mcOutput)>0)
-					{
-					foreach ($mcOutput as $key=>$val)
-						{
-						$tmpl->addRows( 'customOutput_'.$key, array($val) );
-						}
-					}
-				$componentArgs=array('tmpl'=>$tmpl);
-				if ($MiniComponents->eventFileExistsCheck('00232'))
-					{
-					$MiniComponents->triggerEvent('00232',$componentArgs); //
-					}
-				else
-					{
-					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-					$tmpl->readTemplatesFromInput( 'list_properties.html' );
-					$tmpl->displayParsedTemplate();
-					}
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'list_properties.html' );
+				$tmpl->displayParsedTemplate();
 
 				if ($jrConfig['dumpTemplate']=="1")
 					$tmpl->dump();
