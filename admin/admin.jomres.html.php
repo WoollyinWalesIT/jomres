@@ -507,6 +507,8 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 	
+	$max_upload_size = ini_get('upload_max_filesize');
+
 	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JOMRES_FILE_UPLOADS',_JOMRES_COM_A_JOMRES_FILE_UPLOADS,FALSE));
 	$contentPanel->setcontent('
 		<table  class="jradmin_table" border="0">
@@ -516,18 +518,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
 		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SLIDESHOW_THUMBSIZE.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_width" value="'.$jrConfig['thumbnail_width'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_maxwidth" value="'.$jrConfig['maxwidth'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC.'</td>
 		</tr>
 		<tr>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_fileSize" value="'.$jrConfig['fileSize'].'"></td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_fileSize" value="'.$jrConfig['fileSize'].'"> ( '.$max_upload_size.' max )</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE_DESC.'</td>
 		</tr>
 		<tr>');
