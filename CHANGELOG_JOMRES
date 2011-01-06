@@ -1,3 +1,40 @@
+Jomres 4.6.1 6/1/2011
+
+Added a clause to remove <x> from page titles (it remains in the page source).
+Modified new functionality so that if a property doesn't use rooms in the booking form, to simply set the departuredate to the next day (dependant on the minimum interval) internally.
+Modified invoice creation functionality to only mark an invoice paid on creation if the depositpaidsuccessfully flag is set to Yes and the init_total of the invoice = $deposit_required.
+Extended new arrival/departure date functionality to take into account those properties who're configured to not show the departure date in the booking form.
+Modified edit property script to html entity decode strings before they're displayed during editing.
+Some minor changes to html_entity_decode town/region links in the property list.
+Small change to take into account capitalised usernames in grant access function.
+Added experimental rounding to try to ensure that rounding is performed correctly.
+Modification to display booking script to not add tax if the prices are inclusive.
+Modified configuration functionality to allow managers to enable slideshows in property details, and stopped configuration from switching to property admin on Save.
+Removed redundant "don't use both tax configuration option settings" message from tariffs and currencies.
+Modified property details handling functionality, now tabs are added via minicomponents, makes it much easier for third party developers to add new tabs easily.
+Added some effects to the rooms list hiding/showing javascript. Finally got rid of interface.js, which has been with us for about 4 years but is no longer required. Booking form template updated.
+Modified the booking engine so that room buttons are now better styled with Jquery ui (whole button is clickable, not just the link)
+Removed jquery.blockUI.js and it's associated functionality from jomres.js. This was what would block parts of the interface from interference while the booking form's ajax functionality was running. Waaay back when web2 was new this was useful, however now ajax is common, we have faster servers, internet connections, pcs and javascript libraries and it's no longer necessary. In it's day it was great, but now I'm sick of looking at it. 
+Removed jquery-1.4.2.min.js from our javascript library
+Upgraded booking form and confirmation pages with jquery buttons.
+Applies the fix suggested by Marc, thanks. http://www.jomres.net/index.php?option=com_kunena&func=view&catid=10&id=2537&Itemid=290
+Further small changes to links in property details and list properties to make the buttons work like buttons. Modified booking form so that it uses the jquery highlight and error classes.
+Commented out input error/highlight options in property config as we're now using jquery highlights. Also removed the minicolour picker as that's no longer required, and disabled the 'edit icon size' options as it's redundant.
+Less is more.
+Fixed an issue with touch templates where the constant's which include the word "script" is being inserted into the custom text table with <x> inserted.
+Small change to prevent realestate properties for showing a book now link (duh)
+Modified extra services functionality to include the tax rate at the time that it's entered. This allows us to calculate the resulting total in the edit booking page.
+Added Street, Town and Postcode to translatable fields in Edit Property details page.
+Added option to disable jquery inclusion in the frontend.
+Removed some code from booking engine that was causing micromanage tariff calculations to use the 'charges stored weekly' setting, even though it's redundant in Micromanage tariff editing.
+A variety of changes to remove redundant code, and remove styles from the code in the property list, property details and property header.
+Changed Save Coupon link to a button in the booking form.
+Added two new js variables to the booking form for highlight and error, removes need to define the jquery ui's highlight and error classes in the code in handlereq.php
+removed ui error css from booking engine by applying the error_class through js after the rooms list is regenerated.
+Modified admin notes to remove redundant thumbnail setting, and advise the size of thumbnails. Added note to max upload input to show php's max file upload limit.
+Modified list properties display reviews functionality to open in a dialog popup.
+
+
 Jomres 4.6.0.1 15/12/2010
 
 Modified Jomres to ensure that a room booking isn't created when a property is a jintour property
