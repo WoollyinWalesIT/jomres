@@ -52,8 +52,8 @@ function toggle_review_div(uid)
 		<table width="100%">
 	<tr valign="top">
 		<td >
-			<div class="contentheading" style="padding:5px">
-            	<a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS}&nbsp;
+			<div class="fg-toolbar ui-widget-header ui-corner-all">
+            	<a href="{LINK}" style="color: white;" >{PROPERTYNAME}</a>&nbsp;{STARS}&nbsp;
                 <span style="font-size:11px;">{PROPERTY_TYPE}</span>
             </div>
 			<div style="padding-bottom:5px;padding-left:5px;">
@@ -99,12 +99,11 @@ function toggle_review_div(uid)
 											<td align="center">
 												<div class="fg-toolbar fg-buttonset">
 													<div style="float:right;width:150px;">
-														{LINKONLY}{BOOKTHIS_TEXT}</a>
+														<a href="{LINK}" class="fg-button ui-state-default ui-corner-all" >{BOOKTHIS_TEXT}</a>
 													</div>
 													<div style="float:right;width:150px;margin-top:5px;">
 														<a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all" >{MOREINFORMATION}</a>
 													</div>
-
 												</div>
 											</td>
 										</tr>
