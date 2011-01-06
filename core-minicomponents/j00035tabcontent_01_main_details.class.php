@@ -22,6 +22,7 @@ class j00035tabcontent_01_main_details
 			$this->template_touchable=false; return;
 			}
 		$property_uid=(int)$componentArgs['property_uid'];  
+		$mrConfig=getPropertySpecificSettings($property_uid);
 		$output = $componentArgs['currrent_output'];  
 
 		$discount_text	= "";
