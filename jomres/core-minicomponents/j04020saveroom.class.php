@@ -52,7 +52,7 @@ class j04020saveroom {
 			$room_name       = getEscaped( jomresGetParam( $_POST, 'room_name', "" ) );
 			$room_number     = getEscaped( jomresGetParam( $_POST, 'room_number', "" ) );
 			$room_floor      = getEscaped( jomresGetParam( $_POST, 'room_floor', "" ) );
-			$singleperson_suppliment		 = (float) jomresGetParam( $_POST, 'singleperson_suppliment', 0 );
+			$singleperson_suppliment		 = (float) jomresGetParam( $_POST, 'singleperson_suppliment', 0.0 );
 
 			if (isset($_POST['features_list']))
 				{
