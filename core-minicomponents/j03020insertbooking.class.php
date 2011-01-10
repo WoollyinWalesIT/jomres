@@ -331,27 +331,29 @@ class j03020insertbooking {
 						}
 					// Now to double check that the rooms haven't been booked while this person was paying
 					$dateRangeArray=explode(",",$dateRangeString);
-
-					for ($i=0, $n=count($dateRangeArray); $i < $n; $i++)
+					if (get_showtime('include_room_booking_functionality'))
 						{
-						$roomBookedDate=$dateRangeArray[$i];
-						$selected=explode(",",$requestedRoom);
-						foreach ($selected as $roomsRequested)
+						for ($i=0, $n=count($dateRangeArray); $i < $n; $i++)
 							{
-							$rm=explode("^",$roomsRequested);
-							$rmuid=$rm[0];
-							$rates_uids[]=$rm[1];
-							$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `room_uid` = '".(int)$rmuid."' AND `date` = '".$roomBookedDate."'";
-							$result = doSelectSql($query);
-							if (count($result)>0)
+							$roomBookedDate=$dateRangeArray[$i];
+							$selected=explode(",",$requestedRoom);
+							foreach ($selected as $roomsRequested)
 								{
-								trigger_error ("Failed to insert booking looks like the room has been double booked ", E_USER_ERROR);
-								$this->insertSuccessful =false;
-								return false;
+								$rm=explode("^",$roomsRequested);
+								$rmuid=$rm[0];
+								$rates_uids[]=$rm[1];
+								$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE `room_uid` = '".(int)$rmuid."' AND `date` = '".$roomBookedDate."'";
+								$result = doSelectSql($query);
+								if (count($result)>0)
+									{
+									trigger_error ("Failed to insert booking looks like the room has been double booked ", E_USER_ERROR);
+									$this->insertSuccessful =false;
+									return false;
+									}
 								}
 							}
 						}
-
+						
 					// Let's get our guest type data
 					$tmpArray=array();
 					$variancetypes=explode(",",$tempBookingData->variancetypes);
