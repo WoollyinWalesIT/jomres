@@ -122,7 +122,7 @@ class j01025showtariffs {
 						$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
 					else
 						$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
-					if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1")
+					if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1" && $mrConfig['tariffmode'] == "1")
 						{
 						if ($mrConfig['tariffmode'] == 2)
 							$price_inc_vat = $price_inc_vat * 7;
