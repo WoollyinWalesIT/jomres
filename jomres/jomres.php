@@ -256,7 +256,7 @@ if (get_showtime('task')=="showRoomDetails")
 if ((get_showtime('task')=="handlereq" || get_showtime('task')=="confirmbooking" || get_showtime('task')=="completebk" || get_showtime('task')=="processpayment") && !$thisJRUser->userIsManager  )
 	{
 	$property_uid = (int)$tmpBookingHandler->getBookingFieldVal("property_uid");
-	gateway_log("Setting property uid to ".$property_uid);
+	//gateway_log("Setting property uid to ".$property_uid);
 	}
 
 // Payment specific stuff.
