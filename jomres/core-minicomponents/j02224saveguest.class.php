@@ -58,7 +58,7 @@ class j02224saveguest {
 			{
 			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UPDATE_GUEST',_JOMRES_MR_AUDIT_UPDATE_GUEST,FALSE));
-			$query="UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`discount`= $discount WHERE guests_uid = '".(int)$guests_uid."'";
+			$query="UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email',`discount`= $discount WHERE guests_uid = '".(int)$guests_uid."' AND `property_uid` = ".(int)$defaultProperty;
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UPDATE_GUEST',_JOMRES_MR_AUDIT_UPDATE_GUEST,FALSE))) trigger_error ("Unable to update guest details, mysql db failure", E_USER_ERROR);
 			}
 		else

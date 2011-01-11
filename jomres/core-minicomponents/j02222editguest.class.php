@@ -37,7 +37,7 @@ class j02222editguest {
 		$guestUid= intval(jomresGetParam( $_REQUEST, 'guestUid', 0 ) );
 		$defaultProperty=getDefaultProperty();
 
-		if ($guestUid !="")
+		if ($guestUid !=0)
 			{
 
 			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
@@ -66,6 +66,7 @@ class j02222editguest {
 					$output['DISCOUNT']=jomresHTML::integerSelectList( 0,100,1, 'discount','class="inputbox" size="1"', $data->discount);
 					}
 				}
+			else $guestUid = 0;
 			}
 		else
 			{
