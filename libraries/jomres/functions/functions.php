@@ -3197,27 +3197,8 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 */
 function getPropertyName($property_uid)
 	{
-	// Gets the property name & returns the name as table data
-	//global $database,$mrConfig;
 	$current_property_details =jomres_getSingleton('basic_property_details');
-	$current_property_details->gather_data($property_uid);
-	return $current_property_details->property_name;
-	/*
-	global $thisJomresPropertyDetails;
-	
-	if ($property_uid == $thisJomresPropertyDetails['propertys_uid'])
-		return $thisJomresPropertyDetails['property_name'];
-	else
-		{
-		$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."'";
-		$propertyList =doSelectSql($query);
-		foreach ($propertyList as $property)
-			{
-			$propertyName=stripslashes($property->property_name);
-			}
-		return	$propertyName;
-		}
-	*/
+	return $current_property_details->get_property_name($property_uid);
 	}
 
 /**
