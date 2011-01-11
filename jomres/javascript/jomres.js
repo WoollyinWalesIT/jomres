@@ -642,7 +642,7 @@ function checkaddressfields(){
 		}
 	}
 	
-function validate(){
+function dobooking_validate(){
 	if (checkaddressfields()){
 		getResponse_guest();
 		setTimeout('submitBooking()', 2000);
