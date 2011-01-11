@@ -70,7 +70,6 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			`email`,
 			`password`,
 			`usertype`,
-			`gid`,
 			`registerDate`
 			) VALUES (
 			'".$name."',
@@ -78,7 +77,6 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			'".$guestDeets['email']."',
 			'".$encryptedPassword."',
 			'".$usertype."',
-			18,
 			'".date( 'Y-m-d H:i:s' )."'
 			) ";
 		$id=doInsertSql($query);
@@ -90,24 +88,15 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		else 
 			{
 			
-			$query = "INSERT INTO #__core_acl_aro (
-				`section_value`,
-				`value`,
-				`name`
+			$query = "INSERT INTO #__user_usergroup_map  (
+				`user_id`,
+				`group_id`
 				) VALUES (
-				'users',
 				'".$id."',
-				'".$name."'
+				2
 				) ";
-			$aro=doInsertSql($query);
-			$query = "INSERT INTO #__core_acl_groups_aro_map (
-				`group_id`,
-				`aro_id`
-				) VALUES (
-				18,
-				".$aro."
-				) ";
-			$map=doInsertSql($query);
+			doInsertSql($query);
+			
 				
 				
 			//$thisJRUser->userIsRegistered=true; // Disabled as this setting would be incorrect during the booking phase. We want newly created users to have their details recorded by the insertGuestDeets function in insertbookings
