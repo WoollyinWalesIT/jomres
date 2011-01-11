@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="booking_particulars" >
 <script language="JavaScript" type="text/javascript">
-    function validate()
+    function confirmation_validate()
 		{
 		if (document.bookingForm.agreecheck.checked)
 			{
@@ -225,7 +225,7 @@
 						</tr>
 						<tr>
 							<td style="text-align:right;">
-								<button id="send" name="send" class="fg-button ui-state-default ui-corner-all" type="button" onclick="return validate()">{THEBUTTON}</button>
+								<button id="send" name="send" class="fg-button ui-state-default ui-corner-all" type="button" onclick="return confirmation_validate()">{THEBUTTON}</button>
 							</td>
 						</tr>
 					</table>
