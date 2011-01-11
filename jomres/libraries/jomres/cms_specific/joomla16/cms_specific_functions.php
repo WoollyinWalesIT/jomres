@@ -284,16 +284,26 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName="")
 			$p=doSelectSql($query,1);
 
 			$vals=array();
-			$arr=explode("\n",$p);
+			$arr=explode(",",$p);
 			if (count($arr)>0)
 				{
 				foreach ($arr as $str)
 					{
-					$dat=explode("=",$str);
+					$dat=explode(":",$str);
+					
 					$key = $dat[0];
 					$val = $dat[1];
 					if (strlen($key)>0)
-						$vals[$key]=$val;
+						{
+						$k=str_replace('"','',$key);
+						$k=str_replace('{','',$k);
+						$k=str_replace('}','',$k);
+						$v=str_replace('"','',$val);
+						$v=str_replace('{','',$v);
+						$v=str_replace('}','',$v);
+						
+						$vals[$k]=$v;
+						}
 					}
 				}
 			return $vals;
