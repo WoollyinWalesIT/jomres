@@ -1,3 +1,18 @@
+Jomres 4.7.0 11/1/2011
+
+Various changes to enable Joomla 1.6 installation.
+Found and fixed a security issue where a manager of property A can modify the user details of a user on property B (where the manager has no rights to edit that user's details).
+
+Small change to save room script to ensure that the passed variable is cast as a float by the filtering function.
+Small change to stop jomres from including an obsolete js file.
+Disabled old gateway log marking the property uid number.
+Modified booking insert functionality to not check for rooms already booked if not using room booking functionality of the system.
+Small change to ensure that if micromanage is used, then the showtariffsasweekly setting isn't used. (IE to say that prices are per week) list properties and show tariffs scripts.
+Found an errant jquery uiblock call in jomres.js. Removed.
+Modified get property name function to use newer singleton functionality.
+
+
+
 Jomres 4.6.1 6/1/2011
 
 Added a clause to remove <x> from page titles (it remains in the page source).
