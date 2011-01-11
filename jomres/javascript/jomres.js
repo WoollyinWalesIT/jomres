@@ -307,7 +307,7 @@ function getResponse_existing(field,value) {
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			eval(data); 
-			jQuery('div.block_ui_bookingform').unblock();
+			//jQuery('div.block_ui_bookingform').unblock();
 			//show_log(field);
 			}
 	);
