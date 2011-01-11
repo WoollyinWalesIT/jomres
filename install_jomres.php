@@ -1264,7 +1264,7 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
-	$query = "CREATE TABLE IF NOT EXISTS `#_jomres_guest_profile` (
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` VARCHAR(255) NULL,
 		`firstname` VARCHAR(255) NULL,

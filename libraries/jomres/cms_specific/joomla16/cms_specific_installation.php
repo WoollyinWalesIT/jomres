@@ -22,15 +22,6 @@ if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS)
 		$folderChecksPassed=false;
 		
 		}
-	else
-		{
-		if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views") )
-			{
-			mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS);
-			mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS."default".JRDS);
-			mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS."default".JRDS."tmpl".JRDS);
-			}
-		}
 	}
 
 if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS."components".JRDS."com_jomres".JRDS) )
@@ -44,7 +35,13 @@ if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS."components".JR
 
 if ($folderChecksPassed)
 	{
-
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views") )
+		{
+		mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS);
+		mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS."default".JRDS);
+		mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS."default".JRDS."tmpl".JRDS);
+		}
+	
 	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."index.html", 	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."index.html"))
 		echo "<h1>Error, unable to copy ".
 			_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."index.html to ".
@@ -87,7 +84,7 @@ if ($folderChecksPassed)
 			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."router.php 
 			automatically, please do this manually through FTP</h1><br/>";
 
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres_view.xml", JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."jomres.xml"))
+	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres_view.xml", JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS."default".JRDS."tmpl".JRDS."default.xml"))
 		echo "<h1>Error, unable to copy ".
 			_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres_view.xml to ".
 			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."views".JRDS."default".JRDS."tmpl".JRDS."jomres.xml 
