@@ -541,10 +541,23 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				$query="DELETE FROM #__modules WHERE `title` = '".$plugin_name."'";
 				$result=doInsertSql($query,"");
 				}
-			$query="INSERT INTO #__modules
-			(`title`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`numnews`,`access`,`showtitle`,`params`,`iscore`,`client_id`)
-			VALUES
-			('".$plugin_name."','','0','left','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','0','1','".$params."','0','0')";
+				
+			if ( _JOMRES_DETECTED_CMS == "joomla15")
+				{
+				$query="INSERT INTO #__modules
+				(`title`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`numnews`,`access`,`showtitle`,`params`,`iscore`,`client_id`)
+				VALUES
+				('".$plugin_name."','','0','left','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','0','1','".$params."','0','0')";
+				}
+			elseif ( _JOMRES_DETECTED_CMS == "joomla16" )
+				{
+				$query="INSERT INTO #__modules
+				(
+				`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
+				VALUES
+				('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
+				}
+				
 			$result=doInsertSql($query,"");
 			if ($result)
 				{
