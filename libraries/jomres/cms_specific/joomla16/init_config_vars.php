@@ -69,7 +69,7 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (!strstr($scriptname,'install_jomres.php'))
 	{
 	$lang			= @ JFactory::getLanguage();
-	$jomresConfig_lang = $lang->_lang;
+	$jomresConfig_lang =  $lang->getTag();
 	}
 $showtime = jomres_getSingleton('showtime');
 
