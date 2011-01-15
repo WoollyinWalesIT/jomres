@@ -140,7 +140,7 @@ class j06000show_property_reviews
 					$r['REVIEW_TITLE']=$review['review_title'];
 					$r['REVIEW_DESCRIPTION']=html_entity_decode($review['review_description']);
 					$r['PROS']=html_entity_decode($review['pros']);
-					$r['CONS']=html_entity_decode$review['cons']);
+					$r['CONS']=html_entity_decode($review['cons']);
 					$r['RATING']=$review['rating'];
 					$r['RATING_STARS']="";
 					for ($i=1;$i<=$review['rating'];$i++)
