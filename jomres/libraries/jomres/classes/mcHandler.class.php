@@ -148,9 +148,11 @@ class mcHandler {
 							echo "Error, class ".$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
 							return;
 							}
+						set_showtime('current_minicomp',$event);
 						$e = new $event($eventArgs);
 						$retVal=$e->getRetVals();
 						$this->miniComponentData[$ePoint][$eName]=$retVal;
+						set_showtime('current_minicomp','');
 						unset($e);
 						}
 					}
@@ -189,9 +191,11 @@ class mcHandler {
 						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
 						set_showtime('eLiveSite',$eLiveSite);
 						$event='j'.$ePoint.$eName;
+						set_showtime('current_minicomp',$event);
 						$e = new $event($eventArgs);
 						$retVal=$e->getRetVals();
 						$this->miniComponentData[$ePoint][$eName]=$retVal;
+						set_showtime('current_minicomp','');
 						unset($e);
 						}
 					}
