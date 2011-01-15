@@ -46,7 +46,7 @@ class jomres_database
 	function setQuery($query)
 		{
 		$performance_monitor = jomres_getSingleton('jomres_performance_monitor');
-		$performance_monitor->set_sqlquery_log($query);
+		$performance_monitor->set_sqlquery_log($query." -- <b>".get_showtime('current_minicomp')."</b>");
 		$q = str_replace("#__",$this->db_prefix,$query);
 		$this->query=$q;
 		}
