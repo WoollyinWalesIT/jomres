@@ -254,21 +254,23 @@ class j01010listpropertys {
 					$ptown=stripslashes($property->property_town);
 					$stars=$property->stars;
 					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($property->property_description)), ENT_QUOTES),false,false );
-
-					jr_import('jomres_reviews');
-					$Reviews = new jomres_reviews();
-					$Reviews->property_uid = $property->propertys_uid;
-					$itemRating = $Reviews->showRating($property->propertys_uid);
-					$property_deets['AVERAGE_RATING']=number_format($itemRating['avg_rating'], 1, '.', '');
-					$property_deets['NUMBER_OF_REVIEWS']=$itemRating['counter'];
 					
-					$property_deets['_JOMRES_REVIEWS_AVERAGE_RATING']		=jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING',_JOMRES_REVIEWS_AVERAGE_RATING,false,false);
-					$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES']			=jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES',_JOMRES_REVIEWS_TOTAL_VOTES,false,false);
-					$property_deets['_JOMRES_REVIEWS']						=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
-					$property_deets['_JOMRES_REVIEWS_CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
-					
-					$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
-					
+					if ($jrConfig['use_reviews'] =="1")
+						{
+						jr_import('jomres_reviews');
+						$Reviews = new jomres_reviews();
+						$Reviews->property_uid = $property->propertys_uid;
+						$itemRating = $Reviews->showRating($property->propertys_uid);
+						$property_deets['AVERAGE_RATING']=number_format($itemRating['avg_rating'], 1, '.', '');
+						$property_deets['NUMBER_OF_REVIEWS']=$itemRating['counter'];
+						
+						$property_deets['_JOMRES_REVIEWS_AVERAGE_RATING']		=jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING',_JOMRES_REVIEWS_AVERAGE_RATING,false,false);
+						$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES']			=jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES',_JOMRES_REVIEWS_TOTAL_VOTES,false,false);
+						$property_deets['_JOMRES_REVIEWS']						=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
+						$property_deets['_JOMRES_REVIEWS_CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
+						
+						$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
+						}
 					
 					$property_image=get_showtime('live_site')."/jomres/images/jrlogo.png";
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
