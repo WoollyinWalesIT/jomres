@@ -385,14 +385,14 @@ class j01010listpropertys {
 							}
 						else
 							{
-							$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
-							$bookinglink[]		= 	$link;
+							$property_deets['LINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid);
+							$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false);
 							}
 						}
 					else
 						{
-						$property_deets['BOOKTHIS_TEXT']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid)."\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT',_JOMRES_FRONT_MR_MENU_CONTACT_AGENT,false,false)."</a>";
-						$bookinglink[]		= 	$link;
+						$property_deets['LINK']=$url;
+						$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT',_JOMRES_FRONT_MR_MENU_CONTACT_AGENT,false,false);
 						}
 					
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property->propertys_uid);
