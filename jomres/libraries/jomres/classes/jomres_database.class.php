@@ -46,7 +46,7 @@ class jomres_database
 	function setQuery($query)
 		{
 		$performance_monitor = jomres_getSingleton('jomres_performance_monitor');
-		$performance_monitor->set_sqlquery_log("".whereCalled()." <br/>".$query ."" );
+		$performance_monitor->set_sqlquery_log("".whereCalled()." <br/>".$query ."<br/>" );
 		$q = str_replace("#__",$this->db_prefix,$query);
 		$this->query=$q;
 		}
@@ -89,13 +89,14 @@ class jomres_database
 		}
 	}
 
-function whereCalled( $level = 2 ) {
-    $trace = debug_backtrace();
-    $file   = $trace[$level]['file'];
-    $line   = $trace[$level]['line'];
-    $object = $trace[$level]['object'];
-    if (is_object($object)) { $object = get_class($object); }
+function whereCalled() {
+	$trace = debug_backtrace();
+	$file1_arr = explode(JRDS,$trace[2]['file']);
+	$file1 = $file1_arr[count($file1_arr)-1];
+	$file2_arr = explode(JRDS,$trace[2]['file']);
+	$file2 = $file2_arr[count($file2_arr)-1];
+	
+	return "on line ".$trace[2]['line']." of  \n(in <b>".$file1."</b>) for line ".$trace[3]['line']." ". $file2;
+	}
 
-    return "on line $line of  \n(in <b>$file</b>)";
-}
 ?>
