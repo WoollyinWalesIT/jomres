@@ -50,8 +50,10 @@ class j00060toptemplate {
 				}
 			$management_view = $jomres_management_view->get_view();
 			}
-
-		if (!defined('JOMRES_NOHTML'))
+		
+		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
+		
+		if (!defined('JOMRES_NOHTML') && $popup != 1 )
 			{
 			$output=array();
 			
