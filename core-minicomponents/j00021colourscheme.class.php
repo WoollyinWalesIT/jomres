@@ -36,7 +36,7 @@ class j00021colourscheme
 			$this->template_touchable=false; return;
 			}
 		if (file_exists(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss.css") )
-			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/temp/',"jomrescss.css");
+			jomres_cmsspecific_addheaddata("css",'jomres/temp/',"jomrescss.css");
 		else
 			jomres_cmsspecific_addheaddata("css",JOMRES_CSSRELPATH,"jomrescss.css");
 		}

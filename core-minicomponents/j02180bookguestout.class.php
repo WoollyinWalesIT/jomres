@@ -114,7 +114,7 @@ class j02180bookguestout {
 				// It's time to generate our invoice
 				$query="SELECT deposit_required,contract_total,arrival,true_arrival,deposit_paid,rate_rules,property_uid,single_person_suppliment,room_total,date_range_string,guest_uid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contractUid."' AND property_uid = '".(int)$defaultProperty."'";
 				$contractList =doSelectSql($query);
-				$query="SELECT service_description,service_value FROM #__jomres_extraServices WHERE contract_uid = '".(int)$contractUid."'";
+				$query="SELECT * FROM #__jomres_extraServices WHERE contract_uid = '".(int)$contractUid."'";
 				$servicesList =doSelectSql($query);
 				foreach($contractList as $contractData)
 					{
@@ -159,15 +159,27 @@ class j02180bookguestout {
 				$output_extras=array();
 				if (count($servicesList)>0)
 					{
-					foreach ($servicesList as $service)
+					foreach($servicesList as $extras)
 						{
-						$serviceValue=$service->service_value;
-						$ex['DESC']=$service->service_description;
-						$ex['VAL']=output_price($serviceValue);
-
-						$extraServicesTotal=$extraServicesTotal+$serviceValue;
+						$service_description=$extras->service_description;
+						$service_value=$extras->service_value;
+						$xs_tax = ($extras->service_value/100)*(float)$extras->tax_rate_val;
+						$ex['DESC']=$service_description.' '.output_price($service_value+$xs_tax).'<br>';
+						$ex['VAL']=output_price($service_value+$xs_tax);
+						$extraServicesTotal=$extraServicesTotal+($service_value+$xs_tax);
+						
 						$output_extras[]=$ex;
 						}
+				
+					// foreach ($servicesList as $service)
+						// {
+						// $serviceValue=$service->service_value;
+						// $ex['DESC']=$service->service_description;
+						// $ex['VAL']=output_price($serviceValue);
+
+						// $extraServicesTotal=$extraServicesTotal+$serviceValue;
+						// $output_extras[]=$ex;
+						// }
 					$output['HEXTRASERVICE_TOTAL']=jr_gettext('_JOMRES_COM_ADDSERVICE_TOTALVALUE',_JOMRES_COM_ADDSERVICE_TOTALVALUE);
 					$output['EXTRASERVICE_TOTAL']=output_price($extraServicesTotal);
 					}
