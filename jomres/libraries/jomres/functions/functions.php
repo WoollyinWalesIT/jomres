@@ -309,32 +309,32 @@ function init_javascript()
 			if (isset($themeArr[2]))
 				$themePath = $themeArr[2]."/";
 			else
-				$themePath = get_showtime('live_site').'/jomres/css/jquery_ui_themes/'.$subdir.'/';
+				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
 			jomres_cmsspecific_addheaddata("css",$themePath,$filename);
 			
-			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.rating.css');
+			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
 
 			if (jomres_cmsspecific_areweinadminarea())
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.3.min.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
 			elseif ($jrConfig['load_jquery'] == "1")
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-1.4.3.min.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.cookee.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
 			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"heartbeat.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.bt.min.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.hoverIntent.minified.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.rating.pack.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.validate.min.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"heartbeat.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.min.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.hoverIntent.minified.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.rating.pack.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.validate.min.js");
 
 			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jeditable.pack.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jeditable.pack.js");
 
-			jomres_cmsspecific_addheaddata("css",get_showtime('live_site').'/jomres/css/','jquery.jgrowl.css');
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.jgrowl.js");
-			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"excanvas.compiled.js");
+			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.jgrowl.css');
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.compiled.js");
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			}
 		}

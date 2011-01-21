@@ -2352,7 +2352,7 @@ class dobooking
 		jQuery("#'.$uniqueID.'").datepicker( {
 			dateFormat: "'.$dateFormat.'",
 			minDate: 0, maxDate: "+5Y",
-			buttonImage: \''.get_showtime('live_site').'/jomres/images/calendar.png\',
+			buttonImage: \'jomres/images/calendar.png\',
 			autoSize:true,
 			buttonImageOnly: true,
 			showOn: "both",
@@ -2416,7 +2416,7 @@ class dobooking
 
 			// Popup on both input and image click
 			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".get_showtime('live_site')."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
+				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
 				<script type=\"text/javascript\">
 					Calendar.setup({
 					inputField    :   \"x".$randomID."\",
@@ -4283,7 +4283,7 @@ class dobooking
 		if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$this->property_uid.'_room_'.$roomuid.'.jpg' ) )
 			$this->roomImagePath=JOMRES_IMAGELOCATION_RELPATH.$this->property_uid.'_room_'.$roomuid.'.jpg';
 		else
-			$this->roomImagePath=get_showtime('live_site')."/jomres/images/noimage.gif";
+			$this->roomImagePath="jomres/images/noimage.gif";
 		$room_number=$this->allPropertyRooms[$roomuid]['room_number'];
 		$room_name=$this->allPropertyRooms[$roomuid]['room_name'];
 		$tariffTitle=$this->allPropertyTariffs[$tariffuid]['rate_title'];
@@ -4342,7 +4342,7 @@ class dobooking
 			}
 		$room_imagetypetd="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypetd='<td><img src="'.get_showtime('live_site')."/".$this->typeImage.'" height="30" width="30" /></td>';
+			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30" /></td>';
 
 		$overlib='<tr>';
 		$overlib.='<td><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$caption.'</a></div></td>';
