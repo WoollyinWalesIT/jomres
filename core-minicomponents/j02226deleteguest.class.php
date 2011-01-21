@@ -48,23 +48,23 @@ class j02226deleteguest {
 				{
 				foreach ($bookingCountThisProperty as $contract_uid)
 					{
-					echo "Deleting room bookings";
+					//echo "Deleting room bookings";
 					
 					$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$contract_uid->contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
-					echo $query;echo "<br>";
+					//echo $query;echo "<br>";
 					if (!doInsertSql($query,""))
 						trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
 					
 					$query="UPDATE #__jomres_contracts SET `cancelled`='1', `cancelled_timestamp`='".date( 'Y-m-d H:i:s' )."', `cancelled_reason`='Guest deleted' WHERE contract_uid = '".(int)$contract_uid->contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
-					echo $query;echo "<br>";
+					//echo $query;echo "<br>";
 					if (!doInsertSql($query,""))
 						trigger_error ("Unable to update cancellations data for contract". (int)$contract_uid->contract_uid.", mysql db failure", E_USER_ERROR);
 					}
 				}
-			else
-				echo "No bookings to delete";
+			//else
+			//	echo "No bookings to delete";
 			$query="DELETE FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."' AND property_uid = '".(int)$defaultProperty."'";
-			echo $query;
+			//echo $query;
 			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_GUEST',_JOMRES_MR_AUDIT_DELETE_GUEST,FALSE))) trigger_error (_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST, E_USER_ERROR);
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), $saveMessage );
 			}
