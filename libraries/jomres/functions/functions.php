@@ -1919,14 +1919,18 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	// departureDate is so that it can set it's date when this one changes
 	if ($fieldName != "departureDate")
 		{
-		list($usec,$sec)=explode(" ",microtime());
-		mt_srand($sec * $usec);
-		$possible='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz';
-		for ($i=0; $i<10; $i++)
-			{
-			$key=mt_rand(0, strlen($possible)-1);
-			$uniqueID.=$possible[$key];
-			}
+		// It seems that some servers don't correctly report microtime, so we'll disable this section of code and instead use Jomres' random string generator to create our form field's lablel.
+		// list($usec,$sec)=explode(" ",microtime());
+		// mt_srand($sec * $usec);
+		// $possible='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz';
+		// for ($i=0; $i<10; $i++)
+			// {
+			// $key=mt_rand(0, strlen($possible)-1);
+			// $uniqueID.=$possible[$key];
+			// }
+		// set_showtime('departure_date_unique_id',$uniqueID."_XXX") ;
+		
+		$uniqueID=generateJomresRandomString(15);
 		set_showtime('departure_date_unique_id',$uniqueID."_XXX") ;
 		}
 	else
