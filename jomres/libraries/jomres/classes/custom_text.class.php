@@ -25,6 +25,7 @@ class custom_text
 		{
 		self::$internal_debugging = false;
 		$this->xcustom_text();
+		$this->get_custom_text_for_all_properties();
 		}
 
 	public static function getInstance()
@@ -43,10 +44,10 @@ class custom_text
 		
 	function xcustom_text() 
 		{
-		$this->lang=get_showtime('lang');
+		
 		$this->global_custom_text=array();
 		$this->property_uids_custom_text=array();
-		$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = 0 AND language = '".$this->lang."'";
+		$query="SELECT constant,customtext,language FROM #__jomres_custom_text WHERE property_uid = 0";
 		$customTextList=doSelectSql($query);
 		if (count($customTextList))
 			{
@@ -54,39 +55,63 @@ class custom_text
 			foreach ($customTextList as $text)
 				{
 				$theConstant=str_replace("sc<x>ript","script",$text->constant);
-				$this->global_custom_text[$theConstant]=stripslashes($text->customtext);
+				$this->global_custom_text[$text->language][$theConstant]=stripslashes($text->customtext);
 				}
 			}
 		}
-
-	function get_custom_text_for_property($property_uid)
+	
+	function get_custom_text_for_all_properties()
 		{
-		if ($property_uid > 0)
-			$this->property_uid = $property_uid;
-		if (!isset($this->property_uids_custom_text[(int)$this->property_uid]))
+		$this->all_properties_custom_text = array();
+		$query="SELECT constant,customtext,language,property_uid FROM #__jomres_custom_text";
+		$customTextList=doSelectSql($query);
+
+		if (count($customTextList))
 			{
-			$current_custom_text=$this->global_custom_text;
-			$query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = '".(int)$property_uid."' AND language = '".$this->lang."'";
+			$customTextArray=array();
 			
-			$customTextList=doSelectSql($query);
-			if (count($customTextList))
+			foreach ($customTextList as $text)
 				{
-				$customTextArray=array();
-				foreach ($customTextList as $text)
-					{
-					$theConstant=str_replace("sc<x>ript","script",$text->constant);
-					$current_custom_text[$theConstant]=stripslashes($text->customtext);
-					//echo $theConstant." - ".$text->customtext."<br>
-					//";
-					}
-				//echo $property_uid." ".$current_custom_text."  CUSTOM<br>";
-				$this->property_uids_custom_text[(int)$property_uid]= $current_custom_text;
+				$theConstant=str_replace("sc<x>ript","script",$text->constant);
+				$this->all_properties_custom_text[$text->property_uid][$text->language][$theConstant]=stripslashes($text->customtext);
 				}
 			}
-		else
-			{
-			$current_custom_text=$this->property_uids_custom_text[$property_uid];
-			}
+		}
+	
+	function get_custom_text_for_property($property_uid)
+		{
+		$this->lang=get_showtime('lang');
+		if ($property_uid > 0)
+			$this->property_uid = $property_uid;
+		
+		$current_custom_text=$this->global_custom_text[$this->lang];
+		$current_custom_text=array_merge ($this->global_custom_text,$this->all_properties_custom_text[$property_uid][$this->lang]);
+		
+		
+		// if (!isset($this->property_uids_custom_text[(int)$this->property_uid]))
+			// {
+			// $current_custom_text=$this->global_custom_text[$this->lang];
+			// $query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = '".(int)$property_uid."' AND language = '".$this->lang."'";
+			
+			// $customTextList=doSelectSql($query);
+			// if (count($customTextList))
+				// {
+				// $customTextArray=array();
+				// foreach ($customTextList as $text)
+					// {
+					// $theConstant=str_replace("sc<x>ript","script",$text->constant);
+					// $current_custom_text[$theConstant]=stripslashes($text->customtext);
+					//echo $theConstant." - ".$text->customtext."<br>
+					//";
+					// }
+				//echo $property_uid." ".$current_custom_text."  CUSTOM<br>";
+				// $this->property_uids_custom_text[(int)$property_uid]= $current_custom_text;
+				// }
+			// }
+		// else
+			// {
+			// $current_custom_text=$this->property_uids_custom_text[$property_uid];
+			// }
 		return $current_custom_text;
 		}
 		
