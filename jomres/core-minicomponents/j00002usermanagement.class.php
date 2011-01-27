@@ -36,6 +36,7 @@ class j00002usermanagement {
 			}
 
 		//jr_import('jr_user');
+		set_showtime("jr_user_ready",false);
 		$thisJRUser=jomres_getSingleton('jr_user');
 		//$thisJRUser= new jr_user();
 		if ($thisJRUser->userIsManager==TRUE)
@@ -56,6 +57,7 @@ class j00002usermanagement {
 		if ($thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager)
 			$thisJRUser->setToAnyAuthorisedProperty();
 		$this->userObject=$thisJRUser;
+		set_showtime("jr_user_ready",true);
 		}
 
 	/**

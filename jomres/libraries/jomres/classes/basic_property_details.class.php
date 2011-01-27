@@ -18,10 +18,12 @@ class basic_property_details
 	// Store the single instance of Database
 	private static $configInstance;
 	private static $internal_debugging;
+	private static $property_data;
 
 	public function __construct() 
 		{
 		self::$internal_debugging = false;
+		self::$property_data = array();
 		}
 
 	public static function getInstance()
@@ -57,19 +59,70 @@ class basic_property_details
 		{
 		if ($property_uid ==0)
 			$property_uid = $this->property_uid;
-		$original_property_uid = get_showtime('property_uid');
-		set_showtime('property_uid',$property_uid);
-		$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
-		$property_name=doSelectSql($query,1);
+			
+		if (!array_key_exists($property_uid,$this->property_names))
+			{
+			$original_property_uid = get_showtime('property_uid');
+			set_showtime('property_uid',$property_uid);
+			$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
+			$property_name=doSelectSql($query,1);
+			$customTextObj =jomres_getSingleton('custom_text');
+			$customTextObj->get_custom_text_for_property($property_uid);
+			$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
+			$property_name = str_replace("&#39;", "'", $property_name);
+			set_showtime('property_uid',$original_property_uid);
+			}
+		else
+			$property_name = $this->property_names[$property_uid];
+		
+		return $property_name;
+		}
+	
+	public function get_property_name_multi($property_uids=array(),$database_obj = false)
+		{
 		$customTextObj =jomres_getSingleton('custom_text');
-		$customTextObj->get_custom_text_for_property($property_uid);
-		$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
-		//echo $property_name."<br>";
-		$property_name = str_replace("&#39;", "'", $property_name);
+		
+		if (!isset($this->property_names))
+			$this->property_names = array();
+
+		$original_property_uid = get_showtime('property_uid');
+		if (count($property_uids) ==0)
+			return false;
+		
+		// We've been passed a database object's search results, so we'll find the propertys_uids, dump them into an array and generate $gor from that.
+		if ($database_obj)
+			{
+			$tmp_arr = array();
+			foreach ($property_uids as $id)
+				{
+				$tmp_arr[] = $id->propertys_uid;
+				}
+			$gor= genericOr($tmp_arr,'propertys_uid');
+			}
+		else
+			$gor= genericOr($property_uids,'propertys_uid');
+		
+		// We'll add a call to get the custom text object here, because if we're calling multiple property details here, we'll probably need those details at a later time.
+		
+		
+		$query="SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE ".$gor;
+		$property_names=doSelectSql($query);
+		
+		foreach ($property_names as $p)
+			{
+			// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
+			set_showtime('property_uid',$p->propertys_uid);
+			
+			$customTextObj->get_custom_text_for_property($p->propertys_uid);
+			$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$p->property_name,false,false);
+			$property_name = str_replace("&#39;", "'", $p->property_name);
+			$this->property_names[$p->propertys_uid] = $property_name;
+			}
 		set_showtime('property_uid',$original_property_uid);
 		return $property_name;
 		}
-		
+	
+	
 	public function gather_data($property_uid=0)
 		{
 		if ($this->property_uid === 0)
