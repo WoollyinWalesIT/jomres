@@ -25,18 +25,23 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		// var_dump($theConstant);echo "<br>";var_dump($customTextArray);echo "<br>";
 		// }
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-	$thisJRUser=jomres_getSingleton('jr_user');
+	if (get_showtime("jr_user_ready")) // If jr_user isn't ready yet, calling jomres_getSingleton('jr_user') will cause php to stop due to recursion, so we'll check that jr_user's been set up before we do anything else
+		{
+		$thisJRUser=jomres_getSingleton('jr_user');
 
-	if (!isset($tmpBookingHandler->user_settings['editing_on']))
-		$tmpBookingHandler->user_settings['editing_on']= false;
-		
-	if (!$thisJRUser->userIsManager)
-		$tmpBookingHandler->user_settings['editing_on']= false;
-		
-	if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 2)
-		$tmpBookingHandler->user_settings['editing_on']= false;
+		if (!isset($tmpBookingHandler->user_settings['editing_on']))
+			$tmpBookingHandler->user_settings['editing_on']= false;
+			
+		if (!$thisJRUser->userIsManager)
+			$tmpBookingHandler->user_settings['editing_on']= false;
+			
+		if ($thisJRUser->userIsManager && $thisJRUser->accesslevel < 2)
+			$tmpBookingHandler->user_settings['editing_on']= false;
 
-	$editing = $tmpBookingHandler->user_settings['editing_on'];
+		$editing = $tmpBookingHandler->user_settings['editing_on'];
+		}
+	else
+		$tmpBookingHandler->user_settings['editing_on']= false;
 	
 	//$tmpBookingHandler->close_jomres_session();
 

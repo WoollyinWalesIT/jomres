@@ -75,6 +75,8 @@ class jr_user
 					if ($authUser->suspended == "1")
 						$this->userIsSuspended = true;
 					
+					$basic_property_details =jomres_getSingleton('basic_property_details');
+
 					if ($authUser->pu == "1")
 						{
 						$this->superPropertyManager = true;
@@ -82,6 +84,7 @@ class jr_user
 							{
 							$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys ORDER BY property_name ASC";;
 							$propertysList =doSelectSql($query);
+							$basic_property_details->get_property_name_multi($propertysList,true);
 							if (count($propertysList) >0)
 								{
 								foreach ($propertysList as $p)
@@ -103,11 +106,13 @@ class jr_user
 							$gor= genericOr($this->authorisedProperties ,'propertys_uid');
 							$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys WHERE ".$gor. "ORDER BY property_name ASC";;
 							$propertysList =doSelectSql($query);
+							$basic_property_details->get_property_name_multi($propertysList,true);
+
 							if (count($propertysList) >0)
 								{
 								foreach ($propertysList as $p)
 									{
-									$basic_property_details =jomres_getSingleton('basic_property_details');
+									
 									$obj->property_name=$basic_property_details->get_property_name($key);
 									$this->authorisedPropertyDetails[$p->propertys_uid]=array('property_name'=>$pname);
 									}

@@ -89,6 +89,8 @@ class custom_text
 			}
 		return $current_custom_text;
 		}
+		
+	
 
 	function get_custom_text()
 		{
