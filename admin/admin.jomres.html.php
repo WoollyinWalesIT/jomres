@@ -517,6 +517,29 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
+		
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_WIDTH.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_list_max_width" value="'.$jrConfig['thumbnail_property_list_max_width'].'"></td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_HEIGHT.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_list_max_height" value="'.$jrConfig['thumbnail_property_list_max_height'].'"></td>
+			<td class="jradmin_subheader_la" valign="top"></td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_MED_WIDTH.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_header_max_width" value="'.$jrConfig['thumbnail_property_header_max_width'].'"></td>
+			<td class="jradmin_subheader_la" valign="top"></td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_MED_HEIGHT.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_header_max_height" value="'.$jrConfig['thumbnail_property_header_max_height'].'"></td>
+			<td class="jradmin_subheader_la" valign="top"></td>
+		</tr>
+		
+		
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_maxwidth" value="'.$jrConfig['maxwidth'].'"></td>

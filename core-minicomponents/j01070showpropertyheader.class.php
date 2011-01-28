@@ -71,7 +71,7 @@ class j01070showpropertyheader
 					$starslink.="";
 					}
 				$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
-				$output['IMAGETHUMB']=getThumbnailForImage($output['IMAGE']);
+				$output['IMAGETHUMB']=getThumbnailForImage($output['IMAGE'],true);
 				
 				$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 
