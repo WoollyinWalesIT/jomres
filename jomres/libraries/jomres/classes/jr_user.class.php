@@ -93,7 +93,6 @@ class jr_user
 									$this->authorisedPropertyDetails[$p->propertys_uid]=array('property_name'=>$p->property_name);
 									}
 								}
-
 							}
 						else
 							{

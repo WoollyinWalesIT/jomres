@@ -13,6 +13,87 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function detect_property_uid()
+	{
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
+	$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
+
+	// Finding the property uid
+	$query="SELECT propertys_uid,published FROM #__jomres_propertys";
+	$countproperties = doSelectSql($query);
+	$numberOfPropertiesInSystem=count($countproperties);
+	set_showtime('numberOfPropertiesInSystem',$numberOfPropertiesInSystem);
+	$propertys = array();
+	$published_propertys = array();
+	foreach ($countproperties as $p)
+		{
+		$propertys[] = $p->propertys_uid;
+		if ($p->published == "1")
+			$published_propertys[]=$p->propertys_uid;
+		}
+	set_showtime('all_properties_in_system',$propertys);
+	set_showtime('published_properties_in_system',$published_propertys);
+
+
+	if ($numberOfPropertiesInSystem==1)
+		{
+		if (!$thisJRUser->userIsManager)
+			{
+			foreach ($countproperties as $prop)
+				{
+				$property_uid=(int)$prop->propertys_uid;
+				}
+			}
+		else
+			{
+			$parray=array();
+			foreach ($countproperties as $prop)
+				{
+				$parray[]=(int)$prop->propertys_uid;
+				}
+			if (in_array($defaultProperty,$parray) )
+				$property_uid=$defaultProperty;
+			else
+				$property_uid=$parray[0];
+			}
+		}
+	else if ($thisJRUser->userIsManager)
+		$property_uid=$defaultProperty;
+
+	if (get_showtime('task')=="showRoomDetails")
+		{
+		$roomUid	= jomresGetParam( $_REQUEST, 'roomUid', 0 );
+		$query = "SELECT propertys_uid FROM #__jomres_rooms WHERE  room_uid  = '".(int)$roomUid."'";
+		$roomList =doSelectSql($query);
+		if (count($roomList)>0)
+			{
+			foreach ($roomList as $room)
+				{
+				$property_uid=(int)$room->propertys_uid;
+				}
+			}
+		}
+
+	if ((get_showtime('task')=="handlereq" || get_showtime('task')=="confirmbooking" || get_showtime('task')=="completebk" || get_showtime('task')=="processpayment") && !$thisJRUser->userIsManager  )
+		{
+		$property_uid = (int)$tmpBookingHandler->getBookingFieldVal("property_uid");
+		//gateway_log("Setting property uid to ".$property_uid);
+		}
+
+	// Payment specific stuff.
+	if (get_showtime('task')=="completebk" || get_showtime('task')=="processpayment" || get_showtime('task')=="confirmbooking")
+		{
+		if (isset($_POST['specialReqs']) )
+			{
+			$specialReqs=quote_smart(jomresGetParam( $_POST, 'specialReqs', "" ));
+			$tmpBookingHandler->updateBookingField("error_log",$specialReqs);
+			$tmpBookingHandler->saveBookingData();
+			}
+		}
+	// Finish finding the property uid
+	return $property_uid;
+	}
 
 function jomres_validate_gateway_plugin()
 	{
