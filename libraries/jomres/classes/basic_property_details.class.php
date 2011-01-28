@@ -101,10 +101,7 @@ class basic_property_details
 			}
 		else
 			$gor= genericOr($property_uids,'propertys_uid');
-		
-		// We'll add a call to get the custom text object here, because if we're calling multiple property details here, we'll probably need those details at a later time.
-		
-		
+
 		$query="SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE ".$gor;
 		$property_names=doSelectSql($query);
 		
@@ -112,12 +109,11 @@ class basic_property_details
 			{
 			// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
 			set_showtime('property_uid',$p->propertys_uid);
-			
-			$customTextObj->get_custom_text_for_property($p->propertys_uid);
 			$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$p->property_name,false,false);
-			$property_name = str_replace("&#39;", "'", $p->property_name);
+			$property_name = str_replace("&#39;", "'", $property_name);
 			$this->property_names[$p->propertys_uid] = $property_name;
 			}
+
 		set_showtime('property_uid',$original_property_uid);
 		return $property_name;
 		}

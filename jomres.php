@@ -88,11 +88,10 @@ if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending res
 	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
 $tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession($jomressession);
+
 $jomressession  = $tmpBookingHandler->getJomressession();
 set_showtime('jomressession',$jomressession);
 
-$selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
-$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 $popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 $tag				= jomresGetParam( $_REQUEST, 'tag', "" );
 $no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
@@ -115,6 +114,9 @@ if ($tag != "" && get_showtime('task') != "editBooking")
 	set_showtime('task',"tagSearch");
 
 $jomresPathway =jomres_getSingleton('jomres_pathway');
+
+$jomreslang =jomres_getSingleton('jomres_language');
+
 
 if (get_showtime('task')!="error")
 	{
@@ -188,92 +190,8 @@ else
 jr_import('jomres_timezones');
 $tz = new jomres_timezones();
 
-/*
-removed in 4.2
-// The admins_first_login.txt file in the temp folder is used as a check to remind new users that they need to log into the Jomres front end
-if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt') && $thisJRUser->username == "admin")
-	{
-	touch(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'admins_first_login.txt');
-	}
-*/
+$property_uid = detect_property_uid();
 
-// Finding the property uid
-$query="SELECT propertys_uid,published FROM #__jomres_propertys";
-$countproperties = doSelectSql($query);
-$numberOfPropertiesInSystem=count($countproperties);
-set_showtime('numberOfPropertiesInSystem',$numberOfPropertiesInSystem);
-$propertys = array();
-$published_propertys = array();
-foreach ($countproperties as $p)
-	{
-	$propertys[] = $p->propertys_uid;
-	if ($p->published == "1")
-		$published_propertys[]=$p->propertys_uid;
-	}
-set_showtime('all_properties_in_system',$propertys);
-set_showtime('published_properties_in_system',$published_propertys);
-
-
-if ($numberOfPropertiesInSystem==1)
-	{
-	if (!$thisJRUser->userIsManager)
-		{
-		foreach ($countproperties as $prop)
-			{
-			$property_uid=(int)$prop->propertys_uid;
-			}
-		}
-	else
-		{
-		$parray=array();
-		foreach ($countproperties as $prop)
-			{
-			$parray[]=(int)$prop->propertys_uid;
-			}
-		if (in_array($defaultProperty,$parray) )
-			$property_uid=$defaultProperty;
-		else
-			$property_uid=$parray[0];
-		}
-	}
-else if ($thisJRUser->userIsManager)
-	$property_uid=$defaultProperty;
-
-if (get_showtime('task')=="showRoomDetails")
-	{
-	$roomUid	= jomresGetParam( $_REQUEST, 'roomUid', 0 );
-	$query = "SELECT propertys_uid FROM #__jomres_rooms WHERE  room_uid  = '".(int)$roomUid."'";
-	$roomList =doSelectSql($query);
-	if (count($roomList)>0)
-		{
-		foreach ($roomList as $room)
-			{
-			$property_uid=(int)$room->propertys_uid;
-			}
-		}
-	}
-
-if ((get_showtime('task')=="handlereq" || get_showtime('task')=="confirmbooking" || get_showtime('task')=="completebk" || get_showtime('task')=="processpayment") && !$thisJRUser->userIsManager  )
-	{
-	$property_uid = (int)$tmpBookingHandler->getBookingFieldVal("property_uid");
-	//gateway_log("Setting property uid to ".$property_uid);
-	}
-
-// Payment specific stuff.
-if (get_showtime('task')=="completebk" || get_showtime('task')=="processpayment" || get_showtime('task')=="confirmbooking")
-	{
-	if (isset($_POST['specialReqs']) )
-		{
-		$specialReqs=quote_smart(jomresGetParam( $_POST, 'specialReqs', "" ));
-		$tmpBookingHandler->updateBookingField("error_log",$specialReqs);
-		$tmpBookingHandler->saveBookingData();
-		}
-	}
-// Finish finding the property uid
-
-		//$cache = new jomres_cache("",$property_uid);
-		//$cache->trashCacheForProperty($property_uid);
-		
 // Getting the property specific settings
 if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProperty) && !empty($selectedProperty) ) || ( isset($defaultProperty) && $defaultProperty!="%" ) )
 	{
@@ -305,7 +223,6 @@ if ($property_uid > 0)
 	$published=$thisJomresPropertyDetails['published'];
 	set_showtime('this_property_published',$published);
 	}
-	
 
 // Getting the language file
 if (!empty($property_uid) || isset($_REQUEST['propertyType']))
@@ -325,9 +242,10 @@ else
 
 //$performance_monitor->set_point("pre-lang file inclusion");
 	
-$jomreslang =jomres_getSingleton('jomres_language');
+
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
+$customTextObj->get_custom_text_for_all_properties();
 
 if ($property_uid >0)
 	{
@@ -421,7 +339,7 @@ if (!isset($jrConfig['errorChecking']) )
 
 
 	
-if ($numberOfPropertiesInSystem>0)
+if (get_showtime('numberOfPropertiesInSystem')>0)
 	{
 	switch (get_showtime('task')) {
 		#########################################################################################

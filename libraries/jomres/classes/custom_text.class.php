@@ -85,33 +85,12 @@ class custom_text
 			$this->property_uid = $property_uid;
 		
 		$current_custom_text=$this->global_custom_text[$this->lang];
-		$current_custom_text=array_merge ($this->global_custom_text,$this->all_properties_custom_text[$property_uid][$this->lang]);
 		
+		//var_dump($this->all_properties_custom_text[$this->property_uid][$this->lang]);exit;
 		
-		// if (!isset($this->property_uids_custom_text[(int)$this->property_uid]))
-			// {
-			// $current_custom_text=$this->global_custom_text[$this->lang];
-			// $query="SELECT constant,customtext FROM #__jomres_custom_text WHERE property_uid = '".(int)$property_uid."' AND language = '".$this->lang."'";
-			
-			// $customTextList=doSelectSql($query);
-			// if (count($customTextList))
-				// {
-				// $customTextArray=array();
-				// foreach ($customTextList as $text)
-					// {
-					// $theConstant=str_replace("sc<x>ript","script",$text->constant);
-					// $current_custom_text[$theConstant]=stripslashes($text->customtext);
-					//echo $theConstant." - ".$text->customtext."<br>
-					//";
-					// }
-				//echo $property_uid." ".$current_custom_text."  CUSTOM<br>";
-				// $this->property_uids_custom_text[(int)$property_uid]= $current_custom_text;
-				// }
-			// }
-		// else
-			// {
-			// $current_custom_text=$this->property_uids_custom_text[$property_uid];
-			// }
+		if ( (int) $this->property_uid > 0 )
+			$current_custom_text=array_merge ($this->global_custom_text[$this->lang],$this->all_properties_custom_text[$this->property_uid][$this->lang]);
+
 		return $current_custom_text;
 		}
 		
@@ -119,10 +98,8 @@ class custom_text
 
 	function get_custom_text()
 		{
-		$property_specific_text = array();
-		if (isset($this->property_uids_custom_text[(int)$this->property_uid]))
-			$property_specific_text = $this->property_uids_custom_text[(int)$this->property_uid];
-		$result = array_merge ($this->global_custom_text,$property_specific_text);
+		$this->property_uid = get_showtime('property_uid');
+		$result =  $this->get_custom_text_for_property($this->property_uid);
 		return $result;
 		}
 	}
