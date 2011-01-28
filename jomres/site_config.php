@@ -31,7 +31,7 @@ $jrConfig['errorChecking']			='0';
 $jrConfig['dumpTemplate']			='0';
 $jrConfig['jscalendarLangfile']		='calendar-en.js';
 $jrConfig['jscalendarCSSfile']		='calendar-blue.css';
-$jrConfig['maxwidth']				='300';
+$jrConfig['maxwidth']				='500';
 $jrConfig['fileSize']				='2000';
 $jrConfig['slideshow']				='tooltips';
 $jrConfig['propertyListDescriptionLimit']='200';
@@ -187,4 +187,13 @@ $jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css"
 $jrConfig['use_timezone_switcher'] = "0";
 
 $jrConfig['load_jquery'] = "1";
+
+$jrConfig['thumbnail_property_list_max_width'] = "125";
+$jrConfig['thumbnail_property_list_max_height'] = "125";
+
+$jrConfig['thumbnail_property_header_max_width'] = "200";
+$jrConfig['thumbnail_property_header_max_height'] = "200";
+
+$jrConfig['load_jquery'] = "1";
+
 ?>

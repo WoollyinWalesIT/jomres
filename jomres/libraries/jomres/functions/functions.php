@@ -3260,11 +3260,16 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 				$numExtensions=(count($filename))-1;
 				$fileExt=$filename[$numExtensions];
 				$filename = $filename[0];
-				$thumbnail_name = $filename."_thumbnail.".$fileExt;
+				$thumbnail_name_small = $filename."_thumbnail.".$fileExt;
+				$thumbnail_name_med = $filename."_thumbnail_med.".$fileExt;
 				
 				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
-				$img->transformToFit(floor($maxwidth/4),floor($maxHeight/4));
-				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name,$ok_to_delete) ;
+				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_list_max_width']), floor( (int)$jrConfig['thumbnail_property_list_max_height']));
+				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_small,$ok_to_delete) ;
+				
+				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
+				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_header_max_width']),floor( (int)$jrConfig['thumbnail_property_header_max_height']));
+				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_med,$ok_to_delete) ;
 				}
 			}
 		else
@@ -3408,14 +3413,17 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 	return $fileLocation;
 	}
 	
-function getThumbnailForImage($imagefullrelpath)
+function getThumbnailForImage($imagefullrelpath,$medium=false)
 	{
 	$filedata= split("/", $imagefullrelpath);
 	$count = count($filedata);
 	$image_name = $filedata[$count-1];
 	$filename= split("\.", $image_name);
 	$filename = $filename[0];
-	$thumbnail_image_name = $filename."_thumbnail.jpg";
+	if (!$medium)
+		$thumbnail_image_name = $filename."_thumbnail.jpg";
+	else
+		$thumbnail_image_name = $filename."_thumbnail_med.jpg";
 	
 	// Now we need to recombine the image path again. We already know parts of it.
 	$path = str_replace(JOMRES_IMAGELOCATION_RELPATH,"",$imagefullrelpath);
