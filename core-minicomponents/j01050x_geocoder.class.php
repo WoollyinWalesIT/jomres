@@ -40,10 +40,11 @@ class j01050x_geocoder {
 		$property_uid=(int)$componentArgs['property_uid'];
 		$output=array();
 		$pageoutput=array();
-		jr_import('browser');
-		$b = new browser();
+		jr_import('browser_detect');
+		$b = new browser_detect();
+		$browser = $b->getBrowser();
 		$output['VAR']="";
-		if ($b->BROWSER_AGENT=="IE")
+		if ($browser=="Internet Explorer")
 			$output['VAR']="var";
 			
 		if (strlen($jrConfig['google_maps_api_key'])>0)

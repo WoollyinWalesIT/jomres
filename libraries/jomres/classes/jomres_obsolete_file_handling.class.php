@@ -130,6 +130,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_classes.'booking.class.php');
 		$this->add_obs_file($this->dir_classes.'remote.class.php');
 		$this->add_obs_file($this->dir_classes.'ehandler.class.php');
+		$this->add_obs_file($this->dir_classes.'browser.class.php');
+		
 		
 		$this->add_obs_file($this->dir_functions.'general.functions.php');
 		$this->add_obs_file($this->dir_functions.'invoice.functions.php');
