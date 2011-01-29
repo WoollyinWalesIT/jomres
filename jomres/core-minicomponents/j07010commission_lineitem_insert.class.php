@@ -19,6 +19,17 @@ class j07010commission_lineitem_insert {
 		$bookingObj				= $componentArgs['bookingObj'];
 		$userObjsArray			= $componentArgs['userObjsArray'];
 		$property_name			= $componentArgs['property_name'];
+		
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		$thisJRUser=jomres_getSingleton('jr_user');
+		
+		if ($jrConfig['use_commission'] == "0")
+			return;
+		if ($thisJRUser->superPropertyManager)
+			return;
+		if ($thisJRUser->userIsManager && $jrConfig['manager_bookings_trigger_commission'] == "0")
+			return;
 
 		if (count($userObjsArray)>0)
 			{

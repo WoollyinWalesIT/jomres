@@ -187,7 +187,11 @@ function showSiteConfig(  )
 	$lists['only_guests_can_review']				= jomresHTML::selectList( $yesno, 'cfg_only_guests_can_review', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['only_guests_can_review'] );
 	$lists['use_timezone_switcher']					= jomresHTML::selectList( $yesno, 'cfg_use_timezone_switcher', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_timezone_switcher'] );
 	$lists['load_jquery']							= jomresHTML::selectList( $yesno, 'cfg_load_jquery', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery'] );
-
+	$lists['use_commission']						= jomresHTML::selectList( $yesno, 'cfg_use_commission', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_commission'] );
+	$lists['manager_bookings_trigger_commission']	= jomresHTML::selectList( $yesno, 'cfg_manager_bookings_trigger_commission', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['manager_bookings_trigger_commission'] );
+	$lists['commission_autosuspend_on_overdue']	= jomresHTML::selectList( $yesno, 'cfg_commission_autosuspend_on_overdue', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['commission_autosuspend_on_overdue'] );
+	
+	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList);
 	}
 

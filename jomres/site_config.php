@@ -194,6 +194,9 @@ $jrConfig['thumbnail_property_list_max_height'] = "125";
 $jrConfig['thumbnail_property_header_max_width'] = "200";
 $jrConfig['thumbnail_property_header_max_height'] = "200";
 
-$jrConfig['load_jquery'] = "1";
+$jrConfig['use_commission'] = "1";
+$jrConfig['manager_bookings_trigger_commission'] = "0";
+$jrConfig['commission_autosuspend_on_overdue'] = "0";
+$jrConfig['commission_autosuspend_on_overdue_threashold'] = "60";
 
 ?>
