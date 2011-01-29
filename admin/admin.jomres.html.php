@@ -164,11 +164,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['useJomresMessaging'].'</td>
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL_DESC.'</td>
 		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['useSubscriptions'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
-		</tr>
+
 		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER.'</td>
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers'].'</td>
@@ -291,6 +287,50 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 
+	$contentPanel->startPanel(jr_gettext('_JRPORTAL_ROI_TAB',_JRPORTAL_ROI_TAB,FALSE));
+	$contentPanel->setcontent('
+		<table  class="jradmin_table" border="0">
+		<tr align="center" valign="middle">
+			<th width="20%" class="jomres_title">&nbsp;</th>
+			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+		</tr>
+		<tr align="center" valign="middle">
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
+			 <td class="jradmin_subheader_la" valign="top">'.$lists['useSubscriptions'].'</td>
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_USE.'</td>
+			 <td class="jradmin_subheader_la" valign="top">'.$lists['use_commission'].'</td>
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_USE_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS.'</td>
+			 <td class="jradmin_subheader_la" valign="top">'.$lists['manager_bookings_trigger_commission'].'</td>
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC.'</td>
+		</tr>
+		
+		
+		<tr align="center" valign="middle">
+			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND.'</td>
+			 <td class="jradmin_subheader_la" valign="top">'.$lists['commission_autosuspend_on_overdue'].'</td>
+			 <td class="jradmin_subheader_la" valign="top"></td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD.'</td>
+			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_commission_autosuspend_on_overdue_threashold" value="'.$jrConfig['commission_autosuspend_on_overdue_threashold'].'" /></td>
+			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
+			<th colspan="3">&nbsp;</th>
+		</tr>
+		</table>');
+	$contentPanel->insertContent();
+	$contentPanel->endPanel();
+	
+	
+	
 	$currentLangFile=$jrConfig['jscalendarLangfile'];
 	$calendarFileNamesArray=array("calendar-en.js","calendar-af.js","calendar-al.js","calendar-bg.js","calendar-big5.js","calendar-big5-utf8.js","calendar-br.js","calendar-ca.js","calendar-cs-utf8.js","calendar-cs-win.js","calendar-da.js","calendar-de.js","calendar-du.js","calendar-el.js","calendar-es.js","calendar-fi.js","calendar-fr.js","calendar-he-utf8.js","calendar-hr.js","calendar-hr-utf8.js","calendar-hu.js","calendar-it.js","calendar-jp.js","calendar-ko.js","calendar-ko-utf8.js","calendar-lt.js","calendar-lt-utf8.js","calendar-lv.js","calendar-nl.js","calendar-no.js","calendar-pl.js","calendar-pl-utf8.js","calendar-pt.js","calendar-ro.js","calendar-ru.js","calendar-ru_win_.js","calendar-si.js","calendar-sk.js","calendar-sp.js","calendar-sv.js","calendar-tr.js","calendar-zh.js","cn_utf8.js");
 	$jsCalLangfile="<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";

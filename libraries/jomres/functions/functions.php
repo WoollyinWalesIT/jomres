@@ -13,6 +13,53 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+function get_all_super_property_managers()
+	{
+	$super_property_managers = array();
+	$query = "SELECT * FROM #__jomres_managers WHERE pu = 1";
+	$result = doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$super_property_managers[$r->userid]['manager_uid']		=$r->manager_uid;
+			$super_property_managers[$r->userid]['userid']			=$r->userid;
+			$super_property_managers[$r->userid]['username']		=$r->username;
+			$super_property_managers[$r->userid]['access_level']	=$r->access_level;
+			$super_property_managers[$r->userid]['currentproperty']	=$r->currentproperty;
+			$super_property_managers[$r->userid]['pu']				=$r->pu;
+			$super_property_managers[$r->userid]['apikey']			=$r->apikey;
+			$super_property_managers[$r->userid]['suspended']		=$r->suspended;
+			$super_property_managers[$r->userid]['users_timezone']	=$r->users_timezone;
+			}
+		}
+	return $super_property_managers;
+	}
+
+function get_all_suspended_managers()
+	{
+	$suspended_managers = array();
+	$query = "SELECT * FROM #__jomres_managers WHERE suspended = 1";
+	$result = doSelectSql($query);
+	if (count($result)>0)
+		{
+		foreach ($result as $r)
+			{
+			$suspended_managers[$r->userid]['manager_uid']		=$r->manager_uid;
+			$suspended_managers[$r->userid]['userid']			=$r->userid;
+			$suspended_managers[$r->userid]['username']			=$r->username;
+			$suspended_managers[$r->userid]['access_level']		=$r->access_level;
+			$suspended_managers[$r->userid]['currentproperty']	=$r->currentproperty;
+			$suspended_managers[$r->userid]['pu']				=$r->pu;
+			$suspended_managers[$r->userid]['apikey']			=$r->apikey;
+			$suspended_managers[$r->userid]['suspended']		=$r->suspended;
+			$suspended_managers[$r->userid]['users_timezone']	=$r->users_timezone;
+			}
+		}
+	return $suspended_managers;
+	}
+	
 function detect_property_uid()
 	{
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -4489,6 +4536,8 @@ function invoices_getallinvoices($dec,$status=null)
 			$invoices[$r->id]['recur_frequency']=$r->recur_frequency;
 			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoices[$r->id]['currencycode']=$r->currencycode;
+			$invoices[$r->id]['property_uid']=$r->property_uid;
+			$invoices[$r->id]['is_commission']=$r->is_commission;
 			}
 		}
 	return $invoices;
@@ -4519,6 +4568,7 @@ function invoices_getinvoicefor_contract_id($contract_id=0)
 			$invoice['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoice['currencycode']=$r->currencycode;
 			$invoice['property_uid']=$r->property_uid;
+			$invoice['is_commission']=$r->is_commission;
 			}
 		}
 	return $invoice;
@@ -4527,6 +4577,8 @@ function invoices_getinvoicefor_contract_id($contract_id=0)
 	
 function invoices_getinvoicesfor_juser($juser=0,$status=null)
 	{
+	if ($juser == 0 )
+		return false;
 	$invoices=array();
 	$clause="";
 	if (isset($status))
@@ -4552,6 +4604,7 @@ function invoices_getinvoicesfor_juser($juser=0,$status=null)
 			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoices[$r->id]['currencycode']=$r->currencycode;
 			$invoices[$r->id]['property_uid']=$r->property_uid;
+			$invoices[$r->id]['is_commission']=$r->is_commission;
 			}
 		}
 	return $invoices;
@@ -4585,6 +4638,7 @@ function invoices_getinvoicesfor_juser_byproperty_uid($juser=0,$status=null,$pro
 			$invoices[$r->id]['recur_dayofmonth']=$r->recur_dayofmonth;
 			$invoices[$r->id]['currencycode']=$r->currencycode;
 			$invoices[$r->id]['property_uid']=$r->property_uid;
+			$invoices[$r->id]['is_commission']=$r->is_commission;
 			}
 		}
 	return $invoices;
@@ -4620,6 +4674,8 @@ function invoices_getinvoicesfor_property_byproperty_uid($status=null,$property_
 			$invoices[$r->id]['currencycode']=$r->currencycode;
 			$invoices[$r->id]['contract_id']=$r->contract_id;
 			$invoices[$r->id]['property_uid']=$r->property_uid;
+			$invoices[$r->id]['is_commission']=$r->is_commission;
+			
 			}
 		}
 	return $invoices;
