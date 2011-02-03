@@ -124,11 +124,13 @@ class j16000updates
 				}
 			else if (!isset($_REQUEST['ftp_user_name']))
 				{
-				if ($jomresConfig_offline == "0" && jomresGetDomain() != "localhost")
-					{
-					echo "<h2>Error, your server is still online. This may interfere with the upgrade process so you are need to take it offline for the duration of the upgrade. Once you've finished the upgrade run install_jomres.php to make any table changes needed then you can put the server back online.<br/>To take the server offline you need to go to <a href='index2.php?option=com_config'>Global Configuration</a> and set Site Offline to Yes.</h2>";
-					return;
-					}
+				
+				// Disabled as I don't think it's needed now
+				// if ($jomresConfig_offline == "0" && jomresGetDomain() != "localhost")
+					// {
+					// echo "<h2>Error, your server is still online. This may interfere with the upgrade process so you are need to take it offline for the duration of the upgrade. Once you've finished the upgrade run install_jomres.php to make any table changes needed then you can put the server back online.<br/>To take the server offline you need to go to <a href='index2.php?option=com_config'>Global Configuration</a> and set Site Offline to Yes.</h2>";
+					// return;
+					// }
 
 				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 				$settingsList=doSelectSql($query);
