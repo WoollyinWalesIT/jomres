@@ -1,3 +1,29 @@
+Jomres 4.7.1 02/02/2011
+
+Modified show reviews to html entity decode to allow ' to show properly.
+Modified minicomponent handling and database class to log which minicomponents are making db queries.
+Improved tracing in db class.
+Modified custom_text.class.php to actually work as a singleton
+Modified list properties to not figure review functionality if reviews are disabed in the administrator's config.
+Modified property list so that Contact owner link is shown as a button.
+Small change to prevent editingmode and other dropdowns from appearing if popup set to yes (eg, when showing a printable invoice).
+Removed some redundant echos from deleteguest.
+Some changes to improve ssl handling.
+Fixed an odd bug where the departure date for a new black booking wasn't showing the calendar icon. Caused by microtime reporting exactly the same when the the function was called at two different times. Replaced the unique id generating functionality with Jomres' random string generator instead.
+Modified basic property details and other functionality to optimise how basic property details are found. When the jr_user is set up, we'll do a bulk query to find property names that'll be added to the property name dropdown box. The older method would generate a lot of queries, this and future optimisations will reduce the number of queries performed to find basic data of the user's properties.
+Modified custom text class to do one query instead of umpteen to find custom text strings.
+Performance enhancements added by preloading some data.
+Added new options to define the sizes of small and medium thumbnails. Small are for the property list, whereas medium are for the property header.
+Renamed Touch Templates to Label Translations
+Added a new browser detection class to Jomres and removed the older method. Reduces the chance of colliding with another component who's name escapes me now. swfreemenu?
+
+
+Added functionality that allows a site manager to enable commission handling. When this is enabled, the property manager can see their commission invoices (these are no longer viewable by the property manager's normal list invoices page). Added feature to use the invoice cron to suspend managers who's accounts have not been paid after their due date + "threashold" have expired. 
+Modified php mailer to no longer echo errors on error. 
+2 new functions that return all super property managers, and all suspended managers.
+New ROI tab added to Site Configuration area. Enable subscription and commission handling moved to this tab, along with comission settings features.
+
+
 Jomres 4.7.0 11/1/2011
 
 Various changes to enable Joomla 1.6 installation.
