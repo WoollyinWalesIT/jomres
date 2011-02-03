@@ -1,3 +1,12 @@
+Jomres 4.7.2 02/02/2011
+
+Fixed a bug in a new function that prevented the booking form from showing.
+
+Added the ability for the site administrator to choose a site's language context, in other words they can choose to use a Car hire/Yacht Brokerage language file instead of the default Hotel type language file. This does not override a property's language file as defined by it's type.
+Added a new propertyrental subfolder to languages dir, all existing language files copied to dir to maintain the existing property relevant text. English lang files in /jomres/languages will be edited to be more relevant to units/objects/businesses, instead of simply related to hotels.
+Renamed a language directory sub directory name in property types in installer.
+
+
 Jomres 4.7.1 02/02/2011
 
 Modified show reviews to html entity decode to allow ' to show properly.
