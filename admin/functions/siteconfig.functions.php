@@ -145,6 +145,20 @@ function showSiteConfig(  )
 	$c_codes = new currency_codes($jrConfig['globalCurrencyCode'],true);
 	$currency_codes_dropdown = $c_codes->makeCodesDropdown();
 	
+	$query="SELECT ptype,ptype_desc FROM #__jomres_ptypes";
+	$result = doSelectSql($query);
+	
+	$language_context = array();
+	$language_context[] =jomresHTML::makeOption('','');
+	if (count($result)>0)
+		{
+		foreach ($result as $lang)
+			{
+			$language_context[] = jomresHTML::makeOption($lang->ptype_desc,$lang->ptype);
+			}
+		}
+	$language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['language_context']);
+
 	$lists['integratedSearch_enable']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_enable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_enable'] );
 	$lists['integratedSearch_useCols']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_useCols', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_useCols'] );
 	$lists['integratedSearch_selectcombo']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_selectcombo', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_selectcombo'] );
@@ -192,7 +206,7 @@ function showSiteConfig(  )
 	$lists['commission_autosuspend_on_overdue']	= jomresHTML::selectList( $yesno, 'cfg_commission_autosuspend_on_overdue', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['commission_autosuspend_on_overdue'] );
 	
 	
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown);
 	}
 
 /**

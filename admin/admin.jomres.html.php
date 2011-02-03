@@ -37,7 +37,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown)
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -79,13 +79,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'.$lists['load_jquery'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
 		</tr>
-		<!--
 		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SITELANGUAGE_FILE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$langDropdown.'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SITELANGUAGE_FILE_DESC.'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$language_context_dropdown.'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LANGUAGE_CONTEXT_DESC.'</td>
 		</tr>
-		-->
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>

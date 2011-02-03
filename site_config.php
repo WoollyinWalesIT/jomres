@@ -199,4 +199,5 @@ $jrConfig['manager_bookings_trigger_commission'] = "0";
 $jrConfig['commission_autosuspend_on_overdue'] = "0";
 $jrConfig['commission_autosuspend_on_overdue_threashold'] = "60";
 
+$jrConfig['language_context'] = "";
 ?>
