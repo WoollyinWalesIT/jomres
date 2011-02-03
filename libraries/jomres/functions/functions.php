@@ -63,8 +63,10 @@ function get_all_suspended_managers()
 function detect_property_uid()
 	{
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-	$selectedProperty	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
-	$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
+	if (isset($_REQUEST['selectedProperty']))
+		$property_uid	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
+	else
+		$property_uid		= intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 
 	// Finding the property uid
 	$query="SELECT propertys_uid,published FROM #__jomres_propertys";
@@ -140,6 +142,7 @@ function detect_property_uid()
 		}
 	// Finish finding the property uid
 	return $property_uid;
+	
 	}
 
 function jomres_validate_gateway_plugin()
