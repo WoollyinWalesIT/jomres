@@ -248,7 +248,7 @@ class dobooking
 			$this->tariffModel = "1";
 		if (!isset($mrConfig['cal_input']) )
 			{
-			echo "Error: Configuration settings don't appear to be set. There are ".count($mrConfig)." elements in the mrConfig var and ".count($jrConfig)." in the jrConfig var";
+			echo "Error: Configuration settings don't appear to be set. There are ".count($mrConfig)." elements in the mrConfig var and ".count($jrConfig)." in the jrConfig var. If you have just installed Jomres you should log into the frontend as a property manager and go to the Property Config, change just one setting, and click Save.";
 			exit;
 			}
 		$this->cfg_tariffmode								= $mrConfig['tariffmode'];

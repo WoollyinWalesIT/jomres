@@ -93,25 +93,29 @@ class jomres_language
 		
 	function get_language($propertytype = "")
 		{
-		
-		if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php'))
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if ($propertytype != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php'))
 			{
 			require(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php');
 			}
 		else
 			{
-			if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php'))
-				{
-				require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php');
-				}
-			else
-				{
-				
-				if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
+			if ( $jrConfig['language_context'] != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php'))
+				require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php');
+			elseif ( $jrConfig['language_context'] != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php'))
+					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.'en-GB.php');
+				elseif (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php'))
 					{
-					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
-					} //else no language file available... don't include it either...
-				}
+					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php');
+					}
+					else
+						{
+						if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
+							{
+							require(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
+							} //else no language file available... don't include it either...
+						}
 			}
 		}
 		
