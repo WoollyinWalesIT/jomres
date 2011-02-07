@@ -1122,6 +1122,24 @@ function copyImages()
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'4bedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'4bedrooms.png');
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'5bedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'5bedrooms.png');
 	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'6plusbedrooms.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'6plusbedrooms.png');
+	
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_1bivi_pitch.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'camping_1bivi_pitch.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_2_man_tent_pitch.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'camping_2_man_tent_pitch.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_3_man_tent_pitch.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'camping_3_man_tent_pitch.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_4_man_tent_pitch.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'camping_4_man_tent_pitch.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_6_man_tent_pitch.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'camping_6_man_tent_pitch.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'camping_caravan_pitch.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'camping_caravan_pitch.png');
+	
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_hatchback.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'car_rental_hatchback.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_luxury.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'car_rental_luxury.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_peoplecarrier.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'car_rental_peoplecarrier.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_saloon.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'car_rental_saloon.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'car_rental_sportscar.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'car_rental_sportscar.png');
+	
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_2_berth.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'yacht_2_berth.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_4_berth.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'yacht_4_berth.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_6_berth.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'yacht_6_berth.png');
+	$result=copy(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'icons'.JRDS.'yacht_8_berth.png', JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'rmtypes'.JRDS.'yacht_8_berth.png');
 	}
 
 
@@ -1868,7 +1886,7 @@ function createJomresTables()
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_classes` (
 		`room_classes_uid` int(11) NOT NULL auto_increment,
-		`room_class_abbv` VARCHAR(20) NULL,
+		`room_class_abbv` VARCHAR(50) NULL,
 		`room_class_full_desc` VARCHAR(255) NULL,
 		`image` TEXT NULL,
 		`property_uid` VARCHAR(11),
@@ -2174,87 +2192,87 @@ function insertSampleData()
 
 		$result=doInsertSql("INSERT INTO `#__jomresportal_c_rates` VALUES (1,'default',2,10,'GBP','2009-05-04 13:07:51',0,'0000-00-00 00:00:00')","");
 
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (3, 'Airport', 'Close to the airport', 'jomres/uploadedimages/pfeatures/airport_nearby.png', '0',0)","");
-
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (4, 'Minibar', 'Minibar in room', 'jomres/uploadedimages/pfeatures/air_conditioning.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (5, 'All Inclusive', 'All inclusive rates available', 'jomres/uploadedimages/pfeatures/allinc.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (6, 'Family Friendly', 'Children Welcome', 'jomres/uploadedimages/pfeatures/baby_friendly.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (7, 'Balcony', 'Some rooms have balconies', 'jomres/uploadedimages/pfeatures/balcony.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (8, 'Waiter', 'Waiter Service', 'jomres/uploadedimages/pfeatures/bar.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (9, 'Bar', 'Licensed bar on premises', 'jomres/uploadedimages/pfeatures/bar2.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (10, 'Bath', 'Bath in every room', 'jomres/uploadedimages/pfeatures/bath_tub.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (11, 'Fireplace', 'Enjoy the ambiance of a natural fire', 'jomres/uploadedimages/pfeatures/bbq_facilities.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (12, 'Beach', 'Close to the beach', 'jomres/uploadedimages/pfeatures/beach.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (13, 'Birdwatching', 'Bird hide onsite or nearby', 'jomres/uploadedimages/pfeatures/bird_hide.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (14, 'Boardwalk', 'Boardwalk on site', 'jomres/uploadedimages/pfeatures/board_walk.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (15, 'Campfires', 'Campfires allowed', 'jomres/uploadedimages/pfeatures/campfire.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (16, 'Tents', 'Tents for hire', 'jomres/uploadedimages/pfeatures/camping_fees.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (17, 'Canoeing', 'Canoeing/Kayaking', 'jomres/uploadedimages/pfeatures/canoeing.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (18, 'Caravans', 'Caravanning facilities', 'jomres/uploadedimages/pfeatures/caravan.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (19, 'Car rental', 'Car rental can be arranged', 'jomres/uploadedimages/pfeatures/car_rental.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (20, 'Casino', 'Casino on premesis', 'jomres/uploadedimages/pfeatures/casino.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (21, 'Clubbing', 'Nightclub onsite or nearby', 'jomres/uploadedimages/pfeatures/CDplayer.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (22, 'Safe', 'Safe available', 'jomres/uploadedimages/pfeatures/hotel_safe.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (23, 'Conference', 'Conference facilities', 'jomres/uploadedimages/pfeatures/conference_facilities.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (24, 'Cycle path', 'Cycle paths nearby', 'jomres/uploadedimages/pfeatures/cycle_paths.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (25, 'Disabled access', 'Disabled facilites available', 'jomres/uploadedimages/pfeatures/disabled_access.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (26, 'Disabled toilet faci', 'Disabled WC available', 'jomres/uploadedimages/pfeatures/disabled_facilities.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (27, 'No dogs', 'Dogs not welcome', 'jomres/uploadedimages/pfeatures/dogs_not_permitted.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (28, 'Dogs welcome', 'Dog friendly ', 'jomres/uploadedimages/pfeatures/dogs_permitted.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (29, 'DVD', 'Rooms have DVD players', 'jomres/uploadedimages/pfeatures/DVDVideo.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (30, 'Elevator', 'Elevator ', 'jomres/uploadedimages/pfeatures/elevator.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (31, 'English Heritage', 'English Heritage sites nearby', 'jomres/uploadedimages/pfeatures/englishheritage.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (32, '24hr service', '24hr Room service', 'jomres/uploadedimages/pfeatures/24hour.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (33, 'Bureau de change', 'Bureau de change available onsite', 'jomres/uploadedimages/pfeatures/fees.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (34, 'Bureau de change', 'Bureau de change available onsite', 'jomres/uploadedimages/pfeatures/fees_euro.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (35, 'Bureau de change', 'Bureau de change available onsite', 'jomres/uploadedimages/pfeatures/fees_pound.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (36, 'Fishing', 'Fishing available onsite or nearby', 'jomres/uploadedimages/pfeatures/fishing.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (37, 'Gourmet Restaurant', 'Gourmet Restraunt onsite', 'jomres/uploadedimages/pfeatures/gastronomicrestaurant.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (38, 'Golf', 'Golf course on site or nearby', 'jomres/uploadedimages/pfeatures/golf.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (39, 'Tours', 'Tours depart from this location', 'jomres/uploadedimages/pfeatures/guided_tours.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (40, 'Gym', 'Gymnasium onsite', 'jomres/uploadedimages/pfeatures/gym2.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (41, 'Hairdresser', 'Hairdresser onsite', 'jomres/uploadedimages/pfeatures/hairdresser.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (42, 'Hairdryer', 'Hair dryer in every room', 'jomres/uploadedimages/pfeatures/hairdryer.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (43, 'Haunted', 'Ghoulies and Ghosties in the rafters', 'jomres/uploadedimages/pfeatures/haunted.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (44, 'Helipad', 'Helicopter pad', 'jomres/uploadedimages/pfeatures/helicopterpad.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (45, 'Hiking', 'Popular hiking area', 'jomres/uploadedimages/pfeatures/hiking.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (46, 'Information', 'Information services available onsite', 'jomres/uploadedimages/pfeatures/info2.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (47, 'WWW', 'Internet access available', 'jomres/uploadedimages/pfeatures/internet.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (48, 'Beverages', 'Beverages in all rooms', 'jomres/uploadedimages/pfeatures/in_room_teacoffee.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (49, 'Iron', 'Iron in every room', 'jomres/uploadedimages/pfeatures/iron.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (50, 'Jacuzzi', 'Jacuzzi onsite', 'jomres/uploadedimages/pfeatures/jacuzzi.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (51, 'National Trust', 'National Trust', 'jomres/uploadedimages/pfeatures/nationaltrust.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (52, 'No smoking', 'Smoke free establishment', 'jomres/uploadedimages/pfeatures/no_smoking.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (53, 'Owner managed', 'Owner managed property', 'jomres/uploadedimages/pfeatures/Ownermanaged.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (54, 'Parking', 'Parking available', 'jomres/uploadedimages/pfeatures/parking.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (55, 'Pets welcome', 'Pet friendly', 'jomres/uploadedimages/pfeatures/pets_welcome.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (56, 'Picnic area', 'Picnicers welcome', 'jomres/uploadedimages/pfeatures/picnic_area.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (57, 'Play area', 'Children''s play area onsite', 'jomres/uploadedimages/pfeatures/play_area.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (58, 'Pool', 'Swiming', 'jomres/uploadedimages/pfeatures/pool.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (59, 'Quiet/Rural ', 'Property is in a quiet and/or rural location', 'jomres/uploadedimages/pfeatures/quietlocation.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (60, 'Ranger', 'Ranger station here', 'jomres/uploadedimages/pfeatures/ranger.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (61, 'Restaurant', 'Restraunt onsite', 'jomres/uploadedimages/pfeatures/restraunt2.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (62, 'Pony Trekking', 'Pony trekking onsite or nearby', 'jomres/uploadedimages/pfeatures/riding.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (63, 'Telephone', 'Telephone in every room', 'jomres/uploadedimages/pfeatures/room_telephone.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (64, 'Water sports', 'Water sport facilities onsite or nearby', 'jomres/uploadedimages/pfeatures/sailing.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (65, 'Scuba', 'Scuba diving arranged', 'jomres/uploadedimages/pfeatures/scuba.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (66, 'Scenic views', 'Scenic views ', 'jomres/uploadedimages/pfeatures/scenicviews.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (67, 'Showers', 'showers in every room', 'jomres/uploadedimages/pfeatures/shower_only.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (68, 'Shuttle', 'Shuttle service to airport and nightclub district available', 'jomres/uploadedimages/pfeatures/shuttle_service.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (69, 'Winter Sports', 'Winter Sports facilities available', 'jomres/uploadedimages/pfeatures/Skionsite.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (70, 'Smoking', 'Smokers welcome', 'jomres/uploadedimages/pfeatures/smokers_welcome.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (71, 'Snorkelling', 'Snorkelling suitable here', 'jomres/uploadedimages/pfeatures/snorkelling.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (72, 'Sunbed', 'Sunbed onsite', 'jomres/uploadedimages/pfeatures/sunbed.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (73, 'Tennis courts', 'Tennis court onsite or nearby', 'jomres/uploadedimages/pfeatures/tennis.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (74, 'Television', 'Television in every room', 'jomres/uploadedimages/pfeatures/tv_in_room.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (75, 'Weddings', 'Weddings catered for', 'jomres/uploadedimages/pfeatures/weddings.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (76, 'Whales', 'Whale watching', 'jomres/uploadedimages/pfeatures/whalewatching.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (77, 'Wifi', 'Wifi available', 'jomres/uploadedimages/pfeatures/wifi.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (78, 'Christmas', 'Christmas parties catered for', 'jomres/uploadedimages/pfeatures/xmas_partys.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (79, 'Zodiac Excursions', 'Zodiac excursions can be arranged from these premesis', 'jomres/uploadedimages/pfeatures/zodiacexcursions.png', '0',0)","");
-
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (80, 'Private Garden', 'Private garden for your enjoyment', 'jomres/uploadedimages/pfeatures/garden.png', '0',0)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` VALUES (81, 'Microwave', 'Property has a microwave that can be used by the residents', 'jomres/uploadedimages/pfeatures/microwaves.png', '0',0)","");
+		$result=doInsertSql("INSERT INTO `#__jomres_hotel_features` (`hotel_features_uid`, `hotel_feature_abbv`, `hotel_feature_full_desc`, `image`, `property_uid`, `ptype_id`) VALUES
+			(3, 'Airport', 'Close to the airport', 'jomres/uploadedimages/pfeatures/airport_nearby.png', '0', 0),
+			(4, 'Minibar', 'Minibar in room', 'jomres/uploadedimages/pfeatures/air_conditioning.png', '0', 1),
+			(5, 'All Inclusive', 'All inclusive rates available', 'jomres/uploadedimages/pfeatures/allinc.png', '0', 0),
+			(6, 'Family Friendly', 'Children Welcome', 'jomres/uploadedimages/pfeatures/baby_friendly.png', '0', 1),
+			(7, 'Balcony', 'Some rooms have balconies', 'jomres/uploadedimages/pfeatures/balcony.png', '0', 1),
+			(8, 'Waiter', 'Waiter Service', 'jomres/uploadedimages/pfeatures/bar.png', '0', 1),
+			(9, 'Bar', 'Licensed bar on premises', 'jomres/uploadedimages/pfeatures/bar2.png', '0', 1),
+			(10, 'Bath', 'Bath in every room', 'jomres/uploadedimages/pfeatures/bath_tub.png', '0', 1),
+			(11, 'Fireplace', 'Enjoy the ambiance of a natural fire', 'jomres/uploadedimages/pfeatures/bbq_facilities.png', '0', 1),
+			(12, 'Beach', 'Close to the beach', 'jomres/uploadedimages/pfeatures/beach.png', '0', 0),
+			(13, 'Birdwatching', 'Bird hide onsite or nearby', 'jomres/uploadedimages/pfeatures/bird_hide.png', '0', 0),
+			(14, 'Boardwalk', 'Boardwalk on site', 'jomres/uploadedimages/pfeatures/board_walk.png', '0', 4),
+			(15, 'Campfires', 'Campfires allowed', 'jomres/uploadedimages/pfeatures/campfire.png', '0', 4),
+			(16, 'Tents', 'Tents for hire', 'jomres/uploadedimages/pfeatures/camping_fees.png', '0', 4),
+			(17, 'Canoeing', 'Canoeing/Kayaking', 'jomres/uploadedimages/pfeatures/canoeing.png', '0', 0),
+			(18, 'Caravans', 'Caravanning facilities', 'jomres/uploadedimages/pfeatures/caravan.png', '0', 4),
+			(19, 'Car rental', 'Car rental can be arranged', 'jomres/uploadedimages/pfeatures/car_rental.png', '0', 1),
+			(20, 'Casino', 'Casino on premesis', 'jomres/uploadedimages/pfeatures/casino.png', '0', 1),
+			(21, 'Clubbing', 'Nightclub onsite or nearby', 'jomres/uploadedimages/pfeatures/CDplayer.png', '0', 1),
+			(22, 'Safe', 'Safe available', 'jomres/uploadedimages/pfeatures/hotel_safe.png', '0', 1),
+			(23, 'Conference', 'Conference facilities', 'jomres/uploadedimages/pfeatures/conference_facilities.png', '0', 1),
+			(24, 'Cycle path', 'Cycle paths nearby', 'jomres/uploadedimages/pfeatures/cycle_paths.png', '0', 0),
+			(25, 'Disabled access', 'Disabled facilites available', 'jomres/uploadedimages/pfeatures/disabled_access.png', '0', 1),
+			(26, 'Disabled toilet faci', 'Disabled WC available', 'jomres/uploadedimages/pfeatures/disabled_facilities.png', '0', 0),
+			(27, 'No dogs', 'Dogs not welcome', 'jomres/uploadedimages/pfeatures/dogs_not_permitted.png', '0', 0),
+			(28, 'Dogs welcome', 'Dog friendly ', 'jomres/uploadedimages/pfeatures/dogs_permitted.png', '0', 0),
+			(29, 'DVD', 'Rooms have DVD players', 'jomres/uploadedimages/pfeatures/DVDVideo.png', '0', 1),
+			(30, 'Elevator', 'Elevator', 'jomres/uploadedimages/pfeatures/elevator.png', '0', 1),
+			(31, 'English Heritage', 'English Heritage sites nearby', 'jomres/uploadedimages/pfeatures/englishheritage.png', '0', 0),
+			(32, '24hr service', '24hr Room service', 'jomres/uploadedimages/pfeatures/24hour.png', '0', 1),
+			(33, 'Bureau de change', 'Bureau de change available onsite', 'jomres/uploadedimages/pfeatures/fees.png', '0', 1),
+			(34, 'Bureau de change', 'Bureau de change available onsite', 'jomres/uploadedimages/pfeatures/fees_euro.png', '0', 1),
+			(35, 'Bureau de change', 'Bureau de change available onsite', 'jomres/uploadedimages/pfeatures/fees_pound.png', '0', 1),
+			(36, 'Fishing', 'Fishing available onsite or nearby', 'jomres/uploadedimages/pfeatures/fishing.png', '0', 0),
+			(37, 'Gourmet Restaurant', 'Gourmet Restraunt onsite', 'jomres/uploadedimages/pfeatures/gastronomicrestaurant.png', '0', 1),
+			(38, 'Golf', 'Golf course on site or nearby', 'jomres/uploadedimages/pfeatures/golf.png', '0', 0),
+			(39, 'Tours', 'Tours depart from this location', 'jomres/uploadedimages/pfeatures/guided_tours.png', '0', 0),
+			(40, 'Gym', 'Gymnasium onsite', 'jomres/uploadedimages/pfeatures/gym2.png', '0', 1),
+			(41, 'Hairdresser', 'Hairdresser onsite', 'jomres/uploadedimages/pfeatures/hairdresser.png', '0', 1),
+			(42, 'Hairdryer', 'Hair dryer in every room', 'jomres/uploadedimages/pfeatures/hairdryer.png', '0', 1),
+			(43, 'Haunted', 'Ghoulies and Ghosties in the rafters', 'jomres/uploadedimages/pfeatures/haunted.png', '0', 0),
+			(44, 'Helipad', 'Helicopter pad', 'jomres/uploadedimages/pfeatures/helicopterpad.png', '0', 1),
+			(45, 'Hiking', 'Popular hiking area', 'jomres/uploadedimages/pfeatures/hiking.png', '0', 0),
+			(46, 'Information', 'Information services available onsite', 'jomres/uploadedimages/pfeatures/info2.png', '0', 0),
+			(47, 'WWW', 'Internet access available', 'jomres/uploadedimages/pfeatures/internet.png', '0', 1),
+			(48, 'Beverages', 'Beverages in all rooms', 'jomres/uploadedimages/pfeatures/in_room_teacoffee.png', '0', 1),
+			(49, 'Iron', 'Iron in every room', 'jomres/uploadedimages/pfeatures/iron.png', '0', 1),
+			(50, 'Jacuzzi', 'Jacuzzi onsite', 'jomres/uploadedimages/pfeatures/jacuzzi.png', '0', 1),
+			(51, 'National Trust', 'National Trust', 'jomres/uploadedimages/pfeatures/nationaltrust.png', '0', 0),
+			(52, 'No smoking', 'Smoke free establishment', 'jomres/uploadedimages/pfeatures/no_smoking.png', '0', 0),
+			(53, 'Owner managed', 'Owner managed property', 'jomres/uploadedimages/pfeatures/Ownermanaged.png', '0', 0),
+			(54, 'Parking', 'Parking available', 'jomres/uploadedimages/pfeatures/parking.png', '0', 1),
+			(55, 'Pets welcome', 'Pet friendly', 'jomres/uploadedimages/pfeatures/pets_welcome.png', '0', 0),
+			(56, 'Picnic area', 'Picnicers welcome', 'jomres/uploadedimages/pfeatures/picnic_area.png', '0', 0),
+			(57, 'Play area', 'Children''s play area onsite', 'jomres/uploadedimages/pfeatures/play_area.png', '0', 0),
+			(58, 'Pool', 'Swiming', 'jomres/uploadedimages/pfeatures/pool.png', '0', 0),
+			(59, 'Quiet/Rural ', 'Property is in a quiet and/or rural location', 'jomres/uploadedimages/pfeatures/quietlocation.png', '0', 0),
+			(60, 'Ranger', 'Ranger station here', 'jomres/uploadedimages/pfeatures/ranger.png', '0', 0),
+			(61, 'Restaurant', 'Restraunt onsite', 'jomres/uploadedimages/pfeatures/restraunt2.png', '0', 1),
+			(62, 'Pony Trekking', 'Pony trekking onsite or nearby', 'jomres/uploadedimages/pfeatures/riding.png', '0', 0),
+			(63, 'Telephone', 'Telephone in every room', 'jomres/uploadedimages/pfeatures/room_telephone.png', '0', 1),
+			(64, 'Water sports', 'Water sport facilities onsite or nearby', 'jomres/uploadedimages/pfeatures/sailing.png', '0', 0),
+			(65, 'Scuba', 'Scuba diving arranged', 'jomres/uploadedimages/pfeatures/scuba.png', '0', 0),
+			(66, 'Scenic views', 'Scenic views ', 'jomres/uploadedimages/pfeatures/scenicviews.png', '0', 0),
+			(67, 'Showers', 'showers in every room', 'jomres/uploadedimages/pfeatures/shower_only.png', '0', 1),
+			(68, 'Shuttle', 'Shuttle service to airport and nightclub district available', 'jomres/uploadedimages/pfeatures/shuttle_service.png', '0', 1),
+			(69, 'Winter Sports', 'Winter Sports facilities available', 'jomres/uploadedimages/pfeatures/Skionsite.png', '0', 1),
+			(70, 'Smoking', 'Smokers welcome', 'jomres/uploadedimages/pfeatures/smokers_welcome.png', '0', 0),
+			(71, 'Snorkelling', 'Snorkelling suitable here', 'jomres/uploadedimages/pfeatures/snorkelling.png', '0', 0),
+			(72, 'Sunbed', 'Sunbed onsite', 'jomres/uploadedimages/pfeatures/sunbed.png', '0', 1),
+			(73, 'Tennis courts', 'Tennis court onsite or nearby', 'jomres/uploadedimages/pfeatures/tennis.png', '0', 0),
+			(74, 'Television', 'Television in every room', 'jomres/uploadedimages/pfeatures/tv_in_room.png', '0', 1),
+			(75, 'Weddings', 'Weddings catered for', 'jomres/uploadedimages/pfeatures/weddings.png', '0', 1),
+			(76, 'Whales', 'Whale watching', 'jomres/uploadedimages/pfeatures/whalewatching.png', '0', 0),
+			(77, 'Wifi', 'Wifi available', 'jomres/uploadedimages/pfeatures/wifi.png', '0', 1),
+			(78, 'Christmas', 'Christmas parties catered for', 'jomres/uploadedimages/pfeatures/xmas_partys.png', '0', 1),
+			(79, 'Zodiac Excursions', 'Zodiac excursions can be arranged from these premesis', 'jomres/uploadedimages/pfeatures/zodiacexcursions.png', '0', 0),
+			(80, 'Private Garden', 'Private garden for your enjoyment', 'jomres/uploadedimages/pfeatures/garden.png', '0', 0),
+			(81, 'Microwave', 'Property has a microwave that can be used by the residents', 'jomres/uploadedimages/pfeatures/microwaves.png', '0', 1);"
+			);
 
 		$result=doInsertSql("INSERT INTO `#__jomres_propertys` (
 			`propertys_uid` ,`property_name` , `property_street` , `property_town` ,
@@ -2289,25 +2307,70 @@ function insertSampleData()
 			$result=doInsertSql("INSERT INTO `#__jomres_room_features` ( `room_features_uid` , `feature_description`,`property_uid` )VALUES ('1', 'En-suite Bathroom','1'), ('2', 'Tea & Coffee Making facilities','1')","");
 
 
-		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only`)VALUES ('1', 'D/B', 'Double Bed','jomres/uploadedimages/rmtypes/double.png','0','0'), ('2', 'T/B', 'Twin Beds','jomres/uploadedimages/rmtypes/twin.png','0','0')","");
-		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only`)VALUES ('3', 'S', 'Single','jomres/uploadedimages/rmtypes/single.png','0','0'), ('4', '4P', '4 Poster','jomres/uploadedimages/rmtypes/fourposter.png','0','0')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` (`room_classes_uid`, `room_class_abbv`, `room_class_full_desc`, `image`, `property_uid`, `srp_only`) VALUES
+			(1, 'Room Double beds', '', 'jomres/uploadedimages/rmtypes/double.png', '0', 0),
+			(2, 'Room Twin beds', '', 'jomres/uploadedimages/rmtypes/twin.png', '0', 0),
+			(3, 'Room Single', '', 'jomres/uploadedimages/rmtypes/single.png', '0', 0),
+			(4, 'Room 4 Poster bed', '', 'jomres/uploadedimages/rmtypes/fourposter.png', '0', 0),
+			(5, 'Villa/Apartment 1 Bedroom', '', 'jomres/uploadedimages/rmtypes/1bedroom.png', '0', 1),
+			(6, 'Villa/Apartment 2 Bedrooms', '', 'jomres/uploadedimages/rmtypes/2bedrooms.png', '0', 1),
+			(7, 'Villa/Apartment 3 Bedrooms', '', 'jomres/uploadedimages/rmtypes/3bedrooms.png', '0', 1),
+			(8, 'Villa/Apartment 4 Bedrooms', '', 'jomres/uploadedimages/rmtypes/4bedrooms.png', '0', 1),
+			(9, 'Villa/Apartment 5 Bedrooms', '', 'jomres/uploadedimages/rmtypes/5bedrooms.png', '0', 1),
+			(10, 'Villa/Apartment 6+ Bedrooms', '', 'jomres/uploadedimages/rmtypes/6plusbedrooms.png', '0', 1),
+			(11, 'Tent pitch 1 person ', '', 'jomres/uploadedimages/rmtypes/camping_1bivi_pitch.png', '0', 0),
+			(12, 'Tent pitch 2 person ', '', 'jomres/uploadedimages/rmtypes/camping_2_man_tent_pitch.png', '0', 0),
+			(13, 'Tent pitch 3 person ', '', 'jomres/uploadedimages/rmtypes/camping_3_man_tent_pitch.png', '0', 0),
+			(14, 'Tent pitch 4 person ', '', 'jomres/uploadedimages/rmtypes/camping_4_man_tent_pitch.png', '0', 0),
+			(15, 'Tent pitch 6+ person', '', 'jomres/uploadedimages/rmtypes/camping_6_man_tent_pitch.png', '0', 0),
+			(16, 'Car rental Hatchback', '', 'jomres/uploadedimages/rmtypes/car_rental_hatchback.png', '0', 0),
+			(17, 'Car rental Luxury', '', 'jomres/uploadedimages/rmtypes/car_rental_luxury.png', '0', 0),
+			(18, 'Car rental People Ca', '', 'jomres/uploadedimages/rmtypes/car_rental_peoplecarrier.png', '0', 0),
+			(19, 'Car rental Saloon', '', 'jomres/uploadedimages/rmtypes/car_rental_saloon.png', '0', 0),
+			(20, 'Car rental Sportscar', '', 'jomres/uploadedimages/rmtypes/car_rental_sportscar.png', '0', 0),
+			(21, 'Tent pitch Caravan', '', 'jomres/uploadedimages/rmtypes/camping_caravan_pitch.png', '0', 0),
+			(22, 'Yacht 2 berth', '', 'jomres/uploadedimages/rmtypes/yacht_2_berth.png', '0', 0),
+			(23, 'Yacht 4 berth', '', 'jomres/uploadedimages/rmtypes/yacht_4_berth.png', '0', 0),
+			(24, 'Yacht 6 berth', '', 'jomres/uploadedimages/rmtypes/yacht_6_berth.png', '0', 0),
+			(25, 'Yacht 8+ berth', '', 'jomres/uploadedimages/rmtypes/yacht_8_berth.png', '0', 0)
+			");
 		
-		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only` )VALUES ('5', '1 Bedroom', '1 Bedroom','jomres/uploadedimages/rmtypes/1bedroom.png','0','1'), ('6', '2 Bedrooms', '2 Bedrooms','jomres/uploadedimages/rmtypes/2bedrooms.png','0','1')","");
-		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only` )VALUES ('7', '3 Bedrooms', '3 Bedrooms','jomres/uploadedimages/rmtypes/3bedrooms.png','0','1'), ('8', '4 Bedrooms', '4 Bedrooms','jomres/uploadedimages/rmtypes/4bedrooms.png','0','1')","");
-		$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`image`, `property_uid`,`srp_only` )VALUES ('9', '5 Bedrooms', '5 Bedrooms','jomres/uploadedimages/rmtypes/5bedrooms.png','0','1'), ('10', '6+ Bedrooms', '6+ Bedrooms','jomres/uploadedimages/rmtypes/6plusbedrooms.png','0','1')","");
-
 		
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (1,4,1)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (2,1,1)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (3,3,1)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (4,2,1)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (5,5,5)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (6,6,5)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (7,7,5)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (8,8,5)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (9,9,5)","");
-		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` ( `id`,`roomtype_id`,`propertytype_id`) VALUES (10,10,5)","");
-
+		
+		// Hotel/Village cross reference
+		$result=doInsertSql("INSERT INTO `#__jomres_roomtypes_propertytypes_xref` (`id`, `roomtype_id`, `propertytype_id`) VALUES
+			(1, 4, 1),
+			(2, 1, 1),
+			(3, 3, 1),
+			(4, 2, 1),
+			(5, 5, 5),
+			(6, 6, 5),
+			(7, 7, 5),
+			(8, 8, 5),
+			(9, 9, 5),
+			(10, 10, 5),
+			(11, 5, 1),
+			(12, 6, 1),
+			(13, 7, 1),
+			(14, 8, 1),
+			(15, 9, 1),
+			(16, 10, 1),
+			(23, 16, 3),
+			(24, 17, 3),
+			(25, 18, 3),
+			(26, 19, 3),
+			(27, 20, 3),
+			(28, 11, 4),
+			(29, 12, 4),
+			(30, 13, 4),
+			(31, 14, 4),
+			(32, 15, 4),
+			(33, 21, 4),
+			(34, 22, 2),
+			(35, 23, 2),
+			(36, 24, 2),
+			(37, 25, 2);"
+			);
 
 		//$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`property_uid`,`image` )VALUES ('3', 'D/B', 'Double Bed','0','/jomres/uploadedimages/rmtypes/double.png'), ('4', 'T/B', 'Twin Beds','0','/jomres/uploadedimages/rmtypes/twin.png')","");
 
