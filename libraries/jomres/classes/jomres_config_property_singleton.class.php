@@ -71,6 +71,7 @@ class jomres_config_property_singleton
 		
 	public function load_property_config($property_uid)
 		{
+		
 		if ($property_uid > 0)
 			{
 			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
@@ -78,8 +79,11 @@ class jomres_config_property_singleton
 			$temp_config=$this->default_config;
 			$this->property_uid = (int)$property_uid;
 			
-			$temp_config = array_merge ($temp_config,$this->all_property_settings[(int)$property_uid]);
-			
+			$property_config = $this->all_property_settings[(int)$property_uid];
+			if (is_null($property_config))
+				$property_config = array();
+				
+			$temp_config = array_merge ($temp_config,$property_config);
 			if ($jrConfig['useGlobalCurrency'] =="1")
 				{
 				$temp_config['currency']=$jrConfig['globalCurrency'];
