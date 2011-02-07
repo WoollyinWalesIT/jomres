@@ -248,7 +248,7 @@ class dobooking
 			$this->tariffModel = "1";
 		if (!isset($mrConfig['cal_input']) )
 			{
-			echo "Error: Configuration settings don't appear to be set. There are ".count($mrConfig)." elements in the mrConfig var and ".count($jrConfig)." in the jrConfig var. If you have just installed Jomres you should log into the frontend as a property manager and go to the Property Config, change just one setting, and click Save.";
+			echo "Error: Configuration settings don't appear to be set. There are ".count($mrConfig)." elements in the mrConfig var and ".count($jrConfig)." in the jrConfig var. If you have just installed Jomres you should log into the frontend as a property manager. This will set up sufficient data so that you can proceed.";
 			exit;
 			}
 		$this->cfg_tariffmode								= $mrConfig['tariffmode'];
@@ -2488,7 +2488,7 @@ class dobooking
 			case "%d.%m.%Y":
 				$theDate=adodb_date("d.m.Y",$unixDate);break;
 			default:
-				echo "Error in date format. Cannot continue.";
+				echo "Error in date format. Cannot continue. If you have just installed Jomres you should log into the frontend as a property manager. This will set up sufficient data so that you can proceed.";
 				exit;
 			break;
 			}

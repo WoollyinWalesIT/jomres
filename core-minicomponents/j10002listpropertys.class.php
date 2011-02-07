@@ -23,8 +23,13 @@ class j10002listpropertys
 			{
 			$this->template_touchable=false; return;
 			}
-		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listpropertys', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES);
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if ($jrConfig['advanced_site_config'] == 1)
+			{
+			$htmlFuncs =jomres_getSingleton('html_functions');
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listpropertys', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES);
+			}
 		}
 	
 	

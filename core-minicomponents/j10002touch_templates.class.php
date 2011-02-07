@@ -23,6 +23,7 @@ class j10002touch_templates
 			{
 			$this->template_touchable=false; return;
 			}
+
 		$htmlFuncs =jomres_getSingleton('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=touch_templates', 'EditText.png', _JOMRES_TOUCHTEMPLATES);
 		}

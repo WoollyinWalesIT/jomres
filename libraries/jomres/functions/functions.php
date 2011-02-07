@@ -2457,7 +2457,7 @@ function JSCalmakeInputDates($inputDate,$siteCal=FALSE)
 			$theDate=adodb_date("d.m.Y",$unixDate);
 		break;
 		default:
-			echo "Error in date format. Cannot continue.";
+			echo "Error in date format. Cannot continue. If you have just installed Jomres you should log into the frontend as a property manager. This will set up sufficient data so that you can proceed.";
 			exit;
 		break;
 		}
