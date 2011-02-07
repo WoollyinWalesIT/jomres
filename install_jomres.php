@@ -2330,14 +2330,7 @@ function insertSampleData()
 			$result=doInsertSql("INSERT INTO `#__jomres_rates` ( `rates_uid` , `rate_description` , `validfrom` , `validto` , `roomrateperday` , `mindays` , `maxdays` , `minpeople` , `maxpeople`,`roomclass_uid`,`ignore_pppn`,`allow_ph`,`allow_we`,`property_uid` )VALUES ('4', 'High season 2006', '2006/05/01', '2009/09/31', '110', '1', '1000', '1', '4','3','0','1','1','1')","");
 
 
-		$result=doInsertSql("INSERT INTO `#__jomres_guests` ( `guests_uid` , `contracts_contract_uid` , `mos_userid` , `firstname` , `surname` , `house` , `street` , `town` , `county`,`postcode` , `tel_landline` , `tel_mobile` , `tel_fax` , `preferences` , `car_regno` , `ccard_no` , `ccard_issued` , `ccard_expiry` , `ccard_iss_no` , `ccard_name`,`property_uid`,`email` )VALUES ('1', '0', NULL , 'Fred', 'Bassett', '10', 'The Yard', 'Bassettville','DogTown','Woof 001', '01000 123456', '01777 123456', '01000 654321','Plenty of dog biscuits & a fresh bowl of water outside the room every hour', 'K9', '' , '', '','','','1','$jomresConfig_mailfrom')","");
-
-
-		$result=doInsertSql("INSERT INTO `#__jomres_contracts` ( `contract_uid` ,`arrival`,`departure`,`rates_uid` , `guest_uid` , `rate_rules` , `deposit_paid` , `contract_total` , `deposit_ref` , `payment_ref` , `special_reqs` , `deposit_required` , `newsletters` , `currency` , `adults` , `children`,`property_uid` )VALUES ('1','$today','$tomorrow', '1', '1', 'blahblahblah', '0', '300', '0', '0', 'Food', '10', '1', '&pound;', '2', '0','1')","");
-
-
-		$result=doInsertSql("INSERT INTO `#__jomres_room_bookings` ( `room_bookings_uid` , `room_uid` , `date` , `contract_uid` , `black_booking` , `reception_booking` , `internet_booking`,`property_uid` )VALUES ('1', '2', '2005-03-14', '1', '0', '1', '0','1'), ('2', '2', '2005-03-15', '1', '0', '1', '0','1')","");
-
+		$result=doInsertSql("INSERT INTO `#__jomres_guests` ( `guests_uid` , `contracts_contract_uid` , `mos_userid` , `firstname` , `surname` , `house` , `street` , `town` , `county`,`postcode` , `tel_landline` , `tel_mobile` , `tel_fax` , `preferences` , `car_regno` , `ccard_no` , `ccard_issued` , `ccard_expiry` , `ccard_iss_no` , `ccard_name`,`property_uid`,`email` )VALUES ('1', '0', NULL , 'Major', 'Gowen', 'Watery Fowls', 'a Street', 'a Region','a Town','XXNN NXX', '01000 123456', '01777 123456', '01000 654321','A newspaper with uptodate cricket scores', '', '' , '', '','','','1','example@example.com')","");
 
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('1', 'Hotel/B&B/Villa/Cottage/Apartment', 'propertyrental', '1')","");
 
