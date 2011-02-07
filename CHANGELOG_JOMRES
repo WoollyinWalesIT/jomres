@@ -1,3 +1,11 @@
+Jomres 4.7.3 07/02/2011
+
+Added simplified site config settings option.
+Found a bug in new code that deals with property configuration. If this is a new installation, and the property's config as not been changed, then a property's default mrConfig will be NULL. This is not desirable when the default config and property config arrays are merged (sets the property's mrConfig to NULL) so new code has been added that converts the property's temp config to an array if NULL, and then the merging goes ahead ok.
+Renamed our example guest to somebody a little more in keeping with the Fawlty Towers ethos.
+Added more icons for different room/resource types, added code to installer to create new resource types on first installation. Updated vehicle and yacht brokerage lang files.
+
+
 Jomres 4.7.2 02/02/2011
 
 Fixed a bug in a new function that prevented the booking form from showing.
