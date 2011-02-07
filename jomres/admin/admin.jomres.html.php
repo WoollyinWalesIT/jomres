@@ -70,6 +70,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['advanced_site_config'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_ADVANCED_SITE_CONFIG_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SUPPORTKEY.'</td>
 			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" size="30" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SUPPORTKEY_DESC.'</td>
@@ -85,93 +90,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LANGUAGE_CONTEXT_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['limit_property_country'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.limitCountriesDropdown().'</td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$jqueryUIthemesDropdownList.'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME_DESC.'</td>
-		</tr>
-		
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_CONTROL.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['use_reviews'].'</td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['autopublish_reviews'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['reviews_test_mode'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['only_guests_can_review'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_TITLE.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['is_single_property_installation'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_SINGLEPROPERTYINSTALLATION_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['use_html_purifier'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER_DESC.'</td>
-		</tr>
-		<!--
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_FAUXHEADERS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['outputHeadersInline'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_FAUXHEADERS_DESC.'</td>
-		</tr>
-		-->
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalCurrency'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CURRENCYCODE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$currency_codes_dropdown.'</td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['showLangDropdown'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['useJomresMessaging'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL_DESC.'</td>
-		</tr>
-
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_MANAGEROPTIONSASIMAGES.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['menusAsImages'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
 		</tr>
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MAPSKEY.'</td>
@@ -179,154 +100,212 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MAPSKEY_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MINIMALCONFIG.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['minimalconfiguration'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MINIMALCONFIG_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_TIMEZONE_SWITCHER.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['use_timezone_switcher'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		'.$sslinput.'
-		<!--
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBALPFEATURES.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalPFeatures'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBALPFEATURES_DESC.'</td>
-		</tr>
-		-->
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CACHING.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['useCaching'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CACHING_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_CONFIG_DEFAULT_CRATE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['defaultCrate'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_CONFIG_DEFAULT_CRATE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALEDITING.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['editingModeAffectsAllProperties'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC.'</td>
-		</tr>
-		<!--
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBALROOMTYPES.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalRoomTypes'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBALROOMTYPES_DESC.'</td>
-		</tr>
-		-->
-		<tr align="center" valign="middle">
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_ALLOWHTMLEDITOR.'</td>
 			 <td class="jradmin_subheader_la" valign="top">'.$lists['allowHTMLeditor'].'</td>
 			 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_ALLOWHTMLEDITOR_DESC.'</td>
 		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_SELFREGISTRATION.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['selfRegistrationAllowed'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_SELFREGISTRATION_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAROUTPUT.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_cal_output" value="'.$jrConfig['cal_output'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAROUTPUT_DESC.'</td>
-		</tr>
 		
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['contact_owner_emails_to_alternative'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_contact_owner_emails_to_alternative_email" value="'.$jrConfig['contact_owner_emails_to_alternative_email'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		
-		
-		<!--
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_COMPOSITE_PROPERTY_DETAILS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['composite_property_details'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_COMPOSITE_PROPERTY_DETAILS_DESC.'</td>
-		</tr>
-		-->
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JOMRESEMAILCHECK.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['useJomresEmailCheck'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JOMRESEMAILCHECK_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_ISWRAPPED.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['isInIframe'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['errorChecking'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_EMAILERRORS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['emailErrors'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_EMAILERRORS_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['dumpTemplate'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA_DESC.'</td>
-		</tr>
+		');
+		if ($jrConfig['advanced_site_config'] == 1)
+			$contentPanel->setcontent('
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['limit_property_country'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.limitCountriesDropdown().'</td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$jqueryUIthemesDropdownList.'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_CONTROL.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['use_reviews'].'</td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['autopublish_reviews'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['reviews_test_mode'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['only_guests_can_review'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['use_html_purifier'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalCurrency'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CURRENCYCODE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$currency_codes_dropdown.'</td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['showLangDropdown'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['useJomresMessaging'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_MANAGEROPTIONSASIMAGES.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['menusAsImages'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MINIMALCONFIG.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['minimalconfiguration'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_MINIMALCONFIG_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_TIMEZONE_SWITCHER.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['use_timezone_switcher'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			'.$sslinput.'
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CACHING.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['useCaching'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CACHING_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_CONFIG_DEFAULT_CRATE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['defaultCrate'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_CONFIG_DEFAULT_CRATE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALEDITING.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['editingModeAffectsAllProperties'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_SELFREGISTRATION.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['selfRegistrationAllowed'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_SELFREGISTRATION_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAROUTPUT.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_cal_output" value="'.$jrConfig['cal_output'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CALENDAROUTPUT_DESC.'</td>
+			</tr>
+			
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['contact_owner_emails_to_alternative'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_contact_owner_emails_to_alternative_email" value="'.$jrConfig['contact_owner_emails_to_alternative_email'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JOMRESEMAILCHECK.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['useJomresEmailCheck'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JOMRESEMAILCHECK_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_ISWRAPPED.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['isInIframe'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['errorChecking'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_EMAILERRORS.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['emailErrors'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_EMAILERRORS_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['dumpTemplate'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA_DESC.'</td>
+			</tr>');
+		$contentPanel->setcontent('
 		<tr align="center" valign="middle">
 			<th colspan="3">&nbsp;</th>
 		</tr>
 		</table>');
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
-
-	$contentPanel->startPanel(jr_gettext('_JRPORTAL_ROI_TAB',_JRPORTAL_ROI_TAB,FALSE));
-	$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
-		<tr align="center" valign="middle">
-			<th width="20%" class="jomres_title">&nbsp;</th>
-			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['useSubscriptions'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_USE.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['use_commission'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_USE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['manager_bookings_trigger_commission'].'</td>
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC.'</td>
-		</tr>
-		
-		
-		<tr align="center" valign="middle">
-			 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND.'</td>
-			 <td class="jradmin_subheader_la" valign="top">'.$lists['commission_autosuspend_on_overdue'].'</td>
-			 <td class="jradmin_subheader_la" valign="top"></td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_commission_autosuspend_on_overdue_threashold" value="'.$jrConfig['commission_autosuspend_on_overdue_threashold'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<th colspan="3">&nbsp;</th>
-		</tr>
-		</table>');
-	$contentPanel->insertContent();
-	$contentPanel->endPanel();
-	
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$contentPanel->startPanel(jr_gettext('_JRPORTAL_ROI_TAB',_JRPORTAL_ROI_TAB,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['useSubscriptions'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_USE.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['use_commission'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_USE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['manager_bookings_trigger_commission'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC.'</td>
+			</tr>
+			
+			
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['commission_autosuspend_on_overdue'].'</td>
+				 <td class="jradmin_subheader_la" valign="top"></td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_commission_autosuspend_on_overdue_threashold" value="'.$jrConfig['commission_autosuspend_on_overdue_threashold'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
 	
 	
 	$currentLangFile=$jrConfig['jscalendarLangfile'];
@@ -395,249 +374,255 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 
-	/*
-	$slideshowNames=listSlideshows();
-	$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['slideshow']);
-	*/
-	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE',_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE,FALSE));
-	$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">'._JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<th width="20%" class="jomres_title">&nbsp;</th>
-			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_enable'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_useCols'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_selectcombo'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_propertyname'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_propertyname_dropdown'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$geosearchDropdownList.'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_geosearchtype_dropdown'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_ptype'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_ptype_dropdown'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_room_type'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_room_type_dropdown'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features_dropdown'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_description'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_availability'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_priceranges'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_integratedSearch_pricerange_increments" value="'.$jrConfig['integratedSearch_pricerange_increments'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC.'</td>
-		<tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_guestnumber'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_stars'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC.'</td>
-		</tr>
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE',_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">'._JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_enable'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_useCols'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_USECOLS_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_selectcombo'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_SELECTCOMBO_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_propertyname'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_propertyname_dropdown'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYNAME_ASDROPDOWN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_TOWNREGION.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$geosearchDropdownList.'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_geosearchtype_dropdown'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_REGION_ASDROPDOWN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_ptype'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_ptype_dropdown'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_PROPERTYTYPE_ASDROPDOWN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_room_type'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_room_type_dropdown'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ROOMTYPE_ASDROPDOWN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_features_dropdown'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYFEATURES_ASDROPDOWN_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_description'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYDESCRIPTION_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_availability'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYAVAILABILITY_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top" colspan="3">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_priceranges'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYPRICERANGES_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_integratedSearch_pricerange_increments" value="'.$jrConfig['integratedSearch_pricerange_increments'].'"></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_RANGEINCREMENTS_DESC.'</td>
+			<tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_guestnumber'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['integratedSearch_stars'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC.'</td>
+			</tr>
+			
+			');
+		$contentPanel->setcontent('
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
 		
-		');
-	$contentPanel->setcontent('
-		<tr align="center" valign="middle">
-			<th colspan="3">&nbsp;</th>
-		</tr>
-		</table>');
-	$contentPanel->insertContent();
-	$contentPanel->endPanel();
-	
-	$max_upload_size = ini_get('upload_max_filesize');
+		
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$max_upload_size = ini_get('upload_max_filesize');
 
-	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JOMRES_FILE_UPLOADS',_JOMRES_COM_A_JOMRES_FILE_UPLOADS,FALSE));
-	$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
-		<tr align="center" valign="middle">
-			<th width="20%" class="jomres_title">&nbsp;</th>
-			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
-		</tr>
+		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JOMRES_FILE_UPLOADS',_JOMRES_COM_A_JOMRES_FILE_UPLOADS,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_WIDTH.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_list_max_width" value="'.$jrConfig['thumbnail_property_list_max_width'].'"></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_HEIGHT.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_list_max_height" value="'.$jrConfig['thumbnail_property_list_max_height'].'"></td>
+				<td class="jradmin_subheader_la" valign="top"></td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_MED_WIDTH.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_header_max_width" value="'.$jrConfig['thumbnail_property_header_max_width'].'"></td>
+				<td class="jradmin_subheader_la" valign="top"></td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_MED_HEIGHT.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_header_max_height" value="'.$jrConfig['thumbnail_property_header_max_height'].'"></td>
+				<td class="jradmin_subheader_la" valign="top"></td>
+			</tr>
+			
+			
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_maxwidth" value="'.$jrConfig['maxwidth'].'"></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC.'</td>
+			</tr>
+			<tr>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_fileSize" value="'.$jrConfig['fileSize'].'"> ( '.$max_upload_size.' max )</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE_DESC.'</td>
+			</tr>
+			<tr>');
+		$contentPanel->setcontent('
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
 		
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_WIDTH.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_list_max_width" value="'.$jrConfig['thumbnail_property_list_max_width'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_SMALL_HEIGHT.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_list_max_height" value="'.$jrConfig['thumbnail_property_list_max_height'].'"></td>
-			<td class="jradmin_subheader_la" valign="top"></td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_MED_WIDTH.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_header_max_width" value="'.$jrConfig['thumbnail_property_header_max_width'].'"></td>
-			<td class="jradmin_subheader_la" valign="top"></td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_THUMBNAIL_MED_HEIGHT.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_thumbnail_property_header_max_height" value="'.$jrConfig['thumbnail_property_header_max_height'].'"></td>
-			<td class="jradmin_subheader_la" valign="top"></td>
-		</tr>
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$contentPanel->startPanel(jr_gettext('_JOMRES_CUSTOMTEXT_ADMIN_SEARCHOPTIONS',JOMRES_COM_A_SEARCHOPTIONSTAB,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_SHOW.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['show_search_order'].'</td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_DEFAULT.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$sortArrayDropdown.'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC.'</td>
+			</tr>
+			
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_PROPERTYLISTDESC.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_propertyListDescriptionLimit" value="'.$jrConfig['propertyListDescriptionLimit'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_PROPERTYLISTDESC_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_randomsearchlimit" value="'.$jrConfig['randomsearchlimit'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_LISTLIMIT.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_property_list_limit" value="'.$jrConfig['property_list_limit'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_LISTLIMIT_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
 		
-		
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_maxwidth" value="'.$jrConfig['maxwidth'].'"></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC.'</td>
-		</tr>
-		<tr>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_fileSize" value="'.$jrConfig['fileSize'].'"> ( '.$max_upload_size.' max )</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_UPLOADS_FILESIZE_DESC.'</td>
-		</tr>
-		<tr>');
-	$contentPanel->setcontent('
-		<tr align="center" valign="middle">
-			<th colspan="3">&nbsp;</th>
-		</tr>
-		</table>');
-	$contentPanel->insertContent();
-	$contentPanel->endPanel();
-
-	$contentPanel->startPanel(jr_gettext('_JOMRES_CUSTOMTEXT_ADMIN_SEARCHOPTIONS',JOMRES_COM_A_SEARCHOPTIONSTAB,FALSE));
-	$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
-		<tr align="center" valign="middle">
-			<th width="20%" class="jomres_title">&nbsp;</th>
-			<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-			<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_SHOW.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['show_search_order'].'</td>
-			<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_DEFAULT.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$sortArrayDropdown.'</td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_DEFAULT_DESC.'</td>
-		</tr>
-		
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_PROPERTYLISTDESC.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_propertyListDescriptionLimit" value="'.$jrConfig['propertyListDescriptionLimit'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_PROPERTYLISTDESC_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_randomsearchlimit" value="'.$jrConfig['randomsearchlimit'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_RANDOMLIMIT_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_LISTLIMIT.'</td>
-			<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_property_list_limit" value="'.$jrConfig['property_list_limit'].'" /></td>
-			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_LISTLIMIT_DESC.'</td>
-		</tr>
-		<tr align="center" valign="middle">
-			<th colspan="3">&nbsp;</th>
-		</tr>
-		</table>');
-	$contentPanel->insertContent();
-	$contentPanel->endPanel();
-
 		if (_JOMRES_DETECTED_CMS == "joomla15")
 			{
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_sh404sef'.JRDS.'sef_ext'.JRDS.'com_jomres.php'))
@@ -756,115 +741,119 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				$contentPanel->endPanel();
 				}
 			}
-		// Logging configuration
-		$contentPanel->startPanel(_JOMRES_COM_LOGGING);
-		$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
-			<tr align="center" valign="middle">
-				<th width="20%" class="jomres_title">&nbsp;</th>
-				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top" colspan="3">'._JOMRES_COM_LOGGING_WARNING.'</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_BOOKING.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['loggingBooking'].'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_GATEWAY.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['loggingGateway'].'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_SYSTEM.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['loggingSystem'].'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_REQUEST.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['loggingRequest'].'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_JRPORTAL.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['loggingPortal'].'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<th colspan="3">&nbsp;</th>
-			</tr>
-			</table>');
-		$contentPanel->insertContent();
-		$contentPanel->endPanel();
+			
+		if ($jrConfig['advanced_site_config'] == 1)
+			{
+			// Logging configuration
+			$contentPanel->startPanel(_JOMRES_COM_LOGGING);
+			$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+				<tr align="center" valign="middle">
+					<th width="20%" class="jomres_title">&nbsp;</th>
+					<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+					<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top" colspan="3">'._JOMRES_COM_LOGGING_WARNING.'</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_BOOKING.'</td>
+					<td class="jradmin_subheader_la" valign="top">'.$lists['loggingBooking'].'</td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_GATEWAY.'</td>
+					<td class="jradmin_subheader_la" valign="top">'.$lists['loggingGateway'].'</td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_SYSTEM.'</td>
+					<td class="jradmin_subheader_la" valign="top">'.$lists['loggingSystem'].'</td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_REQUEST.'</td>
+					<td class="jradmin_subheader_la" valign="top">'.$lists['loggingRequest'].'</td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LOGGING_JRPORTAL.'</td>
+					<td class="jradmin_subheader_la" valign="top">'.$lists['loggingPortal'].'</td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<th colspan="3">&nbsp;</th>
+				</tr>
+				</table>');
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
 
-		$contentPanel->startPanel(_JOMRES_COM_YOURBUSINESS);
-		$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
-			<tr align="center" valign="middle">
-				<th width="20%" class="jomres_title">&nbsp;</th>
-				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESS_NAME.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_name" value="'.$jrConfig['business_name'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESS_VATNO.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_vat_number" value="'.$jrConfig['business_vat_number'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESSADDRESS.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_address" value="'.$jrConfig['business_address'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
+			$contentPanel->startPanel(_JOMRES_COM_YOURBUSINESS);
+			$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+				<tr align="center" valign="middle">
+					<th width="20%" class="jomres_title">&nbsp;</th>
+					<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+					<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESS_NAME.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_name" value="'.$jrConfig['business_name'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESS_VATNO.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_vat_number" value="'.$jrConfig['business_vat_number'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_YOURBUSINESSADDRESS.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_address" value="'.$jrConfig['business_address'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
 
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_street" value="'.$jrConfig['business_street'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_town" value="'.$jrConfig['business_town'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_region" value="'.$jrConfig['business_region'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_country" value="'.$jrConfig['business_country'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_postcode" value="'.$jrConfig['business_postcode'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_telephone" value="'.$jrConfig['business_telephone'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL.'</td>
-				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_email" value="'.$jrConfig['business_email'].'" /></td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<th colspan="3">&nbsp;</th>
-			</tr>
-			</table>');
-		$contentPanel->insertContent();
-		$contentPanel->endPanel();
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_street" value="'.$jrConfig['business_street'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_town" value="'.$jrConfig['business_town'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_region" value="'.$jrConfig['business_region'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_country" value="'.$jrConfig['business_country'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_postcode" value="'.$jrConfig['business_postcode'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_telephone" value="'.$jrConfig['business_telephone'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL.'</td>
+					<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_business_email" value="'.$jrConfig['business_email'].'" /></td>
+					<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+				</tr>
+				<tr align="center" valign="middle">
+					<th colspan="3">&nbsp;</th>
+				</tr>
+				</table>');
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
+			}
 		$contentPanel->endTabs();
 		?>
 

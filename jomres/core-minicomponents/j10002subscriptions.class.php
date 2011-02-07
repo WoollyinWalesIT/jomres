@@ -29,7 +29,10 @@ class j10002subscriptions
 		if ($jrConfig['useSubscriptions']=="0")
 			return;
 
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_subscriptions', 'ViewDatabase.png', _JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE);
+		if ($jrConfig['advanced_site_config'] == 1)
+			{
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_subscriptions', 'ViewDatabase.png', _JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE);
+			}
 		}
 	
 	

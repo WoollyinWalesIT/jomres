@@ -146,7 +146,7 @@ if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
 if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
 if (!defined('JOMRES_CSSRELPATH'))
-	define('JOMRES_CSSRELPATH',get_showtime('live_site').'/jomres/css/');
+	define('JOMRES_CSSRELPATH','jomres/css/');
 	
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 

@@ -23,8 +23,13 @@ class j10002listcrates
 			{
 			$this->template_touchable=false; return;
 			}
-		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listcrates', 'commissionRates.png', _JRPORTAL_CPANEL_LISTCRATES);
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if ($jrConfig['advanced_site_config'] == 1)
+			{
+			$htmlFuncs =jomres_getSingleton('html_functions');
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listcrates', 'commissionRates.png', _JRPORTAL_CPANEL_LISTCRATES);
+			}
 		}
 	
 	

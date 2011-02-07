@@ -203,7 +203,8 @@ function showSiteConfig(  )
 	$lists['load_jquery']							= jomresHTML::selectList( $yesno, 'cfg_load_jquery', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery'] );
 	$lists['use_commission']						= jomresHTML::selectList( $yesno, 'cfg_use_commission', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_commission'] );
 	$lists['manager_bookings_trigger_commission']	= jomresHTML::selectList( $yesno, 'cfg_manager_bookings_trigger_commission', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['manager_bookings_trigger_commission'] );
-	$lists['commission_autosuspend_on_overdue']	= jomresHTML::selectList( $yesno, 'cfg_commission_autosuspend_on_overdue', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['commission_autosuspend_on_overdue'] );
+	$lists['commission_autosuspend_on_overdue']		= jomresHTML::selectList( $yesno, 'cfg_commission_autosuspend_on_overdue', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['commission_autosuspend_on_overdue'] );
+	$lists['advanced_site_config']					= jomresHTML::selectList( $yesno, 'cfg_advanced_site_config', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['advanced_site_config'] );
 	
 	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown);

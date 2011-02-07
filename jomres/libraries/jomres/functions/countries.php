@@ -188,7 +188,7 @@ function regionNamesArray()
 	{
 	$FIPS = array(
 		"AD" => array("Canillo","Encamp","La Massana","Ordino","Sant Julia de Loria","Andorra la Vella","Escaldes-Engordany"),
-		"AE" => array("Abu Zaby","Dubayy","Al Fujayrah","Ra's al Khaymah","Ash Shariqah","Umm al Qaywayn"),
+		"AE" => array("Abu Dhabi","Dubai","Ajman","Fujairah","Ras al-Khaimah","Sharjah","Umm al-Quwain"),
 		"AF" => array("Badakhshan","Badghis","Baghlan","Bamian","Farah","Faryab","Ghazni","Ghowr","Helmand","Herat","Kabol","Kapisa","Konar","Laghman","Lowgar","Nangarhar","Nimruz","Oruzgan","Paktia","Parvan","Kandahar","Kondoz","Takhar","Vardak","Zabol","Paktika","Balkh","Jowzjan","Samangan","Sar-e Pol"),
 		"AG" => array("Barbuda","St. George","St. John","St. Mary","St. Paul","St. Peter","St. Philip"),
 		"AL" => array("Berat","Diber","Durres","Elbasan","Fier","Gjirokaster","Gramsh","Kolonje","Korce","Kruje","Kukes","Lezhe","Librazhd","Lushnje","Mat","Mirdite","Permet","Pogradec","Puke","Sarande","Shkoder","Skrapar","Tepelene","Tropoje","Vlore","Tirane","Bulqize","Delvine","Devoll","Has","Kavaje","Kucove","Kurbin","Malesi e Madhe","Mallakaster","Peqin","Tirane"),

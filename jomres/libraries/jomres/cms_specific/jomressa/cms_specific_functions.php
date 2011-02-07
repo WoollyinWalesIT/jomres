@@ -163,10 +163,10 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 	switch ($type) 
 		{
 		case "javascript":
-			$jomresSitefactory->setHead($type,$content=array('path'=>$path,'filename'=>$filename));
+			$jomresSitefactory->setHead($type,$content=array('path'=>get_showtime('live_site')."/".$path,'filename'=>$filename));
 		break;
 		case "css":
-			$jomresSitefactory->setHead($type,$content=array('path'=>$path,'filename'=>$filename));
+			$jomresSitefactory->setHead($type,$content=array('path'=>get_showtime('live_site')."/".$path,'filename'=>$filename));
 		break;
 		default:
 			
