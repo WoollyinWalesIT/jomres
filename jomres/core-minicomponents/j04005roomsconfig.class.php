@@ -47,7 +47,8 @@ class j04005roomsconfig {
 			{
 			foreach ( $basic_property_details->this_property_room_classes as $key=>$val )
 				{
-				$room_classes_array[]= $key;
+				if (array_key_exists($key,$basic_property_details->classAbbvs))
+					$room_classes_array[]= $key;
 				}
 			$genericOrClasses = genericOr($room_classes_array,"room_classes_uid");
 			}
