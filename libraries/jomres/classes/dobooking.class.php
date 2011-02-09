@@ -2351,8 +2351,13 @@ class dobooking
 	jQuery(function() {
 		jQuery("#'.$uniqueID.'").datepicker( {
 			dateFormat: "'.$dateFormat.'",
-			minDate: 0, maxDate: "+5Y",
-			buttonImage: \'jomres/images/calendar.png\',
+			minDate: 0, maxDate: "+5Y",';
+
+			if ($this->jrConfig['useSSLinBookingform'] == "0")
+				$output.='buttonImage: \''.get_showtime('live_site').'/jomres/images/calendar.png\',';
+			else
+				$output.='buttonImage: \'jomres/images/calendar.png\',';
+			$output.='
 			autoSize:true,
 			buttonImageOnly: true,
 			showOn: "both",
