@@ -82,6 +82,9 @@ class j00605paypal {
 				}
 
 			$this_script = JOMRES_SITEPAGE_URL_NOSEF.'&task=completebk&plugin='.$plugin.'&jsid='.get_showtime('jomressession');
+			
+			// Possible change that can be uncommented if there's an issue with the language that's being returned from paypal. Currently untested, so commented out for now.
+			//$this_script = JOMRES_SITEPAGE_URL_NOSEF.'&task=completebk&plugin='.$plugin.'&jsid='.get_showtime('jomressession').'&jomreslang='.get_showtime('lang');
 
 			$bookingDeets=gettempBookingdata();
 

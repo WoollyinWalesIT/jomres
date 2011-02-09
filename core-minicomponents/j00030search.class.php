@@ -521,7 +521,7 @@ class j00030search {
 						foreach ($sch->prep['features'] as $feature)
 							{
 							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
-							$featureArray[]= jomresHTML::makeOption( $feature['id'], stripslashes($feature_abbv));
+							$featureArray[]= jomresHTML::makeOption( $feature['id'], jomres_decode($feature_abbv));
 							}
 						$output['feature']=jomresHTML::selectList( $featureArray, 'feature_uids[]', 'size="1" ', 'value', 'text', $selectOption );
 						}
