@@ -320,7 +320,7 @@ class j00030search {
 						}
 					foreach ($sch->prep['country'] as $country)
 						{
-						$countryArray[]= jomresHTML::makeOption( $country['countrycode'], stripslashes($country['countryname']));
+						$countryArray[]= jomresHTML::makeOption( $country['countrycode'], jomres_decode($country['countryname']));
 						}
 
 					$output['SELECTCOMBO_COUNTRY']=
@@ -353,7 +353,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['propertyname'] as $property)
 							{
-							$propertyname[]= jomresHTML::makeOption( $property['puid'], stripslashes($property['pn']));
+							$propertyname[]= jomresHTML::makeOption( $property['puid'], jomres_decode($property['pn']));
 							}
 						$output['propertyname']=jomresHTML::selectList( $propertyname, 'propertyname', 'size="1" ', 'value', 'text', $selectOption );
 						$showButton=true;
@@ -367,7 +367,7 @@ class j00030search {
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property['puid']);
 							$link=jomresURL($l);
 							$link = jomresValidateUrl($link);
-							$r.='<a href="'.$link.'">'.stripslashes($property['pn']).'</a>&nbsp;';
+							$r.='<a href="'.$link.'">'.jomres_decode($property['pn']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
 							}
@@ -392,7 +392,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['country'] as $country)
 							{
-							$countryArray[]= jomresHTML::makeOption( $country['countrycode'], stripslashes($country['countryname']));
+							$countryArray[]= jomresHTML::makeOption( $country['countrycode'], jomres_decode($country['countryname']));
 							}
 						$output['country']=jomresHTML::selectList( $countryArray, 'country', 'size="1" ', 'value', 'text', $selectOption );
 						$showButton=true;
@@ -405,7 +405,7 @@ class j00030search {
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&country='.$country['countrycode']);
 							$link=jomresURL($l);
 							$link = jomresValidateUrl($link);
-							$r.='<a href="'.$link.'">'.stripslashes($country['countryname']).'</a>&nbsp;';
+							$r.='<a href="'.$link.'">'.jomres_decode($country['countryname']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
 							}
@@ -431,7 +431,7 @@ class j00030search {
 						foreach ($sch->prep['region'] as $region)
 							{
 							$t = str_replace("&#39;","'",$region['region']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-							$regionArray[]= jomresHTML::makeOption( $t, stripslashes($t));
+							$regionArray[]= jomresHTML::makeOption( $t, jomres_decode($t));
 							}
 						$output['region']=jomresHTML::selectList( $regionArray, 'region', 'size="1" ', 'value', 'text', $selectOption );
 						$showButton=true;
@@ -445,7 +445,7 @@ class j00030search {
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&region='.$t);
 							$link=jomresURL($l);
 							$link = jomresValidateUrl($link);
-							$r.='<a href="'.$link.'">'.stripslashes($region['region']).'</a>&nbsp;';
+							$r.='<a href="'.$link.'">'.jomres_decode($region['region']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
 							}
@@ -472,7 +472,7 @@ class j00030search {
 						foreach ($ta as $town)
 							{
 							$t = str_replace("&#39;","'",$town['town']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-							$townArray[]= jomresHTML::makeOption( $town['town'], stripslashes($t));
+							$townArray[]= jomresHTML::makeOption( $town['town'], jomres_decode($t));
 							}
 						$output['town']=jomresHTML::selectList( $townArray, 'town', 'size="1" ', 'value', 'text', $selectOption );
 						$showButton=true;
@@ -486,7 +486,7 @@ class j00030search {
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&town='.$t);
 							$link=jomresURL($l);
 							$link = jomresValidateUrl($link);
-							$r.='<a href="'.$link.'">'.stripslashes($town['town']).'</a>&nbsp;';
+							$r.='<a href="'.$link.'">'.jomres_decode($town['town']).'</a>&nbsp;';
 							if ($sch->cols=="1")
 								$r.="<br>";
 							}
@@ -520,7 +520,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['features'] as $feature)
 							{
-							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
+							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		jomres_decode($feature['title']),false,false);
 							$featureArray[]= jomresHTML::makeOption( $feature['id'], jomres_decode($feature_abbv));
 							}
 						$output['feature']=jomresHTML::selectList( $featureArray, 'feature_uids[]', 'size="1" ', 'value', 'text', $selectOption );
@@ -542,8 +542,8 @@ class j00030search {
 								}
 							$image = '/'.$feature['image'];
 							
-							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		stripslashes($feature['title']),false,false);
-							$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$feature['id'],		stripslashes($feature['description']),false,false);
+							$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$feature['id'],		jomres_decode($feature['title']),false,false);
+							$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$feature['id'],		jomres_decode($feature['description']),false,false);
 
 							$tmp=jomres_makeTooltip($feature_abbv,$feature_abbv,$feature_desc,$image,"","property_feature",array());
 
@@ -572,7 +572,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['rtypes'] as $rtype)
 							{
-							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$rtype['id'],		stripslashes($rtype['title']),false,false);
+							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$rtype['id'],		jomres_decode($rtype['title']),false,false);
 							$rtypeArray[]= jomresHTML::makeOption( $rtype['id'], $roomClassAbbv);
 							}
 						$output['room_type']=jomresHTML::selectList( $rtypeArray, 'room_type', 'size="1"', 'value', 'text', $selectOption );
@@ -582,7 +582,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['rtypes'] as $room_type)
 							{
-							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_type['id'],		stripslashes($room_type['title']),false,false);
+							$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$room_type['id'],		jomres_decode($room_type['title']),false,false);
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&room_type='.$room_type['id']);
 							$link=jomresURL($l);
 							$link = jomresValidateUrl($link);
@@ -610,7 +610,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['ptypes'] as $ptype)
 							{
-							$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],stripslashes($ptype['ptype']),false,false);
+							$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],jomres_decode($ptype['ptype']),false,false);
 							
 							$ptypeArray[]= jomresHTML::makeOption( $ptype['id'], $ptypeAbbv);
 							}
@@ -622,7 +622,7 @@ class j00030search {
 					$r="";
 					foreach ($sch->prep['ptypes'] as $ptype)
 						{
-						$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],stripslashes($ptype['ptype']),true,true);
+						$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],jomres_decode($ptype['ptype']),true,true);
 						//echo $ptypeAbbv;
 						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&ptype='.$ptype['id']);
 						$link=jomresURL($l);
@@ -808,14 +808,14 @@ class j00030search {
 		$roomTypeList=doSelectSql($query);
 		foreach ($roomTypeList as $rtype )
 			{
-			$output[]		=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$rtype->room_classes_uid,stripslashes($rtype->room_class_abbv));
+			$output[]		=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$rtype->room_classes_uid,jomres_decode($rtype->room_class_abbv));
 			}
 			
 		$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `ptype` ASC";
 		$ptypeList = doSelectSql($query);
 		foreach ($ptypeList as $ptype )
 			{
-			$output[]		=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype->id,stripslashes($ptype->ptype));
+			$output[]		=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype->id,jomres_decode($ptype->ptype));
 			}
 		foreach ($output as $o)
 			{
