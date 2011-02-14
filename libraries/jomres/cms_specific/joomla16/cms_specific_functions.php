@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 function jomres_cmsspecific_areweinadminarea()
 	{
 	$administrator_area=false;
-	if (substr($_SERVER['SCRIPT_NAME'],"/administrator/"))
+	if (strpos($_SERVER['SCRIPT_NAME'],"administrator"))
 		$administrator_area=true;
 	return $administrator_area;
 	}
