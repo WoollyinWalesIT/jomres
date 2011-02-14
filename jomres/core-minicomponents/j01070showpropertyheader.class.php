@@ -93,9 +93,9 @@ class j01070showpropertyheader
 						{
 						$RoomClassAbbvs[(int)$roomClass->room_classes_uid] = array( 
 							'abbv'=>
-							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false),
+							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,jomres_decode($roomClass->room_class_abbv),false,false),
 							'desc'=>
-							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_full_desc),false,false),
+							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,jomres_decode($roomClass->room_class_full_desc),false,false),
 							'image'=>
 							$roomClass->image
 							);
@@ -140,12 +140,12 @@ class j01070showpropertyheader
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					
 				if (strlen($current_property_details->metatitle)>0)
-					jomres_cmsspecific_setmetadata("title",stripslashes($current_property_details->metatitle));
+					jomres_cmsspecific_setmetadata("title",jomres_decode($current_property_details->metatitle));
 				else
 					{
 					$property_name = $current_property_details->get_property_name($property_uid);
 					$property_name = str_replace("<x>","",$property_name);
-					jomres_cmsspecific_setmetadata("title",$property_name);
+					jomres_cmsspecific_setmetadata("title",jomres_decode($property_name));
 					}
 
 				jomres_cmsspecific_setmetadata('description',stripslashes($current_property_details->metadescription));
