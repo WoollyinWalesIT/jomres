@@ -47,6 +47,13 @@ if (!isset($_REQUEST['tmpl']))
 		die();
 		}
 	}
+
+set_showtime('heavyweight_system',false);
+$query="SELECT propertys_uid,published FROM #__jomres_propertys";
+$countproperties = doSelectSql($query);
+$numberOfPropertiesInSystem=count($countproperties);
+if ($numberOfPropertiesInSystem > 200 ) 
+	set_showtime('heavyweight_system',true);
 	
 $thisJRUser=jomres_getSingleton('jr_user');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');

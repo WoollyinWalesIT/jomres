@@ -80,6 +80,9 @@ class basic_property_details
 	
 	public function get_property_name_multi($property_uids=array(),$database_obj = false)
 		{
+		$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
+		$performance_monitor->set_point("pre-property name multi");
+		
 		$customTextObj =jomres_getSingleton('custom_text');
 		
 		if (!isset($this->property_names))
@@ -104,17 +107,26 @@ class basic_property_details
 
 		$query="SELECT property_name,propertys_uid FROM #__jomres_propertys WHERE ".$gor;
 		$property_names=doSelectSql($query);
-		
-		foreach ($property_names as $p)
+		if (!get_showtime('heavyweight_system'))
 			{
-			// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
-			set_showtime('property_uid',$p->propertys_uid);
-			$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$p->property_name,false,false);
-			$property_name = str_replace("&#39;", "'", $property_name);
-			$this->property_names[$p->propertys_uid] = $property_name;
+			foreach ($property_names as $p)
+				{
+				// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
+				set_showtime('property_uid',$p->propertys_uid);
+				$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$p->property_name,false,false);
+				$property_name = str_replace("&#39;", "'", $property_name);
+				$this->property_names[$p->propertys_uid] = $property_name;
+				}
 			}
-
+		else
+			{
+			foreach ($property_names as $p)
+				{
+				$this->property_names[$p->propertys_uid] = $p->property_name;
+				}
+			}
 		set_showtime('property_uid',$original_property_uid);
+		$performance_monitor->set_point("post-property name multi");
 		return $property_name;
 		}
 	
@@ -129,7 +141,6 @@ class basic_property_details
 		if ($property_uid == $this->property_uid) // No need to re-gather the info
 			return true;
 		$this->property_uid = (int)$property_uid;
-		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		
 		$no_html=get_showtime('no_html');
 		$popup=get_showtime('popup');
@@ -181,10 +192,7 @@ class basic_property_details
 
 
 		$this->classAbbvs = array();
-		if ($mrConfig['singleRoomProperty'] == "1")
-			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE srp_only = 1";
-		else
-			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE srp_only = 0";
+		$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
 		$roomsClassList =doSelectSql($query);
 		foreach ($roomsClassList as $roomClass)
 			{
@@ -192,7 +200,7 @@ class basic_property_details
 			$this->classAbbvs[(int)$roomClass->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_desc),false,false);
 			$this->classAbbvs[(int)$roomClass->room_classes_uid]['image'] = $roomClass->image;
 			}
-
+		
 		$this->this_property_room_classes = array();
 		$query = "SELECT roomtype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE propertytype_id =".(int)$this->ptype_id;
 		$roomtypes =doSelectSql($query);
@@ -200,8 +208,7 @@ class basic_property_details
 			{
 			$this->this_property_room_classes[(int)$roomClass->roomtype_id] = $this->classAbbvs[$roomClass->roomtype_id];
 			}
-		
-		
+
 		
 		$bang = explode (",",$this->property_features);
 		$propertyFeaturesArray = array();
@@ -238,7 +245,7 @@ class basic_property_details
 				$this->room_features[(int)$f->room_features_uid]['desc'] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$f->room_features_uid,stripslashes($f->feature_description));
 				}
 			}
-		
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		$taxrates = taxrates_getalltaxrates();
 		$cfgcode = $mrConfig['accommodation_tax_code'];
 		$rate = $taxrates[$cfgcode];
