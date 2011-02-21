@@ -202,6 +202,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$output['SELECTROOMMESSAGE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM',_JOMRES_BOOKINGFORM_MONITORING_SELECT_A_ROOM,false,false));
 	else
 		$output['SELECTROOMMESSAGE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TITLE',_JOMRES_COM_MR_QUICKRES_STEP4_TITLE,false,false));
+	if ((int($mrConfig['minimuminterval'])  == 0)
+		$mrConfig['minimuminterval'] = 1;
+	
 	$output['MININTERVAL']=$mrConfig['minimuminterval'].' ; var selectroommessage = "'.$output['SELECTROOMMESSAGE'].'"';  //For backward compatability this selectroommessage has been tacked onto the end of the min interval var definition
 	//if (!$bkg->ok_to_book || $bkg->cfg_singleRoomProperty == "1")
 		$bkg->resetRequestedRoom();
