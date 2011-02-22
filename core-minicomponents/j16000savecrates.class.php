@@ -34,7 +34,7 @@ class j16000savecrates
 			$tmpCrates[$key]=$value;
 			}
 
-		//var_dump($tmpCrates);exit;
+		//
 		$crates=$tmpCrates;
 		jr_import('jrportal_property_functions');
 		$propertyFunctions		= new jrportal_property_functions();
@@ -44,28 +44,30 @@ class j16000savecrates
 			{
 			$portalPropertyIds[]=$p['property_id'];
 			}
+		
+		jr_import('jrportal_property');
 
 		foreach ($crates as $k=>$v)
 			{
 			$crate_id=$v;
-			jr_import('jrportal_property');
-			$property = new jrportal_property();
+			$jrportal_property = new jrportal_property();
+			
 			if (!in_array($k,$portalPropertyIds) )
 				{
-				$property->property_id=$k;
-				$property->crate_id=$v;
-				$property->commitNewProperty();
+				$jrportal_property->property_id=$k;
+				$jrportal_property->crate_id=$v;
+				$jrportal_property->commitNewProperty();
 				}
 			else
 				{
-				$property->getProperty();
-				$property->property_id=$k;
-				$property->crate_id=$v;
-				$property->commitUpdatePropertyByPropertyid();
+				$jrportal_property->property_id=$k;
+				$jrportal_property->getProperty();
+				$jrportal_property->crate_id=$v;
+				$jrportal_property->commitUpdatePropertyByPropertyid();
 				}
 			}
 
-		jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=listpropertys", '');
+		jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=list_properties_initials", '');
 		}
 
 

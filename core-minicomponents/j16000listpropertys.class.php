@@ -36,7 +36,17 @@ class j16000listpropertys
 		$propertyFunctions=new jrportal_property_functions();
 
 		$crateList=$crateFunctions->getAllUnarchivedCrates();
-		$jomresPropertyList=$propertyFunctions->getAllJomresProperties();
+		//$jomresPropertyList=$propertyFunctions->getAllJomresProperties();
+		
+		
+		$initial = strtolower(jomresGetParam( $_REQUEST, 'initial', "" ));
+		$query = "SELECT propertys_uid,property_street,property_town,property_region,property_country,property_postcode FROM #__jomres_propertys WHERE property_name LIKE '".$initial."%'";
+		$result = doSelectSql($query);
+		$jomresPropertyList = array();
+		foreach ($result as $r)
+			{
+			$jomresPropertyList[$r->propertys_uid] = array("id"=>$r->propertys_uid,"property_street"=>$r->property_street,"property_town"=>$r->property_town,"property_region"=>$r->property_region,"property_country"=>$r->property_country,"property_postcode"=>$r->property_postcode);
+			}
 		
 		$portalPropertyList=$propertyFunctions->getAllPortalProperties();
 		
@@ -46,6 +56,7 @@ class j16000listpropertys
 			{
 			$portalPropertyIds[]=$p['property_id'];
 			}
+		
 		$output['PAGETITLE']=_JRPORTAL_CPANEL_LISTPROPERTIES;
 		$output['TOTALINLISTPLUSONE']=count($crateList);
 		$output['HPROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
@@ -74,6 +85,7 @@ class j16000listpropertys
 
 			$r['PROPERTYNAME']=getPropertyName($p['id']);
 			$r['PROPERTYADDRESS']=jomres_decode($p['property_street']).', '.jomres_decode($p['property_town']).', '.jomres_decode($p['property_region']).', '.jomres_decode($p['property_country']).', '.$p['property_postcode'];
+			
 			if (!in_array($p['id'],$portalPropertyIds) )
 				$crid=$jrConfig['defaultCrate'];
 			else
