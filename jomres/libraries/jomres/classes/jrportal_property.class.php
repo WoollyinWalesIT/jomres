@@ -21,43 +21,42 @@ class jrportal_property
 		$this->property_id			= 0;
 		$this->crate_id				= 0;
 		//$this->property_name		= '';
-		$this->property_address		= '';
-		$this->property_managers	= array();
+		// $this->property_address		= '';
+		// $this->property_managers	= array();
 
-		$this->propertys_uid		= 0;
-		$this->property_name		= '';
-		$this->property_street		= '';
-		$this->property_town		= '';
-		$this->property_region		= '';
-		$this->property_country		= '';
-		$this->property_postcode	= '';
-		$this->property_tel			= '';
-		$this->property_fax			= '';
-		$this->property_email		= '';
-		$this->property_features	= '';
-		$this->property_mappinglink	= '';
-		$this->property_description	= '';
-		$this->property_checkin_times			= '';
-		$this->property_area_activities			= '';
-		$this->property_driving_directions		= '';
-		$this->property_airports				= '';
-		$this->property_othertransport			= '';
-		$this->property_policies_disclaimers	= '';
-		$this->published						= 0;
+		// $this->propertys_uid		= 0;
+		// $this->property_name		= '';
+		// $this->property_street		= '';
+		// $this->property_town		= '';
+		// $this->property_region		= '';
+		// $this->property_country		= '';
+		// $this->property_postcode	= '';
+		// $this->property_tel			= '';
+		// $this->property_fax			= '';
+		// $this->property_email		= '';
+		// $this->property_features	= '';
+		// $this->property_mappinglink	= '';
+		// $this->property_description	= '';
+		// $this->property_checkin_times			= '';
+		// $this->property_area_activities			= '';
+		// $this->property_driving_directions		= '';
+		// $this->property_airports				= '';
+		// $this->property_othertransport			= '';
+		// $this->property_policies_disclaimers	= '';
+		// $this->published						= 0;
 
 		$this->error				= null;
 		}
 		
 	function getProperty()
 		{
-		if ($this->id > 0 )
+		if ($this->property_id > 0 )
 			{			
 			$query = "SELECT 
 				`id`,`property_id`,`crate_id`
-				FROM #__jomresportal_properties_crates_xref WHERE `id`='$this->id' LIMIT 1";
+				FROM #__jomresportal_properties_crates_xref WHERE `property_id`='$this->property_id' LIMIT 1";
 				
 			$result=doSelectSql($query);
-			//var_dump($result);exit;
 			if ($result && count($result)==1)
 				{
 				foreach ($result as $r)
@@ -126,8 +125,8 @@ class jrportal_property
 			{
 			
 			$query="UPDATE #__jomresportal_properties_crates_xref SET 
-				`property_id` 			= '$this->property_id',
-				`crate_id` 				= '$this->crate_id'
+				`property_id` 			= ".(int)$this->property_id.",
+				`crate_id` 				= ".(int)$this->crate_id."
 				WHERE `id`='$this->id'";
 			return doInsertSql($query,'');
 			}
@@ -140,8 +139,8 @@ class jrportal_property
 		if ($this->property_id > 0 )
 			{
 			$query="UPDATE #__jomresportal_properties_crates_xref SET 
-				`crate_id` 				= '$this->crate_id'
-				WHERE `property_id` 	= '$this->property_id'";
+				`crate_id` 				= ".(int)$this->crate_id."
+				WHERE `property_id` 	= ".(int)$this->property_id." LIMIT 1 ";
 			return doInsertSql($query,'');
 			}
 			
