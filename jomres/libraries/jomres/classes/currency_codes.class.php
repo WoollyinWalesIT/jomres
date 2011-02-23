@@ -170,6 +170,7 @@ class currency_codes
 			'XOF'=>'XOF CFA Franc BCEAO',
 			'XAF'=>'XAF CFA Franc BEAC',
 			'XAF'=>'XAF CFA Franc BEAC',
+			'XAF'=>'XPF Franc Pacifique',
 			'ZMK'=>'ZMK Zambian Kwacha',
 			'ZWD'=>'ZWD Zimbabwe Dollar',
 			'MDL'=>'MDL Moldovan leu'
@@ -318,8 +319,8 @@ class currency_codes
 			'VND'=>array("pre"=>"₫","post"=>""),
 			'ZMK'=>array("pre"=>"ZK","post"=>""),
 			'ZWD'=>array("pre"=>"$","post"=>""),
-			'ZWD'=>array("pre"=>"Lei","post"=>"")
-			
+			'ZWD'=>array("pre"=>"Lei","post"=>""),
+			'XPF'=>array("pre"=>"","post"=>"F"),
 			);
 		}
 	
