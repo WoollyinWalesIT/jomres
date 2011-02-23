@@ -170,7 +170,7 @@ class currency_codes
 			'XOF'=>'XOF CFA Franc BCEAO',
 			'XAF'=>'XAF CFA Franc BEAC',
 			'XAF'=>'XAF CFA Franc BEAC',
-			'XAF'=>'XPF Franc Pacifique',
+			'XPF'=>'XPF Franc Pacifique',
 			'ZMK'=>'ZMK Zambian Kwacha',
 			'ZWD'=>'ZWD Zimbabwe Dollar',
 			'MDL'=>'MDL Moldovan leu'
