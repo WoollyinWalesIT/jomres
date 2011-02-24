@@ -249,7 +249,9 @@ function output_price($value,$currencycode="")
 	$jrConfig=$siteConfig->get();
 	
 	$mrConfig=getPropertySpecificSettings();
-	$currfmt = new jomres_currency_format();
+	$currfmt = jomres_getSingleton('jomres_currency_format');
+	$currfmt->get_format();
+	
 	$wholepart=intval($price);
 	$decimalpart=$price-$wholepart; 
 	  
