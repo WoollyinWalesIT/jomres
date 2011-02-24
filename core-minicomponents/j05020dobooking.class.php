@@ -167,6 +167,8 @@ class j05020dobooking {
 		$output[]		=jr_gettext('_JOMRES_NUMBER_OF_ROOMS',_JOMRES_NUMBER_OF_ROOMS);
 		$output[]		=jr_gettext('_JOMRES_PARTNER_DISCOUNT',_JOMRES_PARTNER_DISCOUNT);
 		$output[]		=jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET);
+		$output[]		=jr_gettext('_JOMRES_FRONT_MR_BOOKED',_JOMRES_FRONT_MR_BOOKED);
+		
 		
 		
 		foreach ($output as $o)
