@@ -159,6 +159,7 @@ function createCountriesDropdown($selectedCountry)
  */
 function setupRegions($countryCode="GB",$currentRegion="Pembrokeshire")
 	{
+	$currentRegion=jomres_decode($currentRegion);
  	//Adapted from geoip, original Copyright (C) 2003 MaxMind LLC
 	$FIPS=regionNamesArray();
 	$regionArray=$FIPS[$countryCode];
@@ -170,7 +171,7 @@ function setupRegions($countryCode="GB",$currentRegion="Pembrokeshire")
 		$number_of_regions = count($regionArray);
 		for ($i=0, $n=$number_of_regions; $i < $n; $i++)
 			{
-			$loopedRegion=jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$countryCode."_".$i,filter_var($regionArray[$i],FILTER_SANITIZE_SPECIAL_CHARS),false,false) ;
+			$loopedRegion=jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$countryCode."_".$i,$regionArray[$i],false,false) ;
 			if ($currentRegion != "" && $currentRegion==$loopedRegion)
 				$selected="selected";
 			else
