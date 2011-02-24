@@ -52,7 +52,7 @@ class j16000touch_templates
 			{
 			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rType->room_classes_uid,		stripslashes($rType->room_class_abbv) );
 			$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rType->room_classes_uid,		stripslashes($rType->room_class_full_desc) );
-			echo '<img src="'.get_showtime('live_site').'/'.$rType->image.'" />';
+			//echo '<img src="'.get_showtime('live_site').'/'.$rType->image.'" />'; // Do not re-enable this line, if you do then Jomres will not 'hold' the current language because for some reason showtime triggers the creation of a phantom session file in the root directory.
 			echo "&nbsp;";
 			echo $roomtype_abbv;
 			echo "&nbsp;";
@@ -67,7 +67,7 @@ class j16000touch_templates
 			$feature_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.$propertyFeature->hotel_features_uid,stripslashes($propertyFeature->hotel_feature_abbv) );
 			$feature_desc = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.$propertyFeature->hotel_features_uid,stripslashes($propertyFeature->hotel_feature_full_desc) );
 			
-			echo '<img src="'.get_showtime('live_site').'/'.$propertyFeature->image.'" />';
+			//echo '<img src="'.get_showtime('live_site').'/'.$propertyFeature->image.'" />';  // Do not re-enable this line, if you do then Jomres will not 'hold' the current language because for some reason showtime triggers the creation of a phantom session file in the root directory.
 			echo "&nbsp;";
 			echo $feature_abbv;
 			echo "&nbsp;";
