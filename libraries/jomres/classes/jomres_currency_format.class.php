@@ -23,12 +23,29 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 */
 class jomres_currency_format
 	{
-	/**
-	#
-	* Constructor. Sets the required curency format
-	#
-	*/
-	function jomres_currency_format($cformat=false)
+	private static $configInstance;
+	private static $internal_debugging;
+
+	public function __construct() 
+		{
+		self::$internal_debugging = false;
+		}
+
+	public static function getInstance()
+		{
+		if (!self::$configInstance)
+			{
+			self::$configInstance = new jomres_currency_format();
+			}
+		return self::$configInstance;
+		}
+		
+	public function __clone()
+		{
+		trigger_error('Cloning not allowed on a singleton object', E_USER_ERROR);
+		}
+
+	function get_format($cformat=false)
 		{
 		$mrConfig=getPropertySpecificSettings(get_showtime('property_uid'));
 		if (!$cformat)
