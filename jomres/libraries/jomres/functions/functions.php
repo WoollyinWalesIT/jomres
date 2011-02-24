@@ -5074,8 +5074,10 @@ if (!function_exists('is_iPhone'))
 function jomres_decode($string)
 	{
 	$string = htmlspecialchars_decode ($string,ENT_QUOTES);
-	$string = str_replace ("&#38;#39;","'",$string);
+	$string = str_replace ("&#38;","&",$string);
 	$string = str_replace ("&#39;","'",$string);
+	$string = str_replace ("&#60;x&#62;t","",$string);
+	//$string = str_replace ("&#39;","'",$string);
 	return $string;
 	}
 
