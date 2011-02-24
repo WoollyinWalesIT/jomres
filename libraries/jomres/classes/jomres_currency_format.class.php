@@ -30,7 +30,7 @@ class jomres_currency_format
 	*/
 	function jomres_currency_format($cformat=false)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig=getPropertySpecificSettings(get_showtime('property_uid'));
 		if (!$cformat)
 			$this->cformat  = $mrConfig['cformat'];
 		else 
