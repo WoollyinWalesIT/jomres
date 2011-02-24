@@ -4349,10 +4349,14 @@ class dobooking
 		if ($this->cfg_showRoomTypeImageInBookingForm)
 			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30" /></td>';
 
+		$buttonClassStuff = "";
+		if ($this->jrConfig['booking_form_lnks_as_buttons'] =="1")
+			$buttonClassStuff = ' class="fg-button ui-state-default ui-corner-all" ';
+
 		$overlib='<tr>';
-		$overlib.='<td><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$caption.'</a></div></td>';
+		$overlib.='<td><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );" '.$buttonClassStuff.'>'.$caption.'</a></div></td>';
 		if ($this->cfg_bookingform_roomlist_showroomno == "1")
-			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNUMBER'].'</a></td>';
+			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">'.$roomStuff['ROOMNUMBER'].'</a></td>';
 		$overlib.=$room_imagetd;
 		$overlib.=$room_imagetypetd;
 		if ($this->cfg_bookingform_roomlist_showroomname == "1")
