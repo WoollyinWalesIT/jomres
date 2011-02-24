@@ -47,7 +47,7 @@ class j02310regprop2 {
 
 		$output=array();
 
-		$property_region				= jomresGetParam( $_POST, 'region', "" );
+		$property_region				= $_POST['region'];
 		$property_country				= jomresGetParam( $_POST, 'country', "" );
 		$realestate						= jomresGetParam( $_POST, 'management_process', '' );
 		$property_type					= intval(jomresGetParam( $_POST, 'propertyType', "" ));
