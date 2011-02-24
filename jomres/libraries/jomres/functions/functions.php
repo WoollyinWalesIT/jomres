@@ -249,7 +249,7 @@ function output_price($value,$currencycode="")
 	$jrConfig=$siteConfig->get();
 	
 	$mrConfig=getPropertySpecificSettings();
-	$currfmt = jomres_getSingleton('jomres_currency_format');
+	$currfmt = new jomres_currency_format();
 	$wholepart=intval($price);
 	$decimalpart=$price-$wholepart; 
 	  
@@ -265,7 +265,7 @@ function output_price($value,$currencycode="")
 			$mrConfig['property_currencycode'] = "GBP";
 		$currencycode = $mrConfig['property_currencycode'];
 		}
-
+	
 	jr_import("currency_codes");
 	if ($jrConfig['useGlobalCurrency']=="1")
 		$currencycode = $jrConfig['globalCurrencyCode'];
