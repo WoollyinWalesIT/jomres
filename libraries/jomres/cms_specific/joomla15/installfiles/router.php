@@ -45,7 +45,7 @@ function JomresBuildRoute(&$query)
 		{
 		case 'viewproperty':
 			$segments[] = $route_query['task'];
-			$segments[] = trim($property_name);
+			$segments[] = jomres_decode($property_name);
 			$segments[] = $route_query['property_uid'];
 			if (isset($route_query['task']))
 					unset( $route_query['task'] );
@@ -54,7 +54,7 @@ function JomresBuildRoute(&$query)
 			break;
 		case 'dobooking':
 			$segments[] = "dobooking";
-			$segments[] = trim($property_name);
+			$segments[] = jomres_decode($property_name);
 			$segments[] = $route_query['selectedProperty'];
 			if (isset($route_query['task']))
 					unset( $route_query['task'] );
