@@ -53,12 +53,14 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		echo '<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
 		echo $jrtb;
 		$sslinput="";
-		$sslinput=
-			'<tr align="center" valign="middle">
-			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL.'</td>
-			<td class="jradmin_subheader_la" valign="top">'.$lists['useSSLinBookingform'].'</td>
-			<td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
-			</tr>';
+		
+		// Disabled due to joomla's url rewriting making it virtually impossible to modify urls for ssl handling AND sef with any confidence.
+		// $sslinput=
+			// '<tr align="center" valign="middle">
+			// <td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL.'</td>
+			// <td class="jradmin_subheader_la" valign="top">'.$lists['useSSLinBookingform'].'</td>
+			// <td class="jradmin_subheader_la" valign="top">'.JOMRES_COM_A_USE_SSL_DESC.get_showtime('live_site').'</td>
+			// </tr>';
 
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC',_JOMRES_A_TABS_MISC,FALSE));
