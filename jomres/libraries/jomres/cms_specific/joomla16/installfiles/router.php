@@ -4,9 +4,11 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 4 
 * @package Jomres
-* @copyright	2005-2009 Vince Wooll
-* Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
+* @copyright	2005-2011 Vince Wooll
+* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
 **/
+
+defined( '_JEXEC' ) or die( '' );
 
 function JomresBuildRoute(&$query)
 	{
@@ -43,7 +45,7 @@ function JomresBuildRoute(&$query)
 		{
 		case 'viewproperty':
 			$segments[] = $route_query['task'];
-			$segments[] = trim($property_name);
+			$segments[] = jomres_decode($property_name);
 			$segments[] = $route_query['property_uid'];
 			if (isset($route_query['task']))
 					unset( $route_query['task'] );
@@ -52,7 +54,7 @@ function JomresBuildRoute(&$query)
 			break;
 		case 'dobooking':
 			$segments[] = "dobooking";
-			$segments[] = trim($property_name);
+			$segments[] = jomres_decode($property_name);
 			$segments[] = $route_query['selectedProperty'];
 			if (isset($route_query['task']))
 					unset( $route_query['task'] );
