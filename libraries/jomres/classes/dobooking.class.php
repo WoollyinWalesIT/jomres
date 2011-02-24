@@ -4288,7 +4288,7 @@ class dobooking
 		if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$this->property_uid.'_room_'.$roomuid.'.jpg' ) )
 			$this->roomImagePath=JOMRES_IMAGELOCATION_RELPATH.$this->property_uid.'_room_'.$roomuid.'.jpg';
 		else
-			$this->roomImagePath="jomres/images/noimage.gif";
+			$this->roomImagePath=get_showtime('live_site')."/jomres/images/noimage.gif";
 		$room_number=$this->allPropertyRooms[$roomuid]['room_number'];
 		$room_name=$this->allPropertyRooms[$roomuid]['room_name'];
 		$tariffTitle=$this->allPropertyTariffs[$tariffuid]['rate_title'];
@@ -4297,7 +4297,7 @@ class dobooking
 
 		$classId=$this->allPropertyRooms[$roomuid]['room_classes_uid'];
 
-		$this->typeImage =$this->allRoomClasses[$classId]['image'];
+		$this->typeImage =get_showtime('live_site').'/'.$this->allRoomClasses[$classId]['image'];
 
 		//if ($this->cfg_bookingform_roomlist_showroomno ==  "1")
 		//	$roomTariffOutputText.="<img src=\"".$typeImage."\" />";

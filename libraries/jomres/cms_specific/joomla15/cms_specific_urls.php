@@ -84,9 +84,9 @@ if (class_exists('JFactory'))
 	$app =& JFactory::getApplication();  // Many thanks maakit
 	if($app->getCfg('sef'))
 		{
-		if (get_showtime('sef') == "1") // If SEF is enabled we need to set the sitepage url to the full url, otherwise Jomres can't detect when we need to rewrite urls overwritng http:// with https//
-			define("JOMRES_SITEPAGE_URL", get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
-		else
+		//if (get_showtime('sef') == "1") // If SEF is enabled we need to set the sitepage url to the full url, otherwise Jomres can't detect when we need to rewrite urls overwritng http:// with https//
+		//	define("JOMRES_SITEPAGE_URL", get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
+		//else
 			define("JOMRES_SITEPAGE_URL", $index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
 		}
 	else
