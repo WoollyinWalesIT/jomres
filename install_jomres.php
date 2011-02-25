@@ -1750,6 +1750,7 @@ function createJomresTables()
 		`service_value` VARCHAR(255),
 		`contract_uid` VARCHAR(11),
 		`property_uid` VARCHAR(11),
+		`tax_rate_val` CHAR (10) DEFAULT '0',
 		PRIMARY KEY	(`extraservice_uid`)
 		) ";
 	$result=doInsertSql($query,"");
