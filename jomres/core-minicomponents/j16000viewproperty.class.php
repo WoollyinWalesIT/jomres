@@ -72,7 +72,11 @@ class j16000viewproperty
 		jr_import('crateTypes');
 		$crateTypesObj= new crateTypes();
 		$crateTypesObj->id=$crate['type'];
-		$crateTypeText=$crateTypesObj->getCrate();
+		
+		// What on earth was I thinking with this abortion?
+		//$crateTypeText=$crateTypesObj->getCrate();
+		$rateType=(int)$crate['type'];
+		$crateTypeText=$crateTypesObj->types[$rateType];
 
 		$output['CRATE_TITLE']=$crate['title'];
 		$output['CRATE_TYPE']=$crateTypeText;
