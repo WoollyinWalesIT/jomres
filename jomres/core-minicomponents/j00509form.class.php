@@ -35,6 +35,10 @@ class j00509form {
 			{
 			$this->template_touchable=true; return;
 			}
+			
+		// Added this option to prevent the 'form' (creditcard number) gateway from appearing in the gateways list.
+		return;
+		
 		$plugin="form";
 
 		$defaultProperty=getDefaultProperty();
