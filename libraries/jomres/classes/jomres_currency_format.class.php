@@ -29,6 +29,7 @@ class jomres_currency_format
 	public function __construct() 
 		{
 		self::$internal_debugging = false;
+		$this->get_format();
 		}
 
 	public static function getInstance()
