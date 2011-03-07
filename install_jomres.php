@@ -8,6 +8,15 @@
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
 **/
 
+$info = phpversion();
+$v_arr = explode("-",$info);
+$version = (float) $v_arr[0];
+
+if ( $version < 5.2 )
+	{
+	echo "Oops, it looks like you're running a version of PHP lower than 5.2. Jomres requires at least PHP5.2 and will not run on earlier versions";
+	exit;
+	}
 
 define('_JOMRES_INITCHECK', 1 );
 ini_set("display_errors",1);
