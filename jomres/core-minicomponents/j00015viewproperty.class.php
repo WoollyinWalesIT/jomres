@@ -208,7 +208,7 @@ class j00015viewproperty
 			if ($mrConfig['showSlideshowLink']=="1")
 				{
 				$link				=	array();
-				$link['LINK'] = jomresURL(JOMRES_SITEPAGE_URL."&task=slideshow&popup=1&property_uid=$property_uid".$output_now);
+				$link['LINK'] = jomresURL(JOMRES_SITEPAGE_URL."&task=slideshow&property_uid=$property_uid".$output_now);
 				$link ['TEXT']=jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=false,$isLink=false);
 				$slideshowlink[]	= 	$link;
 				}
@@ -271,7 +271,7 @@ class j00015viewproperty
 				if ( $mrConfig['showRoomsListingLink']=="1")
 					{
 					$link				=	array();
-					$link['LINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomsListing&popup=1&property_uid=$property_uid".$output_now);
+					$link['LINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomsListing&property_uid=$property_uid".$output_now);
 					$link['TEXT']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=false,$isLink=false);
 					$roomslistlink[]	= 	$link;
 					}
