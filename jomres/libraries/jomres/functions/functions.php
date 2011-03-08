@@ -443,7 +443,9 @@ function init_javascript()
 				$themePath = $themeArr[2]."/";
 			else
 				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
-			jomres_cmsspecific_addheaddata("css",$themePath,$filename);
+				
+			if ($jrConfig['load_jquery_ui'] =="1")
+				jomres_cmsspecific_addheaddata("css",$themePath,$filename);
 			
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
 
@@ -452,7 +454,8 @@ function init_javascript()
 			elseif ($jrConfig['load_jquery'] == "1")
 				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
+			if ($jrConfig['load_jquery_ui'] =="1")
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
 			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
