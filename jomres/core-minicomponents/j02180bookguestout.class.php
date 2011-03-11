@@ -138,6 +138,7 @@ class j02180bookguestout {
 				$agreedratepernight=$room_total/$originalStayDays;
 				$totalCosts=$single_person_suppliment+($agreedratepernight*$actualstayDays);
 
+				$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE',_JOMRES_FRONT_MR_BOOKOUT_TITLE);
 				$output['LIVESITE']=get_showtime('live_site');
 				$output['HSTAYNIGHTS']=jr_gettext('_JOMRES_COM_INVOICE_STAYNIGHTS',_JOMRES_COM_INVOICE_STAYNIGHTS);
 				$output['HCONTRACTAGREED']=jr_gettext('_JOMRES_COM_INVOICE_CONTRACTAGREED',_JOMRES_COM_INVOICE_CONTRACTAGREED);
@@ -192,7 +193,7 @@ class j02180bookguestout {
 				$output['GRANDTOTAL']=output_price($grandTotal);
 
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
-				$link = JOMRES_SITEPAGE_URL."&task=bookGuestOut&contract_uid=".$contractUid."&popup=1&dueDepart=".$contractUid;
+				$link = JOMRES_SITEPAGE_URL."&task=bookGuestOut&tmpl=component&contract_uid=".$contractUid."&popup=1&dueDepart=".$contractUid;
 				$output['INVOICEFORMLINK']="<a href=\"javascript:void window.open('".jomresURL($link)."', 'win2', '$status');\" title=\""._JOMRES_COM_CONFIRMATION_TITLE."\">".jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT)."</a>";
 
 				if ($popup ==0)

@@ -1,25 +1,21 @@
 <patTemplate:tmpl name="bookguestin">
 <patTemplate:tmpl name="pageoutput">
 <form action="{VALIDATELINK}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_field_ca">{DROPDOWNLIST}</td>
-				</tr>
-			</table>
-		</td>
+		<td>{DROPDOWNLIST}</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
-<input type="hidden" name="task" value="bookGuestIn" />	
+</div>
+<input type="hidden" name="task" value="bookGuestIn" />
+<input type="hidden" name="no_html" value="1" />
 </form>
 </patTemplate:tmpl>
 </patTemplate:tmpl>

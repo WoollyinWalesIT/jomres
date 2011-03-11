@@ -1,49 +1,45 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td colspan="3" class="jomres_title">{PAGETITLE}</td>
+		<th colspan="3"><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td width="70%">{JOMRESTOOLBAR}</td>
 		<td width="30%">
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{HSURNAMEDROPDOWN}</td>
-				<td class="jradmin_field_ca">{SURNAMEDROPDOWN}</td>
-				</tr>
-			</table>
-		</td>
+		<td>{SURNAMEDROPDOWN}</td>
 	</tr>
 	<tr>
 		<td colspan="3">
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_ca">{HEDITLINK}</td>
-					<td class="jradmin_subheader_ca">{HINVOICELINK}</td>
-					<td class="jradmin_subheader_la">{HFIRSTNAME}</td>
-					<td class="jradmin_subheader_la">{HSURNAME}</td>
-					<td class="jradmin_subheader_la">{HHOUSE}</td>
-					<td class="jradmin_subheader_la">{HSTREET}</td>
-					<td class="jradmin_subheader_la">{HTOWN}</td>
-					<!-- <td class="jradmin_subheader_la">&nbsp;</td> -->
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HEDITLINK}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HINVOICELINK}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HFIRSTNAME}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSURNAME}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HHOUSE}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSTREET}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HTOWN}</td>
+					<!-- <td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td> -->
 				</tr>
 				<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
-					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_rowtoolbar">{INVOICELINK}</td>
-					<td class="jradmin_field_la">{FIRSTNAME}</td>
-					<td class="jradmin_field_la">{SURNAME}</td>
-					<td class="jradmin_field_la">{HOUSE}</td>
-					<td class="jradmin_field_la">{STREET}</td>
-					<td class="jradmin_field_la">{TOWN}</td>
-					<!-- <td class="jradmin_field_la">{CREDITCARDLINK}</td> -->
+					<td>{EDITLINK}</td>
+					<td>{INVOICELINK}</td>
+					<td>{FIRSTNAME}</td>
+					<td>{SURNAME}</td>
+					<td>{HOUSE}</td>
+					<td>{STREET}</td>
+					<td>{TOWN}</td>
+					<!-- <td>{CREDITCARDLINK}</td> -->
 				</tr>
 				</patTemplate:tmpl>
 			</table>
 		</td>
 	</tr>
 </table>
+</div>
 <input type="hidden" name="guestUid" value="" />
 <input type="hidden" name="task" value="listguests" />
 </form>

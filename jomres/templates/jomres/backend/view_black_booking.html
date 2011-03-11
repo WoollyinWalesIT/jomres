@@ -1,8 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+
 <table class="jradmin_innerwrapper">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
@@ -11,36 +13,37 @@
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_la">{BBDATE}</td>
-					<td class="jradmin_field_ra">{BBSTART}</td>
+					<th>{BBDATE}</th>
+					<td>{BBSTART}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{BBDATEENDS}</td>
-					<td class="jradmin_field_ra">{BBENDS}</td>
+					<th>{BBDATEENDS}</th>
+					<td>{BBENDS}</td>
 				</tr>
 			</table>
 			<br />
-			<table class="jradmin_table">
+			<table>
 				<tr>
-					<td colspan="2" class="jradmin_subheader_ca">{INFO}</td>
+					<th colspan="2">{INFO}</th>
 				</tr>
 				<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
 				<tr>
-					<td class="jradmin_field_ca"><b>{ROOMNO}</b></td>
-					<td class="jradmin_field_la">{ROOMNAME}</td>
+					<td><b>{ROOMNO}</b></td>
+					<td>{ROOMNAME}</td>
 				</tr>
 				</patTemplate:tmpl>
 			</table>
 			<br />
-			<table border="0" class="jradmin_table">
+			<table>
 				<tr>
-					<td class="jradmin_field_ca">{REASON}</td>
+					<td>{REASON}</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
+</div>
 <input type="hidden" name="contract_uid" value="{CONTRACTID}" />
 <input type="hidden" name="task" value="deleteBlackBooking" />
 </form>
