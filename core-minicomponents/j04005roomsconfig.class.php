@@ -235,13 +235,13 @@ class j04005roomsconfig {
 			else
 				$jrtb .= $jrtbar->toolbarItem('publish',jomresURL(JOMRES_SITEPAGE_URL.'&task=publishProperty'.jomresURLToken()),jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false) );
 			$jrtb .= $jrtbar->endTable();
-			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".$jrtb."</td>";
-			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(($property->property_street ))."</td>";
-			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(($property->property_town) )."</td>";
-			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".($property->property_region )."</td>";
-			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".($property->property_country )."</td>";
-			$propertyRowInfo .="<td class=\"jradmin_field_ca\">".stripslashes(($property->property_postcode))."</td></tr>";
-			$propertyRowInfo .='<tr><td colspan="6" class=\"jradmin_field_ca\"><img src="'.$property_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'"></td>';
+			$propertyRowInfo .="<td>".$jrtb."</td>";
+			$propertyRowInfo .="<td>".stripslashes(($property->property_street ))."</td>";
+			$propertyRowInfo .="<td>".stripslashes(($property->property_town) )."</td>";
+			$propertyRowInfo .="<td>".($property->property_region )."</td>";
+			$propertyRowInfo .="<td>".($property->property_country )."</td>";
+			$propertyRowInfo .="<td>".stripslashes(($property->property_postcode))."</td></tr>";
+			$propertyRowInfo .='<tr><td colspan="6"><img src="'.$property_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'"></td>';
 			$propertyRowInfo .="</tr>";
 
 			// Uncomment the following lines to show the apikey in the frontend property admin
@@ -276,12 +276,12 @@ class j04005roomsconfig {
 		$contentPanel->setcontent($newPropertyButton);
 		$contentPanel->setcontent('<table>
 			<tr>
-			<td class="jradmin_subheader_ca">&nbsp;</td>
-			<td class="jradmin_subheader_ca">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET).'</td>
-			<td class="jradmin_subheader_ca">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN).'</td>
-			<td class="jradmin_subheader_ca">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION).'</td>
-			<td class="jradmin_subheader_ca">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY).'</td>
-			<td class="jradmin_subheader_ca">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE).'</td>
+			<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
+			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET).'</td>
+			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN).'</td>
+			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION).'</td>
+			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY).'</td>
+			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE).'</td>
 			');
 		$contentPanel->setcontent('</tr>');
 		$contentPanel->setcontent($propertyRowInfo);

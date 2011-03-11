@@ -2908,35 +2908,39 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	//var_dump($booking_data);exit;
 		
 	?>
-
-	<table class="jradmin_innerwrapper">
+	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+	<table width="100%">
 	<tr>
-		<td class="jomres_title" colspan="2"><?php echo $title;?></td>
+		<th colspan="2"><div class="fg-toolbar ui-widget-header ui-corner-all"><?php echo $title;?></div></th>
 	</tr>
 	<tr>
 		<td>Filter: </td><td><?php echo $arrivaldateDropdown;?></td>
 	</tr>
 	<tr>
-		<td  colspan="2">
-			<table class="jradmin_table">
+		<td colspan="2">
+			<table>
+				<tr>
+					<td><img src="<?php echo $img_pending;?>" border=\"0\" /></td><td><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);?></td>
+					<td> <img src="<?php echo $img_arrivetoday;?>" border=\"0\" /></td><td><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);?></td>
+					<td><img src="<?php echo $img_resident;?>" border=\"0\" /></td><td><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);?></td>
+				</tr>
+				<tr>
+					<td><img src="<?php echo $img_departtoday;?>" border=\"0\" /></td><td><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);?></td>
+					<td><img src="<?php echo $img_stillhere;?>" border=\"0\" /></td><td><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);?></td>
+					<td><img src="<?php echo $img_late;?>" border=\"0\" /></td><td><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);?></td>
+				</tr>
+			</table>
+		<table width="100%"  id="jomres_table">
+			<thead>
 			<tr>
-				<td class="jradmin_subheader_ca"><img src="<?php echo $img_pending;?>" border=\"0\" /></td><td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);?></td>
-				<td class="jradmin_subheader_ca"> <img src="<?php echo $img_arrivetoday;?>" border=\"0\" /></td><td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);?></td>
-				<td class="jradmin_subheader_ca"><img src="<?php echo $img_resident;?>" border=\"0\" /></td><td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);?></td>
-			</tr><tr>
-				<td class="jradmin_subheader_ca"><img src="<?php echo $img_departtoday;?>" border=\"0\" /></td><td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);?></td>
-				<td class="jradmin_subheader_ca"><img src="<?php echo $img_stillhere;?>" border=\"0\" /></td><td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);?></td>
-				<td class="jradmin_subheader_ca"><img src="<?php echo $img_late;?>" border=\"0\" /></td><td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);?></td>
-			</tr></table>
-
-			<table class="jradmin_table" width="100%">
-			<tr>
-				<td class="jomres_title"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);?></td>
-				<td class="jomres_title"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);?></td>
-				<td class="jomres_title"><?php echo jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);?></td>
-				<td class="jomres_title"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);?></td>
-				<td class="jomres_title"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);?></td>
+				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);?></th>
+				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);?></th>
+				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);?></th>
+				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);?></th>
+				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);?></th>
 			</tr>
+			</thead>
+			<tbody>
 	<?php
 	//$k = 0;
 	//$i = 0;
@@ -2974,20 +2978,21 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 
 		?>
 			<tr>
-			<td width="20" class="jradmin_field_ca"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
-
-			<td  class="jradmin_field_ca"width="25%"><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
-			<td class="jradmin_field_ca"><?php echo $row->tag; ?></td>
-			<td class="jradmin_field_ca"><?php echo outputDate($row->arrival); ?></td>
-			<td class="jradmin_field_ca"><?php echo outputDate($row->departure); ?></td>
+				<td width="20"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
+				<td width="25%"><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>" class="fg-button ui-state-default ui-corner-all"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
+				<td><?php echo $row->tag; ?></td>
+				<td><?php echo outputDate($row->arrival); ?></td>
+				<td><?php echo outputDate($row->departure); ?></td>
 			</tr>
 		<?php
 		}
 	?>
-	</table>
+		</tbody>
+		</table>
 	</td>
 	</tr>
 </table>
+</div>
 <?php
 }//end function showLiveBookings
 
@@ -3003,33 +3008,33 @@ function getPropertyAddressForPrint($propertyUid)
 	$propertyData=doSelectSql($query);
 	foreach ($propertyData as $data)
 		{
-		$property_name=$data->property_name;
-		$property_street=$data->property_street;
-		$property_town=$data->property_town;
-		$property_postcode=$data->property_postcode;
-		$property_region=$data->property_region;
-		$property_country=$data->property_country;
+		$property_name=jomres_decode($data->property_name);
+		$property_street=jomres_decode($data->property_street);
+		$property_town=jomres_decode($data->property_town);
+		$property_postcode=jomres_decode($data->property_postcode);
+		$property_region=jomres_decode($data->property_region);
+		$property_country=jomres_decode($data->property_country);
 		$property_tel=$data->property_tel;
 		$property_fax=$data->property_fax;
 		$property_email=$data->property_email;
 
 		$obj= new stdClass; // For use by queries that used to call mysql for this information, we'll just dress the data up as it used to come out of a query
-		$obj->property_name=$property_name;
-		$obj->property_street=$property_street;
-		$obj->property_town=$property_town;
-		$obj->property_postcode=$property_postcode;
-		$obj->property_region=$property_region;
+		$obj->property_name=jomres_decode($property_name);
+		$obj->property_street=jomres_decode($property_street);
+		$obj->property_town=jomres_decode($property_town);
+		$obj->property_postcode=jomres_decode($property_postcode);
+		$obj->property_region=jomres_decode($property_region);
 		$obj->property_country=$property_country;
 		$obj->property_tel=$property_tel;
 		$obj->property_features=$data->property_features;
 
-		$obj->property_description=$data->property_description;
-		$obj->property_checkin_times=$data->property_checkin_times;
-		$obj->property_area_activities=$data->property_area_activities;
-		$obj->property_driving_directions=$data->property_driving_directions;
-		$obj->property_airports=$data->property_airports;
-		$obj->property_othertransport=$data->property_othertransport;
-		$obj->property_policies_disclaimers=$data->property_policies_disclaimers;
+		$obj->property_description=jomres_decode($data->property_description);
+		$obj->property_checkin_times=jomres_decode($data->property_checkin_times);
+		$obj->property_area_activities=jomres_decode($data->property_area_activities);
+		$obj->property_driving_directions=jomres_decode($data->property_driving_directions);
+		$obj->property_airports=jomres_decode($data->property_airports);
+		$obj->property_othertransport=jomres_decode($data->property_othertransport);
+		$obj->property_policies_disclaimers=jomres_decode($data->property_policies_disclaimers);
 
 		$obj->property_email=$property_email;
 		$obj->published=(int)$data->published;

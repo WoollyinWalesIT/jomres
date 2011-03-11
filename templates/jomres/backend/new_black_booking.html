@@ -1,9 +1,11 @@
 <patTemplate:tmpl name="new_black_booking">
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm"> 
-<table class="jradmin_innerwrapper">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+
+<table>
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
@@ -12,12 +14,12 @@
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_la">{BBDATESTARTS}</td>
-					<td class="jradmin_field_ca">{BBSTARTJSBOX}</td>
+					<td>{BBDATESTARTS}</td>
+					<td>{BBSTARTJSBOX}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{BBDATEENDS}</td>
-					<td class="jradmin_field_ca">{BBENDSJSBOX}</td>
+					<td>{BBDATEENDS}</td>
+					<td>{BBENDSJSBOX}</td>
 				</tr>
 				<tr>
 					<td colspan="2">{INSTRUCTIONS}</td>
@@ -26,26 +28,26 @@
 			</table>
 			<br />
 			<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone"  unusedvars="nbsp">
-			<table class="jradmin_table">
+			<table>
 				<tr>
-					<td colspan="2" class="jradmin_subheader_la">{REASON}</td>
+					<td colspan="2">{REASON}</td>
 				</tr>
 				<tr>
-					<td colspan="2" class="jradmin_field_ca"><textarea cols="30" rows="4" name="bbReason"></textarea></td>
+					<td colspan="2"><textarea cols="30" rows="4" name="bbReason"></textarea></td>
 				</tr>
 
 			</table>
 			<br />
 			
 				<table class="jradmin_table">
-					<tr>
-						<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
-						<th class="jomres_title">&nbsp;</th>
+					<tr  class="fg-toolbar ui-widget-header ui-corner-all">
+						<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+						<th>&nbsp;</th>
 					</tr>
 				<patTemplate:tmpl name="bookingsrows">
 					<tr>
-						<td class="jradmin_field_la">{CHECKBOX}</td>
-						<td class="jradmin_field_la">{TEXT}</td>
+						<td>{CHECKBOX}</td>
+						<td>{TEXT}</td>
 					</tr>
 				</patTemplate:tmpl>
 				</table>
@@ -53,7 +55,8 @@
 		</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
+</div>
 <input type="hidden" name="boxchecked" value="0">
 <input type="hidden" name="task"		 value="newBlackBooking" />
 </form>

@@ -1,8 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
@@ -11,7 +12,7 @@
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_ca">{TASK_FILTER_ANY}</td><td class="jradmin_subheader_ca">{TASK_FILTER_UNPAID}</td><td class="jradmin_subheader_ca">{TASK_FILTER_PAID}</td><td class="jradmin_subheader_ca">{TASK_FILTER_CANCELLED}</td><td class="jradmin_subheader_ca">{TASK_FILTER_PENDING}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_ANY}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_UNPAID}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_PAID}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_CANCELLED}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_PENDING}</td>
 				</tr>
 			</table>
 		</td>
@@ -20,33 +21,33 @@
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_ca">&nbsp;</td>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_la">{HSTATUS}</td>
-					<td class="jradmin_subheader_la">&nbsp;</td>
-					<td class="jradmin_subheader_la">&nbsp;</td>
-					<td class="jradmin_subheader_la">{HRAISED}</td>
-					<td class="jradmin_subheader_la">{HDUE}</td>
-					<td class="jradmin_subheader_la">{HPAID}</td>
-					<td class="jradmin_subheader_la">{HSUBSCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HINITTOTAL}</td>
-					<td class="jradmin_subheader_la">{HRECURTOTAL}</td>
-					<td class="jradmin_subheader_la">&nbsp;</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">ID</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSTATUS}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HRAISED}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HDUE}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HPAID}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSUBSCRIPTION}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HINITTOTAL}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HRECURTOTAL}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
 				</tr>
 				<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="editlink">
 				<tr>
-					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_field_la">{ID}</td>
-					<td class="jradmin_field_la">{STATUS}</td>
-					<td class="jradmin_field_la">{GUEST}</td>
-					<td class="jradmin_field_la">{ITEMS}</td>
-					<td class="jradmin_field_la">{RAISED}</td>
-					<td class="jradmin_field_la">{DUE}</td>
-					<td class="jradmin_field_la">{PAID}</td>
-					<td class="jradmin_field_la">{SUBSCRIPTION}</td>
-					<td class="jradmin_field_la">{INITTOTAL} <span class="small">({CURRENCYCODE})</span></td>
-					<td class="jradmin_field_la">{RECURTOTAL}  <span class="small">({CURRENCYCODE})</span> </td>
-					<td class="jradmin_field_la">{PAYNOW}</td>
+					<td>{EDITLINK}</td>
+					<td>{ID}</td>
+					<td>{STATUS}</td>
+					<td>{GUEST}</td>
+					<td>{ITEMS}</td>
+					<td>{RAISED}</td>
+					<td>{DUE}</td>
+					<td>{PAID}</td>
+					<td>{SUBSCRIPTION}</td>
+					<td>{INITTOTAL} <span class="small">({CURRENCYCODE})</span></td>
+					<td>{RECURTOTAL}  <span class="small">({CURRENCYCODE})</span> </td>
+					<td>{PAYNOW}</td>
 					
 				</tr>
 				</patTemplate:tmpl>
@@ -55,5 +56,6 @@
 	</tr>
 </table>
 <input type="hidden" name="task" value="edit_invoice" />
+</div>
 </form>
 </patTemplate:tmpl>

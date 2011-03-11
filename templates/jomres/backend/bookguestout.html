@@ -1,50 +1,51 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp" >
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table width="100%">
 				<tr>
-					<td colspan="2" class="jradmin_header_ca">{INVOICETITLE}</td>
+					<td colspan="2" >{INVOICETITLE}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HSTAYNIGHTS}</td>
-					<td class="jradmin_field_ra" style="width:100px"><b>{STAYNIGHTS}</b></td>
+					<td class="ui-widget-header">{HSTAYNIGHTS}</td>
+					<td style="text-align: right;"><b>{STAYNIGHTS}</b></td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HCONTRACTAGREED}</td>
-					<td class="jradmin_field_ra" style="width:100px"><b>{CONTRACTAGREED}</b></td>
+					<td class="ui-widget-header">{HCONTRACTAGREED}</td>
+					<td style="text-align: right;"><b>{CONTRACTAGREED}</b></td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HCOSTPERNIGHT}</td>
-					<td class="jradmin_field_ra" style="width:100px"><b>{COSTPERNIGHT}</b></td>
+					<td class="ui-widget-header">{HCOSTPERNIGHT}</td>
+					<td style="text-align: right;"><b>{COSTPERNIGHT}</b></td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HSINGLEPERSON_COST}</td>
-					<td class="jradmin_field_ra" style="width:100px"><b>{SINGLEPERSON_COST}</b></td>
+					<td class="ui-widget-header">{HSINGLEPERSON_COST}</td>
+					<td style="text-align: right;"><b>{SINGLEPERSON_COST}</b></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="jradmin_header_ca">{HEXTRASERVICE}</td>
+					<td colspan="2">{HEXTRASERVICE}</td>
 				</tr>
 				<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
 				<tr>
-					<td class="jradmin_subheader_la">{DESC}</td>
-					<td class="jradmin_field_ra" style="width:100px"><b>{VAL}</b></td>
+					<td class="ui-widget-header">{DESC}</td>
+					<td style="text-align: right;"><b>{VAL}</b></td>
 				</tr>
 				</patTemplate:tmpl>
 				<tr>
-					<td class="jradmin_subheader_la">{HEXTRASERVICE_TOTAL}</td>
-					<td td class="jradmin_field_ra" style="width:100px"><b>{EXTRASERVICE_TOTAL}</b></td>
+					<td class="ui-widget-header">{HEXTRASERVICE_TOTAL}</td>
+					<td td style="text-align: right;"><b>{EXTRASERVICE_TOTAL}</b></td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HGRANDTOTAL}</td>
-					<td class="jradmin_field_ra"><b>{GRANDTOTAL}</b></td>
+					<td class="ui-widget-header">{HGRANDTOTAL}</td>
+					<td style="text-align: right;"><b>{GRANDTOTAL}</b></td>
 				</tr>
 			</table>
 		</td>
@@ -54,5 +55,6 @@
 <input type="hidden" name="contractTotal" value="{GRANDTOTAL}" />
 <input type="hidden" name="contract_uid" value="{CONTRACTUID}" />
 <input type="hidden" name="task" value="saveBookout" />
+<input type="hidden" name="no_html" value="1" />
 </form>
 </patTemplate:tmpl>

@@ -1,27 +1,24 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
+	<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_field_la">{EDITLINK}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+		<td>{EDITLINK}</td>
 	</tr>
+	</patTemplate:tmpl>
 	<tr>
-		<td class="jradmin_field_ca"><b>{NOBLACKBOOKINGS}</b></td>
+		<td><b>{NOBLACKBOOKINGS}</b></td>
 	</tr>
 </table>
 <input type="hidden" name="task" value="newBlackBooking" />
+</div>
 </form>
+
 </patTemplate:tmpl>

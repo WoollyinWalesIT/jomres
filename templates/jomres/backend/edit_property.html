@@ -11,9 +11,10 @@ function OnChange(dropdown)
 //-->
 </script>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
@@ -23,84 +24,84 @@ function OnChange(dropdown)
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table>
 				<tr>
 					<td class="jomres_message">{CHANGECOUNTRYWARNING}<br /></td>
 				</tr>
 			</table>
-			<table width="90%" align="center" class="jradmin_table">
+			<table>
 				<tr>
-					<td class="jradmin_subheader_la">{HCOUNTRY}</td>
-					<td class="jradmin_field_la">{COUNTRIESDROPDOWN}</td>
+					<td class="ui-widget-header">{HCOUNTRY}</td>
+					<td >{COUNTRIESDROPDOWN}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HREGION}</td>
-					<td class="jradmin_field_la">{REGIONDROPDOWN}</td>
+					<td class="ui-widget-header">{HREGION}</td>
+					<td >{REGIONDROPDOWN}</td>
 				</tr>
 				<tr>
-					<td colspan="2" width="10%">&nbsp;</td> 
+					<td colspan="2">&nbsp;</td> 
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HPROPERTY_TYPE}</td>
-					<td class="jradmin_field_la">{PROPERTY_TYPE_DROPDOWN}</td>
+					<td class="ui-widget-header">{HPROPERTY_TYPE}</td>
+					<td >{PROPERTY_TYPE_DROPDOWN}</td>
 				<tr>
-					<td colspan="2" width="10%">&nbsp;</td> 
+					<td colspan="2">&nbsp;</td> 
 				</tr>
-					<td class="jradmin_subheader_la">{HNAME}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_name" value="{PROPERTY_NAME}" /> </td> 
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HSTREET}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_street" value="{PROPERTY_STREET}" /> </td>
+					<td class="ui-widget-header">{HNAME}</td>
+					<td ><input class="inputbox" type="text" size="30" name="property_name" value="{PROPERTY_NAME}" /> </td> 
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HTOWN}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_town" value="{PROPERTY_TOWN}" /> </td>
+					<td class="ui-widget-header">{HSTREET}</td>
+					<td ><input class="inputbox" type="text" size="30" name="property_street" value="{PROPERTY_STREET}" /> </td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="10" name="property_postcode" value="{PROPERTY_POSTCODE}" /> </td>	
+					<td class="ui-widget-header">{HTOWN}</td>
+					<td ><input class="inputbox" type="text" size="30" name="property_town" value="{PROPERTY_TOWN}" /> </td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HTELEPHONE}</td>	
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_tel" value="{PROPERTY_TEL}" /> </td>
+					<td class="ui-widget-header">{HPOSTCODE}</td>
+					<td ><input class="inputbox" type="text" size="30" name="property_postcode" value="{PROPERTY_POSTCODE}" /> </td>	
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HFAX}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_fax" value="{PROPERTY_FAX}" /> </td>
+					<td class="ui-widget-header">{HTELEPHONE}</td>	
+					<td ><input class="inputbox" type="text" size="30" name="property_tel" value="{PROPERTY_TEL}" /> </td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HEMAIL}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="30" name="property_email" value="{PROPERTY_EMAIL}" /></td>
+					<td class="ui-widget-header">{HFAX}</td>
+					<td ><input class="inputbox" type="text" size="30" name="property_fax" value="{PROPERTY_FAX}" /> </td>
 				</tr>
 				<tr>
-					<td colspan="2" width="10%">&nbsp;</td> 
+					<td class="ui-widget-header">{HEMAIL}</td>
+					<td ><input class="inputbox" type="text" size="30" name="property_email" value="{PROPERTY_EMAIL}" /></td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{HSTARS}</td>
-					<td class="jradmin_field_la">{STARSDROPDOWN}</td>
+					<td colspan="2">&nbsp;</td> 
 				</tr>
 				<tr>
-					<td colspan="2" width="10%">&nbsp;</td> 
+					<td class="ui-widget-header">{HSTARS}</td>
+					<td >{STARSDROPDOWN}</td>
 				</tr>
 				<tr>
-					<td colspan="2" width="10%">{LATLONG_DESC}</td> 
+					<td colspan="2">&nbsp;</td> 
 				</tr>
 				<tr>
-					<td class="jradmin_field_la">Lat: (nn.nnnn) <input class="inputbox" type="text" size="40" name="lat" value="{LAT}" /> </td>
-					<td class="jradmin_field_la">Long: (nn.nnnn) <input class="inputbox" type="text" size="40" name="long" value="{LONG}" /> </td>
+					<td colspan="2">{LATLONG_DESC}</td> 
+				</tr>
+				<tr>
+					<td >Lat: (nn.nnnn) <input class="inputbox" type="text" size="30" name="lat" value="{LAT}" /> </td>
+					<td >Long: (nn.nnnn) <input class="inputbox" type="text" size="30" name="long" value="{LONG}" /> </td>
 				</tr>
 			</table>
 			<br />
-			<table border="0" class="jradmin_table">
+			<table>
 				<tr>
-					<td class="jradmin_subheader_ca">{HFEATURES}</td>
+					<td class="fg-toolbar ui-widget-header ui-corner-all">{HFEATURES}</td>
 				</tr>
 				<tr>
 					<td>
 						<table>
 							<tr>
-								<td class="jradmin_field_la">
+								<td >
 									<patTemplate:tmpl name="globalPfeatures">
 										<div style="float:left;margin:2px;border:1px solid #d1d1d1;">
 											{FEATURE}<input type="checkbox" name="pid[]" value="{PID}" style="float:left;padding:0;margin:2px 2px 0 0;" {ISCHECKED}>
@@ -110,79 +111,79 @@ function OnChange(dropdown)
 							</tr>
 						</table>
 						<br />
-						<table class="jradmin_table">
+						<table width="100%">
 							<tr>
-								<td class="jradmin_subheader_ca">{HPROPDESCRIPTION}</td>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HPROPDESCRIPTION}</td>
 							</tr>
 							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_DESCRIPTION}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="jradmin_subheader_ca">{HCHECKINTIMES}</td>
-							</tr>
-							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_CHECKIN_TIMES}</td>
+								<td>{PROPERTY_DESCRIPTION}</td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td> 
 							</tr>
 							<tr>
-								<td class="jradmin_subheader_ca">{HAREAACTIVITIES}</td>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HCHECKINTIMES}</td>
 							</tr>
 							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_AREA_ACTIVITIES}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="jradmin_subheader_ca">{HDRIVINGDIRECTIONS}</td>
-							</tr>
-							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_DRIVING_DIRECTIONS}</td>
+								<td>{PROPERTY_CHECKIN_TIMES}</td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td> 
 							</tr>
 							<tr>
-								<td class="jradmin_subheader_ca">{HAIRPORTS}</td>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HAREAACTIVITIES}</td>
 							</tr>
 							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_AIRPORTS}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="jradmin_subheader_ca">{HOTHERTRANSPORT}</td>
-							</tr>
-							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_OTHERTRANSPORT}</td>
+								<td>{PROPERTY_AREA_ACTIVITIES}</td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td> 
 							</tr>
 							<tr>
-								<td class="jradmin_subheader_ca">{HPOLICIESDISCLAIMERS}</td>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HDRIVINGDIRECTIONS}</td>
 							</tr>
 							<tr>
-								<td class="jradmin_field_ca">{PROPERTY_POLICIES_DISCLAIMERS}</td>
+								<td>{PROPERTY_DRIVING_DIRECTIONS}</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HAIRPORTS}</td>
+							</tr>
+							<tr>
+								<td>{PROPERTY_AIRPORTS}</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HOTHERTRANSPORT}</td>
+							</tr>
+							<tr>
+								<td>{PROPERTY_OTHERTRANSPORT}</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td> 
+							</tr>
+							<tr>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">{HPOLICIESDISCLAIMERS}</td>
+							</tr>
+							<tr>
+								<td>{PROPERTY_POLICIES_DISCLAIMERS}</td>
 							</tr>
 							
 							<tr>
-								<td class="jradmin_subheader_ca">Meta title</td>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">Meta title</td>
 							</tr>
 							<tr>
-								<td class="jradmin_field_ca"><input class="inputbox" type="text" size="70" name="metatitle" value="{METATITLE}" /></td>
+								<td><input class="inputbox" type="text" size="70" name="metatitle" value="{METATITLE}" /></td>
 							</tr>
 							<tr>
-								<td class="jradmin_subheader_ca">Meta description</td>
+								<td class="fg-toolbar ui-widget-header ui-corner-all">Meta description</td>
 							</tr>
 							<tr>
-								<td class="jradmin_field_ca"><input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}" /></td>
+								<td><input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}" /></td>
 							</tr>
 							
 						</table>
@@ -196,6 +197,7 @@ function OnChange(dropdown)
 <input type="hidden" name="property_uid" value="{PROPERTYUID}" />
 <input type="hidden" name="task" value="saveProperty" />
 {TOOLBAR2}
+</div>
 </form>
 
 <br />
@@ -206,14 +208,14 @@ function OnChange(dropdown)
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td colspan="2" class="jradmin_subheader_ca">{UPLOADIMAGE}</td>
+					<td colspan="2" class="fg-toolbar ui-widget-header ui-corner-all">{UPLOADIMAGE}</td>
 				</tr>
 				<tr>
 					<td colspan="2" class="jomres_message">{SAVEBEFOREUPLOADWARNING}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image'/></td>
-					<td class="jradmin_field_ca"><input type="submit" value="{UPLOADIMAGE}" class="button" /></td>
+					<td><input type='file' name='image'/></td>
+					<td><input type="submit" value="{UPLOADIMAGE}" class="button" /></td>
 				</tr>
 			</table>
 		</td>
@@ -222,8 +224,8 @@ function OnChange(dropdown)
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_ca">{DELETEIMAGE}</td>
-					<td class="jradmin_field_ca">{IMAGE}</td>
+					<td>{DELETEIMAGE}</td>
+					<td>{IMAGE}</td>
 				</tr>
 			</table>
 		</td>
