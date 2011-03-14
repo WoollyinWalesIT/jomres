@@ -1,3 +1,19 @@
+Jomres 4.7.5 14/03/2011
+
+Fixed a bug where `tax_rate_val` wasn't added on first install therefore adding new service charges to existing bills wouldn't work unless the installer'd been used to upgrade the db.
+A small change to fix the type of commission rate in the administrator area view property page.
+Modified a file to prevent the 'form' gateway from appearing in the gateways list in the property configuration page. We want to discourage users from using this gateway as it involves entering creditcard details on a joomla based server, whereas in fact they should be using a full payment gateway that is PCI compliant.
+Fixed a bug introduced by a new change which prevented currency formats being shown in the tariffs and currencies tab of property config.
+Small change to ensure that the booking form property config option Show max guests per booking affects the room type dropdown list in the booking form, as well as the 'classic' list.
+Removed some old references to popup in the slideshow and view rooms urls in property details.
+Added a check for the php version when installing.
+Added search by price range text to touch template functionality.
+Added code to enable switching off of jquery ui.
+Edited the frontend list propertys (that a manager sees if they're not a super manager) to work with the jquery ui classes.
+Added jomres_decode to the listyourproperties script.
+Some changes to bring manager's page's css into line with the rest of the jquery ui usage on the system.
+A few changes to stop the language switching back to English for no good reason in the administrator area, and changed some country name editing mode functions to ensure that the constant uses the country code, not the country name.
+Some changes to the Jomres installer to resolve issues where users are having to use the discover feature to install Jomres.
 
 
 Jomres 4.7.4 24/02/2011
