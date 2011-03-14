@@ -92,8 +92,8 @@ if ($folderChecksPassed)
 			
 			
 	}
-	
-/*
+
+
 	// Looking to see if Jomres is already installed in Joomla. If it is, we'll simply return true as there's nothing else to do
 	$query="SELECT name FROM #__extensions WHERE `name` = 'com_jomres'";
 	$result=doSelectSql($query);
@@ -118,28 +118,33 @@ if ($folderChecksPassed)
 	";
 
 	$component_id=doInsertSql($query,"");
-	if ($result)
+	if ($component_id)
 		{
-		$query = "INSERT INTO jos_menus (
+		$query = "SELECT max(rgt) FROM #__menu";
+		$highest = (int)doSelectSql($query,1);
+		$lft=$highest+1;
+		$rgt=$highest+2;
+		
+		$query = "INSERT INTO #__menu (
 			`menutype`,`title`,`alias`,`note`,
 			`path`,`link`,`type`,`published`,
 			`parent_id`,`level`,`component_id`,`ordering`,
 			`checked_out`,`checked_out_time`,`browserNav`,`access`,
 			`img`,`template_style_id`,`params`,`lft`,
-			`rgt`,`home`,`language`
+			`rgt`,`home`,`language`,`client_id`
 			) VALUES (
-			'_adminmenu','com_jomres','Jomres','Jomres',
-			'','index.php?option=com_jomres','component',0,
+			'main','com_jomres','Jomres','Jomres',
+			'','index.php?option=com_jomres','component',1,
 			1,1,".$component_id.",0,
-			0,'0000-00-00 00:00:00',0,0,
-			'',0,'',1,
-			10,0,'*'
+			0,'0000-00-00 00:00:00',0,1,
+			'class:component',0,'',
+			".$lft.",".$rgt.",0,'*',1
 			)";
 		$result=doInsertSql($query,"");
 		}
 	else
 		echo "Unable to create main Jomres admin menu option<br>";
-		 */
+
 $admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id(42);
 $admin_user = $admin_user[42];
 
