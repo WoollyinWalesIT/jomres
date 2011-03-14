@@ -30,7 +30,7 @@ $jomressession  = $tmpBookingHandler->getJomressession();
 
 $showSearchOptions=true;
 $jomreslang =jomres_getSingleton('jomres_language');
-$jomreslang->get_language('xx');
+$jomreslang->get_language();
 $customTextObj =jomres_getSingleton('custom_text');
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))

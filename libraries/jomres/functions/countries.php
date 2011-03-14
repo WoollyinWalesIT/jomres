@@ -33,7 +33,7 @@ function getSimpleCountry($selectedCountry)
 	foreach ($countryCodes as $k=>$v)
 		{
 		if ($k==$selectedCountry)
-			$countryName=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false);
+			$countryName=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$k,$v,false,false);
 		}
 	return $countryName;
 	}
@@ -540,9 +540,10 @@ function countryCodesArray($translate=true)
 		$new_arr = array();
 		foreach ($countryCodes as $key=>$val)
 			{
-			$new_arr[$key]=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$val,$val,false,false);
+			$new_arr[$key]=jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$key,$val,false,false);
 			}
 		}
+
 	$countryCodes = $new_arr;
 	asort($countryCodes);
 	return $countryCodes;

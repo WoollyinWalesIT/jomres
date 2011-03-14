@@ -38,7 +38,7 @@ class j16000miscdefinesfortouchtemplating
 		$countryCodes=countryCodesArray();
 		foreach ($countryCodes as $k=>$v)
 			{
-			$output[]		= jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v);
+			$output[]		= jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$k,$v);
 			}
 		
 		$FIPS=regionNamesArray();
