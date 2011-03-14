@@ -433,6 +433,10 @@ function init_javascript()
 			$MiniComponents =jomres_getSingleton('mcHandler');
 			
 			
+			
+			if (!isset($jrConfig['load_jquery_ui']))
+				$jrConfig['load_jquery_ui'] = "1";
+				
 			if (!isset($jrConfig['jquery_ui_theme_detected']))
 				$jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css";
 			
