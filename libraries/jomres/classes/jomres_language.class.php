@@ -199,7 +199,7 @@ class jomres_language
 		{
 		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
 		$langs=array();
-		$langs['en-GB']="Bulgarian";
+		$langs['bg-BG']="Bulgarian";
 		$langs['en-GB']="English";
 		$langs['cs-CZ']="Czech";
 		$langs['da-DK']="Dansk";
