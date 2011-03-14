@@ -37,7 +37,7 @@ class j16000chooseLanguages
 
 		$jomreslang =jomres_getSingleton('jomres_language');
 		$languagesArray = $jomreslang->define_langfile_to_languages_array();
-	
+
 		$rows=array();
 		foreach ($languagesArray as $key=>$val)
 			{

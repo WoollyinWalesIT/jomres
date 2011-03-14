@@ -989,7 +989,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_TAB','Тип обект');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE','Редактирай типа обект');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO','Избери типа обект');
 define('_JOMRES_COM_LOGGING','Логване за системата');
-define('_JOMRES_COM_LOGGING_WARNING',' <i>'JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i>Да се използва от системния администратор .');
+define('_JOMRES_COM_LOGGING_WARNING',' <i>'.JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i>Да се използва от системния администратор.');
 define('_JOMRES_COM_LOGGING_BOOKING','Логване за резервациите ');
 define('_JOMRES_COM_LOGGING_GATEWAY','Логване на системите за плащане ');
 define('_JOMRES_COM_LOGGING_REQUEST','Логване на всички входящи ');
