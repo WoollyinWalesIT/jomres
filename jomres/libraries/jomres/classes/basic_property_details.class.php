@@ -153,7 +153,7 @@ class basic_property_details
 		$customTextObj =jomres_getSingleton('custom_text');
 		foreach ($propertyData as $data)
 			{
-			$countryname=getSimpleCountry($data->property_country);
+			//$countryname=getSimpleCountry($data->property_country);
 			$customTextObj->get_custom_text_for_property($this->property_uid);
 
 			$countryname=getSimpleCountry($data->property_country);
