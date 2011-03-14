@@ -85,12 +85,10 @@ class custom_text
 			$this->property_uid = $property_uid;
 		
 		$current_custom_text=$this->global_custom_text[$this->lang];
-		
-		//var_dump($this->all_properties_custom_text[$this->property_uid][$this->lang]);exit;
-		
-		if ( (int) $this->property_uid > 0 && isset($this->global_custom_text[$this->lang]) )
+
+		if ( (int) $this->property_uid > 0 && isset($this->global_custom_text[$this->lang]) &&  isset($this->all_properties_custom_text[$this->property_uid][$this->lang]))
 			$current_custom_text=array_merge ($this->global_custom_text[$this->lang],$this->all_properties_custom_text[$this->property_uid][$this->lang]);
-		elseif (!isset($this->global_custom_text[$this->lang]))
+		elseif (isset($this->all_properties_custom_text[$this->property_uid][$this->lang]))
 			$current_custom_text=$this->all_properties_custom_text[$this->property_uid][$this->lang];
 
 		return $current_custom_text;
