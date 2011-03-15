@@ -1508,3 +1508,6 @@ define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC','Set this option to Yes if you wa
 
 define('_JOMRES_CONFIG_JQUERY_UI',"Load Jomres jQuery UI library?");
 
+define('_JOMRES_SORTORDER_PRICE_DESC','Price (highest first)');
+define('_JOMRES_SORTORDER_PRICE_ASC','Price (lowest first)');
+

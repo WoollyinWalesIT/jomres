@@ -1503,3 +1503,6 @@ define('_JOMRES_COM_ADVANCED_SITE_CONFIG','Advanced site config');
 define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC','Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options will only be applicable to installations of Jomres Developer, Jomres Lite users will not be able to take full advantage of the features that they enable.');
 
 define('_JOMRES_CONFIG_JQUERY_UI',"Load Jomres jQuery UI library?");
+
+define('_JOMRES_SORTORDER_PRICE_DESC','Price (highest first)');
+define('_JOMRES_SORTORDER_PRICE_ASC','Price (lowest first)');
