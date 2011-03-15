@@ -245,6 +245,7 @@ class j16000addplugin
 					
 					require_once ($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
+				touch ($remote_pluginsDirPath.$pluginName.JRDS."index.html");
 				if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
 				}
 			else
