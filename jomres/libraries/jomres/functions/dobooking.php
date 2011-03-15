@@ -535,6 +535,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		if ($mrConfig['booking_form_rooms_list_style'] == "2") // Room type dropdown selection feature
 			{
 			$roomtype_dropdown_list = array();
+			if ($amend_contract) // If we're amending a booking, we will automatically switch back to the 'classic' rooms list selection so that the manager can assign a user to a new room. As that's the case, we'll need the 'selectedRooms' div back in the template.
+				$roomtype_dropdown_list['AMENDBOOKING_SELECTEDROOMSDIV'] ='<div id="selectedRooms" class="roomslist"></div>';
+										
 			$roomtype_dropdown_list_output = array();
 			$roomtype_dropdown_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
 			$roomtype_dropdown_list_output[]=$roomtype_dropdown_list;

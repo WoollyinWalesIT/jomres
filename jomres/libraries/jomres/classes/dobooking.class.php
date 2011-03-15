@@ -334,6 +334,13 @@ class dobooking
 
 		if (!isset($mrConfig['booking_form_rooms_list_style']))
 			$mrConfig['booking_form_rooms_list_style']		= "1";
+		
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
+		
+		if ($amend_contract)
+			$mrConfig['booking_form_rooms_list_style']		= "1";
+		
 		$this->cfg_booking_form_rooms_list_style			= $mrConfig['booking_form_rooms_list_style'];
 
 		if (is_null($this->smoking) || strlen($this->smoking) == 0)
