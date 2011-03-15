@@ -78,6 +78,27 @@ class j01009filterproperties
 					$this->propertys_uids[] = $u->propertys_uid;
 			break;
 			#########################################################################################
+			// Many thanks Derek B from Adonis Media Ltd
+			case '6':
+				$gor=genericOr($propertys_uids,'propertys_uid');
+				$query = "SELECT p.propertys_uid, rr.roomrateperday FROM #__jomres_propertys AS p LEFT JOIN #__jomres_rates AS rr ON p.propertys_uid = rr.property_uid WHERE $gor ORDER BY rr.roomrateperday ASC";
+				$uids = doSelectSql($query);
+				foreach ($uids as $u)
+					{
+					//if ( (float)$u->roomrateperday > 0)
+						$this->propertys_uids[] = $u->propertys_uid;
+					}
+			break;
+			#########################################################################################
+			// Many thanks Derek B from Adonis Media Ltd
+			case '7':
+				$gor=genericOr($propertys_uids,'propertys_uid');
+				$query = "SELECT p.propertys_uid, rr.roomrateperday FROM #__jomres_propertys AS p LEFT JOIN #__jomres_rates AS rr ON p.propertys_uid = rr.property_uid WHERE $gor ORDER BY rr.roomrateperday DESC";
+				$uids = doSelectSql($query);
+				foreach ($uids as $u)
+				$this->propertys_uids[] = $u->propertys_uid;
+			break;
+			#########################################################################################
 			default:
 				$this->propertys_uids = $propertys_uids;
 			break;
@@ -89,7 +110,9 @@ class j01009filterproperties
 		$sortArray[]=jomresHTML::makeOption("3", jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION',_JOMRES_SORTORDER_PROPERTYREGION,false,false));
 		$sortArray[]=jomresHTML::makeOption("4", jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN',_JOMRES_SORTORDER_PROPERTYTOWN,false,false));
 		$sortArray[]=jomresHTML::makeOption("5", jr_gettext('_JOMRES_SORTORDER_STARS',_JOMRES_SORTORDER_STARS,false,false));
-
+		//$sortArray[]=jomresHTML::makeOption("6", jr_gettext('_JOMRES_SORTORDER_PRICE_ASC',_JOMRES_SORTORDER_PRICE_ASC,false,false));
+		//$sortArray[]=jomresHTML::makeOption("7", jr_gettext('_JOMRES_SORTORDER_PRICE_DESC',_JOMRES_SORTORDER_PRICE_DESC,false,false));
+		
 		$order['HORDER']=jr_gettext('_JOMRES_ORDER',_JOMRES_ORDER);
 
 		$order['ORDER']=jomresHTML::selectList( $sortArray, 'sortby', 'onchange="gosearch();" id="sortby" size="1"', 'value', 'text', $sortid );
@@ -115,6 +138,9 @@ class j01009filterproperties
 		$output[]		=jr_gettext('_JOMRES_SORTORDER_PROPERTYREGION',_JOMRES_SORTORDER_PROPERTYREGION);
 		$output[]		=jr_gettext('_JOMRES_SORTORDER_PROPERTYTOWN',_JOMRES_SORTORDER_PROPERTYTOWN);
 		$output[]		=jr_gettext('_JOMRES_SORTORDER_STARS',_JOMRES_SORTORDER_STARS);
+		$output[]		=jr_gettext('_JOMRES_SORTORDER_PRICE_ASC',_JOMRES_SORTORDER_PRICE_ASC);
+		$output[]		=jr_gettext('_JOMRES_SORTORDER_STARS',_JOMRES_SORTORDER_PRICE_DESC);
+		
 		foreach ($output as $o)
 			{
 			echo $o;
