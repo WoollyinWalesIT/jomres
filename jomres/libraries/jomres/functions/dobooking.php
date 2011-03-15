@@ -289,9 +289,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$output['EARLIESTDAY']=$explodedEarliest[2]+$bkg->cfg_mindaysbeforearrival;
 	$output['EARLIESTMON']=$explodedEarliest[1]-1;
 	$output['EARLIESTYEAR']=$explodedEarliest[0];
-	if ($amend_contract && $arrivalDate < $today)
-		$output['ARRIVALDATE']=outputDate($arrivalDate);
-	else
+	//if ($amend_contract && $arrivalDate < $today)
+	//	$output['ARRIVALDATE']=outputDate($arrivalDate);
+	//else
 		$output['ARRIVALDATE']=$bkg->makeArrivalDateOutput($arrivalDate);
 	$output['DEPARTUREDATE']=$bkg->makeDepartureDateOutput($departureDate);
 
