@@ -19,12 +19,11 @@
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table>
 				<tr>
 					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
 					<td class="fg-toolbar ui-widget-header ui-corner-all">ID</td>
 					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSTATUS}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
 					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
 					<td class="fg-toolbar ui-widget-header ui-corner-all">{HRAISED}</td>
 					<td class="fg-toolbar ui-widget-header ui-corner-all">{HDUE}</td>
@@ -40,7 +39,6 @@
 					<td>{ID}</td>
 					<td>{STATUS}</td>
 					<td>{GUEST}</td>
-					<td>{ITEMS}</td>
 					<td>{RAISED}</td>
 					<td>{DUE}</td>
 					<td>{PAID}</td>
@@ -49,6 +47,11 @@
 					<td>{RECURTOTAL}  <span class="small">({CURRENCYCODE})</span> </td>
 					<td>{PAYNOW}</td>
 					
+				</tr>
+				<tr>
+					<td colspan="11">
+						{ITEMS}
+					</td>
 				</tr>
 				</patTemplate:tmpl>
 			</table>
