@@ -36,6 +36,9 @@ function showSiteConfig(  )
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 	$jrtb .= $jrtbar->endTable();
 
+	if (!isset($jrConfig['load_jquery_ui']))
+		$jrConfig['load_jquery_ui'] = "1";
+	
 	$lists = array();
 	$list = array();
 	// make a standard yes/no list
