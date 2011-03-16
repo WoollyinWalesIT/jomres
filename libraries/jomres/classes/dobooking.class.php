@@ -2343,6 +2343,9 @@ class dobooking
 				break;
 			}
 		//$this->setPopupMessage($num_period);
+		$arr = explode(".",$num_period);
+		if ($arr[1] == "00")
+			$num_period = $arr[0];
 		return $num_period;
 		}
 	
