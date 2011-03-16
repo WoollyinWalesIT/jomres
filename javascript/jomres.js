@@ -152,9 +152,11 @@ function setOpacity(obj, opacity) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function hidediv(elementName) {
+	jQuery("#"+elementName).slideUp();
 	}
 
 function showdiv($elementName) {
+	jQuery("#"+elementName).slideDown();
 	}
 
 ///////////////////////////////////////
@@ -170,9 +172,11 @@ function generic(){
 		for (x in toload){
 			eval(toload[x]);
 			}
+		
 		}
 	if ( document.ajaxform !=undefined ) 
 		disableSubmitButton(document.ajaxform.confirmbooking);
+	
 	}
 	
 //setup onload function
@@ -359,12 +363,12 @@ function showRoomsList(req){
 	}
 
 function HideRoomsList(){
-	jQuery("#roomsListWrapper").hide('blind', { direction: 'vertical' }, 1000);
+	jQuery("#roomsListWrapper").delay(800).hide('blind', { direction: 'vertical' }, 1000);
 	return false;
 	}
 
 function ShowRoomsList(){
-	jQuery("#roomsListWrapper").show('blind', { direction: 'vertical' }, 1000);
+	jQuery("#roomsListWrapper").delay(800).show('blind', { direction: 'vertical' }, 1000);
 	return false;
 	}
 	
@@ -385,34 +389,21 @@ function buildAvailable(string)
 		}
 	}
 	
-function checkSelectRoomMessage(){
-	var exists = document.getElementById("roomalert_top");
-	if (exists != null){
-		if (document.getElementById("messages").innerHTML == selectroommessage ){
+function checkSelectRoomMessage(oktobook){
+		if (!oktobook){
 			if (show_extras == true)
-				jQuery("#extrascontainer").fadeTo("slow", 0.2);
-			jQuery("#bookingform_address").fadeTo("slow", 0.2);
-			jQuery("#bookingform_footer").fadeTo("slow", 0.2);
-			document.getElementById("roomalert_top").className="roomalert_on"
-			document.getElementById("roomalert_bottom").className="roomalert_on"
-			//showdiv("roomalert_top");
-			//showdiv("roomalert_bottom");
-			//jQuery("#roomalert_top").Highlight(500, '#fc0000');               // Causes error with jquery 1.2 as interface library does not appear compatible with this version of jquery
-			//jQuery("#roomalert_bottom").Highlight(500, '#fc0000');               // Causes error with jquery 1.2 as interface library does not appear compatible with this version of jquery
+				jQuery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
+			jQuery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
+			jQuery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
+			jQuery("#totals_container").delay(800).fadeTo("slow", 0.1);
 			}
 		else{
 			if (show_extras == true)
-				document.getElementById("extrascontainer").className="roomalert_off";
-			document.getElementById("roomalert_top").className="roomalert_off";
-			document.getElementById("roomalert_bottom").className="roomalert_off";
-			//hidediv("roomalert_top");
-			//hidediv("roomalert_bottom");
-			if (show_extras == true)
-				jQuery("#extrascontainer").fadeTo("slow", 1);
-			jQuery("#bookingform_address").fadeTo("slow", 1);
-			jQuery("#bookingform_footer").fadeTo("slow", 1);
+				jQuery("#extrascontainer").delay(800).fadeTo("slow", 1);
+			jQuery("#bookingform_address").delay(800).fadeTo("slow", 1);
+			jQuery("#bookingform_footer").delay(800).fadeTo("slow", 1);
+			jQuery("#totals_container").delay(800).fadeTo("slow", 1);
 			}
-		}
 	}
 
 (function($) {
@@ -435,13 +426,6 @@ function checkSelectRoomMessage(){
 })(jQuery);
 
 
-function SRPcheckShowGuestDeetsNow() {
-	if (isSRP){
-		if (show_extras == true)
-			showdiv("extrascontainer");
-		showdiv("guestdeets");
-		}
-	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Departure date adjustment stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

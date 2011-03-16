@@ -226,55 +226,57 @@ jQuery(document).ready(function() {
 			</patTemplate:tmpl>
 			<tr>
 				<td valign="top">
-					<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
-						<tr>
-							<th colspan="6">{PRICE_SUMMARY}</th>
-						</tr>
-						<tr>
-							<td><b>{BILLING_TAX}</b></td>
-							<td>
-								<b><div id="taxtotal" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-						<tr>
-							<td><b>{EXTRAS_TAX}</b></td>
-							<td>
-								<b><div id="extra_tax" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-						<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-						<tr>
-							<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
-							<td>
-								<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-						</patTemplate:tmpl>
-						<tr>
-							<td><b>{PERSONAL_DISCOUNT}</b></td>
-							<td>
-								<b><div id="personal_discount" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-						<tr>
-							<td><b>{SINGLE_PERSON_SUPPLIMENT}</b></td>
-							<td>
-								<b><div id="single_suppliment" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-						<tr>
-							<td><b>{BILLING_TOTAL}</b></td>
-							<td>
-								<b><div id="grandtotal" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-						<tr>
-							<td><b>{DEPOSIT}</b></td>
-							<td>
-								<b><div id="deposit" style="text-align:right;"></div></b>
-							</td>
-						</tr>
-					</table>
+					<div id="totals_container">
+						<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<th colspan="6">{PRICE_SUMMARY}</th>
+							</tr>
+							<tr>
+								<td><b>{BILLING_TAX}</b></td>
+								<td>
+									<b><div id="taxtotal" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+							<tr>
+								<td><b>{EXTRAS_TAX}</b></td>
+								<td>
+									<b><div id="extra_tax" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+							<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
+							<tr>
+								<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
+								<td>
+									<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+							</patTemplate:tmpl>
+							<tr>
+								<td><b>{PERSONAL_DISCOUNT}</b></td>
+								<td>
+									<b><div id="personal_discount" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+							<tr>
+								<td><b>{SINGLE_PERSON_SUPPLIMENT}</b></td>
+								<td>
+									<b><div id="single_suppliment" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+							<tr>
+								<td><b>{BILLING_TOTAL}</b></td>
+								<td>
+									<b><div id="grandtotal" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+							<tr>
+								<td><b>{DEPOSIT}</b></td>
+								<td>
+									<b><div id="deposit" style="text-align:right;"></div></b>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -391,23 +393,20 @@ jQuery(document).ready(function() {
 			</tr>
 			<tr>
 				<td>
-					<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
-						<tr id="bookingform_footer">
-							<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" width="32" height="32" /> </th>
-						</tr>
-						<tr> 
-							<td valign="top" style="text-align:right;">
-								<div id="submitbutton">
-									<button name="confirmbooking" class="fg-button ui-state-default ui-corner-all" type="button"  onclick="dobooking_validate();">{SUBMIT}</button>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td valign="top" class="bookingform_extras ui-tabs ui-widget ui-widget-content ui-corner-all">
-					&nbsp;
+					<div id="bookingform_footer">
+						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+							<tr >
+								<th style="text-align:left;"><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" width="32" height="32" /> </th>
+							</tr>
+							<tr> 
+								<td valign="top" style="text-align:right;">
+									<div id="submitbutton">
+										<button name="confirmbooking" class="fg-button ui-state-default ui-corner-all" type="button"  onclick="dobooking_validate();">{SUBMIT}</button>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</td>
 			</tr>
 		</table>
