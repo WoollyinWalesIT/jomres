@@ -1734,6 +1734,14 @@ function hotelSettings()
 
 	$fixedArrivalDatesRecurring = jomresHTML::integerSelectList( 01, 208, 1, 'cfg_fixedArrivalDatesRecurring', 'size="1" class="inputbox"', $mrConfig['fixedArrivalDatesRecurring'], "%02d" );
 
+	if (!isset($mrConfig['booking_form_daily_weekly_monthly']))
+		$mrConfig['booking_form_daily_weekly_monthly'] = "D";
+	$pricingOutput=array();
+	$pricingOutput[]= jomresHTML::makeOption( 'D', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY );
+	$pricingOutput[]= jomresHTML::makeOption( 'W', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY );
+	$pricingOutput[]= jomresHTML::makeOption( 'M', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY );
+	$booking_form_daily_weekly_monthly= jomresHTML::selectList($pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['booking_form_daily_weekly_monthly']);
+	
 	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
 
 	$lists['showRoomTypeImageInBookingForm'] = jomresHTML::selectList( $yesno, 'cfg_showRoomTypeImageInBookingForm', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['showRoomTypeImageInBookingForm'] );
@@ -1847,6 +1855,9 @@ function hotelSettings()
 	$componentArgs['tariffModeDD']=$tariffModeDD;
 	$componentArgs['Itemid']=$Itemid;
 	$componentArgs['booking_form_rooms_list_style']=$booking_form_rooms_list_style;
+	$componentArgs['booking_form_daily_weekly_monthly']=$booking_form_daily_weekly_monthly;
+	
+	
 	ob_start();
 
 	// The following javascript is for selecting currency codes

@@ -46,6 +46,7 @@ class j00501bookings1 {
 		$smokingOptionDropdownList=$componentArgs['smokingOptionDropdownList'];
 		$weekenddayDropdown=$componentArgs['weekenddayDropdown'];
 		$booking_form_rooms_list_style=$componentArgs['booking_form_rooms_list_style'];
+		$booking_form_daily_weekly_monthly=$componentArgs['booking_form_daily_weekly_monthly'];
 		
 		
 		$configurationPanel->startPanel(_JOMRES_COM_A_BOOKING);
@@ -55,7 +56,15 @@ class j00501bookings1 {
 			$configurationPanel->setmiddle($booking_form_rooms_list_style);
 			$configurationPanel->setright(_JOMRES_ROOMMSLIST_STYLE_DESC);
 			$configurationPanel->insertSetting();
+			
+			
 			}
+			
+		$configurationPanel->setleft(_JOMRES_BOOKINGFORM_PRICINGOUTPUT);
+		$configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
+		$configurationPanel->setright();
+		$configurationPanel->insertSetting();
+			
 		$configurationPanel->setleft(_JOMRES_COM_A_MINIMUMINTERVAL);
 		$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
 		$configurationPanel->setright(_JOMRES_COM_A_MINIMUMINTERVAL_DESC);
