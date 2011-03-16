@@ -177,55 +177,57 @@ function dateStatus(date) {
 					</tr>
 					<tr>
 						<td valign="top">
-							<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<th colspan="6">{PRICE_SUMMARY}</th>
-								</tr>
-								<tr>
-									<td><b>{BILLING_TAX}</b></td>
-									<td>
-										<b><div id="taxtotal" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-								<tr>
-									<td><b>{EXTRAS_TAX}</b></td>
-									<td>
-										<b><div id="extra_tax" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-								<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-								<tr>
-									<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
-									<td>
-										<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-								</patTemplate:tmpl>
-								<tr>
-									<td><b>{PERSONAL_DISCOUNT}</b></td>
-									<td>
-										<b><div id="personal_discount" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-								<tr>
-									<td><b>{SINGLE_PERSON_SUPPLIMENT}</b></td>
-									<td>
-										<b><div id="single_suppliment" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-								<tr>
-									<td><b>{BILLING_TOTAL}</b></td>
-									<td>
-										<b><div id="grandtotal" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-								<tr>
-									<td><b>{DEPOSIT}</b></td>
-									<td>
-										<b><div id="deposit" style="text-align:right;"></div></b>
-									</td>
-								</tr>
-							</table>
+							<div id="totals_container">
+								<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+									<tr>
+										<th colspan="6">{PRICE_SUMMARY}</th>
+									</tr>
+									<tr>
+										<td><b>{BILLING_TAX}</b></td>
+										<td>
+											<b><div id="taxtotal" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+									<tr>
+										<td><b>{EXTRAS_TAX}</b></td>
+										<td>
+											<b><div id="extra_tax" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+									<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
+									<tr>
+										<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
+										<td>
+											<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+									</patTemplate:tmpl>
+									<tr>
+										<td><b>{PERSONAL_DISCOUNT}</b></td>
+										<td>
+											<b><div id="personal_discount" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+									<tr>
+										<td><b>{SINGLE_PERSON_SUPPLIMENT}</b></td>
+										<td>
+											<b><div id="single_suppliment" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+									<tr>
+										<td><b>{BILLING_TOTAL}</b></td>
+										<td>
+											<b><div id="grandtotal" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+									<tr>
+										<td><b>{DEPOSIT}</b></td>
+										<td>
+											<b><div id="deposit" style="text-align:right;"></div></b>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</td>
 					</tr>
 					<tr>
@@ -243,7 +245,7 @@ function dateStatus(date) {
 						</td>
 					</tr>
 					<tr>
-						<td valign="top" id="bookingform_address ui-tabs ui-widget ui-widget-content ui-corner-all">
+						<td valign="top" id="bookingform_address" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 							<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
 										<tr>
 											<th colspan="6" class="bform_small"><img border="0" style="vertical-align:top;" src="jomres/images/number2.png" /></th>

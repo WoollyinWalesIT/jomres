@@ -409,17 +409,16 @@ if ($field != "heartbeat" && $field != "show_log")
 			}
 		else
 			$bkg->setErrorLog("handlereq:: Field ".$lastfield." exempt from pricing rebuild");
-		
 		}
 	else
 		$bkg->setErrorLog("handlereq:: bkg check of arrival or departure date failed");
-		$bkg->monitorBookingStatus();
+	$bkg->monitorBookingStatus();
 	if ($bkg->resetPricingOutput)
 		$bkg->outputZeroPrices();
 	if ( $bkg->getOkToBook() )
 		{
 		echo $oktobookClass;
-		echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage();';
+		echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage(true);';
 		echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false));
 		echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 		}
@@ -427,10 +426,11 @@ if ($field != "heartbeat" && $field != "show_log")
 		{
 		$messagesClass=$errorClass;
 		echo $messagesClass;
-		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage();';
+		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage(false);';
 		if ($firstrun != "1")
 			echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 		echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
+		
 		}
 	if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )
 		{
@@ -547,8 +547,6 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 			{
 			$output.='<div class="selectedRooms"></div>';
 			$output.='<div class="roomslist_availabletext"></div>';
-			// populateDiv("messages","
-			 
 			}
 
 		$output=$bkg->generateRoomsList($roomAndTariffArray);
