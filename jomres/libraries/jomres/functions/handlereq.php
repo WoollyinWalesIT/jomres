@@ -365,13 +365,15 @@ if ($field != "heartbeat" && $field != "show_log")
 			if ($bkg->getGuestVariantCount() > 0)
 				echo '; populateDiv("totalinparty","'.$bkg->getTotalInParty().'")';
 
-			echo '; populateDiv("staydays","'.$bkg->getStayDays().'")';
+			$staydays = $bkg->getStayDays();
+			$num_period = $bkg->get_part_of_stay_period($staydays);
+			echo '; populateDiv("staydays","'.$num_period.'")';
 
 			if (get_showtime('include_room_booking_functionality'))
 				{
 				$room_per_night = $bkg->getRoompernight();
 				$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
-				
+				$room_per_night = $bkg->get_rate_per_night_converted_to_output_period($room_per_night);
 				if ($tariffChargesStoredWeeklyYesNo=="0" && get_showtime('include_room_booking_functionality'))
 					echo '; populateDiv("roompernight","'.output_price($room_per_night).'")';
 

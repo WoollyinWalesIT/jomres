@@ -331,9 +331,13 @@ class dobooking
 		$this->cfg_bookingform_requiredfields_tel			= $mrConfig['bookingform_requiredfields_tel'];
 		$this->cfg_bookingform_requiredfields_mobile		= $mrConfig['bookingform_requiredfields_mobile'];
 		$this->cfg_bookingform_requiredfields_email			= $mrConfig['bookingform_requiredfields_email'];
-
+		
 		if (!isset($mrConfig['booking_form_rooms_list_style']))
 			$mrConfig['booking_form_rooms_list_style']		= "1";
+		
+		if (!isset($mrConfig['booking_form_daily_weekly_monthly']))
+			$mrConfig['booking_form_daily_weekly_monthly']		= "D";
+		$this->cfg_booking_form_daily_weekly_monthly			= $mrConfig['booking_form_daily_weekly_monthly'];
 		
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
@@ -1082,11 +1086,58 @@ class dobooking
 				}
 
 			$output['ACCOMMODATION_TOTAL']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL)).$tax_output;
-			$output['ACCOMMODATION_NIGHTS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS));
-			if ($mrConfig['perPersonPerNight'] == "0" )
+			
+		switch ($this->cfg_booking_form_daily_weekly_monthly)
+			{
+			case "D":
+				$output['ACCOMMODATION_NIGHTS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS));
+				break;
+			case "W":
+				$output['ACCOMMODATION_NIGHTS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS',_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS));
+				break;
+			case "M":
+				$output['ACCOMMODATION_NIGHTS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS',_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS));
+				break;
+			}
+
+/* 			if ($mrConfig['perPersonPerNight'] == "0" )
 				$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM));
 			else
-				$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON));
+				$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON)); */
+				
+
+			if ($mrConfig['perPersonPerNight'] == "0" )
+				{
+				switch ($this->cfg_booking_form_daily_weekly_monthly)
+					{
+					case "D":
+						$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY));
+						break;
+					case "W":
+						$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY));
+						break;
+					case "M":
+						$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY));
+						break;
+					}
+				}
+				
+			else
+				{
+				switch ($this->cfg_booking_form_daily_weekly_monthly)
+					{
+					case "D":
+						$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON',_JOMRES_BOOKINGFORM_PERPERSON)).' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY));
+						break;
+					case "W":
+						$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON',_JOMRES_BOOKINGFORM_PERPERSON)).' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY));
+						break;
+					case "M":
+						$output['ACCOMMODATION_PERROOM']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PERPERSON',_JOMRES_BOOKINGFORM_PERPERSON)).' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY));
+						break;
+					}
+				}
+			
 			$output['PRICE_SUMMARY']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PRICE_SUMMARY',_JOMRES_AJAXFORM_PRICE_SUMMARY));
 
 			$output['ERRORBACKGROUNDCOLOUR']	=$mrConfig['inputBoxErrorBackground'];
@@ -2274,6 +2325,47 @@ class dobooking
 		return $this->stayDays;
 		}
 
+	function get_part_of_stay_period($staydays)
+		{
+		switch ($this->cfg_booking_form_daily_weekly_monthly)
+			{
+			case "D":
+				$num_period = $staydays;
+				break;
+			case "W":
+				$num_period =  number_format($staydays/7, 2, '.', '');
+				break;
+			case "M":
+				$month = date("m",$this->unixArrivalDate);
+				$year = date("Y",$this->unixArrivalDate);
+				$num = cal_days_in_month(CAL_GREGORIAN, $month,$year); 
+				$num_period =number_format(($staydays / $num), 2, '.', '');
+				break;
+			}
+		//$this->setPopupMessage($num_period);
+		return $num_period;
+		}
+	
+	function get_rate_per_night_converted_to_output_period($ratepernight)
+		{
+		switch ($this->cfg_booking_form_daily_weekly_monthly)
+			{
+			case "D":
+				$num_period = $ratepernight;
+				break;
+			case "W":
+				$num_period = $ratepernight * 7;
+				break;
+			case "M":
+				$month = date("m",$this->unixArrivalDate);
+				$year = date("Y",$this->unixArrivalDate);
+				$num = cal_days_in_month(CAL_GREGORIAN, $month,$year); 
+				$num_period =$ratepernight * $num;
+				break;
+			}
+		return $num_period;
+		}
+	
 	/**
 	#
 	 * Find the number of days between date 1 & date 2, used by the setStayDays method
@@ -4671,6 +4763,23 @@ class dobooking
 			{
 			$rpn=$rpn/7;
 			}
+		
+		switch ($this->cfg_booking_form_daily_weekly_monthly)
+			{
+			case "D":
+				$rpn=$rpn;
+				break;
+			case "W":
+				$rpn=$rpn * 7;
+				break;
+			case "M":
+				$month = date("m",$this->unixArrivalDate);
+				$year = date("Y",$this->unixArrivalDate);
+				$num = cal_days_in_month(CAL_GREGORIAN, $month,$year); 
+				$rpn=$rpn * $num;
+				break;
+			}
+		
 		return $rpn;
 		}
 
@@ -4692,7 +4801,20 @@ class dobooking
 			$tariffStuff['HRATEPERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY,false,false) );
 		else
 			$tariffStuff['HRATEPERNIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK,false,false) );
-
+		
+		switch ($this->cfg_booking_form_daily_weekly_monthly)
+			{
+			case "D":
+				$tariffStuff['HRATEPERNIGHT'] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY,false,false));
+				break;
+			case "W":
+				$tariffStuff['HRATEPERNIGHT'] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY,false,false));
+				break;
+			case "M":
+				$tariffStuff['HRATEPERNIGHT'] = $this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY,false,false));
+				break;
+			}
+		
 		$roomRow['HEADER_ROOMNUMBER']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER,false,false) );
 		$roomRow['HEADER_ROOMTYPE']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_TYPE,false,false) );
 		$roomRow['HEADER_SMOKING']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING,false,false) );
@@ -4860,7 +4982,10 @@ class dobooking
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($this->getGuestVariantCount() > 0)
 			echo '; populateDiv("totalinparty","'.$this->getTotalInParty().'")';
-		echo '; populateDiv("staydays","'.$this->getStayDays().'")';
+		
+		$staydays = $this->getStayDays();
+		$num_period = $this->get_part_of_stay_period($staydays);
+		echo '; populateDiv("staydays","'.$num_period.'")';
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="0")
 			echo '; populateDiv("roompernight","'.output_price("0.00").'")';
 		echo '; populateDiv("roomtotal","'.output_price("0.00").'")';
