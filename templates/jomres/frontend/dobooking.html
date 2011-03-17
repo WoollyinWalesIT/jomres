@@ -133,8 +133,8 @@ jQuery(document).ready(function() {
 								<td colspan="4"><div id="room_allocations" class="jomres_message">&nbsp;</div></td>
 							</tr>
 							<tr>
-								<td>&nbsp;</div></td><td>&nbsp;</td>
-								<td><div id="totalinparty"  style="font-weight: bold;"></div></td><td>{BILLING_TOTALINPARTY}</td>
+								<td>&nbsp;</td><td>&nbsp;</td>
+								<td><div id="totalinparty"  style="font-weight: bold;">&nbsp;</div></td><td>{BILLING_TOTALINPARTY}</td>
 							</tr>
 							<tr>
 								<td colspan="3" ><b>{ACCOMMODATION_TOTAL}</b></td>
@@ -371,7 +371,7 @@ jQuery(document).ready(function() {
 						</tr>
 						<tr>
 							<td>{REQUIRED_EMAIL}</td>
-							<td colspan="5"><input  class="inputbox" size="39" type="text" name="eemail" id="eemail" value="{EMAIL}"  type="email" /></td>
+							<td colspan="5"><input  class="inputbox" size="39" name="eemail" id="eemail" value="{EMAIL}"  type="email" /></td>
 						</tr>
 						{CUSTOMFIELD_JAVASCRIPT}
 						<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="fieldname">
