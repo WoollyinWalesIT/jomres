@@ -174,6 +174,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 // set our meta data
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
+	$data=jomres_decode($data);
 /* 	global $mainframe;
 	switch ($meta) 
 		{

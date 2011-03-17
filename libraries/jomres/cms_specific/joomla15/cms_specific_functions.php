@@ -208,6 +208,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
 	global $mainframe;
+	$data=jomres_decode($data);
 	switch ($meta) 
 		{
 		case "title":
