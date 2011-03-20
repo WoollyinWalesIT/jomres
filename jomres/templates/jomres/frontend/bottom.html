@@ -1,5 +1,37 @@
 <patTemplate:tmpl name="bottom">
 </div> <!-- closes the jomres_content_area div -->
 
+<div id="loader" class="loader ui-corner-all" style="display:none;">
+	<img id="img-loader" src="jomres/images/ajax_animation/broken_circle.gif" alt="Loading"/>
+</div>
+	
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery("#loader").bind("ajaxSend", function() {
+		jQuery(this).fadeIn();
+	}).bind("ajaxStop", function() {
+		jQuery(this).fadeOut();
+	}).bind("ajaxError", function() {
+		jQuery(this).fadeOut();
+	});
+});
+</script>
+	
+<style type="text/css">
+.loader {
+		background-color:white;
+		position: fixed;
+		top: 50%;
+		left: 100%;
+		margin-left: -100px; /* half width of the loader gif */
+		margin-top: 100px; /* half height of the loader gif */
+		text-align:center;
+		z-index:9999;
+			 overflow: auto;
+		width: 43px; /* width of the loader gif */
+		height: 43px; /*hight of the loader gif +3px to fix IE8 issue */
+		opacity:0.; 
+	}
+</style>
 
 </patTemplate:tmpl>
