@@ -109,7 +109,7 @@ class j04910deleteproperty {
 				<!--
 				var answer = confirm ("<?php  echo _JOMRES_AREYOUSURE ?>")
 				if (answer)
-					window.location="<?php  echo JOMRES_SITEPAGE_URL.'&task=deleteProperty'.jomresURLToken().'&property_uid='.$property_uid.'&sure=1'; ?>"
+					window.location="<?php  echo JOMRES_SITEPAGE_URL.'&task=deleteProperty'.jomresURLToken().'&property_uid='.$property_uid.'&sure=1&no_html=1'; ?>"
 				else
 					window.location="<?php  echo JOMRES_SITEPAGE_URL.'&task=propertyadmin'; ?>"
 				// -->
