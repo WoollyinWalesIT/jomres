@@ -454,9 +454,16 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
 
 			if (jomres_cmsspecific_areweinadminarea())
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
+				{
+				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.1.min.js");
+				}
 			elseif ($jrConfig['load_jquery'] == "1")
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
+				{
+				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.1.min.js");
+				}
+			
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
 			if ($jrConfig['load_jquery_ui'] =="1")
 				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
