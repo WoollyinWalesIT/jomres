@@ -35,7 +35,10 @@ if (isset($arrivalDate))
 	return;
 	}
 
-$task 						= 	isset($task) ? @$task : null;
+//Include the jomres stuff
+require_once('jomres/integration.php');
+
+$task 						= 	get_showtime('task');
 
 if (!isset($task))
 	$task					=	"search";
@@ -49,8 +52,7 @@ if ($task != 'search' && $task != "dobooking" && $task != "viewproperty")
 	return;
 	}
 
-//Include the jomres stuff
-require_once('jomres/integration.php');
+
 $jrConfig					=	getSiteSettings();
 	
 // remove common URL from GET vars list, so that they don't show up as query string in the URL
@@ -214,7 +216,7 @@ switch ($task)
 
 		break;
 	default:
-		$dosef					=	false;	
+		$dosef					=	false;
 		break;
 	}
 
