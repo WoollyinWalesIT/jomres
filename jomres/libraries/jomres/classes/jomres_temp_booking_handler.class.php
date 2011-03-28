@@ -111,7 +111,8 @@ class jomres_temp_booking_handler
 			"coupon_discount_value"=>"",
 			"cfg_showExtras"=>false,
 			"booking_notes"=>array(),
-			"additional_line_items"=>array()
+			"additional_line_items"=>array(),
+			"booking_number"=>0
 			);
 			
 		$this->tmpguest = array(
@@ -456,7 +457,8 @@ class jomres_temp_booking_handler
 			"coupon_discount_value"=>"",
 			"cfg_showExtras"=>false,
 			"booking_notes"=>array(),
-			"additional_line_items"=>array()
+			"additional_line_items"=>array(),
+			"booking_number"=>0
 			);
 		$this->saveBookingData();
 		}

@@ -256,23 +256,27 @@ class j03020insertbooking {
 
 				//var_dump($guests_uid);exit;
 					
+				// Disabled for v4.7.6
 				// We will try to use the first 10 chars of the jomressession as our booking number. If we can't use it then we'll find a random number and append it to the end.
-				$session10Chars= substr(get_showtime('jomressession'), 0, 10);
-				$cartnumber=$session10Chars;
+				// $session10Chars= substr(get_showtime('jomressession'), 0, 10);
+				// $cartnumber=$session10Chars;
 				// First let's generate a random number for our shopping cart.
-				if (!$usejomressessionasCartid)
-					{
-					$keeplooking=true;
-					while ($keeplooking):
-						$query="SELECT contract_uid FROM #__jomres_contracts WHERE tag like '".$cartnumber."' LIMIT 1";
-						$bklist=doSelectSql($query);
-						if (count($bklist)==0)
-							$keeplooking=false;
-						$cartnumber=mt_rand ( 10000000,99999999 );
-					endwhile;
-					}
-				else
-					$cartnumber=get_showtime('jomressession');
+				// if (!$usejomressessionasCartid)
+					// {
+					// $keeplooking=true;
+					// while ($keeplooking):
+						// $query="SELECT contract_uid FROM #__jomres_contracts WHERE tag like '".$cartnumber."' LIMIT 1";
+						// $bklist=doSelectSql($query);
+						// if (count($bklist)==0)
+							// $keeplooking=false;
+						// $cartnumber=mt_rand ( 10000000,99999999 );
+					// endwhile;
+					// }
+				// else
+					// $cartnumber=get_showtime('jomressession');
+					
+				$cartnumber=get_booking_number();
+				
 				gateway_log("j03020insertbooking :: Setting cart number. ".$cartnumber ." for ".get_showtime('jomressession'));
 
 				

@@ -13,7 +13,27 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function set_booking_number()
+	{
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$keeplooking=true;
+	while ($keeplooking):
+		$query="SELECT contract_uid FROM #__jomres_contracts WHERE tag like '".$cartnumber."' LIMIT 1";
+		$bklist=doSelectSql($query);
+		if (count($bklist)==0)
+			$keeplooking=false;
+		$cartnumber=mt_rand ( 10000000,99999999 );
+	endwhile;
+	$tmpBookingHandler->tmpbooking["booking_number"] = $cartnumber;
+	return $cartnumber;
+	}
 
+function get_booking_number()
+	{
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	return (int)$tmpBookingHandler->tmpbooking["booking_number"];
+	}
+	
 function get_all_super_property_managers()
 	{
 	$super_property_managers = array();
