@@ -38,10 +38,21 @@ if (isset($arrivalDate))
 //Include the jomres stuff
 require_once('jomres/integration.php');
 
-$task 						= 	get_showtime('task');
+//var_dump($task);
+//$task 						= 	isset($task) ? @$task : null;
 
-if (!isset($task))
-	$task					=	"search";
+if ($task == NULL) 
+	$task = jomresGetParam( $_REQUEST, 'task', null );
+	
+if ($task == NULL) 
+	$task 						= 	get_showtime('task');
+
+// if ($task == NULL) 
+	// $task					=	"search";
+
+ // if (!isset($task) || $task=="")
+	// $task					=	"search";
+
 
 if ($task == 'dynamicsearch')
 	$task	=	"search";
