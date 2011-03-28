@@ -396,7 +396,7 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 		break;
 		#########################################################################################
 		case 'processpayment':
-			
+			set_booking_number();
 			$plugin = jomres_validate_gateway_plugin();
 			
 			$data=array('tmpbooking'=>$tmpBookingHandler->tmpbooking,'tmpguest'=>$tmpBookingHandler->tmpguest);
