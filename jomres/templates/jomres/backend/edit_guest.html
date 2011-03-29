@@ -1,68 +1,62 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th colspan="4"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{HFIRSTNAME}</b></td>
-					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="firstname" value="{FIRSTNAME}" /></td>
-					<td class="jradmin_subheader_la">{HSURNAME}</td>
-					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="surname" value="{SURNAME}" /></td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HHOUSE}</td>
-					<td class="jradmin_field_la"><input type="text" size="6" style="text-align:right" class="inputbox" name="house" value="{HOUSE}" /></td>
-					<td class="jradmin_subheader_la">{HSTREET}</td>
-					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="street" value="{STREET}" /></td>
-					
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
-					<td class="jradmin_field_la"><input type="text" size="10" class="inputbox" name="postcode" value="{POSTCODE}" /></td>	
-					<td class="jradmin_subheader_la">{HTOWN}</td>
-					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="town" value="{TOWN}" /></td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HREGION}</td>
-					<td class="jradmin_field_la"><input type="text" size="12" class="inputbox" name="region" value="{REGION}" /></td>
-					<td class="jradmin_subheader_la">{HCOUNTRY}</td>
-					<td class="jradmin_field_la">{COUNTRY}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HLANDLINE}</td>
-					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="landline" value="{LANDLINE}" /></td>
-					<td class="jradmin_subheader_la">{HMOBILE}</td>
-					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="mobile" value="{MOBILE}" /></td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HFAX}</td>
-					<td class="jradmin_field_la"><input type="text" size="15" class="inputbox" name="fax" value="{FAX}" /></td>
-					<td class="jradmin_subheader_la">{HEMAIL}</td>
-					<td class="jradmin_field_la"><input type="text" size="20" class="inputbox" name="email" value="{EMAIL}" /></td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HDISCOUNT}</td>
-					<td class="jradmin_field_la">{DISCOUNT} (%)</td>
-					<td class="jradmin_subheader_la">&nbsp;</td>
-					<td class="jradmin_field_la">&nbsp;</td>
-				</tr>
-			</table>
-		</td>
+		<th class="ui-widget-header  ui-corner-all">{HFIRSTNAME}</b></th>
+		<td><input type="text" size="35" class="inputbox" name="firstname" value="{FIRSTNAME}" /></td>
+		<td class="ui-widget-header  ui-corner-all">{HSURNAME}</td>
+		<td><input type="text" size="35" class="inputbox" name="surname" value="{SURNAME}" /></td>
+	</tr>
+	<tr>
+		<td class="ui-widget-header  ui-corner-all">{HHOUSE}</td>
+		<td><input type="text" size="35" style="text-align:right" class="inputbox" name="house" value="{HOUSE}" /></td>
+		<td class="ui-widget-header  ui-corner-all">{HSTREET}</td>
+		<td><input type="text" size="35" class="inputbox" name="street" value="{STREET}" /></td>
+	</tr>
+	<tr>
+		<td class="ui-widget-header  ui-corner-all">{HTOWN}</td>
+		<td><input type="text" size="35" class="inputbox" name="town" value="{TOWN}" /></td>
+		<td class="ui-widget-header  ui-corner-all">{HPOSTCODE}</td>
+		<td><input type="text" size="35" class="inputbox" name="postcode" value="{POSTCODE}" /></td>
+	</tr>
+	<tr>
+		<td class="ui-widget-header  ui-corner-all">{HREGION}</td>
+		<td><input type="text" size="12" class="inputbox" name="region" value="{REGION}" /></td>
+		<td class="ui-widget-header  ui-corner-all">{HCOUNTRY}</td>
+		<td>{COUNTRY}</td>
+	</tr>
+	<tr>
+		<td class="ui-widget-header  ui-corner-all">{HLANDLINE}</td>
+		<td><input type="text" size="35" class="inputbox" name="landline" value="{LANDLINE}" /></td>
+		<td class="ui-widget-header  ui-corner-all">{HMOBILE}</td>
+		<td><input type="text" size="35" class="inputbox" name="mobile" value="{MOBILE}" /></td>
+	</tr>
+	<tr>
+		<td class="ui-widget-header  ui-corner-all">{HFAX}</td>
+		<td><input type="text" size="35" class="inputbox" name="fax" value="{FAX}" /></td>
+		<td class="ui-widget-header  ui-corner-all">{HEMAIL}</td>
+		<td><input type="text" size="35" class="inputbox" name="email" value="{EMAIL}" /></td>
+	</tr>
+	<tr>
+		<td class="ui-widget-header  ui-corner-all">{HDISCOUNT}</td>
+		<td>{DISCOUNT} (%)</td>
+		<td class="ui-widget-header  ui-corner-all">&nbsp;</td>
+		<td>&nbsp;</td>
 	</tr>
 </table>
-<br />
-<!-- {CREDITCARDLINK} -->
 
-{JOMRESTOKEN}
+</div>
 <input type="hidden" name="guestUid" value="{GUESTUID}" />
 <input type="hidden" name="task" value="saveGuest" />
+<input type="hidden" name="no_html" value="1" />
 </form>
 
 </patTemplate:tmpl>
