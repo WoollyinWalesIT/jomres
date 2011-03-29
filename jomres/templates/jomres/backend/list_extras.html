@@ -1,33 +1,30 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th colspan="4"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<th colspan="4">{JOMRESTOOLBAR}</th>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HEDITLINK}</td>
-					<td class="jradmin_subheader_la">{HEXNAME}</td>
-					<td class="jradmin_subheader_la">{HEXDESC}</td>
-					<td class="jradmin_subheader_ca">{HEXPRICE}</td>
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_field_la">{EXNAME}</td>
-					<td class="jradmin_field_la">{EXDESC}</td>
-					<td class="jradmin_field_ca">{CURRENCY} {EXPRICE}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+		<th class="ui-widget-header ui-corner-all">{HEDITLINK}</td>
+		<th class="ui-widget-header ui-corner-all">{HEXNAME}</td>
+		<th class="ui-widget-header ui-corner-all">{HEXDESC}</td>
+		<th class="ui-widget-header ui-corner-all">{HEXPRICE}</td>
 	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td>{EDITLINK}</td>
+		<td>{EXNAME}</td>
+		<td>{EXDESC}</td>
+		<td>{CURRENCY} {EXPRICE}</td>
+	</tr>
+	</patTemplate:tmpl>
 </table>
+
+</div>
 <input type="hidden" name="task" value="newExtra" />
 </form>
 </patTemplate:tmpl>

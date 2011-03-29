@@ -1,61 +1,57 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
 <form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th colspan="2"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<th colspan="2">{JOMRESTOOLBAR}</th>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image0'/></td>
-					<td class="jradmin_field_ca"><input type='file' name='image1'/></td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image2'/></td>
-					<td class="jradmin_field_ca"><input type='file' name='image3'/></td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image4'/></td>
-					<td class="jradmin_field_ca"><input type='file' name='image5'/></td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image6'/></td>
-					<td class="jradmin_field_ca"><input type='file' name='image7'/></td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image8'/></td>
-					<td class="jradmin_field_ca"><input type='file' name='image9'/></td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input type='file' name='image10'/></td>
-					<td class="jradmin_field_ca"><input type='file' name='image11'/></td>
-				</tr>
-			</table>
-		</td>
+		<td><input type='file' name='image0' id='image0'/></td>
+		<td><input type='file' name='image1' id='image1'/></td>
+	</tr>
+	<tr>
+		<td><input type='file' name='image2' id='image2'/></td>
+		<td><input type='file' name='image3' id='image3'/></td>
+	</tr>
+	<tr>
+		<td><input type='file' name='image4' id='image4'/></td>
+		<td><input type='file' name='image5' id='image5'/></td>
+	</tr>
+	<tr>
+		<td><input type='file' name='image6' id='image6'/></td>
+		<td><input type='file' name='image7' id='image7'/></td>
+	</tr>
+	<tr>
+		<td><input type='file' name='image8'/ id='image8'></td>
+		<td><input type='file' name='image9'/ id='image9'></td>
+	</tr>
+	<tr>
+		<td><input type='file' name='image10'/ id='image10'></td>
+		<td><input type='file' name='image11'/ id='image11'></td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="task" value="batchUploadPropertyImages" />
 </form>
 <br />
 <form action="{JOMRES_SITEPAGE_URL_DELIMAGES}" method="post" name="imageList">
 <table class="jradmin_innerwrapper">
 	<tr>
-		<td class="jradmin_subheader_ca" colspan="3">{IMAGESALREADYINDIR}</td>
+		<th class="ui-widget-header ui-corner-all" colspan="3">{IMAGESALREADYINDIR}</th>
 	</tr>
 	<patTemplate:tmpl name="rows">
-	<tr>
-		<td class="jradmin_field_ca">{CHECKBOX}</td>
-		<td class="jradmin_field_ca">{IMAGENAME}</td>
-		<td class="jradmin_field_ca">{IMAGEOUTPUT}</td>
+	<tr class="ui-widget-content ui-corner-all">
+		<td>{CHECKBOX}</td>
+		<td>{IMAGENAME}</td>
+		<td><img src="{IMAGEOUTPUT}" /></td>
 	</tr>
 	</patTemplate:tmpl>
 </table>
-{JOMRESTOKEN}
+</div>
 <input type="submit" value="{DELETEIMAGES}" class="button" />
 </form>
 </patTemplate:tmpl>

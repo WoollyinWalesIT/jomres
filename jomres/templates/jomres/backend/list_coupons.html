@@ -1,42 +1,38 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th colspan="6"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
-		<td class="jomres_title">{INFO}</td>
+		<th colspan="6">{JOMRESTOOLBAR}</th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+	
+	<tr>
+		<th colspan="6">{INFO}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HEDITLINK}</td>
-					<td class="jradmin_subheader_la">{HCOUPONCODE}</td>
-					<td class="jradmin_subheader_la">{HVALIDFROM}</td>
-					<td class="jradmin_subheader_ca">{HVALIDTO}</td>
-					<td class="jradmin_subheader_la">{HAMOUNT}</td>
-					<td class="jradmin_subheader_ca">{HISPERCENTAGE}</td>
-					<!-- <td class="jradmin_subheader_ca">{HROOMONLY}</td> -->
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_field_la">{COUPONCODE}</td>
-					<td class="jradmin_field_la">{VALIDFROM}</td>
-					<td class="jradmin_field_ca">{VALIDTO}</td>
-					<td class="jradmin_field_la">{AMOUNT}</td>
-					<td class="jradmin_field_ca">{ISPERCENTAGE}</td>
-					<!-- <td class="jradmin_field_ca">{ROOMONLY}</td> -->
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+		<th class="ui-widget-header  ui-corner-left">{HEDITLINK}</th>
+		<th class="ui-widget-header">{HCOUPONCODE}</th>
+		<th class="ui-widget-header">{HVALIDFROM}</th>
+		<th class="ui-widget-header">{HVALIDTO}</th>
+		<th class="ui-widget-header">{HAMOUNT}</th>
+		<th class="ui-widget-header ui-corner-right">{HISPERCENTAGE}</th>
 	</tr>
+	<patTemplate:tmpl name="rows">
+	<tr>
+		<td>{EDITLINK}</td>
+		<td>{COUPONCODE}</td>
+		<td>{VALIDFROM}</td>
+		<td>{VALIDTO}</td>
+		<td>{AMOUNT}</td>
+		<td>{ISPERCENTAGE}</td>
+	</tr>
+	</patTemplate:tmpl>
 </table>
+</div>
 <input type="hidden" name="task" value="newExtra" />
 </form>
 </patTemplate:tmpl>

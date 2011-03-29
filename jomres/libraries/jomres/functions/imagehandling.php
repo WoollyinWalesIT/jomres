@@ -69,6 +69,7 @@ function batchUploadForm()
 	jr_import('jomres_cache');
 	$cache = new jomres_cache();
 	$cache->trashCacheForProperty($defaultProperty);
+
 	$output['PAGETITLE']			=jr_gettext('_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD',_JOMRES_JR_A_IMAGEHANDLING_BATCHUPLOAD);
 	$output['ITEMID']				=$Itemid;
 	$output['INFO']					=jr_gettext('_JOMRES_FRONT_IMAGEUPLOADS_INFO',_JOMRES_FRONT_IMAGEUPLOADS_INFO);
@@ -82,7 +83,11 @@ function batchUploadForm()
 			{
 			$r['IMAGENAME']=$image;
 			$r['IMAGEPATH']=JOMRES_IMAGELOCATION_RELPATH.$defaultProperty.'/';
-			$r['IMAGEOUTPUT']='<img src="'.$r['IMAGEPATH'].$r['IMAGENAME'].'" alt="'.$r['IMAGENAME'].'" border="0" />';
+			$thumb=getThumbnailForImage($r['IMAGEPATH'].$r['IMAGENAME']);
+			if ($thumb)
+				$r['IMAGEOUTPUT']= $thumb;
+			else
+				$r['IMAGEOUTPUT']=$r['IMAGEPATH'].$r['IMAGENAME'];
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['IMAGENAME'].'">';
 			$rows[]=$r;
 			}
