@@ -1,8 +1,10 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th> <div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></td>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
@@ -11,18 +13,18 @@
 		<td>
 			<table class="jradmin_table">
 				<tr>
-					<td class="jradmin_subheader_ca">{HEXNAME}</td>
-					<td class="jradmin_subheader_ca">{HEXDESC}</td>
-					<td class="jradmin_subheader_ca">{HMAXQUANTITY}</td>
-					<td class="jradmin_subheader_ca">{HEXPRICE}</td>
-					<td class="jradmin_subheader_ca">{HTAXRATE}</td>
+					<th class="ui-widget-header  ui-corner-left">{HEXNAME}</td>
+					<th class="ui-widget-header ">{HEXDESC}</td>
+					<th class="ui-widget-header ">{HMAXQUANTITY}</td>
+					<th class="ui-widget-header ">{HEXPRICE}</td>
+					<th class="ui-widget-header ui-corner-right">{HTAXRATE}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="name" value="{EXNAME}" /></td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="desc" value="{EXDESCRIPTION}" /></td>
-					<td class="jradmin_field_ca">{MAXQUANTITYDROPDOWN}</td>
-					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" name="price" value="{EXPRICE}" size="7" /></td>
-					<td class="jradmin_field_ca">{TAXRATEDROPDOWN}</td>
+					<td><input class="inputbox" type="text" name="name" value="{EXNAME}" /></td>
+					<td><input class="inputbox" type="text" name="desc" value="{EXDESCRIPTION}" /></td>
+					<td>{MAXQUANTITYDROPDOWN}</td>
+					<td>{CURRENCY}<input class="inputbox" type="text" name="price" value="{EXPRICE}" size="7" /></td>
+					<td>{TAXRATEDROPDOWN}</td>
 				</tr>
 			</table>
 		</td>
@@ -31,7 +33,7 @@
 <patTemplate:tmpl name="extra_models" type="simpleCondition" requiredVars="extramodel_force1">
 <table border="0" width="100%">
 	<tr>
-		<td>Model</td><td>Parameters</td><td>Force</td>
+		<th class="ui-widget-header ui-corner-left">Model</td><th class="ui-widget-header">Parameters</td><th class="ui-widget-header ui-corner-right">Force</td>
 	</tr>
 	<tr>
 		<td><input type="radio" name="extramodel[]" value="1" {EXTRAMODEL_PERWEEK_CHECKED} >{EXTRAMODEL_PERWEEK}</td><td>&nbsp;</td><td>{EXTRAMODEL_FORCE1}</td>
@@ -63,7 +65,7 @@
 </table>
 </patTemplate:tmpl>
 
-{JOMRESTOKEN}
+</div>
 <input type="hidden" name="uid" value="{EXTRAID}" />
 <input type="hidden" name="task" value="saveExtra" />
 </form>

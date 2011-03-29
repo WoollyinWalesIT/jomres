@@ -1,47 +1,46 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_table">
+
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
 	<tr>
-		<!--<td class="jradmin_subheader_ca"><span class="small">{HDATEFILTER}</span></td>-->
-		<td class="jradmin_subheader_ca"><span class="small">{HUSERFILTER}</span></td>
-		<td class="jradmin_subheader_ca"><span class="small">{HOPERATIONFILTER}</span></td>
+		<th class="ui-widget-header  ui-corner-all">{HUSERFILTER}</th>
+		<th class="ui-widget-header  ui-corner-all">{HOPERATIONFILTER}</th>
 	</tr>
 	<tr>
-		<!--<td class="jradmin_field_ca"><span class="small">{DATEFILTER}</span></td>-->
-		<td class="jradmin_field_ca"><span class="small">{USERFILTER}</span></td>
-		<td class="jradmin_field_ca"><span class="small">{OPERATIONFILTER}</span></td>
-	</tr>
-</table>
-<table class="jradmin_innerwrapper">
-	<tr>
-		<td class="jomres_title">{PAGETITLE}{COUNTER}</td>
-	</tr>
-	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table border="0" width="100%" class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca"><span class="small">{HDATE}</span></td>
-					<td class="jradmin_subheader_ca"><span class="small">{HTIME}</span></td>
-					<td class="jradmin_subheader_ca"><span class="small">{HUSER}</span></td>
-					<td class="jradmin_subheader_ca"><span class="small">{HOPERATION}</span></td>
-					<td class="jradmin_subheader_ca"><span class="small">{HVIEWSQL}</span></td>
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_field_la"><span class="small">{THEDATE}</span></td>
-					<td class="jradmin_field_la"><span class="small">{THETIME}</span></td>
-					<td class="jradmin_field_ca"><span class="small">{USER}</span></td>
-					<td class="jradmin_field_la"><span class="small">{OPERATION}</span></td>
-					<td class="jradmin_field_ca"><span class="small">{VIEWSQL}</span></td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+		<td>{USERFILTER}</td>
+		<td>{OPERATIONFILTER}</td>
 	</tr>
 </table>
+</div>
+
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<table width="100%">
+	<tr>
+		<th colspan="5"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+	</tr>
+	<tr>
+		<th colspan="5">{JOMRESTOOLBAR}</th>
+	</tr>
+	<tr>
+		<th class="ui-widget-header">{HDATE}</span></th>
+		<th class="ui-widget-header">{HTIME}</span></th>
+		<th class="ui-widget-header">{HUSER}</span></th>
+		<th class="ui-widget-header">{HOPERATION}</span></th>
+		<th class="ui-widget-header">{HVIEWSQL}</span></th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td>{THEDATE}</td>
+		<td>{THETIME}</td>
+		<td>{USER}</td>
+		<td>{OPERATION}</td>
+		<td>{VIEWSQL}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+</div>
+
 <input type="hidden" name="task" value="showAuditTrail" />
 </form>
 </patTemplate:tmpl>

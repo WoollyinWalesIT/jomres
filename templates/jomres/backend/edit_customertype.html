@@ -1,40 +1,36 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th colspan="4"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<th colspan="4">{JOMRESTOOLBAR}</th>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HTYPE}</td>
-					<td class="jradmin_subheader_ca" colspan="3">{HNOTES}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10" />{HTYPE_TT}</td>
-					<td class="jradmin_field_ca" colspan="3"><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50" />{HNOTES_TT}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_ca">{HMAXIMUM}</td>
-					<td class="jradmin_subheader_ca">{HISPERCENTAGE}</td>
-					<td class="jradmin_subheader_ca">{HPOSNEG}</td>
-					<td class="jradmin_subheader_ca">{HVARIANCE}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" name="maximum" value="{MAXIMUM}" size="3" />{HMAXIMUM_TT}</td>
-					<td class="jradmin_field_ca">{ISPERCENTAGE}{HISPERCENTAGE_TT}</td>
-					<td class="jradmin_field_ca">{POSNEG}{HPOSNEG_TT}</td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" name="variance" value="{VARIANCE}" size="3" />{HVARIANCE_TT}</td>
-				</tr>
-			</table>
-		</td>
+		<th class="ui-widget-header  ui-corner-left" colspan="2">{HTYPE}</th>
+		<th class="ui-widget-header ui-corner-right" colspan="2">{HNOTES}</th>
+	</tr>
+	<tr>
+		<td colspan="2"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10" />{HTYPE_TT}</td>
+		<td colspan="2"><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50" />{HNOTES_TT}</td>
+	</tr>
+	<tr>
+		<th class="ui-widget-header  ui-corner-left">{HMAXIMUM}</th>
+		<th class="ui-widget-header">{HISPERCENTAGE}</th>
+		<th class="ui-widget-header">{HPOSNEG}</th>
+		<th class="ui-widget-header ui-corner-right">{HVARIANCE}</th>
+	</tr>
+	<tr>
+		<td><input class="inputbox" type="text" style="text-align:right" name="maximum" value="{MAXIMUM}" size="3" />{HMAXIMUM_TT}</td>
+		<td>{ISPERCENTAGE}{HISPERCENTAGE_TT}</td>
+		<td>{POSNEG}{HPOSNEG_TT}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" name="variance" value="{VARIANCE}" size="3" />{HVARIANCE_TT}</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+</div>
 <input type="hidden" name="typeid" value="{ID}" />
 <input type="hidden" name="task" value="saveCustomerType" />
 </form>
