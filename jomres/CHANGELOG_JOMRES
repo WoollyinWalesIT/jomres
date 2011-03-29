@@ -1,4 +1,21 @@
-Jomres 4.7.5 14/03/2011
+Jomres 4.7.6 29/03/2011
+
+Added new feature to output prices and periods so that they can be customised to be by night/week/month.
+modified the booking forms a little to fade out panels until a room has been selected (mrp) or a valid tariff found (srp).
+Some markup fixes.
+Fix a few stray apostrophes in the search combo dropdowns.
+Added animation when ajax kicks in.
+PHP mailer exception class renamed to prevent naming clashes.
+Added jquery 1.5.1 to svn and Jomres. Won't remove old version until the version after this, which will give us time to ensure that functionality works as expected.
+Small change to make sure the toolbar isn't rendered when deleting a property. 
+modified the sh404sef plugin to correctly determine the 'task' so that it runs correctly.
+New change to generate the booking number when the user passes the process payment point, instead of the insert booking point. This is for developers who need to pass the booking number to remote gateways.
+Improved archive audit trail functionality to only archive 1000 records at a time, and run far fewer queries.
+Improved layout of config panels in frontend.
+A variety of UI tweaks to improve page consistency for property managers.
+
+
+Jomres 4.7.5 15/03/2011
 
 Fixed a bug where `tax_rate_val` wasn't added on first install therefore adding new service charges to existing bills wouldn't work unless the installer'd been used to upgrade the db.
 A small change to fix the type of commission rate in the administrator area view property page.
@@ -14,7 +31,11 @@ Added jomres_decode to the listyourproperties script.
 Some changes to bring manager's page's css into line with the rest of the jquery ui usage on the system.
 A few changes to stop the language switching back to English for no good reason in the administrator area, and changed some country name editing mode functions to ensure that the constant uses the country code, not the country name.
 Some changes to the Jomres installer to resolve issues where users are having to use the discover feature to install Jomres.
-
+Added bulgarian to Jomres lang library. Many thanks Hristo Yanev
+Updated frontend list invoices to look better on the page.
+Modified the booking engine to show a 3 month picker in the arrival date, and to allow the booker to choose historic dates if we're amending a booking.
+Modified amend booking functionality to force the rooms list to switch back to the 'classic' room selection style if we're amending a booking.
+Added feature to automatically create an index.html in the remote_plugins dir once a plugin is added.
 
 Jomres 4.7.4 24/02/2011
 
