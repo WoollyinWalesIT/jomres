@@ -190,8 +190,10 @@ class j04000roomsconfig {
 					";
 
 				$room_image=getImageForProperty("room",$defaultProperty,$room->room_uid);
-
-				$roomRowInfo .='<td class="jradmin_field_ca"><img src="'.$room_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'" /></td>';
+				$thumb=getThumbnailForImage($room_image);
+				if ($thumb)
+					$room_image=$thumb;
+				$roomRowInfo .='<td><img src="'.$room_image.'" /></td>';
 
 				$roomFeaturesString=$room->room_features_uid;
 				$roomFeaturesArray=explode(",",$roomFeaturesString);
@@ -358,17 +360,17 @@ class j04000roomsconfig {
 			{
 			$contentPanel->setcontent('<table>
 				<tr>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK).'</td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all"><b>'.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS).'</b></td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME).'</td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER).'</td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR).'</td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS).'</td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'</td>
+				<td class="fg-toolbar ui-widget-header ui-corner-left">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK).'</td>
+				<td class="fg-toolbar ui-widget-header"><b>'.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS).'</b></td>
+				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME).'</td>
+				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER).'</td>
+				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR).'</td>
+				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS).'</td>
+				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'</td>
 				');
 		 	if ($mrConfig['showSmoking']=="1")
-		 		$contentPanel->setcontent('<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING).'</td>');
-			$contentPanel->setcontent('<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>');
+		 		$contentPanel->setcontent('<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING).'</td>');
+			$contentPanel->setcontent('<td class="fg-toolbar ui-widget-header ui-corner-right">&nbsp;</td>');
 			$contentPanel->setcontent('</tr>
 			');
 			$contentPanel->setcontent($roomRowInfo);

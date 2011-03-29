@@ -86,12 +86,10 @@ class j00017SRPavailabilitycalendar {
 			$monthsToYearEnd=12-$currentMonth;
 			$this->retVals.='
 			<center>
-			<table id="panelwrapper">
-				<tr>
-					<td>
-						<table class="innerwrapper">
-							<tr class="availability_calendar_header">
-								<td>
+			<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+						<table width="100%">
+							<tr >
+								<td class="ui-widget-header ui-corner-all">
 									<table>
 										';
 										if ($mrConfig['visitorscanbookonline']=="1"	&& !$noshowroom && $this->showlinks && $jrConfig['show_booking_form_in_property_details'] != '1')
@@ -143,9 +141,7 @@ class j00017SRPavailabilitycalendar {
 								</center></td>
 							</tr>
 						</table>
-					</td>
-				</tr>
-			</table>
+			</div>
 			</center>
 			';
 			}
@@ -247,7 +243,7 @@ class j00017SRPavailabilitycalendar {
 			$thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.date("M",$stdate),strftime( "%B",$stdate),true);
 		
 		$this->retVals.="\n<table class=\"rescal\" cellspacing=\"0\">\n";
-		$this->retVals.="<tr class=\"availability_calendar_months\" >\n<th colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
+		$this->retVals.="<tr>\n<th class=\"ui-widget-header ui-corner-all\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		if ($jrConfig['calendarstartofweekday'] == "1")
 			{
 			$this->retVals.="<tr class=\"availability_calendar_days\">\n<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"

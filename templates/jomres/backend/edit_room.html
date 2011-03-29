@@ -1,46 +1,45 @@
 <patTemplate:tmpl name="pageoutput">
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+
+<table width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th colspan="8"> <div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td colspan="8">{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
+		<td class="ui-widget-header ui-corner-left">{HTYPE}</td>
+		<td class="ui-widget-header ">{HNAME}</td> 
+		<td class="ui-widget-header ">{HNUMBER}</td>
+		<td class="ui-widget-header ">{HFLOOR}</td>
+		<td class="ui-widget-header ">{HDISABLED}</td>
+		<td class="ui-widget-header ">{HMAXPEOPLE}</td>
+		<td class="ui-widget-header ">{HSMOKING}</td>
+		<td class="ui-widget-header ui-corner-right">{HSUPPLIMENT}</td>
+	</tr>
+	<tr>
+		<td>{TYPEDROPDOWN}</td>
+		<td><input class="inputbox" type="text" name="room_name" value="{ROOMNAME}" /> </td>
+		<td><input class="inputbox" type="text" size="4" name="room_number" value="{ROOMNUMBER}" /> </td>
+		<td><input class="inputbox" type="text" size="4" name="room_floor" value="{ROOMFLOOR}" /> </td>
+		<td>{DISABLED} </td>
+		<td><input class="inputbox" type="text" size="4" name="max_people" value="{MAXPEOPLE}" /> </td>
+		<td>{SMOKING}</td>
+		<td>{CURRENCY}<input class="inputbox" type="text" size="4" name="singleperson_suppliment" value="{SUPPLIMENT}" /></td>
+	</tr>
+	<tr>
+		<td class="" colspan="8" >{SUPPLIMENT_DESC}</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<table width="100%">
 				<tr>
-					<td class="jradmin_subheader_ca">{HTYPE}</td>
-					<td class="jradmin_subheader_ca">{HNAME}</td> 
-					<td class="jradmin_subheader_ca">{HNUMBER}</td>
-					<td class="jradmin_subheader_ca">{HFLOOR}</td>
-					<td class="jradmin_subheader_ca">{HDISABLED}</td>
-					<td class="jradmin_subheader_ca">{HMAXPEOPLE}</td>
-					<td class="jradmin_subheader_ca">{HSMOKING}</td>
-					<td class="jradmin_subheader_ca">{HSUPPLIMENT}</td>
+					<td class="ui-widget-header ui-corner-all">{HFEATURES}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca">{TYPEDROPDOWN}</td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" name="room_name" value="{ROOMNAME}" /> </td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="4" name="room_number" value="{ROOMNUMBER}" /> </td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="4" name="room_floor" value="{ROOMFLOOR}" /> </td>
-					<td class="jradmin_field_ca">{DISABLED} </td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="4" name="max_people" value="{MAXPEOPLE}" /> </td>
-					<td class="jradmin_field_ca">{SMOKING}</td>
-					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" size="4" name="singleperson_suppliment" value="{SUPPLIMENT}" /></td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_ca" colspan="8" >{SUPPLIMENT_DESC}</td>
-				</tr>
-			</table>
-			<br />
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HFEATURES}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_la">{FEATURES}</td>
+					<td>{FEATURES}</td>
 				</tr>
 			</table>
 		</td>
@@ -54,28 +53,25 @@
 <br />
 
 <form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&task=uploadRoomImage" method="post" name="upload">
-<table border="0" class="inneradminwrapper">
+
+<table width="100%">
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td colspan="2" class="jradmin_subheader_ca">{UPLOADIMAGE}</td>
-				</tr>
-				<tr>
-					<td><input type='file' name='image'/></td>
-					<td><input type="hidden" name="roomUid" value="{ROOMUID}" /></td>
-					<td><input type="submit" value="{UPLOADIMAGE}" class="button" ></td>
-				</tr>
-			</table>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{DELETEIMAGE}</td>
-					<td>{IMAGE}</td>
-				</tr>
-			</table>
-		</td>
+		<td colspan="3" class="ui-widget-header ui-corner-all">{UPLOADIMAGE}</td>
+	</tr>
+	<tr>
+		<td><input type='file' name='image'/></td>
+		<td><input type="hidden" name="roomUid" value="{ROOMUID}" /></td>
+		<td><input type="submit" value="{UPLOADIMAGE}" class="button" ></td>
+	</tr>
+	<tr>
+		<td colspan="3" class="ui-widget-header ui-corner-all">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{DELETEIMAGE}</td>
+		<td colspan="2">{IMAGE}</td>
 	</tr>
 </table>
+
 {JOMRESTOKEN}
 </form>
 </patTemplate:tmpl>
