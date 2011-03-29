@@ -35,18 +35,19 @@ class jomres_configpanel extends jomres_content_tabs
 		{
 
 			$this->panes[]='
-			<div class="spacer">
-				&nbsp;
-			</div>
-			<div class="left">
-				<div class="jradmin_subheader_ca">'.$this->left.'</div>
-			</div>
-			<div class="right">
-				<div class="jradmin_field_ca">'.$this->middle.'</div>
-			</div>
-			<div class="middle">
-				<div class="jradmin_field_ca">'.$this->right.'</div>
-			</div>
+				<div class="spacer">
+					&nbsp;
+				</div>
+				<div class="ui-widget-header ui-corner-all">
+					'.$this->left.'
+				</div>
+				<div style="float: left; width: 200px; margin-right: 5px;">
+					'.$this->middle.'
+				</div>
+				<div style="float: right; width: 200px; margin-right: 5px;">
+					'.$this->right.'
+				</div>
+			<div style="clear: both;"> </div>
 			';
 
 		/*
