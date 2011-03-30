@@ -1519,3 +1519,14 @@ define('_JOMRES_CONFIG_JQUERY_UI',"Load Jomres jQuery UI library?");
 
 define('_JOMRES_SORTORDER_PRICE_DESC','Price (highest first)');
 define('_JOMRES_SORTORDER_PRICE_ASC','Price (lowest first)');
+
+// 4.7.6
+
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT','Price summary and estimates should be priced as per night/per week/per month?');
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY','Per night');
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY','Per week');
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY','Per month');
+define('_JOMRES_BOOKINGFORM_PERPERSON','Per person');
+
+define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS','week(s) at ');
+define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS','month(s) at ');
