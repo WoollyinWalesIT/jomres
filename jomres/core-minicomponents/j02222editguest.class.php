@@ -93,7 +93,7 @@ class j02222editguest {
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveGuest');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"),'');
 		if ($guestUid != 0)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteGuest".jomresURLToken()."&guestUid=$guestUid"),'');
+			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteGuest".jomresURLToken()."&guestUid=$guestUid&no_html=1"),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
