@@ -168,16 +168,16 @@ class j04000roomsconfig {
 				";
 				$roomRowInfo .="<td>".($room->room_number)."</td>
 				";
-				$roomRowInfo .="<td>".($room->room_floor)."</td>
-				";
+				//$roomRowInfo .="<td>".($room->room_floor)."</td>
+				//";
 
 				$disabled=$room->room_disabled_access;
 				if ($disabled)
 					$disabledAccess=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE);
 				else
 					$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE);
-				$roomRowInfo .="<td>".$disabledAccess."</td>
-				";
+				//$roomRowInfo .="<td>".$disabledAccess."</td>
+				//";
 				$roomRowInfo .="<td>".($room->max_people)."</td>
 				";
 				$smoking=$room->smoking;
@@ -364,8 +364,8 @@ class j04000roomsconfig {
 				<td class="fg-toolbar ui-widget-header"><b>'.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS).'</b></td>
 				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME).'</td>
 				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER).'</td>
-				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR).'</td>
-				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS).'</td>
+				<!-- <td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR).'</td> -->
+				<!-- <td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS).'</td> -->
 				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'</td>
 				');
 		 	if ($mrConfig['showSmoking']=="1")
