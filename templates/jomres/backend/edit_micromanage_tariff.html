@@ -114,8 +114,8 @@ function jomres_micromanage_rate_picker()
 	
 	while (i <= epoch_to)
 		{
-		jQuery("input[name=tariffinput["+i/1000+"]]").css("border","2px solid #"+r_colour);
-		jQuery("input[name=tariffinput["+i/1000+"]]").val(new_rate);
+		jQuery("input[name='tariffinput["+i/1000+"]']").css("border","2px solid #"+r_colour);
+		jQuery("input[name='tariffinput["+i/1000+"]']").val(new_rate);
 		tomorrow = new Date( i.getTime() + 86400000 ); 
 		i = tomorrow;
 		}
