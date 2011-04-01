@@ -105,6 +105,8 @@ class j00030search {
 			$showButton=false;
 			$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 			
+			jr_import('jomSearch');
+			
 			$sch = new jomSearch($calledByModule);
 			$sch->searchAll=$searchAll;
 			$searchOptions=$sch->searchOptions;
