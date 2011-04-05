@@ -137,6 +137,8 @@ div.blockMsg {
 .viewproperty_leftcol 
 	{
 	background: #ffffff;
+	/* This is important. It sets the height of the div that wraps around the content tabs in the composite property details. Without it the page will skip to the top of the page every time you click a tab. Ah, the wonders of modern technology. */
+	height: 1000px;
 	}
 
 
