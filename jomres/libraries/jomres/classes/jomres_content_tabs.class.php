@@ -53,7 +53,7 @@ class jomres_content_tabs
 			});
 		</script>
 		";
-		echo "<div id=\"content_tabs\"> <!-- start tabs panel -->";
+		echo "<div id=\"content_tabs\" style='height: 1000px;'> <!-- start tabs panel -->";
 		}
 
 	/**
