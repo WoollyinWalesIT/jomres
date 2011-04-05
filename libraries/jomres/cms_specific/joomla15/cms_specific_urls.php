@@ -20,7 +20,7 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (strstr($scriptname,'install_jomres.php'))
 	set_showtime('live_site',str_replace("/jomres","",get_showtime('live_site')));
 
-$ssllink	= str_replace("https://","http://",get_showtime('live_site'));
+$ssllink	= str_replace("http://","https://",get_showtime('live_site'));
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 

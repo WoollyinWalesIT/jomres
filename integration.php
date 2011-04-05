@@ -174,10 +174,12 @@ function jomresURL($link, $ssl=2)
 	if (!$jrConfig['isInIframe'] )
 		{
 		$link=jomres_cmsspecific_makeSEF_URL($link);
-		if ($ssl == 1)
-			$link	= str_replace("http://","https://",$link);
-		else
-			$link	= str_replace("https://","http://",$link);
+		
+		// As we've dropped support for "ssl in the booking form" in 4.7, these lines are no longer applicable.
+		// if ($ssl == 1)
+			// $link	= str_replace("http://","https://",$link);
+		// else
+			// $link	= str_replace("https://","http://",$link);
 		}
 	else
 		{
