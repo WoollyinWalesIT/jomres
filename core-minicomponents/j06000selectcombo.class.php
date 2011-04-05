@@ -23,6 +23,7 @@ class j06000selectcombo {
 			{
 			$this->template_touchable=false; return;
 			}
+		jr_import('jomSearch');
 		/*
 		if( !function_exists('json_encode') )
 			{
