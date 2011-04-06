@@ -1525,3 +1525,11 @@ define('_JOMRES_BOOKINGFORM_PERPERSON','Per person');
 define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS','week(s) at ');
 define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS','month(s) at ');
 
+// 4.7.7
+
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS','How should the search option for people numbers work?');
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC','Affects all search modules. When using the guest number search feature, should the search feature look for properties who\'s tariffs will support guest numbers up and equal the number chosen, exactly equal the number chosen, or the number chosen and greater? ');
+define('_JOMRES_PAYPAL_REDIRECTMESSAGE','Please wait, your order is being processed and you will be redirected to the Paypal website.');
+define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED','If you are not automatically redirected to Paypal within 5 seconds...');
+define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE','Click Here');
+
