@@ -1,39 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script language="JavaScript" type="text/javascript">
-function SelectAll(CheckBoxControl)
-	{
-	if (CheckBoxControl.checked == true)
-		{
-		var i;
-		for (i=0; i < document.forms[0].elements.length; i++)
-			{
-			if ((document.forms[0].elements[i].type == 'checkbox') && (document.forms[0].elements[i].name.indexOf('chosenHotel') > -1))
-				{
-				document.forms[0].elements[i].checked = true;
-				}
-			}
-		}
-	else
-		{
-		var i;
-		for (i=0; i < document.forms[0].elements.length; i++)
-			{
-			if ((document.forms[0].elements[i].type == 'checkbox') && (document.forms[0].elements[i].name.indexOf('chosenHotel') > -1))
-				{
-				document.forms[0].elements[i].checked = false;
-				}
-			}
-		}
-	}
+function selectAll() {
+    jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
+}
 
-function select_all(obj)
-	{ var text_val=eval(obj);
-	text_val.focus();
-	text_val.select();
-	if (!document.all) return; // IE only
-	r= text_val.createTextRange();
-	r.execCommand('copy');
-	}
 </script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
@@ -53,7 +23,7 @@ function select_all(obj)
 		<td class="jradmin_field_la" ><input type="text" size="80" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this)"/></td>
 		<td class="jradmin_field_la" colspan="2">{NEWAPIKEY_LINK}</td>
 	</tr>
-	<tr align="left"><th><input type="CheckBox" name="SelectAllCheckBox" onclick="SelectAll(this)"></th><th colspan="3">&nbsp;</th></tr>
+	<tr align="left"><th><input type="CheckBox" id="SelectAllCheckBox" onclick="selectAll()"></th><th colspan="3">&nbsp;</th></tr>
 <patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
 		<td class="jradmin_field_la">{INPUT}</td>
