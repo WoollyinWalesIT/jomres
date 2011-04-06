@@ -25,6 +25,13 @@ class j00035tabcontent_02_bookingform
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
+		$thisJRUser=jomres_getSingleton('jr_user');
+		
+		if ($mrConfig['registeredUsersOnlyCanBook'] == "1" && $thisJRUser->id == 0)
+			{
+			$this->retVals  = null;
+			return;
+			}
 		
 		$output = $componentArgs['currrent_output'];  
 		// Booking form tab

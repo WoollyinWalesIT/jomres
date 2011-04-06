@@ -39,6 +39,8 @@ class j01010listpropertys {
 			$data_only=true;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
+		$thisJRUser=jomres_getSingleton('jr_user');
+		
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$customTextObj =jomres_getSingleton('custom_text');
 		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
@@ -250,6 +252,11 @@ class j01010listpropertys {
 					
 					$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
 					$mrConfig=getPropertySpecificSettings($property->propertys_uid);
+					
+					$dobooking_task="dobooking";
+					if ($mrConfig['registeredUsersOnlyCanBook'] == "1" && $thisJRUser->id == 0)
+						$dobooking_task = "contactowner";
+						
 					$featureList=array();
 					$ptown=stripslashes($property->property_town);
 					$stars=$property->stars;
@@ -364,24 +371,15 @@ class j01010listpropertys {
 						{
 						if ($mrConfig['visitorscanbookonline'] == "1")
 							{
-							if ( $jrConfig['useSSLinBookingform'] == "1" )
-								$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid,1);
-							else
-								$url=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&amp;selectedProperty=".$property->propertys_uid);
-								
+							$url=jomresURL(JOMRES_SITEPAGE_URL."&task=".$dobooking_task."&amp;selectedProperty=".$property->propertys_uid);
 							$property_deets['LINK']=$url;
 							if ($mrConfig['singleRoomProperty'] =="1")
 								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
 							else
 								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false) ;
-							/*
-							if ( $jrConfig['useSSLinBookingform'] == "1" )
-								{
-								$property_deets['LINKONLY'] = str_replace("http://","https://",$property_deets['LINKONLY']);
-								}
-							*/
 							
-
+							if ($dobooking_task != "dobooking")
+								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false);
 							}
 						else
 							{
