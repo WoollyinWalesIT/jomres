@@ -37,7 +37,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList)
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -595,6 +595,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<th width="20%" class="jomres_title">&nbsp;</th>
 				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$guestnumbersearchDropdownList.'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC.'</td>
 			</tr>
 			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_PROPERTYLIST_FILTERS_SHOW.'</td>
