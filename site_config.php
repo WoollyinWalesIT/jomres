@@ -205,4 +205,8 @@ $jrConfig['booking_form_lnks_as_buttons'] = "1";
 
 $jrConfig['load_jquery_ui'] = "1";
 
+$jrConfig['guestnumbersearch'] = "equal";
+
+
+
 ?>

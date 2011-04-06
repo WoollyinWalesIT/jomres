@@ -143,6 +143,15 @@ function showSiteConfig(  )
 	$calendarStartDays[] = jomresHTML::makeOption( '2', _JOMRES_COM_MR_WEEKDAYS_MONDAY );
 	$calendarStartDaysDropdownList = jomresHTML::selectList($calendarStartDays, 'cfg_calendarstartofweekday', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['calendarstartofweekday']);
 
+	if (!isset( $jrConfig['guestnumbersearch']))
+		$jrConfig['guestnumbersearch'] = "equal";
+
+	$guestnumbersearchList = array();
+	$guestnumbersearchList[] = jomresHTML::makeOption( 'lessthan', '<=' );
+	$guestnumbersearchList[] = jomresHTML::makeOption( 'equal', '=' );
+	$guestnumbersearchList[] = jomresHTML::makeOption( 'greaterthan', '>=' );
+	$guestnumbersearchDropdownList = jomresHTML::selectList($guestnumbersearchList, 'cfg_guestnumbersearch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['guestnumbersearch']);
+
 	
 	jr_import("currency_codes");
 	$c_codes = new currency_codes($jrConfig['globalCurrencyCode'],true);
@@ -210,7 +219,7 @@ function showSiteConfig(  )
 	$lists['advanced_site_config']					= jomresHTML::selectList( $yesno, 'cfg_advanced_site_config', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['advanced_site_config'] );
 	$lists['load_jquery_ui']							= jomresHTML::selectList( $yesno, 'cfg_load_jquery_ui', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery_ui'] );
 	
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
 	}
 
 /**
