@@ -274,25 +274,6 @@ if (isset($property_uid) && !empty($property_uid))
 	$basic_property_details =jomres_getSingleton('basic_property_details');
 	}
 
-if (!isset($jrConfig['useSSLinBookingform']) )
-	$jrConfig['useSSLinBookingform']=0;
-
-if ( $jrConfig['useSSLinBookingform'] == 1)
-	{
-	if (get_showtime('task') == "handlereq" || get_showtime('task') == "dobooking" || get_showtime('task') == "confirmbooking" || get_showtime('task') == "completebk" || get_showtime('task') == "processpayment")
-		{
-		set_showtime('live_site',str_replace("http://","https://",get_showtime('live_site')));
-		}
-	elseif ( (get_showtime('task') == "viewproperty" && $jrConfig['show_booking_form_in_property_details'] == "1") || ($numberOfPropertiesInSystem==1 && $jrConfig['is_single_property_installation'] == "0") )
-		{
-		set_showtime('live_site',str_replace("http://","https://",get_showtime('live_site')));
-		}
-		else
-			{
-			set_showtime('live_site',str_replace("https://","http://",get_showtime('live_site')));
-			}
-	}
-
 init_javascript();
 
 set_showtime('include_room_booking_functionality',true);
