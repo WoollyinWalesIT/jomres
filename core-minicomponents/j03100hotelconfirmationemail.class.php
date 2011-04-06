@@ -184,7 +184,7 @@ class j03100hotelconfirmationemail {
 			foreach ($allCustomFields as $f)
 				{
 				$formfieldname = $f['fieldname']."_".$f['uid'];
-				$custom_field_output[]=array("DESCRIPTION"=>$f['description'],"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
+				$custom_field_output[]=array("DESCRIPTION"=>jr_gettext(JOMRES_CUSTOMTEXT.$f['uid'],$f['description']),"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
 				}
 			}
 	
