@@ -1,4 +1,21 @@
 
+Jomres 4.7.7 06/04/2011
+
+A small change to prevent properties with 0 tariffs from showing the prices.
+minor template changes, mainly, to prevent the toolbar from rendering when saving something.
+Change to resolve issues with IE and redirection functionality.
+Fixed an issue caused by upgrading jquery to 1.5.1. when trying to edit rates with the calendars in Micromanage.
+Change to how jomSearch class is called. Should mean that devs can override the class if needed. Uses jr_import now.
+Added some definitions for ajax urls that I intend to add in the future to the rest of the system.
+Some changes to how the http protocol is manipulated. In short, removed the manipulation as we're no longer offering the "ssl in the booking form" switch.
+A tweak to see if we can resolve the browser moving the viewing area to the top of the page when we click on a tab.
+Added jquery ui 1.8.11 to jomres
+Added an option to site config -> search options tab to allow a property manager to choose how the search by guest numbers search feature should work.
+It would appear that over the years the "registered users only can book online" option has been neglected as the system has evolved, meaning that non-registered users are seeing the dobooking links. Fixed to work again.
+Added language definitions to paypal redirect script and Edit Labels area.
+Added a couple of contributions from Marco regarding translation of custom field names in the hotel and guest emails.
+Modified edit profile so that check all selector selects all checkboxes.
+
 Jomres 4.7.6.1 30/03/2011
 
 Updated language files with new definitions (forgot to add them to the 4.7.6 release. Silly moi).
