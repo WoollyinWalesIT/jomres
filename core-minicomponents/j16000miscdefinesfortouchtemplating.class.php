@@ -34,6 +34,10 @@ class j16000miscdefinesfortouchtemplating
 
 		$output[]		= jr_gettext('_JOMRES_CLICKTOREGISTER',_JOMRES_CLICKTOREGISTER);
 		$output[]		= jr_gettext('_JOMRES_SEARCH_PRICERANGES',_JOMRES_SEARCH_PRICERANGES);
+		$output[]		= jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE',_JOMRES_PAYPAL_REDIRECTMESSAGE);
+		$output[]		= jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED',_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED);
+		$output[]		= jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE',_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE);
+		
 		
 		$countryCodes=countryCodesArray();
 		foreach ($countryCodes as $k=>$v)

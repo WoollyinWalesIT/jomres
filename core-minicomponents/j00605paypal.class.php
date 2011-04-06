@@ -200,16 +200,14 @@ class j00605paypal {
 		toload[1]=	"document.forms['paypal_form'].submit()";
 		</script>
 		<?php
-		echo "<center><h2>Please wait, your order is being processed and you";
-		echo " will be redirected to the paypal website.</h2></center>\n";
+		echo "<center><h2>".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE',_JOMRES_PAYPAL_REDIRECTMESSAGE,false,false)."</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
 		echo "action=\"".$this->paypal_url."\">\n";
 		foreach ($this->fields as $name => $value) {
 			echo "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
 		}
-		echo "<center><br/><br/>If you are not automatically redirected to ";
-		echo "paypal within 5 seconds...<br/><br/>\n";
-		echo "<input type=\"submit\" value=\"Click Here\"></center>\n";
+		echo "<center><br/><br/>".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED',_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED,false,false)."<br/><br/>\n";
+		echo "<input type=\"submit\" value=\"".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE',_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE,false,false)."\"></center>\n";
 		echo "</form>\n";
 		}
 
