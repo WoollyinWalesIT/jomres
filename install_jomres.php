@@ -266,6 +266,8 @@ function doTableUpdates()
 		createGuestProfileTable();
 	if (!checkPropertyUIDInOrphanLineItemsColExists() )
 		alterPropertyUIDInOrphanLineItemsCol();
+	if (!checkExtraServicesTableExists() )
+		createExtraServicesTable();
 	if (!checkExtraServicesTaxColExists() )
 		alterExtraServicesTaxCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
@@ -291,7 +293,41 @@ function alterExtraServicesTaxCol()
 		echo "<b>Error, unable to add __jomres_extraServices tax_rate_val</b><br>";
 	}
 	
+
+// An odd one, this. It seems that some upgrades haven't got this table, so we'll add it if needed
+function createExtraServicesTable()
+	{
+	echo "Creating __jomres_extraServices table<br>";
+		$query="CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
+		`extraservice_uid` int(11) auto_increment,
+		`service_description` VARCHAR(255),
+		`service_value` VARCHAR(255),
+		`contract_uid` VARCHAR(11),
+		`property_uid` VARCHAR(11),
+		`tax_rate_val` CHAR (10) DEFAULT '0',
+		PRIMARY KEY	(`extraservice_uid`)
+		) ";
+	$result=doInsertSql($query,"");
+	if (!$result )
+		echo "<b>Error creating table table __jomres_extraServices </b><br>";
+	}
 	
+function checkExtraServicesTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_extraServices') )
+			return true;
+		}
+	return false;
+	}
+	
+
 function checkPropertyUIDInOrphanLineItemsColExists()
 	{
 	$query="SHOW COLUMNS FROM #__jomresportal_orphan_lineitems  LIKE 'property_uid'";
