@@ -3,6 +3,7 @@ if ('undefined'!=typeof(jQuery)){
 jQuery.noConflict();
 }
 
+if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;}
 
 function isAvailable(date){
 

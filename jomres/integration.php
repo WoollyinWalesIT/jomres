@@ -14,8 +14,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');
 
-if (!isset($_REQUEST['tmpl']) && !isset($_REQUEST['no_html']) && !isset($_REQUEST['popup']))
-	echo '<script type="text/javascript"> if (navigator.appName == \'Microsoft Internet Explorer\') window.onerror=Block_Error;function Block_Error(){return true;}</script>';
+
 
 global $jomresPath,$license_key,$jomresConfig_absolute_path,$MiniComponents;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
