@@ -143,6 +143,7 @@ class j00605paypal {
 			$this->add_field('custom', get_showtime('jomressession'));
 			$this->add_field('currency_code', $settingArray['currencycode']);
 			$this->add_field('amount', number_format($deposit_required,2, '.', ''));
+			$this->add_field('charset', 'utf-8'); 
 			
 			$this->submit_paypal_post();
 
