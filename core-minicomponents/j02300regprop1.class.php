@@ -40,13 +40,13 @@ class j02300regprop1 {
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
 			return;
-			
+
 		if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))
 			$selectedCountry	= jomresGetParam( $_REQUEST, 'selectedCountry', "" );
 		else
 			{
-			$selectedCountry="GB";
-			$propertyRegion="Pembrokeshire";
+			$selectedCountry=$jrConfig['limit_property_country_country'];
+			$propertyRegion="";
 			}
 			
 		if (!subscribers_checkUserHasSubscriptionsToCreateNewProperty() && !$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1" )
