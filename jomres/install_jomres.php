@@ -526,7 +526,7 @@ function checkRoomtypePropertytypeXrefTableExists()
 function createBookingdataArchiveTable()
 	{
 	echo "Creating booking data archive tables<br>";
-	$query = "CREATE TABLE `#__jomres_booking_data_archive` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_booking_data_archive` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`data` text,
 	`date` datetime default NULL ,
@@ -555,7 +555,7 @@ function checkBookingdataArchiveTableExists()
 function createReviewDetailTable()
 	{
 	echo "Creating review detail tables<br>";
-	$query = "CREATE TABLE `#__jomres_reviews_ratings_detail` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_detail` (
 	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
 	`rating_id` int( 11 ) default NULL ,
@@ -584,7 +584,7 @@ function checkReviewDetailTableExists()
 function createReviewsTables()
 	{
 	echo "Creating reviews tables<br>";
-	$query = "CREATE TABLE `#__jomres_reviews_ratings` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings` (
 	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
 	`user_id` int( 11 ) default NULL ,
@@ -601,7 +601,7 @@ function createReviewsTables()
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
 
-	$query = "CREATE TABLE `#__jomres_reviews_ratings_confirm` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_confirm` (
 	`confirm_rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
 	`rating_id` int( 11 ) default NULL ,
@@ -614,7 +614,7 @@ function createReviewsTables()
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
 		
-	$query = "CREATE TABLE `#__jomres_reviews_reports` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_reports` (
 	`report_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`rating_id` int( 11 ) default NULL ,
 	`user_id` int( 11 ) default NULL ,
@@ -2082,7 +2082,7 @@ function createJomresTables()
 	)";
 	doInsertSql($query,"");
 
-	$query = "CREATE TABLE `#__jomres_reviews_ratings` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings` (
 	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
 	`user_id` int( 11 ) default NULL ,
@@ -2099,7 +2099,7 @@ function createJomresTables()
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
 
-	$query = "CREATE TABLE `#__jomres_reviews_ratings_confirm` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_confirm` (
 	`confirm_rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
 	`rating_id` int( 11 ) default NULL ,
@@ -2112,7 +2112,7 @@ function createJomresTables()
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
 		
-	$query = "CREATE TABLE `#__jomres_reviews_reports` (
+	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_reports` (
 	`report_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`rating_id` int( 11 ) default NULL ,
 	`user_id` int( 11 ) default NULL ,
@@ -2123,7 +2123,7 @@ function createJomresTables()
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
 
-	$query = "CREATE TABLE `#__jomres_reviews_ratings_detail` (
+	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_reviews_ratings_detail` (
 	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
 	`rating_id` int( 11 ) default NULL ,
@@ -2133,7 +2133,7 @@ function createJomresTables()
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
 		
-	$query = "CREATE TABLE `#__jomres_booking_data_archive` (
+	$query = "CREATE TABLE IF NOT EXISTS  `#__jomres_booking_data_archive` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`data` text,
 	`date` datetime default NULL ,
