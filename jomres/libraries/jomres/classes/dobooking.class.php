@@ -5294,11 +5294,19 @@ class dobooking
 				}
 			
 			$old_room_total = $this->room_total;
-			$room_total_per_day = $this->room_total/count($canonical_date_range_array);
-			$number_of_days_not_discounted = count($canonical_date_range_array) - $number_of_times_coupon_is_valid_for_booking_date_range;
-			$discountable_room_total = $room_total_per_day*$number_of_times_coupon_is_valid_for_booking_date_range;
-			$non_discountable_room_total = $room_total_per_day*$number_of_days_not_discounted;
-
+			if ($this->coupon_details['booking_valid_from'] != "")
+				{
+				$room_total_per_day = $this->room_total/count($canonical_date_range_array);
+				$number_of_days_not_discounted = count($canonical_date_range_array) - $number_of_times_coupon_is_valid_for_booking_date_range;
+				$discountable_room_total = $room_total_per_day*$number_of_times_coupon_is_valid_for_booking_date_range;
+				$non_discountable_room_total = $room_total_per_day*$number_of_days_not_discounted;
+				}
+			else // For BC with older, pre-4.7.8 coupons
+				{
+				$discountable_room_total = $this->room_total;
+				$non_discountable_room_total = 0;
+				}
+			
 			if ($this->coupon_details['is_percentage']=="1")
 				{
 				$this->coupon_discount_value = ($discountable_room_total/100)*(float)$this->coupon_details['amount'];
