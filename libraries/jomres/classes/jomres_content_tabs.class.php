@@ -49,11 +49,11 @@ class jomres_content_tabs
 		echo "<script type=\"text/javascript\" defer=\"true\">
 		jQuery(document).ready(function() {
 			//jQuery('#content_tabs').tabs();
-			jQuery(\"#content_tabs\").tabs({ fx: { opacity: 'toggle' } });
+			jQuery(\"#content_tabs\").tabs();
 			});
 		</script>
 		";
-		echo "<div id=\"content_tabs\" style='height: 1000px;'> <!-- start tabs panel -->";
+		echo "<div id=\"content_tabs\" > <!-- start tabs panel -->";
 		}
 
 	/**
