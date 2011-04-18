@@ -1509,4 +1509,10 @@ define('_JOMRES_PAYPAL_REDIRECTMESSAGE','Please wait, your order is being proces
 define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED','If you are not automatically redirected to Paypal within 5 seconds...');
 define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE','Click Here');
 
+// 4.7.8
 
+define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',"Booking valid from");
+define('_JRPORTAL_COUPONS_BOOKING_VALIDTO',"Booking valid to");
+define('_JRPORTAL_COUPONS_DESC_478',"Discount codes can be generated and passed onto guests as an incentive to make bookings. Valid from and to dates refer to the dates that a booking can be made on, whereas the Booking valid from/to dates refer to the dates that the booking must cover for the coupon to be valid. If a booking falls outside of that period then normal rates will apply to the days outside of that period.");
+define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK',"With your coupon, this booking has been discounted from ");
+define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO'," to ");

@@ -30,16 +30,15 @@ class j06002saveCoupon {
 
 		$coupon_code			= jomresGetParam( $_POST, 'coupon_code', '' );
 		$coupon_id				= (int)jomresGetParam( $_POST, 'coupon_id', 0 );
-		//$valid_from				= jomresGetParam( $_POST, 'valid_from', '' );
-		//$valid_to				= jomresGetParam( $_POST, 'valid_to', '' );
-		
+
 		$valid_from=JSCalConvertInputDates($_POST['valid_from']);
 		$valid_to=JSCalConvertInputDates($_POST['valid_to']);
 		
 		$amount					= jomresGetParam( $_POST, 'amount', 0.00 );
 		$is_percentage			= (bool)jomresGetParam( $_POST, 'is_percentage', '' );
-		//$rooms_only				= (bool)jomresGetParam( $_POST, 'rooms_only', '' );
-
+		
+		$booking_valid_from=JSCalConvertInputDates($_POST['booking_valid_from']);
+		$booking_valid_to=JSCalConvertInputDates($_POST['booking_valid_to']);
 
 		$explodedvalid_from = explode ("/",$valid_from);
 		$valid_from = $explodedvalid_from[0]."-".$explodedvalid_from[1]."-".$explodedvalid_from[2];
@@ -52,15 +51,15 @@ class j06002saveCoupon {
 		if ($coupon_id > 0)
 			{
 			$query="UPDATE #__jomres_coupons SET `coupon_code`='$coupon_code',`valid_from`='$valid_from',
-			`valid_to`='$valid_to',`amount`='$amount',`is_percentage`='$is_percentage'
+			`valid_to`='$valid_to',`amount`='$amount',`is_percentage`='$is_percentage',`booking_valid_from`='$booking_valid_from',`booking_valid_to`='$booking_valid_to'
 			WHERE coupon_id = $coupon_id AND property_uid = $defaultProperty";
 			if (!doInsertSql($query)) trigger_error ("Unable to update coupon details, mysql db failure", E_USER_ERROR);
 			}
 		else
 			{
-			$query="INSERT INTO #__jomres_coupons (`property_uid`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`)
+			$query="INSERT INTO #__jomres_coupons (`property_uid`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`booking_valid_from`,`booking_valid_to`)
 			VALUES 
-			($defaultProperty,'$coupon_code','$valid_from','$valid_to','$amount','$is_percentage')";
+			($defaultProperty,'$coupon_code','$valid_from','$valid_to','$amount','$is_percentage','$booking_valid_from','$booking_valid_to')";
 			if (!doInsertSql($query)) trigger_error ("Unable to insert coupon details, mysql db failure", E_USER_ERROR);
 			}
 

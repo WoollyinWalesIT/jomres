@@ -1299,13 +1299,13 @@ class dobooking
 	function saveCoupon($coupon_code)
 		{
 		$today = date("Y-m-d");
-		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
+		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
 		$response = doSelectSql($query,2);
 		if ($response)
 			{
 			$this->coupon_id = $response['coupon_id'];
 			$this->coupon_code = $coupon_code;
-			$this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'coupon_id'=>$response['coupon_id']);
+			$this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'coupon_id'=>$response['coupon_id'],'booking_valid_from'=>$response['booking_valid_from'],'booking_valid_to'=>$response['booking_valid_to']);
 			return $this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_COUPONSAVED', _JOMRES_AJAXFORM_COUPON_COUPONSAVED));
 			}
 		else
@@ -5275,21 +5275,47 @@ class dobooking
 				$this->room_total=($this->rate_pernight*$this->stayDays)*count ($this->requestedRoom);
 			}
 
-
-
 		if ($this->coupon_code != "")
 			{
-			//$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+			$dateRangeArray=explode(",",$this->dateRangeString);
+			$canonical_array = array();
+			foreach ($dateRangeArray as $d)
+				{
+				$canonical_date_range_array[]=str_replace("/","-",$d);
+				}
+			$coupon_range = $this->coupon_booking_date_ranges($this->coupon_details['booking_valid_from'],$this->coupon_details['booking_valid_to']);
+			$number_of_times_coupon_is_valid_for_booking_date_range = 0;
+			foreach ($canonical_date_range_array as $date)
+				{
+				if (in_array($date,$coupon_range))
+					{
+					$number_of_times_coupon_is_valid_for_booking_date_range++;
+					}
+				}
+			
+			$old_room_total = $this->room_total;
+			$room_total_per_day = $this->room_total/count($canonical_date_range_array);
+			$number_of_days_not_discounted = count($canonical_date_range_array) - $number_of_times_coupon_is_valid_for_booking_date_range;
+			$discountable_room_total = $room_total_per_day*$number_of_times_coupon_is_valid_for_booking_date_range;
+			$non_discountable_room_total = $room_total_per_day*$number_of_days_not_discounted;
+
 			if ($this->coupon_details['is_percentage']=="1")
 				{
-				$this->coupon_discount_value = ($this->room_total/100)*(float)$this->coupon_details['amount'];
-				$this->room_total=$this->room_total-$this->coupon_discount_value;
+				$this->coupon_discount_value = ($discountable_room_total/100)*(float)$this->coupon_details['amount'];
+				$this->room_total=($discountable_room_total-$this->coupon_discount_value)+$non_discountable_room_total;
 				}
 			else
 				{
 				$this->coupon_discount_value = (float)$this->coupon_details['amount'];
-				$this->room_total=$this->room_total-$this->coupon_discount_value;
+				$this->room_total=($discountable_room_total-$this->coupon_discount_value)+$non_discountable_room_total;
 				}
+
+			$fb1= jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK',_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK,false,false);
+			$fb2= jr_gettext('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO',_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO,false,false);
+			$feedback = $fb1.output_price($old_room_total).$fb2.output_price($this->room_total);
+			$this->setGuestPopupMessage($feedback);
+			$this->addBookingNote("Coupon feedback",$feedback);
+			
 			$note = _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." ".$this->coupon_id." / ".$this->coupon_code." / "._JRPORTAL_COUPONS_AMOUNT." ".$this->coupon_discount_value." / ";
 			foreach ($this->coupon_details as $k=>$v)
 				{
@@ -5349,7 +5375,18 @@ class dobooking
 		return true;
 		}
 
-
+	function coupon_booking_date_ranges( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) 
+		{
+		$dates = array();
+		$current = strtotime( $first );
+		$last = strtotime( $last );
+		while( $current <= $last ) 
+			{
+			$dates[] = date( $format, $current );
+			$current = strtotime( $step, $current );
+			}
+		return $dates;
+		}
 	/**
 	#
 	 * Calculates the total value of the booking.
