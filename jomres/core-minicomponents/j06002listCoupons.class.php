@@ -34,15 +34,17 @@ class j06002listCoupons
 		$output['HEDITLINK']=jr_gettext('_JOMRES_COM_MR_EXTRA_LINKTEXT',_JOMRES_COM_MR_EXTRA_LINKTEXT,$editable=false,$isLink=true);
 		
 		$output['PAGETITLE']=jr_gettext('_JRPORTAL_COUPONS_TITLE',_JRPORTAL_COUPONS_TITLE);
-		$output['INFO']=jr_gettext('_JRPORTAL_COUPONS_DESC',_JRPORTAL_COUPONS_DESC);
+		$output['INFO']=jr_gettext('_JRPORTAL_COUPONS_DESC_478',_JRPORTAL_COUPONS_DESC_478);
 		$output['HCOUPONCODE']=jr_gettext('_JRPORTAL_COUPONS_CODE',_JRPORTAL_COUPONS_CODE);
 		$output['HVALIDFROM']=jr_gettext('_JRPORTAL_COUPONS_VALIDFROM',_JRPORTAL_COUPONS_VALIDFROM);
 		$output['HVALIDTO']=jr_gettext('_JRPORTAL_COUPONS_VALIDTO',_JRPORTAL_COUPONS_VALIDTO);
 		$output['HAMOUNT']=jr_gettext('_JRPORTAL_COUPONS_AMOUNT',_JRPORTAL_COUPONS_AMOUNT);
 		$output['HISPERCENTAGE']=jr_gettext('_JRPORTAL_COUPONS_ISPERCENTAGE',_JRPORTAL_COUPONS_ISPERCENTAGE);
 		$output['HROOMONLY']=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
-
-		$query = "SELECT `coupon_id`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`rooms_only` FROM #__jomres_coupons WHERE property_uid = ".$defaultProperty;
+		$output['_JRPORTAL_COUPONS_BOOKING_VALIDFROM']=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',_JRPORTAL_COUPONS_BOOKING_VALIDFROM);
+		$output['_JRPORTAL_COUPONS_BOOKING_VALIDTO']=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDTO',_JRPORTAL_COUPONS_BOOKING_VALIDTO);
+		
+		$query = "SELECT `coupon_id`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to` FROM #__jomres_coupons WHERE property_uid = ".$defaultProperty;
 		$result = doSelectSql($query);
 		$rows=array();
 		
@@ -68,6 +70,8 @@ class j06002listCoupons
 				$r['ROOMONLY']=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 				if ($coupon->rooms_only)
 					$r['ROOMONLY']=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
+				$r['BOOKING_VALIDFROM']=$coupon->booking_valid_from;
+				$r['BOOKING_VALIDTO']=$coupon->booking_valid_to;
 				$rows[]=$r;
 				}
 			}

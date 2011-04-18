@@ -270,10 +270,36 @@ function doTableUpdates()
 		createExtraServicesTable();
 	if (!checkExtraServicesTaxColExists() )
 		alterExtraServicesTaxCol();
+		
+	if (!checkCouponsBookingValidColsExists() )
+		alterCouponsBookingValidCols();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function checkCouponsBookingValidColsExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_coupons  LIKE 'booking_valid_from'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterCouponsBookingValidCols()
+	{
+	echo "Editing __jomres_coupons table adding booking_valid_from column<br>";
+	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_from` DATE AFTER rooms_only ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_coupons booking_valid_from</b><br>";
+	echo "Editing __jomres_coupons table adding booking_valid_to column<br>";
+	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_to` DATE AFTER booking_valid_from ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_coupons booking_valid_to</b><br>";
+	}
+	
 function checkExtraServicesTaxColExists()
 	{
 	$query="SHOW COLUMNS FROM #__jomres_extraServices  LIKE 'tax_rate_val'";
@@ -1378,6 +1404,8 @@ function createJomresTables()
 		`amount` FLOAT,
 		`is_percentage` BOOL,
 		`rooms_only` BOOL,
+		`booking_valid_from` DATE,
+		`booking_valid_to` DATE,
 		PRIMARY KEY ( `coupon_id` )
 		)";
 	$result=doInsertSql($query,"");
