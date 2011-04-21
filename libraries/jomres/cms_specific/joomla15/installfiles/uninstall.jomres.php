@@ -30,5 +30,3 @@ function com_uninstall()
 	{
 	echo "uninstalled the component. Please note that the tables were not removed, as uninstallation & re-installation are the simplest ways of updating Jomres. <br>If you wish to remove the tables, please navigate via your favourite mysql client and remove any tables using this naming patter: prefix(eg jos)_jomres_xxxxxxxxx";
 	}
-
-?>

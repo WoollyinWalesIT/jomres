@@ -265,4 +265,3 @@ class images{
 	
 }
 // <!-- Initially Developed by Greg - Doutromundo.com -->
-?>

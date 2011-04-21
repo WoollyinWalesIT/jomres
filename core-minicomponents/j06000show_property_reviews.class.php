@@ -325,4 +325,3 @@ class j06000show_property_reviews
 		return $this->retVals;
 		}
 	}
-?>

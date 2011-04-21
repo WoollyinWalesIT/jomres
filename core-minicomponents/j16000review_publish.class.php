@@ -49,4 +49,3 @@ class j16000review_publish
 		return $this->retVals;
 		}
 	}
-?>

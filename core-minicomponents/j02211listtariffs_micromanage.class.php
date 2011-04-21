@@ -141,5 +141,3 @@ class j02211listtariffs_micromanage {
 		return $this->tpl;
 		}
 	}
-
-?>

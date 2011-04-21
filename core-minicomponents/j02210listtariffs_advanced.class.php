@@ -189,5 +189,3 @@ class j02210listtariffs_advanced {
 		return $this->tpl;
 		}
 	}
-
-?>

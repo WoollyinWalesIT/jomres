@@ -66,4 +66,3 @@ class j06005review_confirm
 		return $this->retVals;
 		}
 	}
-?>

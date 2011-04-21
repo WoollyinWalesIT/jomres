@@ -315,4 +315,3 @@ class JomresPage
 		return jomresHTML::selectList( $limits, 'limit', 'class="inputbox" size="1" onchange="document.location.href=\''. $link .'\';"', 'value', 'text', $this->limit );
 	}
 	}
-?>

@@ -89,5 +89,3 @@ if (class_exists('JFactory'))
 	}
 else
 	define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
-
-?>

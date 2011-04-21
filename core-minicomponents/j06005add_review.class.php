@@ -105,4 +105,3 @@ class j06005add_review
 		return $this->retVals;
 		}
 	}
-?>
