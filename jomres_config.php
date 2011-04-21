@@ -173,4 +173,9 @@ $mrConfig['prices_inclusive'] ="0"; // New for v4.5.2
 $mrConfig['booking_form_rooms_list_style'] ="2";
 
 $mrConfig['booking_form_daily_weekly_monthly'] ="D";
+
+$mrConfig['showRoomImageInBookingFormOverlib'] ="2";
+$mrConfig['tariffsenhanceddefault'] =100;
+$mrConfig['tariffsenhancedyearstoshow'] =2;
+
 ?>
