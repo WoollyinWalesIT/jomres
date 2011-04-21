@@ -291,5 +291,3 @@ class jomres_mc_registry
 			}
 		}
 	}
-
-?>

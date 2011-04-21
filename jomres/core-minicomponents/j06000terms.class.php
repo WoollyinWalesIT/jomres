@@ -80,4 +80,3 @@ class j06000terms
 		return null;
 		}
 	}
-?>

@@ -45,4 +45,3 @@ class j16000review_delete
 		return $this->retVals;
 		}
 	}
-?>

@@ -62,9 +62,3 @@ function task_update_user()
 	$template_rows = array('pageoutput'=>$pageoutput);
 	return render_template("update_user.html",TEMPLATES_ADMIN,$template_rows);
 	}
-
-?>
-
-
-
-

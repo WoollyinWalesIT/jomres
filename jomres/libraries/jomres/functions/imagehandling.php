@@ -284,5 +284,3 @@ function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploaded
 	else
 		return FALSE;
 	}
-
-?>

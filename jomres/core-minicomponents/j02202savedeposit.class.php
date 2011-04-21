@@ -68,5 +68,3 @@ class j02202savedeposit {
 		return null;
 		}
 	}
-
-?>
