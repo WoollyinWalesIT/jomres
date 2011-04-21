@@ -2,6 +2,7 @@
 
 tr,td {
 	font-size:12px;
+	padding:2px;
 }
 
 /* http://forum.jquery.com/topic/jquery-ui-datepicker-initial-display-none-fixup On some templates (eg beez) an empty div appears on the bottom left of the page where datepicker shows.*/
@@ -11,9 +12,6 @@ tr,td {
 	font-size: inherit;
 }
 
-div.ui-widget input{
- font-size:16px;
-}
 
 div.blockMsg {
 	width:  30%;
@@ -147,7 +145,6 @@ div.blockMsg {
 
 .viewproperty_leftcol 
 	{
-	background: #ffffff;
 	/* This is important. It sets the height of the div that wraps around the content tabs in the composite property details. Without it the page will skip to the top of the page every time you click a tab. Ah, the wonders of modern technology. */
 	height: 1000px;
 	}
@@ -155,7 +152,6 @@ div.blockMsg {
 
 .viewproperty_rightcol 
 	{
-	background: #ffffff;
 	padding: 10px;
 	}
 
@@ -170,7 +166,6 @@ div.blockMsg {
 	}
 	
 .bform_small {
-	font-size: .70em;
 	color: #f1f1f1;
 	font-weight: normal;
 	text-align: left;
