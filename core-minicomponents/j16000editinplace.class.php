@@ -40,7 +40,7 @@ class j16000editinplace
 				$query="UPDATE #__jomres_custom_text SET `customtext`='".$customText."' WHERE constant = '".$theConstant."' AND property_uid = 0 AND language = '".get_showtime('lang')."'";
 			}
 		if (doInsertSql($query))
-			echo $customText;
+			echo jomres_decode($customText);
 		else
 			echo "Something burped";
 		}

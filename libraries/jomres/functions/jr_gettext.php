@@ -131,7 +131,9 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			
 		if($jrConfig['allowHTMLeditor']!="1")
 			$theText=jomres_remove_HTML($theText);
-
+		
+		$theText = jomres_decode($theText);
+		
 		if ($thisJRUser->userIsManager && ($editing || ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ($accessLevel ==2))
 			{
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
@@ -139,9 +141,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$indexphp="index2.php";
 			$title=' title="'._JOMRES_COM_MR_VRCT_ROOM_LINKTEXT.'" ';
 			$defaultText=substr($defaultText,0,100);
-			
 
-			
 			if ($isLink)
 				{
 				$link = JOMRES_SITEPAGE_URL.'&task=editCustomText&lng='.get_showtime('lang').'&theConstant='.$theConstant."&property_uid=".$property_uid;
