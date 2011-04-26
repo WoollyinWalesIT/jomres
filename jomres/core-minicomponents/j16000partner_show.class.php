@@ -28,7 +28,7 @@ class j16000partner_show
 			$all_users = jomres_cmsspecific_getCMSUsers();
 			foreach ($all_users as $user)
 				{
-				if (strtolower($user['username']) == $name)
+				if (strtolower($user['username']) == strtolower($name) )
 					$cms_userid	= (int)$user['id'];
 				}
 			}
