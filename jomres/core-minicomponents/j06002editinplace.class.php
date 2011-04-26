@@ -39,7 +39,7 @@ class j06002editinplace
 
 		$result=updateCustomText($theConstant,$customText,$property_uid);
 		if ($result)
-			echo $customText;
+			echo jomres_decode($customText);
 		else
 			echo "Something burped";
 		}
