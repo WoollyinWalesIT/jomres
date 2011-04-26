@@ -12,7 +12,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 defined( '_JOMRES_INITCHECK_ADMIN' ) or die( 'Admin Access to this file is not allowed.' );
 
-ob_start();
+ob_start("removeBOM");
 @ini_set("memory_limit","64M");
 @ini_set("max_execution_time","480");
 @ini_set("display_errors",1);
@@ -217,4 +217,3 @@ if (defined("JOMRES_RETURNDATA") )
 	}
 else
 	ob_end_flush();
-?>
