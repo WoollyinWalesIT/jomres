@@ -207,6 +207,6 @@ $jrConfig['load_jquery_ui'] = "1";
 
 $jrConfig['guestnumbersearch'] = "equal";
 
-
+$jrConfig['load_jquery_ui_css'] = "1";
 
 ?>
