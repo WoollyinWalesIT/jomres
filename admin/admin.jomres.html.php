@@ -87,9 +87,14 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_UI_CSS.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['load_jquery_ui_css'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_UI_CSS_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_UI.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['load_jquery_ui'].'</td>
-			<td class="jradmin_subheader_la" valign="top"></td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>

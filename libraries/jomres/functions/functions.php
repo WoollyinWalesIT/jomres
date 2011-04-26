@@ -471,7 +471,10 @@ function init_javascript()
 				
 			if (!isset($jrConfig['jquery_ui_theme_detected']))
 				$jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css";
-			
+				
+			if (!isset($jrConfig['load_jquery_ui_css']))
+				$jrConfig['load_jquery_ui_css'] = "1";
+
 			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
 			$subdir = $themeArr[0];
 			$filename = $themeArr[1];
@@ -481,8 +484,14 @@ function init_javascript()
 				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
 				
 			if ($jrConfig['load_jquery_ui'] =="1")
+				{
+				if ($jrConfig['load_jquery_ui_css'] =="1")
+					jomres_cmsspecific_addheaddata("css",$themePath,$filename);
+				}
+				
+			if (jomres_cmsspecific_areweinadminarea() && ($jrConfig['load_jquery_ui_css'] =="0" || $jrConfig['load_jquery_ui_css'] == "0") ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
 				jomres_cmsspecific_addheaddata("css",$themePath,$filename);
-			
+				
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
 
 			if (jomres_cmsspecific_areweinadminarea())
