@@ -722,8 +722,8 @@ class dobooking
 	function sanitiseOutput($data)
 		{
 		//$this->error($data);
-		$data=str_replace("&#39;","\&#39;",$data);
-		$data=str_replace("'","",$data);
+		//$data=str_replace("&#39;","\&#39;",$data);  // These two lines commented out for 4.7.8 as they were removing ' from translated/editing mode stuff such as extras.
+		//$data=str_replace("'","\'",$data);
 		//$data=htmlentities($data);
 		return $data;
 		}
