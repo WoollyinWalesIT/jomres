@@ -217,3 +217,15 @@ if (defined("JOMRES_RETURNDATA") )
 	}
 else
 	ob_end_flush();
+
+// Jomres 4.7.8 strips BOM from all areas of the output, not just the beginning.
+function removeBOM($str="")
+	{
+	$bom = pack("CCC",0xef,0xbb,0xbf);
+	$str = str_replace($bom,"",$str);
+	// if(substr($str, 0,3) == pack("CCC",0xef,0xbb,0xbf))
+		// {
+		// $str=substr($str, 3);
+		// }
+	return $str;
+	}
