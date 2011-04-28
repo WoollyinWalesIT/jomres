@@ -19,7 +19,8 @@ define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');
 global $jomresPath,$license_key,$jomresConfig_absolute_path,$MiniComponents;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
 global $ra1,$ra2,$convertedRAs,$lessThans; // globaled so that we don't need to initialise them every time
-global $R;
+
+//global $R;
 
 // Stuff we want to filter out of inputs.
 	$ra1 = Array('javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', '<link', '<style', 'script', 'embed', 'object', 'iframe', 'frame', 'frameset', 'ilayer', 'layer', 'bgsound', '<title', 'base','mocha','livescript','@import','<html','<body');
@@ -27,14 +28,14 @@ global $R;
 $lessThans=array('%3C','&lt','&lt;','&LT','&LT;','&#60','&#060','&#0060','&#00060','&#000060','&#0000060','&#60;','&#060;','&#0060;','&#00060;','&#000060;','&#0000060;','&#x3c','&#x03c','&#x003c','&#x0003c','&#x00003c','&#x000003c','&#x3c;','&#x03c;','&#x003c;','&#x0003c;','&#x00003c;','&#x000003c;','&#X3c','&#X03c','&#X003c','&#X0003c','&#X00003c','&#X000003c','&#X3c;','&#X03c;','&#X003c;','&#X0003c;','&#X00003c;','&#X000003c;','&#x3C','&#x03C','&#x003C','&#x0003C','&#x00003C','&#x000003C','&#x3C;','&#x03C;','&#x003C;','&#x0003C;','&#x00003C;','&#x000003C;','&#X3C','&#X03C','&#X003C','&#X0003C','&#X00003C','&#X000003C','&#X3C;','&#X03C;','&#X003C;','&#X0003C;','&#X00003C;','&#X000003C;','\x3c','\x3C','\u003c','\u003C');
 $convertedRAs=initRemoveXSS($ra1,$ra2);
 
-$R=array();
-$R[gettype(.0)]='float';
-$R[gettype(0)]='int';
-$R[gettype(true)]='boolean';
-$R[gettype('')]='string';
-$R[gettype(null)]='null';
-$R[gettype(array())]='array';
-$R[gettype(new stdClass())]='object';
+// $R=array();
+// $R[gettype(.0)]='float';
+// $R[gettype(0)]='int';
+// $R[gettype(true)]='boolean';
+// $R[gettype('')]='string';
+// $R[gettype(null)]='null';
+// $R[gettype(array())]='array';
+// $R[gettype(new stdClass())]='object';
 
 if (!defined('JOMRESPATH_BASE'))
 	{
@@ -267,127 +268,32 @@ function jomres_parseRequest()  // A simple request parser to check that mosConf
 		}
 	}
 
-function initRemoveXSS($ra1,$ra2)
+function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 	{
-	$merged=array_merge($ra1,$ra2);
-	$base64=array();
-	foreach ($merged as $m)
-		{
-		$base64[]=base64_encode($m);
-		}
-	return array($base64);
-	}
 
-function RemoveXSS($val)
-	{
-	global $ra1,$ra2,$convertedRAs,$lessThans;
-	//$val=stripslashes($val);  // Disabled as it wouldn't save windows paths
-	// First let's  replace all the possible less than symbols with the real thing <
-	$val=str_ireplace($lessThans,"",$val);
-	// remove all non-printable characters. CR(0a) and LF(0b) and TAB(9) are allowed
-	// this prevents some character re-spacing such as <java\0script>
-	// note that you have to handle splits with \n, \r, and \t later since they *are* allowed in some inputs
-	$val = preg_replace('/([\x00-\x08][\x0b-\x0c][\x0e-\x20])/', '', $val);
-
-	foreach ( $convertedRAs as $naughty)
-		{
-		$val=str_ireplace($naughty,"",$val);
-		}
-
-	// Vince's additions
-	$vinces=array();
-	$vinces[]="&#x0A;"; //  <IMG SRC="jav&#x0A;ascript:alert('XSS');">  Embeded newline to break up XSS.
-	$vinces[]="&#x0D;"; // <IMG SRC="jav&#x0D;ascript:alert('XSS');">  Embedded carriage return to break up XSS
-	$vinces[]="&#14;"; //  <IMG SRC=" &#14;  javascript:alert('XSS');"> Spaces and meta chars before the JavaScript in images for XSS
-	$vinces[]="%53%43%52%49%50%54"; // URL:
-	$vinces[]="&#x53;&#x43;&#x52;&#x49;&#x50;&#x54;"; // HTML (with semicolons):
-	$vinces[]="&#83&#67&#82&#73&#80&#84"; // HTML (without semicolons):
-	$vinces[]="&#x26;&#x23;&#x78;&#x36;&#x41;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x31;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x36;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x31;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x33;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x33;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x32;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x39;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x30;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x34;&#x3B;"; // Javascript hex * 2
-
-	$vinces[]='SIZE="&{'; // <BR SIZE="&{alert('XSS')}">	& JavaScript includes (works in Netscape 4.x):
-	$vinces[]='/*'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
-	$vinces[]='*/'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
-	$vinces[]='<!--'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
-	$vinces[]='-->'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
-	$vinces[]='<!-- -->'; // <XML ID="xss"><I><B>&lt;IMG SRC="javas<!-- -->cript:alert('XSS')"  data island with comment obfuscation
-	//$vinces[]='â•?'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
-	//$vinces[]='Â¥'; //US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
-	//$vinces[]='Ã³'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	 //borks apache
-	$vinces[]="?_url"; //  open redirector exploit
-
-
-	$val=str_ireplace($vinces,"<x>",$val);
-	$val=str_replace(array("\r","\t","\n"),"" , $val);
-	// end vinces
-
-	// straight replacements, the user should never need these since they're normal characters
-	// this prevents like <IMG SRC=&#X40&#X61&#X76&#X61&#X73&#X63&#X72&#X69&#X70&#X74&#X3A&#X61&#X6C&#X65&#X72&#X74&#X28&#X27&#X58&#X53&#X53&#X27&#X29>
-	$search = 'abcdefghijklmnopqrstuvwxyz';
-	$search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$search .= '1234567890!@#$%^&*()';
-	$search .= '~`";:?+/={}[]-_|\'\\';
-	$lensearch = strlen($search);
-	for ($i = 0; $i < $lensearch; $i++)
-		{
-		// ;? matches the ;, which is optional
-		// 0{0,7} matches any padded zeros, which are optional and go up to 8 chars
-
-		// &#x0040 @ search for the hex values
-		$val = preg_replace('/(&#[x|X]0{0,8}'.dechex(ord($search[$i])).';?)/i', $search[$i], $val); // with a ;
-		// &#00064 @ 0{0,7} matches '0' zero to seven times
-		$val = preg_replace('/(&#0{0,8}'.ord($search[$i]).';?)/', $search[$i], $val); // with a ;
-		}
-
-	// now the only remaining whitespace attacks are \t, \n, and \r
-
-	$ra = array_merge($ra1, $ra2);
-	$found = true; // keep replacing as long as the previous round replaced something
-	while ($found == true)
-		{
-		$val_before = $val;
-		for ($i = 0; $i < sizeof($ra); $i++)
-			{
-			$pattern = '/';
-			for ($j = 0; $j < strlen($ra[$i]); $j++)
-				{
-				if ($j > 0)
-					{
-					$pattern .= '(';
-					$pattern .= '(&#[x|X]0{0,8}([9][a][b]);?)?';
-					$pattern .= '|(&#0{0,8}([9][10][13]);?)?';
-					$pattern .= ')?';
-					}
-				$pattern .= $ra[$i][$j];
-				}
-			$pattern .= '/i';
-			$replacement = substr($ra[$i], 0, 2).'<x>'.substr($ra[$i], 2); // add in <> to nerf the tag
-			$val = preg_replace($pattern, $replacement, $val); // filter out the hex tags
-			if ($val_before == $val)
-				{
-				// no replacements were made, so exit the loop
-				$found = false;
-				}
-			}
-		}
-	$val = jomres_purify_html($val);
-	//$val=addslashes($val);  // Disabled as it wouldn't save windows paths
-	return $val;
-	}
-
-
-function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used
-	{
-	global $R;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
+	
+	// If the array element is set, we'll set $dirty to that, otherwise we'll simply return the default
 	if (isset($request[$element]) )
 		$dirty=$request[$element];
 	else
 		return $def;
-	$clean=null;
-	if (is_null($dirty))
-		$dirty=$def;
-	$type=$R[gettype($def)];
+		
+	// This is probably redundant
+	// $clean=null;
+	// if (is_null($dirty))
+		// $dirty=$def;
+	
+	// We'll discover the type of $dirty, so that we can cast the variable to a given type
+	$type = jomres_get_var_type($dirty);
+	if (!$type) // If the data passed isn't recognised, we'll just return out, passing a nice safe null the calling script can work with.
+		return null;
+	
+	// Mostly we'll use type casting to clean the passed data. Array ALWAYS assumes that the array passed is an array of integers, 
+	// if you want to use another type of array you'll need to clean that up youself.
+	// The main reason for using casting is 1. it's very effective and 2. it stops us needing to use the html purifier, which is cpu intensive.
+	
 	switch ($type)
 		{
 		case ('float') :
@@ -398,9 +304,6 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 			break;
 		case ('boolean') :
 			$clean = (bool) $dirty;
-			break;
-		case ('object') :
-			$clean = (object) $dirty;
 			break;
 		case ('null') :
 			$clean = null;
@@ -429,15 +332,104 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 			break;
 		default : // treat everything else as a string.
 			$dirty = (string) $dirty;
-			$jomres_db =jomres_getSingleton('jomres_database');
-			$dirty=getEscaped(RemoveXSS($dirty)); // remove any XSS data
+			$dirty = jomres_purify_html($dirty,false);
 			if($jrConfig['allowHTMLeditor']!="1")
 				$dirty=jomres_remove_HTML($dirty); // Strip out any html
-			$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
+			// Final check to ensure that anything left over has been sanitised. 
+			// Html purifier doesn't make the string safe from injection attacks, so we still need to filter and sanitize the string afterwards
+			$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); 
 			break;
 		}
 	return $clean;
 	}
+
+function jomres_get_var_type($variable)
+	{
+	if (is_array($variable))
+		return 'array';
+	elseif (is_bool($variable))
+		return 'boolean';
+	elseif (is_float($variable))
+		return 'float';
+	elseif (is_int($variable))
+		return 'int';
+	elseif (is_string($variable))
+		return 'string';
+	else
+		return false;
+	}
+
+function jomres_purify_string($string)
+	{
+	$dirty = (string) $string;
+	$dirty = jomres_purify_html($dirty,false);
+	$dirty=jomres_remove_HTML($dirty); // Strip out any html
+	$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
+	}
+
+// function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used
+	// {
+	// global $R;
+	// $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	// $jrConfig=$siteConfig->get();
+	// if (isset($request[$element]) )
+		// $dirty=$request[$element];
+	// else
+		// return $def;
+	// $clean=null;
+	// if (is_null($dirty))
+		// $dirty=$def;
+	// $type=$R[gettype($def)];
+	// switch ($type)
+		// {
+		// case ('float') :
+			// $clean = (float) $dirty;
+			// break;
+		// case ('int') :
+			// $clean = (int) $dirty;
+			// break;
+		// case ('boolean') :
+			// $clean = (bool) $dirty;
+			// break;
+		// case ('object') :
+			// $clean = (object) $dirty;
+			// break;
+		// case ('null') :
+			// $clean = null;
+			// break;
+		// case ('array') :
+			// $tmp = (array) $dirty;
+			// $clean=array();
+			// foreach($tmp as $key1=>$val1)
+				// {
+				// if(is_array($key1))
+					// {
+					// foreach($key1 as $key2=>$val2)	// if the field value is an array, step through it
+						// {
+						// $k=(int)$key2;
+						// $v=(int)$val2;
+						// $clean[$k]=$v;
+						// }
+					// }
+				// else
+					// {
+					// $k=(int)$key1;
+					// $v=(int)$val1;
+					// $clean[$k]=$v;
+					// }
+				// }
+			// break;
+		// default : // treat everything else as a string.
+			// $dirty = (string) $dirty;
+			// $jomres_db =jomres_getSingleton('jomres_database');
+			// $dirty=getEscaped(RemoveXSS($dirty)); // remove any XSS data
+			// if($jrConfig['allowHTMLeditor']!="1")
+				// $dirty=jomres_remove_HTML($dirty); // Strip out any html
+			// $clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
+			// break;
+		// }
+	// return $clean;
+	// }
 
 function getEscaped( $text ) {
 	$text=str_replace("'","&#39;",$text);
@@ -1158,4 +1150,111 @@ if ( !function_exists('gregoriantojd') )
 		return $c + $d + $e + $f - 1524.5 + 0.5;
 		}
 	}
-?>
+	
+
+function initRemoveXSS($ra1,$ra2)
+	{
+	$merged=array_merge($ra1,$ra2);
+	$base64=array();
+	foreach ($merged as $m)
+		{
+		$base64[]=base64_encode($m);
+		}
+	return array($base64);
+	}
+
+function RemoveXSS($val)
+	{
+	global $ra1,$ra2,$convertedRAs,$lessThans;
+	//$val=stripslashes($val);  // Disabled as it wouldn't save windows paths
+	// First let's  replace all the possible less than symbols with the real thing <
+	$val=str_ireplace($lessThans,"",$val);
+	// remove all non-printable characters. CR(0a) and LF(0b) and TAB(9) are allowed
+	// this prevents some character re-spacing such as <java\0script>
+	// note that you have to handle splits with \n, \r, and \t later since they *are* allowed in some inputs
+	$val = preg_replace('/([\x00-\x08][\x0b-\x0c][\x0e-\x20])/', '', $val);
+
+	foreach ( $convertedRAs as $naughty)
+		{
+		$val=str_ireplace($naughty,"",$val);
+		}
+
+	// Vince's additions
+	$vinces=array();
+	$vinces[]="&#x0A;"; //  <IMG SRC="jav&#x0A;ascript:alert('XSS');">  Embeded newline to break up XSS.
+	$vinces[]="&#x0D;"; // <IMG SRC="jav&#x0D;ascript:alert('XSS');">  Embedded carriage return to break up XSS
+	$vinces[]="&#14;"; //  <IMG SRC=" &#14;  javascript:alert('XSS');"> Spaces and meta chars before the JavaScript in images for XSS
+	$vinces[]="%53%43%52%49%50%54"; // URL:
+	$vinces[]="&#x53;&#x43;&#x52;&#x49;&#x50;&#x54;"; // HTML (with semicolons):
+	$vinces[]="&#83&#67&#82&#73&#80&#84"; // HTML (without semicolons):
+	$vinces[]="&#x26;&#x23;&#x78;&#x36;&#x41;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x31;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x36;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x31;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x33;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x33;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x32;&#x3B;&#x26;&#x23;&#x78;&#x36;&#x39;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x30;&#x3B;&#x26;&#x23;&#x78;&#x37;&#x34;&#x3B;"; // Javascript hex * 2
+
+	$vinces[]='SIZE="&{'; // <BR SIZE="&{alert('XSS')}">	& JavaScript includes (works in Netscape 4.x):
+	$vinces[]='/*'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
+	$vinces[]='*/'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
+	$vinces[]='<!--'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
+	$vinces[]='-->'; // <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> STYLE attribute using a comment to break up expression
+	$vinces[]='<!-- -->'; // <XML ID="xss"><I><B>&lt;IMG SRC="javas<!-- -->cript:alert('XSS')"  data island with comment obfuscation
+	//$vinces[]='â•?'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
+	//$vinces[]='Â¥'; //US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	//borks apache
+	//$vinces[]='Ã³'; // US-ASCII encoding (found by Kurt Huwig). This uses malformed ASCII encoding with 7 bits instead of 8.	 //borks apache
+	$vinces[]="?_url"; //  open redirector exploit
+
+
+	$val=str_ireplace($vinces,"<x>",$val);
+	$val=str_replace(array("\r","\t","\n"),"" , $val);
+	// end vinces
+
+	// straight replacements, the user should never need these since they're normal characters
+	// this prevents like <IMG SRC=&#X40&#X61&#X76&#X61&#X73&#X63&#X72&#X69&#X70&#X74&#X3A&#X61&#X6C&#X65&#X72&#X74&#X28&#X27&#X58&#X53&#X53&#X27&#X29>
+	$search = 'abcdefghijklmnopqrstuvwxyz';
+	$search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$search .= '1234567890!@#$%^&*()';
+	$search .= '~`";:?+/={}[]-_|\'\\';
+	$lensearch = strlen($search);
+	for ($i = 0; $i < $lensearch; $i++)
+		{
+		// ;? matches the ;, which is optional
+		// 0{0,7} matches any padded zeros, which are optional and go up to 8 chars
+
+		// &#x0040 @ search for the hex values
+		$val = preg_replace('/(&#[x|X]0{0,8}'.dechex(ord($search[$i])).';?)/i', $search[$i], $val); // with a ;
+		// &#00064 @ 0{0,7} matches '0' zero to seven times
+		$val = preg_replace('/(&#0{0,8}'.ord($search[$i]).';?)/', $search[$i], $val); // with a ;
+		}
+
+	// now the only remaining whitespace attacks are \t, \n, and \r
+
+	$ra = array_merge($ra1, $ra2);
+	$found = true; // keep replacing as long as the previous round replaced something
+	while ($found == true)
+		{
+		$val_before = $val;
+		for ($i = 0; $i < sizeof($ra); $i++)
+			{
+			$pattern = '/';
+			for ($j = 0; $j < strlen($ra[$i]); $j++)
+				{
+				if ($j > 0)
+					{
+					$pattern .= '(';
+					$pattern .= '(&#[x|X]0{0,8}([9][a][b]);?)?';
+					$pattern .= '|(&#0{0,8}([9][10][13]);?)?';
+					$pattern .= ')?';
+					}
+				$pattern .= $ra[$i][$j];
+				}
+			$pattern .= '/i';
+			$replacement = substr($ra[$i], 0, 2).'<x>'.substr($ra[$i], 2); // add in <> to nerf the tag
+			$val = preg_replace($pattern, $replacement, $val); // filter out the hex tags
+			if ($val_before == $val)
+				{
+				// no replacements were made, so exit the loop
+				$found = false;
+				}
+			}
+		}
+	$val = jomres_purify_html($val);
+	//$val=addslashes($val);  // Disabled as it wouldn't save windows paths
+	return $val;
+	}

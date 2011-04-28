@@ -127,8 +127,6 @@ class HTML5 {
     const EOF      = 5;
 
     public function __construct($data) {
-        $data = str_replace("\r\n", "\n", $data);
-        $data = str_replace("\r", null, $data);
 
         $this->data = $data;
         $this->char = -1;
@@ -3905,3 +3903,4 @@ class HTML5TreeConstructer {
         return $this->dom;
     }
 }
+?>

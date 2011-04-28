@@ -160,11 +160,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td class="jradmin_subheader_la" valign="top">'.$lists['only_guests_can_review'].'</td>
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC.'</td>
 			</tr>
+			<!--
 			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER.'</td>
 				<td class="jradmin_subheader_la" valign="top">'.$lists['use_html_purifier'].'</td>
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER_DESC.'</td>
 			</tr>
+			-->
 			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
 				<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalCurrency'].'</td>
