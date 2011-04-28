@@ -216,16 +216,8 @@ function jomres_purify_html($dirty,$editing)
 	
 	$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
 	$performance_monitor->set_point("pre-purification ".time());
-	$html_purifier = jomres_getSingleton('jomres_html_purifier_singleton');
+	$html_purifier = jomres_getSingleton('jomres_input_filter_singleton.');
 	$clean = $html_purifier->purify($dirty);
-	
-	// if ($jrConfig['use_html_purifier'] == "1" && !$editing)
-		// {
-		// $html_purifier = jomres_getSingleton('jomres_html_purifier_singleton');
-		// $clean = $html_purifier->purify($dirty);
-		// }
-	// else
-		// $clean = $dirty; // ugh. Of course it's not clean, but if somebody chooses to not use this code, what can you do?
 	$performance_monitor->set_point("post-purification".time());
 	return $clean;
 	}
