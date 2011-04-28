@@ -132,7 +132,7 @@ if (function_exists("curl_init"))
 				</tr>
 				<tr>
 					<td style="text-align:center" bgcolor="#FFFFFF"><strong><em>Copyright:</em></strong></td>
-					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007, 2008, 2009, 2010 Vince Wooll</td>
+					<td bgcolor="#FFFFFF">&copy; 2005, 2006, 2007, 2008, 2009, 2010, 2011 Vince Wooll</td>
 				</tr>
 				<tr>
 					<td bgcolor="#FFFFFF" style="text-align:center"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/User_Ninja.png" width="48" height="48" align="middle" border="0" /></td>
