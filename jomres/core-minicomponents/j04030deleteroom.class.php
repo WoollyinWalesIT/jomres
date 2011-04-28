@@ -43,7 +43,7 @@ class j04030deleteroom {
 		$cache->trashCacheForProperty($defaultProperty);
 		$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOM_DELETED',_JOMRES_COM_MR_ROOM_DELETED,FALSE);
 		// First we need to check that the room isn't booked, if it is, we can't move forward
-		$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$roomUid."' AND property_uid = '".(int)$defaultProperty."' LIMIT 1";
+		$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$roomUid."' AND property_uid = '".(int)$defaultProperty."' AND `date` > now()";
 		$roomList =doSelectSql($query);
 		if (count($roomList)>0)
 			{
