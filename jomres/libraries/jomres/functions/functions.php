@@ -2127,7 +2127,7 @@ function userHasBeenLoggedOut() {
  * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision
 #
 */
-function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$jrc=FALSE)
+function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$historic=FALSE)
 	{
 	// We need to give the javascript date function a random name because it will be called by both the component and modules
 	$uniqueID="";
@@ -2182,8 +2182,14 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	$output .= '<script type="text/javascript">
 	jQuery(function() {
 		jQuery("#'.$uniqueID.'").datepicker( { 
-			dateFormat: "'.$dateFormat.'", 
-			minDate: 0, maxDate: "+5Y",
+			dateFormat: "'.$dateFormat.'", ';
+
+			if ($historic) // Can we show older dates? By default no
+				$output .= 'minDate: "-5Y", ';
+			else
+				$output .= 'minDate: 0, ';
+		
+			$output .= 'maxDate: "+5Y",
 			';
 
 			if ($jrConfig['useSSLinBookingform'] == "0")
