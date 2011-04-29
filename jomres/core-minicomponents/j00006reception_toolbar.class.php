@@ -93,7 +93,7 @@ class j00006reception_toolbar {
 					$link=jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid);
 					$propertyOptions[]=jomresHTML::makeOption( $link, stripslashes($pname) );
 					}
-				if ( $propertyInitialFilter && $numberOfPropertiesInSystem > 1 )
+				if ( $propertyInitialFilter && get_showtime('numberOfPropertiesInSystem') > 1 )
 					{
 					$thisJRUser->set_currentproperty($thisProperty);
 					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");

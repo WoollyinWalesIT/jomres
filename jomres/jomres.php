@@ -54,7 +54,7 @@ $countproperties = doSelectSql($query);
 $numberOfPropertiesInSystem=count($countproperties);
 if ($numberOfPropertiesInSystem > 200 ) 
 	set_showtime('heavyweight_system',true);
-	
+
 $thisJRUser=jomres_getSingleton('jr_user');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
@@ -254,6 +254,7 @@ $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 $customTextObj->get_custom_text_for_all_properties();
 
+
 if ($property_uid >0)
 	{
 	if (!$thisJRUser->userIsManager && $published == 0 && $task != "")
@@ -264,6 +265,11 @@ if ($property_uid >0)
 		unset($property_uid);
 		$task="";
 		set_showtime('task',"");
+		}
+	if ($thisJRUser->userIsManager && $thisJRUser->currentproperty != $property_uid && in_array($property_uid,$thisJRUser->authorisedProperties) )
+		{
+		$thisJRUser->set_currentproperty($property_uid);
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL),"");
 		}
 	}
 
