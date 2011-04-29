@@ -213,10 +213,9 @@ function jomres_purify_html($dirty,$editing)
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$clean="";
-	
 	$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
 	$performance_monitor->set_point("pre-purification ".time());
-	$html_purifier = jomres_getSingleton('jomres_input_filter_singleton.');
+	$html_purifier = jomres_getSingleton('jomres_input_filter_singleton');
 	$clean = $html_purifier->purify($dirty);
 	$performance_monitor->set_point("post-purification".time());
 	return $clean;
