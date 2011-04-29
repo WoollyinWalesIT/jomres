@@ -1644,7 +1644,8 @@ function jomresRedirect( $url, $msg='' )
 	$jrConfig=$siteConfig->get();
 	
 	$url=str_replace("&amp;","&",$url);
-	
+	echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.5.1.min.js"></script>';
+	echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jomres.js "></script>';
 	echo "<script>document.location.href='$url';</script>\n";
 	exit();
 	
