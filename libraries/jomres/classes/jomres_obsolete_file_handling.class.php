@@ -315,10 +315,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'ConfigSchema'.JRDS.'schema'.JRDS.'URI.MungeResources.txt');
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'ConfigSchema'.JRDS.'schema'.JRDS.'URI.MungeSecretKey.txt');
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'ConfigSchema'.JRDS.'schema'.JRDS.'URI.OverrideAllowedSchemes.txt');
-		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'ConfigSchema'.JRDS.'schema'.JRDS.'');
-		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'ConfigSchema'.JRDS.'schema'.JRDS.'');
-		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'ConfigSchema'.JRDS.'schema'.JRDS.'');
-		
+
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'EntityLookup'.JRDS.'entities.ser');
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'Filter'.JRDS.'ExtractStyleBlocks.php');
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'Filter'.JRDS.'YouTube.php');
