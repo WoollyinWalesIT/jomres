@@ -30,6 +30,7 @@ class j06002saveCoupon {
 
 		$coupon_code			= jomresGetParam( $_POST, 'coupon_code', '' );
 		$coupon_id				= (int)jomresGetParam( $_POST, 'coupon_id', 0 );
+		$guest_uid				= (int)jomresGetParam( $_POST, 'guest_uid', 0 );
 
 		$valid_from=JSCalConvertInputDates($_POST['valid_from']);
 		$valid_to=JSCalConvertInputDates($_POST['valid_to']);
@@ -51,15 +52,15 @@ class j06002saveCoupon {
 		if ($coupon_id > 0)
 			{
 			$query="UPDATE #__jomres_coupons SET `coupon_code`='$coupon_code',`valid_from`='$valid_from',
-			`valid_to`='$valid_to',`amount`='$amount',`is_percentage`='$is_percentage',`booking_valid_from`='$booking_valid_from',`booking_valid_to`='$booking_valid_to'
+			`valid_to`='$valid_to',`amount`='$amount',`is_percentage`='$is_percentage',`booking_valid_from`='$booking_valid_from',`booking_valid_to`='$booking_valid_to',`guest_uid`=$guest_uid
 			WHERE coupon_id = $coupon_id AND property_uid = $defaultProperty";
 			if (!doInsertSql($query)) trigger_error ("Unable to update coupon details, mysql db failure", E_USER_ERROR);
 			}
 		else
 			{
-			$query="INSERT INTO #__jomres_coupons (`property_uid`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`booking_valid_from`,`booking_valid_to`)
+			$query="INSERT INTO #__jomres_coupons (`property_uid`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`booking_valid_from`,`booking_valid_to`,`guest_uid`)
 			VALUES 
-			($defaultProperty,'$coupon_code','$valid_from','$valid_to','$amount','$is_percentage','$booking_valid_from','$booking_valid_to')";
+			($defaultProperty,'$coupon_code','$valid_from','$valid_to','$amount','$is_percentage','$booking_valid_from','$booking_valid_to',$guest_uid)";
 			if (!doInsertSql($query)) trigger_error ("Unable to insert coupon details, mysql db failure", E_USER_ERROR);
 			}
 

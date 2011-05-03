@@ -30,6 +30,17 @@ class j06002editCoupon {
 		$pageoutput=array();
 		$output=array();
 		
+		$query = "SELECT guests_uid,surname, firstname FROM #__jomres_guests WHERE property_uid = '".(int)$defaultProperty."'";
+		$customerDetails =doSelectSql($query);
+		$guests_arrray = array();
+		if (count($customerDetails)>0)
+			{
+			foreach ($customerDetails as $c)
+				{
+				$guests_arrray[$c->guests_uid] = array ("surname"=>$c->surname, "firstname"=>$c->firstname);
+				}
+			}
+		
 		$coupon_id				= (int)jomresGetParam( $_REQUEST, 'coupon_id', 0 );
 
 		$output['PAGETITLE']=jr_gettext('_JRPORTAL_COUPONS_TITLE',_JRPORTAL_COUPONS_TITLE);
@@ -41,7 +52,8 @@ class j06002editCoupon {
 		$output['HISPERCENTAGE']=jr_gettext('_JRPORTAL_COUPONS_ISPERCENTAGE',_JRPORTAL_COUPONS_ISPERCENTAGE);
 		$output['_JRPORTAL_COUPONS_BOOKING_VALIDFROM']=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',_JRPORTAL_COUPONS_BOOKING_VALIDFROM);
 		$output['_JRPORTAL_COUPONS_BOOKING_VALIDTO']=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDTO',_JRPORTAL_COUPONS_BOOKING_VALIDTO);
-		
+		$output['_JRPORTAL_COUPONS_GUESTNAME']=jr_gettext('_JRPORTAL_COUPONS_GUESTNAME',_JRPORTAL_COUPONS_GUESTNAME);
+
 		if ($coupon_id == 0)
 			{
 			$output['COUPON_ID']=0;
@@ -55,10 +67,11 @@ class j06002editCoupon {
 			
 			$output['BOOKING_VALIDFROM']=generateDateInput("booking_valid_from",str_replace("-","/",date("Y-m-d")) );
 			$output['BOOKING_VALIDTO']=generateDateInput("booking_valid_to",str_replace("-","/",date("Y-m-d")));
+			$guest_id = 0;
 			}
 		else
 			{
-			$query = "SELECT `coupon_id`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to` FROM #__jomres_coupons WHERE property_uid = ".$defaultProperty." AND coupon_id=".$coupon_id;
+			$query = "SELECT `coupon_id`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to`,`guest_uid` FROM #__jomres_coupons WHERE property_uid = ".$defaultProperty." AND coupon_id=".$coupon_id;
 			$result = doSelectSql($query,2);
 			if ($result)
 				{
@@ -75,12 +88,23 @@ class j06002editCoupon {
 				$percentageOptions[]=jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
 				$percentageOptions[]=jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE));
 				$output['ISPERCENTAGE']=jomresHTML::selectList($percentageOptions, 'is_percentage', 'class="inputbox" size="1"', 'value', 'text', $result['is_percentage']);
-				
-				
-				
+				$guest_id = $result['guest_uid'];
 				}
 			}
+		
+		$output['GUEST_DROPDOWN']='';
+		if (count($guests_arrray)>0)
+			{
+			$guests_options = array();
+			$guests_options[]=jomresHTML::makeOption( 0, '' );
+			foreach ($guests_arrray as $uid=>$guest)
+				{
+				$guests_options[]=jomresHTML::makeOption( $uid, $guest['firstname']." ". $guest['firstname'] );
+				}
 			
+			$output['GUEST_DROPDOWN']=jomresHTML::selectList($guests_options, 'guest_uid', 'class="inputbox" size="1"', 'value', 'text', $guest_id);
+			}
+		
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCoupon');
@@ -90,7 +114,7 @@ class j06002editCoupon {
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 		
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="no_html" value="1"/>';
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
@@ -111,8 +135,9 @@ class j06002editCoupon {
 		$output[]	=jr_gettext('_JRPORTAL_COUPONS_VALIDTO',_JRPORTAL_COUPONS_VALIDTO);
 		$output[]	=jr_gettext('_JRPORTAL_COUPONS_AMOUNT',_JRPORTAL_COUPONS_AMOUNT);
 		$output[]	=jr_gettext('_JRPORTAL_COUPONS_ISPERCENTAGE',_JRPORTAL_COUPONS_ISPERCENTAGE);
-		//$output[]	=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
-		//$output[]	=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY_DESC',_JRPORTAL_COUPONS_ROOMONLY_DESC);
+		$output[]=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',_JRPORTAL_COUPONS_BOOKING_VALIDFROM);
+		$output[]=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDTO',_JRPORTAL_COUPONS_BOOKING_VALIDTO);
+		$output[]	=jr_gettext('_JRPORTAL_COUPONS_GUESTNAME',_JRPORTAL_COUPONS_GUESTNAME);
 
 		foreach ($output as $o)
 			{

@@ -1298,12 +1298,21 @@ class dobooking
 	*/
 	function saveCoupon($coupon_code)
 		{
+		$thisJRUser=jomres_getSingleton('jr_user');
 		$today = date("Y-m-d");
-		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
+		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to`,`guest_uid` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
 		$response = doSelectSql($query,2);
-		if ($response)
+
+		$guest_uid = 0;
+		if ($thisJRUser->userIsRegistered)
 			{
-			$this->coupon_id = $response['coupon_id'];
+			$query="SELECT guests_uid FROM #__jomres_guests WHERE property_uid = $this->property_uid AND mos_userid =".(int)$thisJRUser->id;
+			$guest_uid = (int) doSelectSql($query,1);
+			}
+		
+		if ($response && ( (int)$response['guest_uid'] == $guest_uid || (int)$response['guest_uid'] == 0 ) )
+			{
+ 			$this->coupon_id = $response['coupon_id'];
 			$this->coupon_code = $coupon_code;
 			$this->coupon_details = array('amount'=>$response['amount'],'is_percentage'=>$response['is_percentage'],'coupon_id'=>$response['coupon_id'],'booking_valid_from'=>$response['booking_valid_from'],'booking_valid_to'=>$response['booking_valid_to']);
 			return $this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_COUPONSAVED', _JOMRES_AJAXFORM_COUPON_COUPONSAVED));
