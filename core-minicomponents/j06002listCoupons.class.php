@@ -43,13 +43,24 @@ class j06002listCoupons
 		$output['HROOMONLY']=jr_gettext('_JRPORTAL_COUPONS_ROOMONLY',_JRPORTAL_COUPONS_ROOMONLY);
 		$output['_JRPORTAL_COUPONS_BOOKING_VALIDFROM']=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',_JRPORTAL_COUPONS_BOOKING_VALIDFROM);
 		$output['_JRPORTAL_COUPONS_BOOKING_VALIDTO']=jr_gettext('_JRPORTAL_COUPONS_BOOKING_VALIDTO',_JRPORTAL_COUPONS_BOOKING_VALIDTO);
+		$output['_JRPORTAL_COUPONS_GUESTNAME']=jr_gettext('_JRPORTAL_COUPONS_GUESTNAME',_JRPORTAL_COUPONS_GUESTNAME);
 		
-		$query = "SELECT `coupon_id`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to` FROM #__jomres_coupons WHERE property_uid = ".$defaultProperty;
+		$query = "SELECT `coupon_id`,`coupon_code`,`valid_from`,`valid_to`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to`,`guest_uid` FROM #__jomres_coupons WHERE property_uid = ".$defaultProperty;
 		$result = doSelectSql($query);
 		$rows=array();
 		
-
-			$rw['EDITLINK']=$jrtb;
+		$query = "SELECT guests_uid,surname, firstname FROM #__jomres_guests WHERE property_uid = '".(int)$defaultProperty."'";
+		$customerDetails =doSelectSql($query);
+		$guests_arrray = array();
+		if (count($customerDetails)>0)
+			{
+			foreach ($customerDetails as $c)
+				{
+				$guests_arrray[$c->guests_uid] = array ("surname"=>$c->surname, "firstname"=>$c->firstname);
+				}
+			}
+		
+		$rw['EDITLINK']=$jrtb;
 		if (count($result)>0)
 			{
 			foreach ($result as $coupon)
@@ -72,6 +83,9 @@ class j06002listCoupons
 					$r['ROOMONLY']=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
 				$r['BOOKING_VALIDFROM']=$coupon->booking_valid_from;
 				$r['BOOKING_VALIDTO']=$coupon->booking_valid_to;
+				$r['GUEST_NAME']='';
+				if ( (int)$coupon->guest_uid > 0 && array_key_exists($coupon->guest_uid,$guests_arrray) )
+					$r['GUEST_NAME']=$guests_arrray[$coupon->guest_uid]['firstname']." ".$guests_arrray[$coupon->guest_uid]['surname'];
 				$rows[]=$r;
 				}
 			}
