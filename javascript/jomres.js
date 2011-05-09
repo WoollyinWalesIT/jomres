@@ -391,12 +391,15 @@ function buildAvailable(string)
 	}
 	
 function checkSelectRoomMessage(oktobook){
-		if (!oktobook){
-			if (show_extras == true)
-				jQuery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
-			jQuery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
-			jQuery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
-			jQuery("#totals_container").delay(800).fadeTo("slow", 0.1);
+		if (!oktobook ){
+			if (rooms_list_enabled)
+				{
+				if (show_extras == true)
+					jQuery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
+				jQuery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
+				jQuery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
+				jQuery("#totals_container").delay(800).fadeTo("slow", 0.1);
+				}
 			}
 		else{
 			if (show_extras == true)
