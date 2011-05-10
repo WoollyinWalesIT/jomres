@@ -294,8 +294,12 @@ function alterCouponsBookingValidCols()
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_from` DATE AFTER rooms_only ";
 	if (!doInsertSql($query,'') )
 		echo "<b>Error, unable to add __jomres_coupons booking_valid_from</b><br>";
+
 	echo "Editing __jomres_coupons table adding booking_valid_to column<br>";
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_to` DATE AFTER booking_valid_from ";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_coupons booking_valid_to</b><br>";
+
 	echo "Editing __jomres_coupons table adding guest_uid column<br>";
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `guest_uid` INT NULL DEFAULT '0' AFTER booking_valid_to ";
 	if (!doInsertSql($query,'') )
