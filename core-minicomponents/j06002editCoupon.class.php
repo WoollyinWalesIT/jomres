@@ -99,7 +99,7 @@ class j06002editCoupon {
 			$guests_options[]=jomresHTML::makeOption( 0, '' );
 			foreach ($guests_arrray as $uid=>$guest)
 				{
-				$guests_options[]=jomresHTML::makeOption( $uid, $guest['firstname']." ". $guest['firstname'] );
+				$guests_options[]=jomresHTML::makeOption( $uid, $guest['firstname']." ". $guest['surname'] );
 				}
 			
 			$output['GUEST_DROPDOWN']=jomresHTML::selectList($guests_options, 'guest_uid', 'class="inputbox" size="1"', 'value', 'text', $guest_id);
