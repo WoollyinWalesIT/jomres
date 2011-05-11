@@ -1300,7 +1300,7 @@ class dobooking
 		{
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$today = date("Y-m-d");
-		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to`,`guest_uid` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND property_uid = $this->property_uid AND `valid_from` <= '$today' AND `valid_to` >= '$today'";
+		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to`,`guest_uid` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND `valid_from` <= '$today' AND `valid_to` >= '$today' AND (property_uid = $this->property_uid OR property_uid = 0) ";
 		$response = doSelectSql($query,2);
 
 		$guest_uid = 0;
