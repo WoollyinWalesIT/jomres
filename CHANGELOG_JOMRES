@@ -1,3 +1,33 @@
+Jomres 4.7.8
+
+New number images contributed for use in the booking form, kindly donated by Eleanor. Thanks very much! Booking form templates improved to use them better.
+Small change to jomres.js so that fading out feature only kicks in if the room booking functionality is used by the property (ie, so that the address/extras stuff isn't faded out for a jintour property.
+Fixed issue reported by Duxiana in new coupon functionality, guest dropdown list shows firstname/firstname, not firstname/surname in the edit coupon page.
+Corrected the installer, one of the 'add column' parts for the new coupon functionality didn't have it's corresponding insertion code.
+Added a check for property uid = 0 in coupon functionality giving us the ability to have system-wide coupons in the future.
+
+Jomres 4.7.8beta1
+
+Added functionality so that coupons can only be valid for certain dates, as well as only used within certain periods, and a coupon can be assigned only to a specific guest.
+Some users are having problems because they've edited files for Jomres and forgetting (or not knowing) that the files should be saved "without BOM" (byte order mark). These changes will allow us to attempt to remove the BOM from all areas of the output that's returned by the server to the client browser, hopefully thereby fixing issues some folks have had with the Show Profiles feature.
+Added an option to not include the jomres jquery ui css file in the head of the template.
+
+Small fix added to css to stop date picker's empty div from showing on the bottom left of the page on some templates.
+Added a missing closing div to edit_room.html
+A couple of changes to stop the block IE error code from showing above the page's body, instead added it to jomres.js.
+Added charset to info sent to paypal
+Modified regprop step one to use jrConfig limit_property_country_country (the setting in Site Config when managers can set the default country) to set a new property's country.
+Added a few "if not exists" to the installer.
+Some CSS changes to make Jomres blend better with our own joomla template.
+Added a few missing settings to jomres_config.php, these will then update the site setting's 0 profiles when the user next uses the install_jomres.php script when they upgrade.
+Cleaned a lot of files with trailing spaces in them, could be the cause of some servers being unable to use the manager choose functionality.
+Upgraded html purifier to 4.3.0, instead of the older, obsolete 4.0. 
+Modified the delete room script only trigger an error if there are future bookings for a room.
+Applying a potential fix to the "looping on change property" issue.
+Found a way to allow a property manager to switch to a different property without having the manager's toolbars popup mid-redirect.
+Added an option to the generate date input function that allows us to tell the function to show historic dates in the calendar.
+
+
 
 Jomres 4.7.7 06/04/2011
 
