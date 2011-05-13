@@ -1,5 +1,4 @@
 <patTemplate:tmpl name="pageoutput" >
-
 <style>
 body {
   margin-left: 10%; margin-right: 10%;
@@ -7,10 +6,36 @@ body {
 }
 a {color:#0089bb; text-decoration: underline}
 a:hover {color:black; text-decoration: underline;}
-
-
 </style>
+<script type="text/javascript">
+var word_next = "{NEXT}";
+var word_previous = "{PREVIOUS}";
 
+	jQuery(function(){
+		//all hover and click logic for buttons
+		jQuery(".fg-button:not(.ui-state-disabled)")
+		.hover(
+			function(){ 
+				jQuery(this).addClass("ui-state-hover"); 
+			},
+			function(){ 
+				jQuery(this).removeClass("ui-state-hover"); 
+			}
+		)
+		.mousedown(function(){
+				jQuery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( jQuery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jQuery(this).removeClass("ui-state-active"); }
+				else { jQuery(this).addClass("ui-state-active"); }
+		})
+		.mouseup(function(){
+			if(! jQuery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				jQuery(this).removeClass("ui-state-active");
+			}
+		});
+
+		jQuery("#tabs").tabs();
+    });
+</script>
 
 <div style="width:1200px;margin-left: auto ;margin-right: auto ; border=1px"><!-- upload a file called logo.png or logo.jpg to the uploadedimages directory to use that instead of the default Jomres logo -->
 <img src="{LOGO_RELATIVE_URL}" />

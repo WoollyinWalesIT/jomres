@@ -44,7 +44,7 @@ class jomres_configpanel extends jomres_content_tabs
 				<div style="float: left; width: 200px; margin-right: 5px;">
 					'.$this->middle.'
 				</div>
-				<div style="float: right; width: 200px; margin-right: 5px;">
+				<div style="float: right; width: 500px; margin-right: 5px;">
 					'.$this->right.'
 				</div>
 			<div style="clear: both;"> </div>

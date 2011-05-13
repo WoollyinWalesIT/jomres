@@ -31,130 +31,124 @@ class j16000addplugin
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
 		$pluginName=str_replace("<x>","",$pluginName);
+		$pluginName=str_replace("&#60;x&#62;","",$pluginName);
 
 		jr_import('jomres_check_support_key');
 		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=addplugin&no_html=1&plugin=".$pluginName);
 		$this->key_valid = $key_validation->key_valid;
-
-		//if ($this->key_valid)
-		//	{
+		
+		if ($thirdparty)
 			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
-			$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
+		else
+			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
+		
+		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
 
-			if (strlen($pluginName)==0 && !$thirdparty)
+		if (strlen($pluginName)==0 && !$thirdparty)
+			{
+			echo "Error, no plugin name passed";
+			return false;
+			}
+
+		if (!is_dir($remote_pluginsDirPath) )
+			{
+			if (!mkdir($remote_pluginsDirPath))
 				{
-				echo "Error, no plugin name passed";
+				echo "Couldn't make $remote_pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
 				return false;
 				}
+			else
+				if ($debugging) echo "Made ".$remote_pluginsDirPath."<br>";
+			}
+		else
+			if ($debugging) echo "No need to make ".$remote_pluginsDirPath."<br>";
 
-			if (!is_dir($remote_pluginsDirPath) )
+		if (strlen($pluginName)>0)
+			{
+			if (is_dir($remote_pluginsDirPath.$pluginName) )
 				{
-				if (!mkdir($remote_pluginsDirPath))
+				emptyDir($remote_pluginsDirPath.$pluginName);
+				if ($debugging) echo "Removing ".$remote_pluginsDirPath.$pluginName."<br>";
+				@rmdir($remote_pluginsDirPath.$pluginName);
+				}
+			}
+
+		if (is_dir($updateDirPath."unpacked") )
+			{
+			if ($debugging) echo "<br>Removing ".$updateDirPath."unpacked<br>";
+			emptyDir($updateDirPath."unpacked");
+			rmdir($updateDirPath."unpacked");
+			}
+
+		emptyDir($updateDirPath);
+
+		if ($thirdparty)
+			{
+			$error=false;
+			
+			$formElement=$_FILES['pluginfile'];
+			$blowdedUp = explode(".",$formElement['name']);
+			$pluginName = $blowdedUp[0];
+			if ($formElement['name']!="")
+				{
+				if (strstr($formElement['name'],"-") ) 
 					{
-					echo "Couldn't make $remote_pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
-					return false;
+					$pos = strpos($formElement['name'], "-");
+					$temp_file_name = substr ($formElement['name'],$pos+1);
+					$newfilename=$updateDirPath.$temp_file_name;
+					$pos = strpos($temp_file_name, ".zip");
+					$pluginName=substr($temp_file_name, 0, $pos);
 					}
 				else
-					if ($debugging) echo "Made ".$remote_pluginsDirPath."<br>";
-				}
-			else
-				if ($debugging) echo "No need to make ".$remote_pluginsDirPath."<br>";
+					$newfilename=$updateDirPath.$formElement['name']."";
 
-			if (strlen($pluginName)>0)
-				{
-				if (is_dir($remote_pluginsDirPath.$pluginName) )
+				if (is_uploaded_file ($formElement['tmp_name'])  )
 					{
-					emptyDir($remote_pluginsDirPath.$pluginName);
-					if ($debugging) echo "Removing ".$remote_pluginsDirPath.$pluginName."<br>";
-					@rmdir($remote_pluginsDirPath.$pluginName);
-					}
-				}
-				
-			if (is_dir($updateDirPath."unpacked") )
-				{
-				if ($debugging) echo "<br>Removing ".$updateDirPath."unpacked<br>";
-				emptyDir($updateDirPath."unpacked");
-				rmdir($updateDirPath."unpacked");
-				}
-				
-			emptyDir($updateDirPath);
-
-			if ($thirdparty)
-				{
-				$error=false;
-				
-				$formElement=$_FILES['pluginfile'];
-				$blowdedUp = explode(".",$formElement['name']);
-				$pluginName = $blowdedUp[0];
-				if ($formElement['name']!="")
-					{
-					if (strstr($formElement['name'],"-") ) 
+					$plugin_tmp			= $formElement['tmp_name'];
+					if (!copy ($plugin_tmp,$newfilename) )
 						{
-						$pos = strpos($formElement['name'], "-");
-						$temp_file_name = substr ($formElement['name'],$pos+1);
-						$newfilename=$updateDirPath.$temp_file_name;
-						$pos = strpos($temp_file_name, ".zip");
-						$pluginName=substr($temp_file_name, 0, $pos);
-						}
-					else
-						$newfilename=$updateDirPath.$formElement['name']."";
-
-					if (is_uploaded_file ($formElement['tmp_name'])  )
-						{
-						$plugin_tmp			= $formElement['tmp_name'];
-						if (!copy ($plugin_tmp,$newfilename) )
-							{
-							$error=true;
-							$errorDesc="<b>move_uploaded_file failed</b>";
-							}
+						$error=true;
+						$errorDesc="<b>move_uploaded_file failed</b>";
 						}
 					}
-				if ($error)
+				}
+			if ($error)
+				{
+				echo $errorDesc;
+				return false;
+				}
+			}
+		else
+			{
+			if ($this->key_valid)
+				{
+				if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
 					{
-					echo $errorDesc;
+					echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting";
 					return false;
 					}
-				}
-			else
-				{
-				if ($this->key_valid)
-					{
-					if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
-						{
-						echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting";
-						return false;
-						}
-					
-					//$pluginName=str_replace(" ","_",$pluginName);
-					if ($debugging) echo "Attempting download of ".$pluginName."<br>";
-					$newfilename=$updateDirPath.$pluginName.".vnw";
-					$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&plugin=".$pluginName."&key=".$key_validation->key_hash."";
-					//echo $queryServer;exit;
-					if ($debugging) echo $queryServer;
-					
-					$curl_handle = curl_init($queryServer);
-					$file_handle = fopen($newfilename, 'wb');
-					if ($file_handle == FALSE)
-						{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
 
-					curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
-					curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-					
-					/*
-					curl_setopt($curl_handle, CURLOPT_URL, $queryServer);
-					curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-					curl_setopt($curl_handle, CURLOPT_FORBID_REUSE, 1);
-					curl_setopt($curl_handle, CURLOPT_FRESH_CONNECT, 1);
-					curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, true);
-					*/
-					$result=curl_exec($curl_handle);
-					curl_close($curl_handle);
-					fclose($file_handle);
-					curl_close($curl_handle);
-					fclose($file_handle);
-					}
-				}
+				if ($debugging) echo "Attempting download of ".$pluginName."<br>";
+				$newfilename=$updateDirPath.$pluginName.".vnw";
+				$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&plugin=".$pluginName."&key=".$key_validation->key_hash."";
+				if ($debugging) echo $queryServer;
 				
+				$curl_handle = curl_init($queryServer);
+				$file_handle = fopen($newfilename, 'wb');
+				if ($file_handle == FALSE)
+					{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
+
+				curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
+				curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+					
+				$result=curl_exec($curl_handle);
+				curl_close($curl_handle);
+				fclose($file_handle);
+				curl_close($curl_handle);
+				fclose($file_handle);
+				}
+			}
+
 		if (!file_exists($newfilename) || filesize($newfilename)==0 )
 			{
 			echo "Something went wrong downloading the update files. Quitting";

@@ -106,11 +106,14 @@ class j00501tariffs {
 
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
-			$configurationPanel->setmiddle($lists['perPersonPerNight']);
-			$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
-			$configurationPanel->insertSetting();
-
+			if (isset($MiniComponents->registeredClasses['00011manager_option_04_guesttypeadmin']))
+				{
+				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
+				$configurationPanel->setmiddle($lists['perPersonPerNight']);
+				$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
+				$configurationPanel->insertSetting();
+				}
+			
 			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT);
 			$configurationPanel->setmiddle($lists['chargeDepositYesNo']);
 			$configurationPanel->setright();

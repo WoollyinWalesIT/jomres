@@ -131,8 +131,6 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$text=$bkg->makeOutputText();
 	$guest=$bkg->makeGuestData();
 
-
-		
 	$output=array_merge($text,$guest);
 	
 	if ($bkg->cfg_showdepartureinput == "0")
@@ -606,7 +604,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		{
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		if (!get_showtime('include_room_booking_functionality'))
-			$tmpl->readTemplatesFromInput( 'dobooking.html');
+			$tmpl->readTemplatesFromInput( 'dobooking_norooms.html');
 		else
 			{
 			if ( ($mrConfig['singleRoomProperty'] == "1" ) )
