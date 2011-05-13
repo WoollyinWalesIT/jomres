@@ -56,7 +56,7 @@ function dateStatus(date) {
 <patTemplate:tmpl name="onload">toload[{COUNT}]= "{ONLOAD}"
 </patTemplate:tmpl>
 </script>
-
+<br />
 <form action="{JOMRES_SITEPAGE_URL}&task=confirmbooking" name="ajaxform" id="ajaxform" method="post">
 	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<div>
@@ -92,7 +92,12 @@ function dateStatus(date) {
 										</patTemplate:tmpl>
 									</tr>
 								</table>
-								<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
+                            </div>
+                        </td>
+					</tr>
+					<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
+                    <tr>
+						<td valign="top">
 								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 									<tr>
 										<th colspan="2">{COUPON_TITLE}</th>
@@ -110,10 +115,10 @@ function dateStatus(date) {
 										</td>
 									</tr>
 								</table>
-								</patTemplate:tmpl>
-							</div>
 						</td>
 					</tr>
+                    </patTemplate:tmpl>
+                    <patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
 					<tr>
 						<td valign="top">
 							<div id="extrascontainer">
@@ -127,8 +132,8 @@ function dateStatus(date) {
 										<td>{INPUTBOX}</td>
 										<td>{OVERLIB_DESCRIPTION}</td>
 										<td>{NAME}</td>
-										<td style="text-align:right;">{PRICE}</td>
 										<td>&nbsp;</td>
+                                        <td style="text-align:right;">{PRICE}</td>
 									</tr>
 									</patTemplate:tmpl>
 									<tr>
@@ -141,12 +146,13 @@ function dateStatus(date) {
 							</div>
 						</td>
 					</tr>
+                    </patTemplate:tmpl>
 					<tr>
 						<td valign="top">
 							<div id="totals_container">
-								<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 									<tr>
-										<th colspan="6">{PRICE_SUMMARY}</th>
+										<th colspan="6" class="ui-state-highlight">{PRICE_SUMMARY}</th>
 									</tr>
 									<tr>
 										<td><b>{BILLING_TAX}</b></td>
@@ -196,7 +202,7 @@ function dateStatus(date) {
 							</div>
 						</td>
 					</tr>
-					<tr>
+                    <tr>
 						<td>
 							<div style="text-align:center">
 								<patTemplate:tmpl name="customOutput_dobooking_total" type="simpleCondition" requiredVars="total_header">
@@ -211,8 +217,8 @@ function dateStatus(date) {
 						</td>
 					</tr>
 					<tr>
-						<td valign="top" id="bookingform_address" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-							<table class="bform_table" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<td valign="top" id="bookingform_address">
+							<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 								<tr>
 									<th colspan="6" ><img border="0" style="vertical-align:top;" src="jomres/images/number2.png" width="32" height="32" /><br/>{AJAXFORM_ADDRESS}</th>
 								</tr>
@@ -314,7 +320,7 @@ function dateStatus(date) {
 										<th><img border="0" style="vertical-align:top;" src="jomres/images/number3.png" width="32" height="32" /></th>
 									</tr>
 									<tr>
-										<td valign="top" style="text-align:right;">
+										<td valign="top" style="text-align:center;">
 											<div id="submitbutton">
 												<button name="confirmbooking" class="fg-button ui-state-default ui-corner-all" type="button"  onclick="dobooking_validate();">{SUBMIT}</button>
 											</div>
@@ -324,23 +330,15 @@ function dateStatus(date) {
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td valign="top" class="bookingform_extras ui-tabs ui-widget ui-widget-content ui-corner-all">
-							&nbsp;
-						</td>
-					</tr>
 				</table>
-
-				<!--Hidden Fields-->
 			</div>
 			<div>
 				{AJAXFORM_INSTRUCTIONS}
 			</div>
 		</div>
 	</div>
-	<input type="hidden" name="property_uid" value="{PROPERTYUID}">
+<input type="hidden" name="property_uid" value="{PROPERTYUID}">
 </form>
-
 <script>
 jQuery(document).ready(function() {
 	jQuery.jheartbeat.set({
@@ -349,4 +347,5 @@ jQuery(document).ready(function() {
 	});
 });
 </script>
+<br />
 </patTemplate:tmpl>

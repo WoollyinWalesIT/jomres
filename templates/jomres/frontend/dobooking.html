@@ -58,7 +58,7 @@ jQuery(document).ready(function() {
 <patTemplate:tmpl name="onload">toload[{COUNT}]= "{ONLOAD}"
 </patTemplate:tmpl>
 </script>
-
+<br />
 <form action="{JOMRES_SITEPAGE_URL}&task=confirmbooking" name="ajaxform" id="ajaxform" method="post">
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
 	<div>
@@ -100,7 +100,12 @@ jQuery(document).ready(function() {
 							</tr>
 							</patTemplate:tmpl>
 						</table>
-						<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
+                    </div>
+                  	</td>
+				</tr>
+				<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
+                <tr>
+					<td valign="top">
 						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
 								<th colspan="2">{COUPON_TITLE}</th>
@@ -116,8 +121,12 @@ jQuery(document).ready(function() {
 								<td colspan="2"><div id="coupon_response" class="jomres_message">&nbsp;</div></td>
 							</tr>
 						</table>
-						</patTemplate:tmpl>
-						<patTemplate:tmpl name="rooms_list_accommodation_panel_output" type="simpleCondition" requiredVars="billing_roomtotal">
+                     </td>
+				</tr>
+				</patTemplate:tmpl>
+				<patTemplate:tmpl name="rooms_list_accommodation_panel_output" type="simpleCondition" requiredVars="billing_roomtotal">
+                <tr>
+					<td valign="top">
 						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
 								<th colspan="4">{BILLING_ROOMTOTAL}</th>
@@ -141,10 +150,9 @@ jQuery(document).ready(function() {
 								<td><b><div id="roomtotal" style="text-align:right;"></div></b></td>
 							</tr>
 						</table>
-						</patTemplate:tmpl>
-					</div>
-				</td>
-			</tr>
+					</td>
+				</tr>
+                </patTemplate:tmpl>
 			<tr>
 				<td valign="top">
 					<patTemplate:tmpl name="classic_rooms_list" type="simpleCondition" requiredVars="ajaxform_available_desc">
@@ -210,11 +218,10 @@ jQuery(document).ready(function() {
 								<td>{INPUTBOX}</td>
 								<td>{OVERLIB_DESCRIPTION}</td>
 								<td>{NAME}</td>
-								<td style="text-align:right;">{PRICE}</td>
 								<td>&nbsp;</td>
+                                <td style="text-align:right;">{PRICE}</td>
 							</tr>
 						</patTemplate:tmpl>
-
 							<tr>
 								<td colspan="4"><b>{EXTRAS_TOTAL}</b></td>
 								<td><b><div id="extrastotal" style="text-align:right;"></div></b></td>
@@ -227,9 +234,9 @@ jQuery(document).ready(function() {
 			<tr>
 				<td valign="top">
 					<div id="totals_container">
-						<table class="bform_table_totals ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
-								<th colspan="6">{PRICE_SUMMARY}</th>
+								<th colspan="6" class="ui-state-highlight">{PRICE_SUMMARY}</th>
 							</tr>
 							<tr>
 								<td><b>{BILLING_TAX}</b></td>
@@ -396,10 +403,10 @@ jQuery(document).ready(function() {
 					<div id="bookingform_footer">
 						<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr >
-								<th><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" width="32" height="32" /><br/></th>
+								<th><img border="0" style="vertical-align:top;" src="jomres/images/number4.png" width="32" height="32" /></th>
 							</tr>
 							<tr> 
-								<td valign="top" style="text-align:right;">
+								<td valign="top" style="text-align:center;">
 									<div id="submitbutton">
 										<button name="confirmbooking" class="fg-button ui-state-default ui-corner-all" type="button"  onclick="dobooking_validate();">{SUBMIT}</button>
 									</div>
@@ -411,11 +418,10 @@ jQuery(document).ready(function() {
 			</tr>
 		</table>
 		</div>
-	<div>{AJAXFORM_INSTRUCTIONS}</div>
+		<div>{AJAXFORM_INSTRUCTIONS}</div>
 	</div>
 </div>
 <input type="hidden" name="property_uid" value="{PROPERTYUID}">
 </form>
-
-
+<br />
 </patTemplate:tmpl>
