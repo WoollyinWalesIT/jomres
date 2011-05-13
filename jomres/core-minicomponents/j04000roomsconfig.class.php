@@ -29,6 +29,11 @@ class j04000roomsconfig {
 	function j04000roomsconfig($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
+		
+		// $mrConfig['tariffmode'] 0 = normal
+		// $mrConfig['tariffmode'] 1 = advanced
+		// $mrConfig['tariffmode'] 2 = micromanage
+
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{

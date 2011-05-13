@@ -75,6 +75,7 @@ class minicomponent_registry
 		$this->registeredClasses = array();
 		$this->getMiniComponentCoreClasses();
 		$this->getMiniComponentCMSSpecificClasses();
+		$this->getMiniCorePluginsClasses();
 		$this->getMiniComponentRemoteClasses();
 		$this->getMiniComponentComponentClasses();
 		asort($this->registeredClasses);
@@ -246,6 +247,44 @@ class jomres_mc_registry
 			}
 		}
 
+	function getMiniCorePluginsClasses()
+		{
+		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS;
+		$d = @dir($jrePath);
+		$docs = array();
+		if($d)
+			{
+			while (FALSE !== ($entry = $d->read()))
+				{
+				$filename = $entry;
+				if( substr($entry,0,1) != '.' )
+					{
+					$docs[] =$entry;
+					}
+				}
+			$d->close();
+			if (count($docs)>0)
+				{
+				sort($docs);
+				foreach ($docs as $doc)
+					{
+					$listdir=$jrePath.$doc.JRDS;
+					$dr = @dir($listdir);
+					if($dr)
+						{
+						while (FALSE !== ($entry = $dr->read()))
+							{
+							$filename = $entry;
+							$this->registerComponentFile($listdir,$filename,"core-plugin");
+							}
+						$dr->close();
+						}
+					}
+				}
+			}
+		}
+
+		
 	function registerComponentFile($filePath,$filename,$eventType="component")
 		{
 		$strippedName = str_replace(".","",$filename);

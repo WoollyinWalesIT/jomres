@@ -42,7 +42,18 @@ class j16000showplugins
 			if (!@mkdir($jrePath))
 				{
 				echo "Error, unable to make folder ".$jrePath." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server";
-				exit;
+				return;
+				}
+			}
+		
+		$jrcPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
+		$third_party_plugins = array();
+		if (!is_dir($jrcPath) )
+			{
+			if (!@mkdir($jrcPath))
+				{
+				echo "Error, unable to make folder ".$jrcPath." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server";
+				return;
 				}
 			}
 
@@ -70,8 +81,6 @@ class j16000showplugins
 					$remote_plugins[$cname]['type']=$rp_string[5];
 				else
 					$remote_plugins[$cname]['type']="internal";
-					
-					
 				}
 			}
 
@@ -92,17 +101,6 @@ class j16000showplugins
 							$info = new $cname();
 							$installed_plugins[$info->data['name']]=$info->data;
 							}
-							/*
-						else
-							{
-
-							emptyDir($jrePath.$entry);
-							rmdir($jrePath.$entry);
-							echo "Error finding classname ".$cname." Possible installation error. For safety reasons, the plugin and folder has been removed.<br/>";
-
-							//echo "Error finding classname ".$cname." Possible installation error. <br/>";
-							}
-							*/
 						}
 					}
 				}
@@ -114,6 +112,37 @@ class j16000showplugins
 					}
 				}
 			}
+		
+		$d = @dir($jrcPath);
+		if($d)
+			{
+			while (FALSE !== ($entry = $d->read()))
+				{
+				$filename = $entry;
+				if( substr($entry,0,1) != '.' )
+					{
+					if (file_exists($jrcPath.$entry.JRDS."plugin_info.php"))
+						{
+						include($jrcPath.$entry.JRDS."plugin_info.php");
+						$cname= "plugin_info_".$entry;
+						if (class_exists($cname))
+							{
+							$info = new $cname();
+							$installed_plugins[$info->data['name']]=$info->data;
+							}
+						}
+					}
+				}
+			
+			foreach ($installed_plugins as $key=>$val)
+				{
+				if (!array_key_exists($key,$remote_plugins ) )
+					{
+					$third_party_plugins[$key]=$val;
+					}
+				}
+			}
+		
 		
 		////////////////////////////////////////////////////// Third party plugins
 		echo '

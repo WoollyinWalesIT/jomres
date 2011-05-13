@@ -872,6 +872,18 @@ function dropPlugin($pluginName)
 	emptyDir($pluginPath);
 	if (rmdir($pluginPath))
 		return true;
+	else
+		{
+		$pluginPath=JOMRESPATH_BASE.JRDS."core-plugins".JRDS.$pluginName;
+		if (file_exists($pluginPath.JRDS."plugin_uninstall.php") )
+			{
+			define ("JOMRES_INSTALLER",1);
+			include($pluginPath.JRDS."plugin_uninstall.php");
+			}
+		emptyDir($pluginPath);
+		if (rmdir($pluginPath))
+			return true;
+		}
 	return false;
 	}
 
@@ -1781,8 +1793,12 @@ function hotelSettings()
 		$mrConfig['tariffmode']=1;
 	$tariffMode=array();
 	$tariffMode[]= jomresHTML::makeOption( '0', JOMRES_COM_A_TARIFFMODE_NORMAL );
-	$tariffMode[]= jomresHTML::makeOption( '2', JOMRES_COM_A_TARIFFMODE_TARIFFTYPES );
-	$tariffMode[]= jomresHTML::makeOption( '1', JOMRES_COM_A_TARIFFMODE_ADVANCED );
+
+	if (isset($MiniComponents->registeredClasses['04006rooms_config_advanced']))
+		{
+		$tariffMode[]= jomresHTML::makeOption( '2', JOMRES_COM_A_TARIFFMODE_TARIFFTYPES );
+		$tariffMode[]= jomresHTML::makeOption( '1', JOMRES_COM_A_TARIFFMODE_ADVANCED );
+		}
 	$tariffModeDD= jomresHTML::selectList($tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmode']);
 
 	$iconsizes = array();
