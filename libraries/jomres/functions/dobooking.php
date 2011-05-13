@@ -336,6 +336,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$output['EXTRAS_TOTAL']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_TOTAL',_JOMRES_AJAXFORM_EXTRAS_TOTAL));
 		$extrasHeader = array();
 		$extrasH = array();
+		$extrasH['EXTRAS_TOTAL']=$output['EXTRAS_TOTAL'];
 		$extrasH ['EXTRAS_HEADER']='
 											<tr>
 												<th colspan="5">'.$output['AJAXFORM_EXTRAS_DESC'].'</th>

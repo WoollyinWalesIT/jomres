@@ -898,7 +898,7 @@ define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Enforces a stricter check on emails 
 define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Accommodation Total");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"night(s) at");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per yacht ");
-define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total ");
+define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Services Total (inc tax)");
 define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Price Summary ");
 define('_JOMRES_CONFIRMATION_ALERT',"Please read and agree to ");
 define('_JOMRES_CONFIRMATION_HEADER',"A summary of your booking is shown below.<br /> To make any changes, please click on the Amend Reservation button. ");

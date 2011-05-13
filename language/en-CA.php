@@ -602,7 +602,7 @@ define('_JOMRES_AJAXFORM_PARTICULARS_DESC','Select the details of your booking r
 define('_JOMRES_AJAXFORM_AVAILABLE','Availability ');
 define('_JOMRES_AJAXFORM_AVAILABLE_DESC','Select the rooms that you require');
 define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP','Look here to see if the property is available at this time.');
-define('_JOMRES_AJAXFORM_EXTRAS','Enhance Your Stay');
+define('_JOMRES_AJAXFORM_EXTRAS','Services');
 define('_JOMRES_AJAXFORM_EXTRAS_DESC','Services');
 define('_JOMRES_COM_PERDAY','Per night');
 define('_JOMRES_AJAXFORM_ADDRESS','Your Details');
@@ -898,7 +898,7 @@ define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Enforces a stricter check on emails 
 define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Accommodation Total");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"night(s) at");
 define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per room ");
-define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total ");
+define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Services Total (inc tax)");
 define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Price Summary ");
 define('_JOMRES_CONFIRMATION_ALERT',"Please read and agree to ");
 define('_JOMRES_CONFIRMATION_HEADER',"A summary of your booking is shown below.<br /> To make any changes, please click on the Amend Reservation button. ");
