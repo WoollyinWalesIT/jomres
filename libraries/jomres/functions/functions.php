@@ -649,8 +649,8 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 		case 'component':
 			$component_full_name="com_".$plugin_name;
 
-			$component_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_component_folder.JRDS;
-			$administrator_source=JOMRESCONFIG_ABSOLUTE_PATH."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_administrator_folder.JRDS;
+			$component_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_component_folder.JRDS;
+			$administrator_source=JOMRESCONFIG_ABSOLUTE_PATH."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_administrator_folder.JRDS;
 
 			$component_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS.$component_full_name;
 			$administrator_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS."components".JRDS.$component_full_name;
@@ -706,8 +706,8 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 		case 'module':
 			$module_full_name="mod_".$plugin_name;
 
-			$module_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
-			$module_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+			$module_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
+			$module_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
 			$module_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."modules".JRDS.$module_full_name;
 			if (!test_and_make_directory($module_target))
 				{
@@ -756,8 +756,8 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			//$mambot_full_name=$plugin_name;
 			$table="#__plugins";
 
-			$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
-			$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+			$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
+			$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
 			$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type.JRDS;
 
 			if (!test_and_make_directory($mambot_target))
