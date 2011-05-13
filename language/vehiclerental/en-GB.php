@@ -603,7 +603,7 @@ define('_JOMRES_AJAXFORM_AVAILABLE','Availability ');
 define('_JOMRES_AJAXFORM_AVAILABLE_DESC','Select the vehicles that you require');
 define('_JOMRES_AJAXFORM_AVAILABLE_DESC_SRP','Look here to see if the business is available at this time.');
 define('_JOMRES_AJAXFORM_EXTRAS','Optional extras');
-define('_JOMRES_AJAXFORM_EXTRAS_DESC','Select any services you would like to include in the booking');
+define('_JOMRES_AJAXFORM_EXTRAS_DESC','Services');
 define('_JOMRES_COM_PERDAY','Per night');
 define('_JOMRES_AJAXFORM_ADDRESS','Your address');
 define('_JOMRES_AJAXFORM_ADDRESS_DESC','Please enter your details. Note that all fields are required except your mobile number');
