@@ -125,6 +125,14 @@ if (componentsIntegrationExists())
 			}
 		}
 
+	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS) )
+		{
+		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS)) 
+			{
+			echo "<h1>Error, unable to make folder "."core-plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			}
+		}
+
 	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages") )
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages")) 
