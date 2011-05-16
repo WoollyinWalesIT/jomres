@@ -190,7 +190,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			}
 		}
 	
-	$theText = jomres_purify_html($theText,$editing);
+	//$theText = jomres_purify_html($theText,$editing);
 	
 	switch ($jrConfig['utfHTMLdecode'])
 		{
