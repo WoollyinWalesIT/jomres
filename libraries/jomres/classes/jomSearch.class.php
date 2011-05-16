@@ -1059,10 +1059,10 @@ function prepPriceRangeSearch($increments=10)
 	// Prepares the PropertyType data required for a search
 	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 
-	$query = "SELECT DISTINCT roomrateperday FROM #__jomres_rates ORDER by roomrateperday";
+	$query = "SELECT DISTINCT roomrateperday FROM #__jomres_rates,#__jomres_propertys WHERE #__jomres_rates.property_uid = #__jomres_propertys.propertys_uid AND #__jomres_propertys.published = 1 ORDER by #__jomres_rates.roomrateperday";
 	$rateList = doSelectSql($query);
 
-	$query = "SELECT DISTINCT property_key FROM #__jomres_propertys ORDER by property_key";
+	$query = "SELECT DISTINCT property_key FROM #__jomres_propertys WHERE published = 1 ORDER by property_key";
 	$realestateList = doSelectSql($query);
 
 	$result=array();
