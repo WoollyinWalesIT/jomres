@@ -52,7 +52,10 @@ class j01010listpropertys {
 		if ( !isset($_REQUEST['plistpage']) )
 			$newSearch=true;
 			
-		$limit = jomresGetParam( $_REQUEST, 'limit', (int)$jrConfig['property_list_limit']);
+		if (JOMRES_NOHTML == 1)
+			$limit = 100;
+		else
+			$limit = jomresGetParam( $_REQUEST, 'limit', (int)$jrConfig['property_list_limit']);
 
 		if (!@session_start())
 			{
@@ -134,7 +137,8 @@ class j01010listpropertys {
 			$paging=$page->get_page_nav();
 			$nav['WRITEPAGESLINKS'] = $paging;
 			$nav['WRITEPAGESCOUNTER'] = $page->writePagesCounterJR();
-			$nav_output[]=$nav;
+			if (JOMRES_NOHTML == 0)
+				$nav_output[]=$nav;
 			$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 			$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 

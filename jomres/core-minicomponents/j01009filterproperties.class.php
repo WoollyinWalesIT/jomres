@@ -32,8 +32,10 @@ class j01009filterproperties
 			}
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-
+		
 		$data_only=false;
+		if (JOMRES_NOHTML == 1)
+			$data_only = true;
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
 		$propertys_uids=$componentArgs['propertys_uids'];
