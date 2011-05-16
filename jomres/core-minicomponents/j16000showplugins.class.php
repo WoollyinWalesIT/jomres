@@ -157,6 +157,7 @@ class j16000showplugins
 				background-color: #fc0000; color: black;
 			}
 			</style>
+		<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3>
 		<table class="jradmin_table" border="0">
 			<tr>
 				<th class="jomres_title" colspan="6">Third party plugins</th>
