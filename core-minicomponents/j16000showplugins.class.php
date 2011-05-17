@@ -157,7 +157,7 @@ class j16000showplugins
 				background-color: #fc0000; color: black;
 			}
 			</style>
-		<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3>
+		<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3><br/>You will only be able to install the plugins listed below if you have a valid download and support license.<br/>Bold items in the core plugins list are generally essential when building a portal, and if you have upgraded from v4 you should consider installing those plugins to continue working as before.
 		<table class="jradmin_table" border="0">
 			<tr>
 				<th class="jomres_title" colspan="6">Third party plugins</th>
@@ -172,7 +172,7 @@ class j16000showplugins
 			</tr>';
 		$uninstall_text="Uninstall";
 		$externalPluginTypes=array("component","module","mambot");
-		
+		$this->set_main_plugins();
 		foreach ($third_party_plugins as $tpp)
 			{
 			$type=$tpp['type'];
@@ -272,9 +272,16 @@ class j16000showplugins
 					$row_class='upgradeavailable';
 					}
 				}
+				
+			$strong1 = '';
+			$strong2 = '';
+			if (in_array($rp['name'],$this->main_plugins))
+				{
+				$strong1 = '<strong>';
+				$strong2 = '</strong>';
+				}
 
 			$installLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$n.'">'.$installAction.'</a>';
-
 			$uninstallLink="";
 			if (!in_array($rp['type'],$externalPluginTypes) )
 				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
@@ -284,11 +291,11 @@ class j16000showplugins
 				$local_version="N/A";
 			echo
 			"<tr class=\"".$row_class."\">
-				<td>".$rp['name']."</td>
+				<td>".$strong1.$rp['name'].$strong2."</td>
 				<td>".$local_version."</td>
 				<td>".$rp['version']."</td>
 				<td>".$rp['lastupdate']."</td>
-				<td>".stripslashes($rp['description'])."</td>
+				<td>".$strong1.stripslashes($rp['description']).$strong2."</td>
 				<td>".$installLink."</td>
 				<td>".$uninstallLink."</td>
 			</tr>";
@@ -314,7 +321,27 @@ class j16000showplugins
 		';
 		}
 
-
+	function set_main_plugins()
+		{
+		$this->main_plugins = array();
+		$this->main_plugins[]="advanced_micromanage_tariff_editing_modes";
+		$this->main_plugins[]="black_bookings";
+		$this->main_plugins[]="book_guest_in_out";
+		$this->main_plugins[]="commission";
+		$this->main_plugins[]="core_gateway_paypal";
+		$this->main_plugins[]="coupons";
+		$this->main_plugins[]="custom_fields";
+		$this->main_plugins[]="guest_types";
+		$this->main_plugins[]="lastminute_config_tab";
+		$this->main_plugins[]="optional_extras";
+		$this->main_plugins[]="partners";
+		$this->main_plugins[]="property_creation_plugins";
+		$this->main_plugins[]="sms_clickatell";
+		$this->main_plugins[]="subscriptions";
+		$this->main_plugins[]="template_editing";
+		$this->main_plugins[]="wiseprice_config_tab";
+		}
+	
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
