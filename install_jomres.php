@@ -361,7 +361,7 @@ function checkExtraServicesTableExists()
 	$string="Tables_in_".$jomresConfig_db;
 	foreach ($result as $r)
 		{
-		if (strstr($r->$string, '_jomres_extraServices') )
+		if (strstr($r->$string, '_jomres_extraServices') || strstr($r->$string, '_jomres_extraservices') )
 			return true;
 		}
 	return false;
