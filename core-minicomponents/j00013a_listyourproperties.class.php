@@ -26,8 +26,9 @@ class j00013a_listyourproperties
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$task 				= get_showtime('task');
-		if ($thisJRUser->superPropertyManager)
+		if ($thisJRUser->superPropertyManager || $thisJRUser->accesslevel == 1)
 			return;
+		
 		if ($jrConfig['useSubscriptions']=="1")
 			{
 			//if ($thisJRUser->accesslevel == 2 && (strlen($task)==0 || $task=="list_subscription_packages" || $task == "listyourproperties" || $task == "publishProperty") )
