@@ -546,8 +546,9 @@ class dobooking
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
-			FROM #__jomres_rates WHERE property_uid = '$this->property_uid'
+			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->arrivalDate."', '%Y/%m/%d')
 			";
+		
 		//$this->setErrorLog("getAllTariffsData:: ".$query );
 		$tariffs =doSelectSql($query);
 		//$this->setErrorLog("Finding tariffs");
@@ -616,7 +617,7 @@ class dobooking
 		$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
 		$gor=genericOr($this->allPropertyRoomUids,'room_uid');
 		if (!$amend_contract)
-			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND $gor ";
+			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND $gor  AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".$this->arrivalDate."', '%Y/%m/%d') ";
 		else
 			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND contract_uid != '$amend_contractuid' AND $gor ";
 		$bookings =doSelectSql($query);
