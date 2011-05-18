@@ -5368,8 +5368,8 @@ class dobooking
 		$first_date = $dateRangeArray[0];
 		$last_element = count($dateRangeArray)-1;
 		$last_date = $dateRangeArray[$last_element];
-
-		$query = "SELECT discount FROM #__jomres_partners_discounts WHERE partner_id = ".(int)$this->mos_userid." AND property_id = ".(int)$this->property_uid." and valid_from <= '".$first_date."' AND valid_to >= '".$last_date."'";
+		$thisJRUser=jomres_getSingleton('jr_user');
+		$query = "SELECT discount FROM #__jomres_partners_discounts WHERE partner_id = ".(int)$thisJRUser->id." AND property_id = ".(int)$this->property_uid." and valid_from <= '".$first_date."' AND valid_to >= '".$last_date."'";
 		$result = doSelectSql($query);
 		if (count($result)>0)
 			{
