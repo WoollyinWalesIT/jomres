@@ -444,6 +444,12 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j02216deletetariff.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02217deletetariff.class.php');
 		
+		$this->add_obs_file($this->dir_minicomponents.'j00510cheque.html');
+		$this->add_obs_file($this->dir_minicomponents.'j00510paypal.html');
+		$this->add_obs_file($this->dir_minicomponents.'j00600cheque.html');
+		$this->add_obs_file($this->dir_minicomponents.'j00510cheque.gif');
+		$this->add_obs_file($this->dir_minicomponents.'j00510paypal.gif');
+		
 		}
 	
 	function add_obs_file($path_and_file)
