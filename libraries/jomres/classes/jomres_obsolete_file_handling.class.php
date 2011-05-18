@@ -421,6 +421,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j16000edit_template.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000save_template.class.php');
 
+		$this->add_obs_file($this->dir_minicomponents.'j00509form.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00510form.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00600form.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00605form.class.php');
