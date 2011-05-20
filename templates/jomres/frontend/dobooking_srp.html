@@ -158,7 +158,9 @@ function dateStatus(date) {
 						<td valign="top">
 							<div id="extrascontainer">
 								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
-									{EXTRAS_HEADER}
+									<tr>
+										<th colspan="5">{EXTRAS_HEADER}</th>
+									</tr>
 									<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 										<tr>{THIRD_PARTY_EXTRA}</tr>
 									</patTemplate:tmpl>

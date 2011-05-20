@@ -337,12 +337,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$extrasHeader = array();
 		$extrasH = array();
 		$extrasH['EXTRAS_TOTAL']=$output['EXTRAS_TOTAL'];
-		$extrasH ['EXTRAS_HEADER']='
-											<tr>
-												<th colspan="5">'.$output['AJAXFORM_EXTRAS_DESC'].'</th>
-											</tr>
-			';
-			$extrasHeader[]=$extrasH;
+		$extrasH ['EXTRAS_HEADER']=$output['AJAXFORM_EXTRAS_DESC'];
+		$extrasHeader[]=$extrasH;
 
 		$bkg->cfg_showExtras = true;
 		$output['SHOWEXTRAS']="true";
