@@ -1,3 +1,14 @@
+Jomres 5stable
+
+Minor tweak to installer to stop it reporting that it's creating the extra services table if it already exists.
+Tweaked queries that pull tariff and room booking information from db when setting up the booking object.
+Removed height: 1000px; from viewproperty left col in css file as it should no longer be appropriate.
+Added j00509form.class.php to obsolete files class.
+Added old gateway templates and images to obsolete files list.
+Modified the updater to no longer check the license key.
+Removed old creditcard storage mechanism.
+Modified dobooking to remove some html and added that missing html to the dobooking templates.
+
 Jomres 5beta1
 
 Removed a lot of files which have now been added as plugins, removed some remaining 'form' plugin files and created a new core-plugins folder.
@@ -5,7 +16,15 @@ Modified installer to put core Jomres plugins into the core-plugins directory, i
 Added some code to remove anti-xss code inserted by the input filter when adding a new plugin.
 Modified code that removes plugins to take into account the new core-plugins directory.
 Added a new booking form to be used by non-room based properties (eg. jintour would use this template instead of the one it carries natively).
-
+Applied some tweaks to the booking forms to improve layout etc, thx Aladar.
+Reworded the optional extras selection header to make it more generic.
+Small tweak to booking form font size, and a modification to show the services total in the booking form (bug fix).
+Disabled output filtering, causing site slowdowns and not massively necessary.
+Added a warning to the plugin manager to not install all plugins when first starting out.
+Modified the prep search by price ranges code to use only prices from published properties.
+Modified list properties to not show paging if called via ajax, and filter properties to not output the sort order dropdown for same. For ajax generated property lists we'll need to find some other way to sort the search results as the two above are not suitable for this scenario.
+Modified plugin manager to highlight main system plugins.
+Modified property list dashboard element to not show anything if the user's a receptionist.
 
 Jomres 4.7.8
 
