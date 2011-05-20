@@ -2479,22 +2479,6 @@ function insertGuestDeets($jomressession)
 	if (!$returnid)
 		{ echo "Error saving users details";exit; }
 
-	if (strlen($ccard_no) > 0)
-		{
-		$property_uid=(int)$tmpBookingHandler->getBookingPropertyId();
-		$query="UPDATE #__jomres_guests SET
-			`ccard_no`=ENCODE('$ccard_no', '$jomresConfig_secret'),
-			`ccard_issued`=ENCODE('$ccard_issued', '$jomresConfig_secret'),
-			`ccard_expiry`=ENCODE('$ccard_expiry', '$jomresConfig_secret'),
-			`ccard_iss_no`=ENCODE('$ccard_iss_no', '$jomresConfig_secret'),
-			`ccard_name`=ENCODE('$ccard_name', '$jomresConfig_secret'),
-			`ccv`=ENCODE('$ccv', '$jomresConfig_secret'),
-			`type`=ENCODE('$type', '$jomresConfig_secret')
-			WHERE guests_uid = '".(int)$returnid."'";
-		doInsertSql($query,"");
-		//$unencryptedKey="";
-		$tmpBookingHandler->resetCreditCardDetails();
-		}
 	return $returnid;
 	}
 
