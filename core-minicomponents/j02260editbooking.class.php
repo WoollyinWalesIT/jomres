@@ -282,7 +282,7 @@ class j02260editbooking {
 				if (!$booking_deposit_paid && $bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('enterdeposit',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$booking_contract_uid"),'');
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
-				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&no_html=1&contract_uid='.$booking_contract_uid;
+				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&popup=1&tmpl=component&contract_uid='.$booking_contract_uid;
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					$jrtb .= $jrtbar->toolbarItem('addservice',jomresURL(JOMRES_SITEPAGE_URL."&task=addServiceToBill&contract_uid=$booking_contract_uid"),jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=false));
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
