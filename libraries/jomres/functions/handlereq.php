@@ -518,8 +518,10 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 				$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
 			}
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
+		$bkg->number_of_free_rooms = count($freeRoomsArray);
 		if (count($freeRoomsArray) > 0 )
 			$roomAndTariffArray=$bkg->getTariffsForRoomUids($freeRoomsArray);
+			
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Room and Tariff array count = ".count($roomAndTariffArray));
 		$output="";
 

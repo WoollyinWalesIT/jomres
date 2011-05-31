@@ -4899,6 +4899,12 @@ class dobooking
 				$this->resetPricingOutput=true;
 				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
 				}
+			if ($this->number_of_free_rooms==0)
+				{
+				$this->resetPricingOutput=true;
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
+				}
+				
 			if (!$this->checkSmoking($this->smoking) )
 				{
 				$this->resetPricingOutput=true;
