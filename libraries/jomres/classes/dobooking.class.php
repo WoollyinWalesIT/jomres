@@ -617,7 +617,7 @@ class dobooking
 		$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
 		$gor=genericOr($this->allPropertyRoomUids,'room_uid');
 		if (!$amend_contract)
-			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND $gor  AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".$this->arrivalDate."', '%Y/%m/%d') ";
+			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND $gor ";
 		else
 			$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND contract_uid != '$amend_contractuid' AND $gor ";
 		$bookings =doSelectSql($query);
@@ -2501,7 +2501,7 @@ class dobooking
 
 		});
 		</script>
-		<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" />
+		<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" autocomplete="off" />
 		';
 		return $output;
 		}
