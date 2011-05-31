@@ -49,7 +49,7 @@ class j02252archiveaudit {
 			$query .= "('".$audit->date."','".$audit->time."','".$audit->owner."','".$audit->op."','".$args."',".(int)$audit->property_uid."),";
 			}
 		$query=substr($query,0,strlen($query)-1);
-		$result =doInsertSql($query,$query);
+		$result =doInsertSql($query,'');
 		$gor=genericOr($uidArray,'uid');
 		foreach ($uidArray as $uid)
 			{
