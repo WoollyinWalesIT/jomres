@@ -928,14 +928,14 @@ class dobooking
 					case '8': // per days per room
 						$model_text=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM));
 					break;
-					case '8': // per room
+					case '9': // per room
 						$model_text=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING));
 					break;
 					}
 				$tax_output = "";
 				if ($rate > 0)
 					$tax_output = " (".$rate."%)";
-				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) )).$tax_output;
+				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) )).$tax_output." ( ".$model_text." )";
 
 				$extra_deets['PRICE']=output_price($inc_price);
 				if ($ex->chargabledaily=="1")
