@@ -515,12 +515,15 @@ class jomSearch {
 	function jomSearch_roomtypes()
 		{
 		$filter=$this->filter['room_type'];
-		$this->makeOrs();
-		$property_ors=$this->ors;
-		if(!empty($filter) && $property_ors )
+		if ($filter!="%")
 			{
-			$query="SELECT propertys_uid FROM #__jomres_rooms WHERE  room_classes_uid LIKE '$filter'  $property_ors ";
-			$this->resultBucket=doSelectSql($query);
+			$this->makeOrs();
+			$property_ors=$this->ors;
+			if(!empty($filter) && $property_ors )
+				{
+				$query="SELECT propertys_uid FROM #__jomres_rooms WHERE  room_classes_uid LIKE '$filter'  $property_ors ";
+				$this->resultBucket=doSelectSql($query);
+				}
 			}
 		$this->sortResult();
 		}
