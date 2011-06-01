@@ -26,13 +26,14 @@ class j16000edit_invoice {
 		$rows=array();
 		
 		$id		= intval(jomresGetParam( $_REQUEST, 'id', 0 ));
-		jr_import('jrportal_invoice');
-		$invoice = new jrportal_invoice();
+		jr_import('invoicehandler');
+		$invoice = new invoicehandler();
 		if ($id > 0)
 			{
 			$invoice->id = $id;
 			$invoice->getInvoice();
 			}
+		
 		$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 		$output['LIVESITE']=get_showtime('live_site');
 		$output['HUSER']=_JRPORTAL_INVOICES_USER;
@@ -65,8 +66,11 @@ class j16000edit_invoice {
 		if ($id>0)
 			{
 			$output['ID']=$invoice->id;
+			if ($invoice->status != 1)
+				$output['STATUS']=invoices_makeInvoiceStatusDropdown($invoice->status);
+			else
+				$output['STATUS']=_JRPORTAL_INVOICES_STATUS_PAID;
 			
-			$output['STATUS']=invoices_makeInvoiceStatusDropdown($invoice->status);
 			$output['USER']=_JRPORTAL_INVOICES_USER;
 			jr_import('jrportal_user_functions');
 			$user_obj = new jrportal_user_functions();
@@ -78,7 +82,7 @@ class j16000edit_invoice {
 				$output['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 			else
 				$output['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-			$output['INITTOTAL']=$invoice->init_total;
+			$output['INITTOTAL']=$invoice->get_line_items_balance();
 			$output['RECURTOTAL']=$invoice->recur_total;
 			$output['FREQ']=$invoice->recur_frequency;
 			$output['CURRENCYCODE']=$invoice->currencycode;
