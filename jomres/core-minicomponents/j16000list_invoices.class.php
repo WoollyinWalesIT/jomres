@@ -24,6 +24,9 @@ class j16000list_invoices
 			$this->template_touchable=false; return;
 			}
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		jr_import('jrportal_user_functions');
+		$user_obj = new jrportal_user_functions();
+		jr_import('invoicehandler');
 		
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
 
@@ -83,6 +86,12 @@ class j16000list_invoices
 		foreach ($invoices as $invoice)
 			{
 			$r=array();
+			
+			$invoicehandler = new invoicehandler();
+			$invoicehandler->id = (int)$invoice['id'];
+			$invoicehandler->getInvoice();
+			$balance = $invoicehandler->get_line_items_balance();
+
 			$r['ID']=$invoice['id'];
 			$inv_id = $invoice['id'];
 			$invoice_items = $invoices_items[$inv_id];
@@ -93,12 +102,9 @@ class j16000list_invoices
 					$item_name_string .= $invoice_item['name']."<br/>";
 				}
 			$r['ITEMS']=$item_name_string;
-			
-			jr_import('jrportal_user_functions');
-			$user_obj = new jrportal_user_functions();
-			
+
 			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
-			
+
 			if (strlen($user_deets['name'])==0)
 				$r['USER']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
 			else
@@ -118,7 +124,7 @@ class j16000list_invoices
 				$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 			else
 				$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-			$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
+			$r['INITTOTAL']		=output_price($balance,$invoice['currencycode']);
 			$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
 			$r['FREQ']			=$invoice['recur_frequency'];
 			$r['CURRENCYCODE']	=$invoice['currencycode'];

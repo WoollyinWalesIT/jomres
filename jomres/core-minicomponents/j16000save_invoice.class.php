@@ -89,11 +89,7 @@ class j16000save_invoice {
 		
 		if ($original_status != 1 && $status == 1)
 			{
-			
-			$invoice_handler->init_total=0;
-			$invoice_handler->paid=date( 'Y-m-d H:i:s' );
-			$invoice_handler->status=1;
-			$invoice_handler->commitUpdateInvoice();
+			$invoice_handler->mark_invoice_paid();
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=list_invoices&status=paid"), "" );
 			}
 		

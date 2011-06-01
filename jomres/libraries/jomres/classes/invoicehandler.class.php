@@ -143,7 +143,7 @@ class invoicehandler extends jrportal_invoice
 		$line_item = new jrportal_lineitem();
 		if (!isset($line_item_data['id']) )
 			{
-			error_logging("Couldn't fin id while updating line item");
+			error_logging("Couldn't find id while updating line item");
 			return false;
 			}
 			
@@ -237,11 +237,12 @@ class invoicehandler extends jrportal_invoice
 			$line_item->recur_total = $r_total + $recur_total_tax;
 
 			$this->recur_total = $this->recur_total + $line_item->recur_total;
-
 			$line_item->commitLineItem();
 			}
 		else
+			{
 			error_logging("Line item test failed");
+			}
 		}
 
 	function check_line_item_data($line_item_data)
@@ -280,8 +281,8 @@ class invoicehandler extends jrportal_invoice
 			'recur_qty'=>"0",
 			'recur_discount'=>"0.00"
 			);
-		$this->add_line_item($line_item_data);
 		
+		$this->add_line_item($line_item_data);
 		$this->commitUpdateInvoice();
 		
 		}
@@ -289,6 +290,9 @@ class invoicehandler extends jrportal_invoice
 	function mark_invoice_pending()
 		{
 		$this->status=3;
+		$this->paid=date( 'Y-m-d H:i:s' );
+		$balance = $this->get_line_items_balance();
+		var_dump($balance);exit;
 		$this->commitUpdateInvoice();
 		}
 		
@@ -297,7 +301,13 @@ class invoicehandler extends jrportal_invoice
 		$this->status=2;
 		$this->commitUpdateInvoice();
 		}
-		
+	
+/* 	function mark_invoice_unpaid()
+		{
+		$this->status=0;
+		$this->commitUpdateInvoice();
+		} */
+
 	function get_line_items_balance()
 		{
 		$query = "SELECT * FROM #__jomresportal_lineitems WHERE inv_id = ".(int)$this->id;
