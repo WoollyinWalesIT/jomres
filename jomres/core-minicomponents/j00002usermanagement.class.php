@@ -50,9 +50,7 @@ class j00002usermanagement {
 			if ($thisJRUser->userIsManager==TRUE && $thisProperty>0)
 				{
 				$thisJRUser->set_currentproperty($thisProperty);
-				$qString=str_replace("'","\'",$_SERVER['QUERY_STRING']);
-				//$qString=jomresGetParam( $_SERVER, 'QUERY_STRING', '' );
-				jomresRedirect( jomresURL("index.php?".$qString) );
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL) );
 				}
 			}
 		if ($thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager)
