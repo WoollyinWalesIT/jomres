@@ -83,12 +83,14 @@ class j16000save_invoice {
 			$invoice_handler->update_line_item($li);
 			
 			}
-			
+
 		$invoice_handler->status=$status;
 		$invoice_handler->commitUpdateInvoice();
 		
 		if ($original_status != 1 && $status == 1)
 			{
+			
+			$invoice_handler->init_total=0;
 			$invoice_handler->paid=date( 'Y-m-d H:i:s' );
 			$invoice_handler->status=1;
 			$invoice_handler->commitUpdateInvoice();
