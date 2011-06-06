@@ -1273,6 +1273,7 @@ function getGuestDetailsForContract($contract_uid)
 					$vv=$vDeets[3];
 					$query="SELECT `type` FROM #__jomres_customertypes where id = '".(int)$vu."' LIMIT 1 ";
 					$vtitle=doSelectSql($query,1);
+					$vtitle=jr_gettext('_JOMRES_CUSTOMTEXT_GUESTTYPE'.(int)$vu,stripslashes($ex->type),false,false);
 					$guesttypeOutput[]=array('title'=>$vtitle,'qty'=>$vq,'value'=>$vv);
 					}
 				}
