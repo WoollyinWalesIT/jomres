@@ -292,7 +292,7 @@ class invoicehandler extends jrportal_invoice
 		$this->status=3;
 		$this->paid=date( 'Y-m-d H:i:s' );
 		$balance = $this->get_line_items_balance();
-		var_dump($balance);exit;
+		//var_dump($balance);exit;
 		$this->commitUpdateInvoice();
 		}
 		
