@@ -251,14 +251,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$defaultdepartureDate=$bkg->initDepartureDate();
 		if (!isset($_REQUEST['arrivalDate']) )
 			{
-			/*
-			if (!isset($_COOKIE['jomsearch_availability']))
-				$departureDate	=date("Y/m/d",$unixTomorrowsDate);
-			else
-				$departureDate	=jomresGetParam( $_COOKIE,'jomsearch_availability_departure', '' );
-			*/
 			if ($tmpBookingHandler->tmpsearch_data['jomsearch_availability']=="")
-				$departureDate	=date("Y/m/d",$unixTomorrowsDate);
+				$departureDate	=$defaultdepartureDate;
 			else
 				$departureDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability_departure'];
 			}
