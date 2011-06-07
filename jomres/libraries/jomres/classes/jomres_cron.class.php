@@ -36,9 +36,58 @@ class jomres_cron
 			$this->displaylog = $this->config['displaylogging'];
 			$this->debug[]="<b>Cannot process jobs, curl function does not exist!</b>";
 			}
+		$this->checkForStalledJobs(); // New for 5.1, some old jobs have been found to be locked, we need to check those and unlock any that need unlocking.
 		$this->getAllJobs();
 		}
-
+	
+	function checkForStalledJobs()
+		{
+		$query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
+		$allJobs=doSelectSql($query);
+		
+		$threashold = 60; // Assuming that no job takes longer than 60 seconds, any job that's due x + threashold must have stalled, therefore we'll unlock it.
+		
+		if (count($allJobs)>0)
+			{
+			foreach ($allJobs as $job)
+				{
+				$this->allJobs[]=array('id'=>$job->id,'job_name'=>$job->job,'schedule'=>$job->schedule,'last_ran'=>$job->last_ran,'parameters'=>$job->parameters);
+				if ($job->locked == "1")
+					{
+					// In my sample db it seems that some jobs have become locked, and weren't unlocked for some reason. This change is intended to bypass that as they would remain locked forever.
+					switch (trim($job->schedule))
+						{
+						case "M": // Every minute
+							$nextDue=$job->last_ran+60 + $threashold;
+							if ($this->now > $nextDue)
+								$jobDue=true;
+							break;
+						case "H": // Every hour
+							$nextDue=$job->last_ran+3600 + $threashold;
+							if ($this->now > $nextDue)
+								$jobDue=true;
+							break;
+						case "D": // Every day
+							$nextDue=$job->last_ran+43200 + $threashold;
+							if ($this->now > $nextDue)
+								$jobDue=true;
+							break;
+						case "W": // Every week
+						default:
+							$nextDue=$job->last_ran+302400 + $threashold;
+							if ($this->now > $nextDue)
+								$jobDue=true;
+							break;
+						}
+					if ($jobDue)
+						{
+						$this->unlockJob($job->id);
+						}
+					}
+				}
+			}
+		}
+	
 	function getcronconfig()
 		{
 		$query="SELECT setting,value FROM #__jomres_pluginsettings WHERE prid = '0' AND plugin = 'jomcompcronjobs'";
@@ -89,7 +138,6 @@ class jomres_cron
 			foreach ($this->allUnlockedJobs as $job)
 				{
 				$jobDue=false;
-				
 				switch (trim($job['schedule']))
 					{
 					case "M": // Every minute
@@ -126,6 +174,7 @@ class jomres_cron
 							}
 						break;
 					}
+									
 				if ( $jobDue )
 					$this->lockJob($job['id']);
 				if ($this->verboselog)
@@ -170,18 +219,19 @@ class jomres_cron
 	// We will use jomresConfig_secret to prevent outsiders from triggering a specific cron job remotely. The cron 6000 minicomponent can be edited to disable this check if the developer wants to run the job manually while testing
 	function runDueJobs()
 		{
-		$jomresConfig_secret = get_showtime('secret');
-		if (count($this->dueJobs) > 0)
+		if (function_exists("curl_init") )
 			{
-			foreach ($this->dueJobs as $job)
+			$jomresConfig_secret = get_showtime('secret');
+			if (count($this->dueJobs) > 0)
 				{
-				$request = get_showtime('live_site')."/index2.php?option=com_jomres&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
-				if (function_exists("curl_init") )
+				foreach ($this->dueJobs as $job)
 					{
+					$request = JOMRES_SITEPAGE_URL_RAW."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch, CURLOPT_URL, $request);
 					curl_setopt($ch, CURLOPT_PORT, 80);
+					curl_setopt($ch,CURLOPT_TIMEOUT,1); 
 					$curl_output=curl_exec($ch);
 					curl_close($ch);
 					$this->updateJob_lastran($job['id'],$job['job_name'],$this->now );
