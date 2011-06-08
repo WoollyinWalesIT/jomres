@@ -1,4 +1,9 @@
 <?php
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
+
 	/**
 	 * File: Browser.php
 	 * Author: Chris Schuld (http://chrisschuld.com/)
