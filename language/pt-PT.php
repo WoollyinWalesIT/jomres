@@ -2,7 +2,7 @@
 /**
  * Core file
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 4 
+ * @version Jomres 5
 * @package Jomres
 * @copyright	2005-2011 Vince Wooll
 * Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net
