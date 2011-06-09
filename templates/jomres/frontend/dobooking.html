@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
 </patTemplate:tmpl>
 </script>
 <br />
-<form action="{JOMRES_SITEPAGE_URL}&task=confirmbooking" name="ajaxform" id="ajaxform" method="post">
+<form action="javascript:dobooking_validate()" name="ajaxform" id="ajaxform" method="post">
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
 	<div>
 		<div class="block_ui_bookingform">
@@ -410,7 +410,8 @@ jQuery(document).ready(function() {
 							<tr> 
 								<td valign="top" style="text-align:center;">
 									<div id="submitbutton">
-										<button name="confirmbooking" class="fg-button ui-state-default ui-corner-all" type="button"  onclick="dobooking_validate();">{SUBMIT}</button>
+										<input type="submit" name="confirmbooking" class="fg-button ui-state-default ui-corner-all" value="{SUBMIT}"></input>
+										 <a href="#" id="testLink"></a>  
 									</div>
 								</td>
 							</tr>

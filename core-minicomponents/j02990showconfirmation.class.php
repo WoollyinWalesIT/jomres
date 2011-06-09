@@ -48,7 +48,18 @@ class j02990showconfirmation {
 			$tmpBookingHandler->addNewBookingField("bookersUsername");
 		$tmpBookingHandler->updateBookingField("bookersUsername",$thisJRUser->username);
 
-		
+		$tmpBookingHandler->updateGuestField('firstname', jomresGetParam($_POST,'firstname','') );
+		$tmpBookingHandler->updateGuestField('surname', jomresGetParam($_POST,'surname','') );
+		$tmpBookingHandler->updateGuestField('house', jomresGetParam($_POST,'house','') );
+		$tmpBookingHandler->updateGuestField('street', jomresGetParam($_POST,'street','') );
+		$tmpBookingHandler->updateGuestField('town', jomresGetParam($_POST,'town','') );
+		$tmpBookingHandler->updateGuestField('region', jomresGetParam($_POST,'region','') );
+		$tmpBookingHandler->updateGuestField('country', jomresGetParam($_POST,'country','') );
+		$tmpBookingHandler->updateGuestField('postcode', jomresGetParam($_POST,'postcode','') );
+		$tmpBookingHandler->updateGuestField('tel_mobile', jomresGetParam($_POST,'tel_mobile','') );
+		$tmpBookingHandler->updateGuestField('tel_landline', jomresGetParam($_POST,'tel_landline','') );
+		$tmpBookingHandler->updateGuestField('email', jomresGetParam($_POST,'eemail','') );
+
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 
 		// Trigger point

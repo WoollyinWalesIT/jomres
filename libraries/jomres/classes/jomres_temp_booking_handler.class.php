@@ -194,7 +194,7 @@ class jomres_temp_booking_handler
 			{
 			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
-			 $expire = time()+$jrConfig['lifetime'];
+			$expire = time()+$jrConfig['lifetime'];
 			if (!isset($_COOKIE['jomressession']) || is_null($_COOKIE['jomressession']))
 				{
 				$this->part = generateJomresRandomString();
