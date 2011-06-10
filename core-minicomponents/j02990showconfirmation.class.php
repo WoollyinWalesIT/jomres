@@ -59,6 +59,8 @@ class j02990showconfirmation {
 		$tmpBookingHandler->updateGuestField('tel_mobile', jomresGetParam($_POST,'tel_mobile','') );
 		$tmpBookingHandler->updateGuestField('tel_landline', jomresGetParam($_POST,'tel_landline','') );
 		$tmpBookingHandler->updateGuestField('email', jomresGetParam($_POST,'eemail','') );
+		
+		
 
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 
@@ -71,6 +73,14 @@ class j02990showconfirmation {
 		$tag			=	$bookingDeets['tag'];
 		$property_uid	=	$bookingDeets['property_uid'];
 		$mrConfig		=	getPropertySpecificSettings($property_uid);
+		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
+		if ($amend_contract)
+			{
+			$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
+			$query = "SELECT special_reqs FROM #__jomres_contracts WHERE contract_uid = ".(int)$amend_contractuid." AND property_uid = ".(int)$property_uid;
+			$booking_parts['SPECIALREQS']= doSelectSql($query,1);
+			}
+
 		property_header($property_uid);
 
 		if (!$bookingDeets['ok_to_book'])
