@@ -116,7 +116,7 @@ class j06005view_invoice {
 			$output['PRINTLINK'] = JOMRES_SITEPAGE_URL.'&tmpl=component&popup=1&task=view_invoice&id='.$id;
 			$output['PRINTTEXT'] =jr_gettext('_JOMRES_COM_INVOICE_PRINT',_JOMRES_COM_INVOICE_PRINT);
 			}
-		
+
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_INVOICE_TITLE',_JOMRES_COM_INVOICE_TITLE);
 		$output['LIVESITE']=get_showtime('live_site');
 		$output['HUSER']=jr_gettext('_JRPORTAL_INVOICES_USER',_JRPORTAL_INVOICES_USER);
@@ -174,6 +174,8 @@ class j06005view_invoice {
 		$output['HLI_INIT_QTY']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY',_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY);
 		$output['HLI_INIT_DISCOUNT']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT',_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT);
 		$output['HLI_INIT_TOTAL']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL',_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL);
+		$output['HLI_INIT_TOTAL_INCLUSIVE']=jr_gettext('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX);
+		
 		$output['HLI_RECUR_PRICE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE',_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE);
 		$output['HLI_RECUR_QTY']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY',_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY);
 		$output['HLI_RECUR_DISCOUNT']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT',_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT);
@@ -221,6 +223,7 @@ class j06005view_invoice {
 				$r['LI_INIT_QTY']		=$li['init_qty'];
 				$r['LI_INIT_DISCOUNT']	=output_price($li['init_discount'],$invoice->currencycode);
 				$r['LI_INIT_TOTAL']		=output_price($li['init_total'],$invoice->currencycode);
+				$r['LI_INIT_TOTAL_INCLUSIVE']	=output_price($li['init_total_inclusive'],$invoice->currencycode);
 				$r['LI_RECUR_PRICE']	=output_price($li['recur_price'],$invoice->currencycode);
 				$r['LI_RECUR_QTY']		=$li['recur_qty'];
 				$r['LI_RECUR_DISCOUNT']	=output_price($li['recur_discount'],$invoice->currencycode);

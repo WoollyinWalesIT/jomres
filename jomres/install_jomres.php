@@ -281,10 +281,32 @@ function doTableUpdates()
 		
 	if (!checkCouponsBookingValidColsExists() )
 		alterCouponsBookingValidCols();
+	if (!checkLineitemsInclusiveColExists() )
+		alterLineitemsInclusiveCol();
+
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function checkLineitemsInclusiveColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomresportal_lineitems  LIKE 'init_total_inclusive'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterLineitemsInclusiveCol()
+	{
+	echo "Editing __jomresportal_lineitems table adding init_total_inclusive column<br>";
+	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD `init_total_inclusive` float NOT NULL default '0' AFTER `init_total`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomresportal_lineitems init_total_inclusive</b><br>";
+	}
+	
 function checkCouponsBookingValidColsExists()
 	{
 	$query="SHOW COLUMNS FROM #__jomres_coupons  LIKE 'booking_valid_from'";
@@ -1492,6 +1514,7 @@ function createJomresTables()
 		`init_qty` int(11) NOT NULL default '0',
 		`init_discount` float NOT NULL default '0',
 		`init_total` float NOT NULL default '0',
+		`init_total_inclusive` float NOT NULL default '0',
 		`recur_price` float NOT NULL default '0',
 		`recur_qty` int(11) NOT NULL default '0',
 		`recur_discount` float NOT NULL default '0',
