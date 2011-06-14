@@ -55,6 +55,7 @@ class j16000edit_invoice {
 		$output['HLI_INIT_QTY']=_JRPORTAL_INVOICES_LINEITEMS_INIT_QTY;
 		$output['HLI_INIT_DISCOUNT']=_JRPORTAL_INVOICES_LINEITEMS_INIT_DISCOUNT;
 		$output['HLI_INIT_TOTAL']=_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL;
+		$output['HLI_INIT_TOTAL_INCLUSIVE']=jr_gettext('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX);
 		$output['HLI_RECUR_PRICE']=_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE;
 		$output['HLI_RECUR_QTY']=_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY;
 		$output['HLI_RECUR_DISCOUNT']=_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT;
@@ -82,7 +83,8 @@ class j16000edit_invoice {
 				$output['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 			else
 				$output['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-			$output['INITTOTAL']=$invoice->get_line_items_balance();
+			$output['INITTOTAL']=$invoice->init_total;
+			
 			$output['RECURTOTAL']=$invoice->recur_total;
 			$output['FREQ']=$invoice->recur_frequency;
 			$output['CURRENCYCODE']=$invoice->currencycode;
@@ -101,6 +103,7 @@ class j16000edit_invoice {
 					$r['LI_INIT_QTY']		=$li['init_qty'];
 					$r['LI_INIT_DISCOUNT']	=$li['init_discount'];
 					$r['LI_INIT_TOTAL']		=$li['init_total'];
+					$r['LI_INIT_TOTAL_INCLUSIVE']=$li['init_total_inclusive'];
 					$r['LI_RECUR_PRICE']	=$li['recur_price'];
 					$r['LI_RECUR_QTY']		=$li['recur_qty'];
 					$r['LI_RECUR_DISCOUNT']	=$li['recur_discount'];
@@ -144,6 +147,7 @@ class j16000edit_invoice {
 					$r['LI_INIT_QTY']		=$li['init_qty'];
 					$r['LI_INIT_DISCOUNT']	=$li['init_discount'];
 					$r['LI_INIT_TOTAL']		=$li['init_total'];
+					$r['LI_INIT_TOTAL_INCLUSIVE']=$li['init_total_inclusive'];
 					$r['LI_RECUR_PRICE']	=$li['recur_price'];
 					$r['LI_RECUR_QTY']		=$li['recur_qty'];
 					$r['LI_RECUR_DISCOUNT']	=$li['recur_discount'];

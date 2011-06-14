@@ -24,6 +24,7 @@ class jrportal_lineitem
 		$this->init_qty				= 0;
 		$this->init_discount		= 0.00;
 		$this->init_total			= 0.00;
+		$this->init_total_inclusive			= 0.00;
 		$this->recur_price			= 0.00;
 		$this->recur_qty			= 0;
 		$this->recur_discount		= 0.00;
@@ -41,7 +42,7 @@ class jrportal_lineitem
 		if ($this->id > 0 )
 			{
 			$query = "SELECT
-				`id`,`name`,`description`,`init_price`,`init_qty`, `init_discount`,`init_total`,`recur_price`,
+				`id`,`name`,`description`,`init_price`,`init_qty`, `init_discount`,`init_total`,`init_total_inclusive`,`recur_price`,
 				`recur_qty`,`recur_discount`,`recur_total`,`tax_code`,`tax_description`,`tax_rate`,`inv_id`
 				FROM #__jomresportal_lineitems WHERE `id`='$this->id' LIMIT 1";
 
@@ -58,6 +59,7 @@ class jrportal_lineitem
 					$this->init_qty				= $r->init_qty;
 					$this->init_discount		= $r->init_discount;
 					$this->init_total			= $r->init_total;
+					$this->init_total_inclusive	= $r->init_total_inclusive;
 					$this->recur_price			= $r->recur_price;
 					$this->recur_qty			= $r->recur_qty;
 					$this->recur_discount		= $r->recur_discount;
@@ -103,6 +105,7 @@ class jrportal_lineitem
 				`init_qty`,
 				`init_discount`,
 				`init_total`,
+				`init_total_inclusive`,
 				`recur_price`,
 				`recur_qty`,
 				`recur_discount`,
@@ -121,6 +124,7 @@ class jrportal_lineitem
 				".(int)$this->init_qty.",
 				".(float)$this->init_discount.",
 				".(float)$this->init_total.",
+				".(float)$this->init_total_inclusive.",
 				".(float)$this->recur_price.",
 				".(int)$this->recur_qty.",
 				".(float)$this->recur_discount.",
@@ -158,6 +162,7 @@ class jrportal_lineitem
 				`init_qty` 				= ".(int)$this->init_qty.",
 				`init_discount` 		= ".(float)$this->init_discount.",
 				`init_total` 			= ".(float)$this->init_total.",
+				`init_total_inclusive`	= ".(float)$this->init_total_inclusive.",
 				`recur_price` 			= ".(float)$this->recur_price.",
 				`recur_qty` 			= ".(int)$this->recur_qty.",
 				`recur_discount` 		= ".(float)$this->recur_discount.",

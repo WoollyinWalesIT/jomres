@@ -4535,6 +4535,7 @@ function invoices_getalllineitems_forinvoice($id)
 			$lineitems[$r->id]['init_qty']		=$r->init_qty;
 			$lineitems[$r->id]['init_discount']	=$r->init_discount;
 			$lineitems[$r->id]['init_total']	=$r->init_total;
+			$lineitems[$r->id]['init_total_inclusive']=$r->init_total_inclusive;
 			$lineitems[$r->id]['recur_price']	=$r->recur_price;
 			$lineitems[$r->id]['recur_qty']		=$r->recur_qty;
 			$lineitems[$r->id]['recur_discount']=$r->recur_discount;

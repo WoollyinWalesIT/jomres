@@ -74,6 +74,7 @@
 					<td class="jradmin_subheader_la">{HSUBSCRIPTION}</td>
 					<td class="jradmin_subheader_la">{HCURRENCYCODE}</td>
 					<td class="jradmin_subheader_la">{HINITTOTAL}</td>
+
 					<td class="jradmin_subheader_la">{HRECURTOTAL}</td>
 					<td class="jradmin_subheader_la">{HFREQ}</td>
 				</tr>
@@ -82,6 +83,7 @@
 					<td class="jradmin_field_la">{STATUS}</td>
 					<td class="jradmin_field_la">{RAISED}</td>
 					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" name="due_date" value="{DUE}" /></td>
+					
 					<td class="jradmin_field_la">{SUBSCRIPTION}</td>
 					<td class="jradmin_field_la">{CURRENCYCODE}</td>
 					<td class="jradmin_field_la"><div id="init_grand_total">{INITTOTAL}</div></td>
@@ -110,6 +112,7 @@
 					<td class="jradmin_subheader_la">{HLI_INIT_QTY}</td>
 					<td class="jradmin_subheader_la">{HLI_INIT_DISCOUNT}</td>
 					<td class="jradmin_subheader_la">{HLI_INIT_TOTAL}</td>
+					<td class="jradmin_subheader_la">{HLI_INIT_TOTAL_INCLUSIVE}</td>
 					<td class="jradmin_subheader_la">{HLI_RECUR_PRICE}</td>
 					<td class="jradmin_subheader_la">{HLI_RECUR_QTY}</td>
 					<td class="jradmin_subheader_la">{HLI_RECUR_DISCOUNT}</td>
@@ -134,6 +137,7 @@
 					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="init_qty_{ID}" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
 					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="init_discount_{ID}" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
 					<td class="jradmin_field_la"><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
+					<td class="jradmin_field_la">{LI_INIT_TOTAL_INCLUSIVE}</td>
 					<td class="jradmin_field_la">{LI_RECUR_PRICE}</td>
 					
 					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="recur_qty_{ID}" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>

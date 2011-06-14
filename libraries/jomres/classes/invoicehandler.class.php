@@ -176,10 +176,11 @@ class invoicehandler extends jrportal_invoice
 		$line_item->recur_discount		= $line_item_data['recur_discount'];
 
 		$i_total = ((float)$line_item->init_price*(int)$line_item->init_qty)-(float)$line_item->init_discount;
-		
+		$line_item->init_total = $i_total;
 		$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2, '.', '');
-		$line_item->init_total = $i_total + $init_toal_tax;
-		$this->init_total = number_format($line_item->init_total,2, '.', '');
+		$line_item->init_total_inclusive = $i_total + $init_toal_tax;
+		
+		$this->init_total = $this->init_total + $line_item->init_total_inclusive;
 
 		$r_total = ((float)$line_item->recur_price*(int)$line_item->recur_qty)-(float)$line_item->recur_discount;
 		$recur_toal_tax=number_format(($r_total/100)*$line_item->tax_rate,2, '.', '');
@@ -227,10 +228,11 @@ class invoicehandler extends jrportal_invoice
 			$line_item->inv_id				= $this->id;
 
 			$i_total = ((float)$line_item->init_price*(int)$line_item->init_qty)-(float)$line_item->init_discount;
+			$line_item->init_total = $i_total;
 			$init_toal_tax=number_format($i_total/100*$line_item->tax_rate,2, '.', '');
-			$line_item->init_total = $i_total + $init_toal_tax;
-
-			$this->init_total = $this->init_total + $line_item->init_total;
+			$line_item->init_total_inclusive = $i_total + $init_toal_tax;
+			
+			$this->init_total = $this->init_total + $line_item->init_total_inclusive;
 
 			$r_total = ((float)$line_item->recur_price*(int)$line_item->recur_qty)-(float)$line_item->recur_discount;
 			$recur_total_tax=number_format(($r_total/100)*$line_item->tax_rate,2, '.', '');
