@@ -1546,4 +1546,7 @@ define('_JOMRES_CONFIG_JQUERY_UI_DESC',"Set this to No to disable loading of bot
 define('_JOMRES_CONFIG_JQUERY_UI_CSS',"Load Jomres jQuery UI CSS library?");
 define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',"Set this to No to disable only the jquery UI CSS file.");
 
+//v5.1 
+define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',"Total inc tax");
+
 
