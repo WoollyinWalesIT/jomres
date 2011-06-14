@@ -58,6 +58,7 @@ class j16000save_invoice {
 		$invoice_handler->id=$id;
 		$invoice_handler->getInvoice();
 		$original_status=$invoice_handler->status;
+		$invoice_handler->init_total = 0.00;
 		
 		if ($invoice_handler->subscription)
 			{

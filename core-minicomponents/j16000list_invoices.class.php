@@ -90,7 +90,7 @@ class j16000list_invoices
 			$invoicehandler = new invoicehandler();
 			$invoicehandler->id = (int)$invoice['id'];
 			$invoicehandler->getInvoice();
-			$balance = $invoicehandler->get_line_items_balance();
+			$balance = $invoicehandler->init_total;
 
 			$r['ID']=$invoice['id'];
 			$inv_id = $invoice['id'];

@@ -283,7 +283,6 @@ class invoicehandler extends jrportal_invoice
 			'recur_qty'=>"0",
 			'recur_discount'=>"0.00"
 			);
-		
 		$this->add_line_item($line_item_data);
 		$this->commitUpdateInvoice();
 		
@@ -319,7 +318,7 @@ class invoicehandler extends jrportal_invoice
 		$bal = 0.0;
 		foreach ($result as $r)
 			{
-			$bal = $bal+(float)$r->init_total;
+			$bal = $bal+(float)$r->init_total_inclusive;
 			}
 		return $bal;
 		}
