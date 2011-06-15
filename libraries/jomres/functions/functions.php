@@ -14,6 +14,94 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
+function init_javascript()
+	{
+	if (!defined("JOMRES_JSCALLED") )
+		{
+		define ('JOMRES_JSCALLED',1);
+		}
+	else
+		return;
+
+	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
+	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
+
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$thisJRUser=jomres_getSingleton('jr_user');
+	
+	// Include all the various css & javascript files we need
+	if (!$no_html)
+		{
+		if (!defined(JOMRES_NOHTML) )
+			{
+			$jomreslang =jomres_getSingleton('jomres_language');
+			define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
+			$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
+			$MiniComponents =jomres_getSingleton('mcHandler');
+
+			if (!isset($jrConfig['load_jquery_ui']))
+				$jrConfig['load_jquery_ui'] = "1";
+
+			if (!isset($jrConfig['jquery_ui_theme_detected']))
+				$jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css";
+				
+			if (!isset($jrConfig['load_jquery_ui_css']))
+				$jrConfig['load_jquery_ui_css'] = "1";
+
+			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
+			$subdir = $themeArr[0];
+			$filename = $themeArr[1];
+			if (isset($themeArr[2]))
+				$themePath = $themeArr[2]."/";
+			else
+				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
+				
+			if ($jrConfig['load_jquery_ui'] =="1")
+				{
+				if ($jrConfig['load_jquery_ui_css'] =="1")
+					jomres_cmsspecific_addheaddata("css",$themePath,$filename);
+				}
+				
+			if (jomres_cmsspecific_areweinadminarea() && ($jrConfig['load_jquery_ui_css'] =="0" || $jrConfig['load_jquery_ui_css'] == "0") ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
+				jomres_cmsspecific_addheaddata("css",$themePath,$filename);
+				
+			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
+
+			if (jomres_cmsspecific_areweinadminarea())
+				{
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js"); // The order here is important, jquery must come before the ui
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
+				}
+			elseif ($jrConfig['load_jquery'] == "1")
+				{
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js");
+				}
+			
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
+			
+			if ($jrConfig['load_jquery_ui'] =="1")
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
+
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"heartbeat.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.hoverIntent.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.rating.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.validate.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jeditable.js");
+			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.jgrowl.css');
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js");
+			
+			
+			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
+			}
+		}
+	}
+
+
 function set_booking_number()
 	{
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -426,99 +514,6 @@ function jr_import($class)
 		}
 	}
 
-
-function init_javascript()
-	{
-	if (!defined("JOMRES_JSCALLED") )
-		{
-		define ('JOMRES_JSCALLED',1);
-		}
-	else
-		return;
-
-	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
-	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
-
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	$thisJRUser=jomres_getSingleton('jr_user');
-	
-	// Include all the various css & javascript files we need
-	if (!$no_html)
-		{
-		if (!defined(JOMRES_NOHTML) )
-			{
-			$jomreslang =jomres_getSingleton('jomres_language');
-			define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
-			$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
-			$MiniComponents =jomres_getSingleton('mcHandler');
-			
-			
-			
-			if (!isset($jrConfig['load_jquery_ui']))
-				$jrConfig['load_jquery_ui'] = "1";
-				
-			if (!isset($jrConfig['jquery_ui_theme_detected']))
-				$jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css";
-				
-			if (!isset($jrConfig['load_jquery_ui_css']))
-				$jrConfig['load_jquery_ui_css'] = "1";
-
-			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
-			$subdir = $themeArr[0];
-			$filename = $themeArr[1];
-			if (isset($themeArr[2]))
-				$themePath = $themeArr[2]."/";
-			else
-				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
-				
-			if ($jrConfig['load_jquery_ui'] =="1")
-				{
-				if ($jrConfig['load_jquery_ui_css'] =="1")
-					jomres_cmsspecific_addheaddata("css",$themePath,$filename);
-				}
-				
-			if (jomres_cmsspecific_areweinadminarea() && ($jrConfig['load_jquery_ui_css'] =="0" || $jrConfig['load_jquery_ui_css'] == "0") ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-				jomres_cmsspecific_addheaddata("css",$themePath,$filename);
-				
-			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
-
-			if (jomres_cmsspecific_areweinadminarea())
-				{
-				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.1.min.js");
-				}
-			elseif ($jrConfig['load_jquery'] == "1")
-				{
-				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.4.3.min.js");
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.1.min.js");
-				}
-			
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
-			if ($jrConfig['load_jquery_ui'] =="1")
-				{
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.11.custom.min.js");
-				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.5.custom.min.js");
-				}
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
-			//jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.blockUI.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"heartbeat.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.min.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.hoverIntent.minified.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.rating.pack.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.validate.min.js");
-
-			if ($jrConfig['editinplace']==1 && $thisJRUser->userIsManager)
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jeditable.pack.js");
-
-			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.jgrowl.css');
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.compiled.js");
-			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
-			}
-		}
-	}
 
 function jomresValidateUrl($url)
 	{
