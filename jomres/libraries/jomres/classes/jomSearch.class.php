@@ -189,11 +189,12 @@ class jomSearch {
 				{
 				if (!in_array($country->property_country,$tmpCountryArray) )
 					{
-					if (array_key_exists($country->property_country,$allLegitimateRegions))
-						{
+					
+					//if (array_key_exists($country->property_country,$allLegitimateRegions))
+					//	{
 						$this->prep['country'][$allCountries[$country->property_country]]=array('countrycode'=>$country->property_country,'countryname'=>$allCountries[$country->property_country]);
 						$tmpCountryArray[]=$country->property_country;
-						}
+					//	}
 					}
 				}
 
