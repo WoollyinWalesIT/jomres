@@ -100,8 +100,8 @@ class j03100adminconfirmationemail {
 			$ratesList =doSelectSql($query);
 			foreach ($ratesList as $rate)
 				{
-				$rTitle=stripslashes($rate->rate_title);
-				$rDesc=stripslashes($rate->rate_description);
+				$rTitle=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFTITLE'.(int)$rate,$rate->rate_title,false,false);
+				$rDesc=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.(int)$rate,$rate->rate_description,false,false);
 				$rRate=$currfmt->get_formatted($rate->roomrateperday);
 				$rateOutput.=$rTitle.' '.$rDesc.' '.$rRate;
 				}
