@@ -450,6 +450,19 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j00510cheque.gif');
 		$this->add_obs_file($this->dir_minicomponents.'j00510paypal.gif');
 		
+		
+		$this->add_obs_file($this->dir_javascript.'fullsize-interface.js');
+		$this->add_obs_file($this->dir_javascript.'excanvas.compiled.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.bt.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.hoverIntent.minified.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.jeditable.pack.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.rating.pack.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.validate.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.5.custom.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.11.custom.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-1.4.3.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-1.5.1.min.js');
+
 		}
 	
 	function add_obs_file($path_and_file)

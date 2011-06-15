@@ -161,13 +161,14 @@ function jomres_cmsspecific_getcurrentusers_id()
 	return $id;
 	}
 
-function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="")
+function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="",$disable_compression=false)
 	{
-	$use_js_cache=false;
+	
+	$use_js_cache=true;
 	switch ($type) 
 		{
 		case "javascript":
-			if ($use_js_cache)
+			if ($use_js_cache && $filename != "jquery-1.5.2.min.js" && !jomres_cmsspecific_areweinadminarea() && !$disable_compression )
 				{
 				$jomres_js_cache = get_showtime('js_cache');
 
@@ -175,20 +176,22 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 				$jomressession  = $tmpBookingHandler->getJomressession();
 				if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache"))
 					mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache");
-				if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache".JRDS.$jomressession))
-					mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache".JRDS.$jomressession);
 
 				$cached_js_filename = "javascript_cache.js";
-				$cached_js_file_livesite = get_showtime('live_site').'/jomres/temp/javascript_cache/'.$jomressession.'/';
-				$cached_js_file_abs = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache".JRDS.$jomressession.JRDS;
+				$cached_js_file_livesite = get_showtime('live_site').'/jomres/temp/javascript_cache/';
+				$cached_js_file_abs = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache".JRDS;
 
 				$original_javascript = file_get_contents($path.$filename);
-				$jomres_js_cache .= $original_javascript;
+				$original_javascript = removeBOM($original_javascript);
+
+				$jomres_js_cache .= "
+				".$original_javascript;
 
 				$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
 				fwrite($fp,$jomres_js_cache);
 				fclose($fp);
 				set_showtime('js_cache',$jomres_js_cache);
+
 				JHTML::script($cached_js_filename, $cached_js_file_livesite, false);
 				}
 			else
@@ -203,7 +206,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 		}
 	}
 	
-	
+
 // set our meta data
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
