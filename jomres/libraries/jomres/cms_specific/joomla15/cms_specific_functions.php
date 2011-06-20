@@ -182,7 +182,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 				$cached_js_file_abs = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache".JRDS;
 
 				$original_javascript = file_get_contents($path.$filename);
-				$original_javascript = removeBOM($original_javascript);
+				//$original_javascript = removeBOM($original_javascript);
 
 				$jomres_js_cache .= "
 				".$original_javascript;
