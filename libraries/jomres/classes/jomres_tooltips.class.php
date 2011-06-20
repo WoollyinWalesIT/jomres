@@ -136,10 +136,10 @@ class jomres_tooltips
 				if (isset($type_arguments["imagethumb"]))
 					$imagethumb=$type_arguments["imagethumb"];
 
-				if (isset($type_arguments["width"]))
-					$width=$type_arguments["width"];
-				if (isset($type_arguments["height"]))
-					$height=$type_arguments["height"];
+				// if (isset($type_arguments["width"]))
+					// $width=$type_arguments["width"];
+				// if (isset($type_arguments["height"]))
+					// $height=$type_arguments["height"];
 				if (isset($type_arguments["border"]))
 					$border=$type_arguments["border"];
 				$div_string.='<div id="'.$div.'"';
@@ -151,10 +151,10 @@ class jomres_tooltips
 				if (!$imagethumb)
 					{
 					$div_string.=' ><img src="'.$div_content.'" ';
-					if (isset($type_arguments["width"]))
-						$div_string.='width="'.$width.'" ';
-					if (isset($type_arguments["height"]))
-						$div_string.='height="'.$height.'" ';
+					// if (isset($type_arguments["width"]))
+						// $div_string.='width="'.$width.'" ';
+					// if (isset($type_arguments["height"]))
+						// $div_string.='height="'.$height.'" ';
 					if (isset($type_arguments["border"]))
 						$div_string.='border="'.$border.'"';
 						$div_string.='/></div>';
