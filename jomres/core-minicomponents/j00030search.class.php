@@ -336,6 +336,7 @@ class j00030search {
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
 					<select id="search_town" name="town" class="inputbox">
 					<option value="">--  --</option>
+					</select>
 					<br />';
 					$showButton=true;
 					}
