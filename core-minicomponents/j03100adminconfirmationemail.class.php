@@ -94,16 +94,23 @@ class j03100adminconfirmationemail {
 			}
 		$rateOutput="";
 		$currency=urldecode($mrConfig['currencyCode']);
-		foreach ($rates_uids as $rate)
+		foreach ($rates_uids as $rates_uid)
 			{
-			$query="SELECT rate_title,rate_description,roomrateperday FROM #__jomres_rates WHERE rates_uid = '".(int)$rate."'";
+			$query="SELECT rates_uid,rate_title,rate_description,roomrateperday FROM #__jomres_rates WHERE rates_uid = '".(int)$rates_uid."'";
 			$ratesList =doSelectSql($query);
 			foreach ($ratesList as $rate)
 				{
-				$rTitle=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFTITLE'.(int)$rate,$rate->rate_title,false,false);
-				$rDesc=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.(int)$rate,$rate->rate_description,false,false);
+				if ($mrConfig['tariffmode']=="2")
+					{
+					$query="SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id = '".(int)$rate->rates_uid."' LIMIT 1";
+					$tariff_type_id =doSelectSql($query,1);
+					$rTitle=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_type_id,$rate->rate_title,false,false);
+					}
+				else
+					$rTitle=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.(int)$rate->rates_uid,$rate->rate_title,false,false);
+				$rDesc=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.(int)$rate->rates_uid,$rate->rate_description,false,false);
 				$rRate=$currfmt->get_formatted($rate->roomrateperday);
-				$rateOutput.=$rTitle.' '.$rDesc.' '.$rRate;
+				$rateOutput.=$rTitle.' '.$rDesc.' '.$rRate.' ';
 				}
 			}
 
