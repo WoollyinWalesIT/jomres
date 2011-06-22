@@ -331,39 +331,66 @@ class j01010listpropertys {
 						$property_deets['FEATURELIST']=$featureList;
 						}
 					
-					$output_lowest = false;
-					$currfmt = jomres_getSingleton('jomres_currency_format');
-					if ($mrConfig['is_real_estate_listing']==0)
+					// We need a way of offering a plugin the opportunity to take over the lowest price output generation. First we'll ask all possible plugins with a 07010 trigger if they want to recalculate this property's prices
+					$plugin_will_provide_lowest_price = false;
+					$MiniComponents->triggerEvent('07015',array('property_uid'=>$property->propertys_uid) ); // Optional
+					$mcOutput=$MiniComponents->getAllEventPointsData('07015');
+					if (count($mcOutput)>0)
 						{
-						if (isset($pricesFromArray[$property->propertys_uid]))
+						foreach ($mcOutput as $key=>$val)
 							{
-							$output_lowest = true;
-							if ($mrConfig['prices_inclusive']=="0")
-								$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property->propertys_uid],$property->propertys_uid));
-							else
-								$price=output_price ($pricesFromArray[$property->propertys_uid]);
-							if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
-								$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
-							else
+							if ($val == true)
 								{
-								if ($mrConfig['perPersonPerNight']=="0" )
-									$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
-								else
-									$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+								$plugin_will_provide_lowest_price = true;
+								$controlling_plugin = $key;
 								}
-							$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
 							}
-						else
-							{
-							$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
-							}
+						}
+					
+					$price = 0.00;
+					$output_lowest = false;
+					if ($plugin_will_provide_lowest_price)
+						{
+						$output_lowest = true;
+						$plugin_price= $MiniComponents->specificEvent('07016',$controlling_plugin,array('property_uid'=>$property->propertys_uid));
+						if (!is_null($plugin_price))
+							$price = $plugin_price;
 						}
 					else
 						{
-						$output_lowest = true;
-						$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
+						$currfmt = jomres_getSingleton('jomres_currency_format');
+						if ($mrConfig['is_real_estate_listing']==0)
+							{
+							if (isset($pricesFromArray[$property->propertys_uid]))
+								{
+								$output_lowest = true;
+								if ($mrConfig['prices_inclusive']=="0")
+									$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property->propertys_uid],$property->propertys_uid));
+								else
+									$price=output_price ($pricesFromArray[$property->propertys_uid]);
+								if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
+									$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+								else
+									{
+									if ($mrConfig['perPersonPerNight']=="0" )
+										$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+									else
+										$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+									}
+								$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
+								}
+							else
+								{
+								$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
+								}
+							}
+						else
+							{
+							$output_lowest = true;
+							$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
+							}
 						}
-
+						
 					$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
 					$propertyContactArray=$propertyAddressArray[1];
 					$propertyAddyArray=$propertyAddressArray[2];
