@@ -2,10 +2,10 @@
 /**
  * Core file
  * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 5
+ * @version Jomres 5 
 * @package Jomres
 * @copyright	2005-2011 Vince Wooll
-* Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net
+* Translated to pt-PT by Mario Oliveira, Camara de Lobos, Madeira Island, Portugal, 17Set2010 - www.marioliveira.net - Updated 21Jun2011 for ver 5.1
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 **/
 ##################################################################
@@ -323,7 +323,7 @@ define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES','Actividades na áre
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS','Direcções para os automobilistas');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS','Aeroportos');
 define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT','Outros transportes');
-define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS','Condições');
+define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',' Condições');
 define('_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS','Endereço');
 define('_JOMRES_COM_A_VISITORSCANBOOKONLINE','Os visitantes podem reservar online');
 define('_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC','Escolha sim para garantir que os visitantes podem reservar apartamentos online.');
@@ -534,7 +534,6 @@ define('_JOMRES_COM_A_SHOWDEPARTUREINPUT','Mostrar <i>input</i> de data de parti
 define('_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC',"Defina Não se não quiser mostrar o campo para introdução de data de partida. Use esta opção apenas se souber bem o que está a fazer, porque deste modo a data de partida nas reservas será sempre definida como a do dia a seguir ao de chegada.");
 // v1.4f
 define('_JOMRES_COM_PROPERTYLISTDESC','Limite da descrição');
-
 define('_JOMRES_COM_PROPERTYLISTDESC_DESC',"Limita o número de caracteres mostrados na listagem da propriedade, quando se selecciona a descrição desta.");
 // v1.4g
 define('_JOMRES_COM_A_DATEFORMATSTYLE','Formato da data() usada?');
@@ -553,7 +552,6 @@ define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1','P.f. complete os pormenores 
 define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2','IOs campos assinalados com uma estrela vermelha são de preenchimento obrigatório.');
 define('_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY','Propriedade criada');
 define('_JOMRES_REGISTRATION_NOTALLOWED',"Desculpe, mas não pode criar uma propriedade neste sistema. Deve ser um utilizador registado e com <i>login</i> feito, e não deve ter criando ainda nenhuma propriedade.");
-
 define('_JOMRES_REGISTRATION_CREATEDPROPERTY','Criada a propriedade: ');
 define('_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER','Para o utilizador: ');
 define('_JOMRES_FRONT_PREVIEW','Antever');
@@ -623,7 +621,7 @@ define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME','Mostrar nome do quarto na lista
 define('_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE','Mostrar título da tarifa na lista de quartos do formulário de reserva');
 define('_JOMRES_ORDER','Ordem');
 define('_JOMRES_REQUIREDFIELDS','Requeridos');
-define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING','Dis antes da chegada');
+define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING','Dias antes da chegada');
 define('_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC','O número mínimo de dias que devem decorrer desde "hoje", antes da data de chegada.');
 define('_JOMRES_DTV','Variantes de tipo de data');
 define('_JOMRES_DTV_DOW','Dia da semana');
@@ -844,7 +842,6 @@ define('_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID','Id do filiado');
 define('_JRPORTAL_LISTBOOKINGS_HEADER_INVOICE_ID','Id da Factura');
 define('_JRPORTAL_LISTBOOKINGS_HEADER_BOOKINGTOTAL','Total reserva');
 define('_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_ID','Id do contracto');
-
 define('_JRPORTAL_LISTBOOKINGS_HEADER_CONTRACT_NUMBER','Contracto nr');
 define('_JRPORTAL_LISTBOOKINGS_HEADER_CURRENCYCODE','Cód. moeda');
 define('_JRPORTAL_LISTBOOKINGS_HEADER_CREATED','Criado');
@@ -881,7 +878,6 @@ define('_JOMRES_CONFIRMATION_AMENDTEXT',"Se precisar de alterar qualquer informa
 define('_JOMRES_CONFIRMATION_AMEND',"Alterar Reserva");
 define('_JOMRES_CONFIRMATION_SPECIALS',"P.f. introduza qualquer pedido(s) especial(ais) na caixa abaixo.");
 define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"Confirmo que a informação acima está correcta e concordo com as ");
-
 define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"por pessoa por noite ");
 // Jomres 3.1.10
 define('_JOMRES_COM_A_SITELANGUAGE_FILE',"Ficheiro de idioma por defeito");
@@ -1044,7 +1040,6 @@ define('_JOMRES_COM_A_CRON_TITLE','Definições e listagens de <i>cron jobs</i>'
 define('_JOMRES_COM_A_CRON_DESC','Informação de <i>Pseudocron job</i>. A funcionalidade <i>pseudocron</i> é necessária para manuseamento de facturação e comissões.');
 define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Minicomponentes <i>cron</i> instalados. para correr um <i>cron job</i> use as ligações especificadas abaixo. Note que os <i>cron jobs</i> não produzem nenhuma saída, portanto não verá nenhuma informação na página. Em seu lugar, refira-se à listagem <i>cron job</i> abaixo.');
 global $jomresConfig_secret;
-
 define('_JOMRES_COM_A_CRON_METHOD','Método');
 define('_JOMRES_COM_A_CRON_METHOD_DESC',"Se não triver acesso a <i>cron jobs</i>, defina este como minicomponente; caso contrário, crie um <i>cron job</i> e instrua-o para executar<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 define('_JOMRES_COM_A_CRON_LOGGING','Mostrar o <i>logging</i> no browser');
@@ -1407,9 +1402,7 @@ define('_JOMRES_COM_CALENDAR_STARTDAY','Em que dia começa a semana de calendár
 define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY','Somente hóspedes da propriedade podem avaliá-la?');
 define('_JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC','Defina Sim se quer restringir as apreciações aos utilizadores que já foram hóspedes desta propriedade.');
 define('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERROOMPERBOOKING','Por quarto');
-
 // v 4.5.7 - adicionado?
-
 define('_JOMRES_MAX_GUESTS_PER_ROOM','Hóspedes por quarto : ');
 define('_JOMRES_MAX_GUESTS_PER_BOOKING','Hóspedes por reserva : ');
 define('_JOMRES_NUMBER_OF_ROOMS','Número de quartos');
@@ -1437,122 +1430,100 @@ define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE',"Venda de propriedade/list
 define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',"Escolha esta opção se não estiver a oferecer qualquer tipo de reserva (por ex., uma propriedade/artigo para venda)");
 define('JOMRES_COM_A_MINIMALCONFIG_DESC','Defina Sim para reduzir o número de opções disponíveis aos gestores de propriedades na secção de Configuração Geral. Útil se não quiser que os gestores de propriedades lidem com demasiadas configurações. Em vez desta opção, pode editar o ficheiro jomres_config.php para definir as opções de configuração por defeito.');
 define('_JOMRES_AJAXFORM_EXTRAS_SELECT','P.f. seleccione uma opção para a sua reserva');
-define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Switches on html editors in property details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text.');
-define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
-define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
-define('_JOMRES_COM_TIMEZONE_SWITCHER',"Show the timezone switcher in the property manager's toolbar?");
-
-define('_JOMRES_PARTNER_DISCOUNT',"Partner discount ");
-define('_JOMRES_PARTNER_CHOOSE_SEARCHTITLE',"Search user");
-define('_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS',"Enter a few characters to search for a user.<br/> When you select a user you will automatically add them as a Partner and you will be taken to the next page where you can assign properties and discounts to the user.");
-define('_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE',"Existing partners");
-define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS',"Choose a partner to be taken to the partner administration page.");
-
-define('_JOMRES_PARTNER_SHOW_TITLE',"Partner :");
-define('_JOMRES_PARTNER_SHOW_SEARCHTITLE',"Search for a property");
-define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS',"Enter a few characters from the property name and select a property.<br/> When you select the property you will add it to the partner's portfolio, however they will not yet enjoy any discounts, you will need to set those youself.");
-define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES',"Current properties");
-define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS',"Click on a property to edit the partner's discount settings for that property.");
-
-
+define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Liga os editores HTML na página de edição dos pormenores da propriedade. Além disso, se for definido como Não, todo o código html excepto p e br é descartado de trodo o texto introduzido e mostrado.');
+define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Vista de gestão de propriedade");
+define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Vista de pré-visualização do site");
+define('_JOMRES_COM_TIMEZONE_SWITCHER',"Mostrar o comutador de fuso horário na barra de ferramentas do gestor de propriedade?");
+define('_JOMRES_PARTNER_DISCOUNT',"Desconto de parceiro ");
+define('_JOMRES_PARTNER_CHOOSE_SEARCHTITLE',"Pesquisar utilizador");
+define('_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS',"Introduza alguns caracteres para pesquisar um utilizador.<br/> Quando selecciona um utilizador adiciona-o automaticamente como Parceiro, e será remetido para a página seguinte, onde pode atribuir-lhe propriedades e descontos.");
+define('_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE',"Parceiros actuais");
+define('_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS',"Seleccione um parceiro para ser encaminhado para a respectiva página de administração.");
+define('_JOMRES_PARTNER_SHOW_TITLE',"Parceiro :");
+define('_JOMRES_PARTNER_SHOW_SEARCHTITLE',"Pesquisar uma propriedade");
+define('_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS',"Introduza alguns caracteres do nome da propriedade e seleccione-a.<br/> Quando fizer a selecção adicioná-la-á ao currículo do parceiro que, no entanto, não beneficiará ainda de qualquer desconto, que terá de ser definido por si.");
+define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES',"Propriedades actuais");
+define('_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS',"Clique numa propriedade para editar as definições de descontos para um parceiro, relativamente a essa propriedade.");
 // 4.6
-define('_JOMRES_SUSPENSIONS_TITLE',"Suspended? <br/>(click to suspend a manager, this will auto-unpublish all of their properties ) ");
-define('_JOMRES_SUSPENSIONS_MANAGERLIST_INFO',"Click on the Suspend Icon (the icon with the man and the green tick) to suspend a manager. This means that the manager will not be able to perform property management functions and all of their properties will be unpublished. Super property managers cannot be suspended.");
-define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED',"This account has been suspended, it is not currently possible to administer your propert(ies) using this account.");
-define('_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE',"Manager account suspended");
-define('_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE',"Manager account reinstated");
-define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL',"Please note that your property manager account has been suspended. You will not be able to perform any property management functions until the account has been restored.");
-define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL',"Please note that your property manager account is now active. You may continue to perform any property management functions. Please log into your account and ensure that the approprite propert(ies) have been published. Thank you.");
-define('_JOMCOMP_MYUSER_REMOVE','Remove favourite');
-define('_JOMRES_DATA_ARCHIVE_TITLE','Booking data archive');
-define('_JOMRES_DATA_ARCHIVE_TITLE_DESC','The booking data archive is a raw dump of booking information captured after the confirm booking button is clicked. Hover over a date to see the raw data dump. The information is stored in the XXX__jomres_booking_data_archive table.');
-define('_JOMRES_MY_ACCOUNT_EDIT','Edit account');
-define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE',"Search users");
-define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS',"Enter a few characters from their username to search for a user.<br/> When you select a user you will automatically add them as a Manager and you will be taken to the next page where you can assign properties and access rights to the user.");
-define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',"Existing managers");
-define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS',"Choose a manager to be taken to the manager administration page.");
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER',"Search by guest numbers");
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC',"Show the search by guest number dropdown");
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS',"Search by stars");
-define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC',"Show the search by stars dropdown");
-define('_JOMRES_SEARCH_GUESTNUMBER','Number of guests');
-define('_JOMRES_SEARCH_STARS','Number of stars');
-
-define('_JRPORTAL_INVOICES_COMMISSION_TITLE',"Commission invoices");
-define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',"Number of properties");
-
+define('_JOMRES_SUSPENSIONS_TITLE',"Suspenso? <br/>(clique para suspender um gerente, o que despublicará todas as suas propriedades ) ");
+define('_JOMRES_SUSPENSIONS_MANAGERLIST_INFO',"Clique no ícone Suspender (o do homem com a seta verde) para suspender um gerente. Isto significa que esse gerente não poderá desempenhar funções de gestão de propriedades, e que estas serão despublicadas. Os super-gestores de propriedades não podem ser suspensos.");
+define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED',"Esta conta foi suspensa, pelo que actualmente não é possível gerir a(s) sua(s) propriedade(s) através dela.");
+define('_JOMRES_SUSPENSIONS_SUSPENDED_EMAIL_TITLE',"Conta de gestor suspensa");
+define('_JOMRES_SUSPENSIONS_UNSUSPENDED_EMAIL_TITLE',"Conta de gestor reactivada");
+define('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED_EMAIL',"Por favor, note que a sua conta de gestor de propriedades foi suspensa. Não poderá exercer funções de gestão até que a conta seja reactivada.");
+define('_JOMRES_SUSPENSIONS_MANAGER_UNSUSPENDED_EMAIL',"Por favor, note que a sua conta de gestor de propriedades foi reactivada. Pode continuar a exercer funções de gestão. Por favor, faça login na sua conta e certifique-se de que a(s) propriedade(s) apropriada(s) foi(foram) publicadas. Obrigado.");
+define('_JOMCOMP_MYUSER_REMOVE','Remover favorito');
+define('_JOMRES_DATA_ARCHIVE_TITLE','Arquivo de reservas');
+define('_JOMRES_DATA_ARCHIVE_TITLE_DESC','O arquivo de dados de reservas é ume relação em bruto de informação de reservas, capturada após o botão de confirmação de reserva ter sido premido. Posicione o cursor sobre uma data para ver essa relação. A informação é guardada na tabela XXX__jomres_booking_data_archive.');
+define('_JOMRES_MY_ACCOUNT_EDIT','Editar conta');
+define('_JOMRES_MANAGER_CHOOSE_SEARCHTITLE',"Pesquisar utilizadores");
+define('_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS',"Introduza alguns caracteres do nome de utilisador para pesquisar.<br/> Quando seleccionar um utilisador, adicioná-lo-á automaticamente como Gerente e será encaminhado para a página seguinte, onde pode atribuir-lhe propriedades e direitos de acesso.");
+define('_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE',"Gesrentes actuais");
+define('_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS',"Seleccione um gerente para ser encaminhado para a página de administração de gerentes.");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER',"Pesquisar por número de hóspedes");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYGUESTNUMBER_DESC',"Mostrar o <i>dropdown</i> de pesquisa por número de hóspede");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYTARS',"Pesquisa pore estrelas");
+define('_JOMRES_COM_A_INTEGRATEDSEARCH_BYSTARS_DESC',"Mostrar o <i>dropdown</i> de pesquisa por estrelas");
+define('_JOMRES_SEARCH_GUESTNUMBER','Número de hóspedes');
+define('_JOMRES_SEARCH_STARS','Número de estrelas');
+define('_JRPORTAL_INVOICES_COMMISSION_TITLE',"Facturas de comissões");
+define('_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED',"Número de propriedades");
 // 4.6.1
-define('_JOMRES_CONFIG_JQUERY',"Load Jomres jQuery library?");
-define('_JOMRES_CONFIG_JQUERY_DESC',"You can set this to NO if you have a template that uses jquery. This MAY resolve jquery conflict issues on some templates, but not all.");
-define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC','If you use Joomfish, you should set this to No, and use Joomfish\'s language switcher. The switcher is always enabled in the administrator area because it is needed when you use the Label Translations feature.');
-define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC','Thumbnails are created automatically for uploaded images.');
-
+define('_JOMRES_CONFIG_JQUERY',"Carregar a biblioteca Jomres jQuery?");
+define('_JOMRES_CONFIG_JQUERY_DESC',"Pode definir NÃO se tiver um tema que utilize jquery. Isto PODE resolver alguns problemas de conflitos jquery nalguns temas, mas não em todos.");
+define('_JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC','Se utiliza o Joomfish, deve definir como NÃO, e utilizar o selector de idioma Joomfish. Este selector está sempre activo na ára de administração porque é necessário quando se utiliza a característica de Tradução de Etiquetas.');
+define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE_DESC','São automaticamente criadas imagens de referência (<i>thumbnails</i>) para as imagens carregadas.');
 // 4.7.1
-define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH','Small thumbnails max width (px).');
-define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC','Small thumbnails are used in the property list whereas medium sized thumbnails are used in the property header.');
-define('_JOMRES_COM_THUMBNAIL_SMALL_HEIGHT','Small thumbnails max height (px).');
-define('_JOMRES_COM_THUMBNAIL_MED_WIDTH','Medium thumbnails max width (px).');
-define('_JOMRES_COM_THUMBNAIL_MED_HEIGHT','Medium thumbnails max height (px).');
-define('_JOMRES_TOUCHTEMPLATES','Label Translations');
-
+define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH','Larg. máx. imagens de referência (px).');
+define('_JOMRES_COM_THUMBNAIL_SMALL_WIDTH_DESC','Imagens de referência pequenas são usadas na lista de propriedades, enquanto que nos respectivos cabeçalhos são usadas imagens de referência de tamanho médio.');
+define('_JOMRES_COM_THUMBNAIL_SMALL_HEIGHT','Alt. máx. de imagens de referência pequenas (px).');
+define('_JOMRES_COM_THUMBNAIL_MED_WIDTH','Larg. máx. de imagens de referência médias (px).');
+define('_JOMRES_COM_THUMBNAIL_MED_HEIGHT','Alt. máx. de imagens de referência médias (px).');
+define('_JOMRES_TOUCHTEMPLATES','Traduções de Etiquetas');
 define('_JRPORTAL_ROI_TAB',"ROI");
-define('_JRPORTAL_INVOICES_COMMISSION_USE',"Use commission functionality?");
-define('_JRPORTAL_INVOICES_COMMISSION_USE_DESC',"Set this to Yes to show the manager commission invoices which have been raised.");
-define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS',"Manager bookings create commission invoices?");
-define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC',"If a manager makes a booking, does that also create a commission invoice line item?");
-define('_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT',"A new commission invoice has been raised");
-define('_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE',"A new commission invoice has been raised which requires your attention. Please click on the following link to view the invoice (you may need to log in first).");
-define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND',"Auto suspend managers where invoices are marked as Pending?");
-define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD',"Auto suspend threashold");
-define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC',"This threashold is the number of days that a manager has to pay an invoice before they are suspended and their properties unpublished.");
-
-
+define('_JRPORTAL_INVOICES_COMMISSION_USE',"Usar a funcionalidade comissão?");
+define('_JRPORTAL_INVOICES_COMMISSION_USE_DESC',"Defina Sim para mostrar as facturas de comissões do gerente, que foram emitidas.");
+define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS',"Facturas de criação de comissões por criação de reservas?");
+define('_JRPORTAL_INVOICES_COMMISSION_MANAGER_TRIGGERS_DESC',"Se um gerente faz uma reserva, isso também cria um item na linha na factura de comissões?");
+define('_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT',"Foi emitida uma nova factura de comissões");
+define('_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE',"Foi emitida uma nova factura de comissões, que requer a sua atenção. Por favor, clique na ligação seguinte para a visualizar (pode precisar de fazer primeiramente login).");
+define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND',"Auto-suspender gerentes cujas facturas estejam marcadas como pendentes?");
+define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD',"Prazo para auto-suspensão");
+define('_JRPORTAL_INVOICES_COMMISSION_AUTOSUSPEND_THREASHOLD_DESC',"O número de dias até ao limite dos quais o gerente tem de pagar uma factura antes de ser auto-suspenso e as suas propriedades despublicadas.");
 //4.7.2
-define('_JOMRES_COM_LANGUAGE_CONTEXT','Language context');
-define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC','Use this option to change the site\'s language context. This feature allows Jomres to use labels that are appropriate for your current focus, so if your focus is as a Yacht Brokerage, then changing the context will allow Jomres to present labels from a different language file. For example, if you set the context to "Yacht Brokerage" then Jomres will first find the current language, then search the /jomres/languages directory for a sub-directory called "yachtbrokerage". If the file exists for the current language then that file will be used. If not, then Jomres will search for an english language file in that same directory. If that can\'t be found, Jomres will use the language file for the currently selected language in the /jomres/languages directory.');
-
+define('_JOMRES_COM_LANGUAGE_CONTEXT','Contexto de linguagem');
+define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC','Use esta opção para modificar o contexto de linguagem do site. Isto permite que o Jomres utilize etiquetas apropriadas para o que de mais adequado está em foco; portanto, se as suas preferências forem, por exemplo, aluguer de iates, nesse caso mudar o contexto permite ao Jomres, primeiramente procurar antes de mais na língua corrente, depois pesquisar o directório /jomres/languages/ por um subdirectório designado "yachtbrokerage". Se o ficheiro existir para a língua corrente, será então usado esse ficheiro. Caso contrário, o Jomres pesquisará por um ficheiro em língua inglesa no mesmo directório. Se não o puder encontrar, utilizará o ficheiro de linguagem para a que tiver sido seleccionada, no directório /jomres/languages.');
 // 4.7.3
-define('_JOMRES_COM_ADVANCED_SITE_CONFIG','Advanced site config');
-define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC','Set this option to Yes if you want to use the advanced site configuration options. If you\'re just starting with Jomres, then we advise you to leave this to No for now, as the default installation is sufficient to get you started, instead you should add Jomres to the main menu and log into the frontend as "admin" and start configuring your property(s). Please note that many of the advanced options will only be applicable to installations of Jomres Developer, Jomres Lite users will not be able to take full advantage of the features that they enable.');
-
-define('_JOMRES_CONFIG_JQUERY_UI',"Load Jomres jQuery UI library?");
-
-define('_JOMRES_SORTORDER_PRICE_DESC','Price (highest first)');
-define('_JOMRES_SORTORDER_PRICE_ASC','Price (lowest first)');
-
+define('_JOMRES_COM_ADVANCED_SITE_CONFIG','Configuração avançada do site');
+define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC','Defina Sim se quer utilizar as opções avançadas de configuração. Se está a iniciar-se no Jomres, aconselha-se a que defina Não por enquanto, dado que a instalação por defeito é suficiente para começar; em vez de definir Sim neste caso, deve adicionar o Jomres ao menu principal, fazer login como "admin" no <i>frontend</i> e começar a configurar a(s) sua(s) propriedade(s). Note que muitas das opções avançadas somente serão aplicáveis em instalações Jomres Developer, pelo que os utilizadores de Jomres Lite não poderão usufruir totalmente das características que a opção avançada permite.');
+define('_JOMRES_CONFIG_JQUERY_UI',"Carregar biblioteca Jomres jQuery UI?");
+define('_JOMRES_SORTORDER_PRICE_DESC','Preço (mais elevado primeiro)');
+define('_JOMRES_SORTORDER_PRICE_ASC','Preço (mais baixo primeiro)');
 // 4.7.6
-
-define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT','Price summary and estimates should be priced as per night/per week/per month?');
-define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY','Per night');
-define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY','Per week');
-define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY','Per month');
-define('_JOMRES_BOOKINGFORM_PERPERSON','Per person');
-
-define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS','week(s) at ');
-define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS','month(s) at ');
-
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT','Resumo de preços e estimativas devem ser avaliadas por noite/por semana/por mês?');
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY','Por noite');
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY','Por semana');
+define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY','Por mês');
+define('_JOMRES_BOOKINGFORM_PERPERSON','Por pessoa');
+define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS','semana(s) a ');
+define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS','mes(es) a ');
 // 4.7.7
-
-define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS','How should the search option for people numbers work?');
-define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC','Affects all search modules. When using the guest number search feature, should the search feature look for properties who\'s tariffs will support guest numbers up and equal the number chosen, exactly equal the number chosen, or the number chosen and greater? ');
-define('_JOMRES_PAYPAL_REDIRECTMESSAGE','Please wait, your order is being processed and you will be redirected to the Paypal website.');
-define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED','If you are not automatically redirected to Paypal within 5 seconds...');
-define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE','Click Here');
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS','Como deve funcionar a opção de pesquisa por número de pessoas?');
+define('_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS_DESC','Afecta todos os módulos de pesquisa. Ao usar a opção de pesquisa por número de hóspedes, a opção de pesquisa deve procurar propriedades cujas tarifas comportem número de hóspedes até, e igual ao número escolhido, precisamente igual ao número escolhido, ou igual e suprior a esse número? ');
+define('_JOMRES_PAYPAL_REDIRECTMESSAGE','Por favor aguarde, a sua reserva está a ser processada e em breve será direccionado para o website Paypal.');
+define('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED','Se não for automaticamente redireccionado para o Paypal em 5 segundos...');
+define('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE','Clique aqui');
 // 4.7.8
-
-define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',"Booking valid from");
-define('_JRPORTAL_COUPONS_BOOKING_VALIDTO',"Booking valid to");
-define('_JRPORTAL_COUPONS_GUESTNAME',"Guest name");
-define('_JRPORTAL_COUPONS_DESC_478',"Discount codes can be generated and passed onto guests as an incentive to make bookings.<br/>
-Valid from and to dates refer to the dates that a booking can be made on, whereas the Booking valid from/to dates refer to the dates that the booking must cover for the coupon to be valid. If a booking falls outside of that period then normal rates will apply to the days outside of that period.<br/>
-If you want the booking to be available to one specific guest, choose that guest's name in the dropdown to limit the coupon to that guest only.");
-define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK',"With your coupon, this booking has been discounted from ");
-define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO'," to ");
-
-define('_JOMRES_CONFIG_JQUERY_UI_DESC',"Set this to No to disable loading of both the Jquery UI javascript and CSS files.");
-define('_JOMRES_CONFIG_JQUERY_UI_CSS',"Load Jomres jQuery UI CSS library?");
-define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',"Set this to No to disable only the jquery UI CSS file.");
-
+define('_JRPORTAL_COUPONS_BOOKING_VALIDFROM',"Reserva válida de");
+define('_JRPORTAL_COUPONS_BOOKING_VALIDTO',"Reserva válida até");
+define('_JRPORTAL_COUPONS_GUESTNAME',"Nome do hóspede");
+define('_JRPORTAL_COUPONS_DESC_478',"Podem ser gerados códigos de desconto e atribuidos aos hóspedes, como incentivo para fazer mais reservas.<br/>
+Válido desde e até, refere-se às datas em que pode ser feita uma reserva, enquanto que Reserva válida desde/até se refere a datas dentro das quais o cupão é válido. Se uma reserva ocorrer fora desse período, aplicar-se-ão as taxas normais para os dias fora do período em questão.<br/>
+Se quiser que a reserva fique disponível para um hóspede específico, seleccione o nome rspectivo no <i>dropdown</i> para limitar o cupão apenas a esse hóspede.");
+define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK',"Com o seu cupão, esta reserva foi descontada de ");
+define('_JRPORTAL_COUPONS_BOOKING_DISCOUNT_FEEDBACK_TO'," até ");
+define('_JOMRES_CONFIG_JQUERY_UI_DESC',"Defina Não para desactivar a carga, quer do Jquery UI javascript quer dos ficheiros CSS.");
+define('_JOMRES_CONFIG_JQUERY_UI_CSS',"Carregar Jomres a biblioteca CSS jQuery UI?");
+define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',"Defina Não para desactivar somente o ficheiro CSS jquery UI CSS.");
 //v5.1 
-define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',"Total inc tax");
-
+define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',"Total incl. imposto");
