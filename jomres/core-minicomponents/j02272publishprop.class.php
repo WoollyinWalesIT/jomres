@@ -44,7 +44,7 @@ class j02272publishprop {
 		$cache = new jomres_cache();
 
 		$jomres_messaging =jomres_getSingleton('jomres_messages');
-		$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE));
+		
 
 		if (!isset($_REQUEST['property_uid']) )
 			$defaultProperty=getDefaultProperty();
@@ -59,7 +59,11 @@ class j02272publishprop {
 			if ($published)
 				{
 				$query="UPDATE #__jomres_propertys SET `published`='0' WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
-				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY',_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY,FALSE)))
+					{
+					$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY',_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY,FALSE));
+					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+					}
 				}
 			else
 				{
@@ -78,7 +82,11 @@ class j02272publishprop {
 				else
 					{
 					$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
-					if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+					if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) 
+						{
+						$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE));
+						jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+						}
 					}
 				}
 			}
