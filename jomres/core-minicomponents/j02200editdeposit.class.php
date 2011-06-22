@@ -47,9 +47,6 @@ class j02200editdeposit {
 			$depositRequired=$depositList['deposit_required'];
 			$tag=$depositList['tag'];
 			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-			$link =JOMRES_SITEPAGE_URL."&task=editCreditcard&popup=1&guestUid=$guestUid";
-			$link="<a href=\"javascript:void window.open('".$link."', 'win2', '".$status."');\" title=\"\">".jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT)."</a>";
-			$output['CREDITCARDLINK']=$link;
 			$output['HBOOKINGNUMBER']	=jr_gettext('_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER',_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER);
 			$output['HCONTRACT_TOTAL']	=jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL',_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL);
 			$output['HDEPOSITREQUIRED']	=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
