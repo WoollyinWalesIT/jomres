@@ -1548,3 +1548,5 @@ define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',"Ponga No sólo para desactivar el ar
 
 //v5.1 
 define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',"Total inc tax");
+define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY','Unpublished property');
+

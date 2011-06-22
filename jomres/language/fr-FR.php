@@ -1531,3 +1531,5 @@ define('_JOMRES_CONFIG_JQUERY_UI_CSS',"Charger la bilbiothèque Jomres jQuery UI
 define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',"Marquez Non pour déactiver seulement le fichier jquery UI CSS.");
 //v5.1 
 define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',"Total inc. taux");
+define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY','Unpublished property');
+
