@@ -65,11 +65,17 @@ class j16000addplugin
 
 		if (strlen($pluginName)>0)
 			{
-			if (is_dir($remote_pluginsDirPath.$pluginName) )
+			if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName) )
 				{
-				emptyDir($remote_pluginsDirPath.$pluginName);
-				if ($debugging) echo "Removing ".$remote_pluginsDirPath.$pluginName."<br>";
-				@rmdir($remote_pluginsDirPath.$pluginName);
+				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName);
+				if ($debugging) echo "Removing ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName."<br>";
+				@rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName);
+				}
+			if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName) )
+				{
+				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName);
+				if ($debugging) echo "Removing ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName."<br>";
+				@rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName);
 				}
 			}
 
