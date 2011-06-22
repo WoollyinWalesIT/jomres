@@ -1527,3 +1527,5 @@ define('_JOMRES_CONFIG_JQUERY_UI_CSS',"Carregar Jomres a biblioteca CSS jQuery U
 define('_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',"Defina Não para desactivar somente o ficheiro CSS jquery UI CSS.");
 //v5.1 
 define('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',"Total incl. imposto");
+define('_JOMRES_MR_AUDIT_UNPUBLISH_PROPERTY','Unpublished property');
+
