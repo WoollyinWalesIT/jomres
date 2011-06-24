@@ -191,8 +191,12 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 				fwrite($fp,$jomres_js_cache);
 				fclose($fp);
 				set_showtime('js_cache',$jomres_js_cache);
+				set_showtime('js_cache_path',$cached_js_file_abs);
+				set_showtime('js_cache_filename',$cached_js_filename);
+				set_showtime('js_cache_livesite',$cached_js_file_livesite);
+				
 
-				JHTML::script($cached_js_filename, $cached_js_file_livesite, false);
+				//JHTML::script($cached_js_filename, $cached_js_file_livesite, false);
 				}
 			else
 				JHTML::script($filename, $path, false);

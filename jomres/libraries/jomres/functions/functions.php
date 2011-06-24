@@ -75,25 +75,25 @@ function init_javascript()
 				}
 			elseif ($jrConfig['load_jquery'] == "1")
 				{
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js",'',true);
 				}
 			
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js','',true);  // Needs to be directly after jquery call so that noconflict is set
 			
 			if ($jrConfig['load_jquery_ui'] =="1")
 				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
 
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file",'',true);
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"heartbeat.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.js",'',true);  // Won't pack properly
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.hoverIntent.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.rating.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.validate.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jeditable.js");
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.jgrowl.css');
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js",'',true);
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js",'',true);  // Won't pack properly
 			
 			
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
