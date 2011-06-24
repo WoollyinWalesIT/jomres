@@ -325,7 +325,8 @@ function jomres_cmsspecific_makeSEF_URL($link)
 		{
 		$link =  JRoute::_( $link, $xhtml = true, $ssl );
 		}
-	return $link;
+	$link=jomres_decode($link);
+	return stripslashes($link);
 	}
 
 function jomres_cmsspecific_parseByBots($str)
