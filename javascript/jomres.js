@@ -1,16 +1,16 @@
 
 if ('undefined'!=typeof(jQuery)){
 jQuery.noConflict();
-}
+};
 
-if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;}
+if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
 function isAvailable(date){
 
 	var dateAsString = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate();
 	var result = jQuery.inArray( dateAsString, bookedDays ) ==-1 ? [true] : [false];
 	return result
-	}
+	};
 
 function switch_editing_mode(url,val)
 	{
@@ -18,7 +18,7 @@ function switch_editing_mode(url,val)
 	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
 		window.location = original_url;
 		});
-	}
+	};
 	
 /*
 Interesting proof of concept, but not ready for showtime
@@ -51,7 +51,7 @@ function populateDiv(div_id,content){
 		document.getElementById(div_id).innerHTML = content;
 		jQuery(div_id).fadeIn(100);
 		}
-	}
+	};
 
 function jomres_isChecked(ischecked){
 	if (ischecked == true){
@@ -60,7 +60,7 @@ function jomres_isChecked(ischecked){
 	else {
 		document.adminForm.boxchecked.value--;
 	}
-}
+};
 
 function jomres_checkAll( n ) {
 	var f = document.adminForm;
@@ -78,7 +78,7 @@ function jomres_checkAll( n ) {
 	} else {
 		document.adminForm.boxchecked.value = 0;
 	}
-}
+};
 
 
 
@@ -96,7 +96,7 @@ function jomres_submitbutton(pressbutton) {
 		}
 	catch(e){}
 	document.adminForm.submit();
-}
+};
 
 function disableSubmitButton (button) {
 	if (typeof button.disabled != 'undefined')
@@ -109,7 +109,7 @@ function disableSubmitButton (button) {
 		button.buttonDisabled = true;
 		}
 	document.getElementById("submitbutton").className="";
-	}
+	};
 	
 function enableSubmitButton (button) {
 	if (typeof button.disabled != 'undefined')
@@ -122,7 +122,7 @@ function enableSubmitButton (button) {
 
 	// Disabled as causes a js error in ie if the booking form is in the property details.
 	//document.getElementById('submitbutton').focus();
-	}
+	};
 
 	
 function fadeIn(objId,opacity) {
@@ -134,7 +134,7 @@ function fadeIn(objId,opacity) {
 			window.setTimeout("fadeIn('"+objId+"',"+opacity+")", 100);
 		}
 	}
-}
+};
 
 function setOpacity(obj, opacity) {
 	opacity = (opacity == 100)?99.999:opacity;
@@ -146,7 +146,7 @@ function setOpacity(obj, opacity) {
 	obj.style.MozOpacity = opacity/100;
 	// Safari 1.2, newer Firefox and Mozilla, CSS3
 	obj.style.opacity = opacity/100;
-	}
+	};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Show hide stuff
@@ -154,11 +154,11 @@ function setOpacity(obj, opacity) {
 
 function hidediv(elementName) {
 	jQuery("#"+elementName).slideUp();
-	}
+	};
 
 function showdiv($elementName) {
 	jQuery("#"+elementName).slideDown();
-	}
+	};
 
 ///////////////////////////////////////
 //
@@ -178,7 +178,7 @@ function generic(){
 	if ( document.ajaxform !=undefined ) 
 		disableSubmitButton(document.ajaxform.confirmbooking);
 	
-	}
+	};
 	
 //setup onload function
 var undefined;
@@ -232,7 +232,7 @@ function getResponse_particulars(field,value,arrivalDate_id) {
 			show_log(field);
 			}
 	);
-}
+};
 
 function getResponse_guesttype(typeid,value) {
 	HideRoomsList();
@@ -242,7 +242,7 @@ function getResponse_guesttype(typeid,value) {
 			show_log('guesttype');
 			}
 		);
-	}
+	};
 
 function getResponse_rooms(field,value) {
 	HideRoomsList();
@@ -252,7 +252,7 @@ function getResponse_rooms(field,value) {
 			show_log(field);
 			}
 	);
-}
+};
 
 function getResponse_multiroom_select(field,value) {
 	HideRoomsList();
@@ -262,7 +262,7 @@ function getResponse_multiroom_select(field,value) {
 			show_log(field);
 			}
 	);
-}
+};
 
 function getResponse_extras(field,value,theId) {
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
@@ -287,7 +287,7 @@ function getResponse_extras(field,value,theId) {
 				}
 			}
 	);
-}
+};
 
 function getResponse_extrasquantity(field,value,theId) {
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
@@ -296,7 +296,7 @@ function getResponse_extrasquantity(field,value,theId) {
 			show_log(field);
 			}
 	);
-}
+};
 
 
 function getResponse(field,value) {
@@ -306,7 +306,7 @@ function getResponse(field,value) {
 			show_log(field);
 			}
 	);
-}
+};
 
 function getResponse_existing(field,value) {
 	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
@@ -316,7 +316,7 @@ function getResponse_existing(field,value) {
 			//show_log(field);
 			}
 	);
-}
+};
 
 function getResponse_guest() {
 	var firstname 		=jQuery('#firstname').val();
@@ -345,10 +345,10 @@ function getResponse_guest() {
 				});
 				
 		}
-	}
+	};
 
 function show_log(lastfield) {
-}
+};
 
 function showRoomsList(req){
 	//var rooms = req.split("~");
@@ -361,17 +361,17 @@ function showRoomsList(req){
 		document.getElementById("noroomsselected").className=error_class;
 
 	return false;
-	}
+	};
 
 function HideRoomsList(){
 	jQuery("#roomsListWrapper").delay(800).hide('blind', { direction: 'vertical' }, 1000);
 	return false;
-	}
+	};
 
 function ShowRoomsList(){
 	jQuery("#roomsListWrapper").delay(800).show('blind', { direction: 'vertical' }, 1000);
 	return false;
-	}
+	};
 	
 function buildSelected(string){
 	if (string != undefined){
@@ -379,7 +379,7 @@ function buildSelected(string){
 			populateDiv("selectedRooms",string);
 			//document.getElementById("selectedRooms").innerHTML = string;
 		}
-	}
+	};
 
 function buildAvailable(string)
 	{	
@@ -388,7 +388,7 @@ function buildAvailable(string)
 			populateDiv("availRooms",string);
 			//document.getElementById("availRooms").innerHTML = string;
 		}
-	}
+	};
 	
 function checkSelectRoomMessage(oktobook){
 		if (!oktobook ){
@@ -408,7 +408,7 @@ function checkSelectRoomMessage(oktobook){
 			jQuery("#bookingform_footer").delay(800).fadeTo("slow", 1);
 			jQuery("#totals_container").delay(800).fadeTo("slow", 1);
 			}
-	}
+	};
 
 (function($) {
 	$.fn.customFadeIn = function(speed, callback) {
@@ -486,7 +486,7 @@ function ajaxADate(arrivalDate,dformat){
 	var difference = Math.ceil((d.getTime()-currentDepartureDated.getTime())/(one_day))+mininterval;
 	if (difference > mininterval)
 		document.ajaxform.departureDate.value=dd;
-	}	
+	};
 
 function jomres_split_date(date,dformat)
 	{
@@ -533,7 +533,7 @@ function jomres_split_date(date,dformat)
 		year=dateArray[2]
 		}
 	return  [ day, mon , year ];
-	}
+	};
 ///////////////////////////////////////
 //
 //	Validate the form input
@@ -628,27 +628,27 @@ function checkaddressfields(){
 		enableSubmitButton(document.ajaxform.confirmbooking);
 		return true;
 		}
-	}
+	};
 	
 function dobooking_validate(){
 	if (checkaddressfields()){
 		getResponse_guest();
 		setTimeout('submitBooking()', 2000);
 		}
-	}
+	};
 
 function submitBooking(){
 	document.ajaxform.action = livesite+"&task=confirmbooking"
 	document.ajaxform.submit();
-	}
+	};
 	
 function setInputFillToOkColour(field){
 	jQuery(field).removeClass("ui-state-highlight");
-	}
+	};
 	
 function setInputFillToErrorColour(field){
 	jQuery(field).addClass("ui-state-highlight");
-	}
+	};
 	
 function submitenter(myfield,e){
 	var keycode;
@@ -665,7 +665,7 @@ function submitenter(myfield,e){
 		}
 	else
 		return true;
-	}	
+	};
 
 /**
 * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
@@ -709,4 +709,4 @@ function echeck(str) {
 			return false
 		}
 	return true
-	}
+	};
