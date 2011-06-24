@@ -186,7 +186,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 
 				$jomres_js_cache .= "
 				".$original_javascript;
-
+				
 				$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
 				fwrite($fp,$jomres_js_cache);
 				fclose($fp);
@@ -351,7 +351,8 @@ function jomres_cmsspecific_makeSEF_URL($link)
 		{
 		$link =  JRoute::_( $link, $xhtml = true, $ssl );
 		}
-	return $link;
+	$link=jomres_decode($link);
+	return stripslashes($link);
 	}
 
 function jomres_cmsspecific_parseByBots($str)
