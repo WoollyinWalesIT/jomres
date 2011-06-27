@@ -74,7 +74,11 @@ class j02272publishprop {
 					if ($allowedProperties > count($existingPublishedProperties) || ($thisJRUser->superPropertyManager && $thisJRUser->superPropertyManagersAreGods) )
 						{
 						$query="UPDATE #__jomres_propertys SET `published`='1' WHERE propertys_uid = ".(int)$defaultProperty." LIMIT 1";
-						if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE))) jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+						if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE)))
+							{
+							$jomres_messaging->set_message(jr_gettext('_JOMRES_MR_AUDIT_PUBLISH_PROPERTY',_JOMRES_MR_AUDIT_PUBLISH_PROPERTY,FALSE));
+							jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), "" );
+							}
 						}
 					else
 						echo _JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH;
