@@ -40,7 +40,7 @@ class j05020dobooking {
 		$mrConfig=getPropertySpecificSettings();
 		if (get_showtime('include_room_booking_functionality'))
 			{
-			if ( $mrConfig['singleRoomProperty'] || $mrConfig['fixedPeriodBookings'] == "1" )
+			if ( $mrConfig['singleRoomProperty'] )
 				{
 				showSingleRoomPropAvl($property_uid);
 				}
