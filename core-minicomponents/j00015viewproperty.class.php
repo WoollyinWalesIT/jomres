@@ -263,7 +263,10 @@ class j00015viewproperty
 				}
 			else
 				{
-				$link['BOOKINGLINK']="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid&amp;arrivalDate=2009-01-01")."\" class=\"fg-button ui-state-default ui-corner-all\">".jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false)."</a>";
+				$link				=	array();
+				$link['LINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=$property_uid&amp;arrivalDate=2009-01-01");
+				$link['TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false);
+				$link['BOOKINGLINK']="<a href=\"".$link['LINK']."\" class=\"fg-button ui-state-default ui-corner-all\">".$link['TEXT']."</a>";
 				$bookinglink[]		= 	$link;
 				}
 			if ($mrConfig['is_real_estate_listing']==0)
