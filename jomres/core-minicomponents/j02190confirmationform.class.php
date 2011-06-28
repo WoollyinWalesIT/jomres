@@ -139,7 +139,13 @@ class j02190confirmationform {
 			$counter++;
 			}
 
-		$output['PROPERTYIMAGE']=getImageForProperty("property",$propertyUid,$propertyUid);
+		$output['PROPERTYIMAGE']='<img src="'.getImageForProperty("property",$propertyUid,$propertyUid).'" width="50" height="50" />';
+		$output['IMAGETHUMB']=getThumbnailForImage($output['IMAGE'],true);
+		if ($output['IMAGETHUMB'])
+			{
+			$output['PROPERTYIMAGE']='<img src="'.$output['IMAGETHUMB'].'" />';
+			}
+		
 		$output['BL_DEAR']=jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR);
 		$output['BL_INTRO1']=jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1',_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO1);
 		$output['BL_INTRO2']=jr_gettext('_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2',_JOMRES_COM_CONFIRMATION_RESERVATION_INTRO2);
