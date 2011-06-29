@@ -1,3 +1,46 @@
+Jomres 5.1
+
+A good deal of changes to the Javascript file handling. Jomres now uses a lot of javascript files, which raises the issue of network speed as the user needs to d/l a number of files to use the site. We would like to implement some kind of javascript compression facility within the system so that we can reduce this number of files. 
+Firstly, to do that we've needed to ditch the minified/compressed files we're currently offering. Because of the way different compression technologies work, you cannot successfully combine all of the different compressed/minified files into one file as for some reason this doesn't work, so the first thing we needed to do replace our files with the fullsize versions of the same files. This is good, because it makes it easier for site designers to modify those javascript files to suit their own requirements, however it's bad because the combined javascript file is > 1/2mb in size. Currently, all of the different methods we've tried to compress this file in size haven't worked. 
+So, Step 1, combine most files (except the jquery core file) - complete. Step 2, compress the combined file - work in progress.
+Implemented a javascript packing library to minify and concatenate some of the Jomres javascript files. Some can't be compressed because of how they're written, but most can.
+
+Modified how the confirmation form printable link is constructed, allows managers to use editing mode in the printable form to customise the confirmation letter.
+Improved the extras output in the booking form and confirmation pages to calculate the total prices in showconfirmation of each selected extra, and to show the model's text in showconfirmation and the booking form
+Slight modification of booking engine to note that there aren't any free rooms on a given date. Normally, if all rooms for a given date are booked, then the javascript calendar popup will disable a date, however if all rooms become booked whilst a user's in the booking form then they'll see the "select a room" message whilst there are no longer rooms available. This modification should change that message. It's an edge case scenario, but it's covered.
+Slight modification of archive audit to not log the audit action in the audit trail. Was creating some issues of it's own.
+Modified the booking engine, added autocomplete off for the arrival/departure dates, as firefox was causing inconsistent results, and removed a recent addition that was preventing the No rooms available from showing up when rooms were available.
+Small modification to how searches are performed for room type searches, if filter = % then just re-use the last set of search results.
+Modified the save invoice feature to set the init total to 0 if the invoice has been marked as paid in the administrator area.
+More changes to invoice handling in the backend, corrected code to show the correct balance in list invoices and edit invoice, when the invoice is marked as paid. You can no longer mark an invoice as pending once it's been marked as paid. Want to implement paging soon, so there's definitely more work to be done on this as yet.
+Modified how the property switch redirect's url is created, prevents the cycling issue that some folks have been experiencing.
+Removed a stray vardump that was left in after the last changeset referring to invoice total changes.
+Improved new functionality that reports that there are no vacancies to only trigger on certain parameter changes.
+Modified a little used function to use translated guest type titles.
+Modified booking engine to disable fully booked dates in both the arrival and departure dates (the Javascript calendars).
+Found an issue where cron jobs were becoming locked then not unlocking, thereby taking them out of action for good. Also re-added the old optimise minicomponent.
+Modified how dobooking finds the default departure date.
+Added a change to showconfirmation to try to resolve issues where safari's creating new sessions when in the booking form. We're now saving guest address details to the temp booking object when showconfirmation's triggered. As a happy accident, debugging this has resulted in a slightly nicer booking form (it recognises the enter button).
+Modified confirmation handling so that on amend contract, the special requirements are re-added to the text field in the confirmation page.
+A variety of changes to add the total inc tax column to the line items table and it's output.
+Modified and simplified grand total figuring in invoices.
+Added code to translate tariff name/desc in confirmation emails.
+Commented out an IF statement that was preventing countries with no regions from showing up as a search option.
+Added a change that seems to fix the "search by location combo" dropdowns causing other dropdowns to not show correctly.
+Commented out width and height settings from the imageonly tooltip popup. I left this in place when I created the thumbnail functionality to provide backward compatability with older installations of Jomres. That was some months ago now, and we're regularly getting questions on how to remove this code from newer uses so I think that the older users will just have to bite the bullet now and upload new images if they haven't already.
+Further changes to post-booking emails to ensure that tariff names are translated correctly.
+Added a mechanism to listproperties to allow a plugin to offer a "prices from" figure. The newest version of Jintour supports this new feature.
+Fixed a small bug where the unpublished message was wrong when a property is unpublished.
+Removed a redundant "edit creditcard" link that's no longer usable.
+Modified the add plugin functionality to ensure that we clear out both the /remote_plugins/plugin_name and core-plugins/plugin_name directories. If we don't and somebody upgrades from an older version of a plugin, we'll get an error in Jomres/Jomres plugin manager.
+small change to ensure that the url is passed through the jomres_decode function so extraneous slashes and other html special chars are decoded before the url's used.
+Modified the class that sets up the booking form page, removed part of an if statement that ensures that the SRP calendar is shown if fixed period bookings are enabled. Don't understand why it's there, and doesn't make any sense to leave it in-situ. Seems that it was added in v3 and my records don't go back that far.
+Added a couple of options to the viewproperty array in aid of third party developers.
+Modified the confirmation letter script to use medium thumbnails where available.
+
+Updated French and Portuguese language files, many thanks Mario!
+Added an updated version of es-ES.php to the core code, many thanks Juan Antonio.
+
 Jomres 5stable
 
 Minor tweak to installer to stop it reporting that it's creating the extra services table if it already exists.
