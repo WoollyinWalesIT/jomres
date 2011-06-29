@@ -35,6 +35,10 @@ class j99999pack_javascript
 			{
 			$this->template_touchable=false; return;
 			}
+		if (defined("JOMRES_JS"))
+			return;
+		define("JOMRES_JS",1);
+		
 		$use_js_cache=true;
 		$jomres_js_cache = get_showtime('js_cache');
 		$cached_js_file_abs = get_showtime('js_cache_path');
