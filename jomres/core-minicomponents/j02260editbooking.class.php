@@ -302,7 +302,7 @@ class j02260editbooking {
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['SHOWINVOICE'],$submitOnClick=false,$submitTask="",$image);
 					}
 					
-				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&popup=1&contract_uid='.$booking_contract_uid;
+				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&popup=1&tmpl=component&contract_uid='.$booking_contract_uid;
 				$jrtb .= $jrtbar->toolbarItem('note','javascript:void window.open(\''.$notesLink.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=false));
 				}
 			else
