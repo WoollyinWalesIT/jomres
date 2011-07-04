@@ -1013,7 +1013,7 @@ class jomresHTML
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
 		{
 		$attribs = str_replace('class="inputbox"',"",$attribs);
-		$output = '<span><select class="inputbox" name="'.$name.'" '.$attribs.'>';
+		$output = '<span><select class="inputbox" name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 		for ($i=0, $n= count( $arr ); $i < $n; $i++ )
 			{
 			$k = $arr[$i]->$key;

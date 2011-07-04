@@ -20,6 +20,13 @@ function switch_editing_mode(url,val)
 		});
 	};
 	
+function switch_exchange_rate(url,val)
+	{
+	var original_url = window.location.href;
+	jQuery.get(url+'&task=switch_exchange_rate&currency_code='+val,function(data){
+		window.location = original_url;
+		});
+	};
 /*
 Interesting proof of concept, but not ready for showtime
 function switch_editing_mode(url,val)
