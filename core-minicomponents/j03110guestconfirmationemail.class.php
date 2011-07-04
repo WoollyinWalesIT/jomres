@@ -51,7 +51,7 @@ class j03110guestconfirmationemail {
 		$specialReqs=$componentArgs['specialReqs'];
 		$deposit_required=$componentArgs['deposit_required'];
 		if ( !isset( $componentArgs['email_when_done'] ) )
-			$email_when_done=false;
+			$email_when_done=true;
 		else
 			$email_when_done=$componentArgs['email_when_done']; // Optional. We'll set email_when_done by default to true, otherwise we'll set it in the componentArgs variable. This allows us to call this script independantly which in turn allows us to view the email as it's contructed, rather than when sent.
 
