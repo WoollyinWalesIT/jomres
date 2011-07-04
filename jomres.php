@@ -124,6 +124,10 @@ $jomresPathway =jomres_getSingleton('jomres_pathway');
 
 $jomreslang =jomres_getSingleton('jomres_language');
 
+jr_import('jomres_currency_exchange_rates');
+$exchange_rates = new jomres_currency_exchange_rates("GBP");
+// $rates = get_showtime('temp_exchangerate_data');
+// var_dump($rates);exit;
 
 if (get_showtime('task')!="error")
 	{

@@ -4458,7 +4458,7 @@ class dobooking
 
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 
-		if ($this->tariffModel == "2")
+		//if ($this->tariffModel == "2")
 			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
 
 		if ($roomStuff['DISABLEDACCESS'] == 1)

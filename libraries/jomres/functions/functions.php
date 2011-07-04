@@ -367,7 +367,7 @@ function output_price($value,$currencycode="")
 	// To resolve issues of rounding (not sure if this is the best way, we'll need to monitor it). If the cents/pence/etc value is greater than .99 then we'll simply add 1 to the whole part.
 	if ($decimalpart > .99)
 		$price = $wholepart+1;
-	$price = $currfmt->get_formatted($price);
+	
 	if ($currencycode=="")
 		{
 		if (!isset($mrConfig['property_currencycode'])) // for v4.5 converting the old currencyCode value to property_currencycode
@@ -380,8 +380,22 @@ function output_price($value,$currencycode="")
 	jr_import("currency_codes");
 	if ($jrConfig['useGlobalCurrency']=="1")
 		$currencycode = $jrConfig['globalCurrencyCode'];
+
+	jr_import('jomres_currency_conversion');
+	$conversion = new jomres_currency_conversion();
+	if($conversion-> this_code_can_be_converted($currencycode) && $price > 0 )
+		{
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$base = $currencycode;
+		$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
+		$price = $conversion->convert_sum($price,$base,$foreign);
+		$currencycode = $foreign;
+		}
+	
 	$c_codes = new currency_codes($currencycode);
 	$symbols = $c_codes->getSymbol();
+	
+	$price = $currfmt->get_formatted($price);
 	$price = $symbols['pre'].$price.$symbols['post'];
 	return $price;
 	}

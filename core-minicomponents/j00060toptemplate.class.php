@@ -117,6 +117,16 @@ class j00060toptemplate {
 						}
 					}
 				}
+			//var_dump($tmpBookingHandler->user_settings['current_exchange_rate']);exit;
+			if (is_null($tmpBookingHandler->user_settings['current_exchange_rate']))
+				$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
+			jr_import('jomres_currency_conversion');
+			$conversion = new jomres_currency_conversion();
+			if (!$conversion->check_currency_code_valid($tmpBookingHandler->user_settings['current_exchange_rate']))
+				$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
+				
+			$output['EXCHANGE_RATE_DROPDOWN'] = $conversion->get_exchange_rate_dropdown($tmpBookingHandler->user_settings['current_exchange_rate']);
+
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
