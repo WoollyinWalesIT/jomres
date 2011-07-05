@@ -23,6 +23,8 @@ class j06000cron_optimise
 			}
 		$jomresConfig_secret = get_showtime('secret');
 		$secret = jomresGetParam($_REQUEST,"secret","");
+		$jomresConfig_db = get_showtime('db');
+		$jomresConfig_dbprefix = get_showtime('dbprefix');
 		if ($secret == $jomresConfig_secret)
 			{
 			$foundTables=array();
