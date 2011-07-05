@@ -18,12 +18,13 @@ function JomresBuildRoute(&$query)
 	if (!defined('_JOMRES_INITCHECK'))
 		define('_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
-	if (file_exists('jomres/core-plugins/alternative_init/alt_init.php'))
-		require_once('jomres/core-plugins/alternative_init/alt_init.php');
-	elseif (file_exists('jomres/remote_plugins/alternative_init/alt_init.php') )
-		require_once('jomres/remote_plugins/alternative_init/alt_init.php');
+	if (file_exists(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php'))
+		require_once(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php');
+	elseif (file_exists(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php') )
+		require_once(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php');
 	else
-		require_once('jomres/integration.php');
+		require_once(JPATH_BASE.DS.'jomres'.DS.'integration.php');
+
 	$jrConfig					=	getSiteSettings();
 	$segments = array();
 	
