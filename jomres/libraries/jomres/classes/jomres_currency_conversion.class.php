@@ -41,9 +41,6 @@ class jomres_currency_conversion
 		return $foreign_sum;
 		}
 
-		//return(number_format(($amount/$this->exchange_rates[$from])*$this->exchange_rates[$to],$decimals));
-
-	
 	function get_exchange_rate_dropdown($base='')
 		{
 		if ($base == '')

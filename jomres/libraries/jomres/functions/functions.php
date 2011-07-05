@@ -380,23 +380,39 @@ function output_price($value,$currencycode="")
 	jr_import("currency_codes");
 	if ($jrConfig['useGlobalCurrency']=="1")
 		$currencycode = $jrConfig['globalCurrencyCode'];
-
+	
+	$converted_output_price = '';
 	jr_import('jomres_currency_conversion');
 	$conversion = new jomres_currency_conversion();
-	if($conversion-> this_code_can_be_converted($currencycode) && $price > 0 )
+	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
+	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$base = $currencycode;
-		$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
-		$price = $conversion->convert_sum($price,$base,$foreign);
-		$currencycode = $foreign;
+		$converted_price = $conversion->convert_sum($price,$base,$foreign);
+		$converted_currencycode = $foreign;
+		
+		$c_codes = new currency_codes($converted_currencycode);
+		$symbols = $c_codes->getSymbol();
+		$converted_price = $currfmt->get_formatted($converted_price);
+		$converted_output_price = $symbols['pre'].$converted_price.$symbols['post'];
+		
+		$c_codes = new currency_codes($currencycode);
+		$symbols = $c_codes->getSymbol();
+		
+		$price = $currfmt->get_formatted($price);
+		$price = $symbols['pre'].$price.$symbols['post'];
+		$price = $converted_output_price. " (".$price.") ";
 		}
-	
-	$c_codes = new currency_codes($currencycode);
-	$symbols = $c_codes->getSymbol();
-	
-	$price = $currfmt->get_formatted($price);
-	$price = $symbols['pre'].$price.$symbols['post'];
+	else
+		{
+		$c_codes = new currency_codes($currencycode);
+		$symbols = $c_codes->getSymbol();
+		
+		$price = $currfmt->get_formatted($price);
+		$price = $symbols['pre'].$price.$symbols['post'];
+		}
+
 	return $price;
 	}
 	
