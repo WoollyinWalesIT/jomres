@@ -1,3 +1,14 @@
+Jomres 5.2beta1
+
+A large number of changes to add fully automatic exchange rate downloading (daily) and conversion features that will allow us to convert prices on the fly for all properties who are using a currency code that can be converted. As the download is done daily, the first time the page is visited after this code is added may take a while to resolve as your Jomres installation needs to talk to the remote exchange rate server. After that's done however the data is stored locally and is retrieved very quickly.
+
+Undid a change in the last version that disables busy dates in the departure date of the booking form, as this was a mistake. Leaving this change in would mean that a booker cannot set a disabled date as their departure date, even though this would be perfectly valid.
+Reset a flag that prevents emails from being sent during testing, which was accidentaly left in situ after some code improvements.
+Modified the infoimage feature of the tooltip function to use a new css class that makes the tooltip content area wider.
+Fixed a bug where per person per night optional extras weren't displaying correctly in the booking confirmation page.
+Removed excanvas.js from obsolete file handling class. Not sure why it's marked as obsolete. It's not.
+Added an updated version of de-DE.php, many thanks Alexander. 
+
 Jomres 5.1
 
 A good deal of changes to the Javascript file handling. Jomres now uses a lot of javascript files, which raises the issue of network speed as the user needs to d/l a number of files to use the site. We would like to implement some kind of javascript compression facility within the system so that we can reduce this number of files. 
