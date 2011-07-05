@@ -146,7 +146,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'jquery.bt-0-9.js');
 		$this->add_obs_file($this->dir_javascript.'jquery.bt-0-9-3.js');
 
-		$this->add_obs_file($this->dir_javascript.'excanvas.js');
+		//$this->add_obs_file($this->dir_javascript.'excanvas.js');
 		$this->add_obs_file($this->dir_javascript.'excanvas-compressed.js');
 		
 		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.7.1.custom.min.js');
