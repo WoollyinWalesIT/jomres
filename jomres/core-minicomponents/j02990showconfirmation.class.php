@@ -288,11 +288,11 @@ class j02990showconfirmation {
 							$model_text=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERBOOKING);
 						break;
 						case '5': // per person per day
-							$calc			=	$bookingDeets['total_in_party']*$this->stayDays*$thisPrice['price'];
+							$calc			=	$bookingDeets['total_in_party']*$bookingDeets['stayDays']*$thisPrice['price'];
 							$model_text=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERDAY);
 						break;
 						case '6': // per person per week
-							$numberOfWeeks	=	ceil($this->stayDays/7);
+							$numberOfWeeks	=	ceil($bookingDeets['stayDays']/7);
 							$calc			=	$bookingDeets['total_in_party']*$numberOfWeeks*$thisPrice['price'];
 							$model_text=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERPERSONPERWEEK);
 						break;
@@ -307,7 +307,7 @@ class j02990showconfirmation {
 							$model_text=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSMINDAYS);
 						break;
 						case '8': // per days per room
-							$calc=($this->stayDays*$thisPrice['price'])*(int)$booking_parts['NUMROOMS'];
+							$calc=($bookingDeets['stayDays']*$thisPrice['price'])*(int)$booking_parts['NUMROOMS'];
 							$model_text=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM',_JOMRES_CUSTOMTEXT_EXTRAMODEL_PERDAYSPERROOM);
 						break;
 						case '9': // per room
