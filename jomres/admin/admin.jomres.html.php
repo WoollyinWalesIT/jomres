@@ -121,6 +121,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		if ($jrConfig['advanced_site_config'] == 1)
 			$contentPanel->setcontent('
 			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONVERSION_TITLE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['use_conversion_feature'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONVERSION_TITLE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
 				<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC.'</td>

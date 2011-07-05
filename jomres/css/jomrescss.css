@@ -34,6 +34,13 @@ div.blockMsg {
   width : 100;
 }
 
+
+.jomres_native_price_size {
+	color: #999999 !important;
+	font-size: 0.9em !important;
+	font-weight: normal !important;
+}
+
 .jomres_bt_tooltip_ajaxpage
 	{
 	float: left;

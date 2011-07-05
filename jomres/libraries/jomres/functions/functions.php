@@ -386,7 +386,7 @@ function output_price($value,$currencycode="")
 	$conversion = new jomres_currency_conversion();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
-	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign)
+	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign && $jrConfig['use_conversion_feature'] == "1")
 		{
 		$base = $currencycode;
 		$converted_price = $conversion->convert_sum($price,$base,$foreign);
@@ -402,7 +402,7 @@ function output_price($value,$currencycode="")
 		
 		$price = $currfmt->get_formatted($price);
 		$price = $symbols['pre'].$price.$symbols['post'];
-		$price = $converted_output_price. " (".$price.") ";
+		$price = "".$converted_output_price. " <span class='jomres_native_price_size'>(".$price.")</span> ";
 		}
 	else
 		{

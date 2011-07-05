@@ -117,16 +117,28 @@ class j00060toptemplate {
 						}
 					}
 				}
-			//var_dump($tmpBookingHandler->user_settings['current_exchange_rate']);exit;
-			if (is_null($tmpBookingHandler->user_settings['current_exchange_rate']))
-				$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
-			jr_import('jomres_currency_conversion');
-			$conversion = new jomres_currency_conversion();
-			if (!$conversion->check_currency_code_valid($tmpBookingHandler->user_settings['current_exchange_rate']))
-				$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
 				
-			$output['EXCHANGE_RATE_DROPDOWN'] = $conversion->get_exchange_rate_dropdown($tmpBookingHandler->user_settings['current_exchange_rate']);
-
+			
+			if ($jrConfig['use_conversion_feature'] == "1")
+				{
+				if (is_null($tmpBookingHandler->user_settings['current_exchange_rate']))
+					$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
+				jr_import('jomres_currency_conversion');
+				$conversion = new jomres_currency_conversion();
+				if (!$conversion->check_currency_code_valid($tmpBookingHandler->user_settings['current_exchange_rate']))
+					$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
+					
+				$output['EXCHANGE_RATE_DROPDOWN'] = $conversion->get_exchange_rate_dropdown($tmpBookingHandler->user_settings['current_exchange_rate']);
+				$output['_JOMRES_CONVERSION_DISCLAIMER']=jr_gettext('_JOMRES_CONVERSION_DISCLAIMER',_JOMRES_CONVERSION_DISCLAIMER,false,false);
+				$output['DISCLAIMER_TIP']=jomres_makeTooltip('_JOMRES_CONVERSION_DISCLAIMER',$hover_title="",_JOMRES_CONVERSION_DISCLAIMER,'_JOMRES_CONVERSION_DISCLAIMER',$class="",$type="infoimage",array("width"=>25,"height"=>25));
+				}
+			else
+				{
+				$output['EXCHANGE_RATE_DROPDOWN'] = "";
+				$output['_JOMRES_CONVERSION_DISCLAIMER']="";
+				$output['DISCLAIMER_TIP']="";
+				}
+			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -149,6 +161,7 @@ class j00060toptemplate {
 		$output=array();
 		$output[]	=	jr_gettext('_PN_NEXT',_PN_NEXT);
 		$output[]	=	jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS);
+		$output[]	=	jr_gettext('_JOMRES_CONVERSION_DISCLAIMER',_JOMRES_CONVERSION_DISCLAIMER);
 
 		foreach ($output as $o)
 			{

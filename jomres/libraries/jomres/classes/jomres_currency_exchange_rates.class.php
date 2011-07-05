@@ -19,6 +19,12 @@ class jomres_currency_exchange_rates
 	{
 	function jomres_currency_exchange_rates($base = '')
 		{
+		$this->feature_enabled = true;
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if ($jrConfig['use_conversion_feature'] != "1" )
+			$this->feature_enabled = false;
+		
 		$this->exchange_rates = array();
 		if ($base == "")
 			$this->base_code = "GBP";
@@ -30,6 +36,8 @@ class jomres_currency_exchange_rates
 	
 	function init()
 		{
+		if (!$this->feature_enabled)
+			return;
 		$update_exchange_rates = false;
 		if ( !$this->exchange_rate_file_exists() )
 			$update_exchange_rates = true;
@@ -45,6 +53,8 @@ class jomres_currency_exchange_rates
 	
 	function get_exchange_rates()
 		{
+		if (!$this->feature_enabled)
+			return;
 		require_once ($this->exchange_rate_classfile);
 		$rates = new jomres_currency_exchange_rates_temp_data();
 		set_showtime('temp_exchangerate_data', $rates->rates );
@@ -52,6 +62,8 @@ class jomres_currency_exchange_rates
 	
 	function exchange_rate_file_expired()
 		{
+		if (!$this->feature_enabled)
+			return;
 		$expired = false;
 		$last_modified = filemtime  ( $this->exchange_rate_classfile );
 		$today = time();
@@ -63,6 +75,8 @@ class jomres_currency_exchange_rates
 	
 	function exchange_rate_file_exists()
 		{
+		if (!$this->feature_enabled)
+			return;
 		$exists = false;
 		if (file_exists($this->exchange_rate_classfile))
 			$exists = true;
@@ -71,7 +85,8 @@ class jomres_currency_exchange_rates
 	
 	function update_exchange_rates()
 		{
-		
+		if (!$this->feature_enabled)
+			return;
 		$this->rates = array();
 		jr_import('currency_codes');
 		$currency_code_class = new currency_codes();
@@ -85,6 +100,8 @@ class jomres_currency_exchange_rates
 	
 	function save_rates()
 		{
+		if (!$this->feature_enabled)
+			return;
 		if (count($this->rates)==0)
 			return false;
 		$lines = '$this->rates = array();
@@ -118,6 +135,8 @@ class jomres_currency_exchange_rates
 	
 	function get_exchange_rate($base,$foreign)
 		{
+		if (!$this->feature_enabled)
+			return;
 		$url = 'http://download.finance.yahoo.com/d/quotes.csv?s='
 			.$base .$foreign .'=X&f=l1';
 		$c = curl_init($url);
