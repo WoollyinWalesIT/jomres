@@ -109,7 +109,8 @@ class jomres_tooltips
 					$div_string.='border="'.$border.'"';
 				$div_string.=' /></div>';
 				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt({
-						cornerRadius: 10,        
+						activeClass: \'tooltip_bubble_width\',
+						cornerRadius: 10,
 						strokeWidth: 0,
 						shadow: true,     //only shown in new browser
 						shadowOffsetX: 3,
@@ -120,7 +121,6 @@ class jomres_tooltips
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 						positions: [\''.$this->positions.'\'],
 						offsetParent: \'body\',
-						width: \'auto\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 

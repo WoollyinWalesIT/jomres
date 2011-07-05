@@ -30,6 +30,10 @@ div.blockMsg {
 	color: #fff;
 }
 
+.tooltip_bubble_width {
+  width : 100;
+}
+
 .jomres_bt_tooltip_ajaxpage
 	{
 	float: left;
