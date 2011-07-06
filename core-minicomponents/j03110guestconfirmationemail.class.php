@@ -196,7 +196,7 @@ class j03110guestconfirmationemail {
 		$output['FIRSTNAME']=stripslashes($firstname);
 		$output['SURNAME']=stripslashes($surname);
 		$output['HTOTAL']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL',_JOMRES_FRONT_MR_EMAIL_TEXT_TOTAL,FALSE,FALSE);
-		$output['TOTAL']=$currency.$currfmt->get_formatted($contract_total, 2, '.', '');
+		$output['TOTAL']=output_price($contract_total);
 		$output['HTARIFFTITLE']=jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,FALSE,FALSE);
 		$output['TARIFFINFO']=$rateOutput;
 
