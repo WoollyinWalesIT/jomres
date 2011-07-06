@@ -88,6 +88,11 @@ class images{
 		$defaultProperty=getDefaultProperty();
 		if ($_FILES[$formElement]['name']!="")
 			{
+			if ($_FILES[$formElement]["error"] == UPLOAD_ERR_NO_TMP_DIR) 
+				{
+				echo 'The file could not be saved, because no server temp folder exists (or, if it does, it\'s not writable). Please ask your hosts to edit php.ini and ensure that they have a valid path set for the php.ini setting "upload_tmp_dir" ';
+				return false;
+				}
 			if( strtolower($_FILES[$formElement]['type']) != "image/jpg" && strtolower($_FILES[$formElement]['type']) != "image/jpeg" && strtolower($_FILES[$formElement]['type']) != "image/pjpeg" )
 				{
 				$error=true;
