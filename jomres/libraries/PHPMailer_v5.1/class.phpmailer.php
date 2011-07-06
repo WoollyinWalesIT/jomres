@@ -586,7 +586,7 @@ class jomresPHPMailer {
       if ($this->exceptions) {
         throw $e;
       }
-      echo $e->getMessage()."\n";
+      //echo $e->getMessage()."\n";
       return false;
     }
   }
