@@ -55,8 +55,8 @@ class j16000showLog
 			if ($no_update ==0)
 				{
 				$output['HEARTBEAT']= '<script>
-				jQuery(document).ready(function() {
-					jQuery.jheartbeat.set({
+				jomresJquery(document).ready(function() {
+					jomresJquery.jheartbeat.set({
 						url: "'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&no_html=1&logfile='.$logfile.'",
 						delay: 5000,
 						div_id: "logfileresult"

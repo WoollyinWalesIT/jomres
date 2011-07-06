@@ -314,9 +314,9 @@ class j00030search {
 						define("_JOMRES_SELECTCOMBO",1);
 						echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
 						echo "<script>
-						jQuery(function() {
-							jQuery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
-							jQuery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=region','#search_town');
+						jomresJquery(function() {
+							jomresJquery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
+							jomresJquery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=region','#search_town');
 							});
 						</script>";
 						}

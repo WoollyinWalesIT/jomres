@@ -1,17 +1,17 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 
 <script language="JavaScript" type="text/javascript">
-jQuery.validator.setDefaults({
+jomresJquery.validator.setDefaults({
 	highlight: function(input) {
-		jQuery(input).addClass("ui-state-highlight");
+		jomresJquery(input).addClass("ui-state-highlight");
 	},
 	unhighlight: function(input) {
-		jQuery(input).removeClass("ui-state-highlight");
+		jomresJquery(input).removeClass("ui-state-highlight");
 	}
 });
 
-jQuery(document).ready(function(){
-	jQuery("#reviewForm").validate({
+jomresJquery(document).ready(function(){
+	jomresJquery("#reviewForm").validate({
 		rules: {
 			review_title: "required",
 			review_description: "required",
@@ -43,7 +43,7 @@ jQuery(document).ready(function(){
 			},
 		
 	});
-	jQuery("#messageBox").hide();
+	jomresJquery("#messageBox").hide();
 });
 
 </script>

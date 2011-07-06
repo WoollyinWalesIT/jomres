@@ -60,7 +60,7 @@ class jomres_tooltips
 					$div_string.=' class="" ';
 					
 				$div_string.='>'.$div_content.'</div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt({
+					<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 						cornerRadius: 10,        
 						strokeWidth: 0,
 						shadow: true,     //only shown in new browser
@@ -108,7 +108,7 @@ class jomres_tooltips
 				if (isset($type_arguments["border"]))
 					$div_string.='border="'.$border.'"';
 				$div_string.=' /></div>';
-				$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt({
+				$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 						activeClass: \'tooltip_bubble_width\',
 						cornerRadius: 10,
 						strokeWidth: 0,
@@ -167,7 +167,7 @@ class jomres_tooltips
 						$div_string.='/></div>';
 					}
 					
-					$div_string.='<script type="text/javascript">jQuery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
+					$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
 						{
 						cornerRadius: 10,        
 						strokeWidth: 0,
@@ -208,7 +208,7 @@ class jomres_tooltips
 					*/
 					
 					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
-						<script type="text/javascript">jQuery("#'.$div.'").bt({
+						<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 							cornerRadius: 10,        
 							strokeWidth: 0,
 							shadow: true,     //only shown in new browser
@@ -259,7 +259,7 @@ class jomres_tooltips
 						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
 					*/
 					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
-						<script type="text/javascript">jQuery("#'.$div.'").bt({
+						<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 							cornerRadius: 10,        
 							strokeWidth: 0,
 							shadow: true,     //only shown in new browser
@@ -299,7 +299,7 @@ class jomres_tooltips
 					$div_string.=' class="jomres_bt_tooltip" ';
 					
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
-					<script type="text/javascript">jQuery("#'.$div.'").bt({
+					<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 							offsetParent: \'body\',
 							width: \'600px\',
 							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
@@ -324,7 +324,7 @@ class jomres_tooltips
 			{
 			foreach ($this->divs as $div)
 				{
-				$javascript.="jQuery(".$div['id']."').bt();";
+				$javascript.="jomresJquery(".$div['id']."').bt();";
 				}
 			}
 		$javascript.="</script>";

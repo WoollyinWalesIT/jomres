@@ -1704,7 +1704,7 @@ function jomresRedirect( $url, $msg='' )
 	// Internet explorer throws a wobbly, whining that 'Object expected'. Instead then, we'll render the entire page but then redirect as soon as the page is loaded if the browser's IE. */
 	// if ($browser=="Internet Explorer" && !isset($_REQUEST['no_html']) )
 		// {
-		// echo "<script>jQuery(document).ready(function() {";
+		// echo "<script>jomresJquery(document).ready(function() {";
 		// echo "document.location.href='$url';";
 		// echo "});</script>\n";
 		// }
@@ -2222,8 +2222,8 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		}
 		
 	$output .= '<script type="text/javascript">
-	jQuery(function() {
-		jQuery("#'.$uniqueID.'").datepicker( { 
+	jomresJquery(function() {
+		jomresJquery("#'.$uniqueID.'").datepicker( { 
 			dateFormat: "'.$dateFormat.'", ';
 
 			if ($historic) // Can we show older dates? By default no
@@ -2255,9 +2255,9 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		if ($fieldName=="arrivalDate")
 			{
 			$output .=',onSelect: function(selectedDate) {
-				var nextDayDate = jQuery("#'.$uniqueID.'").datepicker(\'getDate\', \'+1d\');  
+				var nextDayDate = jomresJquery("#'.$uniqueID.'").datepicker(\'getDate\', \'+1d\');  
 				nextDayDate.setDate(nextDayDate.getDate() + 1);  
-				jQuery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'setDate\', nextDayDate);  
+				jomresJquery("#'.get_showtime('departure_date_unique_id').'").datepicker(\'setDate\', nextDayDate);  
 				//alert(date);
 				}';
 			}
@@ -4524,7 +4524,7 @@ function makeJsGraphOutput($graphLabels,$graphValues,$type="hBar",$legend,$div='
 	{
 	$graphParams='
 	<script language="JavaScript"> <!--
-	jQuery(document).ready(function() {createGraph("'.$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")});
+	jomresJquery(document).ready(function() {createGraph("'.$graphLabels.'","'.$graphValues.'","'.$type.'","'.$legend.'","'.$div.'")});
 	//--> </script>
 	';
 	return $graphParams;

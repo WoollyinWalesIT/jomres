@@ -1,24 +1,24 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script type="text/javascript">
-	jQuery(function(){
+	jomresJquery(function(){
 		//all hover and click logic for buttons
-		jQuery(".fg-button:not(.ui-state-disabled)")
+		jomresJquery(".fg-button:not(.ui-state-disabled)")
 		.hover(
 			function(){ 
-				jQuery(this).addClass("ui-state-hover"); 
+				jomresJquery(this).addClass("ui-state-hover"); 
 			},
 			function(){ 
-				jQuery(this).removeClass("ui-state-hover"); 
+				jomresJquery(this).removeClass("ui-state-hover"); 
 			}
 		)
 		.mousedown(function(){
-				jQuery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-				if( jQuery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jQuery(this).removeClass("ui-state-active"); }
-				else { jQuery(this).addClass("ui-state-active"); }
+				jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jomresJquery(this).removeClass("ui-state-active"); }
+				else { jomresJquery(this).addClass("ui-state-active"); }
 		})
 		.mouseup(function(){
-			if(! jQuery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
-				jQuery(this).removeClass("ui-state-active");
+			if(! jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				jomresJquery(this).removeClass("ui-state-active");
 			}
 		});
 	});

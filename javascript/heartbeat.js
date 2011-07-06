@@ -3,7 +3,7 @@
  * (C)Alex Richards - http://www.ajtrichards.co.uk/
  */
  
- jQuery.jheartbeat = {
+ jomresJquery.jheartbeat = {
 
     options: {
 		url: "heartbeat_default.asp",
@@ -24,30 +24,30 @@
 			clearTimeout(this.timeoutobj);
 		}
         if (options) {
-            jQuery.extend(this.options, options);
+            jomresJquery.extend(this.options, options);
         }
         if (onbeatfunction) {
             this.beatfunction = onbeatfunction;
         }
 
 		// Add the HeartBeatDIV to the page
-		jQuery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
-		this.timeoutobj.id = setTimeout("jQuery.jheartbeat.beat();", this.options.delay);
+		jomresJquery("body").append("<div id=\"" + this.options.div_id + "\" style=\"display: none;\"></div>");
+		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
     },
 
     beat: function() {
-		jQuery.ajax({
+		jomresJquery.ajax({
 				url: this.options.url,
 				dataType: "html",
 				type: "GET",
 				error: function(e)   { 
-					jQuery('#'+ jQuery.jheartbeat.options.div_id).append(""); 
+					jomresJquery('#'+ jomresJquery.jheartbeat.options.div_id).append(""); 
 				},
 				success: function(data){ 
-					jQuery('#'+ jQuery.jheartbeat.options.div_id).html(data); 
+					jomresJquery('#'+ jomresJquery.jheartbeat.options.div_id).html(data); 
 				}
 			   });
-		this.timeoutobj.id = setTimeout("jQuery.jheartbeat.beat();", this.options.delay);
+		this.timeoutobj.id = setTimeout("jomresJquery.jheartbeat.beat();", this.options.delay);
         this.beatfunction();
     }
 };

@@ -11,29 +11,29 @@ a:hover {color:black; text-decoration: underline;}
 var word_next = "{NEXT}";
 var word_previous = "{PREVIOUS}";
 
-	jQuery(function(){
+	jomresJquery(function(){
 		//all hover and click logic for buttons
-		jQuery(".fg-button:not(.ui-state-disabled)")
+		jomresJquery(".fg-button:not(.ui-state-disabled)")
 		.hover(
 			function(){ 
-				jQuery(this).addClass("ui-state-hover"); 
+				jomresJquery(this).addClass("ui-state-hover"); 
 			},
 			function(){ 
-				jQuery(this).removeClass("ui-state-hover"); 
+				jomresJquery(this).removeClass("ui-state-hover"); 
 			}
 		)
 		.mousedown(function(){
-				jQuery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-				if( jQuery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jQuery(this).removeClass("ui-state-active"); }
-				else { jQuery(this).addClass("ui-state-active"); }
+				jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jomresJquery(this).removeClass("ui-state-active"); }
+				else { jomresJquery(this).addClass("ui-state-active"); }
 		})
 		.mouseup(function(){
-			if(! jQuery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
-				jQuery(this).removeClass("ui-state-active");
+			if(! jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				jomresJquery(this).removeClass("ui-state-active");
 			}
 		});
 
-		jQuery("#tabs").tabs();
+		jomresJquery("#tabs").tabs();
     });
 </script>
 
@@ -60,15 +60,15 @@ var word_previous = "{PREVIOUS}";
 	</table>
 
 	<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-		<!-- <a href="javascript:void(0);" onclick="jQuery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+		<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
 		<script type="text/javascript">
-			jQuery.jGrowl("{MESSAGE}", { life: 10000 });
+			jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });
 		</script>
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-		<!-- <a href="javascript:void(0);" onclick="jQuery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+		<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
 		<script type="text/javascript">
-			jQuery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
+			jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
 		</script>
 	</patTemplate:tmpl>
 

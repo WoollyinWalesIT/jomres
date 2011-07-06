@@ -8,27 +8,27 @@ var unpublish_image = "{UNPUBLISH_IMAGE}";
 function publish_review(rating_id,state)
 	{
 	div_name = '#publish_icon'+rating_id;
-	curr_img = jQuery(div_name).attr("src") == publish_image ? unpublish_image : publish_image;
+	curr_img = jomresJquery(div_name).attr("src") == publish_image ? unpublish_image : publish_image;
 	if (curr_img == unpublish_image)
 		cmd = '{AJAXURL}&task=review_publish&rating_id='+rating_id+'&state=0';
 	else
 		cmd = '{AJAXURL}&task=review_publish&rating_id='+rating_id+'&state=1';
-	jQuery.get(cmd, function(data) {
+	jomresJquery.get(cmd, function(data) {
 		if (data == 1)
 			{
 			
-			jQuery(div_name).attr("src",curr_img);
+			jomresJquery(div_name).attr("src",curr_img);
 			}
 		});
 	}
 
 function delete_review(rating_id)
 	{
-	jQuery.get('{AJAXURL}&task=review_delete&rating_id='+rating_id, function(data) {
+	jomresJquery.get('{AJAXURL}&task=review_delete&rating_id='+rating_id, function(data) {
 		if (data == 1)
 			{
 			row_id = '#rating_id'+rating_id;
-			jQuery(row_id).fadeOut();
+			jomresJquery(row_id).fadeOut();
 			}
 		});
 	}

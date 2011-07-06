@@ -51,8 +51,8 @@
 var ajaxurl	= "{AJAXURL}";
 var livesite= "{LIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
 
-	jQuery(function() {
-		jQuery( "#username_input" ).autocomplete({
+	jomresJquery(function() {
+		jomresJquery( "#username_input" ).autocomplete({
 			source: ajaxurl+'managers_find',
 			minLength: 2,
 			select: function( event, ui ) {

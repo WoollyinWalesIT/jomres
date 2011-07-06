@@ -292,18 +292,15 @@ class j06005save_subscriber
 		$this->add_field('zip', $subscriber->postcode);
 		
 		echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.4.2.min.js"></script>';
-		echo '<script type="text/javascript">jQuery.noConflict();</script>';
+		echo '<script type="text/javascript">jomresJquery.noConflict();</script>';
 		?>
 
 		<script>
-		jQuery(document).ready(function() {
-			document.forms['paypal_form'].submit();
-		});
+		toload[1]=	"document.forms['paypal_form'].submit()";
 		</script>
 		<?php
 		//var_dump($this);exit;
-		echo "<center><h2>Please wait, your subscription is being processed and you";
-		echo " will be redirected to the PayPal website.</h2></center>\n";
+		echo "<center><h2>".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE',_JOMRES_PAYPAL_REDIRECTMESSAGE,false,false)."</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
 		echo "action=\"".$this->paypal_settings['submit_url']."\">\n";
 		$txt="";
@@ -313,9 +310,8 @@ class j06005save_subscriber
 			echo "<input type=\"hidden\" name=\"$name\" value=\"$value\"/>\n";
 			}
 		gateway_log($txt);
-		echo "<center><br/><br/>If you are not automatically redirected to ";
-		echo "paypal within 5 seconds...<br/><br/>\n";
-		echo "<input type=\"submit\" value=\"Click Here\"></center>\n";
+		echo "<center><br/><br/>".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED',_JOMRES_PAYPAL_REDIRECTMESSAGE_IFNOTREDIRECTED,false,false)."<br/><br/>\n";
+		echo "<input type=\"submit\" value=\"".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE',_JOMRES_PAYPAL_REDIRECTMESSAGE_CLICKHERE,false,false)."\"></center>\n";
 		echo "</form>\n";
 		}
 	

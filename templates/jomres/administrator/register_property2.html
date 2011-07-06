@@ -1,14 +1,14 @@
 <patTemplate:tmpl name="pageoutput">
 <script language="javascript" type="text/javascript" >
-jQuery(document).ready(function () {
+jomresJquery(document).ready(function () {
     var select = '#mySelect';
-    jQuery(select).attr('selectedIndex', '-1');
-    jQuery(select).change(function () {
-        jQuery(select + ' option').each(function () {
-            jQuery('#' + this.value).hide();
+    jomresJquery(select).attr('selectedIndex', '-1');
+    jomresJquery(select).change(function () {
+        jomresJquery(select + ' option').each(function () {
+            jomresJquery('#' + this.value).hide();
         });
-        jQuery(select + ' option:selected').each(function () {
-            jQuery('#' + this.value).show();
+        jomresJquery(select + ' option:selected').each(function () {
+            jomresJquery('#' + this.value).show();
         });
     }).change();
 });
