@@ -36,9 +36,8 @@ class j06000selectcombo {
 			}
 		*/
 		$allPropertyLocations=prepGeographicSearch();
-		
-		$filter=jomresGetParam( $_REQUEST, 'filter',"" );
-		$q = jomresGetParam( $_REQUEST, 'q',"" );
+		$filter=jomresGetParam( $_REQUEST, '_name',"" );
+		$q = jomresGetParam( $_REQUEST, '_value',"" );
 		$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
 		
 		if ($filter == "country")
@@ -53,8 +52,8 @@ class j06000selectcombo {
 						{
 						$regions[$t]=$t;
 						}
-					else if ($q==$searchAll)
-						$regions[$t]=$t;
+					// else if ($q==$searchAll)
+						// $regions[$t]=$t;
 					}
 				}
 			if (count($regions)>0)
@@ -73,31 +72,20 @@ class j06000selectcombo {
 						{
 						$towns[$t]=$t;
 						}
-					else if ($q==$searchAll)
-						$towns[$t]=$t;
+					// else if ($q==$searchAll)
+						// $towns[$t]=$t;
 					}
 				}
 			if (count($towns)>0)
 				$ret_array=array_unique($towns);
 			}
-
-		$ret_string="["."{\"oV\":\"".$searchAll."\", \"oT\": \"".$searchAll."\"},";
+		 $ret_json = array();
+		// $ret_json[] = array("oV"=>$searchAll,"oT"=>$searchAll);
 		foreach ($ret_array as $key=>$val)
 			{
-			$ret_string.="{\"oV\":\"".$key."\", \"oT\": \"".$val."\"},";
+			$ret_json[] = array($key=>$val);
 			}
-		$ret_string = substr($ret_string, 0, -1);
-		$ret_string.="]";
-
-		// The following uses json_encode, but it requires that the server be either built with json in php, or php5.2. As we're not forcing 5.2 (only php5) we'll leave it commented out and use the above functionality to build the json response, however it's useful to leave it in place in case we need to confirm the above formatting of the json response.
-		// $ret_json = array();
-		// $ret_json[] = array("oV"=>$searchAll,"oT"=>$searchAll);
-		// foreach ($ret_array as $key=>$val)
-			// {
-			// $ret_string.="{oV:\"".$key."\", oT: \"".$val."\"},";
-			// $ret_json[] = array("oV"=>$key,"oT"=>$val);
-			// }
-		// $ret_string = json_encode($ret_json);
+		$ret_string = json_encode($ret_json);
 		// 
 		
 		echo $ret_string;

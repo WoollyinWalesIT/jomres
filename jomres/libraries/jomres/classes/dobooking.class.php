@@ -546,7 +546,7 @@ class dobooking
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
-			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->arrivalDate."', '%Y/%m/%d')
+			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
 			";
 		
 		//$this->setErrorLog("getAllTariffsData:: ".$query );

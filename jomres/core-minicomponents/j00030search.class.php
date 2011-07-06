@@ -312,16 +312,44 @@ class j00030search {
 					if (!defined("_JOMRES_SELECTCOMBO") )
 						{
 						define("_JOMRES_SELECTCOMBO",1);
-						echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.selectCombo1.2.6.js"></script>';
-						echo "<script>
-						jomresJquery(function() {
-							jomresJquery('#search_country').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=country','#search_region');
-							jomresJquery('#search_region').selectCombo('".JOMRES_SITEPAGE_URL_NOHTML."&task=selectcombo&filter=region','#search_town');
+						jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");
+						echo '
+							<script language="JavaScript" type="text/javascript">
+							jomresJquery(function()
+							{
+								jomresJquery(\'#country\').chainSelect(\'#region\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=country\',
+								{ 
+									before:function (target) //before request hide the target combobox and display the loading message
+									{ 
+										jomresJquery("#loading").css("display","block");
+										jomresJquery(target).css("display","none");
+									},
+									after:function (target) //after request show the target combobox and hide the loading message
+									{ 
+										jomresJquery("#loading").css("display","none");
+										jomresJquery(target).css("display","inline");
+									}
+								});
+								jomresJquery(\'#region\').chainSelect(\'#town\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=region\',
+								{ 
+									before:function (target) 
+									{ 
+										jomresJquery("#loading").css("display","block");
+										jomresJquery(target).css("display","none");
+									},
+									after:function (target) 
+									{ 
+										jomresJquery("#loading").css("display","none");
+										jomresJquery(target).css("display","inline");
+									}
+								});
 							});
-						</script>";
+							</script>
+							';
 						}
 					foreach ($sch->prep['country'] as $country)
 						{
+						
 						$countryArray[]= jomresHTML::makeOption( $country['countrycode'], jomres_decode($country['countryname']));
 						}
 
@@ -329,13 +357,12 @@ class j00030search {
 					jomresHTML::selectList( $countryArray, 'country', 'size="1" id="search_country" class="inputbox"', 'value', 'text', $selectOption ).'
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_REGION']='
-					<select id="search_region" name="region" class="inputbox">
-					<option value="">--  --</option>
-					</select>
+						<!-- state combobox is chained by country combobox-->
+						<select name="region" id="region" style="display:none"></select>
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
-					<select id="search_town" name="town" class="inputbox">
-					<option value="">--  --</option>
+						<!-- city combobox is chained by state combobox-->
+						<select name="town" id="town" style="display:none"></select>
 					</select>
 					<br />';
 					$showButton=true;
