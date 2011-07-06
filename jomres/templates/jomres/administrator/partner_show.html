@@ -29,8 +29,8 @@
 </table>
 
 <script>
-	jQuery(function() {
-		jQuery( "#propertyname_input" ).autocomplete({
+	jomresJquery(function() {
+		jomresJquery( "#propertyname_input" ).autocomplete({
 			source: ajaxurl+'partners_property_find',
 			minLength: 2,
 			select: function( event, ui ) {
@@ -43,17 +43,17 @@ var ajaxurl	= "{AJAXURL}";
 var cmsuserid	= "{CMSUSERID}";
 
 function addPropertyToPartner(property_name) {
-	jQuery.get(ajaxurl+'partners_add_property_to_partner_portfolio',{ 'property_name': property_name, 'cmsuserid' : cmsuserid },
+	jomresJquery.get(ajaxurl+'partners_add_property_to_partner_portfolio',{ 'property_name': property_name, 'cmsuserid' : cmsuserid },
 		function(data){
-			jQuery('#discount_list').html(data);
+			jomresJquery('#discount_list').html(data);
 			}
 		);
 	}
 	
 function show_property_discounts(property_id) {
-	jQuery.get(ajaxurl+'partner_show_discounts_for_property',{ 'partner_id': cmsuserid, 'property_id' : property_id },
+	jomresJquery.get(ajaxurl+'partner_show_discounts_for_property',{ 'partner_id': cmsuserid, 'property_id' : property_id },
 		function(data){
-			jQuery('#property_discounts').html(data);
+			jomresJquery('#property_discounts').html(data);
 			}
 		);
 	}
@@ -62,14 +62,14 @@ function save_discount_settings(discount_id,property_id) {
 	valid_from_input = 'valid_from_'+discount_id;
 	valid_to_input = 'valid_to_'+discount_id;
 	discount_input = 'discount_'+discount_id;
-	var valid_from = jQuery('[name='+valid_from_input+']').val();
-	var valid_to = jQuery('[name='+valid_to_input+']').val();
-	var discount = jQuery('[name='+discount_input+']').val();
-	jQuery.get(ajaxurl+'partner_save_discount_settings',{ 'discount_id': discount_id, 'valid_from' : valid_from, 'valid_to' : valid_to, 'discount' : discount },
+	var valid_from = jomresJquery('[name='+valid_from_input+']').val();
+	var valid_to = jomresJquery('[name='+valid_to_input+']').val();
+	var discount = jomresJquery('[name='+discount_input+']').val();
+	jomresJquery.get(ajaxurl+'partner_save_discount_settings',{ 'discount_id': discount_id, 'valid_from' : valid_from, 'valid_to' : valid_to, 'discount' : discount },
 		function(data){
-			jQuery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
+			jomresJquery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
 				function(data){
-					jQuery('#discount_list').html(data);
+					jomresJquery('#discount_list').html(data);
 					}
 				);
 			}
@@ -77,12 +77,12 @@ function save_discount_settings(discount_id,property_id) {
 	}
 	
 function delete_discount(discount_id,property_id) {
-	jQuery.get(ajaxurl+'partner_delete_discount',{ 'discount_id': discount_id },
+	jomresJquery.get(ajaxurl+'partner_delete_discount',{ 'discount_id': discount_id },
 		function(data){
 			document.getElementById('property_discounts').innerHTML = "";
-			jQuery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
+			jomresJquery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
 				function(data){
-					jQuery('#discount_list').html(data);
+					jomresJquery('#discount_list').html(data);
 					}
 				);
 			}

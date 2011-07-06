@@ -29,8 +29,8 @@
 var ajaxurl	= "{AJAXURL}";
 var livesite= "{LIVESITE}&task=partner_show&name=";
 
-	jQuery(function() {
-		jQuery( "#username_input" ).autocomplete({
+	jomresJquery(function() {
+		jomresJquery( "#username_input" ).autocomplete({
 			source: ajaxurl+'partners_find',
 			minLength: 2,
 			select: function( event, ui ) {

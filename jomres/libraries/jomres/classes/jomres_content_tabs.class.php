@@ -47,9 +47,9 @@ class jomres_content_tabs
 	function startTabs()
 		{
 		echo "<script type=\"text/javascript\" defer=\"true\">
-		jQuery(document).ready(function() {
-			//jQuery('#content_tabs').tabs();
-			jQuery(\"#content_tabs\").tabs();
+		jomresJquery(document).ready(function() {
+			//jomresJquery('#content_tabs').tabs();
+			jomresJquery(\"#content_tabs\").tabs();
 			});
 		</script>
 		";

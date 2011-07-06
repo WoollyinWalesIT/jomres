@@ -107,7 +107,7 @@ function dateStatus(date) {
 									</tr>
 									<tr>
 										<td><input class="inputbox" size="15" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" /></td>
-										<td><a href ="javascript:void(0);" onclick="getResponse('coupon',jQuery('#coupon').val())" class="fg-button ui-state-default ui-corner-all">{COUPON_BUTTON}</a></td>
+										<td><a href ="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" class="fg-button ui-state-default ui-corner-all">{COUPON_BUTTON}</a></td>
 									</tr>
 									<tr>
 										<td colspan="2">
@@ -343,8 +343,8 @@ function dateStatus(date) {
 <input type="hidden" name="property_uid" value="{PROPERTYUID}">
 </form>
 <script>
-jQuery(document).ready(function() {
-	jQuery.jheartbeat.set({
+jomresJquery(document).ready(function() {
+	jomresJquery.jheartbeat.set({
 		url: ajaxurl+"&task=handlereq&no_html=1&field=heartbeat",
 		delay: 30000
 	});

@@ -76,7 +76,7 @@
 					vat=(post_discount/100)*tax
 					init_total=post_discount+vat
 					
-					jQuery("#init_total_"+id).text(init_total);
+					jomresJquery("#init_total_"+id).text(init_total);
 					updateInitGrandTotal();
 					};
 
@@ -85,12 +85,12 @@
 					//alert (idarray.toString());
 					init_total = 0.00;
 					for (i=0; i < idarray.length; i++) {
-						tmp = jQuery("#init_total_"+idarray[i]).text();
+						tmp = jomresJquery("#init_total_"+idarray[i]).text();
 						flt = parseFloat(tmp)
 						init_total = init_total + flt;
 						}
 					//init_total=to2DecWithDot(init_total);
-					jQuery("#init_grand_total").text(init_total);
+					jomresJquery("#init_grand_total").text(init_total);
 					}
 					
 				function updateRecur_Total(id)
@@ -104,7 +104,7 @@
 					vat=(post_discount/100)*tax
 					recur_total=post_discount+vat
 					
-					jQuery("#recur_total_"+id).text(recur_total);
+					jomresJquery("#recur_total_"+id).text(recur_total);
 					updateRecurGrandTotal();
 					};
 
@@ -113,12 +113,12 @@
 					//alert (idarray.toString());
 					init_total = 0.00;
 					for (i=0; i < idarray.length; i++) {
-						tmp = jQuery("#recur_total_"+idarray[i]).text();
+						tmp = jomresJquery("#recur_total_"+idarray[i]).text();
 						flt = parseFloat(tmp)
 						recur_total = recur_total + flt;
 						}
 					//recur_total=to2DecWithDot(recur_total);
-					jQuery("#recur_grand_total").text(recur_total);
+					jomresJquery("#recur_grand_total").text(recur_total);
 					}
 					
 				function to2DecWithDot(num)

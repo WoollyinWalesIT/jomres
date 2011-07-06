@@ -60,10 +60,10 @@ class j05019dobooking_deposit
 		$bookingFormInsert['DEPOSIT_INPUT']		= '<input class="inputbox" size="12" type="text" id="'.$inputName.'" value="'.$defaultValue.'" onChange="jomresAjax_'.$newTask.'(this.value)">';
 		$bookingFormInsert['DEPOSIT_AJAXSTRING']=
 			'<script>
-			jQuery(document).ready(function() {
+			jomresJquery(document).ready(function() {
 				/**
 				 * We show a simple loading indicator
-				 * using the jQuery ajax events
+				 * using the jomresJquery ajax events
 				 */
 				});
 
@@ -75,7 +75,7 @@ class j05019dobooking_deposit
 				'.$inputName.': value
 				};
 				var tosend = value;
-				jQuery.ajax({
+				jomresJquery.ajax({
 				type: "GET",
 				url: "index2.php",
 				async: false,

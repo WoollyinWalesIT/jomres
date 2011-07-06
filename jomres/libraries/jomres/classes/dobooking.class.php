@@ -826,12 +826,12 @@ class dobooking
 				foreach ($this->growlmessages['messages'] as $message)
 					{
 					if ($message != "")
-						$messages .= 'jQuery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
+						$messages .= 'jomresJquery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
 					}
 				}
 			if (isset($this->growlmessages['guest_feedback']) && count($this->growlmessages['guest_feedback'])>0)
 				{
-				$messages .= 'jQuery.jGrowl(\''.$this->growlmessages['guest_feedback'].'\', { life: 10000 });';
+				$messages .= 'jomresJquery.jGrowl(\''.$this->growlmessages['guest_feedback'].'\', { life: 10000 });';
 				}
 			$messages = substr($messages,0,-1);
 			return $messages;
@@ -841,7 +841,7 @@ class dobooking
 			foreach ($this->growlmessages['messages'] as $message)
 				{
 				if ($message != "")
-					$messages .= 'jQuery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
+					$messages .= 'jomresJquery.jGrowl(\''.$message.'\', { life: 20000,sticky:true });';
 				}
 			return $messages;
 			}
@@ -968,7 +968,7 @@ class dobooking
 				$clickUnlock="";
 				//  Doesn't  work.
 				//if ($ex->maxquantity > 1)
-				//	$clickUnlock='jQuery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
+				//	$clickUnlock='jomresJquery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
 				if ($model['force']!="1")
 					$extra_deets['INPUTBOX']='<input id="'.$inputId.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 				else
@@ -2462,8 +2462,8 @@ class dobooking
 
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		$output .= '<script type="text/javascript">
-		jQuery(function() {
-			jQuery("#'.$uniqueID.'").datepicker( {
+		jomresJquery(function() {
+			jomresJquery("#'.$uniqueID.'").datepicker( {
 				dateFormat: "'.$dateFormat.'",';
 				if (!$amend_contract)
 					$output .='minDate: 0, ';

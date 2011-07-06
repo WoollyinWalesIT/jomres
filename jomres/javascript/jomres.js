@@ -1,6 +1,6 @@
 
 if ('undefined'!=typeof(jQuery)){
-jQuery.noConflict();
+var jomresJquery = jQuery.noConflict();
 };
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
@@ -8,14 +8,14 @@ if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Err
 function isAvailable(date){
 
 	var dateAsString = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate();
-	var result = jQuery.inArray( dateAsString, bookedDays ) ==-1 ? [true] : [false];
+	var result = jomresJquery.inArray( dateAsString, bookedDays ) ==-1 ? [true] : [false];
 	return result
 	};
 
 function switch_editing_mode(url,val)
 	{
 	var original_url = window.location.href;
-	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
+	jomresJquery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
 		window.location = original_url;
 		});
 	};
@@ -23,7 +23,7 @@ function switch_editing_mode(url,val)
 function switch_exchange_rate(url,val)
 	{
 	var original_url = window.location.href;
-	jQuery.get(url+'&task=switch_exchange_rate&currency_code='+val,function(data){
+	jomresJquery.get(url+'&task=switch_exchange_rate&currency_code='+val,function(data){
 		window.location = original_url;
 		});
 	};
@@ -32,7 +32,7 @@ Interesting proof of concept, but not ready for showtime
 function switch_editing_mode(url,val)
 	{
 	var original_url = window.location.href;
-		jQuery('div.jomres_content_area').block({
+		jomresJquery('div.jomres_content_area').block({
 			message: '<img src="jomres/images/31.gif" />', 
 			css:	{
 					padding: '15px', 
@@ -40,23 +40,23 @@ function switch_editing_mode(url,val)
 					'-moz-border-radius': '10px'
 					}
 				});	
-	jQuery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
+	jomresJquery.get(url+'&task=switcheditingmode&switchmode='+val,function(data){
 
-		jQuery.get(original_url+"&format=raw",
+		jomresJquery.get(original_url+"&format=raw",
 			function(data){
 				populateDiv('jomres_content_area',data);
 				}
 			);
-		jQuery('div.jomres_content_area').unblock();
+		jomresJquery('div.jomres_content_area').unblock();
 	});
 	//window.location.reload();
 	}
 */
 
 function populateDiv(div_id,content){
-	if ( jQuery("#"+div_id).length > 0 ){ 
+	if ( jomresJquery("#"+div_id).length > 0 ){ 
 		document.getElementById(div_id).innerHTML = content;
-		jQuery(div_id).fadeIn(100);
+		jomresJquery(div_id).fadeIn(100);
 		}
 	};
 
@@ -91,9 +91,9 @@ function jomres_checkAll( n ) {
 
 function jomres_submitbutton(pressbutton) {
 	/*
-	var hid = jQuery('<input type="text" name="nohtml" value="1"/>');
+	var hid = jomresJquery('<input type="text" name="nohtml" value="1"/>');
 	hid.prependTo("adminForm");
-	var theval = jQuery("input[name=nohtml]").val();
+	var theval = jomresJquery("input[name=nohtml]").val();
 	alert(theval);
 	return;
 	*/
@@ -160,11 +160,11 @@ function setOpacity(obj, opacity) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function hidediv(elementName) {
-	jQuery("#"+elementName).slideUp();
+	jomresJquery("#"+elementName).slideUp();
 	};
 
 function showdiv($elementName) {
-	jQuery("#"+elementName).slideDown();
+	jomresJquery("#"+elementName).slideDown();
 	};
 
 ///////////////////////////////////////
@@ -231,9 +231,9 @@ else {
 //	 Ajax get response stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getResponse_particulars(field,value,arrivalDate_id) {
-	departureDate = jQuery("#"+arrivalDate_id+"_XXX").val();
+	departureDate = jomresJquery("#"+arrivalDate_id+"_XXX").val();
 	HideRoomsList();
-	jQuery.get(ajaxurl+'&task=handlereq&arr_dep_date='+departureDate,{ field: field, 'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq&arr_dep_date='+departureDate,{ field: field, 'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
@@ -243,7 +243,7 @@ function getResponse_particulars(field,value,arrivalDate_id) {
 
 function getResponse_guesttype(typeid,value) {
 	HideRoomsList();
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: 'guesttype', 'typeid': typeid ,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: 'guesttype', 'typeid': typeid ,'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log('guesttype');
@@ -253,7 +253,7 @@ function getResponse_guesttype(typeid,value) {
 
 function getResponse_rooms(field,value) {
 	HideRoomsList();
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
@@ -263,7 +263,7 @@ function getResponse_rooms(field,value) {
 
 function getResponse_multiroom_select(field,value) {
 	HideRoomsList();
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
@@ -272,7 +272,7 @@ function getResponse_multiroom_select(field,value) {
 };
 
 function getResponse_extras(field,value,theId) {
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -297,7 +297,7 @@ function getResponse_extras(field,value,theId) {
 };
 
 function getResponse_extrasquantity(field,value,theId) {
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -307,7 +307,7 @@ function getResponse_extrasquantity(field,value,theId) {
 
 
 function getResponse(field,value) {
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -316,36 +316,36 @@ function getResponse(field,value) {
 };
 
 function getResponse_existing(field,value) {
-	jQuery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
 		function(data){
 			eval(data); 
-			//jQuery('div.block_ui_bookingform').unblock();
+			//jomresJquery('div.block_ui_bookingform').unblock();
 			//show_log(field);
 			}
 	);
 };
 
 function getResponse_guest() {
-	var firstname 		=jQuery('#firstname').val();
-	var surname 		=jQuery('#surname').val();
-	var house 			=jQuery('#house').val();
-	var street 			=jQuery('#street').val();
-	var town 			=jQuery('#town').val();
-	var region 			=jQuery('#region').val();
-	var postcode 		=jQuery('#postcode').val();
+	var firstname 		=jomresJquery('#firstname').val();
+	var surname 		=jomresJquery('#surname').val();
+	var house 			=jomresJquery('#house').val();
+	var street 			=jomresJquery('#street').val();
+	var town 			=jomresJquery('#town').val();
+	var region 			=jomresJquery('#region').val();
+	var postcode 		=jomresJquery('#postcode').val();
 	var exists = document.ajaxform.country;
 	if (exists != null)
 		var country 		= document.ajaxform.country[document.ajaxform.country.selectedIndex].value;
-	var tel_landline 	=jQuery('#tel_landline').val();
-	var tel_mobile 		=jQuery('#tel_mobile').val();
-	var eemail 			=jQuery('#eemail').val();
+	var tel_landline 	=jomresJquery('#tel_landline').val();
+	var tel_mobile 		=jomresJquery('#tel_mobile').val();
+	var eemail 			=jomresJquery('#eemail').val();
 
 	url = ajaxurl+'&task=handlereq';
 	result =checkaddressfields();
 
 	if (result){
 		var addressString= firstname+"~"+surname+"~"+house+"~"+street+"~"+town+"~"+region+"~"+postcode+"~"+country+"~"+tel_landline+"~"+tel_mobile+"~"+eemail;
-		jQuery.get(url,{ field: 'addressstring','value': addressString },
+		jomresJquery.get(url,{ field: 'addressstring','value': addressString },
 			function(data){
 				eval(data);
 				show_log("addressstring");
@@ -364,19 +364,19 @@ function showRoomsList(req){
 	eval(req);
 	if (rooms_list_enabled)
 		ShowRoomsList();
-	if (jQuery("#noroomsselected").length)
+	if (jomresJquery("#noroomsselected").length)
 		document.getElementById("noroomsselected").className=error_class;
 
 	return false;
 	};
 
 function HideRoomsList(){
-	jQuery("#roomsListWrapper").delay(800).hide('blind', { direction: 'vertical' }, 1000);
+	jomresJquery("#roomsListWrapper").delay(800).hide('blind', { direction: 'vertical' }, 1000);
 	return false;
 	};
 
 function ShowRoomsList(){
-	jQuery("#roomsListWrapper").delay(800).show('blind', { direction: 'vertical' }, 1000);
+	jomresJquery("#roomsListWrapper").delay(800).show('blind', { direction: 'vertical' }, 1000);
 	return false;
 	};
 	
@@ -402,46 +402,46 @@ function checkSelectRoomMessage(oktobook){
 			if (rooms_list_enabled)
 				{
 				if (show_extras == true)
-					jQuery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
-				jQuery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
-				jQuery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
-				jQuery("#totals_container").delay(800).fadeTo("slow", 0.1);
+					jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
+				jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
+				jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
+				jomresJquery("#totals_container").delay(800).fadeTo("slow", 0.1);
 				}
 			}
 		else{
 			if (show_extras == true)
-				jQuery("#extrascontainer").delay(800).fadeTo("slow", 1);
-			jQuery("#bookingform_address").delay(800).fadeTo("slow", 1);
-			jQuery("#bookingform_footer").delay(800).fadeTo("slow", 1);
-			jQuery("#totals_container").delay(800).fadeTo("slow", 1);
+				jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 1);
+			jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);
+			jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 1);
+			jomresJquery("#totals_container").delay(800).fadeTo("slow", 1);
 			}
 	};
 
-(function($) {
-	$.fn.customFadeIn = function(speed, callback) {
-		$(this).fadeIn(speed, function() {
-			if(jQuery.browser.msie)
-				$(this).get(0).style.removeAttribute('filter');
-			if(callback != undefined)
-				callback();
-		});
-	};
-	$.fn.customFadeOut = function(speed, callback) {
-		$(this).fadeOut(speed, function() {
-			if(jQuery.browser.msie)
-				$(this).get(0).style.removeAttribute('filter');
-			if(callback != undefined)
-				callback();
-		});
-	};
-})(jQuery);
+// (function($) {
+	// $.fn.customFadeIn = function(speed, callback) {
+		// $(this).fadeIn(speed, function() {
+			// if(jomresJquery.browser.msie)
+				// $(this).get(0).style.removeAttribute('filter');
+			// if(callback != undefined)
+				// callback();
+		// });
+	// };
+	// $.fn.customFadeOut = function(speed, callback) {
+		// $(this).fadeOut(speed, function() {
+			// if(jomresJquery.browser.msie)
+				// $(this).get(0).style.removeAttribute('filter');
+			// if(callback != undefined)
+				// callback();
+		// });
+	// };
+// })(jomresJquery);
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Departure date adjustment stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function ajaxADate(arrivalDate,dformat){
-	var currentDepartureDateText = jQuery(document.ajaxform.departureDate).val();
+	var currentDepartureDateText = jomresJquery(document.ajaxform.departureDate).val();
 	var currentDepartureDatesplit_dates = jomres_split_date(currentDepartureDateText,dformat)
 	currentDepartureDateday = currentDepartureDatesplit_dates[0];
 	currentDepartureDatemon = currentDepartureDatesplit_dates[1];
@@ -548,19 +548,19 @@ function jomres_split_date(date,dformat)
 ///////////////////////////////////////
 
 function checkaddressfields(){
-	var firstname 		=jQuery.trim(jQuery('#firstname').val());
-	var surname 		=jQuery.trim(jQuery('#surname').val());
-	var house 			=jQuery.trim(jQuery('#house').val());
-	var street 			=jQuery.trim(jQuery('#street').val());
-	var town 			=jQuery.trim(jQuery('#town').val());
-	var region 			=jQuery.trim(jQuery('#region').val());
-	var postcode 		=jQuery.trim(jQuery('#postcode').val());
+	var firstname 		=jomresJquery.trim(jomresJquery('#firstname').val());
+	var surname 		=jomresJquery.trim(jomresJquery('#surname').val());
+	var house 			=jomresJquery.trim(jomresJquery('#house').val());
+	var street 			=jomresJquery.trim(jomresJquery('#street').val());
+	var town 			=jomresJquery.trim(jomresJquery('#town').val());
+	var region 			=jomresJquery.trim(jomresJquery('#region').val());
+	var postcode 		=jomresJquery.trim(jomresJquery('#postcode').val());
 	var exists = document.ajaxform.country;
 	if (exists != null)
 		var country 	= document.ajaxform.country[document.ajaxform.country.selectedIndex].value;
-	var tel_landline 	=jQuery.trim(jQuery('#tel_landline').val());
-	var tel_mobile 		=jQuery.trim(jQuery('#tel_mobile').val());
-	var eemail 			=jQuery.trim(jQuery('#eemail').val());
+	var tel_landline 	=jomresJquery.trim(jomresJquery('#tel_landline').val());
+	var tel_mobile 		=jomresJquery.trim(jomresJquery('#tel_mobile').val());
+	var eemail 			=jomresJquery.trim(jomresJquery('#eemail').val());
 
 	setInputFillToOkColour('#firstname');
 	setInputFillToOkColour('#surname');
@@ -628,7 +628,7 @@ function checkaddressfields(){
 	if (pass)
 		pass = checkCustomFields();
 	if (!pass){
-		jQuery('div.recheckaddress').show();
+		jomresJquery('div.recheckaddress').show();
 		return false;
 		}
 	else{
@@ -650,11 +650,11 @@ function submitBooking(){
 	};
 	
 function setInputFillToOkColour(field){
-	jQuery(field).removeClass("ui-state-highlight");
+	jomresJquery(field).removeClass("ui-state-highlight");
 	};
 	
 function setInputFillToErrorColour(field){
-	jQuery(field).addClass("ui-state-highlight");
+	jomresJquery(field).addClass("ui-state-highlight");
 	};
 	
 function submitenter(myfield,e){

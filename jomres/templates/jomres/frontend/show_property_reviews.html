@@ -6,10 +6,10 @@ var confirmation_already = "{_JOMRES_REVIEWS_ALREADY_CONFIRMED}";
 
 var show_thanks = {SHOW_THANKS};
 
-jQuery(document).ready(function(){
+jomresJquery(document).ready(function(){
 	if (!show_thanks)
 		{
-		jQuery("#thanks_field").hide();
+		jomresJquery("#thanks_field").hide();
 		}
 });
 
@@ -17,20 +17,20 @@ function confirm_review(rating_id,state)
 	{
 	div_name = '#agree_thumbs'+rating_id;
 	// 
-	jQuery.get('{AJAXURL}&task=review_confirm&rating_id='+rating_id+'&state='+state, function(data) {
-		jQuery('.result').html(data);
+	jomresJquery.get('{AJAXURL}&task=review_confirm&rating_id='+rating_id+'&state='+state, function(data) {
+		jomresJquery('.result').html(data);
 		
 		if (data == 1)
 			{
-			jQuery(div_name).empty();
-			jQuery(div_name).addClass('ui-state-highlight');
-			jQuery(div_name).text( confirmation_thanks );
+			jomresJquery(div_name).empty();
+			jomresJquery(div_name).addClass('ui-state-highlight');
+			jomresJquery(div_name).text( confirmation_thanks );
 			}
 		else
 			{
-			jQuery(div_name).empty();
-			jQuery(div_name).addClass('ui-state-error');
-			jQuery(div_name).text( confirmation_already );
+			jomresJquery(div_name).empty();
+			jomresJquery(div_name).addClass('ui-state-error');
+			jomresJquery(div_name).text( confirmation_already );
 			}
 		});
 	}

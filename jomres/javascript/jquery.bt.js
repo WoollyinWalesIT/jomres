@@ -1,7 +1,7 @@
-jQuery.bt = {version: '0.9.5-rc1'};
+jomresJquery.bt = {version: '0.9.5-rc1'};
 ;(function($) {
 
-  jQuery.fn.bt = function(content, options) {
+  jomresJquery.fn.bt = function(content, options) {
 
     if (typeof content != 'string') {
       var contentSelect = true;
@@ -12,13 +12,13 @@ jQuery.bt = {version: '0.9.5-rc1'};
       var contentSelect = false;
     }
 
-    if (jQuery.fn.hoverIntent && jQuery.bt.defaults.trigger == 'hover') {
-      jQuery.bt.defaults.trigger = 'hoverIntent';
+    if (jomresJquery.fn.hoverIntent && jomresJquery.bt.defaults.trigger == 'hover') {
+      jomresJquery.bt.defaults.trigger = 'hoverIntent';
     }
 
     return this.each(function(index) {
 
-      var opts = jQuery.extend(false, jQuery.bt.defaults, jQuery.bt.options, options);
+      var opts = jomresJquery.extend(false, jomresJquery.bt.defaults, jomresJquery.bt.options, options);
 
       opts.spikeLength = numb(opts.spikeLength);
       opts.spikeGirth = numb(opts.spikeGirth);
@@ -38,7 +38,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
         opts.trigger = [opts.trigger];
       }
       if (opts.trigger[0] == 'hoverIntent') {
-        var hoverOpts = jQuery.extend(opts.hoverIntentOpts, {
+        var hoverOpts = jomresJquery.extend(opts.hoverIntentOpts, {
           over: function() {
             this.btOn();
           },
@@ -100,7 +100,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
         opts.preBuild.apply(this);
 
         // turn off other tips
-        $(jQuery.bt.vars.closeWhenOpenStack).btOff();
+        $(jomresJquery.bt.vars.closeWhenOpenStack).btOff();
 
         // add the class to the target element (for hilighting, for example)
         // bt-active is always applied to all, but activeClass can apply another
@@ -143,7 +143,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
             var target = this;
 
             // set up the options
-            var ajaxOpts = jQuery.extend(false,
+            var ajaxOpts = jomresJquery.extend(false,
             {
               type: opts.ajaxType,
               data: opts.ajaxData,
@@ -181,7 +181,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
                 }
               }
             }, opts.ajaxOpts);
-            jQuery.ajax(ajaxOpts);
+            jomresJquery.ajax(ajaxOpts);
 
             content = opts.ajaxLoading;
           }
@@ -195,7 +195,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
 
         if (opts.shadow && !shadowSupport()) {
           opts.shadow = false;
-          jQuery.extend(opts, opts.noShadowOpts);
+          jomresJquery.extend(opts, opts.noShadowOpts);
         }
 
         if (opts.shadow) {
@@ -264,7 +264,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
 
         // use bgiframe to get around z-index problems in IE6
         // http://plugins.jquery.com/project/bgiframe
-        if (jQuery.fn.bgiframe) {
+        if (jomresJquery.fn.bgiframe) {
           $text.bgiframe();
           $box.bgiframe();
         }
@@ -596,13 +596,13 @@ jQuery.bt = {version: '0.9.5-rc1'};
 
         // stick this element into the clickAnywhereToClose stack
         if (opts.clickAnywhereToClose) {
-          jQuery.bt.vars.clickAnywhereStack.push(this);
-          $(document).click(jQuery.bt.docClick);
+          jomresJquery.bt.vars.clickAnywhereStack.push(this);
+          $(document).click(jomresJquery.bt.docClick);
         }
 
         // stick this element into the closeWhenOthersOpen stack
         if (opts.closeWhenOthersOpen) {
-          jQuery.bt.vars.closeWhenOpenStack.push(this);
+          jomresJquery.bt.vars.closeWhenOpenStack.push(this);
         }
 
         // trigger postShow function
@@ -641,8 +641,8 @@ jQuery.bt = {version: '0.9.5-rc1'};
           }
 
           // remove this from the stacks
-          jQuery.bt.vars.clickAnywhereStack = arrayRemove(jQuery.bt.vars.clickAnywhereStack, i);
-          jQuery.bt.vars.closeWhenOpenStack = arrayRemove(jQuery.bt.vars.closeWhenOpenStack, i);
+          jomresJquery.bt.vars.clickAnywhereStack = arrayRemove(jomresJquery.bt.vars.clickAnywhereStack, i);
+          jomresJquery.bt.vars.closeWhenOpenStack = arrayRemove(jomresJquery.bt.vars.closeWhenOpenStack, i);
 
           // remove the 'bt-active' and activeClass classes from target
           $(i).removeClass('bt-active ' + opts.activeClass);
@@ -870,18 +870,18 @@ jQuery.bt = {version: '0.9.5-rc1'};
 
     }; // </ findIntersectX() >
 
-  }; // </ jQuery.fn.bt() >
+  }; // </ jomresJquery.fn.bt() >
 
   /**
-   * jQuery's compat.js (used in Drupal's jQuery upgrade module, overrides the $().position() function
+   * jomresJquery's compat.js (used in Drupal's jomresJquery upgrade module, overrides the $().position() function
    *  this is a copy of that function to allow the plugin to work when compat.js is present
    *  once compat.js is fixed to not override existing functions, this function can be removed
    *  and .btPosion() can be replaced with .position() above...
    */
-  jQuery.fn.btPosition = function() {
+  jomresJquery.fn.btPosition = function() {
 
     function num(elem, prop) {
-      return elem[0] && parseInt( jQuery.curCSS(elem[0], prop, true), 10 ) || 0;
+      return elem[0] && parseInt( jomresJquery.curCSS(elem[0], prop, true), 10 ) || 0;
     };
 
     var left = 0, top = 0, results;
@@ -912,18 +912,18 @@ jQuery.bt = {version: '0.9.5-rc1'};
     }
 
     return results;
-  }; // </ jQuery.fn.btPosition() >
+  }; // </ jomresJquery.fn.btPosition() >
 
 
   /**
-  * jQuery's dimensions.js overrides the $().btOuterWidth() function
-  *  this is a copy of original jQuery's outerWidth() function to
+  * jomresJquery's dimensions.js overrides the $().btOuterWidth() function
+  *  this is a copy of original jomresJquery's outerWidth() function to
   *  allow the plugin to work when dimensions.js is present
   */
-  jQuery.fn.btOuterWidth = function(margin) {
+  jomresJquery.fn.btOuterWidth = function(margin) {
 
       function num(elem, prop) {
-          return elem[0] && parseInt(jQuery.curCSS(elem[0], prop, true), 10) || 0;
+          return elem[0] && parseInt(jomresJquery.curCSS(elem[0], prop, true), 10) || 0;
       };
 
       return this["innerWidth"]()
@@ -932,15 +932,15 @@ jQuery.bt = {version: '0.9.5-rc1'};
       + (margin ? num(this, "marginLeft")
       + num(this, "marginRight") : 0);
 
-  }; // </ jQuery.fn.btOuterWidth() >
+  }; // </ jomresJquery.fn.btOuterWidth() >
 
   /**
    * A convenience function to run btOn() (if available)
    * for each selected item
    */
-  jQuery.fn.btOn = function() {
+  jomresJquery.fn.btOn = function() {
     return this.each(function(index){
-      if (jQuery.isFunction(this.btOn)) {
+      if (jomresJquery.isFunction(this.btOn)) {
         this.btOn();
       }
     });
@@ -951,30 +951,30 @@ jQuery.bt = {version: '0.9.5-rc1'};
    * A convenience function to run btOff() (if available)
    * for each selected item
    */
-  jQuery.fn.btOff = function() {
+  jomresJquery.fn.btOff = function() {
     return this.each(function(index){
-      if (jQuery.isFunction(this.btOff)) {
+      if (jomresJquery.isFunction(this.btOff)) {
         this.btOff();
       }
     });
   }; // </ $().btOff() >
 
-  jQuery.bt.vars = {clickAnywhereStack: [], closeWhenOpenStack: []};
+  jomresJquery.bt.vars = {clickAnywhereStack: [], closeWhenOpenStack: []};
 
   /**
    * This function gets bound to the document's click event
    * It turns off all of the tips in the click-anywhere-to-close stack
    */
-  jQuery.bt.docClick = function(e) {
+  jomresJquery.bt.docClick = function(e) {
     if (!e) {
       var e = window.event;
     };
     // if clicked element is a child of neither a tip NOR a target
     // and there are tips in the stack
-    if (!$(e.target).parents().andSelf().filter('.bt-wrapper, .bt-active').length && jQuery.bt.vars.clickAnywhereStack.length) {
+    if (!$(e.target).parents().andSelf().filter('.bt-wrapper, .bt-active').length && jomresJquery.bt.vars.clickAnywhereStack.length) {
       // if clicked element isn't inside tip, close tips in stack
-      $(jQuery.bt.vars.clickAnywhereStack).btOff();
-      $(document).unbind('click', jQuery.bt.docClick);
+      $(jomresJquery.bt.vars.clickAnywhereStack).btOff();
+      $(document).unbind('click', jomresJquery.bt.docClick);
     }
   }; // </ docClick() >
 
@@ -984,9 +984,9 @@ jQuery.bt = {version: '0.9.5-rc1'};
    * Note this is a variable definition and not a function. So defaults can be
    * written for an entire page by simply redefining attributes like so:
    *
-   *   jQuery.bt.options.width = 400;
+   *   jomresJquery.bt.options.width = 400;
    *
-   * Be sure to use *jQuery.bt.options* and not jQuery.bt.defaults when overriding
+   * Be sure to use *jomresJquery.bt.options* and not jomresJquery.bt.defaults when overriding
    *
    * This would make all Beauty Tips boxes 400px wide.
    *
@@ -995,7 +995,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
    * Can be overriden globally or at time of call.
    *
    */
-  jQuery.bt.defaults = {
+  jomresJquery.bt.defaults = {
     trigger:         'hover',                // trigger to show/hide tip
                                              // use [on, off] to define separate on/off triggers
                                              // also use space character to allow multiple  to trigger
@@ -1066,13 +1066,13 @@ jQuery.bt = {version: '0.9.5-rc1'};
 
     ajaxPath:         null,                  // if using ajax request for content, this contains url and (opt) selector
                                              // this will override content and contentSelector
-                                             // examples (see jQuery load() function):
+                                             // examples (see jomresJquery load() function):
                                              //   '/demo.html'
                                              //   '/help/ajax/snip'
                                              //   '/help/existing/full div#content'
 
                                              // ajaxPath can also be defined as an array
-                                             // in which case, the first value will be parsed as a jQuery selector
+                                             // in which case, the first value will be parsed as a jomresJquery selector
                                              // the result of which will be used as the ajaxPath
                                              // the second (optional) value is the content selector as above
                                              // examples:
@@ -1087,7 +1087,7 @@ jQuery.bt = {version: '0.9.5-rc1'};
     ajaxType:         'GET',                 // 'GET' or 'POST'
     ajaxCache:        true,                  // cache ajax results and do not send request to same url multiple times
     ajaxOpts:         {},                    // any other ajax options - timeout, passwords, processing functions, etc...
-                                             // see http://docs.jquery.com/Ajax/jQuery.ajax#options
+                                             // see http://docs.jquery.com/Ajax/jomresJquery.ajax#options
 
     preBuild:         function(){},          // function to run before popup is built
     preShow:          function(box){},       // function to run before popup is displayed
@@ -1108,11 +1108,11 @@ jQuery.bt = {version: '0.9.5-rc1'};
                         timeout: 500
                       }
 
-  }; // </ jQuery.bt.defaults >
+  }; // </ jomresJquery.bt.defaults >
 
-  jQuery.bt.options = {};
+  jomresJquery.bt.options = {};
 
-})(jQuery);
+})(jomresJquery);
 
 // @todo
 // use larger canvas (extend to edge of page when windowMargin is active)
