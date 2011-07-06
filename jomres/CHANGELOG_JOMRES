@@ -1,3 +1,12 @@
+Jomres 5.2beta2
+
+Significant changes to all Jomres code to try to resolve javascript conflict issues with modules, templates and plugins that also use jQuery. Whilst strictly speaking this isn't a bug in Jomres (rather, it's people not being aware that different plugins all using the same type of library will cause a conflict), this change should, nevertheless (hopefully) overcome those problems. Initial tests are very encouraging. 
+Found and fixed an issue where the optimisation cronjob wasn't triggering correctly.
+Small modification to php mailer class to prevent echoing of email addresses that failed.
+Added a check for error code 6 in the image uploading class to indicate that a temp dir doesn't exist (or isn't writable).
+Exchange rate conversion selector removed from top.html, instead it is now available as a plugin that can be included by asamodule.
+
+
 Jomres 5.2beta1
 
 A large number of changes to add fully automatic exchange rate downloading (daily) and conversion features that will allow us to convert prices on the fly for all properties who are using a currency code that can be converted. As the download is done daily, the first time the page is visited after this code is added may take a while to resolve as your Jomres installation needs to talk to the remote exchange rate server. After that's done however the data is stored locally and is retrieved very quickly.
