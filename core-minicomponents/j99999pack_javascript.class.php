@@ -55,7 +55,7 @@ class j99999pack_javascript
 			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."class.JavaScriptPacker.php");
 
 			$t1 = microtime(true);
-			$packer = new JavaScriptPacker($jomres_js_cache,"Normal",false);
+			$packer = new JavaScriptPacker($jomres_js_cache,"Normal");
 			$packed = $packer->pack();
 			$t2 = microtime(true);
 			

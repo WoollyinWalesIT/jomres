@@ -163,8 +163,11 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="",$disable_compression=false)
 	{
-	
-	$use_js_cache=true;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$use_js_cache = false;
+	if ($jrConfig['javascript_caching_enabled'] == "1")
+		$use_js_cache = true;
 	set_showtime('javascript_caching_enabled',$use_js_cache);
 	switch ($type) 
 		{

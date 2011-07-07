@@ -153,13 +153,45 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="")
 	{
-	global $faux_header_scripts;
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
+	$use_js_cache = false;
+	if ($jrConfig['javascript_caching_enabled'] == "1")
+		$use_js_cache = true;
+	set_showtime('javascript_caching_enabled',$use_js_cache);
 	switch ($type) 
 		{
 		case "javascript":
-			JHTML::script($path.$filename,false,false,false);
+			if ($use_js_cache && $filename != "jquery-1.5.2.min.js" && !jomres_cmsspecific_areweinadminarea() && !$disable_compression )
+				{
+				$jomres_js_cache = get_showtime('js_cache');
+
+				$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+				if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache"))
+					mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache");
+
+				$cached_js_filename = "javascript_cache.js";
+				$cached_js_file_livesite = get_showtime('live_site').'/jomres/temp/javascript_cache/';
+				$cached_js_file_abs = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache".JRDS;
+
+				$original_javascript = file_get_contents($path.$filename);
+				//$original_javascript = removeBOM($original_javascript);
+				$jomres_js_cache .= "
+				".$original_javascript;
+				
+				$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
+				flock($fp, LOCK_EX);
+				fwrite($fp,$jomres_js_cache);
+				flock($fp, LOCK_UN);
+				fclose($fp);
+				
+				set_showtime('js_cache',$jomres_js_cache);
+				set_showtime('js_cache_path',$cached_js_file_abs);
+				set_showtime('js_cache_filename',$cached_js_filename);
+				set_showtime('js_cache_livesite',$cached_js_file_livesite);
+				}
+			else
+				JHTML::script($filename, $path, false);
 		break;
 		case "css":
 			JHTML::stylesheet($path.$filename,array(),false,false );
