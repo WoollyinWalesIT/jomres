@@ -97,6 +97,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JAVASCRIPT_CACHING_TITLE.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$lists['javascript_caching_enabled'].'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$language_context_dropdown.'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_LANGUAGE_CONTEXT_DESC.'</td>

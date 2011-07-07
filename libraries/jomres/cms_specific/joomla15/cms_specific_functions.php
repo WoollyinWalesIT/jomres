@@ -165,6 +165,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 	{
 	
 	$use_js_cache=true;
+	set_showtime('javascript_caching_enabled',$use_js_cache);
 	switch ($type) 
 		{
 		case "javascript":
@@ -173,7 +174,6 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 				$jomres_js_cache = get_showtime('js_cache');
 
 				$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-				$jomressession  = $tmpBookingHandler->getJomressession();
 				if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache"))
 					mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache");
 
@@ -183,13 +183,15 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 
 				$original_javascript = file_get_contents($path.$filename);
 				//$original_javascript = removeBOM($original_javascript);
-
 				$jomres_js_cache .= "
 				".$original_javascript;
 				
 				$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
+				flock($fp, LOCK_EX);
 				fwrite($fp,$jomres_js_cache);
+				flock($fp, LOCK_UN);
 				fclose($fp);
+				
 				set_showtime('js_cache',$jomres_js_cache);
 				set_showtime('js_cache_path',$cached_js_file_abs);
 				set_showtime('js_cache_filename',$cached_js_filename);
