@@ -39,7 +39,8 @@ class j99999pack_javascript
 			return;
 		define("JOMRES_JS",1);
 		
-		$use_js_cache=true;
+		$use_js_cache=get_showtime('javascript_caching_enabled');
+
 		$jomres_js_cache = get_showtime('js_cache');
 		$cached_js_file_abs = get_showtime('js_cache_path');
 		$cached_js_filename = get_showtime('js_cache_filename');
@@ -48,13 +49,13 @@ class j99999pack_javascript
 		if (is_null($jomres_js_cache) || strlen($jomres_js_cache) ==0)  // In effect, no files have been chosen to be cached, there's no point in continuing.
 			return;
 		
-		if ($use_js_cache)
+		if ($use_js_cache && !isset($_REQUEST['no_html']))
 			{
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."class.JavaScriptPacker.php");
 
 			$t1 = microtime(true);
-			$packer = new JavaScriptPacker($jomres_js_cache,"Normal");
+			$packer = new JavaScriptPacker($jomres_js_cache,"Normal",false);
 			$packed = $packer->pack();
 			$t2 = microtime(true);
 			
@@ -67,9 +68,13 @@ class j99999pack_javascript
 			}
 			
 		$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
-		fwrite($fp,$jomres_js_cache);
-		fclose($fp);
-
+		if (flock($fp, LOCK_EX))
+			{
+			fwrite($fp,$jomres_js_cache);
+			flock($fp, LOCK_UN);
+			fclose($fp);
+			}
+		
 		jomres_cmsspecific_addheaddata("javascript",'jomres/temp/javascript_cache/',$cached_js_filename,$cached_js_file_livesite.$cached_js_filename,true);
 		}
 
