@@ -463,6 +463,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'jquery-1.4.3.min.js');
 		$this->add_obs_file($this->dir_javascript.'jquery-1.5.1.min.js');
 		$this->add_obs_file($this->dir_javascript.'jquery.selectCombo1.2.6.js');
+		$this->add_obs_file($this->dir_javascript.'jquery.jgrowl.js.1.2.0');
 
 		}
 	
