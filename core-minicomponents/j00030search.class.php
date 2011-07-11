@@ -311,8 +311,9 @@ class j00030search {
 					{
 					if (!defined("_JOMRES_SELECTCOMBO") )
 						{
-						define("_JOMRES_SELECTCOMBO",1);
-						jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");
+						// define("_JOMRES_SELECTCOMBO",1);
+						//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");  // This doesn't work, because if we're using the jomres javascript cache this file may not have been included in the original, therefore we MUST add it to the init_javascript function in functions.php instead.
+						
 						echo '
 							<script language="JavaScript" type="text/javascript">
 							jomresJquery(function()
