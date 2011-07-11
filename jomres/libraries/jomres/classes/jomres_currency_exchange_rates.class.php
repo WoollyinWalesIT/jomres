@@ -91,11 +91,13 @@ class jomres_currency_exchange_rates
 		jr_import('currency_codes');
 		$currency_code_class = new currency_codes();
 		$currency_codes = $currency_code_class->codes;
+		ignore_user_abort (true);  // Should stop a user from visiting another page when we're getting the exchange rates. At some point, it might be wiser to encourage managers to set this as a cron job.
 		foreach ($currency_codes as $code=>$rubbish)
 			{
 			$rate = $this->get_exchange_rate($this->base_code,$code);
 			$this->rates[$this->base_code][$code]=$rate;
 			}
+		ignore_user_abort (false);
 		}
 	
 	function save_rates()
