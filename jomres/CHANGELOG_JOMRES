@@ -1,3 +1,17 @@
+Jomres 5.2rc1
+
+Small modification to the output_price function to ensure that if the foreign currency code isn't set, to not attempt a conversion.
+As our new jomresJquery code has broken the old, ugly jquery combo plugin, we've replaced that old functionality with a newer, nicer jquery combo plugin.
+Modified the guest confirmation email to use output_price
+Added initial total inc vat column to printable invoice's template.
+Fixed a bug where there were some missing td's in the Guest's toolbar.
+Removed an old reference to index2.php in the clickatell settings template.
+Added an option to disable javascript packing in site config, because on some servers the packer script doesn't appear to run correctly. By default, the packing feature is off, it needs to be enabled in site config for it to kick in.
+Added ignore user abort functionality, once the exchange rate update has started, we want to finish the job. (exchange rate updating functionality).
+Added a cron job for triggering exchange rate updating.
+Moved the call to the chain select jquery plugin from j00030search.class.php into the init_javascript function in funtions.php.
+Removed an obsolete javascript file.
+
 Jomres 5.2beta2
 
 Significant changes to all Jomres code to try to resolve javascript conflict issues with modules, templates and plugins that also use jQuery. Whilst strictly speaking this isn't a bug in Jomres (rather, it's people not being aware that different plugins all using the same type of library will cause a conflict), this change should, nevertheless (hopefully) overcome those problems. Initial tests are very encouraging. 
