@@ -17,8 +17,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_currency_exchange_rates
 	{
-	function jomres_currency_exchange_rates($base = '')
+	function jomres_currency_exchange_rates($base = '',$update_now = false)
 		{
+		$this->update_now = $update_now;
 		$this->feature_enabled = true;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -43,6 +44,9 @@ class jomres_currency_exchange_rates
 			$update_exchange_rates = true;
 		elseif ( $this->exchange_rate_file_expired() )
 			$update_exchange_rates = true;
+			elseif ($this->update_now)
+				$update_exchange_rates = true;
+
 		if ($update_exchange_rates)
 			{
 			$this->update_exchange_rates();

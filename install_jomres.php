@@ -986,6 +986,7 @@ function installCronjobs()
 	$cron = new jomres_cron();
 	$cron->addJob("optimise","D","");
 	$cron->addJob("invoice","D","");
+	$cron->addJob("exchangerates","D","");
 	}
 
 function trashTables()
