@@ -94,7 +94,7 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.jgrowl.css');
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js",'',true);
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js",'',true);  // Won't pack properly
-			
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js"); 
 			
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			}
