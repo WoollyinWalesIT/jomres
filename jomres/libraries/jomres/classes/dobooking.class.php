@@ -2039,7 +2039,7 @@ class dobooking
 
 		if ($this->cfg_fixedPeriodBookingsShortYesNo == "1" && $this->cfg_fixedPeriodBookings =="1" )
 			{
-			if ( $departurePeriod <$shortDays )
+			if ( $departurePeriod <$shortDays && $shortDays< $fixedPeriodMin)
 				{
 				$this->setErrorLog("checkDepartureDate:: Departure date check failed, departure period shorter than shortdays. ");
 				return false;
