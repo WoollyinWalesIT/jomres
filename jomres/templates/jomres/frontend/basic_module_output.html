@@ -1,17 +1,17 @@
 <patTemplate:tmpl name="pageoutput" >
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom:4px;width:150px;">
+<div class="ui-widget ui-widget-content ui-corner-all"  style="width:100%;">
 	<center>
-		<div>
-			{PROPERTY_NAME}<br/>
-			<a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a>
-			<br/>
-			{PRICE}
-			<br/>
-			<a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all" >{MOREINFORMATION}</a>
+		<div style="padding:5px;">
+			<div>{PROPERTY_NAME}</div>
+			<div><a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a></div>
+			<div>{PRICE}</div>
+            <div style="margin-bottom:30px;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all" >{MOREINFORMATION}</a></div>
 		</div>
 	</center>
 
-<!-- {PROPERTY_STREET}
+<!-- 
+These are included in the template in case you wish to use them.
+{PROPERTY_STREET}
 {PROPERTY_TOWN}
 {PROPERTY_POSTCODE}
 {PROPERTY_REGION}
@@ -19,7 +19,7 @@
 {PROPERTY_COUNTRY_CODE} -->
 
 <!--
-These are included in the template in case you wish to use them.
+
 {PROPERTY_TEL}
 {PROPERTY_FAX}
 {PROPERTY_EMAIL}
