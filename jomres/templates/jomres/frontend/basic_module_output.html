@@ -1,0 +1,46 @@
+<patTemplate:tmpl name="pageoutput" >
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom:4px;width:150px;">
+	<center>
+		<div>
+			{PROPERTY_NAME}<br/>
+			<a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a>
+			<br/>
+			{PRICE}
+			<br/>
+			<a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all" >{MOREINFORMATION}</a>
+		</div>
+	</center>
+
+<!-- {PROPERTY_STREET}
+{PROPERTY_TOWN}
+{PROPERTY_POSTCODE}
+{PROPERTY_REGION}
+{PROPERTY_COUNTRY}
+{PROPERTY_COUNTRY_CODE} -->
+
+<!--
+These are included in the template in case you wish to use them.
+{PROPERTY_TEL}
+{PROPERTY_FAX}
+{PROPERTY_EMAIL}
+{STARS}
+{LAT}
+{LONG}
+{PROPERTY_DESCRIPTION}
+{PROPERTY_CHECKIN_TIMES}
+{PROPERTY_AREA_ACTIVITIES}
+{PROPERTY_DRIVING_DIRECTIONS}
+{PROPERTY_AIRPORTS}
+{PROPERTY_OTHERTRANSPORT}
+{PROPERTY_POLICIES_DISCLAIMERS}
+--> 
+ 
+<patTemplate:tmpl name="room_types" type="simpleCondition" requiredVars="abbv">
+	<!-- <img src = "{IMAGE}"/><br/> -->
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="room_features" type="simpleCondition" requiredVars="desc">
+	<!-- {DESC}<br/> -->
+</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>
