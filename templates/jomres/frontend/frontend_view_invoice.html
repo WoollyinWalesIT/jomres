@@ -57,9 +57,6 @@
 			<table class="jradmin_table">
 				<tr>
 					<td class="jradmin_subheader_ca">&nbsp;</td>
-					<td class="jradmin_subheader_la">{HLI_NAME}</td>
-					<td class="jradmin_subheader_la">{HLI_DESCRIPTION}</td>
-					
 					<td class="jradmin_subheader_la">{HLI_INIT_PRICE}</td>
 					<td class="jradmin_subheader_la">{HLI_INIT_QTY}</td>
 					<td class="jradmin_subheader_la">{HLI_INIT_DISCOUNT}</td>
@@ -74,9 +71,11 @@
 				</tr>
 				<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
-					<td class="jradmin_rowtoolbar">{ID}</td>
-					<td class="jradmin_field_la">{LI_NAME}</td>
-					<td class="jradmin_field_la">{LI_DESCRIPTION}</td>
+					<td class="jradmin_field_la" colspan="6">{LI_NAME}</td>
+					<td class="jradmin_field_la" colspan="6">{LI_DESCRIPTION}</td>
+				</tr>
+				<tr>
+					<td class="jradmin_rowtoolbar"><!-- {ID} --></td>
 					<td class="jradmin_field_la">{LI_INIT_PRICE}</td>
 					<td class="jradmin_field_la">{LI_INIT_QTY}</td>
 					<td class="jradmin_field_la">{LI_INIT_DISCOUNT}</td>
