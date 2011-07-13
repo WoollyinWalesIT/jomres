@@ -5545,14 +5545,14 @@ class dobooking
 						$tax_rate_id = $tpextra['tax_code_id'];
 						$rate = $this->taxrates[$tax_rate_id]['rate'];
 						$this->setErrorLog("calcExtras Third party: rate is: ".$rate);
-						if ($mrConfig['prices_inclusive'] == 1)
-							{
-							$divisor	= ($rate/100)+1;
-							$nett_price=$tmpTotal/$divisor;
-							$thisTax = $tmpTotal-$nett_price;
-							$tmpTotal = $nett_price;
-							}
-						else
+						// if ($mrConfig['prices_inclusive'] == 1)
+							// {
+							// $divisor	= ($rate/100)+1;
+							// $nett_price=$tmpTotal/$divisor;
+							// $thisTax = $tmpTotal-$nett_price;
+							// $tmpTotal = $nett_price;
+							// }
+						// else
 							$thisTax = ($tmpTotal/100)*$rate;
 						$this->extra_taxs[]=$thisTax;
 						$this->setErrorLog("calcExtras Third party: Adding : ".$thisTax." to original value ".$tmpTotal);
