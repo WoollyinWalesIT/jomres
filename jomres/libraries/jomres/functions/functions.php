@@ -443,12 +443,14 @@ function jomres_generate_tab_anchor($string)
 	}
 	
 	
-function output_price($value,$currencycode="")
+function output_price($value,$currencycode="",$do_conversion = true)
 	{
 	$price = (float)$value;
 	
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
+	if ($jrConfig['use_conversion_feature'] != "1")
+		$do_conversion = false;
 	
 	$mrConfig=getPropertySpecificSettings();
 	$currfmt = jomres_getSingleton('jomres_currency_format');
@@ -479,7 +481,7 @@ function output_price($value,$currencycode="")
 	$conversion = new jomres_currency_conversion();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 	$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
-	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign && $jrConfig['use_conversion_feature'] == "1" && $foreign != "")
+	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign && $do_conversion && $foreign != "")
 		{
 		$base = $currencycode;
 		$converted_price = $conversion->convert_sum($price,$base,$foreign);
