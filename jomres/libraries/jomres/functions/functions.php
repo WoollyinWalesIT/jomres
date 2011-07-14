@@ -766,68 +766,19 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 
 	switch ($plugin_type)
 		{
-		case 'component':
-			$component_full_name="com_".$plugin_name;
-
-			$component_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_component_folder.JRDS;
-			$administrator_source=JOMRESCONFIG_ABSOLUTE_PATH."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_administrator_folder.JRDS;
-
-			$component_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS.$component_full_name;
-			$administrator_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS."components".JRDS.$component_full_name;
-
-			if (!test_and_make_directory($component_target))
-				{
-				error_logging( "Error, unable to write to ".$component_target." Please ensure that the parent path is writable by the web server ");
-				return false;
-				}
-
-			if (!test_and_make_directory($administrator_target))
-				{
-				error_logging( "Error, unable to write to ".$administrator_target." Please ensure that the parent path is writable by the web server ");
-				return false;
-				}
-
-			$query= "SELECT id FROM #__components where name = '".$plugin_name."'";
-			$result=doSelectSql($query);
-			if (count($result)>0)
-				{
-				$query="DELETE FROM #__components WHERE `name` = '".$plugin_name."'";
-				$result=doInsertSql($query,"");
-				}
-
-			$extraClause="";
-			$extraClausePara="";
-			if (_JOMRES_NEWJOOMLA == 1)
-				{
-				$extraClause=",`enabled`";
-				$extraClausePara=",'1'";
-				}
-			$query="INSERT INTO #__components
-			(`name`,`link`,`menuid`,`parent`,`admin_menu_link`,`admin_menu_alt`,`option`,`ordering`,`admin_menu_img`,`iscore`,`params`".$extraClause.")
-			VALUES
-			('".$plugin_name."','','0','0','','".$plugin_name."','".$component_full_name."','0','../jomres/images/jricon.png','0',' '".$extraClausePara.")";
-
-			$result=doInsertSql($query,"");
-
-			if ($result)
-				{
-				//echo "Moving contents of ".$component_source." to ".$component_target."<br/>";
-				$component_move_result=dirmv($component_source, $component_target, true, $funcloc = "/");
-				//echo "Moving contents of ".$administrator_source." to ".$administrator_target."<br/>";
-				$admin_move_result=dirmv($administrator_source, $administrator_target, true, $funcloc = "/");
-				if ($component_move_result['success'] && $admin_move_result['success'] )
-					return true;
-				else
-					return false;
-				}
-			else
-				return false;
-			break;
 		case 'module':
 			$module_full_name="mod_".$plugin_name;
+			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS.'plugin_info.php') )
+				{
+				$module_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
+				$module_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+				}
+			else
+				{
+				$module_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
+				$module_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+				}
 
-			$module_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
-			$module_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
 			$module_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."modules".JRDS.$module_full_name;
 			if (!test_and_make_directory($module_target))
 				{
@@ -861,7 +812,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			$result=doInsertSql($query,"");
 			if ($result)
 				{
-				//echo "Moving contents of ".$component_source." to ".$component_target."<br/>";
+				//echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
 				$module_xml_move_result=dirmv($module_xml_source, $module_target, true, $funcloc = "/");
 				$module_move_result=dirmv($module_source, $module_target, true, $funcloc = "/");
 				if ($module_move_result['success'] && $module_xml_move_result['success'])
@@ -875,9 +826,17 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
 			$table="#__plugins";
-
-			$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
-			$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS.'plugin_info.php') )
+				{
+				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
+				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+				}
+			else
+				{
+				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
+				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+				}
+			
 			$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type.JRDS;
 
 			if (!test_and_make_directory($mambot_target))
