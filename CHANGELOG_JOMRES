@@ -1,3 +1,13 @@
+Jomres 5.2stable 
+
+Small change to allow bookings with shorter periods in fixed period bookings.
+Modified the register property 2 template to include lat/long details. Will need the appropriate register property version to work.
+Removed ex tax figuring from calcExtras's third party extras handling. As extras are already assumed to be ex tax before the price is output, this means that 1. the extras are all output in the same way and 2. the invoice now makes sense for third party extras.
+Added a new utility function intended for a new set of modules are in the works.
+Tweaked the output_price function to optionally disable conversion output (might be used elsewhere).
+Modified the frontend invoice template to make it fit better on the page.
+Fixed a bug introduced in v5 where third party plug-in modules could no longer be installed. Removed a reference to old "component installer" code that's never been used (since at least v3-ish).
+
 Jomres 5.2rc1
 
 Small modification to the output_price function to ensure that if the foreign currency code isn't set, to not attempt a conversion.
