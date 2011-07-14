@@ -331,7 +331,7 @@ class j00030search {
 										jomresJquery(target).css("display","inline");
 									}
 								});
-								jomresJquery(\'#region\').chainSelect(\'#town\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=region\',
+								jomresJquery(\'#region\').chainSelect(\'#ttown\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=region\',
 								{ 
 									before:function (target) 
 									{ 
@@ -363,7 +363,7 @@ class j00030search {
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
 						<!-- city combobox is chained by state combobox-->
-						<select name="town" id="town" style="display:none"></select>
+						<select name="ttown" id="ttown" style="display:none"></select>
 					</select>
 					<br />';
 					$showButton=true;
