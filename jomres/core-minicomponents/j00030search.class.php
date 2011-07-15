@@ -318,7 +318,7 @@ class j00030search {
 							<script language="JavaScript" type="text/javascript">
 							jomresJquery(function()
 							{
-								jomresJquery(\'#country\').chainSelect(\'#region\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=country\',
+								jomresJquery(\'#country\').chainSelect(\'#rregion\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=country\',
 								{ 
 									before:function (target) //before request hide the target combobox and display the loading message
 									{ 
@@ -331,7 +331,7 @@ class j00030search {
 										jomresJquery(target).css("display","inline");
 									}
 								});
-								jomresJquery(\'#region\').chainSelect(\'#ttown\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=region\',
+								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=region\',
 								{ 
 									before:function (target) 
 									{ 
@@ -359,11 +359,11 @@ class j00030search {
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_REGION']='
 						<!-- state combobox is chained by country combobox-->
-						<select name="region" id="region" style="display:none"></select>
+						<select name="region" id="rregion" style="display:none"></select>
 					<br />';
 					$output['SELECTCOMBO_HIDDENDROPDOWNS_TOWN']='
 						<!-- city combobox is chained by state combobox-->
-						<select name="ttown" id="ttown" style="display:none"></select>
+						<select name="town" id="ttown" style="display:none"></select>
 					</select>
 					<br />';
 					$showButton=true;
