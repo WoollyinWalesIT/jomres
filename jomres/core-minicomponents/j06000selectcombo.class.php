@@ -47,10 +47,10 @@ class j06000selectcombo {
 				{
 				foreach ($locations as $location)
 					{
-					$t = jomres_decode($location['region']);
+					$t = $location['region'];
 					if ($location['country']==$q)
 						{
-						$regions[$t]=$t;
+						$regions[$t]=jomres_decode($t);
 						}
 					// else if ($q==$searchAll)
 						// $regions[$t]=$t;
@@ -67,10 +67,10 @@ class j06000selectcombo {
 				{
 				foreach ($locations as $location)
 					{
-					$t = jomres_decode($location['property_town']);
+					$t = $location['property_town'];
 					if ($location['region']==$q)
 						{
-						$towns[$t]=$t;
+						$towns[$t]=jomres_decode($t);
 						}
 					// else if ($q==$searchAll)
 						// $towns[$t]=$t;
