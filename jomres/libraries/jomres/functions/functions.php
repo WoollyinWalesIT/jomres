@@ -768,7 +768,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 		{
 		case 'module':
 			$module_full_name="mod_".$plugin_name;
-			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS.'plugin_info.php') )
+			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php') )
 				{
 				$module_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_module_folder.JRDS;
 				$module_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
@@ -826,7 +826,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
 			$table="#__plugins";
-			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS.'plugin_info.php') )
+			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php') )
 				{
 				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
 				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
