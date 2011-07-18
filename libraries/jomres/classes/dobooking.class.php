@@ -5167,6 +5167,7 @@ class dobooking
 		{
 		$result=$this->getVariantsOfType("guesttype");
 		$this->setErrorLog("setGuestTypeVariantValues::Found variants of guesttype: ".count($result) );
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		if (count($result) > 0 )
 			{
 			$ratePerNight=$this->rate_pernight;
@@ -5183,6 +5184,14 @@ class dobooking
 					settype($variance,"float");
 					if ($gt['is_percentage']=="0")
 						{
+						
+						$rate = $this->accommodation_tax_rate;
+						if ($mrConfig['prices_inclusive'] == 1)
+							{
+							$divisor	= ($rate/100)+1;
+							$variance=$variance/$divisor;
+							}
+
 						if ($gt['posneg'] =="1")
 							$val=$ratePerNight+$variance;
 						else
