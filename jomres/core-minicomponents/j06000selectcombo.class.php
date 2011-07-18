@@ -43,6 +43,7 @@ class j06000selectcombo {
 		if ($filter == "country")
 			{
 			$regions=array();
+			$regions[]=$searchAll;
 			foreach ($allPropertyLocations as $locations)
 				{
 				foreach ($locations as $location)
@@ -63,6 +64,7 @@ class j06000selectcombo {
 		if ($filter == "region")
 			{
 			$towns=array();
+			$towns[]=$searchAll;
 			foreach ($allPropertyLocations as $locations)
 				{
 				foreach ($locations as $location)
@@ -79,8 +81,8 @@ class j06000selectcombo {
 			if (count($towns)>0)
 				$ret_array=array_unique($towns);
 			}
-		 $ret_json = array();
-		// $ret_json[] = array("oV"=>$searchAll,"oT"=>$searchAll);
+		$ret_json = array();
+		
 		foreach ($ret_array as $key=>$val)
 			{
 			$ret_json[] = array($key=>$val);
