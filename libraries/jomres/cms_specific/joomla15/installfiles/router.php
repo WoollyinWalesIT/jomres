@@ -38,15 +38,23 @@ function JomresBuildRoute(&$query)
 	if ($route_query['task'] == "dobooking" && isset($route_query['remus']) )
 		return array();
 	
-	if (isset($route_query['property_uid']) || isset($route_query['selectedProperty']))
+	$tmpname = get_showtime("router_property_name");
+	if (is_null($tmpname))
 		{
-		if (isset($route_query['selectedProperty']))
-			$pid = $route_query['selectedProperty'];
-		else
-			$pid = $route_query['property_uid'];
-		$sql = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = ".(int)$pid." LIMIT 1";
-		$property_name = doSelectSql($sql,1);
+		if (isset($route_query['property_uid']) || isset($route_query['selectedProperty']))
+			{
+			if (isset($route_query['selectedProperty']))
+				$pid = $route_query['selectedProperty'];
+			else
+				$pid = $route_query['property_uid'];
+			$sql = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = ".(int)$pid." LIMIT 1";
+			$property_name = doSelectSql($sql,1);
+			set_showtime('router_property_name',$property_name);
+			}
 		}
+	else
+		$property_name = $tmpname;
+		
 	switch($route_query['task'])
 		{
 		case 'viewproperty':
