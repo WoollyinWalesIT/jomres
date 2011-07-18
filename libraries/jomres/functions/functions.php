@@ -1732,14 +1732,33 @@ function writexml($logfile,$rootelement,$entry,$newlines)
  */
 function jomresRedirect( $url, $msg='' )
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
+	// msg depreciated now as we're using growl for feedback after redirect, however we'll leave it in-situ in case we want it back again sometime in the future.
 	
-	$url=str_replace("&amp;","&",$url);
-	echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.5.1.min.js"></script>';
-	echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jomres.js "></script>';
-	echo "<script>document.location.href='$url';</script>\n";
-	exit();
+	jr_import('browser_detect');
+	$b = new browser_detect();
+	$browser = $b->getBrowser();
+	
+	if ($browser=="Internet Explorer")
+		echo '<script>document.location.href=\''.$url.'\';</script>';
+	elseif ($browser=="Safari" || $browser=="Chrome" ) // Webkit
+		{
+		echo '<meta http-equiv="refresh" content="0; url='. $url .'"
+			/>';
+		}
+	else
+		header('Location: '.$url);
+	
+	
+	
+	// $url=str_replace("&amp;","&",$url);
+	// echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery-1.5.1.min.js"></script>';
+	// echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jomres.js "></script>';
+	// echo "<script>document.location.href='$url';</script>\n";
+	// exit();
+	
+	// $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	// $jrConfig=$siteConfig->get();
+	
 	
 	// The above lines will cause an error in IE8 (IE9, FF4, Chrome and Safari on iMac don't) because at this point Joomla will not have inserted jquery's js files into the head of the document.
 	// Throughout the system, if jomresRedirect is called, then it knows that after the redirect is done the script will 'exit', therefore there's no need to bubble back up the tree so it's POSSIBLE that if we don't 
