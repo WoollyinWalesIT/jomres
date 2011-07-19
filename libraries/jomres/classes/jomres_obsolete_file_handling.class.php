@@ -464,7 +464,15 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'jquery-1.5.1.min.js');
 		$this->add_obs_file($this->dir_javascript.'jquery.selectCombo1.2.6.js');
 		$this->add_obs_file($this->dir_javascript.'jquery.jgrowl.js.1.2.0');
-
+		
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'cms_specific_functions.php');
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'cms_specific_installation.php');
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'cms_specific_pre_installation.php');
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'cms_specific_upgrade.php');
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'cms_specific_urls.php');
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'index.html');
+		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'init_config_vars.php');
+		
 		}
 	
 	function add_obs_file($path_and_file)
