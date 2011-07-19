@@ -1528,5 +1528,10 @@ define('_JOMRES_CONVERSION_DISCLAIMER',"We have used our best efforts to obtain 
 define('_JOMRES_JAVASCRIPT_CACHING_TITLE',"Use javascript caching?");
 define('_JOMRES_JAVASCRIPT_CACHING_DESC',"Choose whether or not to use the Jomres Javascript caching feature. Works on most servers, but not on all. If you're having problems with javascript errors that are reported as 'unterminated string literal' in (for example) Firebug, you should set this to No. ");
 
+// 5.2.1
+define('_JOMRES_HISTORIC_GUESTS_SHOW',"List historic and current guests");
+define('_JOMRES_HISTORIC_GUESTS_NOSHOW',"Current guests only");
+
+
 
 
