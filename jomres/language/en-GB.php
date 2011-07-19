@@ -1533,3 +1533,7 @@ define('_JOMRES_CONVERSION_TITLE_DESC',"Use the Jomres online conversion functio
 define('_JOMRES_CONVERSION_DISCLAIMER',"We have used our best efforts to obtain the most accurate and timely exchange rates that we can. Our online currency convertion feature is a service provided for informational purposes only and is not intended to provide exact figures. Accordingly, we do not guarantee the accuracy of the exchange rates. Using this feature, you are deemed to have agreed that any reliance on or use of the rate conversion feature shall be entirely at your own risk.");
 define('_JOMRES_JAVASCRIPT_CACHING_TITLE',"Use javascript caching?");
 define('_JOMRES_JAVASCRIPT_CACHING_DESC',"Choose whether or not to use the Jomres Javascript caching feature. Works on most servers, but not on all. If you're having problems with javascript errors that are reported as 'unterminated string literal' in (for example) Firebug, you should set this to No. ");
+
+// 5.2.1
+define('_JOMRES_HISTORIC_GUESTS_SHOW',"List historic and current guests");
+define('_JOMRES_HISTORIC_GUESTS_NOSHOW',"Current guests only");

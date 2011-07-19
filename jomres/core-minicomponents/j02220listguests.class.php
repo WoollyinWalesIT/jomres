@@ -47,7 +47,57 @@ class j02220listguests {
 		$output['HHOUSE']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE',_JOMRES_COM_MR_DISPGUEST_HOUSE);
 		$output['HSTREET']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_STREET',_JOMRES_COM_MR_DISPGUEST_STREET);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
-
+		
+		if (!isset($_REQUEST['all_guests'])|| (int)$_REQUEST['all_guests'] != 1 )
+			{
+			// let's find all the historic guests (those without current bookings)
+			$ids_of_not_required_guests = array();
+			
+			$query = "SELECT contract_uid, guest_uid, cancelled, booked_out FROM #__jomres_contracts WHERE property_uid = ".(int)$defaultProperty;
+			$contractList =doSelectSql($query);
+			if (count($contractList)>0)
+				{
+				$contracts_arr = array();
+				foreach ($contractList as $contract)
+					{
+					$guest_uid = $contract->guest_uid;
+					if ( $guest_uid > 0)
+						{
+						$historic = false;
+						
+						if ($contract->cancelled == "1" || $contract->booked_out == "1")
+							$historic = true;
+						$contracts_arr[$guest_uid][] = array("guest_uid"=>$guest_uid,"contract_uid"=>$contract->contract_uid,"historic"=>$historic);
+						}
+					}
+				// Now let's do some counting of the number of historic v non-historic bookings for each guest uid
+				$contracts_count = array();
+				foreach ($contracts_arr as $guest_uid=>$c)
+					{
+					foreach ($c as $guest_contracts)
+						{
+						if (!isset($contracts_count[$guest_uid]))
+							{
+							$contracts_count[$guest_uid]=0;
+							}
+						if ($guest_contracts['historic'])
+							$contracts_count[$guest_uid]++;
+						else
+							$contracts_count[$guest_uid]--;
+						}
+					}
+				foreach ($contracts_count as $guest_uid=>$count)
+					{
+					if ($count>0)
+						$ids_of_not_required_guests[]=$guest_uid;
+					}
+				}
+			}
+		else
+			{
+			$ids_of_not_required_guests = array();
+			}
+		
 		if ($surnameFirstChars != "")
 			$query="SELECT guests_uid,firstname,surname,house,street,town,mos_userid  FROM #__jomres_guests WHERE surname LIKE '$surnameFirstChars%' AND property_uid = '".(int)$defaultProperty."'";
 		else
@@ -81,48 +131,54 @@ class j02220listguests {
 		$invoice_image='/jomres/images/jomresimages/small/Invoice.png';
 		foreach($guestList as $guest)
 			{
-			$jrtbar =jomres_getSingleton('jomres_toolbar');
-			$jrtb  = $jrtbar->startTable();
-			
-			$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
-			$link=JOMRES_SITEPAGE_URL.'&task=editGuest&guestUid='.($guest->guests_uid);
-			$targetTask='bookGuestIn';
-			$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
-			$jrtb .= $jrtbar->endTable();
-			$rw['EDITLINK']=$jrtb;
-
-			if (array_key_exists($guest->mos_userid,$invoices) )
+			if (!in_array($guest->guests_uid,$ids_of_not_required_guests))
 				{
+				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
-				$text=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,$editable=false,$isLink=true) ;
-				$link=JOMRES_SITEPAGE_URL.'&task=list_guests_invoices&id='.($guest->mos_userid);
-				$targetTask='';
-				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$invoice_image);
+				
+				$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
+				$link=JOMRES_SITEPAGE_URL.'&task=editGuest&guestUid='.($guest->guests_uid);
+				$targetTask='bookGuestIn';
+				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
 				$jrtb .= $jrtbar->endTable();
-				$rw['INVOICELINK']=$jrtb;
+				$rw['EDITLINK']=$jrtb;
+
+				if (array_key_exists($guest->mos_userid,$invoices) )
+					{
+					$jrtb  = $jrtbar->startTable();
+					$text=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,$editable=false,$isLink=true) ;
+					$link=JOMRES_SITEPAGE_URL.'&task=list_guests_invoices&id='.($guest->mos_userid);
+					$targetTask='';
+					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$invoice_image);
+					$jrtb .= $jrtbar->endTable();
+					$rw['INVOICELINK']=$jrtb;
+					}
+
+				$rw['FIRSTNAME']=$guest->firstname;
+				$rw['SURNAME']=$guest->surname;
+				$rw['HOUSE']=$guest->house;
+				$rw['STREET']=$guest->street;
+				$rw['TOWN']=$guest->town;
+				// $status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
+				// $link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
+				// $rw['CREDITCARDLINK']=$link;
+
+				$rows[]=$rw;
+
+				$surname=($guest->surname);
+				$surnameFirstCharArray[]=$surname{0};
 				}
-
-			$rw['FIRSTNAME']=$guest->firstname;
-			$rw['SURNAME']=$guest->surname;
-			$rw['HOUSE']=$guest->house;
-			$rw['STREET']=$guest->street;
-			$rw['TOWN']=$guest->town;
-			$status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-			$link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
-			$rw['CREDITCARDLINK']=$link;
-
-			$rows[]=$rw;
-
-			$surname=($guest->surname);
-			$surnameFirstCharArray[]=$surname{0};
-
-
 			}
 
 		$surnames=array_unique($surnameFirstCharArray);
 		asort($surnames);
-		$output['surnameDropdown']=filterForm('surnameFirstChars',$surnames,"");
-
+		$output['SURNAMEDROPDOWN']=filterForm('surnameFirstChars',$surnames,"");
+		
+		$yesno = array();
+		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=1"), _JOMRES_HISTORIC_GUESTS_SHOW );
+		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=0"), _JOMRES_HISTORIC_GUESTS_NOSHOW );
+		$output['HISTORIC_GUESTS_DROPDOWN']=jomresHTML::selectList( $yesno, 'all_guests','class="inputbox" size="1" onchange="window.open(this.options[this.selectedIndex].value,\'_top\')"', 'value', 'text', (int)$_REQUEST['all_guests']);
+		
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		
