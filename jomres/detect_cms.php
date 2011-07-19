@@ -20,6 +20,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'
 		}
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php');
 	$jversion = new JVersion();
+
 	if ($jversion->RELEASE == '1.6')
 		{
 		define("_JOMRES_DETECTED_CMS","joomla16");
@@ -32,36 +33,17 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'
 		}
 	}
 
-/* if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'defines.php') )
-	{
-	define("_JOMRES_DETECTED_CMS","joomla15");
-	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
-	} */
-
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'wp-config.php') )
-	{
-	define("_JOMRES_DETECTED_CMS","wordpress3");
-	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
-	}
-	
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'moduleinterface.php') )
-	{
-	define("_JOMRES_DETECTED_CMS","cmsms152");
-	define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
-	}
-	
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php') )
 	{
 	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php');
-	$cmsVer = new version();
-	if ($cmsVer->PRODUCT == 'MiaCMS' && $cmsVer->RELEASE =='4.8' )
+	$jversion = new JVersion();
+	if ($jversion->RELEASE == '1.7')
 		{
-		define("_JOMRES_DETECTED_CMS","miacms48");
+		define("_JOMRES_DETECTED_CMS","joomla17");
 		define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
 		}
 	}
-	
+
 if (!defined('_JOMRES_DETECTED_CMS') )
 	{
 	$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;

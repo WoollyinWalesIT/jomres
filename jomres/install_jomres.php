@@ -19,6 +19,7 @@ if ( $version < 5.2 )
 	}
 
 define('_JOMRES_INITCHECK', 1 );
+define('_JEXEC', 1 );
 ini_set("display_errors",1);
 ini_set('error_reporting', E_ALL);
 

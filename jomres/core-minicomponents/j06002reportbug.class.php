@@ -75,14 +75,19 @@ class j06002reportbug {
 			$sef = '';
 			$joomla_sef = '';
 			
-			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
+			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla16")
 				{
 				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php'))
 					{
 					$_VERSION = new JVersion();
 					$joomlaVersion="CMS version : ".$_VERSION->PRODUCT.' '.$_VERSION->RELEASE.'.'.$_VERSION->DEV_LEVEL.' '.$_VERSION->DEV_STATUS;
 					}
-
+				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php'))
+					{
+					$_VERSION = new JVersion();
+					$joomlaVersion="CMS version : ".$_VERSION->PRODUCT.' '.$_VERSION->RELEASE.'.'.$_VERSION->DEV_LEVEL.' '.$_VERSION->DEV_STATUS;
+					}
+				
 				if (get_showtime('sef') =="1")
 					$joomla_sef = 'Joomla SEF functionality is switched on';
 				else
