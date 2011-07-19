@@ -1,3 +1,16 @@
+Jomres 5.2.1
+
+Added a feature that by default filters out non-active guests from the guest list. A dropdown allows the manager to view all guests if required.
+Changed name of id in selectCombo's town dropdown as it was preventing the booking form from validating.
+Fixed issue where combo searching on properties with apostrophe's in town/region might not work. Good find Aladar.
+Fix for module xml files not being installed so module configuration parameters were not being shown.
+Modified (again) our redirect function.
+Modified the router to reduce the number of queries it generates, brought my test installation when viewing property details down from circa 400 to 70.
+Modified publish guest type script, stops it from throwing an error even if the publish activity worked fine.
+Resized the ajax activity div to make it look better in IE (losing the scroll bars).
+Modified how guest price variations are taken into account. If the variance is not a percentage then we'll determine the nett value of the variance before adjusting the rate per night.
+Modified the new searchCombo to include the 'all' option.
+
 Jomres 5.2stable 
 
 Small change to allow bookings with shorter periods in fixed period bookings.
