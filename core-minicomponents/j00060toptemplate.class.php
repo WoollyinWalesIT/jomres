@@ -32,7 +32,7 @@ class j00060toptemplate {
 		$jomreslang = $componentArgs['jomreslang'];
 		
 		
-		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
+		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 			{
 			jr_import('jomres_management_view');
 			$jomres_management_view = new jomres_management_view();
@@ -63,7 +63,7 @@ class j00060toptemplate {
 			if ($result)
 				$output['EDITING_MODE_DROPDOWN']=$result;
 			
-			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" )
+			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 				{
 				if ($thisJRUser->userIsManager)
 					{
