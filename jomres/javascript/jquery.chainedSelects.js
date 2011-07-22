@@ -57,7 +57,7 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 			  {
 			//  How on earth this is happening, I don't know. Probably down to something that mootools does, but as I know nothing about mootools, I don't know how to switch it off. Therefore, we'll just check for the keys that are returned by mootools and exclude them.
 			 // 0 copy remove contains associate extend merge include getRandom getLast each test rgbToHext hexToRgb rgbToHsb hsbToRgb 
-			if (key != 0 && key != 'copy' && key != 'remove' && key != 'contains' && key != 'associate' && key != 'extend' && key != 'merge' && key != 'include' && key != 'getRandom' && key != 'getLast' && key != 'each' && key != 'test' &&  key != 'rgbToHex' && key != 'hexToRgb' && key != 'rgbToHsb' && key != 'hsbToRgb' )
+			if ( key != 'copy' && key != 'remove' && key != 'contains' && key != 'associate' && key != 'extend' && key != 'merge' && key != 'include' && key != 'getRandom' && key != 'getLast' && key != 'each' && key != 'test' &&  key != 'rgbToHex' && key != 'hexToRgb' && key != 'rgbToHsb' && key != 'hsbToRgb' )
 					jomresJquery(target).get(0).add(new Option(data[i][key],[key]), document.all ? i : null);
               }
 			}
