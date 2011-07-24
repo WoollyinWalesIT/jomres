@@ -1755,7 +1755,7 @@ function jomresRedirect( $url, $msg='' )
 		}
 	else
 		header('Location: '.$url);
-	
+	exit;
 	
 	
 	// $url=str_replace("&amp;","&",$url);
