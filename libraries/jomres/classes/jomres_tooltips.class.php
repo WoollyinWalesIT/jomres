@@ -71,7 +71,6 @@ class jomres_tooltips
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 						positions: [\'most\'],
-						offsetParent: \'body\',
 						ajaxPath: \''.$url.'\',
 						width: \'auto\',
 						closeWhenOthersOpen: true,
@@ -120,7 +119,6 @@ class jomres_tooltips
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 						positions: [\''.$this->positions.'\'],
-						offsetParent: \'body\',
 						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: 
@@ -179,7 +177,6 @@ class jomres_tooltips
 						shadowOverlap: false,
 						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 						positions: [\''.$this->positions.'\'],
-						offsetParent: \'body\',
 						width: \'auto\',
 						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 						cssStyles: {color: \'#FFFFFF\', fontWeight: \'bold\'}
@@ -219,7 +216,6 @@ class jomres_tooltips
 							shadowOverlap: false,
 							noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 							positions: [\''.$this->positions.'\'],
-							offsetParent: \'body\',
 							width: \'200px\',
 							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 							cssStyles: 
@@ -270,7 +266,6 @@ class jomres_tooltips
 							shadowOverlap: false,
 							noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
 							positions: [\''.$this->positions.'\'],
-							offsetParent: \'body\',
 							width: \'200px\',
 							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 							cssStyles: 
@@ -300,7 +295,6 @@ class jomres_tooltips
 					
 				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
 					<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-							offsetParent: \'body\',
 							width: \'600px\',
 							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
 
