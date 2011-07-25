@@ -1,3 +1,14 @@
+Jomres 5.3
+
+
+Added Joomla 1.7 compatability to Jomres.
+
+Adding exit; after the redirection's been done to see if that fixes http://www.jomres.net/index.php?option=com_kunena&func=view&catid=10&id=1239&Itemid=290#8837
+Added a change to the chained select javascript to exclude mootools keys that are somehow being inserted into the "data" json object when the list of regions/towns is being returned.
+Deleted the old wordpress files, I'm never going to finish the job, might as well bin it.
+Removed offsetParent: \'body\', from the tooltip javascript in jomres_tooltips.class.php. Doesn't seem to impact jomres on j1.5, but in j1.7 it causes the tooltip to display incorrectly, presumably due to something in j1.7's default css.
+
+
 Jomres 5.2.1
 
 Added a feature that by default filters out non-active guests from the guest list. A dropdown allows the manager to view all guests if required.
