@@ -233,13 +233,22 @@ class j01010listpropertys {
 		$date_elements  = explode("/",$arrivalDate);
 		$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 
+		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details->get_property_name_multi($propertys_uids);
+		$current_property_details->gather_data_multi($propertys_uids);
+
+		$query="SELECT id,ptype FROM #__jomres_ptypes";
+		$ptypes = doSelectSql($query);
+		$property_types = array();
+		foreach ($ptypes as $p)
+			{
+			$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$p->ptype_id,$p->ptype,false,false);
+			}
+		
 		if (count($propertyDeets) >0)
 			{
 			$property_details=array();
 			$MiniComponents->triggerEvent('01011',array('property_uids'=>$propertys_uids) ); // Discount finding script uses this trigger. We'll send it an array of property uids to reduce the number of queries it performs.
-			
-			$current_property_details =jomres_getSingleton('basic_property_details');
-			$current_property_details->get_property_name_multi($propertys_uids);
 
 			foreach ($propertyDeets as $property)
 				{
@@ -455,10 +464,10 @@ class j01010listpropertys {
 					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 						$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
 
-					$query="SELECT ptype FROM #__jomres_ptypes WHERE `id` = '".(int)$property->ptype_id."' LIMIT 1";
-					$ptype = doSelectSql($query,1);
-					$property_deets['PROPERTY_TYPE'] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$property->ptype_id,$ptype,false,false);
-					
+					// $query="SELECT ptype FROM #__jomres_ptypes WHERE `id` = '".(int)$property->ptype_id."' LIMIT 1";
+					// $ptype = doSelectSql($query,1);
+					// $property_deets['PROPERTY_TYPE'] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$property->ptype_id,$ptype,false,false);
+					$property_deets['PROPERTY_TYPE'] = $property_types[(int)$property->ptype_id];
 	
 					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("imagethumb"=>$property_deets['IMAGETHUMB'],"width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 					if ($output_lowest)
