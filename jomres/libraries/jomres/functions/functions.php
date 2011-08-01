@@ -3196,9 +3196,43 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 */
 function getPropertyAddressForPrint($propertyUid)
 	{
-	//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
-	$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".(int)$propertyUid."' LIMIT 1";
-	$propertyData=doSelectSql($query);
+	$current_property_details =jomres_getSingleton('basic_property_details');
+	if (!isset($current_property_details->multi_query_result[$propertyUid]))
+		{
+		//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
+		$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".(int)$propertyUid."' LIMIT 1";
+		$propertyData=doSelectSql($query);
+		}
+	else
+		{
+		$data= new stdClass;
+		$data->property_name					=	$current_property_details->multi_query_result[$propertyUid]['property_name'];
+		$data->property_street					=	$current_property_details->multi_query_result[$propertyUid]['property_street'];
+		$data->property_town					=	$current_property_details->multi_query_result[$propertyUid]['property_town'];
+		$data->property_postcode				=	$current_property_details->multi_query_result[$propertyUid]['property_postcode'];
+		$data->property_region					=	$current_property_details->multi_query_result[$propertyUid]['property_region'];
+		$data->property_country					=	$current_property_details->multi_query_result[$propertyUid]['property_country_code'];
+		$data->property_tel						=	$current_property_details->multi_query_result[$propertyUid]['property_tel'];
+		$data->property_fax						=	$current_property_details->multi_query_result[$propertyUid]['property_fax'];
+		$data->property_email					=	$current_property_details->multi_query_result[$propertyUid]['property_email'];
+		$data->property_features				=	$current_property_details->multi_query_result[$propertyUid]['property_features'];
+		$data->property_description				=	$current_property_details->multi_query_result[$propertyUid]['property_description'];
+		$data->property_checkin_times			=	$current_property_details->multi_query_result[$propertyUid]['property_checkin_times'];
+		$data->property_area_activities			=	$current_property_details->multi_query_result[$propertyUid]['property_area_activities'];
+		$data->property_driving_directions		=	$current_property_details->multi_query_result[$propertyUid]['property_driving_directions'];
+		$data->property_airports				=	$current_property_details->multi_query_result[$propertyUid]['property_airports'];
+		$data->property_othertransport			=	$current_property_details->multi_query_result[$propertyUid]['property_othertransport'];
+		$data->property_policies_disclaimers	=	$current_property_details->multi_query_result[$propertyUid]['property_policies_disclaimers'];
+		$data->published						=	$current_property_details->multi_query_result[$propertyUid]['published'];
+		$data->ptype_id							=	$current_property_details->multi_query_result[$propertyUid]['ptype_id'];
+		$data->stars							=	$current_property_details->multi_query_result[$propertyUid]['stars'];
+		$data->lat								=	$current_property_details->multi_query_result[$propertyUid]['lat'];
+		$data->long								=	$current_property_details->multi_query_result[$propertyUid]['long'];
+		$data->metatitle						=	$current_property_details->multi_query_result[$propertyUid]['metatitle'];
+		$data->metadescription					=	$current_property_details->multi_query_result[$propertyUid]['metadescription'];
+		$propertyData=array($data);
+		}
+	
 	foreach ($propertyData as $data)
 		{
 		$property_name=jomres_decode($data->property_name);
@@ -3265,9 +3299,8 @@ function getPropertyAddressForPrint($propertyUid)
 			"propertys_uid"=>(int)$propertyUid,
 			"obj"=>array($obj)
 			);
-
-
 		}
+	
 	$propertyAddress=array($property_name,$property_street,$property_town,$property_postcode,$property_region,$property_country);
 	$propertyContact=array($property_tel,$property_fax,$property_email,get_showtime('live_site'));
 	$propertyDataArray=array($property_name,$propertyAddress,$propertyContact,$indexedPropertyDetails);
