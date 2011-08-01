@@ -5202,18 +5202,23 @@ function subscriptions_packages_makeroomslimitDropdown( $selected = 0 )
 
 function taxrates_getalltaxrates()
 	{
-	$rates=array();
-	$query="SELECT * FROM #__jomresportal_taxrates";
-	$result=doSelectSql($query);
-	if (count($result)>0)
+	$rates = get_showtime('all_tax_rates');
+	if (is_null($rates))
 		{
-		foreach ($result as $r)
+		$rates=array();
+		$query="SELECT * FROM #__jomresportal_taxrates";
+		$result=doSelectSql($query);
+		if (count($result)>0)
 			{
-			$rates[$r->id]['id']=$r->id;
-			$rates[$r->id]['code']=$r->code;
-			$rates[$r->id]['description']=$r->description;
-			$rates[$r->id]['rate']=$r->rate;
+			foreach ($result as $r)
+				{
+				$rates[$r->id]['id']=$r->id;
+				$rates[$r->id]['code']=$r->code;
+				$rates[$r->id]['description']=$r->description;
+				$rates[$r->id]['rate']=$r->rate;
+				}
 			}
+		set_showtime('all_tax_rates',$rates);
 		}
 	return $rates;
 	}
