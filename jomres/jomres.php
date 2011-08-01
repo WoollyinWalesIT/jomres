@@ -236,12 +236,15 @@ if ($property_uid > 0)
 	}
 
 // Getting the language file
-if (!empty($property_uid) || isset($_REQUEST['propertyType']))
+if (!empty($property_uid) || isset($_REQUEST['propertyType'])|| isset($_REQUEST['ptype']))
 	{
 	if (isset($_REQUEST['propertyType']))
 		$ptype_id=(int)$_REQUEST['propertyType'];
-	else
-		$ptype_id=$thisJomresPropertyDetails['ptype_id'];
+	elseif (isset($_REQUEST['ptype']) )
+			$ptype_id=(int)jomresGetParam( $_REQUEST, 'ptype',0);
+		else
+			$ptype_id=$thisJomresPropertyDetails['ptype_id'];
+
 	if ($ptype_id > 0)
 		{
 		$query="SELECT ptype_desc FROM #__jomres_ptypes WHERE id = '".(int)$ptype_id."'";
