@@ -34,59 +34,86 @@ class j01011discounts {
 			{
 			$this->template_touchable=true; return;
 			}
-		$property_uid=$componentArgs['property_uid'];
-		$mrConfig=getPropertySpecificSettings($property_uid);
-		if ($mrConfig['singleRoomProperty'] == 1)  // Using last minute calculations
+			
+		if (isset($componentArgs['property_uid']))
+			$property_uid=$componentArgs['property_uid'];
+		if (isset($componentArgs['property_uids']))
+			$property_uids=$componentArgs['property_uids'];
+		
+		if (is_array($property_uids))
 			{
-			$this->returnValue=array();
-			$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = '$property_uid' AND `akey`='lastminuteactive' AND `value`='1' LIMIT 1";
-			$lastminSettings = doSelectSql($query);
-
-			if (count($lastminSettings)>0)
+			$relevant_properties = array();
+			$g=genericOr($property_uids,'property_uid');
+			$query="SELECT property_uid,akey,value FROM #__jomres_settings WHERE (`akey`='lastminuteactive' OR `akey` = 'wisepriceactive') AND ".$g." AND `value`='1'";
+			$result = doSelectSql($query);
+			if (count($result)>0)
 				{
-				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '$property_uid' AND `akey`='lastminutethreshold' LIMIT 1";
-				$lastminutethreshold = doSelectSql($query,1);
-				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '$property_uid' AND `akey`='lastminutediscount' LIMIT 1";
-				$lastminutediscount = doSelectSql($query,1);
-				
-				$todaysDate=date("Y/m/d");
-				$date_elements	 = explode("/",$todaysDate);
-				$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$lastminutethreshold,$date_elements[0]);
-				$latestDate=JSCalmakeInputDates(date("Y/m/d",$unixTodaysDate));
-				
-				$text	=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE',_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE,false,true);
-				$text	.=	$lastminutediscount;
-				$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID',_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID,false,true);
-				$text	.=	$latestDate;
-				$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST',_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST,false,true);
-				
-				$this->returnValue=array('LASTMINUTE'=>$text,'LASTMINUTECLASS'=>'jomres_message');
+				foreach ($result as $r)
+					{
+					$relevant_properties[$r->property_uid]['discount_type']=$r->akey;
+					$discounted_properties[] = $r->property_uid;
+					}
+				$g2=genericOr($discounted_properties,'property_uid');
+				$query="SELECT property_uid,akey,value FROM #__jomres_settings WHERE (`akey`='wisepricethreshold' OR `akey` = 'wiseprice75discount' OR `akey` = 'lastminutethreshold' OR `akey` = 'lastminutediscount') AND ".$g2."";
+				$result2 = doSelectSql($query);
+				foreach ($result2 as $r)
+					{
+					if ($r->akey == 'wisepricethreshold')
+						$relevant_properties[$r->property_uid]['wisepricethreshold']=$r->value;
+					if ($r->akey == 'wiseprice75discount')
+						$relevant_properties[$r->property_uid]['wiseprice75discount']=$r->value;
+					if ($r->akey == 'lastminutethreshold')
+						$relevant_properties[$r->property_uid]['lastminutethreshold']=$r->value;
+					if ($r->akey == 'lastminutediscount')
+						$relevant_properties[$r->property_uid]['lastminutediscount']=$r->value;
+					}
 				}
+			set_showtime('propertylist_discounts',$relevant_properties);
 			}
-		else // Using wiseprice calculations
+		else
 			{
-			$this->returnValue=array();
-			$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = '$property_uid' AND `akey`='wisepriceactive' AND `value`='1' LIMIT 1";
-			$lastminSettings = doSelectSql($query);
+			$relevant_properties = get_showtime('propertylist_discounts');
 
-			if (count($lastminSettings)>0)
+			if (array_key_exists($property_uid,$relevant_properties))
 				{
-				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '$property_uid' AND `akey`='wisepricethreshold' LIMIT 1";
-				$wisepricethreshold = doSelectSql($query,1);
-				$query="SELECT value FROM #__jomres_settings WHERE property_uid = '$property_uid' AND `akey`='wiseprice75discount' LIMIT 1";
-				$wisepricediscount = doSelectSql($query,1);
-				
-				$todaysDate=date("Y/m/d");
-				$date_elements	 = explode("/",$todaysDate);
-				$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$wisepricethreshold,$date_elements[0]);
-				$latestDate=JSCalmakeInputDates(date("Y/m/d",$unixTodaysDate));
-				
-				$text	=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE',_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE,false,true);
-				$text	.=	(float)$wisepricediscount.jr_gettext('_JOMCOMP_LASTMINUTE_ORMORE',_JOMCOMP_LASTMINUTE_ORMORE,false,true);
-				$text	.=	$latestDate;
-				$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST',_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST,false,true);
-				
-				$this->returnValue=array('LASTMINUTE'=>$text,'LASTMINUTECLASS'=>'jomres_message');
+				if ($relevant_properties[$property_uid]['discount_type'] == "lastminuteactive" )   // Using last minute calculations
+					{
+					$this->returnValue=array();
+					$lastminutethreshold = $relevant_properties[$property_uid]['lastminutethreshold'];
+					$lastminutediscount = $relevant_properties[$property_uid]['lastminutediscount'];
+
+					$todaysDate=date("Y/m/d");
+					$date_elements	 = explode("/",$todaysDate);
+					$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$lastminutethreshold,$date_elements[0]);
+					$latestDate=JSCalmakeInputDates(date("Y/m/d",$unixTodaysDate));
+					
+					$text	=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE',_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE,false,true);
+					$text	.=	$lastminutediscount;
+					$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID',_JOMCOMP_LASTMINUTE_PROPERTYLIST_MID,false,true);
+					$text	.=	$latestDate;
+					$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST',_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST,false,true);
+					
+					$this->returnValue=array('LASTMINUTE'=>$text,'LASTMINUTECLASS'=>'jomres_message');
+					}
+				elseif ($relevant_properties[$property_uid]['discount_type'] == "wisepriceactive" )  // Using wiseprice calculations
+					{
+					$this->returnValue=array();
+					
+					$wisepricethreshold = $relevant_properties[$property_uid]['wisepricethreshold'];
+					$wisepricediscount = $relevant_properties[$property_uid]['wisepricediscount'];
+					
+					$todaysDate=date("Y/m/d");
+					$date_elements	 = explode("/",$todaysDate);
+					$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$wisepricethreshold,$date_elements[0]);
+					$latestDate=JSCalmakeInputDates(date("Y/m/d",$unixTodaysDate));
+					
+					$text	=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE',_JOMCOMP_LASTMINUTE_PROPERTYLIST_PRE,false,true);
+					$text	.=	(float)$wisepricediscount.jr_gettext('_JOMCOMP_LASTMINUTE_ORMORE',_JOMCOMP_LASTMINUTE_ORMORE,false,true);
+					$text	.=	$latestDate;
+					$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST',_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST,false,true);
+					
+					$this->returnValue=array('LASTMINUTE'=>$text,'LASTMINUTECLASS'=>'jomres_message');
+					}
 				}
 			}
 		}
