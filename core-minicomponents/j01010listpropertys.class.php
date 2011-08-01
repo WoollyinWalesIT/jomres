@@ -236,6 +236,7 @@ class j01010listpropertys {
 		if (count($propertyDeets) >0)
 			{
 			$property_details=array();
+			$MiniComponents->triggerEvent('01011',array('property_uids'=>$propertys_uids) ); // Discount finding script uses this trigger. We'll send it an array of property uids to reduce the number of queries it performs.
 			
 			$current_property_details =jomres_getSingleton('basic_property_details');
 			$current_property_details->get_property_name_multi($propertys_uids);
@@ -282,7 +283,8 @@ class j01010listpropertys {
 						$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES']			=jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES',_JOMRES_REVIEWS_TOTAL_VOTES,false,false);
 						$property_deets['_JOMRES_REVIEWS']						=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
 						$property_deets['_JOMRES_REVIEWS_CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
-						
+						$property_deets['COLON'] 								= " : ";
+						$property_deets['HYPHEN'] 								= " - ";
 						$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
 						}
 					
@@ -466,14 +468,18 @@ class j01010listpropertys {
 						
 					$property_deets['STARS']=$starslink;
 					//$property_deets['TEMPLATEPATH']=$templatepath;
+
 					$MiniComponents->triggerEvent('01011',array('property_uid'=>$property->propertys_uid) ); // Optional
 					$mcOutput=$MiniComponents->getAllEventPointsData('01011');
 					if (count($mcOutput)>0)
 						{
 						foreach ($mcOutput as $key=>$val)
 							{
-							$result=array_merge($property_deets,$val);
-							$property_deets=$result;
+							if (!is_null($val))
+								{
+								$result=array_merge($property_deets,$val);
+								$property_deets=$result;
+								}
 							}
 						}
 					$cache->setCache($property_deets);
