@@ -133,6 +133,9 @@ class JomresPage
 
 	function set_page_data($page_name,$total_records,$records_per_page=1,$scroll_num=0,$show_prev_next=true,$show_scroll_prev_next=false,$show_first_last=false,$limit)
 		{
+		$this->url_ptype_string = '';
+		if (isset($_REQUEST['ptype']))
+			$this->url_ptype_string = "&ptype=".(int)$_REQUEST['ptype'];
 		$this->set_total_records($total_records);
 		$this->set_records_per_page($records_per_page);
 
@@ -152,7 +155,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link="["._PN_START."]&nbsp;";
 		if(!$this->is_first_page()&& $this->show_first_last)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage=0'.$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage=0'.$this->qry_str).$this->url_ptype_string.'">'.$user_link.'</a> ';
 		elseif($this->show_first_last && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -166,7 +169,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link="["._PN_END."]" ;
 		if(!$this->is_last_page()&& $this->show_first_last)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->total_page-1).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->total_page-1).$this->qry_str).$this->url_ptype_string.'">'.$user_link.'</a> ';
 		elseif($this->show_first_last && $this->show_disabled_links)
 			$txt.='&nbsp;'.$user_link;
 		return $txt;
@@ -180,7 +183,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link=jr_gettext('_PN_NEXT',_PN_NEXT,false,false)." &gt;&gt;&nbsp;";
 		if(!$this->is_last_page()&& $this->show_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+1).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+1).$this->qry_str).$this->url_ptype_string.'">'.$user_link.'</a> ';
 		elseif($this->show_prev_next && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -194,7 +197,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link="&lt;&lt; ".jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false)."&nbsp;";
 		if(!$this->is_first_page()&& $this->show_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-1).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-1).$this->qry_str).$this->url_ptype_string.'">'.$user_link.'</a> ';
 		elseif($this->show_prev_next && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -208,7 +211,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false)."[$this->scroll_page]&nbsp;";
 		if($this->page>$this->scroll_page &&$this->show_scroll_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page-$this->scroll_page).$this->qry_str).$this->url_ptype_string.'">'.$user_link.'</a> ';
 		elseif($this->show_scroll_prev_next && $this->show_disabled_links)
 			$txt.=$user_link;
 		return $txt;
@@ -222,7 +225,7 @@ class JomresPage
 		if(trim($user_link)=="")
 			$user_link=jr_gettext('_PN_NEXT',_PN_NEXT,false,false)."[$this->scroll_page]&nbsp;";
 		if($this->total_page>$this->page+$this->scroll_page &&$this->show_scroll_prev_next)
-			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+$this->scroll_page).$this->qry_str).'">'.$user_link.'</a> ';
+			$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.($this->page+$this->scroll_page).$this->qry_str).$this->url_ptype_string.'">'.$user_link.'</a> ';
 		elseif($this->show_scroll_prev_next && $this->show_disabled_links)
 			$txt.='&nbsp;'.$user_link;
 		return $txt;
@@ -248,7 +251,7 @@ class JomresPage
 			if($i==$this->page)
 				$txt.='&nbsp;'.($i+1).'&nbsp;';
 			else
-				$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.$i.$this->qry_str).'">'.($i+1).'</a>&nbsp;';
+				$txt.=' <a href="'.jomresURL($this->page_name.'&plistpage='.$i.$this->qry_str).$this->url_ptype_string.'">'.($i+1).'</a>&nbsp;';
 			}
 		return $txt;
 		}
