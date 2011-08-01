@@ -236,12 +236,15 @@ class j01010listpropertys {
 		if (count($propertyDeets) >0)
 			{
 			$property_details=array();
+			
+			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details->get_property_name_multi($propertys_uids);
+
 			foreach ($propertyDeets as $property)
 				{
 				jr_import('jomres_cache');
 				$cache = new jomres_cache("propertylist",$property->propertys_uid);
-				$current_property_details =jomres_getSingleton('basic_property_details');
-				
+
 				$cacheContent = $cache->readCache();
 				if ($cacheContent)
 					{

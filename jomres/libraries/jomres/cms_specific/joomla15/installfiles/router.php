@@ -44,8 +44,13 @@ function JomresBuildRoute(&$query)
 			$pid = $route_query['selectedProperty'];
 		else
 			$pid = $route_query['property_uid'];
+		
+		$current_property_details =jomres_getSingleton('basic_property_details');
 
 		$tmpname_array = get_showtime("router_property_names_array");
+		if (is_array($tmpname_array) && is_array($current_property_details->property_names) )
+			$tmpname_array = array_merge($tmpname_array, $current_property_details->property_names);
+		
 		if (is_null($tmpname_array[$pid]))
 			{
 			$sql = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = ".(int)$pid." LIMIT 1";
