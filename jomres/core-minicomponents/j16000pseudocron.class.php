@@ -103,7 +103,7 @@ class j16000pseudocron
 		echo _JOMRES_COM_A_CRON_IMMEDIATERUN."<br />";
 		jr_import('jomres_cron');
 		$cron = new jomres_cron($displayLog);
-		foreach ($cron->allJobs as $job)
+		foreach ($cron->allUnlockedJobs as $job)
 			{
 			echo '<a href="'.JOMRES_SITEPAGE_URL_NOHTML."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret.'" target="_blank" >'.$job['job_name'].'</a><br />';
 			}
