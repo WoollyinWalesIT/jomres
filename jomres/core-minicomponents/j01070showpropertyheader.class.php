@@ -82,50 +82,13 @@ class j01070showpropertyheader
 				$output['TOOLTIP_PROPERTY_IMAGE']=jomres_makeTooltip("property_image","",$output['IMAGE'],$output['IMAGE'],"","imageonly",$type_arguments=array("imagethumb"=>$output['IMAGETHUMB'],"width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 				
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				$rtRows=array();
-				$roomtypes=array();
-				if ($mrConfig['singleRoomProperty'] != "1")
+				$this_property_room_classes=$current_property_details->this_property_room_classes;
+				$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
+				foreach ($this_property_room_classes as $type)
 					{
-					$RoomClassAbbvs = array();
-					$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
-					$roomsClassList =doSelectSql($query);
-					foreach ($roomsClassList as $roomClass)
-						{
-						$RoomClassAbbvs[(int)$roomClass->room_classes_uid] = array( 
-							'abbv'=>
-							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,jomres_decode($roomClass->room_class_abbv),false,false),
-							'desc'=>
-							jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,jomres_decode($roomClass->room_class_full_desc),false,false),
-							'image'=>
-							$roomClass->image
-							);
-						}
-					$property['HRTYPES']	=	"";
-					$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
-					$rt= doSelectSql($query);
-					if (count($rt)>0)
-						{
-						$roomTypeArray=array();
-						foreach ($rt as $roomtype)
-							{
-							$roomTypeArray[]=$roomtype->room_classes_uid;
-							}
-
-						if (count($roomTypeArray)>1)
-							$roomTypeArray=array_unique($roomTypeArray);
-						if (count($roomTypeArray)>0)
-							{
-							$property['HRTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
-							foreach ($roomTypeArray as $type)
-								{
-								$rtRows=array();
-								$roomtype_abbv = $RoomClassAbbvs[$type]['abbv'];
-								$roomtype_desc = $RoomClassAbbvs[$type]['desc'];
-								$rtRows['ROOM_TYPE']=jomres_makeTooltip($roomtype_abbv,$roomtype_abbv,$roomtype_desc,$RoomClassAbbvs[$type]['image'],"","room_type",array());
-								$roomtypes[]=$rtRows;
-								}
-							}
-						}
+					$rtRows=array();
+					$rtRows['ROOM_TYPE']=jomres_makeTooltip($type['abbv'],$type['abbv'],$type['desc'],$type['image'],"","room_type",array());
+					$roomtypes[]=$rtRows;
 					}
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				$features=$current_property_details->features;
