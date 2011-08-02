@@ -93,7 +93,7 @@ function whereCalled() {
 	$trace = debug_backtrace();
 	$file1_arr = explode(JRDS,$trace[2]['file']);
 	$file1 = $file1_arr[count($file1_arr)-1];
-	$file2_arr = explode(JRDS,$trace[2]['file']);
+	$file2_arr = explode(JRDS,$trace[3]['file']);
 	$file2 = $file2_arr[count($file2_arr)-1];
 	
 	return "on line ".$trace[2]['line']." of  \n(in <b>".$file1."</b>) for line ".$trace[3]['line']." ". $file2;
