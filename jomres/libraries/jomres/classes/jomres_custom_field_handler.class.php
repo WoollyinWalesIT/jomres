@@ -36,14 +36,19 @@ class jomres_custom_field_handler
 
 	function getAllCustomFields()
 		{
-		$query = "SELECT uid,fieldname,default_value,description,required FROM #__jomres_custom_fields";
-		$fields = doSelectSql($query);
-		if (count($fields)>0)
+		$this->custom_fields = get_showtime('custom_field_handler_fields');
+		if (is_null($this->custom_fields))
 			{
-			foreach ($fields as $t)
+			$query = "SELECT uid,fieldname,default_value,description,required FROM #__jomres_custom_fields";
+			$fields = doSelectSql($query);
+			if (count($fields)>0)
 				{
-				$this->custom_fields[$t->uid]=array('uid'=>$t->uid,'fieldname'=>$t->fieldname,'default_value'=>$t->default_value,'description'=>$t->description,'required'=>$t->required);
+				foreach ($fields as $t)
+					{
+					$this->custom_fields[$t->uid]=array('uid'=>$t->uid,'fieldname'=>$t->fieldname,'default_value'=>$t->default_value,'description'=>$t->description,'required'=>$t->required);
+					}
 				}
+			set_showtime('custom_field_handler_fields',$this->custom_fields);
 			}
 		return $this->custom_fields;
 		}
