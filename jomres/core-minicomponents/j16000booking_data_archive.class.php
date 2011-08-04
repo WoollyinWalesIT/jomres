@@ -38,24 +38,28 @@ class j16000booking_data_archive
 			// data comes in two arrays, tmpbooking and tmpguest. We'll cycle through these two sub arrays to construct the popup's contents.
 			$popup_content = "";
 			$data_arrays = unserialize($res->data);
-			$property_uid = (int)$data_arrays['tmpbooking']['property_uid'];
-			$current_property_details->gather_data($property_uid);
-			$r['PROPERTY_NAME'] = $current_property_details->property_name;
 
-			foreach ($data_arrays['tmpbooking'] as $key=>$val)
+			if ((int)$data_arrays['tmpbooking']['property_uid'] > 0)
 				{
+				$property_uid = (int)$data_arrays['tmpbooking']['property_uid'];
+				$current_property_details->gather_data($property_uid);
+				$r['PROPERTY_NAME'] = $current_property_details->property_name;
+
+				foreach ($data_arrays['tmpbooking'] as $key=>$val)
+					{
+					
+					$popup_content.="<b>".$key ."</b> : ".str_replace('"','',$val)." ::: ";
+					}
+				foreach ($data_arrays['tmpguest'] as $key=>$val)
+					{
+					$popup_content.="<b>".$key ."</b> : ".str_replace('"','',$val)." ::: ";
+					}
+
+				$data = jomres_makeTooltip("xxx".$res->id,$current_property_details->property_name,$popup_content,$res->date);
+				$r['DATE_TOOTIP'] =$data;
 				
-				$popup_content.="<b>".$key ."</b> : ".str_replace('"','',$val)." ::: ";
+				$rows[]=$r;
 				}
-			foreach ($data_arrays['tmpguest'] as $key=>$val)
-				{
-				$popup_content.="<b>".$key ."</b> : ".str_replace('"','',$val)." ::: ";
-				}
-
-			$data = jomres_makeTooltip("xxx".$res->id,$current_property_details->property_name,$popup_content,$res->date);
-			$r['DATE_TOOTIP'] =$data;
-			
-			$rows[]=$r;
 			}
 		
 		$jrtbar =jomres_getSingleton('jomres_toolbar');

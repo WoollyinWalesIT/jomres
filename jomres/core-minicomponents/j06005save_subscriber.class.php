@@ -215,7 +215,7 @@ class j06005save_subscriber
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings=$paypal_settings->paypalConfigOptions;
 		
-		$ourCallbackURL = JOMRES_SITEPAGE_URL.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$subscription->id;
+		$ourCallbackURL = JOMRES_SITEPAGE_URL_NOSEF.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$subscription->id;
 		
 		$transactionName='Paypal Subscription from '.$jomresConfig_sitename;
 		if ($this->paypal_settings['usesandbox']=="1")
@@ -238,8 +238,8 @@ class j06005save_subscriber
 		
 		//$this->add_field('image_url', "https://www.yoursite.com/logo.gif");
 		$this->add_field('no_shipping', "1");
-		$this->add_field('return', JOMRES_SITEPAGE_URL);
-		$this->add_field('cancel_return', JOMRES_SITEPAGE_URL.'&task=canc_subscribed&id='.$subscription->id);
+		$this->add_field('return', JOMRES_SITEPAGE_URL_NOSEF);
+		$this->add_field('cancel_return', JOMRES_SITEPAGE_URL_NOSEF.'&task=canc_subscribed&id='.$subscription->id);
 		$this->add_field('notify_url', $ourCallbackURL.'&action=ipn');
 		$this->add_field('no_note', "1");
 		$this->add_field('payer_id', $subscriber->id);
