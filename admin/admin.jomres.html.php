@@ -125,11 +125,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		');
 		if ($jrConfig['advanced_site_config'] == 1)
 			$contentPanel->setcontent('
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONVERSION_TITLE.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['use_conversion_feature'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONVERSION_TITLE_DESC.'</td>
-			</tr>
+
 			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
 				<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
@@ -150,26 +146,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td class="jradmin_subheader_la" valign="top">'.$jqueryUIthemesDropdownList.'</td>
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME_DESC.'</td>
 			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_CONTROL.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['use_reviews'].'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['autopublish_reviews'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC.'</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['reviews_test_mode'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE_DESC.'</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['only_guests_can_review'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC.'</td>
-			</tr>
+
 			<!--
 			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER.'</td>
@@ -177,16 +154,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_HTMP_PURIFIER_DESC.'</td>
 			</tr>
 			-->
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalCurrency'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC.'</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CURRENCYCODE.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$currency_codes_dropdown.'</td>
-				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
+
 			<tr align="center" valign="middle">
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
 				 <td class="jradmin_subheader_la" valign="top">'.$lists['showLangDropdown'].'</td>
@@ -264,21 +232,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td class="jradmin_subheader_la" valign="top">'.$lists['isInIframe'].'</td>
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
 			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['errorChecking'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING_DESC.'</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_EMAILERRORS.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['emailErrors'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_EMAILERRORS_DESC.'</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['dumpTemplate'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA_DESC.'</td>
-			</tr>');
+			');
 		$contentPanel->setcontent('
 		<tr align="center" valign="middle">
 			<th colspan="3">&nbsp;</th>
@@ -330,8 +284,79 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 		}
+		
+		
+		$contentPanel->startPanel(jr_gettext('_JOMRES_CURRENCYCONVERSION_TAB',_JOMRES_CURRENCYCONVERSION_TAB,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['useGlobalCurrency'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_CURRENCYCODE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$currency_codes_dropdown.'</td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONVERSION_TITLE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['use_conversion_feature'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONVERSION_TITLE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_IP_DETECTION_API_KEY_TITLE.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_geolocation_api_key" value="'.$jrConfig['geolocation_api_key'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_IP_DETECTION_API_KEY_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
 	
 	
+		$contentPanel->startPanel(jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_CONTROL.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['use_reviews'].'</td>
+				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['autopublish_reviews'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_AUTOPUBLISH_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['reviews_test_mode'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_TESTMODE_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['only_guests_can_review'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_REVIEWS_ADMIN_GUESTSONLY_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		
 	$currentLangFile=$jrConfig['jscalendarLangfile'];
 	$calendarFileNamesArray=array("calendar-en.js","calendar-af.js","calendar-al.js","calendar-bg.js","calendar-big5.js","calendar-big5-utf8.js","calendar-br.js","calendar-ca.js","calendar-cs-utf8.js","calendar-cs-win.js","calendar-da.js","calendar-de.js","calendar-du.js","calendar-el.js","calendar-es.js","calendar-fi.js","calendar-fr.js","calendar-he-utf8.js","calendar-hr.js","calendar-hr-utf8.js","calendar-hu.js","calendar-it.js","calendar-jp.js","calendar-ko.js","calendar-ko-utf8.js","calendar-lt.js","calendar-lt-utf8.js","calendar-lv.js","calendar-nl.js","calendar-no.js","calendar-pl.js","calendar-pl-utf8.js","calendar-pt.js","calendar-ro.js","calendar-ru.js","calendar-ru_win_.js","calendar-si.js","calendar-sk.js","calendar-sp.js","calendar-sv.js","calendar-tr.js","calendar-zh.js","cn_utf8.js");
 	$jsCalLangfile="<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";
@@ -651,6 +676,31 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 		}
+		
+		$contentPanel->startPanel(jr_gettext('_JOMRES_DEBUGGING_TAB',_JOMRES_DEBUGGING_TAB,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['errorChecking'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_ERRORCHECKING_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['dumpTemplate'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_DUMPTEMPLATEDATA_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
 		
 		if (_JOMRES_DETECTED_CMS == "joomla15")
 			{

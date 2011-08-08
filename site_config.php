@@ -210,4 +210,8 @@ $jrConfig['guestnumbersearch'] = "equal";
 $jrConfig['load_jquery_ui_css'] = "1";
 $jrConfig['use_conversion_feature'] = "1";
 $jrConfig['javascript_caching_enabled'] = "0";
+
+$jrConfig['geolocation_api_key'] = "";
+
+
 ?>
