@@ -1571,6 +1571,13 @@ define('_JOMRES_JAVASCRIPT_CACHING_DESC',"Choose whether or not to use the Jomre
 define('_JOMRES_HISTORIC_GUESTS_SHOW',"List historic and current guests");
 define('_JOMRES_HISTORIC_GUESTS_NOSHOW',"Current guests only");
 
+// 5.3.1
+define('_JOMRES_CURRENCYCONVERSION_TAB','Currency conversion/currency codes');
+define('_JOMRES_IP_DETECTION_API_KEY_TITLE','IP Detection API Key');
+define('_JOMRES_IP_DETECTION_API_KEY_DESC','To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
+define('_JOMRES_DEBUGGING_TAB','Debugging');
+
+
 
 
 
