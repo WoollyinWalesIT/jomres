@@ -112,7 +112,7 @@ class j01020showtariffs {
 						$output['HMINPEEPS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS',_JOMRES_FRONT_TARIFFS_MINPEEPS);
 						$output['HMAXPEEPS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS',_JOMRES_FRONT_TARIFFS_MAXPEEPS);
 						//$output['title']=stripslashes($tariff->rate_title);
-						$output['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFTITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
+						$output['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
 						//$output['desc']=stripslashes($tariff->rate_description);
 						$output['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
 						$output['VALIDFROM']=outputDate($tariff->validfrom);
