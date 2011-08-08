@@ -13,6 +13,15 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function get_remote_ip_number()
+	{
+	$dirty_ip = $_SERVER['REMOTE_ADDR'];
+	$bang = explode(".",$dirty_ip);
+	if (count($bang)!=4)
+		return "0.0.0.0";
+	return (int)$bang[0].".".(int)$bang[1].".".(int)$bang[2].".".(int)$bang[3];
+	}
+
 // Intended as a utility function used by Jomres modules to display information about a property in modules
 function get_property_module_data($property_uid_array)
 	{
@@ -480,6 +489,11 @@ function output_price($value,$currencycode="",$do_conversion = true)
 	jr_import('jomres_currency_conversion');
 	$conversion = new jomres_currency_conversion();
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	if (is_null($tmpBookingHandler->user_settings['current_exchange_rate']))
+		{
+		$jomres_geolocation = jomres_getSingleton('jomres_geolocation');
+		$jomres_geolocation->auto_set_user_currency_code();
+		}
 	$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
 	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign && $do_conversion && $foreign != "")
 		{
