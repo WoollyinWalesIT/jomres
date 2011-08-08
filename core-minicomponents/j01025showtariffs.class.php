@@ -95,7 +95,7 @@ class j01025showtariffs {
 			 		{
 					$r=array();
 					//$output['title']=stripslashes($tariff->rate_title);
-					$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFTITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
+					$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
 					//$output['desc']=stripslashes($tariff->rate_description);
 					$r['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
 					$r['VALIDFROM']=outputDate($tariff->validfrom);
