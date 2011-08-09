@@ -1147,7 +1147,12 @@ class dobooking
 			$output['STAYDAYS']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS));
 			$output['SUBMIT']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false));
 			$output['LOOKRIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_LOOKRIGHT',_JOMRES_BOOKINGFORM_LOOKRIGHT,false,false));
+			
+			$output['ROOM_TOTAL_EX_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX,false,false));
+			$output['ROOM_TOTAL_INC_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX,false,false));
+			$output['ROOM_TOTAL_ACCOM_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM',_JOMRES_AJAXFORM_BILLING_TAX_ACCOM,false,false));
 
+			
 			if (get_showtime('include_room_booking_functionality'))
 				$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
 
@@ -5433,6 +5438,8 @@ class dobooking
 		{
 		$this->setErrorLog("calcTotals:: Started");
 		$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
+		$this->room_total_ex_tax=$this->room_total+$this->single_person_suppliment;
+		$this->room_total_inc_tax=$this->room_total+$this->single_person_suppliment+$this->tax;
 		$this->setErrorLog("calcTotals::Total: ".$this->billing_grandtotal );
 		$this->contract_total=$this->billing_grandtotal;
 		$this->setErrorLog("calcTotals:: Ended");

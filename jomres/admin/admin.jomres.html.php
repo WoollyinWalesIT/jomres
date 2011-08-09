@@ -97,6 +97,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
 		</tr>
 		<tr align="center" valign="middle">
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME.'</td>
+			<td class="jradmin_subheader_la" valign="top">'.$jqueryUIthemesDropdownList.'</td>
+			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME_DESC.'</td>
+		</tr>
+		<tr align="center" valign="middle">
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JAVASCRIPT_CACHING_TITLE.'</td>
 			<td class="jradmin_subheader_la" valign="top">'.$lists['javascript_caching_enabled'].'</td>
 			<td class="jradmin_subheader_la" valign="top">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
@@ -123,14 +128,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		
 		');
+	
+
 		if ($jrConfig['advanced_site_config'] == 1)
 			$contentPanel->setcontent('
 
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC.'</td>
-			</tr>
+
 			<tr align="center" valign="middle">
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO.'</td>
 				<td class="jradmin_subheader_la" valign="top">'.$lists['limit_property_country'].'</td>
@@ -140,11 +143,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY.'</td>
 				<td class="jradmin_subheader_la" valign="top">'.limitCountriesDropdown().'</td>
 				<td class="jradmin_subheader_la" valign="top">&nbsp;</td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME.'</td>
-				<td class="jradmin_subheader_la" valign="top">'.$jqueryUIthemesDropdownList.'</td>
-				<td class="jradmin_subheader_la" valign="top">'._JOMRES_JQUERYTHEME_DESC.'</td>
 			</tr>
 
 			<!--
@@ -165,11 +163,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td class="jradmin_subheader_la" valign="top">'.$lists['useJomresMessaging'].'</td>
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_GROWL_DESC.'</td>
 			</tr>
-			<tr align="center" valign="middle">
-				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER.'</td>
-				 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers'].'</td>
-				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER_DESC.'</td>
-			</tr>
+
 			<tr align="center" valign="middle">
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_MANAGEROPTIONSASIMAGES.'</td>
 				 <td class="jradmin_subheader_la" valign="top">'.$lists['menusAsImages'].'</td>
@@ -240,6 +234,45 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</table>');
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
+	
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$contentPanel->startPanel(jr_gettext('_JOMRES_PATHWAY_BOOKINGFORM',_JOMRES_PATHWAY_BOOKINGFORM,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr align="center" valign="middle">
+				<th width="20%" class="jomres_title">&nbsp;</th>
+				<th width="20%" class="jomres_title">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="jomres_title">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
+				<td class="jradmin_subheader_la" valign="top">'.$lists['show_booking_form_in_property_details'].'</td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_MODALPOPUP.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['booking_form_modal_popup'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_MODALPOPUP_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_booking_form_totalspanel_position" value="'.$jrConfig['booking_form_totalspanel_position'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
+	
 	if ($jrConfig['advanced_site_config'] == 1)
 		{
 		$contentPanel->startPanel(jr_gettext('_JRPORTAL_ROI_TAB',_JRPORTAL_ROI_TAB,FALSE));

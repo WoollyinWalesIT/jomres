@@ -502,8 +502,19 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		//var bookedDays = ["2010-6-10","2010-6-12","2010-6-14"];
 		}
 	$output['BOOKEDDATES']= $booked_dates_output;
+	$output['MODAL']=''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.
+	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1")
+		{
+		$output['MODAL'] = 'jomresJquery( "#booking_form" ).dialog({width:980,modal:true});';
+		$output['HIDDENSTYLE']='style="display:none"';
+		}
+	$output['PANELPOSITION']=$jrConfig['booking_form_totalspanel_position'];
 	
-	
+	$output['DEPOSIT_CLASS'] = '';
+	if (isset($output['DEPOSIT'])) // Need this to stop the booking form totals panel from showing a thick line if the deposit option is disabled
+		{
+		$output['DEPOSIT_CLASS'] = 'class="ui-widget ui-widget-content ui-corner-all"';
+		}
 	// v4.5.5
 	if (!isset($mrConfig['booking_form_rooms_list_style']))
 		$mrConfig['booking_form_rooms_list_style'] = "1";

@@ -221,6 +221,7 @@ function showSiteConfig(  )
 	$lists['load_jquery_ui_css']					= jomresHTML::selectList( $yesno, 'cfg_load_jquery_ui_css', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery_ui_css'] );
 	$lists['use_conversion_feature']				= jomresHTML::selectList( $yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_conversion_feature'] );
 	$lists['javascript_caching_enabled']			= jomresHTML::selectList( $yesno, 'cfg_javascript_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['javascript_caching_enabled'] );
+	$lists['booking_form_modal_popup']				= jomresHTML::selectList( $yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['booking_form_modal_popup'] );
 
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
 	}

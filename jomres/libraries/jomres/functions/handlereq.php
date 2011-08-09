@@ -383,8 +383,10 @@ if ($field != "heartbeat" && $field != "show_log")
 				}
 
 			if ($bkg->cfg_showExtras)
+				{
 				echo '; populateDiv("extrastotal","'.output_price($bkg->getExtrasTotal()).'")';
-			
+				echo '; populateDiv("extrastotal_totals_panel","'.output_price($bkg->getExtrasTotal()).'")';
+				}
 			$room_tax = $bkg->getTax();
 			$extra_tax=0.00;
 			if (count($bkg->extra_taxs)>0)
@@ -399,6 +401,8 @@ if ($field != "heartbeat" && $field != "show_log")
 			if (get_showtime('include_room_booking_functionality'))
 				echo '; populateDiv("taxtotal","'.output_price($room_tax).'")';
 			echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
+			echo '; populateDiv("room_total_ex_tax","'.output_price($bkg->room_total_ex_tax).'")';
+			echo '; populateDiv("room_total_inc_tax","'.output_price($bkg->room_total_inc_tax).'")';
 			if ($showDeposit=="1")
 				echo '; populateDiv("deposit","'.output_price($bkg->getDeposit()).'")';
 			if ($bkg->singlePersonSupplimentCalculated)

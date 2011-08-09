@@ -1574,7 +1574,13 @@ define('_JOMRES_CURRENCYCONVERSION_TAB','Currency conversion/currency codes');
 define('_JOMRES_IP_DETECTION_API_KEY_TITLE','IP Detection API Key');
 define('_JOMRES_IP_DETECTION_API_KEY_DESC','To automatically set the currency code dropdown Jomres is able to use a free service called IPinfoDB to detect the visitor\'s country, however you need to register for an API key at <a href="http://ipinfodb.com/register.php" target="_blank">IPinfoDB</a> first.');
 define('_JOMRES_DEBUGGING_TAB','Debugging');
-
+define('_JOMRES_BOOKINGORM_MODALPOPUP','Show the booking form in a modal popup?');
+define('_JOMRES_BOOKINGORM_MODALPOPUP_DESC','If the option to show the booking form in the property details is set to No, then when the booking form page is opened Jomres can show the booking form in a modal popup. This allows you to include much more information in the booking form without overwhelming the customer by having too many elements on the screen (as they\'re hidden behind the popup)');
+define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION','Totals panel location');
+define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC','In the booking form the totals panel needs different settings depending on the template. For example, on the Jomres Joomla template a setting of 712 works well, however on Milkyway a setting of circa 1500 is more suitablem, particularly if you do not have the modal popup feature enabled. It\'s likely that you\'ll need to experiment with different settings to find something that works well in your chosen template. ');
+define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Accomodation ex tax');
+define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Accomodation inc tax');
+define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM','Rooms tax:');
 
 
 

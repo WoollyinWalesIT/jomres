@@ -212,6 +212,7 @@ $jrConfig['use_conversion_feature'] = "1";
 $jrConfig['javascript_caching_enabled'] = "0";
 
 $jrConfig['geolocation_api_key'] = "";
-
+$jrConfig['booking_form_modal_popup'] = "1";
+$jrConfig['booking_form_totalspanel_position'] = "712";
 
 ?>
