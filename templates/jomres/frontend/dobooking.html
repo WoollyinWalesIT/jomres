@@ -84,7 +84,11 @@ jomresJquery(document).ready(function() {
         jomresJquery('#totals').removeClass('fixed');
       }
     });
-	
+	jomresJquery( "#open_booking_form" )
+		.button()
+		.click(function() {
+			jomresJquery( "#booking_form" ).dialog( "open" );
+	});
 });
 </script>
 <script type="text/javascript">
@@ -92,6 +96,7 @@ jomresJquery(document).ready(function() {
 </patTemplate:tmpl>
 </script>
 <br />
+{OPENBOOKINGOFRM_BUTTON}
 <div id="booking_form" {HIDDENSTYLE}>
 <form action="javascript:dobooking_validate()" name="ajaxform" id="ajaxform" method="post">
 <div class="ui-widget ui-widget-content ui-corner-all" >
