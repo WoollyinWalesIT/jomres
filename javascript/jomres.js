@@ -406,6 +406,7 @@ function checkSelectRoomMessage(oktobook){
 				jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
 				jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
 				jomresJquery("#totals_container").delay(800).fadeTo("slow", 0.1);
+				jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 0.1);
 				}
 			}
 		else{
@@ -414,6 +415,7 @@ function checkSelectRoomMessage(oktobook){
 			jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);
 			jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 1);
 			jomresJquery("#totals_container").delay(800).fadeTo("slow", 1);
+			jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 1);
 			}
 	};
 

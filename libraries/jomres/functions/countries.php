@@ -125,13 +125,11 @@ function limitCountriesDropdown()
 * @copyright  2005-2006 Vince Wooll
 #
  */
-function createCountriesDropdown($selectedCountry)
+function createCountriesDropdown($selectedCountry,$input_name = "country")
 	{
-	//$countryNames=countryNameArray();
 	$countryCodes=countryCodesArray();
 	asort($countryCodes);
-	$countryDropdown = '<span><select id="country" class="inputbox" name="country" onchange="OnChange(this.form.country)">';
-	//$countryDropdown="<select id=\"country\" name=\"country\"  class=\"inputbox\" onchange='OnChange(this.form.country)'>";
+	$countryDropdown = '<span><select id="'.$input_name.'" class="inputbox" name="'.$input_name.'" onchange="OnChange(this.form.'.$input_name.')">';
 	foreach ($countryCodes as $k=>$v)
 		{
 		$loopedCountry=$v;
