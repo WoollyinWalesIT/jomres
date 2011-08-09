@@ -1151,8 +1151,8 @@ class dobooking
 			$output['ROOM_TOTAL_EX_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX,false,false));
 			$output['ROOM_TOTAL_INC_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX,false,false));
 			$output['ROOM_TOTAL_ACCOM_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM',_JOMRES_AJAXFORM_BILLING_TAX_ACCOM,false,false));
+			$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM',_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM,false,false));
 
-			
 			if (get_showtime('include_room_booking_functionality'))
 				$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
 

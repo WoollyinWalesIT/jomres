@@ -1570,6 +1570,7 @@ define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC','In the booking form the t
 define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Accomodation ex tax');
 define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Accomodation inc tax');
 define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM','Rooms tax:');
+define('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM','Open the booking form');
 
 
 

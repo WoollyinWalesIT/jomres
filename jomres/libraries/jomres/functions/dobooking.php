@@ -507,7 +507,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		{
 		$output['MODAL'] = 'jomresJquery( "#booking_form" ).dialog({width:980,modal:true});';
 		$output['HIDDENSTYLE']='style="display:none"';
+		$output['OPENBOOKINGOFRM_BUTTON']='<button id="open_booking_form">'.$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM'].'</button>';
 		}
+	
 	$output['PANELPOSITION']=$jrConfig['booking_form_totalspanel_position'];
 	
 	$output['DEPOSIT_CLASS'] = '';
