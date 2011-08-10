@@ -65,10 +65,10 @@ class jomres_geolocation
 				$tmpBookingHandler->user_settings['geolocated_country'] = $this->detected_country;
 				}
 			else
-				$tmpBookingHandler->user_settings['geolocated_country'] = "GBP";
+				$tmpBookingHandler->user_settings['geolocated_country'] = $this->detected_country;
 			}
 		else
-			$tmpBookingHandler->user_settings['geolocated_country'] = "GBP";
+			$tmpBookingHandler->user_settings['geolocated_country'] = $this->detected_country;
 		}
 
 	public function auto_set_user_currency_code()
@@ -78,13 +78,12 @@ class jomres_geolocation
 		$currency_codes =  new currency_codes();
 		$country_codes_to_currency_codes = $currency_codes->country_codes_to_currency_codes;
 		$currency_code = $country_codes_to_currency_codes[$this->detected_country];
-//var_dump($currency_code);exit;
 		jr_import('jomres_currency_conversion');
 		$conversion = new jomres_currency_conversion();
 		if($conversion-> this_code_can_be_converted($currency_code))
 			$tmpBookingHandler->user_settings['current_exchange_rate'] = $currency_code;
 		else
-			$tmpBookingHandler->user_settings['current_exchange_rate'] = "GBP";
+			$tmpBookingHandler->user_settings['current_exchange_rate'] = "EUR";
 		}
 	}
 ?>
