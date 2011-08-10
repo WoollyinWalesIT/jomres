@@ -71,6 +71,18 @@ class j01020showtariffs {
 			$tariffsList = doSelectSql($query);
 			$google_deets=array();
 			$tariff_deets=array();
+			
+			$query = "SELECT tarifftype_id,tariff_id  FROM #__jomcomp_tarifftype_rate_xref  WHERE property_uid = ".(int)$property_uid;
+			$result = doSelectSql($query);
+			$tariff_tarifftypes_xref = array();
+			if (count($result)>0)
+				{
+				foreach ($result as $r)
+					{
+					$tariff_tarifftypes_xref[$r->tariff_id] = $r->tarifftype_id;
+					}
+				}
+			
 			if (count($tariffsList)>0)
 				{
 				$today = date("Y/m/d");
@@ -111,10 +123,13 @@ class j01020showtariffs {
 						$output['HMAXDAYS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MAXDAYS',_JOMRES_FRONT_TARIFFS_MAXDAYS);
 						$output['HMINPEEPS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS',_JOMRES_FRONT_TARIFFS_MINPEEPS);
 						$output['HMAXPEEPS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS',_JOMRES_FRONT_TARIFFS_MAXPEEPS);
-						//$output['title']=stripslashes($tariff->rate_title);
-						$output['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
-						//$output['desc']=stripslashes($tariff->rate_description);
-						$output['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
+
+						if ($mrConfig['tariffmode']=="2")
+							$output['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[$tariff->rates_uid],stripslashes($tariff->rate_title) );
+						else
+							$output['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
+
+	
 						$output['VALIDFROM']=outputDate($tariff->validfrom);
 						$output['VALIDTO']=outputDate($tariff->validto);
 
