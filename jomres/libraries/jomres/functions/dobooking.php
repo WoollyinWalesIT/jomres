@@ -501,6 +501,11 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$booked_dates_output .='];';
 		//var bookedDays = ["2010-6-10","2010-6-12","2010-6-14"];
 		}
+		
+	$output['TOTALS_PANEL_BG_PATH']='jomres/images/';
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'totals_panel_bg.jpg'))
+		$output['TOTALS_PANEL_BG_PATH']='jomres/uploadedimages/';
+	
 	$output['BOOKEDDATES']= $booked_dates_output;
 	$output['MODAL']=''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.
 	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1")
