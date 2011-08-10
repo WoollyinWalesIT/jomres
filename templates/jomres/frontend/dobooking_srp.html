@@ -1,12 +1,27 @@
 <patTemplate:tmpl name="pageoutput">
 <style type="text/css">
-#totalinparty, #selectedRooms,#roompernight,#rooms_listing {
+#selectedRooms,#roompernight,#rooms_listing {
 	display: none;
 	}
 
 #availRooms {
 	display:none;
 	}
+
+#totalsWrapper { /* required to avoid jumping */
+  left: {PANELPOSITION}px;
+  position: absolute;
+}
+
+#totals {
+  position: absolute;
+  top: 0;
+}
+
+#totals.fixed {
+  position: fixed;
+  top: 0;
+}
 </style>
 <script type="text/javascript">
 {BOOKEDDATES}
@@ -50,25 +65,50 @@ function dateStatus(date) {
 		return false; // leave other dates enabled
 	//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
 }
+jomresJquery(document).ready(function() {
+	{MODAL}
+	jomresJquery.jheartbeat.set({
+		url: ajaxurl+"&task=handlereq&no_html=1&field=heartbeat",
+		delay: 30000
+	});
+	var top = jomresJquery('#totals').offset().top - parseFloat(jomresJquery('#totals').css('margin-top').replace(/auto/, 0));
+	
+	jomresJquery(window).scroll(function (event) {
+	// what the y position of the scroll is
+	var y = jomresJquery(this).scrollTop();
 
-</script>
-<script type="text/javascript">
+	// whether that's below the form
+	if (y >= top) {
+		// if so, ad the fixed class
+		jomresJquery('#totals').addClass('fixed');
+	} else {
+	// otherwise remove it
+		jomresJquery('#totals').removeClass('fixed');
+		}
+	});
+
+	jomresJquery( "#open_booking_form" )
+		.button()
+		.click(function() {
+			jomresJquery( "#booking_form" ).dialog( "open" );
+	});
+});
+
 <patTemplate:tmpl name="onload">toload[{COUNT}]= "{ONLOAD}"
 </patTemplate:tmpl>
 </script>
+
 <br />
+{OPENBOOKINGOFRM_BUTTON}
+<div id="booking_form" {HIDDENSTYLE}>
 <form action="javascript:dobooking_validate()" name="ajaxform" id="ajaxform" method="post">
 	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 		<div>
-			<div class="block_ui_bookingform">
+			<div class="ui-widget ui-corner-all" style="float: left; width:100%;">
+				<div id="messages">&nbsp;</div>
+			</div>
+			<div class="block_ui_bookingform" style="float: left; width:700px;">
 				<table border="0" width="100%">
-					<tr>
-						<td valign="top">
-						<div class="ui-widget ui-corner-all">
-							<div id="messages">&nbsp;</div>
-						</div>
-						</td>
-					</tr>
 					<tr>
 						<td valign="top">
 							<div id="arrivalcontainer">
@@ -118,41 +158,7 @@ function dateStatus(date) {
                         </td>
                    	</tr>
 					</patTemplate:tmpl>
-                    <tr>
-						<td valign="top">
-								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
-									<tr>
-										<th colspan="2">
-											{BILLING_ROOMTOTAL}
-										</th>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<div id="rooms_listing" style="text-align:center;">{AVAILABLEROOMS}</div>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<div id="discount" class="jomres_message">&nbsp;</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<table border="0" width="55%">
-												<tr>
-													<td><b>{ACCOMMODATION_TOTAL}&nbsp;(</b></td>
-													<td><b><div id="staydays"></div></b></td>
-													<td><b>{STAYDAYS}</b></td>
-													<td><b>)</b></td>
-												</tr>
-											</table>
-										<td>
-											<b><div id="roomtotal" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-								</table>
-						</td>
-					</tr>
+
                     <patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
 					<tr>
 						<td valign="top">
@@ -184,61 +190,6 @@ function dateStatus(date) {
 						</td>
 					</tr>
                     </patTemplate:tmpl>
-					<tr>
-						<td valign="top">
-							<div id="totals_container">
-								<table class="bform_table ui-tabs ui-widget ui-widget-content ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
-									<tr>
-										<th colspan="6" class="ui-state-highlight">{PRICE_SUMMARY}</th>
-									</tr>
-									<tr>
-										<td><b>{BILLING_TAX}</b></td>
-										<td>
-											<b><div id="taxtotal" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-									<tr>
-										<td><b>{EXTRAS_TAX}</b></td>
-										<td>
-											<b><div id="extra_tax" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-									<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
-									<tr>
-										<td><b>{COUPON_DISCOUNT_VALUE}</b></td>
-										<td>
-											<b><div id="coupon_discount_value" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-									</patTemplate:tmpl>
-									<tr>
-										<td><b>{PERSONAL_DISCOUNT}</b></td>
-										<td>
-											<b><div id="personal_discount" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-									<tr>
-										<td><b>{SINGLE_PERSON_SUPPLIMENT}</b></td>
-										<td>
-											<b><div id="single_suppliment" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-									<tr>
-										<td><b>{BILLING_TOTAL}</b></td>
-										<td>
-											<b><div id="grandtotal" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-									<tr>
-										<td><b>{DEPOSIT}</b></td>
-										<td>
-											<b><div id="deposit" style="text-align:right;"></div></b>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-					</tr>
 					<tr>
 						<td>
 							<div style="text-align:center">
@@ -373,20 +324,99 @@ function dateStatus(date) {
 					</tr>
 				</table>
 			</div>
-			<div>
-				{AJAXFORM_INSTRUCTIONS}
+			<div id="totalsWrapper">
+				<div id="totals">
+					<div class="ui-widget ui-corner-all" style="background-color:#ffffff;background-image:url('{TOTALS_PANEL_BG_PATH}totals_panel_bg.jpg');background-repeat:no-repeat;width:250px;padding:5px;font-size:0.8em;">
+						<div id="totals_container">
+							<div class="ui-widget-header">{PRICE_SUMMARY}</div>
+							<div>
+								&nbsp;
+							</div>
+							<strong>
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{BILLING_TOTAL}
+								<div id="grandtotal"  style="float:right;padding-right:5px;"></div>
+							</div>
+							</strong>
+							<div>
+								&nbsp;
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{ROOM_TOTAL_EX_TAX} <div id="room_total_ex_tax" style="float:right;padding-right:5px;"></div>
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{ROOM_TOTAL_INC_TAX} <div id="room_total_inc_tax" style="float:right;padding-right:5px;"></div>
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{ROOM_TOTAL_ACCOM_TAX}
+								<div id="taxtotal" style="float:right;padding-right:5px;"></div>
+							</div>
+							<div>
+								&nbsp;
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{EXTRAS_TOTAL}
+								<div id="extrastotal_totals_panel" style="float:right;padding-right:5px;"></div>
+							</div>
+							
+							<div  class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{EXTRAS_TAX}
+								<div id="extra_tax" style="float:right;padding-right:5px;"></div>
+							</div>
+							<div>
+								&nbsp;
+							</div>
+							<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{COUPON_DISCOUNT_VALUE}
+								<div id="coupon_discount_value"  style="float:right;padding-right:5px;"></div>
+							</div>
+							</patTemplate:tmpl>
+							<div style="padding-left:5px;">
+								{PERSONAL_DISCOUNT}
+								<div id="personal_discount"  style="float:right;padding-right:5px;"></div>
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{SINGLE_PERSON_SUPPLIMENT} <div id="single_suppliment" style="float:right;padding-right:5px;"></div>
+							</div>
+							<div {DEPOSIT_CLASS} style="padding-left:5px;">
+								{DEPOSIT}<div id="deposit" style="text-align:right;padding-right:5px;"></div>
+							</div>
+							<div>
+								&nbsp;
+							</div>
+						</div>
+						<patTemplate:tmpl name="rooms_list_accommodation_panel_output" type="simpleCondition" requiredVars="billing_roomtotal">
+						<div id="accommodation_container">
+							<div class="ui-widget-header" style="padding-left:5px;">{BILLING_ROOMTOTAL}</div>
+							<div>
+								&nbsp;
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all">
+								<span id="staydays"  style="padding-left:5px;"></span> {ACCOMMODATION_NIGHTS}
+								<span id="roompernight"></span>
+							{ACCOMMODATION_PERROOM}
+							</div>
+							<div>
+								<span id="discount" class="jomres_message">&nbsp;</span>
+							</div>
+							<div class="ui-widget ui-widget-content ui-corner-all">
+								<span id="totalinparty" style="padding-left:5px;">&nbsp;</span>
+								{BILLING_TOTALINPARTY}
+							</div>
+							<div>
+								&nbsp;
+							</div>
+						</div>
+						</patTemplate:tmpl>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+<div style="float: left; width:600px;">{AJAXFORM_INSTRUCTIONS}</div>
 <input type="hidden" name="property_uid" value="{PROPERTYUID}">
 </form>
-<script>
-jomresJquery(document).ready(function() {
-	jomresJquery.jheartbeat.set({
-		url: ajaxurl+"&task=handlereq&no_html=1&field=heartbeat",
-		delay: 30000
-	});
-});
-</script>
+</div>
 <br />
 </patTemplate:tmpl>
