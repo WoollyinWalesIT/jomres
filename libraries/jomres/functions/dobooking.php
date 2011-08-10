@@ -506,6 +506,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'totals_panel_bg.jpg'))
 		$output['TOTALS_PANEL_BG_PATH']='jomres/uploadedimages/';
 	
+	$current_property_details =jomres_getSingleton('basic_property_details');
+	$output['PROPERTYNAME'] = $current_property_details->get_property_name($selectedProperty);
+	
 	$output['BOOKEDDATES']= $booked_dates_output;
 	$output['MODAL']=''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.
 	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1")
