@@ -62,6 +62,17 @@ class j01025showtariffs {
 		$output['HMINPEEPS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MINPEEPS',_JOMRES_FRONT_TARIFFS_MINPEEPS);
 		$output['HMAXPEEPS']=jr_gettext('_JOMRES_FRONT_TARIFFS_MAXPEEPS',_JOMRES_FRONT_TARIFFS_MAXPEEPS);
 		$output['CONVERSIONBLURB']=jr_gettext('_JOMRES_CURRENCYCONVERSIONTEXT',_JOMRES_CURRENCYCONVERSIONTEXT);
+		
+		$query = "SELECT tarifftype_id,tariff_id  FROM #__jomcomp_tarifftype_rate_xref  WHERE property_uid = ".(int)$property_uid;
+		$result = doSelectSql($query);
+		$tariff_tarifftypes_xref = array();
+		if (count($result)>0)
+			{
+			foreach ($result as $r)
+				{
+				$tariff_tarifftypes_xref[$r->tariff_id] = $r->tarifftype_id;
+				}
+			}
 
 		if (count($tariffsList)>0)
 			{
@@ -94,9 +105,11 @@ class j01025showtariffs {
 			 	if ($unixTodaysDate<$unixValidto)
 			 		{
 					$r=array();
-					//$output['title']=stripslashes($tariff->rate_title);
-					$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
-					//$output['desc']=stripslashes($tariff->rate_description);
+					if ($mrConfig['tariffmode']=="2")
+						$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[$tariff->rates_uid],stripslashes($tariff->rate_title) );
+					else
+						$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
+					
 					$r['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
 					$r['VALIDFROM']=outputDate($tariff->validfrom);
 					$r['VALIDTO']=outputDate($tariff->validto);
