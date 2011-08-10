@@ -4777,7 +4777,7 @@ class dobooking
 			}
 
 		$rpn=($total)/$stayDays;
-		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1" && count($tarifftypeids)>0)
+		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1" && count($tarifftypeids)==0)
 			{
 			$rpn=$rpn/7;
 			}
