@@ -590,13 +590,14 @@ class j02260editbooking {
 				<td>'.output_price($otherServiceTotal+$booking_contract_total).'</td>
 			</tr>');
 			$query = "SELECT invoice_uid FROM #__jomres_contracts WHERE contract_uid = ".$booking_contract_uid. " LIMIT 1 ";
-			$invoice_uid = doSelectSql($query,1);
+			$invoice_uid = (int)doSelectSql($query,1);
 			if ($invoice_uid > 0 )
 				{
-				jr_import("jrportal_invoice");
-				$invoice = new jrportal_invoice();
+				jr_import("invoicehandler");
+				$invoice = new invoicehandler();
 				$invoice->id = $invoice_uid;
-				$remaindertopay=$invoice->get_invoice_balance();
+				$invoice->getInvoice();
+				$remaindertopay=$invoice->get_line_items_balance();
 				}
 			else
 				{
@@ -605,7 +606,7 @@ class j02260editbooking {
 				else
 					$remaindertopay=$otherServiceTotal+$booking_contract_total;
 				}
-
+//
 			$contentPanel->setcontent('
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY',_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY).'</td>
