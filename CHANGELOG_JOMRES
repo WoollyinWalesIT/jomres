@@ -1,3 +1,40 @@
+Jomres 5.4
+
+The booking form has been rebuilt with a view to UI improvements.
+Added a new sliding panel that scrolls with the user through the booking form, containing the totals, including new output of the room totals inc and excl tax.
+The booking form, if not showen in the property details page, will now open up in a modal popup, allowing us much more space to present to the user the booking form without overwhelming them (the areas behind are hidden). This can be disabled in Site Config.
+New Site config tab that holds booking form relevant options (some new, some moved from the Misc tab).
+Added a button to enable re-opening the booking form in the event that it (the modal panel) was closed.
+
+Added new functionality to auto-detect a user's location based on their IP number, and use that setting to automatically set the currency code and the currency code dropdown.
+Re-organised the Site Config to make a little more sense, moved some elements out from the Misc tab into their own tabs.
+Re-organised the country code dropdown to make it alphabetical
+
+Register property and countries scripts modified to rename the "country" tag to xyz (I was bored and couldn't think of anything else) to prevent other module's "country" inputs from interfering with the country selection when a new country is chosen.
+Changed the memory limit in admin.php to prevent issues with large numbers of Jintour tours causing out of memory errors.
+Added a line to jomres_decode that'll strip ascii line seperators from text, as this can break javascript.
+A couple of changes to encourage Jomres to pick up the appropriate language file when the ptype is set in a search option.
+
+Small change to css and list properties template to ensure that the property name is shown in white, therefore it works well with the jquery ui headers.
+Small modification to change what we measure in the psuedocron backend functionality to prevent duplicate jobs from showing.
+Minor tweak to database class to correctly log the source of a db query's calling script.
+Added improved code for filtering out mootools (?) added function names to json returned data. Again, thanks David.
+Added a missing div to bookguestout.html
+Modified the return url in the save subscriber script to ensure that when a user chooses to not subscribe, they're sent to the correct page when SEF is enabled.
+Modified the booking data archive script to not include "bookings" that don't have a property uid set.
+Small change to prevent older Advanced weekly prices setting impacting prices once the manager's changed to micromanage mode.
+Removed a reference to the tariff description, which was only ever intended for reception use, from the verbose tariff output that shows on the property details page.
+Modified scripts so that translated tariffs that are created under micromanage mode can be shown in the property details.
+Modified how the remainder to pay is figured out in the edit booking page to ensure that we're using the most appropriate method.
+
+Modified list properties and router.php to allow router.php to use existing property names found by the basic property details class, means fewer queries are performed when pulling property names for url generation.
+Modified list properties and discounts minicomponents to reduce the number of queries performed, and modified the template to show :- only if review data included.
+Modified the getPropertyAddressForPrint function to use the basic_property_details data wherever possible.
+Optimised the taxrates_getalltaxrates function to only perform the query once by storing the results in showtime.
+Optimised the property type name finding functionality of list properties.
+Optimised the custom field handler to make fewer queries.
+
+
 Jomres 5.3
 
 
