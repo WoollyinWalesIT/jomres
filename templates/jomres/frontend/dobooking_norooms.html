@@ -19,6 +19,7 @@
 }
 
 #totals.fixed {
+  z-index: 1;
   position: fixed;
   top: 0;
 }
@@ -102,9 +103,9 @@ jomresJquery(document).ready(function() {
 {OPENBOOKINGOFRM_BUTTON}
 <div id="booking_form" {HIDDENSTYLE} title="{PROPERTYNAME}">
 <form action="javascript:dobooking_validate()" name="ajaxform" id="ajaxform" method="post">
-	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	<div class="ui-widget ui-widget-content ui-corner-all">
 		<div>
-			<div class="ui-widget ui-corner-all" style="float: left; width:100%;">
+			<div>
 				<div id="messages">&nbsp;</div>
 			</div>
 			<div class="block_ui_bookingform" style="float: left; width:700px;">
