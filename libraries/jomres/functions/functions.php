@@ -511,7 +511,7 @@ function output_price($value,$currencycode="",$do_conversion = true)
 		
 		$price = $currfmt->get_formatted($price);
 		$price = $symbols['pre'].$price.$symbols['post'];
-		$price = "".$converted_output_price. " <span class='jomres_native_price_size'>(".$price.")</span> ";
+		$price = "".$converted_output_price. " <span>(".$price.")</span> ";
 		}
 	else
 		{
