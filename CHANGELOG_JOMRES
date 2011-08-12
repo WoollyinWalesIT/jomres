@@ -1,3 +1,8 @@
+Jomres 5.4.1
+
+Added z-index to the totals panel slider.
+Removed span class from the output_price function as it was creating issues when saving bookings.
+
 Jomres 5.4
 
 The booking form has been rebuilt with a view to UI improvements.
