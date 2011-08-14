@@ -99,7 +99,7 @@ class currency_codes
 			'JPY'=>'Japanese Yen JPY ',
 			'JOD'=>'Jordanian Dinar JOD ',
 			'KZT'=>'Kazakhstan Tenge KZT ',
-			'KES'=>'Kenyan Schilling KES ',
+			'KES'=>'Kenyan Shilling KES ',
 			'KRW'=>'Korean Won KRW ',
 			'KWD'=>'Kuwaiti Dinar KWD ',
 			'LAK'=>'Lao Kip LAK ',
