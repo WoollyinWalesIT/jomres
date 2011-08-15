@@ -64,7 +64,7 @@ class j00012pathway {
 
 		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
 
-		if (_JOMRES_DETECTED_CMS == "joomla15" )
+		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 			{
 			$mainframe =& JFactory::getApplication();
 			$breadcrumbs = & $mainframe->getPathWay();
