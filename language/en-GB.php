@@ -1345,7 +1345,7 @@ define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS','Show Booking form in bu
 define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC','Set this to Yes to show the booking form in the business details page. If you set it to No, then a link will appear in the business details page instead pointing to the booking form.');
 define('_JOMRES_COM_A_TAXINCLUSIVE','Tariffs are gross?');
 define('_JOMRES_COM_A_TAXINCLUSIVE_DESC','Prices set are gross? If your prices include tax, then select Yes. If they are not (IE nett), select No.');
-define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS','Extras tax:');
+define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS','Services tax:');
 define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK','The day of week fields allow you to set a rate for a given day of week, once you click the day of week button all days of the week will be set to that rate.');
 define('_JOMRES_MICROMANAGE_PICKER_DATERANGES','The date pickers and the rate input allow you to set one price for a given date range. Choose a start and end date, input a price, and click the Set Rates button.');
 define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_START','Start range');
