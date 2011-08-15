@@ -66,7 +66,7 @@ class j00012pathway {
 
 		if (_JOMRES_DETECTED_CMS == "joomla15" )
 			{
-			global $mainframe;
+			$mainframe =& JFactory::getApplication();
 			$breadcrumbs = & $mainframe->getPathWay();
 			$breadcrumbs->setPathway();
 			}
