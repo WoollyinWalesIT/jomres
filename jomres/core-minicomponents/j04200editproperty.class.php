@@ -107,46 +107,20 @@ class j04200editproperty {
 				$property_othertransport=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',html_entity_decode(trim(stripslashes($property->property_othertransport))),false,false);
 				$property_policiesdisclaimers=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',html_entity_decode(trim(stripslashes($property->property_policies_disclaimers))),false,false);
 
-				if ($jrConfig['allowHTMLeditor']=="1" || $jrConfig['allowHTMLeditor']=="2" || $jrConfig['allowHTMLeditor'] == "3")
+				if ($jrConfig['allowHTMLeditor']=="1")
 					{
-					if ($jrConfig['allowHTMLeditor'] == "1")
-						{
-						$hiddenField="property_description";
-						$width="95%";
-						$height="250";
-						$col="20";
-						$row="10";
-						$output['PROPERTY_DESCRIPTION']=editorAreaText( 'property_description',$property_description, 'property_description', $width, $height, $col, $row );
-						$output['PROPERTY_CHECKIN_TIMES']=editorAreaText( 'property_checkin_times', $property_checkintimes, 'property_checkin_times', $width, $height, $col, $row );
-						$output['PROPERTY_AREA_ACTIVITIES']=editorAreaText( 'property_area_activities', $property_areaactivities, 'property_area_activities', $width, $height, $col, $row );
-						$output['PROPERTY_DRIVING_DIRECTIONS']=editorAreaText( 'property_driving_directions', $property_drivingdirections, 'property_driving_directions', $width, $height, $col, $row );
-						$output['PROPERTY_AIRPORTS']=editorAreaText( 'property_airports', $property_airports, 'property_airports', $width, $height, $col, $row );
-						$output['PROPERTY_OTHERTRANSPORT']=editorAreaText( 'property_othertransport', $property_othertransport, 'property_othertransport', $width, $height, $col, $row );
-						$output['PROPERTY_POLICIES_DISCLAIMERS']=editorAreaText( 'property_policies_disclaimers', $property_policiesdisclaimers, 'property_policies_disclaimers', $width, $height, $col, $row );
-						}
-					else
-						{
-						if ($jrConfig['allowHTMLeditor'] == "2")
-							{
-							$output['PROPERTY_DESCRIPTION']= flashArea('property_description',$property_description);
-							$output['PROPERTY_CHECKIN_TIMES']= flashArea('property_checkin_times', $property_checkintimes);
-							$output['PROPERTY_AREA_ACTIVITIES']= flashArea('property_area_activities', $property_areaactivities);
-							$output['PROPERTY_DRIVING_DIRECTIONS']= flashArea('property_driving_directions', $property_drivingdirections);
-							$output['PROPERTY_AIRPORTS']=flashArea('property_airports', $property_airports);
-							$output['PROPERTY_OTHERTRANSPORT'] = flashArea('property_othertransport', $property_othertransport);
-							$output['PROPERTY_POLICIES_DISCLAIMERS']= flashArea('property_policies_disclaimers', $property_policiesdisclaimers);
-							}
-						if ($jrConfig['allowHTMLeditor'] == "3")
-							{
-							$output['PROPERTY_DESCRIPTION']= flashArea('property_description', $property_description);
-							$output['PROPERTY_CHECKIN_TIMES']='<textarea class="inputbox" cols="40" rows="3" name="property_checkin_times">'.$property_checkintimes.'</textarea>';
-							$output['PROPERTY_AREA_ACTIVITIES']='<textarea class="inputbox" cols="40" rows="3" name="property_area_activities">'.$property_areaactivities.'</textarea>';
-							$output['PROPERTY_DRIVING_DIRECTIONS']='<textarea class="inputbox" cols="40" rows="3" name="property_driving_directions">'.$property_drivingdirections.'</textarea>';
-							$output['PROPERTY_AIRPORTS']='<textarea class="inputbox" cols="40" rows="3" name="property_airports">'.$property_airports.'</textarea>';
-							$output['PROPERTY_OTHERTRANSPORT']='<textarea class="inputbox" cols="40" rows="3" name="property_othertransport">'.$property_othertransport.'</textarea>';
-							$output['PROPERTY_POLICIES_DISCLAIMERS']='<textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">'.$property_policiesdisclaimers.'</textarea>';
-							}
-						}
+					$hiddenField="property_description";
+					$width="95%";
+					$height="250";
+					$col="20";
+					$row="10";
+					$output['PROPERTY_DESCRIPTION']=editorAreaText( 'property_description',$property_description, 'property_description', $width, $height, $col, $row );
+					$output['PROPERTY_CHECKIN_TIMES']=editorAreaText( 'property_checkin_times', $property_checkintimes, 'property_checkin_times', $width, $height, $col, $row );
+					$output['PROPERTY_AREA_ACTIVITIES']=editorAreaText( 'property_area_activities', $property_areaactivities, 'property_area_activities', $width, $height, $col, $row );
+					$output['PROPERTY_DRIVING_DIRECTIONS']=editorAreaText( 'property_driving_directions', $property_drivingdirections, 'property_driving_directions', $width, $height, $col, $row );
+					$output['PROPERTY_AIRPORTS']=editorAreaText( 'property_airports', $property_airports, 'property_airports', $width, $height, $col, $row );
+					$output['PROPERTY_OTHERTRANSPORT']=editorAreaText( 'property_othertransport', $property_othertransport, 'property_othertransport', $width, $height, $col, $row );
+					$output['PROPERTY_POLICIES_DISCLAIMERS']=editorAreaText( 'property_policies_disclaimers', $property_policiesdisclaimers, 'property_policies_disclaimers', $width, $height, $col, $row );
 					}
 				else
 					{
