@@ -70,6 +70,12 @@ class j00012pathway {
 			$breadcrumbs = & $mainframe->getPathWay();
 			$breadcrumbs->setPathway();
 			}
+		if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
+			{
+			$mainframe =& JFactory::getApplication();
+			$breadcrumbs = & $mainframe->getPathway();
+			$breadcrumbs->setPathway();
+			}
 
 		$no_html			= jomresGetParam( $_REQUEST, 'no_html', 0 );
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
@@ -123,8 +129,9 @@ class j00012pathway {
 			$counter=1;
 			foreach ($pathwayArray as $p)
 				{
-				if (_JOMRES_DETECTED_CMS == "joomla15" )
+				if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 					$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
+
 				if ($counter<count($pathwayArray))
 					$pathway.='<a href="'.jomresValidateUrl(jomresURL(''.$p['url'])).'" class="pathway">'.$p['text'].'</a>';
 				else
