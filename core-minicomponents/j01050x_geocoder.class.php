@@ -47,8 +47,8 @@ class j01050x_geocoder {
 		if ($browser=="Internet Explorer")
 			$output['VAR']="var";
 			
-		if (strlen($jrConfig['google_maps_api_key'])>0)
-			{
+		//if (strlen($jrConfig['google_maps_api_key'])>0)
+		//	{
 			$query="SELECT property_name,property_street,property_town,property_postcode,property_tel,property_country,property_region,`lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
 			$propertyData=doSelectSql($query,2);
 			$output['LAT']=	$propertyData['lat'];
@@ -84,7 +84,7 @@ class j01050x_geocoder {
 				else
 					$this->retVals=$tmpl->getParsedTemplate();
 				}
-			}
+			//}
 		}
 
 
