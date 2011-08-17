@@ -246,7 +246,7 @@ class jomres_language
 		$langs['nb']='nb-NO';
 		$langs['nl']='nl-NL';
 		$langs['pl']='pl-PL';
-		$langs['pt']='pt-BR';
+		$langs['br']='pt-BR';
 		$langs['pt']='pt-PT';
 		$langs['ro']='ro-RO';
 		$langs['ru']='ru-RU';
