@@ -884,7 +884,7 @@ class dobooking
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 		if ($mrConfig['showExtras']=="1")
 			{
-			$query="SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`tax_rate`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
+			$query="SELECT `uid`,`name`,`desc`,`maxquantity`,`price`,`auto_select`,`tax_rate`,`chargabledaily`,`property_uid`,`published` FROM `#__jomres_extras` where property_uid = '$selectedProperty' AND published = '1' ORDER BY name";
 			$exList =doSelectSql($query);
 			foreach($exList as $ex)
 				{
@@ -950,7 +950,7 @@ class dobooking
 				$extra_deets['OVERLIB_DESCRIPTION']=jomres_makeTooltip('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid,$extra_deets['PERNIGHT'],$descriptionForOverlib,$model_text." ".$descriptionForOverlib,$class="",$type="infoimage",array("width"=>20,"height"=>20) );
 
 				$checked="";
-				if ($this->extraAlreadySelected($ex->uid))
+				if ($this->extraAlreadySelected($ex->uid) || (int)$ex->auto_select == 1 )
 					{
 					$checked=" checked ";
 					$this->setExtras($ex->uid);

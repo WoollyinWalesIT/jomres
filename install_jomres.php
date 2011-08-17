@@ -284,10 +284,32 @@ function doTableUpdates()
 		alterCouponsBookingValidCols();
 	if (!checkLineitemsInclusiveColExists() )
 		alterLineitemsInclusiveCol();
-
+	if (!checkExtrasAutoselectColExists() )
+		alterExtrasAutoSelectCol();
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
+
+
+function alterExtrasAutoSelectCol()
+	{
+	echo "Editing __jomres_extras table adding auto_select column<br>";
+	$query = "ALTER TABLE `#__jomres_extras` ADD `auto_select` INT NULL DEFAULT '0' AFTER `price`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_extras auto_select</b><br>";
+	}
+
+function checkExtrasAutoselectColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_extras LIKE 'auto_select'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
 
 function checkLineitemsInclusiveColExists()
 	{
