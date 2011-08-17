@@ -1239,7 +1239,7 @@ define('_JOMRES_CLICKTOREGISTER','Haga clic aquí para registrar su propiedad');
 define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Suscripciones activas");
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"Id de suscripción Pasarela");
 define('_JRPORTAL_NEWUSER_SUBJECT',"Gracias por su reserva - siga nuevos detalles de usuario");
-define('_JOMRES_LATLONG_DESC',"Jomres pasará su dirección a Google para generar el mapa de posición en los detalles de la propiedad. Si por alguna razón Google no puede encontrar su dirección basada en la información que se encuentra arriba, en su lugar puede introducir latitud y longitud en el campo lat/long. Si usted decide introducir la latitud y longitud, tenga en cuenta que encontrada la latitud Google Earth, la información puede inexacta por lo que se recomienda visitar <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">el sitio itouchmap</a> y utilizar su información para determinar su latitud y longitud. Al introducir su latitud y longitud, el formato debe ser algo como '51.754564622' y '-4.997314810'.");
+define('_JOMRES_LATLONG_DESC',"Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude.");
 define('_JOMRES_CONTROLPANEL','Panel de control');
 define('_JOMRES_COM_FAUXHEADERS','¿Salida Jomres encabezados Javascript en el cuerpo del html?');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Ponga esto a Sí, si usted está teniendo problemas con mootools y Jomres\'s jQuery en conflicto en el IE. Esto obligará a Jomres a llamar las salidas del Javascript dentro del cuerpo de la página en lugar de la zona del HEAD, que no es HTML válido, sin embargo, parece resolver el probema con jQuery y Mootools en conflicto entre sí.');

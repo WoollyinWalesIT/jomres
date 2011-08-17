@@ -1288,7 +1288,7 @@ define('_JOMRES_CLICKTOREGISTER','Klicken Sie hier, um Ihre Unterkunft zu regist
 define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE','Aktive Anmeldungen');
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID','Gateway Anmeldung ID');
 define('_JRPORTAL_NEWUSER_SUBJECT','Vielen Dank für Ihre Buchung - Die Benutzerdetails folgen in Kürze');
-define('_JOMRES_LATLONG_DESC','Jomres wird Ihre Adresse an Google übermitteln, um die Position auf der Karte in den Objektdetails anzeigen zu können. Wenn Google aus irgend einem Grund die Adresse nicht findet, können Sie stattdessen die Längen- und Breitengrade manuell in die Felder unten eingeben. Falls Sie die Längen- und Breitengrade manuell eingeben wollen, beachten Sie bitte, dass die Angaben aus Google Earth nicht verwendet werden können. Besuchen Sie stattdessen <a href="http://itouchmap.com/latlong.html" target="_blank">die itouchmap Webseite</a> um die benötigten Längen- und Breitengrade herauszufinden. Die Angaben müssten in etwa so aussehen wie diese hier: "51.754564622" und "-4.997314810".');
+define('_JOMRES_LATLONG_DESC',"Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude.");
 define('_JOMRES_CONTROLPANEL','Kontrollzentrum');
 define('_JOMRES_COM_FAUXHEADERS','Javascript Header im Body des HTML ausgeben?');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Auf Ja setzen wenn Probleme mit Mootools und Jomres Abfragen im Internet Explorer auftreten. Damit wird die Ausgabe von JavaScript im Body des HTML statt im Head erzwungen. Das ist zwar kein valides HTML, scheint aber die Konflikte zwischen jQuery und Mootools zu lösen.');

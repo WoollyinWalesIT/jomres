@@ -1238,7 +1238,7 @@ define('_JOMRES_CLICKTOREGISTER','Cliquez ici pour enregistrer votre propriété
 define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Souscriptions actives");
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"Id de <i>gateway</i> souscription");
 define('_JRPORTAL_NEWUSER_SUBJECT',"Merci de votre réserve - détails de nouveau utilisateur suivants");
-define('_JOMRES_LATLONG_DESC',"Jomres passera votre adresse à Google pour générer la position de votre propriété sur la carte. Si par aucune raison Goole ne peut pas trouver votre adresse en se basant dans les détails ci-dessus, vous pourrez introduire alternativement latitude et longitude dans les champs lat/lon. Si vous le choisissez, veuillez remarquer que l'information lat et lon de Google ne sont pas très précises. Vous êtes donc conseillé de visiter <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">le site itouchmap</a> et utiliser leur renseignements pour déterminer votre latitude et longitude. En les introduisant, le format doit être '51.754564622' et '-4.997314810'.");
+define('_JOMRES_LATLONG_DESC',"Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude.");
 define('_JOMRES_CONTROLPANEL','Tableau de contrôle');
 define('_JOMRES_COM_FAUXHEADERS','Afficher les sorties des entêtes Jomres javascript dans le corps de l\'html?');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Définir Oui si vous avez des problèmes avec des conflits entre mootools et jQuery de Jomres à IE. Ceci force la sortie d\'appels Javascript dans le corps de la page au lieu de la zone d\'entête, qui semble résoudre le problème.');

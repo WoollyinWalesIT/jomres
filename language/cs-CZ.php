@@ -1209,7 +1209,7 @@ define('_JOMRES_CLICKTOREGISTER','Klikněte zde pro zadání vaší kapacity');
 define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Aktivní předplatné");
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"id brány předplatného");
 define('_JRPORTAL_NEWUSER_SUBJECT',"Děkujeme za rezervaci. Níže jsou uvedeny údaje nového uživatele");
-define('_JOMRES_LATLONG_DESC',"Jomres předá vaši adresu do aplikace Google a nechá automaticky vygenerovat pozici na mapě. Ta se pak zobrazí v detailu kapacity. Pokud z jakéhokoliv důvodu nebude vaše adresa automaticky nalezena, můžete ji zadat sami do pole lat (šířka) a long (délka). Pokud budete informace zadávat ručně, data z aplikace Google Earth mohou být nepřesná. Doporučujeme spíše navštívit adresu <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">itouchmap</a> a použít jejich údaje.");
+define('_JOMRES_LATLONG_DESC',"Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude.");
 define('_JOMRES_CONTROLPANEL','Ovládací panel');
 define('_JOMRES_COM_FAUXHEADERS','Vložit Jomres javascript do těla html místo do hlavičky?');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Nastavte na ANO, pokud dochází k problémům s MSIE a Javascriptem, umístěným v hlavičce stránky. Tato volba umístí Javascript až za tag body.');

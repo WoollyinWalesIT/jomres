@@ -1200,7 +1200,7 @@ define('_JOMRES_CLICKTOREGISTER','Регистрирай обекта си');
 define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Активни абонаменти");
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"Абонамент id");
 define('_JRPORTAL_NEWUSER_SUBJECT',"Благодарим за резервацията");
-define('_JOMRES_LATLONG_DESC',"При регистрация системата автоматично ще постави адреса Ви на картата.");
+define('_JOMRES_LATLONG_DESC',"Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude.");
 define('_JOMRES_CONTROLPANEL','Контролен панел');
 define('_JOMRES_COM_FAUXHEADERS','Да се използва от системния администратор');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Да се използва от системния администратор.');
