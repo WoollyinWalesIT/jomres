@@ -1250,7 +1250,7 @@ define('_JOMRES_CLICKTOREGISTER','Clicca qui per inserire la tua struttura');
 define('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIPTIONS_TITLE',"Sottoscrizioni attive");
 define('_JRPORTAL_SUBSCRIPTIONS_GATEWAYSUBSCRIPTIONID',"Gateway subscription id");
 define('_JRPORTAL_NEWUSER_SUBJECT',"Grazie per la tua prenotazione - Seguono dettagli nuovo utente");
-define('_JOMRES_LATLONG_DESC',"Il sistema passera a Google il tuo indirizzo per generare la posizione sulla mappa della tua struttura. Se per qualsiasi motivo Google non riesce a trovare il tuo indirizzo tramite le informazioni inserite sopra, puoi inserire Latitudine e longitudine nei campi Lat/Long. Se scegli di inserire manualmente latitudine e longitudine, ti consigliamo di visitare <a href=\"http://itouchmap.com/latlong.html\" target=\"_blank\">il sito itouchmap </a> e reperire Lat e Long nel loro sito in quanto i dati forniti da Google earth possono essere talvolta inaccurati. I dati di latitudine e longitudine lat/long, devono essere inseriti con un formato simile a questo '51.754564622' e '-4.997314810'.");
+define('_JOMRES_LATLONG_DESC',"Use your mouse to move around the map, and drag the pointer to the location of your property to set the latitude and longitude.");
 define('_JOMRES_CONTROLPANEL','Pannello di controllo');
 define('_JOMRES_COM_FAUXHEADERS','Inserire Jomres javascript headers nel tag body HTML?');
 define('_JOMRES_COM_FAUXHEADERS_DESC','Seleziona SI se stai avendo conflitti tra mootools e Jquery utilizzato da joomres. Questo obblighera Jomres ad inserire le chiamate Javascript nel corpo della pagina invece che nella HEAD area, che anche se non &egrave; HTML valido, sembra risolvere i problemi con jquery e mootools in conflitto tra loro.');

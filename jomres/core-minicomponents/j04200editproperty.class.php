@@ -200,8 +200,7 @@ class j04200editproperty {
 				}
 			$starsDropDownList.="</select>";
 			}
-
-
+			
 		$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
 		$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
 		$propertyFeaturesArray=explode(",",$propertyFeatures);
@@ -247,6 +246,25 @@ class j04200editproperty {
 			{
 			$output['COUNTRIESDROPDOWN']= getSimpleCountry($jrConfig['limit_property_country_country']);
 			$output['REGIONDROPDOWN']=setupRegions($jrConfig['limit_property_country_country'],$propertyRegion);
+			}
+			
+		if ($output['LAT']=="") // Let's ask Auntie Google what the lat long should be.
+			{
+			$url = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($output['PROPERTY_NAME']).",".urlencode($output['PROPERTY_STREET']).",".urlencode($output['PROPERTY_TOWN']).",".urlencode($propertyRegion).",".urlencode($selectedCountry)."&sensor=false";
+			//$url = urlencode($url);
+			//echo $url;exit;
+			$curl_handle=curl_init();
+			curl_setopt($curl_handle,CURLOPT_URL,$url);
+			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+			$response = trim(curl_exec($curl_handle));
+			curl_close($curl_handle);
+			$decoded = json_decode($response);
+			if (isset($decoded->results[0]->geometry->location->lat))
+				{
+				$output['LAT']=$decoded->results[0]->geometry->location->lat;
+				$output['LONG']=$decoded->results[0]->geometry->location->lng;
+				}
 			}
 
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
