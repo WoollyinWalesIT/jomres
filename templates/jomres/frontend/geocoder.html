@@ -36,8 +36,8 @@ jomresJquery(document).ready(function() {
 		var WIDTH = 600;
         var HEIGHT = 400;
 		Gmap = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
-		Gmap.addControl(new GSmallMapControl());
-		Gmap.addControl(new GMapTypeControl());
+		Gmap.setUIToDefault();
+		Gmap.setMapType(G_HYBRID_MAP);
 		geocoder = new GClientGeocoder();
 		showAddress("{ADDRESS}");
 		};
