@@ -1028,7 +1028,7 @@ function prepPropertyTypeSearch()
 	{
 	// Prepares the PropertyType data required for a search
 	$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
-	$query="SELECT id, ptype,ptype_desc FROM #__jomres_ptypes WHERE published = '1' ORDER BY `ptype` ASC";
+	$query="SELECT id, ptype,ptype_desc FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
 	$ptypeList = doSelectSql($query);
 	$result=array();
 	$r=array();

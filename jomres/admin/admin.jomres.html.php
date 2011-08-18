@@ -1011,7 +1011,7 @@ function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 		<input type="hidden" name="jomrestoken" value="<?php echo jomresSetToken();?>">
 		<table  class="jradmin_table" border="0">
 			<tr>
-				<th class="jomres_title" colspan="5"><?php echo $pList['PAGETITLE']; ?></td>
+				<th class="jomres_title" colspan="6"><?php echo $pList['PAGETITLE']; ?></td>
 			</tr>
 			<tr>
 				<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll(<?php echo $counter+1; ?>);" /></th>
@@ -1019,6 +1019,7 @@ function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 				<th class="jomres_title"><?php echo $pList['HPTYPE']; ?></th>
 				<th class="jomres_title"><?php echo $pList['HPTYPE_DESC']; ?></th>
 				<th class="jomres_title"><?php echo $pList['HPUBLISHED']; ?></th>
+				<th class="jomres_title"><?php echo $pList['_JOMRES_ORDER']; ?></th>
 			</tr>
 		<?php echo $rowInfo; ?>
 		</table>
