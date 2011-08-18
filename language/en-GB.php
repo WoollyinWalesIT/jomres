@@ -1555,3 +1555,6 @@ define('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM','Open the booking form');
 
 define('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS','Back to property details');
 define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT','Automatically Selected?');
+define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Balance (after deposit paid)');
+
+
