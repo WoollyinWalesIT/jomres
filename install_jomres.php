@@ -286,11 +286,33 @@ function doTableUpdates()
 		alterLineitemsInclusiveCol();
 	if (!checkExtrasAutoselectColExists() )
 		alterExtrasAutoSelectCol();
+	if (!checkPtypesOrderColExists() )
+		alterPtypesOrderCol();
+		
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function alterPtypesOrderCol()
+	{
+	echo "Editing __jomres_ptypes table adding order column<br>";
+	$query = "ALTER TABLE `#__jomres_ptypes` ADD `order` INT NULL DEFAULT '0' AFTER `published`";
+	if (!doInsertSql($query,'') )
+		echo "<b>Error, unable to add __jomres_ptypes order</b><br>";
+	}
 
+function checkPtypesOrderColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_ptypes LIKE 'order'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+	
 function alterExtrasAutoSelectCol()
 	{
 	echo "Editing __jomres_extras table adding auto_select column<br>";

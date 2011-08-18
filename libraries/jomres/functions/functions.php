@@ -3038,7 +3038,7 @@ function saveKey ( $mykey )
 */
 function getPropertyTypeDropdown($propertyType="",$all=false)
 	{
-	$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `ptype` ASC";
+	$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
 	$ptypeList = doSelectSql($query);
 	if (count($ptypeList)>0)
 		{

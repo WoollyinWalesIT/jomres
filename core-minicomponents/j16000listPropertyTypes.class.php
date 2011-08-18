@@ -30,7 +30,9 @@ class j16000listPropertyTypes
 		$pList['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
 		$pList['HPTYPE_DESC'] =_JOMRES_COM_PTYPES_PTYPE_DESC;
 		$pList['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
-		$query="SELECT id, ptype,ptype_desc,published FROM #__jomres_ptypes ORDER BY `ptype` ASC";
+		$pList['_JOMRES_ORDER']=_JOMRES_ORDER;
+		
+		$query="SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` FROM #__jomres_ptypes ORDER BY `order` ASC";
 		$ptypeList = doSelectSql($query);
 		$rowInfo="";
 		$counter=0;
@@ -52,12 +54,14 @@ class j16000listPropertyTypes
 					<td class=\"jradmin_subheader_la\">".$ptypeData['ptype']."</td>
 					<td class=\"jradmin_subheader_la\">".$ptypeData['ptype_desc']."</td>
 					<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=publishPropertyType&id=".$ptypeData['id']."\"><img src=\"".$ptypeData['published']."\" border=\"0\" /></a></td>
+					<td class=\"jradmin_subheader_la\"><input class=\"inputbox\" type=\"text\" size=\"5\" name=\"order_array[".$ptypeData['id']."]\" value='".$ptype->order."'/></td>
 				</tr>
 				";
 			}
 
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
+		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_ptype_order');
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('editPropertyType',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editPropertyType",$image);

@@ -842,7 +842,7 @@ class j00030search {
 			$output[]		=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$rtype->room_classes_uid,jomres_decode($rtype->room_class_abbv));
 			}
 			
-		$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `ptype` ASC";
+		$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
 		$ptypeList = doSelectSql($query);
 		foreach ($ptypeList as $ptype )
 			{
