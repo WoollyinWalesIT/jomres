@@ -6,10 +6,11 @@
 		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td colspan="2">{JOMRESTOOLBAR}</td>
 	</tr>
 	<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
 	<tr>
+		<td>{CHECKBOX}</td>
 		<td>{EDITLINK}</td>
 	</tr>
 	</patTemplate:tmpl>
@@ -17,7 +18,7 @@
 		<td><b>{NOBLACKBOOKINGS}</b></td>
 	</tr>
 </table>
-<input type="hidden" name="task" value="newBlackBooking" />
+<input type="hidden" name="task" value="delete_multiple_blackbookings" />
 </div>
 </form>
 
