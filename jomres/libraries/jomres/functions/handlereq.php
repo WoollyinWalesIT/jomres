@@ -409,7 +409,15 @@ if ($field != "heartbeat" && $field != "show_log")
 			if ($bkg->singlePersonSupplimentCalculated)
 				echo '; populateDiv("single_suppliment","'.output_price($bkg->getSinglePersonSuppliment()).'")';
 			if ($bkg->coupon_code != "")
-				echo '; populateDiv("coupon_discount_value","'.output_price($bkg->coupon_discount_value).'")';
+				{
+				$discount = $bkg->coupon_discount_value;
+				if ($mrConfig['prices_inclusive'] == 1)
+					{
+					$divisor	= ($bkg->accommodation_tax_rate/100)+1;
+					$discount = $divisor*$discount;
+					}
+				echo '; populateDiv("coupon_discount_value","'.output_price($discount).'")';
+				}
 			
 			}
 		else
