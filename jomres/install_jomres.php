@@ -1816,6 +1816,7 @@ function createJomresTables()
 		`ptype` VARCHAR( 255 ),
 		`ptype_desc` VARCHAR( 255 ),
 		`published` TINYINT DEFAULT '1',
+		`order` INT NULL DEFAULT '0',
 		PRIMARY KEY (`id`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -1840,6 +1841,7 @@ function createJomresTables()
 		`name` VARCHAR( 255 ),
 		`desc` TEXT NULL,
 		`price` DOUBLE DEFAULT '0',
+		`auto_select` INT NULL DEFAULT '0',
 		`tax_rate` INT NULL DEFAULT '0',
 		`maxquantity` INT( 5 ) DEFAULT '1',
 		`chargabledaily` BOOL NULL DEFAULT '0',
