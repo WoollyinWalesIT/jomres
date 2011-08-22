@@ -158,12 +158,13 @@ class j01010listpropertys {
 
 				// Tariffs
 				$pricesFromArray=array();
+				$maxPeopleArray = array();
 				$searchDate = date("Y/m/d");
 				if (isset($_REQUEST['arrivalDate']))
 					{
 					$searchDate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
 					}
-				$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE ".$g_pid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
+				$query = "SELECT property_uid, roomrateperday,maxpeople FROM #__jomres_rates WHERE ".$g_pid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
 
 				$tariffList = doSelectSql($query);
 				if (count($tariffList) > 0)
@@ -174,6 +175,11 @@ class j01010listpropertys {
 							$pricesFromArray[$t->property_uid]=$t->roomrateperday;
 						elseif ( isset($pricesFromArray[$t->property_uid]) && $pricesFromArray[$t->property_uid] > $t->roomrateperday )
 							$pricesFromArray[$t->property_uid]=$t->roomrateperday;
+						
+						if (!isset($maxPeopleArray[$t->property_uid]))
+							$maxPeopleArray[$t->property_uid]=$t->maxpeople;
+						elseif ($maxPeopleArray[$t->property_uid] < $t->maxpeople)
+							$maxPeopleArray[$t->property_uid]=$t->maxpeople;
 						}
 					}
 
@@ -392,6 +398,7 @@ class j01010listpropertys {
 										$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
 									}
 								$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
+								$property_deets['MAX_PEOPLE']=$maxPeopleArray[$property->propertys_uid];
 								}
 							else
 								{
