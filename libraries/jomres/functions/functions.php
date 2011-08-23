@@ -27,7 +27,11 @@ function get_property_module_data($property_uid_array)
 	{
 	// for testing
 	//$property_uid_array = array(1,12,43,14);
-	
+	if (!defined('_JOMRES_COM_MR_SHOWPROFILES'))
+		{
+		$jomreslang =jomres_getSingleton('jomres_language');
+		$jomreslang->get_language('');
+		}
 	
 	$return_data = array();
 	
