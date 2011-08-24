@@ -1,3 +1,30 @@
+Jomres 5.5
+
+Added a feature where an optional extra can be set to be automatically selected in the booking form.
+Modified gmaps buttons to use new style ui.
+Modified edit property functionality to allow users to scroll around a gmap and drag a pointer to set their lat and long. If lat is not set, then Jomres will query google to get a rough approximation of their location to get the ball rolling.
+Implemented a feature to configure the property type order as it appears in the property type selection dropdown.
+Added a delete multiple black bookings feature to Jomres, will require the v5.5 version of the black bookings plugin.
+Added balance after deposit paid row to booking form price summary panel.
+
+Renamed Kenya shilling.
+Swapped a global call to $mainframe =& JFactory::getApplication(); to generate pathways.
+Modified pathway code to be called in 1.6/1.7
+Renamed extras tax to services tax in English lang files.
+Added Joseph's suggestion for finding the correct item id to J1.7 specific code. Many thanks.
+Added a back to property details button to the booking form page if the form's in the modal popup.
+Modified how the wysiwyg editor is called. Bally thing works now!
+Modified how the reg prop 2 page is rendered to allow wysiwyg editor if enabled.
+Small modification from $langs'pt'='pt-BR'; to $langs'br'='pt-BR';
+Small tweak to ensure that the discount shown is output inclusive of vat where appropriate.
+Commented out spinner code in bottom.html as I'm getting sick of seeing it now. You can restore it if you wish, by un-commenting the appropriate lines.
+Small change to list properties to add the max guests from the tariffs to the property deets (eg the output) array.
+Modified the new property module utility function to include the lang files if they haven't already been included.
+Added a check for joomla1.7 so that Jomres will show sh404sef config options for both J1.5 and J1.7.
+Added changes to the old Jomres sh404sef plugin as contributed by Joseph. 
+Slightly larger panel image uploaded.
+
+
 Jomres 5.4.1
 
 Added z-index to the totals panel slider.
