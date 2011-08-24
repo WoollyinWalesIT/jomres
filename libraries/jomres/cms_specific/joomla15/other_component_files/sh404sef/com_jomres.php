@@ -4,8 +4,8 @@
  * @author Vince Wooll <sales@jomres.net>
  * @version Jomres 5 
 * @package Jomres
-* @copyright	2005-2011 Vince Wooll
-* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
+* @copyright	2005-2009 Vince Wooll
+* Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 **/
 
 /**
@@ -13,7 +13,7 @@
  * Copyright Woollyinwales IT 2009
  */
 
-defined( '_JEXEC' ) or die( '' );
+defined( '_JEXEC' ) or die( 'Direct Access to this file is not allowed.' );
 if (!defined('_JOMRES_INITCHECK') )
 	define('_JOMRES_INITCHECK', 1 );
 // ------------------  standard plugin initialize function - don't change ---------------------------
@@ -35,24 +35,10 @@ if (isset($arrivalDate))
 	return;
 	}
 
-//Include the jomres stuff
-require_once('jomres/integration.php');
+$task 						= 	isset($task) ? @$task : null;
 
-//var_dump($task);
-//$task 						= 	isset($task) ? @$task : null;
-
-if ($task == NULL) 
-	$task = jomresGetParam( $_REQUEST, 'task', null );
-	
-if ($task == NULL) 
-	$task 						= 	get_showtime('task');
-
-// if ($task == NULL) 
-	// $task					=	"search";
-
- // if (!isset($task) || $task=="")
-	// $task					=	"search";
-
+if (!isset($task))
+	$task					=	"search";
 
 if ($task == 'dynamicsearch')
 	$task	=	"search";
@@ -63,7 +49,8 @@ if ($task != 'search' && $task != "dobooking" && $task != "viewproperty")
 	return;
 	}
 
-
+//Include the jomres stuff
+require_once('jomres/integration.php');
 $jrConfig					=	getSiteSettings();
 	
 // remove common URL from GET vars list, so that they don't show up as query string in the URL
@@ -76,6 +63,7 @@ if (!empty($limitstart))
 	shRemoveFromGETVarsList('limitstart');
 if (!empty($popup)) 
 	shRemoveFromGETVarsList('popup');
+	
 
 if ($task != 'search')
 	{
@@ -92,7 +80,7 @@ if ($jrConfig['sef_task_alias_viewproperty'] == "")
 if ($jrConfig['sef_task_alias_dobooking'] == "")
 	$jrConfig['sef_task_alias_dobooking']		=	"book";
 if ($jrConfig['sef_task_alias_search'] == "")
-	$jrConfig['sef_task_alias_search']			=	"search";
+	$jrConfig['sef_task_alias_search']			=	"/";
 	
 //Start building the SEF URL
 if ($jrConfig['sef_jomres_url_prefix'] != "")
@@ -115,7 +103,7 @@ if ($property_uid || $selectedProperty)
 	$jr_property = doSelectSql($query);
 	foreach ($jr_property as $element) 
 		{
-		$property_name 		= 	getPropertyName($property);
+		$property_name 		= 	$element->property_name;
 		$property_country 	= 	getSimpleCountry($element->property_country);
 		$property_region 	= 	$element->property_region;
 		$property_town 		= 	$element->property_town;
@@ -125,9 +113,12 @@ if ($property_uid || $selectedProperty)
 		foreach ($ptype as $p) 
 			$property_type 		= 	$p->ptype;
 		}
+// ----------- If you want to show the country or the property type in URL
+// ----------- i.e. www.mysite.com/accommodation/country/region/town/property_type/propertyname
+// ----------- un-comment the lines below
 
-	if ($jrConfig['sef_property_url_country'])
-		$title[] 				= 	$property_country;
+//	if ($jrConfig['sef_property_url_country']) 
+//		$title[] 				= 	$property_country;
 
 	if ($jrConfig['sef_property_url_region'])	
 		$title[] 				= 	$property_region;
@@ -135,8 +126,8 @@ if ($property_uid || $selectedProperty)
 	if ($jrConfig['sef_property_url_town'])	
 		$title[] 				= 	$property_town;
 
-	if ($jrConfig['sef_property_url_ptype'])	
-		$title[] 				= 	$property_type;
+//	if ($jrConfig['sef_property_url_ptype'])	
+//		$title[] 				= 	$property_type;
 
 	if ($jrConfig['sef_property_url_propertyname'])	
 		{
@@ -169,11 +160,11 @@ switch ($task)
 				$title[] 			= 	$property_country;
 				shRemoveFromGETVarsList('country');
 				}
-			elseif ($jrConfig['sef_default_country'] != "")
-				{
-				$title[] 			= 	$jrConfig['sef_default_country'];
-				shRemoveFromGETVarsList('country');
-				}
+//			elseif ($jrConfig['sef_default_country'] != "")
+//				{
+//				$title[] 			= 	$jrConfig['sef_default_country'];
+//				shRemoveFromGETVarsList('country');
+//				}
 			}			
 				
 		if ($jrConfig['sef_search_url_region'])
@@ -183,11 +174,11 @@ switch ($task)
 				$title[] 			= 	$region;
 				shRemoveFromGETVarsList('region');
 				}
-			elseif ($jrConfig['sef_default_region'] != "")
-				{
-				$title[] 			= 	$jrConfig['sef_default_region'];
-				shRemoveFromGETVarsList('region');
-				}
+//			elseif ($jrConfig['sef_default_region'] != "")
+//				{
+//				$title[] 			= 	$jrConfig['sef_default_region'];
+//				shRemoveFromGETVarsList('region');
+//				}
 			}			
 
 		if ($jrConfig['sef_search_url_town'])
@@ -197,13 +188,13 @@ switch ($task)
 				$title[] 			= 	$town;
 				shRemoveFromGETVarsList('town');
 				}
-			elseif ($jrConfig['sef_default_town'] != "")
-				{
-				$title[] 			= 	$jrConfig['sef_default_town'];
-				shRemoveFromGETVarsList('town');
-				}
+//			elseif ($jrConfig['sef_default_town'] != "")
+//				{
+//				$title[] 			= 	$jrConfig['sef_default_town'];
+//				shRemoveFromGETVarsList('town');
+//				}
 			}			
-
+//
 		if (isset($ptype) && $jrConfig['sef_search_url_ptype'])
 			{
 			if ($ptype != "All") 
@@ -214,20 +205,27 @@ switch ($task)
 					$title[] 	= 	$p->ptype;
 				shRemoveFromGETVarsList('ptype');
 				}
-			elseif ($jrConfig['sef_default_ptype'] != "")
-				{
-				$title[] 		= 	$jrConfig['sef_default_ptype'];
-				shRemoveFromGETVarsList('ptype');
-				}
+//			elseif ($jrConfig['sef_default_ptype'] != "")
+//				{
+//				$title[] 		= 	$jrConfig['sef_default_ptype'];
+//				shRemoveFromGETVarsList('ptype');
+//				}
 			}
-
+		if (isset($view) &&($view == 'default')) 
+			{
+				shRemoveFromGETVarsList('view');
+			}
+		if (isset($calledByModule) &&($calledByModule == 'mod_jomsearch_m0'))
+			{
+				shRemoveFromGETVarsList('calledByModule');
+			}
 		$title[] 				= 	$jrConfig['sef_task_alias_search'];
 		shRemoveFromGETVarsList('task');
 		shRemoveFromGETVarsList('send');
 
 		break;
 	default:
-		$dosef					=	false;
+		$dosef					=	false;	
 		break;
 	}
 
