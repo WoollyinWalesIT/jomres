@@ -99,7 +99,7 @@ class j04200editproperty {
 					$output['LONG']='-0.14317';
 					}
 				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
-
+				$output['APIKEY']=$jrConfig['google_maps_api_key'];
 				$output['PRICE']=$property->property_key;
 				$output['METATITLE']=html_entity_decode(($property->metatitle ));
 				$output['METADESCRIPTION']=html_entity_decode(($property->metadescription ));
