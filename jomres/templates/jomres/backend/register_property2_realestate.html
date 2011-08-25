@@ -3,6 +3,7 @@
 .REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
 td.required {color:red;}
 --></style>
+<script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}&hl=en" type="text/javascript"></script>
 <script language="JavaScript" type="text/javascript">
 function validatePropertyRegistration()
 	{
@@ -129,6 +130,95 @@ jomresJquery(document).ready(function () {
         });
     }).change();
 });
+
+
+<!-- Clickable locations adapted from http://universimmedia.pagesperso-orange.fr/geo/loc.htm -->
+function load() {
+	if (GBrowserIsCompatible()) {
+		var map = new GMap2(document.getElementById("map"));
+		map.setUIToDefault();
+		map.setMapType(G_HYBRID_MAP);
+		map.enableScrollWheelZoom();
+		var center = new GLatLng(48.858334,2.294254);
+		map.setCenter(center, 15);
+		geocoder = new GClientGeocoder();
+		var marker = new GMarker(center, {draggable: true});  
+		map.addOverlay(marker);
+		document.getElementById("lat").innerHTML = center.lat().toFixed(5);
+		document.getElementById("lng").innerHTML = center.lng().toFixed(5);
+
+		GEvent.addListener(marker, "dragend", function() {
+			var point = marker.getPoint();
+			map.panTo(point);
+			jomresJquery('#lat').val(point.lat().toFixed(5));
+			jomresJquery('#lng').val(point.lng().toFixed(5));
+			});
+
+		GEvent.addListener(map, "moveend", function() {
+			map.clearOverlays();
+			var center = map.getCenter();
+			var marker = new GMarker(center, {draggable: true});
+			map.addOverlay(marker);
+			jomresJquery('#lat').val( center.lat().toFixed(5) );
+			jomresJquery('#lng').val( center.lng().toFixed(5) );
+
+			GEvent.addListener(marker, "dragend", function() {
+				var point =marker.getPoint();
+				map.panTo(point);
+				jomresJquery('#lat').val(point.lat().toFixed(5));
+				jomresJquery('#lng').val( point.lng().toFixed(5));
+				});
+			});
+		}
+	}
+
+function showAddress(address) {
+	var map = new GMap2(document.getElementById("map"));
+	map.addControl(new GSmallMapControl());
+	map.addControl(new GMapTypeControl());
+	if (geocoder) {
+		geocoder.getLatLng(
+		address,
+		function(point) {
+			if (!point) {
+				alert(address + " not found");
+			} else {
+				jomresJquery('#lat').val(point.lat().toFixed(5));
+				jomresJquery('#lng').val( point.lng().toFixed(5));
+				map.clearOverlays()
+				map.setCenter(point, 14);
+				var marker = new GMarker(point, {draggable: true});  
+				map.addOverlay(marker);
+				GEvent.addListener(marker, "dragend", function() {
+					var pt = marker.getPoint();
+					map.panTo(pt);
+					jomresJquery('#lat').val(pt.lat().toFixed(5));
+					jomresJquery('#lng').val(pt.lng().toFixed(5));
+					});
+
+		GEvent.addListener(map, "moveend", function() {
+			map.clearOverlays();
+			var center = map.getCenter();
+			var marker = new GMarker(center, {draggable: true});
+			map.addOverlay(marker);
+			jomresJquery('#lat').val(center.lat().toFixed(5));
+			jomresJquery('#lng').val(center.lng().toFixed(5));
+
+			GEvent.addListener(marker, "dragend", function() {
+				var pt = marker.getPoint();
+				map.panTo(pt);
+				jomresJquery('#lat').val(pt.lat().toFixed(5));
+				jomresJquery('#lng').val(pt.lng().toFixed(5));
+				});
+			});
+		}
+		});
+	}
+}
+
+jomresJquery(document).ready(function() {
+	load()
+	});
 </script>
 
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm">
@@ -185,9 +275,15 @@ jomresJquery(document).ready(function () {
 					<td colspan="2" class="jradmin_field_la">{CURRENCY}<input class="inputbox" type="text" size="30" name="price" value="{PRICE}" /></td>
 				</tr>
 				<tr>
-					<td class="jradmin_subheader_la">{LATLONG_DESC}</td> 
-					<td class="jradmin_field_la">Lat: (nn.nnnn) <input class="inputbox" type="text" size="30" name="lat" value="" /> </td>
-					<td class="jradmin_field_la">Long: (nn.nnnn) <input class="inputbox" type="text" size="30" name="long" value="" /> </td>
+					<td colspan="3">{LATLONG_DESC}</td> 
+				</tr>
+				<tr>
+					<td>Lat: (nn.nnnn) <input id="lat"  class="inputbox" type="text" size="30" name="lat" value="{LAT}" /> </td>
+					<td>Long: (nn.nnnn) <input id="lng" class="inputbox" type="text" size="30" name="long" value="{LONG}" /> </td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3"> <div align="center" id="map" style="width: 600px; height: 400px"><br/></div> </td>
 				</tr>
 				<tr>
 					<td class="jradmin_subheader_la">{HFEATURES}</td>
