@@ -24,44 +24,43 @@ $ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
-//$jomresItemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
+if (class_exists('JFactory'))
+	{
+	// get application
+	$app = & JFactory::getApplication('site');
+	// get menu
+	$menu   = $app->getMenu();
+	// get active menu id
+	$activeId = $menu->getActive()->id;
+	// get active menu
+	$active   = $menu->getActive();
+	// set jomresItemid
+	$jomresItemid = $active->id;
+	}
+else
+	{
+	$query = "SELECT id"
+		. "\n FROM #__menu"
+		. "\n WHERE "
+		. "\n published = 1"
+		. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
+	$itemQueryRes = doSelectSql($query);
+	if (count($itemQueryRes)>0)
+		{
+		foreach ($itemQueryRes as $i)
+			{
+			$jomresItemid = $i->id;
+			}
+		}
+	else
+		{if (isset($jrConfig['jomresItemid']))
+			$jomresItemid = $jrConfig['jomresItemid'];
+		else
+			$jomresItemid = 0; //should only kick in on install
+		}
+	}
 
-//if ($jomresItemid == 0)
-//	{
-	// $query = "SELECT id"
-		// . "\n FROM #__menu"
-		// . "\n WHERE "
-		// . "\n published = 1"
-		// . "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
-	// $itemQueryRes = doSelectSql($query);
-	// if (count($itemQueryRes)>0)
-		// {
-		// foreach ($itemQueryRes as $i)
-			// {
-			// $jomresItemid = $i->id;
-			// }
-		// }
-	// else
-		// {if (isset($jrConfig['jomresItemid']))
-			// $jomresItemid = $jrConfig['jomresItemid'];
-		// else
-			// $jomresItemid = 0; //should only kick in on install
-		// }
-//	}
-
-// get application
-$app   = JFactory::getApplication();
-// get menu
-$menu   = $app->getMenu();
-// get active menu id
-$activeId = $menu->getActive()->id;
-// get active menu
-$active   = $menu->getActive();
-// set jomresItemid
-$jomresItemid = $active->id;
-
-
-	$jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
+$jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
 
 $index = "index.php";
 $tmpl="";
