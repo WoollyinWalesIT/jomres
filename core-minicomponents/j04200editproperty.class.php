@@ -88,8 +88,16 @@ class j04200editproperty {
 				$output['PROPERTY_FAX']=html_entity_decode ( $property-> property_fax);
 				$output['PROPERTY_EMAIL']=html_entity_decode ( $property->property_email);
 
-				$output['LAT']=$property->lat;
-				$output['LONG']=$property->long;
+				if ($property->lat > 0)
+					{
+					$output['LAT']=$property->lat;
+					$output['LONG']=$property->long;
+					}
+				else
+					{
+					$output['LAT']='51.50068';
+					$output['LONG']='-0.14317';
+					}
 				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
 
 				$output['PRICE']=$property->property_key;
@@ -267,6 +275,7 @@ class j04200editproperty {
 				}
 			}
 
+		$output['APIKEY']=$jrConfig['google_maps_api_key'];
 		$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
 		$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
 		$output['HNAME']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);
