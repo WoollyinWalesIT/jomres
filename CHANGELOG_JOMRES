@@ -1,3 +1,8 @@
+Jomres 5.5.1
+
+Fixed an issue where J1.7 couldn't install as the jfactory isn't available during installation
+Disabled the sh404sef panel in j1.7
+
 Jomres 5.5
 
 Added a feature where an optional extra can be set to be automatically selected in the booking form.
