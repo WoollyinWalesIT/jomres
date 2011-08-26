@@ -64,58 +64,61 @@ function get_property_module_data($property_uid_array)
 	$customTextObj =jomres_getSingleton('custom_text');
 	foreach ($property_uid_array as $property_uid)
 		{
-		$property_data = $property_data_array[$property_uid];
-		$mrConfig=getPropertySpecificSettings($property_uid);
-		set_showtime('property_uid',$property_uid);
-		$customTextObj->get_custom_text_for_property($property_uid);
-
-		$property_image=get_showtime('live_site')."/jomres/images/jrhouse.png";
-		if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
-			$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property_uid."_property_".$property_uid.".jpg";
-		$property_data['THUMBNAIL']=getThumbnailForImage($property_image);
-		if (!$property_data['THUMBNAIL'])
-			$property_data['THUMBNAIL']=$property_image;
-
-		if ($mrConfig['is_real_estate_listing']==0)
+		if ($property_uid > 0)
 			{
-			if (isset($pricesFromArray[$property_uid]))
+			$property_data = $property_data_array[$property_uid];
+			$mrConfig=getPropertySpecificSettings($property_uid);
+			set_showtime('property_uid',$property_uid);
+			$customTextObj->get_custom_text_for_property($property_uid);
+
+			$property_image=get_showtime('live_site')."/jomres/images/jrhouse.png";
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
+				$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property_uid."_property_".$property_uid.".jpg";
+			$property_data['THUMBNAIL']=getThumbnailForImage($property_image);
+			if (!$property_data['THUMBNAIL'])
+				$property_data['THUMBNAIL']=$property_image;
+
+			if ($mrConfig['is_real_estate_listing']==0)
 				{
-				if ($mrConfig['prices_inclusive']=="0")
-					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid));
-				else
-					$price=output_price ($pricesFromArray[$property_uid]);
-				if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
-					$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
-				else
+				if (isset($pricesFromArray[$property_uid]))
 					{
-					if ($mrConfig['perPersonPerNight']=="0" )
-						$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+					if ($mrConfig['prices_inclusive']=="0")
+						$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid));
 					else
-						$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						$price=output_price ($pricesFromArray[$property_uid]);
+					if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
+						$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+					else
+						{
+						if ($mrConfig['perPersonPerNight']=="0" )
+							$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+						else
+							$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						}
+					$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
 					}
-				$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
+				else
+					$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property_data['real_estate_property_price']);
 				}
 			else
 				$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property_data['real_estate_property_price']);
-			}
-		else
-			$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property_data['real_estate_property_price']);
-		$property_data['PRICE']=$price;
-		$property_data['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
-		$property_data['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property_uid) ;
-		
-		$pageoutput = array($property_data);
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		if (count($property_data_array[$property_uid]['room_types'])>0)
-			$tmpl->addRows( 'room_types',$property_data_array[$property_uid]['room_types']);
-		if (count($property_data_array[$property_uid]['room_features'])>0)
-			$tmpl->addRows( 'room_features',$property_data_array[$property_uid]['room_features']);
+			$property_data['PRICE']=$price;
+			$property_data['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
+			$property_data['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property_uid) ;
+			
+			$pageoutput = array($property_data);
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			if (count($property_data_array[$property_uid]['room_types'])>0)
+				$tmpl->addRows( 'room_types',$property_data_array[$property_uid]['room_types']);
+			if (count($property_data_array[$property_uid]['room_features'])>0)
+				$tmpl->addRows( 'room_features',$property_data_array[$property_uid]['room_features']);
 
-		$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
-		$res[$property_uid]['template'] = $tmpl->getParsedTemplate();
-		$res[$property_uid]['data'] = $property_data;
+			$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
+			$res[$property_uid]['template'] = $tmpl->getParsedTemplate();
+			$res[$property_uid]['data'] = $property_data;
+			}
 		}
 	return $res;
 	}
