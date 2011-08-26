@@ -296,6 +296,17 @@ function getResponse_extras(field,value,theId) {
 	);
 };
 
+function getResponse_room_features(field,value,theId) {
+	HideRoomsList();
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+		function(data){
+			showRoomsList(data); 
+			eval(data); 
+			show_log(field);
+			}
+	);
+};
+
 function getResponse_extrasquantity(field,value,theId) {
 	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
 		function(data){
