@@ -157,11 +157,11 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 						define("JOMRESJQUERY_EDITINPLACE",1);
 						echo '
 							<script type="text/javascript">
-						jQuery(document).ready(function() {';
+						jomresJquery(document).ready(function() {';
 						if ($_REQUEST['task']=="touch_templates")
-							echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editinplace&no_html=1", ';
+							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN.'&task=editinplace&no_html=1", ';
 						else
-							echo 'jQuery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL.'&task=editinplace&no_html=1", ';
+							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL.'&task=editinplace&no_html=1", ';
 						echo "	{
 							indicator : '".JOMRES_WORD_SAVING."',
 							id			: 'theConstant',
