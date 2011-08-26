@@ -63,6 +63,13 @@ $bkg->currentField=$field;
 ob_start();
 switch ($field)
 	{
+	case "room_features":
+		// $this->room_feature_filter
+		$value=$bkg->sanitiseInput("int",$value);
+		$bkg->writeToLogfile("Starting extra input");
+		$bkg->toggleRoomFilterId($value);
+		
+	break;
 	case "coupon":
 		$ajrq="ajrq:::coupon";
 		$value=$bkg->sanitiseInput("string",$value);
@@ -504,6 +511,10 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
 		if (count($freeRoomsArray) > 0 )
 			$freeRoomsArray=$bkg->checkSmokingOption($freeRoomsArray);
+		if (count($freeRoomsArray) > 0 )
+			$freeRoomsArray=$bkg->checkRoomFeatureOption($freeRoomsArray);
+		
+			
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
 		// Added to enable the room to remain in the selected rooms list if it's still available after a particular (date, guest numbers etc) has been changed
 		$selectedRoomUids=array();

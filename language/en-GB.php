@@ -1557,4 +1557,4 @@ define('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS','Back to property deta
 define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT','Automatically Selected?');
 define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Balance (after deposit paid)');
 
-
+define('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER','Filter rooms based on their features.');

@@ -208,8 +208,11 @@ class j04000roomsconfig {
 					for ($i=0, $n=count($roomFeaturesArray); $i < $n; $i++)
 						{
 						if ($roomFeaturesArray[$i] == ($feature->room_features_uid))
-							$listTxt.="<li>".($feature->feature_description)."</li>
+							{
+							$fd = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURES'.(int)$feature->room_features_uid,$feature->feature_description);
+							$listTxt.="<li>".$fd."</li>
 							";
+							}
 						}
 					}
 				$listTxt.="</ul>

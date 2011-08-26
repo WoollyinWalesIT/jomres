@@ -108,7 +108,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$tmpBookingHandler->tmpbooking["total_discount"]="";
 	//$tmpBookingHandler->saveBookingData();
 	$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
-
+	
 	$today = date("Y/m/d");
 	$date_elements  	= explode("/",$today);
 	$unixTomorrowsDate	= mktime(0,0,0,$date_elements[1],$date_elements[2]+1,$date_elements[0]);
@@ -119,6 +119,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		property_header($selectedProperty);
 	$MiniComponents->triggerEvent('00102'); // First-form generation
 	$bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
+	$bkg->room_feature_filter=array();
 	if (!is_object($bkg) )
 		{
 		echo "Error creating booking object";
@@ -569,6 +570,21 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 
 		$rooms_list_accommodation_panel_output[] = $rooms_list_accommodation_panel;
 		}
+	
+	$bkg->initRoomFeatureFiltering();
+	if ($bkg->room_feature_filtering_enabled)
+		{
+		$roomfeaturesHeader = array();
+		$roomfeatures = array();
+		$roomfeaturesHeader[] = array("_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER"=>$output['_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER']);
+		foreach ($bkg->room_feature_checkboxes as $feature)
+			{
+			$rf = array();
+			$rf['INPUTBOX'] = $feature['INPUTBOX'];
+			$rf['DESCRIPTION'] = $feature['DESCRIPTION'];
+			$roomfeatures[] = $rf;
+			}
+		}
 
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
@@ -586,6 +602,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
  	$tmpl->addRows( 'pageoutput',$pageoutput);
 	$tmpl->addRows( 'guesttypes',$guestTypes);
 	$tmpl->addRows( 'extrasrow',$extrasHeader);
+	$tmpl->addRows( 'roomfeaturesrowheader',$roomfeaturesHeader);
+	$tmpl->addRows( 'roomfeaturesrow',$roomfeatures);
 	$tmpl->addRows( 'onload',$toload);
 	$MiniComponents->triggerEvent('05019');
 	$mcOutput=$MiniComponents->getAllEventPointsData('05019');

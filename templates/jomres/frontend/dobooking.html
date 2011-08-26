@@ -170,6 +170,18 @@ jomresJquery(document).ready(function() {
 						<tr>
 							<th class="bform_small"></th>
 						</tr>
+
+						<patTemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition" requiredVars="_jomres_bookingorm_roomfeature_filter">
+						<tr>
+							<td>{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</td>
+						</tr>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
+						<tr>
+							<td>{INPUTBOX} {DESCRIPTION}</td>
+						</tr>
+						</patTemplate:tmpl>
+
 						<tr>
 							<td valign="top">
 								<div id="roomsListWrapper">

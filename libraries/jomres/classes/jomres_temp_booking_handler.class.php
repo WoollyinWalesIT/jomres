@@ -112,7 +112,8 @@ class jomres_temp_booking_handler
 			"cfg_showExtras"=>false,
 			"booking_notes"=>array(),
 			"additional_line_items"=>array(),
-			"booking_number"=>0
+			"booking_number"=>0,
+			"room_feature_filter"=>array()
 			);
 			
 		$this->tmpguest = array(
@@ -458,7 +459,8 @@ class jomres_temp_booking_handler
 			"cfg_showExtras"=>false,
 			"booking_notes"=>array(),
 			"additional_line_items"=>array(),
-			"booking_number"=>0
+			"booking_number"=>0,
+			"room_feature_filter"=>array()
 			);
 		$this->saveBookingData();
 		}

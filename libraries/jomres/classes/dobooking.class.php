@@ -92,6 +92,7 @@ class dobooking
 		$this->unixDepartureDate		= null;
 		$this->beds_available = 0;
 		$this->monitoringMessages		= array();
+		$this->room_feature_filter		= array();
 		$this->vt						= "";
 		$this->vu						= "";
 		$this->vq						= "";
@@ -137,7 +138,7 @@ class dobooking
 
 		$bookingDeets=$this->getTmpBookingData();
 
-		$this->setErrorLog( "Queried db for existing booking" );
+		$this->setErrorLog( "Queried session data for existing booking" );
 		if (count($bookingDeets) >0 )
 			{
 			$this->rr						= $bookingDeets['requestedRoom'];
@@ -193,6 +194,7 @@ class dobooking
 			$this->coupon_discount_value	= $bookingDeets['coupon_discount_value'];
 			$this->booking_notes			= $bookingDeets['booking_notes'];
 			$this->additional_line_items	= unserialize($bookingDeets['additional_line_items']);
+			$this->room_feature_filter			= unserialize($bookingDeets['room_feature_filter']);
 			}
 
 		$dbdata=serialize($bookingDeets);
@@ -366,6 +368,7 @@ class dobooking
 		$this->getAllTariffsData();
 		$this->getAllRoomFeatureDetails();
 		$this->getAllRoomClasses();
+		$this->getAllRoomFeatures();
 		$this->getAllBookings();
 		$this->getAllTaxRates();
 		$this->get_all_tariff_types();
@@ -486,6 +489,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["coupon_discount_value"]			= $this->coupon_discount_value;
 		$tmpBookingHandler->tmpbooking["booking_notes"]					= $this->booking_notes;
 		$tmpBookingHandler->tmpbooking["additional_line_items"]			= serialize($this->additional_line_items);
+		$tmpBookingHandler->tmpbooking["room_feature_filter"]			= serialize($this->room_feature_filter);
 
 		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
 
@@ -594,21 +598,20 @@ class dobooking
 			}
 		}
 
-	/*
-	function getAllBookings()
+	function getAllRoomFeatures()
 		{
-		$gor=genericOr($this->allPropertyRoomUids,'room_uid');
-		$query = "SELECT room_uid,date FROM #__jomres_room_bookings WHERE property_uid = '$this->property_uid' AND $gor ";
-		$bookings =doSelectSql($query);
-		foreach ($bookings as $c)
+		$query = "SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '$this->property_uid'";
+		$roomFeatures =doSelectSql($query);
+		$this->allRoomFeatures = array();
+		if (count($roomFeatures)>0)
 			{
-			//$date=str_replace("/","",$c->date);
-			$this->allBookings[$c->date][$c->room_uid]=array('room_uid'=>$c->room_uid);
+			foreach ($roomFeatures as $feature)
+				{
+				$feature_description =$fd = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURES'.(int)$feature->room_features_uid,$feature->feature_description,false,false);
+				$this->allRoomFeatures[$feature->room_features_uid]=$feature_description;
+				}
 			}
-		if (count($this->allBookings) >0)
-			ksort($this->allBookings);
 		}
-	*/
 
 	function getAllBookings()
 		{
@@ -1154,6 +1157,7 @@ class dobooking
 			$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM',_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM,false,false));
 			$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS',_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS,false,false));
 			$output['_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE',_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE,false,false));
+			$output['_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER',_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER,false,false));
 
 			if (get_showtime('include_room_booking_functionality'))
 				$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
@@ -1268,6 +1272,88 @@ class dobooking
 				}
 			}
 		return $tmpArray;
+		}
+		
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	Room feature filtering
+	//
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	function initRoomFeatureFiltering()
+		{
+		$this->room_feature_checkboxes = array();
+		$this->room_feature_filtering_enabled = false;
+		if ( count ($this->allRoomFeatures) >0 )
+			{
+			$this->room_feature_filtering_enabled = true;
+			
+			foreach ($this->allRoomFeatures as $feature_id=>$feature)
+				{
+				$arr = array();
+				$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" AUTOCOMPLETE="OFF"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
+				$arr['DESCRIPTION']= $feature;
+				$this->room_feature_checkboxes[] = $arr;
+				}
+			}
+		}
+	
+	function toggleRoomFilterId($id)
+		{
+		if (isset($this->room_feature_filter[$id]))
+			unset($this->room_feature_filter[$id]);
+		else
+			$this->room_feature_filter[$id] = $id;
+		
+		}
+		
+	function check_room_has_selected_room_feature($room_id)
+		{
+		$featureStr = $this->allPropertyRooms[$room_id]['room_features_uid'];
+		$bang = explode(",",$this->allPropertyRooms[$room_id]['room_features_uid']);
+		$feature_ids = array();
+		foreach ($bang as $f)
+			{
+			if ($f != "")
+				$feature_ids[] = (int)$f;
+			}
+		if (count($feature_ids)==0)
+			return false;
+		$count = 0;
+		foreach ($this->room_feature_filter as $feature_id)
+			{
+			$this->setPopupMessage('xx'.$room_id." ".serialize($feature_id) );
+			if (in_array($feature_id,$feature_ids))
+				{
+				$count++;
+				}
+			}
+		if ($count == count($this->room_feature_filter) )
+			return true;
+		else
+			return false;
+		}
+		
+	function room_acceptable_according_to_room_filter($room_id)
+		{
+		if (count($this->room_feature_filter) ==0)// If the all room features array is empty, we'll return true as we don't want to do any filtering because no feature's been selected yet
+			return true;
+		if (count($this->allRoomFeatures) ==0) // There aren't any room features for this property
+			return true;
+		return $this->check_room_has_selected_room_feature($room_id);
+		}
+	
+	function checkRoomFeatureOption($freeRoomsArray)
+		{
+		$tmpArr = array();
+		foreach ($freeRoomsArray as $room_id)
+			{
+			if ($this->room_acceptable_according_to_room_filter($room_id))
+				$tmpArr[] = $room_id;
+			}
+		return $tmpArr;
 		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
