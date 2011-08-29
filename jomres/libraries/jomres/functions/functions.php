@@ -13,6 +13,59 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+// Adapted from http://uk.php.net/manual/en/function.time.php#89415
+function nicetime($date)
+	{
+	if(empty($date)) {
+		return "";
+		}
+	$periods         = array(
+							jr_gettext('_JOMRES_DATEPERIOD_SECOND',_JOMRES_DATEPERIOD_SECOND,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_MINUTE',_JOMRES_DATEPERIOD_MINUTE,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_HOUR',_JOMRES_DATEPERIOD_HOUR,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_DAY',_JOMRES_DATEPERIOD_DAY,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_WEEK',_JOMRES_DATEPERIOD_WEEK,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_MONTH',_JOMRES_DATEPERIOD_MONTH,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_YEAR',_JOMRES_DATEPERIOD_YEAR,false,false), 
+							jr_gettext('_JOMRES_DATEPERIOD_DECADE',_JOMRES_DATEPERIOD_DECADE,false,false)
+							);
+	$lengths         = array("60","60","24","7","4.35","12","10");
+
+	$now             = time();
+	$unix_date         = strtotime($date);
+	// check validity of date
+	if(empty($unix_date)) 
+		{
+		return "";
+		}
+
+	// is it future date or past date
+	if($now > $unix_date)
+		{
+		$difference	 = $now - $unix_date;
+		$tense		 = jr_gettext('_JOMRES_DATEPERIOD_AGO',_JOMRES_DATEPERIOD_AGO,false,false);
+		} 
+	else 
+		{
+		$difference	 = $unix_date - $now;
+		$tense		 = jr_gettext('_JOMRES_DATEPERIOD_FROMNOW',_JOMRES_DATEPERIOD_FROMNOW,false,false);
+		}
+   
+	for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++)
+		{
+		$difference /= $lengths[$j];
+		}
+
+	$difference = round($difference);
+   
+	if($difference != 1)
+		{
+		$periods[$j].= jr_gettext('_JOMRES_DATEPERIOD_S',_JOMRES_DATEPERIOD_S);
+		}
+	return "$difference $periods[$j] {$tense}";
+	}
+
+
 function get_remote_ip_number()
 	{
 	$dirty_ip = $_SERVER['REMOTE_ADDR'];
