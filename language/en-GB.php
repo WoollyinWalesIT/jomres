@@ -1558,3 +1558,18 @@ define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT','Automatically Selected?');
 define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Balance (after deposit paid)');
 
 define('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER','Filter rooms based on their features.');
+
+define('_JOMRES_DATEPERIOD_LATESTBOOKING','Latest booking');
+define('_JOMRES_DATEPERIOD_SECOND','second');
+define('_JOMRES_DATEPERIOD_MINUTE','minute');
+define('_JOMRES_DATEPERIOD_HOUR','hour');
+define('_JOMRES_DATEPERIOD_DAY','day');
+define('_JOMRES_DATEPERIOD_WEEK','week');
+define('_JOMRES_DATEPERIOD_MONTH','month');
+define('_JOMRES_DATEPERIOD_YEAR','year');
+define('_JOMRES_DATEPERIOD_DECADE','decade');
+define('_JOMRES_DATEPERIOD_S','s');
+define('_JOMRES_DATEPERIOD_AGO','ago');
+define('_JOMRES_DATEPERIOD_FROMNOW','from now');
+
+

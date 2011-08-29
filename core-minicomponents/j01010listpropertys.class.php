@@ -155,6 +155,20 @@ class j01010listpropertys {
 				// For historical reasons some tables in Jomres use propertys_uid and some use property_uid (note the 's') so g_pids is for those tables that use propertys_uid, while g_pid is for those without
 				$g_pids=genericOr($propertysToShow,'propertys_uid');
 				$g_pid =genericOr($propertysToShow,'property_uid');
+				
+				// Last booked
+				$lastBookedArray = array();
+				$query = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE ".$g_pid." AND `timestamp` IS NOT NULL GROUP BY property_uid ";
+				$result = doSelectSql($query);
+				if (count($result)>0)
+					{
+					foreach ($result as $r)
+						{
+						$date = nicetime($r->ts);
+						if ($date != "")
+							$lastBookedArray[$r->property_uid] = $date;
+						}
+					}
 
 				// Tariffs
 				$pricesFromArray=array();
@@ -411,7 +425,12 @@ class j01010listpropertys {
 							$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
 							}
 						}
-						
+
+					if (array_key_exists($property->propertys_uid,$lastBookedArray))
+						{
+						$property_deets['LASTBOOKED'] = jr_gettext('_JOMRES_DATEPERIOD_LATESTBOOKING',_JOMRES_DATEPERIOD_LATESTBOOKING)." ".$lastBookedArray[$property->propertys_uid];
+						$property_deets['LASTBOOKING_STYLE'] = 'ui-state-highlight ui-corner-all';
+						}
 					$propertyAddressArray=getPropertyAddressForPrint($property->propertys_uid);
 					$propertyContactArray=$propertyAddressArray[1];
 					$propertyAddyArray=$propertyAddressArray[2];
@@ -562,6 +581,19 @@ class j01010listpropertys {
 		$output[]		=jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS);
 		$output[]		=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS);
 		$output[]		=jr_gettext('_PN_NEXT',_PN_NEXT);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_SECOND',_JOMRES_DATEPERIOD_SECOND);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_MINUTE',_JOMRES_DATEPERIOD_MINUTE);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_DAY',_JOMRES_DATEPERIOD_DAY);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_HOUR',_JOMRES_DATEPERIOD_HOUR);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_WEEK',_JOMRES_DATEPERIOD_WEEK);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_MONTH',_JOMRES_DATEPERIOD_MONTH);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_YEAR',_JOMRES_DATEPERIOD_YEAR);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_DECADE',_JOMRES_DATEPERIOD_DECADE);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_S',_JOMRES_DATEPERIOD_S);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_AGO',_JOMRES_DATEPERIOD_AGO);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_FROMNOW',_JOMRES_DATEPERIOD_FROMNOW);
+		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_LATESTBOOKING',_JOMRES_DATEPERIOD_LATESTBOOKING);
+
 		foreach ($output as $o)
 			{
 			echo $o;
