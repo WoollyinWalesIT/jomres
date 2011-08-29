@@ -177,5 +177,6 @@ $mrConfig['booking_form_daily_weekly_monthly'] ="D";
 $mrConfig['showRoomImageInBookingFormOverlib'] ="2";
 $mrConfig['tariffsenhanceddefault'] =100;
 $mrConfig['tariffsenhancedyearstoshow'] =2;
+$mrConfig['wholeday_booking'] ="0";
 
 ?>

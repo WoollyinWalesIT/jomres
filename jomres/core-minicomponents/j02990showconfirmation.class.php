@@ -412,9 +412,18 @@ class j02990showconfirmation {
 		$booking_parts['LANDLINE']			=	stripslashes($guestList['tel_landline']);
 		$booking_parts['MOBILE']			=	stripslashes($guestList['tel_mobile']);
 		$booking_parts['EMAIL']				=	stripslashes($guestList['email']);
-
-		$booking_parts['HARRIVAL']			=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
-		$booking_parts['HDEPARTURE']		=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+		
+		if ($mrConfig['wholeday_booking'] == "1")
+			{
+			$booking_parts['HARRIVAL']			=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);
+			$booking_parts['HDEPARTURE']		=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);
+			}
+		else
+			{
+			$booking_parts['HARRIVAL']			=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
+			$booking_parts['HDEPARTURE']		=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+			}
+			
 		$booking_parts['HDAYSSTAYING']		=	jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS);
 		$booking_parts['BOOKINGSPECIALREQ']	=	jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ);
 		$booking_parts['DISCLAIMER']		=	jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER);

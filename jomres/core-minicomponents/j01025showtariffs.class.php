@@ -131,10 +131,21 @@ class j01025showtariffs {
 					else
 						$price_inc_vat = $current_property_details->get_gross_accommodation_price($tariff->roomrateperday,$property_uid);
 					
-					if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
-						$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+					if ($mrConfig['wholeday_booking'] == "1")
+						{
+						if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
+							$output['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
+						else
+							$output['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY);
+						}
 					else
-						$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						{
+						if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
+							$output['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+						else
+							$output['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						}
+					
 					if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1" && $mrConfig['tariffmode'] == "1")
 						{
 						if ($mrConfig['tariffmode'] == 2)
