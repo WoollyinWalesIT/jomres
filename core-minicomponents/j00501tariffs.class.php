@@ -108,10 +108,20 @@ class j00501tariffs {
 			{
 			if (isset($MiniComponents->registeredClasses['00011manager_option_04_guesttypeadmin']))
 				{
-				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
-				$configurationPanel->setmiddle($lists['perPersonPerNight']);
-				$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
-				$configurationPanel->insertSetting();
+				if ($mrConfig['wholeday_booking'] == "1")
+					{
+					$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY);
+					$configurationPanel->setmiddle($lists['perPersonPerNight']);
+					$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY);
+					$configurationPanel->insertSetting();
+					}
+				else
+					{
+					$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
+					$configurationPanel->setmiddle($lists['perPersonPerNight']);
+					$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
+					$configurationPanel->insertSetting();
+					}
 				}
 			
 			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT);
@@ -131,7 +141,10 @@ class j00501tariffs {
 
 			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE);
 			$configurationPanel->setmiddle($lists['use_variable_deposits']);
-			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC);
+			if ($mrConfig['wholeday_booking'] == "1")
+				$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY);
+			else
+				$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC);
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS);

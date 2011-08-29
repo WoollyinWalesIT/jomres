@@ -329,6 +329,19 @@ class j02260editbooking {
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL',_JOMRES_COM_MR_EDITBOOKING_TAB_ARRIVAL,FALSE));
+		
+		if ($mrConfig['wholeday_booking'] == "1")
+			{
+			$arrivalText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);
+			$departureText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);
+			}
+		else
+			{
+			$arrivalText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
+			$departureText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+			}
+
+		
 		$contentPanel->setcontent('<table>
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL',_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL).'</td>
@@ -339,11 +352,11 @@ class j02260editbooking {
 				<td>'. ucfirst($guest_surname).'</td>
 			</tr>
 			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL).'</td>
+				<td>'.$arrivalText.'</td>
 				<td>'.outputDate($booking_arrival).'</td>
 			</tr>
 			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE).'</td>
+				<td>'.$departureText.'</td>
 				<td>'.outputDate($booking_departure).'</td>
 			</tr>
 			<tr>
@@ -484,7 +497,7 @@ class j02260editbooking {
 				<td>'.output_price($booking_contract_total).'</td>
 			</tr>
 			<tr>
-			<td>'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS).'</td>
+			<td>'. $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY): jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS).'</td>
 				<td>'.count(explode(",",$booking_date_range_string) ).'</td>
 			</tr>
 			<tr>

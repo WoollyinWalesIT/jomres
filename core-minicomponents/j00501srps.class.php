@@ -62,12 +62,21 @@ class j00501srps {
 			$configurationPanel->insertSetting();
 			}
 
-
-		$configurationPanel->setleft(_JOMRES_COM_A_FIXEDPERIODBOOKINGS);
-		$configurationPanel->setmiddle($lists['fixedPeriodBookings']);
-		$configurationPanel->setright(_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC);
-		$configurationPanel->insertSetting();
-
+		if ($mrConfig['wholeday_booking'] == "1")
+			{
+			$configurationPanel->setleft(_JOMRES_COM_A_FIXEDPERIODBOOKINGS);
+			$configurationPanel->setmiddle($lists['fixedPeriodBookings']);
+			$configurationPanel->setright(_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC_WHOLEDAY);
+			$configurationPanel->insertSetting();
+			}
+		else
+			{
+			$configurationPanel->setleft(_JOMRES_COM_A_FIXEDPERIODBOOKINGS);
+			$configurationPanel->setmiddle($lists['fixedPeriodBookings']);
+			$configurationPanel->setright(_JOMRES_COM_A_FIXEDPERIODBOOKINGS_DESC);
+			$configurationPanel->insertSetting();
+			}
+			
 		$configurationPanel->setleft(_JOMRES_COM_A_FIXEDPERIOD);
 		$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_fixedPeriodBookingsNumberOfDays" value="'.$mrConfig['fixedPeriodBookingsNumberOfDays'].'" />');
 		$configurationPanel->setright();
@@ -88,21 +97,48 @@ class j00501srps {
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
 
-		$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO);
-		$configurationPanel->setmiddle($lists['fixedArrivalDateYesNo']);
-		$configurationPanel->setright(_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC);
-		$configurationPanel->insertSetting();
-
-		$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY);
-		$configurationPanel->setmiddle($weekdayDropdown);
-		$configurationPanel->setright();
-		$configurationPanel->insertSetting();
+		if ($mrConfig['wholeday_booking'] == "1")
+			{
+			$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_WHOLEDAY);
+			$configurationPanel->setmiddle($lists['fixedArrivalDateYesNo']);
+			$configurationPanel->setright(_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC_WHOLEDAY);
+			$configurationPanel->insertSetting();
+		
+			$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY_WHOLEDAY);
+			$configurationPanel->setmiddle($weekdayDropdown);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			}
+		else
+			{
+			$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO);
+			$configurationPanel->setmiddle($lists['fixedArrivalDateYesNo']);
+			$configurationPanel->setright(_JOMRES_COM_MR_FIXEDARRIVALDATE_YESNO_DESC);
+			$configurationPanel->insertSetting();
+		
+			$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_DAY);
+			$configurationPanel->setmiddle($weekdayDropdown);
+			$configurationPanel->setright();
+			$configurationPanel->insertSetting();
+			}
+			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING);
-			$configurationPanel->setmiddle($fixedArrivalDatesRecurring);
-			$configurationPanel->setright(_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC);
-			$configurationPanel->insertSetting();
+			if ($mrConfig['wholeday_booking'] == "1")
+				{
+				$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_WHOLEDAY);
+				$configurationPanel->setmiddle($fixedArrivalDatesRecurring);
+				$configurationPanel->setright(_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC_WHOLEDAY);
+				$configurationPanel->insertSetting();
+				}
+			else
+				{
+				$configurationPanel->setleft(_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING);
+				$configurationPanel->setmiddle($fixedArrivalDatesRecurring);
+				$configurationPanel->setright(_JOMRES_COM_MR_FIXEDARRIVALDATE_RECURRING_DESC);
+				$configurationPanel->insertSetting();
+				}
+
 			}
 			
 		$configurationPanel->endPanel();
