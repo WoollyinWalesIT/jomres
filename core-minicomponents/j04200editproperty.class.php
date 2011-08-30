@@ -88,7 +88,7 @@ class j04200editproperty {
 				$output['PROPERTY_FAX']=html_entity_decode ( $property-> property_fax);
 				$output['PROPERTY_EMAIL']=html_entity_decode ( $property->property_email);
 
-				if ($property->lat > 0)
+				if ($property->lat != "")
 					{
 					$output['LAT']=$property->lat;
 					$output['LONG']=$property->long;
