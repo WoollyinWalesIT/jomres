@@ -157,7 +157,11 @@ require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 set_error_handler('errorHandler');
 jomres_parseRequest();
 
-
+if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
+	{
+	define('JOMRES_IMAGELOCATION_ABSPATH',JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
+	define('JOMRES_IMAGELOCATION_RELPATH',get_showtime('live_site').'/jomres/uploadedimages/');
+	}
 
 // In case somebody removes the above lines, we still need to set this define otherwise folks will not be able to create new properties
 if (!defined('JOMRES_SINGLEPROPERTY'))
