@@ -63,10 +63,17 @@ $bkg->currentField=$field;
 ob_start();
 switch ($field)
 	{
+	case "override":
+		$ajrq="ajrq:::override";
+		$value=$bkg->sanitiseInput("string",$value);
+		$bkg->writeToLogfile("Starting override input");
+		$response=$bkg->saveOverride($value);
+		echo '; populateDiv("override_response","'.$response.'");';
+	break;
 	case "room_features":
 		// $this->room_feature_filter
 		$value=$bkg->sanitiseInput("int",$value);
-		$bkg->writeToLogfile("Starting extra input");
+		$bkg->writeToLogfile("Starting room_features input");
 		$bkg->toggleRoomFilterId($value);
 		
 	break;

@@ -1615,3 +1615,6 @@ define('_JOMRES_FRONT_MR_BOOKIN_TITLE_WHOLEDAY','Mark a booking picked up');
 define('_JOMRES_FRONT_MR_BOOKOUT_TITLE_WHOLEDAY','Mark a booking returned');
 define('_JOMRES_COM_INVOICE_COSTPERNIGHT_WHOLEDAY','Cost per day: ');
 define('_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY','Number of days: ');
+
+define('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL','Override Accommodation Total');
+define('_JOMCOMP_AMEND_OVERRIDE_SAVE','Save override');

@@ -307,6 +307,15 @@ function getResponse_room_features(field,value,theId) {
 	);
 };
 
+function getResponse_override(field,value,theId) {
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+		function(data){
+			eval(data); 
+			show_log(field);
+			}
+	);
+};
+
 function getResponse_extrasquantity(field,value,theId) {
 	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
 		function(data){

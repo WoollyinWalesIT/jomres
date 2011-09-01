@@ -194,7 +194,9 @@ class dobooking
 			$this->coupon_discount_value	= $bookingDeets['coupon_discount_value'];
 			$this->booking_notes			= $bookingDeets['booking_notes'];
 			$this->additional_line_items	= unserialize($bookingDeets['additional_line_items']);
-			$this->room_feature_filter			= unserialize($bookingDeets['room_feature_filter']);
+			$this->room_feature_filter		= unserialize($bookingDeets['room_feature_filter']);
+			$this->override_room_total			= (float)$bookingDeets['override_room_total'];
+			$this->override_deposit			= (float)$bookingDeets['override_deposit'];
 			}
 
 		$dbdata=serialize($bookingDeets);
@@ -490,6 +492,8 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["booking_notes"]					= $this->booking_notes;
 		$tmpBookingHandler->tmpbooking["additional_line_items"]			= serialize($this->additional_line_items);
 		$tmpBookingHandler->tmpbooking["room_feature_filter"]			= serialize($this->room_feature_filter);
+		$tmpBookingHandler->tmpbooking["override_room_total"]				= $this->override_room_total;
+		$tmpBookingHandler->tmpbooking["override_deposit"]				= $this->override_deposit;
 
 		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
 
@@ -1385,6 +1389,27 @@ class dobooking
 			}
 		return $tmpArr;
 		}
+		
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	Room total overrides
+	//
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	function saveOverride($values)
+		{
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if ($thisJRUser->userIsManager)
+			{
+			$bang = explode("^",$values);
+			$this->override_room_total = (float)$bang[0];
+			$this->override_deposit = (float)$bang[1];
+			}
+		}
+		
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -5566,7 +5591,20 @@ class dobooking
 			}
 
 		// End partner price recalculations
-
+		
+		// Bypassing all the other calculations, if the price has been over-ridden, we'll just set the room total here instead.
+		if ($thisJRUser->userIsManager && $this->override_room_total > 0)
+			{
+			$mrConfig=getPropertySpecificSettings($this->property_uid);
+			$tmpRate = $this->override_room_total;
+			if ($mrConfig['prices_inclusive'] == 1)
+				{
+				$divisor	= ($this->accommodation_tax_rate/100)+1;
+				$tmpRate=$tmpRate/$divisor;
+				}
+			$this->room_total = $tmpRate;
+			}
+		
 		$this->setErrorLog("makeNightlyRoomCharges::Room total calculated as ".$this->room_total);
 		$this->setErrorLog("makeNightlyRoomCharges:: Ended");
 		return true;
@@ -5939,6 +5977,13 @@ class dobooking
 				//}
 			}
 		$this->deposit_required = $depositValue;
+		
+		$thisJRUser=jomres_getSingleton('jr_user');
+		if ($thisJRUser->userIsManager)
+			{
+			if (isset($this->override_deposit))
+				$this->deposit_required = $this->override_deposit;
+			}
 		}
 
 	/**
@@ -6546,6 +6591,7 @@ class dobooking
 		$this->setErrorLog("te_setAverageRate:: Ended");
 		return true;
 		}
+
 
 	function calcLastMinuteDiscount()
 		{

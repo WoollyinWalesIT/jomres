@@ -38,12 +38,19 @@ class j02990showconfirmation {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
+		
 		$booking_parts=array();
 		if ( !isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )
 			$tmpBookingHandler->addNewBookingField("confirmationSeen");
 		$tmpBookingHandler->updateBookingField("confirmationSeen",true);
-		$tmpBookingHandler->saveBookingData();
 
+		// if (isset($_REQUEST['override_room_total']) && $thisJRUser->userIsManager && !$amend_contract)
+			// $tmpBookingHandler->updateBookingField("room_total",(float)$_REQUEST['override_room_total']  );
+		// if (isset($_REQUEST['override_deposit']) && $thisJRUser->userIsManager && !$amend_contract)
+			// $tmpBookingHandler->updateBookingField("deposit_required",(float)$_REQUEST['override_deposit']  );
+		
+		$tmpBookingHandler->saveBookingData();
 		if ( !isset($tmpBookingHandler->tmpbooking["bookersUsername"]) )
 			$tmpBookingHandler->addNewBookingField("bookersUsername");
 		$tmpBookingHandler->updateBookingField("bookersUsername",$thisJRUser->username);
@@ -73,7 +80,7 @@ class j02990showconfirmation {
 		$tag			=	$bookingDeets['tag'];
 		$property_uid	=	$bookingDeets['property_uid'];
 		$mrConfig		=	getPropertySpecificSettings($property_uid);
-		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
+		
 		if ($amend_contract)
 			{
 			$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
