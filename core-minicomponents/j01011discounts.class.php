@@ -100,7 +100,7 @@ class j01011discounts {
 					$this->returnValue=array();
 					
 					$wisepricethreshold = $relevant_properties[$property_uid]['wisepricethreshold'];
-					$wisepricediscount = $relevant_properties[$property_uid]['wisepricediscount'];
+					$wisepricediscount = $relevant_properties[$property_uid]['wiseprice75discount'];
 					
 					$todaysDate=date("Y/m/d");
 					$date_elements	 = explode("/",$todaysDate);
@@ -111,7 +111,6 @@ class j01011discounts {
 					$text	.=	(float)$wisepricediscount.jr_gettext('_JOMCOMP_LASTMINUTE_ORMORE',_JOMCOMP_LASTMINUTE_ORMORE,false,true);
 					$text	.=	$latestDate;
 					$text	.=	jr_gettext('_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST',_JOMCOMP_LASTMINUTE_PROPERTYLIST_POST,false,true);
-					
 					$this->returnValue=array('LASTMINUTE'=>$text,'LASTMINUTECLASS'=>'jomres_message');
 					}
 				}
