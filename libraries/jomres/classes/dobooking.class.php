@@ -1355,7 +1355,6 @@ class dobooking
 		$count = 0;
 		foreach ($this->room_feature_filter as $feature_id)
 			{
-			$this->setPopupMessage('xx'.$room_id." ".serialize($feature_id) );
 			if (in_array($feature_id,$feature_ids))
 				{
 				$count++;
