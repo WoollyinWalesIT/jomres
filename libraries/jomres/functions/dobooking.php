@@ -108,6 +108,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$tmpBookingHandler->tmpbooking["total_discount"]="";
 	//$tmpBookingHandler->saveBookingData();
 	$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
+	$tmpBookingHandler->tmpbooking["override_room_total"]=null;
+	$tmpBookingHandler->tmpbooking["override_deposit"]=null;
 	
 	$today = date("Y/m/d");
 	$date_elements  	= explode("/",$today);
@@ -585,6 +587,11 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$roomfeatures[] = $rf;
 			}
 		}
+	
+	if ($thisJRUser->userIsManager && !$amend_contract)
+		{
+		$manager_pricing[] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL',_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL,false,false),'_JOMCOMP_AMEND_OVERRIDE_DEPOSIT'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT',_JOMCOMP_AMEND_OVERRIDE_DEPOSIT,false,false),'_JOMCOMP_AMEND_OVERRIDE_SAVE'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE',_JOMCOMP_AMEND_OVERRIDE_SAVE,false,false));
+		}
 
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
@@ -604,6 +611,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$tmpl->addRows( 'extrasrow',$extrasHeader);
 	$tmpl->addRows( 'roomfeaturesrowheader',$roomfeaturesHeader);
 	$tmpl->addRows( 'roomfeaturesrow',$roomfeatures);
+	$tmpl->addRows( 'manager_pricing',$manager_pricing);
 	$tmpl->addRows( 'onload',$toload);
 	$MiniComponents->triggerEvent('05019');
 	$mcOutput=$MiniComponents->getAllEventPointsData('05019');

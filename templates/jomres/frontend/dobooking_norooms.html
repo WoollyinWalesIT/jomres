@@ -120,6 +120,28 @@ jomresJquery(document).ready(function() {
 									<tr>
 										<th class="bform_small" colspan="4">{AJAXFORM_PARTICULARS_DESC}</th>
 									</tr>
+									<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
+									<tr>
+										<td valign="top" colspan="4">
+											<table class="bform_table  ui-widget ui-corner-all" border="0" width="100%" cellpadding="0" cellspacing="0">
+												<tr>
+													<td>{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</td>
+													<td>{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</td>
+												</tr>
+												<tr>
+													<td><input class="inputbox" size="15" type="number" name="override_room_total" id="override_room_total" value="" /></td>
+													<td><input class="inputbox" size="15" type="number" name="override_deposit" id="override_deposit" value="" /></td>
+												</tr>
+												<tr>
+													<td colspan="2"><a href ="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="fg-button ui-state-default ui-corner-all" >{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a></td>
+												</tr>
+												<tr>
+													<td colspan="2"><div id="override_response" class="jomres_message">&nbsp;</div></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									</patTemplate:tmpl>
 									<tr>
 										<td>{HARRIVALDATE}</td>
 										<td>{ARRIVALDATE}</td>
