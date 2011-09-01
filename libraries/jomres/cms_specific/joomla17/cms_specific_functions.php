@@ -127,10 +127,9 @@ function jomres_cmsspecific_getRegistrationURL()
 	
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 	{
-	$ret = "";
-	$editor =& JFactory::getEditor('tinymce');
-	$params = array('theme' => 'simple');
-	$ret =$editor->display($name, $content, $width, $height, $col, $row, false, $params);
+	$ret = ""; 
+	$editor =& JFactory::getEditor(); 
+	$ret =$editor->display($name, $content, $width, $height, $col, $row);
 	return $ret;
 	}
 
