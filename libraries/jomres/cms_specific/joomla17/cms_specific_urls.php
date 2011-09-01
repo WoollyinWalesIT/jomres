@@ -24,39 +24,48 @@ $ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
-if (class_exists('JFactory'))
-	{
-	// get application
-	$app = & JFactory::getApplication('site');
-	// get menu
-	$menu   = $app->getMenu();
-	// get active menu id
-	$activeId = $menu->getActive()->id;
-	// get active menu
-	$active   = $menu->getActive();
-	// set jomresItemid
-	$jomresItemid = $active->id;
-	}
+if (isset($_REQUEST['Itemid']))
+	$jomresItemid = (int)$_REQUEST['Itemid'];
 else
 	{
-	$query = "SELECT id"
-		. "\n FROM #__menu"
-		. "\n WHERE "
-		. "\n published = 1"
-		. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
-	$itemQueryRes = doSelectSql($query);
-	if (count($itemQueryRes)>0)
+	if (class_exists('JFactory'))
 		{
-		foreach ($itemQueryRes as $i)
+		// get application
+		$app = & JFactory::getApplication('site');
+		// get menu
+		$menu   = $app->getMenu();
+		// get active menu id
+		if ( !is_null($menu->getActive()) )
 			{
-			$jomresItemid = $i->id;
+			$activeId = $menu->getActive()->id;
+			// get active menu
+			$active   = $menu->getActive();
+			// set jomresItemid
+			$jomresItemid = $active->id;
 			}
-		}
-	else
-		{if (isset($jrConfig['jomresItemid']))
-			$jomresItemid = $jrConfig['jomresItemid'];
 		else
-			$jomresItemid = 0; //should only kick in on install
+			{
+			$query = "SELECT id"
+				. "\n FROM #__menu"
+				. "\n WHERE "
+				. "\n published = 1"
+				. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
+			$itemQueryRes = doSelectSql($query);
+			if (count($itemQueryRes)>0)
+				{
+				foreach ($itemQueryRes as $i)
+					{
+					$jomresItemid = $i->id;
+					}
+				}
+			else
+				{
+				if (isset($jrConfig['jomresItemid']))
+					$jomresItemid = $jrConfig['jomresItemid'];
+				else
+					$jomresItemid = 0; //should only kick in on install
+				}
+			}
 		}
 	}
 
