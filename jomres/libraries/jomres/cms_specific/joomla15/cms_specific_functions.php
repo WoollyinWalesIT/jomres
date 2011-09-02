@@ -138,16 +138,11 @@ function jomres_cmsspecific_getRegistrationURL()
 	
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 	{
+	global $mainframe, $_MAMBOTS;
+	include( JOMRESCONFIG_ABSOLUTE_PATH."/editor/editor.php");
 	$ret = "";
-	$editor =& JFactory::getEditor('tinymce');
-	$params = array( 'smilies'=> '0' ,
-			 'style'  => '0' ,  
-			 'layer'  => '0' , 
-			 'table'  => '0' ,
-			 'clear_entities'=>'0'
-			 );
-
-	$ret =$editor->display($name, $content, $width, $height, $col, $row, false, $params);
+	$editor =& JFactory::getEditor();
+	$ret =$editor->display($name, $content, $width, $height, $col, $row);
 	return $ret;
 	}
 
