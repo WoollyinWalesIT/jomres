@@ -138,8 +138,6 @@ function jomres_cmsspecific_getRegistrationURL()
 	
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 	{
-	global $mainframe, $_MAMBOTS;
-	include( JOMRESCONFIG_ABSOLUTE_PATH."/editor/editor.php");
 	$ret = "";
 	$editor =& JFactory::getEditor();
 	$ret =$editor->display($name, $content, $width, $height, $col, $row);
