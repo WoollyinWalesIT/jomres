@@ -1,3 +1,24 @@
+
+Jomres 5.5.2
+
+Added a new feature to allow rooms to be filtered according to their room features, in the booking form.
+Added functionality and lang definitions to find the last date the property last had a booking made against it.
+Implemented a new feature that makes it possible to do wholeday bookings, as opposed to overnight bookings. When the arrival and departure dates are set in the booking form the number of days of the booking include both the arrival and departure dates, rather than just the days between. Most changes pertain to changing wording from per night to per day, but they do add a lot of new strings. Provisionally the wording addresses the hypothetical situation that Jomres is being used for a tool hire and renamed "arrival" and "departure" to "pickup" and "return" dates.
+Added a feature to allow managers to override the price of a booking's accommodation at booking time.
+
+set lat long defaults to Buck palace if it's not set, prevents a js error in edit property.
+Precautionary changes to edit property to add API key, I can't replicate a reported issue but this change should forestall it.
+Found I hadn't updated the add property reg prop2 templates with the appropriate code for generating a map.
+Blooming tab jump to top of page problem is back again. Added a fixed height to the tabs div to prevent the jumping.
+Added a check to ensure that property uid is > 0 when generating module property output.
+Small modification to jr_gettext to ensure it uses jomresJquery not jQuery.
+Changed how the latitude is detected when editing a property, the older method wouldn't allow negative numbers (oops).
+Moved the image location abs path definitions into integration.php.
+Undid a change made in the previous version that scuppered editors in edit property details.
+Fixed a bug where wiseprice discount was being set to 0 in list properties.
+Tweaked j1.7's itemid finding query to resolve issues that some people have been getting.
+
+
 Jomres 5.5.1
 
 Fixed an issue where J1.7 couldn't install as the jfactory isn't available during installation
