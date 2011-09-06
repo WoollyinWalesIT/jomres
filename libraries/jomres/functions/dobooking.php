@@ -523,7 +523,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		
 		}
 	
-	$output['PANELPOSITION']=$jrConfig['booking_form_totalspanel_position'];
+	$output['PANELPOSITION']=(int)$jrConfig['booking_form_totalspanel_position'];
+	$output['BOOKINGFORMWIDTH']=(int)$jrConfig['booking_form_width'];
 	
 	$output['DEPOSIT_CLASS'] = '';
 	if (isset($output['DEPOSIT'])) // Need this to stop the booking form totals panel from showing a thick line if the deposit option is disabled
