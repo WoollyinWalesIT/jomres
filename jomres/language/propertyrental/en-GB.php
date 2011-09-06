@@ -1619,3 +1619,5 @@ define('_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY','Number of days: ');
 define('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL','Override Accommodation Total');
 define('_JOMCOMP_AMEND_OVERRIDE_SAVE','Save override');
 
+define('_JOMRES_BOOKINGFORMWIDTH','Booking form width in px');
+

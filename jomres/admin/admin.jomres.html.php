@@ -260,6 +260,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_booking_form_totalspanel_position" value="'.$jrConfig['booking_form_totalspanel_position'].'" /></td>
 				<td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC.'</td>
 			</tr>
+			
+			<tr align="center" valign="middle">
+				<td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGFORMWIDTH.'</td>
+				<td class="jradmin_subheader_la" valign="top"><input type="text" class="inputbox" name="cfg_booking_form_width" value="'.$jrConfig['booking_form_width'].'" /></td>
+				<td class="jradmin_subheader_la" valign="top"></td>
+			</tr>
 			<tr align="center" valign="middle">
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER.'</td>
 				 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers'].'</td>
