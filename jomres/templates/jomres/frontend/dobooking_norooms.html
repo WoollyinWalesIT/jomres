@@ -73,20 +73,22 @@ jomresJquery(document).ready(function() {
 		delay: 30000
 	});
 	var top = jomresJquery('#totals').offset().top - parseFloat(jomresJquery('#totals').css('margin-top').replace(/auto/, 0));
-	
-	jomresJquery(window).scroll(function (event) {
-	// what the y position of the scroll is
-	var y = jomresJquery(this).scrollTop();
+	var slider_enabled = '{SLIDER_ENABLED}';
+	if (slider_enabled == 'true') {
+		jomresJquery(window).scroll(function (event) {
+			// what the y position of the scroll is
+			var y = jomresJquery(this).scrollTop();
 
-	// whether that's below the form
-	if (y >= top) {
-		// if so, ad the fixed class
-		jomresJquery('#totals').addClass('fixed');
-	} else {
-	// otherwise remove it
-		jomresJquery('#totals').removeClass('fixed');
+			// whether that's below the form
+			if (y >= top) {
+				// if so, ad the fixed class
+				jomresJquery('#totals').addClass('fixed');
+			} else {
+			// otherwise remove it
+				jomresJquery('#totals').removeClass('fixed');
+				}
+			});
 		}
-	});
 
 	jomresJquery( "#open_booking_form" )
 		.button()
