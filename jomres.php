@@ -33,19 +33,20 @@ global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRe
 
 require_once(dirname(__FILE__).'/integration.php');
 
-if (!isset($_REQUEST['tmpl']))
+jr_import('browser_detect');
+$b = new browser_detect();
+$is_mobile = $b->isMobile();
+set_showtime('mobile_browser',$is_mobile );
+
+if ( $is_mobile && !isset($_REQUEST['tmpl']) )
 	{
-	$is_iphone = is_iPhone();
-	if ($is_iphone == "YES")
+	$st="?";
+	foreach ($_GET as $key=>$val)
 		{
-		$st="?";
-		foreach ($_GET as $key=>$val)
-			{
-			$st .= $key."=".$val."&";
-			}
-		header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component");
-		die();
+		$st .= $key."=".$val."&";
 		}
+	header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component");
+	die();
 	}
 
 set_showtime('heavyweight_system',false);
