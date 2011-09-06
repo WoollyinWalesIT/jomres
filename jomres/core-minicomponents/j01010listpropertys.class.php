@@ -476,6 +476,7 @@ class j01010listpropertys {
 					$property_deets['UID']=$property->propertys_uid;
 					$property_deets['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 					$property_deets['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid) ;
+					$property_deets['MOREINFORMATIONLINK_AJAX']=JOMRES_SITEPAGE_URL_AJAX."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['MOREINFORMATIONLINK_SEFSAFE']=JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
 					$property_deets['PROPERTYTOWN']= html_entity_decode($ptown);
