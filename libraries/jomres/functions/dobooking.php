@@ -588,6 +588,14 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$roomfeatures[] = $rf;
 			}
 		}
+
+	if (get_showtime('mobile_browser'))
+		$jrConfig['booking_form_totals_panel_as_slider'] = "0";
+	
+	if ($jrConfig['booking_form_totals_panel_as_slider'] == "1")
+		$output['SLIDER_ENABLED'] = 'true';
+	else
+		$output['SLIDER_ENABLED'] = 'false';
 	
 	if ($thisJRUser->userIsManager && !$amend_contract)
 		{
