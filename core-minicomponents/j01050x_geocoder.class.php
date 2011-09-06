@@ -35,6 +35,9 @@ class j01050x_geocoder {
 			{
 			$this->template_touchable=false; return;
 			}
+		if (isset($_REQUEST['jrajax'])) // Map will not render when called via ajax (for modal popup)
+			return;
+
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
