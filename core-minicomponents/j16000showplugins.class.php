@@ -34,6 +34,10 @@ class j16000showplugins
 			{
 			$this->template_touchable=false; return;
 			}
+		
+		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
+		$this_jomres_version = explode(".",$mrConfig['version']);
+		
 		$installed_plugins=array();
 		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$third_party_plugins = array();
@@ -62,25 +66,55 @@ class j16000showplugins
 		$this->key_valid = $key_validation->key_valid;
 		
 		$remote_plugins=array();
-		$remote_plugins_data=queryUpdateServer("","r=dp&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
-		$rp_array=explode("<br/>",$remote_plugins_data);
-		foreach ($rp_array as $rp)
+		
+		if (function_exists('json_decode'))
+			$json = true;
+
+		if ($json)
+			$remote_plugins_data=queryUpdateServer("","r=dp&format=json&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
+		else
+			$remote_plugins_data=queryUpdateServer("","r=dp&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
+		
+		if ($json)
 			{
-			$rp_string=explode("^",$rp);
-			$cname=addslashes($rp_string[1]);
-			$name=htmlentities($rp_string[1], ENT_QUOTES, 'UTF-8') ;
-			if ($cname!="")
+			
+			$rp_array=json_decode($remote_plugins_data);
+			foreach ($rp_array as $rp)
 				{
-				$remote_plugins[$cname]=array(
-					"name"=>trim(addslashes($name)),
-					"version"=>(float)$rp_string[2],
-					"lastupdate"=>addslashes($rp_string[3]),
-					"description"=>addslashes($rp_string[4])
+				$remote_plugins[trim(addslashes($rp->name))]=array(
+					"name"=>trim(addslashes($rp->name)),
+					"version"=>(float)$rp->version,
+					"lastupdate"=>addslashes($rp->lastupdate),
+					"description"=>addslashes($rp->description),
+					"type"=>addslashes($rp->type),
+					"min_jomres_ver"=>addslashes($rp->min_jomres_ver)
 					);
-				if (isset($rp_string[5]) )
-					$remote_plugins[$cname]['type']=$rp_string[5];
-				else
-					$remote_plugins[$cname]['type']="internal";
+				}
+			}
+		else
+			{
+			$rp_array=explode("<br/>",$remote_plugins_data);
+			foreach ($rp_array as $rp)
+				{
+				$rp_string=explode("^",$rp);
+				$cname=addslashes($rp_string[1]);
+				$name=htmlentities($rp_string[1], ENT_QUOTES, 'UTF-8') ;
+				if ($cname!="")
+					{
+					$remote_plugins[$cname]=array(
+						"name"=>trim(addslashes($name)),
+						"version"=>(float)$rp_string[2],
+						"lastupdate"=>addslashes($rp_string[3]),
+						"description"=>addslashes($rp_string[4])
+						);
+					if (isset($rp_string[5]) )
+						$remote_plugins[$cname]['type']=$rp_string[5];
+					else
+						$remote_plugins[$cname]['type']="internal";
+
+					if (isset($rp_string[6]))
+						$remote_plugins[$cname]['min_jomres_ver']=$rp_string[6];
+					}
 				}
 			}
 
@@ -190,8 +224,8 @@ class j16000showplugins
 				}
 
 			$uninstallLink="";
-			if (!in_array($rp['type'],$externalPluginTypes) )
-				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
+			
+			$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
 
 			$local_version=$installed_plugins[$n]['version'];
 			if (!array_key_exists($n,$installed_plugins ) )
@@ -235,10 +269,11 @@ class j16000showplugins
 		echo '
 		<table class="jradmin_table" border="0">
 			<tr>
-				<th class="jomres_title" colspan="7">Jomres.net plugins</th>
+				<th class="jomres_title" colspan="8">Jomres.net plugins</th>
 			</tr>
 			<tr>
 				<th class="jomres_title">Name</th>
+				<th class="jomres_title">Minimum Jomres version</th>
 				<th class="jomres_title">Your Version</th>
 				<th class="jomres_title">Current Version</th>
 				<th class="jomres_title">Last updated</th>
@@ -256,9 +291,12 @@ class j16000showplugins
 			{
 			$type=$rp['type'];
 			$n=$rp['name'];
+			$min_jomres_ver = explode(".",$rp['min_jomres_ver']);
+			
 			$row_class='availablefordownload';
 			$installAction=$install_text;
 			$uninstallAction=" ";
+			
 			if (array_key_exists($n,$installed_plugins ) )
 				{
 				$uninstallAction=$uninstall_text;
@@ -289,15 +327,37 @@ class j16000showplugins
 			$local_version=$installed_plugins[$n]['version'];
 			if (!array_key_exists($n,$installed_plugins ) )
 				$local_version="N/A";
+				
 			echo
 			"<tr class=\"".$row_class."\">
 				<td>".$strong1.$rp['name'].$strong2."</td>
+				<td>".$rp['min_jomres_ver']."</td>
 				<td>".$local_version."</td>
 				<td>".$rp['version']."</td>
 				<td>".$rp['lastupdate']."</td>
-				<td>".$strong1.stripslashes($rp['description']).$strong2."</td>
-				<td>".$installLink."</td>
-				<td>".$uninstallLink."</td>
+				<td>".$strong1.stripslashes($rp['description']).$strong2."</td>";
+				if ( count($min_jomres_ver) == 3 && count($this_jomres_version) == 3)
+					{
+					$min_major_version = $min_jomres_ver[0];
+					$min_minor_version = $min_jomres_ver[1];
+					$min_revis_version = $min_jomres_ver[2];
+					
+					$current_major_version = $this_jomres_version[0];
+					$current_minor_version = $this_jomres_version[1];
+					$current_revis_version = $this_jomres_version[2];
+					
+					if (
+						$current_major_version >= $min_major_version &&
+						$current_minor_version >= $min_minor_version &&
+						$current_revis_version >= $min_revis_version
+						)
+						echo "<td>".$installLink."</td>";
+					else
+						echo "<td>Requires a later version of Jomres</td>";
+					}
+				else
+					echo "<td>".$installLink."</td>";
+				echo "<td>".$uninstallLink."</td>
 			</tr>";
 			}
 			
