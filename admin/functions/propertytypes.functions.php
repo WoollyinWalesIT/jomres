@@ -106,7 +106,7 @@ function savePropertyType()
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$id = jomresGetParam( $_POST, 'id', 0 );
 	$ptype = jomresGetParam( $_POST, 'ptype', '' );
-	$ptype_desc = jomresGetParam( $_POST, 'ptype_desc', '' );
+	$ptype_desc = strtolower(jomresGetParam( $_POST, 'ptype_desc', '' ));
 	$ptype_desc=ereg_replace("[^A-Za-z0-9]", "", $ptype_desc);
 	
 	if (!is_dir(JOMRESPATH_BASE.'/language/'.$ptype_desc) && is_writable(JOMRESPATH_BASE.'/language/') )
