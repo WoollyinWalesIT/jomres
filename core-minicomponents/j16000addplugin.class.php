@@ -234,6 +234,40 @@ class j16000addplugin
 					return;
 					}
 				}
+			
+			include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
+			$this_jomres_version = explode(".",$mrConfig['version']);
+			require_once($updateDirPath."unpacked".JRDS."plugin_info.php");
+			$classname = "plugin_info_".$pluginName;
+			$plugin_class = new $classname();
+			$min_jomres_ver = explode(".",$plugin_class->data['min_jomres_ver']);
+			if ( count($min_jomres_ver) == 3 && count($this_jomres_version) == 3)
+				{
+				$min_major_version = $min_jomres_ver[0];
+				$min_minor_version = $min_jomres_ver[1];
+				$min_revis_version = $min_jomres_ver[2];
+				
+				$current_major_version = $this_jomres_version[0];
+				$current_minor_version = $this_jomres_version[1];
+				$current_revis_version = $this_jomres_version[2];
+				
+				$error = false;
+				if ($current_major_version < $min_major_version)
+					$error = true;
+
+				if ($current_major_version  >= $min_major_version && $current_minor_version < $min_minor_version )
+					$error = true;
+
+				if ($current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version < $min_revis_version)
+					$error = true;
+
+				if ($error)
+					{
+					echo "Error, this plugin requires at least version ".$plugin_class->data['min_jomres_ver']." of Jomres";
+					return;
+					}
+				}
+			
 			$result=dirmv($updateDirPath."unpacked", $remote_pluginsDirPath.$pluginName, true, $funcloc = "/");
 			if ($result['success'])
 				{
