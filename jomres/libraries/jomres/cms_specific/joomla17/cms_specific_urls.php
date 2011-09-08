@@ -62,11 +62,11 @@ else
 				{
 				if (isset($jrConfig['jomresItemid']))
 					$jomresItemid = $jrConfig['jomresItemid'];
-				else
-					$jomresItemid = 0; //should only kick in on install
 				}
 			}
 		}
+	else
+		$jomresItemid = 0; //should only kick in on install
 	}
 
 $jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
