@@ -407,11 +407,21 @@ class j01010listpropertys {
 								else
 									{
 									if ($mrConfig['perPersonPerNight']=="0" )
-										$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+										{
+										if ($mrConfig['wholeday_booking'] == "1")
+											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
+										else
+											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+										}
 									else
-										$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+										{
+										if ($mrConfig['wholeday_booking'] == "1")
+											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY);
+										else
+											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+										}
 									}
-								$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
+								$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false)." ".$price;
 								$property_deets['MAX_PEOPLE']=$maxPeopleArray[$property->propertys_uid];
 								}
 							else
