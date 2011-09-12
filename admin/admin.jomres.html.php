@@ -277,6 +277,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_COM_NEWUSER_DESC.'</td>
 			</tr>
 			<tr align="center" valign="middle">
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS.'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['useNewusers_sendemail'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC.'</td>
+			</tr>
+			<tr align="center" valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>');

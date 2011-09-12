@@ -222,8 +222,9 @@ function showSiteConfig(  )
 	$lists['use_conversion_feature']				= jomresHTML::selectList( $yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_conversion_feature'] );
 	$lists['javascript_caching_enabled']			= jomresHTML::selectList( $yesno, 'cfg_javascript_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['javascript_caching_enabled'] );
 	$lists['booking_form_modal_popup']				= jomresHTML::selectList( $yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['booking_form_modal_popup'] );
-	$lists['booking_form_totals_panel_as_slider']				= jomresHTML::selectList( $yesno, 'cfg_booking_form_totals_panel_as_slider', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['booking_form_totals_panel_as_slider'] );
-
+	$lists['booking_form_totals_panel_as_slider']	= jomresHTML::selectList( $yesno, 'cfg_booking_form_totals_panel_as_slider', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['booking_form_totals_panel_as_slider'] );
+	$lists['useNewusers_sendemail']					= jomresHTML::selectList( $yesno, 'cfg_useNewusers_sendemail', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useNewusers_sendemail'] );
+	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
 	}
 
