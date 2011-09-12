@@ -128,8 +128,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		return;
 		}
 	
-	if (!get_showtime('include_room_booking_functionality'))
-		$bkg->cfg_showdepartureinput = "0";
+	// if (!get_showtime('include_room_booking_functionality'))  // Disabled for 5.5.3 as Jintour has a new option that manages this
+		// $bkg->cfg_showdepartureinput = "0";
 		
 	$text=$bkg->makeOutputText();
 	$guest=$bkg->makeGuestData();
