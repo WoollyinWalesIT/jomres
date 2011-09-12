@@ -29,7 +29,7 @@ class j06005cancelGuestBooking {
 		{
 		$thisJRUser=jomres_getSingleton('jr_user');
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$mrConfig=getPropertySpecificSettings();
+		
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
@@ -63,44 +63,50 @@ class j06005cancelGuestBooking {
 				{
 				foreach($bookingData as $booking)
 					{
-					$guest_uid=$booking->guest_uid;
-					$contract_uid=$booking->contract_uid;
-					$property_uid=$booking->property_uid;
+					$guest_uid=(int)$booking->guest_uid;
+					$contract_uid=(int)$booking->contract_uid;
+					$property_uid=(int)$booking->property_uid;
+					$booking_arrival=$booking->arrival;
 					}
-			
-				$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
 
-				$query="SELECT tag FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
-				$contractData =doSelectSql($query);
-				foreach ($contractData as $cancellation)
+				$mrConfig=getPropertySpecificSettings($property_uid);
+				
+				if (dateDiff($interval,date("Y/m/d"),$booking_arrival) > (int)$mrConfig['cancellation_threashold'] )
 					{
-					$tag=$cancellation->tag;
-					}
-				
-				$dateToDrop=$dateRangeArray[$i];
-				$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
-				if (!doInsertSql($query,""))
-					trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
-				
-				$query="UPDATE #__jomres_contracts SET `cancelled`='1', `cancelled_timestamp`='".date( 'Y-m-d H:i:s' )."', `cancelled_reason`='".$reason."' WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
-				if (!doInsertSql($query,""))
-					trigger_error ("Unable to update cancellations data for contract". (int)$contract_uid.", mysql db failure", E_USER_ERROR);
-				
-				$current_property_details =jomres_getSingleton('basic_property_details');
-				$current_property_details->gather_data($property_uid);
-		
-				$query="SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = ".$guest_uid." LIMIT 1";
-				$guestData =doSelectSql($query,2);
-				$text=$tag.' - '.$saveMessage;
-				if (!jomresMailer( $guestData['email'], $current_property_details->property_name.' - '.$current_property_details->property_town, $current_property_details->property_email, $saveMessage, $text,$mode=1))
-					error_logging('Failure in sending cancellation email to hotel. Target address: '.$hotelemail.' Subject'.$subject);
-				if (!jomresMailer( $current_property_details->property_email, $current_property_details->property_name.' - '.$current_property_details->property_town, $guestData['email'], $saveMessage, $text,$mode=1))
-					error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
+					$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
+
+					$query="SELECT tag FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
+					$contractData =doSelectSql($query);
+					foreach ($contractData as $cancellation)
+						{
+						$tag=$cancellation->tag;
+						}
 					
-				
-				echo $saveMessage;
-				
+					$dateToDrop=$dateRangeArray[$i];
+					$query="DELETE FROM #__jomres_room_bookings WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
+					if (!doInsertSql($query,""))
+						trigger_error ("Unable to delete from room bookings table, mysql db failure", E_USER_ERROR);
+					
+					$query="UPDATE #__jomres_contracts SET `cancelled`='1', `cancelled_timestamp`='".date( 'Y-m-d H:i:s' )."', `cancelled_reason`='".$reason."' WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$property_uid."'";
+					if (!doInsertSql($query,""))
+						trigger_error ("Unable to update cancellations data for contract". (int)$contract_uid.", mysql db failure", E_USER_ERROR);
+					
+					$current_property_details =jomres_getSingleton('basic_property_details');
+					$current_property_details->gather_data($property_uid);
 			
+					$query="SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = ".$guest_uid." LIMIT 1";
+					$guestData =doSelectSql($query,2);
+					$text=$tag.' - '.$saveMessage;
+					if (!jomresMailer( $guestData['email'], $current_property_details->property_name.' - '.$current_property_details->property_town, $current_property_details->property_email, $saveMessage, $text,$mode=1))
+						error_logging('Failure in sending cancellation email to hotel. Target address: '.$hotelemail.' Subject'.$subject);
+					if (!jomresMailer( $current_property_details->property_email, $current_property_details->property_name.' - '.$current_property_details->property_town, $guestData['email'], $saveMessage, $text,$mode=1))
+						error_logging('Failure in sending cancellation email to guest. Target address: '.$hotelemail.' Subject'.$subject);
+						
+					
+					echo $saveMessage;
+					}
+				else
+					error_logging('Hack attack: Tried to cancel a booking that was within the cancellation threashold.  Guest uid '.$guest_uid.' Booking uid '.$contract_uid.' Date diff '.dateDiff($interval,date("Y/m/d"),$booking_arrival));
 				}
 			}
 		}

@@ -115,15 +115,14 @@ class j06005muviewbooking {
 				$room_classes_uidOr=genericOr($room_classes_uid,'room_classes_uid');
 				$query="SELECT * FROM #__jomres_room_classes WHERE  $room_classes_uidOr";
 				$rClass  = doSelectSql($query);
-				$this->editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$rClass,$rFeatures );
+				$this->editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$rClass,$rFeatures,$mrConfig );
 				}
 			}
 		}
 
-		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures)
+		function editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$roomClass,$roomFeatures,$mrConfig)
 			{
 			$popup=get_showtime('popup');
-			$mrConfig=getPropertySpecificSettings();
 			$guest_firstname="N/A";
 			$guest_surname="N/A";
 			$guest_uid="N/A";
@@ -245,18 +244,17 @@ class j06005muviewbooking {
 				$depositPaid=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
 			else
 				$depositPaid=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
-				
-				
-				if (!$bookedin)
-					{
-					$jrtbar =jomres_getSingleton('jomres_toolbar');
-					$jrtb  = $jrtbar->startTable();
-					echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
-					$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"),'');
-					$jrtb .= $jrtbar->endTable();
-					echo $jrtb;
-					}
-					
+
+		if (!$bookedin && dateDiff($interval,date("Y/m/d"),$booking_arrival) > (int)$mrConfig['cancellation_threashold'] )
+			{
+			$jrtbar =jomres_getSingleton('jomres_toolbar');
+			$jrtb  = $jrtbar->startTable();
+			echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
+			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"),'');
+			$jrtb .= $jrtbar->endTable();
+			echo $jrtb;
+			}
+	
 		echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();

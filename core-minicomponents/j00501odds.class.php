@@ -52,6 +52,13 @@ class j00501odds {
 
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
+			$threashold_dropdown = jomresHTML::integerSelectList( 0,100,1, 'cfg_cancellation_threashold','class="inputbox" size="1"', (int)$mrConfig['cancellation_threashold']);
+
+			$configurationPanel->setleft(_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD);
+			$configurationPanel->setmiddle($threashold_dropdown);
+			$configurationPanel->setright(_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC);
+			$configurationPanel->insertSetting();
+			
 			$configurationPanel->setleft(_JOMRES_COM_A_VISITORSCANBOOKONLINE);
 			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
 			$configurationPanel->setright(_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC);
