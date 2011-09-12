@@ -217,4 +217,5 @@ $jrConfig['booking_form_totalspanel_position'] = "520";
 $jrConfig['booking_form_width'] = "490";
 $jrConfig['booking_form_totals_panel_as_slider'] = "1";
 $jrConfig['useNewusers_sendemail']="1";
+$jrConfig['show_tax_in_totals_summary']="1";
 ?>
