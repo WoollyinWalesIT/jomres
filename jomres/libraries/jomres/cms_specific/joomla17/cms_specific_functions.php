@@ -214,13 +214,13 @@ function jomres_cmsspecific_setmetadata($meta,$data)
 	switch ($meta) 
 		{
 		case "title":
-			$document->setTitle(stripslashes($data));
+			$document->setTitle($data);
 		break;
 		case "description":
-			$document->setDescription( "description",stripslashes($data));
+			$document->setDescription($data);
 		break;
 		case "keywords":
-			$document->setMetaData('keywords', stripslashes($data));
+			$document->setMetaData('keywords',$data);
 		break;
 		default:
 			
