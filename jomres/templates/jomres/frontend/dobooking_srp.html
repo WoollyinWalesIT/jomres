@@ -366,6 +366,7 @@ jomresJquery(document).ready(function() {
 							<div>
 								&nbsp;
 							</div>
+							<patTemplate:tmpl name="tax_totals" type="simpleCondition" requiredVars="room_total_ex_tax">
 							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
 								{ROOM_TOTAL_EX_TAX} <div id="room_total_ex_tax" style="float:right;padding-right:5px;"></div>
 							</div>
@@ -376,21 +377,17 @@ jomresJquery(document).ready(function() {
 								{ROOM_TOTAL_ACCOM_TAX}
 								<div id="taxtotal" style="float:right;padding-right:5px;"></div>
 							</div>
-							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
-								{_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE}
-								<div id="balance" style="float:right;padding-right:5px;"></div>
+							<div  class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
+								{EXTRAS_TAX}
+								<div id="extra_tax" style="float:right;padding-right:5px;"></div>
 							</div>
+							</patTemplate:tmpl>
 							<div>
 								&nbsp;
 							</div>
 							<div class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
 								{EXTRAS_TOTAL}
 								<div id="extrastotal_totals_panel" style="float:right;padding-right:5px;"></div>
-							</div>
-							
-							<div  class="ui-widget ui-widget-content ui-corner-all" style="padding-left:5px;">
-								{EXTRAS_TAX}
-								<div id="extra_tax" style="float:right;padding-right:5px;"></div>
 							</div>
 							<div>
 								&nbsp;
