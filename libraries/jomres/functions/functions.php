@@ -2237,7 +2237,7 @@ function saveHotelSettings()
 			{
 			$v=jomresGetParam( $_POST, $k, "" );
 			$dirty = (string) $k;
-			$k=addslashes($dirty);
+			$k=RemoveXSS($dirty);
 			if (!get_magic_quotes_gpc())
 				{
 				$v = getEscaped( $v );
