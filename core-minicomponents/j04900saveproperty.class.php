@@ -188,6 +188,9 @@ class j04900saveproperty {
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS",$property_policies_disclaimers,TRUE,$newPropId);
 			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_NAME",$property_name,TRUE,$newPropId);
 
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE",$metatitle,TRUE);
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION",$metadescription,TRUE);
+
 			returnToPropertyConfig($saveMessage);
 			}
 		else
@@ -248,6 +251,10 @@ class j04900saveproperty {
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT",$property_othertransport,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS",$property_policies_disclaimers,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_NAME",$property_name,TRUE);
+			
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE",$metatitle,TRUE);
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION",$metadescription,TRUE);
+			
 			jomresRedirect(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=".$propertyUid);
 			}
 

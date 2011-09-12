@@ -210,22 +210,22 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 function jomres_cmsspecific_setmetadata($meta,$data)
 	{
 	$data=jomres_decode($data);
-/* 	global $mainframe;
+ 	$document =& JFactory::getDocument();
 	switch ($meta) 
 		{
 		case "title":
-			$mainframe->setPageTitle(stripslashes($data));
+			$document->setTitle(stripslashes($data));
 		break;
 		case "description":
-			$mainframe->appendMetaTag( "description",stripslashes($data));
+			$document->setDescription( "description",stripslashes($data));
 		break;
 		case "keywords":
-			$mainframe->appendMetaTag( "keywords", stripslashes($data));
+			$document->setMetaData('keywords', stripslashes($data));
 		break;
 		default:
 			
 		break;
-		} */
+		}
 	}
 
 // As per the function name

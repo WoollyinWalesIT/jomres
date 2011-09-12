@@ -176,8 +176,8 @@ class basic_property_details
 			$this->stars					=(int)$data->stars;
 			$this->lat						=$data->lat;
 			$this->long						=$data->long;
-			$this->metatitle				=$data->metatitle;
-			$this->metadescription			=$data->metadescription;
+			$this->metatitle				=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
+			$this->metadescription			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$data->metadescription,false,false);
 			$this->property_features		=$data->property_features;
 			$this->property_mappinglink		=$data->property_mappinglink;
 			$this->real_estate_property_price = $data->property_key;
@@ -330,8 +330,8 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['stars'] 							=(int)$data->stars;
 				$this->multi_query_result[$data->propertys_uid]['lat']								=$data->lat;
 				$this->multi_query_result[$data->propertys_uid]['long']								=$data->long;
-				$this->multi_query_result[$data->propertys_uid]['metatitle']						=$data->metatitle;
-				$this->multi_query_result[$data->propertys_uid]['metadescription']					=$data->metadescription;
+				$this->multi_query_result[$data->propertys_uid]['metatitle']						=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
+				$this->multi_query_result[$data->propertys_uid]['metadescription']					=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$data->metadescription,false,false);
 				$this->multi_query_result[$data->propertys_uid]['property_features']				=$data->property_features;
 				$this->multi_query_result[$data->propertys_uid]['property_mappinglink']				=$data->property_mappinglink;
 				$this->multi_query_result[$data->propertys_uid]['real_estate_property_price']		=$data->property_key;
