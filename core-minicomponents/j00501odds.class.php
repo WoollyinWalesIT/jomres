@@ -49,35 +49,9 @@ class j00501odds {
 		$configurationPanel->setmiddle(configCountries());
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
-		
-/* 			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-			{
-		$configurationPanel->setleft(_JOMRES_COM_INPUTERROR_BACKGROUND);
-			$configurationPanel->setmiddle(jomres_makeColourPickerInput('inputBoxErrorBackground',$mrConfig['inputBoxErrorBackground']));
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_INPUTOKTOBOOK_BACKGROUND);
-			$configurationPanel->setmiddle(jomres_makeColourPickerInput('inputBoxOktobookBackground',$mrConfig['inputBoxOktobookBackground']));
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_EDITICON);
-			$configurationPanel->setmiddle($editIconSize);
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			} */
-			
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			// Disabled for v4 as the full url is passed to the make popup function
-			/*
-			$configurationPanel->setleft(_JOMRES_COM_A_POPUPSALLOWED);
-			$configurationPanel->setmiddle($lists['popupsAllowed']);
-			$configurationPanel->setright(_JOMRES_COM_A_POPUPSALLOWED_DESC);
-			$configurationPanel->insertSetting();
-			*/
-			
 			$configurationPanel->setleft(_JOMRES_COM_A_VISITORSCANBOOKONLINE);
 			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
 			$configurationPanel->setright(_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC);
