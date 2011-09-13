@@ -1,3 +1,29 @@
+Jomres 5.5.3
+
+
+Added a new option to define the booking form's width through the site config area.
+Added a new feature where the slider functionality that slides the totals panel in the booking form can be switched off, either via site config, or if the browser's a mobile device then it's disabled automatically.
+Added version checking to addplugin functionality.
+Added an option to disable emailing guests when a new user is created.
+Added an option to disable tax output in the booking form totals summary.
+Implemented a cancellation threashold that prevents a booking from being cancelled by the guest, if the booking is within N days.
+
+Added tabs jquery code to composite property details.
+Added ajax url to the property urls passed to list property's template.
+Added JOMRES_SITEPAGE_URL_AJAX to cms_specific_urls J1.7
+(Gmaps) Added some code to geo coder to prevent it trying to render if called via ajax (cos it wont).
+Fixed a bug where tariff details aren't showing in terse tariff list, introduced by the wholeday changes.
+Modified the auto-jump to module-less Joomla if the browser's found to be a mobile browser, not just iphone.
+Modified the SRP and norooms booking forms to remove some totals panel elements that are not applicable to them, and removed the override totals input fields from norooms as the override totals feature only applies to accommodation (e.g. room) based bookings.
+fixed the jomres decode function that was incorrectly removing a t when it shouldn't.
+Small change to ensure that when a property type's language specific file's directory is created, that the directory name's changed to all lowercase.
+Updated plugin server to pass data via json instead of ^ separated data if json_decode is available, and added code to show plugins to show minimum Jomres versions required to run a plugin.
+Changed where jomresItemid is set to 0 to prevent triggering trivial errors on installation. (J1.7)
+Small change to list properties to ensure that wholeday wording is used if configured, when referring to a property's price per night/day.
+Modified how J1.5 version of router.php finds property names.
+Modified dobooking, disabled feature that automatically switches off the departure date if the "property" is a no-rooms property, because Jintour has an option now to enable/disable this input.
+Some changes to allow us to translate meta title and descriptions.
+
 
 Jomres 5.5.2
 
