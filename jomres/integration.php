@@ -1205,7 +1205,7 @@ function RemoveXSS($val)
 	$vinces[]="?_url"; //  open redirector exploit
 
 
-	$val=str_ireplace($vinces,"<x>",$val);
+	//$val=str_ireplace($vinces,"<x>",$val);
 	$val=str_replace(array("\r","\t","\n"),"" , $val);
 	// end vinces
 
@@ -1230,7 +1230,7 @@ function RemoveXSS($val)
 	// now the only remaining whitespace attacks are \t, \n, and \r
 
 	$ra = array_merge($ra1, $ra2);
-	$found = true; // keep replacing as long as the previous round replaced something
+	$found = false; // keep replacing as long as the previous round replaced something // Currently disabled due to it replacing too many things of value. Joomla ignores things like <script>, probably for the same reasons, we're going to need to do the same thing too otherwise the system is unusable. Eg. you can't have a property in Basel because Basel gets replaced with Ba<x>se.
 	while ($found == true)
 		{
 		$val_before = $val;
