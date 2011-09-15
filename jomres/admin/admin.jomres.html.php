@@ -262,7 +262,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			</tr>
 			<tr align="center" valign="middle">
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_SLIDERENABLED.'</td>
-				 <td class="jradmin_subheader_la" valign="top">'.$lists['booking_form_modal_popup'].'</td>
+				 <td class="jradmin_subheader_la" valign="top">'.$lists['booking_form_totals_panel_as_slider'].'</td>
 				 <td class="jradmin_subheader_la" valign="top">'._JOMRES_BOOKINGORM_SLIDERENABLED_DESC.'</td>
 			</tr>
 			<tr align="center" valign="middle">
