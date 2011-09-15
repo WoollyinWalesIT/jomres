@@ -1,21 +1,7 @@
 <patTemplate:tmpl name="sort_order"  unusedvars="nbsp">
-<script language="JavaScript" type="text/javascript">
-function gosearch()
-	{
-    var value = document.sortForm.sortby.value;
-	var exdate=new Date();
-	var expiredays=1;
-	var c_name="jomsearch_sortby";
-	exdate.setDate(exdate.getDate()+expiredays)
-	document.cookie=c_name+ "=" +escape(value)+
-	((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
-	history.go(0);
-	}
-</script>
 <div style="text-align:center;">
 <form method="post" name="sortForm" action="{JOMRES_SITEPAGE_URL}">
 	{HORDER}&nbsp;{ORDER}
-<input type="hidden" name="option" value="com_jomres" />
 </form>
 </div>
 </patTemplate:tmpl>

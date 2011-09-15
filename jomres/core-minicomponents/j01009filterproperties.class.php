@@ -40,7 +40,7 @@ class j01009filterproperties
 			$data_only=true;
 		$propertys_uids=$componentArgs['propertys_uids'];
 		// get sroting value
-		$sortid = intval(jomresGetParam( $_COOKIE, 'jomsearch_sortby', $jrConfig['search_order_default']));
+		$sortid = intval(jomresGetParam( $_REQUEST, 'jomsearch_sortby', $jrConfig['search_order_default']));
 		switch ($sortid)
 			{
 			#########################################################################################
@@ -117,7 +117,7 @@ class j01009filterproperties
 		
 		$order['HORDER']=jr_gettext('_JOMRES_ORDER',_JOMRES_ORDER);
 
-		$order['ORDER']=jomresHTML::selectList( $sortArray, 'sortby', 'onchange="gosearch();" id="sortby" size="1"', 'value', 'text', $sortid );
+		$order['ORDER']=jomresHTML::selectList( $sortArray, 'sortby', 'onchange="generic_reload(\'jomsearch_sortby\',this.value);" id="sortby" size="1"', 'value', 'text', $sortid );
 		$sortorder=array();
 		$sortorder[]=$order;
 
