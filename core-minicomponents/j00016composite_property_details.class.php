@@ -60,8 +60,8 @@ class j00016composite_property_details {
 
 		if ($mrConfig['showOnlyAvailabilityCalendar'])
 				return;
-		$output=array_merge($output,$MiniComponents->miniComponentData['00035']);
-
+		
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
@@ -70,18 +70,22 @@ class j00016composite_property_details {
 			{
 			$tab_titles = array();
 			$tab_contents = array();
-			foreach ($MiniComponents->miniComponentData['00035'] as $tabs)
+			foreach ($MiniComponents->miniComponentData['00035'] as $key=>$tabs)
 				{
 				if ($tabs['TAB_ANCHOR'] != "" && $tabs['TAB_TITLE'] != "" && $tabs['TAB_CONTENT'] != "")
 					{
-					$tab_titles[] = array("TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"TAB_TITLE"=>$tabs['TAB_TITLE']);
-					$tab_contents[] = array("TAB_CONTENT"=>$tabs['TAB_CONTENT'],"TAB_TITLE"=>$tabs['TAB_TITLE'],"TAB_ANCHOR"=>$tabs['TAB_ANCHOR']);
+					$content = $tabs['TAB_CONTENT'];
+					$title = $tabs['TAB_TITLE'];
+					$tab_titles[] = array("TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"TAB_TITLE"=>$title);
+					$tab_contents[] = array("TAB_CONTENT"=>$content,"TAB_TITLE"=>$title,"TAB_ANCHOR"=>$tabs['TAB_ANCHOR']);
+					$output[strtoupper($key."_tabtitle")] = $title;
+					$output[strtoupper($key."_tab_content")] =$content;
 					}
 				}
 			$tmpl->addRows( 'tabs_titles', $tab_titles );
 			$tmpl->addRows( 'tabs_content', $tab_contents );
 			}
-
+		
 		$tmpl->addRows( 'bookinglink', $bookinglink);
 		$tmpl->addRows( 'slideshowlink', $slideshowlink);
 		if ($mrConfig['is_real_estate_listing']==0)
