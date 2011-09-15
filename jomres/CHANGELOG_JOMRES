@@ -1,3 +1,13 @@
+Jomres 5.5.4
+
+Disabled filtering that inserts <x> to sanitise data. We're already using PHP's intput filtering to prevent sql injection, and the <x> functionality creates more problems than it solves so for now it is disabled.
+The old sort by order functionality has stopped working, so we've implemented a new, simpler method of triggering the page reload.
+Improved new sorting funcs to remember previously selected sort order.
+Modified save invoice so that depending on if the invoice is a standard invoice or a commission invoice, the user is redirected to either list invoices or list commission invoices.
+A small change that adds the content of the tabs back into the $output array of composite property details.
+Fixed a faulty config option for the slider setting.
+
+
 Jomres 5.5.3
 
 
