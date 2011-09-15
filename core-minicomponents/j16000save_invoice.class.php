@@ -88,13 +88,17 @@ class j16000save_invoice {
 		$invoice_handler->status=$status;
 		$invoice_handler->commitUpdateInvoice();
 		
+		$task = "list_invoices";
+		if ($invoice_handler->is_commission =="1")
+			$task="list_commission_invoices";
+		
 		if ($original_status != 1 && $status == 1)
 			{
 			$invoice_handler->mark_invoice_paid();
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=list_invoices&status=paid"), "" );
+			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=".$task."&status=paid"), "" );
 			}
 		
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=list_invoices"), "" );
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL_ADMIN."&task=".$task), "" );
 		}
 
 	// This must be included in every Event/Mini-component
