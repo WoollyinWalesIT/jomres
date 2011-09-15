@@ -60,6 +60,7 @@ class j00016composite_property_details {
 
 		if ($mrConfig['showOnlyAvailabilityCalendar'])
 				return;
+		$output=array_merge($output,$MiniComponents->miniComponentData['00035']);
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
