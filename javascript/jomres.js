@@ -27,6 +27,31 @@ function switch_exchange_rate(url,val)
 		window.location = original_url;
 		});
 	};
+	
+function generic_reload(field,val)
+	{
+	var original_url = window.location.href;
+	new_url = insertParam(original_url,field,val);
+	window.location = new_url;
+	};
+
+function insertParam(url,key,value)
+{
+    key = encodeURIComponent(key); value = encodeURIComponent(value);
+
+    var s = url;
+    var kvp = key+"="+value;
+
+    var r = new RegExp("(&|\\?)"+key+"=[^\&]*");
+
+    s = s.replace(r,"$1"+kvp);
+
+    if(!RegExp.$1) {s += (s.length>0 ? '&' : '?') + kvp;};
+
+    //again, do what you will here
+    return s;
+}
+
 /*
 Interesting proof of concept, but not ready for showtime
 function switch_editing_mode(url,val)
