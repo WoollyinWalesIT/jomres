@@ -39,8 +39,19 @@ class j01009filterproperties
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
 		$propertys_uids=$componentArgs['propertys_uids'];
-		// get sroting value
-		$sortid = intval(jomresGetParam( $_REQUEST, 'jomsearch_sortby', $jrConfig['search_order_default']));
+		
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		if (!isset($_REQUEST['jomsearch_sortby']) && isset($tmpBookingHandler->user_settings['jomsearch_sortby']) )
+			$sortid = $tmpBookingHandler->user_settings['jomsearch_sortby'];
+		else
+			{
+			if (isset($_REQUEST['jomsearch_sortby']) )
+				$sortid = intval(jomresGetParam( $_REQUEST, 'jomsearch_sortby', 1));
+			else
+				$sortid = 1;
+			}
+		 $tmpBookingHandler->user_settings['jomsearch_sortby'] = $sortid;
+		
 		switch ($sortid)
 			{
 			#########################################################################################
