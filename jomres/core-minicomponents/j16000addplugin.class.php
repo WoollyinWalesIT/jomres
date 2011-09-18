@@ -34,9 +34,16 @@ class j16000addplugin
 		$pluginName=str_replace("&#60;x&#62;","",$pluginName);
 
 		jr_import('jomres_check_support_key');
-		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=addplugin&no_html=1&plugin=".$pluginName);
+		$pk="";
+		if (isset($_REQUEST['plugin_key']))
+			{
+			$pk=$_REQUEST['plugin_key'];
+			$plugin = $_REQUEST['plugin'];
+			}
+
+		$key_validation = new jomres_check_support_key(JOMRES_SITEPAGE_URL_ADMIN."&task=addplugin&no_html=1&plugin=".$pluginName,$pk,$plugin);
 		$this->key_valid = $key_validation->key_valid;
-		
+
 		if ($thirdparty)
 			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		else
@@ -136,7 +143,11 @@ class j16000addplugin
 
 				if ($debugging) echo "Attempting download of ".$pluginName."<br>";
 				$newfilename=$updateDirPath.$pluginName.".vnw";
-				$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&plugin=".$pluginName."&key=".$key_validation->key_hash."";
+				$p='';
+				if (isset($_REQUEST['plugin']))
+					$p="&plugin=".$pluginName;
+					$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&key=".$key_validation->key_hash.$p;
+
 				if ($debugging) echo $queryServer;
 				
 				$curl_handle = curl_init($queryServer);
@@ -180,7 +191,6 @@ class j16000addplugin
 				{
 				if (!class_exists("dUnzip2"))
 					require_once (JOMRESPATH_BASE.JRDS."libraries".JRDS."dUnzip2.inc.php");
-				//var_dump($newfilename);exit;
 				$zip = new dUnzip2($newfilename);
 				// Activate debug
 				$zip->debug = $debugging;
@@ -197,7 +207,7 @@ class j16000addplugin
 					}
 				$zip->close();
 				}
-					
+
 			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
 
 			if ($debugging) echo "<br>Completed extract of $newfilename<br>";

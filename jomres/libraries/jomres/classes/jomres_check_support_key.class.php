@@ -15,44 +15,39 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class jomres_check_support_key
 	{
-	function jomres_check_support_key ($task)
+	function jomres_check_support_key ($task,$pk="",$plugin="")
 		{
 		$this->task = $task;
 		$this->key_valid = false;
 		if (isset($_REQUEST['support_key']) && strlen($_REQUEST['support_key']) > 0)
 			$this->save_key($task);
-		$this->check_license_key();
-		
+		$this->check_license_key($pk,$plugin);
 		}
 
-	function check_license_key()
+	function check_license_key($pk,$plugin)
 		{
 		$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 		$licensekey=doSelectSql($query,1);
-		if (strlen(trim($licensekey))==0)
+		// if (strlen(trim($licensekey))==0)
+			// {
+			// $this->show_key_input();
+			// }
+
+		if ($pk == "")
 			{
-			$this->show_key_input();
+			$this->key_hash = $licensekey;
+			$str = "key=".$licensekey;
 			}
-		$this->key_hash=$licensekey;
-		$license_checked = queryUpdateServer("check_key.php","key=".$this->key_hash,"updates");
+		else
+			{
+			$this->key_hash = $pk;
+			$str = "plugin_key=".$pk."&plugin=".$plugin;
+			}
+		
+		$license_checked = queryUpdateServer("check_key.php",$str,"updates");
 		$ret_result = (int)$license_checked;
-		//$ret_result = 1;
-		if ($ret_result == 0)
-			{
-			echo "<center>Support key not received by remote server</center>";
-			}
-		elseif ($ret_result == 1)
-			{
-			echo '<center><h2>Support key is not, or is no longer, valid. Please visit <a href="http://www.jomres.net">Jomres.net to purchase an up-to-date support key</a></h2><br/> You will not be able to download upgrades to Jomres or plugins without a valid support key.</center>';
-			}
-		elseif ($ret_result == 2)
-			{
-			echo "<center>Support key is valid, you can download upgrades and plugins.</center>";
+		if ($ret_result == 2)
 			$this->key_valid = true;
-			}
-		if (!$this->key_valid)
-			$this->show_key_input();
-			
 		}
 		
 	function show_key_input()
