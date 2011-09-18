@@ -57,7 +57,7 @@ class j16000purchase_plugins
 			}
 		else
 			{
-			echo "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and email address are correct.";
+			echo "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and password are correct.";
 			}
 		}
 
