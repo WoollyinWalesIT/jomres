@@ -13,6 +13,19 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function query_shop($request = '' )
+	{
+	if ($request == "")
+		{ echo "Request not set";exit;}
+	$curl_handle=curl_init();
+	curl_setopt($curl_handle,CURLOPT_URL,'http://license-server.jomres.net/shop/index.php?'.$request);
+	curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+	curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+	$response = curl_exec($curl_handle);
+	curl_close($curl_handle);
+	return json_decode($response);
+	}
+
 // Adapted from http://uk.php.net/manual/en/function.time.php#89415
 function nicetime($date)
 	{
@@ -1070,6 +1083,7 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 		
 	if (strlen($script)==0)
 		$script="index.php";
+		
 	$curl_handle=curl_init();
 	curl_setopt($curl_handle,CURLOPT_URL,$updateServer."/".$script."?".$queryString);
 	curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
