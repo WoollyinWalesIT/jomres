@@ -1,3 +1,7 @@
+Jomres 5.5.5
+
+Added new Jomres Plugin Shop to the plugin manager.
+
 Jomres 5.5.4
 
 Disabled filtering that inserts <x> to sanitise data. We're already using PHP's intput filtering to prevent sql injection, and the <x> functionality creates more problems than it solves so for now it is disabled.
