@@ -207,7 +207,6 @@ if ($folderChecksPassed && ACTION != "Migration")
 					}
 				elseif (ACTION == "Upgrade") // Upgrading
 					{
-					track_installation_upgrade();
 					define('ACTION',"Upgrade");
 					jr_import('minicomponent_registry');
 					$registry = new minicomponent_registry(true);
@@ -228,13 +227,16 @@ showfooter();
 
 
 // This function added to help us to understand installation success/failure to see if there are any changes needed to improve the behaviour of the installer. 
-// We're not interested in tracking you, only in ensuring that this script behaves as expected.
+// We are only interested in tracking that the installation completed successfully, so there's no need to trigger this on upgrade
 function track_installation_upgrade($action=ACTION)
 	{
-	PiwikTracker::$URL = 'http://analytics.jomres.net/';
-	$piwikTracker = new PiwikTracker( $idSite = 2 );
-	// Sends Tracker request via http
-	$piwikTracker->doTrackGoal($idGoal = 2);
+	if (ACTION == "Install")
+		{
+		PiwikTracker::$URL = 'http://analytics.jomres.net/';
+		$piwikTracker = new PiwikTracker( $idSite = 2 );
+		// Sends Tracker request via http
+		$piwikTracker->doTrackGoal($idGoal = 2);
+		}
 	}
 
 function doTableUpdates()
@@ -1319,7 +1321,7 @@ function showCompletedText()
 	echo '<br>Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres<br>';
 	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
 	echo '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.<br>';
-	echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
+	echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure properties via the administrator area.</h3><br>';
 	}
 
 
@@ -1367,7 +1369,7 @@ function checkPropertyTableExists()
 	$query="SHOW TABLES";
 	$result=doSelectSql($query,$mode=FALSE);
 	$string="Tables_in_".get_showtime('db');
-	echo "Looking for ".get_showtime('dbprefix').'jomres_propertys<br>';
+	//echo "Looking for ".get_showtime('dbprefix').'jomres_propertys<br>';
 	$nullcounter=0;
 	foreach ($result as $r)
 		{
@@ -1388,7 +1390,7 @@ function checkPropertyTableExists()
 			{
 			if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_propertys') )
 				{
-				echo " ".$jomresConfig_dbprefix.'jomres_propertys found. We are upgrading.<br>';
+				//echo " ".$jomresConfig_dbprefix.'jomres_propertys found. We are upgrading.<br>';
 				define('ACTION',"Upgrade");
 				}
 			}
@@ -2774,7 +2776,8 @@ function showfooter()
 	<p>&nbsp;</p>
 	</div>
 	<?php
-	if (!defined("ACTION") )
+	checkPropertyTableExists();
+	if (!defined("ACTION") && ACTION != "Upgrade" )
 		{
 		echo '<center>
 		<iframe frameborder="no" width="800px" height="300px" src="http://analytics.jomres.net/index.php?module=CoreAdminHome&action=optOut&language=en"></iframe>
