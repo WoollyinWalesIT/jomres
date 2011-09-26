@@ -43,6 +43,8 @@ class j04200editproperty {
 		$defaultText="Change Me!";
 		$propertyRights=$thisJRUser->defaultproperty;
 		$propertyUid  = intval( jomresGetParam( $_REQUEST, 'propertyUid', 0 ) );
+		if ($propertyUid > 0 && !in_array($propertyUid,$jrConfig->authorisedProperties) )
+			$propertyUid=getDefaultProperty();
 		if ($jrConfig['selfRegistrationAllowed']=="0" && $propertyUid == 0)
 			$propertyUid=getDefaultProperty();
 		if (JOMRES_SINGLEPROPERTY)
