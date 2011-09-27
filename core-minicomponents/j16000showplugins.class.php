@@ -215,7 +215,7 @@ class j16000showplugins
 			{
 			echo '
 			<br/><br/><br/>
-			<div id="cart_wrapper" style="width:300px;margin-left:auto;margin-right:auto;">
+			<div id="cart_wrapper" style="width:500px;margin-left:auto;margin-right:auto;">
 			
 				<div class="ui-widget-header ui-corner-all"><img src = "'.get_showtime('live_site').'/jomres/images/cart_red_transparent.png"/>Your shopping cart</div>
 				<form id="cart">
@@ -225,7 +225,7 @@ class j16000showplugins
 			</div>
 			<div id="username_input" style="display:none">
 				<fieldset>
-				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://license-server.jomres.net/index.php?cmd=register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you\'ve done that, click the Purchase! button.<br/>
+				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://license-server.jomres.net/index.php?cmd=register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you\'ve done that, click the Purchase Plugins! button.<br/>
 					<legend>Your details</legend>
 						<ul>
 							<li>
@@ -303,18 +303,18 @@ class j16000showplugins
 			}
 		echo '</table>
 		';
-		echo '<script type="text/javascript">
-			jomresJquery(function() {
-				jomresJquery(\'tr\').hover(function() {
-					jomresJquery(this).contents(\'td\').css({\'border\': \'1px solid red\', \'border-left\': \'none\', \'border-right\': \'none\'});
-					jomresJquery(this).contents(\'td:first\').css(\'border-left\', \'1px solid red\');
-					jomresJquery(this).contents(\'td:last\').css(\'border-right\', \'1px solid red\');
-				},
-				function() {
-					jomresJquery(this).contents(\'td\').css(\'border\', \'none\');
-				});
-			});
-			</script>';
+		// echo '<script type="text/javascript">
+			// jomresJquery(function() {
+				// jomresJquery(\'tr\').hover(function() {
+					// jomresJquery(this).contents(\'td\').css({\'border\': \'1px solid red\', \'border-left\': \'none\', \'border-right\': \'none\'});
+					// jomresJquery(this).contents(\'td:first\').css(\'border-left\', \'1px solid red\');
+					// jomresJquery(this).contents(\'td:last\').css(\'border-right\', \'1px solid red\');
+				// },
+				// function() {
+					// jomresJquery(this).contents(\'td\').css(\'border\', \'none\');
+				// });
+			// });
+			// </script>';
 			
 			echo '<form enctype="multipart/form-data" action="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&thirdparty=1" method="post">
 			<input type="hidden" name="no_html" value="1" />
@@ -366,7 +366,8 @@ class j16000showplugins
 		$upgrade_text="Upgrade";
 		$uninstall_text="Uninstall";
 		$externalPluginTypes=array("component","module","mambot");
-
+		$counter = 0;
+		
 		foreach ($remote_plugins as $rp)
 			{
 			$type=$rp['type'];
@@ -420,8 +421,15 @@ class j16000showplugins
 			$manual_link ='';
 			if( isset($rp['manual_link']) && $rp['manual_link'] != '')
 				$manual_link = '&nbsp;<a href="http://manual.jomres.net/'.$rp['manual_link'].'.html" target="_blank">Manual</a>';
+				
+			//$row_class = "row0";
+			if($counter%2 == 0 && $row_class == 'ui-widget-content ui-corner-all')
+				$row_class = "row1";
+				
+				
+				
 			echo
-			"<tr class=\"".$row_class."\" >
+			"<tr class=\"".$row_class." \" >
 				<td class=\"ui-corner-all\">".$strong1.$rp['name'].$strong2."</td>
 				<td class=\"ui-corner-all\">".$rp['min_jomres_ver']."</td>
 				<td class=\"ui-corner-all\">".$local_version."</td>
@@ -454,13 +462,14 @@ class j16000showplugins
 				$button = '';
 				if ($rp['price'] > 0 && !array_key_exists($rp['name'],$installed_plugins ) && !array_key_exists($rp['name'],$current_licenses ) )
 					{
-					$button = '<button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');">&pound;'.number_format($rp['price']).'</button>';
+					$button = 'Add to cart <button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');">&pound;'.number_format($rp['price']).'</button>';
 					//$button = '<button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');jomresJquery(\'#cart_wrapper\').effect( \'pulsate\',1000 );">&pound;'.number_format($rp['price']).'</button>';
 					}
 				if (!$developer_user)
 					echo "<td>".$button."</td>";
 			echo "</tr>
 			";
+			$counter++;
 			}
 			
 		echo '</table>
@@ -468,9 +477,6 @@ class j16000showplugins
 		<table class="jradmin_table" border="0">
 			<tr>
 				<th class="ui-widget-header ui-corner-all" align="center">Legend</td>
-			</tr>
-			<tr class="ui-content ui-corner-all">
-				<td align="center">Available from Jomres.net</td>
 			</tr>
 			<tr class="ui-state-highlight ui-corner-all">
 				<td align="center">Already installed</td>

@@ -75,12 +75,12 @@ foreach ($recommended_plugins as $plugin_name=>$plugin)
 	$event_point = substr($plugin['minicomponent_name'],1,strlen($plugin['minicomponent_name']) );
 	if (!array_key_exists($event_point,$MiniComponents->registeredClasses) )
 		{
-		$messages .= "<div class='ui-state-highlight'><strong> Missing plugin </strong>: ".$plugin_name."<strong> Functionality : </strong>".$plugin['message']."</div>";
+		$messages .= "<div class='ui-state-highlight'><strong> Recommended plugin </strong>: ".$plugin_name."<strong> Functionality : </strong>".$plugin['message']."</div>";
 		}
 	}
 
 if ($messages != "")
-	echo "<div class='ui-state-highlight'> <strong>Note, we have detected that several important plugins are not installed. These plugins are generally considered as required if you wish to create a booking portal. Missing plugins and their functionality are highlighted. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Plugin Manager to install any missing plugins, if you do not have a download and support key you can use the Plugin Shop in the Plugin Manager to purchase plugins.</strong></div>".$messages;
+	echo "<p><div class='ui-state-highlight'><br/> <strong>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need, if in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin. If you do not have a download and support key you can use the Plugin Shop in the Jomres Plugin Manager to purchase plugins.</strong></p>".$messages;
 
 
 ?>
