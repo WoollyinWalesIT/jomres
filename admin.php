@@ -126,19 +126,7 @@ if (isset($_REQUEST['periodoption']))
 	SetCookie("periodoption", $periodoption, time()+60*60);
 	}
 
-if (!JRPORTAL_AJAXCALL)
-	{
-	if (defined('_JOMRES_NEWJOOMLA'))
-		$indexphp="index.php";
-	else
-		{
-		echo '<script language="JavaScript" src="'.get_showtime('live_site').'/includes/js/joomla.javascript.js" type="text/javascript"></script>';
-		$indexphp="index2.php";	
-		}
-	}
-else
-	$indexphp="index3.php";
-	
+
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
