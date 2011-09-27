@@ -216,7 +216,8 @@ class j16000showplugins
 			echo '
 			<br/><br/><br/>
 			<div id="cart_wrapper" style="width:300px;margin-left:auto;margin-right:auto;">
-				<div class="ui-widget-header ui-corner-all">Your shopping cart</div>
+			
+				<div class="ui-widget-header ui-corner-all"><img src = "'.get_showtime('live_site').'/jomres/images/cart_red_transparent.png"/>Your shopping cart</div>
 				<form id="cart">
 				</form>
 				<div class="ui-state-highlight ui-corner-all">Total <strong>&pound;<span id="total"></span></strong></div>
@@ -302,18 +303,18 @@ class j16000showplugins
 			}
 		echo '</table>
 		';
-		// echo '<script type="text/javascript">
-			// jomresJquery(function() {
-				// jomresJquery(\'tr\').hover(function() {
-					// jomresJquery(this).contents(\'td\').css({\'border\': \'1px solid red\', \'border-left\': \'none\', \'border-right\': \'none\'});
-					// jomresJquery(this).contents(\'td:first\').css(\'border-left\', \'1px solid red\');
-					// jomresJquery(this).contents(\'td:last\').css(\'border-right\', \'1px solid red\');
-				// },
-				// function() {
-					// jomresJquery(this).contents(\'td\').css(\'border\', \'none\');
-				// });
-			// });
-			// </script>';
+		echo '<script type="text/javascript">
+			jomresJquery(function() {
+				jomresJquery(\'tr\').hover(function() {
+					jomresJquery(this).contents(\'td\').css({\'border\': \'1px solid red\', \'border-left\': \'none\', \'border-right\': \'none\'});
+					jomresJquery(this).contents(\'td:first\').css(\'border-left\', \'1px solid red\');
+					jomresJquery(this).contents(\'td:last\').css(\'border-right\', \'1px solid red\');
+				},
+				function() {
+					jomresJquery(this).contents(\'td\').css(\'border\', \'none\');
+				});
+			});
+			</script>';
 			
 			echo '<form enctype="multipart/form-data" action="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&thirdparty=1" method="post">
 			<input type="hidden" name="no_html" value="1" />
