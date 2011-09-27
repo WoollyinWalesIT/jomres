@@ -99,9 +99,9 @@ foreach ($recommended_plugins as $plugin_name=>$plugin)
 					<td bgcolor="#f9f9f9">
 						<?php
 						$link = 'http://manual.jomres.net" title="Manual (Online)" target="_blank';
-						echo _quickiconButton( $link, 'Help.png', 'Read documentation (Online)', '/jomres/images/' );
-						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket (Online)" target="_blank';
-						echo _quickiconButton( $link, 'Support_IT.png', 'Submit support ticket (Online)', '/jomres/images/');
+						echo _quickiconButton( $link, 'Help.png', 'Manual', '/jomres/images/' );
+						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket" target="_blank';
+						echo _quickiconButton( $link, 'Support_IT.png', 'Submit a ticket', '/jomres/images/');
 						?>
 					</td>
 				</tr>
