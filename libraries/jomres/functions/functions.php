@@ -181,7 +181,12 @@ function get_property_module_data($property_uid_array)
 			$property_data['PRICE']=$price;
 			$property_data['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 			$property_data['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property_uid) ;
-			
+			$property_data['STARSIMAGES'] = '';
+			for ($i=1;$i<=$property_data['stars'];$i++)
+				{
+				$property_data['STARSIMAGES'].="<img src=\"".get_showtime('live_site')."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
+				}
+
 			$pageoutput = array($property_data);
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
