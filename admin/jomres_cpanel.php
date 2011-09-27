@@ -59,8 +59,29 @@ if (function_exists("curl_init"))
 		print $buffer;
 	}
 	
-//$query = "SELECT `guests_uid` FROM #__jomres_guests";
-//$numberOfGuestsInSystem=count(doSelectSql($query));
+$MiniComponents =jomres_getSingleton('mcHandler');
+$recommended_plugins = array();
+
+
+$recommended_plugins['advanced_micromanage_tariff_editing_modes'] 	= array('minicomponent_name'=>'j02210listtariffs_advanced','message'=>'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices.');
+$recommended_plugins['core_gateway_paypal'] 						= array('minicomponent_name'=>'j00605paypal','message'=>'Offers the ability for property managers to take payments online via paypal.');
+$recommended_plugins['guest_types'] 								= array('minicomponent_name'=>'j02114listcustomertypes','message'=>'If a property manager wants to charge per person per night, or if you don\'t want to charge per person per night but need to know numbers of guests, you will need this plugin to create guest types.');
+$recommended_plugins['optional_extras'] 							= array('minicomponent_name'=>'j02142listextras','message'=>'Optional extras can be added to bookings using the Optional Extras plugin. This provides the ability to create extras which can be charged using different models (e.g. per night, per booking, per guest etc).');
+$recommended_plugins['property_creation_plugins'] 					= array('minicomponent_name'=>'j02300regprop1','message'=>'If you need to create more properties then you will need the Property Creation Plugin.');
+
+$messages = '';
+foreach ($recommended_plugins as $plugin_name=>$plugin)
+	{
+	$event_point = substr($plugin['minicomponent_name'],1,strlen($plugin['minicomponent_name']) );
+	if (!array_key_exists($event_point,$MiniComponents->registeredClasses) )
+		{
+		$messages .= "<div class='ui-state-highlight'><strong> Missing plugin </strong>: ".$plugin_name."<strong> Functionality : </strong>".$plugin['message']."</div>";
+		}
+	}
+
+if ($messages != "")
+	echo "<div class='ui-state-highlight'> <strong>Note, we have detected that several important plugins are not installed. These plugins are generally considered as required if you wish to create a booking portal. Missing plugins and their functionality are highlighted. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Plugin Manager to install any missing plugins, if you do not have a download and support key you can use the Plugin Shop in the Plugin Manager to purchase plugins.</strong></div>".$messages;
+
 
 ?>
 
