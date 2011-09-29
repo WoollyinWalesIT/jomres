@@ -3217,7 +3217,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		<th colspan="2"><div class="fg-toolbar ui-widget-header ui-corner-all"><?php echo $title;?></div></th>
 	</tr>
 	<tr>
-		<td>Filter: </td><td><?php echo $arrivaldateDropdown;?></td>
+		<td><?php echo _JOMRES_MR_AUDIT_LISTING_FILTER_DATE;?> </td><td><?php echo $arrivaldateDropdown;?></td>
 	</tr>
 	<tr>
 		<td colspan="2">
