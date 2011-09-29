@@ -1,3 +1,28 @@
+Jomres 5.5.6
+
+Added new functionality that will help new users find information about Jomres when they first start using the system.
+Added an About Jomres page to the control panel.
+A variety of layout changes to improve the look of the plugin manager.
+Plugin warning layout and minor wording changes.
+
+Added a small tweak that prevents users from _thinking_ that they're changing the details of another property that they don't have access rights to. They never did, safeguards prevented it, but this change ensures that they're not even given the _impression_ that they're changing another property's details.
+Added fix that stops some template's reset.css from over-riding the totals panel's margins and forcing the totals figures down, making them look pants. 
+Added missing key plugin messaging to the control panel.
+Removed a redundant call from admin.php that's no longer applicable in Joomla.
+Reverted some previous changes to the Jomres J1.7 url functionality. With the previous code, when searching from a module which is for example on homepage, the itemid doesn`t change on the next page to the jomres one, but it keeps the homepage itemid. This results in unwanted modules from frontpage being published on jomres pages too, even if not selected.
+Floated the remove link to the right to make it more obvious. (Plugin shop).
+Tweaked ngm module template layout slightly so that modules will sit as a row in a large enough module position, and columns if the module position forces it.
+Added stars images to ngm module template.
+Adding a new wrapping template for ngm modules to allow use of the class suffix.
+Removed a superfluous title.
+Changed how jomres_cmsspecific_getCMS_users_admin_getalladmins_ids finds admin ids, old method for J1.5 doesn't work so we're now going to use the sendEmail flag, as this function is used to find who to send emails to after doing something.
+Added text align left to totals slider.
+Resized default size of totals panel slightly.
+Fixed issue where guest type names were not being correctly found (and translated).
+Modified list properties function to use the _JOMRES_MR_AUDIT_LISTING_FILTER_DATE define.
+Changed the order that detect_cms.php finds Joomla's version files. In the previous version 1.6 was checked for before 1.7, however if users use the Joomla upgrade tool the Joomla 1.6 version file is left in-situ (not really good, as you should tidy up as you go, but anyway) so we've swapped the order that the two are checked for, which should mean that Jomres will pick up the correct Joomla version file now.
+
+
 Jomres 5.5.5
 
 Added new Jomres Plugin Shop to the plugin manager.
