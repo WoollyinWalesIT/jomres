@@ -126,7 +126,7 @@ if (isset($_REQUEST['periodoption']))
 	SetCookie("periodoption", $periodoption, time()+60*60);
 	}
 
-
+admins_first_run();
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
