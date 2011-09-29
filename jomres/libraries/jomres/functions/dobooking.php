@@ -613,6 +613,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$tax_totals[] = $tt;
 		}
 	
+	$output['PROPERTYUID'] =$selectedProperty;
+	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	

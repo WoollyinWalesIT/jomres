@@ -53,7 +53,7 @@ $firstrun= getEscaped( $firstrun );
 
 $retText="";
 
-$doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email");
+$doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email","property_uid_check");
 $MiniComponents =jomres_getSingleton('mcHandler');
 $bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
 $isSingleRoomProperty=$bkg->getSingleRoomPropertyStatus();
@@ -63,6 +63,16 @@ $bkg->currentField=$field;
 ob_start();
 switch ($field)
 	{
+	case "property_uid_check":
+		$ajrq="ajrq:::property_uid_check";
+		$value=$bkg->sanitiseInput("int",$value);
+		if ($value != $pid)
+			{
+			$url=JOMRES_SITEPAGE_URL_NOSEF."&task=dobooking&amp;selectedProperty=$pid";
+			echo '; window.location.replace("'.$url.'"); ';
+			exit;
+			}
+	break;
 	case "override":
 		$ajrq="ajrq:::override";
 		$value=$bkg->sanitiseInput("string",$value);
