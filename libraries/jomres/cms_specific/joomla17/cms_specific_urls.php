@@ -24,10 +24,7 @@ $ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
-//$jomresItemid = (int)jomresGetParam( $_REQUEST, 'Itemid', 0);
 
-//if ($jomresItemid == 0)
-//	{
 	$query = "SELECT id"
 		. "\n FROM #__menu"
 		. "\n WHERE "
@@ -47,7 +44,7 @@ define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 		else
 			$jomresItemid = 0; //should only kick in on install
 		}
-//	}
+
 
 	$jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
 
