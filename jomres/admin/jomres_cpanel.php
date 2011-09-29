@@ -111,9 +111,6 @@ foreach ($recommended_plugins as $plugin_name=>$plugin)
 		<td width="45%" valign="top" align="center" style="padding:10px;">
 			<table border="1" width="100%" class="adminform">
 				<tr>
-					<th class="cpanel" colspan="2">Jomres Component</th>
-				</tr>
-				<tr>
 					<td bgcolor="#FFFFFF" colspan="2">
 						<br />
 						<div style="width=100%" align="center">
