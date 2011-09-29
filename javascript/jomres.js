@@ -399,7 +399,17 @@ function getResponse_guest() {
 		}
 	};
 
+/* A quick, silent check that we'll perform after the log details have been output (the show_log function was depreciated some time ago, but is still called by most of the ajax calls so it makes sense to utilise it)
+The purpose of this code is to send a quick check to ensure that the user is getting information back about the property they think they're getting booking information for. Here's the scenario this is intended to fix :
+A potential guest opens a tab to Property A's booking form, then another tab to Property B's booking form. Within the Jomres session, the property uid we're checking is for Pr B, so if the user switches back to Pr A's tab, they'll be seeing booking form information from Pr B, but with Pr's A header. As this is going to be confusing, we will send this form's property uid to handle req, which will check the property uid stored in the tmp booking data's session. If the property uid is different, then we'll know that the above scenario is the case and we'll pass back window.location = etc. As this is parsed by the "eval" function, then the booking form will be triggered to redirect the user's page to the correct property.
+
+*/
 function show_log(lastfield) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: "property_uid_check",'value': form_property_uid },
+		function(data){
+			eval(data);
+		});
 };
 
 function showRoomsList(req){
