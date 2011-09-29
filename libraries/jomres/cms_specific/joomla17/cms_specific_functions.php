@@ -280,7 +280,7 @@ function jomres_cmsspecific_getCMS_users_admin_userdetails_by_id($id)
 function jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id)
 	{
 	$users=array();
-	$query = "SELECT id,username,email FROM #__users WHERE LOWER( usertype ) = 'superadministrator' OR LOWER( usertype ) = 'super administrator'";
+	$query = "SELECT id,username,email FROM #__users WHERE `sendEmail`=1";
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{
