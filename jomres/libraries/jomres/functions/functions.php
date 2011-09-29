@@ -13,6 +13,74 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function admins_first_run($manual_trigger = false)
+	{
+	$logfile=JOMRES_SYSTEMLOG_PATH.'admins_first_run.txt';
+	$threshold = 25;
+
+	if (!file_exists($logfile) || $manual_trigger)
+		{
+		
+		if (!$manual_trigger)
+			{
+			touch($logfile);
+			$count=0;
+			}
+		
+		echo '<div id = "first_run" style="display:none" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+		
+		if (!$manual_trigger)
+			echo '<p class="ui-state-highlight">This appears to be the first time you\'ve used Jomres* so here is a little reading material you will probably want to look at.</p>';
+		
+		
+		echo '
+		<p><strong>Introduction.</strong></p>
+		<p>Firstly, a basic installation of Jomres, with absolutely no plugins, is a working booking extension for Joomla. Whilst this is sufficient for a small site with just one property you will quickly find that you want to add more functionality and features to the system, taking it from a simple booking system to a full online booking portal where you can gain revenue from listing properties on your site, earning commission, or taking booking deposits online.</p>
+		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> We have approximately <a href="http://manual.jomres.net/site_managers_guide_plugins.html" target="_blank">70 plugins available</a> that extend the system and we\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a full <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=14" target="_blank">Developer</a> or <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=24" target="_blank">Unlimited</a> download and support key, then you will be able to download any plugins listed in the Plugin Manager at no extra cost, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig" target="_blank">Site Configuration.</a> If you are unable or unwilling to purchase a full license then you can still use the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Plugin Manager</a> to purchase and download individual plugins once you have registered a username on the <a href="http://license-server.jomres.net/index.php?cmd=register" target="_blank">license server.</a> If your project is running on a budget, this is probably a good option for you.</p>
+		<p><strong>First steps.</strong></p>
+		<p>Now that you\'ve seen some of the extra features on offer, you are ready to start setting up your site. To begin with, we\'d like you to ignore the "administrator" area of Jomres altogether for the time being, a new installation of Jomres includes sample data that you can play around with later, but for now you should experiment with configuring your default property. 
+		<ol>
+			<li>When Jomres is installed, the first thing it does is configure your "admin" user to be a Super Property Manager. Super Managers are akin to a Root user in linux, with super powers unavailable to normal Property Managers. If your administrator user is a different user you might need to add them as a Super Property Manager via the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=managers_choose" target="_blank">Show Profiles</a> feature. View it now just to check that "admin" (or your chosen Joomla user\'s username) is listed and has a "ninja" icon under the Access Level column. If they haven\'t you will need to <a href="http://manual.jomres.net/show_profiles.html" target="_blank">add them</a> before you log into the frontend of your site.</li>
+			<li>Next, add Jomres to your <a href="'.get_showtime('live_site').'/administrator/index.php?option=com_menus&view=items&menutype=mainmenu" target="_blank"> Main Menu</a>, as you would any other Joomla extension.</li>
+			<li>The last thing you need to do in the administrator area is to go to the <a href="'.get_showtime('live_site').'/administrator/index.php?option=com_modules" target="_blank">Joomla Module Manager</a> and add a login module to the frontend, if you haven\'t already got one.</li>
+			<li>Now go to the <a href="'.get_showtime('live_site').'/index.php" target="_blank">public pages</a> of your site and log in as "admin". When you click on the <a href="'.get_showtime('live_site').'/index.php?option=com_jomres" target="_blank">Main Menu link to Jomres</a>, as you are logged in, you will see the <a href="http://manual.jomres.net/property_managers_guide_toolbar.html" target="_blank">Property Manager\'s toolbar</a>. If you hover over each button you will see some text that changes depending on the button you are hovering over. Go to the button marked "Tariffs & Rooms" and click on it. It\'s on the second row, second from the left.</li>
+			<li>Here you will see a number of rooms and their prices. For now, don\'t make any changes, just click the Save icon (you must click Save on this first property). Now you are ready to play around with the booking form and generally get used to using Jomres.</li>
+		</ol>
+		</p>
+		<p><strong>Further reading.</strong></p>
+		<p>Jomres is fully documented in the <a href="http://manual.jomres.net/" target="_blank">online manual</a>. There is a wealth of information here, including the <a href="http://manual.jomres.net/site_managers_guide_plugins.html"  target="_blank">plugin list</a>, but a good place to begin at is the <a href="http://manual.jomres.net/site_managers_guide_gettingstarted.html" target="_blank">Getting Started</a> page.</p>
+		<p>To learn how to configure your property(s) you should take a look at the <a href="http://manual.jomres.net/property_managers_guide.html" target="_blank">Property Manager\'s guide.</a> This section of the manual is aimed at Property Managers themselves, and discusses among other things the <a href="http://manual.jomres.net/property_managers_guide_toolbar.html" target="_blank">Manager\'s Toolbar.</a> Note that the toolbar shows the manager\'s toolbar with all of the most commonly installed plugin\'s buttons, until you\'ve installed the relevant plugins your toolbar will not have as many icons.</p>
+		';
+		
+		if (!$manual_trigger)
+			echo ' <div style="font-size:80%" class="ui-state-highlight"> *If you\'ve used Jomres before or are happy exploring the manual on your own just click the big X at the top right of this popup and we won\'t bother you again.</div>';
+			
+		echo '</div>
+		';
+		echo '<script>jomresJquery( "#first_run" ).dialog({width:980,modal:true});</script>';
+		}
+	else
+		{
+		$count = (int)file_get_contents ($logfile);
+		if ($count == $threshold)
+			{
+			echo '<div id = "jed" style="display:none" title="Review Jomres on the Joomla Extension Directory">';
+			echo '<p>Please remember to post a review about Jomres on the <a href="http://extensions.joomla.org/extensions/vertical-markets/booking-a-reservations/booking/335" target="_blank">Joomla Extension Directory.</a> The JED is our primary source of business and we need your review!</p>';
+			echo '<p style="font-size:80%">This is the one and only time you will see this feedback request (unless you delete <i>"'.$logfile.'"</i>).</p>';
+			echo '</div>';
+			echo '<script>jomresJquery( "#jed" ).dialog({width:500,modal:true});</script>';
+			}
+		}
+
+	if ($count <= $threshold && !$manual_trigger && !isset($_REQUEST['no_html']) )
+		{
+		$count++;
+		$fp=fopen($logfile,'r+');
+		fwrite($fp, $count );
+		fclose($fp);
+		}
+	}
+
 function query_shop($request = '' )
 	{
 	if ($request == "")
