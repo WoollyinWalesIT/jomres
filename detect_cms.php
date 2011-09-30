@@ -11,41 +11,41 @@
 // ################################################################
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
-
-if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php') )
+if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php') )
 	{
-	if (!defined('JPATH_BASE'))
+	require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php');
+	$jversion = new JVersion();
+	if ($jversion->RELEASE == '1.7')
 		{
-		define('JPATH_BASE',JOMRESCONFIG_ABSOLUTE_PATH);
+		define("_JOMRES_DETECTED_CMS","joomla17");
+		define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
 		}
-
-	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php') )
+	}
+else
+	{
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php') )
 		{
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'includes'.JRDS.'version.php');
-		$jversion = new JVersion();
-		if ($jversion->RELEASE == '1.7')
+		if (!defined('JPATH_BASE'))
 			{
-			define("_JOMRES_DETECTED_CMS","joomla17");
-			define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+			define('JPATH_BASE',JOMRESCONFIG_ABSOLUTE_PATH);
 			}
-		}
-	else
-		{
-		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php');
-		$jversion = new JVersion();
-		if ($jversion->RELEASE == '1.6')
+		else
 			{
-			define("_JOMRES_DETECTED_CMS","joomla16");
-			define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
-			}
-		if ($jversion->RELEASE == '1.5')
-			{
-			define("_JOMRES_DETECTED_CMS","joomla15");
-			define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'joomla'.JRDS.'version.php');
+			$jversion = new JVersion();
+			if ($jversion->RELEASE == '1.6')
+				{
+				define("_JOMRES_DETECTED_CMS","joomla16");
+				define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+				}
+			if ($jversion->RELEASE == '1.5')
+				{
+				define("_JOMRES_DETECTED_CMS","joomla15");
+				define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+				}
 			}
 		}
 	}
-
 
 
 if (!defined('_JOMRES_DETECTED_CMS') )
