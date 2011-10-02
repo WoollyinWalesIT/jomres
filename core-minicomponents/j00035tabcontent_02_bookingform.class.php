@@ -35,7 +35,7 @@ class j00035tabcontent_02_bookingform
 		
 		$output = $componentArgs['currrent_output'];  
 		// Booking form tab
-		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="1" && $mrConfig['visitorscanbookonline']=='1' )
+		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="1" && $mrConfig['visitorscanbookonline']=='1' && !isset($_REQUEST['jr_printable']) )
 			{
 			define("DOBOOKING_IN_DETAILS",1);
 			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'dobooking.php');
