@@ -165,7 +165,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	
 	$output['RELPATH']=get_showtime('live_site');
 	$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
-	$output['LIVESITE']=JOMRES_SITEPAGE_URL;
+	$output['LIVESITE']=get_showtime('live_site');
 	if (!$thisJRUser->userIsManager)
 		$bkg->setBookerClass("000");
 	else
@@ -505,7 +505,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		//var bookedDays = ["2010-6-10","2010-6-12","2010-6-14"];
 		}
 		
-	$output['TOTALS_PANEL_BG_PATH']='jomres/images/';
+	$output['TOTALS_PANEL_BG_PATH']=get_showtime('live_site').'/jomres/images/';
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'totals_panel_bg.jpg'))
 		$output['TOTALS_PANEL_BG_PATH']='jomres/uploadedimages/';
 	
@@ -541,6 +541,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			{
 			$classic_rooms_list = array();
 			$classic_rooms_list_output = array();
+			$classic_rooms_list['LIVESITE']=get_showtime('live_site');
 			$classic_rooms_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
 			$classic_rooms_list['LOOKRIGHT'] = $output['LOOKRIGHT'];
 			$classic_rooms_list['SELECTEDROOM'] = $output['SELECTEDROOM'];
@@ -551,6 +552,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		if ($mrConfig['booking_form_rooms_list_style'] == "2") // Room type dropdown selection feature
 			{
 			$roomtype_dropdown_list = array();
+			$roomtype_dropdown_list['LIVESITE']=get_showtime('live_site');
 			if ($amend_contract) // If we're amending a booking, we will automatically switch back to the 'classic' rooms list selection so that the manager can assign a user to a new room. As that's the case, we'll need the 'selectedRooms' div back in the template.
 				$roomtype_dropdown_list['AMENDBOOKING_SELECTEDROOMSDIV'] ='<div id="selectedRooms" class="roomslist"></div>';
 										

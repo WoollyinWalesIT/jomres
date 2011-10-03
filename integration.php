@@ -125,11 +125,14 @@ if (!strstr($scriptname,'install_jomres.php'))
 	$jrConfig=$siteConfig->get();
 	}
 
-define('LOGGINGBOOKING',$jrConfig['loggingBooking']);
-define('LOGGINGGATEWAY',$jrConfig['loggingGateway']);
-define('LOGGINGSYSTEM',$jrConfig['loggingSystem']);
-define('LOGGINGREQUEST',$jrConfig['loggingRequest']);
-define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
+if (isset($jrConfig['loggingBooking']))
+	{
+	define('LOGGINGBOOKING',$jrConfig['loggingBooking']);
+	define('LOGGINGGATEWAY',$jrConfig['loggingGateway']);
+	define('LOGGINGSYSTEM',$jrConfig['loggingSystem']);
+	define('LOGGINGREQUEST',$jrConfig['loggingRequest']);
+	define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
+	}
 
 // loads en language file by default
 if ($jomresConfig_lang=='')
