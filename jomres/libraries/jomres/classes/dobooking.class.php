@@ -195,8 +195,8 @@ class dobooking
 			$this->booking_notes			= $bookingDeets['booking_notes'];
 			$this->additional_line_items	= unserialize($bookingDeets['additional_line_items']);
 			$this->room_feature_filter		= unserialize($bookingDeets['room_feature_filter']);
-			$this->override_room_total			= (float)$bookingDeets['override_room_total'];
-			$this->override_deposit			= (float)$bookingDeets['override_deposit'];
+			// $this->override_room_total			= (float)$bookingDeets['override_room_total'];
+			// $this->override_deposit			= (float)$bookingDeets['override_deposit'];
 			}
 
 		$dbdata=serialize($bookingDeets);
@@ -492,8 +492,8 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["booking_notes"]					= $this->booking_notes;
 		$tmpBookingHandler->tmpbooking["additional_line_items"]			= serialize($this->additional_line_items);
 		$tmpBookingHandler->tmpbooking["room_feature_filter"]			= serialize($this->room_feature_filter);
-		$tmpBookingHandler->tmpbooking["override_room_total"]				= $this->override_room_total;
-		$tmpBookingHandler->tmpbooking["override_deposit"]				= $this->override_deposit;
+		// $tmpBookingHandler->tmpbooking["override_room_total"]				= $this->override_room_total;
+		// $tmpBookingHandler->tmpbooking["override_deposit"]				= $this->override_deposit;
 
 		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
 
@@ -1399,16 +1399,16 @@ class dobooking
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	function saveOverride($values)
-		{
-		$thisJRUser=jomres_getSingleton('jr_user');
-		if ($thisJRUser->userIsManager)
-			{
-			$bang = explode("^",$values);
-			$this->override_room_total = (float)$bang[0];
-			$this->override_deposit = (float)$bang[1];
-			}
-		}
+	// function saveOverride($values)
+		// {
+		// $thisJRUser=jomres_getSingleton('jr_user');
+		// if ($thisJRUser->userIsManager)
+			// {
+			// $bang = explode("^",$values);
+			// $this->override_room_total = (float)$bang[0];
+			// $this->override_deposit = (float)$bang[1];
+			// }
+		// }
 		
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
