@@ -1,3 +1,16 @@
+Jomres 5.5.6.2
+
+Added a printable option to property details, if the flag jr_printable is set then the composite_property_details_printable.html template is used in place of the normal template.
+Modified how images paths are set in the booking form as it wasn't working for SA, enabled some logging variables to be set only if another var is set first, fixes a notice level warning.
+Made some css changes to SA, added a module table to the installer. (For future stuff).
+Added support for free plugins to the plugin manager.
+Commented out some override stuff that's incomplete and untested.
+
+
+Jomres 5.5.6.1
+
+Fixed a bug in the detect cms script.
+
 Jomres 5.5.6
 
 Added new functionality that will help new users find information about Jomres when they first start using the system.
