@@ -92,14 +92,28 @@ class jomres_currency_exchange_rates
 		if (!$this->feature_enabled)
 			return;
 		$this->rates = array();
+		$currenciesArray=array();
+		$currencyQuery="";
 		jr_import('currency_codes');
 		$currency_code_class = new currency_codes();
 		$currency_codes = $currency_code_class->codes;
 		ignore_user_abort (true);  // Should stop a user from visiting another page when we're getting the exchange rates. At some point, it might be wiser to encourage managers to set this as a cron job.
 		foreach ($currency_codes as $code=>$rubbish)
 			{
-			$rate = $this->get_exchange_rate($this->base_code,$code);
-			$this->rates[$this->base_code][$code]=$rate;
+			$currencyQuery.=$this->base_code.$code."=X,";
+			}
+		$currencyQuery= substr($currencyQuery,0,-1);
+		$csv = $this->csv_to_array($this->get_exchange_rates_csv($currencyQuery),',');
+		foreach ($csv as $key)
+			{
+			$currenciesArray[]=array_values($key);
+			}
+		foreach ($currenciesArray as $k)
+			{
+			$base_code=substr($k[0],0,-5);
+			$code=substr($k[0],3,-2);
+			$rate=$k[1];
+			$this->rates[$base_code][$code]=$rate;
 			}
 		ignore_user_abort (false);
 		}
@@ -139,20 +153,39 @@ class jomres_currency_exchange_rates
 		fclose($fp);
 		}
 	
-	function get_exchange_rate($base,$foreign)
+	function get_exchange_rates_csv($currencyQuery)
 		{
 		if (!$this->feature_enabled)
 			return;
 		$url = 'http://download.finance.yahoo.com/d/quotes.csv?s='
-			.$base .$foreign .'=X&f=l1';
+			.$currencyQuery.'&f=sl1d1t1ban&e=.csv';
 		$c = curl_init($url);
 		curl_setopt($c, CURLOPT_HEADER, 0);
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
-		$rate = doubleval(curl_exec($c));
+		$csv = curl_exec($c);
 		curl_close($c);
-		return $rate;
+		return $csv;
 		}
 	
+	function csv_to_array($input, $delimiter=',')
+		{
+		$header = null;
+		$data = array();
+		$csvData = str_getcsv($input, "\n");
+		foreach($csvData as $csvLine){
+			if(is_null($header)) 
+				$header = explode($delimiter, $csvLine);
+			else
+				{
+				$items = explode($delimiter, $csvLine);
+				for($n = 0, $m = count($header); $n < $m; $n++)
+					{
+					$prepareData[$header[$n]] = $items[$n];
+					}
+				$data[] = $prepareData;
+				}
+			}
+		return $data;
+		} 
 	}
-	
 ?>
