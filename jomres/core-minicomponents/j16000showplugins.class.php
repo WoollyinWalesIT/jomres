@@ -82,7 +82,7 @@ class j16000showplugins
 		
 		if ($this->key_valid)
 			$developer_user = true;
-		elseif (isset($jrConfig['license_server_username']) && isset($jrConfig['license_server_password'])) // Does the user already have any licenses? Fiddling with this array will not gain you anything, it's simply to ensure that the plugin list shows the install/upgrade link for those plugins you have rights to. Changing this will not grant you the ability to magically download those plugin. Just trying to stop you wasting your time, dude.
+		else
 			{
 			$request = "request=get_license_numbers&username=".$jrConfig['license_server_username']."&password=".$jrConfig['license_server_password'];
 			$response = query_shop($request);
