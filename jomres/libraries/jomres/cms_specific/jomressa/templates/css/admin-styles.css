@@ -7,15 +7,10 @@ color:#333333;
 padding:0;
 }
 
-a {
-color:#333333;
-text-decoration:none;
-}
-
-a:hover {
-color:#333333;
-text-decoration:underline;
-}
+a:link {color:#000000;}      /* unvisited link */
+a:visited {color:#000000;}  /* visited link */
+a:hover {color:#000000;}  /* mouse over link */
+a:active {color:#000000;}  /* selected link */
 
 #wrap {
 width:970px;
