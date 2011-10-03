@@ -427,15 +427,20 @@ class j16000showplugins
 				$row_class = "row1";
 				
 				
-				
+			$style = "";
+			if ($rp['price'] == 0 )
+				{ 
+				$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
+				}
+			
 			echo
 			"<tr class=\"".$row_class." \" >
-				<td class=\"ui-corner-all\">".$strong1.$rp['name'].$strong2."</td>
-				<td class=\"ui-corner-all\">".$rp['min_jomres_ver']."</td>
-				<td class=\"ui-corner-all\">".$local_version."</td>
-				<td class=\"ui-corner-all\">".$rp['version']."</td>
-				<td class=\"ui-corner-all\">".$rp['lastupdate']."</td>
-				<td class=\"ui-corner-all\">".$strong1.stripslashes($rp['description']).$strong2.$manual_link."</td>";
+				<td class=\"ui-corner-all\" $style>".$strong1.$rp['name'].$strong2."</td>
+				<td class=\"ui-corner-all\" $style>".$rp['min_jomres_ver']."</td>
+				<td class=\"ui-corner-all\" $style>".$local_version."</td>
+				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
+				<td class=\"ui-corner-all\" $style>".$rp['lastupdate']."</td>
+				<td class=\"ui-corner-all\" $style>".$strong1.stripslashes($rp['description']).$strong2.$manual_link."</td>";
 				if ( count($min_jomres_ver) == 3 && count($this_jomres_version) == 3)
 					{
 					$min_major_version = $min_jomres_ver[0];
@@ -451,22 +456,22 @@ class j16000showplugins
 						$current_minor_version >= $min_minor_version &&
 						$current_revis_version >= $min_revis_version
 						)
-						echo "<td class=\"ui-corner-all\">".$installLink."</td>";
+						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
 					else
-						echo "<td class=\"ui-corner-all\">Requires a later version of Jomres</td>";
+						echo "<td class=\"ui-corner-all\" $style>Requires a later version of Jomres</td>";
 					}
 				else
-					echo "<td class=\"ui-corner-all\">".$installLink."</td>";
+					echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
 
-				echo "<td class=\"ui-corner-all\">".$uninstallLink."</td>";
+				echo "<td class=\"ui-corner-all\" $style>".$uninstallLink."</td>";
 				$button = '';
-				if ($rp['price'] > 0 && !array_key_exists($rp['name'],$installed_plugins ) && !array_key_exists($rp['name'],$current_licenses ) )
+				if ( !array_key_exists($rp['name'],$installed_plugins ) && !array_key_exists($rp['name'],$current_licenses ) )
 					{
-					$button = 'Add to cart <button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');">&pound;'.number_format($rp['price']).'</button>';
+					$button ='Add to cart <button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');" >&pound;'.number_format($rp['price']).'</button>';
 					//$button = '<button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');jomresJquery(\'#cart_wrapper\').effect( \'pulsate\',1000 );">&pound;'.number_format($rp['price']).'</button>';
 					}
 				if (!$developer_user)
-					echo "<td>".$button."</td>";
+					echo "<td class=\"ui-corner-all\" $style>".$button."</td>";
 			echo "</tr>
 			";
 			$counter++;
