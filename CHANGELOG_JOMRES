@@ -1,3 +1,11 @@
+Jomres 5.5.6.4
+
+Reverted to the older J1.7 router.php
+
+Jomres 5.5.6.3
+
+Fixed a bug I introduced earlier today when sorting out paths to images in the booking form.
+
 Jomres 5.5.6.2
 
 Exchange rate download class rewritten to perform fewer web queries.
