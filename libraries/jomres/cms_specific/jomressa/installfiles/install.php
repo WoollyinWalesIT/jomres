@@ -146,6 +146,20 @@ else
 		jomresSAInstallredirect("Sorry, there was an error creating the table ".$jomresConfig_dbprefix."__sessions. Please try again.");
 		}
 
+	$query = 
+	"CREATE TABLE #__modules (
+	`id` int(11) NOT NULL auto_increment,
+	`order` int(11) NOT NULL default '0',
+	`published` char(1) NOT NULL default '0',
+	`title` varchar(255) NOT NULL default '',
+	`task` varchar(255) NOT NULL default '',
+	`template_position` varchar(255) NOT NULL default '',
+	PRIMARY KEY	(id)
+	)";
+	if (!doInsertSql($query,'',true))
+		{
+		jomresSAInstallredirect("Sorry, there was an error creating the table ".$jomresConfig_dbprefix."__sessions. Please try again.");
+		}
 	
 	$configFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_standalone_config.php';
 	$live_site = curPageURL();

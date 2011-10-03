@@ -2,16 +2,11 @@ body {
 background:#ffffff url(../images/wrap.gif) repeat-x scroll center top; font-family:Arial,Helvetica,sans-serif; font-size:12px; padding:0; margin:0; color:#333333;
 }
 
-a {
-color:#CC0000;
-text-decoration:none;
-}
 
-a:hover {
-color:#CC0000;
-text-decoration:underline;
-}
-
+a:link {color:#ffffff;}      /* unvisited link */
+a:visited {color:#ffffff;}  /* visited link */
+a:hover {color:#ffffff;}  /* mouse over link */
+a:active {color:#ffffff;}  /* selected link */
 #wrap {
 width:760px;
 text-align:left;
@@ -44,7 +39,6 @@ margin:0 10px;
 }
 
 #header_right a, #header_right a:hover {
-color:#CC0000;
 text-decoration:none;
 font-size:12px;
 font-weight:bold;
