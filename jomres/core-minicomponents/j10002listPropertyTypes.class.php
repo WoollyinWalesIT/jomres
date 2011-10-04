@@ -24,7 +24,7 @@ class j10002listPropertyTypes
 			$this->template_touchable=false; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPropertyTypes', 'propertyTypes.png', _JOMRES_COM_PTYPES_LIST_TITLE);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPropertyTypes', 'propertyTypes.png', _JOMRES_COM_PTYPES_LIST_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
 		}
 	
 	

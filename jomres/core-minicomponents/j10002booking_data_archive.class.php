@@ -28,7 +28,7 @@ class j10002booking_data_archive
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_getSingleton('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=booking_data_archive', 'logs.png', _JOMRES_DATA_ARCHIVE_TITLE);
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=booking_data_archive', 'logs.png', _JOMRES_DATA_ARCHIVE_TITLE,"/jomres/images/jomresimages/small/", jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS" , "bookings" ,false,false));
 			}
 		}
 	

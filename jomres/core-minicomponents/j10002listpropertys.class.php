@@ -28,7 +28,7 @@ class j10002listpropertys
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_getSingleton('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_initials', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES);
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_initials', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
 			}
 		}
 	

@@ -24,7 +24,7 @@ class j10002listGlobalroomTypes
 			$this->template_touchable=false; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes', 'roomTypes.png', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listGlobalroomTypes', 'roomTypes.png', _JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
 		}
 	
 	

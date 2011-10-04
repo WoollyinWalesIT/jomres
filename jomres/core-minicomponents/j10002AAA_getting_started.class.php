@@ -31,7 +31,7 @@ class j10002AAA_getting_started
 		$threshold = 25; // After this, we won't show the "getting started button" any more, the user should be well on their way by now.
 		$count = (int)file_get_contents ($logfile);
 		if ($count <=$threshold)
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN."&task=getting_started", 'Support_IT.png', "Getting started");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN."&task=getting_started", 'Support_IT.png', "Getting started","/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false));
 		}
 	
 	

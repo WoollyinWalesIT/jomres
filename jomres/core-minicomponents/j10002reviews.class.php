@@ -24,7 +24,7 @@ class j10002reviews
 			$this->template_touchable=false; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_reviews', 'reviews.png', _JOMRES_REVIEWS);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_reviews', 'reviews.png', _JOMRES_REVIEWS,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
 		}
 	
 	
