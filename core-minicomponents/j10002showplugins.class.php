@@ -26,10 +26,10 @@ class j10002showplugins
 		$htmlFuncs =jomres_getSingleton('html_functions');
 		if (function_exists("curl_init"))
 			{
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins', 'plugin_button.png', "Plugin Manager");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins', 'plugin_button.png', "Plugin Manager","/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance" ,false,false));
 			}
 		else
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=nocurl', 'pluginManagerDisabled.png', "Plugin Manager");
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=nocurl', 'pluginManagerDisabled.png', "Plugin Manager","/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance" ,false,false));
 		}
 	
 	

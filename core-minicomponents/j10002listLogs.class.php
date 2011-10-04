@@ -28,7 +28,7 @@ class j10002listLogs
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_getSingleton('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listLogs', 'logs.png', JOMRES_COM_A_AVAILABLELOGS);
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listLogs', 'logs.png', JOMRES_COM_A_AVAILABLELOGS,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance" ,false,false));
 			}
 		}
 	
