@@ -33,25 +33,29 @@ class cpanel
 			}
 		$output['PAGETITLE']=_JRPORTAL_CPANEL;
 		$MiniComponents->triggerEvent('10002'); // 
-		$mcOutput=$MiniComponents->getAllEventPointsData('10002');
+		$MiniComponents->getAllEventPointsData('10002');
+		
+		$MiniComponents->triggerEvent('10003'); //
+		
+		//The lines below will need to be removed at a later point
+		
+		// if (count($mcOutput)>0)
+			// {
+			// foreach ($mcOutput as $key=>$val)
+				// {
+				// $r=array();
+				// $r["OPTIONS"]=$val;
+				// $rows[]=$r;
+				// }
+			// }
 
-		if (count($mcOutput)>0)
-			{
-			foreach ($mcOutput as $key=>$val)
-				{
-				$r=array();
-				$r["OPTIONS"]=$val;
-				$rows[]=$r;
-				}
-			}
-
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'cpanel.html');
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->addRows( 'rows',$rows);
-		$tmpl->displayParsedTemplate();
+		// $pageoutput[]=$output;
+		// $tmpl = new patTemplate();
+		// $tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		// $tmpl->readTemplatesFromInput( 'cpanel.html');
+		// $tmpl->addRows( 'pageoutput',$pageoutput);
+		// $tmpl->addRows( 'rows',$rows);
+		// $tmpl->displayParsedTemplate();
 		}
 	}
 

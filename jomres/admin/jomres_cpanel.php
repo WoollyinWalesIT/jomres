@@ -83,33 +83,6 @@ foreach ($recommended_plugins as $plugin_name=>$plugin)
 
 ?>
 
-<table class="adminform">
-	 <tr>
-		<td width="55%" valign="top">
-			<div id="cpanel">
-			<table cellpadding="0" cellspacing="0" border="0">
-				<tr>
-					<td align="center">
-					<?php
-					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'cpanel.class.php');
-					$cpanel=new cpanel();
-					?>
-					</td>
-				</tr>
-				<tr>
-					<td bgcolor="#f9f9f9">
-						<?php
-						$link = 'http://manual.jomres.net" title="Manual (Online)" target="_blank';
-						echo _quickiconButton( $link, 'Help.png', 'Manual', '/jomres/images/' );
-						$link = 'http://tickets.jomres.net/index.php" title="Submit support ticket" target="_blank';
-						echo _quickiconButton( $link, 'Support_IT.png', 'Submit a ticket', '/jomres/images/');
-						?>
-					</td>
-				</tr>
-			</table>
-			</div>
-		</td>
-		<td width="45%" valign="top" align="center" style="padding:10px;">
 			<table border="1" width="100%" class="adminform">
 				<tr>
 					<td bgcolor="#FFFFFF" colspan="2">
@@ -164,9 +137,6 @@ foreach ($recommended_plugins as $plugin_name=>$plugin)
 					<td bgcolor="#FFFFFF">Thanks to Piranha for your continuing help in providing support to Jomres users.</td>
 				</tr>
 			</table>
-		</td>
-	 </tr>
-</table>
 <?php
 
 function jomresStatusTestFolderIsWritable($path)

@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j10002AAA_controlpanel
+class j10002tickets
 	{
-	function j10002AAA_controlpanel()
+	function j10002tickets()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -23,17 +23,15 @@ class j10002AAA_controlpanel
 			{
 			$this->template_touchable=true; return;
 			}
-		global $htmlFuncs;  // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN, 'Desktop.png', _JOMRES_CONTROLPANEL,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton('http://tickets.jomres.net/index.php', 'Support_IT.png', 'Tickets (online)',"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = true);
 		}
-	
+
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
 
 		foreach ($output as $o)
 			{
@@ -41,10 +39,10 @@ class j10002AAA_controlpanel
 			echo "<br/>";
 			}
 		}
-		
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
 		return $this->cpanelButton;
 		}	
 	}
+?>
