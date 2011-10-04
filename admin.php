@@ -108,11 +108,6 @@ if (!JRPORTAL_AJAXCALL)
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
 	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
 	<?php
-	if (strlen(get_showtime('task'))>1)
-		{
-		jr_import('cpanel');
-		$cpanel=new cpanel();
-		}
 	}
 if (isset($_REQUEST['statoption']))
 	{
@@ -127,6 +122,16 @@ if (isset($_REQUEST['periodoption']))
 	}
 
 admins_first_run();
+
+if (!JRPORTAL_AJAXCALL)
+	{
+	jr_import('cpanel');
+	$cpanel=new cpanel();
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
+	}
+
+echo '<div style="float:right;width:79%;">';
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
@@ -184,7 +189,8 @@ switch (get_showtime('task')) {
 			}
 		break;
 	}
-
+echo '</div>';
+	
 $head_contents = '';
 $MiniComponents->triggerEvent('16003');
 if (is_array($MiniComponents->miniComponentData['16003']))
