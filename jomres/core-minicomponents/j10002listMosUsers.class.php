@@ -21,18 +21,29 @@ class j10002listMosUsers
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_getSingleton('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=managers_choose', 'Vendors.png', _JOMRES_COM_MR_SHOWPROFILES,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main" ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=managers_choose', 'Vendors.png', _JOMRES_COM_MR_SHOWPROFILES,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT" , "user management" ,false,false));
 			}
 		}
 	
-	
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT" , "user management");
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{

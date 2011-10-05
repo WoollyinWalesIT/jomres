@@ -21,18 +21,30 @@ class j10002listpropertys
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_getSingleton('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_initials', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_properties_initials', 'listProperties.png', _JRPORTAL_CPANEL_LISTPROPERTIES,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION" , "income generation" ,false,false));
 			}
 		}
 	
-	
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION" , "income generation");
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
+
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
