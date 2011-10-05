@@ -1,12 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
 		<th colspan="8"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<th colspan="8">{JOMRESTOOLBAR}</th>
 	</tr>
 	<tr>
 		<th>{HEDITLINK}</th>
@@ -39,7 +36,6 @@
 	</patTemplate:tmpl>
 </table>
 
-</div>
 <input type="hidden" name="task" value="newExtra" />
 <input type="hidden" name="option" value="com_jomres" />
 </form>

@@ -1,30 +1,30 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table  class="jradmin_table" border="0">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title" colspan="7">{PAGETITLE}</td>
+		<th class="ui-widget-header ui-corner-all" colspan="7">{PAGETITLE}</td>
 	</tr>
 	<tr>
-		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
-		<th class="jomres_title">&nbsp;</th>
-		<th class="jomres_title">{HPFEATURETITLE}</th>
-		<th class="jomres_title">{HPFEATUREDESCRIPTION}</th>
-		<th class="jomres_title">{HPROPERTY_TYPE}</th>
-		<th class="jomres_title">{HJOMRES_A_ICON}</th>
+		<th class="ui-widget-header ui-corner-all"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+		<th class="ui-widget-header ui-corner-all">&nbsp;</th>
+		<th class="ui-widget-header ui-corner-all">{HPFEATURETITLE}</th>
+		<th class="ui-widget-header ui-corner-all">{HPFEATUREDESCRIPTION}</th>
+		<th class="ui-widget-header ui-corner-all">{HPROPERTY_TYPE}</th>
+		<th class="ui-widget-header ui-corner-all">{HJOMRES_A_ICON}</th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
-		<td class="jradmin_subheader_la" width="20">{CHECKBOX}</td>
-		<td class="jradmin_subheader_la">{LINKTEXT}</td> 
-		<td class="jradmin_subheader_la">{PFEATURETITLE}</td>
-		<td class="jradmin_subheader_la">{PFEATUREDESCRIPTION}</td>
-		<td class="jradmin_subheader_la">{PROPERTY_TYPE}</td>
-		<td class="jradmin_subheader_la"><img src="{IMAGE}" /></td>
+		<td class="ui-widget-content" width="20">{CHECKBOX}</td>
+		<td class="ui-widget-content">{LINKTEXT}</td> 
+		<td class="ui-widget-content">{PFEATURETITLE}</td>
+		<td class="ui-widget-content">{PFEATUREDESCRIPTION}</td>
+		<td class="ui-widget-content">{PROPERTY_TYPE}</td>
+		<td class="ui-widget-content"><img src="{IMAGE}" /></td>
 	</tr>
 	</patTemplate:tmpl>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="boxchecked" value="0">
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="editPfeature" />

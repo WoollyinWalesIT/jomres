@@ -3,19 +3,19 @@
 {JOMRESTOOLBAR}
 <p>{TITLE}</p>
 <p>{INSTRUCTIONS}</p>
-<table class="jradmin_table" border="0">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<th class="jomres_title">{HFIELDNAME}</th>
-		<th class="jomres_title">{HDEFAULTVALUE}</th>
-		<th class="jomres_title">{HDESCRIPTION}</th>
-		<th class="jomres_title">{HREQUIRED}</th>
+		<th class="ui-widget-header ui-corner-all">{HFIELDNAME}</th>
+		<th class="ui-widget-header ui-corner-all">{HDEFAULTVALUE}</th>
+		<th class="ui-widget-header ui-corner-all">{HDESCRIPTION}</th>
+		<th class="ui-widget-header ui-corner-all">{HREQUIRED}</th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
-		<td class="jradmin_field_la">{EDITLINK}</td>
-		<td class="jradmin_field_la">{DEFAULT_VALUE}</td>
-		<td class="jradmin_field_la">{DESCRIPTION}</td>
-		<td class="jradmin_field_la">{REQUIRED}</td>
+		<td>{EDITLINK}</td>
+		<td>{DEFAULT_VALUE}</td>
+		<td>{DESCRIPTION}</td>
+		<td>{REQUIRED}</td>
 	</tr>
 	</patTemplate:tmpl>
 </table>

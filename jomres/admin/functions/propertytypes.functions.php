@@ -77,8 +77,8 @@ function editPropertyType()
 	$rowInfo="";
 	$rowInfo="
 		<tr>
-			<td class=\"jradmin_subheader_la\"><input class=\"inputbox\" name=\"ptype\" value=\"".$ptypeData['ptype']."\" /></td>
-			<td class=\"jradmin_subheader_la\"><input class=\"inputbox\" name=\"ptype_desc\" value=\"".$ptypeData['ptype_desc']."\" /></td>
+			<td class=\"\"><input class=\"inputbox\" name=\"ptype\" value=\"".$ptypeData['ptype']."\" /></td>
+			<td class=\"\"><input class=\"inputbox\" name=\"ptype_desc\" value=\"".$ptypeData['ptype_desc']."\" /></td>
 		</tr>
 		";
 

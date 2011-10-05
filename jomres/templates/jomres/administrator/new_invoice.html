@@ -1,36 +1,36 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table class="ui-widget-content ui-corner-all" width="75%">
 				<tr>
-					<td class="jradmin_subheader_ca">&nbsp;</td>
-					<td class="jradmin_subheader_la">{HSTATUS}</td>
-					<td class="jradmin_subheader_la">{HRAISED}</td>
-					<td class="jradmin_subheader_la">{HDUE}</td>
-					<td class="jradmin_subheader_la">{HSUBSCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HCURRENCYCODE}</td>
-					<td class="jradmin_subheader_la">{HINITTOTAL}</td>
-					<td class="jradmin_subheader_la">{HRECURTOTAL}</td>
-					<td class="jradmin_subheader_la">{HFREQ}</td>
+					<td class="ui-widget-header ui-corner-all">&nbsp;</td>
+					<td>{HSTATUS}</td>
+					<td>{HRAISED}</td>
+					<td>{HDUE}</td>
+					<td>{HSUBSCRIPTION}</td>
+					<td>{HCURRENCYCODE}</td>
+					<td>{HINITTOTAL}</td>
+					<td>{HRECURTOTAL}</td>
+					<td>{HFREQ}</td>
 				</tr>
 				<tr>
 					<td class="jradmin_rowtoolbar">{USERSINVOICESLINK}</td>
-					<td class="jradmin_field_la">{STATUS}</td>
-					<td class="jradmin_field_la">{RAISED}</td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" name="due_date" value="{DUE}" /></td>
-					<td class="jradmin_field_la">{SUBSCRIPTION}</td>
-					<td class="jradmin_field_la">{CURRENCYCODE}</td>
-					<td class="jradmin_field_la"><div id="init_grand_total">{INITTOTAL}</div></td>
-					<td class="jradmin_field_la"><div id="recur_grand_total">{RECURTOTAL}</div></td>
-					<td class="jradmin_field_la">{FREQ}</td>
+					<td>{STATUS}</td>
+					<td>{RAISED}</td>
+					<td><input type="text" name="due_date" value="{DUE}" /></td>
+					<td>{SUBSCRIPTION}</td>
+					<td>{CURRENCYCODE}</td>
+					<td><div id="init_grand_total">{INITTOTAL}</div></td>
+					<td><div id="recur_grand_total">{RECURTOTAL}</div></td>
+					<td>{FREQ}</td>
 				</tr>
 			</table>
 			
@@ -38,29 +38,29 @@
 		</td>
 	</tr>
 </table>
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jomres_title">{LIPAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{LIPAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table class="ui-widget-content ui-corner-all" width="75%">
 				<tr>
-					<td class="jradmin_subheader_ca">&nbsp;</td>
-					<td class="jradmin_subheader_la">{HLI_NAME}</td>
-					<td class="jradmin_subheader_la">{HLI_DESCRIPTION}</td>
+					<td class="ui-widget-header ui-corner-all">&nbsp;</td>
+					<td>{HLI_NAME}</td>
+					<td>{HLI_DESCRIPTION}</td>
 					
-					<td class="jradmin_subheader_la">{HLI_INIT_PRICE}</td>
-					<td class="jradmin_subheader_la">{HLI_INIT_QTY}</td>
-					<td class="jradmin_subheader_la">{HLI_INIT_DISCOUNT}</td>
-					<td class="jradmin_subheader_la">{HLI_INIT_TOTAL}</td>
-					<td class="jradmin_subheader_la">{HLI_RECUR_PRICE}</td>
-					<td class="jradmin_subheader_la">{HLI_RECUR_QTY}</td>
-					<td class="jradmin_subheader_la">{HLI_RECUR_DISCOUNT}</td>
-					<td class="jradmin_subheader_la">{HLI_RECUR_TOTAL}</td>
-					<td class="jradmin_subheader_la">{HLI_TAX_CODE}</td>
-					<td class="jradmin_subheader_la">{HLI_TAX_DESCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HLI_TAX_RATE}</td>
+					<td>{HLI_INIT_PRICE}</td>
+					<td>{HLI_INIT_QTY}</td>
+					<td>{HLI_INIT_DISCOUNT}</td>
+					<td>{HLI_INIT_TOTAL}</td>
+					<td>{HLI_RECUR_PRICE}</td>
+					<td>{HLI_RECUR_QTY}</td>
+					<td>{HLI_RECUR_DISCOUNT}</td>
+					<td>{HLI_RECUR_TOTAL}</td>
+					<td>{HLI_TAX_CODE}</td>
+					<td>{HLI_TAX_DESCRIPTION}</td>
+					<td>{HLI_TAX_RATE}</td>
 				</tr>
 				<script>
 				var idarray = new Array();
@@ -144,22 +144,22 @@
 				<input type="hidden" value="{LI_RECUR_PRICE}" />
 				<tr>
 					<td class="jradmin_rowtoolbar">{ID}</td>
-					<td class="jradmin_field_la">{LI_NAME}</td>
-					<td class="jradmin_field_la">{LI_DESCRIPTION}</td>
+					<td>{LI_NAME}</td>
+					<td>{LI_DESCRIPTION}</td>
 					
-					<td class="jradmin_field_la">{LI_INIT_PRICE}</td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="init_qty[{ID}]" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="init_discount[{ID}]" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
-					<td class="jradmin_field_la"><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
-					<td class="jradmin_field_la">{LI_RECUR_PRICE}</td>
+					<td>{LI_INIT_PRICE}</td>
+					<td><input type="text" id="init_qty[{ID}]" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
+					<td><input type="text" id="init_discount[{ID}]" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
+					<td><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
+					<td>{LI_RECUR_PRICE}</td>
 					
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="recur_qty[{ID}]" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
-					<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" id="recur_discount[{ID}]" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
-					<td class="jradmin_field_la"><div id="recur_total_{ID}">{LI_RECUR_TOTAL}</div></td>
+					<td><input type="text" id="recur_qty[{ID}]" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
+					<td><input type="text" id="recur_discount[{ID}]" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
+					<td><div id="recur_total_{ID}">{LI_RECUR_TOTAL}</div></td>
 
-					<td class="jradmin_field_la">{LI_TAX_CODE}</td>
-					<td class="jradmin_field_la">{LI_TAX_DESCRIPTION}</td>
-					<td class="jradmin_field_la">{LI_TAX_RATE}%</td>
+					<td>{LI_TAX_CODE}</td>
+					<td>{LI_TAX_DESCRIPTION}</td>
+					<td>{LI_TAX_RATE}%</td>
 				</tr>
 				</patTemplate:tmpl>
 			</table>

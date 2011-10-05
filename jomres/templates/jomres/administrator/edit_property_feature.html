@@ -1,28 +1,28 @@
 <patTemplate:tmpl name="pageoutput">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="jradmin_table" border="0">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th colspan="4" class="jomres_title">{PAGETITLE}</th>
+		<th colspan="4" class="ui-widget-header ui-corner-all">{PAGETITLE}</th>
 	</tr>
 	<tr>
-		<th class="jomres_title">{HFEATUREABBV}</th>
-		<th class="jomres_title">{HFEATUREDESCRIPTION}</th>
-		<th class="jomres_title">{HPROPERTY_TYPE}</th>
-		<th class="jomres_title">{PROPERTYFEATUREINFO}</th>
+		<th class="ui-widget-header ui-corner-all">{HFEATUREABBV}</th>
+		<th class="ui-widget-header ui-corner-all">{HFEATUREDESCRIPTION}</th>
+		<th class="ui-widget-header ui-corner-all">{HPROPERTY_TYPE}</th>
+		<th class="ui-widget-header ui-corner-all">{PROPERTYFEATUREINFO}</th>
 	</tr>
 	<tr>
-		<td class="jradmin_field_la"><input class="inputbox" type="text" name="feature_abbv" value="{FEATURE_ABBV}" /></td>
-		<td class="jradmin_field_la"><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" /></td>
-		<td class="jradmin_field_la">{PROPERTY_TYPE_DROPDOWN}</td>
-		<td class="jradmin_field_la">
+		<td><input class="inputbox" type="text" name="feature_abbv" value="{FEATURE_ABBV}" /></td>
+		<td><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" /></td>
+		<td>{PROPERTY_TYPE_DROPDOWN}</td>
+		<td>
 			<patTemplate:tmpl name="rows">
 			<span style="white-space:nowrap" ><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" /></span>
 			</patTemplate:tmpl>
 		</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="propertyFeatureUid" value="{PROPERTYFEATUREUID}">
 <input type="hidden" name="property_uid" value="{PROPERTYUID}" />
 <input type="hidden" name="Itemid" value="{ITEMID}" />

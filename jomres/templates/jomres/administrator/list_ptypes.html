@@ -1,16 +1,9 @@
 <patTemplate:tmpl name="list_ptypes" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table cellpadding="4" cellspacing="0" border="0" width="100%">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td width="100%">{PAGETITLE}</td>
-		<td nowrap>&nbsp;</td>
-		<td nowrap>&nbsp;</td>
+		<th class="ui-widget-header ui-corner-all" colspan="3">{PAGETITLE}</th>
 	</tr>
-	<tr>
-		<td colspan="3"></td>
-	</tr>
-</table>
-<table cellpadding="3" cellspacing="0" border="0" class="adminlist">
 	<patTemplate:tmpl name="pageheaders" unusedvars="nbsp">
 	<tr>
 		<th>{HPTYPE}</th>
@@ -20,7 +13,7 @@
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 	<tr>
-		<td><a href="index2.php?option=com_jomres&task=editpropertytype&id={ID}">{PTYPE}</a></td>
+		<td><a href="index.php?option=com_jomres&task=editpropertytype&id={ID}">{PTYPE}</a></td>
 		<td>{PTYPE_DESC}</td>
 		<td>{PUBLISHED}</td>
 	</tr>

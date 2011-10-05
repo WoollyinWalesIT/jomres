@@ -1,57 +1,43 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all" colspan="12">{PAGETITLE}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td class="ui-widget-header ui-corner-all" colspan="3">{TASK_FILTER_ANY}</td><td class="ui-widget-header ui-corner-all" colspan="3">{TASK_FILTER_UNPAID}</td><td class="ui-widget-header ui-corner-all" colspan="2">{TASK_FILTER_PAID}</td><td class="ui-widget-header ui-corner-all" colspan="2">{TASK_FILTER_CANCELLED}</td><td class="ui-widget-header ui-corner-all" colspan="2">{TASK_FILTER_PENDING}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{TASK_FILTER_ANY}</td><td class="jradmin_subheader_ca">{TASK_FILTER_UNPAID}</td><td class="jradmin_subheader_ca">{TASK_FILTER_PAID}</td><td class="jradmin_subheader_ca">{TASK_FILTER_CANCELLED}</td><td class="jradmin_subheader_ca">{TASK_FILTER_PENDING}</td>
-				</tr>
-			</table>
-		</td>
+		<td class="">&nbsp;</td>
+		<td class="ui-widget-header ui-corner-all">ID</td>
+		<td class="ui-widget-header ui-corner-all">{HUSER}</td>
+		<td class="ui-widget-header ui-corner-all">{HSTATUS}</td>
+		<td class="ui-widget-header ui-corner-all">&nbsp;</td>
+		<td class="ui-widget-header ui-corner-all">{HRAISED}</td>
+		<td class="ui-widget-header ui-corner-all">{HDUE}</td>
+		<td class="ui-widget-header ui-corner-all">{HPAID}</td>
+		<td class="ui-widget-header ui-corner-all">{HSUBSCRIPTION}</td>
+		<td class="ui-widget-header ui-corner-all">{HINITTOTAL}</td>
+		<td class="ui-widget-header ui-corner-all">{HRECURTOTAL}</td>
+		<td class="ui-widget-header ui-corner-all">{HFREQ}</td>
 	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">&nbsp;</td>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_ca">{HUSER}</td>
-					<td class="jradmin_subheader_la">{HSTATUS}</td>
-					<td class="jradmin_subheader_la">&nbsp;</td>
-					<td class="jradmin_subheader_la">{HRAISED}</td>
-					<td class="jradmin_subheader_la">{HDUE}</td>
-					<td class="jradmin_subheader_la">{HPAID}</td>
-					<td class="jradmin_subheader_la">{HSUBSCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HINITTOTAL}</td>
-					<td class="jradmin_subheader_la">{HRECURTOTAL}</td>
-					<td class="jradmin_subheader_la">{HFREQ}</td>
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_field_la">{ID}</td>
-					<td class="jradmin_field_la">{USER}</td>
-					<td class="jradmin_field_la">{STATUS}</td>
-					<td class="jradmin_field_la">{ITEMS}</td>
-					<td class="jradmin_field_la">{RAISED}</td>
-					<td class="jradmin_field_la">{DUE}</td>
-					<td class="jradmin_field_la">{PAID}</td>
-					<td class="jradmin_field_la">{SUBSCRIPTION}</td>
-					<td class="jradmin_field_la">{INITTOTAL}  <span class="small">({CURRENCYCODE})</td>
-					<td class="jradmin_field_la">{RECURTOTAL}  <span class="small">({CURRENCYCODE})</td>
-					<td class="jradmin_field_la">{FREQ}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class=stripeMe">
+		<td>{EDITLINK}</td>
+		<td>{ID}</td>
+		<td>{USER}</td>
+		<td>{STATUS}</td>
+		<td>{ITEMS}</td>
+		<td>{RAISED}</td>
+		<td>{DUE}</td>
+		<td>{PAID}</td>
+		<td>{SUBSCRIPTION}</td>
+		<td>{INITTOTAL}  <span class="small">({CURRENCYCODE})</td>
+		<td>{RECURTOTAL}  <span class="small">({CURRENCYCODE})</td>
+		<td>{FREQ}</td>
 	</tr>
+	</patTemplate:tmpl>
 </table>
 <input type="hidden" name="task" value="edit_invoice" />
 </form>

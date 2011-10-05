@@ -2,16 +2,16 @@
 
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table  class="jradmin_table" border="0">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title" colspan="2">{PAGETITLE}</th>
+		<th class="ui-widget-header ui-corner-all" colspan="2">{PAGETITLE}</th>
 	</tr>
 	<tr>
-		<th class="jomres_title" colspan="2">{INFO}</th>
+		<th class="ui-widget-header ui-corner-all" colspan="2">{INFO}</th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
-		<td class="jradmin_subheader_la">{PROPERTY_NAME}</td><td class="jradmin_subheader_la">{DATE_TOOTIP}</td>
+		<td>{PROPERTY_NAME}</td><td>{DATE_TOOTIP}</td>
 	</tr>
 	</patTemplate:tmpl>
 </table>

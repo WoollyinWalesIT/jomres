@@ -1,32 +1,24 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<th class="ui-widget-header ui-corner-all" colspan="4">{PAGETITLE}</th>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td class="ui-widget-header ui-corner-all">ID</td>
+		<td class="ui-widget-header ui-corner-all">{HCODE}</td>
+		<td class="ui-widget-header ui-corner-all">{HDESCRIPTION}</td>
+		<td class="ui-widget-header ui-corner-all">{HRATE}</td>
 	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_la">{HCODE}</td>
-					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
-					<td class="jradmin_subheader_ca">{HRATE}</td>
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_field_la">{CODE}</td>
-					<td class="jradmin_field_la">{DESCRIPTION}</td>
-					<td class="jradmin_field_ca">{RATE}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+		<td class="ui-widget-content">{EDITLINK}</td>
+		<td class="ui-widget-content">{CODE}</td>
+		<td class="ui-widget-content">{DESCRIPTION}</td>
+		<td class="ui-widget-content">{RATE}</td>
 	</tr>
+	</patTemplate:tmpl>
 </table>
 <input type="hidden" name="task" value="editTaxrate" />
 </form>

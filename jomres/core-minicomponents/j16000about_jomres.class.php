@@ -25,8 +25,8 @@ class j16000about_jomres
 			}
 		echo '
 		<center>
-		<div style="width:800px;text-align:left">
-		<h2>About Jomres</h2>
+		<div class="ui-widget-content ui-corner-all" style="width:800px;text-align:left">
+		<h2 class="ui-widget-header ui-corner-all">About Jomres</h2>
 		<p><a href="http://www.jomres.net" target="_blank">Jomres</a> is (probably) Joomla\'s favourite booking system.</p>
 		<p>Developed and maintained by Vince Wooll and <a href="http://www.jomres-extras.com/" target="_blank">Aladar Barthi</a>, it was initially concieved in early 2005 as a Mambo based solution to a client\'s hotel management needs. While it wasn\'t originally expected to be an online booking system it quickly morphed into one as users requested more and more features.</p>
 		<p>As the number of feature requests grew Vince knew that he would need to dedicate more time to the project and in July 2005 Jomres was formally released as a commercial project. Since then Jomres has become one of Mambo and now Joomla\'s longest running projects, having survived various versions of Mambo, then Joomla 1.0, 1.5, 1.6 and finally 1.7.</p>
