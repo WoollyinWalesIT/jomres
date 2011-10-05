@@ -65,7 +65,7 @@ class j10004generate_control_panel {
 
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'control_panel.html' );
+		$tmpl->readTemplatesFromInput( 'control_panel_menu_wrapper.html' );
 		$tmpl->addRows( 'button_output', $button_o );
 		$this->ret_vals = $tmpl->getParsedTemplate();
 		}

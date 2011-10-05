@@ -184,8 +184,10 @@ switch (get_showtime('task')) {
 			}
 		else
 			{
-			$version=$mrConfig['version'];
-			HTML_jomres::controlPanel($version);
+			// $version=$mrConfig['version'];
+			// HTML_jomres::controlPanel($version);
+			$MiniComponents->triggerEvent('10001');
+			
 			}
 		break;
 	}
