@@ -473,6 +473,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'index.html');
 		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'init_config_vars.php');
 		
+		$this->add_obs_file($this->dir_templates_administrator.'jomres_cpanel.php');
+		
 		}
 	
 	function add_obs_file($path_and_file)
