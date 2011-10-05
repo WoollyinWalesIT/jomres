@@ -1,10 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" width="75%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all" colspan="6">{PAGETITLE}</th>
-	</tr>
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<th class="ui-widget-header ui-corner-all"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
 		<th class="ui-widget-header ui-corner-all">&nbsp;</th>

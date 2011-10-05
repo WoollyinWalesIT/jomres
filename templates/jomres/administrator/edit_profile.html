@@ -7,11 +7,9 @@ function selectAll() {
 </script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
 <p>{INSTRUCTIONS}</p>
-<table class="ui-widget-content ui-corner-all" width="75%">
-	<tr>
-		<th colspan="4" class="ui-widget-header ui-corner-all">{PAGETITLE}</th>
-	</tr>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<th class="ui-widget-header ui-corner-all">{HACCESSLEVEL}</th>
 		<td class="ui-widget-header ui-corner-all">{ACCESSLEVEL}</td>
@@ -33,8 +31,6 @@ function selectAll() {
 </patTemplate:tmpl>	
 </table>
 
-	
-{JOMRESTOKEN}
 <input type="hidden" name="no_html" value="1" />
 <input type="hidden" name="userid" value="{ID}" />
 <input type="hidden" name="option" value="com_jomres" />

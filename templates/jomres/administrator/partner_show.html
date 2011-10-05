@@ -1,11 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 
 <h3>{_JOMRES_PARTNER_SHOW_TITLE} {USERNAME}</h3>
+<div class="ui-widget-header ui-corner-all">{_JOMRES_PARTNER_SHOW_SEARCHTITLE}</div><br/>
 
-<table width="100%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all" colspan="2">{_JOMRES_PARTNER_SHOW_SEARCHTITLE}</th>
-	</tr>
+<p>{_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS}</p>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<td colspan="2">
 			<br/>
@@ -13,10 +12,13 @@
 				<input id="propertyname_input" />
 			</div>
 			<br/>
-			{_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS}
 		</td>
 	</tr>
-	<tr><th class="ui-widget-header ui-corner-all"  colspan="2">{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES}</th></tr>
+	<tr>
+		<th class="ui-widget-header ui-corner-all"  colspan="2">
+			{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES}
+		</th>
+	</tr>
 	<tr>
 		<td>
 			{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS}<br/>

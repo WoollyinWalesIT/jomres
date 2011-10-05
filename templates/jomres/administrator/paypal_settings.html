@@ -1,38 +1,24 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+{JOMRESTOOLBAR}
+<p>{NOTES}</p>
+<p>{HOVERRIDE_DESC}</p>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</td>
+		<td class="ui-widget-header ui-corner-all">{HSANDBOX}</td>
+		<td class="ui-widget-header ui-corner-all">{HEMAIL}</td>
+		<td class="ui-widget-header ui-corner-all">{HOVERRIDE}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>{NOTES}</td>
-	</tr>
-	<tr>
-		<td>{HOVERRIDE_DESC}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="ui-widget-content ui-corner-all" width="75%">
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</td>
-					<td class="ui-widget-header ui-corner-all">{HSANDBOX}</td>
-					<td class="ui-widget-header ui-corner-all">{HEMAIL}</td>
-					<td class="ui-widget-header ui-corner-all">{HOVERRIDE}</td>
-				</tr>
-				<tr>
-					<td><input type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/></td>
-					<td>{USESANDBOX}</td>
-					<td><input type="text" name="email" value="{PAYPALEMAIL}" size="20" /></td>
-					<td>{OVERRIDE}</td>
-				</tr>
-			</table>
-		</td>
+		<td><input type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/></td>
+		<td>{USESANDBOX}</td>
+		<td><input type="text" name="email" value="{PAYPALEMAIL}" size="20" /></td>
+		<td>{OVERRIDE}</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="task" value="save_paypal_settings" />
 </form>
 </patTemplate:tmpl>

@@ -1,50 +1,40 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
-	<tr>
-		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
-	</tr>
-	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="ui-widget-content ui-corner-all" width="75%">
-				<tr>
-					<td class="ui-widget-header ui-corner-all">&nbsp;</td>
-					<td>{HSTATUS}</td>
-					<td>{HRAISED}</td>
-					<td>{HDUE}</td>
-					<td>{HSUBSCRIPTION}</td>
-					<td>{HCURRENCYCODE}</td>
-					<td>{HINITTOTAL}</td>
-					<td>{HRECURTOTAL}</td>
-					<td>{HFREQ}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_rowtoolbar">{USERSINVOICESLINK}</td>
-					<td>{STATUS}</td>
-					<td>{RAISED}</td>
-					<td><input type="text" name="due_date" value="{DUE}" /></td>
-					<td>{SUBSCRIPTION}</td>
-					<td>{CURRENCYCODE}</td>
-					<td><div id="init_grand_total">{INITTOTAL}</div></td>
-					<td><div id="recur_grand_total">{RECURTOTAL}</div></td>
-					<td>{FREQ}</td>
-				</tr>
-			</table>
-			
+{JOMRESTOOLBAR}
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
 
-		</td>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td class="ui-widget-header ui-corner-all">&nbsp;</td>
+		<td>{HSTATUS}</td>
+		<td>{HRAISED}</td>
+		<td>{HDUE}</td>
+		<td>{HSUBSCRIPTION}</td>
+		<td>{HCURRENCYCODE}</td>
+		<td>{HINITTOTAL}</td>
+		<td>{HRECURTOTAL}</td>
+		<td>{HFREQ}</td>
+	</tr>
+	<tr>
+		<td class="jradmin_rowtoolbar">{USERSINVOICESLINK}</td>
+		<td>{STATUS}</td>
+		<td>{RAISED}</td>
+		<td><input type="text" name="due_date" value="{DUE}" /></td>
+		<td>{SUBSCRIPTION}</td>
+		<td>{CURRENCYCODE}</td>
+		<td><div id="init_grand_total">{INITTOTAL}</div></td>
+		<td><div id="recur_grand_total">{RECURTOTAL}</div></td>
+		<td>{FREQ}</td>
 	</tr>
 </table>
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
+
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<td class="ui-widget-header ui-corner-all">{LIPAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="ui-widget-content ui-corner-all" width="75%">
+			<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 				<tr>
 					<td class="ui-widget-header ui-corner-all">&nbsp;</td>
 					<td>{HLI_NAME}</td>

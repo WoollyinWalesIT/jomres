@@ -1,10 +1,8 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table>
-	<tr>
-		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
-	</tr>
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<td>
 			<table>
@@ -25,7 +23,7 @@
 	</tr>
 </table>
 
-{JOMRESTOKEN}
+
 <input type="hidden" name="step" value="3" />
 <input type="hidden" name="username" value="{USERNAME}" />
 <input type="hidden" name="jos_id" value="{JOS_ID}" />
