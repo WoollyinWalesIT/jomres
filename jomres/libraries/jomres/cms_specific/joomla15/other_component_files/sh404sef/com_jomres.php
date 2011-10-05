@@ -52,7 +52,13 @@ if ($task != 'search' && $task != "dobooking" && $task != "viewproperty")
 //Include the jomres stuff
 require_once('jomres/integration.php');
 $jrConfig					=	getSiteSettings();
-	
+$thisJRUser=jomres_getSingleton('jr_user');
+if ($thisJRUser->superPropertyManager || $thisJRUser->userIsManager)
+	{
+	$dosef=false;
+	return;
+	}
+		
 // remove common URL from GET vars list, so that they don't show up as query string in the URL
 shRemoveFromGETVarsList('option');
 if (!empty($lang))
