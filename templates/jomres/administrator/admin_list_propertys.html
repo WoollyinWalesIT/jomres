@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <style type="text/css">
-table.jradmin_table tr.row2 {
+table.ui-widget-header ui-corner-all tr.row2 {
 	background-color: #fc0000;
 	text-align: left;
 }
@@ -8,19 +8,19 @@ table.jradmin_table tr.row2 {
 
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="jradmin_table" border="0" width="100%">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<th class="jomres_title">{PAGETITLE}</th>
+		<th class="ui-widget-header ui-corner-all">{PAGETITLE}</th>
 	</tr>
 </table>
 {LEGEND}
-<table class="jradmin_table"  width="100%">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jradmin_subheader_la" >{HPROPERTYNAME}</td><td class="jradmin_subheader_la" >{HPROPERTYADDRESS}</td><td class="jradmin_subheader_la" >{HCRATE_DROPDOWN}</td>
+		<td >{HPROPERTYNAME}</td><td >{HPROPERTYADDRESS}</td><td >{HCRATE_DROPDOWN}</td>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr class="{STYLE}">
-		<td>{VIEWLINK}{PROPERTYNAME}</a></td><td  class="jradmin_subheader_la">{PROPERTYADDRESS}</td><td  class="jradmin_field_la">{CRATE_DROPDOWN}</td>
+		<td>{VIEWLINK}{PROPERTYNAME}</a></td><td >{PROPERTYADDRESS}</td><td >{CRATE_DROPDOWN}</td>
 	</tr>		
 	</patTemplate:tmpl>
 </table>

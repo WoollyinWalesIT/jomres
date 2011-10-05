@@ -34,37 +34,37 @@ function delete_review(rating_id)
 	}
 </script>
 
-<h2>{HPROPERTYNAME} : {PROPERTY_NAME}</h2>
+<h2 class="ui-widget-header ui-corner-all">{HPROPERTYNAME} : {PROPERTY_NAME}</h2>
 
 {_JOMRES_REVIEWS_REPORT_INSTRUCTIONS}<br/>
 
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<td class="jradmin_subheader_la" >&nbsp;</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_MR_AUDIT_LISTING_USER}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_SUBMITTEDDATE}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_TITLE}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</a></td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_PROS}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_CONS}</td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_RATING}</a></td>
-		<td class="jradmin_subheader_la">{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</a></td>
+		<td >&nbsp;</td>
+		<td>{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}</td>
+		<td>{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</td>
+		<td>{_JOMRES_MR_AUDIT_LISTING_USER}</td>
+		<td>{_JOMRES_REVIEWS_SUBMITTEDDATE}</td>
+		<td>{_JOMRES_REVIEWS_TITLE}</td>
+		<td>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</a></td>
+		<td>{_JOMRES_REVIEWS_PROS}</td>
+		<td>{_JOMRES_REVIEWS_CONS}</td>
+		<td>{_JOMRES_REVIEWS_RATING}</a></td>
+		<td>{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</a></td>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr id="{ROW_ID}">
-		<td class="jradmin_field_la" >{RATING_ID}</td>
-		<td class="jradmin_field_la"><a href="javascript:void(0);"  style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img id="publish_icon{RATING_ID}" src="{PUBLISH_ICON}" /></a></td>
-		<td class="jradmin_field_la"><a href="javascript:void(0);" style="outline: none;" onClick="delete_review({RATING_ID});"><img src="{DELETE_ICON}" /></a></td>
-		<td class="jradmin_field_la">{USER_ID}</td>
-		<td class="jradmin_field_la">{RATING_DATE}</td>
-		<td class="jradmin_field_la">{REVIEW_TITLE}</td>
-		<td class="jradmin_field_la">{REVIEW_DESCRIPTION}</a></td>
-		<td class="jradmin_field_la">{PROS}</td>
-		<td class="jradmin_field_la">{CONS}</td>
-		<td class="jradmin_field_la">{RATING}</a></td>
-		<td class="jradmin_field_la">{REPORTS}</a></td>
+		<td >{RATING_ID}</td>
+		<td><a href="javascript:void(0);"  style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img id="publish_icon{RATING_ID}" src="{PUBLISH_ICON}" /></a></td>
+		<td><a href="javascript:void(0);" style="outline: none;" onClick="delete_review({RATING_ID});"><img src="{DELETE_ICON}" /></a></td>
+		<td>{USER_ID}</td>
+		<td>{RATING_DATE}</td>
+		<td>{REVIEW_TITLE}</td>
+		<td>{REVIEW_DESCRIPTION}</a></td>
+		<td>{PROS}</td>
+		<td>{CONS}</td>
+		<td>{RATING}</a></td>
+		<td>{REPORTS}</a></td>
 	</tr>
 	</patTemplate:tmpl>
 </table>

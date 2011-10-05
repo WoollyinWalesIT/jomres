@@ -1,21 +1,21 @@
 <patTemplate:tmpl name="pageoutput">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table  class="jradmin_table" border="0">
+<table  class="ui-widget-header ui-corner-all" border="0">
 	<tr>
-		<th class="jomres_title" colspan="4">{PAGETITLE}</th>
+		<th class="ui-widget-header ui-corner-all" colspan="4">{PAGETITLE}</th>
 	</tr>
 	<tr>
-		<th class="jomres_title">{HFIELD}</th>
-		<th class="jomres_title">{HDEFAULT_VALUE}</th>
-		<th class="jomres_title">{HDESCRIPTION}</th>
-		<th class="jomres_title">{HREQUIRED}</th>
+		<th class="ui-widget-header ui-corner-all">{HFIELD}</th>
+		<th class="ui-widget-header ui-corner-all">{HDEFAULT_VALUE}</th>
+		<th class="ui-widget-header ui-corner-all">{HDESCRIPTION}</th>
+		<th class="ui-widget-header ui-corner-all">{HREQUIRED}</th>
 	</tr>
 	<tr>
-		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" /></td>
-		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" /></td>
-		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
-		<td class="jradmin_subheader_la">{REQUIRED}</td>
+		<td><input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" /></td>
+		<td><input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" /></td>
+		<td><input class="inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
+		<td>{REQUIRED}</td>
 	</tr>
 </table>
 {JOMRESTOKEN}

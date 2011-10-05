@@ -1,11 +1,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 
-<table width="100%">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title">{_JOMRES_MANAGER_CHOOSE_SEARCHTITLE}</th>
+		<th class="ui-widget-header ui-corner-all">{_JOMRES_MANAGER_CHOOSE_SEARCHTITLE}</th>
 	</tr>
 	<tr>
-		<td class="jradmin_subheader_la">
+		<td class="ui-widget-content">
 			<div class="ui-widget">
 				<input id="username_input" />
 			</div>
@@ -13,33 +13,32 @@
 		</td>
 	</tr>
 	<tr>
-		<th colspan="2" class="jomres_title">{KEY}</th>
+		<th colspan="2" class="ui-widget-header ui-corner-all">{KEY}</th>
 	</tr>
 	<tr>
-		<th colspan="2" class="jomres_title">{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</th>
+		<th colspan="2" class="ui-widget-header ui-corner-all">{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</th>
 	</tr>
 	<tr>
-		<td colspan="2" class="jradmin_subheader_la">
-		{_JOMRES_MANAGER_CHOOSE_EXISTING_INSTRUCTIONS}<br/>
+		<td colspan="2">
 			<table class="jradmin_table" border="0">
 				<tr>
-					<th class="jomres_title">{HUSERNAME}</th>
+					<th class="ui-widget-header ui-corner-all">{HUSERNAME}</th>
 					
-					<th class="jomres_title">{HLINKTEXT}</th>
-					<th class="jomres_title">{HACCESSLEVEL}</th>
-					<th class="jomres_title">{_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED}</th> 
-					<th class="jomres_title">{HSUSPENSION}</th> 
-					<th class="jomres_title">{HGRANTLINK}</th>
+					<th class="ui-widget-header ui-corner-all">{HLINKTEXT}</th>
+					<th class="ui-widget-header ui-corner-all">{HACCESSLEVEL}</th>
+					<th class="ui-widget-header ui-corner-all">{_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED}</th> 
+					<th class="ui-widget-header ui-corner-all">{HSUSPENSION}</th> 
+					<th class="ui-widget-header ui-corner-all">{HGRANTLINK}</th>
 				</tr>
 			<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
-					<td class="jradmin_field_la">{USERNAME}</td>
+					<td>{USERNAME}</td>
 					
-					<td class="jradmin_field_la">{LINKTEXT}</td>
-					<td class="jradmin_field_la">{ACCESSLEVELIMAGE}</td>
-					<td class="jradmin_field_la">{NUMBEROFPROPERTIES}</td>
-					<td class="jradmin_field_la" width="200px" >{SUSPENSIONLINK}</td>
-					<td class="jradmin_field_la" width="200px" >{GRANTLINK}</td>
+					<td>{LINKTEXT}</td>
+					<td>{ACCESSLEVELIMAGE}</td>
+					<td>{NUMBEROFPROPERTIES}</td>
+					<td width="200px" >{SUSPENSIONLINK}</td>
+					<td width="200px" >{GRANTLINK}</td>
 				</tr>
 			</patTemplate:tmpl>
 			</table>

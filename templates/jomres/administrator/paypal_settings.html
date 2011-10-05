@@ -1,8 +1,8 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
@@ -15,18 +15,18 @@
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table class="ui-widget-content ui-corner-all" width="75%">
 				<tr>
-					<td class="jradmin_subheader_ca">{HCURRENCYCODE}</td>
-					<td class="jradmin_subheader_ca">{HSANDBOX}</td>
-					<td class="jradmin_subheader_ca">{HEMAIL}</td>
-					<td class="jradmin_subheader_ca">{HOVERRIDE}</td>
+					<td class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</td>
+					<td class="ui-widget-header ui-corner-all">{HSANDBOX}</td>
+					<td class="ui-widget-header ui-corner-all">{HEMAIL}</td>
+					<td class="ui-widget-header ui-corner-all">{HOVERRIDE}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/></td>
-					<td class="jradmin_field_ca">{USESANDBOX}</td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="email" value="{PAYPALEMAIL}" size="20" /></td>
-					<td class="jradmin_field_ca">{OVERRIDE}</td>
+					<td><input type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/></td>
+					<td>{USESANDBOX}</td>
+					<td><input type="text" name="email" value="{PAYPALEMAIL}" size="20" /></td>
+					<td>{OVERRIDE}</td>
 				</tr>
 			</table>
 		</td>

@@ -1,13 +1,13 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 
 {_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO}
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<td class="jradmin_subheader_la" >{HPROPERTYNAME}</td><td class="jradmin_subheader_la" >{_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED}</td><td class="jradmin_subheader_la" >{_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL}</td><td class="jradmin_subheader_la" >{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</td>
+		<td class="ui-widget-header ui-corner-all" >{HPROPERTYNAME}</td><td class="ui-widget-header ui-corner-all" >{_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED}</td><td class="ui-widget-header ui-corner-all" >{_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL}</td><td class="ui-widget-header ui-corner-all" >{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</td>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr class="{STYLE}">
-		<td class="jradmin_field_la"><div class='{ROW_CLASS}'>{VIEWLINK}{PROPERTYNAME}</div></a></td><td class="jradmin_field_la">{NUMBERUNPUBLISHED}</td><td  class="jradmin_field_la">{NUMBERTOTAL}</td><td  class="jradmin_field_la">{REPORTTOTAL}</td>
+		<td class="ui-widget-content"><div class='{ROW_CLASS}'>{VIEWLINK}{PROPERTYNAME}</div></a></td><td class="ui-widget-content">{NUMBERUNPUBLISHED}</td><td  class="ui-widget-content">{NUMBERTOTAL}</td><td  class="ui-widget-content">{REPORTTOTAL}</td>
 	</tr>		
 	</patTemplate:tmpl>
 </table>

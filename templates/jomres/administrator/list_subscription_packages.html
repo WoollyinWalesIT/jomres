@@ -1,37 +1,37 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table class="ui-widget-content ui-corner-all" width="75%">
 				<tr>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_la">{HNAME}</td>
-					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HFREQUENCY}</td>
-					<td class="jradmin_subheader_la">{HTRIALPERIOD}</td>
-					<td class="jradmin_subheader_ca">{HTRIALAMOUNT}</td>
-					<td class="jradmin_subheader_la">{HFULLAMOUNT}</td>
-					<!-- not supported yet so not offered <td class="jradmin_subheader_la">{HROOMSLIMIT}</td> -->
-					<td class="jradmin_subheader_la">{HPROPERTYLIMIT}</td>
+					<td class="ui-widget-header ui-corner-all">ID</td>
+					<td>{HNAME}</td>
+					<td>{HDESCRIPTION}</td>
+					<td>{HFREQUENCY}</td>
+					<td>{HTRIALPERIOD}</td>
+					<td class="ui-widget-header ui-corner-all">{HTRIALAMOUNT}</td>
+					<td>{HFULLAMOUNT}</td>
+					<!-- not supported yet so not offered <td>{HROOMSLIMIT}</td> -->
+					<td>{HPROPERTYLIMIT}</td>
 				</tr>
 				<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
 					<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-					<td class="jradmin_field_la">{NAME}</td>
-					<td class="jradmin_field_la">{DESCRIPTION}</td>
-					<td class="jradmin_field_ca">{FREQUENCY}</td>
-					<td class="jradmin_field_ca">{TRIALPERIOD}</td>
-					<td class="jradmin_field_ca">{TRIALAMOUNT}</td>
-					<td class="jradmin_field_ca">{FULLAMOUNT}</td>
-					<!-- not supported yet so not offered <td class="jradmin_field_ca">{ROOMSLIMIT}</td> -->
-					<td class="jradmin_field_ca">{PROPERTYLIMIT}</td>
+					<td>{NAME}</td>
+					<td>{DESCRIPTION}</td>
+					<td>{FREQUENCY}</td>
+					<td>{TRIALPERIOD}</td>
+					<td>{TRIALAMOUNT}</td>
+					<td>{FULLAMOUNT}</td>
+					<!-- not supported yet so not offered <td>{ROOMSLIMIT}</td> -->
+					<td>{PROPERTYLIMIT}</td>
 				</tr>
 				</patTemplate:tmpl>
 			</table>

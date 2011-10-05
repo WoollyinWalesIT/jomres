@@ -3,20 +3,20 @@
 <div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="jradmin_table" border="0">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title">{PAGETITLE}</th>
+		<th class="ui-widget-header ui-corner-all">{PAGETITLE}</th>
 	</tr>
 </table>
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title">{HPROPERTYNAME}</th><th class="jomres_title">{HPROPERTYADDRESS}</th><th class="jomres_title">{HCOMMISSIONRATE}</th>
+		<th class="ui-widget-header ui-corner-all">{HPROPERTYNAME}</th><th class="ui-widget-header ui-corner-all">{HPROPERTYADDRESS}</th><th class="ui-widget-header ui-corner-all">{HCOMMISSIONRATE}</th>
 	</tr>
 	<tr>
-		<td class="jradmin_subheader_la">
+		<td>
 			<h2>{PROPERTY_NAME}</h2>
 		</td>
-		<td class="jradmin_subheader_la">
+		<td>
 			{PROPERTY_STREET}<br/>
 			{PROPERTY_TOWN}<br/>
 			{PROPERTY_REGION}<br/>
@@ -24,7 +24,7 @@
 			{PROPERTY_POSTCODE}<br/>
 			{PROPERTY_TEL}<br/>
 		</td>
-		<td class="jradmin_subheader_la">
+		<td>
 			{HCRATE_TITLE} - {CRATE_TITLE}<br/>
 			{HCRATE_TYPE} - {CRATE_TYPE}<br/>
 			{HCRATE_VALUE} - {CRATE_VALUE}<br/>
@@ -44,18 +44,18 @@
 		} 
 </script>
 
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title">APIKEY</th>
+		<th class="ui-widget-header ui-corner-all">APIKEY</th>
 	</tr>
 	<tr>
 		<td><center><input type="text" size="60" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this)"/></center></td>
 	</tr>
 </table>
 	
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title">{HCOMMISSIONESTIMATE}</th>
+		<th class="ui-widget-header ui-corner-all">{HCOMMISSIONESTIMATE}</th>
 	</tr>
 	<tr>
 		<td><center><div id="yearviewgraph_commissionestimate_1"></div></center></td>
@@ -67,7 +67,7 @@
 		<td><center><div id="yearviewgraph_commissionestimate_3"></div></center></td>
 	</tr>
 	<tr>
-		<th class="jomres_title">{HVALUEOFBOOKINGS}</th>
+		<th class="ui-widget-header ui-corner-all">{HVALUEOFBOOKINGS}</th>
 	</tr>
 	<tr>
 		<td><center><div id="yearviewgraph_valueofbookings_1"></div></center></td>
@@ -79,7 +79,7 @@
 		<td><center><div id="yearviewgraph_valueofbookings_3"></div></center></td>
 	</tr>
 	<tr>
-		<th class="jomres_title">{HNUMBEROFBOOKINGS}</th>
+		<th class="ui-widget-header ui-corner-all">{HNUMBEROFBOOKINGS}</th>
 	</tr>
 	<tr>
 		<td><center><div id="yearviewgraph_numberofbookings_1"></div></center></td>

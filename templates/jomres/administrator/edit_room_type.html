@@ -1,35 +1,35 @@
 <patTemplate:tmpl name="pageoutput">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table  class="jradmin_table" border="0">
+<table class="ui-widget-content ui-corner-all" width="75%">
 	<tr>
-		<th class="jomres_title" colspan="4">{PAGETITLE}</th>
+		<th class="ui-widget-header ui-corner-all" colspan="4">{PAGETITLE}</th>
 	</tr>
 	<tr>
-		<th class="jomres_title">{HABBV}</th>
-		<th class="jomres_title">{HDESC}</th>
-		<th class="jomres_title">{HJOMRES_A_ICON}</th>
-		<th class="jomres_title">{HSRP_ONLY}</th>
+		<th class="ui-widget-header ui-corner-all">{HABBV}</th>
+		<th class="ui-widget-header ui-corner-all">{HDESC}</th>
+		<th class="ui-widget-header ui-corner-all">{HJOMRES_A_ICON}</th>
+		<th class="ui-widget-header ui-corner-all">{HSRP_ONLY}</th>
 	</tr>
 	<tr>
-		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="room_class_abbv" value="{CLASSABBV}" /></td>
-		<td class="jradmin_subheader_la"><input class="inputbox" type="text" name="room_class_full_desc" value="{CLASSDESC}" /></td>
-		<td class="jradmin_subheader_la">
+		<td><input type="text" name="room_class_abbv" value="{CLASSABBV}" /></td>
+		<td><input type="text" name="room_class_full_desc" value="{CLASSDESC}" /></td>
+		<td>
 			<patTemplate:tmpl name="rows">
 			<input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" />
 			</patTemplate:tmpl>
 		</td>
-		<td class="jradmin_subheader_la">{SRP_ONLY}</td>
+		<td>{SRP_ONLY}</td>
 	</tr>
 	<tr>
-		<td  class="jradmin_subheader_la" colspan = "4">
+		<td  colspan = "4">
 			<patTemplate:tmpl name="all_ptype_rows">
 			<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />{PROPERTYTYPE_DESC} 
 			</patTemplate:tmpl>
 		</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="roomClassUid" value="{ROOMCLASSUID}">
 <input type="hidden" name="property_uid" value="{PROPERTYUID}" />
 <input type="hidden" name="Itemid" value="{ITEMID}" />

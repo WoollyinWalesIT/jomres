@@ -1,45 +1,45 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table class="ui-widget-content ui-corner-all" width="75%">
 				<tr>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_la">{HCMS_USER_ID}</td>
-					<td class="jradmin_subheader_la">{HGATEWAY_SUBSCRIPTION_ID}</td>
-					<td class="jradmin_subheader_la">{HNAME}</td>
-					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
-					<td class="jradmin_subheader_ca">{HFREQUENCY}</td>
-					<td class="jradmin_subheader_la">{HTRIAL_PERIOD}</td>
-					<td class="jradmin_subheader_la">{HTRIAL_AMOUNT}</td>
-					<td class="jradmin_subheader_la">{HFULL_AMOUNT}</td>
-					<td class="jradmin_subheader_la">{HPROPERTY_LIMIT}</td>
-					<td class="jradmin_subheader_ca">{HSTATUS}</td>
-					<td class="jradmin_subheader_la">{HRAISED_DATE}</td>
-					<td class="jradmin_subheader_la">&nbsp;</td>
+					<td class="ui-widget-header ui-corner-all">ID</td>
+					<td>{HCMS_USER_ID}</td>
+					<td>{HGATEWAY_SUBSCRIPTION_ID}</td>
+					<td>{HNAME}</td>
+					<td>{HDESCRIPTION}</td>
+					<td class="ui-widget-header ui-corner-all">{HFREQUENCY}</td>
+					<td>{HTRIAL_PERIOD}</td>
+					<td>{HTRIAL_AMOUNT}</td>
+					<td>{HFULL_AMOUNT}</td>
+					<td>{HPROPERTY_LIMIT}</td>
+					<td class="ui-widget-header ui-corner-all">{HSTATUS}</td>
+					<td>{HRAISED_DATE}</td>
+					<td>&nbsp;</td>
 				</tr>
 				<patTemplate:tmpl name="rows" unusedvars="nbsp">
 				<tr>
-					<td class="jradmin_field_la">{ID}</td>
-					<td class="jradmin_field_la">{CMS_USER_ID}</td>
-					<td class="jradmin_field_la">{GATEWAY_SUBSCRIPTION_ID}</td>
-					<td class="jradmin_field_la">{NAME}</td>
-					<td class="jradmin_field_la">{DESCRIPTION}</td>
-					<td class="jradmin_field_la">{FREQUENCY}</td>
-					<td class="jradmin_field_la">{TRIAL_PERIOD}</td>
-					<td class="jradmin_field_la">{TRIAL_AMOUNT}</td>
-					<td class="jradmin_field_la">{FULL_AMOUNT}</td>
-					<td class="jradmin_field_la">{PROPERTY_LIMIT}</td>
-					<td class="jradmin_field_la">{STATUS}</td>
-					<td class="jradmin_field_la">{RAISED_DATE}</td>
-					<td class="jradmin_field_la">{DELETELINK}</td>
+					<td>{ID}</td>
+					<td>{CMS_USER_ID}</td>
+					<td>{GATEWAY_SUBSCRIPTION_ID}</td>
+					<td>{NAME}</td>
+					<td>{DESCRIPTION}</td>
+					<td>{FREQUENCY}</td>
+					<td>{TRIAL_PERIOD}</td>
+					<td>{TRIAL_AMOUNT}</td>
+					<td>{FULL_AMOUNT}</td>
+					<td>{PROPERTY_LIMIT}</td>
+					<td>{STATUS}</td>
+					<td>{RAISED_DATE}</td>
+					<td>{DELETELINK}</td>
 					
 				</tr>
 				</patTemplate:tmpl>

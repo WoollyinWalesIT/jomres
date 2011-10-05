@@ -53,47 +53,46 @@ class j16000pseudocron
 		echo "<hr>";
 		?>
 			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
-			<table cellpadding="4" cellspacing="0" border="0" width="100%">
+			<table class="ui-widget-content ui-corner-all"  width="75%" >
 			<tr>
-				<td width="100%" class="sectionname"><?php echo _JOMRES_COM_A_CRON_TITLE; ?></td>
+				<td width="100%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_CRON_TITLE; ?></td>
 			</tr>
 			<tr>
-				<td width="100%" class="sectionname"><?php echo _JOMRES_COM_A_CRON_DESC; ?></td>
+				<td width="100%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_CRON_DESC; ?></td>
 			</tr>
 			
 			</table>
-			<table class="jradmin_table" border="0">
+			<table class="ui-widget-content ui-corner-all"  width="75%" >
 			<tr align="center" valign="middle">
-				<th width="20%" class="jomres_title"></th>
-				<th width="20%" class="jomres_title"><?php echo _JOMRES_COM_A_CURRENT_SETTINGS; ?></th>
-				<th width="60%" class="jomres_title"><?php echo _JOMRES_COM_A_EXPLANATION; ?></th>
+				<th width="20%" class="ui-widget-header ui-corner-all"></th>
+				<th width="20%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_CURRENT_SETTINGS; ?></th>
+				<th width="60%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_EXPLANATION; ?></th>
 			</tr>
 			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_METHOD; ?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo $methodDropdown ;?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_METHOD_DESC; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_METHOD; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo $methodDropdown ;?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_METHOD_DESC; ?></td>
 			</tr>
 			
 			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGING; ?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo $displayloggingDropdown ;?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGING_DESC; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGING; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo $displayloggingDropdown ;?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGING_DESC; ?></td>
 			</tr>
 			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGINGENABLED; ?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo $loggingDropdown ;?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGINGENABLED_DESC; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGINGENABLED; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo $loggingDropdown ;?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGINGENABLED_DESC; ?></td>
 			</tr>
 			<tr align="center" valign="middle">
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_VERBOSELOGS; ?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo $verboseDropdown ;?></td>
-				<td class="jradmin_subheader_la" valign="top"><?php echo _JOMRES_COM_A_CRON_VERBOSELOGS_DESC; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_VERBOSELOGS; ?></td>
+				<td class="ui-widget-content" valign="top"><?php echo $verboseDropdown ;?></td>
+				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_VERBOSELOGS_DESC; ?></td>
 			</tr>
 			<tr align="center" valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
 			</table>
-			<input type="hidden" name="jomrestoken" value="<?php echo jomresSetToken();?>">
 			<input type="hidden" name="task" value="pseudocron" />
 			<input type="hidden" name="option" value="com_jomres" />
 			<input type="submit" value="submit" class="button" />

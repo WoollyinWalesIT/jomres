@@ -1,38 +1,38 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
 	</tr>
 	<tr>
 		<td>{JOMRESTOOLBAR}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table class="ui-widget-content ui-corner-all" width="75%">
 				<tr>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_la">{HNAME}</td>
-					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HFREQUENCY}</td>
-					<td class="jradmin_subheader_la">{HTRIALPERIOD}</td>
-					<td class="jradmin_subheader_ca">{HTRIALAMOUNT}</td>
-					<td class="jradmin_subheader_la">{HFULLAMOUNT}</td>
-					<!-- not supported yet so not offered<td class="jradmin_subheader_la">{HROOMSLIMIT}</td>-->
-					<td class="jradmin_subheader_la">{HPROPERTYLIMIT}</td>
-					<td class="jradmin_subheader_la">{HTAXCODE}</td>
+					<td class="ui-widget-header ui-corner-all">ID</td>
+					<td>{HNAME}</td>
+					<td>{HDESCRIPTION}</td>
+					<td>{HFREQUENCY}</td>
+					<td>{HTRIALPERIOD}</td>
+					<td class="ui-widget-header ui-corner-all">{HTRIALAMOUNT}</td>
+					<td>{HFULLAMOUNT}</td>
+					<!-- not supported yet so not offered<td>{HROOMSLIMIT}</td>-->
+					<td>{HPROPERTYLIMIT}</td>
+					<td>{HTAXCODE}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca">{ID}</td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="name" value="{NAME}" /></td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
-					<td class="jradmin_field_ca">{FREQUENCYDROPDOWN}</td>
-					<td class="jradmin_field_ca">{TRIALPERIODDROPDOWN}</td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="trial_amount" value="{TRIALAMOUNT}" size="7" /></td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="full_amount" value="{FULLAMOUNT}" /></td>
-					<!-- not supported yet so not offered<td class="jradmin_field_ca">{ROOMSLIMIT}</td>-->
-					<td class="jradmin_field_ca">{PROPERTYLIMIT}</td>
-					<td class="jradmin_subheader_la">{TAXCODEDROPDOWN}</td>
+					<td>{ID}</td>
+					<td><input type="text" name="name" value="{NAME}" /></td>
+					<td><input type="text" name="description" value="{DESCRIPTION}" /></td>
+					<td>{FREQUENCYDROPDOWN}</td>
+					<td>{TRIALPERIODDROPDOWN}</td>
+					<td><input type="text" name="trial_amount" value="{TRIALAMOUNT}" size="7" /></td>
+					<td><input type="text" name="full_amount" value="{FULLAMOUNT}" /></td>
+					<!-- not supported yet so not offered<td>{ROOMSLIMIT}</td>-->
+					<td>{PROPERTYLIMIT}</td>
+					<td>{TAXCODEDROPDOWN}</td>
 				</tr>
 				<tr>
 					<td colspan="6" >{FREQUENCY_DESC}</td>

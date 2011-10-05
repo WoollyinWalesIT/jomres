@@ -2,16 +2,16 @@
 
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table  class="jradmin_table" border="0">
+<table  class="ui-widget-header ui-corner-all" border="0">
 	<tr>
-		<th class="jomres_title" colspan="6">{PAGETITLE}</th>
+		<th class="ui-widget-header ui-corner-all" colspan="6">{PAGETITLE}</th>
 	</tr>
 	<tr>
-		<th class="jomres_title"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th><th  class="jomres_title">&nbsp;</th><th  class="jomres_title">{HTITLE}</th><th  class="jomres_title">{HTYPE}</th><th  class="jomres_title">{HVALUE}</th><th class="jomres_title">{HCURRENCYCODE}</th>
+		<th class="ui-widget-header ui-corner-all"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th><th  class="ui-widget-header ui-corner-all">&nbsp;</th><th  class="ui-widget-header ui-corner-all">{HTITLE}</th><th  class="ui-widget-header ui-corner-all">{HTYPE}</th><th  class="ui-widget-header ui-corner-all">{HVALUE}</th><th class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr class="{STYLE}">
-		<td class="jradmin_subheader_la" width="20">{CHECKBOX}</td><td class="jradmin_subheader_la">{EDITLINK}</td><td class="jradmin_subheader_la">{TITLE}</td><td class="jradmin_subheader_la">{TYPE}</td><td class="jradmin_subheader_la">{VALUE}</td><td class="jradmin_subheader_la">{CURRENCYCODE}</td>
+		<td width="20">{CHECKBOX}</td><td>{EDITLINK}</td><td>{TITLE}</td><td>{TYPE}</td><td>{VALUE}</td><td>{CURRENCYCODE}</td>
 	</tr>
 	</patTemplate:tmpl>
 </table>
