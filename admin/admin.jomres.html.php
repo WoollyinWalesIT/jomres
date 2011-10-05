@@ -42,16 +42,16 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$contentPanel =jomres_getSingleton('jomres_content_tabs');
+	
 		?>
 		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
-		<table cellpadding="4" cellspacing="0" border="0" width="100%">
-		<tr>
-			<td width="100%" class="sectionname">Jomres <?php echo _JOMRES_A; ?></td>
-		</tr>
-		</table>
+		
 		<?php
-		echo '<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
 		echo $jrtb;
+		?>
+		<div class="ui-widget-header ui-corner-all">Jomres <?php echo _JOMRES_A; ?></div><br/>
+		<?php
+		
 		$sslinput="";
 		
 		// Disabled due to joomla's url rewriting making it virtually impossible to modify urls for ssl handling AND sef with any confidence.

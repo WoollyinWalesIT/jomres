@@ -28,7 +28,7 @@ class j10002invoices
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_getSingleton('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices', 'Invoice.png', _JRPORTAL_INVOICES_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS" , "bookings" ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices', 'Invoice.png', _JRPORTAL_INVOICES_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING" , "accounting" ,false,false));
 			}
 		}
 	
@@ -36,7 +36,7 @@ class j10002invoices
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS" , "bookings");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING" , "accounting");
 
 		foreach ($output as $o)
 			{

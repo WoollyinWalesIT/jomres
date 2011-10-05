@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j10002taxrates
+class j10002new_property
 	{
-	function j10002taxrates()
+	function j10002new_property()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -24,14 +24,14 @@ class j10002taxrates
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates', 'Taxes.png', _JRPORTAL_TAXRATES_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES" , "taxes" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_NOSEF.'&task=registerProp_step1', 'AddProperty.png', _JOMRES_COM_MR_NEWPROPERTY,"/jomres/images/jomresimages/small/",jr_gettext("_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure",false,false),$external = true);
 		}
-	
+
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
 
 		foreach ($output as $o)
 			{
