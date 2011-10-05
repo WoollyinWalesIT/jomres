@@ -2,13 +2,9 @@
 
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" width="75%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all" colspan="6">{PAGETITLE}</th>
-	</tr>
-	<tr>
-		<th class="ui-widget-header ui-corner-all" colspan="6">{INFO}</th>
-	</tr>
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<p>{INFO}</p>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>
 		<td class="ui-widget-content" width="20">{CHECKBOX}</td><td class="ui-widget-content">{SHORTCODE}</td><td class="ui-widget-content">{LONGCODE}</td>

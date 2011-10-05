@@ -1,10 +1,8 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table>
-	<tr>
-		<td colspan="2" class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
-	</tr>
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<td>
 			{MANAGER}
@@ -14,7 +12,7 @@
 		</td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="step" value="2" />
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="add_adhoc_item_to_bill" />

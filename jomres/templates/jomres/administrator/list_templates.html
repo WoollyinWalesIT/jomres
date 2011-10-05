@@ -1,18 +1,16 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 
 {JOMRESTOOLBAR}
-<p>{TITLE}</p>
+<div class="ui-widget-header ui-corner-all">{TITLE}</div><br/>
 <p>{INSTRUCTIONS}</p>
 <p>{EDITWARNINGNOTE}</p>
-<table class="ui-widget-header ui-corner-all" border="0">
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<th class="ui-widget-header ui-corner-all">{HTEMPLATENAME}</th>
 		<th class="ui-widget-header ui-corner-all">{HCUSTOMISED}</th>
 		<th class="ui-widget-header ui-corner-all">{HLAST_EDITED_DISK}</th>
 		<th class="ui-widget-header ui-corner-all">{HLAST_EDITED_DB}</th>
 		<th class="ui-widget-header ui-corner-all">{HLAST_WARNINGICON}</th>
-		
-		
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr>

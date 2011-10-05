@@ -1,29 +1,20 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{HCODE}</td>
+		<td class="ui-widget-header ui-corner-all">{HDESCRIPTION}</td>
+		<td class="ui-widget-header ui-corner-all">{HRATE}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="ui-widget-content ui-corner-all">
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HCODE}</td>
-					<td class="ui-widget-header ui-corner-all">{HDESCRIPTION}</td>
-					<td class="ui-widget-header ui-corner-all">{HRATE}</td>
-				</tr>
-				<tr>
-					<td><input type="text" name="code" value="{CODE}" /></td>
-					<td><input type="text" name="description" value="{DESCRIPTION}" /></td>
-					<td><input type="text" name="rate" value="{RATE}" size="7" /></td>
-				</tr>
-			</table>
-		</td>
+		<td><input type="text" name="code" value="{CODE}" /></td>
+		<td><input type="text" name="description" value="{DESCRIPTION}" /></td>
+		<td><input type="text" name="rate" value="{RATE}" size="7" /></td>
 	</tr>
 </table>
 
-{JOMRESTOKEN}
 <input type="hidden" name="id" value="{ID}" />
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="save_taxrate" />

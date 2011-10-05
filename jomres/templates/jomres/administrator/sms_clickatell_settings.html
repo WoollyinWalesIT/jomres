@@ -1,35 +1,23 @@
 <patTemplate:tmpl name="pageoutput" >
 <form action="index.php?option=com_jomres" method="post" name="adminForm">
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
+{JOMRESTOOLBAR}
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<p>{INSTRUCTIONS}</p>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="ui-widget-header ui-corner-all">{PAGETITLE}</td>
+		<td class="ui-widget-header ui-corner-all">{HACTIVE}</td>
+		<td class="ui-widget-header ui-corner-all">{HUSERNAME}</td>
+		<td class="ui-widget-header ui-corner-all">{HPASSWORD}</td>
+		<td class="ui-widget-header ui-corner-all">{HAPI_ID}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="ui-widget-content ui-corner-all" width="75%">
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HACTIVE}</td>
-					<td class="ui-widget-header ui-corner-all">{HUSERNAME}</td>
-					<td class="ui-widget-header ui-corner-all">{HPASSWORD}</td>
-					<td class="ui-widget-header ui-corner-all">{HAPI_ID}</td>
-				</tr>
-				<tr>
-					<td>{ACTIVE}</td>
-					<td><input class="inputbox" type="text" name="username" value="{USERNAME}" size="20" /></td>
-					<td><input class="inputbox" type="text" name="password" value="{PASSWORD}" size="20" /></td>
-					<td><input class="inputbox" type="text" name="api_id" value="{API_ID}" size="20" /></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td>{INSTRUCTIONS}</td>
+		<td>{ACTIVE}</td>
+		<td><input class="inputbox" type="text" name="username" value="{USERNAME}" size="20" /></td>
+		<td><input class="inputbox" type="text" name="password" value="{PASSWORD}" size="20" /></td>
+		<td><input class="inputbox" type="text" name="api_id" value="{API_ID}" size="20" /></td>
 	</tr>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="task" value="save_sms_clickatell_settings" />
 </form>
 </patTemplate:tmpl>

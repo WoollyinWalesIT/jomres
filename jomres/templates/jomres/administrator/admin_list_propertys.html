@@ -8,13 +8,9 @@ table.ui-widget-header ui-corner-all tr.row2 {
 
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all">{PAGETITLE}</th>
-	</tr>
-</table>
-{LEGEND}
-<table class="ui-widget-content ui-corner-all" border="0" width="75%">
+<p>{LEGEND}</p>
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
 		<td >{HPROPERTYNAME}</td><td >{HPROPERTYADDRESS}</td><td >{HCRATE_DROPDOWN}</td>
 	</tr>
@@ -24,7 +20,7 @@ table.ui-widget-header ui-corner-all tr.row2 {
 	</tr>		
 	</patTemplate:tmpl>
 </table>
-{JOMRESTOKEN}
+
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="editcrate" />
 <input type="hidden" name="boxchecked" value="0">
