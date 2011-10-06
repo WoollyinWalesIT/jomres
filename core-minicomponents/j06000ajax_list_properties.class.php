@@ -60,7 +60,7 @@ class j06000ajax_list_properties
 				$last_key = end($set);
 				$counter++;
 				}
-echo $last_id." <br>";
+
 			$tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets'] = $sets;
 			
 			}
