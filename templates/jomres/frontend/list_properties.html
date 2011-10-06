@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput">
 
-<patTemplate:tmpl name="nav_output_top" unusedvars="strip">
+<patTemplate:tmpl name="nav_output_top" type="simpleCondition" requiredVars="writepagescounter">
 <div>
 	{WRITEPAGESCOUNTER}
 </div>
@@ -48,11 +48,32 @@ function toggle_review_div(uid)
 		modal: false
 		});
 	}
+	
+var killScroll = false; // IMPORTANT
+function lastAddedLiveFunc() 
+	{
+	jomresJquery.get("{JOMRES_SITEPAGE_URL_AJAX}&task=ajax_list_properties&lastID="+jomresJquery(".jomres_property_list_propertywrapper:last").attr("id"),
+	//alert (jomresJquery(".jomres_property_list_propertywrapper:last").attr("id"));
+		function(data){
+			if (data != "") {
+			jomresJquery(".jomres_property_list_propertywrapper:last").after(data);
+			killScroll = false; // IMPORTANT - Make function available again.
+			}
+		});
+	};  
+	
+	jomresJquery(window).scroll(function(){
+		if (jomresJquery(window).height() + jomresJquery(window).scrollTop() >= jomresJquery(document).height()-200) {
+		if (killScroll == false) { // IMPORTANT - Keeps the loader from fetching more than once.
+			killScroll = true; // IMPORTANT - Set killScroll to true, to make sure we do not trigger this code again before it's done running.
+			lastAddedLiveFunc();
+			}
+		}
+	}); 
 </script>
-<br />
 
 <patTemplate:tmpl name="property_details"  unusedvars="strip">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all jomres_property_list_propertywrapper" id={UID} style="margin-bottom: 10px;">
 	<table width="100%">
 		<tr valign="top">
 			<td class="ui-tabs ui-widget ui-widget-content ui-corner-all">
@@ -124,7 +145,7 @@ function toggle_review_div(uid)
 </patTemplate:tmpl>
 
 
-<patTemplate:tmpl name="nav_output_bottom" unusedvars="nbsp">
+<patTemplate:tmpl name="nav_output_bottom" type="simpleCondition" requiredVars="writepagescounter">
 <div>
 	{WRITEPAGESCOUNTER}
 </div>

@@ -34,6 +34,12 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
+			
+			
+		$paging_disabled = true;
+		if ( isset($componentArgs['paging_disabled']) || isset($_REQUEST['paging_disabled']) )
+			$paging_disabled = true;
+			
 		$data_only=false;
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
@@ -141,7 +147,9 @@ class j01010listpropertys {
 				$nav_output[]=$nav;
 			$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 			$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
-
+			
+			$output['JOMRES_SITEPAGE_URL_AJAX']=JOMRES_SITEPAGE_URL_AJAX;
+			
 			$propertyDeets = @doSelectSql($query);
 
 			if (count($propertyDeets) > 0)
@@ -540,8 +548,11 @@ class j01010listpropertys {
 				$tmpl = new patTemplate();
 				$tmpl->addRows( 'pageoutput', $pageoutput );
 				$tmpl->addRows( 'property_details', $property_details );
-				$tmpl->addRows( 'nav_output_top', $nav_output);
-				$tmpl->addRows( 'nav_output_bottom', $nav_output);
+				if (!$paging_disabled)
+					{
+					$tmpl->addRows( 'nav_output_top', $nav_output);
+					$tmpl->addRows( 'nav_output_bottom', $nav_output);
+					}
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 				$tmpl->readTemplatesFromInput( 'list_properties.html' );
 				$tmpl->displayParsedTemplate();
