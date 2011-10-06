@@ -1218,8 +1218,6 @@ define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER','Handynummer für Be
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC','Bitte verwenden Sie folgendes Fotmat "Länder Code, Handynumber". Die UK Nummerreihenfolge würde z.B so aussehen wie "447979123456". Lassen Sie dieses Feld leer, wenn Sie keine Benachrichtigung per SMS erhalten wollen.');
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE','SMS');
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS','
-<br/>
-<br/>
 <b>Offenbar wollen Sie das auf Ihrem localhost ausprobieren. Sie können das aber nur auf einem "live" Server verwenden.</b>
 <br/>
 <br/>

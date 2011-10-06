@@ -1170,8 +1170,6 @@ define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Notification mobile
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Please use the format 'Country code, mobile number'. For example a UK based mobile number would be something like '447979123456'. Leave this blank if you don't want any notification emails sent to your mobile phone.");
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
-<br/>
-<br/>
 <b>Obviously, you cannot use/test this gateway from localhost, you'll need to do that on a 'live' server.</b>
 <br/>
 <br/>

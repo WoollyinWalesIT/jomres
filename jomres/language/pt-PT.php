@@ -1166,8 +1166,6 @@ define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Telemóvel a notifi
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"P.f. use o formato 'Código de País, nr de telemóvel'. Por exemplo, a um telemóvel com base em Portugal a introdução deve corresponder a algo como '351123456789'. Deixe este campo em branco se não quiser que lhe sejam enviados emails de notificação para o telemóvel.");
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
-<br/>
-<br/>
 <b>Obviamente não pode usar/experimentar a partir do <i>localhost</i>, precisa de fazer isso a partir de um servidor <i>live</i>.</b>
 <br/>
 <br/>
