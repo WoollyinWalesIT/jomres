@@ -1,35 +1,42 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#list_subscription_packages').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
+</script>
+<h2>{PAGETITLE}</h2>
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td class="ui-widget-header ui-corner-all">ID</td>
-		<td>{HNAME}</td>
-		<td>{HDESCRIPTION}</td>
-		<td>{HFREQUENCY}</td>
-		<td>{HTRIALPERIOD}</td>
-		<td class="ui-widget-header ui-corner-all">{HTRIALAMOUNT}</td>
-		<td>{HFULLAMOUNT}</td>
-		<!-- not supported yet so not offered <td>{HROOMSLIMIT}</td> -->
-		<td>{HPROPERTYLIMIT}</td>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td class="jradmin_rowtoolbar">{EDITLINK}</td>
-		<td>{NAME}</td>
-		<td>{DESCRIPTION}</td>
-		<td>{FREQUENCY}</td>
-		<td>{TRIALPERIOD}</td>
-		<td>{TRIALAMOUNT}</td>
-		<td>{FULLAMOUNT}</td>
-		<!-- not supported yet so not offered <td>{ROOMSLIMIT}</td> -->
-		<td>{PROPERTYLIMIT}</td>
-	</tr>
-	</patTemplate:tmpl>
+<table id="list_subscription_packages" border="0" width="100%">
+	<thead>
+        <tr>
+            <th>ID</th>
+            <th>{HNAME}</th>
+            <th>{HDESCRIPTION}</th>
+            <th>{HFREQUENCY}</th>
+            <th>{HTRIALPERIOD}</th>
+            <th>{HTRIALAMOUNT}</th>
+            <th>{HFULLAMOUNT}</th>
+            <!-- not supported yet so not offered <th>{HROOMSLIMIT}</th> -->
+            <th>{HPROPERTYLIMIT}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+            <td class="jradmin_rowtoolbar">{EDITLINK}</td>
+            <td>{NAME}</td>
+            <td>{DESCRIPTION}</td>
+            <td>{FREQUENCY}</td>
+            <td>{TRIALPERIOD}</td>
+            <td>{TRIALAMOUNT}</td>
+            <td>{FULLAMOUNT}</td>
+            <!-- not supported yet so not offered <td>{ROOMSLIMIT}</td> -->
+            <td>{PROPERTYLIMIT}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
 </table>
-
-<input type="hidden" name="task" value="editTaxrate" />
-</form>
 </patTemplate:tmpl>

@@ -78,6 +78,7 @@ class j10001control_panel
 	
 function plugin_check()
 	{
+	$MiniComponents =jomres_getSingleton('mcHandler');
 	$recommended_plugins = array();
 	$recommended_plugins['advanced_micromanage_tariff_editing_modes'] 	= array('minicomponent_name'=>'j02210listtariffs_advanced','message'=>'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices, for example different prices that cover different seasons.');
 	$recommended_plugins['core_gateway_paypal'] 						= array('minicomponent_name'=>'j00605paypal','message'=>'Offers the ability for property managers to take payments online via paypal.');

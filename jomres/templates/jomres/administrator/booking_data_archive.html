@@ -1,18 +1,31 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#booking_data_archive').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<!--<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}-->
 <p>{INFO}</p>
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{PROPERTY_NAME}</td><td>{DATE_TOOTIP}</td>
-	</tr>
-	</patTemplate:tmpl>
+<table id="booking_data_archive" border="0" width="100%">
+	<thead>
+    	<tr>
+        	<td>Property Name (title to be generated)</td>
+            <td>Booking time (title to be generated)</td>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+            <td>{PROPERTY_NAME}</td>
+            <td>{DATE_TOOTIP}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
 </table>
-<input type="hidden" name="option" value="com_jomres" />
-<input type="hidden" name="task" value="editcrate" />
-<input type="hidden" name="boxchecked" value="0">
-</form>
+<!--</form>-->
 </patTemplate:tmpl>

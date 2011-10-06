@@ -1,42 +1,65 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#admin_list_invoices').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+		"sDom": '<"H"lTfr>t<"F"ip>',
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf"
+		}
+    });
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<!--<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}-->
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td class="ui-widget-header ui-corner-all" colspan="3">{TASK_FILTER_ANY}</td><td class="ui-widget-header ui-corner-all" colspan="3">{TASK_FILTER_UNPAID}</td><td class="ui-widget-header ui-corner-all" colspan="2">{TASK_FILTER_PAID}</td><td class="ui-widget-header ui-corner-all" colspan="2">{TASK_FILTER_CANCELLED}</td><td class="ui-widget-header ui-corner-all" colspan="2">{TASK_FILTER_PENDING}</td>
+	<tr align="center">
+		<td>{TASK_FILTER_ANY}</td>
+        <td>{TASK_FILTER_UNPAID}</td>
+        <td>{TASK_FILTER_PAID}</td>
+        <td>{TASK_FILTER_CANCELLED}</td>
+        <td>{TASK_FILTER_PENDING}</td>
 	</tr>
-	<tr>
-		<td class="">&nbsp;</td>
-		<td class="ui-widget-header ui-corner-all">ID</td>
-		<td class="ui-widget-header ui-corner-all">{HUSER}</td>
-		<td class="ui-widget-header ui-corner-all">{HSTATUS}</td>
-		<td class="ui-widget-header ui-corner-all">&nbsp;</td>
-		<td class="ui-widget-header ui-corner-all">{HRAISED}</td>
-		<td class="ui-widget-header ui-corner-all">{HDUE}</td>
-		<td class="ui-widget-header ui-corner-all">{HPAID}</td>
-		<td class="ui-widget-header ui-corner-all">{HSUBSCRIPTION}</td>
-		<td class="ui-widget-header ui-corner-all">{HINITTOTAL}</td>
-		<td class="ui-widget-header ui-corner-all">{HRECURTOTAL}</td>
-		<td class="ui-widget-header ui-corner-all">{HFREQ}</td>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr class=stripeMe">
-		<td>{EDITLINK}</td>
-		<td>{ID}</td>
-		<td>{USER}</td>
-		<td>{STATUS}</td>
-		<td>{ITEMS}</td>
-		<td>{RAISED}</td>
-		<td>{DUE}</td>
-		<td>{PAID}</td>
-		<td>{SUBSCRIPTION}</td>
-		<td>{INITTOTAL}  <span class="small">({CURRENCYCODE})</td>
-		<td>{RECURTOTAL}  <span class="small">({CURRENCYCODE})</td>
-		<td>{FREQ}</td>
-	</tr>
-	</patTemplate:tmpl>
 </table>
-<input type="hidden" name="task" value="edit_invoice" />
-</form>
+<br />
+<table id="admin_list_invoices" width="100%">
+	<thead>
+        <tr>
+            <th>Edit/View</th>
+            <th>ID</th>
+            <th>{HUSER}</th>
+            <th>{HSTATUS}</th>
+            <th>Line Items</th>
+            <th>{HRAISED}</th>
+            <th>{HDUE}</th>
+            <th>{HPAID}</th>
+            <th>{HSUBSCRIPTION}</th>
+            <th>{HINITTOTAL}</th>
+            <th>{HRECURTOTAL}</th>
+            <th>{HFREQ}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+            <td>{EDITLINK}</td>
+            <td>{ID}</td>
+            <td>{USER}</td>
+            <td>{STATUS}</td>
+            <td>{ITEMS}</td>
+            <td>{RAISED}</td>
+            <td>{DUE}</td>
+            <td>{PAID}</td>
+            <td>{SUBSCRIPTION}</td>
+            <td>{INITTOTAL}({CURRENCYCODE})</td>
+            <td>{RECURTOTAL}({CURRENCYCODE})</td>
+            <td>{FREQ}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
+<!--<input type="hidden" name="task" value="edit_invoice" />
+</form>-->
 </patTemplate:tmpl>

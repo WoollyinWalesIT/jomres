@@ -22,7 +22,10 @@ class j16000touch_templates
 			{
 			$this->template_touchable=false; return;
 			}
-		echo "<br/>Current lang ".get_showtime('lang')."<br/>";
+			
+		echo '<h2>'._JOMRES_TOUCHTEMPLATES.'</h2>';
+		
+		echo "<br/><h3>".get_showtime('lang')."</h3><br/>";
 		
 		
 		
@@ -43,7 +46,8 @@ class j16000touch_templates
 				echo "<br/>";
 				}
 			}
-			
+		
+		
 		
 		echo "<hr>";
 		$query="SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = 0";

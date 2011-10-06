@@ -354,6 +354,13 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js",'',true);  // Won't pack properly
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js"); 
 			
+			if ($thisJRUser->userIsManager)
+				{
+				jomres_cmsspecific_addheaddata("css",'jomres/css/','TableTools_JUI.css');
+				jomres_cmsspecific_addheaddata("css",'jomres/css/','tables_jui.css');
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.dataTables.min.js",true);
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"TableTools.min.js",true);
+				}
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			}
 		}
@@ -430,6 +437,7 @@ function get_all_suspended_managers()
 function detect_property_uid()
 	{
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$thisJRUser=jomres_getSingleton('jr_user');
 	if (isset($_REQUEST['selectedProperty']))
 		$property_uid	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 	else

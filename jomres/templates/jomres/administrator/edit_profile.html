@@ -1,36 +1,54 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 function selectAll() {
     jomresJquery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
 }
-
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#editProfile').dataTable({
+        "bJQueryUI": true,
+		"bPaginate": false,
+		"bSort": false,
+		"sDom": 't'
+    });
+} );
 </script>
+<h2>{_JOMRES_EDIT_PROFILE}</h2>
+<p>{INSTRUCTIONS}</p>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-<p>{INSTRUCTIONS}</p>
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all">{HACCESSLEVEL}</th>
-		<td class="ui-widget-header ui-corner-all">{ACCESSLEVEL}</td>
-		<th class="ui-widget-header ui-corner-all">{HSUPERPROP}</th>
-		<td class="ui-widget-header ui-corner-all">{SUPERPROP}</td>
-	</tr>
-	<tr>
-		<td>APIKEY:</td>
-		<td><input type="text" size="80" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this)"/></td>
-		<td colspan="2">{NEWAPIKEY_LINK}</td>
-	</tr>
-	<tr align="left"><th><input type="CheckBox" id="SelectAllCheckBox" onclick="selectAll()"></th><th colspan="3">&nbsp;</th></tr>
-<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{INPUT}</td>
-		<td>{PROPERTYNAME}</td>
-		<td colspan="2">{MANAGERS}</td>
-	</tr>
-</patTemplate:tmpl>	
+<table width="100%" class="ui-widget-content ui-corner-all">
+    <tr>
+        <td width="30%">{HACCESSLEVEL}</td>
+        <td>{ACCESSLEVEL}</td>
+    </tr>
+    <tr>
+        <td>{HSUPERPROP}</td>
+        <td>{SUPERPROP}</td>
+    </tr>
+    <tr>
+        <td>APIKEY:</td>
+        <td><input type="text" size="80" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this);"/>&nbsp;{NEWAPIKEY_LINK}</td>
+    </tr>
 </table>
-
+<br />
+<table id="editProfile" width="100%">
+	<thead>
+    	<tr>
+        	<th><input type="CheckBox" id="SelectAllCheckBox" onclick="selectAll();"></th>
+            <th>Property name (title to be generated)</th>
+            <th>Other usesrs with access to this property (title to be generated)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="strip">
+        <tr>
+        	<td>{INPUT}</td>
+            <td>{PROPERTYNAME}</td>
+            <td colspan="2">{MANAGERS}</td>
+        </tr>
+        </patTemplate:tmpl>
+   </tbody>
+</table>
 <input type="hidden" name="no_html" value="1" />
 <input type="hidden" name="userid" value="{ID}" />
 <input type="hidden" name="option" value="com_jomres" />

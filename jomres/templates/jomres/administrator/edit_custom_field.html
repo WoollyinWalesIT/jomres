@@ -1,24 +1,26 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>Edit Custom field (title to be generated)</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<th class="ui-widget-header ui-corner-all">{HFIELD}</th>
-		<th class="ui-widget-header ui-corner-all">{HDEFAULT_VALUE}</th>
-		<th class="ui-widget-header ui-corner-all">{HDESCRIPTION}</th>
-		<th class="ui-widget-header ui-corner-all">{HREQUIRED}</th>
-	</tr>
-	<tr>
-		<td><input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" /></td>
-		<td><input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" /></td>
-		<td><input class="inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
-		<td>{REQUIRED}</td>
+		<td width="30%">{HFIELD}</td>
+        <td><input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" /></td>
+    </tr>
+    <tr>
+		<td>{HDEFAULT_VALUE}</td>
+        <td><input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" /></td>
+    </tr>
+    <tr>
+		<td>{HDESCRIPTION}</td>
+        <td><input class="inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
+    </tr>
+    <tr>
+		<td>{HREQUIRED}</td>
+        <td>{REQUIRED}</td>
 	</tr>
 </table>
-
 <input type="hidden" name="uid" value="{UID}">
 <input type="hidden" name="task" value="{TASK}" />
 </form>
-<hr>
 </patTemplate:tmpl>

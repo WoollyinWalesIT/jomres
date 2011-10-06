@@ -1,25 +1,22 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<th class="ui-widget-header ui-corner-all">{HTITLE}</th><th class="ui-widget-header ui-corner-all">{HTYPE}</th><th class="ui-widget-header ui-corner-all">{HVALUE}</th><th class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</th>
-	</tr>
-	<tr>
-		<td>
-			<input class="inputbox" type="text" size="15" name="title" value="{TITLE}" />
-		</td>
-		<td>
-			{TYPE}
-		</td>
-		<td>
-			<input class="inputbox" type="text" size="15" name="value" value="{VALUE}" />
-		</td>
-		<td>
-			{CURRENCYCODE}
-		</td>
+		<td>{HTITLE}</td>
+        <td><input class="inputbox" type="text" size="15" name="title" value="{TITLE}" /></td>
+    </tr>
+    <tr>
+        <td>{HTYPE}</td>
+        <td>{TYPE}</td>
+    </tr>
+    <tr>
+        <td>{HVALUE}</td>
+        <td><input class="inputbox" type="text" size="15" name="value" value="{VALUE}" /></td>
+    </tr>
+        <td>{HCURRENCYCODE}</td>
+        <td>{CURRENCYCODE}</td>
 	</tr>
 </table>
 {JOMRESTOKEN}

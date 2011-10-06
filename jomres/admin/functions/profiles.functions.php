@@ -157,7 +157,7 @@ function editProfile()
 	$output['INSTRUCTIONS']=_JOMRES_PROFILEEDIT_INSTRUCTIONS;
 	$output['HSUPERPROP']=_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER;
 	$output['HACCESSLEVEL']=_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL;
-	
+	$output['_JOMRES_EDIT_PROFILE']=_JOMRES_EDIT_PROFILE;
 	
 	$query="SELECT access_level,pu,apikey FROM #__jomres_managers WHERE userid = ".$userid. " LIMIT 1";
 	$managerDetails  = doSelectSql($query);

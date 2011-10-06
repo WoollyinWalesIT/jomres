@@ -1,5 +1,4 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 
 var publish_image = "{PUBLISH_IMAGE}";
@@ -32,25 +31,32 @@ function delete_review(rating_id)
 			}
 		});
 	}
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#view_property_reviews').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
 </script>
-
-<div class="ui-widget-header ui-corner-all">{HPROPERTYNAME} : {PROPERTY_NAME}</div><br/>
+<h2>{HPROPERTYNAME}: {PROPERTY_NAME}</h2>
 <p>{_JOMRES_REVIEWS_REPORT_INSTRUCTIONS}</p>
-
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td >&nbsp;</td>
-		<td>{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}</td>
-		<td>{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</td>
-		<td>{_JOMRES_MR_AUDIT_LISTING_USER}</td>
-		<td>{_JOMRES_REVIEWS_SUBMITTEDDATE}</td>
-		<td>{_JOMRES_REVIEWS_TITLE}</td>
-		<td>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</a></td>
-		<td>{_JOMRES_REVIEWS_PROS}</td>
-		<td>{_JOMRES_REVIEWS_CONS}</td>
-		<td>{_JOMRES_REVIEWS_RATING}</a></td>
-		<td>{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</a></td>
-	</tr>
+<table id="view_property_reviews" width="100%">
+	<thead>
+    	<tr>
+		<th>&nbsp;</th>
+		<th>{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}</th>
+		<th>{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</th>
+		<th>{_JOMRES_MR_AUDIT_LISTING_USER}</th>
+		<th>{_JOMRES_REVIEWS_SUBMITTEDDATE}</th>
+		<th>{_JOMRES_REVIEWS_TITLE}</th>
+		<th>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</th>
+		<th>{_JOMRES_REVIEWS_PROS}</th>
+		<th>{_JOMRES_REVIEWS_CONS}</th>
+		<th>{_JOMRES_REVIEWS_RATING}</th>
+		<th>{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</th>
+        </tr>
+	</thead>
+    <tbody>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr id="{ROW_ID}">
 		<td >{RATING_ID}</td>
@@ -59,13 +65,13 @@ function delete_review(rating_id)
 		<td>{USER_ID}</td>
 		<td>{RATING_DATE}</td>
 		<td>{REVIEW_TITLE}</td>
-		<td>{REVIEW_DESCRIPTION}</a></td>
+		<td>{REVIEW_DESCRIPTION}</td>
 		<td>{PROS}</td>
 		<td>{CONS}</td>
-		<td>{RATING}</a></td>
-		<td>{REPORTS}</a></td>
+		<td>{RATING}</td>
+		<td>{REPORTS}</td>
 	</tr>
 	</patTemplate:tmpl>
+    </tbody>
 </table>
-
 </patTemplate:tmpl>

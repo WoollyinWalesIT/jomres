@@ -1,24 +1,27 @@
-<patTemplate:tmpl name="pageoutput" >
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-{JOMRESTOOLBAR}
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{PAGETITLE}</h2>
 <p>{NOTES}</p>
-<p>{HOVERRIDE_DESC}</p>
+<p>{HOVERRIDE_DESC}</b></p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</td>
-		<td class="ui-widget-header ui-corner-all">{HSANDBOX}</td>
-		<td class="ui-widget-header ui-corner-all">{HEMAIL}</td>
-		<td class="ui-widget-header ui-corner-all">{HOVERRIDE}</td>
-	</tr>
-	<tr>
-		<td><input type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/></td>
-		<td>{USESANDBOX}</td>
-		<td><input type="text" name="email" value="{PAYPALEMAIL}" size="20" /></td>
-		<td>{OVERRIDE}</td>
+		<td width="30%">{HCURRENCYCODE}</td>
+        <td><input type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/></td>
+    </tr>
+    <tr>
+		<td>{HSANDBOX}</td>
+        <td>{USESANDBOX}</td>
+    </tr>
+    <tr>
+		<td>{HEMAIL}</td>
+        <td><input type="text" name="email" value="{PAYPALEMAIL}" size="20" /></td>
+    </tr>
+    <tr>
+		<td>{HOVERRIDE}</td>
+        <td>{OVERRIDE}</td>
 	</tr>
 </table>
-
 <input type="hidden" name="task" value="save_paypal_settings" />
 </form>
 </patTemplate:tmpl>

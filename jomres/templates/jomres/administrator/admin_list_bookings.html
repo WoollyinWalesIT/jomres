@@ -1,39 +1,48 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<link rel="stylesheet" type="text/css" href="{LIVESITE}/jomres/css/tables.css" title="" />
-{JOMRESTOOLBAR}
-<table cellpadding="0" cellspacing="0" class="sortable-onload-3-reverse rowstyle-alt no-arrow paginate-15">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#admin_list_bookings').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+		"sDom": '<"H"lTfr>t<"F"ip>',
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf"
+		}
+    });
+} );
+</script>
+<h2>{_JRPORTAL_CPANEL_LISTBOOKINGS}</h2>
+<!--{JOMRESTOOLBAR}-->
+<table id="admin_list_bookings" width="100%">
 	<thead>
-	<tr>
-	<th class="sortable-text">{HPROPERTYID}</th>
-	<th class="sortable-numeric">{HGUESTID}</th>
-	<th class="sortable-numeric">{HINVOICEID}</th>
-	<th class="sortable-numeric">{HBOOKINGTOTAL}</th>
-	<th class="sortable-numeric">{HCONTRACTID}</th>
-	<th class="sortable-text">{HCONTRACTNUMBER}</th>
-	<th class="sortable-numeric">{HCURRENCYCODE}</th>
-	<th class="sortable">{HCREATED}</th>
-	<th class="sortable-numeric">{HARCHIVED}</th>
-	<th class="sortable">{HARCHIVEDDATE}</th>
-	</tr>
-
+        <tr>
+            <th>{HPROPERTYID}</th>
+            <th>{HGUESTID}</th>
+            <th>{HINVOICEID}</th>
+            <th>{HBOOKINGTOTAL}</th>
+            <th>{HCONTRACTID}</th>
+            <th>{HCONTRACTNUMBER}</th>
+            <th>{HCURRENCYCODE}</th>
+            <th>{HCREATED}</th>
+            <th>{HARCHIVED}</th>
+            <th>{HARCHIVEDDATE}</th>
+        </tr>
 	</thead>
 	<tbody>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr class="{STYLE}">
-		<td>{PROPERTY_UID}</td>
-		<td>{GUEST_ID}</td>
-		<td>{INVOICE_ID}</td>
-		<td>{BOOKING_TOTAL}</td>
-		<td>{CONTRACT_ID}</td>
-		<td>{TAG}</td>
-		<td>{CURRENCY_CODE}</td>
-		<td>{CREATED}</td>
-		<td>{ARCHIVED}</td>
-		<td>{ARCHIVED_DATE}</td>
-	</tr>
-	</patTemplate:tmpl>
-
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr class="{STYLE}">
+            <td>{PROPERTY_UID}</td>
+            <td>{GUEST_ID}</td>
+            <td>{INVOICE_ID}</td>
+            <td>{BOOKING_TOTAL}</td>
+            <td>{CONTRACT_ID}</td>
+            <td>{TAG}</td>
+            <td>{CURRENCY_CODE}</td>
+            <td>{CREATED}</td>
+            <td>{ARCHIVED}</td>
+            <td>{ARCHIVED_DATE}</td>
+        </tr>
+        </patTemplate:tmpl>
 	</tbody>
 </table>
-
 </patTemplate:tmpl>

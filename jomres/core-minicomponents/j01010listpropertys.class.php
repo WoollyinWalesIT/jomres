@@ -325,7 +325,7 @@ class j01010listpropertys {
 						$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
 						}
 					
-					$property_image=get_showtime('live_site')."/jomres/images/jrlogo.png";
+					$property_image=get_showtime('live_site')."/jomres/images/noimage.gif";
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
 						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
 					$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";

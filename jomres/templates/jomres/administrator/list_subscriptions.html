@@ -1,42 +1,50 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td class="ui-widget-header ui-corner-all">ID</td>
-		<td>{HCMS_USER_ID}</td>
-		<td>{HGATEWAY_SUBSCRIPTION_ID}</td>
-		<td>{HNAME}</td>
-		<td>{HDESCRIPTION}</td>
-		<td class="ui-widget-header ui-corner-all">{HFREQUENCY}</td>
-		<td>{HTRIAL_PERIOD}</td>
-		<td>{HTRIAL_AMOUNT}</td>
-		<td>{HFULL_AMOUNT}</td>
-		<td>{HPROPERTY_LIMIT}</td>
-		<td class="ui-widget-header ui-corner-all">{HSTATUS}</td>
-		<td>{HRAISED_DATE}</td>
-		<td>&nbsp;</td>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{ID}</td>
-		<td>{CMS_USER_ID}</td>
-		<td>{GATEWAY_SUBSCRIPTION_ID}</td>
-		<td>{NAME}</td>
-		<td>{DESCRIPTION}</td>
-		<td>{FREQUENCY}</td>
-		<td>{TRIAL_PERIOD}</td>
-		<td>{TRIAL_AMOUNT}</td>
-		<td>{FULL_AMOUNT}</td>
-		<td>{PROPERTY_LIMIT}</td>
-		<td>{STATUS}</td>
-		<td>{RAISED_DATE}</td>
-		<td>{DELETELINK}</td>
-	</tr>
-	</patTemplate:tmpl>
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#list_subscriptions').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<!--{JOMRESTOOLBAR}-->
+<table id="list_subscriptions" border="0" width="100%">
+	<thead>
+        <tr>
+            <th>ID</th>
+            <th>{HCMS_USER_ID}</th>
+            <th>{HGATEWAY_SUBSCRIPTION_ID}</th>
+            <th>{HNAME}</th>
+            <th>{HDESCRIPTION}</th>
+            <th>{HFREQUENCY}</th>
+            <th>{HTRIAL_PERIOD}</th>
+            <th>{HTRIAL_AMOUNT}</th>
+            <th>{HFULL_AMOUNT}</th>
+            <th>{HPROPERTY_LIMIT}</th>
+            <th>{HSTATUS}</th>
+            <th>{HRAISED_DATE}</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+            <td>{ID}</td>
+            <td>{CMS_USER_ID}</td>
+            <td>{GATEWAY_SUBSCRIPTION_ID}</td>
+            <td>{NAME}</td>
+            <td>{DESCRIPTION}</td>
+            <td>{FREQUENCY}</td>
+            <td>{TRIAL_PERIOD}</td>
+            <td>{TRIAL_AMOUNT}</td>
+            <td>{FULL_AMOUNT}</td>
+            <td>{PROPERTY_LIMIT}</td>
+            <td>{STATUS}</td>
+            <td>{RAISED_DATE}</td>
+            <td>{DELETELINK}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
 </table>
-
-<input type="hidden" name="task" value="editTaxrate" />
-</form>
 </patTemplate:tmpl>
