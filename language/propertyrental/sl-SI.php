@@ -1648,3 +1648,9 @@ define('_JOMRES_BOOKINGORM_TAX_OUTPUT','Show tax output in the booking form tota
 define('_JOMRES_BOOKINGORM_TAX_OUTPUT_DESC','Prevent the booking form from showing the tax price fields in the totals summary by setting this option to No.');
 define('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD','Cancellation Threashold');
 define('_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC','Logged in, registered guests can cancel their own bookings. Here you can set the threashold, in days, where the booking cannot be cancelled after a certain number of days before the arrival date.');
+
+define('_JOMRES_EDIT_PROFILE','Edit Profile');
+define('_JOMRES_PROPERTY_TYPE_ASSIGNMENT','Property type relationship');
+define('_JOMRES_IMAGE','Image');
+define('_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT','Business types that can show this feature');
+define('_JOMRES_CRATES_CLICKINITIAL','Click on a letter to show all businesses with that first character. Once you have a list of properties you can assign commission rates to those properties, or click on their "edit" icon to view the business\'s statistics.');
