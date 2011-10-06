@@ -5,22 +5,26 @@ table.ui-widget-header ui-corner-all tr.row2 {
 	text-align: left;
 }
 </style>
-
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<p>{LEGEND}</p>
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td >{HPROPERTYNAME}</td><td >{HPROPERTYADDRESS}</td><td >{HCRATE_DROPDOWN}</td>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr class="{STYLE}">
-		<td>{VIEWLINK}{PROPERTYNAME}</a></td><td >{PROPERTYADDRESS}</td><td >{CRATE_DROPDOWN}</td>
-	</tr>		
-	</patTemplate:tmpl>
+	<thead>
+        <tr>
+            <th class="ui-state-default">{HPROPERTYNAME}</th>
+            <th class="ui-state-default" >{HPROPERTYADDRESS}</th>
+            <th class="ui-state-default" >{HCRATE_DROPDOWN}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr class="{STYLE}">
+            <td>{VIEWLINK}{PROPERTYNAME}</td>
+            <td>{PROPERTYADDRESS}</td>
+            <td>{CRATE_DROPDOWN}</td>
+        </tr>		
+        </patTemplate:tmpl>
+   	</tbody>
 </table>
-
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="editcrate" />
 <input type="hidden" name="boxchecked" value="0">

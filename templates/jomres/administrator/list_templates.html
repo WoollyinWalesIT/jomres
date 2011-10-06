@@ -1,25 +1,38 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
-{JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{TITLE}</div><br/>
+<script language="javascript" type="text/javascript">
+jomresJquery(document).ready(function() {
+    var oTable = jomresJquery('#admin_list_templates').dataTable({
+        "bJQueryUI": true,
+		"bPaginate": false,
+		"bSort": false,
+		"sDom": 't'
+    });
+} );
+</script>
+<h2>{TITLE}</h2>
 <p>{INSTRUCTIONS}</p>
 <p>{EDITWARNINGNOTE}</p>
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all">{HTEMPLATENAME}</th>
-		<th class="ui-widget-header ui-corner-all">{HCUSTOMISED}</th>
-		<th class="ui-widget-header ui-corner-all">{HLAST_EDITED_DISK}</th>
-		<th class="ui-widget-header ui-corner-all">{HLAST_EDITED_DB}</th>
-		<th class="ui-widget-header ui-corner-all">{HLAST_WARNINGICON}</th>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{EDITLINK}</td>
-		<td>{EDITED}</td>
-		<td>{LAST_EDITED_DISK}</td>
-		<td>{LAST_EDITED_DB}</td>
-		<td>{WARNINGICON}</td>
-	</tr>
-	</patTemplate:tmpl>
+<!--{JOMRESTOOLBAR}-->
+<table id="admin_list_templates" width="100%">
+	<thead>
+        <tr>
+            <th>{HTEMPLATENAME}</th>
+            <th>{HCUSTOMISED}</th>
+            <th>{HLAST_EDITED_DISK}</th>
+            <th>{HLAST_EDITED_DB}</th>
+            <th>{HLAST_WARNINGICON}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <tr>
+            <td>{EDITLINK}</td>
+            <td>{EDITED}</td>
+            <td>{LAST_EDITED_DISK}</td>
+            <td>{LAST_EDITED_DB}</td>
+            <td>{WARNINGICON}</td>
+        </tr>
+        </patTemplate:tmpl>
+    </tbody>
 </table>
 </patTemplate:tmpl>

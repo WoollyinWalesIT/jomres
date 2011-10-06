@@ -36,7 +36,8 @@ class j16000list_reviews
 		$output['_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED'] = _JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED;
 		$output['_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL'] = _JOMRES_REVIEWS_ADMIN_NUMBERTOTAL;
 		$output['_JOMRES_REVIEWS_REPORT_REVIEW_TITLE'] = _JOMRES_REVIEWS_REPORT_REVIEW_TITLE;
-
+		$output['_JOMRES_REVIEWS'] = _JOMRES_REVIEWS;
+		
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
 
 		jr_import('jomres_reviews');

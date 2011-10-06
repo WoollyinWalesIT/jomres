@@ -102,8 +102,6 @@ if (!JRPORTAL_AJAXCALL)
 	init_javascript();
 	// And a couple that are only used in the admin area
 	?>
-	<script language="javascript"type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/tablesort.js"></script>
-	<script  language="javascript"type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/tablepaginator.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/graphs.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
 	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
@@ -129,9 +127,11 @@ if (!JRPORTAL_AJAXCALL)
 	$cpanel=new cpanel();
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
+	
+	echo '<div style="float:right;width:79%;">';// Needed otherwise the accordion goes wandering off to the right
 	}
 
-echo '<div style="float:right;width:79%;">';
+
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
@@ -191,7 +191,9 @@ switch (get_showtime('task')) {
 			}
 		break;
 	}
-echo '</div>';
+	
+if (!JRPORTAL_AJAXCALL)
+	echo '</div>';
 	
 $head_contents = '';
 $MiniComponents->triggerEvent('16003');

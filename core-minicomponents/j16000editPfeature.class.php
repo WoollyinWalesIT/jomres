@@ -78,7 +78,8 @@ class j16000editPfeature
 		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
 		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'._JOMRES_COM_MR_BACK.'</a>';
-
+		$output['_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT'] = _JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT;
+		
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");

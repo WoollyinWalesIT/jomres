@@ -28,7 +28,6 @@ class j16000listbookings
 
 		$property_uid_array=array();
 
-		$output['LIVESITE']=get_showtime('live_site');
 		$output['HPROPERTYID']=_JRPORTAL_LISTBOOKINGS_HEADER_PROPERTY_ID;
 		$output['HGUESTID']=_JRPORTAL_LISTBOOKINGS_HEADER_GUEST_ID;
 		$output['HAFFILIATEID']=_JRPORTAL_LISTBOOKINGS_HEADER_AFFILIATE_ID;
@@ -40,7 +39,9 @@ class j16000listbookings
 		$output['HCREATED']=_JRPORTAL_LISTBOOKINGS_HEADER_CREATED;
 		$output['HARCHIVED']=_JRPORTAL_LISTBOOKINGS_HEADER_ARCHIVED;
 		$output['HARCHIVEDDATE']=_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED;
-
+		$output['LIVESITE']=get_showtime('live_site');
+		$output['_JRPORTAL_CPANEL_LISTBOOKINGS']=_JRPORTAL_CPANEL_LISTBOOKINGS;
+		
 		jr_import('jrportal_booking_functions');
 		$bookingsFunctions = new jrportal_booking_functions();
 		$bookingsArray=$bookingsFunctions->getBookings("");

@@ -49,76 +49,58 @@ class j16000pseudocron
 		$verbose[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
 		$verbose[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
 		$verboseDropdown=jomresHTML::selectList( $verbose, 'verbose','class="inputbox" size="1"', 'value', 'text', $cronConfigOptions['verbose']);
+		
+		$output = array();
+		
+		$output['JOMRES_SITEPAGE_URL_ADMIN']				=JOMRES_SITEPAGE_URL_ADMIN;
+		$output['_JOMRES_COM_A_CRON_TITLE']					=_JOMRES_COM_A_CRON_TITLE;
+		$output['_JOMRES_COM_A_CRON_DESC']					=_JOMRES_COM_A_CRON_DESC;
+		$output['_JOMRES_COM_A_CURRENT_SETTINGS']			=_JOMRES_COM_A_CURRENT_SETTINGS;
+		$output['_JOMRES_COM_A_EXPLANATION']				=_JOMRES_COM_A_EXPLANATION;
+		$output['_JOMRES_COM_A_CRON_METHOD']				=_JOMRES_COM_A_CRON_METHOD;
+		$output['METHODDROPDOWN']							=$methodDropdown;
+		$output['_JOMRES_COM_A_CRON_METHOD_DESC']			=_JOMRES_COM_A_CRON_METHOD_DESC;
+		$output['_JOMRES_COM_A_CRON_LOGGING']				=_JOMRES_COM_A_CRON_LOGGING;
+		$output['DISPLAYLOGGINGDROPDOWN']					=$displayloggingDropdown;
+		$output['_JOMRES_COM_A_CRON_LOGGING_DESC']			=_JOMRES_COM_A_CRON_LOGGING_DESC;
+		$output['_JOMRES_COM_A_CRON_LOGGINGENABLED']		=_JOMRES_COM_A_CRON_LOGGINGENABLED;
+		$output['LOGGINGDROPDOWN']							=$loggingDropdown;
+		$output['_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC']	=_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC;
+		$output['_JOMRES_COM_A_CRON_VERBOSELOGS']			=_JOMRES_COM_A_CRON_VERBOSELOGS;
+		$output['VERBOSEDROPDOWN']							=$verboseDropdown;
+		$output['_JOMRES_COM_A_CRON_VERBOSELOGS_DESC']		=_JOMRES_COM_A_CRON_VERBOSELOGS_DESC;
+		$output['_JOMRES_COM_A_CRON_IMMEDIATERUN']		=_JOMRES_COM_A_CRON_IMMEDIATERUN;
 
-		echo "<hr>";
-		?>
-			<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
-			<table class="ui-widget-content ui-corner-all"  width="75%" >
-			<tr>
-				<td width="100%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_CRON_TITLE; ?></td>
-			</tr>
-			<tr>
-				<td width="100%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_CRON_DESC; ?></td>
-			</tr>
-			
-			</table>
-			<table class="ui-widget-content ui-corner-all"  width="75%" >
-			<tr align="center" valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all"></th>
-				<th width="20%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_CURRENT_SETTINGS; ?></th>
-				<th width="60%" class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_A_EXPLANATION; ?></th>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_METHOD; ?></td>
-				<td class="ui-widget-content" valign="top"><?php echo $methodDropdown ;?></td>
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_METHOD_DESC; ?></td>
-			</tr>
-			
-			<tr align="center" valign="middle">
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGING; ?></td>
-				<td class="ui-widget-content" valign="top"><?php echo $displayloggingDropdown ;?></td>
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGING_DESC; ?></td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGINGENABLED; ?></td>
-				<td class="ui-widget-content" valign="top"><?php echo $loggingDropdown ;?></td>
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_LOGGINGENABLED_DESC; ?></td>
-			</tr>
-			<tr align="center" valign="middle">
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_VERBOSELOGS; ?></td>
-				<td class="ui-widget-content" valign="top"><?php echo $verboseDropdown ;?></td>
-				<td class="ui-widget-content" valign="top"><?php echo _JOMRES_COM_A_CRON_VERBOSELOGS_DESC; ?></td>
-			</tr>
-			<tr align="center" valign="middle">
-				<th colspan="3">&nbsp;</th>
-			</tr>
-			</table>
-			<input type="hidden" name="task" value="pseudocron" />
-			<input type="hidden" name="option" value="com_jomres" />
-			<input type="submit" value="submit" class="button" />
-			</form>
-		<?php
-		echo "<hr>";echo "<hr>";
-		echo _JOMRES_COM_A_CRON_IMMEDIATERUN."<br />";
+		$rows = array();
+		$logs = array();
+		
+		
 		jr_import('jomres_cron');
 		$cron = new jomres_cron($displayLog);
 		foreach ($cron->allUnlockedJobs as $job)
 			{
-			echo '<a href="'.JOMRES_SITEPAGE_URL_NOHTML."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret.'" target="_blank" >'.$job['job_name'].'</a><br />';
+			$r=array();
+			$r['JOB'] = '<a href="'.JOMRES_SITEPAGE_URL_NOHTML."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret.'" target="_blank" >'.$job['job_name'].'</a>';
+			$rows[]=$r;
 			}
-
-		echo "<hr>";echo "<hr>";
-		echo "JOB LOGS";
-		echo "<hr>";echo "<hr>";
-		$query = "SELECT ";
 
 		$query = "SELECT log_details FROM #__jomcomp_cronlog ORDER BY id DESC LIMIT 100";
 		$logDetails = doSelectSql($query);
 		foreach ($logDetails as $log)
 			{
-			echo $log->log_details;
-			echo "<hr>";
+			$l=array();
+			$l['LOG'] = $log->log_details;
+			$logs[]=$l;
 			}
+
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'cron.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $rows );
+		$tmpl->addRows( 'logs', $logs );
+		$tmpl->displayParsedTemplate();
 		}
 	
 	function getcronconfig($plugin)

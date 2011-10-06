@@ -1,13 +1,14 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
+<h2>{PAGETITLE}</h2>
+<p>{INFO}</p>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-<p>{INFO}</p>
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td class="ui-widget-content" width="20">{CHECKBOX}</td><td class="ui-widget-content">{SHORTCODE}</td><td class="ui-widget-content">{LONGCODE}</td>
+	<tr class="ui-widget-content">
+		<td width="30">{CHECKBOX}</td>
+        <td width="60">{SHORTCODE}</td>
+        <td>{LONGCODE}</td>
 	</tr>
 	</patTemplate:tmpl>
 </table>

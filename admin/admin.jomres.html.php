@@ -44,13 +44,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel =jomres_getSingleton('jomres_content_tabs');
 	
 		?>
+        <h2>Jomres <?php echo _JOMRES_A; ?></h2>
 		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
 		
 		<?php
 		echo $jrtb;
-		?>
-		<div class="ui-widget-header ui-corner-all">Jomres <?php echo _JOMRES_A; ?></div><br/>
-		<?php
 		
 		$sslinput="";
 		
@@ -67,9 +65,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 		<table  class="jradmin_table" border="0">
 		<tr valign="middle">
-			<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-			<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-			<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+			<th width="20%" class="ui-state-default">&nbsp;</th>
+			<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+			<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
 		<tr valign="middle">
 			<td class="ui-widget-content" valign="top">'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
@@ -241,9 +239,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				<td class="ui-widget-content" valign="top">'._JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS.'</td>
@@ -300,9 +298,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				 <td class="ui-widget-content" valign="top">'._JRPORTAL_SUBSCRIPTIONS_USE.'</td>
@@ -344,9 +342,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				<td class="ui-widget-content" valign="top">'._JOMRES_COM_JRCONFIG_GLOBALCURRENCYYESNO.'</td>
@@ -380,9 +378,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				<td class="ui-widget-content" valign="top">'._JOMRES_REVIEWS_ADMIN_CONTROL.'</td>
@@ -439,9 +437,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->setcontent('
 		<table  class="jradmin_table" border="0">
 		<tr valign="middle">
-			<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-			<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-			<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+			<th width="20%" class="ui-state-default">&nbsp;</th>
+			<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+			<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
 		<!--<tr valign="middle">
 			<td class="ui-widget-content" valign="top">'._JOMRES_COM_A_CALENDARLANGUAGE_AUTO.'</td>
@@ -483,12 +481,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<td class="ui-widget-content" valign="top" colspan="3">'._JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC.'</td>
+				<td valign="top" colspan="3">'._JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC.'</td>
 			</tr>
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				<td class="ui-widget-content" valign="top">'._JOMRES_COM_A_INTEGRATEDSEARCH_ENABLE.'</td>
@@ -635,9 +633,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			
 			<tr valign="middle">
@@ -688,9 +686,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				<td class="ui-widget-content" valign="top">'._JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS.'</td>
@@ -735,9 +733,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 			<tr valign="middle">
-				<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-				<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle">
 				<td class="ui-widget-content" valign="top">'._JOMRES_COM_A_ERRORCHECKING.'</td>
@@ -764,9 +762,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				$contentPanel->setcontent('
 				<table  class="jradmin_table" border="0">
 				<tr valign="middle">
-					<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-					<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-					<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+					<th width="20%" class="ui-state-default">&nbsp;</th>
+					<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+					<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 				</tr>
 				<tr valign="middle">
 					<td class="ui-widget-content" valign="top">'._JOMRES_COM_SEF_URL_PREFIX.'</td>
@@ -882,12 +880,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 				<tr valign="middle">
-					<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-					<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-					<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+					<td valign="top" colspan="3">'._JOMRES_COM_LOGGING_WARNING.'</td>
 				</tr>
 				<tr valign="middle">
-					<td class="ui-widget-content" valign="top" colspan="3">'._JOMRES_COM_LOGGING_WARNING.'</td>
+					<th width="20%" class="ui-state-default">&nbsp;</th>
+					<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+					<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 				</tr>
 				<tr valign="middle">
 					<td class="ui-widget-content" valign="top">'._JOMRES_COM_LOGGING_BOOKING.'</td>
@@ -925,9 +923,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			$contentPanel->setcontent('
 			<table  class="jradmin_table" border="0">
 				<tr valign="middle">
-					<th width="20%" class="ui-widget-header ui-corner-all">&nbsp;</th>
-					<th width="20%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
-					<th width="60%" class="ui-widget-header ui-corner-all">'._JOMRES_COM_A_EXPLANATION.'</th>
+					<th width="20%" class="ui-state-default">&nbsp;</th>
+					<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+					<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 				</tr>
 				<tr valign="middle">
 					<td class="ui-widget-content" valign="top">'._JOMRES_COM_YOURBUSINESS_NAME.'</td>
@@ -1026,22 +1024,33 @@ function editPfeature_html($output,$rows)
  */
 function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 		{
-		echo $jrtb;
+		?>
+        <script language="JavaScript" type="text/javascript">
+		jomresJquery(document).ready(function() {
+			var oTable = jomresJquery('#listpropertyTypes_html').dataTable({
+				"bJQueryUI": true,
+				"sPaginationType": "full_numbers"
+			});
+		} );
+		</script>
+        <h2><?php echo $pList['PAGETITLE']; ?></h2>
+		<?php echo $jrtb;
 		?>
 		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
-		<table class="ui-widget-content ui-corner-all" border="0" width="75%">
-			<tr>
-				<th class="ui-widget-header ui-corner-all" colspan="6"><?php echo $pList['PAGETITLE']; ?></td>
-			</tr>
-			<tr>
-				<th class="ui-widget-header ui-corner-all"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll(<?php echo $counter+1; ?>);" /></th>
-				<th class="ui-widget-header ui-corner-all">&nbsp;</th>
-				<th class="ui-widget-header ui-corner-all"><?php echo $pList['HPTYPE']; ?></th>
-				<th class="ui-widget-header ui-corner-all"><?php echo $pList['HPTYPE_DESC']; ?></th>
-				<th class="ui-widget-header ui-corner-all"><?php echo $pList['HPUBLISHED']; ?></th>
-				<th class="ui-widget-header ui-corner-all"><?php echo $pList['_JOMRES_ORDER']; ?></th>
-			</tr>
-		<?php echo $rowInfo; ?>
+		<table id="listpropertyTypes_html" border="0" width="100%">
+        	<thead>
+                <tr>
+                    <th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll(<?php echo $counter+1; ?>);" /></th>
+                    <th>&nbsp;</th>
+                    <th><?php echo $pList['HPTYPE']; ?></th>
+                    <th><?php echo $pList['HPTYPE_DESC']; ?></th>
+                    <th><?php echo $pList['HPUBLISHED']; ?></th>
+                    <th><?php echo $pList['_JOMRES_ORDER']; ?></th>
+                </tr>
+            </thead>
+            <tbody>
+			<?php echo $rowInfo; ?>
+            </tbody>
 		</table>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="option" value="com_jomres" />
@@ -1058,24 +1067,23 @@ function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
 function editpropertyType_html($pList,$rowInfo,$hidden,$jrtb)
 		{
 		?>
-	<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
-	<?php echo $jrtb;?>
-	<table class="ui-widget-content ui-corner-all" border="0" width="75%">
-		<tr>
-			<th class="ui-widget-header ui-corner-all" colspan="2"><?php echo $pList['PAGETITLE']; ?></td>
-		</tr>
-		<tr>
-			<th class="ui-widget-header ui-corner-all"><?php echo $pList['HPTYPE']; ?></th><th class="ui-widget-header ui-corner-all"><?php echo $pList['HPTYPE_DESC']; ?></th>
-		</tr>
-		<?php echo $rowInfo; ?>
-	</table>
-	<input type="hidden" name="task" value="" />
-	<input type="hidden" name="option" value="com_jomres" />
-	<?php echo $hidden ; ?>
-		</form>
-		<?php
-		echo $pList['FURTHER'];
-		}//end function List property types
+        <h2><?php echo $pList['PAGETITLE']; ?></h2>
+        <p><?php echo $pList['FURTHER'];?></p>
+        <form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
+        <?php echo $jrtb;?>
+        <table class="ui-widget-content ui-corner-all" border="0" width="100%">
+            <tr>
+                <th class="ui-state-default"><?php echo $pList['HPTYPE']; ?></th>
+                <th class="ui-state-default"><?php echo $pList['HPTYPE_DESC']; ?></th>
+            </tr>
+            <?php echo $rowInfo; ?>
+        </table>
+        <input type="hidden" name="task" value="" />
+        <input type="hidden" name="option" value="com_jomres" />
+        <?php echo $hidden ; ?>
+        </form>
+        <?php
+        }//end function List property types
 
 /**
 #

@@ -116,7 +116,10 @@ class j16000editGlobalroomTypes
 		$output['HSRP_ONLY']=JOMRES_COM_A_SRPONLY;
 		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK;
-
+		$output['_JOMRES_PROPERTY_TYPE_ASSIGNMENT']=_JOMRES_PROPERTY_TYPE_ASSIGNMENT;
+		$output['_JOMRES_IMAGE']=_JOMRES_IMAGE;
+		
+		
 		$jrtbar =jomres_getSingleton('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");

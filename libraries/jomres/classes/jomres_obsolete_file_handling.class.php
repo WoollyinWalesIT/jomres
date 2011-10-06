@@ -474,6 +474,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'wordpress'.JRDS.'init_config_vars.php');
 		
 		$this->add_obs_file($this->dir_templates_administrator.'jomres_cpanel.php');
+		$this->add_obs_file($this->dir_javascript.'tablepaginator.js');
+		$this->add_obs_file($this->dir_javascript.'tablesort.js');
+		$this->add_obs_file($this->dir_css.'tables.css');
 		
 		}
 	

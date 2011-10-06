@@ -1,8 +1,5 @@
-<patTemplate:tmpl name="pageoutput">
-
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-
-
 function get_properties(initial)
 	{
 	jomresJquery.get('{AJAXURL}&task=listpropertys&tmpl=component&no_html=1&initial='+initial,
@@ -12,24 +9,22 @@ function get_properties(initial)
 		);
 	}
 </script>
-{_JOMRES_PORTALUI_CLICKINITIAL}<br/>
-
+<h2>{_JRPORTAL_CPANEL_LISTCRATES}</h2>
+<p>{_JOMRES_CRATES_CLICKINITIAL}</p>
 <table width="100%">
-	<tr VALIGN="top">
-		<td  width="10%">
-			<patTemplate:tmpl name="rows">
+	<tr valign="top">
+		<td>
+			<patTemplate:tmpl name="rows" unusedvars="strip">
 			<div>
-				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all"  onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
+				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all"  style="color:#ffffff;" onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
 			</div>
 			</patTemplate:tmpl>
 		</td>
-		<td>
-			<div id = "found_properties"> 
-				
-				
-				
-			</div>
-		</td>
 	</tr>
+    <tr>
+    	<td>
+			<div id="found_properties"></div>
+		</td>
+    </tr>
 </table>
 </patTemplate:tmpl>

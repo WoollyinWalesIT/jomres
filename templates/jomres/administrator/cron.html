@@ -1,0 +1,63 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{_JOMRES_COM_A_CRON_TITLE}</h2>
+
+<p>{_JOMRES_COM_A_CRON_DESC}</p>
+
+
+<form action="<?{JOMRES_SITEPAGE_URL_ADMIN; ?>" method="post" name="adminForm">
+
+<table class="ui-widget-content ui-corner-all"  width="75%" >
+	<tr align="center" valign="middle">
+		<th width="20%" class="ui-widget-header ui-corner-all"></th>
+		<th width="20%" class="ui-widget-header ui-corner-all">{_JOMRES_COM_A_CURRENT_SETTINGS}</th>
+		<th width="60%" class="ui-widget-header ui-corner-all">{_JOMRES_COM_A_EXPLANATION}</th>
+	</tr>
+	<tr align="center" valign="middle">
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_METHOD}</td>
+		<td class="ui-widget-content" valign="top">{METHODDROPDOWN}</td>
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_METHOD_DESC}</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_LOGGING}</td>
+		<td class="ui-widget-content" valign="top">{DISPLAYLOGGINGDROPDOWN}</td>
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_LOGGING_DESC}</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_LOGGINGENABLED}</td>
+		<td class="ui-widget-content" valign="top">{LOGGINGDROPDOWN}</td>
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC}</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_VERBOSELOGS}</td>
+		<td class="ui-widget-content" valign="top">{VERBOSEDROPDOWN}</td>
+		<td class="ui-widget-content" valign="top">{_JOMRES_COM_A_CRON_VERBOSELOGS_DESC}</td>
+	</tr>
+	<tr align="center" valign="middle">
+		<th colspan="3">&nbsp;</th>
+	</tr>
+</table>
+
+<input type="hidden" name="task" value="pseudocron" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="submit" value="submit" class="button" />
+</form>
+			
+{_JOMRES_COM_A_CRON_IMMEDIATERUN}<br />
+			
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td>{JOB}</td>
+ 	</tr>
+	</patTemplate:tmpl>
+</table>
+
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<patTemplate:tmpl name="logs" unusedvars="nbsp">
+	<tr>
+		<td>{LOG}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+
+</patTemplate:tmpl>

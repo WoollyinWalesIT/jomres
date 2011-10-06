@@ -1,135 +1,149 @@
-<patTemplate:tmpl name="pageoutput" >
-				<script>
-				var idarray = new Array();
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script language="javascript" type="text/javascript">
+var idarray = new Array();
 
-				function updateInit_Total(id)
-					{
-					tax = jomresJquery('#tax_rate_'+id).val();
-					qty = jomresJquery('#init_qty_'+id).val();
-					dsc = jomresJquery('#init_discount_'+id).val();
-					price = jomresJquery('#li_init_price_'+id).val();
+function updateInit_Total(id)
+	{
+	tax = jomresJquery('#tax_rate_'+id).val();
+	qty = jomresJquery('#init_qty_'+id).val();
+	dsc = jomresJquery('#init_discount_'+id).val();
+	price = jomresJquery('#li_init_price_'+id).val();
 
-					pre_tax_total=price*qty
-					post_discount=pre_tax_total-dsc
-					vat=(post_discount/100)*tax
-					init_total=post_discount+vat
-					
-					jomresJquery("#init_total_"+id).text(init_total);
-					updateInitGrandTotal();
-					};
+	pre_tax_total=price*qty
+	post_discount=pre_tax_total-dsc
+	vat=(post_discount/100)*tax
+	init_total=post_discount+vat
+	
+	jomresJquery("#init_total_"+id).text(init_total);
+	updateInitGrandTotal();
+	};
 
-				function updateInitGrandTotal()
-					{
-					init_total = 0.00;
-					for (i=0; i < idarray.length; i++) {
-						tmp = jomresJquery("#init_total_"+idarray[i]).text();
-						flt = parseFloat(tmp)
-						init_total = init_total + flt;
-						}
-					jomresJquery("#init_grand_total").text(init_total);
-					}
-					
-				function updateRecur_Total(id)
-					{
-					tax = jomresJquery('#tax_rate_'+id).val();
-					qty = jomresJquery('#init_qty_'+id).val();
-					dsc = jomresJquery('#init_discount_'+id).val();
-					price = jomresJquery('#li_init_price_'+id).val();
-					pre_tax_total=price*qty
-					post_discount=pre_tax_total-dsc
-					vat=(post_discount/100)*tax
-					recur_total=post_discount+vat
-					
-					jomresJquery("#recur_total_"+id).text(recur_total);
-					updateRecurGrandTotal();
-					};
+function updateInitGrandTotal()
+	{
+	init_total = 0.00;
+	for (i=0; i < idarray.length; i++) {
+		tmp = jomresJquery("#init_total_"+idarray[i]).text();
+		flt = parseFloat(tmp)
+		init_total = init_total + flt;
+		}
+	jomresJquery("#init_grand_total").text(init_total);
+	};
+	
+function updateRecur_Total(id)
+	{
+	tax = jomresJquery('#tax_rate_'+id).val();
+	qty = jomresJquery('#init_qty_'+id).val();
+	dsc = jomresJquery('#init_discount_'+id).val();
+	price = jomresJquery('#li_init_price_'+id).val();
+	pre_tax_total=price*qty
+	post_discount=pre_tax_total-dsc
+	vat=(post_discount/100)*tax
+	recur_total=post_discount+vat
+	
+	jomresJquery("#recur_total_"+id).text(recur_total);
+	updateRecurGrandTotal();
+	};
 
-				function updateRecurGrandTotal()
-					{
-					init_total = 0.00;
-					for (i=0; i < idarray.length; i++) {
-						tmp = jomresJquery("#recur_total_"+idarray[i]).text();
-						flt = parseFloat(tmp)
-						recur_total = recur_total + flt;
-						}
-					jomresJquery("#recur_grand_total").text(recur_total);
-					}
-				</script>
+function updateRecurGrandTotal()
+	{
+	init_total = 0.00;
+	for (i=0; i < idarray.length; i++) {
+		tmp = jomresJquery("#recur_total_"+idarray[i]).text();
+		flt = parseFloat(tmp)
+		recur_total = recur_total + flt;
+		}
+	jomresJquery("#recur_grand_total").text(recur_total);
+	};
+</script>
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="ui-widget-header ui-corner-all">&nbsp;</td>
-		<td class="ui-widget-header ui-corner-all">{HSTATUS}</td>
-		<td class="ui-widget-header ui-corner-all">{HRAISED}</td>
-		<td class="ui-widget-header ui-corner-all">{HDUE}</td>
-		<td class="ui-widget-header ui-corner-all">{HSUBSCRIPTION}</td>
-		<td class="ui-widget-header ui-corner-all">{HCURRENCYCODE}</td>
-		<td class="ui-widget-header ui-corner-all">{HINITTOTAL}</td>
-		<td class="ui-widget-header ui-corner-all">{HRECURTOTAL}</td>
-		<td class="ui-widget-header ui-corner-all">{HFREQ}</td>
-	</tr>
-	<tr>
-		<td class="jradmin_rowtoolbar">{USERSINVOICESLINK}</td>
-		<td class="jradmin_field_la">{STATUS}</td>
-		<td class="jradmin_field_la">{RAISED}</td>
-		<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" name="due_date" value="{DUE}" /></td>
-		<td class="jradmin_field_la">{SUBSCRIPTION}</td>
-		<td class="jradmin_field_la">{CURRENCYCODE}</td>
-		<td class="jradmin_field_la"><div id="init_grand_total">{INITTOTAL}</div></td>
-		<td class="jradmin_field_la"><div id="recur_grand_total">{RECURTOTAL}</div></td>
-		<td class="jradmin_field_la">{FREQ}</td>
+		<td width="30%">List all user Invoices (text to be generated)</td>
+        <td>{USERSINVOICESLINK}</td>
+    </tr>
+    <tr>
+		<td>{HSTATUS}</td>
+        <td>{STATUS}</td>
+    </tr>
+    <tr>
+		<td>{HRAISED}</td>
+        <td>{RAISED}</td>
+    </tr>
+    <tr>
+		<td>{HDUE}</td>
+        <td><input class="jomres_inputbox" type="text" name="due_date" value="{DUE}" size="30"/></td>
+    </tr>
+    <tr>
+		<td>{HSUBSCRIPTION}</td>
+        <td>{SUBSCRIPTION}</td>
+    </tr>
+    <tr>
+		<td>{HCURRENCYCODE}</td>
+        <td>{CURRENCYCODE}</td>
+    </tr>
+    <tr>
+		<td><strong>{HINITTOTAL}</strong></td>
+        <td><strong><div id="init_grand_total">{INITTOTAL}</div></strong></td>
+    </tr>
+    <tr>
+		<td>{HRECURTOTAL}</td>
+        <td><div id="recur_grand_total">{RECURTOTAL}</div></td>
+    </tr>
+    <tr>
+		<td>{HFREQ}</td>
+        <td>{FREQ}</td>
 	</tr>
 </table>
-
-<div class="ui-widget-header ui-corner-all">{LIPAGETITLE}</div><br/>
-
+<h3>{LIPAGETITLE}</h3>
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td class="ui-widget-header ui-corner-all">&nbsp;</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_NAME}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_DESCRIPTION}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_INIT_PRICE}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_INIT_QTY}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_INIT_DISCOUNT}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_INIT_TOTAL}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_INIT_TOTAL_INCLUSIVE}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_RECUR_PRICE}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_RECUR_QTY}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_RECUR_DISCOUNT}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_RECUR_TOTAL}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_TAX_CODE}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_TAX_DESCRIPTION}</td>
-		<td class="ui-widget-header ui-corner-all">{HLI_TAX_RATE}</td>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<script>idarray[{COUNTER}]={ID};</script>
-	<input type="hidden" name="line_item[]" id="line_item[]" value="{ID}" />
-	<input type="hidden" id="tax_rate_{ID}" value="{LI_TAX_RATE}" />
-	<input type="hidden" id="li_init_price_{ID}" value="{LI_INIT_PRICE}" />
-	<input type="hidden" value="{LI_RECUR_PRICE}" />
-		<tr>
-			<td class="jradmin_rowtoolbar">{ID}</td>
-			<td class="jradmin_field_la">{LI_NAME}</td>
-			<td class="jradmin_field_la">{LI_DESCRIPTION}</td>
-			<td class="jradmin_field_la">{LI_INIT_PRICE}</td>
-			<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="init_qty_{ID}" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
-			<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="init_discount_{ID}" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
-			<td class="jradmin_field_la"><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
-			<td class="jradmin_field_la">{LI_INIT_TOTAL_INCLUSIVE}</td>
-			<td class="jradmin_field_la">{LI_RECUR_PRICE}</td>
-			<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="recur_qty_{ID}" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
-			<td class="jradmin_field_la"><input class="jomres_inputbox" type="text" size="5" id="recur_discount_{ID}" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
-			<td class="jradmin_field_la"><div id="recur_total_{ID}">{LI_RECUR_TOTAL}</div></td>
-			<td class="jradmin_field_la">{LI_TAX_CODE}</td>
-			<td class="jradmin_field_la">{LI_TAX_DESCRIPTION}</td>
-			<td class="jradmin_field_la">{LI_TAX_RATE}%</td>
-		</tr>
-	</patTemplate:tmpl>
-	</table>
-
+	<thead>
+        <tr>
+            <th class="ui-state-default">&nbsp;</th>
+            <th class="ui-state-default">{HLI_NAME}</th>
+            <th class="ui-state-default">{HLI_DESCRIPTION}</th>
+            <th class="ui-state-default">{HLI_INIT_PRICE}</th>
+            <th class="ui-state-default">{HLI_INIT_QTY}</th>
+            <th class="ui-state-default">{HLI_INIT_DISCOUNT}</th>
+            <th class="ui-state-default">{HLI_INIT_TOTAL}</th>
+            <th class="ui-state-default">{HLI_INIT_TOTAL_INCLUSIVE}</th>
+            <th class="ui-state-default">{HLI_RECUR_PRICE}</th>
+            <th class="ui-state-default">{HLI_RECUR_QTY}</th>
+            <th class="ui-state-default">{HLI_RECUR_DISCOUNT}</th>
+            <th class="ui-state-default">{HLI_RECUR_TOTAL}</th>
+            <th class="ui-state-default">{HLI_TAX_CODE}</th>
+            <th class="ui-state-default">{HLI_TAX_DESCRIPTION}</th>
+            <th class="ui-state-default">{HLI_TAX_RATE}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <patTemplate:tmpl name="rows" unusedvars="nbsp">
+        <script>idarray[{COUNTER}]={ID};</script>
+        <input type="hidden" name="line_item[]" id="line_item[]" value="{ID}" />
+        <input type="hidden" id="tax_rate_{ID}" value="{LI_TAX_RATE}" />
+        <input type="hidden" id="li_init_price_{ID}" value="{LI_INIT_PRICE}" />
+        <input type="hidden" value="{LI_RECUR_PRICE}" />
+            <tr>
+                <td>{ID}</td>
+                <td>{LI_NAME}</td>
+                <td>{LI_DESCRIPTION}</td>
+                <td>{LI_INIT_PRICE}</td>
+                <td><input class="jomres_inputbox" type="text" size="5" id="init_qty_{ID}" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
+                <td><input class="jomres_inputbox" type="text" size="5" id="init_discount_{ID}" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
+                <td><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
+                <td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+                <td>{LI_RECUR_PRICE}</td>
+                <td><input class="jomres_inputbox" type="text" size="5" id="recur_qty_{ID}" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
+                <td><input class="jomres_inputbox" type="text" size="5" id="recur_discount_{ID}" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
+                <td><div id="recur_total_{ID}">{LI_RECUR_TOTAL}</div></td>
+                <td>{LI_TAX_CODE}</td>
+                <td>{LI_TAX_DESCRIPTION}</td>
+                <td>{LI_TAX_RATE}%</td>
+            </tr>
+        </patTemplate:tmpl>
+    </tbody>
+</table>
 <input type="hidden" name="id" value="{ID}" />
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="save_invoice" />

@@ -76,6 +76,7 @@ class j16000list_invoices
 		$output['HFREQ']=_JRPORTAL_INVOICES_RECUR_FREQUENCY;
 		$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 		$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
+		$output['LIVESITE']=get_showtime('live_site');
 
 		$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
 		$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
