@@ -1139,8 +1139,6 @@ define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Číslo telefonu pr
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Prosím, použijte formát 'Country code, mobile number'. Např: '420123456789'. Nevyplňujte, pokud nechcete dostávat zprávy o odeslání.");
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
-<br/>
-<br/>
 <b>Tuto funkci nelze testovat na 'localhost'u, musíte být přihlášeni v živé aplikaci.</b>
 <br/>
 <br/>

@@ -1169,8 +1169,6 @@ define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Notification ver le
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Utilisez le format 'code pays, numéro de mobile'. Par exemple, si vous avez un mobile utilisé en France ceci serait quelque chose comme '337979123456'. Laissez blanc si vous ne voulez pas recevoir des messages de nortification sur votre téléphone.");
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
-<br/>
-<br/>
 <b>Logiquement l'usage/test de ce <i>gateway</i> n'est pas possible avec un serveur privé (localhost), vous avez bsoin d'un serveur public actif.</b>
 <br/>
 <br/>

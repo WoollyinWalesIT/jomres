@@ -1145,11 +1145,7 @@ define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"МОбилен но
 define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Моля, използвайте следния формат '447979123456'. Оставете празно за да откажете известия по телефона си.");
 define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"СМС");
 define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
-<br/>
-<br/>
 <b>Трябва ви live сървър.</b>
-<br/>
-<br/>
 Да се използва от системния администратор!<br/>
 <br/>
 <b>Да се използва от системния администратор</b><br/>
