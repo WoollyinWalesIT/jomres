@@ -1656,3 +1656,4 @@ define('_JOMRES_PROPERTY_TYPE_ASSIGNMENT','Property type relationship');
 define('_JOMRES_IMAGE','Image');
 define('_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT','Business types that can show this feature');
 define('_JOMRES_CRATES_CLICKINITIAL','Click on a letter to show all businesses with that first character. Once you have a list of properties you can assign commission rates to those properties, or click on their "edit" icon to view the business\'s statistics.');
+define('_JRPORTAL_TAX_RATE_EDIT',"Edit Tax rate");
