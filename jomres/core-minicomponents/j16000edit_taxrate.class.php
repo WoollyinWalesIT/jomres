@@ -31,7 +31,7 @@ class j16000edit_taxrate {
 			$rate->getTaxRate();
 			}
 		
-		$output['PAGETITLE']=_JRPORTAL_TAXRATES_TITLE;
+		$output['PAGETITLE']=_JRPORTAL_TAX_RATE_EDIT;
 		$output['HCODE']=_JRPORTAL_TAXRATES_CODE;
 		$output['HDESCRIPTION']=_JRPORTAL_TAXRATES_DESCRIPTION;
 		$output['HRATE']=_JRPORTAL_TAXRATES_RATE;
