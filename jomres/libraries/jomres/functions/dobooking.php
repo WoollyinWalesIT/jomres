@@ -547,6 +547,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$classic_rooms_list['SELECTEDROOM'] = $output['SELECTEDROOM'];
 			$classic_rooms_list['AVAILABLEROOMS'] = $output['AVAILABLEROOMS'];
 			$classic_rooms_list['ESTIMATEWARNING'] = $output['ESTIMATEWARNING'];
+			$classic_rooms_list['RELPATH'] = $output['RELPATH'];
+
 			$classic_rooms_list_output[]=$classic_rooms_list;
 			}
 		if ($mrConfig['booking_form_rooms_list_style'] == "2") // Room type dropdown selection feature
