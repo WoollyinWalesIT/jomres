@@ -1,3 +1,19 @@
+Jomres 5.6
+
+Control panel completely reworked so that options are now in an accordion menu on the left, with the page's content to the right.
+Implemented a new live scrolling feature for the property list.
+
+Added a function for str_getcsv php systems that are < 5.3
+added an experimental new feature for new Jomres users, to guide them through setting up their first property. Only works if the user's id = 42 (admin) and there's only on property on the system.
+Reverted router.php to a version that works.
+Modified 404sef's functionality so that if the user is a manager, then sef isn't attempted. 
+Approved a part translated translated hungarian language file.
+Language clarified RE licenses in Site Config
+Modification to jomSearch.class.php to resolve issue where searches on JUST room types can fail.
+New "jomres" jquery ui theme added.
+list_usersinvoices modified to show line items
+
+
 Jomres 5.5.6.4
 
 Reverted to the older J1.7 router.php
