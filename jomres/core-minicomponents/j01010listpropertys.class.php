@@ -333,7 +333,7 @@ class j01010listpropertys {
 						{
 						$starslink="";
 							for ($i=1;$i<=$stars;$i++)
-				    		{
+							{
 							$starslink.="<img src=\"".get_showtime('live_site')."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
 							}
 						$starslink.="";
@@ -589,7 +589,7 @@ class j01010listpropertys {
 				echo $xmlString;
 				exit;
 				}
-	    	}
+			}
 		else
 			echo jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS,$editable=true,$islink=false) ;
 		}
