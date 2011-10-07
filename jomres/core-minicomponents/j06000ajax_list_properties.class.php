@@ -22,7 +22,7 @@ class j06000ajax_list_properties
 			$this->template_touchable=false; return;
 			}
 		
-		$number_of_results = 3;
+		$number_of_results = 1;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$last_id = (int)$_REQUEST['lastID'];
 		if (!isset($tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets']) ) // We'll create some data sets now, that'll make it slightly quicker in subsequent calls
@@ -50,11 +50,11 @@ class j06000ajax_list_properties
 				$sets[$newkey] = $set;
 				$last_key = end($set);
 				$counter++;
-				}
 
+				}
 			$tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets'] = $sets;
 			}
-	
+
 		$this->resultBucket=$tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets'][$last_id];
 
 		if (count($this->resultBucket) > 0)
