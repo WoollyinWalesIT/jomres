@@ -253,15 +253,15 @@ class j16000showplugins
 
 		echo '<table class="jradmin_table" border="0">
 			<tr>
-				<th class="ui-widget-header ui-corner-all" colspan="6">Third party plugins</th>
+				<th class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="6">Third party plugins</th>
 			</tr>
 			<tr>
-				<th class="ui-widget-header ui-corner-all">Name</th>
-				<th class="ui-widget-header ui-corner-all">Your Version</th>
-				<th class="ui-widget-header ui-corner-all">Description</th>
-				<th class="ui-widget-header ui-corner-all">Author</th>
-				<th class="ui-widget-header ui-corner-all">Author email</th>
-				<th class="ui-widget-header ui-corner-all">Remove plugin</th>
+				<th class="ui-state-default">Name</th>
+				<th class="ui-state-default">Your Version</th>
+				<th class="ui-state-default">Description</th>
+				<th class="ui-state-default">Author</th>
+				<th class="ui-state-default">Author email</th>
+				<th class="ui-state-default">Remove plugin</th>
 			</tr>';
 		$uninstall_text="Uninstall";
 		$externalPluginTypes=array("component","module","mambot");
@@ -316,22 +316,15 @@ class j16000showplugins
 			// });
 			// </script>';
 			
-			echo '<form enctype="multipart/form-data" action="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&thirdparty=1" method="post">
+			echo '<br /><br /><form enctype="multipart/form-data" action="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&thirdparty=1" method="post">
 			<input type="hidden" name="no_html" value="1" />
-			<table class="jradmin_innerwrapper">
-				<tr>
-					<td>
-						<table class="jradmin_table">
-							<tr>
-								<td colspan="2" class="jradmin_subheader_ca">Install third party plugin</td>
-							</tr>
-							<tr>
-								<td class="ui-widget-content"><input type="file" name="pluginfile"/></td>
-								<td class="ui-widget-content"><input type="submit" value="Install" class="button" /></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
+			<table width="100%" border="0">
+                <tr>
+                    <th class="ui-widget-header ui-corner-tl ui-corner-tr">Install third party plugin</th>
+                </tr>
+                <tr>
+                    <td class="ui-widget-content ui-corner-all"><input type="file" name="pluginfile" size="40"/> <input type="submit" value="Install" class="button" /></td>
+                </tr>
 			</table>
 			</form>
 		<br/>
@@ -347,19 +340,19 @@ class j16000showplugins
 		echo '
 		<table class="jradmin_table" border="0">
 			<tr>
-				<th class="ui-widget-header ui-corner-all" colspan="'.$span.'">Jomres.net plugins</th>
+				<td class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="'.$span.'">Jomres.net plugins</td>
 			</tr>
 			<tr>
-				<th class="ui-widget-header ui-corner-all">Name</th>
-				<th class="ui-widget-header ui-corner-all">Minimum Jomres version</th>
-				<th class="ui-widget-header ui-corner-all">Your Version</th>
-				<th class="ui-widget-header ui-corner-all">Current Version</th>
-				<th class="ui-widget-header ui-corner-all">Last updated</th>
-				<th class="ui-widget-header ui-corner-all">Description</th>
-				<th class="ui-widget-header ui-corner-all">Add/reinstall/upgrade plugin</th>
-				<th class="ui-widget-header ui-corner-all">Remove plugin</th>';
+				<th class="ui-state-default">Name</th>
+				<th class="ui-state-default">Minimum Jomres version</th>
+				<th class="ui-state-default">Your Version</th>
+				<th class="ui-state-default">Current Version</th>
+				<th class="ui-state-default">Last updated</th>
+				<th class="ui-state-default">Description</th>
+				<th class="ui-state-default">Add/reinstall/upgrade plugin</th>
+				<th class="ui-state-default">Remove plugin</th>';
 				if (!$developer_user)
-					echo '<th class="ui-widget-header ui-corner-all">Plugin price<br/> (Click to add to your cart)</th>';
+					echo '<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>';
 			echo '</tr>';
 		$install_text="Install";
 		$reinstall_text="Reinstall";
@@ -481,7 +474,7 @@ class j16000showplugins
 		<br/><br/><br/><br/><br/><br/>
 		<table class="jradmin_table" border="0">
 			<tr>
-				<th class="ui-widget-header ui-corner-all" align="center">Legend</td>
+				<th class="ui-widget-header ui-corner-tl ui-corner-tr" align="center">Legend</td>
 			</tr>
 			<tr class="ui-state-highlight ui-corner-all">
 				<td align="center">Already installed</td>
