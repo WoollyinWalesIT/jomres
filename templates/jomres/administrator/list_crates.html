@@ -1,10 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script language="JavaScript" type="text/javascript">
 jomresJquery(document).ready(function() {
-    var oTable = jomresJquery('#list_crates').dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-    });
+	var oTable = jomresJquery('#list_crates').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
 } );
 </script>
 <h2>{PAGETITLE}</h2>
@@ -12,27 +12,27 @@ jomresJquery(document).ready(function() {
 {JOMRESTOOLBAR}
 <table id="list_crates" border="0" width="100%">
 	<thead>
-        <tr>
-            <th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
-            <th>&nbsp;</th>
-            <th>{HTITLE}</th>
-            <th>{HTYPE}</th>
-            <th>{HVALUE}</th>
-            <th>{HCURRENCYCODE}</th>
-        </tr>
-    </thead>
-    <tbody>
+		<tr>
+			<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+			<th>&nbsp;</th>
+			<th>{HTITLE}</th>
+			<th>{HTYPE}</th>
+			<th>{HVALUE}</th>
+			<th>{HCURRENCYCODE}</th>
+		</tr>
+	</thead>
+	<tbody>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr class="{STYLE}">
 		<td>{CHECKBOX}</td>
-        <td>{EDITLINK}</td>
-        <td>{TITLE}</td>
-        <td>{TYPE}</td>
-        <td>{VALUE}</td>
-        <td>{CURRENCYCODE}</td>
+		<td>{EDITLINK}</td>
+		<td>{TITLE}</td>
+		<td>{TYPE}</td>
+		<td>{VALUE}</td>
+		<td>{CURRENCYCODE}</td>
 	</tr>
 	</patTemplate:tmpl>
-    </tbody>
+	</tbody>
 </table>
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="editcrate" />

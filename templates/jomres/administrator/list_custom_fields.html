@@ -1,10 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script language="JavaScript" type="text/javascript">
 jomresJquery(document).ready(function() {
-    var oTable = jomresJquery('#list_custom_fields').dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-    });
+	var oTable = jomresJquery('#list_custom_fields').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
 } );
 </script>
 <h2>{TITLE}</h2>
@@ -13,25 +13,25 @@ jomresJquery(document).ready(function() {
 {JOMRESTOOLBAR}
 <table id="list_custom_fields" border="0" width="100%">
 	<thead>
-        <tr>
+		<tr>
 			<td></td>
-            <th>{HFIELDNAME}</th>
-            <th>{HDEFAULTVALUE}</th>
-            <th>{HDESCRIPTION}</th>
-            <th>{HREQUIRED}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <patTemplate:tmpl name="rows" unusedvars="nbsp">
-        <tr>
+			<th>{HFIELDNAME}</th>
+			<th>{HDEFAULTVALUE}</th>
+			<th>{HDESCRIPTION}</th>
+			<th>{HREQUIRED}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
 			<td>{EDITLINK}</td>
-            <td>{FIELDNAME}</td>
-            <td>{DEFAULT_VALUE}</td>
-            <td>{DESCRIPTION}</td>
-            <td>{REQUIRED}</td>
-        </tr>
-        </patTemplate:tmpl>
-    </tbody>
+			<td>{FIELDNAME}</td>
+			<td>{DEFAULT_VALUE}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{REQUIRED}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
 <input type="hidden" name="task" value="edit_custom_field" />
 </form>

@@ -1,32 +1,32 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 jomresJquery(document).ready(function() {
-    var oTable = jomresJquery('#list_reviews_properties').dataTable({
-        "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
-    });
+	var oTable = jomresJquery('#list_reviews_properties').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
 } );
 </script>
 <h2>{_JOMRES_REVIEWS}</h2>
 <p>{_JOMRES_REVIEWS_ADMIN_PROPERTYLISTINFO}</p>
 <table id="list_reviews_properties" width="100%">
 	<thead>
-        <tr>
-            <th>{HPROPERTYNAME}</th>
-            <th>{_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED}</th>
-            <th>{_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL}</th>
-            <th>{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <patTemplate:tmpl name="rows" unusedvars="strip">
-        <tr class="{STYLE}">
-            <td><div class='{ROW_CLASS}'>{VIEWLINK}{PROPERTYNAME}</div></td>
-            <td>{NUMBERUNPUBLISHED}</td>
-            <td>{NUMBERTOTAL}</td>
-            <td>{REPORTTOTAL}</td>
-        </tr>		
-        </patTemplate:tmpl>
-    </tbody>
+		<tr>
+			<th>{HPROPERTYNAME}</th>
+			<th>{_JOMRES_REVIEWS_ADMIN_NUMBERUNPUBLISHED}</th>
+			<th>{_JOMRES_REVIEWS_ADMIN_NUMBERTOTAL}</th>
+			<th>{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<tr class="{STYLE}">
+			<td><div class='{ROW_CLASS}'>{VIEWLINK}{PROPERTYNAME}</div></td>
+			<td>{NUMBERUNPUBLISHED}</td>
+			<td>{NUMBERTOTAL}</td>
+			<td>{REPORTTOTAL}</td>
+		</tr>		
+		</patTemplate:tmpl>
+	</tbody>
 </table>
 </patTemplate:tmpl>
