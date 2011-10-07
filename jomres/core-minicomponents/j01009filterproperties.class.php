@@ -117,7 +117,7 @@ class j01009filterproperties
 			break;
 			}
 			
-		if (isset($_REQUEST['calledByModule']))
+		if (isset($_REQUEST['calledByModule']) || get_showtime('task') == "" )
 			{
 			$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $this->propertys_uids;
 			unset($tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets']);

@@ -1,44 +1,56 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="ui-widget-header ui-corner-all">ID</td>
+		<td width="30%">ID</td>
+        <td>{ID}</td>
+    </tr>
+    <tr>
 		<td>{HNAME}</td>
+        <td><input type="text" name="name" value="{NAME}" /></td>
+    </tr>
+    <tr>
 		<td>{HDESCRIPTION}</td>
-		<td>{HFREQUENCY}</td>
+        <td><input type="text" name="description" value="{DESCRIPTION}" /></td>
+    </tr>
+    <tr>
+		<td>{HFREQUENCY}*</td>
+        <td>{FREQUENCYDROPDOWN}</td>
+    </tr>
+    <tr>
 		<td>{HTRIALPERIOD}</td>
-		<td class="ui-widget-header ui-corner-all">{HTRIALAMOUNT}</td>
+        <td>{TRIALPERIODDROPDOWN}</td>
+    </tr>
+    <tr>
+		<td>{HTRIALAMOUNT}**</td>
+        <td><input type="text" name="trial_amount" value="{TRIALAMOUNT}" size="7" /></td>
+    </tr>
+    <tr>
 		<td>{HFULLAMOUNT}</td>
-		<!-- not supported yet so not offered<td>{HROOMSLIMIT}</td>-->
+        <td><input type="text" name="full_amount" value="{FULLAMOUNT}" /></td>
+    </tr>
+    <!--<tr> not supported yet so not offered
+		 <td>{HROOMSLIMIT}</td>
+         <td>{ROOMSLIMIT}</td>
+    </tr>-->
+    <tr>
 		<td>{HPROPERTYLIMIT}</td>
+        <td>{PROPERTYLIMIT}</td>
+    </tr>
+    <tr>
 		<td>{HTAXCODE}</td>
+        <td>{TAXCODEDROPDOWN}</td>
 	</tr>
 	<tr>
-		<td>{ID}</td>
-		<td><input type="text" name="name" value="{NAME}" /></td>
-		<td><input type="text" name="description" value="{DESCRIPTION}" /></td>
-		<td>{FREQUENCYDROPDOWN}</td>
-		<td>{TRIALPERIODDROPDOWN}</td>
-		<td><input type="text" name="trial_amount" value="{TRIALAMOUNT}" size="7" /></td>
-		<td><input type="text" name="full_amount" value="{FULLAMOUNT}" /></td>
-		<!-- not supported yet so not offered<td>{ROOMSLIMIT}</td>-->
-		<td>{PROPERTYLIMIT}</td>
-		<td>{TAXCODEDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td colspan="6" >{FREQUENCY_DESC}</td>
-	</tr>
-	<tr>
-		<td colspan="6" >{TRIALPERIOD_DESC}</td>
-	</tr>
-	<tr>
-		<td colspan="6" >{FREEBIENOTES}</td>
+		<td colspan="2" >
+        	<p>*{FREQUENCY_DESC}</p>
+            <p>**{TRIALPERIOD_DESC}</p>
+            <p>{FREEBIENOTES}</p>
+        </td>
 	</tr>
 </table>
-
-
 <input type="hidden" name="id" value="{ID}" />
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="save_subscription_package" />
