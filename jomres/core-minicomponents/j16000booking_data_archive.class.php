@@ -30,6 +30,9 @@ class j16000booking_data_archive
 		
 		$current_property_details =jomres_getSingleton('basic_property_details');
 		
+		$output['_JOMRES_SORTORDER_PROPERTYNAME']=_JOMRES_SORTORDER_PROPERTYNAME;
+		$output['_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED']=_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED;
+		
 		$query = "SELECT id,data,date FROM #__jomres_booking_data_archive";
 		$result = doSelectSql($query);
 		foreach ($result as $res)
