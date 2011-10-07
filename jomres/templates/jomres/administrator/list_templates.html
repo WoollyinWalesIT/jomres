@@ -1,12 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <script language="javascript" type="text/javascript">
 jomresJquery(document).ready(function() {
-    var oTable = jomresJquery('#admin_list_templates').dataTable({
-        "bJQueryUI": true,
+	var oTable = jomresJquery('#admin_list_templates').dataTable({
+		"bJQueryUI": true,
 		"bPaginate": false,
 		"bSort": false,
 		"sDom": 't'
-    });
+	});
 } );
 </script>
 <h2>{TITLE}</h2>
@@ -15,24 +15,24 @@ jomresJquery(document).ready(function() {
 <!--{JOMRESTOOLBAR}-->
 <table id="admin_list_templates" width="100%">
 	<thead>
-        <tr>
-            <th>{HTEMPLATENAME}</th>
-            <th>{HCUSTOMISED}</th>
-            <th>{HLAST_EDITED_DISK}</th>
-            <th>{HLAST_EDITED_DB}</th>
-            <th>{HLAST_WARNINGICON}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <patTemplate:tmpl name="rows" unusedvars="nbsp">
-        <tr>
-            <td>{EDITLINK}</td>
-            <td>{EDITED}</td>
-            <td>{LAST_EDITED_DISK}</td>
-            <td>{LAST_EDITED_DB}</td>
-            <td>{WARNINGICON}</td>
-        </tr>
-        </patTemplate:tmpl>
-    </tbody>
+		<tr>
+			<th>{HTEMPLATENAME}</th>
+			<th>{HCUSTOMISED}</th>
+			<th>{HLAST_EDITED_DISK}</th>
+			<th>{HLAST_EDITED_DB}</th>
+			<th>{HLAST_WARNINGICON}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{EDITED}</td>
+			<td>{LAST_EDITED_DISK}</td>
+			<td>{LAST_EDITED_DB}</td>
+			<td>{WARNINGICON}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
 </patTemplate:tmpl>

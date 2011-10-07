@@ -1,16 +1,16 @@
 <patTemplate:tmpl name="pageoutput">
 <script language="javascript" type="text/javascript" >
 jomresJquery(document).ready(function () {
-    var select = '#mySelect';
-    jomresJquery(select).attr('selectedIndex', '-1');
-    jomresJquery(select).change(function () {
-        jomresJquery(select + ' option').each(function () {
-            jomresJquery('#' + this.value).hide();
-        });
-        jomresJquery(select + ' option:selected').each(function () {
-            jomresJquery('#' + this.value).show();
-        });
-    }).change();
+	var select = '#mySelect';
+	jomresJquery(select).attr('selectedIndex', '-1');
+	jomresJquery(select).change(function () {
+		jomresJquery(select + ' option').each(function () {
+			jomresJquery('#' + this.value).hide();
+		});
+		jomresJquery(select + ' option:selected').each(function () {
+			jomresJquery('#' + this.value).show();
+		});
+	}).change();
 });
 </script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}&amp;task=saveregisterprop" method="post" name="adminForm">

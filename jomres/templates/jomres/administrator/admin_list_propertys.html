@@ -9,20 +9,20 @@ table.ui-widget-header ui-corner-all tr.row2 {
 {JOMRESTOOLBAR}
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<thead>
-        <tr>
-            <th class="ui-state-default">{HPROPERTYNAME}</th>
-            <th class="ui-state-default" >{HPROPERTYADDRESS}</th>
-            <th class="ui-state-default" >{HCRATE_DROPDOWN}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <patTemplate:tmpl name="rows" unusedvars="nbsp">
-        <tr class="{STYLE}">
-            <td>{VIEWLINK}{PROPERTYNAME}</td>
-            <td>{PROPERTYADDRESS}</td>
-            <td>{CRATE_DROPDOWN}</td>
-        </tr>		
-        </patTemplate:tmpl>
+		<tr>
+			<th class="ui-state-default">{HPROPERTYNAME}</th>
+			<th class="ui-state-default" >{HPROPERTYADDRESS}</th>
+			<th class="ui-state-default" >{HCRATE_DROPDOWN}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr class="{STYLE}">
+			<td>{VIEWLINK}{PROPERTYNAME}</td>
+			<td>{PROPERTYADDRESS}</td>
+			<td>{CRATE_DROPDOWN}</td>
+		</tr>		
+		</patTemplate:tmpl>
    	</tbody>
 </table>
 <input type="hidden" name="option" value="com_jomres" />
