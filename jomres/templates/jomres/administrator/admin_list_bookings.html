@@ -6,7 +6,25 @@ jomresJquery(document).ready(function() {
         "sPaginationType": "full_numbers",
 		"sDom": '<"H"lTfr>t<"F"ip>',
 		"oTableTools": {
-			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf"
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{_JRPORTAL_CPANEL_LISTBOOKINGS}"
+				},
+				"print"
+			]
 		}
     });
 } );

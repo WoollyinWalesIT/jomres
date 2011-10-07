@@ -6,7 +6,25 @@ jomresJquery(document).ready(function() {
         "sPaginationType": "full_numbers",
 		"sDom": '<"H"lTfr>t<"F"ip>',
 		"oTableTools": {
-			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf"
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
 		}
     });
 } );
@@ -27,7 +45,7 @@ jomresJquery(document).ready(function() {
 <table id="admin_list_invoices" width="100%">
 	<thead>
         <tr>
-            <th>Edit/View</th>
+            <th>&nbsp;</th>
             <th>ID</th>
             <th>{HUSER}</th>
             <th>{HSTATUS}</th>
