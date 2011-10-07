@@ -167,7 +167,7 @@ $jrConfig['use_html_purifier'] ="0";
 $jrConfig['limit_property_country'] ="0";
 $jrConfig['limit_property_country_country'] ="GB";
 
-$jrConfig['jquery_ui_theme'] = "start";
+$jrConfig['jquery_ui_theme'] = "jomres";
 
 $jrConfig['use_reviews'] = "1";
 $jrConfig['autopublish_reviews'] = "1";
