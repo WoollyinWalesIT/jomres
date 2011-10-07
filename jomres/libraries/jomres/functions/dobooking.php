@@ -560,6 +560,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 										
 			$roomtype_dropdown_list_output = array();
 			$roomtype_dropdown_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
+			$roomtype_dropdown_list['RELPATH'] = $output['RELPATH'];
 			$roomtype_dropdown_list_output[]=$roomtype_dropdown_list;
 			}
 		}
