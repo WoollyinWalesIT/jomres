@@ -10,7 +10,8 @@ tr,td {
 	text-decoration: underline;
 }
 
-
+#toolbar-box {display:none;}
+#submenu-box {display:none}
 
 /* http://forum.jquery.com/topic/jquery-ui-datepicker-initial-display-none-fixup On some templates (eg beez) an empty div appears on the bottom left of the page where datepicker shows.*/
 #ui-datepicker-div { display: none; }
