@@ -97,7 +97,18 @@ $MiniComponents->triggerEvent('00005'); // Optional
 
 if (!JRPORTAL_AJAXCALL)
 	{
-	echo $jomreslang->get_languageselection_dropdown()."<br/>";
+	?>
+    <table border="0" width="100%" class="ui-widget-content ui-corner-all">
+        <tr valign="middle">
+            <td align="left" width="50%">
+                <a href="http://www.jomres.net" target="_blank"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/></a>
+            </td>
+            <td align="right">
+                Select Jomres Language <?php echo $jomreslang->get_languageselection_dropdown();?>
+            </td>
+        </tr>
+    </table>
+    <?php
 
 	init_javascript();
 	// And a couple that are only used in the admin area
