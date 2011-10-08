@@ -45,7 +45,7 @@ if ( $is_mobile && !isset($_REQUEST['tmpl']) )
 		{
 		$st .= $key."=".$val."&";
 		}
-	header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component");
+	header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component&is_wrapped=1");
 	die();
 	}
 
