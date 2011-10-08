@@ -1,23 +1,15 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <table border="0" width="100%" class="ui-widget-content ui-corner-all">
-	<tr align="center">
-		<td>
-			<a href="http://www.jomres.net" target="_blank"><img src="{LIVESITE}/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/></a>
-		</td>
-	</tr>
-</table>
-<p>{VERSION_CHECK}</p>
-<table border="0" width="100%" class="ui-widget-content ui-corner-all">
 	<tr>
 		<td colspan="2">{PLUGIN_CHECK}</td>
 	</tr>
 	<tr>
+    	<th class="ui-state-default">System Status</th>
 		<th class="ui-state-default" width="50%">Writability check</th>
-		<th class="ui-state-default">&nbsp;</th>
 	</tr>
 	<tr>
-		<td><p>If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.</p>{WRITABILITY_TESTS}</td>
-		<td>&nbsp;</td>
+    	<td valign="top"><p>{VERSION_CHECK}</p></td>
+		<td valign="top"><p>If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.</p>{WRITABILITY_TESTS}</td>
 	</tr>
 </table>
 <br />
