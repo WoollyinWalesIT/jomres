@@ -53,19 +53,6 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'admin.j
 
 $nohtml	= jomresGetParam( $_REQUEST, 'no_html',0 );
 
-jr_import('jomres_obsolete_file_handling');
-$obsolete_files = new jomres_obsolete_file_handling();
-$obsolete_files->set_default_obs_files_array();
-$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
-if (jomresGetDomain() != "localhost")
-	$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php');
-
-if ($obsolete_files->ready_to_go() )
-	{
-	$obsolete_files->remove_obs_files();
-	$obsolete_files->output_file_deletion_warning();
-	}
-
 if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml == 0)
 	{
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
@@ -94,6 +81,20 @@ $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 
 $MiniComponents->triggerEvent('00005'); // Optional
+
+jr_import('jomres_obsolete_file_handling');
+$obsolete_files = new jomres_obsolete_file_handling();
+$obsolete_files->set_default_obs_files_array();
+$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
+if (jomresGetDomain() != "localhost")
+	$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php');
+
+if ($obsolete_files->ready_to_go() )
+	{
+	$obsolete_files->remove_obs_files();
+	$obsolete_files->output_file_deletion_warning();
+	}
+
 
 if (!JRPORTAL_AJAXCALL)
 	{

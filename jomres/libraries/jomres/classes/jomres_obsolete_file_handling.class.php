@@ -47,6 +47,17 @@ class jomres_obsolete_file_handling
 		
 	function set_default_obs_files_array()
 		{
+		// New for 5.6.1, we'll now allow plugins to report obsolete files
+		$obsolete_plugin_files = get_showtime('obsolete_plugin_files');
+		if (count($obsolete_plugin_files) > 0)
+			{
+			foreach ($obsolete_plugin_files as $file )
+			if (file_exists($file) )
+				{
+				$this->add_obs_file($file);
+				}
+			}
+		
 		$this->add_obs_file($this->dir_root.'jomres_webinstall.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00011manager.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00010reception.class.php');
