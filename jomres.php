@@ -65,7 +65,11 @@ if ($jrConfig['errorChecking'] =="1")
 else
 	$performance_monitor->switch_off();
 
-
+if ( isset($_REQUEST['is_wrapped']) )
+	{
+	if ( $_REQUEST['is_wrapped']=="1" )
+		$jrConfig['isInIframe']="1";
+	}
 
 $MiniComponents =jomres_getSingleton('mcHandler');
 

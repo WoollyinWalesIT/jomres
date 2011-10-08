@@ -71,6 +71,13 @@ if (isset($_GET['format']) )
 		define("JOMRES_WRAPPED",1);
 	}
 
+if ( isset($_REQUEST['is_wrapped']) )
+	{
+	if ( $_REQUEST['is_wrapped']=="1" )
+		$tmpl .= $tmpl."&is_wrapped=1";
+	}
+
+
 define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres");
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$jomresItemid."");
