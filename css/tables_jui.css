@@ -109,7 +109,7 @@ table.display thead th div.DataTables_sort_wrapper span {
 
 .dataTables_wrapper {
 	position: relative;
-	min-height: 302px;
+	/*min-height: 302px; disabled for better look on some pages, but needs to be monitored*/
 	_height: 302px;
 	clear: both;
 }
@@ -133,13 +133,13 @@ table.display thead th div.DataTables_sort_wrapper span {
 }
 
 .dataTables_filter {
-	width: 20%;
+	width: 22%;
 	float: right;
 	text-align: right;
 }
 
 .dataTables_info {
-	width: 50%;
+	width: 40%;
 	float: left;
 }
 
