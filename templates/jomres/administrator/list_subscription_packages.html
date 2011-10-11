@@ -12,7 +12,8 @@ jomresJquery(document).ready(function() {
 <table id="list_subscription_packages" border="0" width="100%">
 	<thead>
 		<tr>
-			<th>ID</th>
+			<th>&nbsp;</th>
+            <th>ID</th>
 			<th>{HNAME}</th>
 			<th>{HDESCRIPTION}</th>
 			<th>{HFREQUENCY}</th>
@@ -26,7 +27,8 @@ jomresJquery(document).ready(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td class="jradmin_rowtoolbar">{EDITLINK}</td>
+			<td>{EDITLINK}</td>
+            <td>{ID}</td>
 			<td>{NAME}</td>
 			<td>{DESCRIPTION}</td>
 			<td>{FREQUENCY}</td>
