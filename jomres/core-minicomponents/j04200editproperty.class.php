@@ -103,8 +103,8 @@ class j04200editproperty {
 				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
 				$output['APIKEY']=$jrConfig['google_maps_api_key'];
 				$output['PRICE']=$property->property_key;
-				$output['METATITLE']=html_entity_decode(($property->metatitle ));
-				$output['METADESCRIPTION']=html_entity_decode(($property->metadescription ));
+				$output['METATITLE']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$property->metatitle,false,false));
+				$output['METADESCRIPTION']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$property->metadescription,false,false));
 
 				if (!isset($jrConfig['allowHTMLeditor']) )
 					$jrConfig['allowHTMLeditor']="1";
