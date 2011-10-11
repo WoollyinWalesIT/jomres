@@ -1,5 +1,7 @@
 /* CSS Document */
-
+#toolbar-box {display:none;}
+#submenu-box {display:none;}
+.ui-accordion .ui-accordion-content {overflow:hidden;}
 tr,td {
 	font-size:12px;
 	padding:2px;
