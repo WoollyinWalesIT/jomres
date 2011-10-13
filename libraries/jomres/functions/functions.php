@@ -13,6 +13,33 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = "", $arguments = array(), $thumbnail = "", $thumbnail_rel_path = "" )
+	{
+	if ($image == "")
+		return false;
+	
+	$width="";$height="";
+	if ( $thumbnail == "")
+		{
+		$width="width='45px'";$height="height='45px'";
+		$thumbnail = $image;
+		}
+	
+	$id=generateJomresRandomString(10);
+	
+	$modal_width = "900";
+	if (isset($arguments['modal_width']))
+		$modal_width = (int) $arguments['modal_width'];
+	
+	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({width:".$modal_width.",modal:true});'";
+	$link = '<a href="javascript:void(0)" '.$onClick.' ><img src="'.$thumbnail_rel_path.$thumbnail.'" '.$width.' '.$height.' alt="'.$title.'" ></a>';
+	$image_div = '<div id="'.$id.'" style="display:none;overflow-y: auto;"><img src="'.$image_rel_path.$image.'"></div>';
+	
+	return $image_div.$link;
+	}
+
+
 function admins_first_run($manual_trigger = false)
 	{
 	$logfile=JOMRES_SYSTEMLOG_PATH.'admins_first_run.txt';
@@ -309,7 +336,7 @@ function init_javascript()
 				$jrConfig['load_jquery_ui'] = "1";
 
 			if (!isset($jrConfig['jquery_ui_theme_detected']))
-				$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8rc3.custom.css";
+				$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css";
 				
 			if (!isset($jrConfig['load_jquery_ui_css']))
 				$jrConfig['load_jquery_ui_css'] = "1";
