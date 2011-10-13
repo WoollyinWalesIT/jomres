@@ -80,6 +80,16 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle">'._JOMRES_SUPPORTKEY_DESC.'</td>
 		</tr>
 		<tr valign="middle" class="odd">
+			<td valign="middle">'._JOMRES_LICENSESERVER_USERNAME.'</td>
+			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_license_server_username" value="'.$jrConfig['license_server_username'].'" /></td>
+			<td valign="middle">'._JOMRES_LICENSESERVER_USERNAME_DESC.'</td>
+		</tr>
+		<tr valign="middle" class="even">
+			<td valign="middle">'._JOMRES_LICENSESERVER_PASSWORD.'</td>
+			<td valign="middle"><input type="password" class="inputbox" size="30" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_CONFIG_JQUERY.'</td>
 			<td valign="middle">'.$lists['load_jquery'].'</td>
 			<td valign="middle">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
