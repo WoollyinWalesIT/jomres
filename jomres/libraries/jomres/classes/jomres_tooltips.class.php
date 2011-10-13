@@ -129,6 +129,49 @@ class jomres_tooltips
 					</script>
 					';
 			break;
+			case "warning":
+				if (isset($type_arguments["width"]))
+					$width=$type_arguments["width"];
+				if (isset($type_arguments["height"]))
+					$height=$type_arguments["height"];
+				if (isset($type_arguments["border"]))
+					$border=$type_arguments["border"];
+				$div_string.='<div id="'.$div.'"';
+				if (strlen($class)>0)
+					$div_string.=' class="'.$class.'" ';
+				else
+					$div_string.=' class="jomres_bt_tooltip" ';
+					
+				$div_string.=' title="'.$hover_content.'"><img src="'.get_showtime('live_site').'/jomres/images/warning.png" alt="Warning tooltip"';
+				if (isset($type_arguments["width"]))
+					$div_string.='width="'.$width.'" ';
+				if (isset($type_arguments["height"]))
+					$div_string.='height="'.$height.'" ';
+				if (isset($type_arguments["border"]))
+					$div_string.='border="'.$border.'"';
+				$div_string.=' /></div>';
+				$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt({
+						activeClass: \'tooltip_bubble_width\',
+						cornerRadius: 10,
+						strokeWidth: 0,
+						shadow: true,     //only shown in new browser
+						shadowOffsetX: 3,
+						shadowOffsetY: 3,
+						shadowBlur: 8,
+						shadowColor: \'rgba(0,0,0,.9)\',
+						shadowOverlap: false,
+						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
+						positions: [\''.$this->positions.'\'],
+						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
+						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
+						cssStyles: 
+							{
+							color: \'#F9FB61\'
+							}
+						});
+					</script>
+					';
+			break;
 			case "imageonly":
 				$imagethumb=false;
 				if (isset($type_arguments["imagethumb"]))
