@@ -53,6 +53,8 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'admin.j
 
 $nohtml	= jomresGetParam( $_REQUEST, 'no_html',0 );
 
+
+
 if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml == 0)
 	{
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
@@ -95,7 +97,6 @@ if ($obsolete_files->ready_to_go() )
 	$obsolete_files->output_file_deletion_warning();
 	}
 
-
 if (!JRPORTAL_AJAXCALL)
 	{
 	?>
@@ -105,7 +106,14 @@ if (!JRPORTAL_AJAXCALL)
                 <a href="http://www.jomres.net" target="_blank"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/></a>
             </td>
             <td align="right">
-                Select Jomres Language <?php echo $jomreslang->get_languageselection_dropdown();?>
+            	<?php
+					if (isset($_REQUEST['tmpl']) ) { ?>
+            		<div><a href="<?php echo get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl"); ?>">Default view</a></div>
+                <?php } else { ?>
+                	<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
+                <?php } ?>
+                <div>&nbsp;</div>
+                <div>Select Jomres Language <?php echo $jomreslang->get_languageselection_dropdown();?></div>
             </td>
         </tr>
     </table>
@@ -116,7 +124,8 @@ if (!JRPORTAL_AJAXCALL)
 	?>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/graphs.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
-	<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
+	<div id="jomresmenu_hint" style="color:red;">&nbsp;</div>
+    
 	<?php
 	}
 if (isset($_REQUEST['statoption']))
@@ -138,12 +147,9 @@ if (!JRPORTAL_AJAXCALL)
 	jr_import('cpanel');
 	$cpanel=new cpanel();
 	$MiniComponents =jomres_getSingleton('mcHandler');
-	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
-	
-	echo '<div style="float:right;width:79%;">';// Needed otherwise the accordion goes wandering off to the right
+	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];	
+	echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
 	}
-
-
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
@@ -239,3 +245,13 @@ function removeBOM($str="")
 		// }
 	return $str;
 	}
+
+function remove_querystring_var($key) { 
+  foreach($_GET as $variable => $value){
+    if($variable != $key){
+       $url .= $variable.'='.$value.'&';
+    }
+  }
+  $url = rtrim($url,'&');
+  return $url; 
+}
