@@ -111,15 +111,19 @@ class j16000showplugins
 			$rp_array=json_decode($remote_plugins_data);
 			foreach ($rp_array as $rp)
 				{
-				$remote_plugins[trim(addslashes($rp->name))]=array(
-					"name"=>trim(addslashes($rp->name)),
-					"version"=>(float)$rp->version,
-					"lastupdate"=>addslashes($rp->lastupdate),
-					"description"=>addslashes($rp->description),
-					"type"=>addslashes($rp->type),
-					"min_jomres_ver"=>addslashes($rp->min_jomres_ver),
-					"price"=>(float)$rp->price,
-					"manual_link"=>addslashes($rp->manual_link),
+				$remote_plugins[trim(addslashes(@$rp->name))]=array(
+					"name"					=>trim(addslashes(@$rp->name)),
+					"version"				=>(float)@$rp->version,
+					"lastupdate"			=>addslashes(@$rp->lastupdate),
+					"description"			=>addslashes(@$rp->description),
+					"type"					=>addslashes(@$rp->type),
+					"min_jomres_ver"		=>addslashes(@$rp->min_jomres_ver),
+					"price"					=>(float)@$rp->price,
+					"manual_link"			=>addslashes(@$rp->manual_link),
+					"change_log"			=>addslashes(@$rp->change_log),
+					"highlight"				=>addslashes(@$rp->highlight),
+					"image"					=>addslashes(@$rp->image),
+					"demo_url"				=>addslashes(@$rp->demo_url),
 					);
 				}
 			}
@@ -222,6 +226,9 @@ class j16000showplugins
 				</form>
 				<div class="ui-state-highlight ui-corner-all">Total <strong>&pound;<span id="total"></span></strong></div>
 				<button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Purchase</button>
+				<p>
+				Note, if you have a Jomres Developer or Perpetual license number, please make sure you\'ve entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
+				</p>
 			</div>
 			<div id="username_input" style="display:none">
 				<fieldset>
@@ -349,6 +356,7 @@ class j16000showplugins
 				<th class="ui-state-default">Current Version</th>
 				<th class="ui-state-default">Last updated</th>
 				<th class="ui-state-default">Description</th>
+				<th class="ui-state-default">Changelog</th>
 				<th class="ui-state-default">Add/reinstall/upgrade plugin</th>
 				<th class="ui-state-default">Remove plugin</th>';
 				if (!$developer_user)
@@ -425,7 +433,11 @@ class j16000showplugins
 				{ 
 				$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
 				}
-			
+				
+			$changelog = '';
+			if ($rp['change_log'] != '' )
+				$changelog = jomres_makeTooltip($rp['name'],$hover_title="",$rp['change_log'],$rp['change_log'],$class="",$type="infoimage");
+				
 			echo
 			"<tr class=\"".$row_class." \" >
 				<td class=\"ui-corner-all\" $style>".$strong1.$rp['name'].$strong2."</td>
@@ -433,7 +445,8 @@ class j16000showplugins
 				<td class=\"ui-corner-all\" $style>".$local_version."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['lastupdate']."</td>
-				<td class=\"ui-corner-all\" $style>".$strong1.stripslashes($rp['description']).$strong2.$manual_link."</td>";
+				<td class=\"ui-corner-all\" $style>".$strong1.stripslashes($rp['description']).$strong2.$manual_link."</td>
+				<td class=\"ui-corner-all\" $style>".$changelog."</td>";
 				if ( count($min_jomres_ver) == 3 && count($this_jomres_version) == 3)
 					{
 					$min_major_version = $min_jomres_ver[0];
@@ -458,6 +471,7 @@ class j16000showplugins
 
 				echo "<td class=\"ui-corner-all\" $style>".$uninstallLink."</td>";
 				$button = '';
+				
 				if ( !array_key_exists($rp['name'],$installed_plugins ) && !array_key_exists($rp['name'],$current_licenses ) )
 					{
 					$button ='Add to cart <button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');" >&pound;'.number_format($rp['price']).'</button>';
