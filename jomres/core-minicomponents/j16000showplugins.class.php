@@ -372,6 +372,7 @@ class j16000showplugins
 			</tr>
 			<tr>
 				<th class="ui-state-default">Name</th>
+				<th class="ui-state-default">Image</th> 
 				<th class="ui-state-default">Minimum Jomres version</th>
 				<th class="ui-state-default">Your Version</th>
 				<th class="ui-state-default">Current Version</th>
@@ -441,9 +442,7 @@ class j16000showplugins
 			$local_version=$installed_plugins[$plugin_name]['version'];
 			if (!array_key_exists($plugin_name,$installed_plugins ) )
 				$local_version="N/A";
-				
-
-				
+			
 			//$row_class = "row0";
 			if($counter%2 == 0 && $row_class == 'ui-widget-content ui-corner-all')
 				$row_class = "row1";
@@ -470,10 +469,15 @@ class j16000showplugins
 			$highlight = '';
 			if ($rp['highlight'] != '' )
 				$highlight = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
+			
+			$image = '';
+			if ($rp['image'] != '' )
+				$image = jomres_make_image_popup($rp['name'],$rp['image']);
 
 			echo
 			"<tr class=\"".$row_class." \" >
 				<td class=\"ui-corner-all\" $style>".$strong1.$rp['name'].$strong2."</td>
+				<td class=\"ui-corner-all\" $style>".$image."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['min_jomres_ver']."</td>
 				<td class=\"ui-corner-all\" $style>".$local_version."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
