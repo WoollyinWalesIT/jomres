@@ -214,12 +214,13 @@ class j16000showplugins
 			}
 			
 		//////////////////////////////////////////////////////
-
+		
+		echo '<h2>Jomres Plugin Manager</h2>';
+		echo '<table width="100%" border="0"><tr><td width="75%" valign="top">';
 		if (!$developer_user)
 			{
 			echo '
-			<br/><br/><br/>
-			<div id="cart_wrapper" style="width:500px;margin-left:auto;margin-right:auto;">
+			<div id="cart_wrapper" style="width:500px;">
 			
 				<div class="ui-widget-header ui-corner-all"><img src = "'.get_showtime('live_site').'/jomres/images/cart_red_transparent.png"/>Your shopping cart</div>
 				<form id="cart">
@@ -257,8 +258,29 @@ class j16000showplugins
 		if ($developer_user)
 		echo '
 		<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3><br/>Bold items in the core plugins list are generally essential when building a portal, and if you have upgraded from v4 you should consider installing those plugins to continue working as before.';
-
-		echo '<table class="jradmin_table" border="0">
+		
+		echo '</td>';
+		echo '<td width="25%" valign="top">
+			<table width="100%" border="0">
+			<tr>
+				<th class="ui-widget-header ui-corner-tl ui-corner-tr" align="center">Legend</td>
+			</tr>
+			<tr class="ui-state-highlight">
+				<td align="center">Already installed</td>
+			</tr>
+			<tr class="ui-state-error">
+				<td  align="center">Upgrade is available</td>
+			</tr>
+            <tr>
+				<td align="center" style="border-style:solid;border-color:#00ff00;border-width:1px;">Free plugin</td>
+			</tr>
+			<tr>
+				<td align="center" class="ui-widget-content">Third party plugin</td>
+			</tr>
+		</table>
+		</td></tr></table>
+		';
+		echo '<table width="100%" border="0">
 			<tr>
 				<th class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="6">Third party plugins</th>
 			</tr>
@@ -330,7 +352,7 @@ class j16000showplugins
                     <th class="ui-widget-header ui-corner-tl ui-corner-tr">Install third party plugin</th>
                 </tr>
                 <tr>
-                    <td class="ui-widget-content ui-corner-all"><input type="file" name="pluginfile" size="40"/> <input type="submit" value="Install" class="button" /></td>
+                    <td class="ui-widget-content ui-corner-all"><input type="file" name="pluginfile" size="40"/> <input type="submit" value="Install" class="fg-button ui-state-default ui-corner-all" /></td>
                 </tr>
 			</table>
 			</form>
@@ -340,12 +362,11 @@ class j16000showplugins
 		';
 		
 		////////////////////////////////////////////////////// Remote plugins
-		$span = 9;
+		$span = 10;
 		if ($developer_user)
-			$span=8;
+			$span=9;
 		
-		echo '
-		<table class="jradmin_table" border="0">
+		echo '<table width="100%" border="0">
 			<tr>
 				<td class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="'.$span.'">Jomres.net plugins</td>
 			</tr>
@@ -357,8 +378,10 @@ class j16000showplugins
 				<th class="ui-state-default">Last updated</th>
 				<th class="ui-state-default">Description</th>
 				<th class="ui-state-default">Changelog</th>
+				<th class="ui-state-default">Warnings</th>
 				<th class="ui-state-default">Add/reinstall/upgrade plugin</th>
-				<th class="ui-state-default">Remove plugin</th>';
+				<th class="ui-state-default">Remove plugin</th>
+				';
 				if (!$developer_user)
 					echo '<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>';
 			echo '</tr>';
@@ -419,9 +442,7 @@ class j16000showplugins
 			if (!array_key_exists($plugin_name,$installed_plugins ) )
 				$local_version="N/A";
 				
-			$manual_link ='';
-			if( isset($rp['manual_link']) && $rp['manual_link'] != '')
-				$manual_link = '&nbsp;<a href="http://manual.jomres.net/'.$rp['manual_link'].'.html" target="_blank">Manual</a>';
+
 				
 			//$row_class = "row0";
 			if($counter%2 == 0 && $row_class == 'ui-widget-content ui-corner-all')
@@ -434,10 +455,22 @@ class j16000showplugins
 				$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
 				}
 				
+			$manual_link ='';
+			if( isset($rp['manual_link']) && $rp['manual_link'] != '')
+				$manual_link = '&nbsp;<a href="http://manual.jomres.net/'.$rp['manual_link'].'.html" target="_blank">Manual</a>';
+				
+			$demo_url ='';
+			if( isset($rp['demo_url']) && $rp['demo_url'] != '')
+				$demo_url = '&nbsp;<a href="'.$rp['demo_url'].'.html" target="_blank">Demo</a>';
+			
 			$changelog = '';
 			if ($rp['change_log'] != '' )
 				$changelog = jomres_makeTooltip($rp['name'],$hover_title="",$rp['change_log'],$rp['change_log'],$class="",$type="infoimage");
 				
+			$highlight = '';
+			if ($rp['highlight'] != '' )
+				$highlight = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
+
 			echo
 			"<tr class=\"".$row_class." \" >
 				<td class=\"ui-corner-all\" $style>".$strong1.$rp['name'].$strong2."</td>
@@ -445,8 +478,10 @@ class j16000showplugins
 				<td class=\"ui-corner-all\" $style>".$local_version."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['lastupdate']."</td>
-				<td class=\"ui-corner-all\" $style>".$strong1.stripslashes($rp['description']).$strong2.$manual_link."</td>
-				<td class=\"ui-corner-all\" $style>".$changelog."</td>";
+				<td class=\"ui-corner-all\" $style>".$strong1.stripslashes($rp['description']).$strong2.$manual_link." ".$demo_url."</td>
+				<td class=\"ui-corner-all\" $style>".$changelog."</td>
+				<td class=\"ui-corner-all\" $style>".$highlight."</td>
+				";
 				if ( count($min_jomres_ver) == 3 && count($this_jomres_version) == 3)
 					{
 					$min_major_version = $min_jomres_ver[0];
@@ -485,19 +520,6 @@ class j16000showplugins
 			}
 			
 		echo '</table>
-		<br/><br/><br/><br/><br/><br/>
-		<table class="jradmin_table" border="0">
-			<tr>
-				<th class="ui-widget-header ui-corner-tl ui-corner-tr" align="center">Legend</td>
-			</tr>
-			<tr class="ui-state-highlight ui-corner-all">
-				<td align="center">Already installed</td>
-			</tr>
-			<tr class="ui-state-error ui-corner-all">
-				<td  align="center">Upgrade is available</td>
-			</tr>
-		</table>
-
 		';
 		}
 
