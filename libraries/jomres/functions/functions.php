@@ -309,7 +309,7 @@ function init_javascript()
 				$jrConfig['load_jquery_ui'] = "1";
 
 			if (!isset($jrConfig['jquery_ui_theme_detected']))
-				$jrConfig['jquery_ui_theme_detected'] = "smoothness^jquery-ui-1.8rc3.custom.css";
+				$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8rc3.custom.css";
 				
 			if (!isset($jrConfig['load_jquery_ui_css']))
 				$jrConfig['load_jquery_ui_css'] = "1";
