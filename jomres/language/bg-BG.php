@@ -1616,3 +1616,7 @@ define('_JOMRES_CRATES_CLICKINITIAL','Click on a letter to show all businesses w
 define('_JRPORTAL_TAX_RATE_EDIT',"Edit Tax rate");
 
 define('_JOMRES_COM_CUSTOMFIELDS_TITLE_EDIT',"Edit Custom field");
+
+define('_JOMRES_LICENSESERVER_PASSWORD',"License server password");
+define('_JOMRES_LICENSESERVER_USERNAME',"License server username");
+define('_JOMRES_LICENSESERVER_USERNAME_DESC',"If you have a username and password on the license server, please enter them here. This will help you to access plugins that you are entitled to. If you have entered a valid Support key in the field above, then it is not necessary to supply the username/password here.");
