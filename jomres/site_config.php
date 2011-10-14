@@ -173,7 +173,7 @@ $jrConfig['use_reviews'] = "1";
 $jrConfig['autopublish_reviews'] = "1";
 $jrConfig['reviews_test_mode'] = "0";
 
-$jrConfig['show_booking_form_in_property_details'] ="1"; // New for v4.5.2
+$jrConfig['show_booking_form_in_property_details'] ="0"; // New for v4.5.2
 
 $jrConfig['search_order_default'] = "1";
 $jrConfig['show_search_order'] = "1";
@@ -212,10 +212,10 @@ $jrConfig['use_conversion_feature'] = "1";
 $jrConfig['javascript_caching_enabled'] = "0";
 
 $jrConfig['geolocation_api_key'] = "";
-$jrConfig['booking_form_modal_popup'] = "1";
-$jrConfig['booking_form_totalspanel_position'] = "520";
-$jrConfig['booking_form_width'] = "490";
-$jrConfig['booking_form_totals_panel_as_slider'] = "1";
+$jrConfig['booking_form_modal_popup'] = "0";
+$jrConfig['booking_form_totalspanel_position'] = "455";
+$jrConfig['booking_form_width'] = "450";
+$jrConfig['booking_form_totals_panel_as_slider'] = "0";
 $jrConfig['useNewusers_sendemail']="1";
 $jrConfig['show_tax_in_totals_summary']="1";
 ?>
