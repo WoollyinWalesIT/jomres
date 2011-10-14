@@ -37,10 +37,6 @@ class j10001control_panel
 		$localFopen=$configSets["PHP Core"]['allow_url_fopen'][0];
 		$masterFopen=$configSets["PHP Core"]['allow_url_fopen'][1];
 
-
-		
-		
-		
 		if (function_exists("curl_init"))
 			{
 			$curl_handle=curl_init();
@@ -116,7 +112,22 @@ class j10001control_panel
 
 		$output['PLUGIN_CHECK'] = plugin_check();
 		
-
+		$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
+		$licensekey=doSelectSql($query,1);
+		$licensekey = '';
+		$output['PRODUCT_INFORMATION']='';
+		if (trim($licensekey)=="")
+			{
+			$output['_JOMRES_PRODUCT_INFORMATION']=_JOMRES_PRODUCT_INFORMATION;
+			$output['_JOMRES_PRODUCT_INFORMATION2']=_JOMRES_PRODUCT_INFORMATION2;
+			}
+		
+		
+		
+		if (!$key_validation->key_valid)
+			{
+			
+			}
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
