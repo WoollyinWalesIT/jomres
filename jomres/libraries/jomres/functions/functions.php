@@ -3736,7 +3736,12 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	$elementsToRemove=array("\\","'",);
 	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
 	$newName=strtolower(str_replace(" ","_", $newName));
-
+	
+	$slideshow_image_upload = false;
+	$batchUploadFormElements = array('image0','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','image11');
+	if (in_array($formelement,$batchUploadFormElements))
+		$slideshow_image_upload = true;
+	
 	if (isset($formelement) && isset($newName) && isset($saveToPath) )
 		{
 		if (!is_dir($saveToPath) )
@@ -3782,6 +3787,18 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 				}
 			else
 				{
+				if ( (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" ) && $slideshow_image_upload ) // For Joomla plugin galleries
+					{
+					$joomla_dir = JOMRES_IMAGE_UPLOAD_PATH.'joomla'.JRDS;
+					
+					if (!is_dir($joomla_dir) )
+						mkdir($joomla_dir);
+					if (!is_dir($joomla_dir.'big') )
+						mkdir($joomla_dir.'big');
+
+					$img->saveImage($joomla_dir.'big'.JRDS.$newName,$ok_to_delete);
+					}
+
 				// We've managed to do the upload of the image, let's now use the same functionality to create the thumbnail. Everything's worked so far so there's no need to perform the same checks so this should be much simpler.
 				$ok_to_delete = true;
 				$filename= split("\.", $newName);
@@ -3794,10 +3811,22 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
 				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_list_max_width']), floor( (int)$jrConfig['thumbnail_property_list_max_height']));
 				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_small,$ok_to_delete) ;
-				
+				if ( (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" ) && $slideshow_image_upload ) // For Joomla plugin galleries
+					{
+					if (!is_dir($joomla_dir.'small') )
+						mkdir($joomla_dir.'small');
+					$img->saveImage($joomla_dir.'small'.JRDS.$thumbnail_name_small,$ok_to_delete) ;
+					}
+
 				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
 				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_header_max_width']),floor( (int)$jrConfig['thumbnail_property_header_max_height']));
 				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_med,$ok_to_delete) ;
+				if ( (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" ) && $slideshow_image_upload ) // For Joomla plugin galleries
+					{
+					if (!is_dir($joomla_dir.'medium') )
+						mkdir($joomla_dir.'medium');
+					$img->saveImage($joomla_dir.'medium'.JRDS.$thumbnail_name_med,$ok_to_delete) ;
+					}
 				}
 			}
 		else
