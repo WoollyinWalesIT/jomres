@@ -37,9 +37,9 @@ class j10001control_panel
 		$localFopen=$configSets["PHP Core"]['allow_url_fopen'][0];
 		$masterFopen=$configSets["PHP Core"]['allow_url_fopen'][1];
 
-		$thisVersion=$mrConfig['version'];
+
 		
-		$output['VERSION_CHECK'] = "This Jomres version: $thisVersion<br />";
+		
 		
 		if (function_exists("curl_init"))
 			{
@@ -51,14 +51,73 @@ class j10001control_panel
 			$buffer = curl_exec($curl_handle);
 			curl_close($curl_handle);
 			if (empty($buffer))
-				$output['VERSION_CHECK'] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres.net ?<p>";
+				$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres.net ?<p>";
 			else
-				$output['VERSION_CHECK'] .= $buffer;
-			}
-			
-		$output['PLUGIN_CHECK'] = plugin_check();
+				{
+				// for testing
+				//$latest = "5.6.1";
+				//$buffer = $latest;
+				
+				$latest_jomres_version = explode(".",$buffer);
+				$this_jomres_version = explode(".",$mrConfig['version']);
+				
+				if (!isset( $latest_jomres_version[2]))		$latest_jomres_version[2] = 0;
+				if (!isset( $this_jomres_version[2]))		$this_jomres_version[2] = 0;
+				
+				$latest_major_version = $latest_jomres_version[0];
+				$latest_minor_version = $latest_jomres_version[1];
+				$latest_revis_version = $latest_jomres_version[2];
+				
+				$current_major_version = $this_jomres_version[0];
+				$current_minor_version = $this_jomres_version[1];
+				$current_revis_version = $this_jomres_version[2];
+				
 
-							
+				$best_before_expired = false;
+				$output['HIGHLIGHT'] = "";
+				$output['ALERT'] = "";
+				$output['EFFECT'] = "";
+				
+				if (
+					$current_major_version < $latest_major_version
+					)
+					$best_before_expired = true;
+
+				if (
+					$current_major_version <= $latest_major_version &&
+					$current_minor_version <= $latest_minor_version &&
+					$current_revis_version < $latest_revis_version
+					)
+					$best_before_expired = true;
+				
+				if (
+					$current_major_version <= $latest_major_version &&
+					$current_minor_version < $latest_minor_version
+					)
+					$best_before_expired = true;
+				
+				if ($best_before_expired)
+					{
+					$output['HIGHLIGHT'] = "ui-state-error";
+					$output['ALERT'] = _JOMRES_VERSIONCHECK_VERSIONWARNING;
+					$output['EFFECT'] = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
+					}
+				
+				$output['_JOMRES_VERSIONCHECK_THISJOMRESVERSION'] = _JOMRES_VERSIONCHECK_THISJOMRESVERSION;
+				$output['_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION'] = _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION;
+				
+				
+				$output['LATEST_JOMRES_VERSION'] = $latest_major_version.".".$latest_minor_version.".".$latest_revis_version;
+				$output['THIS_JOMRES_VERSION'] = $current_major_version.".".$current_minor_version.".".$current_revis_version;
+				
+				
+				}
+			}
+
+		$output['PLUGIN_CHECK'] = plugin_check();
+		
+
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
