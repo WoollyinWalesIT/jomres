@@ -29,6 +29,10 @@ if (strstr($scriptname,'install_jomres.php'))
 $ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
+
+$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+if (!strstr($scriptname,'install_jomres.php'))
+	{
 	$query = "SELECT id"
 		. "\n FROM #__menu"
 		. "\n WHERE "
@@ -53,8 +57,13 @@ define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 		{if (isset($jrConfig['jomresItemid']))
 			$jomresItemid = $jrConfig['jomresItemid'];
 		else
-			$jomresItemid = 0; //should only kick in on install
+			$jomresItemid = 0;
 		}
+	}
+else
+	{
+	$jomresItemid = 0; //should only kick in on install
+	}
 
 $jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
 
