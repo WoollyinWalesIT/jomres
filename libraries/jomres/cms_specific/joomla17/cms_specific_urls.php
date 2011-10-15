@@ -29,7 +29,6 @@ if (strstr($scriptname,'install_jomres.php'))
 $ssllink	= str_replace("https://","http://",get_showtime('live_site'));
 define('JOMRES_ADMINISTRATORDIRECTORY',"administrator");
 
-
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (!strstr($scriptname,'install_jomres.php'))
 	{
