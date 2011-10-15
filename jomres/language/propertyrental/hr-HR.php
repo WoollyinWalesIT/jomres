@@ -1660,10 +1660,3 @@ define('_JOMRES_COM_CUSTOMFIELDS_TITLE_EDIT',"Edit Custom field");
 define('_JOMRES_LICENSESERVER_PASSWORD',"License server password");
 define('_JOMRES_LICENSESERVER_USERNAME',"License server username");
 define('_JOMRES_LICENSESERVER_USERNAME_DESC',"If you have a username and password on the license server, please enter them here. This will help you to access plugins that you are entitled to. If you have entered a valid Support key in the field above, then it is not necessary to supply the username/password here.");
-
-define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION',"This Jomres version : ");
-define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION',"Latest Jomres version");
-define('_JOMRES_VERSIONCHECK_VERSIONWARNING',"Alert : There is a new version of Jomres available, you are advised to upgrade at your earliest convenience.");
-
-define('_JOMRES_PRODUCT_INFORMATION','Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Developer or Jomres Perpetual license, <a href="http://www.jomres.net/jomres-mainmenu-213/jomres-lite-solo-developer-unlimited-comparison-matrix" target="_blank"> please visit our site</a> for information on how you can upgrade.');
-define('_JOMRES_PRODUCT_INFORMATION2','This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the "Help" section to the left, including the "Getting Started" page which will guide you through your first steps.');
