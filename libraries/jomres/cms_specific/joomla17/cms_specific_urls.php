@@ -46,11 +46,12 @@ if (!strstr($scriptname,'install_jomres.php'))
 		// get menu
 		$menu   = $app->getMenu();
 		// get active menu id
-		$activeId = $menu->getActive()->id;
+		//var_dump($menu->getActive()->id);exit;
+		$activeId = @$menu->getActive()->id;  // Sometimes, for no discernable reason, php triggers a notice saying that this isn't an object
 		// get active menu
-		$active   = $menu->getActive();
+		$active   = @$menu->getActive();
 		// set jomresItemid
-		$jomresItemid = $active->id;
+		$jomresItemid = $active->id;  // Sometimes, for no discernable reason, php triggers a notice saying that this isn't an object
 		}
 	else
 		{if (isset($jrConfig['jomresItemid']))
