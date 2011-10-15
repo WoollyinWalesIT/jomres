@@ -489,6 +489,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_javascript.'tablesort.js');
 		$this->add_obs_file($this->dir_css.'tables.css');
 		
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_06_slideshows.class.php');
 		}
 	
 	function add_obs_file($path_and_file)
