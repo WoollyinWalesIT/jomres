@@ -29,11 +29,11 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	$id=generateJomresRandomString(10);
 
 	$sizes = getimagesize ($image_rel_path.$image);
-	$modal_width = $sizes[0]+15;
+	$modal_width = $sizes[0]+30;
 
 	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({dialogClass:\"alert\",width:".$modal_width.",modal:true,title:\"".$title."\"});'";
 	$link = '<a href="javascript:void(0);" '.$onClick.' ><img src="'.$thumbnail_rel_path.$thumbnail.'" '.$width.' '.$height.' alt="'.$title.'" ></a>';
-	$image_div = '<div id="'.$id.'" style="display:none;overflow-y: auto;"><img src="'.$image_rel_path.$image.'"></div>';
+	$image_div = '<div id="'.$id.'" style="display:none;"><img src="'.$image_rel_path.$image.'"></div>';
 
 	return $image_div.$link;
 	}
