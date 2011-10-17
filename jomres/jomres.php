@@ -444,7 +444,7 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 		break;
 		#########################################################################################
 		case 'showRoomsListing':
-			//property_header($property_uid);
+			property_header($property_uid);
 			$componentArgs=array('all'=>"all",'property_uid'=>$property_uid);
 			$MiniComponents->triggerEvent('01055',$componentArgs);
 			$componentArgs=array();
@@ -1004,7 +1004,7 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 		break;
 		#########################################################################################
 		case 'showTariffs':
-			//property_header($property_uid);
+			property_header($property_uid);
 			$MiniComponents->triggerEvent('01020'); //showTariffs();
 		break;
 		#########################################################################################
