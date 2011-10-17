@@ -358,6 +358,7 @@ function init_javascript()
 				jomres_cmsspecific_addheaddata("css",$themePath,$filename);
 
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
+			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.ui.potato.menu.css');
 
 			if (jomres_cmsspecific_areweinadminarea())
 				{
@@ -386,6 +387,8 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js",'',true);
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js",'',true);  // Won't pack properly
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.ui.potato.menu.js");
+
 
 			if ($thisJRUser->userIsManager)
 				{
@@ -860,7 +863,7 @@ function jomresValidateUrl($url)
 
 
 
-function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jomresimages/small/')
+function jomres_mainmenu_option( $link, $image='', $text, $path='/jomres/images/jomresimages/small/',$category = null,$external = false)
 	{
 	$MiniComponents =jomres_getSingleton('mcHandler');
 
@@ -873,49 +876,62 @@ function jomres_mainmenu_option( $link, $image, $text, $path='/jomres/images/jom
 	$link = jomresURL($link);
 	$link = jomresValidateUrl($link);
 
+	if ($image == '')
+		$image = 'Prompt.png';
+	
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
-		{
-		$path=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,"",get_showtime('ePointFilepath'));
-		$path=str_replace(JRDS,"/",$path);
-		}
-	if (!strstr($image,"blank.png"))
-		{
-		if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
-			{
-			$path=get_showtime('live_site').$path.$image;
-			return '
-				<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
-					<div class="icon" align="center">
-						<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
-						<img src="'.$path.'" border="0" />
-						</a>
-					</div>
-				</div>
-				';
-				}
-		else
-			{
-			return '<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
-					'.$text.'
-					</a>&nbsp;&nbsp;';
-			}
-		}
+		$path=get_showtime('eLiveSite');
 	else
-		{
-		if ($text != "<br/>")
-			{
-			$path=get_showtime('live_site').$path.$image;
-			return '
-			<div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
-				<div class="icon" align="center">
-					<img src="'.$path.'" border="0" />
-				</div>
-			</div>
-			';
-			}
-		else
-			return "<br/>";
-		}
+		$path=get_showtime('live_site').'/jomres/images/jomresimages/small/';
+	
+	if (!isset($category ))
+		$category = 'misc';
+	//$path=get_showtime('live_site').$path.$image;
+	if (!strstr($image,"blank.png") && strlen($link) > 0  && strlen($text) > 0 )
+		return array("link"=>$link,"image"=>$image,"menu_name"=>$text,"image_path"=>$path,"category"=>$category,"external"=>$external);
+	else
+		return;
+
+	// commented out to make way for new jomres mainmenu
+	// if (!strstr($image,"blank.png"))
+		// {
+		// if ($jrConfig['menusAsImages']=="1" && strlen($image)>0)
+			// {
+			// $path=get_showtime('live_site').$path.$image;
+			// return '
+				// <div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
+					// <div class="icon" align="center">
+						// <a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
+						// <img src="'.$path.'" border="0" />
+						// </a>
+					// </div>
+				// </div>
+				// ';
+				// }
+		// else
+			// {
+			// return '<a href="'.$link.'" style="text-decoration:none;" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$text.'\'">
+					// '.$text.'
+					// </a>&nbsp;&nbsp;';
+			// }
+		// }
+	// else
+		// {
+		// if ($text != "<br/>")
+			// {
+			// $path=get_showtime('live_site').$path.$image;
+			// return '
+			// <div style="padding:0 2px 4px 0;text-align:center;vertical-align:middle;float:left;width:35px;height:35px;">
+				// <div class="icon" align="center">
+					// <img src="'.$path.'" border="0" />
+				// </div>
+			// </div>
+			// ';
+			// }
+		// else
+			// return "<br/>";
+		// }
+	
 	}
 
 

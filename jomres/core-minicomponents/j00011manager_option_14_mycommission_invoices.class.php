@@ -38,7 +38,7 @@ class j00011manager_option_14_mycommission_invoices {
 		$jrConfig=$siteConfig->get();
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!$thisJRUser->superPropertyManager && $jrConfig['use_commission']=="1")
-			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=my_commission_invoices", 'subscriptions.png', jr_gettext('_JRPORTAL_INVOICES_COMMISSION_TITLE',_JRPORTAL_INVOICES_COMMISSION_TITLE,false,false));
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=my_commission_invoices", 'subscriptions.png', jr_gettext('_JRPORTAL_INVOICES_COMMISSION_TITLE',_JRPORTAL_INVOICES_COMMISSION_TITLE,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices" ,false,false) );
 		}
 	
 	

@@ -79,6 +79,7 @@ class j06000show_property_reviews
 					$output['_JOMRES_REVIEWS_THANKS_FOR_REVIEW']=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW',_JOMRES_REVIEWS_THANKS_FOR_REVIEW,false,false);
 				else if (!$thisJRUser->userIsManager)
 					$output['_JOMRES_REVIEWS_THANKS_FOR_REVIEW']=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED',_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED,false,false);
+				$output['CLASS']="ui-state-highlight";
 				$output['SHOW_THANKS']="true";
 				}
 			
@@ -101,7 +102,7 @@ class j06000show_property_reviews
 			if ( $this_user_can_review_this_property)
 				{
 				$url=jomresURL(JOMRES_SITEPAGE_URL."&task=add_review&amp;property_uid=".$property_uid);
-				$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<a href = "'.$url.'"><img src="'.$add_review_icon.'"/>'.jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false).'</a>';
+				$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<a href = "'.$url.'"><img src="'.$add_review_icon.'" style="vertical-align:middle;"/>'.jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false).'</a>';
 				}
 			else 
 				{

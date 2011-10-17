@@ -34,7 +34,7 @@ class j00011manager_option_06_slideshows {
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=bUploadForm", 'SlideShowImages.png', jr_gettext('_JOMRES_FRONT_IMAGEUPLOADS',_JOMRES_FRONT_IMAGEUPLOADS,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=bUploadForm", 'SlideShowImages.png', jr_gettext('_JOMRES_FRONT_IMAGEUPLOADS',_JOMRES_FRONT_IMAGEUPLOADS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings" ,false,false) );
 		}
 	
 	

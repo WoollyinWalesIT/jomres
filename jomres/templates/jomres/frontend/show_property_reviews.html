@@ -1,4 +1,4 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 
 var confirmation_thanks = "{_JOMRES_REVIEWS_THANKS_FOR_CONFIRM}";
@@ -36,69 +36,48 @@ function confirm_review(rating_id,state)
 	}
 </script>
 
-<div id="thanks_field" > <div class="ui-state-highlight">{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}</div><br /></div>
-
-<div class="fg-toolbar ui-widget-header ui-corner-all">
-{_JOMRES_REVIEWS_AVERAGE_RATING} : {AVERAGE_RATING}<br/>
-{_JOMRES_REVIEWS_TOTAL_VOTES} : {NUMBER_OF_REVIEWS}<br/><br/>
-{_JOMRES_REVIEWS_ADD_REVIEW}<br/>
+<div id="thanks_field" >
+	<div class="{CLASS}">{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}</div>
 </div>
-<div class=" ui-widget ui-widget-content ui-corner-all">
-	<div style="padding:5px">
-		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-		<div class="ui-widget-content ui-corner-all">
-			<div>
-				<div class="fg-toolbar ui-widget-header ui-corner-all">
-					{REVIEW_TITLE}&nbsp;&nbsp;{RATING_STARS}
-				</div>
-				<div>
-					<div style="float:right">
-						<table>
-							<tr>
-								<td>{_JOMRES_REVIEWS_RATING_1}</td><td>{RATING_1}</td>
-							</tr>
-							<tr>
-								<td>{_JOMRES_REVIEWS_RATING_2} </td><td>{RATING_2}</td>
-							</tr>
-							<tr>
-								<td>{_JOMRES_REVIEWS_RATING_3}</td><td>{RATING_3}</td>
-							</tr>
-							<tr>
-								<td>{_JOMRES_REVIEWS_RATING_4}</td><td>{RATING_4}</td>
-							</tr>
-							<tr>
-								<td>{_JOMRES_REVIEWS_RATING_5}</td><td>{RATING_5}</td>
-							</tr>
-							<tr>
-								<td>{_JOMRES_REVIEWS_RATING_6}</td><td>{RATING_6}</td>
-							</tr>
-						</table>
-					</div>
-					<div style="margin:5px;">
-						<span class="small" style="padding:5px;">{_JOMRES_REVIEWS_REVIEWED_BY}<div class="contentheading" style="margin:10px">{USERNAME}</div></span><br/>
-						<strong>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</strong><br/>
-						<p>{REVIEW_DESCRIPTION}</p><br/>
-						<strong>{_JOMRES_REVIEWS_PROS}</strong><br/>
-						<p>{PROS}</p><br/>
-						<strong>{_JOMRES_REVIEWS_CONS}</strong><br/>
-						<p>{CONS}</p><br/>
-						<br/>
-						<div id="agree_thumbs{RATING_ID}">
-						{THUMB_UP}
-						&nbsp;&nbsp;
-						{THUMB_DOWN}
-						</div><br/>
-						{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW} {NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}<br/>
-						{REPORT_REVIEWLINK}<span style="float:right">{_JOMRES_REVIEWS_DATE} {RATING_DATE}</span>
-						<br/>
-					</div>
-				</div>
-			</div>
-		</div>
-		</patTemplate:tmpl>
-	</div>
+<h3>{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</h3>
+<patTemplate:tmpl name="rows" unusedvars="strip">
+<div class="ui-widget-header">
+	{REVIEW_TITLE}&nbsp;&nbsp;{RATING_STARS}
+	<span class="float-right">{_JOMRES_REVIEWS_REVIEWED_BY}{USERNAME}</span>
 </div>
-
-
-
+<div class="float-right ui-tabs ui-state-default" style="z-index:1">
+	<table>
+		<tr>
+			<td>{_JOMRES_REVIEWS_RATING_1}</td><td>{RATING_1}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_REVIEWS_RATING_2} </td><td>{RATING_2}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_REVIEWS_RATING_3}</td><td>{RATING_3}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_REVIEWS_RATING_4}</td><td>{RATING_4}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_REVIEWS_RATING_5}</td><td>{RATING_5}</td>
+		</tr>
+		<tr>
+			<td>{_JOMRES_REVIEWS_RATING_6}</td><td>{RATING_6}</td>
+		</tr>
+	</table>
+</div>
+<div class="ui-tabs ui-widget-content ui-corner-bottom">
+	<p><strong>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</strong>{REVIEW_DESCRIPTION}&nbsp;</p>
+	<p><strong>{_JOMRES_REVIEWS_PROS}</strong>{PROS}&nbsp;</p>
+	<p><strong>{_JOMRES_REVIEWS_CONS}</strong>{CONS}&nbsp;</p>
+	<div id="agree_thumbs{RATING_ID}">{THUMB_UP}&nbsp;{THUMB_DOWN}</div>
+	<div>{NUMBER_AGREE} {_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW}&nbsp;</div>
+	<div>{NUMBER_DISAGREE} {_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW}&nbsp;</div>
+	<div style="clear:both;"></div>
+	<div class="full-width" align="right">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {REPORT_REVIEWLINK}</div>
+</div>
+<div class="full-width">&nbsp;</div>
+</patTemplate:tmpl>
+<div align="center" class="ui-tabs ui-state-default">{_JOMRES_REVIEWS_ADD_REVIEW}</div>
 </patTemplate:tmpl>

@@ -38,7 +38,7 @@ class j00011manager_option_13_mysubscriptions {
 		$jrConfig=$siteConfig->get();
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!$thisJRUser->superPropertyManager && $jrConfig['useSubscriptions']=="1")
-			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=my_subscriptions".jomresURLToken(), 'subscriptions.png', jr_gettext('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS,false,false));
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=my_subscriptions".jomresURLToken(), 'subscriptions.png', jr_gettext('_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS',_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices" ,false,false) );
 		}
 	
 	

@@ -32,7 +32,7 @@ class j00010reception_option_03_dobooking {
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 			
 		$mrConfig=getPropertySpecificSettings($property_uid);
@@ -47,10 +47,22 @@ class j00010reception_option_03_dobooking {
 		else
 			$link=jomresURL($output['BOOKAROOMLINK']);
 			
-		$this->cpanelButton=jomres_mainmenu_option($link, 'NewBooking.png', jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false));
+		$this->cpanelButton=jomres_mainmenu_option($link, 'NewBooking.png', jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , "reserve" ,false,false) );
 		}
 	
-	
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , "reserve");
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
+
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{

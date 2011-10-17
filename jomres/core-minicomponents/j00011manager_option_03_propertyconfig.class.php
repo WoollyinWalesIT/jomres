@@ -34,7 +34,7 @@ class j00011manager_option_03_propertyconfig {
 			{
 			$this->template_touchable=false; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL.'&task=hotelSettings'), 'EditConfiguration.png', jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC',_JOMRES_COM_MR_GENERALCONFIGDESC,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL.'&task=hotelSettings'), 'EditConfiguration.png', jr_gettext('_JOMRES_COM_MR_GENERALCONFIGDESC',_JOMRES_COM_MR_GENERALCONFIGDESC,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings" ,false,false) );
 		}
 	
 	

@@ -19,28 +19,37 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 * @package Jomres
 #
  */
-class j00011manager_option_04_01_blank {
+class j00010reception_option_01_switch_property {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00011manager_option_04_01_blank($componentArgs)
+	function j00010reception_option_01_switch_property($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=TRUE; return;
 			}
-		$mrConfig=getPropertySpecificSettings($property_uid);
-		if ($mrConfig['is_real_estate_listing']==1)
-			return;
-		$this->cpanelButton=jomres_mainmenu_option("", 'blank.png',"");
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=switch_active_property", 'switch_property.png', jr_gettext('_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY',_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard" ,false,false) );
 		}
 	
-	
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard");
+		$output[]	= jr_gettext( "_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY" , _JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY);
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{

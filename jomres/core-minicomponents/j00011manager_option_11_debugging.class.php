@@ -36,7 +36,7 @@ class j00011manager_option_11_debugging {
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->superPropertyManager)
-			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=".get_showtime('task')), 'bug_icon.png', jr_gettext('_JOMRES_CUSTOMTEXT_REPORTBUG',"Report Bug",false,false));
+			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=".get_showtime('task')), 'bug_icon.png', jr_gettext('_JOMRES_CUSTOMTEXT_REPORTBUG',"Report Bug",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" , "misc" ,false,false));
 		}
 	
 	

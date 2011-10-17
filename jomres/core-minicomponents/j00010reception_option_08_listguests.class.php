@@ -37,7 +37,7 @@ class j00010reception_option_08_listguests {
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
-		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), 'GuestAdmin.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), 'GuestAdmin.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS" , "management" ,false,false) );
 		}
 	
 	
