@@ -1718,3 +1718,7 @@ define('_JOMRES_VERSIONCHECK_VERSIONWARNING',"Alert : There is a new version of 
 
 define('_JOMRES_PRODUCT_INFORMATION','Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Developer or Jomres Perpetual license, <a href="http://www.jomres.net/jomres-mainmenu-213/jomres-lite-solo-developer-unlimited-comparison-matrix" target="_blank"> please visit our site</a> for information on how you can upgrade.');
 define('_JOMRES_PRODUCT_INFORMATION2','This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the "Help" section to the left, including the "Getting Started" page which will guide you through your first steps.');
+
+define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY',"Active property");
+define('_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY',"Change your active property");
+define('_JOMRES_ROBBED_PORTALUI_CLICKINITIAL',"Click a character to reveal all properties that start with that character. Once revealed, click on that property's name to change it to your active property.");
