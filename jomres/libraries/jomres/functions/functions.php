@@ -32,8 +32,8 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	if (isset($arguments['modal_width']))
 		$modal_width = (int) $arguments['modal_width'];
 	
-	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({width:".$modal_width.",modal:true});'";
-	$link = '<a href="javascript:void(0)" '.$onClick.' ><img src="'.$thumbnail_rel_path.$thumbnail.'" '.$width.' '.$height.' alt="'.$title.'" ></a>';
+	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({dialogClass:\"alert\",width:".$modal_width.",modal:true,title:\"".$title."\"});'";
+	$link = '<a href="javascript:void(0);" '.$onClick.' ><img src="'.$thumbnail_rel_path.$thumbnail.'" '.$width.' '.$height.' alt="'.$title.'" ></a>';
 	$image_div = '<div id="'.$id.'" style="display:none;overflow-y: auto;"><img src="'.$image_rel_path.$image.'"></div>';
 	
 	return $image_div.$link;
