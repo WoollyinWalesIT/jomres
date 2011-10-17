@@ -126,8 +126,6 @@ $propertyNamesArray=array();
 if ($tag != "" && get_showtime('task') != "editBooking")
 	set_showtime('task',"tagSearch");
 
-$jomresPathway =jomres_getSingleton('jomres_pathway');
-
 $jomreslang =jomres_getSingleton('jomres_language');
 
 jr_import('jomres_currency_exchange_rates');
@@ -267,6 +265,7 @@ $jomreslang->get_language($propertytype);
 $customTextObj =jomres_getSingleton('custom_text');
 $customTextObj->get_custom_text_for_all_properties();
 
+$jomresPathway =jomres_getSingleton('jomres_pathway');
 
 if ($property_uid >0)
 	{
