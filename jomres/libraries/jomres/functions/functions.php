@@ -1440,6 +1440,9 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		$mail->Username			= $jomresConfig_smtpuser;
 		$mail->Password			= $jomresConfig_smtppass;
 		}
+		
+
+		
 	$mail->Host			= $jomresConfig_smtphost;
 	$mail->From			= $from;
 	$mail->CharSet		= 'UTF-8';
@@ -1447,7 +1450,18 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$mail->Subject		= $subject;
 	$mail->Port			= $jomresConfig_smtpport;
 
-
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	if ($jrConfig['alternate_smtp_use_settings']=="1")
+		{
+		$mail->Mailer		= 'smtp';
+		$mail->Host			= trim($jrConfig['alternate_smtp_host']);
+		$mail->Port 		= trim($jrConfig['alternate_smtp_port']);
+		$mail->SMTPSecure 	= trim($jrConfig['alternate_smtp_protocol']);
+		$mail->SMTPAuth 	= trim($jrConfig['alternate_smtp_authentication']);
+		$mail->Username 	= trim($jrConfig['alternate_smtp_username']);
+		$mail->Password 	= trim($jrConfig['alternate_smtp_password']);
+		}
 
 	//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 

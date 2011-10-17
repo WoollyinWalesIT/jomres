@@ -724,6 +724,42 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'.$lists['dumpTemplate'].'</td>
 				<td valign="middle">'._JOMRES_COM_DUMPTEMPLATEDATA_DESC.'</td>
 			</tr>
+			
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_TITLE.'</td>
+				<td valign="middle">'.$lists['alternate_smtp_authentication'].'</td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_HOST.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_alternate_smtp_host" value="'.$jrConfig['alternate_smtp_host'].'" /></td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC.'</td>
+			</tr>
+ 			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PORT.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_alternate_smtp_port" value="'.$jrConfig['alternate_smtp_port'].'" /></td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_alternate_smtp_host" value="'.$jrConfig['alternate_smtp_protocol'].'" /></td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC.'</td>
+			</tr>
+ 			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_AUTH.'</td>
+				<td valign="middle">'.$lists['dumpTemplate'].'</td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC.'</td>
+			</tr>
+ 			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_alternate_smtp_host" value="'.$jrConfig['alternate_smtp_username'].'" /></td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC.'</td>
+			</tr>
+ 			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_alternate_smtp_host" value="'.$jrConfig['alternate_smtp_password'].'" /></td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC.'</td>
+			</tr>
 			<tr valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>

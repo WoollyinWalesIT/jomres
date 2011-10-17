@@ -1677,3 +1677,18 @@ define('_JOMRES_PRODUCT_INFORMATION2','This system is ideal for any scenario, be
 define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY',"Active property");
 define('_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY',"Change your active property");
 define('_JOMRES_ROBBED_PORTALUI_CLICKINITIAL',"Click a character to reveal all properties that start with that character. Once revealed, click on that property's name to change it to your active property.");
+
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE',"Alternate SMTP Settings");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_DESC',"Set this option to Yes to use these Alternate SMTP settings. An increasing number of web hosts appear to be blocking PHP mail functionality, so you can choose to over-ride the mail settings that Jomres adopts from your host CMS (typically Joomla) and use settings of your own choice here.");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST',"Alternate Host");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_HOST_DESC',"Change this to your smtp mail server");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT',"Alternate Port");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_PORT_DESC',"Change this to your smtp port");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL',"Alternate Protocol");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_PROTOCOL_DESC',"Depending on your smtp server settings, you need to leave this blank, or enter 'ssl' or 'tls'. Ask your SMTP provider if you don`t know.");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH',"Use authentication");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_AUTH_DESC',"If your SMTP server requires clients to login, set this to Yes. The Username and Password will then be used.");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME',"Alternate Username");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC',"");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME',"Alternate Password");
+define('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC',"");
