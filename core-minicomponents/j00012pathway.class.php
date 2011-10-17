@@ -62,7 +62,10 @@ class j00012pathway {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
-		$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
+		if (_JOMRES_DETECTED_CMS == "jomressa")
+			$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
+		else
+			$showJomresPathway = false; // Change this line to $showJomresPathway = true;  If you want to show the Jomres pathway when using Joomla.
 
 		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 			{
