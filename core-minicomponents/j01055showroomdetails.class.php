@@ -43,9 +43,9 @@ class j01055showroomdetails {
 		$roomUid	= intval( jomresGetParam( $_REQUEST, 'roomUid', 0 ) );
 		$featureList=array();
 		if (!$all)
-			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking  FROM #__jomres_rooms WHERE  room_uid  = '".(int)$roomUid."'";
+			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE room_uid = '".(int)$roomUid."'";
 		else
-			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking  FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ORDER BY room_number,room_name";
+			$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ORDER BY room_number,room_name";
 		$roomList =doSelectSql($query);
 		if (count($roomList)>0)
 			{
@@ -81,7 +81,7 @@ class j01055showroomdetails {
 				$classAbbvs[(int)$roomClass->room_classes_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
 				}
 			
-			
+			$counter=0;
 			foreach ($roomList as $room)
 				{
 				$roomRow=array();
@@ -99,7 +99,8 @@ class j01055showroomdetails {
 				$room_image=getImageForProperty("room",$property_uid,$room->room_uid);
 				$imagethumb=getThumbnailForImage($room_image);
 
-				$avl_link="<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" )."\">".jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,false,false)."</a>";
+				$avl_link=jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomDetails&roomUid=$room_uid" );
+				$avl_title=jr_gettext('_JOMRES_FRONT_AVAILABILITY',_JOMRES_FRONT_AVAILABILITY,false,false);
 				$classAbbv = $classAbbvs[(int)$room_classes_uid];
 
 				//$propertyName getPropertyNameNoTables($property_uid)
@@ -124,21 +125,33 @@ class j01055showroomdetails {
 						$featurelist[]=$roomFeatureDescriptionsArray;
 						}
 					}
-				$roomRow['IMAGE']=jomres_makeTooltip($room_image,"",$room_image,$room_image,"","imageonly",$type_arguments=array("imagethumb"=>$imagethumb,"width"=>30,"height"=>30,"border"=>0));
+				$roomRow['IMAGE']=jomres_make_image_popup($room_name,$room_image,"",array(),$imagethumb);
 			
 				$roomRow['ROOMNUMBER']= $room_number;
 				$roomRow['ROOMTYPE']= $classAbbv;
 				$roomRow['SMOKING']= $smoking;
 				$roomRow['ROOMNAME']= $room_name;
 				if ($all && !isset($_REQUEST['tmpl']))
+					{
 					$roomRow['AVLCALLINK']= $avl_link;
+					$roomRow['AVLCALTITLE']= $avl_title;
+					}
 				else
-					$roomRow['AVLCALLINK']= "";
+					{
+					$roomRow['AVLCALLINK']= '';
+					$roomRow['AVLCALTITLE']= '';
+					}
 				$roomRow['ROOMFLOOR']= $room_floor;
 				$roomRow['DISABLEDACCESS']= $disabledAccess;
 				$roomRow['MAXPEOPLE']= $max_people;
+				
+				if ($counter%2)
+					$roomRow['CLASS']="even";
+				else
+					$roomRow['CLASS']="odd";
 
 				$rows[]=$roomRow;
+				$counter++;
 				}
 			$headers[]=$headersList;
 //var_dump($headers);exit;

@@ -24,6 +24,8 @@ class j00035tabcontent_03_slideshow
 		$property_uid=(int)$componentArgs['property_uid'];  
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		
+		return; //we don`t need this tab anymore, but you can enable it back if you want
+		
 		$output = $componentArgs['currrent_output'];  
 
 		// j01060 slideshows

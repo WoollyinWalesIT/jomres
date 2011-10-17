@@ -1,31 +1,31 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <!-- if you want to show min & max people and days, just uncomment the lines commented out below-->
-	<table class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 20px;" width="100%">
-		<tr>
-			<td class = "ui-widget-header ui-corner-left">{HTITLE}</td>
-			<td class = "ui-widget-header">{HROOMTYPE}</td>
-			<td class = "ui-widget-header">{HSTARTS}</td>
-			<td class = "ui-widget-header">{HENDS}</td>
-			<td class = "ui-widget-header">&nbsp;</td>
-			<!--<td>{HMINDAYS}</td>
-			<td>{HMAXDAYS}</td>
-			<td>{HMINPEEPS}</td>
-			<td>{HMAXPEEPS}</td>
-			<td class = "ui-widget-header ui-corner-right">{CONVERSIONBLURB}</td>-->
-		</tr>
-		<patTemplate:tmpl name="show_tariffs">
-		<tr>
-			<td>{TITLE}</td>
-			<td>{ROOMCLASSABBV} </td>
-			<td>{VALIDFROM}</td>
-			<td>{VALIDTO}</td>
-			<td><b>{ROOMRATEPERDAY}</b>{NOTWEEKENDS}</td>
-			<!--<td>{MINDAYS}</td>
-			<td>{MAXDAYS}</td>
-			<td>{MINPEOPLE}</td>
-			<td>{MAXPEOPLE}</td>
-			<td>{GOOGLECURRENCYLINKS}</td>-->
-		</tr>
-		</patTemplate:tmpl>
-	</table>
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+<tr>
+	<td class="ui-widget-header">{HTITLE}</td>
+	<td class="ui-widget-header">{HROOMTYPE}</td>
+	<td class="ui-widget-header">{HSTARTS}</td>
+	<td class="ui-widget-header">{HENDS}</td>
+	<td class="ui-widget-header">&nbsp;</td>
+	<!--<td>{HMINDAYS}</td>
+	<td>{HMAXDAYS}</td>
+	<td>{HMINPEEPS}</td>
+	<td>{HMAXPEEPS}</td>
+	<td class="ui-widget-header ui-corner-right">{CONVERSIONBLURB}</td>-->
+</tr>
+<patTemplate:tmpl name="show_tariffs">
+<tr class="{CLASS}">
+	<td>{TITLE}</td>
+	<td>{ROOMCLASSABBV} </td>
+	<td>{VALIDFROM}</td>
+	<td>{VALIDTO}</td>
+	<td><b>{ROOMRATEPERDAY}</b>{NOTWEEKENDS}</td>
+	<!--<td>{MINDAYS}</td>
+	<td>{MAXDAYS}</td>
+	<td>{MINPEOPLE}</td>
+	<td>{MAXPEOPLE}</td>
+	<td>{GOOGLECURRENCYLINKS}</td>-->
+</tr>
+</patTemplate:tmpl>
+</table>
 </patTemplate:tmpl>

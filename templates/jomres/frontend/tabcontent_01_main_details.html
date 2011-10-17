@@ -1,12 +1,27 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-	<div class="fg-toolbar ui-widget-header ui-corner-all">
-	{HDESCRIPTION}
-	</div>
-	<p>{DESCRIPTION}</p>
-	<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
-	<div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
-	<p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-	{DISCOUNT_OUTPUT}</p>
-	</div>
-	</patTemplate:tmpl>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+	<div class="full-width ui-helper-clearfix;">
+    	<patTemplate:tmpl name="discount_output" type="simpleCondition" requiredVars="discount_output">
+        <div class="ui-state-highlight">{DISCOUNT_OUTPUT}</div>
+        <div>&nbsp;</div>
+        </patTemplate:tmpl>
+        <div class="left-column float-left">
+            <!--<div class="ui-widget-header">{HDESCRIPTION}</div>-->
+            <div>{DESCRIPTION}</div>
+        </div>
+        <div class="right-column float-right ui-tabs ui-widget-content ui-corner-all">
+            <div style="clear:both;">
+                <strong>{HRTYPES}</strong>
+            </div>
+            <patTemplate:tmpl name="roomtype_icons" type="simpleCondition" requiredVars="room_type">
+                {ROOM_TYPE}
+            </patTemplate:tmpl>
+            <div style="clear:both;">
+                <strong>{HFEATURES}</strong>
+            </div>  
+            <patTemplate:tmpl name="feature_icons" type="simpleCondition" requiredVars="feature">
+                {FEATURE}
+            </patTemplate:tmpl>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
 </patTemplate:tmpl>

@@ -1,17 +1,25 @@
-<patTemplate:tmpl name="pageoutput" >
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
-<table width="100%">
-    <tr class="ui-widget-header">
-		<td colspan="7">{TITLE}</td>
-	</tr>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{TITLE}</h2>
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr class="ui-widget-header">
-		<td>{HPNAME}</td><td>{HARRIVAL}</td><td>{HDEPARTURE}</td><td>{HEXTRAS}</td><td>{HTOTAL}</td><td>&nbsp;</td><td>&nbsp;</td>
+		<th>&nbsp;</th>
+		<th>{HPNAME}</th>
+		<th>{HARRIVAL}</th>
+		<th>{HDEPARTURE}</th>
+		<th>{HEXTRAS}</th>
+		<th>{HTOTAL}</th>
+		<th>&nbsp;</th>
 	</tr>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
 	<tr class="{STYLE}">
-		<td><b><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></b></td><td width="15%">{ARRIVAL}</td><td width="15%">{DEPARTURE}</td><td>{EXTRASVALUE}</td><td>{CONTRACT_TOTAL}</td><td>{IMAGE}</td><td><a href="{VIEWLINK}">{VIEWLINK_TEXT}</a></td>
+		<td>{IMAGE}</td>
+		<td><strong><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></strong></td>
+		<td>{ARRIVAL}</td>
+		<td>{DEPARTURE}</td>
+		<td>{EXTRASVALUE}</td>
+		<td>{CONTRACT_TOTAL}</td>
+		<td><a href="{VIEWLINK}">{VIEWLINK_TEXT}</a></td>
 	</tr>
 	</patTemplate:tmpl>
 </table>
-</div>
 </patTemplate:tmpl>

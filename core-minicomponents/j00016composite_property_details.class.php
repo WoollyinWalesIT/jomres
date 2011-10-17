@@ -61,6 +61,7 @@ class j00016composite_property_details {
 		if ($mrConfig['showOnlyAvailabilityCalendar'])
 				return;
 		
+		$output['SLIDESHOW']=$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'];
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

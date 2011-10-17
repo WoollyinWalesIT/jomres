@@ -79,6 +79,7 @@ class j01025showtariffs {
 			$today = date("Y/m/d");
 			$date_elements  = explode("/",$today);
 			$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+			$counter=0;
 			foreach ($tariffsList as $tariff)
 				{
 				$tariffRoomClass=$tariff->roomclass_uid;
@@ -168,7 +169,14 @@ class j01025showtariffs {
 						$r['GOOGLECURRENCYLINKS']='<a href='.$theLink.' rel="nofollow" target="_blank">'.$theText.'</a><br />';
 						}
 					if ($tariff->roomrateperday > 0)
+						{
+						if ($counter%2)
+							$r['CLASS']="even";
+						else
+							$r['CLASS']="odd";
+						$counter++;
 						$tariff_deets[]=$r;
+						}
 					}
 				}
 			}

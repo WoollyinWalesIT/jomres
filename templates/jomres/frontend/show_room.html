@@ -1,38 +1,37 @@
-<patTemplate:tmpl name="property_header">
-<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-	<table border="0" width="100%">
-		<patTemplate:tmpl name="room_headers">
-		<tr>
-			<th class = "ui-widget-header ui-corner-left">{HEADER_ROOMNUMBER}</th>
-			<th class = "ui-widget-header">{HEADER_ROOMTYPE}</th>
-			<th class = "ui-widget-header">{HEADER_SMOKING}</th>
-			<th class = "ui-widget-header">{HEADER_ROOMNAME}</th>
-			<th class = "ui-widget-header">{HEADER_AVLCALLINK}</th>
-			<th class = "ui-widget-header">{HEADER_ROOMFLOOR}</th> 
-			<th class = "ui-widget-header">{HEADER_DISABLEDACCESS}</th>
-			<th class = "ui-widget-header ui-corner-right">{HEADER_MAXPEOPLE}</th>    
-		</tr>
-		</patTemplate:tmpl>
-		<patTemplate:tmpl name="room_details">
-		<tr>
-			<td>{ROOMNUMBER}</td>
-			<td>{ROOMTYPE}</td>
-			<td>{SMOKING}</td>
-			<td>{ROOMNAME}</td>
-			<td>{AVLCALLINK}</td>
-			<td>{ROOMFLOOR}</td>
-			<td>{DISABLEDACCESS}</td>
-			<td>{MAXPEOPLE}</td>        
-		</tr>
-		</patTemplate:tmpl>
-	</table>
-	{IMAGE}
-	<table border="0" width="100%">
-		<patTemplate:tmpl name="room_features">
-		<tr>
-			<td>{ROOMFEATURE}</td>    
-		</tr>
-		</patTemplate:tmpl>
-	</table>
-</div>
+<patTemplate:tmpl name="property_header" unusedvars="strip">
+<div>&nbsp;</div>
+<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+<patTemplate:tmpl name="room_headers">
+<tr>
+	<th class="ui-widget-header"></th>
+	<th class="ui-widget-header">{HEADER_ROOMNUMBER}</th>
+	<th class="ui-widget-header">{HEADER_ROOMTYPE}</th>
+	<th class="ui-widget-header">{HEADER_MAXPEOPLE}</th>
+	<th class="ui-widget-header">{HEADER_ROOMNAME}</th>
+	<th class="ui-widget-header">{HEADER_ROOMFLOOR}</th>
+	<th class="ui-widget-header">{HEADER_SMOKING}</th> 
+	<th class="ui-widget-header">{HEADER_DISABLEDACCESS}</th>
+</tr>
+</patTemplate:tmpl>
+<patTemplate:tmpl name="room_details">
+<tr align="center">
+	<td>{IMAGE}</td>
+	<td>{ROOMNUMBER}</td>
+	<td>{ROOMTYPE}</td>
+	<td>{MAXPEOPLE}</td>
+	<td>{ROOMNAME}</td>
+	<td>{ROOMFLOOR}</td>
+	<td>{SMOKING}</td>
+	<td>{DISABLEDACCESS}</td>       
+</tr>
+</patTemplate:tmpl>
+</table>
+<br />
+<table border="0" width="100%">
+<patTemplate:tmpl name="room_features">
+<tr>
+	<td>{ROOMFEATURE}</td>    
+</tr>
+</patTemplate:tmpl>
+</table>
 </patTemplate:tmpl>

@@ -1,16 +1,21 @@
 <patTemplate:tmpl name="pageoutput">
-<center>
-<div class="panelwrapper">
-	<table class="slideshow">
-		<tr>
-			<td class="slideshow_content">
-							<patTemplate:tmpl name="rows">
-							<div style="float:left;">{IMAGE}</div>
-							</patTemplate:tmpl>	
-			</td>
-		</tr>
-	</table>
+<script type="text/javascript">
+jomresJquery(window).load(function(){
+	jomresJquery('#gallery').galleria({
+		width:550,
+		height:400,
+		transition: "slide",
+		thumbCrop: "height",
+		lightbox: true,
+		autoplay: 5000,
+		preload: 0
+	});
+});
+</script>
+<div id="gallery">
+	<patTemplate:tmpl name="rows">
+	<a href="{IMAGE}"><img src="{IMAGETHUMB}"/></a>
+	</patTemplate:tmpl>
 </div>
-</center>
 </patTemplate:tmpl>
 

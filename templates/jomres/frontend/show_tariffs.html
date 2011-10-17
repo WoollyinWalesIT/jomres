@@ -1,40 +1,42 @@
-<patTemplate:tmpl name="output" unusedvars="nbsp">
-	<patTemplate:tmpl name="show_tariffs">
-	<table class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 20px;" width="100%">
-		<tr >
-			<td class = "ui-widget-header ui-corner-left" colspan="2">{HTITLE}</td>
-			<td class = "ui-widget-header" colspan="2">{TITLE}</td>
-		</tr>
-		<tr>
-			<td colspan="1"><strong>{HROOMTYPE}</strong></td>
-			<td colspan="1">{ROOMCLASSABBV} </td>
-			<td colspan="2">{ROOMCLASSFULLDESC} </td>
-		</tr>
-		<tr>
-			<td><strong>{HSTARTS}</strong></td>
-			<td>{VALIDFROM}</td>
-			<td><strong>{HENDS}</strong></td>
-			<td>{VALIDTO}</td>
-		</tr>
-		<tr>
-			<td><strong>{HMINDAYS}</strong></td>
-			<td>{MINDAYS}</td>
-			<td><strong>{HMAXDAYS}</strong></td>
-			<td>{MAXDAYS}</td>
-		</tr>
-		<tr>
-			<td><strong>{HMINPEEPS}</strong></td>
-			<td>{MINPEOPLE}</td>
-			<td><strong>{HMAXPEEPS}</strong></td>
-			<td>{MAXPEOPLE}</td>
-		</tr>
-		<tr>
-			<td colspan="4"><b>{ROOMRATEPERDAY}<b></td>
-		</tr>
-		<tr>
-			<td colspan="4"><strong>{NOTWEEKENDS}</strong></td>
-		</tr>
-		<!--<tr><td colspan="4">{GOOGLECURRENCYLINKS}</td></tr>-->
-	</table>
-	</patTemplate:tmpl>
+<patTemplate:tmpl name="output" unusedvars="strip">
+<patTemplate:tmpl name="show_tariffs">
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+<tr >
+	<td><strong>{HTITLE}</strong></td>
+	<td>{TITLE}</td>
+	<td colspan="2"></td>
+</tr>
+<tr>
+	<td><strong>{HROOMTYPE}</strong></td>
+	<td>{ROOMCLASSABBV} ({ROOMCLASSFULLDESC})</td>
+	<td colspan="2"></td>
+</tr>
+<tr>
+	<td><strong>{HSTARTS}</strong></td>
+	<td>{VALIDFROM}</td>
+	<td><strong>{HENDS}</strong></td>
+	<td>{VALIDTO}</td>
+</tr>
+<tr>
+	<td><strong>{HMINDAYS}</strong></td>
+	<td>{MINDAYS}</td>
+	<td><strong>{HMAXDAYS}</strong></td>
+	<td>{MAXDAYS}</td>
+</tr>
+<tr>
+	<td><strong>{HMINPEEPS}</strong></td>
+	<td>{MINPEOPLE}</td>
+	<td><strong>{HMAXPEEPS}</strong></td>
+	<td>{MAXPEOPLE}</td>
+</tr>
+<tr>
+	<td colspan="4"><b>{ROOMRATEPERDAY}<b></td>
+</tr>
+<tr>
+	<td colspan="4"><strong>{NOTWEEKENDS}</strong></td>
+</tr>
+<!--<tr><td colspan="4">{GOOGLECURRENCYLINKS}</td></tr>-->
+</table>
+<br />
+</patTemplate:tmpl>
 </patTemplate:tmpl>

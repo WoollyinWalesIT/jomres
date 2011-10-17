@@ -37,6 +37,8 @@ class j00009user_option_05_add_your_property {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if (!$thisJRUser->userIsRegistered)
 			return;
+		if ($thisJRUser->userIsManager)// No point in putting the "add your property" link to the toolbar if the user's already a manager.
+			return;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['selfRegistrationAllowed']=="1" && $jrConfig['useSubscriptions']=="1" )
