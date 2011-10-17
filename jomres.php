@@ -326,7 +326,9 @@ if (!defined('JOMRES_NOHTML'))
 			$MiniComponents->triggerEvent('00007',$componentArgs); // Manager's toolbar
 			}
 		}
-
+	
+	
+	$MiniComponents->triggerEvent('00063'); // New Jomres Mainmenu
 	}
 
 $performance_monitor->set_point("post-menu generation");

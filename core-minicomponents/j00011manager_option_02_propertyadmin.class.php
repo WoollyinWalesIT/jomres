@@ -37,7 +37,7 @@ class j00011manager_option_02_propertyadmin {
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=propertyadmin", 'PropertyAdmin.png', jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE,false,false)." &amp; ".jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM',_JOMRES_COM_MR_VRCT_TAB_ROOM,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=propertyadmin", 'PropertyAdmin.png', jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE,false,false)." &amp; ".jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM',_JOMRES_COM_MR_VRCT_TAB_ROOM,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings" ,false,false) );
 		}
 	
 	

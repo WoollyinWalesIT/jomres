@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="pageoutput">
+
+<script type="text/javascript">
+
+
+function get_properties(initial)
+	{
+	jomresJquery.get('{AJAXURL}&task=ui_find_properties&initial='+initial,
+		function(data){
+			populateDiv('found_properties',data);
+			}
+		);
+	}
+</script>
+{_JOMRES_PORTALUI_CLICKINITIAL}<br/>
+
+<table>
+	<tr VALIGN="top">
+		<td>
+			<patTemplate:tmpl name="rows">
+			<div>
+				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all"  onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
+			</div>
+			</patTemplate:tmpl>
+		</td>
+		<td>
+			<div id = "found_properties"> 
+				
+				
+				
+			</div>
+		</td>
+	</tr>
+</table>
+</patTemplate:tmpl>

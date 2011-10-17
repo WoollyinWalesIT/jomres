@@ -38,6 +38,7 @@ class j00006reception_toolbar {
 		else
 			{
 			$rows		=array();
+			/*
 			$pageoutput	=array();
 			$output=array();
 			if (get_showtime('task') != "invoiceForm" && get_showtime('task') != "confirmationForm" && get_showtime('task') != "showRoomDetails" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup)
@@ -117,7 +118,8 @@ class j00006reception_toolbar {
 				$output['CLICKCOUNT']=0;
 			$output['SEARCHIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/Find.png" width="20" height="20" align="middle" alt="'.$output['HTAGSEARCH'].'"  name="Find" border="0" title="'.$output['HTAGSEARCH'].'" />';
 			$output['CLICKCOUNTIMAGE']='<img src="'.get_showtime('live_site').'/jomres/images/ChartTrend.png"  width="20" height="20" align="middle" alt="Clicks" name="bookGuestIn" border="0" title="Clicks" />';
-
+			*/
+			
 			$MiniComponents->triggerEvent('00010'); //
 			$mcOutput=$MiniComponents->getAllEventPointsData('00010');
 
@@ -127,22 +129,24 @@ class j00006reception_toolbar {
 				$r["OPTIONS"]=$val;
 				$rows[]=$r;
 				}
+			
+			set_showtime('jomres_mainmenu_reception_options',$rows);
+			
+			// $pageoutput[]=$output;
+			// $tmpl = new patTemplate();
+			// $tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			// if ($management_view)
+				// $tmpl->readTemplatesFromInput('toolbar_reception_manager_view.html');
+			// else
+				// $tmpl->readTemplatesFromInput('toolbar_reception.html');
 
-			$pageoutput[]=$output;
-			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			if ($management_view)
-				$tmpl->readTemplatesFromInput('toolbar_reception_manager_view.html');
-			else
-				$tmpl->readTemplatesFromInput('toolbar_reception.html');
-
-			$tmpl->addRows( 'pageoutput',$pageoutput);
-			$tmpl->addRows( 'rows',$rows);
-			$cachableContent = $tmpl->getParsedTemplate();
-			$cache->setCache($cachableContent);
-			unset($cache);
-			echo $cachableContent;
-			$componentArgs=array();
+			// $tmpl->addRows( 'pageoutput',$pageoutput);
+			//$tmpl->addRows( 'rows',$rows);
+			// $cachableContent = $tmpl->getParsedTemplate();
+			// $cache->setCache($cachableContent);
+			// unset($cache);
+			// echo $cachableContent;
+			// $componentArgs=array();
 			}
 		}
 

@@ -47,13 +47,15 @@ class j00008user_toolbars {
 				$r["OPTIONS"]=$val;
 				$rows[]=$r;
 				}
-
+			
+			set_showtime('jomres_mainmenu_user_options',$rows);
+			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'toolbar_guest.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
-			$tmpl->addRows( 'rows',$rows);
+			//$tmpl->addRows( 'rows',$rows);
 			$tmpl->displayParsedTemplate();
 			}
 		}

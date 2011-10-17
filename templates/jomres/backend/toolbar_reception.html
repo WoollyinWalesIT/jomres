@@ -1,26 +1,4 @@
 <patTemplate:tmpl name="pageoutput">
-<style type="text/css">
-//A little css magic to force the manager and receptionist's menus to align vertically as they wouldn't do it in the Beez template.
-.v-outer {
-	display: table;
-	#position: relative;
-	overflow: hidden;
-	width: 100%;
-	}
- 
-.v-middle {
-	display: table-cell;
-	#position: relative;
-	#top: 50%;
-	vertical-align: middle;
-	}
- 
-.v-inner {
-	#position: relative;
-	#top: -50%;
-	}
-</style>
-
 <table>
 	<tr>
 		<td><form action="{JOMRES_SITEPAGE_URL}" method="post" name="propertyDropdown">{PROPERTYDROPDOWN}<input type="hidden" name="task" value="com_jomres"/></form></td>
@@ -29,6 +7,7 @@
 		<td><div id='jomresmenu_hint' style="color:red;" >&nbsp;</div></td>
 	</tr>
 </table>
+<!--
 	<div class="border v-outer">
 	<div class="v-middle">
 	<div class="v-inner">
@@ -41,6 +20,6 @@
 	</div>
 	</div>
 	</div>
-
+-->
 
 </patTemplate:tmpl>

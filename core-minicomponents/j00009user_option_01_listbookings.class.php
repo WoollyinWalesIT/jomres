@@ -41,7 +41,7 @@ class j00009user_option_01_listbookings {
 			$guestEntries=doSelectSql($query);
 			if (count($guestEntries)>0)
 				{
-				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=mulistbookings", '', jr_gettext('_JOMCOMP_MYUSER_LISTBOOKINGS',_JOMCOMP_MYUSER_LISTBOOKINGS,true,true) );
+				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=mulistbookings", '', jr_gettext('_JOMCOMP_MYUSER_LISTBOOKINGS',_JOMCOMP_MYUSER_LISTBOOKINGS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "my account" ,false,false) );
 				}
 			}
 		}
@@ -50,6 +50,7 @@ class j00009user_option_01_listbookings {
 		{
 		$output=array();
 
+		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT',"my account");
 		$output[]		=jr_gettext('_JOMCOMP_MYUSER_LISTBOOKINGS',_JOMCOMP_MYUSER_LISTBOOKINGS);
 
 		foreach ($output as $o)

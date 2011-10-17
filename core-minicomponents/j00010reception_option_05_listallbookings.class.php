@@ -32,15 +32,26 @@ class j00010reception_option_05_listallbookings {
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
-		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), 'ListBookings.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listLiveBookings"), 'ListBookings.png', jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS',_JOMRES_FRONT_MR_MENU_ADMIN_LISTBOOKINGS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS" , "management" ,false,false) );
 		}
 	
-	
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS" , "management");
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{

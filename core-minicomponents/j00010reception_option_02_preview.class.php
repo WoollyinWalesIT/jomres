@@ -37,7 +37,7 @@ class j00010reception_option_02_preview {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['is_single_property_installation'] == "0")
-			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=preview", 'Preview.png', jr_gettext('_JOMRES_FRONT_PREVIEW',_JOMRES_FRONT_PREVIEW,false,false));
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=preview", 'Preview.png', jr_gettext('_JOMRES_FRONT_PREVIEW',_JOMRES_FRONT_PREVIEW,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard" ,false,false) );
 		else
 			$this->cpanelButton="";
 		}

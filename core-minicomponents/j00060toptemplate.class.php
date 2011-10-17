@@ -30,8 +30,7 @@ class j00060toptemplate {
 		
 		$tz = $componentArgs['tz'];
 		$jomreslang = $componentArgs['jomreslang'];
-		
-		
+
 		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 			{
 			jr_import('jomres_management_view');
@@ -67,6 +66,10 @@ class j00060toptemplate {
 				{
 				if ($thisJRUser->userIsManager)
 					{
+					$defaultProperty=getDefaultProperty();
+					$current_property_details =jomres_getSingleton('basic_property_details');
+					$output['PROPERTYNAME']= $current_property_details->get_property_name($defaultProperty);
+
 					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
 						$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
 					elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))

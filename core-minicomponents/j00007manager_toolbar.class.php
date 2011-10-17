@@ -59,7 +59,9 @@ class j00007manager_toolbar {
 						$rows[]=$r;
 						}
 					}
-
+				
+				set_showtime('jomres_mainmenu_manager_options',$rows);
+				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
@@ -68,14 +70,16 @@ class j00007manager_toolbar {
 				else
 					$tmpl->readTemplatesFromInput('toolbar_manager.html');
 				$tmpl->addRows( 'pageoutput',$pageoutput);
-				$tmpl->addRows( 'rows',$rows);
+				//$tmpl->addRows( 'rows',$rows);
 				$cachableContent = $tmpl->getParsedTemplate();
 				$cache->setCache($cachableContent);
 				unset($cache);
 				echo $cachableContent;
 				}
 			}
-
+		
+		
+		
 		// Third party plugin buttons
 		$MiniComponents->triggerEvent('09002',$componentArgs); //
 		$mcOutput=$MiniComponents->getAllEventPointsData('09002');
@@ -84,7 +88,9 @@ class j00007manager_toolbar {
 			$rows		=array();
 			$pageoutput	=array();
 			$output=array();
-
+			
+			set_showtime('jomres_mainmenu_thirdparty_options',$rows);
+			
 			foreach ($mcOutput as $key=>$val)
 				{
 				$r=array();
@@ -97,7 +103,7 @@ class j00007manager_toolbar {
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 			$tmpl->readTemplatesFromInput( 'toolbar_thirdparty.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
-			$tmpl->addRows( 'rows',$rows);
+			//$tmpl->addRows( 'rows',$rows);
 			echo $tmpl->getParsedTemplate();
 			}
 		}

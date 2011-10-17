@@ -491,6 +491,12 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_minicomponents.'j10002new_property.class.php');
 		
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_03_01_blank.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_05_01_blank.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_07_01_blank.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_04_01_blank.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_07_01_blank.class.php');
+
 		}
 	
 	function add_obs_file($path_and_file)
