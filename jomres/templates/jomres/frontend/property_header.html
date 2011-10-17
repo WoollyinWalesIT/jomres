@@ -1,18 +1,9 @@
-<patTemplate:tmpl name="pageoutput" >
-<br />
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
-<table width="100%">
-	<tr valign="top">
-		<td >
-			<div class="contentheading" style="padding:5px">{PROPERTY_NAME}&nbsp;{STARS}</div>
-			<div style="padding-bottom:5px;padding-left:5px;">{TOWN}, {REGION}, {COUNTRY}</div>
-			<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-			<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>
-		</td>
-		<td style="float:right;">
-			{TOOLTIP_PROPERTY_IMAGE}
-		</td>
-	</tr>
-</table>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="full-width ui-helper-clearfix">
+    <div class="property-title"><h2>{PROPERTY_NAME}&nbsp;{STARS}</h2></div>
+    <div>{STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY}<br />{HTELEPHONE}{TELEPHONE}, {HFAX}{FAX}</div>
+    <div>{GALLERYLINK}</div>
+    <!--<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+    <patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>-->
 </div>
 </patTemplate:tmpl>

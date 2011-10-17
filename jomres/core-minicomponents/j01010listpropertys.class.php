@@ -503,7 +503,8 @@ class j01010listpropertys {
 					
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
-					$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
+					$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE'],true);
+					$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],""); 
 					
 					$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))

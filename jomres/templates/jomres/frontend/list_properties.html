@@ -1,42 +1,5 @@
-<patTemplate:tmpl name="pageoutput">
-
-<patTemplate:tmpl name="nav_output_top" type="simpleCondition" requiredVars="writepagescounter">
-<div>
-	{WRITEPAGESCOUNTER}
-</div>
-<div>
-	{WRITEPAGESLINKS}
-</div>
-</patTemplate:tmpl>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-	
-	var clicktohide = '{CLICKTOHIDE}';
-	var clicktoshow = '{CLICKTOSHOW}';
-	
-	jomresJquery(function(){
-		//all hover and click logic for buttons
-		jomresJquery(".fg-button:not(.ui-state-disabled)")
-		.hover(
-			function(){ 
-				jomresJquery(this).addClass("ui-state-hover"); 
-			},
-			function(){ 
-				jomresJquery(this).removeClass("ui-state-hover"); 
-			}
-		)
-		.mousedown(function(){
-				jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-				if( jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jomresJquery(this).removeClass("ui-state-active"); }
-				else { jomresJquery(this).addClass("ui-state-active"); }
-		})
-		.mouseup(function(){
-			if(! jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
-				jomresJquery(this).removeClass("ui-state-active");
-			}
-		});
-		
-	});
-	
 function toggle_review_div(uid)
 	{
 	div_id = "#property_reviews"+uid;
@@ -45,9 +8,9 @@ function toggle_review_div(uid)
 		width: 800,
 		height: 500,
 		show: 'slide',
-		modal: false
+		modal: true
 		});
-	}
+	};
 	
 var killScroll = false; // IMPORTANT
 function lastAddedLiveFunc() 
@@ -71,82 +34,96 @@ function lastAddedLiveFunc()
 			lastAddedLiveFunc();
 			}
 		}
-	}); 
-</script>
+	});
 
-<patTemplate:tmpl name="property_details"  unusedvars="strip">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all jomres_property_list_propertywrapper" id={UID} style="margin-bottom: 10px;">
-	<table width="100%">
-		<tr valign="top">
-			<td class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-				<div id="property_name" class="fg-toolbar ui-widget-header ui-corner-all">
-					<a href="{MOREINFORMATIONLINK}"><strong>{PROPERTYNAME}</strong></a>&nbsp;{STARS}&nbsp;
-					<span style="font-size:11px;">{PROPERTY_TYPE}</span>
-				</div>
-				<div style="padding-bottom:5px;padding-left:5px;padding-top:5px;">
-					{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}
-				</div>
-				<div style="padding:5px;">
-					{PROPERTYDESC}
-				</div>
-				<div style="padding:5px;">
-					<div class="{LASTMINUTECLASS}">
-						{LASTMINUTE}
-					</div>
-				</div>
-				<div >
-					{ROOMTYPES}
-				</div>
-				<div style="clear:both;"></div>
-				<div>
-					{FEATURELIST}
-				</div>
-				<div style="clear:both;"></div>
-				<div style="padding:5px;clear:both;">
-					{_JOMRES_REVIEWS} {COLON} {_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} {HYPHEN} {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS} <a href="javascript:void(0);" onClick="toggle_review_div({UID});" style="outline: none;"><div id="property_reviews_link{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</div></a>
-				</div>
-				
-			</td>
-			<td width="30%">
-				<table>
-					<tr>
-						<td>
-							 <div align="right">
-								{PRICESFROM}&nbsp;&nbsp;<strong>{LOWESTPRICE}</strong>
-							</div>
-							<div class="{LASTBOOKING_STYLE}" style="padding:1px">{LASTBOOKED}</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div style="float:right;">
-								<a href="{MOREINFORMATIONLINK}" >{TOOLTIP_IMAGE}</a>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<div class="fg-toolbar fg-buttonset">
-								<div style="float:right;width:150px;">
-									<a href="{LINK}" class="fg-button ui-state-default ui-corner-all fg-button-icon-left" > <span class="ui-icon ui-icon-circle-plus"></span>{BOOKTHIS_TEXT}</a>
-								</div>
-								<div style="float:right;width:150px;margin-top:5px;">
-									<a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all" >{MOREINFORMATION}</a>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable" id="property_reviews{UID}" style="display: none">
-		{REVIEWS}
-	</div>
+function runEffect(uid) {
+	var selectedEffect = "blind";
+	var options = {};
+	if ( selectedEffect === "scale" ) {
+		options = { percent: 0 };
+	} else if ( selectedEffect === "size" ) {
+		options = { to: { width: 200, height: 60 } };
+	}
+	jomresJquery( "#effect"+uid ).toggle( selectedEffect, options, 500 );
+	return false;
+};
+</script>
+<patTemplate:tmpl name="nav_output_top" type="simpleCondition" requiredVars="writepagescounter">
+<div>
+	{WRITEPAGESCOUNTER}
+</div>
+<div>
+	{WRITEPAGESLINKS}
 </div>
 </patTemplate:tmpl>
-
-
+<patTemplate:tmpl name="property_details" unusedvars="strip">
+<table width="100%" class="ui-widget-content ui-corner-all jomres_property_list_propertywrapper" id="{UID}" border="0">
+    <tr class="ui-widget-header">
+    	<td colspan="2" width="100%" class="property-header">
+        	{PROPERTY_TYPE}
+            <span class="float-right">{PRICESFROM}&nbsp;<strong>{LOWESTPRICE}</strong></span>
+        </td>
+    </tr>
+    <tr>
+       <td align="left" width="200">
+            <a href="{MOREINFORMATIONLINK}">{IMAGE_POPUP}</a>
+       </td>
+       <td valign="top" align="left" width="100%">
+       		<table width="100%" border="0">
+            	<tr>
+                	<td colspan="2">
+                    	<div class="property-title"><a href="{MOREINFORMATIONLINK}"><strong>{PROPERTYNAME}</strong></a>&nbsp;{STARS}</div>
+                    </td>
+                </tr>
+                <tr>
+                	<td width="100%" valign="top">
+                		<div><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></div>
+                		<div class="property-desc">{PROPERTYDESC}</div>
+                    	<div class="jomres_message">{LASTMINUTE}</div>
+                    </td>
+                    <td align="right" rowspan="3">
+                        <div class="fg-toolbar fg-buttonset">
+                            <a href="{LINK}" class="fg-button ui-state-default ui-corner-all plist-button">{BOOKTHIS_TEXT}</a>
+                            <a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all plist-button">{MOREINFORMATION}</a>
+                            <a href="javascript:void(0);" onClick="toggle_review_div({UID});" class="fg-button ui-state-default ui-corner-all plist-button"><div id="property_reviews_link{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</div></a>
+                            <div><a href="javascript:void(0);" onClick="runEffect({UID});" class="fg-button ui-state-default ui-corner-all plist-button-last">Quick Info</a></div>
+                        </div>
+      				</td>
+                </tr>
+         	</table>
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="2">
+        	<div id="effect{UID}" class="quick-info">
+                <div class="ui-widget-content ui-corner-all quick-info-left float-left">
+                    <div><strong>Room Type/s</strong></div>
+                    <div>{ROOMTYPES}</div>
+                    <div style="clear:both;"></div>
+                    <div><strong>Facilities</strong></div>
+                    <div>{FEATURELIST}</div>
+                    <div style="clear:both;"></div>
+                 </div>
+                 <div class="ui-widget-content ui-corner-all quick-info-right float-right">
+                    <div><strong>Sleeps:</strong> W</div>
+                    <div><strong>Bedrooms:</strong> X</div>
+                    <div><strong>Bathrooms:</strong> Y</div>
+                    <div><strong>Square meters:</strong> Z</div>
+                    <div>&nbsp;</div>
+                    <!--<div><strong>{_JOMRES_REVIEWS}</strong></div>-->
+                    <div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>
+                    <div><strong>{_JOMRES_REVIEWS_TOTAL_VOTES}</strong> {NUMBER_OF_REVIEWS}</div>
+                    <div>&nbsp;</div>
+                    <div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable" id="property_reviews{UID}" style="display: none;">
+	{REVIEWS}
+</div>
+</patTemplate:tmpl>
 <patTemplate:tmpl name="nav_output_bottom" type="simpleCondition" requiredVars="writepagescounter">
 <div>
 	{WRITEPAGESCOUNTER}

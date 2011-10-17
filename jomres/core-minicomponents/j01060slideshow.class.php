@@ -1,7 +1,7 @@
 <?php
 /**
  * Core file
- * @author Vince Wooll <sales@jomres.net>
+ * @author Aladar Barthi <sales@jomres.net>
  * @version Jomres 5
 * @package Jomres
 * @copyright	2005-2011 Vince Wooll
@@ -12,13 +12,6 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-/**
-#
- * Creates the slideshow
- #
-* @package Jomres
-#
- */
 class j01060slideshow {
 	/**
 	#
@@ -33,6 +26,13 @@ class j01060slideshow {
 			{
 			$this->template_touchable=false; return;
 			}
+		global $jomresConfig_live_site,$ePointFilepath;
+		
+		$ePointFilepath = get_showtime('ePointFilepath');
+		
+		
+		$output = array();
+		$output['LIVE_SITE'] = $jomresConfig_live_site;
 		$property_uid=$componentArgs['property_uid'];
 		$thumbnail_width = 50;
 		if (!isset($property_uid))
@@ -63,6 +63,10 @@ class j01060slideshow {
 					}
 				}
 			}
+		
+		$output['PROPERTYIMAGE']=getImageForProperty("property",$property_uid,$property_uid);
+		$output['PROPERTYNAME']=getPropertyName($property_uid,false);
+		
 		$propertyName=getPropertyNameNoTables($property_uid);
 		if (isset($imageData))
 			$numberOfImages=count($imageData);
@@ -78,18 +82,25 @@ class j01060slideshow {
 				$cap=$imageData[$i]['filename'];
 				$capAr=explode(".",$cap);
 				$cap=$capAr[0];
+				$cap=str_replace("-"," ",$cap);
 				$cap=str_replace("_"," ",$cap);
 				$cap=strtolower($cap);
 				$cap=ucwords($cap);
+				$r['WIDTH']=$imageData[$i]['thwidth'];
+				$r['HEIGHT']=$imageData[$i]['thheight'];
 				$r['IMAGETHUMB']=getThumbnailForImage($imageData[$i]['imagelocation'].$imageData[$i]['filename']);
-				$r['IMAGE']=jomres_makeTooltip($cap,$cap,$imageData[$i]['imagelocation'].$imageData[$i]['filename'],$imageData[$i]['imagelocation'].$imageData[$i]['filename'],"","imageonly",$type_arguments=array("imagethumb"=>$r['IMAGETHUMB'],"width"=>$imageData[$i]['thwidth'],"height"=>$imageData[$i]['thheight'],"border"=>0));
+				$r['IMAGE']=$imageData[$i]['imagelocation'].$imageData[$i]['filename'];
 				$r['CAPTION'] = $cap;
 				$rows[]=$r;
 				}
-
+			
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/slideshow_themes/classic/',"galleria-1.2.5.min.js",false);
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/slideshow_themes/classic/',"galleria.classic.min.js",false);
+			jomres_cmsspecific_addheaddata("css",'jomres/javascript/slideshow_themes/classic/','galleria.classic.css');
+			
 			$pageoutput[]=$output;
 			$tmpl    =    new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->setRoot( $ePointFilepath."templates" );
 			$tmpl->readTemplatesFromInput( 'slideshow.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );

@@ -1,18 +1,6 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}&hl=en" type="text/javascript"></script>
-<table class="panelwrapper">
-	<tr>
-		<td>
-			<table class="innerwrapper">
-				<tr>
-					<td class="header" colspan="2">
-						<center><div id="map"></div></center>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
+<div id="map"></div>
 <script>
 jomresJquery(document).ready(function() {
 	if (GBrowserIsCompatible()) {
@@ -26,7 +14,6 @@ jomresJquery(document).ready(function() {
 		var marker = new GMarker(point);
 		Gmap.addOverlay(marker);
 		};
-	
 	});
 </script>
 </patTemplate:tmpl>

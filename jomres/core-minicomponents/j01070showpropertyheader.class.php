@@ -42,9 +42,7 @@ class j01070showpropertyheader
 		$pageoutput = array();
 
 		$property_uid=(int)$componentArgs['property_uid'];
-		
 
-		
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("property_header",$property_uid,false);
 		$cacheContent = $cache->readCache();
@@ -153,9 +151,32 @@ class j01070showpropertyheader
 
 				$output['STARS']=$starslink;
 				$output['PROPERTY_NAME'] = $current_property_details->property_name;
+				$output['STREET'] = $current_property_details->property_street;
 				$output['TOWN'] = $current_property_details->property_town;
 				$output['REGION'] = $current_property_details->property_region;
 				$output['COUNTRY'] = $current_property_details->property_country;
+				$output['POSTCODE'] = $current_property_details->property_postcode;
+				$output['TELEPHONE']=$current_property_details->property_tel;
+				$output['FAX']=$current_property_details->property_fax;
+				if ($output['TELEPHONE']!="")
+					$output['HTELEPHONE']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE).": ";
+				if ($output['FAX']!="")
+				$output['HFAX']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX).": ";
+				
+				if ($mrConfig['galleryLink']!="")
+					{
+					// if(filter_var($mrConfig['galleryLink'], FILTER_VALIDATE_URL) === TRUE) Not using this as it doesn't seem to work
+					if (function_exists('filter_var'))
+						$mrConfig['galleryLink'] = filter_var($mrConfig['galleryLink'], FILTER_SANITIZE_URL);
+					else
+						$mrConfig['galleryLink'] = jomresURL($mrConfig['galleryLink']);
+	
+					$output['GALLERYLINK']= preg_replace("
+						#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie",
+						"'<a href=\"$1\" target=\"_blank\">$3</a>$4'",
+						$mrConfig['galleryLink']
+						);
+					}
 
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
