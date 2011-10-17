@@ -362,13 +362,13 @@ class j16000showplugins
 		';
 		
 		////////////////////////////////////////////////////// Remote plugins
-		$span = 10;
+		$span = 12;
 		if ($developer_user)
-			$span=9;
+			$span=11;
 		
 		echo '<table width="100%" border="0">
 			<tr>
-				<td class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="'.$span.'">Jomres.net plugins</td>
+				<td class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="'.$span.'" align="center">Jomres.net plugins</td>
 			</tr>
 			<tr>
 				<th class="ui-state-default">Name</th>
