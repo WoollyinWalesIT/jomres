@@ -305,6 +305,9 @@ $performance_monitor->set_point("pre-menu generation");
 
 if (!defined('JOMRES_NOHTML'))
 	{
+	if ( JOMRES_WRAPPED != 1)
+		$MiniComponents->triggerEvent('00008'); // User's toolbar
+	
 	if ($thisJRUser->userIsSuspended)
 		{
 		jr_import('jomres_suspensions');
@@ -323,11 +326,7 @@ if (!defined('JOMRES_NOHTML'))
 			$MiniComponents->triggerEvent('00007',$componentArgs); // Manager's toolbar
 			}
 		}
-	else
-		{
-		if ( JOMRES_WRAPPED != 1)
-			$MiniComponents->triggerEvent('00008'); // User's toolbar
-		}
+
 	}
 
 $performance_monitor->set_point("post-menu generation");
