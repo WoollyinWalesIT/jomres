@@ -122,13 +122,22 @@ class j10001control_panel
 			$output['_JOMRES_PRODUCT_INFORMATION2']=_JOMRES_PRODUCT_INFORMATION2;
 			}
 		
-		
-		
-		if (!$key_validation->key_valid)
+		$output['CACHE_WARNING']="";
+		$output['CACHE_HIGHLIGHT'] = "";
+		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 			{
-			
+			if (_JOMRES_DETECTED_CMS == "joomla15" )
+				$query = "SELECT id FROM #__plugins WHERE `element`='cache' AND published = '1'";
+			else
+				$query = "SELECT extension_id FROM #__plugins WHERE `element`='cache' AND `enabled`='1' ";
+			$cache=doSelectSql($query);
+			if (count($cache)>0)
+				{
+				$output['CACHE_WARNING']= _JOMRES_WARNING_SYSTEM_CACHE;
+				$output['CACHE_HIGHLIGHT'] = "ui-state-error";
+				}
 			}
-		
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
