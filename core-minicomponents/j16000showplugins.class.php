@@ -372,7 +372,7 @@ class j16000showplugins
 			</tr>
 			<tr>
 				<th class="ui-state-default">Name</th>
-				<th class="ui-state-default">Image</th> 
+				<!-- <th class="ui-state-default">Image</th>  -->
 				<th class="ui-state-default">Minimum Jomres version</th>
 				<th class="ui-state-default">Your Version</th>
 				<th class="ui-state-default">Current Version</th>
@@ -470,14 +470,15 @@ class j16000showplugins
 			if ($rp['highlight'] != '' )
 				$highlight = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
 			
-			$image = '';
-			if ($rp['image'] != '' )
-				$image = jomres_make_image_popup($rp['name'],$rp['image']);
-
+			// $image = '';
+			// if ($rp['image'] != '' )
+				// $image = jomres_make_image_popup($rp['name'],$rp['image']);
+			
+			// old image showing html, removed because it slowed down the plugin list
+			// <td class=\"ui-corner-all\" $style>".$image."</td>
 			echo
 			"<tr class=\"".$row_class." \" >
 				<td class=\"ui-corner-all\" $style>".$strong1.$rp['name'].$strong2."</td>
-				<td class=\"ui-corner-all\" $style>".$image."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['min_jomres_ver']."</td>
 				<td class=\"ui-corner-all\" $style>".$local_version."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>

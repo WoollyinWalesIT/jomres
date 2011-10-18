@@ -49,6 +49,14 @@ class j10004generate_control_panel {
 				$r['TARGET'] = '';
 				if ($val['external'])
 					$r['TARGET'] = ' target="_blank" ';
+					
+				$r['disabled_class']='';
+				if ($r['disabled'])
+					{
+					$r['link']='#';
+					$r['disabled_class']= 'ui-state-error ui-state-disabled';
+					}
+				
 				$rows[]=$r;
 				}
 

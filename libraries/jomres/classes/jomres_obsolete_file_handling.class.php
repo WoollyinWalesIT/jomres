@@ -342,20 +342,20 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'Printer'.JRDS.'CSSDefinition.php');
 		$this->add_obs_file($this->dir_libraries.'htmlpurifier'.JRDS.'standalone'.JRDS.'HTMLPurifier'.JRDS.'Printer'.JRDS.'HTMLDefinition.php');
 		
-		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_04_blackbookings.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j00010reception_option_04_blackbookings.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j02130listblackbookings.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02132blackbooking.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02134newblackbooking.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02136saveblackbooking.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02138deleteblackbooking.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_07_bookaguestin.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_08_bookaguestout.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j02170bookguestin.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j02180bookguestout.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j00010reception_option_07_bookaguestin.class.php');  // This file has now been re-added to Jomres, in a disabled state
+		// $this->add_obs_file($this->dir_minicomponents.'j00010reception_option_08_bookaguestout.class.php'); // This file has now been re-added to Jomres, in a disabled state
+		// $this->add_obs_file($this->dir_minicomponents.'j02170bookguestin.class.php');  // This file has now been re-added to Jomres, in a disabled state
+		// $this->add_obs_file($this->dir_minicomponents.'j02180bookguestout.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j02182savebookout.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j07010commission_lineitem_insert.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002commission_invoices.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002listcrates.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002commission_invoices.class.php'); // This file has now been re-added to Jomres, in a disabled state
+		// $this->add_obs_file($this->dir_minicomponents.'j10002listcrates.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		
 		$this->add_obs_file($this->dir_minicomponents.'j16000editcrate.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000list_commission_invoices.class.php');
@@ -373,30 +373,30 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j03108paypal.class.php');
 		
 		$this->add_obs_file($this->dir_minicomponents.'j06000paypal.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002paypal.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002paypal.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j16000paypal_settings.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000save_paypal_settings.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_couponadmin.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_couponadmin.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j06002deleteCoupon.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06002editCoupon.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06002listCoupons.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j06002saveCoupon.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002listCustomFields.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002listCustomFields.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000delete_custom_field.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000edit_custom_field.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000listCustomFields.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_04_guesttypeadmin.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_04_guesttypeadmin.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		
 		$this->add_obs_file($this->dir_minicomponents.'j02114listcustomertypes.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02116editcustomertype.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02118savecustomertype.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02120deletecustomertype.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_extrasadmin.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_05_extrasadmin.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j02140publishextra.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02142listextras.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02144editextra.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02146saveextra.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002partners_choose.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002partners_choose.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j16000partner_delete.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000partner_delete_discount.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000partner_list_discounts.class.php');
@@ -407,8 +407,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j16000partners_choose.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000partners_find.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000partners_property_find.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_09_newproperty.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_12_deleteproperty.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_09_newproperty.class.php'); // This file has now been re-added to Jomres, in a disabled state
+		// $this->add_obs_file($this->dir_minicomponents.'j00011manager_option_12_deleteproperty.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j02299regprop1_a_roombookings.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02299regprop1_realestate.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j02300regprop1.class.php');
@@ -417,18 +417,18 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j04910deleteproperty.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00501sms_clickatell.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j03100sms_clickatell.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002sms_clickatell.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j16000save_sms_clickatell_settings.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000sms_clickatell_settings.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002subscriptions.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002subscriptions_packages.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002subscriptions.class.php'); // This file has now been re-added to Jomres, in a disabled state
+		// $this->add_obs_file($this->dir_minicomponents.'j10002subscriptions_packages.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j16000delete_subscription.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000delete_subscription_package.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000edit_subscription_package.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000list_subscription_packages.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000list_subscriptions.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000save_subscription_package.class.php');
-		$this->add_obs_file($this->dir_minicomponents.'j10002listTemplates.class.php');
+		// $this->add_obs_file($this->dir_minicomponents.'j10002listTemplates.class.php'); // This file has now been re-added to Jomres, in a disabled state
 		$this->add_obs_file($this->dir_minicomponents.'j16000edit_template.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j16000save_template.class.php');
 
