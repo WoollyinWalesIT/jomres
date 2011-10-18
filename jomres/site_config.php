@@ -222,12 +222,8 @@ $jrConfig['show_tax_in_totals_summary']="1";
 $jrConfig['alternate_smtp_use_settings']="0";
 $jrConfig['alternate_smtp_authentication']="1";
 $jrConfig['alternate_smtp_host'] = "";
-$jrConfig['alternate_smtp_port'] = "2525";
+$jrConfig['alternate_smtp_port'] = "25";
 $jrConfig['alternate_smtp_protocol'] = "";
 $jrConfig['alternate_smtp_username'] = "";
 $jrConfig['alternate_smtp_password'] = "";
-
-
-
-
 ?>

@@ -20,7 +20,7 @@ class html_functions
 		{
 		}
 		
-	function cpanelButton( $link, $image, $text, $path='/jomres/images/jomresimages/small/' ,$category = null,$external = false) 
+	function cpanelButton( $link, $image, $text, $path='/jomres/images/jomresimages/small/' ,$category = null,$external = false,$disabled = false) 
 		{
 		if (!isset($category))
 			$category = 'misc';
@@ -36,7 +36,7 @@ class html_functions
 		else
 			$path=get_showtime('live_site').'/jomres/images/'.$image;
 		
-		$control_panel_buttons[] = array("link"=>$link,"image"=>$image,"menu_name"=>$text,"image_path"=>$path,"category"=>$category,"external"=>$external);
+		$control_panel_buttons[] = array("link"=>$link,"image"=>$image,"menu_name"=>$text,"image_path"=>$path,"category"=>$category,"external"=>$external,"disabled"=>$disabled);
 		set_showtime('control_panel_buttons',$control_panel_buttons);
 		}
 		
