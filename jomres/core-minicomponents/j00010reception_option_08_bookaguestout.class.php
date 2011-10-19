@@ -40,7 +40,7 @@ class j00010reception_option_08_bookaguestout {
 		$this->cpanelButton=jomres_mainmenu_option(
 			jomresURL(JOMRES_SITEPAGE_URL."&task=bookGuestOut"), 
 			'BookGuestOut.png',
-			$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT_WHOLEDAY',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT_WHOLEDAY,false,false): jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN_WHOLEDAY',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN_WHOLEDAY,false,false),
+			$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT_WHOLEDAY',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT_WHOLEDAY,false,false): jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,false,false),
 			null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS","management",false,false),false,true );
 		}
 	
