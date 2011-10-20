@@ -47,7 +47,7 @@ class j10001control_panel
 			$buffer = curl_exec($curl_handle);
 			curl_close($curl_handle);
 			if (empty($buffer))
-				$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres.net ?<p>";
+				$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
 			else
 				{
 				// for testing
