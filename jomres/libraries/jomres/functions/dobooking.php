@@ -415,38 +415,17 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		{
 		if ( $mrConfig['singleRoomProperty'] == "1" && (isset($thisdate) && !empty($thisdate))  )
 			{
-			$load['ONLOAD']="hidediv('indicator');";
-			$load['COUNT']=1;
-			$toload[]=$load;
 			// As of 4.4 we've done away with the two ajax call process to run the booking form, however we still need to initialise the arrival date through ajax for SRPs
 			$tmpsrptrigger="jQuery.get(ajaxurl+'&task=handlereq',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
 			$tmpsrptrigger = $bkg->sanitise_for_eval($tmpsrptrigger);
 			$load['ONLOAD']=$tmpsrptrigger;
-			$load['COUNT']=2;
 			$toload[]=$load;
 			}
 		else
 			{
-			$load['ONLOAD']="hidediv('indicator');";
-			$load['COUNT']=1;
-			$toload[]=$load;
-			$load['ONLOAD']="hidediv('extrascontainer');";
-			$load['COUNT']=2;
-			$toload[]=$load;
-			$load['ONLOAD']="hidediv('guestdeets');";
-			$load['COUNT']=3;
-			$toload[]=$load;
 			$load['ONLOAD']="jQuery.get(ajaxurl+'&task=handlereq&firstrun=1',{ field : 'arrivalDate', value: '".$bkg->JSCalmakeInputDates($bkg->arrivalDate)."', field : 'departureDate', value: '".$bkg->JSCalmakeInputDates($bkg->departureDate)."' },function(data){showRoomsList(data); show_log('');});";
-			$load['COUNT']=4;
 			$toload[]=$load;
 			}
-		}
-	else
-		{
-		$load['ONLOAD']="hidediv('indicator');";
-		$load['COUNT']=1;
-		$toload[]=$load;
-		$toload[]=$load;
 		}
 
 	$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
