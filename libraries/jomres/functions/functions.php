@@ -13,6 +13,14 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function add_menu_option ( $task_and_args, $image, $title,$path=null, $category,$external=false,$disabled=false)
+	{
+	$option = jomres_mainmenu_option( $task_and_args, $image, $title, $path,$category,$external,$disabled);
+	$jomres_mainmenu_thirdparty_options = get_showtime('jomres_mainmenu_thirdparty_options');
+	$jomres_mainmenu_thirdparty_options[]['OPTIONS'] = $option;
+	set_showtime('jomres_mainmenu_thirdparty_options',$jomres_mainmenu_thirdparty_options);
+	
+	}
 
 function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = "", $arguments = array(), $thumbnail = "", $thumbnail_rel_path = "" )
 	{
@@ -885,7 +893,7 @@ function jomres_mainmenu_option( $link, $image='', $text, $path='/jomres/images/
 	
 	if (!isset($category ))
 		$category = 'misc';
-	
+
 	if (!strstr($image,"blank.png") && strlen($link) > 0  && strlen($text) > 0 )
 		return array("link"=>$link,"image"=>$image,"menu_name"=>$text,"image_path"=>$path,"category"=>$category,"external"=>$external,"disabled"=>$disabled);
 	else

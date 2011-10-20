@@ -34,7 +34,7 @@ class j00011manager_option_08_publish {
 			{
 			$this->template_touchable=false; return;
 			}
-		$published=$componentArgs['published'];
+		$published=get_showtime('this_property_published');
 		if ($published)
 			{
 			$pubmsg = jr_gettext('_JOMRES_COM_MR_VRCT_UNPUBLISH',_JOMRES_COM_MR_VRCT_UNPUBLISH,false);

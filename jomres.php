@@ -202,6 +202,15 @@ else
 	$thisJRUser->authorisedProperties = array();
 	}
 
+if ($thisJRUser->userIsSuspended)
+	{
+	jr_import('jomres_suspensions');
+	$jomres_suspensions=new jomres_suspensions();
+	$jomres_suspensions->set_manager_id($thisJRUser->userid);
+	if (!$jomres_suspensions->suspended_manager_allowed_task(get_showtime('task')))
+		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=suspended"), "" );
+	}
+
 jr_import('jomres_timezones');
 $tz = new jomres_timezones();
 
@@ -285,6 +294,8 @@ if ($property_uid >0)
 		}
 	}
 
+
+		
 // This little routine sets the custom text for an individual property.
 if (isset($property_uid) && !empty($property_uid))
 	{
@@ -297,40 +308,10 @@ init_javascript();
 set_showtime('include_room_booking_functionality',true);
 
 $MiniComponents->triggerEvent('00005');
+$MiniComponents->triggerEvent('00006');
+
 
 $MiniComponents->triggerEvent('00060',array('tz'=>$tz,'jomreslang'=>$jomreslang)); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
-
-$performance_monitor->set_point("pre-menu generation");
-
-if (!defined('JOMRES_NOHTML'))
-	{
-	if ( JOMRES_WRAPPED != 1)
-		$MiniComponents->triggerEvent('00008'); // User's toolbar
-	
-	if ($thisJRUser->userIsSuspended)
-		{
-		jr_import('jomres_suspensions');
-		$jomres_suspensions=new jomres_suspensions();
-		$jomres_suspensions->set_manager_id($thisJRUser->userid);
-		if (!$jomres_suspensions->suspended_manager_allowed_task(get_showtime('task')))
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=suspended"), "" );
-		}
-
-	if ($thisJRUser->userIsManager)
-		{
-		if (get_showtime('task') != "invoiceForm" && get_showtime('task')!= "confirmationForm" && get_showtime('task') != "editCustomText" && get_showtime('task') != "saveCustomText" && !$popup && !$no_html)
-			{
-			$componentArgs=array('published'=>$published,'property_uid'=>$property_uid);
-			$MiniComponents->triggerEvent('00006'); // Reception's toolbar
-			$MiniComponents->triggerEvent('00007',$componentArgs); // Manager's toolbar
-			}
-		}
-	
-	
-	$MiniComponents->triggerEvent('00063'); // New Jomres Mainmenu
-	}
-
-$performance_monitor->set_point("post-menu generation");
 
 $componentArgs=array();
 if (empty($property_uid))
@@ -1140,6 +1121,16 @@ else
 		echo "Error, no properties installed. Before you can use Jomres you need to have at least 1 property installed, this is achieved by running <a href=\"".get_showtime('live_site')."/install_jomres.php\"></a>install_jomres.php.";
 		}
 	}
+
+
+$performance_monitor->set_point("pre-menu generation");
+if (!defined('JOMRES_NOHTML')) // Generate the main menu
+	{
+	$MiniComponents->triggerEvent('99995');
+	}
+
+$performance_monitor->set_point("post-menu generation");
+
 
 $componentArgs=array();
 $MiniComponents->triggerEvent('99999',$componentArgs); // Optional end of run minicomponent
