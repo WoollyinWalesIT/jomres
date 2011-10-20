@@ -1124,7 +1124,7 @@ else
 
 
 $performance_monitor->set_point("pre-menu generation");
-if (!defined('JOMRES_NOHTML')) // Generate the main menu
+if (!defined('JOMRES_NOHTML') && !isset($_REQUEST['popup']) ) // Generate the main menu
 	{
 	$MiniComponents->triggerEvent('99995');
 	}

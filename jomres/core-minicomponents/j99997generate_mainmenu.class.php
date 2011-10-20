@@ -25,10 +25,17 @@ class j99997generate_mainmenu {
 		$button_o = array();
 
 		$categories = array();
+		$jomres_mainmenu_category_images = get_showtime('jomres_mainmenu_category_images');
 		
 		foreach ($buttons as $category=>$buts)
 			{
 			$categories[$category]=$category;
+			$output['CAT_IMAGE'] =get_showtime('live_site').'/jomres/images/down.png';
+			if (isset($jomres_mainmenu_category_images[$category]))
+				{
+				$output['CAT_IMAGE'] = $jomres_mainmenu_category_images[$category];
+				}
+			
 			$rows = array();
 			foreach ($buts as $key=>$val)
 				{

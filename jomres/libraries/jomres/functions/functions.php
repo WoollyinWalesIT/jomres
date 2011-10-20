@@ -13,13 +13,43 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+// Used by components to dynamically add elements to the new Jomres mainmenu. Process.png is a neat way to indicate that this menu option's dynamically added
 function add_menu_option ( $task_and_args, $image, $title,$path=null, $category,$external=false,$disabled=false)
 	{
-	$option = jomres_mainmenu_option( $task_and_args, $image, $title, $path,$category,$external,$disabled);
+	$jomres_mainmenu_category_images = get_showtime('jomres_mainmenu_category_images');
+	$jomres_mainmenu_category_images[strtolower($category)]=get_showtime('live_site').'/jomres/images/jomresimages/small/process.png';
+	set_showtime('jomres_mainmenu_category_images',$jomres_mainmenu_category_images);
+	$option = jomres_mainmenu_option( $task_and_args, "process.png", $title, $path,$category,$external,$disabled);
 	$jomres_mainmenu_thirdparty_options = get_showtime('jomres_mainmenu_thirdparty_options');
 	$jomres_mainmenu_thirdparty_options[]['OPTIONS'] = $option;
 	set_showtime('jomres_mainmenu_thirdparty_options',$jomres_mainmenu_thirdparty_options);
+	}
+
+
+// Builds the button link information that's later passed to the menu generator
+function jomres_mainmenu_option( $link, $image='', $text, $path='/jomres/images/jomresimages/small/',$category = null,$external = false,$disabled=false)
+	{
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$link = jomresURL($link);
+	$link = jomresValidateUrl($link);
+
+	if ($image == '')
+		$image = 'Prompt.png';
 	
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
+		$path=get_showtime('eLiveSite');
+	else
+		$path=get_showtime('live_site').'/jomres/images/jomresimages/small/';
+	
+	if (!isset($category ))
+		$category = 'misc';
+
+	if (!strstr($image,"blank.png") && strlen($link) > 0  && strlen($text) > 0 )
+		return array("link"=>$link,"image"=>$image,"menu_name"=>$text,"image_path"=>$path,"category"=>$category,"external"=>$external,"disabled"=>$disabled);
+	else
+		return;
 	}
 
 function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = "", $arguments = array(), $thumbnail = "", $thumbnail_rel_path = "" )
@@ -867,37 +897,6 @@ function jomresValidateUrl($url)
 	$url=str_replace("&amp;","&",$url);
 	$url=str_replace("&","&amp;",$url);
 	return $url;
-	}
-
-
-
-function jomres_mainmenu_option( $link, $image='', $text, $path='/jomres/images/jomresimages/small/',$category = null,$external = false,$disabled=false)
-	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$showtime_button_array = get_showtime('frontend_buttons');
-	$showtime_button_array[]=array('link'=>$link,'image'=>$image,'text'=>$text);
-	set_showtime('frontend_buttons',$showtime_button_array);
-
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	$link = jomresURL($link);
-	$link = jomresValidateUrl($link);
-
-	if ($image == '')
-		$image = 'Prompt.png';
-	
-	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
-		$path=get_showtime('eLiveSite');
-	else
-		$path=get_showtime('live_site').'/jomres/images/jomresimages/small/';
-	
-	if (!isset($category ))
-		$category = 'misc';
-
-	if (!strstr($image,"blank.png") && strlen($link) > 0  && strlen($text) > 0 )
-		return array("link"=>$link,"image"=>$image,"menu_name"=>$text,"image_path"=>$path,"category"=>$category,"external"=>$external,"disabled"=>$disabled);
-	else
-		return;
 	}
 
 
@@ -2566,78 +2565,6 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	return $output;
 	}
 
-// Old code
-/**
-#
- * Makes a javascript date input field. Creates a random name for the form element each time so that multiple javascript forms can be used on the same page without collision
-#
-*/
-function generateDateInput2($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$jrc=FALSE)
-	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-
-	// We need to give the javascript date function a randon name because it will be called by both the component and modules
-	$javascriptFunctionName="";
-	list($usec,$sec)=explode(" ",microtime());
-	mt_srand($sec * $usec);
-	$possible='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz';
-	for ($i=0; $i<10; $i++)
-		{
-		$key=mt_rand(0, strlen($possible)-1);
-		$javascriptFunctionName.=$possible[$key];
-		}
-	// jrc variable added so that $jrConfig can be defined if the calendar functionality is called by a module ...... old as of 2/12/2008, should be factored out at some point.
-	if ($jrc)
-		$jrConfig=$jrc;
-	$dateFormat=$jrConfig['cal_input'];
-
-	if ($dateValue=="")
-		$dateValue = date("Y/m/d");
-
-	$dateValue=JSCalmakeInputDates($dateValue,$siteConfig);
-	$randomID=rand(1, 100); // Purely for the id tag
-	$randomID2=rand(1, 100); // Purely for the id tag
-	while ($randomID==$randomID2){$randomID2=rand(1, 100);};
-	if ($fieldName=="arrivalDate")
-		$output= showArrivaldateJS($dateFormat,$javascriptFunctionName,$randomID);
-	else
-		$output="";
-	$output.="
-		<input class=\"inputbox\" size=\"12\" type=\"text\" readonly=\"readonly\" name=\"".$fieldName."\"";
-		if ($fieldName=="arrivalDate")
-
-		$output.=' onchange="'.$javascriptFunctionName.'(this.value,form.name)"';
-		// For version 3.2 we've changed how the calendar is implemented. Now, you need to click on the input to make the calendar popup. To revert to the older style of input, uncomment the following section and comment out the "popup on input click" section.
-
-		// Popup on image click
-
-			$output.=" value=\"".$dateValue."\" id=\"x".$randomID."\"/>
-				<a class=\"dateinput_button\" href=\"#\"  id=\"x".$randomID2."\"  ><img src=\"".get_showtime('live_site')."/jomres/images/calendar.png\" width=\"20\" height=\"20\" border=\"0\" alt=\"dateinput\" align=\"top\" /></a>
-				<script type=\"text/javascript\">
-					Calendar.setup({
-					inputField    :   \"x".$randomID."\",
-					ifFormat      :   \"".$dateFormat."\",
-					//   showsTime      :   TRUE,
-					button		:   \"x".$randomID2."\",
-					step		   :   1
-					});
-				</script>
-				";
-				$output.="
-				<script type=\"text/javascript\">
-					Calendar.setup({
-					   inputField    :   \"x".$randomID."\",
-					ifFormat		:   \"".$dateFormat."\",
-					//   showsTime		:   TRUE,
-					button		:   \"x".$randomID."\",
-					step		   :   1
-					});
-				</script>
-				";
-	return $output;
-	}
-
 /**
 #
  * Triggesr the insert booking mini-comp 03020
@@ -4010,282 +3937,6 @@ function getPropertySpecificSettings($property_uid=null)
 	return $mrConfig;
 	}
 
-/**
-#
- * Self registration step 1
-#
-*/
-function registerProp_step1()
-	{
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-
-	if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager )
-		return;
-	$propertyRegion[]=array("AF","");
-	if (isset($_REQUEST['selectedCountry']) && !empty($_REQUEST['selectedCountry']))
-		$selectedCountry	= jomresGetParam( $_REQUEST, 'selectedCountry', "" );
-	$rgns=setupRegions($selectedCountry,$propertyRegion);
-	if (!isset($rgns) || empty($rgns) )
-		$output['REGIONDROPDOWN']="N/A";
-	else
-		$output['REGIONDROPDOWN']=setupRegions($selectedCountry,$propertyRegion);
-	$output['COUNTRIESDROPDOWN']=createCountriesDropdown($selectedCountry);
-	$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
-	$output['REGISTRATION_INSTRUCTIONS_STEP1']=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1);
-	$output['HCOUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
-	$output['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
-	$output['ITEMID']	=$Itemid;
-
-	$pageoutput[]=$output;
-	$tmpl = new patTemplate();
-	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-	$tmpl->readTemplatesFromInput( 'register_property1.html');
-	$tmpl->addRows( 'pageoutput',$pageoutput);
-	$tmpl->displayParsedTemplate();
-	}
-
-/**
-#
- * Self registration step 2
-#
-*/
-function registerProp_step2()
-	{
-	$mrConfig=getPropertySpecificSettings();
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-
-	if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
-		return;
-
-	$output=array();
-
-	$property_region				= jomresGetParam( $_POST, 'region', "" );
-	$property_country				= jomresGetParam( $_POST, 'country', "" );
-
-	$propertyFeatures="";
-
-	// make a standard yes/no list
-	$yesno = array();
-	$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
-	$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );
-
-	$output['ISTHISANMRP']=jr_gettext('_JOMRES_COM_ISTHISANMRP',_JOMRES_COM_ISTHISANMRP);
-	$output['ISTHISANMRP_DESC']=jr_gettext('_JOMRES_COM_ISTHISANMRP_DESC',_JOMRES_COM_ISTHISANMRP_DESC);
-	$output['ISTHISANMRP_DROPDOWN']= jomresHTML::selectList( $yesno, 'isthisanmrp', 'class="inputbox" size="1"', 'value', 'text', '1' );
-
-	$starsDropDownList="<select class=\"inputbox\" name=\"stars\">";
-	for ($i=0, $n=5; $i <= $n; $i++)
-		{
-		$starsDropDownList .= "<option value=\"".$i."\">".$i."</option>";
-		}
-	$starsDropDownList.="</select>";
-
-	$output['HPROPERTY_TYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE);
-
-	$output['PROPERTY_TYPE_DROPDOWN']=getPropertyTypeDropdown($ptypeid);
-	$propertyFeaturesArray=explode(",",$propertyFeatures);
-
-	$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image,property_uid FROM #__jomres_hotel_features	WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-	$propertyFeaturesList=doSelectSql($query);
-	if (count($propertyFeaturesList)>0)
-		{
-		foreach($propertyFeaturesList as $propertyFeature)
-			{
-			$r=array();
-			$r['PID']=$propertyFeature->hotel_features_uid;
-			if (in_array($propertyFeature->hotel_features_uid,$propertyFeaturesArray) )
-				$r['ischecked']="checked";
-			$r['FEATURE']=makeFeatureImages($propertyFeature->image,$propertyFeature->hotel_feature_abbv,$propertyFeature->hotel_feature_full_desc,TRUE);
-			$globalPfeatures[]=$r;
-			}
-		}
-	if (isset($listTxt))
-		$output['FEATURES']=$listTxt;
-
-	$output['STARSDROPDOWN']=$starsDropDownList;
-
-	$output['PROPERTY_NAME']					="";
-	$output['PROPERTY_STREET']					="";
-	$output['PROPERTY_TOWN']					="";
-	$output['PROPERTY_POSTCODE']				="";
-	$output['PROPERTY_TEL']						="";
-	$output['PROPERTY_FAX']						="";
-	$output['PROPERTY_EMAIL']					="";
-	$output['PROPERTY_MAPPINGLINK']				="";
-	$output['PROPERTY_DESCRIPTION']				="";
-	$output['PROPERTY_CHECKIN_TIMES']			="";
-	$output['PROPERTY_AREA_ACTIVITIES']			="";
-	$output['PROPERTY_DRIVING_DIRECTIONS']		="";
-	$output['PROPERTY_AIRPORTS']				="";
-	$output['PROPERTY_OTHERTRANSPORT']			="";
-	$output['PROPERTY_POLICIES_DISCLAIMERS']	="";
-	$output['PROPERTY_REGION']					=$property_region;
-	$output['PROPERTY_COUNTRY']					=$property_country;
-
-	$output['INPUTBOXERRORBORDER']				=$mrConfig['inputBoxErrorBorder'];
-	$output['INPUTBOXERRORBACKGROUND']			=$mrConfig['inputBoxErrorBackground'];
-	$output['JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2']				=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2);
-	$output['JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON']				=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2,false,false);
-	$output['JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1']				=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1);
-
-	$output['HNAME']				=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);
-	$output['HSTREET']				=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET);
-	$output['HTOWN']				=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN);
-	$output['HPOSTCODE']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE);
-	$output['HTELEPHONE']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE);
-	$output['HFAX']					=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX);
-	$output['HEMAIL']				=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL);
-	$output['HSTARS']				=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STARS);
-	$output['HFEATURES']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FEATURES);
-	$output['HMAPPINGLINK']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK);
-	$output['HPROPDESCRIPTION']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION);
-	$output['HCHECKINTIMES']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES);
-	$output['HAREAACTIVITIES']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES);
-	$output['HDRIVINGDIRECTIONS']	=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS);
-	$output['HAIRPORTS']			=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS);
-	$output['HOTHERTRANSPORT']		=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT);
-	$output['HPOLICIESDISCLAIMERS']	=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
-	$output['MOSCONFIGLIVESITE']	=get_showtime('live_site');
-	$output['ITEMID']				=$Itemid;
-
-	$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
-
-
-	$pageoutput[]=$output;
-	$tmpl = new patTemplate();
-	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-	$tmpl->readTemplatesFromInput( 'register_property2.html');
-	$tmpl->addRows( 'pageoutput',$pageoutput);
-	if ($jrConfig['useGlobalPFeatures']=="1")
-		$tmpl->addRows( 'globalPfeatures',$globalPfeatures);
-	$tmpl->displayParsedTemplate();
-
-	}
-
-/**
-#
- * Saves a self registered property
-#
-*/
-function saveRegisterProp()
-	{
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-	$MiniComponents =jomres_getSingleton('mcHandler');
-
-	if ($jrConfig['selfRegistrationAllowed']=="0" && !$thisJRUser->superPropertyManager)
-		return;
-	$property_name					= jomresGetParam( $_POST, 'property_name', "" );
-	$property_street				= jomresGetParam( $_POST, 'property_street', "" );
-	$property_town					= jomresGetParam( $_POST, 'property_town', "" );
-	$property_region				= jomresGetParam( $_POST, 'property_region', "" );
-	$property_country				= jomresGetParam( $_POST, 'property_country', "" );
-	$property_postcode				= jomresGetParam( $_POST, 'property_postcode', "" );
-	$property_tel					= jomresGetParam( $_POST, 'property_tel', "" );
-	$property_fax					= jomresGetParam( $_POST, 'property_fax', "" );
-	$property_email					= jomresGetParam( $_POST, 'property_email', "" );
-	$property_mappinglink			= urlencode(jomresGetParam( $_POST, 'property_mappinglink', "" ) );
-	$property_description			= jomresGetParam( $_POST, 'property_description', "" );
-	$property_checkin_times			= jomresGetParam( $_POST, 'property_checkin_times', "" );
-	$property_area_activities		= jomresGetParam( $_POST, 'property_area_activities', "" );
-	$property_driving_directions	= jomresGetParam( $_POST, 'property_driving_directions', "" );
-	$property_airports				= jomresGetParam( $_POST, 'property_airports', "" );
-	$property_othertransport		= jomresGetParam( $_POST, 'property_othertransport', "" );
-	$property_policies_disclaimers	= jomresGetParam( $_POST, 'property_policies_disclaimers', "" );
-	$property_type					= intval(jomresGetParam( $_POST, 'propertyType', "" ));
-	$isthisanmrp					= intval(jomresGetParam( $_POST, 'isthisanmrp', 0 ));
-	$property_stars					= intval(jomresGetParam( $_POST, 'stars', "" ) );
-	$features_list					= jomresGetParam( $_POST, 'features_list', array() );
-
-
-	if (count($features_list)>1)
-		$featuresList=implode(",",$features_list);
-	if (count($features_list)==1)
-		{
-		$featuresList=implode(",",$features_list);
-		//
-		}
-	$featuresList=",".$featuresList.",";
-
-	$apikey=createNewAPIKey();
-
-	$query="INSERT INTO #__jomres_propertys (`property_name`,`property_street`,`property_town`,
-		`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
-		`property_email`,`property_features`,`property_mappinglink`,
-		`property_description`,`property_checkin_times`,`property_area_activities`,
-		`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,stars,ptype_id,apikey)
-		VALUES
-		('$property_name','$property_street',
-		'$property_town','$property_region','$property_country','$property_postcode','$property_tel',
-		'$property_fax','$property_email','$featuresList',
-		'$property_mappinglink','$property_description','$property_checkin_times','$property_area_activities',
-		'$property_driving_directions','$property_airports','$property_othertransport',
-		'$property_policies_disclaimers','".(int)$property_stars."','".(int)$property_type."','".$apikey."'
-		)";
-	$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
-
-	if ($isthisanmrp == 1)
-		$singleRoomProperty="0";
-	else
-		$singleRoomProperty="1";
-	$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('".(int)$newPropId."','singleRoomProperty','".$singleRoomProperty."')";
-	doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS',_JOMRES_MR_AUDIT_EDIT_PROPERTY_SETTINGS,FALSE));
-
-	/*
-	$today = date("Y/m/d");
-	$validfrom=$today;
-	$validto=date("Y/m/d",mktime(0, 0, 0, date("m")	, date("d"), date("Y")+1));
-	if ($jrConfig['useGlobalRoomTypes']!="1")
-		{
-		$query="INSERT INTO #__jomres_room_classes (
-		`room_class_abbv`,`room_class_full_desc`,`property_uid` )
-		VALUES
-		('CHANGE ME','CHANGE ME','".(int)$newPropId."')";
-		$rmTypeId=doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE);
-		}
-	else
-		{
-		$query="SELECT room_classes_uid FROM #__jomres_room_classes WHERE property_uid = '0' LIMIT 1";
-		$rmTypeId=doSelectSql($query,1);
-		}
-	$query="INSERT INTO #__jomres_rates (
-		`rate_title`,`rate_description`,`validfrom`,`validto`,`roomrateperday`,
-		`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,`ignore_pppn`,
-		`allow_we`,`property_uid`)
-		VALUES
-		('CHANGE ME','CHANGE ME','$validfrom','$validto','100',
-		'1','100','1','10','".(int)$rmTypeId."','0',
-		'1','".(int)$newPropId."')";
-	$tariffid=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_TARIFF',_JOMRES_MR_AUDIT_INSERT_TARIFF,FALSE));
-	$query="INSERT INTO #__jomres_rooms (
-		`room_classes_uid`,`propertys_uid`,`room_name`,`room_number`,
-		`room_floor`,`room_disabled_access`,`max_people`,`smoking`)
-		VALUES
-		('".(int)$rmTypeId."','".(int)$newPropId."','CHANGE ME','N/A',
-		'N/A','0','10','0')";
-	doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM);
-	*/
-	if (!$thisJRUser->userIsManager)
-		{
-		$query="INSERT INTO #__jomres_managers (`userid`,`username`,`property_uid`,`access_level`)VALUES ('".(int)$thisJRUser->id."','$thisJRUser->username','".(int)$newPropId."','2')";
-		doInsertSql($query,_JOMRES_REGISTRATION_AUDIT_CREATEPROPERTY);
-		}
-	$thisJRUser->authorisedProperties[]=$newPropId;
-	updateManagerIdToPropertyXrefTable($thisJRUser->id,$thisJRUser->authorisedProperties );
-	$componentArgs=array('property_uid'=>(int)$newPropId);
-	$MiniComponents->triggerEvent('04901',$componentArgs); // Trigger point. Not currently used, but available if somebody wants a trigger point after the create property phase.
-	$subject=_JOMRES_REGISTRATION_CREATEDPROPERTY.$property_name;
-	$message=_JOMRES_REGISTRATION_CREATEDPROPERTY_FORUSER.$thisJRUser->username;
-	sendAdminEmail($subject,$message);
-	jomresRedirect( JOMRES_SITEPAGE_URL."&task=propertyadmin&thisProperty=".$newPropId,"");
-	}
 
 /**
 #
