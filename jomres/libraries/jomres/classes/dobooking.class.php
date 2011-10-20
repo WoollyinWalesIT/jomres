@@ -857,13 +857,15 @@ class dobooking
 	function setPopupMessage($message)
 		{
 		$msg = $this->sanitiseOutput($message);
-		$this->growlmessages['messages'][]=$msg;
+		if ($_REQUEST['field']!="property_uid_check")
+			$this->growlmessages['messages'][]=$msg;
 		}
 
 	function setGuestPopupMessage($message)
 		{
 		$msg = $this->sanitiseOutput($message);
-		$this->growlmessages['guest_feedback']=$msg;
+		if ($_REQUEST['field']!="property_uid_check")
+			$this->growlmessages['guest_feedback']=$msg;
 		}
 	/**
 	#
@@ -3701,7 +3703,7 @@ class dobooking
 
 		if (!empty($this->requestedRoom) )
 			{
-			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected"><table class="bformleftcol" valign="top" width="100%">';
+			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected"><table valign="top" width="100%" border="0">';
 			$return_output .= $this->makeTariffHeaders();
 			foreach ($this->requestedRoom as $rr)
 				{
@@ -4337,7 +4339,7 @@ class dobooking
 	 */
 	function generateRoomsList($roomAndTariffArray)
 		{
-		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table class="bformleftcol" valign="top" width="100%">';
+		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table valign="top" width="100%" border="0">';
 		if ((int)$this->cfg_returnRoomsLimit > 0 && $this->cfg_booking_form_rooms_list_style == "1")
 			{
 			$this->setErrorLog("generateRoomsList:: Limiting rooms list ");
@@ -4415,12 +4417,12 @@ class dobooking
 				if ($this->cfg_singleRoomProperty == "0" )
 					{
 					if (count($roomAndTariffArray)==0 && count($this->requestedRoom)==0 )
-						$return_output='<div class="roomslist_noroomsselected">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE',_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE."</div>");
+						$return_output='<div class="ui-state-highlight">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE',_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE."</div>");
 					else
 						$return_output="";
 					}
 				else
-					$return_output='<div>'.jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false).'<font color="white">~</font><div></div id="availRooms" class="roomslist"></div>';
+					$return_output='<div>'.jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false).'<font color="white">~</font><div></div id="availRooms" class="ui-state-error"></div>';
 				}
 			}
 		$this->setErrorLog("generateRoomsList::Returning rooms list");
@@ -4614,7 +4616,7 @@ class dobooking
 
 		$currfmt = jomres_getSingleton('jomres_currency_format');
 
-		//if ($this->tariffModel == "2")
+		if ($this->tariffModel == "2")
 			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
 
 		if ($roomStuff['DISABLEDACCESS'] == 1)
@@ -4636,8 +4638,8 @@ class dobooking
 		if ($this->jrConfig['booking_form_lnks_as_buttons'] =="1")
 			$buttonClassStuff = ' class="fg-button ui-state-default ui-corner-all" ';
 
-		$overlib='<tr>';
-		$overlib.='<td><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );" '.$buttonClassStuff.'>'.$caption.'</a></div></td>';
+		$overlib='<tr class="ui-state-default">';
+		$overlib.='<td width="120"><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );" '.$buttonClassStuff.'>'.$caption.'</a></div></td>';
 		if ($this->cfg_bookingform_roomlist_showroomno == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">'.$roomStuff['ROOMNUMBER'].'</a></td>';
 		$overlib.=$room_imagetd;
@@ -5020,27 +5022,27 @@ class dobooking
 
 		$room_imageTH="";
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
-			$room_imageTH="<th>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) )."</th>";
+			$room_imageTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) )."</td>";
 		$room_imagetypeTH="";
 		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypeTH="<th>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</th>";
+			$room_imagetypeTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</td>";
 
 		$return_output='<tr>';
-			$return_output.='<th>&nbsp;</th>';
+			$return_output.='<td>&nbsp;</td>';
 			if ($this->cfg_bookingform_roomlist_showroomno == "1")
-				$return_output.='<th>'.$roomRow['HEADER_ROOMNUMBER'].'</th>';
+				$return_output.='<td>'.$roomRow['HEADER_ROOMNUMBER'].'</td>';
 			$return_output.=''.$room_imageTH.'';
 			$return_output.=''.$room_imagetypeTH.'';
 			if ($this->cfg_bookingform_roomlist_showroomname == "1")
-				$return_output.='<th>'.$roomRow['HEADER_ROOMNAME'].'</th>';
-			$return_output.='<th>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
+				$return_output.='<td>'.$roomRow['HEADER_ROOMNAME'].'</td>';
+			$return_output.='<td>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
 			if ($this->cfg_tariffmode != 0)
-				$return_output.='<th>'.$tariffStuff['HTITLE'].'</th>';
-			$return_output.='<th>'.$tariffStuff['HRATEPERNIGHT'].'</th>';
+				$return_output.='<td>'.$tariffStuff['HTITLE'].'</td>';
+			$return_output.='<td>'.$tariffStuff['HRATEPERNIGHT'].'</td>';
 			if ($this->cfg_bookingform_roomlist_showdisabled == "1")
-				$return_output.='<th>'.$roomRow['HEADER_DISABLEDACCESS'].'</th>';
+				$return_output.='<td>'.$roomRow['HEADER_DISABLEDACCESS'].'</td>';
 			if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-				$return_output.='<th>'.$roomRow['HEADER_MAXPEOPLE'].'</th>';
+				$return_output.='<td>'.$roomRow['HEADER_MAXPEOPLE'].'</td>';
 			$return_output.='</tr>';
 
 		return $return_output;

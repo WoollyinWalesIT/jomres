@@ -378,14 +378,14 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		{
 		if ($mrConfig['booking_form_rooms_list_style'] == "1")
 			{
-			$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS)).'</div>';
+			$rm='<div><strong>'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS)).'</strong></div>';
 			if ($bkg->numberOfCurrentlySelectedRooms()>0 )
 				$rm.=$bkg->listCurrentlySelectedRooms();
 			else
-				$rm.='<div class="roomslist_noroomsselected">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET)).'</div>';
+				$rm.='<div class="ui-state-error">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET',_JOMRES_BOOKINGFORM_NOROOMSSELECTEDYET)).'</div>';
 			$output['SELECTEDROOM']=$rm;
 
-			$rm='<div class="roomslist_availabletext">'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS)).'</div>';
+			$rm='<div><strong>'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS)).'</strong></div>';
 			//$rm.="<br>";
 			$rm.=$bkg->generateRoomsList($roomAndTariffArray);
 			}
@@ -400,7 +400,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if (get_showtime('include_room_booking_functionality'))
 		{
 		$output['AVAILABLEROOMS']=$rm;
-		$output['ROOMSLIST']=$output['SELECTEDROOM'].'<br>'.$output['AVAILABLEROOMS'].'</div><div id="availRooms" class="roomslist">';
+		$output['ROOMSLIST']=$output['SELECTEDROOM'].'<br>'.$output['AVAILABLEROOMS'].'</div><div id="availRooms">';
 		}
 	$componentArgs=array();
 	$componentArgs['output']=$output;
@@ -496,8 +496,8 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1" && !isset($_REQUEST['is_wrapped']) )
 		{
 		$output['MODAL'] = 'jomresJquery( "#booking_form" ).dialog({width:1000,modal:true});';
-		$output['HIDDENSTYLE']='style="display:none"';
-		$output['OPENBOOKINGOFRM_BUTTON']='<button id="open_booking_form">'.$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM'].'</button>';
+		$output['HIDDENSTYLE']='style="display:none;"';
+		$output['OPENBOOKINGOFRM_BUTTON']='<a href="javascript:open_booking_form();" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM'].'</a>';
 		$output['BUTTON_BACK_TO_PROPERTY_DETAILS']='<a href="'.jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$selectedProperty).'" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS'].'</a>';
 		
 		}
@@ -508,7 +508,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	$output['DEPOSIT_CLASS'] = '';
 	if (isset($output['DEPOSIT'])) // Need this to stop the booking form totals panel from showing a thick line if the deposit option is disabled
 		{
-		$output['DEPOSIT_CLASS'] = 'class="ui-widget ui-widget-content ui-corner-all"';
+		$output['DEPOSIT_CLASS'] = 'class="ui-widget-content ui-corner-all"';
 		}
 	// v4.5.5
 	if (!isset($mrConfig['booking_form_rooms_list_style']))
@@ -535,7 +535,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			$roomtype_dropdown_list = array();
 			$roomtype_dropdown_list['LIVESITE']=get_showtime('live_site');
 			if ($amend_contract) // If we're amending a booking, we will automatically switch back to the 'classic' rooms list selection so that the manager can assign a user to a new room. As that's the case, we'll need the 'selectedRooms' div back in the template.
-				$roomtype_dropdown_list['AMENDBOOKING_SELECTEDROOMSDIV'] ='<div id="selectedRooms" class="roomslist"></div>';
+				$roomtype_dropdown_list['AMENDBOOKING_SELECTEDROOMSDIV'] ='<div id="selectedRooms"></div>';
 										
 			$roomtype_dropdown_list_output = array();
 			$roomtype_dropdown_list['AJAXFORM_AVAILABLE_DESC'] = $output['AJAXFORM_AVAILABLE_DESC'];
