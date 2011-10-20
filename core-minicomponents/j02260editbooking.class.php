@@ -483,7 +483,9 @@ class j02260editbooking {
 		$contentPanel->endPanel();
 
 		$otherServiceTotal=0.00;
-		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT',_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT,FALSE));
+		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT',_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT,FALSE,false));
+		$nights = $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY,false,false): jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS,false,false);
+
 		$contentPanel->setcontent('<table>
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID).'</td>
@@ -498,7 +500,7 @@ class j02260editbooking {
 				<td>'.output_price($booking_contract_total).'</td>
 			</tr>
 			<tr>
-			<td>'. $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY): jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS).'</td>
+			<td>'. $nights.'</td>
 				<td>'.count(explode(",",$booking_date_range_string) ).'</td>
 			</tr>
 			<tr>
