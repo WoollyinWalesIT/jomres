@@ -497,6 +497,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_04_01_blank.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_07_01_blank.class.php');
 
+		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00007manager_toolbar.class.php.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php.class.php');
+		
 		}
 	
 	function add_obs_file($path_and_file)

@@ -1,5 +1,7 @@
 <patTemplate:tmpl name="pageoutput" >
 <div id = "jomres_content_area">
+<div id = "jomresmenu_hint" style="display:none"></div>
+<div id = "jomres_alternate_menu_position"></div> <!-- available if required by a plugin -->
 
 <script type="text/javascript">
 var word_next = "{NEXT}";
@@ -27,9 +29,13 @@ var word_previous = "{PREVIOUS}";
 			}
 		});
 
-		jomresJquery("#tabs").tabs();
-		
+
     });
+
+
+	jomresJquery(document).ready(function(){
+  jomresJquery("#tabs").tabs();
+});
 </script>
 
 <noscript><blockquote>
