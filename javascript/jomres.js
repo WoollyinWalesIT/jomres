@@ -192,66 +192,6 @@ function showdiv($elementName) {
 	jomresJquery("#"+elementName).slideDown();
 	};
 
-///////////////////////////////////////
-//
-//	Generic onload by Brothercake
-//	http://www.brothercake.com/
-//
-///////////////////////////////////////
-
-//onload function
-function generic(){
-	if ( toload.length > 0 ){
-		for (x in toload){
-			eval(toload[x]);
-			}
-		
-		}
-	if ( document.ajaxform !=undefined ) 
-		disableSubmitButton(document.ajaxform.confirmbooking);
-	
-	};
-	
-//setup onload function
-var undefined;
-var toload=new Array();
-var templateVersion = 2.5;
-
-if(typeof window.addEventListener != 'undefined'){
-	//.. gecko, safari, konqueror and standard
-	window.addEventListener('load', generic, false);
-	}
-else if(typeof document.addEventListener != 'undefined'){
-	//.. opera 7
-	document.addEventListener('load', generic, false);
-	}
-else if(typeof window.attachEvent != 'undefined'){
-	//.. win/ie
-	window.attachEvent('onload', generic);
-	}
-
-//** remove this condition to degrade older browsers
-else {
-	//.. mac/ie5 and anything else that gets this far
-	//if there's an existing onload function
-	if(typeof window.onload == 'function'){
-		//store it
-		var existing = onload;
-		
-		//add new onload handler
-		window.onload = function(){
-		//call existing onload function
-		existing();
-		//call generic onload function
-		generic();
-		};
-	}
-	else{
-		//setup onload function
-		window.onload = generic;
-	}
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //	 Ajax get response stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
