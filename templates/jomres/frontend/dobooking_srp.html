@@ -53,9 +53,13 @@ jomresJquery(document).ready(function() {
 	});
 	var slider_enabled = '{SLIDER_ENABLED}';
 	if (slider_enabled == 'true') {
-		var top = jomresJquery('#totals').offset().top - parseFloat(jomresJquery('#totals').css('margin-top').replace(/auto/, 0));
 		var totalsWidth = jomresJquery('#totals').width();
 		jomresJquery('#totals').css('width',totalsWidth);
+		jomresJquery('#totalsWrapper').css('width',totalsWidth);
+		if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
+			jomresJquery("#totals").css( 'position','absolute' );
+		}
+		var top = jomresJquery('#totals').offset().top - parseFloat(jomresJquery('#totals').css('margin-top').replace(/auto/, 0));
 		jomresJquery(window).scroll(function (event) {
 			// what the y position of the scroll is
 			var y = jomresJquery(this).scrollTop();
@@ -67,16 +71,17 @@ jomresJquery(document).ready(function() {
 			} else {
 			// otherwise remove it
 				jomresJquery('#totals').removeClass('fixed');
-				}
-			});
-		};
+			}
+		});
+	};
+	<patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
 });
 
 function open_booking_form() {
 	jomresJquery( "#booking_form" ).dialog( "open" );
 };
 
-<patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
+
 </script>
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
 <div id="booking_form" {HIDDENSTYLE} title="{PROPERTYNAME}">
