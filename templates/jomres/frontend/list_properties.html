@@ -86,7 +86,7 @@ function runEffect(uid) {
                             <a href="{LINK}" class="fg-button ui-state-default ui-corner-all plist-button">{BOOKTHIS_TEXT}</a>
                             <a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all plist-button">{MOREINFORMATION}</a>
                             <a href="javascript:void(0);" onClick="toggle_review_div({UID});" class="fg-button ui-state-default ui-corner-all plist-button"><div id="property_reviews_link{UID}">{_JOMRES_REVIEWS_CLICKTOSHOW}</div></a>
-                            <div><a href="javascript:void(0);" onClick="runEffect({UID});" class="fg-button ui-state-default ui-corner-all plist-button-last">Quick Info</a></div>
+                            <div><a href="javascript:void(0);" onClick="runEffect({UID});" class="fg-button ui-state-default ui-corner-all plist-button-last">{_JOMRES_QUICK_INFO}</a></div>
                         </div>
       				</td>
                 </tr>
@@ -105,10 +105,10 @@ function runEffect(uid) {
                     <div style="clear:both;"></div>
                  </div>
                  <div class="ui-widget-content ui-corner-all quick-info-right float-right">
-                    <div><strong>Sleeps:</strong> W</div>
+                   <!-- <div><strong>Sleeps:</strong> W</div>
                     <div><strong>Bedrooms:</strong> X</div>
                     <div><strong>Bathrooms:</strong> Y</div>
-                    <div><strong>Square meters:</strong> Z</div>
+                    <div><strong>Square meters:</strong> Z</div>-->
                     <div>&nbsp;</div>
                     <!--<div><strong>{_JOMRES_REVIEWS}</strong></div>-->
                     <div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>

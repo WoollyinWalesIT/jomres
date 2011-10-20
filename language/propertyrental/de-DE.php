@@ -1739,3 +1739,5 @@ define('_JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME',"Alternate Password");
 define('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC',"");
 
 define('_JOMRES_WARNING_SYSTEM_CACHE',"Warning : We have detected that your Joomla System Cache plugin is enabled. We advise you to disable this plugin as it will cache the ajax responses to the booking form, causing your system to behave erratically.");
+
+define('_JOMRES_QUICK_INFO',"Quick Info");
