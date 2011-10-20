@@ -54,7 +54,7 @@ class j00064generate_mainmenu {
 				if ($r['disabled'])
 					{
 					$r['link']='#';
-					$r['disabled_class']= 'class="ui-widget-shadow ui-state-error"';
+					$r['disabled_class']= 'class="ui-widget-shadow"';
 					}
 
 				$rows[]=$r;
