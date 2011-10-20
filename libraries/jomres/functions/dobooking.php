@@ -489,7 +489,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	
 	$current_property_details =jomres_getSingleton('basic_property_details');
 	$output['PROPERTYNAME'] = $current_property_details->get_property_name($selectedProperty);
-	
+
 	$output['BOOKEDDATES']= $booked_dates_output;
 	$output['MODAL']=''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.
 	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1" && !isset($_REQUEST['is_wrapped']) )
@@ -500,7 +500,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$output['BUTTON_BACK_TO_PROPERTY_DETAILS']='<a href="'.jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$selectedProperty).'" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS'].'</a>';
 		
 		}
-	
+
+
+
 	$output['PANELPOSITION']=(int)$jrConfig['booking_form_totalspanel_position'];
 	$output['BOOKINGFORMWIDTH']=(int)$jrConfig['booking_form_width'];
 	
@@ -580,6 +582,9 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	else
 		$output['SLIDER_ENABLED'] = 'false';
 	
+	if (get_showtime('task') == "viewproperty" || get_showtime('task') == "preview")
+		$output['SLIDER_ENABLED'] = 'false'; // Slider doesn't work well when included in tabs, so we'll disable it.
+
 	if ($thisJRUser->userIsManager && !$amend_contract)
 		{
 		$manager_pricing[] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL',_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL,false,false),'_JOMCOMP_AMEND_OVERRIDE_DEPOSIT'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT',_JOMCOMP_AMEND_OVERRIDE_DEPOSIT,false,false),'_JOMCOMP_AMEND_OVERRIDE_SAVE'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE',_JOMCOMP_AMEND_OVERRIDE_SAVE,false,false));
