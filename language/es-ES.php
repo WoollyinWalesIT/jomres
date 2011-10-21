@@ -1506,7 +1506,7 @@ define('_JOMRES_COM_LANGUAGE_CONTEXT_DESC','Esta característica permite a Jomre
 
 // 4.7.3
 define('_JOMRES_COM_ADVANCED_SITE_CONFIG','Configuración avanzada del sitio');
-define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC','Establezca esta opción a Sí si desea utilizar las opciones avanzadas de configuración del sitio. Si usted acaba de empezar con Jomres, entonces le recomendamos, que por ahora deje esto en No, ya que la instalación por defecto es suficiente para empezar, debe agregar Jomres al menú principal y acceder a la interfaz como "admin" y comenzar a configurar su propiedad(s). Tenga en cuenta que muchas de la opciones avanzadas sólo serán aplicables a las instalaciones de Jomres Developer, los usuarios Jomres Lite no serán capaces de sacar el máximo provecho de la totalidad de las características permitidas.');
+define('_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC','Establezca esta opción a Sí si desea utilizar las opciones avanzadas de configuración del sitio. Si usted acaba de empezar con Jomres, entonces le recomendamos, que por ahora deje esto en No, ya que la instalación por defecto es suficiente para empezar, debe agregar Jomres al menú principal y acceder a la interfaz como "admin" y comenzar a configurar su propiedad(s). Tenga en cuenta que muchas de la opciones avanzadas sólo serán aplicables a las instalaciones de Jomres Silver, los usuarios Jomres Lite no serán capaces de sacar el máximo provecho de la totalidad de las características permitidas.');
 
 define('_JOMRES_CONFIG_JQUERY_UI',"Cargar Jomres jQuery UI library?");
 
@@ -1668,7 +1668,7 @@ define('_JOMRES_VERSIONCHECK_THISJOMRESVERSION',"This Jomres version : ");
 define('_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION',"Latest Jomres version");
 define('_JOMRES_VERSIONCHECK_VERSIONWARNING',"Alert : There is a new version of Jomres available, you are advised to upgrade at your earliest convenience.");
 
-define('_JOMRES_PRODUCT_INFORMATION','Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Developer or Jomres Perpetual license, <a href="http://www.jomres.net/jomres-mainmenu-213/jomres-lite-solo-developer-unlimited-comparison-matrix" target="_blank"> please visit our site</a> for information on how you can upgrade.');
+define('_JOMRES_PRODUCT_INFORMATION','Welcome to Jomres, we hope you enjoy using Joomla\'s favourite booking system. If you would like to purchase a Jomres Silver or Jomres Gold license, <a href="http://www.jomres.net/jomres-mainmenu-213/jomres-lite-solo-developer-unlimited-comparison-matrix" target="_blank"> please visit our site</a> for information on how you can upgrade.');
 define('_JOMRES_PRODUCT_INFORMATION2','This system is ideal for any scenario, be it a simple booking form for a single property, right up to a site that has multiple users, in multiple languages, with multiple properties. Please see the "Help" section to the left, including the "Getting Started" page which will guide you through your first steps.');
 
 define('_JOMRES_ROBBED_PORTALUI_CURRENT_PROPERTY',"Active property");
