@@ -104,9 +104,9 @@ class jomres_currency_exchange_rates
 			}
 		$currencyQuery= substr($currencyQuery,0,-1);
 		$csv = $this->csv_to_array($this->get_exchange_rates_csv($currencyQuery),',');
-		foreach ($csv as $val)
+		foreach ($csv as $key)
 			{
-			$currenciesArray[]=array_values($val);
+			$currenciesArray[]=array_values($key);
 			}
 		foreach ($currenciesArray as $k)
 			{
@@ -134,7 +134,6 @@ class jomres_currency_exchange_rates
 				';
 				}
 			}
-
 		$string = '<?php
 
 		// ################################################################
@@ -175,10 +174,10 @@ class jomres_currency_exchange_rates
 		$csvData = str_getcsv($input, "\n");
 		foreach($csvData as $csvLine){
 			if(is_null($header)) 
-				$header = explode($delimiter, $csvLine[0]);
+				$header = explode($delimiter, $csvLine);
 			else
 				{
-				$items = explode($delimiter, $csvLine[0]);
+				$items = explode($delimiter, $csvLine);
 				for($n = 0, $m = count($header); $n < $m; $n++)
 					{
 					$prepareData[$header[$n]] = $items[$n];
