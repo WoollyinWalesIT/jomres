@@ -13,6 +13,16 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jomres_cmsspecific_getlogout_task()
+	{
+	return 'index.php?option=com_user&view=login';
+	}
+
+function jomres_cmsspecific_getlogin_task()
+	{
+	return 'index.php?option=com_user&view=login';
+	}
+
 function jomres_cmsspecific_areweinadminarea()
 	{
 	$administrator_area=false;
