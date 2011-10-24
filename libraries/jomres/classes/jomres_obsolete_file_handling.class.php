@@ -490,17 +490,18 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_css.'tables.css');
 		
 		$this->add_obs_file($this->dir_minicomponents.'j10002new_property.class.php');
-		
 		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_03_01_blank.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_05_01_blank.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00010reception_option_07_01_blank.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_04_01_blank.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00011manager_option_07_01_blank.class.php');
-
 		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00007manager_toolbar.class.php.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php.class.php');
-		
+		$this->add_obs_file($this->dir_minicomponents.'j00006reception_toolbar.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00007manager_toolbar.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php');
+
 		}
 	
 	function add_obs_file($path_and_file)
