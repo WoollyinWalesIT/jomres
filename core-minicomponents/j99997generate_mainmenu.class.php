@@ -49,7 +49,7 @@ class j99997generate_mainmenu {
 				if ($r['disabled'])
 					{
 					$r['link']='#';
-					$r['disabled_class']= 'class="ui-widget-shadow"';
+					$r['disabled_class']= ' ui-widget-shadow';
 					}
 
 				$rows[]=$r;
@@ -66,11 +66,16 @@ class j99997generate_mainmenu {
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[]['DIV']= $tmpl->getParsedTemplate();
 			}
-
+		
+		$output=array();
+		$pageoutput = array();
+		$output['_JOMRES_CONTROLPANEL']=_JOMRES_CONTROLPANEL;
+		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
 		$tmpl->addRows( 'button_output', $button_o );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$this->ret_vals = $tmpl->getParsedTemplate();
 		 echo $this->ret_vals;
 		}

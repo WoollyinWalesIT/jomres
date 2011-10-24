@@ -1,26 +1,14 @@
 <patTemplate:tmpl name="pageoutput">
 <script>
-jomresJquery(document).ready(function(){
-	jomresJquery('#jomres_mainmenu').buttonset();
-	jomresJquery('#jomres_mainmenu').ptMenu();
-	jomresJquery("#jomres-menu-pinned").fadeIn("slow");
-	jomresJquery("#jomres-menu-sub-panel").click(function(){
-		// Toggle the bar up 
-		jomresJquery("#jomres-menu-top-panel").slideToggle();
-		// Settings
-		var el = jomresJquery("#shText");
-		// Lets us know whats inside the element
-		var state = jomresJquery("#shText").html();
-		// Change the state  
-		state = (state == 'Hide' ? '<span id="shText">Show</span>' : '<span id="shText">Hide</span>');
-		// Finally change whats insdide the element ID
-		el.replaceWith(state); 
-		}); // end sub panel click function
-		
+//jomresJquery('#jomres_menu_wrapper').prependTo('body');
+
+
+jomresJquery(document).ready(function() {
+
 	(function() {
 		//settings
-		var fadeSpeed = 200, fadeTo = 0.5, topDistance = 30;
-		var topbarME = function() { jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed,1); }, topbarML = function() { jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed,fadeTo); };
+		var fadeSpeed = 200, fadeTo = 0.3, topDistance = 30;
+		var topbarME = function() { jomresJquery('#jomres_menu').fadeTo(fadeSpeed,1); }, topbarML = function() { jomresJquery('#jomres_menu').fadeTo(fadeSpeed,fadeTo); };
 		var inside = false;
 		//do
 		jomresJquery(window).scroll(function() {
@@ -28,69 +16,64 @@ jomresJquery(document).ready(function(){
 			if(position > topDistance && !inside) {
 				//add events
 				topbarML();
-				jomresJquery('#jomres-menu-pinned').bind('mouseenter',topbarME);
-				jomresJquery('#jomres-menu-pinned').bind('mouseleave',topbarML);
+				jomresJquery('#jomres_menu').bind('mouseenter',topbarME);
+				jomresJquery('#jomres_menu').bind('mouseleave',topbarML);
 				inside = true;
 			}
 			else if (position < topDistance){
 				topbarME();
-				jomresJquery('#jomres-menu-pinned').unbind('mouseenter',topbarME);
-				jomresJquery('#jomres-menu-pinned').unbind('mouseleave',topbarML);
+				jomresJquery('#jomres_menu').unbind('mouseenter',topbarME);
+				jomresJquery('#jomres_menu').unbind('mouseleave',topbarML);
 				inside = false;
 			}
 		});
 	})();
+
+});
+
+
+jomresJquery(function() {
+	jomresJquery( "#accordion" ).accordion({
+		autoHeight: false,
+		navigation: true,
+		collapsible: true
 	});
+});
+
+function runEffect() {
+	jomresJquery('#jomres_menu_wrapper').slideToggle();
+};
 
 </script>
 
-<style type="text/css">
-
-#jomres-menu-pinned{
-	position:fixed; 
-	top:0; 
-	z-index:999; /* potato menu's z-index is set to 1000, so we'll set this to 1 less */
-	width:40%;
-}
-
-#jomres-menu-top-panel{
-	border-bottom:3px solid #a6c34e;
-	padding:14px 20px;
-	text-align:right;
-	float:right;
-}
-
-#jomres-menu-sub-panel{
-	text-align:center;
-	float:right;
-}
-#jomres-menu-sub-panel a{
-	width:150px;
-	float:right;
-	color:#FFFFFF;
-	text-decoration:none;
-	margin-right:30px;
-	font-weight:bold;
-	background: bottom left no-repeat #a6c34e;
-}
-#jomres-menu-sub-panel a span{
-	padding:6px;
-	background: right bottom no-repeat;
-	display:block;
-}
-
-
-
+<style>
+#jomres_menu {
+	font-size:.9em;
+	}
+	
+#jomres_menu_trigger {
+	position:fixed;
+	top:0px;
+	left:0px;
+	height:20px;
+	}
+#jomres_menu_wrapper {
+	position:fixed;
+	top:26px;
+	left:0px;
+	width:200px;
+	}
 </style>
-<div id="jomres-menu-pinned"  class="ui-helper-hidden">
-	<div id="jomres-menu-top-panel">
-		<ul id="jomres_mainmenu" class="menu" >
+<div id="jomres_menu">
+	<div id="jomres_menu_wrapper" class="ui-helper-hidden">
+		<div id="accordion">
 			<patTemplate:tmpl name="button_output">
 				{DIV}
 			</patTemplate:tmpl>
-		</ul>
+		</div>
 	</div>
-	<div id="jomres-menu-sub-panel" class="ui-widget ui-corner-bl"><a href="javascript:void(0);" id="toggle"><span id="shText">Hide</span></a></div>
+	<div id="jomres_menu_trigger" style="height:100px;width:130px;">
+		<a href="javascript:void(0);" onMouseover="runEffect();" class="fg-button ui-state-default ui-corner-all">{_JOMRES_CONTROLPANEL}</a>
+	</div>
 </div>
-<br/><br/>
 </patTemplate:tmpl>

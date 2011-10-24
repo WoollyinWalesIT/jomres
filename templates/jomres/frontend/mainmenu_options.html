@@ -1,9 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-	<li><a href="#" style="font-size:0.8em">{CATEGORY}&nbsp;<img  width="15px" height="15px" src="{CAT_IMAGE}" class="menu" /></a>
-		<ul id="profilemenu">
-			<patTemplate:tmpl name="rows" unusedvars="strip">
-			<li style="width:300px;" {DISABLED_CLASS}><a href="{LINK}" {TARGET} style="text-align:left;"><img src="{IMAGE_PATH}{IMAGE}" border="0" width="15px" height="15px" style="vertical-align:middle;margin-right:5px;"  class="menu"/>{MENU_NAME}</a></li>
-			</patTemplate:tmpl>
-		</ul>
-	</li>
+<h3><a href="javascript:void(0);">{CATEGORY}</a></h3>
+	<div>
+	<patTemplate:tmpl name="rows" unusedvars="strip"><span><a style="width:89%;text-decoration:none;text-align:left;margin-bottom:5px;" class="fg-button ui-state-default ui-corner-all {DISABLED_CLASS}" href="{LINK}" {TARGET} ><img src="{IMAGE_PATH}{IMAGE}" border="0" width="25px" height="25px" style="vertical-align:middle;margin-right:5px;"/>{MENU_NAME}</a></span><br/>
+	</patTemplate:tmpl>
+	</div>
 </patTemplate:tmpl>
