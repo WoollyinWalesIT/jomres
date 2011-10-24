@@ -148,8 +148,11 @@ class j01010listpropertys {
 			$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 			$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 			
-			$output['JOMRES_SITEPAGE_URL_AJAX']=JOMRES_SITEPAGE_URL_AJAX;
-			
+			if (JOMRES_NOHTML != 1)
+				{
+				$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\">var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."';</script>";
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
+				}
 			$propertyDeets = @doSelectSql($query);
 
 			if (count($propertyDeets) > 0)
