@@ -30,6 +30,7 @@ class j06000immediatepay
 		$userid= $thisJRUser->id;
 		$query="SELECT id FROM #__jomresportal_invoices WHERE `cms_user_id`= ".(int)$thisJRUser->id." AND `id` = ".(int)$invoice_id." ";
 		$result=doSelectSql($query);
+
 		if (count($result)<1 || count($result)>1)
 			{
 			trigger_error ("Unable to view invoice, either invoice id not found, or invoice id tampered with.", E_USER_ERROR);
@@ -40,10 +41,25 @@ class j06000immediatepay
 		$invoice->id=$invoice_id;
 		$invoice->getInvoice();
 
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
-		$paypal_settings->get_paypal_settings();
-		$this->paypal_settings=$paypal_settings->paypalConfigOptions;
-
+		if (!$thisJRUser->userIsManager)
+			{
+			$settingArray = get_plugin_settings("paypal",$invoice->property_uid);
+			$this->paypal_settings['usesandbox'] = $settingArray['usesandbox'];
+			$this->paypal_settings['email'] = $settingArray['paypalemail'];
+			$this->paypal_settings['currencycode'] = $settingArray['currencycode'];
+			
+			if ($this->paypal_settings['usesandbox'] == "1")
+				$this->paypal_settings['submit_url'] = 'https://www.paypal.com/cgi-bin/webscr';
+			else
+				$this->paypal_settings['submit_url'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+			}
+		else
+			{
+			$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+			$paypal_settings->get_paypal_settings();
+			$this->paypal_settings=$paypal_settings->paypalConfigOptions;
+			}
+			
 		$ourCallbackURL = JOMRES_SITEPAGE_URL.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$subscription->id;
 		
 		$transactionName='Paypal Invoice from '.$jomresConfig_sitename;
@@ -66,13 +82,16 @@ class j06000immediatepay
 		$this->add_field('no_note', "1");
 		$this->add_field('currency_code', $this->paypal_settings['currencycode']);
 
-		echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.js"></script>';
-		echo '<script type="text/javascript">jomresJquery.noConflict();</script>';
+		//echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.js"></script>';
+		//echo '<script type="text/javascript">jomresJquery.noConflict();</script>';
+		
 		?>
-
 		<script>
-		toload[1]=	"document.forms['paypal_form'].submit()";
+		jomresJquery(document).ready(function() {
+			document.paypal_form.submit();
+			});
 		</script>
+
 		<?php
 		echo "<center><h2>".jr_gettext('_JOMRES_PAYPAL_REDIRECTMESSAGE',_JOMRES_PAYPAL_REDIRECTMESSAGE,false,false)."</h2></center>\n";
 		echo "<form method=\"post\" name=\"paypal_form\" ";
