@@ -400,18 +400,24 @@ function init_javascript()
 
 			if (jomres_cmsspecific_areweinadminarea())
 				{
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js"); // The order here is important, jquery must come before the ui
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
+				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js"); // The order here is important, jquery must come before the ui
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.6.4.min.js"); // The order here is important, jquery must come before the ui
+				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.16.custom.min.js");
 				}
 			elseif ($jrConfig['load_jquery'] == "1")
 				{
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js",'',true);
+				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js",'',true);
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.6.4.min.js",'',true);
 				}
 
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js','',true);  // Needs to be directly after jquery call so that noconflict is set
 
 			if ($jrConfig['load_jquery_ui'] =="1")
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
+				{
+				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.13.custom.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.16.custom.min.js");
+				}
 
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file",'',true);
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
