@@ -49,9 +49,9 @@ class j06000immediatepay
 			$this->paypal_settings['currencycode'] = $settingArray['currencycode'];
 			
 			if ($this->paypal_settings['usesandbox'] == "1")
-				$this->paypal_settings['submit_url'] = 'https://www.paypal.com/cgi-bin/webscr';
-			else
 				$this->paypal_settings['submit_url'] = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+			else
+				$this->paypal_settings['submit_url'] = 'https://www.paypal.com/cgi-bin/webscr';
 			}
 		else
 			{
