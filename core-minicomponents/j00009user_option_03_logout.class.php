@@ -19,14 +19,14 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 * @package Jomres
 #
  */
-class j00009user_option_03_login {
+class j00009user_option_03_logout {
 
 	/**
 	#
 	 * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 	#
 	 */
-	function j00009user_option_03_login($componentArgs)
+	function j00009user_option_03_logout($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -36,16 +36,16 @@ class j00009user_option_03_login {
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
 		
-		$login_task=jomres_cmsspecific_getlogin_task();
+		$login_task=jomres_cmsspecific_getlogout_task();
 		
-		if (!$thisJRUser->userIsRegistered)
-			$this->cpanelButton=jomres_mainmenu_option(get_showtime('live_site').'/'.$login_task, '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',"Login",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
+		if ($thisJRUser->userIsRegistered)
+			$this->cpanelButton=jomres_mainmenu_option(get_showtime('live_site').'/'.$login_task, '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT',"Logout",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
-		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',"Login");
+		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT',"Logout");
 
 		foreach ($output as $o)
 			{

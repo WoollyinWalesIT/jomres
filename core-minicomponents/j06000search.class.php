@@ -33,7 +33,8 @@ class j06000search
 			{
 			$this->template_touchable=true; return;
 			}
-		jomresShowSearch();
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents->triggerEvent('00030'); //Search mini-comp
 		}
 
 	/**
