@@ -4214,12 +4214,12 @@ function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $
  */
 function jomresShowSearch()
 	{
-	$result = get_showtime('task');
-	if ( empty($result) )
-		{
+	// $result = get_showtime('task');
+	// if ( empty($result) )
+		// {
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$MiniComponents->triggerEvent('00030'); //Search mini-comp
-		}
+	//	}
 	}
 
 /**
