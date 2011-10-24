@@ -41,7 +41,7 @@ class j00009user_option_05_myinvoices {
 			$invoices=invoices_getinvoicesfor_juser((int)$thisJRUser->id);
 			if (count($invoices)>0)
 				{
-				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=list_usersinvoices", '', jr_gettext('_JRPORTAL_INVOICES_SHOWINVOICES',_JRPORTAL_INVOICES_SHOWINVOICES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "my account" ,false,false) );
+				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=list_usersinvoices", '', jr_gettext('_JRPORTAL_INVOICES_SHOWINVOICES',_JRPORTAL_INVOICES_SHOWINVOICES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 				}
 			}
 		}
