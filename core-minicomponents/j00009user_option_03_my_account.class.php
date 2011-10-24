@@ -36,7 +36,7 @@ class j00009user_option_03_my_account {
 			}
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsRegistered)
-			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=edit_my_account", '', jr_gettext('_JOMRES_MY_ACCOUNT_EDIT',_JOMRES_MY_ACCOUNT_EDIT,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "my account" ,false,false) );
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=edit_my_account", '', jr_gettext('_JOMRES_MY_ACCOUNT_EDIT',_JOMRES_MY_ACCOUNT_EDIT,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 		}
 	
 	function touch_template_language()

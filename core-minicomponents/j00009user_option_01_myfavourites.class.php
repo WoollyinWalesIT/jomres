@@ -42,7 +42,7 @@ class j00009user_option_01_myfavourites {
 			$favourites=doSelectSql($query);
 			if (count($favourites)>0)
 				{
-				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=muviewfavourites", '', jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES',_JOMCOMP_MYUSER_VIEWFAVOURITES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "my account" ,false,false) );
+				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=muviewfavourites", '', jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES',_JOMCOMP_MYUSER_VIEWFAVOURITES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 				}
 			}
 		}
