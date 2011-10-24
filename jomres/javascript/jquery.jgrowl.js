@@ -184,7 +184,7 @@
 			var o = notification.options;
 
 			var notification = $(
-				'<div class="jGrowl-notification ui-state-highlight ui-corner-all' + 
+				'<div class="jGrowl-notification' + 
 				((o.group != undefined && o.group != '') ? ' ' + o.group : '') + '">' +
 				'<div class="close">' + o.closeTemplate + '</div>' +
 				'<div class="header">' + o.header + '</div>' +
@@ -240,7 +240,7 @@
 			/** Add a Global Closer if more than one notification exists **/
 			if ( $('div.jGrowl-notification:parent', self.element).size() > 1 && 
 				 $('div.jGrowl-closer', self.element).size() == 0 && this.defaults.closer != false ) {
-				$(this.defaults.closerTemplate).addClass('jGrowl-closer ui-state-highlight ui-corner-all').addClass(this.defaults.theme)
+				$(this.defaults.closerTemplate).addClass('jGrowl-closer').addClass(this.defaults.theme)
 					.appendTo(self.element).animate(this.defaults.animateOpen, this.defaults.speed, this.defaults.easing)
 					.bind("click.jGrowl", function() {
 						$(this).siblings().children('div.close').trigger("click.jGrowl");

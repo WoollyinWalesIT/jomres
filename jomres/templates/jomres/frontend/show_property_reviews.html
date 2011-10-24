@@ -41,33 +41,33 @@ function confirm_review(rating_id,state)
 </div>
 <h3>{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</h3>
 <patTemplate:tmpl name="rows" unusedvars="strip">
-<div class="ui-widget-header">
-	{REVIEW_TITLE}&nbsp;&nbsp;{RATING_STARS}
-	<span class="float-right">{_JOMRES_REVIEWS_REVIEWED_BY}{USERNAME}</span>
+<div class="ui-widget-header ui-helper-clearfix">
+	<div class="left-column float-left">{REVIEW_TITLE}&nbsp;&nbsp;{RATING_STARS}</div>
+	<div class="right-column float-right" align="right">{_JOMRES_REVIEWS_REVIEWED_BY}{USERNAME}</div>
 </div>
-<div class="float-right ui-tabs ui-state-default" style="z-index:1">
-	<table>
-		<tr>
-			<td>{_JOMRES_REVIEWS_RATING_1}</td><td>{RATING_1}</td>
-		</tr>
-		<tr>
-			<td>{_JOMRES_REVIEWS_RATING_2} </td><td>{RATING_2}</td>
-		</tr>
-		<tr>
-			<td>{_JOMRES_REVIEWS_RATING_3}</td><td>{RATING_3}</td>
-		</tr>
-		<tr>
-			<td>{_JOMRES_REVIEWS_RATING_4}</td><td>{RATING_4}</td>
-		</tr>
-		<tr>
-			<td>{_JOMRES_REVIEWS_RATING_5}</td><td>{RATING_5}</td>
-		</tr>
-		<tr>
-			<td>{_JOMRES_REVIEWS_RATING_6}</td><td>{RATING_6}</td>
-		</tr>
-	</table>
-</div>
-<div class="ui-tabs ui-widget-content ui-corner-bottom">
+<div class="ui-tabs ui-widget-content ui-corner-bottom ui-helper-clearfix">
+	<div class="ui-state-default float-right ui-helper-clearfix" style="z-index:1;">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td>{_JOMRES_REVIEWS_RATING_1}</td><td>{RATING_1}</td>
+			</tr>
+			<tr>
+				<td>{_JOMRES_REVIEWS_RATING_2} </td><td>{RATING_2}</td>
+			</tr>
+			<tr>
+				<td>{_JOMRES_REVIEWS_RATING_3}</td><td>{RATING_3}</td>
+			</tr>
+			<tr>
+				<td>{_JOMRES_REVIEWS_RATING_4}</td><td>{RATING_4}</td>
+			</tr>
+			<tr>
+				<td>{_JOMRES_REVIEWS_RATING_5}</td><td>{RATING_5}</td>
+			</tr>
+			<tr>
+				<td>{_JOMRES_REVIEWS_RATING_6}</td><td>{RATING_6}</td>
+			</tr>
+		</table>
+	</div>
 	<p><strong>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</strong>{REVIEW_DESCRIPTION}&nbsp;</p>
 	<p><strong>{_JOMRES_REVIEWS_PROS}</strong>{PROS}&nbsp;</p>
 	<p><strong>{_JOMRES_REVIEWS_CONS}</strong>{CONS}&nbsp;</p>
