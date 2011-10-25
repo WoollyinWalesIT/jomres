@@ -225,13 +225,13 @@ switch ($field)
 			{
 			$retText="Extra removed from booking";
 			$bkg->removeExtra($value);
-			echo 'jQuery(theId).attr("checked", false);';
+			echo 'jomresJquery("input[name=\'extras[theId]\']").removeAttr("checked");';
 			}
 		else
 			{
 			$retText="Extra added to booking";
 			$bkg->setExtras($value);
-			echo 'jQuery(theId).attr("checked", true);';
+			echo 'jomresJquery("input[name=\'extras[theId]\']").attr("checked",true);';
 			}
 	break;
 	case "extrasquantity":
@@ -245,7 +245,7 @@ switch ($field)
 			{
 			$retText="Extra added to booking";
 			$bkg->setExtras($theId);
-			echo 'jQuery(theId).attr("checked", true);';
+			echo 'jomresJquery(theId).attr("checked", true);';
 			$bkg->modifyExtraQuantity($value,$theId);
 			}
 		
