@@ -434,7 +434,7 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.ui.potato.menu.js");
 
 
-			if ($thisJRUser->userIsManager)
+			if ($thisJRUser->userIsRegistered)
 				{
 				jomres_cmsspecific_addheaddata("css",'jomres/css/','TableTools_JUI.css');
 				jomres_cmsspecific_addheaddata("css",'jomres/css/','tables_jui.css');
