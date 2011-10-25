@@ -21,6 +21,9 @@ class j99997generate_mainmenu {
 			{
 			$this->template_touchable=false; return;
 			}
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+
 		$buttons = $componentArgs['jomres_mainmenu_buttons_categorised'];
 		$button_o = array();
 
@@ -60,8 +63,11 @@ class j99997generate_mainmenu {
 			$output['LIVE_SITE']=get_showtime('live_site');
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			if ($jrConfig['alternate_mainmenu'] == "0")
+				$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[]['DIV']= $tmpl->getParsedTemplate();
@@ -70,10 +76,15 @@ class j99997generate_mainmenu {
 		$output=array();
 		$pageoutput = array();
 		$output['_JOMRES_CONTROLPANEL']=_JOMRES_CONTROLPANEL;
+		$output['_JOMRES_MENU_SHOW']=_JOMRES_MENU_SHOW;
+		$output['_JOMRES_MENU_HIDE']=_JOMRES_MENU_HIDE;
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		if ($jrConfig['alternate_mainmenu'] == "0")
+			$tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
+		else
+			$tmpl->readTemplatesFromInput( 'mainmenu_wrapper_alternate.html' );
 		$tmpl->addRows( 'button_output', $button_o );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$this->ret_vals = $tmpl->getParsedTemplate();

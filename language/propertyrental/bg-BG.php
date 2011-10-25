@@ -1649,3 +1649,8 @@ define('_JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC',"");
 define('_JOMRES_WARNING_SYSTEM_CACHE',"Warning : We have detected that your Joomla System Cache plugin is enabled. We advise you to disable this plugin as it will cache the ajax responses to the booking form, causing your system to behave erratically.");
 
 define('_JOMRES_QUICK_INFO',"Quick Info");
+
+define('_JOMRES_MENU_SHOW',"Show");
+define('_JOMRES_MENU_HIDE',"Hide");
+define('_JOMRES_MENU_SHOW_TITLE',"Use the alternate menu layout?");
+define('_JOMRES_MENU_SHOW_DESC',"Set this to Yes to use the Alternate menu option in the frontend. When set to No the Jomres Main Menu shows as an accordion on the left of the page, with a button to enlarge the menu. When set to Yes, the Alternate Main Menu is used, which results in a menubar across the top of the page. Both menus will slide with the user, and the Accordion menu is considered to be the better menu, however if you find that it's not appropriate for you, you're free to choose the alternate. If neither of these menus suit you, then you will need to modify mainmenu_wrapper.html and mainmenu_options.html to suit your specific set of requirements.");

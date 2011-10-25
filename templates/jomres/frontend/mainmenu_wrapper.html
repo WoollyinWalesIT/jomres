@@ -34,7 +34,7 @@ jomresJquery(document).ready(function() {
 
 jomresJquery(function() {
 	jomresJquery( "#accordion" ).accordion({
-		autoHeight: true,
+		autoHeight: false,
 		navigation: true,
 		collapsible: true
 	});
@@ -76,7 +76,7 @@ function runEffect() {
 	}
 </style>
 <div id="jomres_menu">
-	<div id="jomres_menu_wrapper" class="ui-helper-hidden ui-helper-clearfix">
+	<div id="jomres_menu_wrapper" class="ui-helper-clearfix ui-helper-hidden">
 		<div id="accordion" style="font-size:.9em;">
 			<patTemplate:tmpl name="button_output">
 				{DIV}
