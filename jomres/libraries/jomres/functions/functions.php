@@ -3242,57 +3242,76 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		$contract_ids[]= $c->contract_uid;
 		}
 
-
 	$gor=genericOr($contract_ids,'contract_uid');
 	$query="SELECT * FROM #__jomres_contracts WHERE property_uid = '".(int)$defaultProperty."' AND ".$gor;
 	$booking_data = doSelectSql($query);
 	//var_dump($booking_data);exit;
-
 	?>
-	<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-	<table width="100%">
-	<tr>
-		<th colspan="2"><div class="fg-toolbar ui-widget-header ui-corner-all"><?php echo $title;?></div></th>
-	</tr>
-	<tr>
-		<td><?php echo _JOMRES_MR_AUDIT_LISTING_FILTER_DATE;?> </td><td><?php echo $arrivaldateDropdown;?></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<table>
-				<tr>
-					<td><img src="<?php echo $img_pending;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);?></td>
-					<td> <img src="<?php echo $img_arrivetoday;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);?></td>
-					<td><img src="<?php echo $img_resident;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);?></td>
-				</tr>
-				<tr>
-					<td><img src="<?php echo $img_departtoday;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);?></td>
-					<td><img src="<?php echo $img_stillhere;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);?></td>
-					<td><img src="<?php echo $img_late;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);;?></td>
-				</tr>
-			</table>
-		<table width="100%"  id="jomres_table">
+	<script language="JavaScript" type="text/javascript">
+	jomresJquery(document).ready(function() {
+		var oTable = jomresJquery('#showLiveBookings').dataTable({
+			"bJQueryUI": true,
+			"sPaginationType": "full_numbers",
+			"sDom": '<"H"lTfr>t<"F"ip>',
+			"oTableTools": {
+				"sSwfPath": "<?php echo get_showtime('live_site'); ?>/jomres/javascript/copy_cvs_xls_pdf.swf",
+				"aButtons": [
+					"copy",
+					{
+					"sExtends": "csv",
+					"sCharSet": "utf8"
+					},
+					{
+					"sExtends": "xls",
+					"sCharSet": "utf16le"
+					},
+					{
+					"sExtends": "pdf",
+					"sCharSet": "utf8",
+					"sPdfOrientation": "landscape",
+					"sTitle": "{PAGETITLE}"
+					},
+					"print"
+				]
+			}
+		});
+	} );
+	</script>
+	<h2><?php echo $title;?></h2>
+		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+			<tr>
+				<td><img src="<?php echo $img_pending;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);?></td>
+				<td><img src="<?php echo $img_arrivetoday;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);?></td>
+				<td><img src="<?php echo $img_resident;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);?></td>
+			</tr>
+			<tr>
+				<td><img src="<?php echo $img_late;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);;?></td>
+				<td><img src="<?php echo $img_departtoday;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);?></td>
+				<td><img src="<?php echo $img_stillhere;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);?></td>
+			</tr>
+		</table>
+		<br />
+		<table width="100%" border="0" id="showLiveBookings">
 			<thead>
 			<tr>
-				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);?></th>
-				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);?></th>
-				<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);?></th>
+				<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);?></th>
+				<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);?></th>
+				<th><?php echo jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);?></th>
 				<?php
 				if ($mrConfig['wholeday_booking'] == "1")
 					{
 					?>
-					<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);?></th>
-					<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);?></th>
+					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);?></th>
+					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);?></th>
 					<?php
 					}
 				else
 					{
 					?>
-					<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);?></th>
-					<th class="fg-toolbar ui-widget-header ui-corner-all"><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);?></th>
+					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);?></th>
+					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);?></th>
 					<?php
 					}
-
 				?>
 			</tr>
 			</thead>
@@ -3331,11 +3350,10 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$row->contract_uid ),'');
 		$jrtb .= $jrtbar->endTable();
 		//$rw=$jrtb;
-
 		?>
 			<tr>
-				<td width="20"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
-				<td width="25%"><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>" class="fg-button ui-state-default ui-corner-all"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
+				<td align="center"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
+				<td><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
 				<td><?php echo $row->tag; ?></td>
 				<td><?php echo outputDate($row->arrival); ?></td>
 				<td><?php echo outputDate($row->departure); ?></td>
@@ -3344,11 +3362,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		}
 	?>
 		</tbody>
-		</table>
-	</td>
-	</tr>
-</table>
-</div>
+	</table>
 <?php
 }//end function showLiveBookings
 
