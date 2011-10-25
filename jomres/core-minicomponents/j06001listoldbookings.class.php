@@ -71,14 +71,14 @@ class j06001listoldbookings {
 				}
 			}
 		$arrivaldateDropdown=filterForm('arrivalDates',$dates,"date","listoldbookings");
-		showLiveBookings( $contractsList,jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE',_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE,FALSE),$arrivaldateDropdown);
+		showLiveBookings( $contractsList,jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS',_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS,FALSE),$arrivaldateDropdown);
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]		=jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE',_JOMRES_COM_MR_EDITBOOKING_ADMIN_TITLE);
+		$output[]		=jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS',_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS);
 
 		foreach ($output as $o)
 			{
