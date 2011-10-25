@@ -46,7 +46,7 @@ class j06001ui_find_properties
 				else
 					$pn=$thisJRUser->authorisedPropertyDetails[$property->propertys_uid]['property_name'];
 				
-				$output .= '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid).'" class="fg-button ui-state-default ui-corner-all">'.$pn.'</a><br/>' ;
+				$output .= '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid).'">'.$pn.'</a><br/>' ;
 				}
 			}
 		echo $output;
