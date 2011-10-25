@@ -48,3 +48,6 @@ button.fg-button { width:auto; overflow:visible; }
 .left-column p {margin:0 !important;}
 .odd {background-color: #E2E4FF;}
 .even {background-color: #FFF;}
+/* Availability Calendar */
+table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
+a.rescal:hover{background-color: white;color: black;}
