@@ -988,12 +988,12 @@ class dobooking
 				//if ($ex->maxquantity > 1)
 				//	$clickUnlock='jomresJquery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
 				if ($model['force']!="1")
-					$extra_deets['INPUTBOX']='<input id="'.$inputId.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
+					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 				else
 					{
 					$this->forcedExtras[] =$ex->uid;
 					$this->setExtras($ex->uid);
-					$extra_deets['INPUTBOX']='<input id="'.stripslashes($ex->name).'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
+					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
 					}
 				if ($ex->maxquantity > 1)
 					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="inputbox"  AUTOCOMPLETE="OFF" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d" );

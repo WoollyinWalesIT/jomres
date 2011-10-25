@@ -241,20 +241,21 @@ function getResponse_extras(field,value,theId) {
 		function(data){
 			eval(data); 
 			show_log(field);
-			// Thanks Dimitris
-			var extra = document.getElementsByName('extras['+theId+']');
-			var combo = document.getElementsByName('quantity'+theId);
+			var ex_id = "extras_"+theId;
+			var extra_checked = jomresJquery("#"+ex_id).is(':checked');
+
+			var combo = jomresJquery('#quantity'+theId).val();
 			if (combo[0])
 				{
-				if (extra[0].checked == true)
+				if (extra_checked == true)
 					{
-					combo[0].disabled=false;
-					combo[0].selectedIndex=0;
+					jomresJquery('#quantity'+theId).attr("disabled",false);
+					
 					}
 				else
 					{
-					combo[0].disabled=true;
-					combo[0].selectedIndex=0;
+					jomresJquery('#quantity'+theId).attr("disabled",true);
+					jomresJquery('#quantity'+theId).val("1");
 					}
 				}
 			}
