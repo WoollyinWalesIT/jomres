@@ -140,8 +140,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 		if ($jrConfig['advanced_site_config'] == 1)
 			$contentPanel->setcontent('
-
-
 			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO.'</td>
 				<td valign="middle">'.$lists['limit_property_country'].'</td>
@@ -234,6 +232,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_ISWRAPPED.'</td>
 				<td valign="middle">'.$lists['isInIframe'].'</td>
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="even">
+				 <td valign="middle">'._JOMRES_MENU_SHOW_TITLE.'</td>
+				 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
+				 <td valign="middle">'._JOMRES_MENU_SHOW_DESC.'</td>
 			</tr>
 			');
 		$contentPanel->setcontent('

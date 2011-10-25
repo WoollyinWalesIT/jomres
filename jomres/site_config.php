@@ -226,4 +226,6 @@ $jrConfig['alternate_smtp_port'] = "25";
 $jrConfig['alternate_smtp_protocol'] = "";
 $jrConfig['alternate_smtp_username'] = "";
 $jrConfig['alternate_smtp_password'] = "";
+
+$jrConfig['alternate_mainmenu'] = "0";
 ?>

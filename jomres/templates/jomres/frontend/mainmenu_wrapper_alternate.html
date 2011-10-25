@@ -1,0 +1,98 @@
+<patTemplate:tmpl name="pageoutput">
+
+
+<link rel="stylesheet" href="jomres/css/jquery.ui.potato.menu.css" type="text/css" />
+<script type="text/javascript" src="jomres/javascript/jquery.ui.potato.menu.js"></script>
+
+<script>
+jomresJquery(document).ready(function(){
+	jomresJquery('#jomres_mainmenu').buttonset();
+	jomresJquery('#jomres_mainmenu').ptMenu();
+	jomresJquery("#jomres-menu-pinned").fadeIn("slow");
+	jomresJquery("#jomres-menu-sub-panel").click(function(){
+		// Toggle the bar up 
+		jomresJquery("#jomres-menu-top-panel").slideToggle();
+		// Settings
+		var el = jomresJquery("#shText");
+		// Lets us know whats inside the element
+		var state = jomresJquery("#shText").html();
+		// Change the state  
+		state = (state == '{_JOMRES_MENU_HIDE}' ? '<span id="shText">{_JOMRES_MENU_SHOW}</span>' : '<span id="shText">{_JOMRES_MENU_HIDE}</span>');
+		// Finally change whats insdide the element ID
+		el.replaceWith(state); 
+		}); // end sub panel click function
+		
+	(function() {
+		//settings
+		var fadeSpeed = 200, fadeTo = 0.5, topDistance = 30;
+		var topbarME = function() { jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed,1); }, topbarML = function() { jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed,fadeTo); };
+		var inside = false;
+		//do
+		jomresJquery(window).scroll(function() {
+			position = jomresJquery(window).scrollTop();
+			if(position > topDistance && !inside) {
+				//add events
+				topbarML();
+				jomresJquery('#jomres-menu-pinned').bind('mouseenter',topbarME);
+				jomresJquery('#jomres-menu-pinned').bind('mouseleave',topbarML);
+				inside = true;
+			}
+			else if (position < topDistance){
+				topbarME();
+				jomresJquery('#jomres-menu-pinned').unbind('mouseenter',topbarME);
+				jomresJquery('#jomres-menu-pinned').unbind('mouseleave',topbarML);
+				inside = false;
+			}
+		});
+	})();
+	});
+
+</script>
+
+<style type="text/css">
+#jomres-menu-pinned{
+	position:fixed; 
+	top:0; 
+	z-index:9998; /* potato menu's z-index is set to 1000, so we'll set this to 1 less */
+	width:40%;
+}
+
+#jomres-menu-top-panel{
+	border-bottom:3px solid #a6c34e;
+	padding:14px 20px;
+	text-align:right;
+	float:right;
+}
+
+#jomres-menu-sub-panel{
+	text-align:center;
+	float:right;
+}
+#jomres-menu-sub-panel a{
+	width:150px;
+	float:right;
+	color:#FFFFFF;
+	text-decoration:none;
+	margin-right:30px;
+	font-weight:bold;
+	background: bottom left no-repeat #a6c34e;
+}
+#jomres-menu-sub-panel a span{
+	padding:6px;
+	background: right bottom no-repeat;
+	display:block;
+}
+</style>
+
+<div id="jomres-menu-pinned"  class="ui-helper-hidden">
+	<div id="jomres-menu-top-panel">
+		<ul id="jomres_mainmenu" class="menu" >
+			<patTemplate:tmpl name="button_output">
+				{DIV}
+			</patTemplate:tmpl>
+		</ul>
+	</div>
+	<div id="jomres-menu-sub-panel" class="ui-widget ui-corner-bl"><a href="javascript:void(0);" id="toggle"><span id="shText">{_JOMRES_MENU_SHOW}</span></a></div>
+</div>
+<br/><br/>
+</patTemplate:tmpl>
