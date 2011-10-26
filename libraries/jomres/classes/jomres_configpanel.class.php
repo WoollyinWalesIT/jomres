@@ -33,59 +33,24 @@ class jomres_configpanel extends jomres_content_tabs
 	*/
 	function insertSetting()
 		{
-
-			$this->panes[]='
-				<div class="spacer">
-					&nbsp;
-				</div>
-				<div class="ui-widget-header ui-corner-all">
-					'.$this->left.'
-				</div>
-				<div style="float: left; width: 200px; margin-right: 5px;">
-					'.$this->middle.'
-				</div>
-				<div style="float: right; width: 500px; margin-right: 5px;">
-					'.$this->right.'
-				</div>
-			<div style="clear: both;"> </div>
-			';
-
-		/*
-		if ($this->right != "&nbsp;")
-			{
-			$this->panes[]='
-			<div class="spacer">
-				&nbsp;
-			</div>
-			<div class="left">
-				<b>'.$this->left.'</b>
-			</div>
-			<div class="right">
-				'.$this->middle.'
-			</div>
-			<div class="middle">
-				'.$this->right.'
-			</div>
-			';
-			}
+		$rowclass="";
+		if (!$this->counter)
+			$this->counter=0;
+		if ($this->counter%2)
+			$rowclass="odd";
 		else
-			{
-			$this->panes[]='
-			<div class="spacer">
-				&nbsp;
-			</div>
-			<div class="left">
-				<b>'.$this->left.'</b>
-			</div>
-			<div class="middle">
-				'.$this->middle.'
-			</div>
-			';
-			}
-		*/
+			$rowclass="even";
+		$this->panes[]='
+		<tr class="'.$rowclass.'">
+			<td>'.$this->left.'</td>
+			<td>'.$this->middle.'</td>
+			<td>'.$this->right.'</td>
+		</tr>
+		';
 		$this->left="&nbsp;";
 		$this->middle="&nbsp;";
 		$this->right="&nbsp;";
+		$this->counter++;
 		}
 
 	/**

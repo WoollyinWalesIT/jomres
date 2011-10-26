@@ -1,6 +1,5 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="javascript">
-<!--
 function OnChange(dropdown)
 	{	
 	cty=jomresJquery("select#xyz").val();
@@ -13,48 +12,38 @@ function submitCountry(){
 	document.regForm.submit();
 	return true;
 	}
-//-->
 </script>
-
+<h2>Register your property - Step 1 (title to be generated)</h2>
+<p>{REGISTRATION_INSTRUCTIONS_STEP1}</p>
+<p>{MANAGEMENTPROCESS_DESC}
+	<ul>
+	<patTemplate:tmpl name="rows">
+	<li>{DESCRIPTION}</li>
+	</patTemplate:tmpl>
+	</ul>
+</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" >
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="jradmin_field_ca">{REGISTRATION_INSTRUCTIONS_STEP1}</td>
+		<td width="30%">{HCOUNTRY}</td>
+		<td>{COUNTRIESDROPDOWN}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_field_ca">{HCOUNTRY}</td>
-					<td class="jradmin_field_ca">{COUNTRIESDROPDOWN}</td>
-					<td class="jradmin_field_ca">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca">{HREGION}</td>
-					<td class="jradmin_field_ca">{REGIONDROPDOWN}</td>
-					<td class="jradmin_field_ca">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca">{HPROPERTY_TYPE}</td>
-					<td class="jradmin_field_ca">{PROPERTY_TYPE_DROPDOWN}</td>
-					<td class="jradmin_field_ca">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca">{MANAGEMENTPROCESS}</td>
-					<td class="jradmin_field_ca">{REALESTATEDROPDOWN}</td>
-					<td class="jradmin_field_ca">{MANAGEMENTPROCESS_DESC}<br/>
-					<ul>
-					<patTemplate:tmpl name="rows">
-					<li>{DESCRIPTION}</li>
-					</patTemplate:tmpl>
-					</ul>
-					</td>
-				</tr>
-			</table>
-		</td>
+		<td>{HREGION}</td>
+		<td>{REGIONDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HPROPERTY_TYPE}</td>
+		<td>{PROPERTY_TYPE_DROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{MANAGEMENTPROCESS}</td>
+		<td>{REALESTATEDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="button" name="send" value="Submit" class="fg-button ui-state-default ui-corner-all" onclick="submitCountry();" /></td>
 	</tr>
 </table>
 <input type="hidden" name="task" value="registerProp_step2" />
-<input type="button" name="send" value="Submit" class="button" onclick="submitCountry();" />
 </form>
 </patTemplate:tmpl>

@@ -1,25 +1,18 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
-	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<td colspan="2">{JOMRESTOOLBAR}</td>
-	</tr>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
 	<tr>
-		<td>{CHECKBOX}</td>
+		<td width="40">{CHECKBOX}</td>
 		<td>{EDITLINK}</td>
 	</tr>
 	</patTemplate:tmpl>
 	<tr>
-		<td><b>{NOBLACKBOOKINGS}</b></td>
+		<td>{NOBLACKBOOKINGS}</td>
 	</tr>
 </table>
 <input type="hidden" name="task" value="delete_multiple_blackbookings" />
-</div>
 </form>
-
 </patTemplate:tmpl>

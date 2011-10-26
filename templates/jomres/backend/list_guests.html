@@ -1,44 +1,47 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_guests').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<table width="100%" border="0">
 	<tr>
-		<th colspan="3"><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+		<td width="50%" align="left">{JOMRESTOOLBAR}</td>
+		<td width="50%" align="right">{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}--></td>
 	</tr>
-	<tr>
-		<td width="70%">{JOMRESTOOLBAR}</td>
-		<td width="30%">
-		<td>{HISTORIC_GUESTS_DROPDOWN}</td>
-		<td>{SURNAMEDROPDOWN}</td>
-	</tr>
-	<tr>
-		<td colspan="5">
-			<table class="jradmin_table">
-				<tr>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HEDITLINK}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HINVOICELINK}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HFIRSTNAME}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSURNAME}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HHOUSE}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSTREET}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HTOWN}</td>
-					<!-- <td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td> -->
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td>{EDITLINK}</td>
-					<td>{INVOICELINK}</td>
-					<td>{FIRSTNAME}</td>
-					<td>{SURNAME}</td>
-					<td>{HOUSE}</td>
-					<td>{STREET}</td>
-					<td>{TOWN}</td>
-					<!-- <td>{CREDITCARDLINK}</td> -->
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
-	</tr>
+</table>
+<table width="100%" border="0" id="list_guests">
+	<thead>
+		<tr>
+			<th>{HEDITLINK}</th>
+			<th>{HINVOICELINK}</th>
+			<th>{HFIRSTNAME}</th>
+			<th>{HSURNAME}</th>
+			<th>{HHOUSE}</th>
+			<th>{HSTREET}</th>
+			<th>{HTOWN}</th>
+			<!-- <th>&nbsp;</th> -->
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{INVOICELINK}</td>
+			<td>{FIRSTNAME}</td>
+			<td>{SURNAME}</td>
+			<td>{HOUSE}</td>
+			<td>{STREET}</td>
+			<td>{TOWN}</td>
+			<!-- <td>{CREDITCARDLINK}</td> -->
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
 </div>
 <input type="hidden" name="guestUid" value="" />

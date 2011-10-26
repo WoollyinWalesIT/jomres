@@ -72,6 +72,7 @@ class jomres_content_tabs
 		$this->paneLink[]='<li><a href="#'.$anchor.'"><span>'.$tabpage.'</span></a></li>
 		';
 		$this->panes[]='<div id="'.$anchor.'"><!-- start content tab panel -->';
+		$this->panes[]='<table width="100%" border="0">';
 		}
 
 	/**
@@ -92,8 +93,8 @@ class jomres_content_tabs
 	*/
 	function endPanel()
 		{
-		$this->panes[]='</div> <!-- end content tab panel -->
-		';
+		$this->panes[]='</table>';
+		$this->panes[]='</div> <!-- end content tab panel -->';
 		}
 
 	/**

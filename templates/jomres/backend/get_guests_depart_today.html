@@ -1,19 +1,15 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<form action="{VALIDATELINK}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
+		<td width="30%">Select guest/booking</td>
 		<td>{DROPDOWNLIST}</td>
 	</tr>
 </table>
-<input type="hidden" name="task" value="bookGuestOut" />
 </div>
+<input type="hidden" name="task" value="bookGuestOut" />
+<input type="hidden" name="no_html" value="1" />
 </form>
-
 </patTemplate:tmpl>
