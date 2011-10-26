@@ -396,14 +396,14 @@ class basic_property_details
 				{
 				$this->all_room_types[$rt->room_classes_uid]['room_classes_uid']=$rt->room_classes_uid ;
 				$this->all_room_types[$rt->room_classes_uid]['room_class_abbv']=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$rt->room_classes_uid,stripslashes($rt->room_class_abbv),false,false); ;
-				$this->all_room_types[$rt->room_classes_uid]['room_class_full_desc']=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$rt->room_classes_uid,stripslashes($rt->room_class_desc),false,false) ;
+				$this->all_room_types[$rt->room_classes_uid]['room_class_full_desc']=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$rt->room_classes_uid,stripslashes($rt->room_class_full_desc),false,false) ;
 				$this->all_room_types[$rt->room_classes_uid]['image']=$rt->image ;
 				$this->all_room_types[$rt->room_classes_uid]['srp_only']=$rt->srp_only ;
 				$room_type_ids[]=$rt->room_classes_uid;
 				
 				// To a degree, this is a duplication of effort, however we don't know if other scripts are using the $this->classAbbvs variable, so we'll reuse this code from the previous gather_data method.
 				$this->classAbbvs[(int)$rt->room_classes_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$rt->room_classes_uid,stripslashes($rt->room_class_abbv),false,false);
-				$this->classAbbvs[(int)$rt->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$rt->room_classes_uid,stripslashes($rt->room_class_desc),false,false);
+				$this->classAbbvs[(int)$rt->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$rt->room_classes_uid,stripslashes($rt->room_class_full_desc),false,false);
 				$this->classAbbvs[(int)$rt->room_classes_uid]['image'] = $rt->image;
 				}
 			}
