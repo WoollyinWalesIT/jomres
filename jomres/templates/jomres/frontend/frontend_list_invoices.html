@@ -1,64 +1,79 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
-	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_ANY}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_UNPAID}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_PAID}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_CANCELLED}</td><td class="fg-toolbar ui-widget-header ui-corner-all">{TASK_FILTER_PENDING}</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table>
-				<tr>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">ID</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSTATUS}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HRAISED}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HDUE}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HPAID}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HSUBSCRIPTION}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HINITTOTAL}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HRECURTOTAL}</td>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
-				</tr>
-				<patTemplate:tmpl name="rows" type="simpleCondition" requiredVars="editlink">
-				<tr>
-					<td>{EDITLINK}</td>
-					<td>{ID}</td>
-					<td>{STATUS}</td>
-					<td>{GUEST}</td>
-					<td>{RAISED}</td>
-					<td>{DUE}</td>
-					<td>{PAID}</td>
-					<td>{SUBSCRIPTION}</td>
-					<td>{INITTOTAL} <span class="small">({CURRENCYCODE})</span></td>
-					<td>{RECURTOTAL}  <span class="small">({CURRENCYCODE})</span> </td>
-					<td>{PAYNOW}</td>
-					
-				</tr>
-				<tr>
-					<td colspan="11">
-						{ITEMS}
-					</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#frontend_list_invoices').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lTfr>t<"F"ip>',
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr align="center">
+		<td>{TASK_FILTER_ANY}</td>
+		<td>{TASK_FILTER_UNPAID}</td>
+		<td>{TASK_FILTER_PAID}</td>
+		<td>{TASK_FILTER_CANCELLED}</td>
+		<td>{TASK_FILTER_PENDING}</td>
 	</tr>
 </table>
-<input type="hidden" name="task" value="edit_invoice" />
-</div>
-</form>
+<br />
+<table id="frontend_list_invoices" width="100%">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>ID</th>
+			<th>{HUSER}</th>
+			<th>{HSTATUS}</th>
+			<th>Line Items</th>
+			<th>{HRAISED}</th>
+			<th>{HDUE}</th>
+			<th>{HPAID}</th>
+			<th>{HSUBSCRIPTION}</th>
+			<th>{HINITTOTAL}</th>
+			<th>{HRECURTOTAL}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{ID}</td>
+			<td>{GUEST}</td>
+			<td>{STATUS}</td>
+			<td>{ITEMS}</td>
+			<td>{RAISED}</td>
+			<td>{DUE}</td>
+			<td>{PAID}</td>
+			<td>{SUBSCRIPTION}</td>
+			<td>{INITTOTAL}({CURRENCYCODE})</td>
+			<td>{RECURTOTAL}({CURRENCYCODE})</td>
+			<td>{PAYNOW}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
 </patTemplate:tmpl>

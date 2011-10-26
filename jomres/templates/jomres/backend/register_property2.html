@@ -1,8 +1,8 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style>
 .REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
-td.required {color:red;}
---></style>
+span.required {color:red;}
+</style>
 <script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}&hl=en" type="text/javascript"></script>
 <script language="JavaScript" type="text/javascript">
 function validatePropertyRegistration()
@@ -116,7 +116,6 @@ function echeck(str) {
 		}
 	return true
 	}
-	
 
 jomresJquery(document).ready(function () {
     var select = '#mySelect';
@@ -131,7 +130,6 @@ jomresJquery(document).ready(function () {
     }).change();
 });
 
-
 <!-- Clickable locations adapted from http://universimmedia.pagesperso-orange.fr/geo/loc.htm -->
 function load() {
 	if (GBrowserIsCompatible()) {
@@ -140,7 +138,7 @@ function load() {
 		map.setMapType(G_HYBRID_MAP);
 		map.enableScrollWheelZoom();
 		var center = new GLatLng(48.858334,2.294254);
-		map.setCenter(center, 15);
+		map.setCenter(center, 20);
 		geocoder = new GClientGeocoder();
 		var marker = new GMarker(center, {draggable: true});  
 		map.addOverlay(marker);
@@ -220,122 +218,108 @@ jomresJquery(document).ready(function() {
 	load()
 	});
 </script>
-
+<h2>Register your property - Step 2 (title to be generated)</h2>
+<p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
+<p>{ISTHISANMRP_DESC}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm">
-<input type="button" name="send2" value="Submit" class="button" onclick="validatePropertyRegistration();"/>
-<table class="jradmin_table">
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="jradmin_field_ca">{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1}<br />{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</td>
+		<td width="30%">{ISTHISANMRP}<span class="required">*</span></td>
+		<td>{ISTHISANMRP_DROPDOWN}</td>
 	</tr>
 	<tr>
+		<td>{HNAME}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_name" value="{PROPERTY_NAME}" /></td>
+	</tr>
+	<tr>
+		<td>{HSTREET}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_street" value="{PROPERTY_STREET}" /></td>
+	</tr>
+	<tr>
+		<td>{HTOWN}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_town" value="{PROPERTY_TOWN}" /></td>
+	</tr>
+	<tr>
+		<td>{HPOSTCODE}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_postcode" value="{PROPERTY_POSTCODE}" /></td>
+	</tr>
+	<tr>
+		<td>{HTELEPHONE}<span class="required">*</span></td>	
+		<td><input class="inputbox" type="text" size="20" name="property_tel" value="{PROPERTY_TEL}" /></td>
+	</tr>
+	<tr>
+		<td>{HFAX}</td>
+		<td><input class="inputbox" type="text" size="20" name="property_fax" value="{PROPERTY_FAX}" /> </td>
+	</tr>
+	<tr>
+		<td>{HEMAIL}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_email" value="{PROPERTY_EMAIL}" /></td>
+	</tr>
+	<tr>
+		<td>{HSTARS}</td>
+		<td>{STARSDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>Lat: (nn.nnnn)</td>
+		<td><input id="lat" class="inputbox" type="text" size="20" name="lat" value="{LAT}" /></td>
+	</tr>
+	<tr>
+		<td>Long: (nn.nnnn)</td>
+		<td><input id="lng" class="inputbox" type="text" size="20" name="long" value="{LONG}" /></td>
+	</tr>
+	<tr>
+		<td>{LATLONG_DESC}</td>
+		<td><div align="left" id="map" style="width: 500px; height: 350px"></div></td>
+	</tr>
+	<tr>
+		<td>{HFEATURES}</td>
+		<td>{FEATURES}</td>
+	</tr>
+	<tr>
+		<td>{HFEATURES}</td>
 		<td>
-		<br />
-			<table class="jradmin_table">
-
-				<tr>
-					<td class="jradmin_subheader_la">{ISTHISANMRP}</td>
-					<td colspan="2" class="jradmin_field_la">{ISTHISANMRP_DROPDOWN}<br />{ISTHISANMRP_DESC}</td> 
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HNAME}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_name" value="{PROPERTY_NAME}" /></td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HSTREET}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_street" value="{PROPERTY_STREET}" /></td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HTOWN}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_town" value="{PROPERTY_TOWN}" /></td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HPOSTCODE}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="10" name="property_postcode" value="{PROPERTY_POSTCODE}" /></td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HTELEPHONE}</td>	
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_tel" value="{PROPERTY_TEL}" /></td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HFAX}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="15" name="property_fax" value="{PROPERTY_FAX}" /> </td>
-					<td class="required"> </td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HEMAIL}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" size="40" name="property_email" value="{PROPERTY_EMAIL}" /></td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HSTARS}</td>
-					<td colspan="2" class="jradmin_field_la">{STARSDROPDOWN}</td>
-				</tr>
-				<tr>
-					<td colspan="3">{LATLONG_DESC}</td> 
-				</tr>
-				<tr>
-					<td>Lat: (nn.nnnn) <input id="lat"  class="inputbox" type="text" size="30" name="lat" value="{LAT}" /> </td>
-					<td>Long: (nn.nnnn) <input id="lng" class="inputbox" type="text" size="30" name="long" value="{LONG}" /> </td>
-					<td></td>
-				</tr>
-				<tr>
-					<td colspan="3"> <div align="center" id="map" style="width: 600px; height: 400px"><br/></div> </td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HFEATURES}</td>
-					<td colspan="2" class="jradmin_field_la">{FEATURES}</td>
-				</tr>
-				<tr>
-					<td colspan="3" class="jradmin_field_la">
-						<patTemplate:tmpl name="globalPfeatures">
-						<div style="float:left;">
-						<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" > {FEATURE}
-						</div>
-						</patTemplate:tmpl>
-					</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HPROPDESCRIPTION}</td>
-					<td>{PROPERTY_DESCRIPTION}</td>
-					<td class="required">*</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HCHECKINTIMES}</td>
-					<td colspan="2">{PROPERTY_CHECKIN_TIMES}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HAREAACTIVITIES}</td>
-					<td colspan="2">{PROPERTY_AREA_ACTIVITIES}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HDRIVINGDIRECTIONS}</td>
-					<td colspan="2">{PROPERTY_DRIVING_DIRECTIONS}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HAIRPORTS}</td>
-					<td colspan="2">{PROPERTY_AIRPORTS}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HOTHERTRANSPORT}</td>
-					<td colspan="2">{PROPERTY_OTHERTRANSPORT}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HPOLICIESDISCLAIMERS}</td>
-					<td colspan="2">{PROPERTY_POLICIES_DISCLAIMERS}</td>
-				</tr>
-			</table>
+			<patTemplate:tmpl name="globalPfeatures">
+			<div style="float:left;">
+			<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" > {FEATURE}
+			</div>
+			</patTemplate:tmpl>
 		</td>
+	</tr>
+	<tr>
+		<td>{HPROPDESCRIPTION}<span class="required">*</span></td>
+		<td>{PROPERTY_DESCRIPTION}</td>
+	</tr>
+	<tr>
+		<td>{HCHECKINTIMES}</td>
+		<td>{PROPERTY_CHECKIN_TIMES}</td>
+	</tr>
+	<tr>
+		<td>{HAREAACTIVITIES}</td>
+		<td>{PROPERTY_AREA_ACTIVITIES}</td>
+	</tr>
+	<tr>
+		<td>{HDRIVINGDIRECTIONS}</td>
+		<td>{PROPERTY_DRIVING_DIRECTIONS}</td>
+	</tr>
+	<tr>
+		<td>{HAIRPORTS}</td>
+		<td>{PROPERTY_AIRPORTS}</td>
+	</tr>
+	<tr>
+		<td>{HOTHERTRANSPORT}</td>
+		<td>{PROPERTY_OTHERTRANSPORT}</td>
+	</tr>
+	<tr>
+		<td>{HPOLICIESDISCLAIMERS}</td>
+		<td>{PROPERTY_POLICIES_DISCLAIMERS}</td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="button" name="send" value="Submit" class="fg-button ui-state-default ui-corner-all" onclick="validatePropertyRegistration();"/></td>
 	</tr>
 </table>
 <input type="hidden" name="propertyType" value="{PROPERTYTYPE}" />
 <input type="hidden" name="property_region" value="{PROPERTY_REGION}" />
 <input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}" />
-<input type="button" name="send" value="Submit" class="button" onclick="validatePropertyRegistration();"/>
 <input type="hidden" name="no_html" value="1" />
 </form>
 </patTemplate:tmpl>

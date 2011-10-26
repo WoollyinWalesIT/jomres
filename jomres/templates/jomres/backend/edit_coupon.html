@@ -1,45 +1,42 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<p>{INFO}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-
-<table width="100%">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<th colspan="5"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<th colspan="5">{JOMRESTOOLBAR}</th>
-	</tr>
-	
-	<tr>
-		<th colspan="5">{INFO}</th>
-	</tr>
-	<tr>
-		<th class="ui-widget-header  ui-corner-left">{HCOUPONCODE}</th>
-		<th class="ui-widget-header">{HVALIDFROM}</th>
-		<th class="ui-widget-header">{HVALIDTO}</th>
-		<th class="ui-widget-header">{HAMOUNT}</th>
-		<th class="ui-widget-header ui-corner-right">{HISPERCENTAGE}</th>
-	</tr>
-	<tr>
+		<td width="30%">{HCOUPONCODE}</td>
 		<td><input class="inputbox" type="text" name="coupon_code" value="{COUPONCODE}" /></td>
+	</tr>
+	<tr>
+		<td>{HVALIDFROM}</td>
 		<td>{VALIDFROM}</td>
+	</tr>
+	<tr>
+		<td>{HVALIDTO}</td>
 		<td>{VALIDTO}</td>
-		<td><input class="inputbox" type="text" name="amount" value="{AMOUNT}" size="7" /></td>
+	</tr>
+	<tr>
+		<td>{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</td>
+		<td>{BOOKING_VALIDFROM}</td>
+	</tr>
+	<tr>
+		<td>{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</td>
+		<td>{BOOKING_VALIDTO}</td>
+	</tr>
+	<tr>
+		<td>{HAMOUNT}</td>
+		<td><input class="inputbox" type="text" name="amount" value="{AMOUNT}" /></td>
+	</tr>
+	<tr>
+		<td>{HISPERCENTAGE}</td>
 		<td>{ISPERCENTAGE}</td>
 	</tr>
 	<tr>
-		<th class="ui-widget-header">{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</th>
-		<th class="ui-widget-header">{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</th>
-		<th colspan="3" class="ui-widget-header">{_JRPORTAL_COUPONS_GUESTNAME}</th>
-	</tr>
-	<tr>
-		<td>{BOOKING_VALIDFROM}</td>
-		<td>{BOOKING_VALIDTO}</td>
-		<td colspan="3">{GUEST_DROPDOWN}</td>
+		<td>{_JRPORTAL_COUPONS_GUESTNAME}</td>
+		<td>{GUEST_DROPDOWN}</td>
 	</tr>
 </table>
-
-</div>
 <input type="hidden" name="coupon_id" value="{COUPON_ID}" />
 <input type="hidden" name="task" value="saveCoupon" />
 <input type="hidden" name="no_html" value="1" />

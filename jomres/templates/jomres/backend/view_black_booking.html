@@ -1,49 +1,33 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+		<td width="30%">{BBDATE}</td>
+		<td>{BBSTART}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<th>{BBDATE}</th>
-					<td>{BBSTART}</td>
-				</tr>
-				<tr>
-					<th>{BBDATEENDS}</th>
-					<td>{BBENDS}</td>
-				</tr>
-			</table>
-			<br />
-			<table>
-				<tr>
-					<th colspan="2">{INFO}</th>
-				</tr>
-				<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
-				<tr>
-					<td><b>{ROOMNO}</b></td>
-					<td>{ROOMNAME}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-			<br />
-			<table>
-				<tr>
-					<td>{REASON}</td>
-				</tr>
-			</table>
-		</td>
+		<td>{BBDATEENDS}</td>
+		<td>{BBENDS}</td>
 	</tr>
 </table>
-
-</div>
+<h3>{INFO}</h3>
+<table border="0" width="100%">
+	<tr>
+		<th class="ui-state-default">Room number</th>
+		<th class="ui-state-default">Room name</th>
+	</tr>
+	<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
+	<tr class="{CLASS}">
+		<td>{ROOMNO}</td>
+		<td>{ROOMNAME}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td colspan="2"><p>{REASON}</p></td>
+	</tr>
+</table>
 <input type="hidden" name="contract_uid" value="{CONTRACTID}" />
 <input type="hidden" name="task" value="deleteBlackBooking" />
 </form>

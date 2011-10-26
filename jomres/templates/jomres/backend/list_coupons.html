@@ -1,44 +1,46 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
-	<tr>
-		<th colspan="8"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<th colspan="8">{JOMRESTOOLBAR}</th>
-	</tr>
-	<tr>
-	
-	<tr>
-		<th colspan="8">{INFO}</td>
-	</tr>
-	<tr>
-		<th class="ui-widget-header  ui-corner-left">{HEDITLINK}</th>
-		<th class="ui-widget-header">{HCOUPONCODE}</th>
-		<th class="ui-widget-header">{HVALIDFROM}</th>
-		<th class="ui-widget-header">{HVALIDTO}</th>
-		<th class="ui-widget-header">{HAMOUNT}</th>
-		<th class="ui-widget-header ui-corner-right">{HISPERCENTAGE}</th>
-		<th class="ui-widget-header">{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</th>
-		<th class="ui-widget-header">{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</th>
-		<th class="ui-widget-header">{_JRPORTAL_COUPONS_GUESTNAME}</th>
-	</tr>
-	<patTemplate:tmpl name="rows">
-	<tr>
-		<td>{EDITLINK}</td>
-		<td>{COUPONCODE}</td>
-		<td>{VALIDFROM}</td>
-		<td>{VALIDTO}</td>
-		<td>{AMOUNT}</td>
-		<td>{ISPERCENTAGE}</td>
-		<td>{BOOKING_VALIDFROM}</td>
-		<td>{BOOKING_VALIDTO}</td>
-		<td>{GUEST_NAME}</td>
-	</tr>
-	</patTemplate:tmpl>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_coupons').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<p>{INFO}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table id="list_coupons" width="100%" border="0">
+	<thead>
+		<tr>
+			<th>{HEDITLINK}</th>
+			<th>{HCOUPONCODE}</th>
+			<th>{HVALIDFROM}</th>
+			<th>{HVALIDTO}</th>
+			<th>{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</th>
+			<th>{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</th>
+			<th>{HAMOUNT}</th>
+			<th>{HISPERCENTAGE}</th>
+			<th>{_JRPORTAL_COUPONS_GUESTNAME}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{COUPONCODE}</td>
+			<td>{VALIDFROM}</td>
+			<td>{VALIDTO}</td>
+			<td>{BOOKING_VALIDFROM}</td>
+			<td>{BOOKING_VALIDTO}</td>
+			<td>{AMOUNT}</td>
+			<td>{ISPERCENTAGE}</td>
+			<td>{GUEST_NAME}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
-</div>
 <input type="hidden" name="task" value="newExtra" />
 </form>
 </patTemplate:tmpl>

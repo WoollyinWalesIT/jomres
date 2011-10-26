@@ -1,33 +1,38 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-
-<table width="100%">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<th colspan="4"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+		<td width="30%">{HTYPE}</td>
+		<td width="60%"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10" /></td>
+		<td width="10%" align="right">{HTYPE_TT}</td>
 	</tr>
 	<tr>
-		<th colspan="4">{JOMRESTOOLBAR}</th>
+		<td>{HNOTES}</td>
+		<td><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50" /></td>
+		<td align="right">{HNOTES_TT}</td>
 	</tr>
 	<tr>
-		<th class="ui-widget-header  ui-corner-left" colspan="2">{HTYPE}</th>
-		<th class="ui-widget-header ui-corner-right" colspan="2">{HNOTES}</th>
+		<td>{HMAXIMUM}</td>
+		<td><input class="inputbox" type="text" name="maximum" value="{MAXIMUM}" size="3" /></td>
+		<td align="right">{HMAXIMUM_TT}</td>
+		
 	</tr>
 	<tr>
-		<td colspan="2"><input class="inputbox" type="text" name="type" value="{TYPE}" size="10" />{HTYPE_TT}</td>
-		<td colspan="2"><input class="inputbox" type="text" name="notes" value="{NOTES}" size="50" />{HNOTES_TT}</td>
+		<td>{HPOSNEG}</td>
+		<td>{POSNEG}</td>
+		<td align="right">{HPOSNEG_TT}</td>
 	</tr>
 	<tr>
-		<th class="ui-widget-header  ui-corner-left">{HMAXIMUM}</th>
-		<th class="ui-widget-header">{HISPERCENTAGE}</th>
-		<th class="ui-widget-header">{HPOSNEG}</th>
-		<th class="ui-widget-header ui-corner-right">{HVARIANCE}</th>
+		<td>{HISPERCENTAGE}</td>
+		<td>{ISPERCENTAGE}</td>
+		<td align="right">{HISPERCENTAGE_TT}</td>
 	</tr>
 	<tr>
-		<td><input class="inputbox" type="text" style="text-align:right" name="maximum" value="{MAXIMUM}" size="3" />{HMAXIMUM_TT}</td>
-		<td>{ISPERCENTAGE}{HISPERCENTAGE_TT}</td>
-		<td>{POSNEG}{HPOSNEG_TT}</td>
-		<td><input class="inputbox" type="text" style="text-align:right" name="variance" value="{VARIANCE}" size="3" />{HVARIANCE_TT}</td>
+		<td>{HVARIANCE}</td>
+		<td><input class="inputbox" type="text" name="variance" value="{VARIANCE}" size="3" /></td>
+		<td align="right">{HVARIANCE_TT}</td>
 	</tr>
 </table>
 </div>

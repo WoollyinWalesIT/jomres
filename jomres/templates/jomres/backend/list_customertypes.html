@@ -1,43 +1,46 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_customertypes').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" width="75%">
-	<tr>
-		<th colspan="8"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<th>{HEDITLINK}</th>
-		<th>{HTYPE}</th>
-		<th>{HNOTES}</th>
-		<th>{HMAXIMUM}</th>
-		<th>{HISPERCENTAGE}</th>
-		<th>{HPOSNEG}</th>
-		<th>{HVARIANCE}</th>
-		<th>{HORDER}</th>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>
-			<table cellspacing="0" border="0">
-				<tr>
-					<td>{EDITLINK}</td>
-					<td>{PUBLISHLINK}</td>
-				</tr>
-			</table>
-		</td>
-		<td>{TYPE}</td>
-		<td>{NOTES}</td>
-		<td>{MAXIMUM}</td>
-		<td>{ISPERCENTAGE}</td>
-		<td>{POSNEG}</td>
-		<td>{VARIANCE}</td>
-		<td><input class="inputbox" type="text" style="text-align:center" size="3" name="order[{ID}]" value="{ORDER}" /></td>
-	</tr>
-	</patTemplate:tmpl>
+<table id="list_customertypes" width="100%" border="0">
+	<thead>
+		<tr>
+			<th></th>
+			<td></td>
+			<th>{HTYPE}</th>
+			<th>{HNOTES}</th>
+			<th>{HMAXIMUM}</th>
+			<th>{HISPERCENTAGE}</th>
+			<th>{HPOSNEG}</th>
+			<th>{HVARIANCE}</th>
+			<th>{HORDER}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{PUBLISHLINK}</td>
+			<td>{TYPE}</td>
+			<td>{NOTES}</td>
+			<td>{MAXIMUM}</td>
+			<td>{ISPERCENTAGE}</td>
+			<td>{POSNEG}</td>
+			<td>{VARIANCE}</td>
+			<td><input class="inputbox" type="text" style="text-align:center" size="3" name="order[{ID}]" value="{ORDER}" /></td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
-
 <input type="hidden" name="task" value="newExtra" />
 <input type="hidden" name="option" value="com_jomres" />
 </form>
-
 </patTemplate:tmpl>

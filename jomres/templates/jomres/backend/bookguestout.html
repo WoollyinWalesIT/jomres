@@ -1,54 +1,40 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp" >
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table width="100%">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+		<td width="30%">{HSTAYNIGHTS}</td>
+		<td>{STAYNIGHTS}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{HCONTRACTAGREED}</td>
+		<td>{CONTRACTAGREED}</td>
 	</tr>
 	<tr>
-		<td>
-			<table width="100%">
-				<tr>
-					<td colspan="2" >{INVOICETITLE}</td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header">{HSTAYNIGHTS}</td>
-					<td style="text-align: right;"><b>{STAYNIGHTS}</b></td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header">{HCONTRACTAGREED}</td>
-					<td style="text-align: right;"><b>{CONTRACTAGREED}</b></td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header">{HCOSTPERNIGHT}</td>
-					<td style="text-align: right;"><b>{COSTPERNIGHT}</b></td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header">{HSINGLEPERSON_COST}</td>
-					<td style="text-align: right;"><b>{SINGLEPERSON_COST}</b></td>
-				</tr>
-				<tr>
-					<td colspan="2">{HEXTRASERVICE}</td>
-				</tr>
-				<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
-				<tr>
-					<td class="ui-widget-header">{DESC}</td>
-					<td style="text-align: right;"><b>{VAL}</b></td>
-				</tr>
-				</patTemplate:tmpl>
-				<tr>
-					<td class="ui-widget-header">{HEXTRASERVICE_TOTAL}</td>
-					<td td style="text-align: right;"><b>{EXTRASERVICE_TOTAL}</b></td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header">{HGRANDTOTAL}</td>
-					<td style="text-align: right;"><b>{GRANDTOTAL}</b></td>
-				</tr>
-			</table>
-		</td>
+		<td>{HCOSTPERNIGHT}</td>
+		<td>{COSTPERNIGHT}</td>
+	</tr>
+	<tr>
+		<td>{HSINGLEPERSON_COST}</td>
+		<td>{SINGLEPERSON_COST}</td>
+	</tr>
+	<tr>
+		<td colspan="2">{HEXTRASERVICE}</td>
+	</tr>
+	<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
+	<tr>
+		<td>{DESC}</td>
+		<td>{VAL}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td>{HEXTRASERVICE_TOTAL}</td>
+		<td td>{EXTRASERVICE_TOTAL}</td>
+	</tr>
+	<tr>
+		<td>{HGRANDTOTAL}</td>
+		<td>{GRANDTOTAL}</td>
 	</tr>
 </table>
 {JOMRESTOKEN}
@@ -57,5 +43,4 @@
 <input type="hidden" name="task" value="saveBookout" />
 <input type="hidden" name="no_html" value="1" />
 </form>
-</div>
 </patTemplate:tmpl>

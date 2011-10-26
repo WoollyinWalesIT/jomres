@@ -1,8 +1,5 @@
-<patTemplate:tmpl name="pageoutput">
-
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-
-
 function get_properties(initial)
 	{
 	jomresJquery.get('{AJAXURL}&task=ui_find_properties&initial='+initial,
@@ -12,23 +9,28 @@ function get_properties(initial)
 		);
 	}
 </script>
-{_JOMRES_PORTALUI_CLICKINITIAL}<br/>
-
-<table>
-	<tr VALIGN="top">
-		<td>
+<h2>Change active property</h2>
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+	<tr>
+		<td><p>{_JOMRES_PORTALUI_CLICKINITIAL}</p></td>
+	<tr>
+		<td width="100%">
 			<patTemplate:tmpl name="rows">
 			<div>
-				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all"  onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
+				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="get_properties('{INITIAL}');">{INITIAL}  ({COUNT})</a>
 			</div>
 			</patTemplate:tmpl>
 		</td>
+	</tr>
+</table>
+<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td width="100%"><h3>Found properties</h3></td>
+	<tr>
+	<tr>
 		<td>
-			<div id = "found_properties"> 
-				
-				
-				
-			</div>
+			<div id="found_properties"></div>
 		</td>
 	</tr>
 </table>

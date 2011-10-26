@@ -1,34 +1,4 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
-<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
-
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<th class="ui-widget-header ui-corner-all">{HPROPERTYNAME}</th><th class="ui-widget-header ui-corner-all">{HPROPERTYADDRESS}</th><th class="ui-widget-header ui-corner-all">{HCOMMISSIONRATE}</th>
-	</tr>
-	<tr>
-		<td>
-			<h2>{PROPERTY_NAME}</h2>
-		</td>
-		<td>
-			{PROPERTY_STREET}<br/>
-			{PROPERTY_TOWN}<br/>
-			{PROPERTY_REGION}<br/>
-			{PROPERTY_COUNTRY}<br/>
-			{PROPERTY_POSTCODE}<br/>
-			{PROPERTY_TEL}<br/>
-		</td>
-		<td>
-			{HCRATE_TITLE} - {CRATE_TITLE}<br/>
-			{HCRATE_TYPE} - {CRATE_TYPE}<br/>
-			{HCRATE_VALUE} - {CRATE_VALUE}<br/>
-			{HCRATE_CURRENCYCODE} - {CRATE_CURRENCYCODE}<br/>
-		</td>
-	</tr>
-</table>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 	function select_all(obj)
 		{ 
@@ -40,52 +10,113 @@
 		r.execCommand('copy');
 		} 
 </script>
-
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+<h2>{PAGETITLE}: {PROPERTY_NAME}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" border="0">
 	<tr>
-		<th class="ui-widget-header ui-corner-all">APIKEY</th>
-	</tr>
-	<tr>
-		<td><center><input type="text" size="60" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this)"/></center></td>
+		<td width="50%" valign="top">
+			<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+				<tr>
+					<td><h3>{HPROPERTYADDRESS}</h3></td>
+				</tr>
+				<tr>
+					<td>{PROPERTY_STREET}</td>
+				</tr>
+				<tr>
+					<td>{PROPERTY_TOWN}</td>
+				</tr>
+				<tr>
+					<td>{PROPERTY_REGION}</td>
+				</tr>
+				<tr>
+					<td>{PROPERTY_COUNTRY}</td>
+				</tr>
+				<tr>
+					<td>{PROPERTY_POSTCODE}</td>
+				</tr>
+				<tr>
+					<td>{PROPERTY_TEL}</td>
+				</tr>
+			</table>
+		</td>
+		<td width="50%" valign="top">
+			<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+				<tr>
+					<td><h3>{HCOMMISSIONRATE}</h3></td>
+				</tr>
+				<tr>
+					<td width="30%">{HCRATE_TITLE}</td>
+					<td>{CRATE_TITLE}</td>
+				</tr>
+				<tr>
+					<td>{HCRATE_TYPE}</td>
+					<td>{CRATE_TYPE}</td>
+				</tr>
+				<tr>
+					<td>{HCRATE_VALUE}</td>
+					<td>{CRATE_VALUE}</td>
+				</tr>
+				<tr>
+					<td>{HCRATE_CURRENCYCODE}</td>
+					<td>{CRATE_CURRENCYCODE}</td>
+				</tr>
+			</table>
+		</td>
 	</tr>
 </table>
-	
+<br />
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<th class="ui-widget-header ui-corner-all">{HCOMMISSIONESTIMATE}</th>
+		<td><h3>APIKEY</h3></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_commissionestimate_1"></div></center></td>
+		<td><input type="text" size="60" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this);"/></td>
+	</tr>
+</table>
+<br />	
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td><h3>{HCOMMISSIONESTIMATE}</h3></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_commissionestimate_2"></div></center></td>
+		<td><div id="yearviewgraph_commissionestimate_1"></div></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_commissionestimate_3"></div></center></td>
+		<td><div id="yearviewgraph_commissionestimate_2"></div></td>
 	</tr>
 	<tr>
-		<th class="ui-widget-header ui-corner-all">{HVALUEOFBOOKINGS}</th>
+		<td><div id="yearviewgraph_commissionestimate_3"></div></td>
+	</tr>
+</table>
+<br />
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td><h3>{HVALUEOFBOOKINGS}</h3></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_valueofbookings_1"></div></center></td>
+		<td><div id="yearviewgraph_valueofbookings_1"></div></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_valueofbookings_2"></div></center></td>
+		<td><div id="yearviewgraph_valueofbookings_2"></div></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_valueofbookings_3"></div></center></td>
+		<td><div id="yearviewgraph_valueofbookings_3"></div></td>
+	</tr>
+</table>
+<br />
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td><h3>{HNUMBEROFBOOKINGS}</h3></th>
 	</tr>
 	<tr>
-		<th class="ui-widget-header ui-corner-all">{HNUMBEROFBOOKINGS}</th>
+		<td><div id="yearviewgraph_numberofbookings_1"></div></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_numberofbookings_1"></div></center></td>
+		<td><div id="yearviewgraph_numberofbookings_2"></div></td>
 	</tr>
 	<tr>
-		<td><center><div id="yearviewgraph_numberofbookings_2"></div></center></td>
-	</tr>
-	<tr>
-		<td><center><div id="yearviewgraph_numberofbookings_3"></div></center></td>
+		<td><div id="yearviewgraph_numberofbookings_3"></div></td>
 	</tr>
 </table>
 <input type="hidden" name="id" value="{ID}" />

@@ -1,30 +1,35 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_extras').dataTable({
+		"bJQueryUI": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
-	<tr>
-		<th colspan="4"><div class="ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<th colspan="4">{JOMRESTOOLBAR}</th>
-	</tr>
-	<tr>
-		<th class="ui-widget-header ui-corner-all">{HEDITLINK}</td>
-		<th class="ui-widget-header ui-corner-all">{HEXNAME}</td>
-		<th class="ui-widget-header ui-corner-all">{HEXDESC}</td>
-		<th class="ui-widget-header ui-corner-all">{HEXPRICE}</td>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{EDITLINK}</td>
-		<td>{EXNAME}</td>
-		<td>{EXDESC}</td>
-		<td>{CURRENCY} {EXPRICE}</td>
-	</tr>
-	</patTemplate:tmpl>
+{JOMRESTOOLBAR}
+<table width="100%" id="list_extras" border="0">
+	<thead>
+		<tr>
+			<th>{HEDITLINK}</th>
+			<th>{HEXNAME}</th>
+			<th>{HEXDESC}</th>
+			<th>{HEXPRICE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{EXNAME}</td>
+			<td>{EXDESC}</td>
+			<td>{CURRENCY} {EXPRICE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
-
-</div>
 <input type="hidden" name="task" value="newExtra" />
 </form>
 </patTemplate:tmpl>
