@@ -15,12 +15,12 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 
 function jomres_cmsspecific_getlogout_task()
 	{
-	return 'index.php?option=com_user&view=login';
+	return 'index.php?option=com_users&view=login';
 	}
 
 function jomres_cmsspecific_getlogin_task()
 	{
-	return 'index.php?option=com_user&view=login';
+	return 'index.php?option=com_users&view=login';
 	}
 
 function jomres_cmsspecific_areweinadminarea()
