@@ -288,11 +288,43 @@ function doTableUpdates()
 		alterExtrasAutoSelectCol();
 	if (!checkPtypesOrderColExists() )
 		alterPtypesOrderCol();
-		
+	
+	if (!checkAccessControlTableExists() )
+		createAccessControlTable();
+	
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function createAccessControlTable()
+	{
+	echo "Creating __jomres_access_control table<br>";
+		$query="CREATE TABLE IF NOT EXISTS `#__jomres_access_control` (
+		`id` int(11) auto_increment,
+		`scriptname` VARCHAR(255),
+		`access_level` CHAR(255),
+		PRIMARY KEY	(`id`)
+		) ";
+	$result=doInsertSql($query,"");
+	if (!$result )
+		echo "<b>Error creating table table __jomres_access_control </b><br>";
+	}
+	
+function checkAccessControlTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_access_control') )
+			return true;
+		}
+	return false;
+	}
+	
 function alterPtypesOrderCol()
 	{
 	echo "Editing __jomres_ptypes table adding order column<br>";
@@ -1435,6 +1467,15 @@ function deleteCurrentLicenseFiles()
 
 function createJomresTables()
 	{
+	$query="CREATE TABLE IF NOT EXISTS `#__jomres_access_control` (
+		`id` int(11) auto_increment,
+		`scriptname` VARCHAR(255),
+		`access_level` CHAR(255),
+		PRIMARY KEY	(`id`)
+		) ";
+	doInsertSql($query,"");
+	
+	
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` VARCHAR(255) NULL,

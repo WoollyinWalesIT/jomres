@@ -117,6 +117,7 @@ class mcHandler {
 	// Acutally calls the triggered event.
 	function triggerEvent($eventPoint,$eventArgs=null)
 		{
+		$jomres_access_control = jomres_getSingleton('jomres_access_control');
 		global $ePointFilepath,$eLiveSite;
 		$retVal=null;
 		$eventClasses=$this->registeredClasses;
@@ -130,30 +131,33 @@ class mcHandler {
 					set_showtime('ePointFilepath',$eClass['filepath']);
 					$classFileSuffix='.class.php';
 					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
-					if (file_exists($eClass['filepath'].$filename) )
+					if ( $jomres_access_control->can_user_access_this_script($eClass['eventPoint'].$eClass['eventName']))
 						{
-						include_once($eClass['filepath'].$filename);
-						if ($this->logging_enbled)
-							$this->log[]=$eClass['filepath'].$filename;
-						$this->currentEvent =$eClass['filepath'].$filename;
-						$event=new stdClass;
-						$ePoint=$eClass['eventPoint'];
-						$eName=$eClass['eventName'];
-						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$ePointFilepath);
-						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
-						set_showtime('eLiveSite',$eLiveSite);
-						$event='j'.$ePoint.$eName;
-						if (!class_exists($event))
+						if (file_exists($eClass['filepath'].$filename) )
 							{
-							echo "Error, class ".$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
-							return;
+							include_once($eClass['filepath'].$filename);
+							if ($this->logging_enbled)
+								$this->log[]=$eClass['filepath'].$filename;
+							$this->currentEvent =$eClass['filepath'].$filename;
+							$event=new stdClass;
+							$ePoint=$eClass['eventPoint'];
+							$eName=$eClass['eventName'];
+							$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$ePointFilepath);
+							$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
+							set_showtime('eLiveSite',$eLiveSite);
+							$event='j'.$ePoint.$eName;
+							if (!class_exists($event))
+								{
+								echo "Error, class ".$event." does not exist. Most likely you've renamed a minicomponent file, but not the class in that file";
+								return;
+								}
+							set_showtime('current_minicomp',$event);
+							$e = new $event($eventArgs);
+							$retVal=$e->getRetVals();
+							$this->miniComponentData[$ePoint][$eName]=$retVal;
+							set_showtime('current_minicomp','');
+							unset($e);
 							}
-						set_showtime('current_minicomp',$event);
-						$e = new $event($eventArgs);
-						$retVal=$e->getRetVals();
-						$this->miniComponentData[$ePoint][$eName]=$retVal;
-						set_showtime('current_minicomp','');
-						unset($e);
 						}
 					}
 				}
@@ -166,6 +170,7 @@ class mcHandler {
 	function specificEvent($eventPoint,$eventName,$eventArgs=null)
 		{
 		global $ePointFilepath,$eLiveSite;
+		$jomres_access_control = jomres_getSingleton('jomres_access_control');
 		$retVal=null;
 		$eventClasses=$this->registeredClasses;
 		if (count($this->registeredClasses) > 0 )
@@ -178,25 +183,30 @@ class mcHandler {
 					set_showtime('ePointFilepath',$eClass['filepath']);
 					$classFileSuffix='.class.php';
 					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
-					if (file_exists($eClass['filepath'].$filename) )
+					if ( !$jomres_access_control->can_user_access_this_script($eClass['eventPoint'].$eClass['eventName']))
+						return;
+					else
 						{
-						include_once($eClass['filepath'].$filename);
-						if ($this->logging_enbled)
-							$this->log[]=$eClass['filepath'].$filename;
-						$this->currentEvent =$eClass['filepath'].$filename;
-						$event=new stdClass;
-						$ePoint=$eClass['eventPoint'];
-						$eName=$eClass['eventName'];
-						$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$ePointFilepath);
-						$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
-						set_showtime('eLiveSite',$eLiveSite);
-						$event='j'.$ePoint.$eName;
-						set_showtime('current_minicomp',$event);
-						$e = new $event($eventArgs);
-						$retVal=$e->getRetVals();
-						$this->miniComponentData[$ePoint][$eName]=$retVal;
-						set_showtime('current_minicomp','');
-						unset($e);
+						if (file_exists($eClass['filepath'].$filename) )
+							{
+							include_once($eClass['filepath'].$filename);
+							if ($this->logging_enbled)
+								$this->log[]=$eClass['filepath'].$filename;
+							$this->currentEvent =$eClass['filepath'].$filename;
+							$event=new stdClass;
+							$ePoint=$eClass['eventPoint'];
+							$eName=$eClass['eventName'];
+							$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$ePointFilepath);
+							$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
+							set_showtime('eLiveSite',$eLiveSite);
+							$event='j'.$ePoint.$eName;
+							set_showtime('current_minicomp',$event);
+							$e = new $event($eventArgs);
+							$retVal=$e->getRetVals();
+							$this->miniComponentData[$ePoint][$eName]=$retVal;
+							set_showtime('current_minicomp','');
+							unset($e);
+							}
 						}
 					}
 				}

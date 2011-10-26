@@ -144,6 +144,8 @@ if ($jomresConfig_lang=='')
 $MiniComponents =jomres_getSingleton('mcHandler');
 $MiniComponents->triggerEvent('00001'); // Start
 
+$jomres_access_control = jomres_getSingleton('jomres_access_control');
+
 //require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
 
 if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
