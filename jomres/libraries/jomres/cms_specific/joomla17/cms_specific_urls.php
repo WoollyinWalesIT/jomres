@@ -51,7 +51,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 		// get active menu
 		$active   = @$menu->getActive();
 		// set jomresItemid
-		$jomresItemid = $active->id;  // Sometimes, for no discernable reason, php triggers a notice saying that this isn't an object
+		$jomresItemid = @$active->id;  // Sometimes, for no discernable reason, php triggers a notice saying that this isn't an object
 		}
 	else
 		{if (isset($jrConfig['jomresItemid']))
