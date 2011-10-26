@@ -33,10 +33,11 @@ jomresJquery(document).ready(function() {
 
 
 jomresJquery(function() {
-	jomresJquery( "#accordion" ).accordion({
-		autoHeight: false,
+	jomresJquery( "#accordion" ).accordion({ 
+		autoHeight: true,
 		navigation: true,
-		collapsible: true
+		collapsible: true,
+		fillSpace: true
 	});
 	
 	//jomresJquery("#jomres_menu_wrapper").slideToggle();
@@ -77,7 +78,7 @@ function runEffect() {
 </style>
 <div id="jomres_menu">
 	<div id="jomres_menu_wrapper" class="ui-helper-clearfix ui-helper-hidden">
-		<div id="accordion" style="font-size:.9em;">
+		<div id="accordion" style="font-size:.9em;height:600px">
 			<patTemplate:tmpl name="button_output">
 				{DIV}
 			</patTemplate:tmpl>
