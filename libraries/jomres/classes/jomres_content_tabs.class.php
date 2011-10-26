@@ -72,7 +72,7 @@ class jomres_content_tabs
 		$this->paneLink[]='<li><a href="#'.$anchor.'"><span>'.$tabpage.'</span></a></li>
 		';
 		$this->panes[]='<div id="'.$anchor.'"><!-- start content tab panel -->';
-		$this->panes[]='<table width="100%" border="0">';
+		$this->panes[]='<table width="100%" border="0"><tr><td>'; // Without this the tabs don't take up all the available content area, so this is needed (although, lack of sleep and r&r probably isn't helping).
 		}
 
 	/**
@@ -93,7 +93,7 @@ class jomres_content_tabs
 	*/
 	function endPanel()
 		{
-		$this->panes[]='</table>';
+		$this->panes[]='</td></tr></table>';
 		$this->panes[]='</div> <!-- end content tab panel -->';
 		}
 
