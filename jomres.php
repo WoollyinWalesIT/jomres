@@ -72,6 +72,9 @@ if ( isset($_REQUEST['is_wrapped']) )
 		$jrConfig['isInIframe']="1";
 	}
 
+if (!isset($jrConfig['full_access_control']))
+	$jrConfig['full_access_control'] = "0";
+
 $MiniComponents =jomres_getSingleton('mcHandler');
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))

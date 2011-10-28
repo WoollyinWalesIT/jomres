@@ -30,6 +30,9 @@ class jomres_access_control
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
+		if (!isset($jrConfig['full_access_control']))
+			$jrConfig['full_access_control'] = "0";
+	
 		$this->limit_to_menus_only = true;
 		if ($jrConfig['full_access_control'] == "1")
 			$this->limit_to_menus_only = false;
