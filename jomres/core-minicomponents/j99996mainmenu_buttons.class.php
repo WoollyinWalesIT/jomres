@@ -90,8 +90,11 @@ class j99996mainmenu_buttons {
 			}
 
 		ksort ($control_panel_buttons_categorised);
+
+		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
+		
 		if (count($control_panel_buttons_categorised)>0)
-			$MiniComponents->triggerEvent('99997', array('jomres_mainmenu_buttons_categorised' => $control_panel_buttons_categorised) );
+			$MiniComponents->triggerEvent('99997', array('jomres_mainmenu_buttons_categorised' => $control_panel_buttons_categorised,'management_view'=>$management_view) );
 		}
 
 	/**
