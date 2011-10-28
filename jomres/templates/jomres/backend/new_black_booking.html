@@ -1,64 +1,44 @@
 <patTemplate:tmpl name="new_black_booking">
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<p>{INSTRUCTIONS}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-
-<table>
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+		<td width="30%">{BBDATESTARTS}</td>
+		<td>{BBSTARTJSBOX}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{BBDATEENDS}</td>
+		<td>{BBENDSJSBOX}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td>{BBDATESTARTS}</td>
-					<td>{BBSTARTJSBOX}</td>
-				</tr>
-				<tr>
-					<td>{BBDATEENDS}</td>
-					<td>{BBENDSJSBOX}</td>
-				</tr>
-				<tr>
-					<td colspan="2">{INSTRUCTIONS}</td>
-				</tr>
-				
-			</table>
-			<br />
-			<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone"  unusedvars="nbsp">
-			<table>
-				<tr>
-					<td colspan="2">{REASON}</td>
-				</tr>
-				<tr>
-					<td colspan="2"><textarea cols="30" rows="4" name="bbReason"></textarea></td>
-				</tr>
-
-			</table>
-			<br />
-			
-				<table class="jradmin_table">
-					<tr  class="fg-toolbar ui-widget-header ui-corner-all">
-						<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
-						<th>&nbsp;</th>
-					</tr>
-				<patTemplate:tmpl name="bookingsrows">
-					<tr>
-						<td>{CHECKBOX}</td>
-						<td>{TEXT}</td>
-					</tr>
-				</patTemplate:tmpl>
-				</table>
-			</patTemplate:tmpl>
-		</td>
+		<td colspan="2"></td>
+	</tr>
+	<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone" unusedvars="nbsp">
+	<tr>
+		<td valign="top">Reason</td>
+		<td><textarea cols="30" rows="2" name="bbReason"></textarea></td>
 	</tr>
 </table>
-
-</div>
+<br />
+<table width="100%" border="0">
+	<tr>
+		<th class="ui-state-default"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+		<th class="ui-state-default">Room number/name</th>
+	</tr>
+	<patTemplate:tmpl name="bookingsrows">
+	<tr class="{CLASS}">
+		<td>{CHECKBOX}</td>
+		<td>{TEXT}</td>
+	</tr>
+	</patTemplate:tmpl>
+	</patTemplate:tmpl>
+</table>
+{JOMRESTOKEN}
 <input type="hidden" name="boxchecked" value="0">
-<input type="hidden" name="task"		 value="newBlackBooking" />
+<input type="hidden" name="task" value="newBlackBooking" />
 </form>
 </patTemplate:tmpl>
 </patTemplate:tmpl>

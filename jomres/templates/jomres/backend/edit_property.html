@@ -1,7 +1,10 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+.REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
+span.required {color:red;}
+</style>
 <script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}&hl=en" type="text/javascript"></script>
 <script language="javascript">
-<!--
 function OnChange(dropdown)
 	{	
 	var myindex	= dropdown.selectedIndex
@@ -9,7 +12,6 @@ function OnChange(dropdown)
 	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
 	return true;
 	}
-//-->
 <!-- Clickable locations adapted from http://universimmedia.pagesperso-orange.fr/geo/loc.htm -->
 function load() {
 	if (GBrowserIsCompatible()) {
@@ -97,230 +99,136 @@ function showAddress(address) {
 jomresJquery(document).ready(function() {
 	load()
 	});
-
 </script>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
+<h2>{PAGETITLE}</h2>
+<p class="ui-state-highlight">{CHANGECOUNTRYWARNING}</p>
+<p>{DELETEWARNING}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">	
 	<tr>
-		<th><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
+		<td width="30%">{HCOUNTRY}</td>
+		<td >{COUNTRIESDROPDOWN}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{HREGION}</td>
+		<td>{REGIONDROPDOWN}</td>
 	</tr>
 	<tr>
-		<td>{DELETEWARNING}</td>
+		<td>{HPROPERTY_TYPE}</td>
+		<td>{PROPERTY_TYPE_DROPDOWN}</td>
 	</tr>
 	<tr>
+		<td>{HNAME}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_name" value="{PROPERTY_NAME}" /></td>
+	</tr>
+	<tr>
+		<td>{HSTREET}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_street" value="{PROPERTY_STREET}" /></td>
+	</tr>
+	<tr>
+		<td>{HTOWN}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_town" value="{PROPERTY_TOWN}" /></td>
+	</tr>
+	<tr>
+		<td>{HPOSTCODE}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_postcode" value="{PROPERTY_POSTCODE}" /></td>
+	</tr>
+	<tr>
+		<td>{HTELEPHONE}<span class="required">*</span></td>	
+		<td><input class="inputbox" type="text" size="20" name="property_tel" value="{PROPERTY_TEL}" /></td>
+	</tr>
+	<tr>
+		<td>{HFAX}</td>
+		<td><input class="inputbox" type="text" size="20" name="property_fax" value="{PROPERTY_FAX}" /> </td>
+	</tr>
+	<tr>
+		<td>{HEMAIL}<span class="required">*</span></td>
+		<td><input class="inputbox" type="text" size="20" name="property_email" value="{PROPERTY_EMAIL}" /></td>
+	</tr>
+	<tr>
+		<td>{HSTARS}</td>
+		<td>{STARSDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>Lat: (nn.nnnn)</td>
+		<td><input id="lat" class="inputbox" type="text" size="20" name="lat" value="{LAT}" /></td>
+	</tr>
+	<tr>
+		<td>Long: (nn.nnnn)</td>
+		<td><input id="lng" class="inputbox" type="text" size="20" name="long" value="{LONG}" /></td>
+	</tr>
+	<tr>
+		<td>{LATLONG_DESC}</td>
+		<td><div align="left" id="map" style="width: 500px; height: 350px"></div></td>
+	</tr>
+	<tr>
+		<td>{HFEATURES}</td>
+		<td>{FEATURES}</td>
+	</tr>
+	<tr>
+		<td>{HFEATURES}</td>
 		<td>
-			<table>
-				<tr>
-					<td class="jomres_message">{CHANGECOUNTRYWARNING}<br /></td>
-				</tr>
-			</table>
-			<table>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HCOUNTRY}</td>
-					<td >{COUNTRIESDROPDOWN}</td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HREGION}</td>
-					<td >{REGIONDROPDOWN}</td>
-				</tr>
-				<tr>
-					<td colspan="2">&nbsp;</td> 
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HPROPERTY_TYPE}</td>
-					<td >{PROPERTY_TYPE_DROPDOWN}</td>
-				<tr>
-					<td colspan="2">&nbsp;</td> 
-				</tr>
-					<td class="ui-widget-header ui-corner-all">{HNAME}</td>
-					<td ><input class="inputbox" type="text" size="30" name="property_name" value="{PROPERTY_NAME}" /> </td> 
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HSTREET}</td>
-					<td ><input class="inputbox" type="text" size="30" name="property_street" value="{PROPERTY_STREET}" /> </td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HTOWN}</td>
-					<td ><input class="inputbox" type="text" size="30" name="property_town" value="{PROPERTY_TOWN}" /> </td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HPOSTCODE}</td>
-					<td ><input class="inputbox" type="text" size="30" name="property_postcode" value="{PROPERTY_POSTCODE}" /> </td>	
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HTELEPHONE}</td>	
-					<td ><input class="inputbox" type="text" size="30" name="property_tel" value="{PROPERTY_TEL}" /> </td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HFAX}</td>
-					<td ><input class="inputbox" type="text" size="30" name="property_fax" value="{PROPERTY_FAX}" /> </td>
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HEMAIL}</td>
-					<td ><input class="inputbox" type="text" size="30" name="property_email" value="{PROPERTY_EMAIL}" /></td>
-				</tr>
-				<tr>
-					<td colspan="2">&nbsp;</td> 
-				</tr>
-				<tr>
-					<td class="ui-widget-header ui-corner-all">{HSTARS}</td>
-					<td >{STARSDROPDOWN}</td>
-				</tr>
-				<tr>
-					<td colspan="2">&nbsp;</td> 
-				</tr>
-				<tr>
-					<td colspan="2">{LATLONG_DESC}</td> 
-				</tr>
-				<tr>
-					<td>Lat: (nn.nnnn) <input id="lat"  class="inputbox" type="text" size="30" name="lat" value="{LAT}" /> </td>
-					<td >Long: (nn.nnnn) <input id="lng" class="inputbox" type="text" size="30" name="long" value="{LONG}" /> </td>
-				</tr>
-				<tr>
-					<td colspan="2"> <div align="center" id="map" style="width: 600px; height: 400px"><br/></div> </td>
-				</tr>
-			</table>
-			<br />
-			<table>
-				<tr>
-					<td class="fg-toolbar ui-widget-header ui-corner-all">{HFEATURES}</td>
-				</tr>
-				<tr>
-					<td>
-						<table>
-							<tr>
-								<td >
-									<patTemplate:tmpl name="globalPfeatures">
-										<div style="float:left;margin:2px;border:1px solid #d1d1d1;">
-											{FEATURE}<input type="checkbox" name="pid[]" value="{PID}" style="float:left;padding:0;margin:2px 2px 0 0;" {ISCHECKED}>
-										</div>
-									</patTemplate:tmpl>
-								</td>
-							</tr>
-						</table>
-						<br />
-						<table width="100%">
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HPROPDESCRIPTION}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_DESCRIPTION}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HCHECKINTIMES}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_CHECKIN_TIMES}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HAREAACTIVITIES}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_AREA_ACTIVITIES}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HDRIVINGDIRECTIONS}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_DRIVING_DIRECTIONS}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HAIRPORTS}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_AIRPORTS}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HOTHERTRANSPORT}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_OTHERTRANSPORT}</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td> 
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">{HPOLICIESDISCLAIMERS}</td>
-							</tr>
-							<tr>
-								<td>{PROPERTY_POLICIES_DISCLAIMERS}</td>
-							</tr>
-							
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">Meta title</td>
-							</tr>
-							<tr>
-								<td><input class="inputbox" type="text" size="70" name="metatitle" value="{METATITLE}" /></td>
-							</tr>
-							<tr>
-								<td class="fg-toolbar ui-widget-header ui-corner-all">Meta description</td>
-							</tr>
-							<tr>
-								<td><input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}" /></td>
-							</tr>
-							
-						</table>
-					</td>
-				</tr>
-			</table>
+			<patTemplate:tmpl name="globalPfeatures">
+			<div style="float:left;">
+			<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" > {FEATURE}
+			</div>
+			</patTemplate:tmpl>
 		</td>
+	</tr>
+	<tr>
+		<td>{HPROPDESCRIPTION}<span class="required">*</span></td>
+		<td>{PROPERTY_DESCRIPTION}</td>
+	</tr>
+	<tr>
+		<td>{HCHECKINTIMES}</td>
+		<td>{PROPERTY_CHECKIN_TIMES}</td>
+	</tr>
+	<tr>
+		<td>{HAREAACTIVITIES}</td>
+		<td>{PROPERTY_AREA_ACTIVITIES}</td>
+	</tr>
+	<tr>
+		<td>{HDRIVINGDIRECTIONS}</td>
+		<td>{PROPERTY_DRIVING_DIRECTIONS}</td>
+	</tr>
+	<tr>
+		<td>{HAIRPORTS}</td>
+		<td>{PROPERTY_AIRPORTS}</td>
+	</tr>
+	<tr>
+		<td>{HOTHERTRANSPORT}</td>
+		<td>{PROPERTY_OTHERTRANSPORT}</td>
+	</tr>
+	<tr>
+		<td>{HPOLICIESDISCLAIMERS}</td>
+		<td>{PROPERTY_POLICIES_DISCLAIMERS}</td>
+	</tr>
+	<tr>
+		<td>Meta title</td>
+		<td><input class="inputbox" type="text" size="70" name="metatitle" value="{METATITLE}" /></td>
+	</tr>
+	<tr>
+		<td>Meta description</td>
+		<td><input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}" /></td>
 	</tr>
 </table>
 {JOMRESTOKEN}
 <input type="hidden" name="property_uid" value="{PROPERTYUID}" />
 <input type="hidden" name="task" value="saveProperty" />
 {TOOLBAR2}
-</div>
 </form>
-
-<br />
-
+<h3>{UPLOADIMAGE}</h3>
+<p class="ui-state-highlight">{SAVEBEFOREUPLOADWARNING}</p>
 <form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&task=uploadPropertyImage" method="post">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td colspan="2" class="fg-toolbar ui-widget-header ui-corner-all">{UPLOADIMAGE}</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="jomres_message">{SAVEBEFOREUPLOADWARNING}</td>
-				</tr>
-				<tr>
-					<td><input type='file' name='image'/></td>
-					<td><input type="submit" value="{UPLOADIMAGE}" class="button" /></td>
-				</tr>
-			</table>
-		</td>
+		<td width="30%"><input type='file' name='image'/></td>
+		<td><input type="submit" value="{UPLOADIMAGE}" class="fg-button ui-state-default ui-corner-all" /></td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td>{DELETEIMAGE}</td>
-					<td>{IMAGE}</td>
-				</tr>
-			</table>
-		</td>
+		<td>{DELETEIMAGE}</td>
+		<td>{IMAGE}</td>
 	</tr>
 </table>
 {JOMRESTOKEN}

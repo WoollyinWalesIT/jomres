@@ -137,6 +137,7 @@ class j04005roomsconfig {
 			{
 			// Now we can start to create our rows
 			$rows=array();
+			$classcounter=0;
 			foreach ($roomsClassList as $roomType) // First we need to gather some information about tariffs & rooms
 				{
 				$roomtype_id=$roomType->room_classes_uid;
@@ -161,7 +162,12 @@ class j04005roomsconfig {
 					$counter++;
 					}
 				$r['existingrooms']='<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.$existingrooms.'" />';
+				if ($classcounter%2)
+					$r['CLASS']="even";
+				else
+					$r['CLASS']="odd";
 				$rows[]=$r;
+				$classcounter++;
 				}
 				
 			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
@@ -195,9 +201,9 @@ class j04005roomsconfig {
 				$roomtype_id=$roomType->room_classes_uid;
 				$selected="";
 				if ($type_id == (int)$roomtype_id)
-					$selected=" checked ";
+					$selected='checked="checked"';
 				$r['ROOM_CLASS_ABBV'] = $roomType->room_class_abbv;
-				$r['ROOM_CLASS_RADIO'] ='<input type="radio" name="roomtype" value="'.$roomtype_id.'" '.$selected.'> '.$r['ROOM_CLASS_ABBV'];
+				$r['ROOM_CLASS_RADIO'] ='<input type="radio" name="roomtype" id="'.$roomtype_id.'" '.$selected.'><label for="'.$roomtype_id.'">'.$r['ROOM_CLASS_ABBV']."</label>";
 				$rows[]=$r;
 				}
 
@@ -211,8 +217,8 @@ class j04005roomsconfig {
 			$tmpl->addRows( 'rows', $rows );
 			$tariffRoomOutput=$tmpl->getParsedTemplate();
 			}
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		foreach($propertysList as $property)
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////property/business tab disabled
+		/*foreach($propertysList as $property)
 			{
 			$published=$property->published;
 			if ($published)
@@ -257,11 +263,12 @@ class j04005roomsconfig {
 				} </script>
 				';
 			$propertyRowInfo .='<tr><td class=\"jradmin_subheader_la\" colspan=\"6\">APIKEY: <input type="text" size="50" class="inputbox" name="apikey'.$id.'" value="'.$property->apikey.'" READONLY onclick="select_all(this)"/></td></tr>';
-			}
+			}*/
+		
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
-		echo jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE);
+		echo "<h2>".jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
@@ -270,9 +277,8 @@ class j04005roomsconfig {
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
-
-
-		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS,FALSE));
+		//property/business tab removed
+		/*$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS,FALSE));
 		$contentPanel->setcontent($newPropertyButton);
 		$contentPanel->setcontent('<table>
 			<tr>
@@ -287,7 +293,7 @@ class j04005roomsconfig {
 		$contentPanel->setcontent($propertyRowInfo);
 		$contentPanel->setcontent('</table>');
 		$contentPanel->insertContent();
-		$contentPanel->endPanel();
+		$contentPanel->endPanel();*/
 
 		$contentPanel->endTabs();
 		}

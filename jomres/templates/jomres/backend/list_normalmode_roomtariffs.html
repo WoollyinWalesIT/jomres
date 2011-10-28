@@ -1,31 +1,23 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="jradmin_table">
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<th class="ui-state-default">{HROOMTYPE}</th>
+		<th class="ui-state-default">{HNUMBEROFROOMS}</th>
+		<th class="ui-state-default">{HROOMRATEPERDAY}</th>
+		<th class="ui-state-default">{HMAXPEOPLE_ROOM}</th>
+		<th class="ui-state-default">{HMAXPEOPLE_TARIFF}</th>
 	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jfg-toolbar ui-widget-header ui-corner-all">{HROOMTYPE}</td>
-					<td class="jfg-toolbar ui-widget-header ui-corner-all">{HNUMBEROFROOMS}</td>
-					<td class="jfg-toolbar ui-widget-header ui-corner-all">{HROOMRATEPERDAY}</td>
-					<td class="jfg-toolbar ui-widget-header ui-corner-all">{HMAXPEOPLE_ROOM}</td>
-					<td class="jfg-toolbar ui-widget-header ui-corner-all">{HMAXPEOPLE_TARIFF}</td>
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_field_ca">{ROOM_CLASS_ABBV}</td>
-					<td class="jradmin_field_ca">{ROOMNUMBERDROPDOWN}</td>
-					<td class="jradmin_field_ca">{ROOMRATEPERDAY}</td>{EXISTINGROOMS}
-					<td class="jradmin_field_ca">{MAX_PEOPLE_ROOM}</td>
-					<td class="jradmin_field_ca">{MAX_PEOPLE_TARIFF}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class="{CLASS}">
+		<td>{ROOM_CLASS_ABBV}</td>
+		<td>{ROOMNUMBERDROPDOWN}</td>
+		<td>{ROOMRATEPERDAY}</td>{EXISTINGROOMS}
+		<td>{MAX_PEOPLE_ROOM}</td>
+		<td>{MAX_PEOPLE_TARIFF}</td>
 	</tr>
+	</patTemplate:tmpl>
 </table>
 {JOMRESTOKEN}
 <input type="hidden" name="task" value="saveTariff" />

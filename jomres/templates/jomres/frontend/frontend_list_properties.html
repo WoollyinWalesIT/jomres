@@ -1,23 +1,34 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#frontend_list_properties').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
 <form action="index.php" method="post" name="adminForm">
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-<table width="100%">
-	<tr>
-		<th colspan="3"><div class="fg-toolbar ui-widget-header ui-corner-all">{PAGETITLE}</div></th>
-	</tr>
-	<tr>
-		<th>{HPROPERTYNAME}</th><th>{HPROPERTYADDRESS}</th><th>{HPUBLISHLINK}</th>
-	</tr>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{PROPERTYNAME}</a></td><td>{PROPERTYADDRESS}</td><td>{PUBLISHLINK}</td>
-	</tr>
-	</patTemplate:tmpl>
+<table width="100%" id="frontend_list_properties" border="0">
+	<thead>
+		<tr>
+			<th>{HPUBLISHLINK}</th>
+			<th>{HPROPERTYNAME}</th>
+			<th>{HPROPERTYADDRESS}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{PUBLISHLINK}</td>
+			<td>{PROPERTYNAME}</td>
+			<td>{PROPERTYADDRESS}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
-</div>
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="" />
 </form>
-
 </patTemplate:tmpl>

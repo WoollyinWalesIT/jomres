@@ -1,46 +1,30 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm"> 
-<table class="jradmin_innerwrapper">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td width="30%">{BBDATESTARTS}</td>
+		<td>{BBSTARTJSBOX}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{BBDATEENDS}</td>
+		<td>{BBENDSJSBOX}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{BBDATESTARTS}</td>
-					<td class="jradmin_field_ca">{BBSTARTJSBOX}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{BBDATEENDS}</td>
-					<td class="jradmin_field_ca">{BBENDSJSBOX}</td>
-				</tr>
-			</table>
-			<br />
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{REASON}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><textarea cols="30" rows="4" name="bbReason"></textarea></td>
-				</tr>
-				<tr>
-					<td>{INSTRUCTIONS}</td>
-				</tr>
-				<tr>
-					<patTemplate:tmpl name="bookingsrows">
-					<td><div class="ui-state-error" style="font-size:1.5em">{BBMESSAGE}{HIDDEN}</div></td>
-					</patTemplate:tmpl>
-				</tr>
-			</table>
-		</td>
+		<td colspan="2"></td>
+	</tr>
+	<tr>
+		<td valign="top">Reason</td>
+		<td><textarea cols="30" rows="2" name="bbReason"></textarea></td>
 	</tr>
 </table>
+<patTemplate:tmpl name="bookingsrows">
+<p class="{BBMESSAGE_CLASS}">{BBMESSAGE}{HIDDEN}</p>
+</patTemplate:tmpl>
 {JOMRESTOKEN}
 <input type="hidden" name="boxchecked" value="0">
-<input type="hidden" name="task"		 value="newBlackBooking" />
+<input type="hidden" name="task" value="newBlackBooking" />
 </form>
 </patTemplate:tmpl>
