@@ -22,51 +22,20 @@ class j16000access_control
 			{
 			$this->template_touchable=false; return;
 			}
-			
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		
 		$jomres_access_control = jomres_getSingleton('jomres_access_control');
 
 		$levels = array ("anybody","registered","manager","supermanager","nobody");
 		
+		jr_import('jomres_access_control_controlable');
+		$jomres_access_control_controlable = new jomres_access_control_controlable();
 		// Minicomponents that should never be forbidden from running
-		$uncontrollable_patterns = array(
-			"00001",
-			"00002",
-			"00005",
-			"01009",
-			"01010",
-			"16010",
-			"16020",
-			"99995",
-			"99996",
-			"99997",
-			"99999",
-			"10002",
-			"16000"
-			);
-		
-		$uncontrollable_scripts = array(
-			"00001start",
-			"00002usermanagement",
-			"00006sanity_checks",
-			"00012managelogs",
-			"00012manager_first_run",
-			"06000cron_exchangerates",
-			"06000cron_invoice",
-			"06000cron_optimise",
-			"06000cron_subscriptions",
-			"06000cronjobs",
-			"00060toptemplate",
-			"00061bottomtemplate",
-			"05000bookingobject",
-			"03020insertbooking"
-			);
+		$uncontrollable_patterns = $jomres_access_control_controlable->uncontrollable_patterns ;
+		$uncontrollable_scripts =$jomres_access_control_controlable->uncontrollable_scripts ;
+		$menu_patterns = $jomres_access_control_controlable->menu_patterns ;
 
-		$menu_patterns = array(
-			"00009",
-			"00010",
-			"00011"
-			);
-			
 		$controllable = array();
 		
 		$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
@@ -98,8 +67,18 @@ class j16000access_control
 
 		$output = array();
 		$output['AJAXURL'] = JOMRES_SITEPAGE_URL_AJAX_ADMIN;
-		$output['_JOMRES_ACCESS_CONTROL_TITLE'] = _JOMRES_ACCESS_CONTROL_TITLE;
-		$output['_JOMRES_ACCESS_CONTROL_DESC'] = _JOMRES_ACCESS_CONTROL_DESC;
+		if ($jrConfig['full_access_control'] =="0")
+			{
+			$output['_JOMRES_ACCESS_CONTROL_TITLE'] = _JOMRES_ACCESS_CONTROL_TITLE;
+			$output['_JOMRES_ACCESS_CONTROL_DESC'] = _JOMRES_ACCESS_CONTROL_DESC;
+			$output['_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM'] = _JOMRES_ACCESS_CONTROL_DESC_ADDENDUM;
+			}
+		else
+			{
+			$output['_JOMRES_ACCESS_CONTROL_TITLE'] = _JOMRES_ACCESS_CONTROL_TITLE_FULL;
+			$output['_JOMRES_ACCESS_CONTROL_DESC'] = _JOMRES_ACCESS_CONTROL_DESC_FULL;
+
+			}
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();

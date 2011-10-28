@@ -141,6 +141,15 @@ class j10001control_panel
 				}
 			}
 
+		$output['ACCESS_CONTROL_HIGHLIGHT'] = '';
+		$output['ACCESS_CONTROL_ALERT'] = '';
+		$access_control_check = jomresAccessControlSanityCheck();
+		if (!$access_control_check['result'])
+			{
+			$output['ACCESS_CONTROL_HIGHLIGHT'] = "ui-state-error";
+			$output['ACCESS_CONTROL_ALERT'] = $access_control_check['message'];
+			}
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -239,4 +248,62 @@ function jomresStatusTestFolderIsWritable($path)
 	if (!rmdir($path.$tmpDir) )
 		return array("result"=>false,"message"=>"Could not remove temporary folder ".$path.$tmpDir);
 	return array("result"=>true,"message"=>"Pass");
+	}
+	
+function jomresAccessControlSanityCheck()
+	{
+	$pass = false;
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
+	if ($jrConfig['full_access_control'] =="1")
+		{
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		jr_import('jomres_access_control_controlable');
+		$jomres_access_control_controlable = new jomres_access_control_controlable();
+		// Minicomponents that should never be forbidden from running
+		$uncontrollable_patterns = $jomres_access_control_controlable->uncontrollable_patterns ;
+		$uncontrollable_scripts =$jomres_access_control_controlable->uncontrollable_scripts ;
+		$menu_patterns = $jomres_access_control_controlable->menu_patterns ;
+
+		// First we'll find how many minicomponents should be controllable
+		foreach ($MiniComponents->registeredClasses as $key=>$val)
+			{
+			if (!in_array($key,$uncontrollable_scripts) )
+				{
+				$pattern = substr($key,0,5);
+				
+				if ($jomres_access_control->limit_to_menus_only && in_array($pattern,$menu_patterns) && !in_array($pattern,$uncontrollable_patterns) )
+					$controllable[$key]=$val;
+					elseif (!in_array($pattern,$uncontrollable_patterns) && !$jomres_access_control->limit_to_menus_only)
+						$controllable[$key]=$val;
+				}
+			}
+		// Next we'll find how many minicomponents actually have settings in the access control table
+		$jomres_access_control = jomres_getSingleton('jomres_access_control');
+		
+		
+		// Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array
+		if (count($jomres_access_control->controlled) > 0)
+			{
+			foreach ($jomres_access_control->controlled as $key => $val)
+				{
+				if (!array_key_exists( $key,$controllable) )
+					{
+					$jomres_access_control->remove_minicomp_from_access_control_table($key);
+					}
+				}
+			
+			}
+		else $pass=false;
+		
+		// Now that we've tidied up possible stray minicomps, we can compare the count, and if it doesn't marry up, we'll trigger a warning.
+		$jomres_access_control->recount_controlled_scripts();
+		if (count($jomres_access_control->controlled) == count($controllable) )
+			$pass = true;
+		}
+	else $pass = true;
+	
+	
+	return array("result"=>$pass,"message"=>_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING." Controlled ".count($jomres_access_control->controlled)." Controllable".count($controllable));
 	}

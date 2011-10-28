@@ -228,4 +228,5 @@ $jrConfig['alternate_smtp_username'] = "";
 $jrConfig['alternate_smtp_password'] = "";
 
 $jrConfig['alternate_mainmenu'] = "0";
+$jrConfig['full_access_control'] = "0";
 ?>
