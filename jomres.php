@@ -17,7 +17,7 @@ if (!isset($_REQUEST['no_html']))
 
 ob_start("removeBOM");
 
-//@ini_set("memory_limit","128M");
+@ini_set("memory_limit","128M");
 @ini_set("max_execution_time","480");
 ini_set("display_errors",1);
 ini_set('error_reporting', E_ALL|E_STRICT);
