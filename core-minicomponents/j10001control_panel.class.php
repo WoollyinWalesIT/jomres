@@ -305,5 +305,5 @@ function jomresAccessControlSanityCheck()
 	else $pass = true;
 	
 	
-	return array("result"=>$pass,"message"=>_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING." Controlled ".count($jomres_access_control->controlled)." Controllable".count($controllable));
+	return array("result"=>$pass,"message"=>_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING." Controlled ".count($jomres_access_control->controlled)." Controllable ".count($controllable));
 	}
