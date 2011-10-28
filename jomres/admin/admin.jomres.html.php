@@ -238,6 +238,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
 				 <td valign="middle">'._JOMRES_MENU_SHOW_DESC.'</td>
 			</tr>
+			<tr valign="middle" class="odd">
+				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_TITLE.'</td>
+				 <td valign="middle">'.$lists['full_access_control'].'</td>
+				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_DESC.'</td>
+			</tr>
 			');
 		$contentPanel->setcontent('
 		<tr valign="middle">

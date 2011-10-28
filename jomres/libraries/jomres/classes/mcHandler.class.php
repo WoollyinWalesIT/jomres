@@ -159,6 +159,10 @@ class mcHandler {
 							unset($e);
 							}
 						}
+					else
+						{
+						error_logging("Access control prevented system from running ".$eClass['eventPoint'].$eClass['eventName']);
+						}
 					}
 				}
 			}
@@ -183,9 +187,7 @@ class mcHandler {
 					set_showtime('ePointFilepath',$eClass['filepath']);
 					$classFileSuffix='.class.php';
 					$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
-					if ( !$jomres_access_control->can_user_access_this_script($eClass['eventPoint'].$eClass['eventName']))
-						return;
-					else
+					if ( $jomres_access_control->can_user_access_this_script($eClass['eventPoint'].$eClass['eventName']))
 						{
 						if (file_exists($eClass['filepath'].$filename) )
 							{
@@ -207,6 +209,10 @@ class mcHandler {
 							set_showtime('current_minicomp','');
 							unset($e);
 							}
+						}
+					else 
+						{
+						error_logging("Access control prevented system from running ".$eClass['eventPoint'].$eClass['eventName']);
 						}
 					}
 				}

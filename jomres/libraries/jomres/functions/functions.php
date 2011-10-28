@@ -3028,8 +3028,6 @@ function insertSetting($property_uid,$k,$v)
 */
 function savePlugin($plugin)
 	{
-
-	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
 	foreach ($_POST as $k=>$v)
 		{
@@ -3515,7 +3513,7 @@ function getGuestForPrint($guestUid)
  * Deletes an image
 #
 */
-function dropImage($defaultProperty,$imageType="",$itemUid="",$redirectOnDone = true)
+function dropImage($defaultProperty=0,$imageType="",$itemUid="",$redirectOnDone = true)
 	{
 	$imageType		= getEscaped( jomresGetParam( $_REQUEST, 'imageType', '' ) );
 	$itemUid		= getEscaped( jomresGetParam( $_REQUEST, 'itemUid', 0 ) );
@@ -4228,12 +4226,8 @@ function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $
  */
 function jomresShowSearch()
 	{
-	$result = get_showtime('task');
-	if ( empty($result) )
-		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
-		$MiniComponents->triggerEvent('00030'); //Search mini-comp
-		}
+	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents->triggerEvent('00030'); //Search mini-comp
 	}
 
 /**

@@ -227,7 +227,8 @@ function showSiteConfig(  )
 	$lists['show_tax_in_totals_summary']			= jomresHTML::selectList( $yesno, 'cfg_show_tax_in_totals_summary', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['show_tax_in_totals_summary'] );
 	$lists['alternate_smtp_use_settings']			= jomresHTML::selectList( $yesno, 'cfg_alternate_smtp_use_settings', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['alternate_smtp_use_settings'] );
 	$lists['alternate_smtp_authentication']			= jomresHTML::selectList( $yesno, 'cfg_alternate_smtp_authentication', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['alternate_smtp_authentication'] );
-	$lists['alternate_mainmenu']			= jomresHTML::selectList( $yesno, 'cfg_alternate_mainmenu', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['alternate_mainmenu'] );
+	$lists['alternate_mainmenu']					= jomresHTML::selectList( $yesno, 'cfg_alternate_mainmenu', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['alternate_mainmenu'] );
+	$lists['full_access_control']					= jomresHTML::selectList( $yesno, 'cfg_full_access_control', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['full_access_control'] );
 	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
 	}
