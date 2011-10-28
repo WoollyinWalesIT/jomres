@@ -501,6 +501,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j00006reception_toolbar.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00007manager_toolbar.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j00013a_listyourproperties.class.php');
 
 		}
 	
