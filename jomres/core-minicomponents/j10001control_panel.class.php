@@ -76,32 +76,33 @@ class j10001control_panel
 				$output['HIGHLIGHT'] = "";
 				$output['ALERT'] = "";
 				$output['EFFECT'] = "";
-				
-				if (
-					$current_major_version < $latest_major_version
-					)
-					$best_before_expired = true;
-
-				if (
-					$current_major_version <= $latest_major_version &&
-					$current_minor_version <= $latest_minor_version &&
-					$current_revis_version < $latest_revis_version
-					)
-					$best_before_expired = true;
-				
-				if (
-					$current_major_version <= $latest_major_version &&
-					$current_minor_version < $latest_minor_version
-					)
-					$best_before_expired = true;
-				
-				if ($best_before_expired)
+				if ($latest_major_version >=0 && $latest_minor_version >=0 && $latest_revis_version >=0)
 					{
-					$output['HIGHLIGHT'] = "ui-state-error";
-					$output['ALERT'] = _JOMRES_VERSIONCHECK_VERSIONWARNING;
-					$output['EFFECT'] = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
+					if (
+						$current_major_version < $latest_major_version
+						)
+						$best_before_expired = true;
+
+					if (
+						$current_major_version <= $latest_major_version &&
+						$current_minor_version <= $latest_minor_version &&
+						$current_revis_version < $latest_revis_version
+						)
+						$best_before_expired = true;
+					
+					if (
+						$current_major_version <= $latest_major_version &&
+						$current_minor_version < $latest_minor_version
+						)
+						$best_before_expired = true;
+					
+					if ($best_before_expired)
+						{
+						$output['HIGHLIGHT'] = "ui-state-error";
+						$output['ALERT'] = _JOMRES_VERSIONCHECK_VERSIONWARNING;
+						$output['EFFECT'] = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
+						}
 					}
-				
 				$output['_JOMRES_VERSIONCHECK_THISJOMRESVERSION'] = _JOMRES_VERSIONCHECK_THISJOMRESVERSION;
 				$output['_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION'] = _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION;
 				
