@@ -1,6 +1,7 @@
 /* Jomres CSS */
-body {margin: 10px; padding: 0;background: #fff;padding-bottom: 1px;font-size: 12px;font-family: Arial, Helvetica, sans-serif;}
-a, img, form, table, tr, td { padding: 0; margin: 0; }
+body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;}
+a, img, form, table, tr, td {padding:0;margin:0;}
+a:link {color:#0B55C4;text-decoration:none;}
 img { border: 0 none; }
 form div {margin:0 !important;}
 #toolbar-box {display:none;}

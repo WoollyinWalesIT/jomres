@@ -30,26 +30,9 @@ class j00060toptemplate {
 		
 		$tz = $componentArgs['tz'];
 		$jomreslang = $componentArgs['jomreslang'];
-
-		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
-			{
-			jr_import('jomres_management_view');
-			$jomres_management_view = new jomres_management_view();
-			if (isset($_POST['management_view']))
-				{
-				if ((bool)$_POST['management_view'] == false)
-					$request = str_replace("tmpl=component","",$_SERVER["REQUEST_URI"]);
-				if ((bool)$_POST['management_view'] == true)
-					$request =  jomresURL($_SERVER["REQUEST_URI"]."&amp;tmpl=component");
-					
-				$jomres_management_view->set_view((bool)$_POST['management_view']);
-				
-				$tmpBookingHandler->close_jomres_session();
-				jomresRedirect( $request,"");
-				}
-			$management_view = $jomres_management_view->get_view();
-			}
 		
+		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
+
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 		
 		if (!defined('JOMRES_NOHTML') && $popup != 1 )
@@ -76,6 +59,9 @@ class j00060toptemplate {
 						$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
 					else
 						$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
+						
+					jr_import('jomres_management_view');
+					$jomres_management_view = new jomres_management_view();
 					$management_dropdown = $jomres_management_view->get_dropdown();
 					$output['MANAGEMENT_VIEW_DROPDOWN']=$management_dropdown;
 					if ($jrConfig['use_timezone_switcher'] == "1")
@@ -121,6 +107,16 @@ class j00060toptemplate {
 					}
 				}
 			
+			$rows = array();
+			$MiniComponents->triggerEvent('99995',$componentArgs); //
+			$mcOutput=$MiniComponents->getAllEventPointsData('99997');
+			foreach ($mcOutput as $key=>$val)
+				{
+				$r=array();
+				$r["MAINMENU"]=$val;
+				$rows[]=$r;
+				}
+			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -129,6 +125,7 @@ class j00060toptemplate {
 			else
 				$tmpl->readTemplatesFromInput( 'top.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->addRows( 'rows',$rows);
 			$tmpl->addRows( 'messages',$messaging);
 			$tmpl->addRows( 'sticky_messages',$sticky_messaging);
 			$tmpl->displayParsedTemplate();

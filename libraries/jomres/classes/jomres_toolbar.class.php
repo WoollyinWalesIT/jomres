@@ -153,9 +153,9 @@ class jomres_toolbar
 		$t=str_replace("&#39;","\'", $t);
 		$title= 'title="'.$t.'"';
 		if ($submitOnClick)
-			$submit='<a class="jomresmenu" href="javascript:jomres_submitbutton(\''.$submitTask.'\');" onMouseOver="javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$t.'\';"><img src="'.$image.'" alt="'.$text.'" title="'.$text.'" border="0" /></a>';
+			$submit='<a class="jomresmenu" href="javascript:jomres_submitbutton(\''.$submitTask.'\');"><img src="'.$image.'" alt="'.$text.'" title="'.$text.'" border="0" /></a>';
 		else
-			$submit='<a class="jomresmenu" href="'.$link.'" onMouseOver=" javascript: document.getElementById(\'jomresmenu_hint\').innerHTML =\''.$t.'\';"><img src="'.$image.'" align="bottom" alt="'.$text.'"	border="0" title="'.$text.'" /></a>';
+			$submit='<a class="jomresmenu" href="'.$link.'"><img src="'.$image.'" align="bottom" alt="'.$text.'" border="0" title="'.$text.'" /></a>';
 		$output='<td>'.$submit.'</td>';
 		return $output;
 		}
