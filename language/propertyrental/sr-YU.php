@@ -1713,3 +1713,6 @@ define('_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED',"Registered");
 define('_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER',"Manager");
 define('_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER',"Super Manager");
 define('_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY',"Nobody");
+
+define('_JOMRES_ACCESS_CONTROL_TITLE',"Menu Access control");
+define('_JOMRES_ACCESS_CONTROL_DESC',"This feature allows you to control who will be able to see a plugin in the main menu. Typically user options 00009 are viewable by either/or unregistered site visitors, 00010 options generally refer to Reception type activites that are used on a day to day basis, whereas 00011 options are used for setting up and configuring a property but are accessed less often.");
