@@ -1,3 +1,87 @@
+Jomres 6.-3.0
+
+Frontend structure completely rewritten to use a jquery based menu instead of our older toolbars.
+Virtually all templates viewable by property managers have been updated to provide a consistent theme throughout Jomres, and mission critical templates such as List Properties and Property Details have been hugely improved to provide a more pleasing layout.
+Added a basic access control system to modify which menu options are viewable by which users. 
+
+Added a virtumart like "fullscreen view" feature to the administrator area.
+Added Joseph's contributed icons, thanks.
+Made some changes that allow us to set Jomres' "is wrapped" status via the url, allowing various functionality to be triggered while in an iframe.
+Added a new "changelog" column to the plugin list.
+Added a new tooltip option "warning". Updated plugin list to show more information and tweaked layout of the list, changing the location of the legend.
+Added option to enter license server login details to Site Config.
+Added Joseph's newly contributed router.php for J1.7.
+Modified the file upload feature so that if we're running Joomla, and the image comes from the batch upload feature, then duplicate images, for the use of joomla galleries, are put into /uploadedimages/N/joomla/big,medium,small
+Added an option to use alternate SMTP settings, not Joomla's settings.
+Added a feature to detect if the Joomla cache is enabled and advises to switch it off.
+Further changes to mainmenu generation, simplified it's generation and set them to be triggered at the end of jomres.php running, not the beginning. This allows us to add buttons to the main menu through scripts.
+jGrowl updated to discard jquery ui colours (because it doesn't always work well on all templates) and the main menu modified to work as a hiding, scrolling accordion menu.
+Added login, registration link, search options to jomres mainmenu. Stripped javascript from list properties and put into it's own javascript file. Renamed new runEffect function in list properties to prevent conflicts with the mainmenu's function of the same name. Added a new find icon.
+Modified the new login/logout menu options so that they would use a new cms specific function that generates the login/logout urls.
+Added a new task called mainmenu, allowing us to use jomres asamodule to output the Jomres mainmenu without being on a jomres page.
+Added an Alternate Main Menu, which can be used by the site manager as a backup if they don't like the default one.
+
+Updated a word in the French Lang files.
+Modified css to hide the J1.5 toolbars in the administrator area when viewing Jomres.
+Modified layout of language selector dropdown in administrator area.
+Modified admin.php to trigger the obsolete file handling AFTER 00005 is called, and obsolete file handling to check a showtime variable called "obsolete_plugin_files" for any obsolete files and offer to delete them in the administrator area.
+Modified the jomres mobile redirect to append is_wrapped to the end of the url, so that the Jomres login module will come into play.
+Further changes to the cms_specific_urls.php script for finding the itemid.
+Couple of layout tweaks for the control panel area for lower resolutions.
+Modified editproperty to ensure translated meta data is output.
+Removed a defunct growl message.
+Copied the J1.7 installion code into the J1.7 upgrade code, as it's the easiest way to get Jomres to register itself in a site that's been upgraded from J1.5 to J1.7.
+Upgraded j1.7 cms_specific_urls.php to ensure that it doesn't bomb out with an error on installation.
+Modified the version check information in the control panel, given highlight when a new version is available.
+Added product information to the control panel.
+Couple of changes to the administrator url in joomla 1.5/1.7 to ensure that the fullscreen view is carried over to successive pages.
+Added some, apparently nonsense, error suppression.
+Added slideshow option to plugins, and removed from core system.
+Modified new modal image popup function to use titles.
+CSS file updated. If you've used the template editing feature to edit the css in Jomres we recommend that you remove your changes completely and use the changes in this file instead.
+Pathway changes to ensure that pathway is switchable depending on if Jomres is running in SA mode or not.
+Modified new modal image popup feature to automatically resize the popup's width.
+Added j10002new_property.class.php to obsolete files. Superceded by the frontend_to_backend feature instead.
+A variety of further changes, old buttons added as disabled buttons, obsolete scripts class adapted to suit. Display of disabled buttons catered for in their appropriate files. Removed manager's buttons as images option because it's no longer appropriate.
+Updated output to show the correct plugin server domain.
+Commented out booking form width/location settings as this has been figured out now in the template.
+Changed how some stuff is called onload. Ditched the old generic onload stuff that we'd been using since before jquery was adopted.
+depreciated minicomponents removed as part of new mainmenu restructuring.
+Edit booking modified to use the new menu options instead of the older Jomres toolbar functionality. Menu and wrapper modified to take an image to indicate that a menu category's been created for that particular page. Jomres.php modified to not show the menu if we're in a popup.
+Mass rename of Jomres Developer and Perpetual to their new names, in the language files.
+Restored a previous version of the exchange rates class as yahoo seem now to be passing back the anticipated headers again.
+Updated jquery libraries.
+Disable the slider if shown in the property details page.
+Added login, registration link, search options to jomres mainmenu. Stripped javascript from list properties and put into it's own javascript file. Renamed new runEffect function in list properties to prevent conflicts with the mainmenu's function of the same name. Added a new find icon.
+Modified the new login/logout menu options so that they would use a new cms specific function that generates the login/logout urls.
+Changed how the show search feature is called.
+Added a new task called mainmenu, allowing us to use jomres asamodule to output the Jomres mainmenu without being on a jomres page.
+Modified new jquery tables functionality so that it's included when the user is a registered user, not just a manager.
+Modified how optional extras are selected in the booking form. We needed to change how we do it because we've upgraded jquery, and the older method is no longer supported.
+Modified the menuwrapper so that the accordion isn't hidden when it first opens.
+Changed how the charset is defined in the jomres db object.
+listlivebookings function updated to use the new jquery table functionality.
+Tweaked the accordion menu's options to allow long areas to scroll.
+Added some error checking to the custom text class.
+Modified property config singleton so that it doesn't throw warnings if a property's settings haven't been saved (because we're not looking at a property's pages, or the property list).
+Implemented a new and improved Management View for property config. 
+Modified management view class. If we're on a mobile browser there's no point in offering the site view/management view switcher.
+Tweaked the new version warning, now will not alert if any revision char < 0, and modified layout.
+
+Modified view invoice to ensure that if the invoice is a commission invoice, then the paypal payment link is shown.
+Set correct url in immediatepay.
+Modified immediatepay to ensure that it pulls the property's paypal settings instead of the site settings when appropriate.
+Fixed a troublesome little bug that'd appear when trying to show "days" or "nights" in the edit booking page.
+Modified jomres.php so that it calls the pathway after the property type is defined. The pathway tries to set up urls to pathway items, jomresUrl uses the router.php in /components/com_jomres and if the language file hasn't already been defined the default language file will be used instead, so the property specific lang file never gets loaded.
+Modified jomres.php to show property header on the rooms list and tariffs list page.
+Removed automatic setting of php memory as this causes errors on hardened php servers.
+Fix for property type translation in List Properties.
+Applied changes contributed by Josip that fix the redirect functionality in the save subscriber script.
+Fixed a blonde moment and got the Save Override price in the booking form working again.
+fixed list old bookings script to show correct page title.
+Corrected a call to room_class_full_desc in basic property details.
+Changed the exchange rates again, looks like we need to adopt the "no null headers" code as yahoo's data is being sent inconsistently.
+
 Jomres 5.6
 
 Control panel completely reworked so that options are now in an accordion menu on the left, with the page's content to the right.
