@@ -140,6 +140,7 @@ class j04000roomsconfig {
 				}
 
 			$roomCount=count($roomsList);
+			$roomRowInfo.="<tbody>";
 			foreach($roomsList as $room)
 				{
 				$roomRowInfo .="<tr>
@@ -173,16 +174,16 @@ class j04000roomsconfig {
 				";
 				$roomRowInfo .="<td>".($room->room_number)."</td>
 				";
-				//$roomRowInfo .="<td>".($room->room_floor)."</td>
-				//";
+				$roomRowInfo .="<td>".($room->room_floor)."</td>
+				";
 
 				$disabled=$room->room_disabled_access;
 				if ($disabled)
 					$disabledAccess=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE);
 				else
 					$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE);
-				//$roomRowInfo .="<td>".$disabledAccess."</td>
-				//";
+				$roomRowInfo .="<td>".$disabledAccess."</td>
+				";
 				$roomRowInfo .="<td>".($room->max_people)."</td>
 				";
 				$smoking=$room->smoking;
@@ -221,7 +222,9 @@ class j04000roomsconfig {
 				</tr>
 				";
 				}
-
+			$roomRowInfo.="</tbody>";
+			
+			$roomFeaturesRowInfo .="<tbody>";
 			foreach($roomFeaturesList as $roomFeature)
 				{
 				$roomFeaturesRowInfo .="<tr>
@@ -237,6 +240,8 @@ class j04000roomsconfig {
 				</tr>
 				";
 				}
+			$roomFeaturesRowInfo .="</tbody>";	
+			
 			$roomTypeCount=count($roomsClassList);
 			foreach($roomsClassList as $roomClass)
 				{
@@ -259,8 +264,8 @@ class j04000roomsconfig {
 				}
 
 
-
-			foreach($propertysList as $property)
+			//business/property tab disabled
+			/*foreach($propertysList as $property)
 				{
 				$published=$property->published;
 				if ($published)
@@ -274,7 +279,7 @@ class j04000roomsconfig {
 
 				$property_image=getImageForProperty("property",$property->propertys_uid,$property->propertys_uid);
 
-				$propertyRowInfo .="<tr>
+				$propertyRowInfo .="<tr class=\"odd\">
 				";
 				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
@@ -299,7 +304,7 @@ class j04000roomsconfig {
 				</tr>
 				";
 				$propertyRowInfo .='<tr>
-				<td colspan="6"><img src="'.$property_image.'" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'"></td>
+				<td colspan="6"><img src="'.$property_image.'" border="0" width="400" height="300"></td>
 				';
 				//$propertyRowInfo .="<td><a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=publishProperty&amp;propertyUid=".($property->propertys_uid))."\"><img src=\"".$img."\" border=\"0\"></a></td>";
 
@@ -324,7 +329,7 @@ class j04000roomsconfig {
 					<td class=\"jradmin_subheader_la\" colspan=\"6\">APIKEY: <input type="text" size="50" class="inputbox" name="apikey'.$id.'" value="'.$property->apikey.'" READONLY onclick="select_all(this)"/>
 					</td>
 				</tr>';
-				}
+				}*/
 
 			foreach($propertyFeaturesList as $propertyFeature)
 				{
@@ -352,7 +357,7 @@ class j04000roomsconfig {
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
-		echo jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE);
+		echo "<h2>".jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
@@ -366,20 +371,30 @@ class j04000roomsconfig {
 		
 		if ($mrConfig['singleRoomProperty'] == "0")
 			{
-			$contentPanel->setcontent('<table>
-				<tr>
-				<td class="fg-toolbar ui-widget-header ui-corner-left">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK).'</td>
-				<td class="fg-toolbar ui-widget-header"><b>'.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS).'</b></td>
-				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME).'</td>
-				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER).'</td>
-				<!-- <td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR).'</td> -->
-				<!-- <td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS).'</td> -->
-				<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'</td>
+			$contentPanel->setcontent('
+				<script language="JavaScript" type="text/javascript">
+				jomresJquery(document).ready(function() {
+					var oTable = jomresJquery(\'#roomrowinfo\').dataTable({
+						"bJQueryUI": true,
+						"bStateSave": true,
+						"sPaginationType": "full_numbers"
+					});
+				} );
+				</script>
+				<table width="100%" border="0" id="roomrowinfo">
+				<thead><tr>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'</th>
 				');
 		 	if ($mrConfig['showSmoking']=="1")
-		 		$contentPanel->setcontent('<td class="fg-toolbar ui-widget-header">'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING).'</td>');
-			$contentPanel->setcontent('<td class="fg-toolbar ui-widget-header ui-corner-right">&nbsp;</td>');
-			$contentPanel->setcontent('</tr>
+		 		$contentPanel->setcontent('<th>'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING).'</th>');
+			$contentPanel->setcontent('<th>&nbsp;</th>');
+			$contentPanel->setcontent('</tr></thead>
 			');
 			$contentPanel->setcontent($roomRowInfo);
 			$contentPanel->setcontent('</table>');
@@ -406,40 +421,49 @@ class j04000roomsconfig {
 		$contentPanel->endPanel();
 
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE,FALSE));
-		$contentPanel->setcontent('<table>
-		<tr>');
-		
 		$contentPanel->setcontent($MiniComponents->triggerEvent('02210'));	//listTariffs($option);
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
+
 		if ($mrConfig['singleRoomProperty'] == "0")
 			{
 			$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES',_JOMRES_COM_MR_VRCT_TAB_ROOMFEATURES,FALSE));
 			$contentPanel->setcontent($newRoomFeatureButton);
 			//$contentPanel->setcontent('<table>
 			//<tr>');
-			$contentPanel->setcontent('<table>
-				<tr>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_LINK).'</td>
-				<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT',_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT).'</td>');
 			$contentPanel->setcontent('
-			</tr>');
+				<script language="JavaScript" type="text/javascript">
+				jomresJquery(document).ready(function() {
+					var oTable = jomresJquery(\'#roomFeaturesRowInfo\').dataTable({
+						"bJQueryUI": true,
+						"bStateSave": true,
+						"sPaginationType": "full_numbers"
+					});
+				} );
+				</script>
+				<table width="100%" border="0" id="roomFeaturesRowInfo">
+				<thead><tr>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT).'</th>
+				<th>'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT',_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT).'</th>');
+			$contentPanel->setcontent('
+			</tr></thead>');
 			$contentPanel->setcontent($roomFeaturesRowInfo);
 			$contentPanel->setcontent('
 			</table>');
 			$contentPanel->insertContent();
 			$contentPanel->endPanel();
 			}
-		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS,FALSE));
+		//business/property tab disabled
+		/*$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS,FALSE));
 		$contentPanel->setcontent($newPropertyButton);
-		$contentPanel->setcontent('<table>
+		$contentPanel->setcontent('<table width="100%" border="0">
 			<tr>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">&nbsp;</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY).'</td>
-			<td class="fg-toolbar ui-widget-header ui-corner-all">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE).'</td>
+			<th class="ui-state-default">&nbsp;</th>
+			<th class="ui-state-default">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET).'</th>
+			<th class="ui-state-default">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN).'</th>
+			<th class="ui-state-default">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION).'</th>
+			<th class="ui-state-default">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY).'</th>
+			<th class="ui-state-default">'.jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE).'</th>
 			');
 		$contentPanel->setcontent('
 		</tr>');
@@ -462,7 +486,7 @@ class j04000roomsconfig {
 			$contentPanel->setcontent('</table>');
 			$contentPanel->insertContent();
 			$contentPanel->endPanel();
-			}
+			}*/
 		$contentPanel->endTabs();
 		}
 

@@ -1,28 +1,22 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table>
+{JOMRESTOOLBAR}
+<table border="0" width="100%" class="ui-widget-content ui-corner-all">
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td class="jfg-toolbar ui-widget-header ui-corner-all">{HPROPERTYTYPE}</td>
-		<td class="jfg-toolbar ui-widget-header ui-corner-all">{RATETEXT}</td>
-		<td class="jfg-toolbar ui-widget-header ui-corner-all">{HMAXPEOPLE_TARIFF}</td>
-	</tr>
+		<td width="30%">{HPROPERTYTYPE}</td>
 		<td>
-			<table class="jradmin_table">
-				<tr>
-					
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="jradmin_field_ca">{ROOM_CLASS_RADIO}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
+			<patTemplate:tmpl name="rows" unusedvars="strip">
+			{ROOM_CLASS_RADIO}<br />
+			</patTemplate:tmpl>
 		</td>
-		<td class="jradmin_field_ca">{ROOMRATEPERDAY}</td>
-		<td class="jradmin_field_ca">{MAX_PEOPLE}</td>
+	</tr>
+	<tr>
+		<td>{RATETEXT}</td>
+		<td>{ROOMRATEPERDAY}</td>
+	</tr>
+	<tr>
+		<td>{HMAXPEOPLE_TARIFF}</td>
+		<td>{MAX_PEOPLE}</td>
 	</tr>
 </table>
 {JOMRESTOKEN}

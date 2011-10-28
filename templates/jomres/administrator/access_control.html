@@ -1,35 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
-
 jomresJquery(document).ready(function() {
 	var oTable = jomresJquery('#access_control_list').dataTable({
 		"bJQueryUI": true,
 		"bStateSave": true,
-		"sPaginationType": "full_numbers",
-		"sDom": '<"H"lTfr>t<"F"ip>',
-		"oTableTools": {
-			"sSwfPath": "http://localhost/jr4/jomres/javascript/copy_cvs_xls_pdf.swf",
-			"aButtons": [
-				"copy",
-				{
-				"sExtends": "csv",
-				"sCharSet": "utf8"
-				},
-				{
-				"sExtends": "xls",
-				"sCharSet": "utf16le"
-				},
-				{
-				"sExtends": "pdf",
-				"sCharSet": "utf8",
-				"sPdfOrientation": "landscape",
-				"sTitle": "Access control"
-				},
-				"print"
-			]
-		}
+		"sPaginationType": "full_numbers"
 	});
-} );
+});
 
 function change_access_level(minicomp,level)
 	{
@@ -49,8 +26,8 @@ function change_access_level(minicomp,level)
 <table id="access_control_list" width="100%">
 	<thead>
 		<tr>
-		<th>Minicomponent name</th>
-		<th>Access level</th>
+			<th>Minicomponent name</th>
+			<th>Access level</th>
 		</tr>
 	</thead>
 	<tbody>

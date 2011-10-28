@@ -1,62 +1,63 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
-	jomresJquery(function(){
-		//all hover and click logic for buttons
-		jomresJquery(".fg-button:not(.ui-state-disabled)")
-		.hover(
-			function(){ 
-				jomresJquery(this).addClass("ui-state-hover"); 
-			},
-			function(){ 
-				jomresJquery(this).removeClass("ui-state-hover"); 
-			}
-		)
-		.mousedown(function(){
-				jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-				if( jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jomresJquery(this).removeClass("ui-state-active"); }
-				else { jomresJquery(this).addClass("ui-state-active"); }
-		})
-		.mouseup(function(){
-			if(! jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
-				jomresJquery(this).removeClass("ui-state-active");
-			}
-		});
+jomresJquery(function(){
+	//all hover and click logic for buttons
+	jomresJquery(".fg-button:not(.ui-state-disabled)")
+	.hover(
+		function(){ 
+			jomresJquery(this).addClass("ui-state-hover"); 
+		},
+		function(){ 
+			jomresJquery(this).removeClass("ui-state-hover"); 
+		}
+	)
+	.mousedown(function(){
+			jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+			if( jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jomresJquery(this).removeClass("ui-state-active"); }
+			else { jomresJquery(this).addClass("ui-state-active"); }
+	})
+	.mouseup(function(){
+		if(! jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+			jomresJquery(this).removeClass("ui-state-active");
+		}
 	});
+});
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#frontend_list_subscription_packages').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
 </script>
+<h2>{PAGETITLE}</h2>
 <form action="" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
-	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
-	</tr>
-	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">ID</td>
-					<td class="jradmin_subheader_la">{HNAME}</td>
-					<td class="jradmin_subheader_la">{HDESCRIPTION}</td>
-					<td class="jradmin_subheader_la">{HFREQUENCY}</td>
-					<td class="jradmin_subheader_la">{HTRIALPERIOD}</td>
-					<td class="jradmin_subheader_ca">{HTRIALAMOUNT}</td>
-					<td class="jradmin_subheader_la">{HFULLAMOUNT}</td>
-				</tr>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr>
-					<td class="viewproperty_rightcol"><div class="fg-button ui-state-default ui-priority-primary ui-corner-all">{SUBSCRIBE}</div></td>
-					<td class="jradmin_field_la">{NAME}</td>
-					<td class="jradmin_field_la">{DESCRIPTION}</td>
-					<td class="jradmin_field_ca">{FREQUENCY}</td>
-					<td class="jradmin_field_ca">{TRIALPERIOD}</td>
-					<td class="jradmin_field_ca">{TRIALAMOUNT}</td>
-					<td class="jradmin_field_ca">{FULLAMOUNT}</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
-		</td>
-	</tr>
+{JOMRESTOOLBAR}
+<table id="frontend_list_subscription_packages" width="100%" border="0">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>{HNAME}</th>
+			<th>{HDESCRIPTION}</th>
+			<th>{HFREQUENCY}</th>
+			<th>{HTRIALPERIOD}</th>
+			<th>{HTRIALAMOUNT}</th>
+			<th>{HFULLAMOUNT}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td><div class="fg-button ui-state-default ui-priority-primary ui-corner-all">{SUBSCRIBE}</div></td>
+			<td>{NAME}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{FREQUENCY}</td>
+			<td>{TRIALPERIOD}</td>
+			<td>{TRIALAMOUNT}</td>
+			<td>{FULLAMOUNT}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
 <input type="hidden" name="task" value="editTaxrate" />
 </form>
