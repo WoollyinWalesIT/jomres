@@ -497,13 +497,14 @@ class j16000showplugins
 					$current_minor_version = $this_jomres_version[1];
 					$current_revis_version = $this_jomres_version[2];
 					
-					if (
-						$current_major_version >= $min_major_version &&
-						$current_minor_version >= $min_minor_version &&
-						$current_revis_version >= $min_revis_version
-						)
+
+					if ( $current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version >= $min_revis_version )
 						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
-					else
+					elseif ($current_major_version >= $min_major_version && $current_minor_version > $min_minor_version)
+						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
+					elseif ($current_major_version > $min_major_version) 
+						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
+					else 
 						echo "<td class=\"ui-corner-all\" $style>Requires a later version of Jomres</td>";
 					}
 				else
