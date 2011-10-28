@@ -17,10 +17,19 @@ class jomres_management_view
 	{
 	function get_dropdown()
 		{
-		if (isset($_REQUEST['tmpl']) )
-			$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'._JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW.'</a>';
-		else
-			$response = '<a href="'.get_showtime('liv_site').$_SERVER['REQUEST_URI'].'&tmpl=component">'._JOMRES_COM_MANAGEMENTVIEW_MANAGMENT.'</a>';
+		jr_import('browser_detect');
+		$b = new browser_detect();
+		$is_mobile = $b->isMobile();
+		set_showtime('mobile_browser',$is_mobile );
+
+		$response = '';
+		if ( $is_mobile)
+			{
+			if (isset($_REQUEST['tmpl']) )
+				$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'._JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW.'</a>';
+			else
+				$response = '<a href="'.get_showtime('liv_site').$_SERVER['REQUEST_URI'].'&tmpl=component">'._JOMRES_COM_MANAGEMENTVIEW_MANAGMENT.'</a>';
+			}
 		return $response;
 		}
 		
