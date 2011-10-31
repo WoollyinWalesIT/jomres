@@ -33,9 +33,3 @@ function lastAddedLiveFunc()
 		}
 	});
 
-function quick_info(uid) {
-	var selectedEffect = "slide";
-	var options = {};
-	jomresJquery( "#effect"+uid ).toggle( selectedEffect, options, 500 );
-	return false;
-};
