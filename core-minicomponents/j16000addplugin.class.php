@@ -261,15 +261,15 @@ class j16000addplugin
 				$current_minor_version = $this_jomres_version[1];
 				$current_revis_version = $this_jomres_version[2];
 				
-				$error = false;
-				if ($current_major_version < $min_major_version)
-					$error = true;
+				$error = true;
+				if ( $current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version >= $min_revis_version )
+					$error = false;
 
-				if ($current_major_version  >= $min_major_version && $current_minor_version < $min_minor_version )
-					$error = true;
+				if ($current_major_version >= $min_major_version && $current_minor_version > $min_minor_version)
+					$error = false;
 
-				if ($current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version < $min_revis_version)
-					$error = true;
+				if ($current_major_version > $min_major_version) 
+					$error = false;
 
 				if ($error)
 					{
