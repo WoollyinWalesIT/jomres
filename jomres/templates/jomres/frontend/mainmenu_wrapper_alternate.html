@@ -54,14 +54,15 @@ jomresJquery(document).ready(function(){
 	position:fixed; 
 	top:0; 
 	z-index:9998; /* potato menu's z-index is set to 1000, so we'll set this to 1 less */
-	width:40%;
+	width:100%;
+	left:0;
 }
 
 #jomres-menu-top-panel{
-	border-bottom:3px solid #a6c34e;
+	border-bottom:3px solid #4297D7;
 	padding:14px 20px;
-	text-align:right;
-	float:right;
+	background:#C5DBEC;
+	height:30px;
 }
 
 #jomres-menu-sub-panel{
@@ -73,9 +74,9 @@ jomresJquery(document).ready(function(){
 	float:right;
 	color:#FFFFFF;
 	text-decoration:none;
-	margin-right:30px;
+	margin-right:10px;
 	font-weight:bold;
-	background: bottom left no-repeat #a6c34e;
+	background: bottom left no-repeat #4297D7;
 }
 #jomres-menu-sub-panel a span{
 	padding:6px;
@@ -84,7 +85,7 @@ jomresJquery(document).ready(function(){
 }
 </style>
 
-<div id="jomres-menu-pinned"  class="ui-helper-hidden">
+<div id="jomres-menu-pinned" class="ui-helper-hidden">
 	<div id="jomres-menu-top-panel">
 		<ul id="jomres_mainmenu" class="menu" >
 			<patTemplate:tmpl name="button_output">
