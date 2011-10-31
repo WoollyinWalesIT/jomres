@@ -3232,6 +3232,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	$img_departtoday=$pathToImages."/departtoday.gif";
 	$img_stillhere=$pathToImages."/stillhere.gif";
 	$img_late=$pathToImages."/late.gif";
+	$editIcon='<img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
 
 	$contract_ids = array();
 
@@ -3249,6 +3250,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	jomresJquery(document).ready(function() {
 		var oTable = jomresJquery('#showLiveBookings').dataTable({
 			"bJQueryUI": true,
+			"bStateSave": true,
 			"sPaginationType": "full_numbers",
 			"sDom": '<"H"lTfr>t<"F"ip>',
 			"oTableTools": {
@@ -3293,6 +3295,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 			<thead>
 			<tr>
 				<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);?></th>
+				<th><?php echo jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE);?></th>
 				<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);?></th>
 				<th><?php echo jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);?></th>
 				<?php
@@ -3351,7 +3354,8 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		?>
 			<tr>
 				<td align="center"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
-				<td><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>"><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></a></td>
+				<td><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>"><?php echo $editIcon ?></a></td>
+				<td><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></td>
 				<td><?php echo $row->tag; ?></td>
 				<td><?php echo outputDate($row->arrival); ?></td>
 				<td><?php echo outputDate($row->departure); ?></td>
