@@ -23,7 +23,7 @@ class jomres_management_view
 		set_showtime('mobile_browser',$is_mobile );
 
 		$response = '';
-		if ( $is_mobile)
+		if ( !$is_mobile)
 			{
 			if (isset($_REQUEST['tmpl']) )
 				$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'._JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW.'</a>';
