@@ -334,13 +334,10 @@ class j02260editbooking {
 				}
 			//$jrtb .= $jrtbar->endTable();
 			//echo $jrtb;
-			echo '
+			echo '<h2>'.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,$editable=true,$isLink=false).'&nbsp;'.$booking_tag.' - '.$guest_firstname." ".$guest_surname.'</h2>
 			<table border="0" width="100%">
 			<tr>
-				<td>'.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,$editable=true,$isLink=false).'&nbsp;<b>'.$booking_tag.'</b>&nbsp;'.$guest_firstname." ".$guest_surname.'</td>
-			</tr>
-			<tr>
-				<td><a href="mailto:'.$guest_email.'?subject='.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag.' @ '.$property_name.'&body='.jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR,false).ucfirst($guest_firstname).' '.ucfirst($guest_surname).' RE '.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag.'">'.$guest_email.'</a></td>
+				<td><p><a href="mailto:'.$guest_email.'?subject='.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag.' @ '.$property_name.'&body='.jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR,false).ucfirst($guest_firstname).' '.ucfirst($guest_surname).' RE '.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag.'">'.$guest_email.'</a></p></td>
 			</tr>
 
 			</table>';
