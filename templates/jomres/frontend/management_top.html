@@ -1,4 +1,13 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    margin: 10px;
+    padding: 0 0 1px;
+}
+</style>
 <table border="0" width="100%" class="ui-widget-content ui-corner-all">
 	<tr>
 		<td align="left" width="30%" valign="middle">
@@ -15,9 +24,7 @@
 	</tr>
 </table>
 <br />
-<patTemplate:tmpl name="rows" unusedvars="strip">
-{MAINMENU}
-</patTemplate:tmpl>
+<div id="jomres_alternate_menu_position" style="float:left;width:20%;margin-bottom:20px;"></div> <!-- available if required by a plugin -->
 <div style="float:right;width:79%;margin-bottom:20px;">
 	<div id="jomres_content_area"> <!-- opens the jomres content area -->
 	<noscript>
@@ -38,4 +45,4 @@
 			jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
 		</script>
 	</patTemplate:tmpl>
-	</patTemplate:tmpl>
+</patTemplate:tmpl>
