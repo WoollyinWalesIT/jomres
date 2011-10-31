@@ -75,6 +75,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG_DESC.'</td>
 		</tr>
 		<tr valign="middle" class="even">
+			 <td valign="middle">'._JOMRES_MENU_SHOW_TITLE.'</td>
+			 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
+			 <td valign="middle">'._JOMRES_MENU_SHOW_DESC.'</td>
+		</tr>
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_SUPPORTKEY.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td valign="middle">'._JOMRES_SUPPORTKEY_DESC.'</td>
@@ -234,11 +239,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
 			</tr>
 			<tr valign="middle" class="even">
-				 <td valign="middle">'._JOMRES_MENU_SHOW_TITLE.'</td>
-				 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
-				 <td valign="middle">'._JOMRES_MENU_SHOW_DESC.'</td>
-			</tr>
-			<tr valign="middle" class="odd">
 				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_TITLE.'</td>
 				 <td valign="middle">'.$lists['full_access_control'].'</td>
 				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_DESC.'</td>
