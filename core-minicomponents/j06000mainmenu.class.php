@@ -31,7 +31,7 @@ class j06000mainmenu
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=true; return;
+			$this->template_touchable=false; return;
 			}
 		$MiniComponents->triggerEvent('99995');
 		}
