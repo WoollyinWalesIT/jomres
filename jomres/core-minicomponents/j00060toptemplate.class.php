@@ -107,15 +107,15 @@ class j00060toptemplate {
 					}
 				}
 			
-			$rows = array();
-			$MiniComponents->triggerEvent('99995',$componentArgs); //
-			$mcOutput=$MiniComponents->getAllEventPointsData('99997');
-			foreach ($mcOutput as $key=>$val)
-				{
-				$r=array();
-				$r["MAINMENU"]=$val;
-				$rows[]=$r;
-				}
+			// $rows = array();
+			// $MiniComponents->triggerEvent('99995',$componentArgs); //
+			// $mcOutput=$MiniComponents->getAllEventPointsData('99997');
+			// foreach ($mcOutput as $key=>$val)
+				// {
+				// $r=array();
+				// $r["MAINMENU"]=$val;
+				// $rows[]=$r;
+				// }
 			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();

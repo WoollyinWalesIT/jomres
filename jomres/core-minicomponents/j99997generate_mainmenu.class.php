@@ -96,12 +96,11 @@ class j99997generate_mainmenu {
 				$tmpl->readTemplatesFromInput( 'mainmenu_wrapper_alternate.html' );
 			}
 		else
-			$tmpl->readTemplatesFromInput( 'management_menu.html' );
+			$tmpl->readTemplatesFromInput( 'management_menu_wrapper.html' );
 		$tmpl->addRows( 'button_output', $button_o );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$this->ret_vals = $tmpl->getParsedTemplate();
-		if (!$management_view)
-		 	echo $this->ret_vals;
+		echo $this->ret_vals;
 		}
 
 
