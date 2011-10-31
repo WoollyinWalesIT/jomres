@@ -5,6 +5,13 @@ var jomresJquery = jQuery.noConflict();
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
+function quick_info(uid) {
+	var selectedEffect = "slide";
+	var options = {};
+	jomresJquery( "#effect"+uid ).toggle( selectedEffect, options, 500 );
+	return false;
+};
+
 function isAvailable(date){
 
 	var dateAsString = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate();
