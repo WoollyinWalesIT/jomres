@@ -1248,7 +1248,7 @@ define('_JOMRES_HTMP_PURIFIER','ХТМЛ пречиствател?');
 define('_JOMRES_HTMP_PURIFIER_DESC','Да се използва от системния администратор.');
 define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Балансово плащане');
 define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Баланс');
-define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Да се използва от системния администратор.');
+define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Note, you are using Editing Mode with the Global Editing mode enabled. This is fine if you understand what Global Editing mode means, however if you don\'t you may cause yourself problems. If you are unsure if you should be using Jomres in this way, please see <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">the editing mode manual page</a> for more information on this subject.');
 define('_JOMRES_SUPPORTKEY','Лиценз');
 define('_JOMRES_SUPPORTKEY_DESC','Лицензен ключ.');
 define('_JOMRES_PERSONAL_DISCOUNT','Персонална отстъпка');
@@ -1679,3 +1679,7 @@ define('_JOMRES_ACCESS_CONTROL_DESC_FULL',"<strong>This feature is for advanced 
 	Note that you cannot control administrator area minicomponents. Anybody in the administrator area is considered to be a trusted user in that they should not be blocked from accessing any script (especially this one).
 	");
 define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING',"Warning! You have full access control enabled, however we have counted the access control settings and compared them to the number of minicomponents that should be controlled, and the two do not match up, therefore you may have some scripts that are not controlled. This could be a security issue and you are urged to resolve this at once by visiting the Access Control feature and checking that the appropriate levels have been applied.");
+
+define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Users with admin rights to this property");
+define('_JOMRES_ADMIN_LISTALLUSERSINVOICES',"List all user's invoices");
+

@@ -1337,7 +1337,7 @@ define('_JOMRES_HTMP_PURIFIER','HTML Filterfunktion benutzen?');
 define('_JOMRES_HTMP_PURIFIER_DESC','Hier die Nutzung der HTML-Filter-Bibliothek (http://htmlpurifier.org/) einschalten. Die Bibliothek wird als zusätzliche Sicherheitsmaßnahme bei der Verarbeitung von Ein- und Ausgabedaten benützt und es wird empfohlen sie zu aktivieren, obwohl sie mehr Speicher belegt.');
 define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Rechnungssaldo');
 define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Saldo');
-define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Hinweis! Sie benützen den Edit-Mode während der Globale Edit-Mode aktiviert ist. Das ist in Ordnung wenn Sie verstehen was Globaler Edit-Modus bedeutet. Falls nicht, könnten Sie sich selbst Probleme schaffen. Wenn Sie unsicher sind ob Sie Jomres auf diese Weise benützen sollten, informieren Sie sich <a href="http://manual.jomres.net/Editing_mode" target="_blank">zu diesem Thema im Handbuch</a>.');
+define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Hinweis! Sie benützen den Edit-Mode während der Globale Edit-Mode aktiviert ist. Das ist in Ordnung wenn Sie verstehen was Globaler Edit-Modus bedeutet. Falls nicht, könnten Sie sich selbst Probleme schaffen. Wenn Sie unsicher sind ob Sie Jomres auf diese Weise benützen sollten, informieren Sie sich <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">zu diesem Thema im Handbuch</a>.');
 define('_JOMRES_SUPPORTKEY','Lizenzschlüssel');
 define('_JOMRES_SUPPORTKEY_DESC','Die Support Lizenz Schlüssel Nummer (auch als Lizenz Nummer bezeichnet). Es ist eine aktuelle Lizenz nötig um Aktualisierungen und Plugins für Jomres laden zu können.');
 define('_JOMRES_PERSONAL_DISCOUNT','Individueller Preisnachlass');
@@ -1769,3 +1769,7 @@ define('_JOMRES_ACCESS_CONTROL_DESC_FULL',"<strong>This feature is for advanced 
 	Note that you cannot control administrator area minicomponents. Anybody in the administrator area is considered to be a trusted user in that they should not be blocked from accessing any script (especially this one).
 	");
 define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING',"Warning! You have full access control enabled, however we have counted the access control settings and compared them to the number of minicomponents that should be controlled, and the two do not match up, therefore you may have some scripts that are not controlled. This could be a security issue and you are urged to resolve this at once by visiting the Access Control feature and checking that the appropriate levels have been applied.");
+
+define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Users with admin rights to this property");
+define('_JOMRES_ADMIN_LISTALLUSERSINVOICES',"List all user's invoices");
+
