@@ -1047,6 +1047,7 @@ else
 
 function no_task_set()
 	{
+	$jomresPathway =jomres_getSingleton('jomres_pathway');
 	$thisJRUser=jomres_getSingleton('jr_user');
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
