@@ -1304,7 +1304,7 @@ define('_JOMRES_HTMP_PURIFIER','Usare la funzione di pulizia automatica HTML?');
 define('_JOMRES_HTMP_PURIFIER_DESC','Attivare per abilitare Jomres ad usare la libreria di pulizia automatica HTML (http://htmlpurifier.org/). La libreria &egrave; usata come un livello di sicurezza extra quando si ha a che fare con dati di input e output e ne &egrave; consigliato l&acute;utilizzo anche se utilizzer&agrave; pi&ugrave; memoria.');
 define('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT','Pagamento saldo');
 define('_JOMRES_AJAXFORM_BILLING_INVOICE_BALANCE','Saldo');
-define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Nota, Stai usando Editing Mode con il Global Editing mode attivato. Va bene se si conosce cosa significa Global Editing, comunque se non conosci a fondo la cosa potresti causare problemi al sistema. Se non sei sicuro se usare Jomres in questo modo, vai su <a href="http://manual.jomres.net/Editing_mode" target="_blank">the editing mode manual page</a> per pi&ugrave; informazioni sull&acute;argomento.');
+define('_JOMRES_WARNINGS_GLOBALEDITINGMODE','Nota, Stai usando Editing Mode con il Global Editing mode attivato. Va bene se si conosce cosa significa Global Editing, comunque se non conosci a fondo la cosa potresti causare problemi al sistema. Se non sei sicuro se usare Jomres in questo modo, vai su <a href="http://manual.jomres.net/developers_guide_customising_editmode.html" target="_blank">the editing mode manual page</a> per pi&ugrave; informazioni sull&acute;argomento.');
 define('_JOMRES_SUPPORTKEY','Support key');
 define('_JOMRES_SUPPORTKEY_DESC','Il tuo numero di licenza. Avrai bisogno di un numero di licenza per poter scaricare gli aggiornamenti ed i plugin per Jomres.');
 define('_JOMRES_PERSONAL_DISCOUNT','Sconto personale');
@@ -1738,3 +1738,7 @@ define('_JOMRES_ACCESS_CONTROL_DESC_FULL',"<strong>This feature is for advanced 
 	Note that you cannot control administrator area minicomponents. Anybody in the administrator area is considered to be a trusted user in that they should not be blocked from accessing any script (especially this one).
 	");
 define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING',"Warning! You have full access control enabled, however we have counted the access control settings and compared them to the number of minicomponents that should be controlled, and the two do not match up, therefore you may have some scripts that are not controlled. This could be a security issue and you are urged to resolve this at once by visiting the Access Control feature and checking that the appropriate levels have been applied.");
+
+define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Users with admin rights to this property");
+define('_JOMRES_ADMIN_LISTALLUSERSINVOICES',"List all user's invoices");
+
