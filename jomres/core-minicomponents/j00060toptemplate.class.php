@@ -106,17 +106,7 @@ class j00060toptemplate {
 						}
 					}
 				}
-			
-			// $rows = array();
-			// $MiniComponents->triggerEvent('99995',$componentArgs); //
-			// $mcOutput=$MiniComponents->getAllEventPointsData('99997');
-			// foreach ($mcOutput as $key=>$val)
-				// {
-				// $r=array();
-				// $r["MAINMENU"]=$val;
-				// $rows[]=$r;
-				// }
-			
+
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -125,7 +115,6 @@ class j00060toptemplate {
 			else
 				$tmpl->readTemplatesFromInput( 'top.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
-			$tmpl->addRows( 'rows',$rows);
 			$tmpl->addRows( 'messages',$messaging);
 			$tmpl->addRows( 'sticky_messages',$sticky_messaging);
 			$tmpl->displayParsedTemplate();

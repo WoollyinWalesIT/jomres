@@ -1,24 +1,20 @@
 <patTemplate:tmpl name="pageoutput">
 <script>
 	jomresJquery(function() {
+	var $content = jomresJquery('#jomres_menu_wrapper').html();
+	jomresJquery('#jomres_alternate_menu_position').html($content);
+	jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
 		jomresJquery( "#accordion" ).accordion({
 			autoHeight: false,
 			navigation: true,
 			collapsible: true
 		});
+
 	});
 </script>
 
-<style>
-#jomres_menu_wrapper {
-	position:fixed;
-	top:80px;
-	left:0px;
-	width:200px;
-	}
-</style>
-<div id="jomres_menu_wrapper" class="ui-helper-clearfix ui-helper-hidden">
-	<div id="accordion" style="font-size:.9em;height:400px">
+<div id="jomres_menu_wrapper" style="display:none">
+	<div id="accordion">
 		<patTemplate:tmpl name="button_output">
 			{DIV}
 		</patTemplate:tmpl>
