@@ -17,7 +17,7 @@ jomresJquery(document).ready(function(){
 		// Lets us know whats inside the element
 		var state = jomresJquery("#shText").html();
 		// Change the state  
-		state = (state == '{_JOMRES_MENU_HIDE}' ? '<span id="shText">{_JOMRES_MENU_SHOW}</span>' : '<span id="shText">{_JOMRES_MENU_HIDE}</span>');
+		state = (state == '{_JOMRES_MENU_SHOW}' ? '<span id="shText">{_JOMRES_MENU_HIDE}</span>' : '<span id="shText">{_JOMRES_MENU_SHOW}</span>');
 		// Finally change whats insdide the element ID
 		el.replaceWith(state); 
 		}); // end sub panel click function
@@ -93,7 +93,7 @@ jomresJquery(document).ready(function(){
 			</patTemplate:tmpl>
 		</ul>
 	</div>
-	<div id="jomres-menu-sub-panel" class="ui-widget ui-corner-bl"><a href="javascript:void(0);" id="toggle"><span id="shText">{_JOMRES_MENU_SHOW}</span></a></div>
+	<div id="jomres-menu-sub-panel" class="ui-widget ui-corner-bl"><a href="javascript:void(0);" id="toggle"><span id="shText">{_JOMRES_MENU_HIDE}</span></a></div>
 </div>
 <br/><br/>
 </patTemplate:tmpl>
