@@ -73,6 +73,8 @@ class j16000edit_invoice {
 				$output['STATUS']=_JRPORTAL_INVOICES_STATUS_PAID;
 			
 			$output['USER']=_JRPORTAL_INVOICES_USER;
+			$output['_JOMRES_ADMIN_LISTALLUSERSINVOICES']=_JOMRES_ADMIN_LISTALLUSERSINVOICES;
+			
 			jr_import('jrportal_user_functions');
 			$user_obj = new jrportal_user_functions();
 			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice->cms_user_id);
