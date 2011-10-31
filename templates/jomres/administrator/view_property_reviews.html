@@ -34,6 +34,7 @@ function delete_review(rating_id)
 jomresJquery(document).ready(function() {
 	var oTable = jomresJquery('#view_property_reviews').dataTable({
 		"bJQueryUI": true,
+		"bStateSave": true,
 		"sPaginationType": "full_numbers"
 	});
 } );
