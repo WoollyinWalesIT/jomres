@@ -66,10 +66,15 @@ class j99997generate_mainmenu {
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			if ($jrConfig['alternate_mainmenu'] == "0")
-				$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+			if (!$management_view)
+				{
+				if ($jrConfig['alternate_mainmenu'] == "0")
+					$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+				else
+					$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
+				}
 			else
-				$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
+				$tmpl->readTemplatesFromInput( 'management_mainmenu_options.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[]['DIV']= $tmpl->getParsedTemplate();
