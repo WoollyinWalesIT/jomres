@@ -71,7 +71,8 @@ class j00060toptemplate {
 						}
 					}
 				}
-
+			
+			$output['SANITY_CHECKS']=get_showtime("sanity_check_warnings");
 			$output['NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false,false);
 			$output['PREVIOUS']=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false);
 		

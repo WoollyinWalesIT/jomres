@@ -23,7 +23,7 @@ class j00006sanity_checks {
 			{
 			$this->template_touchable=false; return;
 			}
-		if (!defined('JOMRES_NOHTML')) // Generate the main menu
+		if (!defined('JOMRES_NOHTML'))
 			{
 			$thisJRUser=jomres_getSingleton('jr_user');
 			$accessLevel=$thisJRUser->accesslevel;
@@ -40,7 +40,7 @@ class j00006sanity_checks {
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 				$tmpl->readTemplatesFromInput('sanity_checks.html');
-				echo $tmpl->getParsedTemplate();
+				set_showtime("sanity_check_warnings",$tmpl->getParsedTemplate());
 				}
 			}
 		}
