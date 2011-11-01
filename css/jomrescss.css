@@ -40,7 +40,7 @@ button.fg-button { width:auto; overflow:visible; }
 .plist-buttons{width: 160px;display:block;float:right;}
 .plist-button {width:130px;margin-bottom:5px;}
 .plist-button-last {width:130px;}
-.quick-info {height:auto;overflow:hidden;width:auto;position:relative;}
+.quick-info {height:auto;width:auto;position:relative;}
 .quick-info-left {padding:5px;width:48%;}
 .quick-info-right {padding:5px;width:48%;}
 .left-column {width:74%;}

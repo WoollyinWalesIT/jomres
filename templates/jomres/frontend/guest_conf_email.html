@@ -1,91 +1,85 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <meta http-equiv="Content-Type" content="text/html; utf-8" />
-<link rel="stylesheet" href="{MOSCONFIGLIVESITE}/jomres/css/jomrescss.css" type="text/css" />
-<div class="panelwrapper">
-	<div class="innerwrapper">
-		<table width="100%" border="0" class="confirmation">
-			<tr>
-				<td colspan="2">
-					<table border="0" width="100%" cellpadding="0" cellspacing="0">
-						<tr>
-							<td colspan="2"><strong>{HELLO}&nbsp;{GUESTNAME}</strong></td>
-						</tr>
-						<tr>
-							<td colspan="2"><a href="{LINK}">{THANKS}</a></td>
-						</tr>
-						<tr>
-							<td colspan="2">{SUMMARY}</td>
-						</tr>
-						<tr>
-							<td>{HBOOKINGNO}</td>
-							<td><strong>{BOOKINGNO}</strong></td>
-						</tr>
-						<tr>
-							<td>{HROOM}</td>
-							<td><strong>{ROOM}</strong></td>
-						</tr>
-						<tr>
-							<td>{HARRIVAL}</td>
-							<td><strong>{ARRIVAL}</strong></td>
-						</tr>
-						<tr>
-							<td>{HDEPARTURE}</td>
-							<td><strong>{DEPARTURE}</strong></td>
-						</tr>
-						<tr>
-							<td>{HNUMBEROFGUESTS}</td>
-							<td>
-								<patTemplate:tmpl name="rows" unusedvars="nbsp">
-								<strong>{TITLE} X {QUANTITY}</strong>
-								</patTemplate:tmpl>
-							</td>
-						</tr>
-						<tr>
-							<td>{HLANDLINE}</td>
-							<td><strong>{LANDLINE}</strong></td>
-						</tr>
-						<tr>
-							<td>{HMOBILE}</td>
-							<td><strong>{MOBILE}</strong></td>
-						</tr>
-						<tr>
-							<td>{HTOTAL}</td>
-							<td><strong>{TOTAL}</strong></td>
-						</tr>
-						<patTemplate:tmpl name="custom_field_output" type="simpleCondition" requiredVars="description">
-						<tr>
-							<td>{DESCRIPTION}</td>
-							<td><strong>{VALUE}</strong></td>
-						</tr>
-						</patTemplate:tmpl>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					{ALLOCATION_NOTE}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					{INVOICE}
-				</td>
-			</tr>
-			<tr>
-				<td>{HSPECIAL_REQUIREMENTS}</td>
-				<td>{SPECIAL_REQUIREMENTS}</td>
-			</tr>
-		</table>
-	</div>
-</div>
-<br/>
-{QUESTIONS}
-<br/>
-{TELEPHONE}
-<br/>
-{EMAIL}
-<br/>
-{HPOLICIESDISCLAIMERS}
-<br/>
-{POLICIESDISCLAIMERS}
+<head>
+{CSS_STYLES}
+</head>
+<body>
+<p><strong>{HELLO}&nbsp;{GUESTNAME},</strong></p>
+<p>{THANKS}&nbsp;{SUMMARY}</p>
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td width="30%">{HBOOKINGNO}</td>
+		<td><a href="{LINK}">{BOOKINGNO}</a></td>
+	</tr>
+	<tr>
+		<td>{HROOM}</td>
+		<td>{ROOM}</td>
+	</tr>
+	<tr>
+		<td>{HARRIVAL}</td>
+		<td>{ARRIVAL}</td>
+	</tr>
+	<tr>
+		<td>{HDEPARTURE}</td>
+		<td>{DEPARTURE}</td>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<tr>
+		<td>{TITLE}</td>
+		<td>{QUANTITY}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td>{HLANDLINE}</td>
+		<td>{LANDLINE}</td>
+	</tr>
+	<tr>
+		<td>{HMOBILE}</td>
+		<td>{MOBILE}</td>
+	</tr>
+	<patTemplate:tmpl name="custom_field_output" type="simpleCondition" requiredVars="description">
+	<tr>
+		<td>{DESCRIPTION}</td>
+		<td>{VALUE}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td>{HSPECIAL_REQUIREMENTS}</td>
+		<td>{SPECIAL_REQUIREMENTS}</td>
+	</tr>
+	<tr>
+		<td><strong>{HTOTAL}</strong></td>
+		<td><strong>{TOTAL}</strong></td>
+	</tr>
+	<tr>
+		<td>{HDEPOSIT}</td>
+		<td>{DEPOSIT}</td>
+	</tr>
+</table>
+<!--<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td>{ALLOCATION_NOTE}</td>
+	</tr>
+</table>-->
+<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td>{INVOICE}</td>
+	</tr>
+</table>
+<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td><strong>{HPOLICIESDISCLAIMERS}</strong></td>
+	</tr>
+	<tr>
+		<td>{POLICIESDISCLAIMERS}</td>
+	</tr>
+</table>
+<br />
+<p>{QUESTIONS}</p>
+<p>{TELEPHONE}</p>
+<p>{EMAIL}</p>
+</body>
 </patTemplate:tmpl>

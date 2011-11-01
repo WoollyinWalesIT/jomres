@@ -1,37 +1,15 @@
-<patTemplate:tmpl name="pageoutput">
-<meta http-equiv="Content-Type" content="text/html; {ISO}" />
-{LINKTOBOOKING}
-<table>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<meta http-equiv="Content-Type" content="text/html; utf-8" />
+<head>
+{CSS_STYLES}
+</head>
+<body>
+<p>{LINKTOBOOKING}</p>
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<td>{HBOOKINGNO}</td>
-		<td>{BOOKINGNO}</td>
+		<td width="30%">{HNAME}</td>
+		<td>{FIRSTNAME}&nbsp;{SURNAME}</td>
 	</tr>
-	<tr>
-		<td>{HROOM}</td>
-		<td>{ROOM}</td>
-	</tr>
-</table>
-
-<table>
-	<tr>
-		<td>{HARRIVAL}</td>
-		<td>{ARRIVAL}</td>
-	</tr>
-	<tr>
-		<td>{HDEPARTURE}</td>
-		<td>{DEPARTURE}</td>
-	</tr>
-</table>
-
-<table>
-	<tr>
-		<td>{HNAME}</td>
-		<td>{FIRSTNAME}</td>
-		<td>{SURNAME}</td>
-	</tr>
-</table>
-
-<table>
 	<tr>
 		<td>{HLANDLINE}</td>
 		<td>{LANDLINE}</td>
@@ -40,43 +18,62 @@
 		<td>{HMOBILE}</td>
 		<td>{MOBILE}</td>
 	</tr>
-</table>
-
-<table>
+	<tr>
+		<td>{HBOOKINGNO}</td>
+		<td>{BOOKINGNO}</td>
+	</tr>
+	<tr>
+		<td>{HROOM}</td>
+		<td>{ROOM}</td>
+	</tr>
+	<tr>
+		<td>{HARRIVAL}</td>
+		<td>{ARRIVAL}</td>
+	</tr>
+	<tr>
+		<td>{HDEPARTURE}</td>
+		<td>{DEPARTURE}</td>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<tr>
+		<td>{TITLE}</td>
+		<td>{QUANTITY}</td>
+	</tr>
+	</patTemplate:tmpl>
 	<tr>
 		<td>{HTARIFFTITLE}</td>
 		<td>{TARIFFINFO}</td>
 	</tr>
-</table>
-
-<table>
+	<patTemplate:tmpl name="custom_field_output" type="simpleCondition" requiredVars="description">
 	<tr>
-		<td>{HTOTAL}</td>
-		<td>{TOTAL}</td>
+		<td>{DESCRIPTION}</td>
+		<td>{VALUE}</td>
 	</tr>
-</table>
-<p>&nbsp;</p>
-{HNUMBEROFGUESTS}
-<patTemplate:tmpl name="rows" unusedvars="nbsp">
-{TITLE}&nbsp;X {QUANTITY}
-</patTemplate:tmpl>
-<br/>
-<patTemplate:tmpl name="custom_field_output" type="simpleCondition" requiredVars="description">
-{DESCRIPTION} <strong> {VALUE}</strong><br/>
-</patTemplate:tmpl>
-
-{ALLOCATION_NOTE}
-
-<p>&nbsp;</p>
-<table>
+	</patTemplate:tmpl>
 	<tr>
 		<td>{HSPECIAL_REQUIREMENTS}</td>
 		<td>{SPECIAL_REQUIREMENTS}</td>
 	</tr>
+	<tr>
+		<td><strong>{HTOTAL}</strong></td>
+		<td><strong>{TOTAL}</strong></td>
+	</tr>
+	<tr>
+		<td>{HDEPOSIT}</td>
+		<td>{DEPOSIT}</td>
+	</tr>
 </table>
-
-{INVOICE}
-
-
-
+<!--<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td>{ALLOCATION_NOTE}</td>
+	</tr>
+</table>-->
+<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td>{INVOICE}</td>
+	</tr>
+</table>
+</body>
 </patTemplate:tmpl>
