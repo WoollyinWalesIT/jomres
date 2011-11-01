@@ -84,15 +84,24 @@ jomresJquery(document).ready(function(){
 	display:block;
 }
 
-.menu{
-list-style:none;
-font-size:.8em;
+.menu_jomres_horiz {
+	list-style:none;
+	font-size:.8em;
+	line-height:14em;
+
 }
+
+.menu_jomres_horiz ul li{
+	z-index:9999 !important;
+	margin:0 0 0 0px;
+	padding:0 0 0 0px;
+}
+
 </style>
 
 <div id="jomres-menu-pinned" class="ui-helper-hidden">
 	<div id="jomres-menu-top-panel">
-		<ul id="jomres_mainmenu" class="menu" >
+		<ul id="jomres_mainmenu" class="menu_jomres_horiz" >
 			<patTemplate:tmpl name="button_output">
 				{DIV}
 			</patTemplate:tmpl>
