@@ -1,9 +1,12 @@
 /* Jomres CSS */
 body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;}
 a, img, form, table, tr, td {padding:0;margin:0;}
-a:link {color:#0B55C4;text-decoration:none;}
+tr, td {border:0 none !important;}
+a:link {color:#0B55C4;text-decoration:none !important;}
+p {margin:10px 0 15px !important;padding:0;}
 img { border: 0 none; }
 form div {margin:0 !important;}
+#accordion h3{margin:0 !important;}
 #toolbar-box {display:none;}
 #submenu-box {display:none;}
 .ui-accordion .ui-accordion-content {overflow:hidden;}
