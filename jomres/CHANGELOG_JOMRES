@@ -1,3 +1,28 @@
+Jomres 6.-2.0
+
+Fixed some confused language strings.
+Undid some hardened php changes, suhosin be damned. Those changes will affect current users of Jomres much more than it will the probably fewer people running suhosin, it's unfair to ask them to edit jomres.php and admin.php every time they want to upgrade.
+Small layout change to edit booking's email link and title.
+Disabled template touchable in 06000mainmenu.
+Disabled template touchable in 06000search
+Modified the plugin version check on the plugin installer, previously it would consider 6.-3.0 to be higher than 5.6.0
+Added inclusion of management_mainmenu_options.html to be used when Jomres is showing, sans joomla template output.
+Moved quick info javascript function into jomres.js.
+Menu template layout tweaks.
+Tweaked the management view to ensure that the management view link shows when NOT mobile browser.
+Modified system so that 99995 is only triggered once, allows third party menu options to be added. Re-instated the jomres toolbar icons in edit booking so that they're now in the main menu AND in the page itself.
+"bStateSave": true, added to all applicable templates.
+Tweaked how the manager view template is shown, ensures that the 99995 task is called at the end of Jomres' run.
+Fixing a new bug introducted in -3 where it grumbles about Fatal error: Call to a member function addItem() 
+Fixed a bug where booking a guest out resulted in a mainly empty page.
+Modified the editing mode warning, and added some new definitions.
+Modified how sanity checks are output to the top templates.
+Changed jquery cookie plugin, added cookie handling to mainmenu, modified mainmenu accordion's name to make it more unique.
+Added a new function to pull email styles from /css/email.css which can be inserted directly into an email, and new email templates added.
+menus modified to ensure that dashboard categories are moved to the beginning of the menus.
+Template fix for cron to ensure settings save, and css tweak.
+
+
 Jomres 6.-3.0
 
 Frontend structure completely rewritten to use a jquery based menu instead of our older toolbars.
