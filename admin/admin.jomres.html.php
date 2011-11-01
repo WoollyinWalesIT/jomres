@@ -69,12 +69,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
 			<td valign="middle">'.$lists['advanced_site_config'].'</td>
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			 <td valign="middle">'._JOMRES_MENU_SHOW_TITLE.'</td>
 			 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
 			 <td valign="middle">'._JOMRES_MENU_SHOW_DESC.'</td>
