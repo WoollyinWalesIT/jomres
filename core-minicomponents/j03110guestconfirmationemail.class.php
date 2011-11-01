@@ -225,7 +225,9 @@ class j03110guestconfirmationemail {
 			}
 
 		$output['ALLOCATION_NOTE'] = $tmpBookingHandler->tmpbooking["booking_notes"]["suppliment_note"];
-			
+		
+		$output['CSS_STYLES'] = mailer_get_css();
+
 		$custom_field_output = array();
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
