@@ -1332,8 +1332,24 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 
 function mailer_get_css()
 	{
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
+	$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
+	$subdir = $themeArr[0];
+	$filename = $themeArr[1];
+	if (isset($themeArr[2]))
+		$themePath = $themeArr[2]."/";
+	else
+		$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
+	
+	$jquery_ui_css_file = $themePath.JRDS.$filename;
+	
+	
 	$css_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."css".JRDS."email.css";
-	return "<style> ".file_get_contents ($css_file)." </style>";
+	return "<style> ".file_get_contents ($css_file).
+		file_get_contents ($jquery_ui_css_file)
+		."</style>";
 	}
 
 /*
