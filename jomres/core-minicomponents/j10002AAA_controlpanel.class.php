@@ -26,7 +26,7 @@ class j10002AAA_controlpanel
 		global $htmlFuncs;  // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
 		$htmlFuncs =jomres_getSingleton('html_functions');
 		
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN, 'Desktop.png', _JOMRES_CONTROLPANEL,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN, 'Desktop.png', _JOMRES_CONTROLPANEL,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "main" ,false,false));
 		}
 	
 	function touch_template_language()

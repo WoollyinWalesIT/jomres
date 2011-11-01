@@ -24,7 +24,7 @@ class j10002showSiteConfig
 			$this->template_touchable=false; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig', 'GlobalConfiguration.png', _JOMRES_A,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig', 'GlobalConfiguration.png', _JOMRES_A,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "main" ,false,false));
 		}
 	
 	
