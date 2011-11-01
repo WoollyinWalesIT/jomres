@@ -1,4 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+.REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
+span.required {color:red;}
+</style>
 <script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}&hl=en" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 function OnChange(dropdown)
@@ -9,13 +13,6 @@ function OnChange(dropdown)
 	return true;
 	}
 
-function OnChange(dropdown)
-	{	
-	var myindex	= dropdown.selectedIndex
-	var baseURL= "{JOMRES_SITEPAGE_URL}&task=editProperty"
-	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
-	return true;
-	}
 <!-- Clickable locations adapted from http://universimmedia.pagesperso-orange.fr/geo/loc.htm -->
 function load() {
 	if (GBrowserIsCompatible()) {

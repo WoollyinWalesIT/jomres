@@ -1,44 +1,33 @@
 <patTemplate:tmpl name="cancelbooking">
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td width="30%">{HARRIVAL}</td>
+		<td>{ARRIVAL}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{HDAYSTOARRIVAL}</td>
+		<td>{DAYSTOARRIVAL}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{HARRIVAL}</td>
-					<td class="jradmin_field_la">{ARRIVAL}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HDAYSTOARRIVAL}</td>
-					<td class="jradmin_field_la">{DAYSTOARRIVAL}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HDEPOSITPAID}</td>
-					<td class="jradmin_field_la">{DEPOSITAMOUNT}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_la">{HCONTRACTTOTAL}</td>
-					<td class="jradmin_field_la">{CONTRACTTOTAL}</td>
-				</tr>
-			</table>
-		</td>
+		<td>{HDEPOSITPAID}</td>
+		<td>{DEPOSITAMOUNT}</td>
+	</tr>
+	<tr>
+		<td>{HCONTRACTTOTAL}</td>
+		<td>{CONTRACTTOTAL}</td>
+	</tr>
+	<tr>
+		<td>{HREASON}</td>
+		<td><textarea class="inputbox" cols="30" rows="3" name="reason"></textarea></td>
 	</tr>
 </table>
-{HREASON}
-<textarea class="inputbox" cols="40" rows="3" name="reason"></textarea>
-
 {JOMRESTOKEN}
 <input type="hidden" name="contract_uid" value="{CONTRACT_UID}" />
 <input type="hidden" name="task" value="saveCancellation" />
 </form>
-
 </patTemplate:tmpl>
 </patTemplate:tmpl>

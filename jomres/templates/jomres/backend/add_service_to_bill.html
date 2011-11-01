@@ -1,32 +1,19 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td width="30%">{HSERVICEDESCRIPTION}</td>
+		<td><input class="inputbox" type="text" size="40" name="service_description" value="" /></td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{HSERVICEVALUE}</td>
+		<td>{CURRENCY}<input class="inputbox" type="text" size="6" name="service_value" value="" /></td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca"><?php echo jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$language);?></td>
-				</tr>
-			</table>
-			<table border="0"	class="admin_v_table">
-				<tr>
-					<th width="80%" class="jradmin_subheader_la">{HSERVICEDESCRIPTION}</th>
-					<th width="15%" class="jradmin_subheader_ca">{HSERVICEVALUE}</th>
-					<th width="15%" class="jradmin_subheader_ca">{HTAXRATE}</th>
-				</tr>
-				<tr>
-					<td width="80%" class="jradmin_field_la"><input class="inputbox" type="text" size="50" name="service_description" value="" /></td>
-					<td width="15%" class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" size="6" name="service_value" value="" /></td>
-					<td width="15%" class="jradmin_subheader_ca">{TAXRATEDROPDOWN}</td>
-				</tr>
-			</table>
-		</td>
+		<td>{HTAXRATE}</td>
+		<td>{TAXRATEDROPDOWN}</td>
 	</tr>
 </table>
 {JOMRESTOKEN}
