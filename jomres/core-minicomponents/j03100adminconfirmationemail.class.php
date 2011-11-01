@@ -149,7 +149,8 @@ class j03100adminconfirmationemail {
 		$output['TARIFFINFO']=$rateOutput;
 		$output['LINKTOBOOKING']="<a href=\"".JOMRES_SITEPAGE_URL_NOSEF."&task=editBooking&Itemid=".$Itemid."&contract_uid=".$componentArgs['contract_uid']."\">".jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,FALSE)."</a>";
 		$output['CLIENTIP']=$clientIP;
-
+		$output['CSS_STYLES'] = mailer_get_css();
+		
 		$guestDetails = getGuestDetailsForContract($componentArgs['contract_uid']);
 		$rows=array();
 		if (count($guestDetails)>0)

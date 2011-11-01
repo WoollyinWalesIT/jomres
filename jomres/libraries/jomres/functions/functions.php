@@ -1330,6 +1330,12 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 		//echo "Finished upgrade <br/>";
 		} // end of dirmv()
 
+function mailer_get_css()
+	{
+	$css_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."css".JRDS."email.css";
+	return "<style> ".file_get_contents ($css_file)." </style>";
+	}
+
 /*
 Allows us to work independantly of Joomla or Mambo's emailers
 */
