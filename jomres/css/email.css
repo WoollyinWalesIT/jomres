@@ -1,55 +1,9 @@
-/* Jomres CSS */
+/* Jomres Email CSS */
 body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;}
 a, img, form, table, tr, td {padding:0;margin:0;}
 a:link {color:#0B55C4;text-decoration:none;}
 img { border: 0 none; }
-form div {margin:0 !important;}
-#toolbar-box {display:none;}
-#submenu-box {display:none;}
-.ui-accordion .ui-accordion-content {overflow:hidden;}
-#ui-datepicker-div { display: none; }
-.ui-widget {font-size: inherit;}
-.ui-tabs .ui-tabs-nav li {list-style:none outside none !important;}
-.fg-button { outline: 0; margin:0 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
-.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
-a.fg-button { float:left; }
-button.fg-button { width:auto; overflow:visible; }
-.fg-button-icon-left { padding-left: 2.1em; }
-.fg-button-icon-right { padding-right: 2.1em; }
-.fg-button-icon-left .ui-icon { right: auto; left: .2em; margin-left: 0; }
-.fg-button-icon-right .ui-icon { left: auto; right: .2em; margin-left: 0; }
-.fg-button-icon-solo { display:block; width:8px; text-indent: -9999px;}	
-.fg-buttonset { float:left; }
-.fg-buttonset .fg-button { float: left; }
-.fg-buttonset-single .fg-button, .fg-buttonset-multi .fg-button { margin-right: -1px;}
-.fg-toolbar { padding: .5em; margin: 0;  }
-.fg-toolbar .fg-buttonset { margin-right:1.5em; padding-left: 1px; }
-.fg-toolbar .fg-button { font-size: 1em;  }
-.property-title {font-size:16px;font-weight: bold;line-height: 26px;}
-.property-title a {text-decoration:none;}
-.property-header {padding:3px;}
-.property-image{width:130px;display:block;}
-.property-desc p {margin-bottom: 15px;margin-top: 10px;}
-.property-desc {margin-bottom: 15px;margin-top: 10px;}
-.jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
-.jomres_message {color: #cc0000;font-size: 10px;line-height: 12px;}
-.float-left {float:left;}
-.float-right {float:right;}
-.full-width {width:100%;}
-.jomres_property_list_propertywrapper {margin-bottom:20px;}
-.plist-buttons{width: 160px;display:block;float:right;}
-.plist-button {width:130px;margin-bottom:5px;}
-.plist-button-last {width:130px;}
-.quick-info {height:auto;overflow:hidden;width:auto;position:relative;}
-.quick-info-left {padding:5px;width:48%;}
-.quick-info-right {padding:5px;width:48%;}
-.left-column {width:74%;}
-.right-column {width:24%;}
-.half-column {width:50%}
-.left-column p {margin:0 !important;}
-.odd {background-color: #E2E4FF;}
-.even {background-color: #FFF;}
-.jomrestexteditable{color: #99f;background-color:#fff;}
-/* Availability Calendar */
-table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
-a.rescal:hover{background-color: white;color: black;}
+p {margin-bottom: 15px;margin-top: 10px;}
+h2 {font-size:16px;font-weight:bold;}
+h3 {font-size:14px;font-weight:bold;}
+.ui-widget-content {font-size: 11px;}
