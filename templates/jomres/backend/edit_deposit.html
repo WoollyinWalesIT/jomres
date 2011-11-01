@@ -1,29 +1,23 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td width="30%">{HBOOKINGNUMBER}</td>
+		<td>{BOOKINGNUMBER}</td>
 	</tr>
 	<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td>{HCONTRACT_TOTAL}</td>
+		<td>{CONTRACT_TOTAL}</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HBOOKINGNUMBER}</td>
-					<td class="jradmin_subheader_ca">{HCONTRACT_TOTAL}</td>
-					<td class="jradmin_subheader_ca">{HDEPOSITREQUIRED}</td>
-					<td class="jradmin_subheader_ca">{HDEPOSIT_REF}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca">{BOOKINGNUMBER}</td>
-					<td class="jradmin_field_ca">{CONTRACT_TOTAL}</td>
-					<td class="jradmin_field_ca">{DEPOSITREQUIRED}</td>
-					<td class="jradmin_field_ca"><input type="text" class="inputbox" size="18" name="depositRef" value="" /></td>
-				</tr>
-			</table>
-		</td>
+		<td>{HDEPOSITREQUIRED}</td>
+		<td>{DEPOSITREQUIRED}</td>
+	</tr>
+	<tr>
+		<td>{HDEPOSIT_REF}</td>
+		<td><input type="text" class="inputbox" size="18" name="depositRef" value="" /></td>
 	</tr>
 </table>
 {JOMRESTOKEN}

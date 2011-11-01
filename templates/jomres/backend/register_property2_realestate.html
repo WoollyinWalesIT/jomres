@@ -220,11 +220,8 @@ jomresJquery(document).ready(function() {
 </script>
 <h2>Register your property - Step 2 (title to be generated)</h2>
 <p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm">
 <table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td width="30%">{HPROPERTY_TYPE}</td>
-		<td>{PROPERTY_TYPE_DROPDOWN}</td> 
-	</tr>
 	<tr>
 		<td>{HNAME}<span class="required">*</span></td>
 		<td><input class="inputbox" type="text" size="20" name="property_name" value="{PROPERTY_NAME}" /></td>

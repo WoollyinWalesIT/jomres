@@ -1,18 +1,39 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_black_bookings').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
 <h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table width="100%" border="0" class="ui-widget-content ui-corner-all">
-	<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
-	<tr>
-		<td width="40">{CHECKBOX}</td>
-		<td>{EDITLINK}</td>
-	</tr>
-	</patTemplate:tmpl>
-	<tr>
-		<td colspan="2">{NOBLACKBOOKINGS}</td>
-	</tr>
+<table width="100%" border="0" id="list_black_bookings">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Edit</th>
+			<th>{HSTART}</th>
+			<th>{HRESUMEDATE}</th>
+			<th>{HREASON}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="bookingsrows" unusedvars="nbsp">
+		<tr>
+			<td width="30">{CHECKBOX}</td>
+			<td>{EDITLINK}</td>
+			<td>{START}</td>
+			<td>{RESUMEDATE}</td>
+			<td>{REASON}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
+<p>{NOBLACKBOOKINGS}</p>
 <input type="hidden" name="task" value="delete_multiple_blackbookings" />
 </form>
 </patTemplate:tmpl>
