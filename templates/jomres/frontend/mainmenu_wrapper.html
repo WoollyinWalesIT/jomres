@@ -1,8 +1,5 @@
 <patTemplate:tmpl name="pageoutput">
 <script>
-//jomresJquery('#jomres_menu_wrapper').prependTo('body');
-
-
 jomresJquery(document).ready(function() {
 
 	(function() {
@@ -31,21 +28,27 @@ jomresJquery(document).ready(function() {
 
 });
 
+var cookieName = 'stickyAccordion';
 
 jomresJquery(function() {
-	jomresJquery( "#accordion" ).accordion({ 
+	jomresJquery( "#jomres_menu_accordion" ).accordion({ 
 		autoHeight: true,
 		navigation: true,
 		collapsible: true,
-		fillSpace: true
-	});
-	
+		fillSpace: true,
+		active: ( jomresJquery.cookies.get( cookieName ) || 0 ),
+		change: function( e, ui )
+			{
+			jomresJquery.cookies.set( cookieName, jomresJquery( this ).find( 'h3' ).index ( ui.newHeader[0] ) );
+			}
+		});
+
 	//jomresJquery("#jomres_menu_wrapper").slideToggle();
 	
 	jomresJquery("#jomres_menu_trigger").click(function(){
 		jomresJquery("#jomres_menu_wrapper").slideToggle();
 		});
-});
+	});
 
 function runEffect() {
 	var body = jomresJquery(this).parent().children("div.jomres_menu");
@@ -78,7 +81,7 @@ function runEffect() {
 </style>
 <div id="jomres_menu">
 	<div id="jomres_menu_wrapper" class="ui-helper-clearfix ui-helper-hidden">
-		<div id="accordion" style="font-size:.9em;height:400px">
+		<div id="jomres_menu_accordion" style="font-size:.9em;height:400px">
 			<patTemplate:tmpl name="button_output">
 				{DIV}
 			</patTemplate:tmpl>
