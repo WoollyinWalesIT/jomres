@@ -318,7 +318,8 @@ class j00015viewproperty
 			if (empty($property['POLICIESDISCLAIMERS']))
 				$property['HPOLICIESDISCLAIMERS']="";
 			
-			$property['REAL_ESTATE_PROPERTY_PRICE']=output_price($current_property_details->real_estate_property_price);
+			if ($mrConfig['is_real_estate_listing']==1)
+				$property['REAL_ESTATE_PROPERTY_PRICE']=output_price($current_property_details->real_estate_property_price);
 			$property['PRINT_ICON']=get_showtime('live_site').'/jomres/images/jomresimages/small/Printer.png';
 			$property['PRINT_LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&jr_printable&popup=1&tmpl=component&property_uid=".$property_uid);
 			

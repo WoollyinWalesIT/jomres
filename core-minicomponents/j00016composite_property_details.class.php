@@ -100,17 +100,10 @@ class j00016composite_property_details {
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		
 		if (isset($_REQUEST['jr_printable']))
-			{
 			$tmpl->readTemplatesFromInput( 'composite_property_details_printable.html');
-			}
 		else
-			{
-			if ($mrConfig['is_real_estate_listing']==0)
-				$tmpl->readTemplatesFromInput( 'composite_property_details.html');
-			else
-				$tmpl->readTemplatesFromInput( 'realestate_property_details.html');
-			}
-		
+			$tmpl->readTemplatesFromInput( 'composite_property_details.html');
+
 		$cachableContent = $tmpl->getParsedTemplate();
 		$task 				= get_showtime('task');
 		jr_import('jomres_cache');
