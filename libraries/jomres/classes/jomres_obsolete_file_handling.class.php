@@ -503,6 +503,19 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_minicomponents.'j00008user_toolbars.class.php');
 		$this->add_obs_file($this->dir_minicomponents.'j00013a_listyourproperties.class.php');
 
+		$this->add_obs_file($this->dir_templates_backend.'toolbar_manager_manager_view.html');
+		$this->add_obs_file($this->dir_templates_backend.'toolbar_reception_manager_view.html');
+		$this->add_obs_file($this->dir_templates_backend.'toolbar_thirdparty.html');
+		$this->add_obs_file($this->dir_templates_backend.'edit_creditcard.html');
+		$this->add_obs_file($this->dir_templates_backend.'save_creditcard.html');
+		$this->add_obs_file($this->dir_templates_backend.'edit_custom_text.html');
+		$this->add_obs_file($this->dir_templates_backend.'save_custom_text.html');
+		$this->add_obs_file($this->dir_templates_backend.'toolbar_manager.html');
+		$this->add_obs_file($this->dir_templates_backend.'toolbar_reception.html');
+		$this->add_obs_file($this->dir_templates_backend.'list_guests_invoices.html');
+		
+		
+		
 		}
 	
 	function add_obs_file($path_and_file)
