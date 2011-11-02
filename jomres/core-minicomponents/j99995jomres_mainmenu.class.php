@@ -23,12 +23,11 @@ class j99995jomres_mainmenu {
 			}
 		
 		$thisJRUser=jomres_getSingleton('jr_user');
-		
+
 		// Stops the main menu from being generated twice.
 		if (get_showtime('mainmenu_alreadyrun'))
 			return;
-		set_showtime('mainmenu_alreadyrun',true);
-		
+
 		$output=array();
 		$query="SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
 		$publishedProperties = count(doSelectSql($query));

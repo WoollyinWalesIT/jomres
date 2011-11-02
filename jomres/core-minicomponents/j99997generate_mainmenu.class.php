@@ -21,6 +21,12 @@ class j99997generate_mainmenu {
 			{
 			$this->template_touchable=false; return;
 			}
+
+		// Stops the main menu from being generated twice.
+		if (get_showtime('mainmenu_alreadyrun'))
+			return;
+		set_showtime('mainmenu_alreadyrun',true);
+		
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
