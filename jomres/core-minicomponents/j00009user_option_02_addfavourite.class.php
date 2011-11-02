@@ -39,16 +39,8 @@ class j00009user_option_02_addfavourite {
 		if ($thisJRUser->userIsRegistered)
 			{
 			$query="SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '".(int)$property_uid."' AND my_id='".(int)$thisJRUser->id."'";
-			$favourites=doSelectSql($query);
-			$favs=array();
-			if (count($favourites)>0)
-				{
-				foreach ($favourites as $f)
-					{
-					$favs[]=$f->property_uid;
-					}
-				}
-			if (get_showtime('task')=='viewproperty' && !in_array($property_uid,$favs) )
+			$favourite=doSelectSql($query,1);
+			if (get_showtime('task')=='viewproperty' && !$favourite )
 				{
 				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=muaddtofavourites&no_html=1&amp;property_uid=".$property_uid, '', jr_gettext('_JOMCOMP_MYUSER_ADDTOFAVOURITES',_JOMCOMP_MYUSER_ADDTOFAVOURITES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 				}

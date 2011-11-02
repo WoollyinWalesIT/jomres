@@ -1,133 +1,99 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<table class="jradmin_innerwrapper" width="700px">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<p><strong>{BL_DEAR} {GUEST_FIRSTNAME} {GUEST_SURNAME}</strong></p>
+<p>{BL_INTRO1} {PROP_NAME}{BL_INTRO2}</p>
+<table width="100%" border="0">
 	<tr>
-		<img src="{IMAGE}" border="0">
-	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
+		<td width="50%" valign="top">
+			<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 				<tr>
-					<td width="23%">
-						<table class="jradmin_table">
-							<tr>
-								<td>{GUEST_FIRSTNAME} {GUEST_SURNAME}</td>
-							</tr>
-							<tr>
-								<td>{GUEST_STREET} {GUEST_HOUSE}</td>
-							</tr>
-							<tr>
-								<td>{GUEST_POSTCODE} {GUEST_TOWN}</td>
-							</tr>
-							<tr>
-								<td>{GUEST_REGION}</td>
-							</tr>
-							<tr>
-								<td>{GUEST_COUNTRY}</td>
-							</tr>
-						</table>
-					</td>
-					<td width="23%">&nbsp;</td>
-					<td width="54%">
-						<table align="right" class="jradmin_table" width="20%">
-							<tr>
-								<td align="right">&nbsp;</td>
-								<td align="right"><b>{PROP_NAME}</b></td>
-							</tr>
-							<tr>
-								<td align="right">&nbsp;</td>
-								<td align="right">{PROP_STREET}</td>
-							</tr>
-							<tr>
-								<td align="right">&nbsp;</td>
-								<td align="right">{PROP_POSTCODE}</td>
-							</tr>
-							<tr>
-								<td align="right">&nbsp;</td>
-								<td align="right">{PROP_REGION}</td>
-							</tr>
-							<tr>
-								<td align="right">&nbsp;</td>
-								<td align="right">{PROP_COUNTRY}</td>
-							</tr>
-							<tr>
-								<td align="right">{HTELEPHONE}</td>
-								<td align="right">{PROP_TEL}</td>
-							</tr>
-							<tr>
-								<td align="right">{HFAX}</td>
-								<td align="right">{PROP_FAX}</td>
-							</tr>
-							<tr>
-								<td align="right">{HEMAIL}</td>
-								<td align="right">{PROP_EMAIL}</td>
-							</tr>
-							<tr>
-								<td align="right">{HWEBSITE}</td>
-								<td align="right">{PROP_URL}</td>
-							</tr>
-						</table>
-					</td>
+					<td><strong>{GUEST_FIRSTNAME} {GUEST_SURNAME},</strong></td>
+				</tr>
+				<tr>
+					<td>{GUEST_STREET} {GUEST_HOUSE}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_TOWN}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_REGION}</td>
+				</tr>
+				<tr>
+					<td>{GUEST_POSTCODE} </td>
+				</tr>
+				<tr>
+					<td>{GUEST_COUNTRY}</td>
 				</tr>
 			</table>
-			<p>&nbsp;</p>
-			<table bgcolor=#ffffff width=690 border="0">
+		</td>
+		<td width="50%" valign="top">
+			<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 				<tr>
-					<td>{BL_DEAR} {GUEST_FIRSTNAME} {GUEST_SURNAME}</td>
+					<td><strong>{PROP_NAME}</strong></td>
 				</tr>
 				<tr>
-					<td>{BL_INTRO1} {PROP_NAME}{BL_INTRO2}</td>
-				</tr>
-			</table>
-			<table>
-				<tr>
-					<td colspan="2">{INVOICETITLE}</td>
+					<td>{PROP_STREET}</td>
 				</tr>
 				<tr>
-					<td>{HSTAYNIGHTS}</td>
-					<td style="width:100px"><b>{STAYNIGHTS}</b></td>
+					<td>{PROP_TOWN}</td>
 				</tr>
 				<tr>
-					<td>{HCONTRACTAGREED}</td>
-					<td style="width:100px"><b>{CONTRACTAGREED}</b></td>
+					<td>{PROP_REGION}</td>
 				</tr>
 				<tr>
-					<td>{HCOSTPERNIGHT}</td>
-					<td style="width:100px"><b>{COSTPERNIGHT}</b></td>
+					<td>{PROP_POSTCODE}</td>
 				</tr>
 				<tr>
-					<td>{HSINGLEPERSON_COST}</td>
-					<td style="width:100px"><b>{SINGLEPERSON_COST}</b></td>
+					<td>{PROP_COUNTRY}</td>
 				</tr>
 				<tr>
-					<td colspan="2" >{HEXTRASERVICE}</td>
-				</tr>
-				<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
-				<tr>
-					<td>{DESC}</td>
-					<td style="width:100px"><b>{VAL}</b></td>
-				</tr>
-				</patTemplate:tmpl>
-				<tr>
-					<td >{HEXTRASERVICE_TOTAL}</td>
-					<td style="width:100px"><b>{EXTRASERVICE_TOTAL}</b></td>
+					<td>{HTELEPHONE} {PROP_TEL}</td>
 				</tr>
 				<tr>
-					<td>{HGRANDTOTAL}</td>
-					<td><b>{GRANDTOTAL}</b></td>
+					<td>{HFAX} {PROP_FAX}</td>
 				</tr>
-			</table>
-			<table bgcolor=#ffffff width=690 border="0">
 				<tr>
-					<td colspan="1">{HOPEYOUENJOYEDSTAY}</td>
+					<td>{HEMAIL} {PROP_EMAIL}</td>
 				</tr>
-			</table>
-			<br/><br/><br/>
-			<table bgcolor=#ffffff width=690 border="0">
 				<tr>
-					<td colspan="1">{SIGNEDONBEHALF} {PROP_NAME}</td>
+					<td>{HWEBSITE} {PROP_URL}</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 </table>
+<br />
+<table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td width="30%">{HSTAYNIGHTS}</td>
+		<td>{STAYNIGHTS}</td>
+	</tr>
+	<tr>
+		<td>{HCONTRACTAGREED}</td>
+		<td>{CONTRACTAGREED}</td>
+	</tr>
+	<tr>
+		<td>{HCOSTPERNIGHT}</td>
+		<td>{COSTPERNIGHT}</td>
+	</tr>
+	<tr>
+		<td>{HSINGLEPERSON_COST}</td>
+		<td>{SINGLEPERSON_COST}</td>
+	</tr>
+	<patTemplate:tmpl name="output_extras" unusedvars="nbsp" >
+	<tr>
+		<td>{DESC}</td>
+		<td>{VAL}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td >{HEXTRASERVICE_TOTAL}</td>
+		<td>{EXTRASERVICE_TOTAL}</td>
+	</tr>
+	<tr>
+		<td><strong>{HGRANDTOTAL}</strong></td>
+		<td><strong>{GRANDTOTAL}</strong></td>
+	</tr>
+</table>
+<p>{HOPEYOUENJOYEDSTAY}</p>
+<p>{SIGNEDONBEHALF} {PROP_NAME}</p>
 </patTemplate:tmpl>

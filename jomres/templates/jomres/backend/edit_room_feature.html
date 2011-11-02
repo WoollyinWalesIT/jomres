@@ -1,22 +1,12 @@
-<patTemplate:tmpl name="editroomfeature">
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="editroomfeature" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
-	</tr>
-	<tr>
-		<td>{JOMRESTOOLBAR}</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{HFEATUREDESCRIPTION}</td>
-					<td class="jradmin_field_la"><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" size="40" /></td>
-				</tr>
-			</table>
-		</td>
+		<td width="30%">{HFEATUREDESCRIPTION}</td>
+		<td><input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" size="40" /></td>
 	</tr>
 </table>
 {JOMRESTOKEN}
@@ -24,5 +14,4 @@
 <input type="hidden" name="task" value="saveRoomFeature" />
 </form>
 </patTemplate:tmpl>
-
 </patTemplate:tmpl>

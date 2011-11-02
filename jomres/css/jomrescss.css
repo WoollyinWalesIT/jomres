@@ -1,7 +1,6 @@
 /* Jomres CSS */
-body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;text-align:left !important;}
+body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;text-align:left !important;position: inherit !important;}
 a, img, form, table, tr, td {padding:0;margin:0;}
-tr, td {border:1px none !important;}
 table{ border-collapse:separate !important;}
 a:link {color:#0B55C4;text-decoration:none !important;}
 p {margin:10px 0 15px !important;padding:0;}
@@ -39,12 +38,14 @@ button.fg-button { width:auto; overflow:visible; }
 .jomres_message {color: #cc0000;font-size: 10px;line-height: 12px;}
 .float-left {float:left;}
 .float-right {float:right;}
+.align-left {text-align:left !important;}
+.align-right {text-align:right !important;}
 .full-width {width:100%;}
 .jomres_property_list_propertywrapper {margin-bottom:20px;}
 .plist-buttons{width: 160px;display:block;float:right;}
 .plist-button {width:130px;margin-bottom:5px;}
 .plist-button-last {width:130px;}
-.quick-info {height:auto;width:auto;position:relative;}
+.quick-info {min-height:150px;width:auto;position:relative;}
 .quick-info-left {padding:5px;width:48%;}
 .quick-info-right {padding:5px;width:48%;}
 .left-column {width:74%;}
@@ -53,11 +54,13 @@ button.fg-button { width:auto; overflow:visible; }
 .left-column p {margin:0 !important;}
 tr.odd {background: #E2E4FF !important;}
 tr.even {background: #FFF;}
+.big-price{font-weight:bold;font-size:16px;}
 .jomrestexteditable{color: #99f;background-color:#fff;}
 /* Availability Calendar */
 table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
 a.rescal:hover{background-color: white;color: black;}
 /* Beez template fixes */
+tr, td{border:0 none !important;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}
