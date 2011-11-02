@@ -1,40 +1,36 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<p>{DESC}</p>
 <form action="index.php?option=com_jomres" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
+		<td>{HFIRSTNAME}</td>
+		<td><input class="jomres_inputbox" type="text" name="firstname" value="{FIRSTNAME}" /></td>
 	</tr>
 	<tr>
-		<td class="jradmin_field_ca">{DESC}</td>
+		<td>{HSURNAME}</td>
+		<td><input class="jomres_inputbox" type="text" name="surname" value="{SURNAME}" /></td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_la">{HFIRSTNAME}</td>
-					<td class="jradmin_subheader_la">{HSURNAME}</td>
-					<td class="jradmin_subheader_la">{HADDRESS}</td>
-					<td class="jradmin_subheader_la">{HCOUNTRY}</td>
-					<td class="jradmin_subheader_ca">{HPOSTCODE}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="firstname" value="{FIRSTNAME}" /></td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="surname" value="{SURNAME}" /></td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="address" value="{ADDRESS}" /></td>
-					<td class="jradmin_field_ca">{COUNTRYDROPDOWN}</td>
-					<td class="jradmin_field_ca"><input class="jomres_inputbox" type="text" name="postcode" value="{POSTCODE}" /></td>
-				</tr>
-			</table>
-		</td>
+		<td>{HADDRESS}</td>
+		<td><input class="jomres_inputbox" type="text" name="address" value="{ADDRESS}" /></td>
 	</tr>
-	
+	<tr>
+		<td>{HCOUNTRY}</td>
+		<td>{COUNTRYDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HPOSTCODE}</td>
+		<td><input class="jomres_inputbox" type="text" name="postcode" value="{POSTCODE}" /></td>
+	</tr>
+	<tr>
+		<td colspan="2"><input type="button" name="send" value="{SUBMIT}" class="fg-button ui-state-default ui-corner-all" onclick="document.adminForm.submit();"/></td>
+	</tr>
 </table>
-
 {JOMRESTOKEN}
 <input type="hidden" name="package_id" value="{PACKAGE_ID}" />
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="save_subscriber" />
 <input type="hidden" name="no_html" value="1" />
-<input type="button" name="send" value="{SUBMIT}" class="button" onclick="document.adminForm.submit()"/>
 </form>
 </patTemplate:tmpl>

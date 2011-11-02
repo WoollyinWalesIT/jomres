@@ -1,12 +1,10 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
-<div class="fg-toolbar ui-widget-header ui-corner-all">
-{_JOMRES_REVIEWS_NOREVIEWS}<br/>
-</div>
-<div class=" ui-widget ui-widget-content ui-corner-all">
-	<div style="padding:5px">
-		{_JOMRES_REVIEWS_ADD_REVIEW}
-	</div>
-</div>
-
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+	<tr>
+		<th class="ui-state-highlight">{_JOMRES_REVIEWS_NOREVIEWS}</th>
+	</tr>
+	<tr>
+		<td>{_JOMRES_REVIEWS_ADD_REVIEW}</td>
+	</tr>
+</table>
 </patTemplate:tmpl>

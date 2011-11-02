@@ -1,8 +1,4 @@
-<patTemplate:tmpl name="pageoutput" >
-<style>
-.REmail {border:solid 1px {INPUTBOXERRORBORDER};background-color: {INPUTBOXERRORBACKGROUND};}
-td.required {color:red;}
---></style>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 function validateContactForm()
 	{
@@ -94,22 +90,20 @@ function echeck(str) {
 	return true
 	}
 </script>
-
 {FORMSTART}
-{SUBJECT}
-<table>
-<td class="jradmin_field_la"> </td> 
+<h2>{SUBJECT}</h2>
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<tr>
-		<td><b>{HNAME}</b></td>
-		<td><input class="inputbox" type="text" size="25" name="guest_name" value="{GUEST_NAME}" /></td>
+		<td width="30%">{HNAME}</td>
+		<td><input class="inputbox" type="text" size="40" name="guest_name" value="{GUEST_NAME}" /></td>
 	</tr>
 	<tr>
-		<td><b>{HEMAIL}</b></td>
-		<td><input class="inputbox" type="text" size="25" name="guest_email" value="{GUEST_EMAIL}" type="email" /></td>
+		<td>{HEMAIL}</td>
+		<td><input class="inputbox" type="text" size="40" name="guest_email" value="{GUEST_EMAIL}" type="email" /></td>
 	</tr>
 	<tr>
-		<td><b>{HENQUIRY}</b></td>
-		<td><textarea class="inputbox" cols="40" rows="6" name="enquiry">{ENQUIRY}</textarea></td>
+		<td>{HENQUIRY}</td>
+		<td><textarea class="inputbox" cols="40" rows="5" name="enquiry">{ENQUIRY}</textarea></td>
 	</tr>
 </table>
 {JOMRESTOKEN}

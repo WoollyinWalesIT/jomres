@@ -1,15 +1,35 @@
-<patTemplate:tmpl name="pageoutput" >
-<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
-<table width="100%">
-    <tr class="ui-widget-header">
-		<td>{HPNAME}</td><td>&nbsp;</td><td>{HPTYPES}</td><td>&nbsp;</td>
-    </tr>
-      <patTemplate:tmpl name="rows" unusedvars="nbsp">
-    <tr>
-		<td><b><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></b></td><td>{IMAGE} <br/>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY} <br/>{PROP_TEL}</td><td>{TYPE}</td><td><a href="{REMOVELINK}">{REMOVETEXT}</a></td>
-    </tr>
-      </patTemplate:tmpl>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#view_favourites').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>View Favourites (title to be generated)</h2>
+<table id="view_favourites" width="100%" border="0">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>{HPNAME}</th>
+			<th>&nbsp;</th>
+			<th>{HPTYPES}</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{IMAGE}</td>
+			<td><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></td>
+			<td>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}, {PROP_TEL}</td>
+			<td>{TYPE}</td>
+			<td><a href="{REMOVELINK}">{REMOVETEXT}</a></td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
 </table>
 </div>
 </patTemplate:tmpl>

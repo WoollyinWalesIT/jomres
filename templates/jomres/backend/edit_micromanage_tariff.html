@@ -7,99 +7,87 @@
 	background-color: #ffffff;
 }
 </style>
+<h2>Edit Tariff (title to be generated)</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
-		</tr>
-		<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td width="30%">{HTARIFFTITLE}</td>
+		<td><input type="text" size="20" class="inputbox" name="tarifftypename" value="{TARIFFTYPENAME}" /></td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca" colspan="2">{HTARIFFTITLE}</td>
-					<td class="jradmin_field_ca" colspan="3"><input type="text" size="20" class="inputbox" name="tarifftypename" value="{TARIFFTYPENAME}" /></td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_ca">{HMINDAYS}</td>
-					<td class="jradmin_subheader_ca">{HMAXDAYS}</td>
-					<td class="jradmin_subheader_ca">{HMINPEOPLE}</td>
-					<td class="jradmin_subheader_ca">{HMAXPEOPLE}</td>
-					<td class="jradmin_subheader_ca">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="mindays" value="{MINDAYS}" /></input></td>
-					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="maxdays" value="{MAXDAYS}" /></input></td>
-					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="minpeople" value="{MINPEOPLE}" /></td>
-					<td class="jradmin_field_ca"><input type="text" size="2" class="inputbox" name="maxpeople" value="{MAXPEOPLE}" /></td>
-					<td class="jradmin_field_ca">&nbsp;</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_ca">{HROOMTYPEDROPDOWN}</td>
-					<td class="jradmin_subheader_ca">{HFIXED_DAYOFWEEK}</td>
-					<td class="jradmin_subheader_ca">{HIGNOREPPPNDROPDOWN}</td>
-					<td class="jradmin_subheader_ca">{HALLOWWEEKENDSDROPDOWN}</td>
-					<td class="jradmin_subheader_ca">{HWEEKENDONLY}</td>
-					
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca">{ROOMTYPEDROPDOWN}</td>
-					<td class="jradmin_field_ca">{FIXED_ARRIVAL_DAYOFWEEK}</td>
-					<td class="jradmin_field_ca">{IGNOREPPPNDROPDOWN}</td>
-					<td class="jradmin_field_ca">{ALLOWWEEKENDSDROPDOWN}</td>
-					<td class="jradmin_field_ca">{WEEKENDONLY}</td>
-				</tr>
-			</table>
-			<patTemplate:tmpl name="already_selected_rows" type="simpleCondition" requiredVars="hminrooms">
-			<table border="0" class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HMINROOMS}</td>
-					<td class="jradmin_field_ca">{MINROOMS_ALREADYSELECTED}</td>
-					<td class="jradmin_subheader_ca">{HMAXROOMS}</td>
-					<td class="jradmin_field_ca">{MAXROOMS_ALREADYSELECTED}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_ca" colspan="2" >{MINROOMS_DESC}</td>
-					<td class="jradmin_subheader_ca" colspan="2" >{MAXROOMS_DESC}</td>
-				</tr>
-			</table>
-			</patTemplate:tmpl>
+		<td>{HMINDAYS}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}" /></td>
+	</tr>
+	<tr>
+		<td>{HMAXDAYS}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}" /></td>
+	</tr>
+	<tr>
+		<td>{HMINPEOPLE}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}" /></td>
+	</tr>
+	<tr>
+		<td>{HMAXPEOPLE}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}" /></td>
+	</tr>
+	<tr>
+		<td>{HROOMTYPEDROPDOWN}</td>
+		<td>{ROOMTYPEDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HIGNOREPPPNDROPDOWN}</td>
+		<td>{IGNOREPPPNDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HALLOWWEEKENDSDROPDOWN}</td>
+		<td>{ALLOWWEEKENDSDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HWEEKENDONLY}</td>
+		<td>{WEEKENDONLY}</td>
+	</tr>
+	<tr>
+		<td>{HFIXED_DAYOFWEEK}</td>
+		<td>{FIXED_ARRIVAL_DAYOFWEEK}</td>
+	</tr>
+	<patTemplate:tmpl name="already_selected_rows" type="simpleCondition" requiredVars="hminrooms">
+	<tr>
+		<td>{HMINROOMS}*</td>
+		<td>{MINROOMS_ALREADYSELECTED}</td>
+	</tr>
+	<tr>
+		<td>{HMAXROOMS}**</td>
+		<td>{MAXROOMS_ALREADYSELECTED}</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+			<p>*{MINROOMS_DESC}</p>
+			<p>**{MAXROOMS_DESC}</p>
 		</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<br />
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+	<tr>
+		<td colspan="7">{PICKER_DAYSOFWEEK}</td>
+	</tr>
+	<tr>
+	<patTemplate:tmpl name="prefillbuttons" unusedvars="nbsp">
+		<td>
+		{BUTTON}{JS}
+		</td>
+	</patTemplate:tmpl>
+	</tr>
+	<tr>
+	<patTemplate:tmpl name="prefills" unusedvars="nbsp">
+		<td>
+		{INPUT}
+		</td>
+	</patTemplate:tmpl>
 	</tr>
 </table>
-<br/>
-<hr>
-<table class="jradmin_innerwrapper">
-	<tr>
-		<td>
-			{PICKER_DAYSOFWEEK}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-				<patTemplate:tmpl name="prefillbuttons" unusedvars="nbsp">
-					<td class="jradmin_subheader_ca">
-					{BUTTON}{JS}
-					</td>
-				</patTemplate:tmpl>
-				</tr>
-				<tr>
-				<patTemplate:tmpl name="prefills" unusedvars="nbsp">
-					<td class="jradmin_field_ca">
-					{INPUT}
-					</td>
-				</patTemplate:tmpl>
-				</tr>
-
-			</table>
-		</td>
-	</tr>
-</table>
-
 <script>
 function jomres_micromanage_rate_picker()
 	{
@@ -196,54 +184,52 @@ function jomres_micromanage_picker_get_epoch(jsdate)
 		return colour;
 		}
 </script>
-<hr width="50%">
-
-<table class="jradmin_table">
+<br />
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<tr>
-		<td colspan="3">{PICKER_DATERANGES}</td>
+		<td colspan="4">{PICKER_DATERANGES}</td>
 	</tr>
 	<tr>
-		<td class="jradmin_subheader_ca">{PICKER_DATERANGES_START}</td><td class="jradmin_subheader_ca">{PICKER_DATERANGES_END}</td><td class="jradmin_subheader_ca">{PICKER_DATERANGES_RATE}</td><td class="jradmin_subheader_ca">&nbsp;<td>
+		<th class="ui-state-default">{PICKER_DATERANGES_START}</th>
+		<th class="ui-state-default">{PICKER_DATERANGES_END}</th>
+		<th class="ui-state-default">{PICKER_DATERANGES_RATE}</th>
+		<th class="ui-state-default">&nbsp;<th>
 	</tr>
 	<tr>
-		<td class="jradmin_field_ca">{PICKER_FROM}</td>
-		<td class="jradmin_field_ca">{PICKER_TO}</td>
-		<td class="jradmin_field_ca"><input type="text" size="5" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" id="picker_value" value="55" /></td>
-		<td class="jradmin_field_ca"><input type="button" id="set_value" value="{PICKER_DATERANGES_SET}" onClick="jomres_micromanage_rate_picker()" /></td>
+		<td>{PICKER_FROM}</td>
+		<td>{PICKER_TO}</td>
+		<td><input type="text" size="5" style="padding: 1px; font-size: 9px;border:solid 1px #cccccc; background-color: #ffffff;" id="picker_value" value="55" /></td>
+		<td><input type="button" id="set_value" value="{PICKER_DATERANGES_SET}" onClick="jomres_micromanage_rate_picker()" /></td>
 	</tr>
 </table>
-
-
-
-<hr>
-<table class="jradmin_innerwrapper">
+<br />
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<patTemplate:tmpl name="daterows" unusedvars="nbsp">
 	<tr>
-		<td class="jradmin_subheader_ca">{YEAR} {MONTH}</td>
+		<th class="ui-state-default">{YEAR} {MONTH}</td>
 	</tr>
 	<tr>
 		<td>
-			<table class="jradmin_table">
+			<table width="100%" border="0">
 				<tr>
-					<td class="jradmin_subheader_ca">{DAYS1}</td>
+					<td>{DAYS1}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca">{INPUTS1}</td>
+					<td>{INPUTS1}</td>
 				</tr>
 			</table>
-			<table class="jradmin_table">
+			<table width="100%" border="0">
 				<tr>
-					<td class="jradmin_subheader_ca">{DAYS2}</td>
+					<td>{DAYS2}</td>
 				</tr>
 				<tr>
-					<td class="jradmin_field_ca">{INPUTS2}</td>
+					<td>{INPUTS2}</td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	</patTemplate:tmpl>
 </table>
-
 {JOMRESTOKEN}
 <input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
 <input type="hidden" name="task" value="saveTariff" />

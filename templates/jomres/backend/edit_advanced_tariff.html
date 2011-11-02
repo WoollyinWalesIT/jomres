@@ -1,72 +1,76 @@
-<patTemplate:tmpl name="pageoutput" >
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm">
-<table class="jradmin_innerwrapper">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<tr>
-		<td class="jomres_title">{PAGETITLE}</td>
-		</tr>
-		<tr>
-		<td>{JOMRESTOOLBAR}</td>
+		<td width="30%">{HTARIFFTITLE}</td>
+		<td><input class="inputbox" type="text" size="10" name="rate_title" value="{TARIFFTITLE}"></input></td>
 	</tr>
 	<tr>
-		<td>
-			<table class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HTARIFFTITLE}</td>
-					<td class="jradmin_subheader_ca">{HTARIFFDESC}</td>
-					<td class="jradmin_subheader_ca">{HRATEPERDAY}</td>
-					</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="10" name="rate_title" value="{TARIFFTITLE}"></input></td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" size="30" name="rate_description" value="{TARIFFDESC}"></input></td>
-					<td class="jradmin_field_ca">{CURRENCY}<input class="inputbox" type="text" style="text-align:right" size="4" name="roomrateperday" value="{RATEPERDAY}" /></td>
-				</tr>
-			</table>
-			<br />
-			<table border="0" class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HVALIDFROM}</td>
-					<td class="jradmin_field_ca">{VALIDFROM}</td>
-					<td class="jradmin_subheader_ca">{HVALIDTO}</td>
-					<td class="jradmin_field_ca">{VALIDTO}</td>
-				</tr>
-			</table>
-			<br />
-			<table border="0" class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HMINDAYS}</td>
-					<td class="jradmin_subheader_ca">{HMAXDAYS}</td>
-					<td class="jradmin_subheader_ca">{HMINPEOPLE}</td>
-					<td class="jradmin_subheader_ca">{HMAXPEOPLE}</td>
-					<td class="jradmin_subheader_ca">{HROOMTYPEDROPDOWN}</td>
-					<td class="jradmin_subheader_ca">{HIGNOREPPPNDROPDOWN}</td>
-					<td class="jradmin_subheader_ca">{HALLOWWEEKENDSDROPDOWN}</td>
-					<td class="jradmin_subheader_ca">{HWEEKENDONLY}</td>
-					<td class="jradmin_subheader_ca">{HDAYOFWEEK}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}" /></td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}" /></td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}" /></td>
-					<td class="jradmin_field_ca"><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}" /></td>
-					<td class="jradmin_field_ca">{ROOMTYPEDROPDOWN}</td>
-					<td class="jradmin_field_ca">{IGNOREPPPNDROPDOWN}</td>
-					<td class="jradmin_field_ca">{ALLOWWEEKENDSDROPDOWN}</td>
-					<td class="jradmin_field_ca">{WEEKENDONLY}</td>
-					<td class="jradmin_field_ca">{DAYOFWEEK}</td>
-				</tr>
-			</table>
-			<table border="0" class="jradmin_table">
-				<tr>
-					<td class="jradmin_subheader_ca">{HMINROOMS}</td>
-					<td class="jradmin_field_ca">{MINROOMS_ALREADYSELECTED}</td>
-					<td class="jradmin_subheader_ca">{HMAXROOMS}</td>
-					<td class="jradmin_field_ca">{MAXROOMS_ALREADYSELECTED}</td>
-				</tr>
-				<tr>
-					<td class="jradmin_subheader_ca" colspan="2" >{MINROOMS_DESC}</td>
-					<td class="jradmin_subheader_ca" colspan="2" >{MAXROOMS_DESC}</td>
-				</tr>
-			</table>
+		<td>{HTARIFFDESC}</td>
+		<td><input class="inputbox" type="text" size="30" name="rate_description" value="{TARIFFDESC}"></input></td>
+	</tr>
+	<tr>
+		<td>{HRATEPERDAY}</td>
+		<td>{CURRENCY}<input class="inputbox" type="text" style="text-align:right" size="4" name="roomrateperday" value="{RATEPERDAY}" /></td>
+	</tr>
+	<tr>
+		<td>{HVALIDFROM}</td>
+		<td>{VALIDFROM}</td>
+	</tr>
+	<tr>
+		<td>{HVALIDTO}</td>
+		<td>{VALIDTO}</td>
+	</tr>
+	<tr>
+		<td>{HMINDAYS}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}" /></td>
+	</tr>
+	<tr>
+		<td>{HMAXDAYS}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}" /></td>
+	</tr>
+	<tr>
+		<td>{HMINPEOPLE}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}" /></td>
+	</tr>
+	<tr>
+		<td>{HMAXPEOPLE}</td>
+		<td><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}" /></td>
+	</tr>
+	<tr>
+		<td>{HROOMTYPEDROPDOWN}</td>
+		<td>{ROOMTYPEDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HIGNOREPPPNDROPDOWN}</td>
+		<td>{IGNOREPPPNDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HALLOWWEEKENDSDROPDOWN}</td>
+		<td>{ALLOWWEEKENDSDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{HWEEKENDONLY}</td>
+		<td>{WEEKENDONLY}</td>
+	</tr>
+	<tr>
+		<td>{HDAYOFWEEK}</td>
+		<td>{DAYOFWEEK}</td>
+	</tr>
+	<tr>
+		<td>{HMINROOMS}*</td>
+		<td>{MINROOMS_ALREADYSELECTED}</td>
+	</tr>
+	<tr>
+		<td>{HMAXROOMS}**</td>
+		<td>{MAXROOMS_ALREADYSELECTED}</td>
+	</tr>
+	<tr>
+		<td colspan="2" >
+			<p>*{MINROOMS_DESC}</p>
+			<p>**{MAXROOMS_DESC}</p>
 		</td>
 	</tr>
 </table>
