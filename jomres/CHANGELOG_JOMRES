@@ -1,3 +1,16 @@
+Jomres 6.-1.0
+
+Added an exception for the frontend menus for when the dashboard hasn't been set.
+Renamed Developer and Perpetual to Silver and Gold respectively in the Manager's first run function.
+Corrected the form name in edit_property.html
+Modified 99995 to not set the mainmenu already run flag, instead that's done by 99997
+Some css changes to improve how things look in J1.7 Beez template (an awful, awful template to work with).
+Identified and deleted some old, no longer used templates.
+The real-estate composite property details has been ditched, we're now using the normal property details template for same.
+Applying our last set of major changes, the templates are generally ready now, subject to any tweaking required before v6's final release.
+
+
+
 Jomres 6.-2.0
 
 Fixed some confused language strings.
