@@ -368,6 +368,9 @@ if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) 
 
 if ($field != "heartbeat" && $field != "show_log")
 	{
+	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
 	$ajrq="show_log";
 	$bkg->setErrorLog("handlereq::Generating billing data" );
 	
@@ -421,11 +424,19 @@ if ($field != "heartbeat" && $field != "show_log")
 					}
 				}
 
-			echo '; populateDiv("extra_tax","'.output_price($extra_tax).'")';
-			if (get_showtime('include_room_booking_functionality'))
-				echo '; populateDiv("taxtotal","'.output_price($room_tax).'")';
+			
+			
+
+			if ($jrConfig['show_tax_in_totals_summary'] == "1")
+				{
+				echo '; populateDiv("room_total_ex_tax","'.output_price($bkg->room_total_ex_tax).'")';
+				if (get_showtime('include_room_booking_functionality'))
+					echo '; populateDiv("taxtotal","'.output_price($room_tax).'")';
+				echo '; populateDiv("extra_tax","'.output_price($extra_tax).'")';
+				
+				}
 			echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
-			echo '; populateDiv("room_total_ex_tax","'.output_price($bkg->room_total_ex_tax).'")';
+			
 			echo '; populateDiv("room_total_inc_tax","'.output_price($bkg->room_total_inc_tax).'")';
 			echo '; populateDiv("balance","'.output_price( $bkg->getGrandTotal() - $bkg->getDeposit() ).'")';
 			if ($showDeposit=="1")
