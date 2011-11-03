@@ -127,7 +127,8 @@ class j06005list_usersinvoices
 				}
 
 			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
-
+			$output['LIVESITE']=get_showtime('live_site');
+			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

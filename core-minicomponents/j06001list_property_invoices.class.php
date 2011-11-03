@@ -166,6 +166,7 @@ class j06001list_property_invoices
 						}
 					}
 				$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+				$output['LIVESITE']=get_showtime('live_site');
 				
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
