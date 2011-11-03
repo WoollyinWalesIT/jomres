@@ -1079,26 +1079,18 @@ class dobooking
 			if (get_showtime('include_room_booking_functionality'))
 				$output['BILLING_TAX']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX',_JOMRES_AJAXFORM_BILLING_TAX));
 
-			$output['EXTRAS_TAX']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS',_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS));
-
 			$output['BILLING_DISCOUNT']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_DISCOUNT',_JOMRES_AJAXFORM_BILLING_DISCOUNT));
-
-
 
 			$output['BILLING_TOTAL']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTAL',_JOMRES_AJAXFORM_BILLING_TOTAL));
 			if ($mrConfig['chargeDepositYesNo']=="1")
 				$output['DEPOSIT']				=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED));
 			//$output['CURRENCY_SYMBOL']		=$mrConfig['currency'];
-
 			$output['BILLING_TOTALINPARTY']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY',_JOMRES_AJAXFORM_BILLING_TOTALINPARTY));
 			$output['AJAXFORM_PARTICULARS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS',_JOMRES_AJAXFORM_PARTICULARS));
 			$output['AJAXFORM_PARTICULARS_DESC']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS_DESC',_JOMRES_AJAXFORM_PARTICULARS_DESC,false));
-
 			$output['AJAXFORM_AVAILABLE']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLE',_JOMRES_AJAXFORM_AVAILABLE));
-
 			$output['AJAXFORM_ADDRESS']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ADDRESS',_JOMRES_AJAXFORM_ADDRESS));
 			$output['AJAXFORM_ADDRESS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ADDRESS_DESC',_JOMRES_AJAXFORM_ADDRESS_DESC,false));
-
 			$output['AJAXFORM_AVAILABLEROOMS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLEROOMS',_JOMRES_AJAXFORM_AVAILABLEROOMS));
 			$output['AJAXFORM_SELECTEDROOMS']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_SELECTEDROOMS',_JOMRES_AJAXFORM_SELECTEDROOMS,false));
 
@@ -1187,10 +1179,13 @@ class dobooking
 			$output['STAYDAYS']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS));
 			$output['SUBMIT']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false));
 			$output['LOOKRIGHT']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_LOOKRIGHT',_JOMRES_BOOKINGFORM_LOOKRIGHT,false,false));
-			
-			$output['ROOM_TOTAL_EX_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX,false,false));
 			$output['ROOM_TOTAL_INC_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX,false,false));
-			$output['ROOM_TOTAL_ACCOM_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM',_JOMRES_AJAXFORM_BILLING_TAX_ACCOM,false,false));
+			if ( $this->jrConfig['show_tax_in_totals_summary'] == "1")
+				{
+				$output['ROOM_TOTAL_EX_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX',_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX,false,false));
+				$output['ROOM_TOTAL_ACCOM_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM',_JOMRES_AJAXFORM_BILLING_TAX_ACCOM,false,false));
+				$output['EXTRAS_TAX']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS',_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS));
+				}
 			$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM',_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM,false,false));
 			$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS',_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS,false,false));
 			$output['_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE',_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE,false,false));
@@ -5201,7 +5196,8 @@ class dobooking
 		echo '; populateDiv("roomtotal","'.output_price("0.00").'")';
 		if ($this->cfg_showExtras)
 			echo '; populateDiv("extrastotal","'.output_price("0.00").'")';
-		echo '; populateDiv("taxtotal","'.output_price("0.00").'")';
+		if ($this->jrConfig['show_tax_in_totals_summary'] == "1")
+			echo '; populateDiv("taxtotal","'.output_price("0.00").'")';
 		echo '; populateDiv("single_suppliment","'.output_price("0.00").'")';
 		echo '; populateDiv("grandtotal","'.output_price("0.00").'")';
 		if ($this->cfg_showDeposit=="1")
