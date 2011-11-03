@@ -4511,16 +4511,19 @@ class dobooking
 
 	$nor = jr_gettext('_JOMRES_NUMBER_OF_ROOMS',_JOMRES_NUMBER_OF_ROOMS,false,false);
 	$gpr_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_ROOM',_JOMRES_MAX_GUESTS_PER_ROOM,false,false);
+	$rmtype_text = jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false);
+	$tariffname_text = jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,false,false);
+	$rate_text = jr_gettext('_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE',_JOMRES_MICROMANAGE_PICKER_DATERANGES_RATE,false,false);
 
 	$gpb_text = '';
 	if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
 		$gpb_text = '<td>'.jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false).'</td>';
 	
-	$return_output = '<table width=\"100%\" style=\"text-align:center;\"><tr><td>'.$nor.'</td><td></td><td></td><td>'.$gpr_text.'</td>'.$gpb_text.'<td></td></tr>';
+	$return_output = '<table width=\"100%\" style=\"text-align:center;\"><tr><td>'.$nor.'</td><td>'.$rmtype_text.'</td><td>'.$tariffname_text.'</td><td>'.$gpr_text.'</td>'.$gpb_text.'<td>'.$rate_text.'</td></tr>';
 	
 	foreach ($dropdown_output as $output)
 		{
-		$return_output .= "<tr><td>".$output['dropdown']." </td><td> ".$output['room_type']." </td><td> ".$output['tariff_title']." </td><td> ".$output['max_guests_per_room']."</td>";
+		$return_output .= "<tr class=\"ui-state-default\"><td>".$output['dropdown']." </td><td> ".$output['room_type']." </td><td> ".$output['tariff_title']." </td><td>".$output['max_guests_per_room']."</td>";
 		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
 			$return_output .= "<td>".$output['max_guests_per_booking']."</td>";
 		$return_output .= "<td>".$output['room_price_inc_tax']."</td><tr>";
