@@ -94,21 +94,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle"><input type="password" class="inputbox" size="30" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
 			<td valign="middle"></td>
 		</tr>
-		<tr valign="middle" class="odd">
-			<td valign="middle">'._JOMRES_CONFIG_JQUERY.'</td>
-			<td valign="middle">'.$lists['load_jquery'].'</td>
-			<td valign="middle">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
-		</tr>
-		<tr valign="middle" class="even">
-			<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_CSS.'</td>
-			<td valign="middle">'.$lists['load_jquery_ui_css'].'</td>
-			<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_CSS_DESC.'</td>
-		</tr>
-		<tr valign="middle" class="odd">
-			<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI.'</td>
-			<td valign="middle">'.$lists['load_jquery_ui'].'</td>
-			<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
-		</tr>
 		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
 			<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
@@ -242,6 +227,21 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_TITLE.'</td>
 				 <td valign="middle">'.$lists['full_access_control'].'</td>
 				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_CONFIG_JQUERY.'</td>
+				<td valign="middle">'.$lists['load_jquery'].'</td>
+				<td valign="middle">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_CSS.'</td>
+				<td valign="middle">'.$lists['load_jquery_ui_css'].'</td>
+				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_CSS_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI.'</td>
+				<td valign="middle">'.$lists['load_jquery_ui'].'</td>
+				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
 			</tr>
 			');
 		$contentPanel->setcontent('
