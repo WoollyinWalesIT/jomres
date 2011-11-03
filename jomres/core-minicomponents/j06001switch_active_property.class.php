@@ -27,8 +27,12 @@ class j06001switch_active_property
 		$output = array();
 		$pageoutput = array();
 		$rows = array();
-
-		$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
+		
+		$nofollow="&nofollowtmpl";
+		if (isset($_REQUEST['tmpl']))
+			$nofollow = '';
+			
+		$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML.$nofollow;
 		$output['_JOMRES_PORTALUI_CLICKINITIAL'] = _JOMRES_ROBBED_PORTALUI_CLICKINITIAL;
 		$output['_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY'] = _JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY;
 		
