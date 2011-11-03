@@ -103,9 +103,9 @@ function open_booking_form() {
 			<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
 			<table border="0" width="100%" class="ui-widget-content ui-corner-all">
 				<tr>
-					<th class="ui-widget-header">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</th>
-					<th class="ui-widget-header">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</th>
-					<th class="ui-widget-header">&nbsp;</th>
+					<th class="ui-state-default">{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</th>
+					<th class="ui-state-default">{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</th>
+					<th class="ui-state-default">&nbsp;</th>
 				</tr>
 				<tr>
 					<td><input class="inputbox" size="15" type="number" name="override_room_total" id="override_room_total" value="" /></td>
@@ -121,7 +121,7 @@ function open_booking_form() {
 			<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
 			<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 				<tr>
-					<th colspan="2" class="ui-widget-header">{COUPON_TITLE}</th>
+					<th colspan="2" class="ui-state-default">{COUPON_TITLE}</th>
 				</tr>
 				<tr>
 					<td colspan="2">{COUPON_INSTRUCTIONS}</td>
@@ -139,7 +139,7 @@ function open_booking_form() {
 			<div id="arrivalcontainer">
 			<table class="ui-widget-content ui-corner-all" border="0" width="100%">
 				<tr>
-					<th class="ui-widget-header" colspan="4">{AJAXFORM_PARTICULARS}</th>
+					<th class="ui-state-default" colspan="4">{AJAXFORM_PARTICULARS}</th>
 				</tr>
 				<tr>
 					<td colspan="4">{AJAXFORM_PARTICULARS_DESC}</td>
@@ -169,7 +169,7 @@ function open_booking_form() {
 			<div id="extrascontainer">
 			<table width="100%" border="0" class="ui-widget-content ui-corner-all">
 				<tr>
-					<th colspan="5" class="ui-widget-header">{EXTRAS_HEADER}</th>
+					<th colspan="5" class="ui-state-default">{EXTRAS_HEADER}</th>
 				</tr>
 				<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
 				<tr>{THIRD_PARTY_EXTRA}</tr>
@@ -188,7 +188,7 @@ function open_booking_form() {
 			</patTemplate:tmpl>
 			<table width="100%" border="0" class="ui-widget-content ui-corner-all" id="bookingform_address">
 				<tr>
-					<th colspan="4" class="ui-widget-header">{AJAXFORM_ADDRESS}</th>
+					<th colspan="4" class="ui-state-default">{AJAXFORM_ADDRESS}</th>
 				</tr>
 				<tr>
 					<td colspan="4">{AJAXFORM_ADDRESS_DESC}</td>
@@ -296,7 +296,7 @@ function open_booking_form() {
 		<td width="30%" valign="top">
 			<table class="ui-widget-content ui-corner-all" border="0" id="totals" width="100%">
 				<tr>
-					<th colspan="4" class="ui-widget-header">{PRICE_SUMMARY}</th>
+					<th colspan="4" class="ui-state-default">{PRICE_SUMMARY}</th>
 				</tr>
 				<tr>
 					<td><div id="staydays" style="font-weight: bold;"></div></td>

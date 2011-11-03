@@ -18,7 +18,7 @@
 	</tr>
 	<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone" unusedvars="nbsp">
 	<tr>
-		<td valign="top">Reason</td>
+		<td valign="top">{_JOMRES_JR_BLACKBOOKING_REASON}</td>
 		<td><textarea cols="30" rows="2" name="bbReason"></textarea></td>
 	</tr>
 </table>
@@ -26,7 +26,7 @@
 <table width="100%" border="0">
 	<tr>
 		<th class="ui-state-default"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
-		<th class="ui-state-default">Room number/name</th>
+		<th class="ui-state-default">{_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM}</th>
 	</tr>
 	<patTemplate:tmpl name="bookingsrows">
 	<tr class="{CLASS}">

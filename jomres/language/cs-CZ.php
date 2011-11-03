@@ -1697,3 +1697,16 @@ define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING',"Warning! You have full acce
 define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Users with admin rights to this property");
 define('_JOMRES_ADMIN_LISTALLUSERSINVOICES',"List all user's invoices");
 
+
+define('_JOMRES_DEBUGGING_SUBJECT','Subject');
+define('_JOMRES_DEBUGGING_FULLNAME','Your full name');
+define('_JOMRES_DEBUGGING_YOUREMAIL','Your email address');
+define('_JOMRES_DEBUGGING_ISSUE','Please describe your issue');
+define('_JOMRES_EXTRAS_MODELS_MODEL','Model');
+define('_JOMRES_EXTRAS_MODELS_PARAMS','Parameters');
+define('_JOMRES_EXTRAS_MODELS_FORCE','Force');
+define('_JOMRES_METATITLE','Meta title');
+define('_JOMRES_METADESCRIPTION','Meta description');
+define('_JOMRES_FOUNDPROPERTIES',"Properties found");
+define('_JOMRES_REGISTRATION_STEP_1_OF_2',"Add your property : Step 1 of 2");
+define('_JOMRES_REGISTRATION_STEP_2_OF_2',"Add your property : Step 2 of 2");

@@ -30,6 +30,8 @@ class j06001switch_active_property
 
 		$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML.'&nofollowtmpl';
 		$output['_JOMRES_PORTALUI_CLICKINITIAL'] = _JOMRES_ROBBED_PORTALUI_CLICKINITIAL;
+		$output['_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY'] = _JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY;
+		
 		$initials = array();
 		foreach ($thisJRUser->authorisedPropertyDetails as $pn)
 			{
