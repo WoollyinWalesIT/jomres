@@ -4521,11 +4521,11 @@ class dobooking
 	if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
 		$gpb_text = '<td>'.jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false).'</td>';
 	
-	$return_output = '<table width=\"100%\" style=\"text-align:center;\"><tr><td>'.$nor.'</td><td></td><td>'.$gpr_text.'</td>'.$gpb_text.'<td></td></tr>';
+	$return_output = '<table width=\"100%\" style=\"text-align:center;\"><tr><td>'.$nor.'</td><td></td><td></td><td>'.$gpr_text.'</td>'.$gpb_text.'<td></td></tr>';
 	
 	foreach ($dropdown_output as $output)
 		{
-		$return_output .= "<tr><td>".$output['dropdown']." </td><td> ".$output['room_type']." - ".$output['tariff_title']." </td><td> ".$output['max_guests_per_room']."</td>";
+		$return_output .= "<tr><td>".$output['dropdown']." </td><td> ".$output['room_type']." </td><td> ".$output['tariff_title']." </td><td> ".$output['max_guests_per_room']."</td>";
 		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
 			$return_output .= "<td>".$output['max_guests_per_booking']."</td>";
 		$return_output .= "<td>".$output['room_price_inc_tax']."</td><tr>";
