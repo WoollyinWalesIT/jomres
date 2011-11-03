@@ -63,6 +63,7 @@ class j16000listTemplates
 				$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
 				$rows[]=$r;
 				
+				$counter=0;
 				foreach ($docs as $doc)
 					{
 					if ($doc != "jomrescss.css" && $doc != "srch.html")
@@ -86,7 +87,12 @@ class j16000listTemplates
 							$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
 							}
 						$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
+						if ($counter%2)
+							$r['CLASS']="even";
+						else
+							$r['CLASS']="odd";
 						$rows[]=$r;
+						$counter++;
 						}
 					}
 				}

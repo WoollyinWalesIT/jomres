@@ -3,21 +3,12 @@
 function selectAll() {
 	jomresJquery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
 }
-jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#editProfile').dataTable({
-		"bJQueryUI": true,
-		"bStateSave": true,
-		"bPaginate": false,
-		"bSort": false,
-		"sDom": 't'
-	});
-} );
 </script>
 <h2>{_JOMRES_EDIT_PROFILE}</h2>
 <p>{INSTRUCTIONS}</p>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table width="100%" class="ui-widget-content ui-corner-all">
+<table width="100%" class="ui-widget-content ui-corner-all" border="0">
 	<tr>
 		<td width="30%">{HACCESSLEVEL}</td>
 		<td>{ACCESSLEVEL}</td>
@@ -32,20 +23,20 @@ jomresJquery(document).ready(function() {
 	</tr>
 </table>
 <br />
-<table id="editProfile" width="100%">
+<table width="100%" class="ui-widget-content ui-corner-all" border="0">
 	<thead>
 		<tr>
-			<th><input type="CheckBox" id="SelectAllCheckBox" onclick="selectAll();"></th>
-			<th>{_JRPORTAL_PROPERTIES_PROPERTYNAME}</th>
-			<th>{_JOMRES_SHOWPROFILES_USERSWITHACCESS}</th>
+			<th class="ui-state-default"><input type="CheckBox" id="SelectAllCheckBox" onclick="selectAll();"></th>
+			<th class="ui-state-default">{_JRPORTAL_PROPERTIES_PROPERTYNAME}</th>
+			<th class="ui-state-default">{_JOMRES_SHOWPROFILES_USERSWITHACCESS}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="strip">
-		<tr>
+		<tr class="{CLASS}">
 			<td>{INPUT}</td>
 			<td>{PROPERTYNAME}</td>
-			<td colspan="2">{MANAGERS}</td>
+			<td>{MANAGERS}</td>
 		</tr>
 		</patTemplate:tmpl>
    </tbody>
