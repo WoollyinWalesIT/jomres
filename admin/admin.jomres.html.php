@@ -99,11 +99,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
 			<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
-			<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_TITLE.'</td>
-			<td valign="middle">'.$lists['javascript_caching_enabled'].'</td>
-			<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
-		</tr>
 		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
 			<td valign="middle">'.$language_context_dropdown.'</td>
@@ -242,6 +237,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI.'</td>
 				<td valign="middle">'.$lists['load_jquery_ui'].'</td>
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_TITLE.'</td>
+				<td valign="middle">'.$lists['javascript_caching_enabled'].'</td>
+				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
 			</tr>
 			');
 		$contentPanel->setcontent('
