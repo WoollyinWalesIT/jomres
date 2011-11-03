@@ -1,8 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
 {JOMRES_SITEPAGE_URL_AJAX}
-
-
 <patTemplate:tmpl name="nav_output_top" type="simpleCondition" requiredVars="writepagescounter">
 <div>
 	{WRITEPAGESCOUNTER}
@@ -13,7 +10,7 @@
 </patTemplate:tmpl>
 <patTemplate:tmpl name="property_details" unusedvars="strip">
 <table width="100%" class="ui-widget-content ui-corner-all jomres_property_list_propertywrapper" id="{UID}" border="0">
-    <tr class="ui-widget-header">
+    <tr class="ui-state-default">
     	<td colspan="3" width="100%" class="property-header">
         	<div class="half-column float-left align-left">{PROPERTY_TYPE}</div>
             <div class="half-column float-right align-right">{PRICESFROM}&nbsp;<strong>{LOWESTPRICE}</strong></div>

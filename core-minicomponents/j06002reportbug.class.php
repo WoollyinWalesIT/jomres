@@ -186,6 +186,10 @@ class j06002reportbug {
 			$output['SENDBUTTON']=$jrtb;
 			$output['DEBUGINFO']=$debug;
 			$output['ADMINEMAIL']=$jomresConfig_mailfrom;
+			$output['_JOMRES_DEBUGGING_SUBJECT']=_JOMRES_DEBUGGING_SUBJECT;
+			$output['_JOMRES_DEBUGGING_FULLNAME']=_JOMRES_DEBUGGING_FULLNAME;
+			$output['_JOMRES_DEBUGGING_YOUREMAIL']=_JOMRES_DEBUGGING_YOUREMAIL;
+			$output['_JOMRES_DEBUGGING_ISSUE']=_JOMRES_DEBUGGING_ISSUE;
 
 			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'" />';
 
