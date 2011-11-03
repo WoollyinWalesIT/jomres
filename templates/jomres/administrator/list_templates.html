@@ -1,32 +1,21 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<script language="javascript" type="text/javascript">
-jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#admin_list_templates').dataTable({
-		"bJQueryUI": true,
-		"bStateSave": true,
-		"bPaginate": false,
-		"bSort": false,
-		"sDom": 't'
-	});
-} );
-</script>
 <h2>{TITLE}</h2>
 <p>{INSTRUCTIONS}</p>
 <p>{EDITWARNINGNOTE}</p>
 <!--{JOMRESTOOLBAR}-->
-<table id="admin_list_templates" width="100%">
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<thead>
 		<tr>
-			<th>{HTEMPLATENAME}</th>
-			<th>{HCUSTOMISED}</th>
-			<th>{HLAST_EDITED_DISK}</th>
-			<th>{HLAST_EDITED_DB}</th>
-			<th>{HLAST_WARNINGICON}</th>
+			<th class="ui-state-default">{HTEMPLATENAME}</th>
+			<th class="ui-state-default">{HCUSTOMISED}</th>
+			<th class="ui-state-default">{HLAST_EDITED_DISK}</th>
+			<th class="ui-state-default">{HLAST_EDITED_DB}</th>
+			<th class="ui-state-default">{HLAST_WARNINGICON}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-		<tr>
+		<tr class="{CLASS}">
 			<td>{EDITLINK}</td>
 			<td>{EDITED}</td>
 			<td>{LAST_EDITED_DISK}</td>
