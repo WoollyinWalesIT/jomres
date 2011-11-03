@@ -61,7 +61,6 @@ jomresJquery(document).ready(function(){
 #jomres-menu-top-panel{
 	border-bottom:3px solid #4297D7;
 	padding:1px;
-	background:#C5DBEC;
 }
 
 #jomres-menu-sub-panel{
@@ -94,11 +93,14 @@ jomresJquery(document).ready(function(){
 	margin:0 0 0 0px;
 	padding:0 0 0 0px;
 }
+ul.potato-menu li.potato-menu-item a.ui-state-default {
+	border:0 none !important;
+}
 
 </style>
 
 <div id="jomres-menu-pinned" class="ui-helper-hidden">
-	<div id="jomres-menu-top-panel">
+	<div id="jomres-menu-top-panel" class="ui-state-default">
 		<ul id="jomres_mainmenu" class="menu_jomres_horiz" >
 			<patTemplate:tmpl name="button_output">
 				{DIV}
