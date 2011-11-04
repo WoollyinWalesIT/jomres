@@ -94,6 +94,7 @@ class jomres_access_control
 					if (array_key_exists($minicomp,$this->controlled) )
 						{
 						//var_dump($minicomp." ".$this->controlled[$minicomp]['access_level']);exit;
+						
 						switch ($this->controlled[$minicomp]['access_level'])
 							{
 							case "default":
@@ -103,7 +104,11 @@ class jomres_access_control
 								$user_can_access = true;
 								break;
 							case "registered":
-								if ($users_access_level == "supermanager" || $users_access_level == "manager" || $users_access_level == "registered")
+								if ($users_access_level == "supermanager" || $users_access_level == "manager" || $users_access_level == "reception" || $users_access_level == "registered")
+									$user_can_access = true;
+								break;
+							case "reception":
+								if ($users_access_level == "supermanager" || $users_access_level == "manager" || $users_access_level == "reception" )
 									$user_can_access = true;
 								break;
 							case "manager":
@@ -173,7 +178,7 @@ class jomres_access_control
 		
 		$mode_options[] = jomresHTML::makeOption( 'anybody' ,		$this->levels['anybody']);
 		$mode_options[] = jomresHTML::makeOption( 'registered' ,	$this->levels['registered']);
-		$mode_options[] = jomresHTML::makeOption( 'receptionist' ,	$this->levels['receptionist']);
+		$mode_options[] = jomresHTML::makeOption( 'reception' ,		$this->levels['receptionist']);
 		$mode_options[] = jomresHTML::makeOption( 'manager' ,		$this->levels['manager']);
 		$mode_options[] = jomresHTML::makeOption( 'supermanager' ,	$this->levels['supermanager']);
 		$mode_options[] = jomresHTML::makeOption( 'nobody' ,		$this->levels['nobody']);
