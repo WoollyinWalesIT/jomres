@@ -5,6 +5,30 @@ var jomresJquery = jQuery.noConflict();
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
+jomresJquery(function(){
+	//all hover and click logic for buttons
+	jomresJquery(".fg-button:not(.ui-state-disabled)")
+	.hover(
+		function(){ 
+			jomresJquery(this).addClass("ui-state-hover"); 
+		},
+		function(){ 
+			jomresJquery(this).removeClass("ui-state-hover"); 
+		}
+	)
+	.mousedown(function(){
+			jomresJquery(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+			if( jomresJquery(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ jomresJquery(this).removeClass("ui-state-active"); }
+			else { jomresJquery(this).addClass("ui-state-active"); }
+	})
+	.mouseup(function(){
+		if(! jomresJquery(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+			jomresJquery(this).removeClass("ui-state-active");
+		}
+	});
+});
+
+
 function quick_info(uid) {
 	var selectedEffect = "slide";
 	var options = {};
