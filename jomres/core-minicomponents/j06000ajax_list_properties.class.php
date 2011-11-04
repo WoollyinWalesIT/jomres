@@ -35,8 +35,6 @@ class j06000ajax_list_properties
 				}
 			}
 
-		$this->resultBucket=$tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets'][$last_id];
-
 		if (count($this->resultBucket) > 0)
 			{
 			$componentArgs=array();

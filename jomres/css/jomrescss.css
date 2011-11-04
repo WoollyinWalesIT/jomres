@@ -54,16 +54,18 @@ button.fg-button { width:auto; overflow:visible; }
 .right-column {width:24%;}
 .half-column {width:50%}
 .left-column p {margin:0 !important;}
-tr.odd {background: #E2E4FF !important;}
-tr.even {background: #FFF;}
+tr.odd {background: #f9f9f9 !important;}
+tr.even {background: #FFF !important;}
+tr.even td.sorting_1{background:#f9f9f9 !important;}
+tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .big-price{font-weight:bold;font-size:16px;}
 .jomrestexteditable{color: #99f;background-color:#fff;}
-.ui-helper-jomres-buttons{border-style:none !important;background: inherit !important;}
+.ui-helper-jomres-buttons{border-style:none !important;background:inherit !important;}
 /* Availability Calendar */
 table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
 a.rescal:hover{background-color: white;color: black;}
 /* Beez template fixes */
-.ui-widget-content tr, td{border:0 none !important;}
+tr, td{border:0 none !important;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}

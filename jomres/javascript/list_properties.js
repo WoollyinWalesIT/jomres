@@ -16,6 +16,7 @@ function lastAddedLiveFunc()
 	//alert (jomresJquery(".jomres_property_list_propertywrapper:last").attr("id"));
 		function(data){
 			if (data != "") {
+			jomresJquery(".plist-buttons", data).button();
 			jomresJquery(".jomres_property_list_propertywrapper:last").after(data);
 			
 			}
@@ -33,3 +34,10 @@ function lastAddedLiveFunc()
 		}
 	});
 
+
+jomresJquery(".plist-button").livequery(function() {
+  jomresJquery(this).button();
+});
+jomresJquery(".plist-button-last").livequery(function() {
+  jomresJquery(this).button();
+});
