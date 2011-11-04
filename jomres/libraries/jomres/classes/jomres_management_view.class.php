@@ -24,7 +24,7 @@ class jomres_management_view
 
 		$response = '';
 		
-		$pos = strpos($_SERVER['REQUEST_URI'], $"?");
+		$pos = strpos($_SERVER['REQUEST_URI'], "?");
 		if ($pos !== false)
 			$connector = "&";
 		else
