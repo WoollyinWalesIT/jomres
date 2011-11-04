@@ -2,20 +2,22 @@
 body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;text-align:left !important;position: inherit !important;}
 a, img, form, table, tr, td {padding:0;margin:0;}
 table{ border-collapse:separate !important;}
-a:link {color:#0B55C4;text-decoration:none !important;}
+a, a:link, a:visited, a:hover, a:active, a:focus {text-decoration:none !important;}
 p {margin:10px 0 15px !important;padding:0;}
 img { border: 0 none; }
 form div {margin:0 !important;}
 #accordion h3{margin:0 !important;}
 #toolbar-box {display:none;}
 #submenu-box {display:none;}
+.ui-widget-content a {color:#0B55C4;}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {font-weight:inherit !important;}
 .ui-accordion .ui-accordion-content {overflow:hidden;}
 #ui-datepicker-div { display: none; }
 .ui-widget {font-size: inherit;}
 .ui-tabs .ui-tabs-nav li {list-style:none outside none !important;}
-.fg-button { outline: 0; margin:0 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
+.fg-button { outline: 0; margin:0 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1;}
 .fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
-a.fg-button { float:left; }
+a.fg-button { float:left;}
 button.fg-button { width:auto; overflow:visible; }
 .fg-button-icon-left { padding-left: 2.1em; }
 .fg-button-icon-right { padding-right: 2.1em; }
@@ -56,11 +58,12 @@ tr.odd {background: #E2E4FF !important;}
 tr.even {background: #FFF;}
 .big-price{font-weight:bold;font-size:16px;}
 .jomrestexteditable{color: #99f;background-color:#fff;}
+.ui-helper-jomres-buttons{border-style:none !important;background: inherit !important;}
 /* Availability Calendar */
 table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
 a.rescal:hover{background-color: white;color: black;}
 /* Beez template fixes */
-tr, td{border:0 none !important;}
+.ui-widget-content tr, td{border:0 none !important;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}
