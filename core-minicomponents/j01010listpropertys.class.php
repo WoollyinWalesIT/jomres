@@ -50,7 +50,9 @@ class j01010listpropertys {
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$customTextObj =jomres_getSingleton('custom_text');
 		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
-
+		
+		jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
+		
 		$propertys_uids=$componentArgs['propertys_uid'];
 		$newSearch=false;
 		if ($propertys_uids=="")
