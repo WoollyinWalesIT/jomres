@@ -23,12 +23,19 @@ class jomres_management_view
 		set_showtime('mobile_browser',$is_mobile );
 
 		$response = '';
+		
+		$pos = strpos($_SERVER['REQUEST_URI'], $"?");
+		if ($pos !== false)
+			$connector = "&";
+		else
+			$connector = "?";
+		
 		if ( !$is_mobile)
 			{
 			if (isset($_REQUEST['tmpl']) )
 				$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'._JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW.'</a>';
 			else
-				$response = '<a href="'.get_showtime('liv_site').$_SERVER['REQUEST_URI'].'&tmpl=component">'._JOMRES_COM_MANAGEMENTVIEW_MANAGMENT.'</a>';
+				$response = '<a href="'.get_showtime('liv_site').$_SERVER['REQUEST_URI'].$connector.'tmpl=component">'._JOMRES_COM_MANAGEMENTVIEW_MANAGMENT.'</a>';
 			}
 		return $response;
 		}
