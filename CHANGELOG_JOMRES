@@ -1,3 +1,28 @@
+Jomres 6.-1.1
+
+jquery inclusion options moved into advanced control panel.
+Moved javaascript cache setting into advanced control panel.
+Modified switch active property to ensure that it carries the tmpl setting.
+Improved property switching feature to allow the browser to stay in either site preview view, or management view, depending on the original condition.
+Added a variable to ensure that the copy/csv/etc swf is called properly in frontend list invoices.
+Modified switch active property so that the returned property names are buttons, makes them more obvious.
+Set preference for tooltips to go to left first.
+Fixed a bug where tax output wasn't being removed from the price summary when the site config switch is configured to remove it.
+Room type rooms list updated to offer headers to make things clearer (booking form, when rooms list is set to "Room types).
+Alternate mainmenu updated to make the menu bar slicker.
+Modified management top to show the active property's name.
+Added button hover/click logic to jomres.js
+Some css changes to ensure that buttons carry the correct button styles from jquery ui.
+Modification to router.php, if we're in a live scroll situation then we'll query each property name individually.
+dobooking width="70%" removed as it was causing problems in Opera.
+Improved access control for receptionist users.
+Further improvements to ajax list properties, finding of uids, plus implemented livequery in list properties so that we could ensure that button effects are added to new buttons added to the DOM.
+fixed save plugin function to ensure it uses the correct template file.
+Modified jomres_make_image_popup to strip all non-alphanumeric characters from the title.
+Added property name as title to list properties reviews modal popup.
+
+
+
 Jomres 6.-1.0
 
 Added an exception for the frontend menus for when the dashboard hasn't been set.
