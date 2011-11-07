@@ -3083,7 +3083,7 @@ function savePlugin($plugin)
 		}
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-	$tmpl->readTemplatesFromInput( 'save_custom_text.html' );
+	$tmpl->readTemplatesFromInput( 'plugin_save.html' );
 	$tmpl->displayParsedTemplate();
 	}
 
