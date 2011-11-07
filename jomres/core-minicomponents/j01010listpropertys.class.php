@@ -600,8 +600,8 @@ class j01010listpropertys {
 				exit;
 				}
 			}
-		else
-			echo jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS,$editable=true,$islink=false) ;
+		//else
+		//	echo jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS,$editable=true,$islink=false) ;
 		}
 
 	function touch_template_language()
