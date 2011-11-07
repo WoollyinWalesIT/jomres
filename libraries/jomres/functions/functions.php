@@ -69,7 +69,7 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	$sizes = getimagesize ($image_rel_path.$image);
 	$modal_width = $sizes[0]+30;
 	
-	$title = ereg_replace("[^A-Za-z0-9]", "", $title);
+	$title = ereg_replace("[^A-Za-z0-9 ]", "", $title);
 	
 	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({dialogClass:\"alert\",width:".$modal_width.",modal:true,title:\"".$title."\"});'";
 	$link = '<a href="javascript:void(0);" '.$onClick.' ><img src="'.$thumbnail_rel_path.$thumbnail.'" '.$width.' '.$height.' alt="'.$title.'" ></a>';
