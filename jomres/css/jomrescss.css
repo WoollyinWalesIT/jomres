@@ -13,7 +13,7 @@ form div {margin:0 !important;}
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {font-weight:inherit !important;}
 .ui-accordion .ui-accordion-content {overflow:hidden;}
 #ui-datepicker-div { display: none; }
-.ui-widget {font-size: inherit;}
+.ui-widget {font-size: 12px;}
 .ui-tabs .ui-tabs-nav li {list-style:none outside none !important;}
 .fg-button { outline: 0; margin:0 4px 0 0; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1;}
 .fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
@@ -33,7 +33,7 @@ button.fg-button { width:auto; overflow:visible; }
 .property-title {font-size:16px;font-weight: bold;line-height: 26px;}
 .property-title a {text-decoration:none;}
 .property-header {padding:3px;}
-.property-image{width:130px;display:block;}
+.property-image{display:block;margin-right:5px;}
 .property-desc p {margin-bottom: 15px;margin-top: 10px;}
 .property-desc {margin-bottom: 15px;margin-top: 10px;}
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
@@ -54,9 +54,9 @@ button.fg-button { width:auto; overflow:visible; }
 .right-column {width:24%;}
 .half-column {width:50%}
 .left-column p {margin:0 !important;}
-tr.odd {background: #f9f9f9 !important;}
+tr.odd {background: #f5f5f5 !important;}
 tr.even {background: #FFF !important;}
-tr.even td.sorting_1{background:#f9f9f9 !important;}
+tr.even td.sorting_1{background:#f5f5f5 !important;}
 tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .big-price{font-weight:bold;font-size:16px;}
 .jomrestexteditable{color: #99f;background-color:#fff;}
@@ -65,7 +65,8 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
 a.rescal:hover{background-color: white;color: black;}
 /* Beez template fixes */
-tr, td{border:0 none !important;}
+#all tr, #all td{border:0 none !important;}
+.ui-widget-content tr, .ui-widget-content td{border:inherit !important;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}
