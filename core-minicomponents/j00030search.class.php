@@ -350,8 +350,8 @@ class j00030search {
 						}
 					foreach ($sch->prep['country'] as $country)
 						{
-						
-						$countryArray[]= jomresHTML::makeOption( $country['countrycode'], jomres_decode($country['countryname']));
+						if (trim(jomres_decode($country['countryname'])) != "")
+							$countryArray[]= jomresHTML::makeOption( $country['countrycode'], jomres_decode($country['countryname']));
 						}
 
 					$output['SELECTCOMBO_COUNTRY']=
