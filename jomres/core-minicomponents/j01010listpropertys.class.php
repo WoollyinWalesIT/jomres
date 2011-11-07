@@ -502,6 +502,9 @@ class j01010listpropertys {
 					$property_deets['MOREINFORMATIONLINK_AJAX']=JOMRES_SITEPAGE_URL_AJAX."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['MOREINFORMATIONLINK_SEFSAFE']=JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
+					
+					$property_deets['JS_SAFE_PROPERTYNAME']= ereg_replace("[^A-Za-z0-9 ]", "", $property_deets['PROP_NAME']);
+					
 					$property_deets['PROPERTYTOWN']= html_entity_decode($ptown);
 					$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
 					$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));

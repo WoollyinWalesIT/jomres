@@ -1,7 +1,8 @@
-function toggle_review_div(uid)
+function toggle_review_div(uid,property_name)
 	{
 	div_id = "#property_reviews"+uid;
 	jomresJquery( div_id ).dialog({
+		title: property_name,
 		width: 800,
 		height: 500,
 		show: 'slide',
