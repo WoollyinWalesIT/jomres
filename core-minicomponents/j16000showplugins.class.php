@@ -443,14 +443,13 @@ class j16000showplugins
 			if (!array_key_exists($plugin_name,$installed_plugins ) )
 				$local_version="N/A";
 			
-			//$row_class = "row0";
-			if($counter%2 == 0 && $row_class == 'ui-widget-content ui-corner-all')
-				$row_class = "row1";
+
 				
 				
 			$style = "";
-			if ($rp['price'] == 0 )
-				{ 
+			if ($rp['price'] == 0 && $row_class=='ui-widget-content ui-corner-all')
+				{
+				$row_class='';
 				$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
 				}
 				
