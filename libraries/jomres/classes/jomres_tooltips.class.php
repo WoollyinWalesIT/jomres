@@ -28,7 +28,7 @@ class jomres_tooltips
 		//$browser = new browser();
 		//$this->browser = $browser->BROWSER_AGENT;
 		
-		$this->positions = "left,most";
+		$this->positions = "most";
 		//$this->positions = "bottom";
 		}
 
