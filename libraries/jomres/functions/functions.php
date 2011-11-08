@@ -67,7 +67,18 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	$id=generateJomresRandomString(10);
 
 	$sizes = getimagesize ($image_rel_path.$image);
-	$modal_width = $sizes[0]+30;
+	if (!$sizes) // allow_url_fopen is disabled, therefore getimagesize will not work and $sizes will be "false". 
+		{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $image_rel_path.$image);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$data = curl_exec($ch); 
+		$resource = imagecreatefromstring($data);
+		$modal_width = imagesx($resource)+30;
+		}
+	else
+		$modal_width = $sizes[0]+30;
+	
 	
 	$title = ereg_replace("[^A-Za-z0-9 ]", "", $title);
 	
