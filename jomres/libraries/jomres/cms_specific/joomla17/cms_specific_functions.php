@@ -13,6 +13,11 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
+function jomres_cmsspecific_getregistrationlink()
+	{
+	return jomresURL(get_showtime('live_site')."index.php?option=com_user&view=registration");
+	}
+
 function jomres_cmsspecific_getlogout_task()
 	{
 	return 'index.php?option=com_users&view=login';

@@ -36,7 +36,7 @@ class j02280mustregister {
 			$this->template_touchable=true; return;
 			}
 		// Need to create a cms specific function here, TODO
-		echo '<a href="'.jomresURL("index.php?option=com_user&view=register").'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK',_JOMRES_REGISTEREDUSERSONLYBOOK,false).'</a>';
+		echo '<a href="'.jomres_cmsspecific_getregistrationlink().'">'.jr_gettext('_JOMRES_REGISTEREDUSERSONLYBOOK',_JOMRES_REGISTEREDUSERSONLYBOOK,false).'</a>';
 		}
 
 	function touch_template_language()
