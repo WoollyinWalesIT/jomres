@@ -102,7 +102,8 @@ class jomres_gateway_handler
 									$gateway_log.='Status: Completed<br/>';
 									$this->log_transaction($pp_sent_invoice_id, 'Payment: Completed', $pp_sent_mc_currency, $pp_sent_mc_gross, $pp_sent_mc_fee, $pp_sent_txn_id, '');
 									// Did they pay the right amount?
-									if ($invoice->init_total == $pp_sent_mc_gross || $invoice->recur_total == $pp_sent_mc_gross)
+									$tmp_init_total = number_format((float)$invoice_handler->init_total, 2, '.', '');
+									if ($tmp_init_total == 0.00)
 										{
 										$pp_sent_invoice_id=$pp_sent_custom_subscription_id;
 										$gateway_log.='Paid<br/>';
