@@ -307,9 +307,11 @@ class j03025insertbooking_invoice {
 			$invoice_handler->contract_id=$contract_uid;
 			$invoice_handler->property_uid=$property_uid;
 			$invoice_handler->create_new_invoice($invoice_data,$line_items);
+			
+			$tmp_init_total = number_format((float)$invoice_handler->init_total, 2, '.', '');
 			if ($mrConfig['depAmount'] == 0)
 				$invoice_handler->mark_invoice_pending();
-			elseif ($depositpaidsuccessfully && $invoice_handler->init_total == $deposit_required )
+			elseif ($depositpaidsuccessfully && $tmp_init_total == 0.00 )
 				$invoice_handler->mark_invoice_paid();
 			$query = "UPDATE #__jomres_contracts SET invoice_uid = ".$invoice_handler->id." WHERE contract_uid = ".$contract_uid;
 			doInsertSql($query,"");
