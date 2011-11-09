@@ -272,18 +272,21 @@ class invoicehandler extends jrportal_invoice
 		$this->paid=date( 'Y-m-d H:i:s' );
 		$balance = $this->get_line_items_balance();
 		$line_items= array();
-		$line_item_data = array (
-			'tax_code_id'=>0,
-			'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT',_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT,false,false),
-			'description'=>'',
-			'init_price'=>"-".number_format($balance,2, '.', ''),
-			'init_qty'=>"1",
-			'init_discount'=>"0",
-			'recur_price'=>"0.00",
-			'recur_qty'=>"0",
-			'recur_discount'=>"0.00"
-			);
-		$this->add_line_item($line_item_data);
+		if (number_format($balance,2, '.', '') > 0.00)
+			{
+			$line_item_data = array (
+				'tax_code_id'=>0,
+				'name'=>jr_gettext('_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT',_JOMRES_AJAXFORM_BILLING_BALANCE_PAYMENT,false,false),
+				'description'=>'',
+				'init_price'=>"-".number_format($balance,2, '.', ''),
+				'init_qty'=>"1",
+				'init_discount'=>"0",
+				'recur_price'=>"0.00",
+				'recur_qty'=>"0",
+				'recur_discount'=>"0.00"
+				);
+			$this->add_line_item($line_item_data);
+			}
 		$this->commitUpdateInvoice();
 		
 		}
