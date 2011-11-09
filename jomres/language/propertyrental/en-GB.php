@@ -1407,8 +1407,8 @@ define('_JOMRES_PROPERTYMANAGEMENTPROCESS_REALESTATE_DESC',"Choose the real esta
 define('JOMRES_COM_A_MINIMALCONFIG_DESC','Set this to Yes to reduce the number of options available to property managers in the General Configuration section. This is useful if you do not want property managers to play around with too many settings, instead you can edit jomres_config.php to define default property options.');
 define('_JOMRES_AJAXFORM_EXTRAS_SELECT','Please select an option for your booking');
 define('_JOMRES_COM_ALLOWHTMLEDITOR_DESC','Switches on html editors in property details editing page. Additionally, if this is set to No, then all html except p and br is stripped from all entered and displayed text.');
-define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Property management view");
-define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Site preview view");
+define('_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT',"Fullscreen view");
+define('_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW',"Normal view");
 define('_JOMRES_COM_TIMEZONE_SWITCHER',"Show the timezone switcher in the property manager's toolbar?");
 
 define('_JOMRES_PARTNER_DISCOUNT',"Partner discount ");
