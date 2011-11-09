@@ -37,7 +37,7 @@ class j00009user_option_03_reglink {
 		$thisJRUser=jomres_getSingleton('jr_user');
 
 		if (!$thisJRUser->userIsRegistered)
-			$this->cpanelButton=jomres_mainmenu_option(get_showtime('live_site')."/index.php?option=com_user&view=register", '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION',"Register",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
+			$this->cpanelButton=jomres_mainmenu_option(jomres_cmsspecific_getregistrationlink(), '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION',"Register",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 		}
 
 	function touch_template_language()
