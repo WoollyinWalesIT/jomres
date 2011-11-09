@@ -1,3 +1,18 @@
+Jomres 6.0.0
+
+
+tweak for list properties, we've ensured that booking buttons etc are hidden until after the button js is applied to them.
+fixed an issue where already checked features in edit property weren't being shown when the details are being re-edited. Modified jomres tooltips to unmake a previous change RE tooltips positions as it's not always effective.
+Commented out the "no search results" output from the end of listproperties. Given the greater usage of ajax for generating output, list properties becomes more about simply listing output, rather than showing search results (it's an important distinction) and sometimes no results is correct. Therefore it becomes illogical that this script should output that there are no results to show.
+Small tweak to ensure that country codes without country names are excluded from the select combo dropdowns.
+Modified the new jomres_make_image_popup function. getimagesize requires allow_url_fopen to be enabled, however some hosts have it disabled, therefore if our initial attempt to get an image's size fails we'll fall back to CURL to get a resource stream and work out the size from that.
+Resolved an issue where (booking) invoices weren't being marked as paid when paid in full.
+Layout change for editextra template.
+Added a cms specific function for finding registration urls.
+Added "Found properties" output to switch active property class for output in the template.
+Modified defaults, set "jomres" ui theme and Alternative menu to be the default
+
+
 Jomres 6.-1.1
 
 jquery inclusion options moved into advanced control panel.
