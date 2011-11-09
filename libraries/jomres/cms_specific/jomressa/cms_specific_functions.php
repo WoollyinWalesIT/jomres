@@ -13,6 +13,11 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jomres_cmsspecific_getregistrationlink()
+	{
+	return jomresURL(get_showtime('live_site')."index.php?a=k&jsat=register_form");
+	}
+
 function jomres_cmsspecific_getlogout_task()
 	{
 	return 'index.php?a=k&jsat=log_out';
