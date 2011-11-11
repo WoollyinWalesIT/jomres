@@ -183,7 +183,7 @@ $jrConfig['calendarstartofweekday'] = "1";
 $jrConfig['only_guests_can_review'] = "0";
 
 // We'll rename this setting from jquery_ui_theme to ensure that upgraded installations use the new functionality. If we don't, people who upgrade will find that their installatons will not have the appropriate css files included in the cms's headers and the forum will be full of posts on the subject. This way, at least some css will be included, even if it's not the css they'd previously configured. 
-$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8rc3.custom.css"; 
+$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css"; 
 $jrConfig['use_timezone_switcher'] = "0";
 
 $jrConfig['load_jquery'] = "1";
