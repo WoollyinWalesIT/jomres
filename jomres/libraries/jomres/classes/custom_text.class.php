@@ -84,6 +84,11 @@ class custom_text
 		if ($property_uid > 0)
 			$this->property_uid = $property_uid;
 		
+		if (!isset($this->global_custom_text[$this->lang])) // Need to set up some dummy data here, otherwise the array merge later will trigger an error (long story)
+			{
+			$this->global_custom_text[$this->lang]['DUMMY_DATA'] = 'DUMMY_DATA';
+			}
+		
 		if (isset($this->global_custom_text[$this->lang]))
 			{
 			$current_custom_text=$this->global_custom_text[$this->lang];
