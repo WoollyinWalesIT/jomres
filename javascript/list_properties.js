@@ -26,7 +26,7 @@ function lastAddedLiveFunc()
 	};  
 
 	jomresJquery(window).scroll(function(){
-		if (jomresJquery(window).height() + jomresJquery(window).scrollTop() >= jomresJquery(document).height()-300) {
+		if (jomresJquery(window).height() + jomresJquery(window).scrollTop() >= jomresJquery(document).height()-600) {
 		if (killScroll == false) { // IMPORTANT - Keeps the loader from fetching more than once.
 			killScroll = true; // IMPORTANT - Set killScroll to true, to make sure we do not trigger this code again before it's done running.
 			lastAddedLiveFunc();
