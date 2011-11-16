@@ -226,7 +226,7 @@ class j16000showplugins
 				<form id="cart">
 				</form>
 				<div class="ui-state-highlight ui-corner-all">Total <strong>&pound;<span id="total"></span></strong></div>
-				<button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Purchase</button>
+				<button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Order plugin(s)</button>
 				<p>
 				Note, if you have a Jomres Developer or Perpetual license number, please make sure you\'ve entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
 				</p>
