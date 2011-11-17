@@ -55,7 +55,8 @@ class j00012pathway {
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
-
+		if (isset($_REQUEST['no_html']) && $_REQUEST['no_html'] == "1")
+			return;
 		$property_uid = $componentArgs['property_uid'];
 		
 		$jomresPathway =jomres_getSingleton('jomres_pathway');
