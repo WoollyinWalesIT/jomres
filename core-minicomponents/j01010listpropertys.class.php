@@ -5,7 +5,7 @@
  * @version Jomres 5
 * @package Jomres
 * @copyright	2005-2011 Vince Wooll
-* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
+* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable.
 **/
 
 
@@ -34,36 +34,22 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-			
-			
-		$paging_disabled = true;
-		if ( isset($componentArgs['paging_disabled']) || isset($_REQUEST['paging_disabled']) )
-			$paging_disabled = true;
-			
+
 		$data_only=false;
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$thisJRUser=jomres_getSingleton('jr_user');
-		
+
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$customTextObj =jomres_getSingleton('custom_text');
-		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
-		
+
 		jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
-		
+
 		$propertys_uids=$componentArgs['propertys_uid'];
-		$newSearch=false;
 		if ($propertys_uids=="")
 			$propertys_uids=array();
-		if ( !isset($_REQUEST['plistpage']) )
-			$newSearch=true;
-			
-		if (JOMRES_NOHTML == 1)
-			$limit = 100;
-		else
-			$limit = jomresGetParam( $_REQUEST, 'limit', (int)$jrConfig['property_list_limit']);
 
 		if (!@session_start())
 			{
@@ -71,28 +57,12 @@ class j01010listpropertys {
 			session_start();
 			}
 
-		if ($newSearch)
-			{
-			$property_id_string= implode($propertys_uids,",");
-			$_SESSION['jomsearch_results']=$property_id_string;
-			}
-		else
-			{
-			$search_results=$_SESSION['jomsearch_results'];
-			if ($search_results != '')
-				$propertys_uids=explode(",",$search_results);
-			$p=array();
-			foreach ($propertys_uids as $pid)
-				{
-				$p[]=intval($pid);
-				}
-			$propertys_uids=$p;
-			}
-
 		if ($MiniComponents->eventFileExistsCheck('01009') )
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
+
 		// Added to prevent out of memory messages.
 		// Modified for 4.5.3 as the previous loop wasn't taking missing keys into account.
+		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
 		if (count($propertys_uids) >$maximumProperties)
 			{
 			$counter=1;
@@ -106,10 +76,6 @@ class j01010listpropertys {
 				}
 			$propertys_uids=$tmpArray;
 			}
-		if ($limit<0)
-			$limit=0;
-		if ($limit > count($propertys_uids))
-			$limit=count($propertys_uids);
 
 		if (JOMRES_SINGLEPROPERTY)
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );
@@ -117,44 +83,20 @@ class j01010listpropertys {
 		if (count($propertys_uids) >0)
 			{
 			$output = array();
-			
-			$g=genericOr($propertys_uids,'propertys_uid');
-			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
-			$query.=$g;
-			$total_records=count($propertys_uids);
-			$record_per_page=$limit;
-			$scroll=5;
-			$start=jomresGetParam( $_REQUEST, 'plistpage', 0 );
-			if (count($propertys_uids) <= $scroll)
-				$start=0;
-			jr_import('JomresPage');
-			$page=new JomresPage(); ///creating new instance of Class Page
-			$page->set_page_data(JOMRES_SITEPAGE_URL,$total_records,$record_per_page,$scroll,true,true,true,$limit);
-
-			$order = implode($propertys_uids,",");
-			$page->set_qry_string('limit='.$limit);
-			$query.=" ORDER BY FIELD(propertys_uid, $order)";
-			$query=$page->get_limit_query($query,$start);
-
-			$nav=array();
-			$nav_output=array();
-			$url=JOMRES_SITEPAGE_URL."";
-
-			$url= "";
-			$page->set_qry_string($url);
-			$paging=$page->get_page_nav();
-			$nav['WRITEPAGESLINKS'] = $paging;
-			$nav['WRITEPAGESCOUNTER'] = $page->writePagesCounterJR();
-			if (JOMRES_NOHTML == 0)
-				$nav_output[]=$nav;
 			$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 			$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
-			
+
 			if (JOMRES_NOHTML != 1)
 				{
 				$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\">var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."';</script>";
 				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
 				}
+
+			$g=genericOr($propertys_uids,'propertys_uid');
+			$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
+			$query.=$g;
+			$order = implode($propertys_uids,",");
+			$query.=" ORDER BY FIELD(propertys_uid, $order) LIMIT ".(int)$jrConfig['property_list_limit'];
 			$propertyDeets = @doSelectSql($query);
 
 			if (count($propertyDeets) > 0)
@@ -168,7 +110,7 @@ class j01010listpropertys {
 				// For historical reasons some tables in Jomres use propertys_uid and some use property_uid (note the 's') so g_pids is for those tables that use propertys_uid, while g_pid is for those without
 				$g_pids=genericOr($propertysToShow,'propertys_uid');
 				$g_pid =genericOr($propertysToShow,'property_uid');
-				
+
 				// Last booked
 				$lastBookedArray = array();
 				$query = "SELECT property_uid, max(timestamp) as ts FROM #__jomres_contracts WHERE ".$g_pid." AND `timestamp` IS NOT NULL GROUP BY property_uid ";
@@ -202,7 +144,7 @@ class j01010listpropertys {
 							$pricesFromArray[$t->property_uid]=$t->roomrateperday;
 						elseif ( isset($pricesFromArray[$t->property_uid]) && $pricesFromArray[$t->property_uid] > $t->roomrateperday )
 							$pricesFromArray[$t->property_uid]=$t->roomrateperday;
-						
+
 						if (!isset($maxPeopleArray[$t->property_uid]))
 							$maxPeopleArray[$t->property_uid]=$t->maxpeople;
 						elseif ($maxPeopleArray[$t->property_uid] < $t->maxpeople)
@@ -236,7 +178,7 @@ class j01010listpropertys {
 					$rtAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rt->room_classes_uid, $rt->room_class_abbv,false,false );
 					$rtDesc =  jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rt->room_classes_uid, $rt->room_class_full_desc,false,false );
 					$rtDetailsArray[$rt->room_classes_uid]=array('room_class_abbv'=>$rtAbbv,'room_class_full_desc'=>$rtDesc,'image'=>$rt->image);
-					
+
 					}
 
 				// Property features
@@ -277,7 +219,7 @@ class j01010listpropertys {
 			{
 			$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$p->id,$p->ptype,false,false);
 			}
-		
+
 		if (count($propertyDeets) >0)
 			{
 			$property_details=array();
@@ -299,19 +241,19 @@ class j01010listpropertys {
 					set_showtime('property_uid',$property->propertys_uid);
 
 					$customTextObj->get_custom_text_for_property($property->propertys_uid);
-					
+
 					$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
 					$mrConfig=getPropertySpecificSettings($property->propertys_uid);
-					
+
 					$dobooking_task="dobooking";
 					if ($mrConfig['registeredUsersOnlyCanBook'] == "1" && $thisJRUser->id == 0)
 						$dobooking_task = "contactowner";
-						
+
 					$featureList=array();
 					$ptown=stripslashes($property->property_town);
 					$stars=$property->stars;
 					$propertyDesc=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($property->property_description)), ENT_QUOTES),false,false );
-					
+
 					if ($jrConfig['use_reviews'] =="1")
 						{
 						jr_import('jomres_reviews');
@@ -320,7 +262,7 @@ class j01010listpropertys {
 						$itemRating = $Reviews->showRating($property->propertys_uid);
 						$property_deets['AVERAGE_RATING']=number_format($itemRating['avg_rating'], 1, '.', '');
 						$property_deets['NUMBER_OF_REVIEWS']=$itemRating['counter'];
-						
+
 						$property_deets['_JOMRES_REVIEWS_AVERAGE_RATING']		=jr_gettext('_JOMRES_REVIEWS_AVERAGE_RATING',_JOMRES_REVIEWS_AVERAGE_RATING,false,false);
 						$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES']			=jr_gettext('_JOMRES_REVIEWS_TOTAL_VOTES',_JOMRES_REVIEWS_TOTAL_VOTES,false,false);
 						$property_deets['_JOMRES_REVIEWS']						=jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,false,false);
@@ -329,7 +271,7 @@ class j01010listpropertys {
 						$property_deets['HYPHEN'] 								= " - ";
 						$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
 						}
-					
+
 					$property_image=get_showtime('live_site')."/jomres/images/noimage.gif";
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
 						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
@@ -354,7 +296,7 @@ class j01010listpropertys {
 							{
 							//$rtRows.=makeFeatureImages($rtDetailsArray[$rtd]['image'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$retString=true)."&nbsp;";
 							$rtRows.=jomres_makeTooltip($rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_abbv'],$rtDetailsArray[$rtd]['room_class_full_desc'],$rtDetailsArray[$rtd]['image'],"","room_type",array());
-								
+
 							}
 						}
 
@@ -377,7 +319,7 @@ class j01010listpropertys {
 							}
 						$property_deets['FEATURELIST']=$featureList;
 						}
-					
+
 					// We need a way of offering a plugin the opportunity to take over the lowest price output generation. First we'll ask all possible plugins with a 07010 trigger if they want to recalculate this property's prices
 					$plugin_will_provide_lowest_price = false;
 					$MiniComponents->triggerEvent('07015',array('property_uid'=>$property->propertys_uid) ); // Optional
@@ -393,7 +335,7 @@ class j01010listpropertys {
 								}
 							}
 						}
-					
+
 					$price = 0.00;
 					$output_lowest = false;
 					if ($plugin_will_provide_lowest_price)
@@ -471,7 +413,7 @@ class j01010listpropertys {
 								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY',_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY,false,false) ;
 							else
 								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false) ;
-							
+
 							if ($dobooking_task != "dobooking")
 								$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false);
 							}
@@ -486,7 +428,7 @@ class j01010listpropertys {
 						$property_deets['LINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=contactowner&amp;selectedProperty=".$property->propertys_uid);
 						$property_deets['BOOKTHIS_TEXT']=jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACT_AGENT',_JOMRES_FRONT_MR_MENU_CONTACT_AGENT,false,false);
 						}
-					
+
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property->propertys_uid);
 					//var_dump($property_deets['PROP_NAME']);exit;
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
@@ -502,20 +444,20 @@ class j01010listpropertys {
 					$property_deets['MOREINFORMATIONLINK_AJAX']=JOMRES_SITEPAGE_URL_AJAX."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['MOREINFORMATIONLINK_SEFSAFE']=JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
-					
+
 					$property_deets['JS_SAFE_PROPERTYNAME']= ereg_replace("[^A-Za-z0-9 ]", "", $property_deets['PROP_NAME']);
-					
+
 					$property_deets['PROPERTYTOWN']= html_entity_decode($ptown);
 					$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
 					$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
-					
+
 					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
 					$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
 					$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],"");
 					$property_deets['_JOMRES_QUICK_INFO']=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO,false,false);
 					$property_deets['REMOTE_URL']=$mrConfig['galleryLink'];
-					
+
 					$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 						$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
@@ -524,13 +466,13 @@ class j01010listpropertys {
 					// $ptype = doSelectSql($query,1);
 					// $property_deets['PROPERTY_TYPE'] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$property->ptype_id,$ptype,false,false);
 					$property_deets['PROPERTY_TYPE'] = $property_types[(int)$property->ptype_id];
-	
+
 					$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("imagethumb"=>$property_deets['IMAGETHUMB'],"width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 					if ($output_lowest)
 						$property_deets['LOWESTPRICE']=$price;
 					else
 						$property_deets['LOWESTPRICE']='';
-						
+
 					$property_deets['STARS']=$starslink;
 					//$property_deets['TEMPLATEPATH']=$templatepath;
 
@@ -559,11 +501,11 @@ class j01010listpropertys {
 				$tmpl = new patTemplate();
 				$tmpl->addRows( 'pageoutput', $pageoutput );
 				$tmpl->addRows( 'property_details', $property_details );
-				if (!$paging_disabled)
-					{
-					$tmpl->addRows( 'nav_output_top', $nav_output);
-					$tmpl->addRows( 'nav_output_bottom', $nav_output);
-					}
+				// if (!$paging_disabled)
+					// {
+					// $tmpl->addRows( 'nav_output_top', $nav_output);
+					// $tmpl->addRows( 'nav_output_bottom', $nav_output);
+					// }
 				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 				$tmpl->readTemplatesFromInput( 'list_properties.html' );
 				$tmpl->displayParsedTemplate();
@@ -590,7 +532,7 @@ class j01010listpropertys {
 					$xml_property->addChild('property_type', $property['PROPERTY_TYPE'] );
 					$xml_property->addChild('description', $property['PROPERTYDESC'] );
 					$xml_property->addChild('stars', $property['STARS'] );
-					
+
 					$xml_property->addChild('livesite', urlencode  (get_showtime('live_site') ));
 					$xml_property->addChild('lowestprice', urlencode  ($property['LOWESTPRICE']) );
 					$xml_property->addChild('moreinformationlink',urlencode  ( $property['MOREINFORMATIONLINK_SEFSAFE']));
