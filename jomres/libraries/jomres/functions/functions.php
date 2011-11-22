@@ -75,6 +75,12 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 		$data = curl_exec($ch); 
 		$resource = imagecreatefromstring($data);
 		$modal_width = imagesx($resource)+30;
+		if ($modal_width == 30 || !$modal_width) // Yet another security setting stopping PHP from doing it's job, let's fall back to the maxwidth config setting.
+			{
+			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$jrConfig=$siteConfig->get();
+			$modal_width = $jrConfig['maxwidth'];
+			}
 		}
 	else
 		$modal_width = $sizes[0]+30;
