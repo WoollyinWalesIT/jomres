@@ -161,7 +161,7 @@ class mcHandler {
 						}
 					else
 						{
-						error_logging("Access control prevented system from running ".$eClass['eventPoint'].$eClass['eventName']);
+						system_log("Access control prevented system from running ".$eClass['eventPoint'].$eClass['eventName']);
 						}
 					}
 				}
@@ -212,7 +212,7 @@ class mcHandler {
 						}
 					else 
 						{
-						error_logging("Access control prevented system from running ".$eClass['eventPoint'].$eClass['eventName']);
+						system_log("Access control prevented system from running ".$eClass['eventPoint'].$eClass['eventName']);
 						}
 					}
 				}
