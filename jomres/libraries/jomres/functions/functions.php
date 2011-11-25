@@ -79,7 +79,8 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 			{
 			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
-			$modal_width = $jrConfig['maxwidth'];
+			$max_width = $jrConfig['maxwidth'];
+			$modal_width = $max_width+30;
 			}
 		}
 	else
