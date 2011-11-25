@@ -1,6 +1,7 @@
 /* Jomres CSS */
 body {margin:10px;padding:0;background:#fff;padding-bottom: 1px;font-size:11px;font-family:Arial,Helvetica,sans-serif;text-align:left !important;position: inherit !important;}
 a, img, form, table, tr, td {padding:0;margin:0;}
+img {vertical-align:middle!important;}
 table{ border-collapse:separate !important;}
 a, a:link, a:visited, a:hover, a:active, a:focus {text-decoration:none !important;}
 p {margin:10px 0 15px !important;padding:0;}
