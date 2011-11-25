@@ -36,22 +36,15 @@ if (!strstr($scriptname,'install_jomres.php'))
 		. "\n FROM #__menu"
 		. "\n WHERE "
 		. "\n published = 1"
-		. "\n AND link LIKE 'index.php?option=com_jomres' LIMIT 1";
+		. "\n AND link LIKE 'index.php?option=com_jomres%' AND menutype LIKE 'mainmenu' LIMIT 1 ";
 
 	$itemQueryRes = doSelectSql($query);
 	if (count($itemQueryRes)>0)
 		{
-		// get application
-		$app   = JFactory::getApplication();
-		// get menu
-		$menu   = $app->getMenu();
-		// get active menu id
-		//var_dump($menu->getActive()->id);exit;
-		$activeId = @$menu->getActive()->id;  // Sometimes, for no discernable reason, php triggers a notice saying that this isn't an object
-		// get active menu
-		$active   = @$menu->getActive();
-		// set jomresItemid
-		$jomresItemid = @$active->id;  // Sometimes, for no discernable reason, php triggers a notice saying that this isn't an object
+		foreach ($itemQueryRes as $i)
+			{
+			$jomresItemid = $i->id;
+			}
 		}
 	else
 		{if (isset($jrConfig['jomresItemid']))
