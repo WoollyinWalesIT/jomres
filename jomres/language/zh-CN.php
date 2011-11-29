@@ -892,12 +892,12 @@ define('_JOMRES_COM_EMAILERRORS_DESC',"设此为是表明当一个错误log信�
 define('_JOMRES_COM_ISTHISANMRP',"这个寓所是酒店/床位和早餐/旅客寓所/退休金? ");
 define('_JOMRES_COM_ISTHISANMRP_DESC',"设置选项的不同取决于您是想提供一个寓所里面的房间服务还是寓所本身旅居服务.设此为是表明您想提供房间服务,设此为否表明您想提供整个寓所的旅居服务. ");
 // Jomres v3.0.6
-define('_JOMRES_COM_JOMRESEMAILCHECK',"Use Jomres email address checker? ");
-define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Enforces a stricter check on emails sent. Some secure web servers will throw a 500 internal error if you try to send an email to a non-existant email address. Switching this on allows us to use checkdnsrr features of php before attempting to send an email, preventing these 500 errors. ");
+define('_JOMRES_COM_JOMRESEMAILCHECK',"使用Jomres电子邮件地址检查？ ");
+define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"强制执行严格的检查发送的电子邮件。一些安全Web服务器将抛出一个500内部错误，如果您尝试到一个不存在的电子邮件地址发送一封电子邮件。开关允许我们之前使用的PHP的checkdnsrr功能，试图发送一封电子邮件，以防止这些500错误。 ");
 // Jomres v3.1
-define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Accommodation Total");
-define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"night(s) at");
-define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per room ");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"住宿共");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"晚");
+define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"每间房");
 define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Enhance Your Stay Total ");
 define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Price Summary ");
 define('_JOMRES_CONFIRMATION_ALERT',"Please read and agree to ");
