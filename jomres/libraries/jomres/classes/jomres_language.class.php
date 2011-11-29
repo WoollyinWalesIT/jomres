@@ -53,32 +53,30 @@ class jomres_language
 					}
 				else
 					{
-					if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php") && !$administrator_area)
+					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
 						{
-						if ($testing) echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
-						$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
+						$lang = JFactory::getLanguage();
+						if ($testing) echo 'Used $lang->getTag() to switch langs<br>';
+						$jomresConfig_lang				=(string)$lang->getTag();
 						}
 					else
 						{
-						if ( isset($tmpBookingHandler->tmplang['jomreslang']))
+						if (isset($_COOKIE['jfcookie']) && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_joomfish".JRDS."joomfish.php") && !$administrator_area)
 							{
-							if ($testing) echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
-							$jomresConfig_lang				=(string)RemoveXSS($tmpBookingHandler->tmplang['jomreslang']);
+							if ($testing) echo 'Used $_COOKIE[\'jfcookie\'] to switch langs<br>';
+							$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['jfcookie']['lang']);
 							}
 						else
 							{
-							if (isset($_COOKIE['mbfcookie']) )
+							if ( isset($tmpBookingHandler->tmplang['jomreslang']))
 								{
-								if ($testing) echo 'Used $_COOKIE[\'mbfcookie\'] to switch langs<br>';
-								$jomresConfig_lang				=(string)RemoveXSS($_COOKIE['mbfcookie']['lang']);
+								if ($testing) echo 'Used $tmpBookingHandler->tmplang[\'jomreslang\'] to switch langs<br>';
+								$jomresConfig_lang				=(string)RemoveXSS($tmpBookingHandler->tmplang['jomreslang']);
 								}
-							else
+							elseif (strlen($jomresConfig_lang)==0)
 								{
-								if (strlen($jomresConfig_lang)==0)
-									{
-									if ($testing) echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
-									$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
-									}
+								if ($testing) echo 'Used $jrConfig[\'siteLang\'] to switch langs<br>';
+								$jomresConfig_lang				=substr($jrConfig['siteLang'], 0 ,strlen($jrConfig['siteLang'])-4) ;
 								}
 							}
 						}
