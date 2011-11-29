@@ -338,9 +338,14 @@ class jomSearch {
 		{
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		$tmpResultsArray=end($this->propertys_uid);
-		$componentArgs=array();
-		$componentArgs['propertys_uid']=$tmpResultsArray;
-		$MiniComponents->triggerEvent('01010',$componentArgs); // listPropertys
+		if ( count($tmpResultsArray) > 0)
+			{
+			$componentArgs=array();
+			$componentArgs['propertys_uid']=$tmpResultsArray;
+			$MiniComponents->triggerEvent('01010',$componentArgs); // listPropertys
+			}
+		else
+			echo jr_gettext('_JOMRES_FRONT_NORESULTS',_JOMRES_FRONT_NORESULTS,$editable=true,$islink=false) ;
 		//listPropertys($tmpResultsArray);
 		}
 
