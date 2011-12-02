@@ -585,7 +585,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if (get_showtime('task') == "viewproperty" || get_showtime('task') == "preview")
 		$output['SLIDER_ENABLED'] = 'false'; // Slider doesn't work well when included in tabs, so we'll disable it.
 
-	if ($thisJRUser->userIsManager && !$amend_contract)
+	if ($thisJRUser->userIsManager)
 		{
 		$manager_pricing[] = array('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL',_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL,false,false),'_JOMCOMP_AMEND_OVERRIDE_DEPOSIT'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_DEPOSIT',_JOMCOMP_AMEND_OVERRIDE_DEPOSIT,false,false),'_JOMCOMP_AMEND_OVERRIDE_SAVE'=>jr_gettext('_JOMCOMP_AMEND_OVERRIDE_SAVE',_JOMCOMP_AMEND_OVERRIDE_SAVE,false,false));
 		}
