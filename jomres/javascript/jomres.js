@@ -62,26 +62,39 @@ function switch_exchange_rate(url,val)
 function generic_reload(field,val)
 	{
 	var original_url = window.location.href;
-	new_url = insertParam(original_url,field,val);
+	new_url = insertParam(original_url,field,val, true);
 	window.location = new_url;
 	};
 
-function insertParam(url,key,value)
-{
-    key = encodeURIComponent(key); value = encodeURIComponent(value);
+function insertParam(sourceUrl, parameterName, parameterValue, replaceDuplicates)
+	{
+    if ((sourceUrl == null) || (sourceUrl.length == 0)) sourceUrl = document.location.href;
+    var urlParts = sourceUrl.split("?");
+    var newQueryString = "";
+    if (urlParts.length > 1)
+    {
+        var parameters = urlParts[1].split("&");
+        for (var i=0; (i < parameters.length); i++)
+        {
+			var parameterParts = parameters[i].split("=");
+			if (!(replaceDuplicates && parameterParts[0] == parameterName))
+			{
+				if (newQueryString == "")
+					newQueryString = "?";
+				else
+					newQueryString += "&";
+				newQueryString += parameterParts[0] + "=" + parameterParts[1];
+			}
+        }
+    }
+    if (newQueryString == "")
+        newQueryString = "?";
+    else
+        newQueryString += "&";
+    newQueryString += parameterName + "=" + parameterValue;
 
-    var s = url;
-    var kvp = key+"="+value;
-
-    var r = new RegExp("(&|\\?)"+key+"=[^\&]*");
-
-    s = s.replace(r,"$1"+kvp);
-
-    if(!RegExp.$1) {s += (s.length>0 ? '&' : '?') + kvp;};
-
-    //again, do what you will here
-    return s;
-}
+    return urlParts[0] + newQueryString;
+	};
 
 /*
 Interesting proof of concept, but not ready for showtime
