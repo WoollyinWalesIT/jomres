@@ -47,7 +47,7 @@ class j06001savenote {
 			{
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-			$tmpl->readTemplatesFromInput( 'save_custom_text.html' );
+			$tmpl->readTemplatesFromInput( 'save_note.html' );
 			$tmpl->displayParsedTemplate();
 			}
 		else
