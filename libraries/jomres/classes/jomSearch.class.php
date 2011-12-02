@@ -158,6 +158,9 @@ class jomSearch {
 			$tmpArray[]=$puid->propertys_uid;
 			}
 		$this->propertys_uid[]=$tmpArray;
+		
+		
+		
 		// -------------------------------------------------------------------------------------------------------------------------------------------
 		if (in_array("propertyname",$this->searchOptions) )
 			{
@@ -690,6 +693,7 @@ class jomSearch {
 		{
 		$arrivalDate=$this->filter['arrival'];
 		$departureDate=$this->filter['departure'];
+
 		if ($arrivalDate != "" && $departureDate !="")
 			{
 			$stayDays=dateDiff("d",$arrivalDate,$departureDate);
@@ -709,32 +713,64 @@ class jomSearch {
 			$st="";
 			foreach ($dateRangeArray as $eachdate)
 				{
-				$st.="date = '".$eachdate."' OR ";
+				$st.="`date` = '".$eachdate."' OR ";
 				}
 			$st=substr($st,0,-3);
 			$propertiesWithFreeRoomsArray=array();
-
+			
+			$all_property_rooms = array();
+			$property_ors=genericOr( end($this->propertys_uid),"propertys_uid");
+			$query="SELECT propertys_uid,room_uid,room_classes_uid FROM #__jomres_rooms WHERE ".$property_ors;
+			$roomsLists=doSelectSql($query);
+			if (count($roomsLists)>0)
+				{
+				foreach ($roomsLists as $room)
+					{
+					$all_property_rooms[$room->propertys_uid][$room->room_uid]=array("room_classes_uid"=>$room->room_classes_uid,"room_uid"=>$room->room_uid );
+					}
+				}
+			
+			$all_property_bookings = array();
+			$property_ors=genericOr( end($this->propertys_uid),"property_uid");
+			$query="SELECT property_uid,room_uid,`date` FROM #__jomres_room_bookings WHERE ".$property_ors." AND (".$st.")";
+			$datesList=doSelectSql($query);
+			if (count($datesList)>0)
+				{
+				foreach ($datesList as $date)
+					{
+					$all_property_bookings[$date->property_uid][]=$date->room_uid;
+					}
+				}
+			
+			
 			foreach (end($this->propertys_uid) as $property)
 				{
 				$propertyHasFreeRooms=FALSE;
 				// Then we find their rooms
-				$query="SELECT room_uid,room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property."'";
-				$roomsList=doSelectSql($query);
+				// $query="SELECT room_uid,room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property."'";
+				// $roomsList=doSelectSql($query);
+				
+				$roomsList=$all_property_rooms[(int)$property];
+
 				foreach ($roomsList as $room)
 					{
 					$ok=true;
 					if ($_REQUEST['room_type'] != $this->searchAll)
 						{
-						if (!empty($_REQUEST['room_type'] ) && $room->room_classes_uid != $this->filter['room_type'])
+						if (!empty($_REQUEST['room_type'] ) && $room['room_classes_uid'] != $this->filter['room_type'])
 							$ok=false;
 						}
 					if ($ok)
 						{
 						// Then we see if each room is free on the date(s) in the date range array
-						$query="SELECT room_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room->room_uid."' AND property_uid ='".(int)$property."'  AND (".$st.")";
-						$datesList=doSelectSql($query);
-						if (count($datesList)==0)
+						// $query="SELECT room_uid FROM #__jomres_room_bookings WHERE room_uid = '".(int)$room->room_uid."' AND property_uid ='".(int)$property."'  AND (".$st.")";
+						// $datesList=doSelectSql($query);
+
+						if (!in_array ( $room['room_uid'], $all_property_bookings[$property] ) )
 							$propertyHasFreeRooms=TRUE;
+						
+						// if (count($datesList)==0)
+							// $propertyHasFreeRooms=TRUE;
 						}
 					}
 				if ($propertyHasFreeRooms)
