@@ -102,7 +102,7 @@ function editProfile()
 		$checked="";
 		if (in_array($propertyIdArray[$i] ,$managersToPropertyArray) )
 			$checked="checked";
-		$r['INPUT']="<input type=\"checkbox\" name=\"chosenHotel[]\" value=\"".$propertyIdArray[$i]."\" ".$checked.">";
+		$r['INPUT']='<input type="checkbox" id="cb'.count($rows).'" name="chosenHotel[]" value="'.$propertyIdArray[$i].'" '.$checked.'>';
 		$r['PROPERTYNAME']=$propertynameArray[$i];
 		$r['MANAGERS']=$propertyManagers;
 		$rows[]=$r;
@@ -120,6 +120,7 @@ function editProfile()
 	$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 	$output['_JRPORTAL_PROPERTIES_PROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
 	$output['_JOMRES_SHOWPROFILES_USERSWITHACCESS']=_JOMRES_SHOWPROFILES_USERSWITHACCESS;
+	$output['TOTALINLISTPLUSONE']=count($rows)+1;
 	
 	
 	$pageoutput[]=$output;
