@@ -203,7 +203,7 @@ class j04005roomsconfig {
 				if ($type_id == (int)$roomtype_id)
 					$selected='checked="checked"';
 				$r['ROOM_CLASS_ABBV'] = $roomType->room_class_abbv;
-				$r['ROOM_CLASS_RADIO'] ='<input type="radio" name="roomtype" id="'.$roomtype_id.'" '.$selected.'><label for="'.$roomtype_id.'">'.$r['ROOM_CLASS_ABBV']."</label>";
+				$r['ROOM_CLASS_RADIO'] ='<input type="radio" name="roomtype" id="'.$roomtype_id.'" value="'.$roomtype_id.'" '.$selected.'><label for="'.$roomtype_id.'">'.$r['ROOM_CLASS_ABBV']."</label>";
 				$rows[]=$r;
 				}
 
