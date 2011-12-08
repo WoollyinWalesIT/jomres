@@ -40,10 +40,10 @@ class j06001switch_active_property
 		$initials = array();
 		foreach ($thisJRUser->authorisedPropertyDetails as $pn)
 			{
-			if (!array_key_exists( strtoupper(substr($pn['property_name'],0,1) ) , $initials))
-				$initials[strtoupper(substr($pn['property_name'],0,1) )]=1;
+			if (!array_key_exists( strtoupper(jr_substr($pn['property_name'],0,1) ) , $initials))
+				$initials[strtoupper(jr_substr($pn['property_name'],0,1) )]=1;
 			else
-				$initials[strtoupper(substr($pn['property_name'],0,1) )]++;
+				$initials[strtoupper(jr_substr($pn['property_name'],0,1) )]++;
 			}
 
 		foreach ($initials as $key=>$val)

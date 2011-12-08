@@ -451,7 +451,7 @@ class j01010listpropertys {
 					$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
 					$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
 
-					$property_deets['PROPERTYDESC']= substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
+					$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
 					$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
 					$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],"");
