@@ -1,3 +1,33 @@
+Jomres 6.0.1
+
+Changed wording of site preview and management views to Normal and Fullscreen.
+Added a remote url link to list properties property_details array.
+Small modification to custom text class, sets up the global strings array if it's empty, with some dummy data so that installations that haven't yet used Edit Language in the backend will still show individual property translations.
+Small change to list customer types template to fix some td stuff.
+Commented out some intentional duplicates in the search.html template that's used by integrated search.
+Modified the Live Scrolling threshold to be twice as much, should mean that properties are added to the list virtually invisibly.
+Changed plugin shop button "Purchase" to "Order", which is a little more accurate.
+Improved listproperties, now that we're using Live Scrolling, much of the redundant Paging stuff can be removed.
+Pathway modified to not be triggered if we're in an ajax call.
+Height setting added to css for the Horizontal menu.
+Added a fallback for finding the modal image width size in case security settings still refuse to allow finding an image's size.
+Modified access control to log refusals to the system log, not the error log.
+Tweaked a recent change to ensure that 30 pixels are added to a fallback setting when getting image sizes.
+Yet more tweaks to how Itemid is detected in j1.7.
+css tweak to vertically align images.
+Small change to ensure that properties listed in property switcher are ordered by property name.
+Changed jomSearch class so that it'll output that there are no results if indeed there are not. This code has been placed here because the listproperties functionality has become purely that now. It shouldn't output a "no properties" string if it was passed an empty array.
+Added some code to see if we can detect the current language in J1.7.
+Implemented some changes to availability search functionality to reduce the number queries performed when trying to see if a property is free.
+Fixed issues where note saving wasn't working.
+Implemented a fix to changing sort order sometimes resulting in a 404 page.
+Modified currency codes to put lei after the currency for RON.
+Re-added {AMENDBOOKING_SELECTEDROOMSDIV} which appears to have been removed during the template refactoring, to dobooking.html
+Modified dobooking so that price override also shows when amending a booking.
+Modified edit profile so that checkbox toggles all profile check boxes.
+Added some functionality to deal with substr issues when dealing with cryllic.
+
+
 Jomres 6.0.0
 
 
