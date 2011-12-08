@@ -22,4 +22,12 @@ function jr_substr($str,$arg1,$arg2)
 	return $result;
 	}
 
+function jr_strtolower($str)
+	{
+	if (!function_exists('mb_strtolower'))
+		$result = strtolower($str);
+	else
+		$result = mb_strtolower($str);
+	return $result;
+	}
 ?>

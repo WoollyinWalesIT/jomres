@@ -33,7 +33,7 @@ class j06001ui_find_properties
 			}
 		$gor= genericOr($users_properties,'propertys_uid');
 
-		$initial = strtolower(jomresGetParam( $_REQUEST, 'initial', "" ));
+		$initial = jr_strtolower(jomresGetParam( $_REQUEST, 'initial', "" ));
 		$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys WHERE property_name LIKE '".$initial."%' AND ".$gor. "ORDER BY `property_name`";
 		$result = doSelectSql($query);
 		$output = '';
