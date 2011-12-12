@@ -445,12 +445,12 @@ class j01010listpropertys {
 					$property_deets['MOREINFORMATIONLINK_SEFSAFE']=JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property->propertys_uid;
 					$property_deets['PROPERTYNAME']= $property_deets['PROP_NAME'] ;
 
+					$property_deets['_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES);
+					$property_deets['_JOMRES_FRONT_ROOMTYPES']=jr_gettext('_JOMRES_FRONT_ROOMTYPES',_JOMRES_FRONT_ROOMTYPES);
 					$property_deets['JS_SAFE_PROPERTYNAME']= ereg_replace("[^A-Za-z0-9 ]", "", $property_deets['PROP_NAME']);
-
 					$property_deets['PROPERTYTOWN']= html_entity_decode($ptown);
 					$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
 					$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
-
 					$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 					$property_deets['IMAGE']=$property_image;
 					$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
