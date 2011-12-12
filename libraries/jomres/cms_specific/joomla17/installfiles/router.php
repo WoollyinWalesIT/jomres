@@ -110,19 +110,19 @@ function JomresBuildRoute(&$query)
 		if (isset($route_query['town']))
 			{
 			$segments[] = JFilterOutput::stringURLSafe(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN);
-			$segments[] = JFilterOutput::stringURLSafe($route_query['town']);
+			$segments[] = JomresFilterString($route_query['town']);
 			unset($route_query['town']);
 			}
 		if (isset($route_query['region']))
 			{
 			$segments[] = JFilterOutput::stringURLSafe(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
-			$segments[] = JFilterOutput::stringURLSafe($route_query['region']);
+			$segments[] = JomresFilterString($route_query['region']);
 			unset($route_query['region']);
 			}
 		if (isset($route_query['country']))
 			{
 			$segments[] = JFilterOutput::stringURLSafe(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
-			$segments[] = JFilterOutput::stringURLSafe($route_query['country']);
+			$segments[] = JomresFilterString($route_query['country']);
 			unset($route_query['country']);
 			}
 		if (isset($route_query['send']))
@@ -168,13 +168,13 @@ function JomresParseRoute($segments)
 				$vars['selectedProperty'] = $segments[2];
 			break;
 		case $jrConfig['sef_task_alias_search']:
-			$searchParam = strtolower($segments[1]);
+			$searchParam = $segments[1];
 			$vars['send'] = "Search";
 			$vars['calledByModule'] = 'mod_jomsearch_m0';
 			if($searchParam==JFilterOutput::stringURLSafe(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN)) $searchParam= 'town';
 			if($searchParam==JFilterOutput::stringURLSafe(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY)) $searchParam= 'country';
 			if($searchParam==JFilterOutput::stringURLSafe(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION)) $searchParam= 'region';
-			$vars[$searchParam] = $segments[2];
+			$vars[$searchParam] = JomresFilterString($segments[2]);
 			break;
 		case 'showTariffs':
 			$vars['task'] = "showTariffs";
@@ -198,7 +198,7 @@ function JomresParseRoute($segments)
 function JomresFilterString($dirtyString)
 	{
 	$stripCharsArray=array(',','~','!','@','%','^','*','(',')','+','<','>',':',';','{','}','[',']','---','--','-','..,','.',' ');
-	$cleanStringForURL=str_replace($stripCharsArray,'_',$dirtyString);
+	$cleanStringForURL=strtolower(str_replace($stripCharsArray,'_',$dirtyString));
 	return $cleanStringForURL;
 	}
 
