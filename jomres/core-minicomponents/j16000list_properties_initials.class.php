@@ -40,9 +40,9 @@ class j16000list_properties_initials
 		foreach ($jomresPropertyList as $pn)
 			{
 			if (!array_key_exists( strtoupper(substr($pn['property_name'],0,1) ) , $initials))
-				$initials[strtoupper(substr($pn['property_name'],0,1) )]=1;
+				$initials[strtoupper(jr_substr($pn['property_name'],0,1) )]=1;
 			else
-				$initials[strtoupper(substr($pn['property_name'],0,1) )]++;
+				$initials[strtoupper(jr_substr($pn['property_name'],0,1) )]++;
 			}
 		
 		ksort($initials);
