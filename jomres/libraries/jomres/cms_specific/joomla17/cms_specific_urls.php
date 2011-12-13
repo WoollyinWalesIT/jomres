@@ -86,6 +86,20 @@ if ( isset($_REQUEST['is_wrapped']) )
 		$tmpl .= $tmpl."&is_wrapped=1";
 	}
 
+if ( isset($_REQUEST['menuoff']) )
+	{
+	if ( $_REQUEST['menuoff']=="1" )
+		{
+		$tmpl .= $tmpl."&menuoff=1";
+		set_showtime('menuoff',true);
+		}
+	else
+		{
+		$tmpl .= $tmpl."&menuoff=0";
+		set_showtime('menuoff',false);
+		}
+	}
+	
 define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl);
 define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$jomresItemid."");

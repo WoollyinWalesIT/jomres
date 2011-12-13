@@ -27,7 +27,9 @@ class j99995jomres_mainmenu {
 		// Stops the main menu from being generated twice.
 		if (get_showtime('mainmenu_alreadyrun'))
 			return;
-
+		if (get_showtime('menuoff'))
+			return;
+		
 		$output=array();
 		$query="SELECT propertys_uid FROM #__jomres_propertys WHERE published='1'";
 		$publishedProperties = count(doSelectSql($query));
