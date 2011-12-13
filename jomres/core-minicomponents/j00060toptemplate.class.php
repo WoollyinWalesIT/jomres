@@ -23,6 +23,9 @@ class j00060toptemplate {
 			{
 			$this->template_touchable=false; return;
 			}
+		if (get_showtime('topoff'))
+			return;
+		
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -34,6 +37,7 @@ class j00060toptemplate {
 		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
 
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
+		
 		
 		if (!defined('JOMRES_NOHTML') && $popup != 1 )
 			{
