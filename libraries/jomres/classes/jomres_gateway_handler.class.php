@@ -319,47 +319,30 @@ class jomres_gateway_handler
 		$post_string	.=	"cmd=_notify-validate"; // append ipn command
 		
 		// open the connection to paypal
-		$fp = fsockopen($this->paypal_settings['callback_url'],"80",$err_num,$err_str,30);
-		if(!$fp)
+		//$fp = fsockopen($this->paypal_settings['callback_url'],"80",$err_num,$err_str,30);
+		if (function_exists('curl_init'))
 			{
-			if (function_exists('curl_init'))
-				{
-				gateway_log("Posting data back to paypal using curl");
-				$ch=curl_init();
-				curl_setopt($ch,CURLOPT_URL,$host);
-				curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,2);
-				curl_setopt($ch,CURLOPT_POST,count($this->ipn_data));
-				curl_setopt($ch,CURLOPT_POSTFIELDS,$post_string);
-				curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  // Without this the response is true, whereas we want the actual contents of the response
-				$this->ipn_response = trim(curl_exec($ch));
-				curl_close($ch);
-				gateway_log("Received response ".$this->ipn_response );
-				}
-			else
-				{
-				// could not open the connection.  If loggin gis on, the error message
-				// will be in the log.
-				gateway_log("Fsockopen error ");
-				return false;
-				}
+			gateway_log("Posting data back to paypal using curl");
+			$ch=curl_init();
+			curl_setopt($ch,CURLOPT_URL,"https://".$host);
+			curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,2);
+			curl_setopt($ch,CURLOPT_POST,count($this->ipn_data));
+			curl_setopt($ch,CURLOPT_POSTFIELDS,$post_string);
+			curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,  2);
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  // Without this the response is true, whereas we want the actual contents of the response
+			$this->ipn_response = trim(curl_exec($ch));
+			$info = curl_getinfo($ch);
+			
+			curl_close($ch);
+			gateway_log("Received response ".serialize($this->ipn_response) );
+			//gateway_log("CURL Info ".serialize($info) );
 			}
 		else
 			{
-			// Post the data back to paypal
-			gateway_log("Posting data back to paypal ");
-			fputs($fp, "POST $path HTTP/1.1\r\n");
-			fputs($fp, "Host: $host\r\n");
-			fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n");
-			fputs($fp, "Content-length: ".strlen($post_string)."\r\n");
-			fputs($fp, "Connection: close\r\n\r\n");
-			fputs($fp, $post_string . "\r\n\r\n");
-			// loop through the response from the server and append to variable
-			$this->ipn_response = "";
-			while(!feof($fp))
-				{
-				$this->ipn_response .= fgets($fp, 1024);
-				}
-			fclose($fp); // close connection
+			// could not open the connection.  If logging is on, the error message will be in the log.
+			gateway_log("Curl not enabled/installed.");
+			return false;
 			}
 
 		if (eregi("VERIFIED",$this->ipn_response))
