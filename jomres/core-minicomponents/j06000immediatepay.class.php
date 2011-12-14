@@ -60,7 +60,7 @@ class j06000immediatepay
 			$this->paypal_settings=$paypal_settings->paypalConfigOptions;
 			}
 			
-		$ourCallbackURL = JOMRES_SITEPAGE_URL.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$subscription->id;
+		$ourCallbackURL = JOMRES_SITEPAGE_URL_NOSEF.'&task=ospayment&no_html=1&Itemid='.$Itemid.'&subscription_id='.$subscription->id;
 		
 		$transactionName='Paypal Invoice from '.$jomresConfig_sitename;
 		if ($this->paypal_settings['usesandbox']=="1")
