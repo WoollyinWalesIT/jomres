@@ -77,7 +77,7 @@ class j01010listpropertys {
 			$propertys_uids=$tmpArray;
 			}
 
-		if (JOMRES_SINGLEPROPERTY)
+		if ($jrConfig['is_single_property_installation']=="1")
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );
 
 		if (count($propertys_uids) >0)
