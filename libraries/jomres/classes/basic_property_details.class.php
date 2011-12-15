@@ -319,7 +319,7 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['property_town'] 					= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN',$data->property_town,$editable,false);
 				$this->multi_query_result[$data->propertys_uid]['property_postcode']				= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE',$data->property_postcode,$editable,false);
 				$this->multi_query_result[$data->propertys_uid]['property_region'] 					= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
-				$this->multi_query_result[$data->propertys_uid]['property_country'] 				= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$data->property_country,$editable,false);
+				$this->multi_query_result[$data->propertys_uid]['property_country'] 				= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',getSimpleCountry($data->property_country),$editable,false);
 				$this->multi_query_result[$data->propertys_uid]['property_country_code'] 			= $data->property_country;
 
 				$this->multi_query_result[$data->propertys_uid]['property_tel'] 					=$data->property_tel;
