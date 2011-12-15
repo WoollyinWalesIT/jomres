@@ -1737,3 +1737,6 @@ define('_JOMRES_METADESCRIPTION','Meta description');
 define('_JOMRES_FOUNDPROPERTIES',"Properties found");
 define('_JOMRES_REGISTRATION_STEP_1_OF_2',"Add your property : Step 1 of 2");
 define('_JOMRES_REGISTRATION_STEP_2_OF_2',"Add your property : Step 2 of 2");
+
+define('_JOMRES_MYPROPERTIES','My properties');
+
