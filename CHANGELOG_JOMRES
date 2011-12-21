@@ -1,3 +1,15 @@
+Jomres 6.0.2
+
+Fixed an issue where optional extras quantities weren't being displayed in the booking form (they were still being calculated) due to upgrading to jquery 1.6.4.
+Small change to the functionality that builds the popover image title.
+Small change to ensure that cryllic initials are found when listing properties in the administrator area.
+Removed some hard coded titles from list properties.
+Improved the router.
+Added a new flag to disable the top template ( "topoff=1" )
+Added a flag that specifically disables the menu through the url. Flag is called "menuoff" and would be used like "menuoff=1"
+A few changes to the gateway handler to ensure that callbacks are validated properly by paypal.
+Added an alternative method of listing all manager's properties.
+
 Jomres 6.0.1
 
 Changed wording of site preview and management views to Normal and Fullscreen.
