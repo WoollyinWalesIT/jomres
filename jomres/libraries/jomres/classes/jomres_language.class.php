@@ -100,7 +100,13 @@ class jomres_language
 		
 	function get_language($propertytype = "")
 		{
-		if ($propertytype != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php'))
+		$language_plugins = get_showtime('language_plugins');
+		$language_plugins_langfile_path = $language_plugins[$this->lang][$propertytype]['path'];
+		if ($propertytype != "" && file_exists($language_plugins_langfile_path.$this->lang."_".$propertytype.'.php'))
+			{
+			require($language_plugins_langfile_path.$this->lang."_".$propertytype.'.php');
+			}
+		else if ($propertytype != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php'))
 			{
 			require(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php');
 			}
@@ -125,7 +131,7 @@ class jomres_language
 						}
 			}
 		}
-		
+
 	function get_current_lang_files()
 		{
 		$langfiles = array();
@@ -143,6 +149,16 @@ class jomres_language
 					}
 				}
 			}
+			
+		$language_plugins = get_showtime('language_plugins');
+		if (count($language_plugins) > 0 )
+			{
+			foreach ($language_plugins as $code=>$propertytype)
+				{
+				$langfiles[]=$code;
+				}
+			}
+			
 		return $langfiles;
 		}
 		
@@ -153,7 +169,7 @@ class jomres_language
 			return "";
 		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
 		$langfile_crossref = $this->define_langfile_to_languages_array();
-		
+
 		if (file_exists($langDropdownFile) )
 			{
 			require_once ($langDropdownFile);
@@ -178,6 +194,7 @@ class jomres_language
 			
 			$tempOptions[$langshortcode]=$langlong;
 			}
+
 		natsort($tempOptions);
 		foreach ($tempOptions as $key=>$val)
 			{
@@ -221,6 +238,18 @@ class jomres_language
 		$langs['sl-SI']="Slovenian";
 		$langs['sr-YU']="Srpski";
 		$langs['zh-CN']="Chinese";
+		
+		$language_plugins = get_showtime('language_plugins');
+		if (count($language_plugins) > 0 )
+			{
+			foreach ($language_plugins as $code=>$propertytype)
+				{
+				foreach ($propertytype as $language_settings)
+					{
+					$langs[$code]=$language_settings['langfile_to_languages'];
+					}
+				}
+			}
 		return $langs;
 		}
 		
@@ -251,6 +280,20 @@ class jomres_language
 		$langs['sr']='sr-YU';
 		$langs['zh']='zh-CN';
 		$langs['no']='nb-NO';
+		
+		$language_plugins = get_showtime('language_plugins');
+		if (count($language_plugins) > 0 )
+			{
+			foreach ($language_plugins as $code=>$propertytype)
+				{
+				foreach ($propertytype as $language_settings)
+					{
+					$shortcode = $language_settings['shortcode_to_longcode'];
+					$langs[$shortcode]=$code;
+					}
+				}
+			}
+		
 		if (array_key_exists($lang,$langs) )
 			return $langs[$lang];
 		return "en-GB";
@@ -284,6 +327,17 @@ class jomres_language
 		$langs['sl-SI']="sl";
 		$langs['sr-YU']="sr";
 		$langs['zh-CN']="";
+		$language_plugins = get_showtime('language_plugins');
+		if (count($language_plugins) > 0 )
+			{
+			foreach ($language_plugins as $code=>$propertytype)
+				{
+				foreach ($propertytype as $language_settings)
+					{
+					$langs[$code]=$language_settings['langfile_to_datepicker'];
+					}
+				}
+			}
 		return $langs;
 		}
 	}
