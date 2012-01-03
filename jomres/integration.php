@@ -327,15 +327,15 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 					{
 					foreach($key1 as $key2=>$val2)	// if the field value is an array, step through it
 						{
-						$k=(int)$key2;
-						$v=(int)$val2;
+						$k=filter_var($key2,FILTER_SANITIZE_SPECIAL_CHARS); 
+						$v=filter_var($val2,FILTER_SANITIZE_SPECIAL_CHARS); 
 						$clean[$k]=$v;
 						}
 					}
 				else
 					{
-					$k=(int)$key1;
-					$v=(int)$val1;
+					$k=filter_var($key1,FILTER_SANITIZE_SPECIAL_CHARS); 
+					$v=filter_var($val1,FILTER_SANITIZE_SPECIAL_CHARS); 
 					$clean[$k]=$v;
 					}
 				}
