@@ -100,14 +100,14 @@ class jomres_language
 		
 	function get_language($propertytype = "")
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
-		$jrConfig=$siteConfig->get();
 		if ($propertytype != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php'))
 			{
 			require(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($propertytype).JRDS.$this->lang.'.php');
 			}
 		else
 			{
+			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$jrConfig=$siteConfig->get();
 			if ( $jrConfig['language_context'] != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php'))
 				require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php');
 			elseif ( $jrConfig['language_context'] != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php'))
@@ -195,7 +195,6 @@ class jomres_language
 		
 	function define_langfile_to_languages_array()
 		{
-		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
 		$langs=array();
 		$langs['bg-BG']="Bulgarian";
 		$langs['en-GB']="English";
@@ -227,7 +226,6 @@ class jomres_language
 		
 	function get_shortcode_to_longcode($lang)
 		{
-		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
 		$langs=array();
 		$langs['bg']='bg-BG';
 		$langs['en']='en-GB';
@@ -260,7 +258,6 @@ class jomres_language
 		
 	function define_langfile_to_datepicker_files_array()
 		{
-		// Some of these will be wrong. If you can advise me of the correct language string, please email vince at support@jomres.net and I'll correct this.
 		$langs=array();
 		$langs['bg-BG']="bg";
 		$langs['en-GB']="en-GB";
