@@ -259,7 +259,7 @@ class j02260editbooking {
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HAMENDBOOKING'],$submitOnClick=false,$submitTask="",$image);
-					add_menu_option ( 'amendBooking&no_html=1&contractUid='.$booking_contract_uid,null,$output['HAMENDBOOKING'],null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ( '&task=amendBooking&no_html=1&contractUid='.$booking_contract_uid,null,$output['HAMENDBOOKING'],null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
 					}
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
