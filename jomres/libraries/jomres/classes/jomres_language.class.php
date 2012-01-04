@@ -53,7 +53,7 @@ class jomres_language
 					}
 				else
 					{
-					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
+					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 						{
 						$lang = JFactory::getLanguage();
 						if ($testing) echo 'Used $lang->getTag() to switch langs<br>';
