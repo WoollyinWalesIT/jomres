@@ -233,7 +233,7 @@ class j16000showplugins
 			</div>
 			<div id="username_input" style="display:none">
 				<fieldset>
-				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://license-server.jomres.net/index.php?cmd=register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you\'ve done that, click the Purchase Plugins! button.<br/>
+				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you\'ve done that, click the Purchase Plugins! button.<br/>
 					<legend>Your details</legend>
 						<ul>
 							<li>
