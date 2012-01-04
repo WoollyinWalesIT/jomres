@@ -1,6 +1,13 @@
 Jomres 6.1.0
 
+Added Joomla 2.5 specific files and changes required to work on J2.5. That was painless!
 
+Minor tidy up of lang class file.
+Small change to ensure that the "amend booking" link in the jomres mainmenu points to the correct url.
+Implemented functionality to allow Jomres to include language files via plugins. 
+Changed how arrays passed into scripts are sanitized.
+Changed link in show plugins shop popup to go to new jomres.net registration url.
+Added an auto upgrade option to install_jomres.php. This is intended to be used by a yet to be developed plugin that will allow silent and automatic upgrades.
 
 Jomres 6.0.2
 
