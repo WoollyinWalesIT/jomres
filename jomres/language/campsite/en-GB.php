@@ -1,8 +1,8 @@
 <?php
 /**
- * Core file
- * @author Vince Wooll <sales@jomres.net>
- * @version Jomres 5
+* Core file
+* @author Vince Wooll <sales@jomres.net>
+* @version Jomres 6
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
 Jomres is distributed as a mix of two licenses (excepting other files in the libraries folder, which are independantly licensed). 
