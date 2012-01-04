@@ -1,4 +1,12 @@
 <?php
+
+// This class is from the ipinfodb.com website. No license information was in the file, ergo it isn't replicated here. Assuming that it is freeware unless informed otherwise.
+
+// ################################################################
+defined( '_JOMRES_INITCHECK' ) or die( '' );
+// ################################################################
+
+
 final class jomres_ip2location_lite{
 	protected $errors = array();
 	protected $service = 'api.ipinfodb.com';

@@ -1,3 +1,7 @@
+Jomres 6.1.0
+
+
+
 Jomres 6.0.2
 
 Fixed an issue where optional extras quantities weren't being displayed in the booking form (they were still being calculated) due to upgrading to jquery 1.6.4.
