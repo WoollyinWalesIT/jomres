@@ -128,7 +128,7 @@ class j10001control_panel
 		
 		$output['CACHE_WARNING']="";
 		$output['CACHE_HIGHLIGHT'] = "";
-		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
+		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 			{
 			if (_JOMRES_DETECTED_CMS == "joomla15" )
 				$query = "SELECT id FROM #__plugins WHERE `element`='cache' AND published = '1'";

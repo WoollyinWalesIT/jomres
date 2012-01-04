@@ -68,13 +68,13 @@ class j00012pathway {
 		else
 			$showJomresPathway = false; // Change this line to $showJomresPathway = true;  If you want to show the Jomres pathway when using Joomla.
 
-		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
+		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 			{
 			$mainframe =& JFactory::getApplication();
 			$breadcrumbs = & $mainframe->getPathWay();
 			$breadcrumbs->setPathway();
 			}
-		if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
+		if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 			{
 			$mainframe =& JFactory::getApplication();
 			$breadcrumbs = & $mainframe->getPathway();
@@ -133,7 +133,7 @@ class j00012pathway {
 			$counter=1;
 			foreach ($pathwayArray as $p)
 				{
-				if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17")
+				if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 					$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
 
 				if ($counter<count($pathwayArray))
