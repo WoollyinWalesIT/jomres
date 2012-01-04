@@ -14,7 +14,7 @@ $version = (float) $v_arr[0];
 
 if ( $version < 5.2 )
 	{
-	echo "Oops, it looks like you're running a version of PHP lower than 5.2. Jomres requires at least PHP5.2 and will not run on earlier versions";
+	if (!AUTO_UPGRADE) echo  "Oops, it looks like you're running a version of PHP lower than 5.2. Jomres requires at least PHP5.2 and will not run on earlier versions";
 	exit;
 	}
 
@@ -22,6 +22,10 @@ define('_JOMRES_INITCHECK', 1 );
 define('_JEXEC', 1 );
 ini_set("display_errors",1);
 ini_set('error_reporting', E_ALL);
+if (isset($_REQUEST['autoupgrade']))
+	define('AUTO_UPGRADE', true );
+else
+	define('AUTO_UPGRADE', false );
 
 if (!defined('JRDS'))
 	{
@@ -51,10 +55,10 @@ define('JOMRESINSTALLPATH_BASE',$path);
 
 if (!file_exists('integration.php') )
 	{
-	echo "Error, cannot find the new Jomres integration script, you might not have downloaded Jomres v4 yet.";
+	if (!AUTO_UPGRADE) echo  "Error, cannot find the new Jomres integration script, you might not have downloaded Jomres v4 yet.";
 	exit;
 	}
-	
+
 require_once( 'integration.php' );
 
 if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."registry.php") )
@@ -64,7 +68,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."regis
 global $jomres_systemLog_path,$lkey;
 $jomres_systemLog_path=JOMRESCONFIG_ABSOLUTE_PATH.$jrConfig['jomres_systemLog_path'];
 
-showheader();
+if (!AUTO_UPGRADE) showheader();
 
 if ($_GET['forceMigrate'] == '1' )
 	{
@@ -75,7 +79,6 @@ if (componentsIntegrationExists())
 	{
 	migrate();
 	}
-	
 
 	$folderChecksPassed=true;
 	
@@ -86,7 +89,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS)) 
 			{
-			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -95,7 +98,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS)) 
 			{
-			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -104,7 +107,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS)) 
 			{
-			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."cache".JRDS." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -113,7 +116,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS)) 
 			{
-			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."updates".JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -122,7 +125,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS)) 
 			{
-			echo "<h1>Error, unable to make folder "."remote_plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder "."remote_plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			}
 		}
 
@@ -130,7 +133,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS)) 
 			{
-			echo "<h1>Error, unable to make folder "."core-plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder "."core-plugins".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS." automatically therefore cannot install plugins. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			}
 		}
 
@@ -138,7 +141,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages")) 
 			{
-			echo "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -147,7 +150,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."rmtypes")) 
 			{
-			echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."rmtypes"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -156,7 +159,7 @@ if (componentsIntegrationExists())
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS."pfeatures")) 
 			{
-			echo "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
+			if (!AUTO_UPGRADE) echo  "<h1>Error, unable to make folder "."uploadedimages".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS.JRDS."pfeatures"." automatically therefore cannot upload images. Please create the folder manually and ensure that it's writable by the web server.</h1><br/>";
 			$folderChecksPassed=false;
 			}
 		}
@@ -165,63 +168,68 @@ if ($folderChecksPassed && ACTION != "Migration")
 	{
 	$trashtables=jomresGetParam($_POST,'trashtables',0,'integer');
 	$manual_install_confirmation=jomresGetParam($_POST,'manual_install_confirmation',"");
-	if ($manual_install_confirmation == "install")
-		define('ACTION',"Install");
-	if ($manual_install_confirmation == "upgrade")
+	if (!AUTO_UPGRADE)
+		{
+		if ($manual_install_confirmation == "install")
+			define('ACTION',"Install");
+		if ($manual_install_confirmation == "upgrade")
+			define('ACTION',"Upgrade");
+		}
+	else
+		{
+		$_POST['go'] = "GO!";
 		define('ACTION',"Upgrade");
-
+		}
+	
 	if ($_POST['go'] != "GO!" && $trashtables < 1 )
-			{
-			if (!function_exists ('gregoriantojd') )
-				echo '<h3><font="red">Note: You need the function gregoriantojd, which does not appear to be available to this version of php. Please see <a href="http://support.jomres.net/?cmd=knowledgebase&p=view&qid=73" target="_blank">the Jomres knowledgebase</a> for more information.<br></font></h3> ';
-			else
-				showGetKeyInput();
-			}
+		{
+		if (!AUTO_UPGRADE) showGetKeyInput();
+		}
+	else
+		{
+		if ($trashtables == 1)
+			 trashTables();
 		else
 			{
-			if ($trashtables == 1)
-				 trashTables();
-			else
+			if (!defined("ACTION") )
+				checkPropertyTableExists();
+
+			if (ACTION == "Install")   // Installing
 				{
-
-				if (!defined("ACTION") )
-					checkPropertyTableExists();
-
-				if (ACTION == "Install")   // Installing
-					{
-					echo "Creating Jomres tables if they don't already exist.<br>";
-					createJomresTables();
-					echo "Inserting sample data<br>";
-					insertSampleData();
-					echo "Importing configuration settings to database<br>";
-					importSettings(0);
-					echo "Creating images folders<br>";
-					copyImages();
-					saveKey2db($lkey);
-					insertPortalTables();
-					//installCronjobs();
-					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
-					showCompletedText();
-					}
-				elseif (ACTION == "Upgrade") // Upgrading
-					{
-					define('ACTION',"Upgrade");
-					jr_import('minicomponent_registry');
-					$registry = new minicomponent_registry(true);
-					$registry->regenerate_registry();
-					echo "Data already installed, no need to re-create it<br>";
-					doTableUpdates();
-					require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
-					showCompletedText();
-					}
-				updateMrConfig();
-				updatePluginSettings();
-				installCronjobs();
+				if (!AUTO_UPGRADE) echo  "Creating Jomres tables if they don't already exist.<br>";
+				createJomresTables();
+				if (!AUTO_UPGRADE) echo  "Inserting sample data<br>";
+				insertSampleData();
+				if (!AUTO_UPGRADE) echo  "Importing configuration settings to database<br>";
+				importSettings(0);
+				if (!AUTO_UPGRADE) echo  "Creating images folders<br>";
+				copyImages();
+				saveKey2db($lkey);
+				insertPortalTables();
+				//installCronjobs();
+				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
+				showCompletedText();
 				}
+			elseif (ACTION == "Upgrade") // Upgrading
+				{
+				define('ACTION',"Upgrade");
+				jr_import('minicomponent_registry');
+				$registry = new minicomponent_registry(true);
+				$registry->regenerate_registry();
+				if (!AUTO_UPGRADE) echo  "Data already installed, no need to re-create it<br>";
+				doTableUpdates();
+				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
+				showCompletedText();
+				}
+			updateMrConfig();
+			updatePluginSettings();
+			installCronjobs();
 			}
 		}
+	}
 
-showfooter();
+if (!AUTO_UPGRADE) showfooter();
+if (AUTO_UPGRADE) echo "1";
 
 function doTableUpdates()
 	{
@@ -241,7 +249,7 @@ function doTableUpdates()
 		$cron = new jomres_cron($displayLog);
 		$cron->addJob("subscriptions","D","");
 		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('0','useSubscriptions')";
-		//echo "Setting $key to $val";echo "<br>";
+		//if (!AUTO_UPGRADE) echo  "Setting $key to $val";if (!AUTO_UPGRADE) echo  "<br>";
 		}
 	alterPropertyLatLongToChar12();
 	if (!checkExtrasTaxrateColExists() )
@@ -298,7 +306,7 @@ function doTableUpdates()
 
 function createAccessControlTable()
 	{
-	echo "Creating __jomres_access_control table<br>";
+	if (!AUTO_UPGRADE) echo  "Creating __jomres_access_control table<br>";
 		$query="CREATE TABLE IF NOT EXISTS `#__jomres_access_control` (
 		`id` int(11) auto_increment,
 		`scriptname` VARCHAR(255),
@@ -307,7 +315,9 @@ function createAccessControlTable()
 		) ";
 	$result=doInsertSql($query,"");
 	if (!$result )
-		echo "<b>Error creating table table __jomres_access_control </b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table __jomres_access_control </b><br>";
+		}
 	}
 	
 function checkAccessControlTableExists()
@@ -327,10 +337,12 @@ function checkAccessControlTableExists()
 	
 function alterPtypesOrderCol()
 	{
-	echo "Editing __jomres_ptypes table adding order column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_ptypes table adding order column<br>";
 	$query = "ALTER TABLE `#__jomres_ptypes` ADD `order` INT NULL DEFAULT '0' AFTER `published`";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_ptypes order</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_ptypes order</b><br>";
+		}
 	}
 
 function checkPtypesOrderColExists()
@@ -347,10 +359,12 @@ function checkPtypesOrderColExists()
 	
 function alterExtrasAutoSelectCol()
 	{
-	echo "Editing __jomres_extras table adding auto_select column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_extras table adding auto_select column<br>";
 	$query = "ALTER TABLE `#__jomres_extras` ADD `auto_select` INT NULL DEFAULT '0' AFTER `price`";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_extras auto_select</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_extras auto_select</b><br>";
+		}
 	}
 
 function checkExtrasAutoselectColExists()
@@ -378,10 +392,12 @@ function checkLineitemsInclusiveColExists()
 
 function alterLineitemsInclusiveCol()
 	{
-	echo "Editing __jomresportal_lineitems table adding init_total_inclusive column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_lineitems table adding init_total_inclusive column<br>";
 	$query = "ALTER TABLE `#__jomresportal_lineitems` ADD `init_total_inclusive` float NOT NULL default '0' AFTER `init_total`";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_lineitems init_total_inclusive</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_lineitems init_total_inclusive</b><br>";
+		}
 	}
 	
 function checkCouponsBookingValidColsExists()
@@ -397,20 +413,26 @@ function checkCouponsBookingValidColsExists()
 
 function alterCouponsBookingValidCols()
 	{
-	echo "Editing __jomres_coupons table adding booking_valid_from column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_coupons table adding booking_valid_from column<br>";
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_from` DATE AFTER rooms_only ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_coupons booking_valid_from</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_coupons booking_valid_from</b><br>";
+		}
 
-	echo "Editing __jomres_coupons table adding booking_valid_to column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_coupons table adding booking_valid_to column<br>";
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `booking_valid_to` DATE AFTER booking_valid_from ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_coupons booking_valid_to</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_coupons booking_valid_to</b><br>";
+		}
 
-	echo "Editing __jomres_coupons table adding guest_uid column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_coupons table adding guest_uid column<br>";
 	$query = "ALTER TABLE `#__jomres_coupons` ADD `guest_uid` INT NULL DEFAULT '0' AFTER booking_valid_to ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_coupons booking_valid_to</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_coupons booking_valid_to</b><br>";
+		}
 	}
 	
 function checkExtraServicesTaxColExists()
@@ -426,17 +448,19 @@ function checkExtraServicesTaxColExists()
 
 function alterExtraServicesTaxCol()
 	{
-	echo "Editing __jomres_extraServices table adding tax_rate_val column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_extraServices table adding tax_rate_val column<br>";
 	$query = "ALTER TABLE `#__jomres_extraServices` ADD `tax_rate_val` CHAR (10) DEFAULT '0' ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_extraServices tax_rate_val</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_extraServices tax_rate_val</b><br>";
+		}
 	}
 	
 
 // An odd one, this. It seems that some upgrades haven't got this table, so we'll add it if needed
 function createExtraServicesTable()
 	{
-	echo "Creating __jomres_extraServices table<br>";
+	if (!AUTO_UPGRADE) echo  "Creating __jomres_extraServices table<br>";
 		$query="CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
 		`extraservice_uid` int(11) auto_increment,
 		`service_description` VARCHAR(255),
@@ -448,7 +472,9 @@ function createExtraServicesTable()
 		) ";
 	$result=doInsertSql($query,"");
 	if (!$result )
-		echo "<b>Error creating table table __jomres_extraServices </b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table __jomres_extraServices </b><br>";
+		}
 	}
 	
 function checkExtraServicesTableExists()
@@ -480,15 +506,17 @@ function checkPropertyUIDInOrphanLineItemsColExists()
 
 function alterPropertyUIDInOrphanLineItemsCol()
 	{
-	echo "Editing __jomresportal_orphan_lineitems table adding property_uid column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_orphan_lineitems table adding property_uid column<br>";
 	$query = "ALTER TABLE `#__jomresportal_orphan_lineitems` ADD `property_uid` INT NULL DEFAULT '0' ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_orphan_lineitems property_uid</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_orphan_lineitems property_uid</b><br>";
+		}
 	}
 
 function createGuestProfileTable()
 	{
-	echo "Creating _jomres_guest_profile table<br>";
+	if (!AUTO_UPGRADE) echo  "Creating _jomres_guest_profile table<br>";
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_guest_profile` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` VARCHAR(255) NULL,
@@ -516,7 +544,9 @@ function createGuestProfileTable()
 		PRIMARY KEY(id)
 		) ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add _jomres_guest_profile table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add _jomres_guest_profile table</b><br>";
+		}
 	}
 	
 function checkGuestProfileTableExists()
@@ -547,18 +577,22 @@ function checkInvoicesIsCommisionColExists()
 
 function alterInvoicesIsCommisionCol()
 	{
-	echo "Editing __jomresportal_invoices table adding is_commission column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_invoices table adding is_commission column<br>";
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `is_commission` INT NULL DEFAULT '0' ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_invoices is_commission</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_invoices is_commission</b><br>";
+		}
 	}
 
 function alterManagerSuspendedCol()
 	{
-	echo "Editing __jomres_managers table adding suspended column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_managers table adding suspended column<br>";
 	$query = "ALTER TABLE `#__jomres_managers` ADD `suspended` tinyint( 1 ) default 0 AFTER `apikey` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_managers suspended</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_managers suspended</b><br>";
+		}
 	}
 
 function checkManagerSuspendedColExists()
@@ -576,16 +610,18 @@ function checkManagerSuspendedColExists()
 	
 function createPartnerTables()
 	{
-	echo "Creating __jomres_partners table<br>";
+	if (!AUTO_UPGRADE) echo  "Creating __jomres_partners table<br>";
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_userid` int(11),
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_partners table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_partners table</b><br>";
+		}
 	
-	echo "Creating __jomres_partners_discounts table<br>";
+	if (!AUTO_UPGRADE) echo  "Creating __jomres_partners_discounts table<br>";
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_partners_discounts` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`partner_id` int(11),
@@ -596,7 +632,9 @@ function createPartnerTables()
 	PRIMARY KEY ( `id` )
 	)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
+		}
 	}	
 	
 function checkPartnerTablesExist()
@@ -617,10 +655,12 @@ function checkPartnerTablesExist()
 
 function alterManagerTimezoneCol()
 	{
-	echo "Editing __jomres_managers table adding users_timezone column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_managers table adding users_timezone column<br>";
 	$query = "ALTER TABLE `#__jomres_managers` ADD `users_timezone` CHAR(100) DEFAULT 'Europe/Berlin' AFTER `apikey` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_managers users_timezone</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_managers users_timezone</b><br>";
+		}
 	}
 
 function checkManagerTimezoneColExists()
@@ -636,7 +676,7 @@ function checkManagerTimezoneColExists()
 
 function createRoomtypePropertytypeXrefTable()
 	{
-	echo "Creating room type/property type xref table<br>";
+	if (!AUTO_UPGRADE) echo  "Creating room type/property type xref table<br>";
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_roomtypes_propertytypes_xref` (
 		`id` int(11) NOT NULL auto_increment,
 		`roomtype_id` int(11),
@@ -644,7 +684,9 @@ function createRoomtypePropertytypeXrefTable()
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_roomtypes_propertytypes_xref table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_roomtypes_propertytypes_xref table</b><br>";
+		}
 	}
 	
 function checkRoomtypePropertytypeXrefTableExists()
@@ -664,7 +706,7 @@ function checkRoomtypePropertytypeXrefTableExists()
 		
 function createBookingdataArchiveTable()
 	{
-	echo "Creating booking data archive tables<br>";
+	if (!AUTO_UPGRADE) echo  "Creating booking data archive tables<br>";
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_booking_data_archive` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`data` text,
@@ -672,7 +714,9 @@ function createBookingdataArchiveTable()
 	PRIMARY KEY ( `id` )
 	)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add _jomres_booking_data_archive table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add _jomres_booking_data_archive table</b><br>";
+		}
 	}
 	
 function checkBookingdataArchiveTableExists()
@@ -693,7 +737,7 @@ function checkBookingdataArchiveTableExists()
 
 function createReviewDetailTable()
 	{
-	echo "Creating review detail tables<br>";
+	if (!AUTO_UPGRADE) echo  "Creating review detail tables<br>";
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_detail` (
 	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
@@ -702,7 +746,9 @@ function createReviewDetailTable()
 	PRIMARY KEY ( `detail_id` )
 	)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
+		}
 	}
 	
 function checkReviewDetailTableExists()
@@ -722,7 +768,7 @@ function checkReviewDetailTableExists()
 	
 function createReviewsTables()
 	{
-	echo "Creating reviews tables<br>";
+	if (!AUTO_UPGRADE) echo  "Creating reviews tables<br>";
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings` (
 	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
 	`item_id` int( 11 ) default NULL ,
@@ -738,7 +784,9 @@ function createReviewsTables()
 	PRIMARY KEY ( `rating_id` )
 	)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
+		}
 
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_confirm` (
 	`confirm_rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -751,7 +799,9 @@ function createReviewsTables()
 	PRIMARY KEY ( `confirm_rating_id` )
 	)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
+		}
 		
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_reports` (
 	`report_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -762,7 +812,9 @@ function createReviewsTables()
 	PRIMARY KEY ( `report_id` )
 	)";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
+		}
 	}
 
 function checkReviewsTablesExist()
@@ -788,10 +840,12 @@ function checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled()
 
 function alterGuestsDiscountCol()
 	{
-	echo "Editing __jomres_guests table adding discount column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_guests table adding discount column<br>";
 	$query = "ALTER TABLE `#__jomres_guests` ADD `discount` INT( 11 ) DEFAULT '0' NOT NULL AFTER `email` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_guests discount</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_guests discount</b><br>";
+		}
 	}
 
 function checkGuestsDiscountColExists()
@@ -807,10 +861,12 @@ function checkGuestsDiscountColExists()
 	
 function alterContractsInvoice()
 	{
-	echo "Editing __jomres_contracts table adding invoice_uid column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_contracts table adding invoice_uid column<br>";
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `invoice_uid` INT( 11 ) DEFAULT '0' NOT NULL AFTER `bookedout_timestamp` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts invoice_uid</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_contracts invoice_uid</b><br>";
+		}
 	}
 
 function checkContractsInvoiceColExists()
@@ -826,10 +882,12 @@ function checkContractsInvoiceColExists()
 	
 function alterPfeaturesPtypeidCol()
 	{
-	echo "Editing __jomres_hotel_features table adding ptype_id column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_hotel_features table adding ptype_id column<br>";
 	$query = "ALTER TABLE `#__jomres_hotel_features` ADD `ptype_id` INT( 11 ) DEFAULT '0' NOT NULL AFTER `property_uid` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_subscriptions ptype_id</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_subscriptions ptype_id</b><br>";
+		}
 	}
 
 function checkPfeaturesPtypeidColExists()
@@ -845,10 +903,12 @@ function checkPfeaturesPtypeidColExists()
 	
 function alterSubscribersSubscriptionPackageIdCol()
 	{
-	echo "Editing __jomresportal_subscriptions table adding package_id column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_subscriptions table adding package_id column<br>";
 	$query = "ALTER TABLE `#__jomresportal_subscriptions` ADD `package_id` INT NULL DEFAULT '0' AFTER `gateway_subscription_id` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_subscriptions package_id</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_subscriptions package_id</b><br>";
+		}
 	}
 
 function checkSubscribersSubscriptionPackageIdColExists()
@@ -865,10 +925,12 @@ function checkSubscribersSubscriptionPackageIdColExists()
 	
 function alterExtrasTaxrateCol()
 	{
-	echo "Editing __jomres_extras table adding tax_rate column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_extras table adding tax_rate column<br>";
 	$query = "ALTER TABLE `#__jomres_extras` ADD `tax_rate` INT NULL DEFAULT '0' AFTER `price` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_extras tax_rate</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_extras tax_rate</b><br>";
+		}
 	}
 
 function checkExtrasTaxrateColExists()
@@ -956,10 +1018,10 @@ function checkSubscriptionsTablesExist()
 
 function alterCustomTemplatesTimestampCol()
 	{
-	echo "Editing __jomres_custom_templates table adding last_edited column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_custom_templates table adding last_edited column<br>";
 	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `last_edited` DATETIME AFTER `value` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_custom_templates last_edited</b><br>";
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_custom_templates last_edited</b><br>";
 	}
 
 function checkCustomTemplatesTimestampColExists()
@@ -977,10 +1039,12 @@ function checkCustomTemplatesTimestampColExists()
 	
 function alterPropertysTimestampCol()
 	{
-	echo "Editing __jomres_propertys table adding timestamp column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_propertys table adding timestamp column<br>";
 	$query = "ALTER TABLE `#__jomres_propertys` ADD `timestamp` DATETIME AFTER `metadescription` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_propertys timestamp</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_propertys timestamp</b><br>";
+		}
 	}
 
 
@@ -1028,10 +1092,12 @@ function checkInvoicesContractuidColExists()
 
 function alterInvoicesContractuidCol()
 	{
-	echo "Editing __jomresportal_invoices table adding contract_id column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_invoices table adding contract_id column<br>";
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `contract_id` INT NULL DEFAULT '0' AFTER `subscription_id` ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_invoices contract_id</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_invoices contract_id</b><br>";
+		}
 	}
 
 
@@ -1049,16 +1115,18 @@ function checkInvoicesPropertyuidColExists()
 
 function alterInvoicesPropertyuidCol()
 	{
-	echo "Editing __jomresportal_invoices table adding property_uid column<br>";
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_invoices table adding property_uid column<br>";
 	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `property_uid` INT NULL DEFAULT '0' ";
 	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomresportal_invoices property_uid</b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_invoices property_uid</b><br>";
+		}
 	}
 	
 
 function installCronjobs()
 	{
-	echo "Installing cron jobs<br/>";
+	if (!AUTO_UPGRADE) echo  "Installing cron jobs<br/>";
 	jr_import('jomres_cron');
 	$cron = new jomres_cron();
 	$cron->addJob("optimise","D","");
@@ -1075,14 +1143,16 @@ function trashTables()
 	$string="Tables_in_".$jomresConfig_db;
 	foreach ($result as $r)
 		{
-		//echo $string;
-		//echo $r->$string."<br>";
+		//if (!AUTO_UPGRADE) echo  $string;
+		//if (!AUTO_UPGRADE) echo  $r->$string."<br>";
 		if (strstr($r->$string, 'jomres_') || strstr($r->$string, 'jomcomp_') || strstr($r->$string, 'jomresportal_'))
 			{
 			$query= "DROP TABLE IF EXISTS ".$r->$string;
-			echo "Dropping table ".$r->$string." <br>";
-		if (!doInsertSql($query,'') )
-			echo "<b>Error, unable to drop table ".$r->$string."</b><br>";
+			if (!AUTO_UPGRADE) echo  "Dropping table ".$r->$string." <br>";
+			if (!doInsertSql($query,'') )
+				{
+				if (!AUTO_UPGRADE) echo  "<b>Error, unable to drop table ".$r->$string."</b><br>";
+				}
 			}
 		//	return true;
 		}
@@ -1114,7 +1184,7 @@ function updateMrConfig()
 			{
 			
 			$query="INSERT INTO #__jomres_settings (akey,value) VALUES ('".$k."','".$v."')";
-			//echo $query."<br>";
+			//if (!AUTO_UPGRADE) echo  $query."<br>";
 			doInsertSql($query,'');
 			}
 		}
@@ -1144,7 +1214,7 @@ function updatePluginSettings()
 			foreach ($v as $sett=>$settVal)
 				{
 				$query="INSERT INTO #__jomres_pluginsettings (prid,plugin,setting,value) VALUES (0,'".$k."','".$sett."','".$settVal."')";
-				//echo $query."<br>";
+				//if (!AUTO_UPGRADE) echo  $query."<br>";
 				doInsertSql($query,'');
 				}
 			}
@@ -1156,15 +1226,15 @@ function copySiteConfig($adminPath) // Allows us to copy site_config-dist.php to
 	if (!file_exists($adminPath.JRDS."site_config.php") )
 		{
 		if (is_readable($adminPath.JRDS."site_config-dist.php") )
-			echo "It's readable";
+			{ if (!AUTO_UPGRADE) echo  "It's readable";}
 		else
-			echo "It's not readable";
+			{ if (!AUTO_UPGRADE) echo  "It's not readable";}
 		touch($adminPath.JRDS."site_config.php");
 		copy ($adminPath.JRDS."site_config-dist.php",$adminPath.JRDS."site_config.php");
 		}
 	else
 		{
-		echo "It's already here";
+		if (!AUTO_UPGRADE) echo  "It's already here";
 		}
 	}
 
@@ -1334,10 +1404,10 @@ function showCompletedText()
 	
 	if (strstr(JOMRES_SITEPAGE_URL_ADMIN,$fullurl))  // We'll add this because installing on SA the url is already set, whereas in Joomla it's not. as SA gets live site from the config and uses it
 		$fullurl="";
-	echo '<br>Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres<br>';
-	echo '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
-	echo '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.<br>';
-	echo '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
+	if (!AUTO_UPGRADE) echo  '<br>Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres<br>';
+	if (!AUTO_UPGRADE) echo  '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
+	if (!AUTO_UPGRADE) echo  '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.<br>';
+	if (!AUTO_UPGRADE) echo  '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
 	}
 
 
@@ -1385,18 +1455,18 @@ function checkPropertyTableExists()
 	$query="SHOW TABLES";
 	$result=doSelectSql($query,$mode=FALSE);
 	$string="Tables_in_".get_showtime('db');
-	echo "Looking for ".get_showtime('dbprefix').'jomres_propertys<br>';
+	if (!AUTO_UPGRADE) echo  "Looking for ".get_showtime('dbprefix').'jomres_propertys<br>';
 	$nullcounter=0;
 	foreach ($result as $r)
 		{
-		//echo "Found ".$r->$string."<br/>";
+		//if (!AUTO_UPGRADE) echo  "Found ".$r->$string."<br/>";
 		if (is_null($r->$string))
 			$nullcounter++;
 		}
 	if (count($result) == $nullcounter)
 		{
-		echo "Number of tables ".count($result)."<br>";
-		echo "Number of tables that could not be identified ".$nullcounter."<br>";
+		if (!AUTO_UPGRADE) echo  "Number of tables ".count($result)."<br>";
+		if (!AUTO_UPGRADE) echo  "Number of tables that could not be identified ".$nullcounter."<br>";
 		showGetInstallUpgradeRequest();
 		define('ACTION',"Unknown");
 		}
@@ -1406,7 +1476,7 @@ function checkPropertyTableExists()
 			{
 			if (strstr($r->$string, $jomresConfig_dbprefix.'jomres_propertys') )
 				{
-				echo " ".$jomresConfig_dbprefix.'jomres_propertys found. We are upgrading.<br>';
+				if (!AUTO_UPGRADE) echo  " ".$jomresConfig_dbprefix.'jomres_propertys found. We are upgrading.<br>';
 				define('ACTION',"Upgrade");
 				}
 			}
@@ -1424,9 +1494,9 @@ function makeAdminPropertyManager()
 	$result=doInsertSql($query,"");
 
 	if ($result)
-		echo "Inserted admin as manager<br>";
+		if (!AUTO_UPGRADE) echo  "Inserted admin as manager<br>";
 	else
-		echo "Could not create admin as manager<br>";
+		if (!AUTO_UPGRADE) echo  "Could not create admin as manager<br>";
 	if ($result)
 		return true;
 	else
@@ -1442,21 +1512,21 @@ function deleteCurrentLicenseFiles()
 		$licensefileDeleted=@unlink(JOMRESINSTALLPATH_BASE.JRDS.'media'.JRDS.'jomres_licensekey.php');
 	else
 		$licensefileDeleted=true;
-	//echo JOMRESPATH_BASE.'/media/key.php';
+	//if (!AUTO_UPGRADE) echo  JOMRESPATH_BASE.'/media/key.php';
 	if (file_exists(JOMRESINSTALLPATH_BASE.JRDS.'media'.JRDS.'key.php') )
 		{
-		//echo "Deleting existing key.php<br>";
+		//if (!AUTO_UPGRADE) echo  "Deleting existing key.php<br>";
 		$keyfileDeleted=unlink(JOMRESINSTALLPATH_BASE.JRDS.'media'.JRDS.'key.php');
 		}
 	else
 		{
-		//echo "File key.php does not exist<br>";
+		//if (!AUTO_UPGRADE) echo  "File key.php does not exist<br>";
 		$keyfileDeleted=true;
 		}
 	if (!$licensefileDeleted)
-		echo "Unable to delete license file<br>";
+		{if (!AUTO_UPGRADE) echo  "Unable to delete license file<br>";}
 	if (!$keyfileDeleted)
-		echo "Unable to delete key file<br>";
+		{if (!AUTO_UPGRADE) echo  "Unable to delete key file<br>";}
 
 	if ($licensefileDeleted && $keyfileDeleted)
 		return true;
@@ -1534,7 +1604,9 @@ function createJomresTables()
 		)";
 	$result=doInsertSql($query,"");
 	if (!$result )
-		echo "<b>Error creating table table __jomres_coupons </b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table __jomres_coupons </b><br>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_fields` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -1546,7 +1618,9 @@ function createJomresTables()
 		) ";
 	$result=doInsertSql($query,"");
 	if (!$result )
-		echo "<b>Error creating table table __jomres_custom_fields </b><br>";
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table __jomres_custom_fields </b><br>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_templates` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -1557,8 +1631,9 @@ function createJomresTables()
 		) ";
 	$result=doInsertSql($query,"");
 	if (!$result )
-		echo "<b>Error creating table table __jomres_custom_templates </b><br>";
-		
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table __jomres_custom_templates </b><br>";
+		}
 		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices_transactions` (
 		id int(10) NOT NULL auto_increment,
@@ -1658,7 +1733,9 @@ function createJomresTables()
 		);
 		";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 	
 	$query="
 	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
@@ -1668,7 +1745,9 @@ function createJomresTables()
 		);
 	";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
 		`id` int(11) NOT NULL auto_increment,
@@ -1676,10 +1755,9 @@ function createJomresTables()
 		`property_uid` int(11),
 		PRIMARY KEY(`id`)
 		)";
-	if (!doInsertSql($query,'') )
+	if (!doInsertSql($query))
 		{
-		echo $query;
-		return false;
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
 		}
 	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
@@ -1697,11 +1775,11 @@ function createJomresTables()
 		`archived_date` datetime,
 		PRIMARY KEY(`id`)
 	)";
-	if (!doInsertSql($query,'') )
+	if (!doInsertSql($query))
 		{
-		echo $query;
-		return false;
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
 		}
+	
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
 		`id` int(11) AUTO_INCREMENT,
 		`manager_uid` INTEGER,
@@ -1712,11 +1790,11 @@ function createJomresTables()
 		`created` datetime,
 		PRIMARY KEY(id)
 		)";
-	if (!doInsertSql($query,'') )
+	if (!doInsertSql($query))
 		{
-		echo $query;
-		return false;
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
 		}
+	
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_c_rates (
 		`id` int(11) AUTO_INCREMENT,
 		`title` varchar(255),
@@ -1728,21 +1806,20 @@ function createJomresTables()
 		`archived_date` datetime,
 		PRIMARY KEY(id)
 		)";
-	if (!doInsertSql($query,'') )
+	if (!doInsertSql($query))
 		{
-		echo $query;
-		return false;
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
 		}
+	
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_properties_crates_xref (
 		`id` int(11) AUTO_INCREMENT,
 		`property_id` int UNIQUE,
 		`crate_id` int,
 		PRIMARY KEY(id)
 		)";
-	if (!doInsertSql($query,'') )
+	if (!doInsertSql($query))
 		{
-		echo $query;
-		return false;
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
 		}
 		
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_site_settings` (
@@ -1751,9 +1828,10 @@ function createJomresTables()
 		`value`	VARCHAR(255),
 		PRIMARY KEY	(`id`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_site_settings </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1761,9 +1839,10 @@ function createJomresTables()
 		`property_uid` int not null,
 		PRIMARY KEY (`id`)
 		)";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomcomp_tarifftypes </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftype_rate_xref` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1773,9 +1852,10 @@ function createJomresTables()
 		`property_uid` int not null,
 		PRIMARY KEY (`id`)
 		)";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomcomp_tarifftype_rate_xref </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_extrasmodels_models` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1786,9 +1866,10 @@ function createJomresTables()
 		`property_uid` INT,
 		PRIMARY KEY (`id`)
 		)";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomcomp_extrasmodels_models </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_mufavourites` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1796,10 +1877,10 @@ function createJomresTables()
 		`property_uid` INT,
 		PRIMARY KEY (`id`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomcomp_mufavourites </b><br>";
-
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_notes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1809,10 +1890,10 @@ function createJomresTables()
 		`property_uid` INT,
 		PRIMARY KEY (`id`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomcomp_notes </b><br>";
-
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_customertypes` (
 		`id` int(11) NOT NULL auto_increment,
@@ -1827,18 +1908,20 @@ function createJomresTables()
 		`order` INT( 11 ) NOT NULL DEFAULT '0',
 		PRIMARY KEY(id)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_customertypes </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_pcounter` (
 		`count` int ,
 		`p_uid` int(11) NOT NULL PRIMARY KEY,
 		`p_view` int(11)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_pcounter </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_pluginsettings` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1848,9 +1931,10 @@ function createJomresTables()
 		`value` VARCHAR( 255 ),
 		PRIMARY KEY (`id`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_pluginsettings </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_ptypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
@@ -1860,9 +1944,10 @@ function createJomresTables()
 		`order` INT NULL DEFAULT '0',
 		PRIMARY KEY (`id`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_ptypes </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_text` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -1873,9 +1958,10 @@ function createJomresTables()
 		`reserved` VARCHAR( 255 ),
 		PRIMARY KEY ( `uid` )
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_custom_text </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_extras` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -1890,9 +1976,10 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY ( `uid` )
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_extras </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_audit_archive` (
 		`uid` int(11) auto_increment,
@@ -1904,9 +1991,10 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY	(`uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_audit_archive </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_audit` (
 		`uid` int(11) auto_increment,
@@ -1918,9 +2006,10 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY	(`uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_audit </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_settings` (
 		`uid` int(11) auto_increment,
@@ -1929,9 +2018,10 @@ function createJomresTables()
 		`value`	VARCHAR(255),
 		PRIMARY KEY	(`uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_settings </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_images` (
 		`uid` int(11) auto_increment,
@@ -1940,9 +2030,10 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY	(`uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_room_images </b><br>";
+	if (!doInsertSql($query))
+		{
+		if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>";
+		}
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_extraServices` (
 		`extraservice_uid` int(11) auto_increment,
@@ -1953,9 +2044,8 @@ function createJomresTables()
 		`tax_rate_val` CHAR (10) DEFAULT '0',
 		PRIMARY KEY	(`extraservice_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_extraServices </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_contracts` (
 		`contract_uid` int(11) auto_increment,
@@ -2004,9 +2094,8 @@ function createJomresTables()
 		`invoice_uid` int(11),
 		PRIMARY KEY(`contract_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_contracts </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_rates` (
 		`rates_uid` int(11) NOT NULL auto_increment,
@@ -2033,9 +2122,8 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY(`rates_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_rates </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_guests` (
 		`guests_uid` int(11) NOT NULL auto_increment,
@@ -2066,9 +2154,8 @@ function createJomresTables()
 		`discount` INT( 2 ) DEFAULT '0' NOT NULL,
 		PRIMARY KEY(guests_uid)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_guests </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_bookings` (
 		`room_bookings_uid` int(11) NOT NULL auto_increment,
@@ -2081,9 +2168,8 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY(`room_bookings_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_room_bookings </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_classes` (
 		`room_classes_uid` int(11) NOT NULL auto_increment,
@@ -2094,9 +2180,8 @@ function createJomresTables()
 		`srp_only` BOOL,
 		PRIMARY KEY(`room_classes_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_room_classes </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_rooms` (
 		`room_uid` int(11) NOT NULL auto_increment,
@@ -2112,9 +2197,8 @@ function createJomresTables()
 		`singleperson_suppliment` DOUBLE DEFAULT '0',
 		PRIMARY KEY(`room_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_rooms </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_room_features` (
 		`room_features_uid` int(11) NOT NULL auto_increment,
@@ -2122,9 +2206,8 @@ function createJomresTables()
 		`property_uid` VARCHAR(11),
 		PRIMARY KEY(`room_features_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_room_features </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_hotel_features` (
 		`hotel_features_uid` int(11) NOT NULL auto_increment,
@@ -2135,9 +2218,8 @@ function createJomresTables()
 		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		PRIMARY KEY(`hotel_features_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_hotel_features </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers` (
 		`manager_uid` int(11) NOT NULL auto_increment,
@@ -2152,9 +2234,8 @@ function createJomresTables()
 		`users_timezone` CHAR(100) DEFAULT 'Europe/Berlin',
 		PRIMARY KEY	(`manager_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_managers </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_propertys` (
 		`propertys_uid` int(11) NOT NULL auto_increment,
@@ -2188,11 +2269,9 @@ function createJomresTables()
 		`timestamp` DATETIME,
 		PRIMARY KEY(`propertys_uid`)
 		) ";
-	$result=doInsertSql($query,"");
-	if (!$result )
-		echo "<b>Error creating table table __jomres_propertys </b><br>";
-		
-
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+	
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions_packages` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 	`name` VARCHAR( 100 ),
@@ -2206,7 +2285,8 @@ function createJomresTables()
 	`property_limit` int(11) NOT NULL default '0',
 	`tax_code_id` int(11) NOT NULL default '0'
 	)";
-	doInsertSql($query,"");
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscriptions` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
@@ -2224,7 +2304,8 @@ function createJomresTables()
 	`status` SMALLINT NOT NULL DEFAULT '0',
 	`raised_date` datetime
 	)";
-	doInsertSql($query,"");
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_subscribers` (
 	`id` INT( 10 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
@@ -2235,7 +2316,8 @@ function createJomresTables()
 	`country` VARCHAR( 255 ),
 	`postcode` VARCHAR( 255 ) 
 	)";
-	doInsertSql($query,"");
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings` (
 	`rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -2251,8 +2333,8 @@ function createJomresTables()
 	`published` BOOL NOT NULL DEFAULT '0',
 	PRIMARY KEY ( `rating_id` )
 	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_reviews_ratings table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_ratings_confirm` (
 	`confirm_rating_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -2264,8 +2346,8 @@ function createJomresTables()
 	`confirm_date` datetime default NULL ,
 	PRIMARY KEY ( `confirm_rating_id` )
 	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_reviews_ratings_confirm table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query = "CREATE TABLE  IF NOT EXISTS `#__jomres_reviews_reports` (
 	`report_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -2275,8 +2357,8 @@ function createJomresTables()
 	`report_date` datetime default NULL ,
 	PRIMARY KEY ( `report_id` )
 	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_reviews_reports table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_reviews_ratings_detail` (
 	`detail_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -2285,8 +2367,8 @@ function createJomresTables()
 	`detail_rating`  tinyint( 4 ) default NULL ,
 	PRIMARY KEY ( `detail_id` )
 	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add _jomres_reviews_ratings_detail table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query = "CREATE TABLE IF NOT EXISTS  `#__jomres_booking_data_archive` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -2294,8 +2376,8 @@ function createJomresTables()
 	`date` datetime default NULL ,
 	PRIMARY KEY ( `id` )
 	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add _jomres_booking_data_archive table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_roomtypes_propertytypes_xref` (
 		`id` int(11) NOT NULL auto_increment,
@@ -2303,16 +2385,16 @@ function createJomresTables()
 		`propertytype_id` int(11),
 		PRIMARY KEY(`id`)
 		)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_roomtypes_propertytypes_xref table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_partners` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_userid` int(11),
 		PRIMARY KEY(`id`)
 		)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_partners table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomres_partners_discounts` (
 	`id` int( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -2323,8 +2405,8 @@ function createJomresTables()
 	`discount` FLOAT NOT NULL DEFAULT '0.00',
 	PRIMARY KEY ( `id` )
 	)";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_partners_discounts table</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	}
 
 function insertSampleData()
@@ -2622,82 +2704,82 @@ function checkIfNewIndexRequired()
 
 function createExtraIndexs()
 	{
-	echo "Altering tables, creating new indexs<br>";
+	if (!AUTO_UPGRADE) echo  "Altering tables, creating new indexs<br>";
 	$query="ALTER TABLE `#__jomres_custom_text` ADD INDEX ( `property_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_custom_text to add index property_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_extras` ADD INDEX ( `property_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_extras to add index property_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_guests` ADD INDEX ( `mos_userid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_guests to add index mos_userid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_guests` ADD INDEX ( `property_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_guests to add index property_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_pcounter` ADD INDEX ( `p_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_pcounter to add index p_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_propertys` ADD INDEX ( `property_town` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_propertys to add index property_town </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_propertys` ADD INDEX ( `property_region` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_propertys to add index property_region </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_propertys` ADD INDEX ( `property_country` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_propertys to add index property_country </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_propertys` ADD INDEX ( `published` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_propertys to add index published </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_propertys` ADD INDEX ( `ptype_id` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_propertys to add index ptype_id </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_rates` ADD INDEX ( `roomclass_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_rates to add index roomclass_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_rates` ADD INDEX ( `property_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_rates to add index property_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_rooms` ADD INDEX ( `room_classes_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_rooms to add index room_classes_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_rooms` ADD INDEX ( `propertys_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_rooms to add index propertys_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_room_bookings` ADD INDEX ( `room_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_room_bookings to add index room_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_room_bookings` ADD INDEX ( `date` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_room_bookings to add index date </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_room_bookings` ADD INDEX ( `property_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_room_bookings to add index property_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="ALTER TABLE `#__jomres_settings` ADD INDEX ( `property_uid` ) ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, couldn't alter table __jomres_settings to add index property_uid </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	//$query="ALTER TABLE `#__jomres_tmpbooking` ADD INDEX ( `tag` ) ";
 	//if (!doInsertSql($query,'') )
-	//	echo "<b>Error, couldn't alter table __jomres_tmpbooking to add index tag </b><br>";
+	//	if (!AUTO_UPGRADE) echo  "<b>Error, couldn't alter table __jomres_tmpbooking to add index tag </b><br>";
 
 	}
 
@@ -2713,7 +2795,7 @@ function showGetInstallUpgradeRequest()
 	<input type="radio" name="manual_install_confirmation" value="install"> This is a new installation of Jomres<br>
 	<input type="radio" name="manual_install_confirmation" value="upgrade" checked>This is an upgrade of an existing Jomres installation<br>
 	</div>
-	<input type="hidden" type="text" name="lkey" value="<?php echo $lkey; ?>"/>
+	<input type="hidden" type="text" name="lkey" value="<?php if (!AUTO_UPGRADE) echo  $lkey; ?>"/>
 	<input type="hidden" name="option" value="com_jomres" />
 	<input type="hidden" name="task" value="saveLicenseKey" />
 	<input type="submit" value="Continue" class="button" >
@@ -2815,23 +2897,18 @@ function insertPortalTables()
 		`property_uid` INT,
 	PRIMARY KEY (`id`)
 	)";
-
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftypes` (
 		`id` INT NOT NULL AUTO_INCREMENT,
 		`name` char(255),
 		`property_uid` int,
 	PRIMARY KEY (`id`)
 	)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
+		if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomcomp_tarifftype_rate_xref` (
 		`id` INT NOT NULL AUTO_INCREMENT,
 		`tarifftype_id` int,
@@ -2840,31 +2917,27 @@ function insertPortalTables()
 		`property_uid` int,
 	PRIMARY KEY (`id`)
 	)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
-		$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
-		`id` int(11) auto_increment,
-		`property_uid` int,
-		`guest_id` int,
-		`affiliate_id` varchar(255),
-		`invoice_id` int DEFAULT 0,
-		`booking_total` float,
-		`contract_id` int,
-		`tag` varchar(255),
-		`currency_code` char(3),
-		`created` datetime,
-		`archived` bool DEFAULT 0,
-		`archived_date` datetime,
-		PRIMARY KEY(`id`)
+		if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+	
+	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
+	`id` int(11) auto_increment,
+	`property_uid` int,
+	`guest_id` int,
+	`affiliate_id` varchar(255),
+	`invoice_id` int DEFAULT 0,
+	`booking_total` float,
+	`contract_id` int,
+	`tag` varchar(255),
+	`currency_code` char(3),
+	`created` datetime,
+	`archived` bool DEFAULT 0,
+	`archived_date` datetime,
+	PRIMARY KEY(`id`)
 	)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
 		`id` INTEGER NOT NULL AUTO_INCREMENT,
 		`manager_uid` INTEGER,
@@ -2875,11 +2948,9 @@ function insertPortalTables()
 		`created` datetime,
 		PRIMARY KEY(id)
 		)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_c_rates (
 		`id` INTEGER NOT NULL AUTO_INCREMENT,
 		`title` varchar(255),
@@ -2891,22 +2962,17 @@ function insertPortalTables()
 		`archived_date` datetime,
 		PRIMARY KEY(id)
 		)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_properties_crates_xref (
 		`id` INTEGER NOT NULL AUTO_INCREMENT,
 		`property_id` int UNIQUE,
 		`crate_id` int,
 		PRIMARY KEY(id)
 		)";
-	if (!doInsertSql($query,'') )
-		{
-		echo $query;
-		return false;
-		}
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////////////////// Migratiion //////////////////////////////////////////////////////////////
@@ -2920,7 +2986,7 @@ function migrate()
 		exit;
 		}
 
-	echo "<b>Migration under way. Once completed, please check for any errors and if everything looks ok you can go to your administrator area.</b><br/> Remember that this migrator will not import any of your remote plugins as all the plugins need to be checked before they can be passed as working in v4. If you have any Jomres modules installed you must uninstall them using the Joomla extension manager (back up any copies of srch.html you may have customised before doing this) then use the Jomres Plugin manager to install updated versions of those modules.<br/><br/>";
+	if (!AUTO_UPGRADE) echo  "<b>Migration under way. Once completed, please check for any errors and if everything looks ok you can go to your administrator area.</b><br/> Remember that this migrator will not import any of your remote plugins as all the plugins need to be checked before they can be passed as working in v4. If you have any Jomres modules installed you must uninstall them using the Joomla extension manager (back up any copies of srch.html you may have customised before doing this) then use the Jomres Plugin manager to install updated versions of those modules.<br/><br/>";
 	define(OLD_IMAGES_PATH,JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'images'.JRDS.'stories'.JRDS.'jomres'.JRDS);
 	define(NEW_IMAGES_PATH,JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS);
 
@@ -2966,7 +3032,7 @@ function updateRatesTimestamps()
 					`validto_ts`='$validto_ts' 
 					WHERE rates_uid='".(int)$uid."'";
 			if (!doInsertSql($query,'') )
-				echo "<b>Error, unable to run query $query</b><br>";
+				if (!AUTO_UPGRADE) echo  "<b>Error, unable to run query $query</b><br>";
 			}
 		}
 	}
@@ -2983,7 +3049,7 @@ function componentsIntegrationExists()
 
 function updateRoomTypeImagePaths()
 	{
-	echo "Updating room type image paths in the __jomres_room_classes table.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Updating room type image paths in the __jomres_room_classes table.";if (!AUTO_UPGRADE) echo  "<br>";
 	$query = "SELECT * FROM #__jomres_room_classes";
 	$result=doSelectSql($query);
 	if (count($result)>0)
@@ -2994,16 +3060,16 @@ function updateRoomTypeImagePaths()
 			$ndx = count($explodedPath)-1;
 			$fileName = $explodedPath[$ndx];
 			$query = "UPDATE #__jomres_room_classes SET `image` = '".NEW_ROOMTYPES_IMAGES_PATH.$fileName."' WHERE `room_classes_uid`=". $room_class->room_classes_uid;
-			//echo $query."<br/>";
+			//if (!AUTO_UPGRADE) echo  $query."<br/>";
 			if (!doInsertSql($query,'') )
-				echo "<b>Error, unable to run query $query</b><br>";
+				if (!AUTO_UPGRADE) echo  "<b>Error, unable to run query $query</b><br>";
 			}
 		}
 	}
 
 function updatePropertyFeaturePaths()
 	{
-	echo "Updating property feature image paths in the __jomres_hotel_features table.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Updating property feature image paths in the __jomres_hotel_features table.";if (!AUTO_UPGRADE) echo  "<br>";
 	$query = "SELECT * FROM #__jomres_hotel_features";
 	$result=doSelectSql($query);
 	if (count($result)>0)
@@ -3014,9 +3080,8 @@ function updatePropertyFeaturePaths()
 			$ndx = count($explodedPath)-1;
 			$fileName = $explodedPath[$ndx];
 			$query = "UPDATE #__jomres_hotel_features SET `image` = '".NEW_PROPERTYFEATURE_IMAGES_PATH.$fileName."' WHERE `hotel_features_uid`=". $hotel_feature->hotel_features_uid;
-			//echo $query."<br/>";
-			if (!doInsertSql($query,'') )
-				echo "<b>Error, unable to run query $query</b><br>";
+			if (!doInsertSql($query))
+				{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 			}
 		}
 	}
@@ -3029,7 +3094,7 @@ function basicTemplatesExist()
 	{
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomcompbasictemplates'.JRDS.'j00001start.class.php') )
 		{
-		echo "Sorry, before we can upgrade you must first uninstall the basic templates plugin as this is no longer compatible with Jomres. Please use the Joomla Extension manager to uninstall the basic templates plugin (back up any customised templates you have before doing so) then rerun this script. <br/>Once you've migrated Jomres, you'll need to go through any of your customised templates (those are the ones that you backed up) and use the new Jomres template editing feature to make any changes you need.";
+		if (!AUTO_UPGRADE) echo  "Sorry, before we can upgrade you must first uninstall the basic templates plugin as this is no longer compatible with Jomres. Please use the Joomla Extension manager to uninstall the basic templates plugin (back up any customised templates you have before doing so) then rerun this script. <br/>Once you've migrated Jomres, you'll need to go through any of your customised templates (those are the ones that you backed up) and use the new Jomres template editing feature to make any changes you need.";
 		return true;
 		}
 	return false;
@@ -3038,33 +3103,33 @@ function basicTemplatesExist()
 // Table changes
 function alterTables()
 	{
-	echo "Altering tables.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Altering tables.";if (!AUTO_UPGRADE) echo  "<br>";
 	
-	//echo "Editing __jomres_extras table adding maxquantity column<br>";
+	//if (!AUTO_UPGRADE) echo  "Editing __jomres_extras table adding maxquantity column<br>";
 	$query = "ALTER TABLE `#__jomres_extras` ADD `maxquantity` INT( 5 ) DEFAULT '1' AFTER `price`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_extras maxquantity</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	
 	
-	//echo "Editing __jomres_contracts __jomres_contracts adding extrasquantities column<br>";
+	//if (!AUTO_UPGRADE) echo  "Editing __jomres_contracts __jomres_contracts adding extrasquantities column<br>";
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `extrasquantities` VARCHAR( 255 ) AFTER `extras`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts extrasquantities</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
-	//echo "Editing __jomres_contracts table adding coupon_id column<br>";
+	//if (!AUTO_UPGRADE) echo  "Editing __jomres_contracts table adding coupon_id column<br>";
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `coupon_id` INTEGER NULL";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts coupon_id</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
-	//echo "Editing __jomres_contracts table adding bookedout column<br>";
+	//if (!AUTO_UPGRADE) echo  "Editing __jomres_contracts table adding bookedout column<br>";
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `bookedout` BOOL NOT NULL DEFAULT '0' ";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts bookedout</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
-	//echo "Editing __jomres_contracts table adding bookedout_timestamp column<br>";
+	//if (!AUTO_UPGRADE) echo  "Editing __jomres_contracts table adding bookedout_timestamp column<br>";
 	$query = "ALTER TABLE `#__jomres_contracts` ADD `bookedout_timestamp` DATETIME";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_contracts bookedout_timestamp</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 		
 	if (!checkTariffsTimeStampColsExists() )
@@ -3084,10 +3149,10 @@ function checkTariffsTimeStampColsExists()
 
 function alterTariffsTimeStampCols()
 	{
-	//echo "Editing __jomres_rates table adding timestamp column<br>";
+	//if (!AUTO_UPGRADE) echo  "Editing __jomres_rates table adding timestamp column<br>";
 	$query = "ALTER TABLE `#__jomres_rates` ADD `validfrom_ts` DATE AFTER `weekendonly` , ADD `validto_ts` DATE AFTER `validfrom_ts`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to add __jomres_rates weekendonly</b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	$query = "SELECT rates_uid,validfrom,validto FROM #__jomres_rates";
 	$allRates=doSelectSql($query);
 	foreach ($allRates as $r)
@@ -3101,38 +3166,38 @@ function alterTariffsTimeStampCols()
 	
 function dropOldTables()
 	{
-	echo "Dropping old tables.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Dropping old tables.";if (!AUTO_UPGRADE) echo  "<br>";
 	
-	//echo "Dropping __jomres_tmpguests table<br>";
+	//if (!AUTO_UPGRADE) echo  "Dropping __jomres_tmpguests table<br>";
 	$query = "DROP TABLE IF EXISTS `#__jomres_tmpguests`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to drop __jomres_tmpguests </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	
-	//echo "Dropping __jomres_tmpbooking table<br>";
+	//if (!AUTO_UPGRADE) echo  "Dropping __jomres_tmpbooking table<br>";
 	$query = "DROP TABLE IF EXISTS `#__jomres_tmpbooking`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to drop __jomres_tmpbooking </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
-	//echo "Dropping __jomres_property_images table<br>";
+	//if (!AUTO_UPGRADE) echo  "Dropping __jomres_property_images table<br>";
 	$query = "DROP TABLE IF EXISTS `#__jomres_property_images`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to drop __jomres_property_images </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
-	//echo "Dropping __jomres_tempBookingOut table<br>";
+	//if (!AUTO_UPGRADE) echo  "Dropping __jomres_tempBookingOut table<br>";
 	$query = "DROP TABLE IF EXISTS `#__jomres_tempBookingOut`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to drop __jomres_tempBookingOut </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
-	//echo "Dropping __jomres_cancellations table<br>";
+	//if (!AUTO_UPGRADE) echo  "Dropping __jomres_cancellations table<br>";
 	$query = "DROP TABLE IF EXISTS `#__jomres_cancellations`";
-	if (!doInsertSql($query,'') )
-		echo "<b>Error, unable to drop __jomres_cancellations </b><br>";
+	if (!doInsertSql($query))
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	}
 
 
 function resetMRConfigSettings()
 	{
-	echo "Resetting some mrConfig values to the Jomres v4 defaults.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Resetting some mrConfig values to the Jomres v4 defaults.";if (!AUTO_UPGRADE) echo  "<br>";
 	$mrConfig = array();
 	
 	//$mrConfig['showSlideshowInline']="1";
@@ -3142,7 +3207,7 @@ function resetMRConfigSettings()
 	foreach ($mrConfig as $key=>$val)
 		{
 		$query = "UPDATE #__jomres_settings SET `value`='".$val."' WHERE `akey` = '".$key."'";
-		echo "Updating $key to $val";echo "<br>";
+		if (!AUTO_UPGRADE) echo  "Updating $key to $val";if (!AUTO_UPGRADE) echo  "<br>";
 		$result=doInsertSql($query,'');
 		}
 	
@@ -3150,7 +3215,7 @@ function resetMRConfigSettings()
 
 function resetJRConfigSettings()
 	{
-	echo "Resetting some jrConfig values to the Jomres v4 defaults.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Resetting some jrConfig values to the Jomres v4 defaults.";if (!AUTO_UPGRADE) echo  "<br>";
 	$jrConfig = array();
 	
 	$jrConfig['maxwidth']				='300';
@@ -3161,7 +3226,7 @@ function resetJRConfigSettings()
 	foreach ($jrConfig as $key=>$val)
 		{
 		$query = "UPDATE #__jomres_site_settings SET `value`='".$val."' WHERE `akey` = '".$key."'";
-		echo "Updating $key to $val";echo "<br>";
+		if (!AUTO_UPGRADE) echo  "Updating $key to $val";if (!AUTO_UPGRADE) echo  "<br>";
 		$result=doInsertSql($query,'');
 		}
 	}
@@ -3170,7 +3235,7 @@ function resetJRConfigSettings()
 function insertNewJRConfigSettings()
 	{
 	
-	echo "Inserting new site settings";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Inserting new site settings";if (!AUTO_UPGRADE) echo  "<br>";
 	
 	$jrConfig['property_list_limit']					='5';
 	$jrConfig['integratedSearch_enable']				='1';
@@ -3197,14 +3262,14 @@ function insertNewJRConfigSettings()
 	foreach ($jrConfig as $key=>$val)
 		{
 		$query = "INSERT INTO #__jomres_site_settings (`value`,`akey`) VALUES ('".$val."','".$key."')";
-		echo "Setting $key to $val";echo "<br>";
+		if (!AUTO_UPGRADE) echo  "Setting $key to $val";if (!AUTO_UPGRADE) echo  "<br>";
 		$result=doInsertSql($query,'');
 		}
 	}
 
 function insertPluginSettings()
 	{
-	echo "Inserting new plugin settings if required.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Inserting new plugin settings if required.";if (!AUTO_UPGRADE) echo  "<br>";
 	// Pseudocron settings
 	$pluginConfig['jomcompcronjobs']['method']			='0';
 	$pluginConfig['jomcompcronjobs']['displaylogging']	='0';
@@ -3238,7 +3303,7 @@ function insertPluginSettings()
 			foreach ($v as $sett=>$settVal)
 				{
 				$query="INSERT INTO #__jomres_pluginsettings (prid,plugin,setting,value) VALUES (0,'".$k."','".$sett."','".$settVal."')";
-				//echo $query."<br>";
+				//if (!AUTO_UPGRADE) echo  $query."<br>";
 				doInsertSql($query,'');
 				}
 			}
@@ -3248,7 +3313,7 @@ function insertPluginSettings()
 // Added tables
 function addNewTables()
 	{
-	echo "Adding new tables if required.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Adding new tables if required.";if (!AUTO_UPGRADE) echo  "<br>";
 	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_coupons` (
 		`coupon_id` INT NOT NULL AUTO_INCREMENT ,
@@ -3262,7 +3327,7 @@ function addNewTables()
 		PRIMARY KEY ( `coupon_id` )
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_fields` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -3273,7 +3338,7 @@ function addNewTables()
 		PRIMARY KEY ( `uid` )
 		) ";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_custom_templates` (
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
@@ -3282,7 +3347,7 @@ function addNewTables()
 		PRIMARY KEY ( `uid` )
 		) ";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 
 	$query = "CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices_transactions` (
@@ -3300,7 +3365,7 @@ function addNewTables()
 		PRIMARY KEY  (id)
 	)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_orphan_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
@@ -3318,7 +3383,7 @@ function addNewTables()
 		PRIMARY KEY  (`id`)
 	)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_lineitems` (
 		`id` int(11) NOT NULL auto_increment,
@@ -3339,7 +3404,7 @@ function addNewTables()
 		PRIMARY KEY  (`id`)
 	)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
 		`id` int(11) NOT NULL auto_increment,
@@ -3360,7 +3425,7 @@ function addNewTables()
 		PRIMARY KEY  (`id`)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_taxrates` (
 		`id` int(11) NOT NULL auto_increment,
@@ -3370,7 +3435,7 @@ function addNewTables()
 		PRIMARY KEY  (`id`)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="
 	CREATE TABLE IF NOT EXISTS `#__jomcomp_cron` (
@@ -3383,7 +3448,7 @@ function addNewTables()
 		PRIMARY KEY ( `id` )
 		);";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	
 	$query="
 	CREATE TABLE IF NOT EXISTS `#__jomcomp_cronlog` (
@@ -3392,7 +3457,7 @@ function addNewTables()
 		PRIMARY KEY ( `id` )
 		);";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 	$query="CREATE TABLE IF NOT EXISTS `#__jomres_managers_propertys_xref` (
 		`id` int(11) NOT NULL auto_increment,
@@ -3401,7 +3466,7 @@ function addNewTables()
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 	
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_bookings` (
 		`id` int(11) auto_increment,
@@ -3419,7 +3484,7 @@ function addNewTables()
 		PRIMARY KEY(`id`)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_users (
 		`id` int(11) AUTO_INCREMENT,
@@ -3432,7 +3497,7 @@ function addNewTables()
 		PRIMARY KEY(id)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_c_rates (
 		`id` int(11) AUTO_INCREMENT,
@@ -3446,7 +3511,7 @@ function addNewTables()
 		PRIMARY KEY(id)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 		
 	$query="CREATE TABLE IF NOT EXISTS #__jomresportal_properties_crates_xref (
 		`id` int(11) AUTO_INCREMENT,
@@ -3455,7 +3520,7 @@ function addNewTables()
 		PRIMARY KEY(id)
 		)";
 	if (!doInsertSql($query))
-		echo "Failed to run query: ".$query."<br/>";
+		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
 
 		
 	return true;
@@ -3463,16 +3528,16 @@ function addNewTables()
 
 function removepreV4JomresFiles()
 	{
-	echo "Removing old /components/com_jomres and /administrator/components/com_jomres files.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Removing old /components/com_jomres and /administrator/components/com_jomres files.";if (!AUTO_UPGRADE) echo  "<br>";
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS);
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS);
-	//echo "Pretending to empty dir ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."<br/>";
-	//echo "Pretending to empty dir ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."<br/>";
+	//if (!AUTO_UPGRADE) echo  "Pretending to empty dir ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."<br/>";
+	//if (!AUTO_UPGRADE) echo  "Pretending to empty dir ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."<br/>";
 	}
 	
 function reinstallJomresJoomlaFiles()
 	{
-	echo "Copying Jomres v4 /components/com_jomres and /administrator/components/com_jomres files.";echo "<br>";
+	if (!AUTO_UPGRADE) echo  "Copying Jomres v4 /components/com_jomres and /administrator/components/com_jomres files.";if (!AUTO_UPGRADE) echo  "<br>";
 	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php", 	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."admin.jomres.php");
 	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres.xml",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.xml");
 	$result=copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."uninstall.jomres.php",	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."uninstall.jomres.php");
@@ -3481,7 +3546,7 @@ function reinstallJomresJoomlaFiles()
 
 function copyImagesToNewPath()
 	{
-	echo "Copying image files from ".OLD_IMAGES_PATH." to ".NEW_IMAGES_PATH."<br/>";
+	if (!AUTO_UPGRADE) echo  "Copying image files from ".OLD_IMAGES_PATH." to ".NEW_IMAGES_PATH."<br/>";
 	$result=dircopy(OLD_IMAGES_PATH,NEW_IMAGES_PATH);
 	}
 
