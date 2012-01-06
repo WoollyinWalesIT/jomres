@@ -40,7 +40,7 @@ class j00009user_option_02_addfavourite {
 			{
 			$query="SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '".(int)$property_uid."' AND my_id='".(int)$thisJRUser->id."'";
 			$favourite=doSelectSql($query,1);
-			if (get_showtime('task')=='viewproperty' && !$favourite )
+			if (jomresGetParam( $_REQUEST, 'task', '' )=='viewproperty' && !$favourite )
 				{
 				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=muaddtofavourites&no_html=1&amp;property_uid=".$property_uid, '', jr_gettext('_JOMCOMP_MYUSER_ADDTOFAVOURITES',_JOMCOMP_MYUSER_ADDTOFAVOURITES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 				}
