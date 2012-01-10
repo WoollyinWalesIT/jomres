@@ -1,10 +1,18 @@
 <patTemplate:tmpl name="booking_particulars" >
 <script language="JavaScript" type="text/javascript">
-    function confirmation_validate()
+    function confirmation_validate(usecart)
 		{
 		if (document.bookingForm.agreecheck.checked)
 			{
-			document.bookingForm.action = "{PROCESSURL}";
+			if (usecart)
+				{
+				document.bookingForm.action = "{PROCESSURL_SAVETOCART}";
+				}
+			else
+				{
+				document.bookingForm.action = "{PROCESSURL}";
+				}
+			
 			return true;
 			}
 		else
@@ -20,7 +28,7 @@
 
 </script>
 <p>{HEADER}</p>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" name="bookingForm">		
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="bookingForm">
 <table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
 		<th colspan="2" class="ui-state-default">{AJAXFORM_PARTICULARS}</th>
@@ -111,7 +119,7 @@
 <table width="100%" border="0">	
 	<tr>
 		<td>{AMENDTEXT}</td>
-		<td style="text-align:right;"><input type="submit" value="{AMEND}" class="button" onclick="editbooking();"/></td>
+		<td style="text-align:right;"><input type="submit" value="{AMEND}"   class="fg-button ui-state-default ui-corner-all" onclick="editbooking();"/></td>
 	</tr>
 </table>
 <br />
@@ -146,7 +154,15 @@
 			<input name="agreecheck" type="checkbox"/>{TERMSPRETEXT}{TERMS}
 		</td>
 		<td style="text-align:right;">
-			<input type="submit" id="send" name="send" value="{THEBUTTON}" class="button" onclick="return confirmation_validate();" />
+			<input type="submit" id="send" name="send" value="{THEBUTTON}" class="fg-button ui-state-default ui-corner-all" onclick="return confirmation_validate(false);" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp;
+		</td>
+		<td style="text-align:right;">
+			{_JOMRES_CART_OR} {_JOMRES_SAVEFORLATER}
 		</td>
 	</tr>
 </table>

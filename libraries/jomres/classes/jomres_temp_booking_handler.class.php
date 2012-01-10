@@ -147,6 +147,8 @@ class jomres_temp_booking_handler
 			"timestamp"=>""
 			);
 			
+		$this->cart_data = array();
+		
 		$this->tmpsearch_data = array(
 			"jomsearch_availability"=>"",
 			"jomsearch_availability_departure"=>""
@@ -234,11 +236,12 @@ class jomres_temp_booking_handler
 			$dataArrays=unserialize($data);
 			$this->tmpbooking=$dataArrays['tmpbooking'];
 			$this->tmpguest=$dataArrays['tmpguest'];
+			$this->cart_data=$dataArrays['cart_data'];
 			$this->tmpsearch_data=$dataArrays['tmpsearch_data'];
 			$this->tmplang=$dataArrays['tmplang'];
 			$this->user_settings=$dataArrays['user_settings'];
 			
-			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
+			$data=array('tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 			$fp=fopen($this->sessionfile,'w+');
 			if (!fwrite($fp, serialize($data)) )
 				error_log(" Error writing to session file ");
@@ -246,7 +249,7 @@ class jomres_temp_booking_handler
 			}
 		else // session file doesn't exist, let's create it
 			{
-			$data=array('tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
+			$data=array('tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 			$fp=fopen($this->sessionfile,'w+');
 			if (!fwrite($fp, serialize($data)) )
 				error_log(" Error writing to session file ");
@@ -257,7 +260,7 @@ class jomres_temp_booking_handler
 
 	function close_jomres_session()
 		{
-		$data=array('IP'=>$_SERVER,'tmpbooking'=>$this->tmpbooking,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
+		$data=array('IP'=>$_SERVER,'tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
 		$fp=fopen($this->sessionfile,'w+');
 		if (!fwrite($fp, serialize($data)) )
 			error_log(" Error writing to session file ");
@@ -468,6 +471,12 @@ class jomres_temp_booking_handler
 			);
 		$this->saveBookingData();
 		}
-
+	
+	function resetCart()
+		{
+		$this->cart_data = array();
+		$this->saveBookingData();
+		}
+	
 	}
 ?>
