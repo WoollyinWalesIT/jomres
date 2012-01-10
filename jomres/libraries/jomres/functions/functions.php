@@ -2621,7 +2621,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 
 /**
 #
- * Triggesr the insert booking mini-comp 03020
+ * Triggers the insert booking mini-comp 03020
 #
  */
 function insertInternetBooking($jomressession="",$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="",$usejomressessionasCartid=false)
@@ -2629,20 +2629,30 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 	$jomressession=get_showtime('jomressession');
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-
+	
+	
 	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".get_showtime('jomressession'));
-	$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
-	$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
-	// if ($contract_total == 0.00)
-		// jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
-	$userIsManager=checkUserIsManager();
-	$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
-	$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
-	gateway_log("insertInternetBooking: ".serialize($MiniComponents->miniComponentData['03020']) );
-	if ($MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
+	if ($tmpBookingHandler->getBookingFieldVal("cart_payment")) // I'm probably being lazy, creating this condition like this, but I'd rather keep things clear in my own mind atm, it can be tidied up later
 		{
+		$insert_failed = false;
+		
+		foreach ($tmpBookingHandler->cart_data as $key=>$cart_data)
+			{
+			$tmpBookingHandler->tmpbooking = $cart_data;
+			
+			$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
+			$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
+			$userIsManager=checkUserIsManager();
+			$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
+			$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
+			gateway_log("insertInternetBooking: ".serialize($MiniComponents->miniComponentData['03020']) );
+			if (!$MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
+				$insert_failed = true;
+			$tmpBookingHandler->resetTempBookingData();
+			}
+
 		gateway_log("insertInternetBooking: Insert successful ");
-		if ($confirmationPageRequired)
+		if ($confirmationPageRequired && !$insert_failed)
 			{
 			gateway_log("insertInternetBooking:Outputting confirmation page ");
 			$componentArgs=array('property_uid'=>$property_uid);
@@ -2651,24 +2661,59 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 			if ($userIsManager)
 				{
 				echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
-				//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
 				$jrtbar =jomres_getSingleton('jomres_toolbar');
 				$jrtb	= $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$MiniComponents->miniComponentData['03020']['insertbooking']['contract_uid']),'');
 				$jrtb .= $jrtbar->endTable();
 				echo $jrtb;
 				}
+			gateway_log("<h2>Resetting temp booking data</h2>");
+			$tmpBookingHandler->resetCart();
+			return $MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'];
 			}
-
-		gateway_log("<h2>Resetting temp booking data</h2>");
-		$tmpBookingHandler->resetTempBookingData();
-		return $MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'];
 		}
-	else // If there's a failure at this point it shouldn't be because the guest cancelled at any stage. This is intended to trap errors that shouldn't be passed to the guest on the site
+	else 
 		{
-		$subject =	"Insert of booking failed. Likely caused by a database insert function failure.\n\n";
-		gateway_log($subject);
+		$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
+		$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
+		// if ($contract_total == 0.00)
+			// jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
+		$userIsManager=checkUserIsManager();
+		$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
+		$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
+		gateway_log("insertInternetBooking: ".serialize($MiniComponents->miniComponentData['03020']) );
+		if ($MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
+			{
+			gateway_log("insertInternetBooking: Insert successful ");
+			if ($confirmationPageRequired)
+				{
+				gateway_log("insertInternetBooking:Outputting confirmation page ");
+				$componentArgs=array('property_uid'=>$property_uid);
+				$componentArgs=array('customText'=>$customTextForConfirmationForm);
+				$MiniComponents->triggerEvent('03030',$componentArgs); // Booking completed message
+				if ($userIsManager)
+					{
+					echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
+					//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
+					$jrtbar =jomres_getSingleton('jomres_toolbar');
+					$jrtb	= $jrtbar->startTable();
+					$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$MiniComponents->miniComponentData['03020']['insertbooking']['contract_uid']),'');
+					$jrtb .= $jrtbar->endTable();
+					echo $jrtb;
+					}
+				}
+
+			gateway_log("<h2>Resetting temp booking data</h2>");
+			$tmpBookingHandler->resetTempBookingData();
+			return $MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'];
+			}
+		else // If there's a failure at this point it shouldn't be because the guest cancelled at any stage. This is intended to trap errors that shouldn't be passed to the guest on the site
+			{
+			$subject =	"Insert of booking failed. Likely caused by a database insert function failure.\n\n";
+			gateway_log($subject);
+			}
 		}
+
 	return false;
 	}
 

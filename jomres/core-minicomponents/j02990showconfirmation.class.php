@@ -34,7 +34,9 @@ class j02990showconfirmation {
 			{
 			$this->template_touchable=true; return;
 			}
-
+		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings->get_paypal_settings();
+		
 		$thisJRUser=jomres_getSingleton('jr_user');
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
@@ -434,6 +436,21 @@ class j02990showconfirmation {
 		$booking_parts['HDAYSSTAYING']		=	jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS);
 		$booking_parts['BOOKINGSPECIALREQ']	=	jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ);
 		$booking_parts['DISCLAIMER']		=	jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER);
+		
+		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+
+		if (!$userIsManager&& isset($MiniComponents->registeredClasses['06000show_cart']) )
+			{
+			
+			if ($paypal_settings->paypalConfigOptions['override'] == "1" && $jrConfig['useshoppingcart'] == "1")
+				{
+				
+				$booking_parts['_JOMRES_CART_OR']			=jr_gettext('_JOMRES_CART_OR',_JOMRES_CART_OR);
+				$booking_parts['_JOMRES_SAVEFORLATER']		='<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false).'" class="button" onclick="return confirmation_validate(true);" />';
+				}
+			}
+
 		$booking_parts['THEBUTTON']			=	jr_gettext('_JOMRES_COM_MR_CONFIRMBOOKING',_JOMRES_COM_MR_CONFIRMBOOKING,false);
 
 		$booking_parts['HFIRSTNAME']		=	jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME',_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME);
@@ -457,8 +474,6 @@ class j02990showconfirmation {
 		$booking_parts['TERMSTEXT']			=	jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS,false);
 		$booking_parts['ALERT']				=	jr_gettext('_JOMRES_CONFIRMATION_ALERT',_JOMRES_CONFIRMATION_ALERT,false);
 
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
-		$paypal_settings->get_paypal_settings();
 		
 		if ($paypal_settings->paypalConfigOptions['override'] != "1")
 			{
@@ -511,6 +526,7 @@ class j02990showconfirmation {
 			}
 		$booking_parts['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		$booking_parts['PROCESSURL']=JOMRES_SITEPAGE_URL.'&task=processpayment';
+		$booking_parts['PROCESSURL_SAVETOCART']=JOMRES_SITEPAGE_URL.'&task=save_booking_to_cart';
 		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
 		
 		
@@ -620,6 +636,8 @@ class j02990showconfirmation {
 		$output[]		=jr_gettext('_JOMRES_AJAXFORM_PRICE_SUMMARY',_JOMRES_AJAXFORM_PRICE_SUMMARY);
 		$output[]		=jr_gettext('_JOMRES_CONFIRMATION_TERMS_PRETEXT',_JOMRES_CONFIRMATION_TERMS_PRETEXT);
 		$output[]		=jr_gettext('_JOMRES_CONFIRMATION_ALERT',_JOMRES_CONFIRMATION_ALERT);
+		$output[]		=jr_gettext('_JOMRES_CART_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER);
+		
 		foreach ($output as $o)
 			{
 			echo $o;
