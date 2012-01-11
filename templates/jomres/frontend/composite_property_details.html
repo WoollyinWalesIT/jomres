@@ -4,11 +4,14 @@ jomresJquery(document).ready(function(){
   jomresJquery("#pdetails_tabs").tabs();
 });
 jomresJquery(window).load(function(){
+	
+  jomresJquery("#property_details_loading").fadeOut("fast");
   jomresJquery("#property_details").fadeIn("fast");
 });
 </script>
 <!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
 <div class="full-width ui-helper-clearfix">
+	<div id="property_details_loading" ><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
 	<div id="property_details" class="ui-helper-hidden">
         <div id="gallerywrapper" class="ui-widget-content ui-corner-all left-column float-left">{SLIDESHOW}</div>
         <div class="right-column float-right ui-widget-content ui-helper-jomres-buttons">
