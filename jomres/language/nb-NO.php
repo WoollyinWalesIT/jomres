@@ -1738,3 +1738,11 @@ define('_JOMRES_REGISTRATION_STEP_2_OF_2',"Add your property : Step 2 of 2");
 
 define('_JOMRES_MYPROPERTIES','My businesses');
 
+
+define('_JOMRES_CART_TITLE','My proposed bookings');
+define('_JOMRES_CART_INFO','Note, these bookings have not been saved yet. If you log out or your session expires they will be lost. Remember to confirm your bookings!');
+define('_JOMRES_CART_CONFIRM_BOOKINGS','Confirm booking(s)');
+define('_JOMRES_CART_OR',' or ');
+define('_JOMRES_CART_SAVEFORLATER','Save for later');
+define('_JOMRES_CART_NOBOOKINGS_SAVED','You don\'t have any bookings saved yet.');
+define('_JOMRES_CART_VIEWCART','View cart');
