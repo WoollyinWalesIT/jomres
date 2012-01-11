@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 function jomres_cmsspecific_getregistrationlink()
 	{
-	return jomresURL(get_showtime('live_site')."index.php?option=com_user&view=register");
+	return jomresURL(get_showtime('live_site')."/index.php?option=com_user&view=register");
 	}
 
 function jomres_cmsspecific_getlogout_task()
