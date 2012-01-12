@@ -2643,12 +2643,12 @@ function insertSampleData()
 			(2, 1, 1),
 			(3, 3, 1),
 			(4, 2, 1),
-			(5, 5, 5),
-			(6, 6, 5),
-			(7, 7, 5),
-			(8, 8, 5),
-			(9, 9, 5),
-			(10, 10, 5),
+			(5, 5, 7),
+			(6, 6, 7),
+			(7, 7, 7),
+			(8, 8, 7),
+			(9, 9, 7),
+			(10, 10, 7),
 			(11, 5, 1),
 			(12, 6, 1),
 			(13, 7, 1),
@@ -2669,7 +2669,25 @@ function insertSampleData()
 			(34, 22, 2),
 			(35, 23, 2),
 			(36, 24, 2),
-			(37, 25, 2);"
+			(37, 25, 2),
+			
+			(38, 4, 6),
+			(39, 1, 6),
+			(40, 3, 6),
+			(41, 2, 6),
+			(42, 5, 8),
+			(43, 6, 8),
+			(44, 7, 8),
+			(45, 8, 8),
+			(46, 9, 8),
+			(47, 10, 8),
+			(48, 5, 9),
+			(49, 6, 9),
+			(50, 7, 9),
+			(51, 8, 9),
+			(52, 9, 9),
+			(53, 10, 9)
+			;"
 			);
 
 		//$result=doInsertSql("INSERT INTO `#__jomres_room_classes` ( `room_classes_uid` , `room_class_abbv` , `room_class_full_desc`,`property_uid`,`image` )VALUES ('3', 'D/B', 'Double Bed','0','/jomres/uploadedimages/rmtypes/double.png'), ('4', 'T/B', 'Twin Beds','0','/jomres/uploadedimages/rmtypes/twin.png')","");
@@ -2695,13 +2713,18 @@ function insertSampleData()
 
 		$result=doInsertSql("INSERT INTO `#__jomres_guests` ( `guests_uid` , `contracts_contract_uid` , `mos_userid` , `firstname` , `surname` , `house` , `street` , `town` , `county`,`postcode` , `tel_landline` , `tel_mobile` , `tel_fax` , `preferences` , `car_regno` , `ccard_no` , `ccard_issued` , `ccard_expiry` , `ccard_iss_no` , `ccard_name`,`property_uid`,`email` )VALUES ('1', '0', NULL , 'Major', 'Gowen', 'Watery Fowls', 'a Street', 'a Region','a Town','XXNN NXX', '01000 123456', '01777 123456', '01000 654321','A newspaper with uptodate cricket scores', '', '' , '', '','','','1','example@example.com')","");
 
-		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('1', 'Hotel/B&B/Villa/Cottage/Apartment', 'propertyrental', '1')","");
-
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('1', 'Hotel', 'propertyrental', '1')","");
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('2', 'Yacht Brokerage', 'yachtbrokerage', '1')","");
-
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('3', 'Vehicle Rental', 'vehiclerental', '1')","");
-
 		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('4', 'Camp Site', 'campsite', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('5', 'Tours', 'tours', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('6', 'B&B', 'propertyrental', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('7', 'Villa', 'propertyrental', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('8', 'Cottage', 'propertyrental', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('9', 'Apartment', 'propertyrental', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('10', 'Car', 'car', '1')","");
+		$result=doInsertSql("INSERT INTO `#__jomres_ptypes` (`id`, `ptype` , `ptype_desc` , `published` )VALUES ('11', 'Yacht', 'yacht', '1')","");
+		
 
 		$query="INSERT INTO `#__jomresportal_taxrates` (`id`, `code`, `description`, `rate`) VALUES (1, '01', 'VAT', 17.5)";
 		doInsertSql($query,"");
