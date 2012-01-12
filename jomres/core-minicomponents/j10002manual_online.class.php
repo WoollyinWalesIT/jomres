@@ -24,7 +24,7 @@ class j10002manual_online
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton('http://manual.jomres.net', 'Help.png', 'Manual (online)',"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = true);
+		$this->cpanelButton=$htmlFuncs->cpanelButton('http://manual.jomres.net', 'Help.png', jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)" ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = true);
 		}
 
 	function touch_template_language()
@@ -32,6 +32,7 @@ class j10002manual_online
 		$output=array();
 
 		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)");
 
 		foreach ($output as $o)
 			{
@@ -39,6 +40,7 @@ class j10002manual_online
 			echo "<br/>";
 			}
 		}
+	
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{

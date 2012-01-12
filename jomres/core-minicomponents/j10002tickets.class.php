@@ -24,13 +24,14 @@ class j10002tickets
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton('http://tickets.jomres.net/index.php', 'Support_IT.png', 'Tickets (online)',"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = true);
+		$this->cpanelButton=$htmlFuncs->cpanelButton('http://tickets.jomres.net/index.php', 'Support_IT.png', jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS" , "Tickets (online)",false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = true);
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
 
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS" , "Tickets (online)");
 		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
 
 		foreach ($output as $o)
