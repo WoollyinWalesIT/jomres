@@ -63,6 +63,28 @@ class j00016composite_property_details {
 		
 		$output['SLIDESHOW']=$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'];
 		
+		
+		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="0" && $mrConfig['visitorscanbookonline']=='1' && !isset($_REQUEST['jr_printable']) )
+			{
+			$random_identifier = generateJomresRandomString(10);
+			$output['INLINE_CALENDAR'] = '
+				<script>
+				var booking_form_url = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$property_uid.'&arrivalDate=";
+				jomresJquery(function() {
+					jomresJquery( "#'.$random_identifier.'" ).datepicker({
+						"dateFormat" : "dd/mm/yy",
+						"minDate": 0,
+						onSelect: function(){
+							var selected = jomresJquery( this ).val() ;
+							window.location = booking_form_url+selected;
+							}
+						});
+					});
+				</script>
+			<div id="'.$random_identifier.'"></div>
+			';
+			}
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
