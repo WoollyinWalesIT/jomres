@@ -53,6 +53,8 @@ button.fg-button { width:auto; overflow:visible; }
 .quick-info-right {padding:5px;width:48%;}
 .left-column {width:74%;}
 .right-column {width:24%;}
+.left-column-slideshow {width:68%;}
+.right-column-buttons {width:30%;}
 .half-column {width:50%}
 .left-column p {margin:0 !important;}
 tr.odd {background: #f5f5f5 !important;}
@@ -60,6 +62,10 @@ tr.even {background: #FFF !important;}
 tr.even td.sorting_1{background:#f5f5f5 !important;}
 tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .big-price{font-weight:bold;font-size:16px;}
+.select-dates{background: url("../images/calendar_msg_bubble.png") no-repeat scroll 0 0 transparent;bottom: -15px;display: block;height: 68px;left: -37px;position: relative;width: 45px;z-index: 10000;}
+.arrival-select{margin-top:-64px;}
+.arrival-select div.ui-datepicker{font-size:10px;}
+.arrival-select div.ui-datepicker td{padding:0;}
 .jomrestexteditable{color: #99f;background-color:#fff;}
 .ui-helper-jomres-buttons{border-style:none !important;background:inherit !important;}
 /* Availability Calendar */
