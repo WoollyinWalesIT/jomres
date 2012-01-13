@@ -51,7 +51,7 @@ function editPropertyType()
 	$pList=array();
 	$pList['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE_EDIT;
 	$pList['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
-	$pList['HPTYPE_DESC'] =_JOMRES_COM_PTYPES_PTYPE_DESC;
+	$pList['HPTYPE_DESC'] =_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR;
 	$pList['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
 	$pList['FURTHER']=_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER;
 	
@@ -77,8 +77,8 @@ function editPropertyType()
 	$rowInfo="";
 	$rowInfo="
 		<tr>
-			<td class=\"\"><input class=\"inputbox\" name=\"ptype\" value=\"".$ptypeData['ptype']."\" /></td>
-			<td class=\"\"><input class=\"inputbox\" name=\"ptype_desc\" value=\"".$ptypeData['ptype_desc']."\" /></td>
+			<td class=\"\"><input class=\"inputbox\" name=\"ptype\" size='60' value=\"".$ptypeData['ptype']."\" /></td>
+			<td class=\"\"><input class=\"inputbox\" name=\"ptype_desc\" size='60' value=\"".$ptypeData['ptype_desc']."\" /></td>
 		</tr>
 		";
 
