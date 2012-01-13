@@ -67,7 +67,9 @@ class j00016composite_property_details {
 		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="0" && $mrConfig['visitorscanbookonline']=='1' && !isset($_REQUEST['jr_printable']) )
 			{
 			$random_identifier = generateJomresRandomString(10);
-			$output['INLINE_CALENDAR'] = '
+			$output['ARROW'] = '<div id="sd" class="select-dates"></div>';
+			
+			$output['INLINE_CALENDAR_SCRIPT'] = '
 				<script>
 				var booking_form_url = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$property_uid.'&arrivalDate=";
 				jomresJquery(function() {
@@ -80,11 +82,21 @@ class j00016composite_property_details {
 							}
 						});
 					});
-				</script>
-			<div id="'.$random_identifier.'"></div>
-			';
+				</script>';
+				
+			$output['INLINE_CALENDAR_ARROW_OPENINGDIV'] = '<div class="arrival-select" >';
+			$output['INLINE_CALENDAR'] = '<div id="'.$random_identifier.'"></div>';
+			$output['INLINE_CALENDAR_ARROW_CLOSINGDIV'] = '</div>';
 			}
-
+		else
+			{
+			$output['ARROW'] ='';
+			$output['INLINE_CALENDAR_SCRIPT'] = '';
+			$output['INLINE_CALENDAR_ARROW_OPENINGDIV'] = '';
+			$output['INLINE_CALENDAR'] = '';
+			$output['INLINE_CALENDAR_ARROW_CLOSINGDIV'] = '';
+			}
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
