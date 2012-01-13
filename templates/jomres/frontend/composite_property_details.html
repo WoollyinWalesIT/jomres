@@ -28,8 +28,10 @@ jomresJquery(window).load(function(){
             <patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
                 <a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
 			<div style="clear:both;"></div>
-			<div id="sd" class="select-dates"></div>
-			<div class="arrival-select" >{INLINE_CALENDAR}</div>
+			<!-- to remove the arrow remove ARROW, INLINE_CALENDAR_ARROW_OPENINGDIV and INLINE_CALENDAR_ARROW_CLOSINGDIV -->
+			{ARROW}
+			{INLINE_CALENDAR_SCRIPT}
+			{INLINE_CALENDAR_ARROW_OPENINGDIV}{INLINE_CALENDAR}{INLINE_CALENDAR_ARROW_CLOSINGDIV}
         </div>
         <div style="clear:both;">&nbsp;</div>
         <div id="pdetails_tabs">
