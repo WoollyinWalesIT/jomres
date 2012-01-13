@@ -1723,3 +1723,5 @@ define('_JOMRES_CART_OR',' or ');
 define('_JOMRES_CART_SAVEFORLATER','Save for later');
 define('_JOMRES_CART_NOBOOKINGS_SAVED','You don\'t have any bookings saved yet.');
 define('_JOMRES_CART_VIEWCART','View cart');
+
+define('_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR','Language file subdirectory');
