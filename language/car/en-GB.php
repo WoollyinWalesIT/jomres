@@ -907,7 +907,7 @@ if (!defined('_PN_RESULTS'))
 	define('_PN_RESULTS','Results');
 	
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Please enter the message you\'d like to send to ');
-define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Contact hotel');
+define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Contact agency');
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT','Car enquiry from ');
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS','Thank you for your enquiry, your message has been sent to the car\'s contact email address, and copied to your own address for your records. They will respond to you as soon as possible with their reply.');
 define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING',' regarding ');
