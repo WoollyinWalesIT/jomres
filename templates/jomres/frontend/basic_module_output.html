@@ -1,12 +1,15 @@
-<patTemplate:tmpl name="pageoutput" >
-<div class="ui-widget ui-widget-content ui-corner-all"  style="float:left;height:250px;width:150px;margin-bottom:10px;">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+a.fg-button.more-info-link {float: none !important;}
+</style>
+<div class="ui-widget ui-widget-content ui-corner-all" style="float:left;width:140px;margin-bottom:10px;margin:5px;">
 	<center>
-		<div style="padding:5px;">
-			<div>{PROPERTY_NAME}</div>
-			<div>{STARSIMAGES}</div>
-			<div><a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a></div>
-			<div>{PRICE}</div>
-            <div style="margin-bottom:30px;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all" >{MOREINFORMATION}</a></div>
+		<div style="padding:5px;" class="ui-helper-clearfix">
+			<div style="font-weight:bold;">{PROPERTY_NAME}</div>
+			<div style="height:16px;">{STARSIMAGES}</div>
+			<div style="margin-top:5px;height:100px;"><a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a></div>
+			<div style="font-size:11px;height: 36px;">{PRICE}</div>
+            <div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div>
 		</div>
 	</center>
 
