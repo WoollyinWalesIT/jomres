@@ -361,7 +361,7 @@ class j00015viewproperty
 				$MiniComponents->triggerEvent('00018',$componentArgs);
 				}
 
-			if ($mrConfig['roomslistinpropertydetails']=="1")
+			if ($mrConfig['roomslistinpropertydetails']=="1" && !$mrConfig['singleRoomProperty'])
 				{
 				$componentArgs=array('all'=>"all",'property_uid'=>$property_uid);
 				$MiniComponents->triggerEvent('01055',$componentArgs);
