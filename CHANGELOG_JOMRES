@@ -1,3 +1,26 @@
+Jomres 6.2.0
+
+New cart functionality, completemented by new plugins to support this which are added via jomres_asamodule.
+Added a jquery inline calendar to composite property details, with an overlaying arrow. Easily removed by editing the composite property details template if you don't want to see them.
+
+
+Small improvements to guest user's add/view favourites functionality.
+Added a switch property link to list your properties script.
+Modified booking form to ensure that it uses the same jquery ui button.
+Fixed a missing / in cms_specific/joomla15/cms_specific_functions.php 
+Added a loading animation to the property details to show that the slideshow and tabs are building.
+Added a few definitions to Label Editing for buttons in administrator area.
+Committed a variety of "silent upgrade" changes to installer that'll be used in the future. Feature not currently in place, and when it's built it will be optional.
+Added some new language files, tweaked installer to add property types.
+Changed the header for property type lang files in edit property type so that it makes sense.
+Updated cookee.js so that it works with jquery tabs.
+Changed the integrated search's default settings. This is because various search plugins use the integrated search settings, it's easier if they're enabled from the off. To make the front page less ugly, this means setting by default the integrated search's output itself to off.
+Commented out body{font-size:12px !important;} in dobooking templates as some J templates use ems and percentages, and this setting uncommented breaks those fonts.
+Layout improvements for module output.
+Tweaked viewproperty to ensure that it doesn't show the rooms list when on an SRP.
+Changed Contact Hotel to Contact agent in "car" language file.
+
+
 Jomres 6.1.0
 
 Added Joomla 2.5 specific files and changes required to work on J2.5. That was painless!
