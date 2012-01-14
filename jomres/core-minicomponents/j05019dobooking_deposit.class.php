@@ -77,7 +77,7 @@ class j05019dobooking_deposit
 				var tosend = value;
 				jomresJquery.ajax({
 				type: "GET",
-				url: "index2.php",
+				url: "index.php",
 				async: false,
 				data: params,
 				dataType: "script"

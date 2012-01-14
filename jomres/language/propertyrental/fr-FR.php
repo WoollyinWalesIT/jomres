@@ -1184,7 +1184,7 @@ Après l'avoir soumis avec succès, vous serez automatiquement loggé dans votre
 Si vous n'êtes pas encore loggé à votre compte, vous devrez le faire à http://www.clickatell.com/login.php<br/>
 * Sélectionnez \"Gérer mes produits\" dans le menu du sommet.<br/>
 * Sélectionnez la connexion API que vous voulez utiliser (HTTP API) dans le menu <i>dropdown</i> ('Add Connection').<br/>
-* Complétez le formulaire. Rassurez vous d'introduire l'IP bloqué(l'IP de ce serveur), définissez <i>Callback</i> comme HTTP POST. Vous aurez besoin de définir l'adresse callback comme ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback plus un nom d'utilisateur et un mot de passe.<br/>
+* Complétez le formulaire. Rassurez vous d'introduire l'IP bloqué(l'IP de ce serveur), définissez <i>Callback</i> comme HTTP POST. Vous aurez besoin de définir l'adresse callback comme ".$jomresConfig_live_site."/index.php?option=com_jomres&task=sms_clickatell_callback plus un nom d'utilisateur et un mot de passe.<br/>
 Si vous avez enregistré plus d'une connexion API, le nom descriptif que vous introduisez pour chacune doit être unique - vous ne pouvez pas avoir plusieurs API avec le même nom.<br/>
 Après avoir soumis le formulaire avec succès, les détails de votre autorisation seront affichés, y inclus l'ID API de chaque connexion. Ces détails d'authentification sont nécessaires quand vous vous connectez au gateway Clickatell pour envoyer un message.<br/>
 <br/>

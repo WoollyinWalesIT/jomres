@@ -40,7 +40,7 @@ class j16000listPfeatures
 				}
 			}
 		
-		$output['INDEX']="index2.php";
+		$output['INDEX']="index.php";
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
 		$output['HLINKTEXT']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
 		$output['HLINKTEXTCLONE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC;

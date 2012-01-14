@@ -191,10 +191,10 @@ function jomresURL($link, $ssl=2)
 		// else
 			// $link	= str_replace("https://","http://",$link);
 		}
-	else
-		{
-		$link=str_replace("index.php","index2.php",$link);
-		}
+	// else
+		// {
+		// $link=str_replace("index.php","index.php",$link);
+		// }
 	//$link=str_replace("&amp;","&",$link);
 	//$link=str_replace("&","&amp;",$link);
 	return $link;

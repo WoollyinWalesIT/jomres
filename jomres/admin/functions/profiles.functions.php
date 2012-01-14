@@ -111,7 +111,7 @@ function editProfile()
 	$jrtbar =jomres_getSingleton('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
-	$link = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/index2.php?option=com_jomres";
+	$link = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres";
 	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveProfile",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose",'');
 	$jrtb .= $jrtbar->endTable();
