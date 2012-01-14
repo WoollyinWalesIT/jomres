@@ -1183,7 +1183,7 @@ After successfully submitting the form you will automatically be logged into you
 If you are not already logged into your account, then you must do so at http://www.clickatell.com/login.php<br/>
 * Select \"Manage my Products\" from the top menu.<br/>
 * Select the API connection type you wish to use (HTTP API) from the drop down menu ('Add Connection').<br/>
-* Complete the form. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You'll need to set the IP callback to ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
+* Complete the form. Make sure that you enter the locked IP(the IP of this server), set Callback to HTTP POST. You'll need to set the IP callback to ".$jomresConfig_live_site."/index.php?option=com_jomres&task=sms_clickatell_callback and a userid and password.<br/>
 If you register more than one API connection, the description name you enter for each must be unique - you cannot have multiple APIs with the same name.<br/>
 After successfully submitting the form, your authentication details will be displayed, including each connection's unique API ID (api_id). These authentication details are required when connecting to the Clickatell gateway to send a message.<br/>
 <br/>

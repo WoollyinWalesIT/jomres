@@ -138,7 +138,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			{
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
 				$theText="xxxxxxxxx";
-			$indexphp="index2.php";
+			$indexphp="index.php";
 			$title=' title="'._JOMRES_COM_MR_VRCT_ROOM_LINKTEXT.'" ';
 			$defaultText=substr($defaultText,0,100);
 

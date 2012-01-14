@@ -1181,7 +1181,7 @@ Tras superar con éxito el envío del formulario automáticamente ingresará en 
 Si no está ya conectado a su cuenta, debe hacerlo en <br/> http://www.clickatell.com/login.php
 * Seleccione\"Administrar mis productos\" en el menú superior. <br/>
 * Seleccione el tipo de conexión de la API que desea utilizar (API HTTP) del menú desplegable ('Add Connection'). <br/>
-* Completar el formulario. Asegúrese de que introduzce la IP bloqueada (la IP de este servidor), ajustar Callback a HTTP POST. Tendrá que establecer la devolución de llamada IP ".$JomresConfig_live_site."/Index2.php?option=com_jomres&task=sms_clickatell_callback y un identificador de usuario y contraseña. <br/>
+* Completar el formulario. Asegúrese de que introduzce la IP bloqueada (la IP de este servidor), ajustar Callback a HTTP POST. Tendrá que establecer la devolución de llamada IP ".$JomresConfig_live_site."/index.php?option=com_jomres&task=sms_clickatell_callback y un identificador de usuario y contraseña. <br/>
 Si se registra más de una conexión de la API, el nombre de la descripción que ha introducido para cada una debe ser único - no se puede tener múltiples APIs con el mismo nombre <br/>.
 Después de enviar el formulario, sus datos de autenticación se mostrarán, incluida la identificación única de cada conexión de la API (api_id). Estos datos de autenticación se requieren cuando se conecta a la pasarela Clickatell para enviar un mensaje. <br/>
 <br/>

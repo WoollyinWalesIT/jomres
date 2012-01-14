@@ -39,7 +39,7 @@ class j16000listGlobalroomTypes
 			}
 		
 		$rows=array();
-		$output['INDEX']="index2.php";
+		$output['INDEX']="index.php";
 		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK;
 		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'._JOMRES_COM_MR_BACK.'</a>';
 		$output['HLINKTEXT']=_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_ABBV;

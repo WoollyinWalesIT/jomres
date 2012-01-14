@@ -1155,7 +1155,7 @@ Po úspěšné registraci budete přesměrování na stránku, kde můžete nako
 Pokud ještě nejste přihlášeni, učiňte tak na stránce http://www.clickatell.com/login.php<br/>
 * Vyberte \"Manage my Products\" z horní nabídky.<br/>
 * Vyberte typ spojení API, které chcete použít (HTTP API) z příslušného pole se seznamem ('Add Connection').<br/>
-* Vyplňte zbytek formuláře. Ujistěte se, že jste zadali správnou adresu IP(IP adresu tohoto serveru), nastavte Callback na HTTP POST. Musíte nastavit IP callback na ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback a dále userid a heslo.<br/>
+* Vyplňte zbytek formuláře. Ujistěte se, že jste zadali správnou adresu IP(IP adresu tohoto serveru), nastavte Callback na HTTP POST. Musíte nastavit IP callback na ".$jomresConfig_live_site."/index.php?option=com_jomres&task=sms_clickatell_callback a dále userid a heslo.<br/>
 Pokud zadáváte více než jedno API spojení, jejich popis musí být vždy jedninečný - nelze mít více API se stejným názvem.<br/>
 Po úspěšném odeslání formuláře se zobrazí všechny detaily vašeho připojení, včetně seznamu všech API a jejich jedinečného id. Všechny tyto údaje jsou potřebné pro přojení k bráně Clickatell a odeslání zpráv.<br/>
 <br/>

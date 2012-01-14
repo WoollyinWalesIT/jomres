@@ -1195,7 +1195,7 @@ Dopo esserti autenticato con successo inviando il modulo avrai automaticamente a
 Se hai ancora acceduto al tuo account, devi farlo su  http://www.clickatell.com/login.php<br/>
 * Seleziona \"Manage my Products\" dal menu in alto.<br/>
 * Seleziona il tipo di connessione API che desideri utilizzare (HTTP API) dal menu a tendina ('Add Connection').<br/>
-* Completa il modulo. Assicurati di aver inserito il locked IP(IP di questo server), imposta Callback to HTTP POST. Devi impostare IP callback to ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback il nome utente e la password.<br/>
+* Completa il modulo. Assicurati di aver inserito il locked IP(IP di questo server), imposta Callback to HTTP POST. Devi impostare IP callback to ".$jomresConfig_live_site."/index.php?option=com_jomres&task=sms_clickatell_callback il nome utente e la password.<br/>
 Se registri piu di una connessione API, il nome della descrizione che inserisci per ognuna deve essere unico - Non puoi avere API multiple con lo stesso nome.<br/>
 Dopo aver inviato il modulo con successo, i tuoi dettagli di autenticazione saranno visualizzati, compresi tutti gli API ID delle connessioni impostate (api_id). Questi dettagli di autenticazione sono necessari durante la connessione al gateway Clickatell per spedire un messaggio.<br/>
 <br/>

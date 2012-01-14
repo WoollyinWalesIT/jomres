@@ -164,7 +164,7 @@ class j16000edit_invoice {
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_invoice');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=list_invoices",'');
-		//$jrtb .= $jrtbar->toolbarItem('delete',"index2.php?option=com_jomres&task=delete_invoice".jomresURLToken()."&no_html=1&id=".$id,'');
+		//$jrtb .= $jrtbar->toolbarItem('delete',"index.php?option=com_jomres&task=delete_invoice".jomresURLToken()."&no_html=1&id=".$id,'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 		

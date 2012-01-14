@@ -1181,7 +1181,7 @@ Depois de ter enviado com êxito o formulário, será automaticamente ligado à 
 Se ainda não estiver ligado á sua conta, deve fazê-lo em http://www.clickatell.com/login.php<br/>
 * Seleccione \"Gerir os meus produtos\" no menu de topo.<br/>
 * Seleccione o tipo de ligação API a usar (API HTTP) no menu <i>dropdown</i> ('Add Connection').<br/>
-* Complete o formulário. Assegure-se que introduziu o <i>locked IP</i>(o IP do seu servidor), defina <i>Callback</i> para HTTP POST. Precisa de definir o <i>IP callback</i> para ".$jomresConfig_live_site."/index2.php?option=com_jomres&task=sms_clickatell_callback e id de utilizador e password.<br/>
+* Complete o formulário. Assegure-se que introduziu o <i>locked IP</i>(o IP do seu servidor), defina <i>Callback</i> para HTTP POST. Precisa de definir o <i>IP callback</i> para ".$jomresConfig_live_site."/index.php?option=com_jomres&task=sms_clickatell_callback e id de utilizador e password.<br/>
 Se tiver mais do que uma ligação API registada, o nome descritivo que introduazir para cada uma deve ser único - não pode ter várias APIs com o mesmo nome.<br/>
 Depois de enviar com sucesso o formulário, serão mostrados os pormenores da sua autenticação, incluindo o ID API (api_id) de cada ligação. Estes pormenores são necessários quando se ligar ao gateway Clickatell para enviar uma mensagem.<br/>
 <br/>
