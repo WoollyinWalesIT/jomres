@@ -77,3 +77,9 @@ a.rescal:hover{background-color: white;color: black;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}
+
+.calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
+.calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
+.calendar_background_threequarter a, td.calendar_background_threequarter { background: #F88017 !important; }
+.calendar_background_full a, td.calendar_background_full { background: #FF0000 !important; }
+
