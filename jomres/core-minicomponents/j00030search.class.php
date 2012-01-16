@@ -138,7 +138,7 @@ class j00030search {
 					{
 					$sch->filter['country']		=	jomresGetParam( $_REQUEST, 'country',"" );
 					$sch->filter['country']=str_replace($unwanted,"",$sch->filter['country']);
-					$metaTitle.=" ".htmlspecialchars_decode($sch->filter['country'],ENT_QUOTES);
+					$metaTitle.=" ".getSimpleCountry($sch->filter['country']);
 					}
 				}
 
