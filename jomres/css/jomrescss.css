@@ -69,6 +69,11 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .jomrestexteditable{color: #99f;background-color:#fff;}
 .ui-helper-jomres-buttons{border-style:none !important;background:inherit !important;}
 /* Availability Calendar */
+.calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
+.calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
+.calendar_background_threequarter a, td.calendar_background_threequarter { background: #F88017 !important; }
+.calendar_background_full a, td.calendar_background_full { background: #FF0000 !important; }
+.arrival-select a#legend_dialog_opener {font-size:10px;line-height:10px;margin-left:5px;font-weight:normal;text-decoration:none;}
 table .rescal td, .rescal td, table .rescal_dashboard td, .rescal_dashboard td{border: 1px solid #FFFFFF;padding-bottom: 2px;padding-top: 2px;text-align: center;width: 16px;}
 a.rescal:hover{background-color: white;color: black;}
 /* Beez template fixes */
@@ -77,9 +82,3 @@ a.rescal:hover{background-color: white;color: black;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}
-
-.calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
-.calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
-.calendar_background_threequarter a, td.calendar_background_threequarter { background: #F88017 !important; }
-.calendar_background_full a, td.calendar_background_full { background: #FF0000 !important; }
-
