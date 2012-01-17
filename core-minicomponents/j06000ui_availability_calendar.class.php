@@ -186,28 +186,53 @@ class j06000ui_availability_calendar
 			</script>
 		<div id="'.$random_identifier.'"></div>';
 		
+		$inline_calendar .= '
+			<script type="text/javascript">
+			jomresJquery(document).ready(function(){
+			  jomresJquery("#legend_dialog").dialog({
+				autoOpen: false
+			});
+			jomresJquery( "#legend_dialog_opener" ).click(function() {
+				jomresJquery( "#legend_dialog" ).dialog( "open" );
+				return false;
+			});
+			});
+			</script>';
+		
 		if ($mrConfig['singleRoomProperty'])
 			{
 			$inline_calendar .= '
-			<table>
+			<a href="#" id="legend_dialog_opener" title="Legend"><img src="'.get_showtime('live_site').'/jomres/images/information.png" /></a>
+			<div id="legend_dialog" title="Legend">
+			<table width="100%" border="0">
 				<tr>
-					<td class="calendar_background_full" >&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
+					<td class="calendar_background_full" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
 				</tr>
 			</table>
+			</div>
 			';
 
 			}
 		else
 			{
 			$inline_calendar .= '
-			<table>
+			<a href="#" id="legend_dialog_opener" title="Legend"><img src="'.get_showtime('live_site').'/jomres/images/information.png" /></a>
+			<div id="legend_dialog" title="Legend">
+			<table width="100%" border="0">
 				<tr>
-					<td class="calendar_background_quarter" >&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_QUARTER',_JOMRES_AVLCAL_QUARTER).'</td>
-					<td class="calendar_background_half" >&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_HALF',_JOMRES_AVLCAL_HALF).'</td>
-					<td class="calendar_background_threequarter" >&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_THREEQUARTER',_JOMRES_AVLCAL_THREEQUARTER).'</td>
-					<td class="calendar_background_full" >&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
+					<td class="calendar_background_quarter" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_QUARTER',_JOMRES_AVLCAL_QUARTER).'</td>
+				</tr>
+				<tr>
+					<td class="calendar_background_half" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_HALF',_JOMRES_AVLCAL_HALF).'</td>
+				</tr>
+				<tr>
+					<td class="calendar_background_threequarter" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_THREEQUARTER',_JOMRES_AVLCAL_THREEQUARTER).'</td>
+				</tr>
+				<tr>
+					<td class="calendar_background_full" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
 				</tr>
 			</table>
+			</div>
 			';
 			}
 		if ($componentArgs['return_calendar'] == "1" || $_REQUEST['return_calendar'] == "1")
