@@ -34,21 +34,22 @@ button.fg-button { width:auto; overflow:visible; }
 .property-title {font-size:16px;font-weight: bold;line-height: 26px;}
 .property-title a {text-decoration:none;}
 .property-header {padding:3px;}
-.property-image{display:block;margin-right:5px;}
+.property-image{display:block;margin-right:5px;margin-top:7px;margin-left:5px;}
+.property-image img {width:125px;height:94px;-moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px;}
 .property-desc p {margin-bottom: 15px;margin-top: 10px;}
 .property-desc {margin-bottom: 15px;margin-top: 10px;}
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
-.jomres_message {color: #cc0000;font-size: 10px;line-height: 12px;}
+.jomres_message {color: #cc0000;font-size: 11px;}
 .float-left {float:left;}
 .float-right {float:right;}
 .align-left {text-align:left !important;}
 .align-right {text-align:right !important;}
 .full-width {width:100%;}
 .jomres_property_list_propertywrapper {margin-bottom:20px;}
-.plist-buttons{width: 160px;display:block;float:right;}
+.plist-buttons{width: 135px;display:block;float:right;}
 .plist-button {width:130px;margin-bottom:5px;}
 .plist-button-last {width:130px;}
-.quick-info {min-height:150px;width:auto;position:relative;}
+.quick-info {min-height:160px;width:auto;position:relative;}
 .quick-info-left {padding:5px;width:48%;}
 .quick-info-right {padding:5px;width:48%;}
 .left-column {width:74%;}
