@@ -440,6 +440,7 @@ function init_javascript()
 
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file",'',true);
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.for_tabs.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"heartbeat.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.js",'',true);  // Won't pack properly
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.hoverIntent.js");
