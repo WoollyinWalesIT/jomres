@@ -1,3 +1,13 @@
+Jomres 6.3.0
+
+Implemented new functionality that colours the new booking form calendar according to availability, making the old MRP/SRP calendars redundant. Output from those calendars has been disabled via the viewproperty script but they haven't been removed as other functionality will use them. Disabled calling of older calendars in viewproperty script.
+Layout improvements to the property list, makes the price from a lot bigger, moved a couple of things around. The "prices from", "price" and "per day/night/person" text has been broken up so that the different elements can be individually styled.
+
+Changed (almost) all references to index2.php to index.php. Some people were, for unexplained reasons, setting the Wrapped option to yes. Normally this would simply show the site with no modules, however it also changed index.php to index2.php. index2.php is of course no longer used, so I've replaced references to it with index.php.
+Modified search to set meta name to country name, not country code.
+Fixed issue where accordion sidebar was creating javascript errors. Turns out that the new cookie lib used for remembering chosen tabs doesn't play nicely with the cookie stuff used with the accordion, so we've needed to include two cookie libraries, not one.
+
+
 Jomres 6.2.0
 
 New cart functionality, completemented by new plugins to support this which are added via jomres_asamodule.
