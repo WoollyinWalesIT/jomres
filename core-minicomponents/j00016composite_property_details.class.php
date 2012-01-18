@@ -64,7 +64,7 @@ class j00016composite_property_details {
 		$output['SLIDESHOW']=$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'];
 		
 		
-		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="0" && $mrConfig['visitorscanbookonline']=='1' && !isset($_REQUEST['jr_printable']) )
+		if ($mrConfig['is_real_estate_listing']==0 && $jrConfig['show_booking_form_in_property_details'] =="0" && $mrConfig['visitorscanbookonline']=='1' && !isset($_REQUEST['jr_printable']) && $mrConfig['showAvailabilityCalendar'] )
 			{
 			$random_identifier = generateJomresRandomString(10);
 			$output['ARROW'] = '<div id="sd" class="select-dates"></div>';
