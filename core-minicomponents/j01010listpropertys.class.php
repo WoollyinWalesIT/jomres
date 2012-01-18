@@ -347,6 +347,7 @@ class j01010listpropertys {
 						}
 					else
 						{
+						$property_deets['_JOMRES_TARIFFSFROM'] = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false);
 						$currfmt = jomres_getSingleton('jomres_currency_format');
 						if ($mrConfig['is_real_estate_listing']==0)
 							{
@@ -357,37 +358,39 @@ class j01010listpropertys {
 									$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property->propertys_uid],$property->propertys_uid));
 								else
 									$price=output_price ($pricesFromArray[$property->propertys_uid]);
+								
 								if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
-									$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
+									$property_deets['PRICEPERIOD'] = "&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 								else
 									{
 									if ($mrConfig['perPersonPerNight']=="0" )
 										{
 										if ($mrConfig['wholeday_booking'] == "1")
-											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
+											$property_deets['PRICEPERIOD'] ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
 										else
-											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+											$property_deets['PRICEPERIOD'] ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
 										}
 									else
 										{
 										if ($mrConfig['wholeday_booking'] == "1")
-											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY);
+											$property_deets['PRICEPERIOD'] ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY);
 										else
-											$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+											$property_deets['PRICEPERIOD'] ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
 										}
 									}
-								$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false)." ".$price;
 								$property_deets['MAX_PEOPLE']=$maxPeopleArray[$property->propertys_uid];
 								}
 							else
 								{
-								$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
+								$property_deets['_JOMRES_TARIFFSFROM'] = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE,false,false);
+								$price=output_price($property->property_key);
 								}
 							}
 						else
 							{
 							$output_lowest = true;
-							$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property->property_key);
+							$property_deets['_JOMRES_TARIFFSFROM'] = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE,false,false);
+							$price=output_price($property->property_key);
 							}
 						}
 
