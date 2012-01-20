@@ -1058,49 +1058,56 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			break;
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
-			$table="#__plugins";
+			
 			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php') )
 				{
 				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
-				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name;
 				}
 			else
 				{
 				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
-				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5";
+				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name;
 				}
 
-			$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type.JRDS;
+			$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type.JRDS.$plugin_name;
 
 			if (!test_and_make_directory($mambot_target))
 				{
 				error_logging( "Error, unable to write to ".$mambot_target." Please ensure that the parent path is writable by the web server ");
 				return false;
 				}
-			$query= "SELECT id FROM ".$table." where name = '".$plugin_name."'";
-			$result=doSelectSql($query);
-			if (count($result)>0)
-				{
-				$query="DELETE FROM ".$table." WHERE `name` = '".$plugin_name."'";
-				$result=doInsertSql($query,"");
-				}
-			$query="INSERT INTO ".$table."
-			(`name`,`element`,`folder`,`access`,`ordering`,`published`,`iscore`,`client_id`,`checked_out`,`checked_out_time`,`params`)
-			VALUES
-			('".$plugin_name."','".$plugin_name."','".$mambot_type."','0','0','1','0','0','0','0000-00-00 00:00:00','".$params."')";
-			$result=doInsertSql($query,"");
-			if ($result)
-				{
-				//echo "Moving contents of ".$component_source." to ".$component_target."<br/>";
+				
+			// Superceeded by Joomla's discover feature
+			
+			// $table="#__plugins";
+			// $query= "SELECT id FROM ".$table." where name = '".$plugin_name."'";
+			// $result=doSelectSql($query);
+			// if (count($result)>0)
+				// {
+				// $query="DELETE FROM ".$table." WHERE `name` = '".$plugin_name."'";
+				// $result=doInsertSql($query,"");
+				// }
+			// $query="INSERT INTO ".$table."
+			// (`name`,`element`,`folder`,`access`,`ordering`,`published`,`iscore`,`client_id`,`checked_out`,`checked_out_time`,`params`)
+			// VALUES
+			// ('".$plugin_name."','".$plugin_name."','".$mambot_type."','0','0','1','0','0','0','0000-00-00 00:00:00','".$params."')";
+			// $result=doInsertSql($query,"");
+
+				//echo "Moving contents of ".$mambot_xml_source." to ".$mambot_target."<br/>";
 				$mambot_xml_move_result=dirmv($mambot_xml_source, $mambot_target, true, $funcloc = "/");
 				$mambot_move_result=dirmv($mambot_source, $mambot_target, true, "/");
 				if ($mambot_xml_move_result['success'] && $mambot_move_result['success'])
+					{
+					//echo "success";
 					return true;
+					}
 				else
+					{
+					//echo "failed";
 					return false;
-				}
-			else
-				return false;
+					}
+
 			break;
 		}
 
