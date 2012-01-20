@@ -271,6 +271,18 @@ class j01010listpropertys {
 						$property_deets['HYPHEN'] 								= " - ";
 						$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
 						}
+					else
+						{
+						$property_deets['AVERAGE_RATING']='';
+						$property_deets['NUMBER_OF_REVIEWS']='';
+						$property_deets['_JOMRES_REVIEWS_AVERAGE_RATING']		='';
+						$property_deets['_JOMRES_REVIEWS_TOTAL_VOTES']			='';
+						$property_deets['_JOMRES_REVIEWS']						='';
+						$property_deets['_JOMRES_REVIEWS_CLICKTOSHOW']			='';
+						$property_deets['COLON'] 								='';
+						$property_deets['HYPHEN'] 								='';
+						$property_deets['REVIEWS']								='';
+						}
 
 					$property_image=get_showtime('live_site')."/jomres/images/noimage.gif";
 					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
