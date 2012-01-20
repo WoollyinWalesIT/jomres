@@ -290,7 +290,17 @@ class j16000addplugin
 					require_once ($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
 				touch ($remote_pluginsDirPath.$pluginName.JRDS."index.html");
-				if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
+
+				if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
+					{ 
+					if (!$debugging) jomresRedirect(get_showtime("live_site")."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_installer&view=discover");
+					}
+				else
+					{ 
+					if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins"); 
+					}
+				
+				//
 				}
 			else
 				echo "There was an error while unpacking and moving the plugin";
