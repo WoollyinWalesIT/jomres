@@ -137,7 +137,7 @@ function load() {
 		map.setUIToDefault();
 		map.setMapType(G_HYBRID_MAP);
 		map.enableScrollWheelZoom();
-		var center = new GLatLng(48.858334,2.294254);
+		var center = new GLatLng({LAT},{LONG});
 		map.setCenter(center, 20);
 		geocoder = new GClientGeocoder();
 		var marker = new GMarker(center, {draggable: true});  
