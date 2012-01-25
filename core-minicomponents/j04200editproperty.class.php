@@ -97,8 +97,8 @@ class j04200editproperty {
 					}
 				else
 					{
-					$output['LAT']='51.50068';
-					$output['LONG']='-0.14317';
+					$output['LAT']=$jrConfig['default_lat'];
+					$output['LONG']=$jrConfig['default_long'];
 					}
 				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
 				$output['APIKEY']=$jrConfig['google_maps_api_key'];

@@ -230,4 +230,7 @@ $jrConfig['alternate_smtp_password'] = "";
 $jrConfig['alternate_mainmenu'] = "1";
 $jrConfig['full_access_control'] = "0";
 $jrConfig['useshoppingcart'] = "1";
+
+$jrConfig['default_lat'] = "51.50068";
+$jrConfig['default_long'] = "-0.14317";
 ?>

@@ -94,7 +94,20 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle"><input type="password" class="inputbox" size="30" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
 			<td valign="middle"></td>
 		</tr>
+		
+		<tr valign="middle" class="odd">
+			<td valign="middle">'._JOMRES_DEFAULT_LAT_STARTPOINT.'</td>
+			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_lat" value="'.$jrConfig['default_lat'].'" /></td>
+			<td valign="middle">'._JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC.'</td>
+		</tr>
 		<tr valign="middle" class="even">
+			<td valign="middle">'._JOMRES_DEFAULT_LONG_STARTPOINT.'</td>
+			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_long" value="'.$jrConfig['default_long'].'" /></td>
+			<td valign="middle"></td>
+		</tr>
+		
+		
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
 			<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
 			<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
