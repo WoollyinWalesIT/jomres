@@ -31,6 +31,7 @@ class jomres_language
 		$administrator_area=jomres_cmsspecific_areweinadminarea();
 		
 		$testing = false;
+		//var_dump($_REQUEST);exit;
 		
 		if (isset($_POST['jomreslang']) )
 			{
@@ -46,18 +47,18 @@ class jomres_language
 				}
 			else
 				{
-				if (isset($_GET['lang']) )
+				if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 					{
-					if ($testing) echo 'Used $_GET[\'lang\'] to switch langs<br>';
-					$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_GET, 'lang', "" ));
+					$lang = JFactory::getLanguage();
+					if ($testing) echo 'Used $lang->getTag() to switch langs<br>';
+					$jomresConfig_lang				=(string)$lang->getTag();
 					}
 				else
 					{
-					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
+					if (isset($_GET['lang']) )
 						{
-						$lang = JFactory::getLanguage();
-						if ($testing) echo 'Used $lang->getTag() to switch langs<br>';
-						$jomresConfig_lang				=(string)$lang->getTag();
+						if ($testing) echo 'Used $_GET[\'lang\'] to switch langs<br>';
+						$jomresConfig_lang				=(string)RemoveXSS(jomresGetParam( $_GET, 'lang', "" ));
 						}
 					else
 						{
