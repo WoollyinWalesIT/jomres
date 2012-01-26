@@ -228,6 +228,7 @@ class jomres_language
 		$langs['hr-HR']="Croatian";
 		$langs['hu-HU']="Hungarian";
 		$langs['it-IT']="Italiano";
+		$langs['lv-LV']="Latvian";
 		$langs['nb-NO']="Norsk";
 		$langs['nl-NL']="Nederlands";
 		$langs['pl-PL']="Polski";
@@ -269,6 +270,7 @@ class jomres_language
 		$langs['hr']='hr-HR';
 		$langs['hu']='hu-HU';
 		$langs['it']='it-IT';
+		$langs['lv']='lv-LV';
 		$langs['nb']='nb-NO';
 		$langs['nl']='nl-NL';
 		$langs['pl']='pl-PL';
@@ -317,6 +319,7 @@ class jomres_language
 		$langs['hr-HR']="hr";
 		$langs['hu-HU']="hu";
 		$langs['it-IT']="it";
+		$langs['lv-LV']="lv";
 		$langs['nb-NO']="no";
 		$langs['nl-NL']="nl";
 		$langs['pl-PL']="pl";
