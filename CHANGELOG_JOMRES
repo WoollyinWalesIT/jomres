@@ -1,3 +1,16 @@
+Jomres 6.3.1
+
+Modified built in mambot/plg installation functionality to work with J2.5. Allows installation of new jomres_ajax_search_contentwrapper joomla plugin that removes the need to modify templates to run the ajax asamodule plugin.
+Modified the jomres language class. The Joomla 2.5 language filter will set GET 'lang', which will override the new jomres language switcher bot that allows users to switch their joomla language with the jomres language switcher. Changing the order that input data is queried to find the current language allows us to skip Joomla's functionality whilst still making the option available to non-joomla installations.
+Added Latvian language file.
+
+Removed the clause that stops the new javascript availability calendar in property details from showing if the booking form's in the property details page. Whether or not it's there is a personal preference, has no impact and it's a "nice to have".
+Some css tweaks for property list to allow the text to fit better when using exchange rates.
+Added some default output for reviews when they're disabled.
+Added a change to allow site managers set a default startpoint for the Gmap, if one isn't already set.
+Bugfix for getting all commisson invoices function.
+
+
 Jomres 6.3.0
 
 Implemented new functionality that colours the new booking form calendar according to availability, making the old MRP/SRP calendars redundant. Output from those calendars has been disabled via the viewproperty script but they haven't been removed as other functionality will use them. Disabled calling of older calendars in viewproperty script.
