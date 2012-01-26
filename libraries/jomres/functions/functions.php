@@ -4726,7 +4726,7 @@ function invoices_getallcommissioninvoices($dec,$status=null)
 	$invoices=array();
 	$clause="";
 	if (isset($status))
-		$clause= " WHERE `status` = ".(int)$status." ";
+		$clause= " WHERE `status` = ".(int)$status." AND ";
 	else
 		$clause = " WHERE ";
 	if ($dec)
