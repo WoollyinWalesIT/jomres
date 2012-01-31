@@ -58,7 +58,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 		while (!$valid)
 			{
 			$username = $guestDeets['firstname']."_".$guestDeets['surname'].rand(0, 1000);
-			$username=strtolower(ereg_replace("[^A-Za-z0-9]", "", $username));
+			$username=strtolower(preg_replace('/[^A-Za-z0-9_-]+/', "", $username));
 			$query="SELECT FROM #__users WHERE username = '".$username."'";
 			$users=doSelectSql($query);
 			if (count($users)==0)

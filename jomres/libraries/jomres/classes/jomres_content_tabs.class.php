@@ -64,7 +64,7 @@ class jomres_content_tabs
 	function startPanel($tabpage)
 		{
 		$this->content="";
-		$anchor=ereg_replace("[^A-Za-z0-9]", "", $tabpage);
+		$anchor=preg_replace('/[^A-Za-z0-9_-]+/', "", $tabpage);
 		if (strlen($anchor)==0)
 			$anchor=generateJomresRandomString(10);
 		$tabCookieString="";

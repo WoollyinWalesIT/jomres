@@ -30,7 +30,7 @@ class j16000save_custom_field {
 		$description 		= jomresGetParam( $_REQUEST, 'description', '' );
 		$required			= intval(jomresGetParam( $_REQUEST, 'required', 0 ));
 
-		$fieldname=ereg_replace("[^A-Za-z0-9]", "", $fieldname);
+		$fieldname=preg_replace('/[^A-Za-z0-9_-]+/', "", $fieldname);
 		
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();

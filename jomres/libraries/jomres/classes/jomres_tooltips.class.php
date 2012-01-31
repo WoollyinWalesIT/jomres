@@ -37,7 +37,7 @@ class jomres_tooltips
 		$keeplooking=true;
 		$beautyTip_opacity = .9;
 		// Just in the off-chance that we supply the same div name twice
-		$div="jrTooltip".ereg_replace("[^A-Za-z0-9]", "", $div);
+		$div="jrTooltip".preg_replace('/[^A-Za-z0-9_-]+/', "", $div);
 		if (strlen($div)==0)
 			$div=generateJomresRandomString(10);
 		while ($keeplooking):

@@ -345,7 +345,7 @@ class jomres_gateway_handler
 			return false;
 			}
 
-		if (eregi("VERIFIED",$this->ipn_response))
+		if (stristr($this->ipn_response,"VERIFIED"))
 			{
 			// Valid IPN transaction.
 			gateway_log("IPN Validation successful. ");

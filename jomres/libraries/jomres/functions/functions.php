@@ -1455,7 +1455,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		$mail->IsHTML(true);
 	$mail->Mailer		= $jomresConfig_mailer;
 
-	$body				= eregi_replace("[\]",'',$body);
+	$body				= preg_replace("[\\\]",'',$body);
 	if (get_showtime('smtpauth') == "1")
 		{
 		$mail->SMTPAuth="1";
@@ -1512,6 +1512,12 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
  *Tests to see if an email address is valid. Includes tests of the A and MX records.
 #
 */
+function jomres_check_email_address($email)
+	{
+	return true;
+	}
+
+/* Depreciated
 function jomres_check_email_address($email)
 	{
 
@@ -1584,7 +1590,7 @@ function jomres_check_email_address($email)
 			}
 		}
 	return true;
-	}
+	} */
 
 /**
 #
