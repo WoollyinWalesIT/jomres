@@ -221,11 +221,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle"><input type="text" class="inputbox" name="cfg_contact_owner_emails_to_alternative_email" value="'.$jrConfig['contact_owner_emails_to_alternative_email'].'" /></td>
 				<td valign="middle">&nbsp;</td>
 			</tr>
+			<!--
 			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_COM_JOMRESEMAILCHECK.'</td>
 				<td valign="middle">'.$lists['useJomresEmailCheck'].'</td>
 				<td valign="middle">'._JOMRES_COM_JOMRESEMAILCHECK_DESC.'</td>
-			</tr>
+			</tr> -->
 			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_ISWRAPPED.'</td>
 				<td valign="middle">'.$lists['isInIframe'].'</td>

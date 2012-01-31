@@ -976,7 +976,7 @@ class dobooking
 					}
 				else
 					$extraDefaultQuantity = 1;
-				$inputId=ereg_replace("[^A-Za-z0-9]", "", $ex->name);
+				$inputId=preg_replace('/[^A-Za-z0-9_-]+/', "", $ex->name);
 				if (strlen($inputId)==0)
 					$inputId=generateJomresRandomString(10);
 				$firstChar=$inputId[0]; // We'll add a simple test here to change the first char to X if the first character's actually a number, otherwise the getResponse_extras will not work.
@@ -5982,7 +5982,7 @@ class dobooking
 		$thisJRUser=jomres_getSingleton('jr_user');
 		if ($thisJRUser->userIsManager)
 			{
-			if (isset($this->override_deposit))
+			if (isset($this->override_deposit) && $this->override_deposit > 0)
 				$this->deposit_required = $this->override_deposit;
 			}
 		}

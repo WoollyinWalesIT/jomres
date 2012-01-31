@@ -126,7 +126,7 @@ define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=
 
 if (class_exists('JFactory'))
 	{
-	$app =& JFactory::getApplication();  // Many thanks maakit
+	$app = JFactory::getApplication();  // Many thanks maakit
 	if($app->getCfg('sef'))
 		define("JOMRES_SITEPAGE_URL", $index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
 	else
