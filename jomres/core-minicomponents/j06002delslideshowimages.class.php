@@ -46,7 +46,7 @@ class j06002delslideshowimages {
 		$mrp=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty.JRDS;
 		foreach ($imageNameArray as $imageName)
 			{
-			$filename= split("\.",$imageName);
+			$filename= explode(".",$imageName);
 			$numExtensions=count($filename)-1;
 			$fileExt=strtoupper($filename[$numExtensions]);
 			if (!$fileExt== "JPG" || !$fileExt== "JPEG")
@@ -78,7 +78,7 @@ class j06002delslideshowimages {
 			{
 			$jomres_messaging =jomres_getSingleton('jomres_messages');
 			$jomres_messaging->set_message(_JOMRES_FILE_DELETED);
-			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
+			//jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
 			}
 		}
 
