@@ -44,16 +44,16 @@ class j16000listPropertyTypes
 			$ptypeData['ptype_desc']=$ptype->ptype_desc;
 			$published=$ptype->published;
 			if ($published)
-				$ptypeData['published'] = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/images/tick.png";
+				$ptypeData['published'] = get_showtime('live_site').'/jomres/images/jomresimages/small/Tick.png';
 			else
-				$ptypeData['published'] = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/images/publish_x.png";
+				$ptypeData['published'] = get_showtime('live_site').'/jomres/images/jomresimages/small/Cancel.png';
 			$rowInfo.="
 				<tr>
 					<td class=\"jradmin_subheader_la\" width=\"20\"><input type=\"checkbox\" id=\"cb".$counter."\" name=\"idarray[]\" value=\"".$ptypeData['id']."\" onClick=\"jomres_isChecked(this.checked);\"></td>
 					<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=editPropertyType&id=".$ptypeData['id']."\">".$editIcon."</a></td>
 					<td class=\"jradmin_subheader_la\">".$ptypeData['ptype']."</td>
 					<td class=\"jradmin_subheader_la\">".$ptypeData['ptype_desc']."</td>
-					<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=publishPropertyType&id=".$ptypeData['id']."\"><img src=\"".$ptypeData['published']."\" border=\"0\" /></a></td>
+					<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=publishPropertyType&id=".$ptypeData['id']."\"><img src=\"".$ptypeData['published']."\" border=\"0\" width=\"20px\" height=\"20px\" /></a></td>
 					<td class=\"jradmin_subheader_la\"><input class=\"inputbox\" type=\"text\" size=\"5\" name=\"order_array[".$ptypeData['id']."]\" value='".$ptype->order."'/></td>
 				</tr>
 				";
