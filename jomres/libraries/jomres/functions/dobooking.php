@@ -492,7 +492,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 
 	$output['BOOKEDDATES']= $booked_dates_output;
 	$output['MODAL']=''; // Needs to be here. If not, a javascript error will occur when the booking form is shown in the property details page.
-	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1" && !isset($_REQUEST['is_wrapped']) )
+	if (get_showtime('task') == "dobooking" && $jrConfig['booking_form_modal_popup'] == "1" && !isset($_REQUEST['is_wrapped']) && !isset($_REQUEST['tmpl']) )
 		{
 		$output['MODAL'] = 'jomresJquery( "#booking_form" ).dialog({width:1000,modal:true});';
 		$output['HIDDENSTYLE']='style="display:none;"';
