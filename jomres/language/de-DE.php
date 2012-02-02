@@ -1803,3 +1803,5 @@ define('_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR','Language file subdirectory');
 define('_JOMRES_DEFAULT_LAT_STARTPOINT','Default Latitude Startpoint');
 define('_JOMRES_DEFAULT_LONG_STARTPOINT','Default Longitude Startpoint');
 define('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC','In the Google map on the property edit page, before the marker has been moved, what should the default latitude/longitude start points be?');
+
+define('_JOMRES_CLEARDATES','I don\'t have any dates yet');
