@@ -1084,34 +1084,36 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				}
 				
 			// Superceeded by Joomla's discover feature
+			if ("_JOMRES_DETECTED_CMS" == "joomla15")
+				{
+				$table="#__plugins";
+				$query= "SELECT id FROM ".$table." where name = '".$plugin_name."'";
+				$result=doSelectSql($query);
+				if (count($result)>0)
+					{
+					$query="DELETE FROM ".$table." WHERE `name` = '".$plugin_name."'";
+					$result=doInsertSql($query,"");
+					}
+				$query="INSERT INTO ".$table."
+				(`name`,`element`,`folder`,`access`,`ordering`,`published`,`iscore`,`client_id`,`checked_out`,`checked_out_time`,`params`)
+				VALUES
+				('".$plugin_name."','".$plugin_name."','".$mambot_type."','0','0','1','0','0','0','0000-00-00 00:00:00','".$params."')";
+				$result=doInsertSql($query,"");
+				}
 			
-			// $table="#__plugins";
-			// $query= "SELECT id FROM ".$table." where name = '".$plugin_name."'";
-			// $result=doSelectSql($query);
-			// if (count($result)>0)
-				// {
-				// $query="DELETE FROM ".$table." WHERE `name` = '".$plugin_name."'";
-				// $result=doInsertSql($query,"");
-				// }
-			// $query="INSERT INTO ".$table."
-			// (`name`,`element`,`folder`,`access`,`ordering`,`published`,`iscore`,`client_id`,`checked_out`,`checked_out_time`,`params`)
-			// VALUES
-			// ('".$plugin_name."','".$plugin_name."','".$mambot_type."','0','0','1','0','0','0','0000-00-00 00:00:00','".$params."')";
-			// $result=doInsertSql($query,"");
-
-				//echo "Moving contents of ".$mambot_xml_source." to ".$mambot_target."<br/>";
-				$mambot_xml_move_result=dirmv($mambot_xml_source, $mambot_target, true, $funcloc = "/");
-				$mambot_move_result=dirmv($mambot_source, $mambot_target, true, "/");
-				if ($mambot_xml_move_result['success'] && $mambot_move_result['success'])
-					{
-					//echo "success";
-					return true;
-					}
-				else
-					{
-					//echo "failed";
-					return false;
-					}
+			//echo "Moving contents of ".$mambot_xml_source." to ".$mambot_target."<br/>";
+			$mambot_xml_move_result=dirmv($mambot_xml_source, $mambot_target, true, $funcloc = "/");
+			$mambot_move_result=dirmv($mambot_source, $mambot_target, true, "/");
+			if ($mambot_xml_move_result['success'] && $mambot_move_result['success'])
+				{
+				copy ($mambot_target.JRDS."plugin_info.php",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php');
+				return true;
+				}
+			else
+				{
+				//echo "failed";
+				return false;
+				}
 
 			break;
 		}
