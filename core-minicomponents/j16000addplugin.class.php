@@ -301,6 +301,7 @@ class j16000addplugin
 						{
 						if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
 						}
+					}
 				else
 					{ 
 					if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins"); 
