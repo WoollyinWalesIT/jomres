@@ -1066,8 +1066,16 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			
 			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php') )
 				{
-				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
-				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name;
+				if (_JOMRES_DETECTED_CMS == "joomla15")
+					{
+					$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."b".JRDS;
+					$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS."xml".JRDS."1.5".JRDS;
+					}
+				else
+					{
+					$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
+					$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name;
+					}
 				}
 			else
 				{
@@ -1075,7 +1083,11 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name;
 				}
 
-			$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type.JRDS.$plugin_name;
+
+			if (_JOMRES_DETECTED_CMS == "joomla15")
+				$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type;
+			else
+				$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type.JRDS.$plugin_name;
 
 			if (!test_and_make_directory($mambot_target))
 				{
@@ -1083,8 +1095,9 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				return false;
 				}
 				
+				
 			// Superceeded by Joomla's discover feature
-			if ("_JOMRES_DETECTED_CMS" == "joomla15")
+			if (_JOMRES_DETECTED_CMS == "joomla15")
 				{
 				$table="#__plugins";
 				$query= "SELECT id FROM ".$table." where name = '".$plugin_name."'";
@@ -1104,9 +1117,12 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			//echo "Moving contents of ".$mambot_xml_source." to ".$mambot_target."<br/>";
 			$mambot_xml_move_result=dirmv($mambot_xml_source, $mambot_target, true, $funcloc = "/");
 			$mambot_move_result=dirmv($mambot_source, $mambot_target, true, "/");
+
 			if ($mambot_xml_move_result['success'] && $mambot_move_result['success'])
 				{
 				copy ($mambot_target.JRDS."plugin_info.php",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php');
+				unlink($mambot_target.JRDS."plugin_info.php");
+				@unlink($mambot_target.JRDS."plugin_install.php"); 
 				return true;
 				}
 			else

@@ -293,7 +293,7 @@ class j16000addplugin
 
 				if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
 					{
-					if ("_JOMRES_DETECTED_CMS" == "joomla16" || "_JOMRES_DETECTED_CMS" == "joomla17" || "_JOMRES_DETECTED_CMS" == "joomla25")
+					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 						{
 						if (!$debugging) jomresRedirect(get_showtime("live_site")."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_installer&view=discover");
 						}
