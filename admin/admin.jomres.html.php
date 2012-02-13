@@ -148,7 +148,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'.limitCountriesDropdown().'</td>
 				<td valign="middle">&nbsp;</td>
 			</tr>
-
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_MOBILE_REDIRECT.'</td>
+				<td valign="middle">'.$lists['mobile_redirect'].'</td>
+				<td valign="middle">'._JOMRES_MOBILE_REDIRECT_DESC.'</td>
+			</tr>
 			<!--
 			<tr valign="middle">
 				<td valign="middle">'._JOMRES_HTMP_PURIFIER.'</td>
