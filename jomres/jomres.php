@@ -34,22 +34,6 @@ global $loggingEnabled,$loggingBooking,$loggingGateway,$loggingSystem,$loggingRe
 
 require_once(dirname(__FILE__).'/integration.php');
 
-jr_import('browser_detect');
-$b = new browser_detect();
-$is_mobile = $b->isMobile();
-set_showtime('mobile_browser',$is_mobile );
-
-if ( $is_mobile && !isset($_REQUEST['tmpl']) )
-	{
-	$st="?";
-	foreach ($_GET as $key=>$val)
-		{
-		$st .= $key."=".$val."&";
-		}
-	header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component&is_wrapped=1&topoff=1");
-	die();
-	}
-
 set_showtime('heavyweight_system',false);
 $query="SELECT propertys_uid,published FROM #__jomres_propertys";
 $countproperties = doSelectSql($query);
@@ -60,6 +44,26 @@ if ($numberOfPropertiesInSystem > 200 )
 $thisJRUser=jomres_getSingleton('jr_user');
 $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
+
+if ($jrConfig['mobile_redirect'] == "1")
+	{
+	jr_import('browser_detect');
+	$b = new browser_detect();
+	$is_mobile = $b->isMobile();
+	set_showtime('mobile_browser',$is_mobile );
+
+	if ( $is_mobile && !isset($_REQUEST['tmpl']) )
+		{
+		$st="?";
+		foreach ($_GET as $key=>$val)
+			{
+			$st .= $key."=".$val."&";
+			}
+		header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component&is_wrapped=1");
+		die();
+		}
+	}
+
 $performance_monitor =jomres_getSingleton('jomres_performance_monitor');
 if ($jrConfig['errorChecking'] =="1")
 	$performance_monitor->switch_on();

@@ -1726,3 +1726,6 @@ define('_JOMRES_DEFAULT_LONG_STARTPOINT','Default Longitude Startpoint');
 define('_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC','In the Google map on the property edit page, before the marker has been moved, what should the default latitude/longitude start points be?');
 
 define('_JOMRES_CLEARDATES','I don\'t have any dates yet');
+
+define('_JOMRES_MOBILE_REDIRECT','Redirect to frameless when on mobile devices?');
+define('_JOMRES_MOBILE_REDIRECT_DESC','Jomres includes a feature that redirects a user to a view of Joomla that does not include modules and headers when it detects that the browser belongs to a mobile device. If you have a Joomla template that is already optimised for mobile devices, you can disable this feature by setting this option to No.');
