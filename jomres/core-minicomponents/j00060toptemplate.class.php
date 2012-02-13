@@ -57,13 +57,7 @@ class j00060toptemplate {
 					$current_property_details =jomres_getSingleton('basic_property_details');
 					$output['PROPERTYNAME']= $current_property_details->get_property_name($defaultProperty);
 
-					if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
-						$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
-					elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
-						$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
-					else
-						$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
-						
+					
 					jr_import('jomres_management_view');
 					$jomres_management_view = new jomres_management_view();
 					$management_dropdown = $jomres_management_view->get_dropdown();
@@ -75,6 +69,13 @@ class j00060toptemplate {
 						}
 					}
 				}
+			
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
+				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
+			elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
+				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
+			else
+				$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
 			
 			$output['SANITY_CHECKS']=get_showtime("sanity_check_warnings");
 			$output['NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false,false);
