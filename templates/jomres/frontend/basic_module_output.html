@@ -1,18 +1,62 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style type="text/css">
-a.fg-button.more-info-link {float: none !important;}
+
 </style>
-<div class="ui-widget ui-widget-content ui-corner-all" style="float:left;width:140px;margin-bottom:10px;margin:5px;">
+<script type="text/javascript">
+jomresJquery(document).ready(function() {
+	jomresJquery("#module_{RANDOM_IDENTIFIER}").hover(
+	function () {
+		jomresJquery(this).addClass("jomres_module_shadow");
+		},
+	function () {
+		jomresJquery(this).removeClass("jomres_module_shadow");
+		}
+	);
+	var loading = false;
+	jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog({
+	autoOpen: false,
+	resizable: false,
+	height: 250,
+	width : 400,
+	/* closeOnEscape: false, */
+	open: function(event, ui) 
+		{
+		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').show();
+		/* jomresJquery(".ui-dialog-titlebar-close", jomresJquery(this).parent()).hide(); */
+		 jomresJquery(".ui-dialog-titlebar", jomresJquery(this).parent()).hide(); 
+		if (loading != true) {
+			loading = true;
+			jomresJquery.get('{JOMRES_SITEPAGE_URL_AJAX}&task=module_popup&id={PROPERTY_UID}',
+			function(data){
+				jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').html(data);
+				loading = false; // IMPORTANT - Make function available again.
+				});
+			}
+		}
+	}); // init without showing
+
+	jomresJquery('#module_{RANDOM_IDENTIFIER}').bind("mouseover", function() {
+		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog('open'); // open the dialog
+		}); 
+	jomresJquery('#module_{RANDOM_IDENTIFIER}').bind("mouseout", function() { 
+		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog('close'); // open the dialog
+		});
+});
+
+
+
+</script>
+<div title="{PROPERTY_NAME}" class="ui-widget ui-widget-content ui-corner-all" style="float:left;width:140px;margin-bottom:10px;margin:5px;"  >
 	<center>
 		<div style="padding:5px;" class="ui-helper-clearfix">
 			<div style="font-weight:bold;">{PROPERTY_NAME}</div>
 			<div style="height:16px;">{STARSIMAGES}</div>
-			<div style="margin-top:5px;height:100px;"><a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a></div>
+			<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;"><a href="{MOREINFORMATIONLINK}"><img src = "{THUMBNAIL}"/></a></div>
 			<div style="font-size:11px;height: 36px;">{PRICE}</div>
             <div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div>
 		</div>
 	</center>
-
+	<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none"><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
 <!-- 
 These are included in the template in case you wish to use them.
 {PROPERTY_STREET}
