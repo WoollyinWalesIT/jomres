@@ -342,6 +342,10 @@ function get_property_module_data($property_uid_array)
 			else
 				$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($property_data['real_estate_property_price']);
 			$property_data['PRICE']=$price;
+			$property_data['PROPERTY_UID']=$property_uid;
+			$property_data['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
+			$property_data['JOMRES_SITEPAGE_URL_AJAX']=JOMRES_SITEPAGE_URL_AJAX;
+			$property_data['LIVE_SITE']=get_showtime('live_site');
 			$property_data['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 			$property_data['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property_uid) ;
 			$property_data['STARSIMAGES'] = '';

@@ -24,6 +24,10 @@ class j06000ui_availability_calendar
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
+		$show_legend = true;
+		if ( $componentArgs['noshowlegend'] == "1" || $_REQUEST['noshowlegend'] =="1" )
+			$show_legend = false;
+		
 		$property_uid = get_showtime('property_uid');
 
 		$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."'";
@@ -186,7 +190,11 @@ class j06000ui_availability_calendar
 			</script>
 		<div id="'.$random_identifier.'"></div>';
 		
-		$inline_calendar .= '
+		
+		
+		if ($show_legend)
+			{
+			$inline_calendar .= '
 			<script type="text/javascript">
 			jomresJquery(document).ready(function(){
 			  jomresJquery("#legend_dialog").dialog({
@@ -198,42 +206,42 @@ class j06000ui_availability_calendar
 			});
 			});
 			</script>';
-		
-		if ($mrConfig['singleRoomProperty'])
-			{
-			$inline_calendar .= '
-			<a href="#" id="legend_dialog_opener" title="Legend"><img src="'.get_showtime('live_site').'/jomres/images/information.png" /></a>
-			<div id="legend_dialog" title="Legend">
-			<table width="100%" border="0">
-				<tr>
-					<td class="calendar_background_full" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
-				</tr>
-			</table>
-			</div>
-			';
+			if ($mrConfig['singleRoomProperty'])
+				{
+				$inline_calendar .= '
+				<a href="#" id="legend_dialog_opener" title="Legend"><img src="'.get_showtime('live_site').'/jomres/images/information.png" /></a>
+				<div id="legend_dialog" title="Legend">
+				<table width="100%" border="0">
+					<tr>
+						<td class="calendar_background_full" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
+					</tr>
+				</table>
+				</div>
+				';
 
-			}
-		else
-			{
-			$inline_calendar .= '
-			<a href="#" id="legend_dialog_opener" title="Legend"><img src="'.get_showtime('live_site').'/jomres/images/information.png" /></a>
-			<div id="legend_dialog" title="Legend">
-			<table width="100%" border="0">
-				<tr>
-					<td class="calendar_background_quarter" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_QUARTER',_JOMRES_AVLCAL_QUARTER).'</td>
-				</tr>
-				<tr>
-					<td class="calendar_background_half" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_HALF',_JOMRES_AVLCAL_HALF).'</td>
-				</tr>
-				<tr>
-					<td class="calendar_background_threequarter" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_THREEQUARTER',_JOMRES_AVLCAL_THREEQUARTER).'</td>
-				</tr>
-				<tr>
-					<td class="calendar_background_full" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
-				</tr>
-			</table>
-			</div>
-			';
+				}
+			else
+				{
+				$inline_calendar .= '
+				<a href="#" id="legend_dialog_opener" title="Legend"><img src="'.get_showtime('live_site').'/jomres/images/information.png" /></a>
+				<div id="legend_dialog" title="Legend">
+				<table width="100%" border="0">
+					<tr>
+						<td class="calendar_background_quarter" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_QUARTER',_JOMRES_AVLCAL_QUARTER).'</td>
+					</tr>
+					<tr>
+						<td class="calendar_background_half" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_HALF',_JOMRES_AVLCAL_HALF).'</td>
+					</tr>
+					<tr>
+						<td class="calendar_background_threequarter" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_THREEQUARTER',_JOMRES_AVLCAL_THREEQUARTER).'</td>
+					</tr>
+					<tr>
+						<td class="calendar_background_full" width="20">&nbsp;</td><td>'.jr_gettext('_JOMRES_AVLCAL_FULLYBOOKED',_JOMRES_AVLCAL_FULLYBOOKED).'</td>
+					</tr>
+				</table>
+				</div>
+				';
+				}
 			}
 		if ($componentArgs['return_calendar'] == "1" || $_REQUEST['return_calendar'] == "1")
 			$this->retVals = $inline_calendar;
