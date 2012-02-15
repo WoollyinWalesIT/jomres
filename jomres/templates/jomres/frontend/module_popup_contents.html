@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" >
+<div title="{PROPERTY_NAME}" class="ui-widget ui-widget-content ui-corner-all" style="float:left;width:350px;margin-bottom:10px;margin:5px;"  >
+	<div style="padding:5px;width:100px;float:left" class="ui-helper-clearfix">
+		<div style="font-weight:bold;">{PROPERTY_NAME}</div>
+		<div style="height:16px;">{STARSIMAGES}</div>
+		<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;" ><a href="{MOREINFORMATIONLINK}" ><img src = "{THUMBNAIL}"/></a></div>
+		<div style="font-size:11px;height: 36px;">{PRICE}</div>
+		<div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div>
+	</div>
+	<div style="padding:5px;width:200px;float:right" class="ui-helper-clearfix">
+		{PROPERTY_STREET}
+		{PROPERTY_TOWN}
+		{PROPERTY_POSTCODE}
+		{PROPERTY_REGION}
+		{PROPERTY_COUNTRY}
+		{PROPERTY_TEL}
+	</div>
+<!-- 
+These are included in the template in case you wish to use them.
+{PROPERTY_COUNTRY_CODE}
+{PROPERTY_TEL}
+{PROPERTY_EMAIL}
+{STARS}
+{LAT}
+{LONG}
+{PROPERTY_DESCRIPTION}
+{PROPERTY_CHECKIN_TIMES}
+{PROPERTY_AREA_ACTIVITIES}
+{PROPERTY_DRIVING_DIRECTIONS}
+{PROPERTY_AIRPORTS}
+{PROPERTY_OTHERTRANSPORT}
+{PROPERTY_POLICIES_DISCLAIMERS}
+-->
+
+{HRTYPES}
+<patTemplate:tmpl name="room_types" type="simpleCondition" requiredVars="room_type">
+	{ROOM_TYPE}&nbsp;
+</patTemplate:tmpl>
+<br/>
+{HFEATURES}
+<patTemplate:tmpl name="property_features" type="simpleCondition" requiredVars="feature">
+	{FEATURE}
+</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>
