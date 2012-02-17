@@ -191,8 +191,8 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 		$modal_width = $sizes[0]+30;
 
 	$title= str_replace( "'","",$title);
-
-	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({dialogClass:\"alert\",width:".$modal_width.",modal:true,title:\"".$title."\"});'";
+	$close_dialog_js = 'jomresJquery(".ui-widget-overlay").live("click", function() {jomresJquery("#'.$id.'").dialog("close");});';
+	$onClick="onClick='jomresJquery( \"#".$id."\" ).dialog({dialogClass:\"alert\",width:".$modal_width.",modal:true,title:\"".$title."\"});".$close_dialog_js."'";
 	$link = '<a href="javascript:void(0);" '.$onClick.' ><img src="'.$thumbnail_rel_path.$thumbnail.'" '.$width.' '.$height.' alt="'.$title.'" ></a>';
 	$image_div = '<div id="'.$id.'" style="display:none;"><img src="'.$image_rel_path.$image.'"></div>';
 
