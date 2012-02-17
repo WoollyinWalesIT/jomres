@@ -35,26 +35,6 @@ class j06000module_popup
 			$customTextObj =jomres_getSingleton('custom_text');
 			$customTextObj->get_custom_text_for_property($property_uid);
 
-
-			$pricesFromArray=array();
-			$searchDate = date("Y/m/d");
-			if (isset($_REQUEST['arrivalDate']))
-				{
-				$searchDate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
-				}
-			$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid = ".(int)$property_uid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
-			$tariffList = doSelectSql($query);
-			if (count($tariffList) > 0)
-				{
-				foreach ($tariffList as $t)
-					{
-					if ( !isset($pricesFromArray[$t->property_uid]) )
-						$pricesFromArray[$t->property_uid]=$t->roomrateperday;
-					elseif ( isset($pricesFromArray[$t->property_uid]) && $pricesFromArray[$t->property_uid] > $t->roomrateperday )
-						$pricesFromArray[$t->property_uid]=$t->roomrateperday;
-					}
-				}
-
 			$property_image=get_showtime('live_site')."/jomres/images/jrhouse.png";
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
 				$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property_uid."_property_".$property_uid.".jpg";
@@ -63,42 +43,12 @@ class j06000module_popup
 			$output['THUMBNAIL']=getThumbnailForImage($property_image);
 			if (!$output['THUMBNAIL'])
 				$output['THUMBNAIL']=$property_image;
-
-			if ($mrConfig['is_real_estate_listing']==0)
-				{
-				if (isset($pricesFromArray[$property_uid]))
-					{
-					if ($mrConfig['prices_inclusive']=="0")
-						$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid));
-					else
-						$price=output_price ($pricesFromArray[$property_uid]);
-					if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
-						$price.="&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
-					else
-						{
-						if ($mrConfig['wholeday_booking'] == "1")
-							{
-							if ($mrConfig['perPersonPerNight']=="0" )
-								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
-							else
-								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PPPN_DAY_WHOLEDAY);
-							}
-						else
-							{
-							if ($mrConfig['perPersonPerNight']=="0" )
-								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
-							else
-								$price.="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
-							}
-						}
-					$price = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false).$price;
-					}
-				else
-					$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($output['real_estate_property_price']);
-				}
-			else
-				$price=jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE). ": ".output_price($output['real_estate_property_price']);
-			$output['PRICE']=$price;
+			
+			$price_output = get_property_price_for_display_in_lists($property_uid);
+			$output['PRICE_PRE_TEXT']	=	$price_output['PRE_TEXT'];
+			$output['PRICE_PRICE']		=	$price_output['PRICE'];
+			$output['PRICE_POST_TEXT']	=	$price_output['POST_TEXT'];
+			
 			$output['PROPERTY_UID']=$property_uid;
 			$output['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
 			$output['JOMRES_SITEPAGE_URL_AJAX']=JOMRES_SITEPAGE_URL_AJAX;
