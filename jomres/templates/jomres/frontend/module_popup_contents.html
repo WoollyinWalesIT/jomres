@@ -1,21 +1,37 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
 <div title="{PROPERTY_NAME}" class="ui-widget-content ui-corner-all ui-helper-clearfix">
-<table width="48%" border="0" class="float-left">
+<table width="320" border="0" class="float-left">
 	<tr>
-		<td>{STARSIMAGES}</td>
+		<td>
+			<div title="{PROPERTY_NAME}_map" class="ui-helper-clearfix" style="width:320;height:214;">
+				<div id="map_{RANDOM_IDENTIFIER}"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+<table width="140" border="0" class="float-right">
+	<tr>
+		<td><a href="{MOREINFORMATIONLINK}" ><img src = "{THUMBNAIL}" width="130" style="margin-bottom:3px;border:1px solid #fff;"/></a></td>
 	</tr>
 	<tr>
-		<td><a href="{MOREINFORMATIONLINK}" ><img src = "{THUMBNAIL}"/></a></td>
-	</tr>
-	<tr>
-		<td>{PRICE}</td>
+		<td>
+			<div class="ui-state-highlight ui-corner-all price-wrapper" align="center">
+				<div class="prices-from">{PRICE_PRE_TEXT}</div>
+				<div class="big-price">{PRICE_PRICE}</div>
+				<div class="prices-period">{PRICE_POST_TEXT}</div>
+			</div>
+		</td>
 	</tr>
 	<tr>
 		<td><div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div></td>
 	</tr>
+	
 </table>
-<table width="48%" border="0" class="float-right">
+<br />
+<table width="100%" border="0">
+	<tr>
+		<td>{STARSIMAGES}</td>
+	</tr>
 	<tr>
 		<td>
 			<div><strong>Address: </strong>{PROPERTY_STREET}, {PROPERTY_TOWN}, {PROPERTY_POSTCODE}, {PROPERTY_REGION}, {PROPERTY_COUNTRY} <br />
@@ -44,5 +60,19 @@
 		</td>
 	</tr>
 </table>
-</div>
+<script>
+jomresJquery(document).ready(function() {
+	if (GBrowserIsCompatible()) {
+		var WIDTH = 320;
+		var HEIGHT = 214;
+		{VAR} Gmap = new GMap2(document.getElementById("map_{RANDOM_IDENTIFIER}"),{size:new GSize(WIDTH,HEIGHT)});
+		Gmap.setUIToDefault();
+		Gmap.setMapType(G_HYBRID_MAP);
+		Gmap.setCenter(new GLatLng({LAT}, {LONG}), 13);
+		var point = new GLatLng({LAT}, {LONG});
+		var marker = new GMarker(point);
+		Gmap.addOverlay(marker);
+		};
+	});
+</script>
 </patTemplate:tmpl>
