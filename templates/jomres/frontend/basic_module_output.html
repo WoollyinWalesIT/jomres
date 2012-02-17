@@ -23,9 +23,10 @@ function module_popup_{RANDOM_IDENTIFIER}()
 	{
 	jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog({
 	resizable: false,
-	height: 250,
-	width : 400,
+	height: 380,
+	width : 500,
 	modal : true,
+	resizable: true,
 	open: function() 
 		{
 		jomresJquery.get('{JOMRES_SITEPAGE_URL_AJAX}&task=module_popup&id={PROPERTY_UID}&nofollowtmpl=1',
@@ -56,8 +57,8 @@ function module_popup_{RANDOM_IDENTIFIER}()
 		<div style="padding:5px;" class="ui-helper-clearfix">
 			<div style="font-weight:bold;">{PROPERTY_NAME}</div>
 			<div style="height:16px;">{STARSIMAGES}</div>
-			<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;" onClick="module_popup_{RANDOM_IDENTIFIER}()"><a href="#" ><img src = "{THUMBNAIL}"/></a></div>
-			<div style="font-size:11px;height: 36px;">{PRICE}</div>
+			<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;"><a href="javascript:module_popup_{RANDOM_IDENTIFIER}();" ><img src = "{THUMBNAIL}" class="ngm_image"/></a></div>
+			<div style="font-size:11px;height: 36px;">{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}</div>
             <div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div>
 		</div>
 	</center>
