@@ -39,7 +39,7 @@ function get_property_price_for_display_in_lists($property_uid)
 	$customTextObj->get_custom_text_for_property($property_uid);
 	$current_property_details =jomres_getSingleton('basic_property_details');
 	$current_property_details->gather_data($property_uid);
-	
+
 	$plugin_will_provide_lowest_price = false;
 	$MiniComponents->triggerEvent('07015',array('property_uid'=>$property_uid) ); // Optional
 	$mcOutput=$MiniComponents->getAllEventPointsData('07015');
@@ -158,12 +158,12 @@ function jomres_mainmenu_option( $link, $image='', $text, $path='/jomres/images/
 
 	if ($image == '')
 		$image = 'Prompt.png';
-	
+
 	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS.$image) )
 		$path=get_showtime('eLiveSite');
 	else
 		$path=get_showtime('live_site').'/jomres/images/jomresimages/small/';
-	
+
 	if (!isset($category ))
 		$category = 'misc';
 
@@ -188,12 +188,12 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 	$id=generateJomresRandomString(10);
 
 	$sizes = getimagesize ($image_rel_path.$image);
-	if (!$sizes) // allow_url_fopen is disabled, therefore getimagesize will not work and $sizes will be "false". 
+	if (!$sizes) // allow_url_fopen is disabled, therefore getimagesize will not work and $sizes will be "false".
 		{
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $image_rel_path.$image);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		$data = curl_exec($ch); 
+		$data = curl_exec($ch);
 		$resource = imagecreatefromstring($data);
 		$modal_width = imagesx($resource)+30;
 		if ($modal_width == 30 || !$modal_width) // Yet another security setting stopping PHP from doing it's job, let's fall back to the maxwidth config setting.
@@ -390,7 +390,7 @@ function get_property_module_data($property_uid_array)
 	$current_property_details =jomres_getSingleton('basic_property_details');
 	$property_data_array = $current_property_details->gather_data_multi($property_uid_array);
 
-	
+
 	// Same as list properties
 	$g_pids=genericOr($property_uid_array,'propertys_uid');
 	$g_pid =genericOr($property_uid_array,'property_uid');
@@ -1163,7 +1163,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 			break;
 		case 'mambot':
 			//$mambot_full_name=$plugin_name;
-			
+
 			if ( file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php') )
 				{
 				if (_JOMRES_DETECTED_CMS == "joomla15")
@@ -1194,8 +1194,8 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				error_logging( "Error, unable to write to ".$mambot_target." Please ensure that the parent path is writable by the web server ");
 				return false;
 				}
-				
-				
+
+
 			// Superceeded by Joomla's discover feature
 			if (_JOMRES_DETECTED_CMS == "joomla15")
 				{
@@ -1213,7 +1213,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				('".$plugin_name."','".$plugin_name."','".$mambot_type."','0','0','1','0','0','0','0000-00-00 00:00:00','".$params."')";
 				$result=doInsertSql($query,"");
 				}
-			
+
 			//echo "Moving contents of ".$mambot_xml_source." to ".$mambot_target."<br/>";
 			$mambot_xml_move_result=dirmv($mambot_xml_source, $mambot_target, true, $funcloc = "/");
 			$mambot_move_result=dirmv($mambot_source, $mambot_target, true, "/");
@@ -1222,7 +1222,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				{
 				copy ($mambot_target.JRDS."plugin_info.php",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."core-plugins".JRDS.$plugin_name.JRDS.'plugin_info.php');
 				unlink($mambot_target.JRDS."plugin_info.php");
-				@unlink($mambot_target.JRDS."plugin_install.php"); 
+				@unlink($mambot_target.JRDS."plugin_install.php");
 				return true;
 				}
 			else
@@ -1497,7 +1497,7 @@ function mailer_get_css()
 	{
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	
+
 	$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
 	$subdir = $themeArr[0];
 	$filename = $themeArr[1];
@@ -1505,10 +1505,10 @@ function mailer_get_css()
 		$themePath = $themeArr[2]."/";
 	else
 		$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
-	
+
 	$jquery_ui_css_file = $themePath.JRDS.$filename;
-	
-	
+
+
 	$css_file= JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."css".JRDS."email.css";
 	return "<style> ".file_get_contents ($css_file).
 		file_get_contents ($jquery_ui_css_file)
@@ -1596,11 +1596,14 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		$mail->Username			= $jomresConfig_smtpuser;
 		$mail->Password			= $jomresConfig_smtppass;
 		}
-		
 
-		
+
+
 	$mail->Host			= $jomresConfig_smtphost;
-	$mail->From			= $from;
+	if ($jrConfig['default_from_address'] != "")
+		$mail->From			= $jrConfig['default_from_address'];
+	else
+		$mail->From			= $from;
 	$mail->CharSet		= 'UTF-8';
 	$mail->FromName		= $jomresConfig_sitename;
 	$mail->Subject		= $subject;
@@ -2711,7 +2714,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 
 			';
 		}
-	
+
 	$clear_checkbox_js = '<br/>&nbsp;';
 	if ($fieldName == "departureDate")
 		{
@@ -2719,7 +2722,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		$clear = jr_gettext('_JOMRES_CLEARDATES',_JOMRES_CLEARDATES);
 		$clear_checkbox_js = '<br/><input type="checkbox" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'setDate\' , null );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'setDate\' , null );" /> '.$clear;
 		}
-	
+
 	$output .= '<script type="text/javascript">
 	jomresJquery(function() {
 		jomresJquery("#'.$uniqueID.'").datepicker( {
@@ -2780,17 +2783,17 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 	$jomressession=get_showtime('jomressession');
 	$MiniComponents =jomres_getSingleton('mcHandler');
 	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-	
-	
+
+
 	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".get_showtime('jomressession'));
 	if ($tmpBookingHandler->getBookingFieldVal("cart_payment")) // I'm probably being lazy, creating this condition like this, but I'd rather keep things clear in my own mind atm, it can be tidied up later
 		{
 		$insert_failed = false;
-		
+
 		foreach ($tmpBookingHandler->cart_data as $key=>$cart_data)
 			{
 			$tmpBookingHandler->tmpbooking = $cart_data;
-			
+
 			$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 			$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
 			$userIsManager=checkUserIsManager();
@@ -2823,7 +2826,7 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 			return $MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'];
 			}
 		}
-	else 
+	else
 		{
 		$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 		$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");

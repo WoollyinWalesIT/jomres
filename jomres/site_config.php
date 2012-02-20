@@ -235,4 +235,6 @@ $jrConfig['default_lat'] = "51.50068";
 $jrConfig['default_long'] = "-0.14317";
 
 $jrConfig['mobile_redirect'] = "1";
+$jrConfig['default_from_address'] = "";
+
 ?>

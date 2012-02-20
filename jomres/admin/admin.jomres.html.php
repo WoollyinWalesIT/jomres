@@ -766,6 +766,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_SYSTEM_EMAILS.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_default_from_address" value="'.$jrConfig['default_from_address'].'" /></td>
+				<td valign="middle">'._JOMRES_SYSTEM_EMAILS_DESC.'</td>
+			</tr>
 			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_TITLE.'</td>
 				<td valign="middle">'.$lists['alternate_smtp_use_settings'].'</td>
