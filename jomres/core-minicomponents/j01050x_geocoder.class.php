@@ -59,7 +59,9 @@ class j01050x_geocoder {
 		$propertyData=doSelectSql($query,2);
 		$output['LAT']		= $propertyData['lat'];
 		$output['LONG']		= $propertyData['long'];
-
+		
+		set_showtime("current_map_identifier",$output['RANDOM_IDENTIFIER']);
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
