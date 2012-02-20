@@ -21,6 +21,7 @@ class j06000module_popup
 			{
 			$this->template_touchable=false; return;
 			}
+		add_gmaps_source();
 		$property_uid = (int)jomresGetParam($_REQUEST,"id",0);
 		$result = '';
 		if ($property_uid > 0)
@@ -79,8 +80,7 @@ class j06000module_popup
 			$output['PROPERTY_AIRPORTS'] = $current_property_details->property_airports;
 			$output['PROPERTY_OTHERTRANSPORT'] = $current_property_details->property_othertransport;
 			$output['PROPERTY_POLICIES_DISCLAIMERS'] = $current_property_details->property_policies_disclaimers;
-			
-			
+
 			$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 			$rt= doSelectSql($query);
 			if (count($rt)>0)
@@ -119,6 +119,10 @@ class j06000module_popup
 				}
 			else
 				$output['HFEATURES']	=	"";
+			
+			$componentArgs=array('property_uid'=>$property_uid,"width"=>'320',"height"=>'214');
+			$MiniComponents->specificEvent('01050','x_geocoder',$componentArgs);
+			$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
 			
 			$pageoutput = array($output);
 			$tmpl = new patTemplate();
