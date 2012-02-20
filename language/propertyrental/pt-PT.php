@@ -1740,3 +1740,6 @@ define('_JOMRES_CLEARDATES','I don\'t have any dates yet');
 
 define('_JOMRES_MOBILE_REDIRECT','Redirect to frameless when on mobile devices?');
 define('_JOMRES_MOBILE_REDIRECT_DESC','Jomres includes a feature that redirects a user to a view of Joomla that does not include modules and headers when it detects that the browser belongs to a mobile device. If you have a Joomla template that is already optimised for mobile devices, you can disable this feature by setting this option to No.');
+
+define('_JOMRES_SYSTEM_EMAILS','Emails sent from which address?');
+define('_JOMRES_SYSTEM_EMAILS_DESC',"Leave this option blank to disable it. Jomres will use the hotel's email address(es) when sending emails to guests, however your email service MAY not allow emails from arbitrary addresses (i.e. they only may allow emails from one authorised address). If this is the case, then you can use this input to enter an address which will be seen as the FROM address for all system emails.");
