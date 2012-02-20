@@ -1,3 +1,28 @@
+Jomres 6.3.2
+
+Removed a depreciated split function call
+Implemented a variety of changes to prevent depreciation warnings.
+Fixed missing publish/unpublish icons in list property types page.
+Added some checks for CURL to curl using functions.
+Modified booking form, if tmpl=component then the modal popup is disabled.
+Added a checkbox to clear date input fields in search calendars.
+Added some spaces in confirmation letter.
+Modified mambot installation functionality slightly, restored older J1.5 installation to the plugins table code, and added a "copy" line to copy the plugin info script back to the plugin's dir that the Jomres plugin manager uses.
+Modified the add plugin functionality to only redirect to Joomla's discover feature only if J1.6/1.7/2.5
+Modified where the relative url for the logo in the management view is pulled from, as management view is now available to non-managers.
+Added a new option that enables/disables the mobile redirect feature.
+Added property town to the confirmation letter template.
+Added new functionality to show information about properties in modules in a popup.
+Figured out a way to change the cursor to the waiting cursor whenever Jomres does something ajaxy.
+Modified how "prices from" information is constructed, created a new function get_property_price_for_display_in_lists which passes back an array of the pre text/price/post text so that both Jomres and plugins can use a standardised way of passing information to templates.
+Modified the show image popup function so that clicking away from the image will close the dialog popup.
+Upgraded jquery to jquery 1.7.1
+Fixed a bug where extras without quantity boxes were triggering javascript errors.
+Updated the Portuguese regions.
+Upgraded Jomres google mapping, implemented some new functionality to improve mapping output and use v3 of Gmaps.
+Removed email from basic module output.
+Added an option to set a custom "from" email address.
+
 Jomres 6.3.1
 
 Modified built in mambot/plg installation functionality to work with J2.5. Allows installation of new jomres_ajax_search_contentwrapper joomla plugin that removes the need to modify templates to run the ajax asamodule plugin.
