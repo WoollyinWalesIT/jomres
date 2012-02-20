@@ -289,17 +289,20 @@ function getResponse_extras(field,value,theId) {
 			var extra_checked = jomresJquery("#"+ex_id).is(':checked');
 
 			var combo = jomresJquery('#quantity'+theId).val();
-			if (combo[0])
+			if (combo != undefined)
 				{
-				if (extra_checked == true)
+				if (combo[0])
 					{
-					jomresJquery('#quantity'+theId).attr("disabled",false);
-					
-					}
-				else
-					{
-					jomresJquery('#quantity'+theId).attr("disabled",true);
-					jomresJquery('#quantity'+theId).val("1");
+					if (extra_checked == true)
+						{
+						jomresJquery('#quantity'+theId).attr("disabled",false);
+						
+						}
+					else
+						{
+						jomresJquery('#quantity'+theId).attr("disabled",true);
+						jomresJquery('#quantity'+theId).val("1");
+						}
 					}
 				}
 			}
