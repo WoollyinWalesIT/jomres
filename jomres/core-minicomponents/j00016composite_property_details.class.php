@@ -84,6 +84,8 @@ class j00016composite_property_details {
 			$output['INLINE_CALENDAR_ARROW_CLOSINGDIV'] = '';
 			}
 		
+		$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );

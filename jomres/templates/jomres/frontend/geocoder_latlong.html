@@ -1,19 +1,18 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script src="http://maps.google.com/maps?file=api&v=2.x&key={APIKEY}&hl=en" type="text/javascript"></script>
-<div id="map"></div>
-<script>
+<script type="text/javascript">
 jomresJquery(document).ready(function() {
-	if (GBrowserIsCompatible()) {
-		var WIDTH = 600;
-		var HEIGHT = 400;
-		{VAR} Gmap = new GMap2(document.getElementById("map"),{size:new GSize(WIDTH,HEIGHT)});
-		Gmap.setUIToDefault();
-		Gmap.setMapType(G_HYBRID_MAP);
-		Gmap.setCenter(new GLatLng({LAT}, {LONG}), 13);
-		var point = new GLatLng({LAT}, {LONG});
-		var marker = new GMarker(point);
-		Gmap.addOverlay(marker);
+	var options_{RANDOM_IDENTIFIER} = {
+		center: new google.maps.LatLng({LAT}, {LONG}),
+		zoom: 8,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
+	var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
+		options_{RANDOM_IDENTIFIER});
+	var marker = new google.maps.Marker({
+		position: new google.maps.LatLng({LAT},{LONG})
+		});
+	marker.setMap(map);
 	});
 </script>
+<div id="map_{RANDOM_IDENTIFIER}" style="width:{MAP_WIDTH}px; height:{MAP_HEIGHT}px"></div> <!-- do not set these sizes to 100% or anything with percentages in, the map will not show if you do. I wasted ages figuring that out. -->
 </patTemplate:tmpl>

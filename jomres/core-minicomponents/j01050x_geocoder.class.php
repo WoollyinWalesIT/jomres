@@ -35,59 +35,40 @@ class j01050x_geocoder {
 			{
 			$this->template_touchable=false; return;
 			}
-		if (isset($_REQUEST['jrajax'])) // Map will not render when called via ajax (for modal popup)
-			return;
-
+		//if (isset($_REQUEST['jrajax'])) // Map will not render when called via ajax (for modal popup)
+		//	return;
+		
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
+		add_gmaps_source();
+
 		$output=array();
 		$pageoutput=array();
-		jr_import('browser_detect');
-		$b = new browser_detect();
-		$browser = $b->getBrowser();
-		$output['VAR']="";
-		if ($browser=="Internet Explorer")
-			$output['VAR']="var";
+		
+		$output['RANDOM_IDENTIFIER']=generateJomresRandomString(10);
+		$output['MAP_WIDTH']=300;
+		$output['MAP_HEIGHT']=300;
+		if (isset($componentArgs['width']))
+			{
+			$output['MAP_WIDTH']=(int)$componentArgs['width'];
+			$output['MAP_HEIGHT']=(int)$componentArgs['height'];
+			}
 			
-		//if (strlen($jrConfig['google_maps_api_key'])>0)
-		//	{
-			$query="SELECT property_name,property_street,property_town,property_postcode,property_tel,property_country,property_region,`lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
-			$propertyData=doSelectSql($query,2);
-			$output['LAT']=	$propertyData['lat'];
-			$output['LONG']=	$propertyData['long'];
-			$output['APIKEY']=$jrConfig['google_maps_api_key'];
-			if ( $output['LAT'] == 0.00 || strlen( $output['LAT'] ) ==0 || $output['LONG'] == 0.00 || strlen( $output['LONG'] ) ==0  ) // No lat or long details stored, we'll try to find the property via the address
-				{
-				$propertyData=doSelectSql($query,2);
+		$query="SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
+		$propertyData=doSelectSql($query,2);
+		$output['LAT']		= $propertyData['lat'];
+		$output['LONG']		= $propertyData['long'];
 
-				$output['ADDRESS']=
-					$propertyData['property_street']." ".$propertyData['property_town']." ".
-					$propertyData['property_region']." ".$propertyData['property_country'];
-
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'geocoder.html' );
-				$tmpl->addRows( 'pageoutput', $pageoutput );
-				if ($jrConfig['composite_property_details']!="1")
-					$tmpl->displayParsedTemplate();
-				else
-					$this->retVals=$tmpl->getParsedTemplate();
-				}
-			else
-				{
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'geocoder_latlong.html' );
-				$tmpl->addRows( 'pageoutput', $pageoutput );
-				if ($jrConfig['composite_property_details']!="1")
-					$tmpl->displayParsedTemplate();
-				else
-					$this->retVals=$tmpl->getParsedTemplate();
-				}
-			//}
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( 'geocoder_latlong.html' );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		if ($jrConfig['composite_property_details']!="1")
+			$tmpl->displayParsedTemplate();
+		else
+			$this->retVals=$tmpl->getParsedTemplate();
 		}
 
 
