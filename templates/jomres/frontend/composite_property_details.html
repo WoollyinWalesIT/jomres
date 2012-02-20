@@ -16,41 +16,40 @@ jomresJquery(window).load(function(){
 <div class="full-width ui-helper-clearfix">
 	<div id="property_details_loading" ><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
 	<div id="property_details" class="ui-helper-hidden">
-        <div id="gallerywrapper" class="ui-widget-content ui-corner-all left-column-slideshow float-left">{SLIDESHOW}</div>
-        <div class="right-column-buttons float-right ui-widget-content ui-helper-jomres-buttons">
+		<div id="gallerywrapper" class="ui-widget-content ui-corner-all left-column-slideshow float-left">{SLIDESHOW}</div>
+		<div class="right-column-buttons float-right ui-widget-content ui-helper-jomres-buttons">
 			<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-        	<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-            	<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-primary plist-button">{TEXT}</a></patTemplate:tmpl>
-            <patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-           		<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
-            <patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-                <a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
-            <patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-                <a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
-            <patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-                <a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
+			<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-primary plist-button">{TEXT}</a></patTemplate:tmpl>
+			<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+		   		<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
+			<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
+			<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
+			<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<a href="{LINK}" class="fg-button ui-state-default ui-corner-all ui-priority-secondary plist-button">{TEXT}</a></patTemplate:tmpl>
 			<div style="clear:both;"></div>
 			<!-- to remove the arrow remove ARROW, INLINE_CALENDAR_ARROW_OPENINGDIV and INLINE_CALENDAR_ARROW_CLOSINGDIV -->
 			{ARROW}
 			{INLINE_CALENDAR_ARROW_OPENINGDIV}{INLINE_CALENDAR}{INLINE_CALENDAR_ARROW_CLOSINGDIV}
-        </div>
-        <div style="clear:both;">&nbsp;</div>
-        <div id="pdetails_tabs">
-            <ul>
-                <patTemplate:tmpl name="tabs_titles">
-                <li><a href="#{TAB_ANCHOR}">{TAB_TITLE}</a></li>
-                </patTemplate:tmpl>
-            </ul>
-            <patTemplate:tmpl name="tabs_content">
-            <div id="{TAB_ANCHOR}">
-                {TAB_CONTENT}
-            </div>
-            </patTemplate:tmpl>
-        </div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
+		</div>
+		<div style="clear:both;">&nbsp;</div>
+		<div id="pdetails_tabs">
+			<ul>
+				<patTemplate:tmpl name="tabs_titles">
+				<li><a href="#{TAB_ANCHOR}">{TAB_TITLE}</a></li>
+				</patTemplate:tmpl>
+			</ul>
+			<patTemplate:tmpl name="tabs_content">
+			<div id="{TAB_ANCHOR}">
+				{TAB_CONTENT}
+			</div>
+			</patTemplate:tmpl>
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
 		
-    </div>
-	{MAP}
+	</div>
 </div>
 </patTemplate:tmpl>

@@ -1,9 +1,14 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 jomresJquery(document).ready(function() {
+	init_map_{RANDOM_IDENTIFIER}();
+	});
+
+function init_map_{RANDOM_IDENTIFIER}()
+	{
 	var options_{RANDOM_IDENTIFIER} = {
 		center: new google.maps.LatLng({LAT}, {LONG}),
-		zoom: 8,
+		zoom: 12,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 	var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
@@ -12,7 +17,7 @@ jomresJquery(document).ready(function() {
 		position: new google.maps.LatLng({LAT},{LONG})
 		});
 	marker.setMap(map);
-	});
+	}
 </script>
 <div id="map_{RANDOM_IDENTIFIER}" style="width:{MAP_WIDTH}px; height:{MAP_HEIGHT}px"></div> <!-- do not set these sizes to 100% or anything with percentages in, the map will not show if you do. I wasted ages figuring that out. -->
 </patTemplate:tmpl>
