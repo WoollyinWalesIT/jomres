@@ -100,8 +100,11 @@ class j04200editproperty {
 					$output['LAT']=$jrConfig['default_lat'];
 					$output['LONG']=$jrConfig['default_long'];
 					}
-				$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
-				$output['APIKEY']=$jrConfig['google_maps_api_key'];
+				
+				$componentArgs=array('property_uid'=>$propertyUid,"width"=>'400',"height"=>'400',"editing_map"=>true);
+				$MiniComponents->specificEvent('01050','x_geocoder',$componentArgs);
+				$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+				
 				$output['PRICE']=$property->property_key;
 				$output['METATITLE']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$property->metatitle,false,false));
 				$output['METADESCRIPTION']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$property->metadescription,false,false));
