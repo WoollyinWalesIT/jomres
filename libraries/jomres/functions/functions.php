@@ -39,7 +39,6 @@ function get_property_price_for_display_in_lists($property_uid)
 	$customTextObj->get_custom_text_for_property($property_uid);
 	$current_property_details =jomres_getSingleton('basic_property_details');
 	$current_property_details->gather_data($property_uid);
-
 	$plugin_will_provide_lowest_price = false;
 	$MiniComponents->triggerEvent('07015',array('property_uid'=>$property_uid) ); // Optional
 	$mcOutput=$MiniComponents->getAllEventPointsData('07015');
@@ -120,14 +119,14 @@ function get_property_price_for_display_in_lists($property_uid)
 			else
 				{
 				$pre_text =jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
-				$price = output_price($output['real_estate_property_price']);
+				$price = output_price($current_property_details->real_estate_property_price);
 				$post_text = '';
 				}
 			}
 		else
 			{
 			$pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
-			$price=output_price($output['real_estate_property_price']);
+			$price=output_price($current_property_details->real_estate_property_price);
 			$post_text = '';
 			}
 		}
