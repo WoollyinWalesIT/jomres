@@ -67,7 +67,7 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .price-wrapper{width:119px;margin-top:7px;height:93px;}
 .prices-from{font-size:11px;margin-top:10px;font-weight:normal;}
 .prices-period{font-size:11px;}
-.select-dates{background: url("../images/calendar_msg_bubble.png") no-repeat scroll 0 0 transparent;bottom: -15px;display: block;height: 68px;left: -37px;position: relative;width: 45px;z-index: 10000;}
+
 .arrival-select{margin-top:-64px;}
 .arrival-select div.ui-datepicker{font-size:10px;}
 .arrival-select div.ui-datepicker td{padding:0;}
