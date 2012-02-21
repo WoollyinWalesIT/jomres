@@ -1010,7 +1010,7 @@ $performance_monitor->set_point("post-menu generation");
 
 
 $componentArgs=array();
-$MiniComponents->triggerEvent('99999',$componentArgs); // Optional end of run minicomponent
+$MiniComponents->triggerEvent('99999',$componentArgs); // Javascript and CSS caching
 $componentArgs=array();
 
 $tmpBookingHandler->close_jomres_session();

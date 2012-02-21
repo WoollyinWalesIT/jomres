@@ -261,6 +261,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'.$lists['javascript_caching_enabled'].'</td>
 				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
 			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_CSS_CACHING_TITLE.'</td>
+				<td valign="middle">'.$lists['css_caching_enabled'].'</td>
+				<td valign="middle">'._JOMRES_CSS_CACHING_DESC.'</td>
+			</tr>
 			');
 		$contentPanel->setcontent('
 		<tr valign="middle">

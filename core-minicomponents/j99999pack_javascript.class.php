@@ -35,47 +35,35 @@ class j99999pack_javascript
 			{
 			$this->template_touchable=false; return;
 			}
-		if (defined("JOMRES_JS"))
+		if (defined('JOMRES_NOHTML'))
+			return;
+
+		if (defined("JOMRES_JS")) // This has already been run, let's not do it again
 			return;
 		define("JOMRES_JS",1);
-		
-		$use_js_cache=get_showtime('javascript_caching_enabled');
 
-		$jomres_js_cache = get_showtime('js_cache');
 		$cached_js_file_abs = get_showtime('js_cache_path');
 		$cached_js_filename = get_showtime('js_cache_filename');
-		$cached_js_file_livesite = get_showtime('js_cache_livesite');
-		
-		if (is_null($jomres_js_cache) || strlen($jomres_js_cache) ==0)  // In effect, no files have been chosen to be cached, there's no point in continuing.
-			return;
-		
-		if ($use_js_cache && !isset($_REQUEST['no_html']))
-			{
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."class.JavaScriptPacker.php");
+		$jomres_js_cache = get_showtime('js_cache');
 
-			$t1 = microtime(true);
-			$packer = new JavaScriptPacker($jomres_js_cache,"Normal");
-			$packed = $packer->pack();
-			$t2 = microtime(true);
-			
-			$originalLength = strlen($script);
-			$packedLength = strlen($packed);
-			$ratio =  number_format($packedLength / $originalLength, 3);
-			$time = sprintf('%.4f', ($t2 - $t1) );
-			$jomres_js_cache = $packed;
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			}
-			
-		$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
-		if (flock($fp, LOCK_EX))
+		if (get_showtime('javascript_caching_enabled'))
 			{
+			$fp=fopen($cached_js_file_abs.$cached_js_filename,'w');
 			fwrite($fp,$jomres_js_cache);
-			flock($fp, LOCK_UN);
 			fclose($fp);
 			}
-		
-		jomres_cmsspecific_addheaddata("javascript",'jomres/temp/javascript_cache/',$cached_js_filename,$cached_js_file_livesite.$cached_js_filename,true);
+		//else { echo "oops, didn't make any output";exit;}
+
+		$cached_css_file_abs = get_showtime('css_cache_path');
+		$cached_css_filename = get_showtime('css_cache_filename');
+		$jomres_css_cache = get_showtime('css_cache');
+		if (get_showtime('css_caching_enabled'))
+			{
+			$fp=fopen($cached_css_file_abs.$cached_css_filename,'w');
+			fwrite($fp,$jomres_css_cache);
+			fclose($fp);
+			}
+		//else { echo "oops, didn't make any output";exit;}
 		}
 
 	/**
