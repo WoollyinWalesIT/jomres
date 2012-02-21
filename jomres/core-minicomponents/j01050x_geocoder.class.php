@@ -41,10 +41,17 @@ class j01050x_geocoder {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
+		if (isset($componentArgs['editing_map']))
+			$editing = true;
+		else
+			$editing = false;
+		
 		add_gmaps_source();
 
 		$output=array();
 		$pageoutput=array();
+		
+		$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
 		
 		$output['RANDOM_IDENTIFIER']=generateJomresRandomString(10);
 		$output['MAP_WIDTH']=300;
@@ -54,11 +61,40 @@ class j01050x_geocoder {
 			$output['MAP_WIDTH']=(int)$componentArgs['width'];
 			$output['MAP_HEIGHT']=(int)$componentArgs['height'];
 			}
-			
-		$query="SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
-		$propertyData=doSelectSql($query,2);
-		$output['LAT']		= $propertyData['lat'];
-		$output['LONG']		= $propertyData['long'];
+		
+		if ($property_uid == 999999999)
+			{
+			$output['LAT']=$jrConfig['default_lat'];
+			$output['LONG']=$jrConfig['default_long'];
+			}
+		else
+			{
+			$query="SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
+			$propertyData=doSelectSql($query,2);
+			$output['LAT']		= $propertyData['lat'];
+			$output['LONG']		= $propertyData['long'];
+			}
+		
+		if ($editing)
+			{
+			$output['DRAGABLE'] = ',		
+		draggable: true,';
+			$editing_inputs = array ( array ( "LAT"=>$output['LAT'],"LONG"=>$output['LONG']));
+			$output['DRAG_LISTENER']='updateMarkerPosition(latLng);
+			google.maps.event.addListener(marker, \'drag\', function() {
+			updateMarkerPosition(marker.getPosition());
+			map.setCenter(marker.getPosition());
+				});';
+				
+			if (!defined('UPDATE_POSITION_FUNCTION_EXISTS'))
+				{
+				define (UPDATE_POSITION_FUNCTION_EXISTS,1);
+				$output['UPDATEMARKERPOSITION']="function updateMarkerPosition(latLng) {
+		jomresJquery('#lat').val(latLng.lat(5) );
+		jomresJquery('#lng').val(latLng.lng(5) );
+					}";
+				}
+			}
 		
 		set_showtime("current_map_identifier",$output['RANDOM_IDENTIFIER']);
 		
@@ -67,6 +103,8 @@ class j01050x_geocoder {
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'geocoder_latlong.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'editing_inputs', $editing_inputs );
+		
 		if ($jrConfig['composite_property_details']!="1")
 			$tmpl->displayParsedTemplate();
 		else
