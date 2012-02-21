@@ -71,10 +71,19 @@ class j01050x_geocoder {
 			{
 			$query="SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
 			$propertyData=doSelectSql($query,2);
-			$output['LAT']		= $propertyData['lat'];
-			$output['LONG']		= $propertyData['long'];
+			if ( $propertyData['lat'] != null)
+				{
+				$output['LAT']		= $propertyData['lat'];
+				$output['LONG']		= $propertyData['long'];
+				}
+			elseif ($editing)
+				{
+				$output['LAT']=$jrConfig['default_lat'];
+				$output['LONG']=$jrConfig['default_long'];
+				}
+			else return; // If we're editing it's ok to use the default data. If we're not, it isn't and it's best to simply not show the map at all
 			}
-		
+
 		if ($editing)
 			{
 			$output['DRAGABLE'] = ',		
