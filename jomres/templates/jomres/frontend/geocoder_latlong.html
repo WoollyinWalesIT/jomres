@@ -27,13 +27,6 @@ function init_map_{RANDOM_IDENTIFIER}()
 	
 	}
 </script>
-<patTemplate:tmpl name="editing_inputs" type="simpleCondition" requiredVars="lat">
-Lat: (nn.nnnn)<br/>
-<input id="lat" class="inputbox" type="text" size="20" name="lat" value="{LAT}" /><br/>
-Long: (nn.nnnn)<br/>
-<input id="lng" class="inputbox" type="text" size="20" name="long" value="{LONG}" /><br/>
-{LATLONG_DESC}<br/>
-</patTemplate:tmpl>
 
 <div id="map_{RANDOM_IDENTIFIER}" style="width:{MAP_WIDTH}px; height:{MAP_HEIGHT}px"></div> <!-- do not set these sizes to 100% or anything with percentages in, the map will not show if you do. I wasted ages figuring that out. -->
 </patTemplate:tmpl>

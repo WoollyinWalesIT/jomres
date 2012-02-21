@@ -86,9 +86,8 @@ class j01050x_geocoder {
 
 		if ($editing)
 			{
-			$output['DRAGABLE'] = ',		
+			$output['DRAGABLE'] = ',
 		draggable: true,';
-			$editing_inputs = array ( array ( "LAT"=>$output['LAT'],"LONG"=>$output['LONG']));
 			$output['DRAG_LISTENER']='updateMarkerPosition(latLng);
 			google.maps.event.addListener(marker, \'drag\', function() {
 			updateMarkerPosition(marker.getPosition());
@@ -112,8 +111,6 @@ class j01050x_geocoder {
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'geocoder_latlong.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
-		$tmpl->addRows( 'editing_inputs', $editing_inputs );
-		
 		if ($jrConfig['composite_property_details']!="1")
 			$tmpl->displayParsedTemplate();
 		else
