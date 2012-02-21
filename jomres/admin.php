@@ -223,6 +223,10 @@ if (is_array($MiniComponents->miniComponentData['16003']))
 		}
 	}
 
+$componentArgs=array();
+$MiniComponents->triggerEvent('99999',$componentArgs);
+$componentArgs=array();
+	
 if (defined("JOMRES_RETURNDATA") )
 	{
 	$contents = ob_get_contents();

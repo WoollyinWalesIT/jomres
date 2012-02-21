@@ -511,11 +511,11 @@ function init_javascript()
 			if ($jrConfig['load_jquery_ui'] =="1")
 				{
 				if ($jrConfig['load_jquery_ui_css'] =="1")
-					jomres_cmsspecific_addheaddata("css",$themePath,$filename);
+					jomres_cmsspecific_addheaddata("css",$themePath,$filename,$skip=true);
 				}
 
 			if (jomres_cmsspecific_areweinadminarea() && ($jrConfig['load_jquery_ui_css'] =="0" || $jrConfig['load_jquery_ui_css'] == "0") ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
-				jomres_cmsspecific_addheaddata("css",$themePath,$filename);
+				jomres_cmsspecific_addheaddata("css",$themePath,$filename,$skip=true);
 
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.rating.css');
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.ui.potato.menu.css');
@@ -532,10 +532,10 @@ function init_javascript()
 				{
 				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.5.2.min.js",'',true);
 				//jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.6.4.min.js",'',true);
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.7.1.min.js",'',true);
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-1.7.1.min.js");
 				}
 
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js','',true);  // Needs to be directly after jquery call so that noconflict is set
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jomres.js');  // Needs to be directly after jquery call so that noconflict is set
 
 			if ($jrConfig['load_jquery_ui'] =="1")
 				{
@@ -543,28 +543,27 @@ function init_javascript()
 				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery-ui-1.8.16.custom.min.js");
 				}
 
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file",'',true);
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/jquery-ui-cal-localisation/',"$datepicker_localisation_file",true);
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.cookee.for_tabs.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"heartbeat.js");
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.js",'',true);  // Won't pack properly
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.bt.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.hoverIntent.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.rating.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.validate.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jeditable.js");
 			jomres_cmsspecific_addheaddata("css",'jomres/css/','jquery.jgrowl.css');
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js",'',true);
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js",'',true);  // Won't pack properly
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.jgrowl.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"excanvas.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.chainedSelects.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.ui.potato.menu.js");
-
 
 			if ($thisJRUser->userIsRegistered)
 				{
 				jomres_cmsspecific_addheaddata("css",'jomres/css/','TableTools_JUI.css');
 				jomres_cmsspecific_addheaddata("css",'jomres/css/','tables_jui.css');
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.dataTables.min.js",true);
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"TableTools.min.js",true);
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.dataTables.min.js");
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"TableTools.min.js");
 				}
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			}
