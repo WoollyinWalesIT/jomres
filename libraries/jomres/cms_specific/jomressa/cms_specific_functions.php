@@ -15,23 +15,23 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 function jomres_cmsspecific_getregistrationlink()
 	{
-	return jomresURL(get_showtime('live_site')."index.php?a=k&jsat=register_form");
+	return jomresURL(get_showtime('live_site')."jomres/index.php?a=k&jsat=register_form");
 	}
 
 function jomres_cmsspecific_getlogout_task()
 	{
-	return 'index.php?a=k&jsat=log_out';
+	return 'jomres/index.php?a=k&jsat=log_out';
 	}
 
 function jomres_cmsspecific_getlogin_task()
 	{
-	return 'index.php?a=k&jsat=login_form';
+	return 'jomres/index.php?a=k&jsat=login_form';
 	}
 
 function jomres_cmsspecific_areweinadminarea()
 	{
 	$administrator_area=false;
-	if (substr($_SERVER['SCRIPT_NAME'],"admin.php"))
+	if (strpos($_SERVER['SCRIPT_NAME'],"admin.php"))
 		$administrator_area=true;
 	return $administrator_area;
 	}
