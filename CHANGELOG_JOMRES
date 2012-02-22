@@ -1,3 +1,16 @@
+Jomres 6.3.3
+
+Made further changes to map functionality in Jomres. Rewrote the drag/drop system to use v3 of Gmaps API, much simpler and cleaner. Changes have been added to the x_geocoder minicomponent, meaning that these changes are all self-contained in one script and template now, easier to make changes across the board.
+Removed an un-needed call to a .css and .js file from the alternate main menu wrapper.
+Implemented a new css and javascript caching feature (to be strict, it's not really caching, more consolidation).
+Minor tweak to css file to put a call to an image path into the template, otherwise css caching causes the image to not be found.
+Fixed a bug where real estate property prices weren't showing in the property list.
+Updated Latvian regions.
+Small modification to how days are output at the top of the price summary for SRPs.
+Fixed some broken urls for logging in/out in cms_specific_functions.php in Jomres SA.
+Added a couple of new url defines to Jomres SA.
+
+
 Jomres 6.3.2
 
 Removed a depreciated split function call
