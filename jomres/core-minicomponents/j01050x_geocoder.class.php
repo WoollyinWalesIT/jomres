@@ -111,6 +111,7 @@ class j01050x_geocoder {
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'geocoder_latlong.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
+
 		if ($jrConfig['composite_property_details']!="1")
 			$tmpl->displayParsedTemplate();
 		else
