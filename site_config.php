@@ -238,4 +238,5 @@ $jrConfig['mobile_redirect'] = "1";
 $jrConfig['default_from_address'] = "";
 
 $jrConfig['css_caching_enabled'] = "1";
+$jrConfig['use_cleardate_checkbox'] = "1";
 ?>
