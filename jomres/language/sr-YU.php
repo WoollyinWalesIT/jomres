@@ -1775,3 +1775,5 @@ define('_JOMRES_SYSTEM_EMAILS_DESC',"Leave this option blank to disable it. Jomr
 define('_JOMRES_CSS_CACHING_TITLE',"Use css caching?");
 define('_JOMRES_CSS_CACHING_DESC',"");
 
+
+define('_JOMRES_JSCALENDAR_USECLEARCHECKBOX',"Search calendars show the clear dates checkbox?");

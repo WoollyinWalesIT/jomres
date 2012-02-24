@@ -256,7 +256,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'.$lists['load_jquery_ui'].'</td>
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_TITLE.'</td>
 				<td valign="middle">'.$lists['javascript_caching_enabled'].'</td>
 				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
@@ -483,22 +483,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
-		<!--<tr valign="middle">
-			<td valign="middle">'._JOMRES_COM_A_CALENDARLANGUAGE_AUTO.'</td>
-			<td valign="middle">'.$lists['autoDetectJSCalendarLang'].'</td>
-			<td valign="middle">'._JOMRES_COM_A_CALENDARLANGUAGE_AUTO_DESC.'</td>
-		</tr>
 		<tr valign="middle">
-			<td valign="middle">'._JOMRES_COM_A_CALENDARLANGUAGE.'</td>
-			<td valign="middle">'.$jsCalLangfile.'</td>
-			<td valign="middle">'._JOMRES_COM_A_CALENDARLANGUAGE_DESC.'</td>
+			<td valign="middle">'._JOMRES_JSCALENDAR_USECLEARCHECKBOX.'</td>
+			<td valign="middle">'.$lists['use_cleardate_checkbox'].'</td>
+			<td valign="middle"></td>
 		</tr>
-		<tr>
-			<td valign="middle">'._JOMRES_COM_A_CALENDARCSS.'</td>
-			<td valign="middle">'.$jsCalCSSfile.'</td>
-			<td valign="middle">'._JOMRES_COM_A_CALENDARCSS_DESC.'</td>
-		</tr>
-		-->
 		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_COM_CALENDARINPUT.'</td>
 			<td valign="middle">'.$jsInputFormatDropdownList.'</td>
