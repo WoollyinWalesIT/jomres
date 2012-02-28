@@ -34,7 +34,7 @@ class j01010listpropertys {
 			{
 			$this->template_touchable=true; return;
 			}
-
+		$MiniComponents->triggerEvent('01008',$componentArgs); // optional
 		$data_only=false;
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
@@ -44,6 +44,11 @@ class j01010listpropertys {
 
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$customTextObj =jomres_getSingleton('custom_text');
+		
+		if (is_null($tmpBookingHandler->tmpsearch_data['current_property_list_layout']))
+			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = "list";
+
+		$property_list_layouts = get_showtime('property_list_layouts');
 
 		jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
 
@@ -83,6 +88,31 @@ class j01010listpropertys {
 		if (count($propertys_uids) >0)
 			{
 			$output = array();
+			
+			
+
+			$layout_rows = array();
+			$all_layouts = array();
+			foreach ($property_list_layouts as $key=>$layouts)
+				{
+				$all_layouts[] = $key;
+				$r = array();
+				$r['TITLE']=$layouts["title"];
+				$r['LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=listProperties&layout=".$key);
+				$layout_rows[]=$r;
+				}
+				
+			if (isset($_REQUEST['layout']) && in_array($_REQUEST['layout'],$all_layouts) )
+				{
+				$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = $_REQUEST['layout'];
+				}
+			$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
+			$layout_template = $property_list_layouts[$layout]["layout"];
+			if (is_null($property_list_layouts[$layout]["path"]))
+				$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
+			else
+				$layout_path_to_template = $property_list_layouts[$layout]["path"];
+
 			$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 			$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 
@@ -377,6 +407,8 @@ class j01010listpropertys {
 						}
 
 					$property_deets['PROP_NAME'] =$current_property_details->get_property_name($property->propertys_uid);
+					$property_deets['LAT'] =$current_property_details->multi_query_result[$property->propertys_uid]['lat'];
+					$property_deets['LONG'] =$current_property_details->multi_query_result[$property->propertys_uid]['long'];
 					//var_dump($property_deets['PROP_NAME']);exit;
 					$property_deets['PROP_STREET']=stripslashes($propertyContactArray[1]);
 					$property_deets['PROP_TOWN']='<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&send=Search&calledByModule=mod_jomsearch_m0&town='.html_entity_decode($propertyContactArray[2])).'">'.html_entity_decode($propertyContactArray[2]).'</a>';
@@ -448,13 +480,10 @@ class j01010listpropertys {
 				$tmpl = new patTemplate();
 				$tmpl->addRows( 'pageoutput', $pageoutput );
 				$tmpl->addRows( 'property_details', $property_details );
-				// if (!$paging_disabled)
-					// {
-					// $tmpl->addRows( 'nav_output_top', $nav_output);
-					// $tmpl->addRows( 'nav_output_bottom', $nav_output);
-					// }
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->readTemplatesFromInput( 'list_properties.html' );
+				$tmpl->addRows( 'layout_rows', $layout_rows );
+
+				$tmpl->setRoot( $layout_path_to_template );
+				$tmpl->readTemplatesFromInput( $layout_template );
 				$tmpl->displayParsedTemplate();
 
 				if ($jrConfig['dumpTemplate']=="1")

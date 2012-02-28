@@ -345,6 +345,11 @@ class jomSearch {
 			{
 			$componentArgs=array();
 			$componentArgs['propertys_uid']=$tmpResultsArray;
+			$MiniComponents->triggerEvent('01004',$componentArgs); // optional
+			$MiniComponents->triggerEvent('01005',$componentArgs); // optional
+			$MiniComponents->triggerEvent('01006',$componentArgs); // optional
+			$MiniComponents->triggerEvent('01007',$componentArgs); // optional
+			
 			$MiniComponents->triggerEvent('01010',$componentArgs); // listPropertys
 			}
 		else

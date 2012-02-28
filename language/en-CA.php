@@ -1768,3 +1768,6 @@ define('_JOMRES_CSS_CACHING_TITLE',"Use css caching?");
 define('_JOMRES_CSS_CACHING_DESC',"");
 
 define('_JOMRES_JSCALENDAR_USECLEARCHECKBOX',"Search calendars show the clear dates checkbox?");
+
+define('_JOMRES_PROPERTYLIST_LAYOUT_LIST',"List view");
+define('_JOMRES_PROPERTYLIST_LAYOUT_TILE',"Photo view");

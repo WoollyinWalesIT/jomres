@@ -1739,3 +1739,6 @@ define('_JOMRES_SYSTEM_EMAILS','Emails sent from which address?');
 define('_JOMRES_SYSTEM_EMAILS_DESC',"Leave this option blank to disable it. Jomres will use the hotel's email address(es) when sending emails to guests, however your email service MAY not allow emails from arbitrary addresses (i.e. they only may allow emails from one authorised address). If this is the case, then you can use this input to enter an address which will be seen as the FROM address for all system emails.");
 
 define('_JOMRES_JSCALENDAR_USECLEARCHECKBOX',"Search calendars show the clear dates checkbox?");
+
+define('_JOMRES_PROPERTYLIST_LAYOUT_LIST',"List view");
+define('_JOMRES_PROPERTYLIST_LAYOUT_TILE',"Photo view");

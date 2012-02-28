@@ -1,13 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 {JOMRES_SITEPAGE_URL_AJAX}
-<patTemplate:tmpl name="nav_output_top" type="simpleCondition" requiredVars="writepagescounter">
+
 <div>
-	{WRITEPAGESCOUNTER}
-</div>
-<div>
-	{WRITEPAGESLINKS}
-</div>
+<patTemplate:tmpl name="layout_rows" type="simpleCondition" requiredVars="title">
+<a href="{LINK}" class="ui-state-default ui-corner-all plist-button">{TITLE}</a>&nbsp;
 </patTemplate:tmpl>
+</div>
+
 <patTemplate:tmpl name="property_details" unusedvars="strip">
 <table width="100%" class="ui-widget-content ui-corner-all jomres_property_list_propertywrapper" id="{UID}" border="0">
     <tr class="ui-state-default">
@@ -62,14 +61,6 @@
 </table>
 <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}">
 	{REVIEWS}
-</div>
-</patTemplate:tmpl>
-<patTemplate:tmpl name="nav_output_bottom" type="simpleCondition" requiredVars="writepagescounter">
-<div>
-	{WRITEPAGESCOUNTER}
-</div>
-<div>
-	{WRITEPAGESLINKS}
 </div>
 </patTemplate:tmpl>
 </patTemplate:tmpl>
