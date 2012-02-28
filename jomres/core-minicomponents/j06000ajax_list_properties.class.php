@@ -21,6 +21,10 @@ class j06000ajax_list_properties
 			{
 			$this->template_touchable=false; return;
 			}
+		$MiniComponents->triggerEvent('01004',$componentArgs);
+		$number_of_results = (int)get_showtime("number_of_ajax_results_required");
+		if ($number_of_results ==0)
+			$number_of_results = 1;
 		
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$last_id = (int)$_REQUEST['lastID'];
@@ -30,7 +34,11 @@ class j06000ajax_list_properties
 			{
 			if ($original_search_results[$i] == $last_id)
 				{
-				$this->resultBucket = array( $original_search_results[$i+1]);
+				for ($n=1;$n<=$number_of_results;$n++)
+					{
+					$counter = $i+$n;
+					$this->resultBucket[] = $original_search_results[$counter];
+					}
 				break;
 				}
 			}

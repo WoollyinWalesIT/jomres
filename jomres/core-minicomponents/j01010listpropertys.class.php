@@ -51,15 +51,17 @@ class j01010listpropertys {
 		$property_list_layouts = get_showtime('property_list_layouts');
 		$layout_rows = array();
 		$all_layouts = array();
-		foreach ($property_list_layouts as $key=>$layouts)
+		if (JOMRES_NOHTML != 1)
 			{
-			$all_layouts[] = $key;
-			$r = array();
-			$r['TITLE']=$layouts["title"];
-			$r['LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=listProperties&layout=".$key);
-			$layout_rows[]=$r;
+			foreach ($property_list_layouts as $key=>$layouts)
+				{
+				$all_layouts[] = $key;
+				$r = array();
+				$r['TITLE']=$layouts["title"];
+				$r['LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=listProperties&layout=".$key);
+				$layout_rows[]=$r;
+				}
 			}
-			
 		if (isset($_REQUEST['layout']) && in_array($_REQUEST['layout'],$all_layouts) )
 			{
 			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = $_REQUEST['layout'];
