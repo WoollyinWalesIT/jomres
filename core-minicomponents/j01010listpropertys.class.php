@@ -68,11 +68,17 @@ class j01010listpropertys {
 			}
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		
+		$propertys_uids=$componentArgs['propertys_uid'];
+		if ($propertys_uids=="")
+			$propertys_uids=array();
+		if ($MiniComponents->eventFileExistsCheck('01009') )
+			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
+
 		if (isset($property_list_layouts[$layout]["custom_task"]))
 			{
 			$new_task = $property_list_layouts[$layout]["custom_task"];
 			set_showtime('task',$new_task);
-			echo $MiniComponents->specificEvent('06000',$new_task,array("layout_rows"=>$layout_rows));
+			echo $MiniComponents->specificEvent('06000',$new_task,array("layout_rows"=>$layout_rows,"property_uids"=>$componentArgs['propertys_uid']));
 			}
 		else
 			{
@@ -84,9 +90,7 @@ class j01010listpropertys {
 			
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
 
-			$propertys_uids=$componentArgs['propertys_uid'];
-			if ($propertys_uids=="")
-				$propertys_uids=array();
+
 
 			if (!@session_start())
 				{
@@ -94,8 +98,6 @@ class j01010listpropertys {
 				session_start();
 				}
 
-			if ($MiniComponents->eventFileExistsCheck('01009') )
-				$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
 
 			// Added to prevent out of memory messages.
 			// Modified for 4.5.3 as the previous loop wasn't taking missing keys into account.
