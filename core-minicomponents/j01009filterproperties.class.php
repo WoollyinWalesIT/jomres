@@ -116,13 +116,7 @@ class j01009filterproperties
 				$this->propertys_uids = $propertys_uids;
 			break;
 			}
-			
-		if (isset($_REQUEST['calledByModule']) || get_showtime('task') == "" )
-			{
-			$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $this->propertys_uids;
-			unset($tmpBookingHandler->tmpsearch_data['ajax_list_properties_sets']);
-			}
-		
+
 		$sortArray=array();
 
 		$sortArray[]=jomresHTML::makeOption("1", jr_gettext('_JOMRES_SORTORDER_DEFAULT',_JOMRES_SORTORDER_DEFAULT,false,false));

@@ -21,7 +21,10 @@ class j06000ajax_list_properties
 			{
 			$this->template_touchable=false; return;
 			}
-		$MiniComponents->triggerEvent('01004',$componentArgs);
+			
+			
+		$MiniComponents->triggerEvent('01004');
+		
 		$number_of_results = (int)get_showtime("number_of_ajax_results_required");
 		if ($number_of_results ==0)
 			$number_of_results = 1;
@@ -30,6 +33,7 @@ class j06000ajax_list_properties
 		$last_id = (int)$_REQUEST['lastID'];
 		$original_search_results = $tmpBookingHandler->tmpsearch_data['ajax_list_search_results'];
 		$count = count($original_search_results);
+		
 		for ($i=0;$i<=$count;$i++)
 			{
 			if ($original_search_results[$i] == $last_id)
@@ -37,12 +41,14 @@ class j06000ajax_list_properties
 				for ($n=1;$n<=$number_of_results;$n++)
 					{
 					$counter = $i+$n;
-					$this->resultBucket[] = $original_search_results[$counter];
+					if (!is_null($original_search_results[$counter]))
+						$this->resultBucket[] = $original_search_results[$counter];
+					
 					}
 				break;
 				}
 			}
-
+//var_dump($this->resultBucket);exit;
 		if (count($this->resultBucket) > 0)
 			{
 			$componentArgs=array();

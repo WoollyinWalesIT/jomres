@@ -69,7 +69,6 @@ class j01010listpropertys {
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		
 		$propertys_uids=$componentArgs['propertys_uid'];
-		$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $propertys_uids;
 
 		if ($propertys_uids=="")
 			$propertys_uids=array();
@@ -97,9 +96,12 @@ class j01010listpropertys {
 			$propertys_uids=$tmpArray;
 			}
 				
-		if ($MiniComponents->eventFileExistsCheck('01009') )
+		if (JOMRES_NOHTML != 1)
+			{
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
-
+			$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $propertys_uids;
+			}
+;
 		if (isset($property_list_layouts[$layout]["custom_task"]))
 			{
 			$new_task = $property_list_layouts[$layout]["custom_task"];
@@ -126,11 +128,11 @@ class j01010listpropertys {
 				$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 				$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 
-				//if (JOMRES_NOHTML != 1)
-				//	{
+				if (JOMRES_NOHTML != 1)
+					{
 					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\">var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."';</script>";
 					jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
-				//	}
+					}
 
 				$g=genericOr($propertys_uids,'propertys_uid');
 				$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
