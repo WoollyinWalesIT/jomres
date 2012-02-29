@@ -69,8 +69,33 @@ class j01010listpropertys {
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		
 		$propertys_uids=$componentArgs['propertys_uid'];
+		$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $propertys_uids;
 		if ($propertys_uids=="")
 			$propertys_uids=array();
+
+		if (!@session_start())
+			{
+			@ini_set('session.save_handler', 'files');
+			session_start();
+			}
+		
+		// Added to prevent out of memory messages.
+		// Modified for 4.5.3 as the previous loop wasn't taking missing keys into account.
+		$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
+		if (count($propertys_uids) >$maximumProperties)
+			{
+			$counter=1;
+			$tmpArray=array();
+			foreach ($propertys_uids as $key=>$val)
+				{
+				$tmpArray[]=$propertys_uids[$key];
+				$counter++;
+				if ($counter == $maximumProperties)
+					break;
+				}
+			$propertys_uids=$tmpArray;
+			}
+				
 		if ($MiniComponents->eventFileExistsCheck('01009') )
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
 
@@ -89,32 +114,6 @@ class j01010listpropertys {
 				$layout_path_to_template = $property_list_layouts[$layout]["path"];
 			
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
-
-
-
-			if (!@session_start())
-				{
-				@ini_set('session.save_handler', 'files');
-				session_start();
-				}
-
-
-			// Added to prevent out of memory messages.
-			// Modified for 4.5.3 as the previous loop wasn't taking missing keys into account.
-			$maximumProperties=100; // Limits the maximum number of properties that can be returned in a search
-			if (count($propertys_uids) >$maximumProperties)
-				{
-				$counter=1;
-				$tmpArray=array();
-				foreach ($propertys_uids as $key=>$val)
-					{
-					$tmpArray[]=$propertys_uids[$key];
-					$counter++;
-					if ($counter == $maximumProperties)
-						break;
-					}
-				$propertys_uids=$tmpArray;
-				}
 
 			if ($jrConfig['is_single_property_installation']=="1")
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );

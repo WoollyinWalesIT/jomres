@@ -60,7 +60,8 @@ class jomres_access_control_controlable
 		$this->menu_patterns = array(
 			"00009",
 			"00010",
-			"00011"
+			"00011",
+			"01004",
 			);
 		}
 	}
