@@ -66,7 +66,7 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .big-price span{display:block;color:#aaa;font-size:12px;}
 .price-wrapper{width:119px;margin-top:7px;height:93px;}
 .prices-from{font-size:11px;margin-top:10px;font-weight:normal;}
-.prices-period{font-size:11px;}
+.prices-period{font-size:11px;font-weight:normal;}
 .arrival-select{margin-top:-64px;}
 .arrival-select div.ui-datepicker{font-size:10px;}
 .arrival-select div.ui-datepicker td{padding:0;}
@@ -74,10 +74,12 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .ui-helper-jomres-buttons{border-style:none !important;background:inherit !important;}
 /* Tiles Photos View */
 .tiles-view{margin-right:10px;}
-.tiles-view:hover{border:1px solid #79b7e7 !important;background:#f8f8f8 !important;}
 .tiles-view .plist-address a {font-size:10px;font-weight:normal;font-style:italic;}
 .property-title-tiles{height:30px;line-height:30px;}
-.price-wrapper-tiles{height:56px;}
+.price-wrapper-tiles{width:200px;height:56px;}
+.property-image-medium img{display:block;margin-top:5px;margin-bottom:10px;width:200px;height:150px;}
+.property-image-medium:hover img {-moz-box-shadow:4px 4px 2px #888;-webkit-box-shadow:4px 4px 2px #888;box-shadow:4px 4px 2px #888;width:202px;height:152px;}
+.price-wrapper-tiles .prices-from{margin-top:0px;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }

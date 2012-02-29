@@ -447,12 +447,8 @@ function get_property_module_data($property_uid_array)
 				$property_data['STARSIMAGES'].="<img src=\"".get_showtime('live_site')."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
 				}
 			
-			if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE'))
-				{
-				define('_JOMRES_MODULEPOPUP_AJAX_SOURCE',1);
-				$property_data['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
-				}
-			
+			$property_data['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
+
 			$pageoutput = array($property_data);
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
