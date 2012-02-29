@@ -135,7 +135,7 @@ class j06000ui_availability_calendar
 			'.$half_output.'
 			'.$threequarter_output.'
 			'.$full_output.'
-			var booking_form_url = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&selectedProperty='.$property_uid.'&arrivalDate=";
+			var booking_form_url = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&pdetails_cal=1&selectedProperty='.$property_uid.'&arrivalDate=";
 			
 			function highlightDays(date)
 				{
@@ -178,7 +178,7 @@ class j06000ui_availability_calendar
 
 			jomresJquery(function() {
 				jomresJquery( "#'.$random_identifier.'" ).datepicker({
-					"dateFormat" : "dd/mm/yy",
+					"dateFormat" : "yy/mm/dd",
 					"minDate": 0,
 					beforeShowDay: highlightDays,
 					onSelect: function(){

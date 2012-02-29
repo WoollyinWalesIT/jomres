@@ -43,6 +43,7 @@ $thisdate=false;
 $today = date("Y/m/d");
 $date_elements  	= explode("/",$today);
 $unixTodaysDate		= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+
 if (!isset($_REQUEST['arrivalDate']) )
 	{
 	//if (!isset($_COOKIE['jomsearch_availability']))
@@ -59,8 +60,15 @@ else
 	{
 	if (isset($tmpBookingHandler->tmpbooking["confirmationSeen"]) )
 		$tmpBookingHandler->tmpbooking["confirmationSeen"]=null;
-	
-	$thisdate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
+	if (!isset($_REQUEST['pdetails_cal']))
+		$thisdate	=JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
+	else
+		{
+		$bang = explode("/",$_REQUEST['arrivalDate']);
+		$thisdate = (int)$bang[0]."/".(int)$bang[1]."/".(int)$bang[2];
+		
+		}
+	//var_dump($thisdate);exit;
 	}
 
 $thisdate=str_replace("-","/",$thisdate);
