@@ -796,7 +796,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME_DESC.'</td>
 			</tr>
  			<tr valign="middle" class="odd">
-				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_USERNAME.'</td>
+				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD.'</td>
 				<td valign="middle"><input type="text" class="inputbox" name="cfg_alternate_smtp_password" value="'.$jrConfig['alternate_smtp_password'].'" /></td>
 				<td valign="middle">'._JOMRES_CONFIG_ALTERNATE_SMTP_PASSWORD_DESC.'</td>
 			</tr>
