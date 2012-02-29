@@ -70,6 +70,7 @@ class j01010listpropertys {
 		
 		$propertys_uids=$componentArgs['propertys_uid'];
 		$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $propertys_uids;
+
 		if ($propertys_uids=="")
 			$propertys_uids=array();
 
@@ -449,6 +450,10 @@ class j01010listpropertys {
 						$property_deets['REMOTE_URL']=$mrConfig['galleryLink'];
 						$property_deets['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
 						
+						$Args=array('property_uid'=>$property->propertys_uid,"width"=>'119',"height"=>'95',"disable_ui"=>false);
+						$MiniComponents->specificEvent('01050','x_geocoder',$Args);
+						$property_deets['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+
 						$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 						if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 							$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");

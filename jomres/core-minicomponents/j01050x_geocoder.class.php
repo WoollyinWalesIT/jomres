@@ -41,15 +41,15 @@ class j01050x_geocoder {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
-		if (isset($componentArgs['editing_map']))
-			$editing = true;
-		else
-			$editing = false;
-		
+
 		add_gmaps_source();
 
 		$output=array();
 		$pageoutput=array();
+		
+		$output['DISABLE_UI']='';
+		if (isset($componentArgs['disable_ui']))
+			$output['DISABLE_UI']='disableDefaultUI: true,';
 		
 		$output['LATLONG_DESC']=_JOMRES_LATLONG_DESC;
 		
