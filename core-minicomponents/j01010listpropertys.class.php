@@ -51,7 +51,7 @@ class j01010listpropertys {
 		$property_list_layouts = get_showtime('property_list_layouts');
 		$layout_rows = array();
 		$all_layouts = array();
-		if (JOMRES_NOHTML != 1)
+		if (JOMRES_NOHTML != 1 && count($property_list_layouts) > 1)
 			{
 			foreach ($property_list_layouts as $key=>$layouts)
 				{
@@ -331,7 +331,8 @@ class j01010listpropertys {
 							$property_deets['HYPHEN'] 								='';
 							$property_deets['REVIEWS']								='';
 							}
-
+						
+						$no_image_image = get_showtime('live_site')."/jomres/images/noimage.gif";
 						$property_image=get_showtime('live_site')."/jomres/images/noimage.gif";
 						if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
 							$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
@@ -450,8 +451,13 @@ class j01010listpropertys {
 						$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
 						$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 						$property_deets['IMAGE']=$property_image;
+						
 						$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
+						if (!$property_deets['IMAGETHUMB'])
+							$property_deets['IMAGETHUMB'] = $no_image_image;
 						$property_deets['IMAGEMEDIUM']=getThumbnailForImage($property_deets['IMAGE'],true);
+						if (!$property_deets['IMAGEMEDIUM'])
+							$property_deets['IMAGEMEDIUM'] = $no_image_image;
 						$property_deets['IMAGELARGE']=$property_image;
 						$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],"");
 						$property_deets['_JOMRES_QUICK_INFO']=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO,false,false);
