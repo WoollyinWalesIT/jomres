@@ -13,9 +13,9 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j01004setup_layouts_list
+class j01004property_list_photos
 	{
-	function j01004setup_layouts_list($componentArgs)
+	function j01004property_list_photos($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -23,23 +23,23 @@ class j01004setup_layouts_list
 			{
 			$this->template_touchable=true; return;
 			}
-		$this_plugin = "list";
+		$this_plugin = "tile";
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		if ($layout == $this_plugin)
-			set_showtime("number_of_ajax_results_required",1); // This is for the list scrolling feature, we need to know the number of properties that should be returned
-		
+			set_showtime("number_of_ajax_results_required",3); // This is for the list scrolling feature, we need to know the number of properties that should be returned
+
 		$property_list_layouts = get_showtime('property_list_layouts');
 		if (is_null($property_list_layouts))
 			$property_list_layouts = array();
-		$property_list_layouts[$this_plugin] = array ("layout"=>"list_properties.html","title"=>jr_gettext("_JOMRES_PROPERTYLIST_LAYOUT_LIST",_JOMRES_PROPERTYLIST_LAYOUT_LIST,false,false),"path"=>null);
+		$property_list_layouts[$this_plugin] = array ("layout"=>"list_properties_photos_layout.html","title"=>jr_gettext("_JOMRES_PROPERTYLIST_LAYOUT_TILE",_JOMRES_PROPERTYLIST_LAYOUT_TILE,false,false),"path"=>null);
 		set_showtime('property_list_layouts',$property_list_layouts);
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
-		$output[]		=jr_gettext('_JOMRES_PROPERTYLIST_LAYOUT_LIST', _JOMRES_PROPERTYLIST_LAYOUT_LIST);
+		$output[]		=jr_gettext('_JOMRES_PROPERTYLIST_LAYOUT_TILE', _JOMRES_PROPERTYLIST_LAYOUT_TILE);
 
 		foreach ($output as $o)
 			{
