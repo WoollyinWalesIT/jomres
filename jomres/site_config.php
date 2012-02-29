@@ -237,6 +237,6 @@ $jrConfig['default_long'] = "-0.14317";
 $jrConfig['mobile_redirect'] = "1";
 $jrConfig['default_from_address'] = "";
 
-$jrConfig['css_caching_enabled'] = "1";
+$jrConfig['css_caching_enabled'] = "0";
 $jrConfig['use_cleardate_checkbox'] = "1";
 ?>
