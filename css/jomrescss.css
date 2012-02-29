@@ -79,7 +79,8 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .price-wrapper-tiles{width:200px;height:56px;}
 .property-image-medium img{display:block;margin-top:5px;margin-bottom:10px;width:200px;height:150px;}
 .property-image-medium:hover img {-moz-box-shadow:4px 4px 2px #888;-webkit-box-shadow:4px 4px 2px #888;box-shadow:4px 4px 2px #888;width:202px;height:152px;}
-.price-wrapper-tiles .prices-from{margin-top:0px;}
+.price-wrapper-tiles .prices-from, .price-wrapper-popup .prices-from{margin-top:0px;}
+.price-wrapper-popup {width:130px;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
