@@ -921,6 +921,7 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 			$MiniComponents->triggerEvent('01006',$componentArgs); // optional
 			$MiniComponents->triggerEvent('01007',$componentArgs); // optional
 			$componentArgs['propertys_uid'] = $tmpBookingHandler->tmpsearch_data['ajax_list_search_results'];
+			//var_dump($componentArgs['propertys_uid']);exit;
 			$MiniComponents->triggerEvent('01010',$componentArgs); // listPropertys
 			//jomresShowSearch();
 		break;
