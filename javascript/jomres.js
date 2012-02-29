@@ -5,6 +5,29 @@ var jomresJquery = jQuery.noConflict();
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
+
+function module_popup(random_identifier,property_uid){
+	jomresJquery('#module_'+random_identifier+'_popup').dialog({
+	resizable: false,
+	height: 490,
+	width : 520,
+	modal : true,
+	resizable: true,
+	open: function() 
+		{
+		jomresJquery.get(module_pop_ajax_url+property_uid,
+		function(data){
+			jomresJquery('#module_'+random_identifier+'_popup').html(data);
+			});
+		}
+	}); // init without showing
+	/* closes the dialog when you click elsewhere on the page. Modal in the dialog options must be set to True*/
+	jomresJquery('.ui-widget-overlay').live("click", function() {
+		//Close the dialog
+		jomresJquery('#module_'+random_identifier+'_popup').dialog("close");
+	});
+}
+
 jomresJquery(function(){
 	//all hover and click logic for buttons
 	jomresJquery(".fg-button:not(.ui-state-disabled)")

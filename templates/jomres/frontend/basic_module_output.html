@@ -1,79 +1,28 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<style type="text/css">
-
-</style>
-<script type="text/javascript">
-jomresJquery(document).ready(function() {
-	jomresJquery("#module_{RANDOM_IDENTIFIER}").hover(
-	function () {
-		jomresJquery(this).addClass("jomres_module_shadow");
-		},
-	function () {
-		jomresJquery(this).removeClass("jomres_module_shadow");
-		}
-	);
-	/* closes the dialog when you click elsewhere on the page. Modal in the dialog options must be set to True*/
-	jomresJquery('.ui-widget-overlay').live("click", function() {
-		//Close the dialog
-		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog("close");
-	});  
-});
-
-function module_popup_{RANDOM_IDENTIFIER}()
-	{
-	jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog({
-	resizable: false,
-	height: 490,
-	width : 520,
-	modal : true,
-	resizable: true,
-	open: function() 
-		{
-		jomresJquery.get('{JOMRES_SITEPAGE_URL_AJAX}&task=module_popup&id={PROPERTY_UID}&nofollowtmpl=1',
-		function(data){
-			jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').html(data);
-			});
-		}
-	}); // init without showing
-}
-	
-	/*
-	After testing with the ipad, popping up the module quickinfo doesn't work as nicely as it does on the desktop, will disable the feature.
-	
-	jomresJquery('#module_{RANDOM_IDENTIFIER}').bind("mouseover", function() {
-		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog('open'); // open the dialog
-		}); 
-	jomresJquery('#module_{RANDOM_IDENTIFIER}').bind("mouseout", function() { 
-		jomresJquery('#module_{RANDOM_IDENTIFIER}_popup').dialog('close'); // open the dialog
-		});
-	*/
-
-
-
-
-</script>
+{JOMRES_POPUPURL_GLOBALVAR}
 <div title="{PROPERTY_NAME}" class="ui-widget ui-widget-content ui-corner-all" style="float:left;width:140px;margin-bottom:10px;margin:5px;"  >
 	<center>
 		<div style="padding:5px;" class="ui-helper-clearfix">
 			<div style="font-weight:bold;">{PROPERTY_NAME}</div>
 			<div style="height:16px;">{STARSIMAGES}</div>
-			<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;"><a href="javascript:module_popup_{RANDOM_IDENTIFIER}();" ><img src = "{THUMBNAIL}" class="ngm_image"/></a></div>
+			<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{PROPERTY_UID});" ><img src = "{THUMBNAIL}" class="ngm_image"/></a></div>
 			<div style="font-size:11px;height: 36px;">{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}</div>
             <div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div>
 		</div>
 	</center>
 	<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none" title="{PROPERTY_NAME}"><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
-<!-- 
+</div>
+
+</patTemplate:tmpl>
+
+<patTemplate:comment> 
 These are included in the template in case you wish to use them.
 {PROPERTY_STREET}
 {PROPERTY_TOWN}
 {PROPERTY_POSTCODE}
 {PROPERTY_REGION}
 {PROPERTY_COUNTRY}
-{PROPERTY_COUNTRY_CODE} -->
-
-<!--
-
+{PROPERTY_COUNTRY_CODE}
 {PROPERTY_TEL}
 {PROPERTY_FAX}
 {STARS}
@@ -87,7 +36,4 @@ These are included in the template in case you wish to use them.
 {PROPERTY_AIRPORTS}
 {PROPERTY_OTHERTRANSPORT}
 {PROPERTY_POLICIES_DISCLAIMERS}
---> 
-
-</div>
-</patTemplate:tmpl>
+</patTemplate:comment>
