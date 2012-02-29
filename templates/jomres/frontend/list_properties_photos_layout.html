@@ -6,7 +6,7 @@
 </patTemplate:tmpl>
 </div>
 <patTemplate:tmpl name="property_details" unusedvars="strip">
-<a href="{MOREINFORMATIONLINK}">
+<a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});">
 <table width="220" height="280" class="ui-widget-content ui-corner-all jomres_property_list_propertywrapper tiles-view float-left" id="{UID}" border="0">
     <tr class="ui-state-default">
     	<td width="100%" class="property-header">
@@ -20,12 +20,20 @@
 			<div class="plist-address">{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</div>
 		</td>
 	</tr>
+	<patTemplate:comment> 
 	<tr>
-       	<td valign="top" align="center">
-            <div class="property-image">{IMAGE_POPUP}</div>
-       	</td>
-    </tr>
-	<tr>	
+		<td valign="top" align="center">
+			<div class="property-image">{IMAGE_POPUP}</div>
+		</td>
+	</tr>
+	</patTemplate:comment>
+	<tr>
+		<td valign="top" align="center">
+			<div class="property-image"><img src="{IMAGE}"/></div>
+		</td>
+	</tr>
+	<patTemplate:comment> 
+	<tr>
 		<td valign="top">
 			<div class="ui-state-highlight ui-corner-all price-wrapper-tiles" align="center">
 				<div class="prices-from">{PRICE_PRE_TEXT}</div>
@@ -34,13 +42,16 @@
 			</div>
 		</td>
 	</tr>
-	<!--<tr>
+	</patTemplate:comment>
+	<patTemplate:comment> 
+	<tr>
 		<td class="fg-toolbar fg-buttonset plist-buttons" valign="top" align="right">
 			<a href="{LINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{BOOKTHIS_TEXT}</a>
 			<a href="{MOREINFORMATIONLINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{MOREINFORMATION}</a>
 			<a href="javascript:void(0);" onClick="quick_info({UID});" class=" ui-state-default ui-corner-all plist-button-last ui-helper-hidden">{_JOMRES_QUICK_INFO}</a>
 		</td>
-    </tr>-->
+    </tr>
+	</patTemplate:comment>
     <tr>
     	<td width="100%">
         	<div id="effect{UID}" class="quick-info ui-helper-hidden">
@@ -69,6 +80,8 @@
 <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}">
 	{REVIEWS}
 </div>
+<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none" title="{PROPERTY_NAME}"><img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
 </patTemplate:tmpl>
+
 <div style="clear:both;"></div>
 </patTemplate:tmpl>
