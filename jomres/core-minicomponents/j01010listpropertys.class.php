@@ -125,11 +125,11 @@ class j01010listpropertys {
 				$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 				$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 
-				if (JOMRES_NOHTML != 1)
-					{
+				//if (JOMRES_NOHTML != 1)
+				//	{
 					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\">var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."';</script>";
 					jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
-					}
+				//	}
 
 				$g=genericOr($propertys_uids,'propertys_uid');
 				$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
@@ -442,10 +442,13 @@ class j01010listpropertys {
 						$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 						$property_deets['IMAGE']=$property_image;
 						$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
+						$property_deets['IMAGEMEDIUM']=getThumbnailForImage($property_deets['IMAGE'],true);
+						$property_deets['IMAGELARGE']=$property_image;
 						$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],"");
 						$property_deets['_JOMRES_QUICK_INFO']=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO,false,false);
 						$property_deets['REMOTE_URL']=$mrConfig['galleryLink'];
-
+						$property_deets['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
+						
 						$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 						if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 							$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
