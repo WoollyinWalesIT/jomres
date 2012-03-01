@@ -1,3 +1,14 @@
+Jomres 6.4
+
+Added a new feature that allows us to have different "layouts" in the list property page. By default Jomres offers the standard property list plus a photos layout, plus a new plugin that's like the standard property list but with a google map. Different layouts can be disabled by using the Access Control feature in it's standard configuration and using it to disable j01004 scripts.
+
+Added a new feature to allow users to enable/disable the "I have no dates" checkbox. To facilitate this we have also added a js_calendar_input template that's called by the generateDateInput function.
+
+CSS caching disabled by default, should only be enabled once all plugins have been installed and configured.
+Fixed issue of a duplicated define for smtp password in site config.
+Added some fallback images if the image thumbnails aren't found in list properties.
+Improved the new availability calendar so that no matter what date format is set by site admin, the correct arrival date is set in the booking form.
+
 Jomres 6.3.3
 
 Made further changes to map functionality in Jomres. Rewrote the drag/drop system to use v3 of Gmaps API, much simpler and cleaner. Changes have been added to the x_geocoder minicomponent, meaning that these changes are all self-contained in one script and template now, easier to make changes across the board.
