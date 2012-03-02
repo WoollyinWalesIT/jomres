@@ -41,6 +41,7 @@ class j01050x_geocoder {
 		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
+		$editing=$componentArgs['editing_map'];
 
 		add_gmaps_source();
 
