@@ -13,38 +13,29 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-class j10002manual_online
+class j16000manual
 	{
-	function j10002manual_online()
+	function j16000manual()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_getSingleton('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=true; return;
+			$this->template_touchable=false; return;
 			}
-		$htmlFuncs =jomres_getSingleton('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN."&task=manual", 'Help.png', jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)" ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = false);
+		echo '
+			<h2>Jomres Manual</h2>
+			<p>The Jomres Manual</p>
+			<div class="ui-widget-content ui-corner-all" style="width:100%;">
+			<div style="margin-left:5px;margin-right:5px;">
+			<iframe src="http://manual.jomres.net" width="100%" height="1000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
+			</div></div>
+			';
 		}
-
-	function touch_template_language()
-		{
-		$output=array();
-
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)");
-
-		foreach ($output as $o)
-			{
-			echo $o;
-			echo "<br/>";
-			}
-		}
-	
+		
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		return null;
 		}	
 	}
-?>
