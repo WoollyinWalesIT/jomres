@@ -115,6 +115,9 @@ class j01010listpropertys {
 				$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
 			else
 				$layout_path_to_template = $property_list_layouts[$layout]["path"];
+				
+			if (is_null($layout_template))
+				$layout_template = "list_properties.html";
 			
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
 
