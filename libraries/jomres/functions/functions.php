@@ -2474,7 +2474,7 @@ function hotelSettings()
 		<form action="<?php echo JOMRES_SITEPAGE_URL; ?>" method="post" name="adminForm">
 		<table cellpadding="4" cellspacing="0" border="0" width="100%">
 		<tr>
-		 <td width="100%" class="sectionname"><?php echo _JOMRES_COM_MR_GENERALCONFIGDESC; ?></td>
+		 <td width="100%" class="sectionname"><h2><?php echo _JOMRES_COM_MR_GENERALCONFIGDESC; ?></h2></td>
 		</tr>
 		</table>
 	<?php
