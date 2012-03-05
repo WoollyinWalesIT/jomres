@@ -92,8 +92,11 @@ class j01050x_geocoder {
 			$output['DRAG_LISTENER']='updateMarkerPosition(latLng);
 			google.maps.event.addListener(marker, \'drag\', function() {
 			updateMarkerPosition(marker.getPosition());
+			});
+			google.maps.event.addListener(marker, \'dragend\', function() {
 			map.setCenter(marker.getPosition());
-				});';
+			});
+				';
 				
 			if (!defined('UPDATE_POSITION_FUNCTION_EXISTS'))
 				{
