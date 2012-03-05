@@ -71,7 +71,7 @@ function get_property_price_for_display_in_lists($property_uid)
 		{
 		$pricesFromArray=array();
 		$searchDate = date("Y/m/d");
-		if (isset($_REQUEST['arrivalDate']))
+		if (isset($_REQUEST['arrivalDate']) && $_REQUEST['arrivalDate'] != "" )
 			{
 			$searchDate	=	JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
 			}
