@@ -47,7 +47,7 @@ class j99996mainmenu_buttons {
 				{
 				if ( isset($button['OPTIONS']) && $button['OPTIONS'] != "" )
 					{
-					$category=strtolower($button['OPTIONS']['category']);
+					$category=jr_strtolower($button['OPTIONS']['category']);
 					$control_panel_buttons_categorised[$category][]=$button['OPTIONS'];
 					}
 				}
@@ -59,7 +59,7 @@ class j99996mainmenu_buttons {
 				{
 				if ( isset($button['OPTIONS']) && $button['OPTIONS'] != "" )
 					{
-					$category=strtolower($button['OPTIONS']['category']);
+					$category=jr_strtolower($button['OPTIONS']['category']);
 					$control_panel_buttons_categorised[$category][]=$button['OPTIONS'];
 					}
 				}
@@ -71,7 +71,7 @@ class j99996mainmenu_buttons {
 				{
 				if ( isset($button['OPTIONS']) && $button['OPTIONS'] != "" )
 					{
-					$category=strtolower($button['OPTIONS']['category']);
+					$category=jr_strtolower($button['OPTIONS']['category']);
 					$control_panel_buttons_categorised[$category][]=$button['OPTIONS'];
 					}
 				}
@@ -83,7 +83,7 @@ class j99996mainmenu_buttons {
 				{
 				if ( isset($button['OPTIONS']) && $button['OPTIONS'] != "" )
 					{
-					$category=strtolower($button['OPTIONS']['category']);
+					$category=jr_strtolower($button['OPTIONS']['category']);
 					$control_panel_buttons_categorised[$category][]=$button['OPTIONS'];
 					}
 				}
