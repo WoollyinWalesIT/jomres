@@ -1329,7 +1329,7 @@ class dobooking
 				{
 				$arr = array();
 				$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" AUTOCOMPLETE="OFF"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
-				$arr['DESCRIPTION']= $feature;
+				$arr['DESCRIPTION']= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$feature_id,$feature);
 				$this->room_feature_checkboxes[] = $arr;
 				}
 			}
