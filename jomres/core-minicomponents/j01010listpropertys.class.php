@@ -49,6 +49,12 @@ class j01010listpropertys {
 			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = "list";
 
 		$property_list_layouts = get_showtime('property_list_layouts');
+		if (count($property_list_layouts) ==1)
+			{
+			$default_layout = array_keys($property_list_layouts);
+			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = $default_layout[0];
+			}
+		
 		$layout_rows = array();
 		$all_layouts = array();
 		if (JOMRES_NOHTML != 1 && count($property_list_layouts) > 1)
@@ -111,6 +117,7 @@ class j01010listpropertys {
 		else
 			{
 			$layout_template = $property_list_layouts[$layout]["layout"];
+
 			if (is_null($property_list_layouts[$layout]["path"]))
 				$layout_path_to_template = JOMRES_TEMPLATEPATH_FRONTEND;
 			else
