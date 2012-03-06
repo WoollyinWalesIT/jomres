@@ -35,13 +35,14 @@ class j06000ui_availability_calendar
 
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		
-		$query="SELECT `date` FROM #__jomres_room_bookings WHERE property_uid = '".(int)$property_uid."'";
+		$firstDayOfTheCurrentMonth=date("Y/m/d", strtotime(date('m').'/01/'.date('Y').' 00:00:00'));
+		$query="SELECT date FROM #__jomres_room_bookings WHERE property_uid = '".(int)$property_uid."' AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".$firstDayOfTheCurrentMonth."', '%Y/%m/%d') ";
 		$bookings = doSelectSql($query);
 
 		$this->rooms_empty=0;
 		$this->rooms_quarter=(($this->numberOfRoomsInProperty/100)*.25)*100;
 		$this->rooms_half=(($this->numberOfRoomsInProperty/100)*.5)*100;
-		$this->rooms_threequarter=(($this->numberOfRoomsInProperty/100)*.99)*100;
+		$this->rooms_threequarter=(($this->numberOfRoomsInProperty/100)*.75)*100;
 		$this->rooms_full=$this->numberOfRoomsInProperty;
 		
 		$empty_dates = array();
@@ -61,7 +62,6 @@ class j06000ui_availability_calendar
 				else
 					$booking_dates[$booking->date]=1;
 				}
-				
 			
 			foreach ($booking_dates as $date=>$count)
 				{
@@ -72,9 +72,9 @@ class j06000ui_availability_calendar
 					$threequarter_dates[] = $date;
 				if ($count < $this->rooms_threequarter && $count >= $this->rooms_half)
 					$half_dates[] = $date;
-				if ($count < $this->rooms_half && $count >= $this->rooms_quarter)
+				if ($count < $this->rooms_half && $count >= $this->rooms_empty+1)
 					$quarter_dates[] = $date;
-				if ($count < $this->rooms_quarter && $count >= $this->rooms_quarter)
+				if ($count == $this->rooms_empty)
 					$empty_dates[] = $date;
 				}
 			}
@@ -107,7 +107,7 @@ class j06000ui_availability_calendar
 		if (count($threequarter_dates)>0)
 			{
 			$threequarter_output = "var threequarter_dates = [";
-			foreach ($quarter_dates as $date)
+			foreach ($threequarter_dates as $date)
 				{
 				$threequarter_output .= "'".$date."',";
 				}
