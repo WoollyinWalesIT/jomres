@@ -1,6 +1,6 @@
 <patTemplate:tmpl name="pageoutput">
 <style type="text/css">
-#selectedRooms,#roompernight,#rooms_listing,#availRooms {display: none;}
+#selectedRooms,#rooms_listing,#availRooms {display: none;}
 #totals.fixed {position:fixed;top:0;}
 #totalsWrapper { /* required to avoid jumping */
   position: relative;
@@ -302,7 +302,7 @@ function open_booking_form() {
 					<td><div id="staydays" style="font-weight: bold;"></div></td>
 					<td>{STAYDAYS}</td>
 					<td><div id="roompernight"></div></td>
-					<td></td>
+					<td>{ACCOMMODATION_PERROOM}</td>
 				</tr>
 				<tr>
 					<td><div id="totalinparty" style="font-weight: bold;"></div></td>
