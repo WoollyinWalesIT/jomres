@@ -29,6 +29,8 @@ class j06000ui_availability_calendar
 			$show_legend = false;
 		
 		$property_uid = get_showtime('property_uid');
+		if (isset($_REQUEST['property_uid']) && $_REQUEST['property_uid'] !="0")
+			$property_uid =(int)$_REQUEST['property_uid'];
 
 		$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."'";
 		$this->numberOfRoomsInProperty=count(doSelectSql($query));
