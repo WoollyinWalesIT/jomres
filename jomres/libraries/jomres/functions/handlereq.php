@@ -60,19 +60,17 @@ $isSingleRoomProperty=$bkg->getSingleRoomPropertyStatus();
 $bkg->rebuildIgnoreList=$doNotRebuildRoomsListOnTheseFieldsArray;
 $bkg->currentField=$field;
 
+$property_uid_check= jomresGetParam( $_GET, 'property_uid_check', 0 );
+if ($property_uid_check != $pid)
+	{
+	$url=JOMRES_SITEPAGE_URL_NOSEF."&task=dobooking&amp;selectedProperty=$pid";
+	echo '; window.location.replace("'.$url.'"); ';
+	exit;
+	}
+
 ob_start();
 switch ($field)
 	{
-	case "property_uid_check":
-		$ajrq="ajrq:::property_uid_check";
-		$value=$bkg->sanitiseInput("int",$value);
-		if ($value != $pid)
-			{
-			$url=JOMRES_SITEPAGE_URL_NOSEF."&task=dobooking&amp;selectedProperty=$pid";
-			echo '; window.location.replace("'.$url.'"); ';
-			exit;
-			}
-	break;
 	case "override":
 		$ajrq="ajrq:::override";
 		$value=$bkg->sanitiseInput("string",$value);
