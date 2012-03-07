@@ -1,3 +1,28 @@
+Jomres 6.4.1
+
+Fixed an issue where the marker wasn't dragable in 6.4
+Removed some un-needed brs
+Added a couple of classes to improve the layout of the photos property list view.
+Modified how administrator Manual and Tickets buttons work, both are now available in iframes.
+Added a change to layout that traps issues where the layout isn't available (Because somebody's disabled all layouts?)
+Small change to ensure that when finding prices for properties, if the arrivalDate option is set, to check that it's set to something other than "".
+Added a feature so that gmaps are set to the currently active language.
+Minor tweak to list subscriptions to include username in the subscriptions list.
+Modified property config so that title is h2
+Marker drag'n'drop tweaks.
+Modified list properties to set a default layout other than the standard list, if only one list is available in the layouts array.
+Fixed a bug where the room feature wasn't being translated in the booking form.
+Fixed an issue where Cyrillic text doesn't show correctly in the jomres mainmenu.
+Improved how the ui availability calendar calculates room occupancies.
+Modified confirmation form to use a different variable for outputting room types.
+Temp disabled css and js caching.
+Added a little error trapping to prevent badly written minicomponents from triggering an error in the Label Editing feature.
+Tweak for inclusion by asamodule. (ui-availability-calendar)
+Changed the property list trigger from filterproperties to a_filterproperties and changed how the filter results are stored.
+Datatables and tabletools javascript libraries upgraded.
+Rewrote some booking form javascript to integrate the property uid check into the main ajax query that's sent on particular change. Halves the number of ajax queries sent.
+Modified booking engine so that "per week" prices are output in the pricing summary.
+
 Jomres 6.4
 
 Added a new feature that allows us to have different "layouts" in the list property page. By default Jomres offers the standard property list plus a photos layout, plus a new plugin that's like the standard property list but with a google map. Different layouts can be disabled by using the Access Control feature in it's standard configuration and using it to disable j01004 scripts.
