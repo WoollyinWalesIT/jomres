@@ -216,7 +216,7 @@ class j02990showconfirmation {
 					$prevroomclass			= 	$room_classes_uid;
 
 				$roomadd				= 	1;
-				$query="SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '$property_uid' and room_classes_uid = '$room_classes_uid'";
+				$query="SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = '".(int)$property_uid."' and room_classes_uid = '".(int)$room_classes_uid."' ";
 				$roomclass=doSelectSql($query);
 
 				if (count($roomclass)>0)
@@ -226,12 +226,12 @@ class j02990showconfirmation {
 					}
 				else
 					{
-					$query		=	"SELECT room_class_full_desc FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";
+					$query		=	"SELECT room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 and room_classes_uid = '$room_classes_uid'";
 					$roomclass	=	doSelectSql($query);
 					if (count($roomclass)>0)
 						{
 						foreach ($roomclass as $class)
-							$fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$room_classes_uid,stripslashes($class->room_class_full_desc),false,false);
+							$fulldesc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$room_classes_uid,stripslashes($class->room_class_abbv),false,false);
 						}
 					}
 				}
