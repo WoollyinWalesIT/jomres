@@ -513,6 +513,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_backend.'toolbar_manager.html');
 		$this->add_obs_file($this->dir_templates_backend.'toolbar_reception.html');
 		$this->add_obs_file($this->dir_templates_backend.'list_guests_invoices.html');
+		
+		
+		$this->add_obs_file($this->dir_minicomponents.'j01009filterproperties.class.php');
 		}
 	
 	function add_obs_file($path_and_file)

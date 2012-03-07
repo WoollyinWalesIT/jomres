@@ -20,9 +20,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 * @package Jomres
 #
  */
-class j01009filterproperties
+class j01009a_filterproperties
 	{
-	function j01009filterproperties($componentArgs)
+	function j01009a_filterproperties($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_getSingleton('mcHandler');
@@ -116,6 +116,9 @@ class j01009filterproperties
 				$this->propertys_uids = $propertys_uids;
 			break;
 			}
+		
+		//we`ll set the property uids array to showtime so we can further filter them if necessary in other j01009 minicomponents
+		set_showtime('filtered_property_uids',$this->propertys_uids);
 
 		$sortArray=array();
 
