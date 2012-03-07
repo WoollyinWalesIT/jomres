@@ -263,9 +263,10 @@ function showdiv($elementName) {
 //	 Ajax get response stuff
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getResponse_particulars(field,value,arrivalDate_id) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	departureDate = jomresJquery("#"+arrivalDate_id+"_XXX").val();
 	HideRoomsList();
-	jomresJquery.get(ajaxurl+'&task=handlereq&arr_dep_date='+departureDate,{ field: field, 'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'&arr_dep_date='+departureDate,{ field: field, 'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
@@ -274,8 +275,9 @@ function getResponse_particulars(field,value,arrivalDate_id) {
 };
 
 function getResponse_guesttype(typeid,value) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: 'guesttype', 'typeid': typeid ,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: 'guesttype', 'typeid': typeid ,'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log('guesttype');
@@ -284,8 +286,9 @@ function getResponse_guesttype(typeid,value) {
 	};
 
 function getResponse_rooms(field,value) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
@@ -294,8 +297,9 @@ function getResponse_rooms(field,value) {
 };
 
 function getResponse_multiroom_select(field,value) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value },
 		function(data){
 			showRoomsList(data); 
 			show_log(field);
@@ -304,7 +308,8 @@ function getResponse_multiroom_select(field,value) {
 };
 
 function getResponse_extras(field,value,theId) {
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -333,8 +338,9 @@ function getResponse_extras(field,value,theId) {
 };
 
 function getResponse_room_features(field,value,theId) {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	HideRoomsList();
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value,'theId': theId },
 		function(data){
 			showRoomsList(data); 
 			eval(data); 
@@ -344,7 +350,8 @@ function getResponse_room_features(field,value,theId) {
 };
 
 function getResponse_override(field,value,theId) {
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value,'theId': theId },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -353,7 +360,8 @@ function getResponse_override(field,value,theId) {
 };
 
 function getResponse_extrasquantity(field,value,theId) {
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value,'theId': theId },
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value,'theId': theId },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -363,7 +371,8 @@ function getResponse_extrasquantity(field,value,theId) {
 
 
 function getResponse(field,value) {
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value },
 		function(data){
 			eval(data); 
 			show_log(field);
@@ -372,7 +381,8 @@ function getResponse(field,value) {
 };
 
 function getResponse_existing(field,value) {
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: field,'value': value },
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	jomresJquery.get(ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'',{ field: field,'value': value },
 		function(data){
 			eval(data); 
 			//jomresJquery('div.block_ui_bookingform').unblock();
@@ -382,6 +392,7 @@ function getResponse_existing(field,value) {
 };
 
 function getResponse_guest() {
+	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	var firstname 		=jomresJquery('#firstname').val();
 	var surname 		=jomresJquery('#surname').val();
 	var house 			=jomresJquery('#house').val();
@@ -396,7 +407,7 @@ function getResponse_guest() {
 	var tel_mobile 		=jomresJquery('#tel_mobile').val();
 	var eemail 			=jomresJquery('#eemail').val();
 
-	url = ajaxurl+'&task=handlereq';
+	url = ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'';
 	result =checkaddressfields();
 
 	if (result){
@@ -416,11 +427,11 @@ A potential guest opens a tab to Property A's booking form, then another tab to 
 
 */
 function show_log(lastfield) {
-	var form_property_uid = jomresJquery("#booking_form_property_uid").val();
-	jomresJquery.get(ajaxurl+'&task=handlereq',{ field: "property_uid_check",'value': form_property_uid },
-		function(data){
-			eval(data);
-		});
+	// var form_property_uid = jomresJquery("#booking_form_property_uid").val();
+	// jomresJquery.get(ajaxurl+'&task=handlereq',{ field: "property_uid_check",'value': form_property_uid },
+		// function(data){
+			// eval(data);
+		// });
 };
 
 function showRoomsList(req){
