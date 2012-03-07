@@ -177,13 +177,13 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$use_js_cache = false;
-	if ($jrConfig['javascript_caching_enabled'] == "1")
-		$use_js_cache = true;
+	// if ($jrConfig['javascript_caching_enabled'] == "1")
+		// $use_js_cache = true;
 	set_showtime('javascript_caching_enabled',$use_js_cache);
 	
 	$use_css_cache = false;
-	if ($jrConfig['css_caching_enabled'] == "1")
-		$use_css_cache = true;
+	// if ($jrConfig['css_caching_enabled'] == "1")
+		// $use_css_cache = true;
 	set_showtime('css_caching_enabled',$use_css_cache);
 
 	switch ($type) 
