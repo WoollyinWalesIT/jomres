@@ -104,7 +104,14 @@ class mcHandler {
 					if (isset($e->template_touchable) && $e->template_touchable)
 						{
 						echo "<br/>".$event."<br/>";
-						echo $e->touch_template_language();
+						if (method_exists($e,"touch_template_language"))
+							{
+							echo $e->touch_template_language();
+							}
+						else 
+							{
+							echo "Ooops, you tried to run 'touch_template_language' in the minicomponent ".$event." but that method does not exist";
+							}
 						}
 					unset($e);
 					}
