@@ -43,13 +43,13 @@ class jomres_cron
 	function checkForStalledJobs()
 		{
 		$query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
-		$allJobs=doSelectSql($query);
+		$this->dbJobs=doSelectSql($query);
 		
 		$threashold = 60; // Assuming that no job takes longer than 60 seconds, any job that's due x + threashold must have stalled, therefore we'll unlock it.
 		
-		if (count($allJobs)>0)
+		if (count($this->dbJobs)>0)
 			{
-			foreach ($allJobs as $job)
+			foreach ($this->dbJobs as $job)
 				{
 				$this->allJobs[]=array('id'=>$job->id,'job_name'=>$job->job,'schedule'=>$job->schedule,'last_ran'=>$job->last_ran,'parameters'=>$job->parameters);
 				if ($job->locked == "1")
@@ -115,12 +115,12 @@ class jomres_cron
 			if (substr($key, 0, 10) == "06000cron_" )
 				$allJobs[]=$key;
 			}
-		$query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
-		$allJobs=doSelectSql($query);
+		// $query="SELECT id,job,schedule,last_ran,parameters,locked FROM #__jomcomp_cron";
+		// $allJobs=doSelectSql($query);
 		
-		if (count($allJobs)>0)
+		if (count($this->dbJobs)>0)
 			{
-			foreach ($allJobs as $job)
+			foreach ($this->dbJobs as $job)
 				{
 				$this->allJobs[]=array('id'=>$job->id,'job_name'=>$job->job,'schedule'=>$job->schedule,'last_ran'=>$job->last_ran,'parameters'=>$job->parameters);
 				if ($job->locked == "0")
