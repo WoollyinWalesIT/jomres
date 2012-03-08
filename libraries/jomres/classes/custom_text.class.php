@@ -62,18 +62,21 @@ class custom_text
 	
 	function get_custom_text_for_all_properties()
 		{
-		$this->all_properties_custom_text = array();
-		$query="SELECT constant,customtext,language,property_uid FROM #__jomres_custom_text";
-		$customTextList=doSelectSql($query);
-
-		if (count($customTextList))
+		if (count($this->all_properties_custom_text) ==0)
 			{
-			$customTextArray=array();
-			
-			foreach ($customTextList as $text)
+			$this->all_properties_custom_text = array();
+			$query="SELECT constant,customtext,language,property_uid FROM #__jomres_custom_text";
+			$customTextList=doSelectSql($query);
+
+			if (count($customTextList))
 				{
-				$theConstant=str_replace("sc<x>ript","script",$text->constant);
-				$this->all_properties_custom_text[$text->property_uid][$text->language][$theConstant]=stripslashes($text->customtext);
+				$customTextArray=array();
+				
+				foreach ($customTextList as $text)
+					{
+					$theConstant=str_replace("sc<x>ript","script",$text->constant);
+					$this->all_properties_custom_text[$text->property_uid][$text->language][$theConstant]=stripslashes($text->customtext);
+					}
 				}
 			}
 		}
