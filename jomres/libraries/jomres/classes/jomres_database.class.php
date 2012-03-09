@@ -22,24 +22,41 @@ class jomres_database
 		$this->system_tables=array();
 		$this->error = null;
 		$this->result=null;
-		
+		$this->dbtype = get_showtime('dbtype');
 		$showtime = jomres_getSingleton('showtime');
-		$link = mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
-		mysql_select_db(get_showtime('db')) or die('Could not select database');
+		if ( $this->dbtype == "mysqli" )
+			{
+			$this->link = mysqli_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
+			mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
+			mysqli_query($this->link, "SET CHARACTER SET utf8");
+			mysqli_query($this->link, "SET NAMES utf8");
+			}
+		else
+			{
+			$link->link = mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
+			mysql_select_db(get_showtime('db')) or die('Could not select database');
+			mysql_query($this->link, "SET CHARACTER SET utf8");
+			mysql_query($this->link, "SET NAMES utf8");
+			}
+		
 		$this->error = mysql_error();
-		mysql_query("SET CHARACTER SET utf8");
-		mysql_query("SET NAMES utf8");
 		$this->db_prefix=get_showtime('dbprefix');
 		}
 
 	function query()
 		{
-		$this->result = mysql_query($this->query);
+		if ( $this->dbtype == "mysqli" )
+			$this->result = mysqli_query($this->link, $this->query);
+		else
+			$this->result = mysql_query($this->query);
 		if ($this->result)
 			return $this->result;
 		else
 			{
-			$this->error = mysql_error();
+			if ( $this->dbtype == "mysqli" )
+				$this->error = mysqli_error();
+			else
+				$this->error = mysql_error();
 			return false;
 			}
 		}
@@ -59,14 +76,28 @@ class jomres_database
 			return null;
 			}
 		$array = array();
-		$this->result = mysql_query($this->query);
+		if ( $this->dbtype == "mysqli" )
+			$this->result = mysqli_query($this->link, $this->query);
+		else
+			$this->result = mysql_query($this->query);
 		if ($this->result)
 			{
-			while ($row = mysql_fetch_object( $this->result ))
+			if ( $this->dbtype == "mysqli" )
 				{
-				$array[] = $row;
+				while ($row = mysqli_fetch_object( $this->result ))
+					{
+					$array[] = $row;
+					}
+				mysqli_free_result( $this->result );
 				}
-			mysql_free_result( $this->result );
+			else
+				{
+				while ($row = mysql_fetch_object( $this->result ))
+					{
+					$array[] = $row;
+					}
+				mysql_free_result( $this->result );
+				}
 			}
 		return $array;
 		}
@@ -77,10 +108,22 @@ class jomres_database
 			return null;
 		}
 		$retval = null;
-		if ($row = mysql_fetch_row( $this->result )) {
-			$retval = $row[0];
-		}
-		mysql_free_result( $this->result );
+		if ( $this->dbtype == "mysqli" )
+			{
+			if ($row = mysql_fetch_row( $this->result )) 
+				{
+				$retval = $row[0];
+				}
+			mysql_free_result( $this->result );
+			}
+		else
+			{
+			if ($row = mysqli_fetch_row( $this->result )) 
+				{
+				$retval = $row[0];
+				}
+			mysqli_free_result( $this->result );
+			}
 		return $retval;
 		}
 
