@@ -75,6 +75,7 @@ $showtime = jomres_getSingleton('showtime');
 
 $showtime->error_reporting	= $CONFIG->error_reporting;
 
+$showtime->dbtype			= $CONFIG->dbtype;
 $showtime->lang				= $jomresConfig_lang;
 $showtime->live_site		= $jomresConfig_live_site;
 $showtime->offline			= $CONFIG->offline;

@@ -75,6 +75,7 @@ $showtime = jomres_getSingleton('showtime');
 
 $showtime->error_reporting	= $CONFIG->error_reporting;
 
+$showtime->dbtype			= "mysql"; // As we're no longer offically supporting J1.5/1.6/1.7 we'll make no effort here to test mysqli implementations in Jomres.
 $showtime->lang				= $jomresConfig_lang;
 $showtime->live_site		= $jomresConfig_live_site;
 $showtime->offline			= $CONFIG->offline;
