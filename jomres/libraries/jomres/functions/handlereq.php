@@ -399,7 +399,7 @@ if ($field != "heartbeat" && $field != "show_log")
 				$room_per_night = $bkg->getRoompernight();
 				$room_per_night = $bkg->calculateRoomPriceIncVat($room_per_night);
 				$room_per_night = $bkg->get_rate_per_night_converted_to_output_period($room_per_night);
-				if ($tariffChargesStoredWeeklyYesNo=="0" && get_showtime('include_room_booking_functionality'))
+				if (get_showtime('include_room_booking_functionality'))
 					echo '; populateDiv("roompernight","'.output_price($room_per_night).'")';
 
 				$room_total = $bkg->getRoomtotal();
