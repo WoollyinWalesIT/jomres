@@ -1765,3 +1765,7 @@ define('_JOMRES_JSCALENDAR_USECLEARCHECKBOX',"Search calendars show the clear da
 
 define('_JOMRES_PROPERTYLIST_LAYOUT_LIST',"List view");
 define('_JOMRES_PROPERTYLIST_LAYOUT_TILE',"Photo view");
+
+define('_JOMRES_COMPARE',"Compare");
+define('_JOMRES_REMOVE',"Remove");
+define('_JOMRES_RETURN_TO_RESULTS',"Return to search results");
