@@ -122,9 +122,9 @@ class j06000compare
 						if (in_array($k,$all_used_features))
 							{
 							if (in_array($k,$propertyFeaturesArray ))
-								$fs[]=array("IMAGE"=>$tick);
+								$fs[]=array("IMAGE"=>'<a href="#" class=""><span class="ui-icon ui-icon-check"></span></a>');
 							else
-								$fs[]=array("IMAGE"=>$cross);
+								$fs[]=array("IMAGE"=>'');
 							}
 						}
 					$t = new patTemplate();
