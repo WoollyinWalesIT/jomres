@@ -21,6 +21,8 @@ function lastAddedLiveFunc()
 			
 			}
 		killScroll = false; // IMPORTANT - Make function available again.
+		var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
+		jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled",bol);
 		});
 	
 	};  
@@ -44,3 +46,27 @@ jomresJquery(".plist-button-last").livequery(function() {
   jomresJquery(this).button();
   jomresJquery(this).show();
 });
+
+
+jomresJquery(document).ready(function() {
+	jomresJquery("input[type=checkbox][name=compare]").click(function() {
+		var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
+		jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled",bol);
+	});
+});
+
+function trigger_comparison(form)
+	{
+	var values = new Array();
+	jomresJquery(":checkbox:checked").each(
+	function() {
+		values.push(jomresJquery(this).val());
+		}
+	);
+	
+	if (values.length > 1) {
+		url = compare_url+"&property_uids="+values;
+		window.location =url;
+	}
+	//	console.log(url);
+}

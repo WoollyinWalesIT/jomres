@@ -77,11 +77,17 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .tiles-view .plist-address a {font-size:10px;font-weight:normal;font-style:italic;}
 .property-title-tiles{height:30px;line-height:30px;}
 .price-wrapper-tiles{width:200px;height:56px;}
+.property-image-medium {width:200px;height:152px;}
 .property-image-medium img{display:block;margin-top:5px;margin-bottom:10px;width:200px;height:150px;}
 .property-image-medium:hover img {-moz-box-shadow:4px 4px 2px #888;-webkit-box-shadow:4px 4px 2px #888;box-shadow:4px 4px 2px #888;width:202px;height:152px;}
 .price-wrapper-tiles .prices-from, .price-wrapper-popup .prices-from{margin-top:0px;}
 .price-wrapper-popup {width:130px;}
 .price-wrapper-tiles .big-price span{display:inline;}
+/* Compare Properties */
+.compare-properties{font-size:11px;}
+.compare-properties input{vertical-align:middle;}
+.comparison-wrapper{margin-top:5px;}
+.comparison-property-wrapper{margin-left:10px;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
