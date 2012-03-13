@@ -107,7 +107,7 @@ class j01010listpropertys {
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
 			$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $propertys_uids;
 			}
-;
+
 		if (isset($property_list_layouts[$layout]["custom_task"]))
 			{
 			$new_task = $property_list_layouts[$layout]["custom_task"];
