@@ -137,6 +137,11 @@ class j01010listpropertys {
 
 				$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 				$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
+				$compare = array();
+				if (JOMRES_NOHTML != 1)
+					{
+					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script>var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'";</script>' );
+					}
 
 				if (JOMRES_NOHTML != 1)
 					{
@@ -522,6 +527,7 @@ class j01010listpropertys {
 					$tmpl->addRows( 'pageoutput', $pageoutput );
 					$tmpl->addRows( 'property_details', $property_details );
 					$tmpl->addRows( 'layout_rows', $layout_rows );
+					$tmpl->addRows( 'compare', $compare );
 
 					$tmpl->setRoot( $layout_path_to_template );
 					$tmpl->readTemplatesFromInput( $layout_template );
