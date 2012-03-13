@@ -4538,7 +4538,7 @@ class dobooking
 	if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
 		$gpb_text = '<td>'.jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false).'</td>';
 	
-	$return_output = '<table width=\"100%\" style=\"text-align:center;\"><tr><td>'.$nor.'</td><td>'.$rmtype_text.'</td><td>'.$tariffname_text.'</td><td>'.$gpr_text.'</td>'.$gpb_text.'<td>'.$rate_text.'</td></tr>';
+	$return_output = '<table width="100%" style="text-align:center;"><tr><td>'.$nor.'</td><td>'.$rmtype_text.'</td><td>'.$tariffname_text.'</td><td>'.$gpr_text.'</td>'.$gpb_text.'<td>'.$rate_text.'</td></tr>';
 	
 	foreach ($dropdown_output as $output)
 		{
