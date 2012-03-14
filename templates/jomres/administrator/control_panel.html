@@ -4,27 +4,70 @@
 		<td colspan="2">{PLUGIN_CHECK}</td>
 	</tr>
 	<tr>
-    	<th class="ui-state-default">System Status</th>
-		<th class="ui-state-default" width="50%">Writability check</th>
+		<th class="ui-state-default ui-corner-all" style="padding:10px">News</th>
+		<th class="ui-state-default ui-corner-all" style="padding:10px">System Status</th>
 	</tr>
 	<tr>
-    	<td valign="top">
-			<p class="{ACCESS_CONTROL_HIGHLIGHT}" >{ACCESS_CONTROL_ALERT}</p>
-			<p>
-				<strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/> 
-				<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong>
-			</p>
-			<p id="version_check_warning" class="{HIGHLIGHT}" >{ALERT}</p>{EFFECT}
-
-			<p id="cache_check_warning" class="{CACHE_HIGHLIGHT}" >{CACHE_WARNING}</p>
-			<p>
-				{_JOMRES_PRODUCT_INFORMATION}
-			</p>
-			<p>
-				{_JOMRES_PRODUCT_INFORMATION2}
-			</p>
+		<td valign="top" width="50%">
+			<table width="100%">
+				<patTemplate:tmpl name="news_rows" unusedvars="strip">
+				<tr>
+					<td>
+						<p class="{STATE} ui-corner-all" style="padding-left:10px;margin:5px">
+							{TITLE} {DATE}
+						</p>
+						<p>
+							{NEWS}
+						</p>
+						<a href="{URL}" target="_blank">{URL_TEXT}</a>
+					</td>
+				</tr>
+				</patTemplate:tmpl>
+			</table>
 		</td>
-		<td valign="top"><p>If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.</p>{WRITABILITY_TESTS}</td>
+		<td valign="top">
+			<table width="100%">
+				<tr>
+					<td class="{ACCESS_CONTROL_HIGHLIGHT}" >
+						{ACCESS_CONTROL_ALERT}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/> 
+						<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong>
+					</td>
+				</tr>
+				<tr>
+					<td id="version_check_warning" class="{HIGHLIGHT}" >
+						{ALERT}{EFFECT}
+					</td>
+				</tr>
+				<tr>
+					<td id="cache_check_warning" class="{CACHE_HIGHLIGHT}" >
+						{CACHE_WARNING}
+					</td>
+				<tr>
+					<td>
+						{_JOMRES_PRODUCT_INFORMATION}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{_JOMRES_PRODUCT_INFORMATION2}
+					</td>
+				</tr>
+				<tr>
+					<th class="ui-state-default ui-corner-all" style="padding:10px" width="100%">
+						Writability check
+					</th>
+				</tr>
+				<tr>
+					<td valign="top">
+						If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.</p>{WRITABILITY_TESTS}
+					</td>
+			</table>
+		</td>
 	</tr>
 </table>
 <br />
