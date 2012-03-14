@@ -1,3 +1,15 @@
+Jomres 6.5
+
+Adding a new feature to allow users to compare properties.
+Added a new news feed to the Jomres administrator area, to advise users of updates to the system, new plugins etc.
+
+Optimised cron class to perform one less query per run.
+Modified the custom text class to perform one (or more, if it's used elsewhere) less query during a run.
+Modified the Jomres database handling to include mysqli if available.
+Removed a check that is now defunct, which was stopping the full daily/weekly price from showing in the booking summary.
+Removed some unneeded slashes that escape double quotes.
+Removed a spurious semicolon.
+
 Jomres 6.4.1
 
 Fixed an issue where the marker wasn't dragable in 6.4
