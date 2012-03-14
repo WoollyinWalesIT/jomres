@@ -53,10 +53,6 @@ class j10001control_panel
 				$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest version of Jomres, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
 			else
 				{
-				// for testing
-				//$latest = "5.6.1";
-				//$buffer = $latest;
-				
 				$latest_jomres_version = explode(".",$buffer);
 				$this_jomres_version = explode(".",$mrConfig['version']);
 				
@@ -71,7 +67,6 @@ class j10001control_panel
 				$current_minor_version = $this_jomres_version[1];
 				$current_revis_version = $this_jomres_version[2];
 				
-
 				$best_before_expired = false;
 				$output['HIGHLIGHT'] = "";
 				$output['ALERT'] = "";
@@ -107,8 +102,8 @@ class j10001control_panel
 				$output['_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION'] = _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION;
 				
 				
-				$output['LATEST_JOMRES_VERSION'] = $latest_major_version.".".$latest_minor_version.".".$latest_revis_version;
-				$output['THIS_JOMRES_VERSION'] = $current_major_version.".".$current_minor_version.".".$current_revis_version;
+				$output['LATEST_JOMRES_VERSION'] = (int)$latest_major_version.".".(int)$latest_minor_version.".".(int)$latest_revis_version;
+				$output['THIS_JOMRES_VERSION'] = (int)$current_major_version.".".(int)$current_minor_version.".".(int)$current_revis_version;
 				
 				
 				}
@@ -151,13 +146,32 @@ class j10001control_panel
 			$output['ACCESS_CONTROL_ALERT'] = $access_control_check['message'];
 			}
 		
+		$curl_handle=curl_init();
+		curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres4.net/news.php");
+		curl_setopt($curl_handle,CURLOPT_TIMEOUT, 8);
+		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+		$buffer = curl_exec($curl_handle);
+		curl_close($curl_handle);
+		if (empty($buffer))
+			$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest Jomres news, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
+		else
+			{
+			$news_rows = array();
+			$news = json_decode($buffer);
+			foreach ($news as $row)
+				{
+				$news_rows[] = array("DATE"=>filter_var($row->date,FILTER_SANITIZE_SPECIAL_CHARS),"NEWS"=>filter_var($row->news,FILTER_SANITIZE_SPECIAL_CHARS),"STATE"=>filter_var($row->state,FILTER_SANITIZE_SPECIAL_CHARS),"TITLE"=>filter_var($row->title,FILTER_SANITIZE_SPECIAL_CHARS),"URL"=>filter_var($row->url,FILTER_SANITIZE_URL),"URL_TEXT"=>filter_var($row->url_text,FILTER_SANITIZE_SPECIAL_CHARS)); // Filter var added here so that in the unlikely event that the updates server is compromised, no naughty data is downloaded from the updates server to be executed on this server/user's browser.
+				}
+			}
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'news_rows',$news_rows);
 		$tmpl->readTemplatesFromInput( 'control_panel.html' );
 		$tmpl->displayParsedTemplate();
-		
 		}
 
 
