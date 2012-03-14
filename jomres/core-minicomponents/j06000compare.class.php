@@ -117,14 +117,20 @@ class j06000compare
 				if (count($propertyFeaturesArray)>0)
 					{
 					$fs=array();
+					$i=0;
 					foreach ($featuresArray as $k=>$v)
 						{
 						if (in_array($k,$all_used_features))
 							{
-							if (in_array($k,$propertyFeaturesArray ))
-								$fs[]=array("IMAGE"=>'<a href="#" class=""><span class="ui-icon ui-icon-check"></span></a>');
+							if ($i%2)
+								$class="odd";
 							else
-								$fs[]=array("IMAGE"=>'');
+								$class="even";
+							if (in_array($k,$propertyFeaturesArray ))
+								$fs[]=array("IMAGE"=>'<div class="ui-icon ui-icon-check" style="height:20px;"></div>',"CLASS"=>$class);
+							else
+								$fs[]=array("IMAGE"=>'',"CLASS"=>$class);
+							$i++;
 							}
 						}
 					$t = new patTemplate();
@@ -159,12 +165,19 @@ class j06000compare
 				$rows[] = $r;
 				}
 			
+			$i=0;
 			foreach ($featuresArray as $feature_id=>$feature)
 				{
 				if (in_array($feature_id,$all_used_features))
-					$features[]=array("FEATURE_NAME"=>$feature["hotel_feature_abbv"]);
+					{
+					if ($i%2)
+						$class="odd";
+					else
+						$class="even";
+					$features[]=array("FEATURE_NAME"=>$feature["hotel_feature_abbv"],"CLASS"=>$class);
+					$i++;
+					}
 				}
-			
 			
 			$pageoutput[] = $output;
 			$tmpl = new patTemplate();

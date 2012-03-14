@@ -87,7 +87,10 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .compare-properties{font-size:11px;}
 .compare-properties input{vertical-align:middle;}
 .comparison-wrapper{margin-top:5px;}
-.comparison-property-wrapper{margin-left:10px;}
+.comparison-property-wrapper{margin-left:10px;text-align:center;}
+.comparison-property-wrapper a.fg-button{float:none !important;display: inline-block;}
+a.comparison-remove{font-weight:normal;font-size:11px;}
+.comparison-separator{color:#ccc;font-size:14px;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
