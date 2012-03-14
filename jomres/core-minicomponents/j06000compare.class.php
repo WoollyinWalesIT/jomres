@@ -44,6 +44,13 @@ class j06000compare
 		$output['_JOMRES_RETURN_TO_RESULTS']=jr_gettext('_JOMRES_RETURN_TO_RESULTS',_JOMRES_RETURN_TO_RESULTS,false,false);
 		$output['RETURN_TO_RESULTS_LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=compare") ;
 		
+		$output['_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false,false);
+		$output['_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false,false);
+		$output['_JOMRES_FRONT_PTYPE']=jr_gettext('_JOMRES_FRONT_PTYPE',_JOMRES_FRONT_PTYPE,false,false);
+		$output['_JOMRES_SORTORDER_STARS']=jr_gettext('_JOMRES_SORTORDER_STARS',_JOMRES_SORTORDER_STARS,false,false);
+		$output['_JOMRES_TARIFFSFROM']=jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false);
+		$output['_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,false,false);
+		
 		if (count($property_uids) > 0)
 			{
 			$tick 	= get_showtime('live_site').'/jomres/images/jomresimages/small/Tick.png';
