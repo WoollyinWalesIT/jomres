@@ -1,77 +1,73 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+<table border="0" width="50%" class="ui-widget-content ui-corner-all float-left" style="margin-bottom:15px;">
 	<tr>
-		<td colspan="2">{PLUGIN_CHECK}</td>
+		<th class="ui-widget-header ui-corner-top" style="padding:10px">News</th>
 	</tr>
+	<patTemplate:tmpl name="news_rows" unusedvars="strip">
 	<tr>
-		<th class="ui-state-default ui-corner-all" style="padding:10px">News</th>
-		<th class="ui-state-default ui-corner-all" style="padding:10px">System Status</th>
-	</tr>
-	<tr>
-		<td valign="top" width="50%">
-			<table width="100%">
-				<patTemplate:tmpl name="news_rows" unusedvars="strip">
-				<tr>
-					<td>
-						<p class="{STATE} ui-corner-all" style="padding-left:10px;margin:5px">
-							{TITLE} {DATE}
-						</p>
-						<p>
-							{NEWS}
-						</p>
-						<a href="{URL}" target="_blank">{URL_TEXT}</a>
-					</td>
-				</tr>
-				</patTemplate:tmpl>
-			</table>
+		<td>
+			<h3 class="{STATE}" style="line-height:20px;font-size:12px;">
+				{TITLE} {DATE}
+			</h3>
+			<p>
+				{NEWS}
+			</p>
+			<a href="{URL}" target="_blank">{URL_TEXT}</a>
 		</td>
-		<td valign="top">
-			<table width="100%">
-				<tr>
-					<td class="{ACCESS_CONTROL_HIGHLIGHT}" >
-						{ACCESS_CONTROL_ALERT}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/> 
-						<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong>
-					</td>
-				</tr>
-				<tr>
-					<td id="version_check_warning" class="{HIGHLIGHT}" >
-						{ALERT}{EFFECT}
-					</td>
-				</tr>
-				<tr>
-					<td id="cache_check_warning" class="{CACHE_HIGHLIGHT}" >
-						{CACHE_WARNING}
-					</td>
-				<tr>
-					<td>
-						{_JOMRES_PRODUCT_INFORMATION}
-					</td>
-				</tr>
-				<tr>
-					<td>
-						{_JOMRES_PRODUCT_INFORMATION2}
-					</td>
-				</tr>
-				<tr>
-					<th class="ui-state-default ui-corner-all" style="padding:10px" width="100%">
-						Writability check
-					</th>
-				</tr>
-				<tr>
-					<td valign="top">
-						If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.</p>{WRITABILITY_TESTS}
-					</td>
-			</table>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<table border="0" width="49%" class="ui-widget-content ui-corner-all float-right" style="margin-bottom:15px;">
+	<tr>
+		<th class="ui-widget-header ui-corner-top" style="padding:10px" width="100%">
+			System status
+		</th>
+	</tr>
+	<tr>
+		<td>{PLUGIN_CHECK}</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<strong>{_JOMRES_VERSIONCHECK_THISJOMRESVERSION} {THIS_JOMRES_VERSION}</strong><br/> 
+			<strong>{_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION} {LATEST_JOMRES_VERSION}</strong>
+		</td>
+	</tr>
+	<tr>
+		<td id="version_check_warning" class="{HIGHLIGHT}">
+			{ALERT}{EFFECT}
+		</td>
+	</tr>
+	<tr>
+		<td id="cache_check_warning" class="{CACHE_HIGHLIGHT}">
+			{CACHE_WARNING}
+		</td>
+	<tr>
+		<td>
+			<p>{_JOMRES_PRODUCT_INFORMATION}<br />{_JOMRES_PRODUCT_INFORMATION2}</p>
 		</td>
 	</tr>
 </table>
 <br />
-<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+<table border="0" width="49%" class="ui-widget-content ui-corner-all float-right" style="margin-bottom:15px;">
+	<tr>
+		<th class="ui-widget-header ui-corner-top" style="padding:10px" width="100%">
+			Writability check
+		</th>
+	</tr>
+	<tr>
+		<td valign="top">
+			<p>If any of the above folders is not writable you may experience problems with running Jomres. It is recommended that you resolve any problems before attempting to use Jomres further. Whilst it is preferable that Jomres can write to the /jomres folders it is not vital (but it's better if it can because you can then use the updates feature) but folders such as the sessions and temp folders <i> have </i> to be writable for the system to work.</p>
+			{WRITABILITY_TESTS}
+		</td>	
+	</tr>
+</table>
+<br />
+<table border="0" width="100%" class="ui-widget-content ui-corner-all float-left">
 	<tr>
 		<td style="text-align:left;" width="52"><img src="{LIVESITE}/jomres/images/User_Ninja.png" width="48" height="48" align="middle" border="0" /></td>
 		<td style="text-align:left;"><strong>Copyright:</strong> &copy; 2005 - 2012 Vince Wooll</td>
