@@ -1,3 +1,7 @@
+Jomres 6.5.1
+
+Fixed an issue experienced by mysql users. mysqli users were unaffected.
+
 Jomres 6.5
 
 Adding a new feature to allow users to compare properties.
