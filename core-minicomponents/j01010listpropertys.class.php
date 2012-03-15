@@ -593,7 +593,8 @@ class j01010listpropertys {
 		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_FROMNOW',_JOMRES_DATEPERIOD_FROMNOW);
 		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_LATESTBOOKING',_JOMRES_DATEPERIOD_LATESTBOOKING);
 		$output[]		=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO);
-
+		$output[]		=jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE);
+		
 		foreach ($output as $o)
 			{
 			echo $o;
