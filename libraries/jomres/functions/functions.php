@@ -2527,7 +2527,7 @@ function hotelSettings()
 */
 function saveHotelSettings()
 	{
-
+	ignore_user_abort(true);
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$property_uid=(int)getDefaultProperty();
 	$mrConfig=getPropertySpecificSettings($property_uid);
