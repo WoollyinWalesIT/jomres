@@ -35,8 +35,8 @@ class jomres_database
 			{
 			$link->link = mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
 			mysql_select_db(get_showtime('db')) or die('Could not select database');
-			mysql_query($this->link, "SET CHARACTER SET utf8");
-			mysql_query($this->link, "SET NAMES utf8");
+			mysql_query("SET CHARACTER SET utf8");
+			mysql_query("SET NAMES utf8");
 			}
 		
 		$this->error = mysql_error();
