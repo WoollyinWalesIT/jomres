@@ -128,7 +128,7 @@ class j03100hotelconfirmationemail {
 		if (strlen($specialReqs)>0)
 			{
 			$output['HSPECIAL_REQUIREMENTS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ,FALSE,FALSE);
-			$output['SPECIAL_REQUIREMENTS']=quote_smart($specialReqs);
+			$output['SPECIAL_REQUIREMENTS']=getEscaped($specialReqs);
 			}
 		$output['ISO']=_ISO;
 

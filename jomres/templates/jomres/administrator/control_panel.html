@@ -6,13 +6,13 @@
 	<patTemplate:tmpl name="news_rows" unusedvars="strip">
 	<tr>
 		<td>
-			<h3 class="{STATE}" style="line-height:20px;font-size:12px;">
+			<div class="{STATE}" style="line-height:20px;font-size:12px;">
 				{TITLE} {DATE}
-			</h3>
+			</div>
 			<p>
-				{NEWS}
+				{NEWS}<br />
+				<a href="{URL}" target="_blank">{URL_TEXT}</a>
 			</p>
-			<a href="{URL}" target="_blank">{URL_TEXT}</a>
 		</td>
 	</tr>
 	</patTemplate:tmpl>
@@ -28,7 +28,7 @@
 	</tr>
 	<tr>
 		<td>
-			<p class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</p>
+			<div class="{ACCESS_CONTROL_HIGHLIGHT}">{ACCESS_CONTROL_ALERT}</div>
 		</td>
 	</tr>
 	<tr>
@@ -38,13 +38,13 @@
 		</td>
 	</tr>
 	<tr>
-		<td id="version_check_warning" class="{HIGHLIGHT}">
-			{ALERT}{EFFECT}
+		<td id="version_check_warning">
+			<div class="{HIGHLIGHT}">{ALERT}{EFFECT}</div>
 		</td>
 	</tr>
 	<tr>
-		<td id="cache_check_warning" class="{CACHE_HIGHLIGHT}">
-			{CACHE_WARNING}
+		<td id="cache_check_warning">
+			<div class="{CACHE_HIGHLIGHT}">{CACHE_WARNING}</div>
 		</td>
 	<tr>
 		<td>

@@ -45,7 +45,7 @@ class jomSearch {
 			
 		if (strlen($calledByModule)>0 )
 			{
-			$calledByModule=mysql_real_escape_string($calledByModule);
+			$calledByModule=getEscaped($calledByModule);
 			$this->calledByModule=$calledByModule;
 
 			$this->templateFilePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'modules'.JRDS.$calledByModule.JRDS.$calledByModule;
@@ -461,7 +461,7 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$keywords= mysql_real_escape_string($filter);
+			$keywords= getEscaped($filter);
 			$words = explode( ' ', $keywords );
 			$wheres = array();
 			foreach ($words as $word)

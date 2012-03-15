@@ -407,7 +407,7 @@ class j02990showconfirmation {
 		if (isset($_POST['specialReqs']))
 			{
 			$booking_parts['HSPECIAL_REQUIREMENTS']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ);
-			$booking_parts['SPECIAL_REQUIREMENTS']=quote_smart(jomresGetParam( $_POST, 'specialReqs', "" ));
+			$booking_parts['SPECIAL_REQUIREMENTS']=getEscaped(jomresGetParam( $_POST, 'specialReqs', "" ));
 			}
 		$guestList							=	$tmpBookingHandler->getGuestData();
 		$booking_parts['FIRSTNAME']			=	stripslashes($guestList['firstname']);

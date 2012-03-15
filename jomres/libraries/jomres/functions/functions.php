@@ -722,7 +722,7 @@ function detect_property_uid()
 		{
 		if (isset($_POST['specialReqs']) )
 			{
-			$specialReqs=quote_smart(jomresGetParam( $_POST, 'specialReqs', "" ));
+			$specialReqs=getEscaped(jomresGetParam( $_POST, 'specialReqs', "" ));
 			$tmpBookingHandler->updateBookingField("error_log",$specialReqs);
 			$tmpBookingHandler->saveBookingData();
 			}
@@ -2527,7 +2527,7 @@ function hotelSettings()
 */
 function saveHotelSettings()
 	{
-	ignore_user_abort(true);
+
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$property_uid=(int)getDefaultProperty();
 	$mrConfig=getPropertySpecificSettings($property_uid);
@@ -2571,8 +2571,9 @@ function saveHotelSettings()
 			$k=addslashes($dirty);
 			if (!get_magic_quotes_gpc())
 				{
-				$v = getEscaped( $v );
+				$v = filter_var($v,FILTER_SANITIZE_SPECIAL_CHARS);
 				}
+			
 			if (substr( $k, 4 ) =="currencyCodes")
 				{
 				$theArray=$_POST['cfg_currencyCodes'];
@@ -2901,26 +2902,26 @@ function insertGuestDeets($jomressession)
 	$guests_uid		=(int)$xCustomers['guests_uid'];
 	$mos_userid		=(int)$xCustomers['mos_userid'];
 	$existing_id	=(int)$xCustomers['existing_id'];
-	$email		=	quote_smart($xCustomers['email']);
-	$firstname	=	quote_smart($xCustomers['firstname']);
-	$surname	=	quote_smart($xCustomers['surname']);
-	$house		=	quote_smart($xCustomers['house']);
-	$street		=	quote_smart($xCustomers['street']);
-	$town		=	quote_smart($xCustomers['town']);
-	$region		=	quote_smart($xCustomers['region']);
-	$country	=	quote_smart($xCustomers['country']);
-	$postcode	=	quote_smart($xCustomers['postcode']);
-	$landline	=	quote_smart($xCustomers['tel_landline']);
-	$mobile		=	quote_smart($xCustomers['tel_mobile']);
+	$email		=	getEscaped($xCustomers['email']);
+	$firstname	=	getEscaped($xCustomers['firstname']);
+	$surname	=	getEscaped($xCustomers['surname']);
+	$house		=	getEscaped($xCustomers['house']);
+	$street		=	getEscaped($xCustomers['street']);
+	$town		=	getEscaped($xCustomers['town']);
+	$region		=	getEscaped($xCustomers['region']);
+	$country	=	getEscaped($xCustomers['country']);
+	$postcode	=	getEscaped($xCustomers['postcode']);
+	$landline	=	getEscaped($xCustomers['tel_landline']);
+	$mobile		=	getEscaped($xCustomers['tel_mobile']);
 	$property_uid=	(int)$tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
 
-	$ccard_no	=	quote_smart($xCustomers['ccard_no']);
-	$ccard_issued=	quote_smart($xCustomers['ccard_issued']);
-	$ccard_expiry=	quote_smart($xCustomers['ccard_expiry']);
-	$ccard_iss_no=	quote_smart($xCustomers['ccard_iss_no']);
-	$ccard_name	=	quote_smart($xCustomers['ccard_name']);
-	$ccv		=	quote_smart($xCustomers['ccv']);
-	$type		=	quote_smart($xCustomers['type']);
+	$ccard_no	=	getEscaped($xCustomers['ccard_no']);
+	$ccard_issued=	getEscaped($xCustomers['ccard_issued']);
+	$ccard_expiry=	getEscaped($xCustomers['ccard_expiry']);
+	$ccard_iss_no=	getEscaped($xCustomers['ccard_iss_no']);
+	$ccard_name	=	getEscaped($xCustomers['ccard_name']);
+	$ccv		=	getEscaped($xCustomers['ccv']);
+	$type		=	getEscaped($xCustomers['type']);
 
 	$defaultProperty=getDefaultProperty();
 	if (!$userIsManager && $thisJRUser->id >0)
@@ -4583,20 +4584,6 @@ function propertyClicked($p_uid)
 		}
 	}
 
-/**
-#
- * Strips slashes
-#
- */
-function quote_smart($value)
-	{
-	if (get_magic_quotes_gpc()) {
-		$value = stripslashes($value);
-		}
-
-	$value = mysql_real_escape_string($value);
-	return $value;
-	}
 
 /**
 #

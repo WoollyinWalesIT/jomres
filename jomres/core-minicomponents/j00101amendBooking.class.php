@@ -94,17 +94,17 @@ class j00101amendBooking
 						$tmpBookingHandler->tmpguest["guests_uid"]		= $g->guests_uid;
 						$tmpBookingHandler->tmpguest["mos_userid"]		= $g->mos_userid;
 						$tmpBookingHandler->tmpguest["existing_id"]		= $g->guests_uid;
-						$tmpBookingHandler->tmpguest["firstname"]		= quote_smart($g->firstname);
-						$tmpBookingHandler->tmpguest["surname"]			= quote_smart($g->surname);
-						$tmpBookingHandler->tmpguest["house"]			= quote_smart($g->house);
-						$tmpBookingHandler->tmpguest["street"]			= quote_smart($g->street);
-						$tmpBookingHandler->tmpguest["town"]			= quote_smart($g->town);
-						$tmpBookingHandler->tmpguest["region"]			= quote_smart($g->county);
-						$tmpBookingHandler->tmpguest["country"]			= quote_smart($g->country);
-						$tmpBookingHandler->tmpguest["postcode"]		= quote_smart($g->postcode);
-						$tmpBookingHandler->tmpguest["tel_landline"]	= quote_smart($g->tel_landline);
-						$tmpBookingHandler->tmpguest["tel_mobile"]		= quote_smart($g->tel_mobile);
-						$tmpBookingHandler->tmpguest["email"]			= quote_smart($g->email);
+						$tmpBookingHandler->tmpguest["firstname"]		= getEscaped($g->firstname);
+						$tmpBookingHandler->tmpguest["surname"]			= getEscaped($g->surname);
+						$tmpBookingHandler->tmpguest["house"]			= getEscaped($g->house);
+						$tmpBookingHandler->tmpguest["street"]			= getEscaped($g->street);
+						$tmpBookingHandler->tmpguest["town"]			= getEscaped($g->town);
+						$tmpBookingHandler->tmpguest["region"]			= getEscaped($g->county);
+						$tmpBookingHandler->tmpguest["country"]			= getEscaped($g->country);
+						$tmpBookingHandler->tmpguest["postcode"]		= getEscaped($g->postcode);
+						$tmpBookingHandler->tmpguest["tel_landline"]	= getEscaped($g->tel_landline);
+						$tmpBookingHandler->tmpguest["tel_mobile"]		= getEscaped($g->tel_mobile);
+						$tmpBookingHandler->tmpguest["email"]			= getEscaped($g->email);
 						$tmpBookingHandler->saveGuestData();
 						}
 
