@@ -95,7 +95,7 @@ class j00030search {
 				}
 			}
 
-		$calledByModule=mysql_real_escape_string($calledByModule);
+		$calledByModule=getEscaped($calledByModule);
 
 		$customTextObj =jomres_getSingleton('custom_text');
 

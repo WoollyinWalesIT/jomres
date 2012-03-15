@@ -420,19 +420,19 @@ class dobooking
 		$this->writeToLogfile("<font color='grey'>".serialize($tmpBookingHandler->tmpguest)."</font>");
 
 		$tmpBookingHandler->tmpguest["mos_userid"]		=$this->mos_userid;
-		$tmpBookingHandler->tmpguest["existing_id"]		=quote_smart($this->existing_id);
-		$tmpBookingHandler->tmpguest["firstname"]		=quote_smart($this->firstname);
-		$tmpBookingHandler->tmpguest["surname"]			=quote_smart($this->surname);
-		$tmpBookingHandler->tmpguest["house"]			=quote_smart($this->house);
-		$tmpBookingHandler->tmpguest["street"]			=quote_smart($this->street);
-		$tmpBookingHandler->tmpguest["town"]			=quote_smart($this->town);
-		$tmpBookingHandler->tmpguest["region"]			=quote_smart($this->region);
-		$tmpBookingHandler->tmpguest["country"]			=quote_smart($this->country);
-		$tmpBookingHandler->tmpguest["postcode"]		=quote_smart($this->postcode);
-		$tmpBookingHandler->tmpguest["tel_landline"]	=quote_smart($this->tel_landline);
-		$tmpBookingHandler->tmpguest["tel_mobile"]		=quote_smart($this->tel_mobile);
-		$tmpBookingHandler->tmpguest["email"]			=quote_smart($this->email);
-		$tmpBookingHandler->tmpguest["discount"]		=quote_smart($this->guest_specific_discount);
+		$tmpBookingHandler->tmpguest["existing_id"]		=getEscaped($this->existing_id);
+		$tmpBookingHandler->tmpguest["firstname"]		=getEscaped($this->firstname);
+		$tmpBookingHandler->tmpguest["surname"]			=getEscaped($this->surname);
+		$tmpBookingHandler->tmpguest["house"]			=getEscaped($this->house);
+		$tmpBookingHandler->tmpguest["street"]			=getEscaped($this->street);
+		$tmpBookingHandler->tmpguest["town"]			=getEscaped($this->town);
+		$tmpBookingHandler->tmpguest["region"]			=getEscaped($this->region);
+		$tmpBookingHandler->tmpguest["country"]			=getEscaped($this->country);
+		$tmpBookingHandler->tmpguest["postcode"]		=getEscaped($this->postcode);
+		$tmpBookingHandler->tmpguest["tel_landline"]	=getEscaped($this->tel_landline);
+		$tmpBookingHandler->tmpguest["tel_mobile"]		=getEscaped($this->tel_mobile);
+		$tmpBookingHandler->tmpguest["email"]			=getEscaped($this->email);
+		$tmpBookingHandler->tmpguest["discount"]		=getEscaped($this->guest_specific_discount);
 
 		$tmpBookingHandler->saveGuestData();
 

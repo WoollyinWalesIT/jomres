@@ -250,10 +250,6 @@ function saveSiteConfig (  )
 		{
 		if (strpos( $k, 'cfg_' ) === 0)
 			{
-			//if (!get_magic_quotes_gpc())
-			//	{
-			//	$v = AddSlashes( $v );
-			//	}
 			if ($k=="cfg_licensekey")
 				{
 				$lkey = trim($v);
@@ -264,25 +260,14 @@ function saveSiteConfig (  )
 				else
 					$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
 				$result=doInsertSql($query,'');
-				$result=unlink(JOMRESCONFIG_ABSOLUTE_PATH.'/jomres/temp/key.php');
 				}
 			else
 				{
 				//echo "K: ".$k." & V: ".$v."<br>";
 				$v=jomresGetParam( $_POST, $k, "" );
-				if ($k=="cfg_globalCurrency" && $_POST[$k]=='&#8364;') // We'll add this here because the input filter doesn't like euro currency entities.
-					{
-					$v='&#8364;';
-					}
-				else
-					{
-					$dirty = (string) $k;
-					$k=addslashes($dirty);
-					if (!get_magic_quotes_gpc())
-						{
-						$v = getEscaped( $v );
-						}
-					}
+				$dirty = (string) $k;
+				$k=addslashes($dirty);
+				$v = filter_var($v,FILTER_SANITIZE_SPECIAL_CHARS);
 
 				$query="SELECT id FROM #__jomres_site_settings WHERE akey = '".substr( $k, 4 )."'";
 				$result=doSelectSql($query);

@@ -443,10 +443,7 @@ function jomres_purify_string($string)
 
 function getEscaped( $text ) {
 	$text=str_replace("'","&#39;",$text);
-	if (!get_magic_quotes_gpc())
-		return mysql_real_escape_string( $text );
-	else
-		return $text;
+	return filter_var($text,FILTER_SANITIZE_SPECIAL_CHARS);
 	}
 
 // http://www.php.net/manual/en/function.strip-tags.php#97386
