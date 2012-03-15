@@ -1,3 +1,9 @@
+Jomres 6.5.2
+
+A quick template tweak to the admin area control panel
+A variety of changes to remove a depreciated mysql function call that I missed on the last run through, that affects php 5.3 and greater.
+
+
 Jomres 6.5.1
 
 Fixed an issue experienced by mysql users. mysqli users were unaffected.
