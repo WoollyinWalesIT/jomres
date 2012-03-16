@@ -428,7 +428,7 @@ function get_property_module_data($property_uid_array)
 
 			$property_image=get_showtime('live_site')."/jomres/images/jrhouse.png";
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
-				$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property_uid."_property_".$property_uid.".jpg";
+				$property_image=JOMRES_IMAGELOCATION_RELPATH."/".$property_uid."_property_".$property_uid.".jpg";
 			$property_data['THUMBNAIL']=getThumbnailForImage($property_image);
 			if (!$property_data['THUMBNAIL'])
 				$property_data['THUMBNAIL']=$property_image;
