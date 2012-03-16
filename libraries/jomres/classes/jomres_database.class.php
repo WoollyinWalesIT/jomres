@@ -22,24 +22,27 @@ class jomres_database
 		$this->system_tables=array();
 		$this->error = null;
 		$this->result=null;
-		$this->dbtype = get_showtime('dbtype');
 		$showtime = jomres_getSingleton('showtime');
+		$this->dbtype = get_showtime('dbtype');
 		if ( $this->dbtype == "mysqli" )
 			{
-			$this->link = mysqli_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
+			$this->link = mysqli_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysqli_error($this->link));
 			mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
 			mysqli_query($this->link, "SET CHARACTER SET utf8");
 			mysqli_query($this->link, "SET NAMES utf8");
 			}
 		else
 			{
-			$link->link = mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
+			$this->link = mysql_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysql_error());
 			mysql_select_db(get_showtime('db')) or die('Could not select database');
 			mysql_query("SET CHARACTER SET utf8");
 			mysql_query("SET NAMES utf8");
 			}
 		
-		$this->error = mysql_error();
+		if ( $this->dbtype == "mysqli" )
+			$this->error = mysqli_error($this->link);
+		else
+			$this->error = mysql_error();
 		$this->db_prefix=get_showtime('dbprefix');
 		}
 
@@ -50,11 +53,21 @@ class jomres_database
 		else
 			$this->result = mysql_query($this->query);
 		if ($this->result)
+			{
+			if ( $this->dbtype == "mysqli" )
+				$last_id = mysqli_insert_id($this->link);
+			else
+				$last_id = mysql_insert_id();
+			$this->last_id = false;
+			if ($last_id > 0)
+				$this->last_id = $last_id;
+			
 			return $this->result;
+			}
 		else
 			{
 			if ( $this->dbtype == "mysqli" )
-				$this->error = mysqli_error();
+				$this->error = mysqli_error($this->link);
 			else
 				$this->error = mysql_error();
 			return false;
@@ -110,19 +123,19 @@ class jomres_database
 		$retval = null;
 		if ( $this->dbtype == "mysqli" )
 			{
-			if ($row = mysql_fetch_row( $this->result )) 
-				{
-				$retval = $row[0];
-				}
-			mysql_free_result( $this->result );
-			}
-		else
-			{
 			if ($row = mysqli_fetch_row( $this->result )) 
 				{
 				$retval = $row[0];
 				}
 			mysqli_free_result( $this->result );
+			}
+		else
+			{
+			if ($row = mysql_fetch_row( $this->result )) 
+				{
+				$retval = $row[0];
+				}
+			mysql_free_result( $this->result );
 			}
 		return $retval;
 		}
