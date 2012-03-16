@@ -1,3 +1,8 @@
+Jomres 6.5.3
+
+Fixed a major bug where auto increment ids weren't being passed back correctly from the database class.
+Minor change of a path to an image for consistency's sake.
+
 Jomres 6.5.2
 
 A quick template tweak to the admin area control panel
