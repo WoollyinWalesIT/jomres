@@ -685,7 +685,7 @@ function doInsertSql($query,$op,$ignoreErrors=false)
 		}
 	else
 		{
-		$thisID=mysql_insert_id();
+		$thisID=$jomres_db->last_id;
 		if ($op!="")
 			jomres_audit($query,$op);
 		if ($thisID)
