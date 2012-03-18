@@ -116,6 +116,7 @@ class j01010listpropertys {
 			}
 		else
 			{
+			$shortlist_items = $tmpBookingHandler->tmpsearch_data['shortlist_items'];
 			$layout_template = $property_list_layouts[$layout]["layout"];
 
 			if (is_null($property_list_layouts[$layout]["path"]))
@@ -141,6 +142,8 @@ class j01010listpropertys {
 				if (JOMRES_NOHTML != 1)
 					{
 					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script>var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'";</script>' );
+					if (get_showtime('task') != "show_shortlisted_properties")
+						$shortlist[]=array( '_JOMRES_VIEWSHORTLIST'=>jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST,false,false),'SHORTLISTLINK'=>jomresURL(JOMRES_SITEPAGE_URL."&task=show_shortlisted_properties" ));
 					}
 
 				if (JOMRES_NOHTML != 1)
@@ -478,6 +481,12 @@ class j01010listpropertys {
 						$property_deets['_JOMRES_QUICK_INFO']=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO,false,false);
 						$property_deets['REMOTE_URL']=$mrConfig['galleryLink'];
 						$property_deets['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
+						$property_deets['_JOMRES_COMPARE'] =jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false);
+
+						if (!in_array($property->propertys_uid,$shortlist_items))
+							$property_deets['SHORTLIST'] =jr_gettext('_JOMRES_ADDTOSHORTLIST',_JOMRES_ADDTOSHORTLIST,false,false);
+						else
+							$property_deets['SHORTLIST'] =jr_gettext('_JOMRES_REMOVEFROMSHORTLIST',_JOMRES_REMOVEFROMSHORTLIST,false,false);
 						
 						$Args=array('property_uid'=>$property->propertys_uid,"width"=>'119',"height"=>'95',"disable_ui"=>true);
 						$MiniComponents->specificEvent('01050','x_geocoder',$Args);
@@ -528,7 +537,7 @@ class j01010listpropertys {
 					$tmpl->addRows( 'property_details', $property_details );
 					$tmpl->addRows( 'layout_rows', $layout_rows );
 					$tmpl->addRows( 'compare', $compare );
-
+					$tmpl->addRows( 'shortlist', $shortlist );
 					$tmpl->setRoot( $layout_path_to_template );
 					$tmpl->readTemplatesFromInput( $layout_template );
 					$tmpl->displayParsedTemplate();
@@ -594,6 +603,10 @@ class j01010listpropertys {
 		$output[]		=jr_gettext('_JOMRES_DATEPERIOD_LATESTBOOKING',_JOMRES_DATEPERIOD_LATESTBOOKING);
 		$output[]		=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO);
 		$output[]		=jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE);
+		
+		$output[]		=jr_gettext('_JOMRES_ADDTOSHORTLIST',_JOMRES_ADDTOSHORTLIST);
+		$output[]		=jr_gettext('_JOMRES_REMOVEFROMSHORTLIST',_JOMRES_REMOVEFROMSHORTLIST);
+		$output[]		=jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST);
 		
 		foreach ($output as $o)
 			{

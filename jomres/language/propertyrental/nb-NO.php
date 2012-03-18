@@ -1774,3 +1774,7 @@ define('_JOMRES_PROPERTYLIST_LAYOUT_TILE',"Photo view");
 define('_JOMRES_COMPARE',"Compare");
 define('_JOMRES_REMOVE',"Remove");
 define('_JOMRES_RETURN_TO_RESULTS',"Return to search results");
+
+define('_JOMRES_ADDTOSHORTLIST',"Add to shortlist");
+define('_JOMRES_REMOVEFROMSHORTLIST',"Remove from shortlist");
+define('_JOMRES_VIEWSHORTLIST',"View your shortlist");
