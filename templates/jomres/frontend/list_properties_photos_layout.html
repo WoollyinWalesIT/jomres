@@ -8,11 +8,16 @@
 </div>
 
 <patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
-{COMPARELINK}
-<form>
-<a href="javascript:void(0);" class="ui-state-default ui-corner-all plist-button" onClick="return trigger_comparison(this)">{_JOMRES_COMPARE}</a>
-<input type="hidden" id="comparison_ids" name="ids" value="">
-</form>
+<div>
+	{COMPARELINK}
+	<form>
+	<a href="javascript:void(0);" class="ui-state-default ui-corner-all plist-button" onClick="return trigger_comparison(this);">{_JOMRES_COMPARE}</a>
+	<input type="hidden" id="comparison_ids" name="ids" value="">
+	</form>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
+	<a href="{SHORTLISTLINK}" class="ui-state-default ui-corner-all plist-button">{_JOMRES_VIEWSHORTLIST}</a>
+</div>
 </patTemplate:tmpl>
 
 <patTemplate:tmpl name="property_details" unusedvars="strip">
@@ -45,7 +50,7 @@
 	</tr>
 	<tr>
 		<td align="right">
-			<div class="compare-properties">Compare <input type="checkbox" name="compare" value="{UID}" autocomplete="off" /></div>
+			<div class="compare-properties"><a href="javascript:void(0);" id="shortlist_{UID}" onClick="shortlist('{UID}')">{SHORTLIST}</a> | {_JOMRES_COMPARE} <input type="checkbox" name="compare" value="{UID}" autocomplete="off" /></div>
 		</td>
 	</tr>
 	<patTemplate:comment>
