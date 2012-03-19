@@ -33,7 +33,7 @@ button.fg-button { width:auto; overflow:visible; }
 .fg-toolbar .fg-button { font-size: 1em;  }
 .property-title {font-size:16px;font-weight: bold;line-height: 26px;}
 .property-title a {text-decoration:none;}
-.property-header {padding:3px;}
+.property-header {padding:3px;font-size:11px;line-height:22px;}
 .property-image{display:block;margin-right:5px;margin-top:7px;margin-left:5px;}
 .property-image img {width:125px;height:94px;-moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px;}
 .property-desc p {margin-bottom: 15px;margin-top: 10px;}
@@ -44,11 +44,13 @@ button.fg-button { width:auto; overflow:visible; }
 .float-right {float:right;}
 .align-left {text-align:left !important;}
 .align-right {text-align:right !important;}
+.align-center {text-align:center !important;}
 .full-width {width:100%;}
 .jomres_property_list_propertywrapper {margin-bottom:20px;}
 .plist-buttons{width: 135px;display:block;float:right;}
 .plist-button {width:130px;margin-bottom:5px;}
 .plist-button-last {width:130px;}
+.plist-header{margin-bottom:10px;}
 .quick-info {min-height:190px;width:auto;position:relative;}
 .quick-info-left {padding:5px;width:48%;}
 .quick-info-right {padding:5px;width:48%;}
@@ -83,14 +85,17 @@ tr.odd td.sorting_1{background:#f0f0f0 !important;}
 .price-wrapper-tiles .prices-from, .price-wrapper-popup .prices-from{margin-top:0px;}
 .price-wrapper-popup {width:130px;}
 .price-wrapper-tiles .big-price span{display:inline;}
-/* Compare Properties */
+/* Compare and Shortlist Properties */
 .compare-properties{font-size:11px;}
-.compare-properties input{vertical-align:middle;}
+.compare-properties-photoview{font-size:11px;padding:0 10px;line-height:22px;}
+.compare-properties input, .compare-properties-photoview input{vertical-align:middle;}
 .comparison-wrapper{margin-top:5px;}
 .comparison-property-wrapper{margin-left:10px;text-align:center;}
 .comparison-property-wrapper a.fg-button{float:none !important;display: inline-block;}
 a.comparison-remove{font-weight:normal;font-size:11px;}
 .comparison-separator{color:#ccc;font-size:14px;}
+.compare-add{width:100px;padding:0 10px;border-left:medium none;}
+.shortlist-add{width:140px;padding:0 10px;border-right:1px solid #ccc;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
