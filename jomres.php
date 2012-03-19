@@ -333,7 +333,29 @@ if (!isset($jrConfig['errorChecking']) )
 	$jrConfig['errorChecking']=0;
 
 
-	
+if (JOMRES_NOHTML != 1 && $jrConfig['use_cookie_policy'] =="1")
+	{
+	if (!isset($_COOKIE['jomresCookiePermission']))
+		{
+		$output = array();
+		$output['_JOMRES_COOKIEPOLICY_1']		= jr_gettext('_JOMRES_COOKIEPOLICY_1',_JOMRES_COOKIEPOLICY_1);
+		$output['_JOMRES_COOKIEPOLICY_2']		= jr_gettext('_JOMRES_COOKIEPOLICY_2',_JOMRES_COOKIEPOLICY_2);
+		$output['_JOMRES_COOKIEPOLICY_3']		= jr_gettext('_JOMRES_COOKIEPOLICY_3',_JOMRES_COOKIEPOLICY_3);
+		$output['_JOMRES_COOKIEPOLICY_4']		= jr_gettext('_JOMRES_COOKIEPOLICY_4',_JOMRES_COOKIEPOLICY_4);
+		$output['_JOMRES_COOKIEPOLICY_5']		= jr_gettext('_JOMRES_COOKIEPOLICY_5',_JOMRES_COOKIEPOLICY_5);
+		$output['_JOMRES_COOKIEPOLICY_6']		= jr_gettext('_JOMRES_COOKIEPOLICY_6',_JOMRES_COOKIEPOLICY_6);
+
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( 'cookies.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->displayParsedTemplate();
+		if ( get_showtime('task') != "viewproperty" &&  get_showtime('task') != "listProperties" &&  get_showtime('task') != "compare" &&  get_showtime('task') != "show_shortlisted_properties" && get_showtime('task') != "extended_maps" &&  get_showtime('task') != "" ) // Liable to change
+			set_showtime("task","search");
+		}
+	}
+
 if (get_showtime('numberOfPropertiesInSystem')>0)
 	{
 	switch (get_showtime('task')) {

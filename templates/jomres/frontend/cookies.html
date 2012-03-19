@@ -1,0 +1,63 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style>
+.cookiePane {
+    margin: 5px auto;
+    padding: 5px 10px;
+    width: 500px;
+}
+</style>
+<script type="text/javascript">
+function setCookie(c_name, value, expiredays) {
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate() + expiredays);
+	var c_value=escape(value) + ((expiredays==null) ? "" : "; expires="+exdate.toUTCString());
+	document.cookie=c_name + "=" + c_value;
+	}
+
+function getCookie(c_name) {
+	if (document.cookie.length > 0) {
+		c_start = document.cookie.indexOf(c_name + "=");
+		if (c_start != -1) {
+			c_start = c_start + c_name.length + 1;
+			c_end = document.cookie.indexOf(";", c_start);
+			if (c_end == -1) c_end = document.cookie.length;
+			return unescape(document.cookie.substring(c_start, c_end));
+			}
+		}
+	return "";
+	}
+
+(function ($) {
+	$(function () {
+		$('#acceptCookies').click(function () {
+			setCookie('jomresCookiePermission', 'True', 730);
+			$(".cookiePane").hide();
+			});
+		$('.cookiePane').show();
+		var theCookie = getCookie("jomresCookiePermission");
+		if (theCookie != "") {
+			$('.cookiePane').hide();
+			} 
+		else {
+			$('.cookiePane').show();
+			$('.slidingDiv').hide();
+			$('.show_hide').show();
+			$('.show_hide').click(function () {
+				$('.slidingDiv').slideToggle();
+				});
+			} //end if
+		});
+	})(jomresJquery);
+</script>
+
+<div class="cookiePane ui-widget-content ui-corner-all" id="cookiePane">
+<h1 class="ui-state-highlight ui-corner-all">{_JOMRES_COOKIEPOLICY_1}</h1>
+<p>{_JOMRES_COOKIEPOLICY_2} <a href="#" class="show_hide">{_JOMRES_COOKIEPOLICY_3}</a></p>
+<div class="slidingDiv">
+<p>{_JOMRES_COOKIEPOLICY_4}</p>
+<p>{_JOMRES_COOKIEPOLICY_5}</p>
+<p><a href="#" id="acceptCookies">{_JOMRES_COOKIEPOLICY_6}</a></p>
+</div>
+</div>
+
+</patTemplate:tmpl>
