@@ -134,10 +134,11 @@ class j01010listpropertys {
 
 			if (count($propertys_uids) >0)
 				{
-				$output = array();
-
-				$output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
-				$output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
+				$header_output = array();
+				
+				$header_output['ORDER_DROPDOWN'] 		= get_showtime("order_dropdown");
+				$header_output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
+				$header_output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 				$compare = array();
 				if (JOMRES_NOHTML != 1)
 					{
@@ -531,13 +532,23 @@ class j01010listpropertys {
 
 				if (!$data_only)
 					{
+					if (JOMRES_NOHTML != 1)
+						{
+						$header_pageoutput[] = $header_output;
+						$tmpl = new patTemplate();
+						$tmpl->addRows( 'header_pageoutput', $header_pageoutput );
+						$tmpl->addRows( 'layout_rows', $layout_rows );
+						$tmpl->addRows( 'compare', $compare );
+						$tmpl->addRows( 'shortlist', $shortlist );
+						$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+						$tmpl->readTemplatesFromInput( "list_properties_header.html" );
+						$output['HEADER'] = $tmpl->getParsedTemplate();
+						}
+					
 					$pageoutput[] = $output;
 					$tmpl = new patTemplate();
 					$tmpl->addRows( 'pageoutput', $pageoutput );
 					$tmpl->addRows( 'property_details', $property_details );
-					$tmpl->addRows( 'layout_rows', $layout_rows );
-					$tmpl->addRows( 'compare', $compare );
-					$tmpl->addRows( 'shortlist', $shortlist );
 					$tmpl->setRoot( $layout_path_to_template );
 					$tmpl->readTemplatesFromInput( $layout_template );
 					$tmpl->displayParsedTemplate();

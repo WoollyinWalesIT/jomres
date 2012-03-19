@@ -142,7 +142,7 @@ class j01009a_filterproperties
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'order.html' );
 			$tmpl->addRows( 'sort_order', $sortorder);
-			$tmpl->displayParsedTemplate();
+			set_showtime("order_dropdown",$tmpl->getParsedTemplate());
 			}
 		}
 
