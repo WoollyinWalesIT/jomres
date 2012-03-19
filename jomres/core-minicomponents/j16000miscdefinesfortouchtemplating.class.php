@@ -78,7 +78,14 @@ class j16000miscdefinesfortouchtemplating
 		$output[]		= jr_gettext('_JOMRES_FRONT_MR_BOOKOUT_TITLE_WHOLEDAY',_JOMRES_FRONT_MR_BOOKOUT_TITLE_WHOLEDAY);
 		$output[]		= jr_gettext('_JOMRES_COM_INVOICE_COSTPERNIGHT_WHOLEDAY',_JOMRES_COM_INVOICE_COSTPERNIGHT_WHOLEDAY);
 		$output[]		= jr_gettext('_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY',_JOMRES_COM_INVOICE_STAYNIGHTS_WHOLEDAY);
-
+		
+		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_1',_JOMRES_COOKIEPOLICY_1);
+		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_2',_JOMRES_COOKIEPOLICY_2);
+		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_3',_JOMRES_COOKIEPOLICY_3);
+		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_4',_JOMRES_COOKIEPOLICY_4);
+		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_5',_JOMRES_COOKIEPOLICY_5);
+		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_6',_JOMRES_COOKIEPOLICY_6);
+		
 		$countryCodes=countryCodesArray();
 		foreach ($countryCodes as $k=>$v)
 			{

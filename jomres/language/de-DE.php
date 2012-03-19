@@ -1828,3 +1828,18 @@ define('_JOMRES_RETURN_TO_RESULTS',"Return to search results");
 define('_JOMRES_ADDTOSHORTLIST',"Add to shortlist");
 define('_JOMRES_REMOVEFROMSHORTLIST',"Remove from shortlist");
 define('_JOMRES_VIEWSHORTLIST',"View your shortlist");
+
+define('_JOMRES_COOKIEPOLICY_TITLE',"Cookie Policy");
+define('_JOMRES_COOKIEPOLICY_DESC',"EU Legislation requires that all websites that use cookies request permission from site visitors to store cookies.
+<br/>
+Jomres uses the host CMS's cookie to construct it's own session file where information about the user's search results and other activities can be saved, to make the user's visit more pleasant. Whilst we believe that normal Jomres functionality is probably covered by provisions in the legislation defined as <i>'such storage or access is strictly necessary to provide an information society service requested by the subscriber or user'</i> (see http://www.ico.gov.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies.aspx) we have included this feature to give you the ability to prevent users from accessing pages other than search pages in the event that the user does not allow their cookie to be used in this way. <br/>
+If enabled Jomres will show an 'opt-in' link where users can choose to have the cookie which is stored for them used in this way. If they do not choose to opt-in then Jomres will only show them some basic pages (like the properties details, show shortlist, search results etc). 
+<br/>
+Set this option to Yes to enact this policy.");
+
+define('_JOMRES_COOKIEPOLICY_1',"Important: Cookie Policy");
+define('_JOMRES_COOKIEPOLICY_2',"We use cookies to help keep our site relevant and easy to use.");
+define('_JOMRES_COOKIEPOLICY_3',"Read more...");
+define('_JOMRES_COOKIEPOLICY_4',"EU legislation requires that all websites clearly specify if cookies are being used and their purpose.");
+define('_JOMRES_COOKIEPOLICY_5',"The search and booking engine of this site needs to be able to remember the options you have chosen to work at it's best. To do this it needs to store information which is associated with a small file called a \"cookie\" which uniquely identifies your browser, and for us to do that, you must agree that we can. If you do not accept this cookie policy then you will be severely limited in what you can do on this site.");
+define('_JOMRES_COOKIEPOLICY_6',"Yes, I accept the use of cookies in this way.");
