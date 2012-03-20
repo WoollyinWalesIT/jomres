@@ -1207,7 +1207,8 @@ class dobooking
 				}
 			$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM',_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM,false,false));
 			$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS',_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS,false,false));
-			$output['_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE',_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE,false,false));
+			if ($mrConfig['chargeDepositYesNo'] =="1")
+				$output['_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE',_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE,false,false));
 			$output['_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER',_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER,false,false));
 
 			if (get_showtime('include_room_booking_functionality'))

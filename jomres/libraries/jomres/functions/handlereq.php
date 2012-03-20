@@ -436,7 +436,8 @@ if ($field != "heartbeat" && $field != "show_log")
 			echo '; populateDiv("grandtotal","'.output_price($bkg->getGrandTotal()).'")';
 			
 			echo '; populateDiv("room_total_inc_tax","'.output_price($bkg->room_total_inc_tax).'")';
-			echo '; populateDiv("balance","'.output_price( $bkg->getGrandTotal() - $bkg->getDeposit() ).'")';
+			if ($mrConfig['chargeDepositYesNo'] =="1")
+				echo '; populateDiv("balance","'.output_price( $bkg->getGrandTotal() - $bkg->getDeposit() ).'")';
 			if ($showDeposit=="1")
 				echo '; populateDiv("deposit","'.output_price($bkg->getDeposit()).'")';
 			if ($bkg->singlePersonSupplimentCalculated)
