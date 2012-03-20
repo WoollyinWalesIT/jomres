@@ -90,43 +90,48 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle">'._JOMRES_LICENSESERVER_USERNAME_DESC.'</td>
 		</tr>
 		<tr valign="middle" class="even">
+			<td valign="middle">'._JOMRES_LICENSESERVER_PASSWORD.'</td>
+			<td valign="middle"><input type="password" class="inputbox" size="30" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
+			<td valign="middle"></td>
+		</tr>
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_COOKIEPOLICY_TITLE.'</td>
 			<td valign="middle">'.$lists['use_cookie_policy'].'</td>
 			<td valign="middle">'._JOMRES_COOKIEPOLICY_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_DEFAULT_LAT_STARTPOINT.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_lat" value="'.$jrConfig['default_lat'].'" /></td>
 			<td valign="middle">'._JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_DEFAULT_LONG_STARTPOINT.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_long" value="'.$jrConfig['default_long'].'" /></td>
 			<td valign="middle"></td>
 		</tr>
 		
 		
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
 			<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
 			<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
 			<td valign="middle">'.$language_context_dropdown.'</td>
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_SINGLEPROPERTYINSTALLATION_TITLE.'</td>
 			<td valign="middle">'.$lists['is_single_property_installation'].'</td>
 			<td valign="middle">'._JOMRES_SINGLEPROPERTYINSTALLATION_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'.JOMRES_COM_A_MAPSKEY.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_google_maps_api_key" value="'.$jrConfig['google_maps_api_key'].'" /></td>
 			<td valign="middle">'.JOMRES_COM_A_MAPSKEY_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			 <td valign="middle">'._JOMRES_COM_ALLOWHTMLEDITOR.'</td>
 			 <td valign="middle">'.$lists['allowHTMLeditor'].'</td>
 			 <td valign="middle">'._JOMRES_COM_ALLOWHTMLEDITOR_DESC.'</td>
@@ -137,29 +142,21 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 		if ($jrConfig['advanced_site_config'] == 1)
 			$contentPanel->setcontent('
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO.'</td>
 				<td valign="middle">'.$lists['limit_property_country'].'</td>
 				<td valign="middle">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_YESNO_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY.'</td>
 				<td valign="middle">'.limitCountriesDropdown().'</td>
 				<td valign="middle">&nbsp;</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_MOBILE_REDIRECT.'</td>
 				<td valign="middle">'.$lists['mobile_redirect'].'</td>
 				<td valign="middle">'._JOMRES_MOBILE_REDIRECT_DESC.'</td>
 			</tr>
-			<!--
-			<tr valign="middle">
-				<td valign="middle">'._JOMRES_HTMP_PURIFIER.'</td>
-				<td valign="middle">'.$lists['use_html_purifier'].'</td>
-				<td valign="middle">'._JOMRES_HTMP_PURIFIER_DESC.'</td>
-			</tr>
-			-->
-
 			<tr valign="middle" class="even">
 				 <td valign="middle">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
 				 <td valign="middle">'.$lists['showLangDropdown'].'</td>
