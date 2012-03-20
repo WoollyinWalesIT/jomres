@@ -10,7 +10,8 @@
 function setCookie(c_name, value, expiredays) {
 	var exdate=new Date();
 	exdate.setDate(exdate.getDate() + expiredays);
-	var c_value=escape(value) + ((expiredays==null) ? "" : "; expires="+exdate.toUTCString());
+	var c_value=escape(value) + ((expiredays==null) ? "" : "; expires="+exdate.toUTCString()+"; path=/");
+	console.log(c_value);
 	document.cookie=c_name + "=" + c_value;
 	}
 
@@ -50,14 +51,13 @@ function getCookie(c_name) {
 	})(jomresJquery);
 </script>
 
-<div class="cookiePane ui-widget-content ui-corner-all" id="cookiePane">
-<h1 class="ui-state-highlight ui-corner-all">{_JOMRES_COOKIEPOLICY_1}</h1>
-<p>{_JOMRES_COOKIEPOLICY_2} <a href="#" class="show_hide">{_JOMRES_COOKIEPOLICY_3}</a></p>
-<div class="slidingDiv">
-<p>{_JOMRES_COOKIEPOLICY_4}</p>
-<p>{_JOMRES_COOKIEPOLICY_5}</p>
-<p><a href="#" id="acceptCookies">{_JOMRES_COOKIEPOLICY_6}</a></p>
+<div class="cookiePane ui-widget-content ui-corner-all ui-helper-clearfix" id="cookiePane">
+	<div class="ui-state-highlight ui-corner-all" style="padding:5px;font-size:16px;font-weight:bold;">{_JOMRES_COOKIEPOLICY_1}</div>
+	<p>{_JOMRES_COOKIEPOLICY_2} <a href="#" class="show_hide">{_JOMRES_COOKIEPOLICY_3}</a></p>
+	<div class="slidingDiv">
+		<p>{_JOMRES_COOKIEPOLICY_4}</p>
+		<p>{_JOMRES_COOKIEPOLICY_5}</p>
+		<p><a href="#" id="acceptCookies">{_JOMRES_COOKIEPOLICY_6}</a></p>
+	</div>
 </div>
-</div>
-
 </patTemplate:tmpl>

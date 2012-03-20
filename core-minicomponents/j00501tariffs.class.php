@@ -99,6 +99,16 @@ class j00501tariffs {
 				$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_MODEL_DESC);
 				$configurationPanel->insertSetting();
 				}
+			
+			$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
+			$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
+			$configurationPanel->setright('');
+			$configurationPanel->insertSetting();
+			
+			$configurationPanel->setleft(_JOMRES_COM_A_TAXINCLUSIVE);
+			$configurationPanel->setmiddle($lists['prices_inclusive']);
+			$configurationPanel->setright(_JOMRES_COM_A_TAXINCLUSIVE_DESC);
+			$configurationPanel->insertSetting();
 			}
 			
 			
@@ -129,6 +139,11 @@ class j00501tariffs {
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
+			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST);
+			$configurationPanel->setmiddle($lists['depositIsOneNight']);
+			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC);
+			$configurationPanel->insertSetting();
+			
 			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE);
 			$configurationPanel->setmiddle($lists['depositIsPercentage']);
 			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC);
@@ -164,73 +179,6 @@ class j00501tariffs {
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 				}
-
-			$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
-			$configurationPanel->setmiddle($lists['verbosetariffinfo']);
-			$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
-			$configurationPanel->insertSetting();
-			
-/* 			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING);
-			$configurationPanel->setmiddle();
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting(); */
-
-			$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
-			$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
-			$configurationPanel->setright('');
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_TAXINCLUSIVE);
-			$configurationPanel->setmiddle($lists['prices_inclusive']);
-			$configurationPanel->setright(_JOMRES_COM_A_TAXINCLUSIVE_DESC);
-			$configurationPanel->insertSetting();
-			
-/* 			$configurationPanel->setleft(_JOMRES_COM_A_TAX_WARNING2);
-			$configurationPanel->setmiddle();
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			
-			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX);
-			$configurationPanel->setmiddle($lists['roomTaxYesNo']);
-			$configurationPanel->setright(_JOMRES_COM_A_ROOMTAX_DESC);
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_FIXED);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxFixed" value="'.$mrConfig['roomTaxFixed'].'" />');
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(_JOMRES_COM_A_ROOMTAX_PERCENTAGE);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_roomTaxPercentage" value="'.$mrConfig['roomTaxPercentage'].'" />');
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting(); */
-
-			/*
-			$configurationPanel->setleft(_JOMRES_COM_A_EUROTAX_PERCENTAGE);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_euroTaxPercentage" value="'.$mrConfig['euroTaxPercentage'].'" />');
-			$configurationPanel->setright();
-			$configurationPanel->insertSetting();
-			*/
-			/*
-			$codes= currencyCodesArray();
-			$conversionSelect='<select size=11 name="cfg_currencyCodes[]" id=currencyCodes multiple onMouseDown="GetCurrentListValues(this);" onchange="FillListValues(this);" style="width:200;">';
-			$codeOptionStr="";
-			$mrConfigCodesArray=explode(",",$mrConfig['currencyCodes']);
-			foreach ($codes as $key=>$code)
-				{
-				$selected="";
-				if (in_array($key,$mrConfigCodesArray) )
-					$selected="selected";
-				$codeOptionStr.='<option value="'.$key.'"  '.$selected.'>'.$key.' '.$code['country'].' '.$code['currencyname'].'</option>';
-				}
-			$conversionSelect.=$codeOptionStr;
-			$conversionSelect.='</select><br><font face=arial size=1><a href="javascript:SelectAllList(document.adminForm.currencyCodes);" style="color:blue;">select all</a> &nbsp;&nbsp;<a href="javascript:DeselectAllList(document.adminForm.currencyCodes);" style="color:blue;">deselect all</a></font>';
-
-			$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
-			$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
-			$configurationPanel->setright($conversionSelect);
-			$configurationPanel->insertSetting();
-			*/
 			}
 	
 		$configurationPanel->endPanel();

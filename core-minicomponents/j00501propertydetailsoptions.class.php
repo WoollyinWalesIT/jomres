@@ -98,6 +98,12 @@ class j00501propertydetailsoptions {
 				$configurationPanel->setmiddle($lists['showTariffsLink']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
+				
+				$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
+				$configurationPanel->setmiddle($lists['verbosetariffinfo']);
+				$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
+				$configurationPanel->insertSetting();
+
 				}
 			}
 		$configurationPanel->endPanel();
