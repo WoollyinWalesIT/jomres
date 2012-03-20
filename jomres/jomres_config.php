@@ -180,4 +180,7 @@ $mrConfig['tariffsenhanceddefault'] =100;
 $mrConfig['tariffsenhancedyearstoshow'] =2;
 $mrConfig['wholeday_booking'] ="0";
 $mrConfig['cancellation_threashold'] ="14";
+
+$mrConfig['depositIsOneNight']='0';
+
 ?>

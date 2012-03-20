@@ -5961,40 +5961,50 @@ class dobooking
 		$this->setErrorLog("calcDeposit::Use variable deposits : ".$mrConfig['use_variable_deposits'] );
 		$this->setErrorLog("calcDeposit::Variable deposit threashold : ".(int) $mrConfig['variable_deposit_threashold'] );
 		$this->setErrorLog("calcDeposit::Days til booking : ".count($datesTilBooking) );
-		if ( $mrConfig['use_variable_deposits'] == "1" && count($datesTilBooking) <= (int) $mrConfig['variable_deposit_threashold'])
+		if ($mrConfig['depositIsOneNight'] =="1")
 			{
-			$depositValue=$this->contract_total;
+			$depositValue = $this->rate_pernight;
+			// This line can be modified, if we want the deposit to be first night X number of rooms you'd change the above line to 
+			// $depositValue = $this->rate_pernight*count ($this->requestedRoom);
+			
 			}
 		else
 			{
-			// Calculate deposit
-			$depositValue=0;
-			// Depreciating this next if, but leaving the stuff inside on. This is because a few folks are setting the show deposit to No, but still sending the deposit value to
-			// paypal/gateway. Commenting out this if will mean that the deposit is still calculated.
-			//if ($this->cfg_chargeDepositYesNo=="1")
-			//	{
-				$depositValue=$this->cfg_depositValue;
-				$totalBooking=$this->contract_total;
-				if ($this->cfg_depAmount=="1")
-					 $depositValue=$this->contract_total;
-				else
-					{
-					if ($this->cfg_depositIsPercentage=="1")
-						{
-						if ($this->cfg_roundupDepositYesNo=="1")
-							$depositValue=ceil(($totalBooking/100)*$depositValue);
-						else
-							$depositValue=($totalBooking/100)*$depositValue;
-						}
+			if ( $mrConfig['use_variable_deposits'] == "1" && count($datesTilBooking) <= (int) $mrConfig['variable_deposit_threashold'])
+				{
+				$depositValue=$this->contract_total;
+				}
+			else
+				{
+				// Calculate deposit
+				$depositValue=0;
+				// Depreciating this next if, but leaving the stuff inside on. This is because a few folks are setting the show deposit to No, but still sending the deposit value to
+				// paypal/gateway. Commenting out this if will mean that the deposit is still calculated.
+				//if ($this->cfg_chargeDepositYesNo=="1")
+				//	{
+					$depositValue=$this->cfg_depositValue;
+					$totalBooking=$this->contract_total;
+					if ($this->cfg_depAmount=="1")
+						 $depositValue=$this->contract_total;
 					else
 						{
-						if ($this->cfg_roundupDepositYesNo=="1")
-							$depositValue=ceil($depositValue);
+						if ($this->cfg_depositIsPercentage=="1")
+							{
+							if ($this->cfg_roundupDepositYesNo=="1")
+								$depositValue=ceil(($totalBooking/100)*$depositValue);
+							else
+								$depositValue=($totalBooking/100)*$depositValue;
+							}
 						else
-							$depositValue=$depositValue;
+							{
+							if ($this->cfg_roundupDepositYesNo=="1")
+								$depositValue=ceil($depositValue);
+							else
+								$depositValue=$depositValue;
+							}
 						}
-					}
-				//}
+					//}
+				}
 			}
 		$this->deposit_required = $depositValue;
 		
