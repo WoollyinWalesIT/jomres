@@ -147,76 +147,115 @@ class basic_property_details
 		if ($property_uid == $this->property_uid) // No need to re-gather the info
 			return true;
 		$this->property_uid = (int)$property_uid;
-		
-		$no_html=get_showtime('no_html');
-		$popup=get_showtime('popup');
-		$editable = true;
-		if ($no_html == "1" || $popup == "1")
-			$editable = false;
-		$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
-		$propertyData=doSelectSql($query);
-
 		$customTextObj =jomres_getSingleton('custom_text');
-		foreach ($propertyData as $data)
-			{
-			//$countryname=getSimpleCountry($data->property_country);
-			$customTextObj->get_custom_text_for_property($this->property_uid);
-
-			$countryname=getSimpleCountry($data->property_country);
-			
-			$this->untranslated_property_names[$this->property_uid]=$data->property_name;
-			
-			$this->property_name			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,$editable,false);
-			$this->property_street			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET',$data->property_street,$editable,false);
-			$this->property_town			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN',$data->property_town,$editable,false);
-			$this->property_postcode		=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE',$data->property_postcode,$editable,false);
-			$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
-			$this->property_country			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$countryname,$editable,false);
-			$this->property_country_code	= $data->property_country;
-
-			$this->property_tel				=$data->property_tel;
-			$this->property_fax				=$data->property_fax;
-			$this->property_email			=$data->property_email;
-			$this->published				=(int)$data->published;
-			$this->ptype_id					=(int)$data->ptype_id;
-			$this->stars					=(int)$data->stars;
-			$this->lat						=$data->lat;
-			$this->long						=$data->long;
-			$this->metatitle				=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
-			$this->metadescription			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$data->metadescription,false,false);
-			$this->property_features		=$data->property_features;
-			$this->property_mappinglink		=$data->property_mappinglink;
-			$this->real_estate_property_price = $data->property_key;
-
-			$this->property_description		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($data->property_description)),$editable,false));
-			$this->property_checkin_times	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($data->property_checkin_times)),$editable,false));
-			$this->property_area_activities	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($data->property_area_activities)),$editable,false));
-			$this->property_driving_directions=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($data->property_driving_directions)),$editable,false));
-			$this->property_airports		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS',trim(stripslashes($data->property_airports)),$editable,false));
-			$this->property_othertransport	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($data->property_othertransport)),$editable,false));
-			$this->property_policies_disclaimers=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($data->property_policies_disclaimers)),$editable,false));
-			$this->apikey					=$data->apikey;
-			}
-
-
-		$this->classAbbvs = array();
-		$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
-		$roomsClassList =doSelectSql($query);
-		foreach ($roomsClassList as $roomClass)
-			{
-			$this->classAbbvs[(int)$roomClass->room_classes_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
-			$this->classAbbvs[(int)$roomClass->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_desc),false,false);
-			$this->classAbbvs[(int)$roomClass->room_classes_uid]['image'] = $roomClass->image;
-			}
+		$customTextObj->get_custom_text_for_property($this->property_uid);
 		
-		$this->this_property_room_classes = array();
-		$query = "SELECT roomtype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE propertytype_id =".(int)$this->ptype_id;
-		$roomtypes =doSelectSql($query);
-		foreach ($roomtypes as $roomClass)
+		if (array_key_exists($this->property_uid,$this->multi_query_result))
 			{
-			$this->this_property_room_classes[(int)$roomClass->roomtype_id] = $this->classAbbvs[$roomClass->roomtype_id];
+				$this->property_name			=$this->multi_query_result[$this->property_uid]['property_name'];
+				$this->property_street			=$this->multi_query_result[$this->property_uid]['property_street'];
+				$this->property_town			=$this->multi_query_result[$this->property_uid]['property_town'];
+				$this->property_postcode		=$this->multi_query_result[$this->property_uid]['property_postcode'];
+				$this->property_region			=$this->multi_query_result[$this->property_uid]['property_region'];
+				$this->property_country			=$this->multi_query_result[$this->property_uid]['property_country'];
+				$this->property_country_code	=$this->multi_query_result[$this->property_uid]['property_country_code'];
+
+				$this->property_tel				=$this->multi_query_result[$this->property_uid]['property_tel'];
+				$this->property_fax				=$this->multi_query_result[$this->property_uid]['property_fax'];
+				$this->property_email			=$this->multi_query_result[$this->property_uid]['property_email'];
+				$this->published				=$this->multi_query_result[$this->property_uid]['published'];
+				$this->ptype_id					=$this->multi_query_result[$this->property_uid]['ptype_id'];
+				$this->stars					=$this->multi_query_result[$this->property_uid]['stars'];
+				$this->lat						=$this->multi_query_result[$this->property_uid]['lat'];
+				$this->long						=$this->multi_query_result[$this->property_uid]['long'];
+				$this->metatitle				=$this->multi_query_result[$this->property_uid]['metatitle'];
+				$this->metadescription			=$this->multi_query_result[$this->property_uid]['metadescription'];
+				$this->property_features		=$this->multi_query_result[$this->property_uid]['property_features'];
+				$this->property_mappinglink		=$this->multi_query_result[$this->property_uid]['property_mappinglink'];
+				$this->real_estate_property_price = $this->multi_query_result[$this->property_uid]['real_estate_property_price'];
+
+				$this->property_description		=$this->multi_query_result[$this->property_uid]['property_description'];
+				$this->property_checkin_times	=$this->multi_query_result[$this->property_uid]['property_checkin_times'];
+				$this->property_area_activities	=$this->multi_query_result[$this->property_uid]['property_area_activities'];
+				$this->property_driving_directions=$this->multi_query_result[$this->property_uid]['property_driving_directions'];
+				$this->property_airports		=$this->multi_query_result[$this->property_uid]['property_airports'];
+				$this->property_othertransport	=$this->multi_query_result[$this->property_uid]['property_othertransport'];
+				$this->property_policies_disclaimers=$this->multi_query_result[$this->property_uid]['property_policies_disclaimers'];
+				$this->apikey					=$this->multi_query_result[$this->property_uid]['apikey'];
+			}
+		else
+			{
+			$no_html=get_showtime('no_html');
+			$popup=get_showtime('popup');
+			$editable = true;
+			if ($no_html == "1" || $popup == "1")
+				$editable = false;
+			$query="SELECT * FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
+			$propertyData=doSelectSql($query);
+
+			
+			foreach ($propertyData as $data)
+				{
+				//$countryname=getSimpleCountry($data->property_country);
+				
+
+				$countryname=getSimpleCountry($data->property_country);
+				
+				$this->untranslated_property_names[$this->property_uid]=$data->property_name;
+				
+				$this->property_name			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,$editable,false);
+				$this->property_street			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET',$data->property_street,$editable,false);
+				$this->property_town			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_TOWN',$data->property_town,$editable,false);
+				$this->property_postcode		=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE',$data->property_postcode,$editable,false);
+				$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
+				$this->property_country			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$countryname,$editable,false);
+				$this->property_country_code	= $data->property_country;
+
+				$this->property_tel				=$data->property_tel;
+				$this->property_fax				=$data->property_fax;
+				$this->property_email			=$data->property_email;
+				$this->published				=(int)$data->published;
+				$this->ptype_id					=(int)$data->ptype_id;
+				$this->stars					=(int)$data->stars;
+				$this->lat						=$data->lat;
+				$this->long						=$data->long;
+				$this->metatitle				=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
+				$this->metadescription			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$data->metadescription,false,false);
+				$this->property_features		=$data->property_features;
+				$this->property_mappinglink		=$data->property_mappinglink;
+				$this->real_estate_property_price = $data->property_key;
+
+				$this->property_description		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION', trim(stripslashes($data->property_description)),$editable,false));
+				$this->property_checkin_times	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES',trim(stripslashes($data->property_checkin_times)),$editable,false));
+				$this->property_area_activities	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES',trim(stripslashes($data->property_area_activities)),$editable,false));
+				$this->property_driving_directions=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS',trim(stripslashes($data->property_driving_directions)),$editable,false));
+				$this->property_airports		=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS',trim(stripslashes($data->property_airports)),$editable,false));
+				$this->property_othertransport	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($data->property_othertransport)),$editable,false));
+				$this->property_policies_disclaimers=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($data->property_policies_disclaimers)),$editable,false));
+				$this->apikey					=$data->apikey;
+				}
 			}
 
+		// $this->classAbbvs = array();
+		// $query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
+		// $roomsClassList =doSelectSql($query);
+		// foreach ($roomsClassList as $roomClass)
+			// {
+			// $this->classAbbvs[(int)$roomClass->room_classes_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false);
+			// $this->classAbbvs[(int)$roomClass->room_classes_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_desc),false,false);
+			// $this->classAbbvs[(int)$roomClass->room_classes_uid]['image'] = $roomClass->image;
+			// }
+		
+		if (!isset($this->this_property_room_classes))
+			{
+			$this->this_property_room_classes = array();
+			$query = "SELECT roomtype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE propertytype_id =".(int)$this->ptype_id;
+			$roomtypes =doSelectSql($query);
+			foreach ($roomtypes as $roomClass)
+				{
+				$this->this_property_room_classes[(int)$roomClass->roomtype_id] = $this->classAbbvs[$roomClass->roomtype_id];
+				}
+			}
 		
 		$bang = explode (",",$this->property_features);
 		$propertyFeaturesArray = array();
@@ -226,33 +265,45 @@ class basic_property_details
 				$propertyFeaturesArray[]=(int)$b;
 			}
 
-		$this->features = array();
-		if (count($propertyFeaturesArray)>0)
+		if (!isset($this->features))
 			{
-			$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
-			$propertyFeaturesList= doSelectSql($query);
-			foreach($propertyFeaturesList as $propertyFeature)
+			$this->features = array();
+			if (count($propertyFeaturesArray)>0)
 				{
-				if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
+				$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+				$propertyFeaturesList= doSelectSql($query);
+				foreach($propertyFeaturesList as $propertyFeature)
 					{
-					//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
-					$this->features[(int)$propertyFeature->hotel_features_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
-					$this->features[(int)$propertyFeature->hotel_features_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
-					$this->features[(int)$propertyFeature->hotel_features_uid]['image'] =$propertyFeature->image;
+					if (in_array(($propertyFeature->hotel_features_uid),$propertyFeaturesArray ))
+						{
+						//$propertyFeatureDescriptionsArray['FEATURE']=stripslashes($propertyFeature->hotel_feature_full_desc);
+						$this->features[(int)$propertyFeature->hotel_features_uid]['abbv'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_ABBV'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_abbv),false,false);
+						$this->features[(int)$propertyFeature->hotel_features_uid]['desc'] = jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$propertyFeature->hotel_features_uid,		stripslashes($propertyFeature->hotel_feature_full_desc),false,false);
+						$this->features[(int)$propertyFeature->hotel_features_uid]['image'] =$propertyFeature->image;
+						}
 					}
 				}
 			}
-			
-		$this->room_features = array();
-		$query="SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '".$this->property_uid."'";
-		$roomFeatures =doSelectSql($query);
-		if (count($roomFeatures)>0)
+
+		// This array is only used by the showRoomDetails task. It's pointless constantly running this query when it's not used anywhere else.
+		if (get_showtime('task')=="showRoomDetails")
 			{
-			foreach($roomFeatures as $f)
+			if (!isset($this->room_features))
+				$this->room_features = array();
+			if (!isset($this->room_features[$this->property_uid]))
 				{
-				$this->room_features[(int)$f->room_features_uid]['desc'] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$f->room_features_uid,stripslashes($f->feature_description));
+				$query="SELECT room_features_uid,feature_description FROM #__jomres_room_features WHERE property_uid = '".$this->property_uid."'";
+				$roomFeatures =doSelectSql($query);
+				if (count($roomFeatures)>0)
+					{
+					foreach($roomFeatures as $f)
+						{
+						$this->room_features[$this->property_uid][(int)$f->room_features_uid]['desc'] =jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$f->room_features_uid,stripslashes($f->feature_description));
+						}
+					}
 				}
 			}
+
 		$mrConfig=getPropertySpecificSettings($this->property_uid);
 		$taxrates = taxrates_getalltaxrates();
 		$cfgcode = $mrConfig['accommodation_tax_code'];
