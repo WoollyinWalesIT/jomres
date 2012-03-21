@@ -70,8 +70,18 @@ class j01050x_geocoder {
 			}
 		else
 			{
-			$query="SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
-			$propertyData=doSelectSql($query,2);
+			$current_property_details =jomres_getSingleton('basic_property_details');
+			
+			if (isset($current_property_details->multi_query_result[$property_uid]))
+				{
+				$propertyData['lat'] = $current_property_details->multi_query_result[$property_uid]['lat'];
+				$propertyData['long'] = $current_property_details->multi_query_result[$property_uid]['long'];
+				}
+			else
+				{
+				$query="SELECT `lat`,`long` FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."' LIMIT 1";
+				$propertyData=doSelectSql($query,2);
+				}
 			if ( $propertyData['lat'] != null)
 				{
 				$output['LAT']		= $propertyData['lat'];

@@ -25,6 +25,7 @@ class basic_property_details
 		self::$internal_debugging = false;
 		self::$property_data = array();
 		$this->multi_query_result = array();
+		$this->untranslated_property_names = array();
 		$this->get_all_room_types();
 		}
 
@@ -68,6 +69,7 @@ class basic_property_details
 			set_showtime('property_uid',$property_uid);
 			$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
 			$property_name=doSelectSql($query,1);
+			$this->untranslated_property_names[$property_uid]=$property_name;
 			$customTextObj =jomres_getSingleton('custom_text');
 			$customTextObj->get_custom_text_for_property($property_uid);
 			$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
@@ -115,6 +117,7 @@ class basic_property_details
 				{
 				// We need to set showtime here otherwise the jr_gettext function won't know which property's info we're looking for
 				set_showtime('property_uid',$p->propertys_uid);
+				$this->untranslated_property_names[$p->propertys_uid]=$p->property_name;
 				$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$p->property_name,false,false);
 				$property_name = str_replace("&#39;", "'", $property_name);
 				$this->property_names[$p->propertys_uid] = $property_name;
@@ -125,6 +128,7 @@ class basic_property_details
 			foreach ($property_names as $p)
 				{
 				$this->property_names[$p->propertys_uid] = $p->property_name;
+				$this->untranslated_property_names[$p->propertys_uid]=$p->property_name;
 				}
 			}
 		set_showtime('property_uid',$original_property_uid);
@@ -159,6 +163,8 @@ class basic_property_details
 			$customTextObj->get_custom_text_for_property($this->property_uid);
 
 			$countryname=getSimpleCountry($data->property_country);
+			
+			$this->untranslated_property_names[$this->property_uid]=$data->property_name;
 			
 			$this->property_name			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,$editable,false);
 			$this->property_street			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET',$data->property_street,$editable,false);
@@ -312,7 +318,9 @@ class basic_property_details
 				set_showtime('property_uid',$data->propertys_uid);
 				$countryname=getSimpleCountry($data->property_country);
 				$customTextObj->get_custom_text_for_property($data->propertys_uid);
-
+				
+				$this->untranslated_property_names[$data->propertys_uid]=$data->property_name;
+				
 				$this->multi_query_result[$data->propertys_uid]['propertys_uid'] 					= $data->propertys_uid;
 				$this->multi_query_result[$data->propertys_uid]['property_name'] 					= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,$editable,false);
 				$this->multi_query_result[$data->propertys_uid]['property_street']					= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_STREET',$data->property_street,$editable,false);
