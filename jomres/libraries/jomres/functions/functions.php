@@ -4022,6 +4022,8 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 function getPropertyName($property_uid)
 	{
 	$current_property_details =jomres_getSingleton('basic_property_details');
+	if ( (int)$property_uid == 0)
+		return '';
 	return $current_property_details->get_property_name($property_uid);
 	}
 

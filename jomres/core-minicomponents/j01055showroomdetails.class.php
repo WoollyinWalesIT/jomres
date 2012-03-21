@@ -113,7 +113,6 @@ class j01055showroomdetails {
 				else
 					$smoking= jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 
-
 				$roomFeatureDescriptionsArray=array();
 				$roomFeatureUidsArray=explode(",",$room_features_uid);
 				$featurelist=array();
@@ -121,7 +120,7 @@ class j01055showroomdetails {
 					{
 					if ((int)$featureUid > 0)
 						{
-						$roomFeatureDescriptionsArray['ROOMFEATURE']=$current_property_details->room_features[$featureUid]['desc'];
+						$roomFeatureDescriptionsArray['ROOMFEATURE']=$current_property_details->room_features[$property_uid][$featureUid]['desc'];
 						$featurelist[]=$roomFeatureDescriptionsArray;
 						}
 					}
