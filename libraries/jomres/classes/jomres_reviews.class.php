@@ -260,28 +260,65 @@ class jomres_reviews {
 		$result = doSelectSql($sql,1);
 		return $result;
 		}
-
-	public function showRating($item_id) {
-		$arr =array();
-		$sql = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' AND published = 1 GROUP BY item_id";
+	
+	public function getRatingsMulti($property_uids)
+		{
+		$g=genericOr($property_uids,'item_id');
+		if (!isset($this->multi_query_result))
+			$this->multi_query_result = array();
+		$sql = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE ".$g."' AND published = 1 GROUP BY item_id";
 		$result = doSelectSql($sql);
+		$arr =array();
 		if (count($result)>0)
 			{
 			foreach ($result as $res)
 				{
-				$arr['property_uid']=$res->item_id;
-				$arr['avg_rating']=$res->avg_rating;
-				$arr['counter']=$res->counter;
-				$arr['sumrating']=$res->sumrating;
+				$arr[$res->item_id]['property_uid']=$res->item_id;
+				$arr[$res->item_id]['avg_rating']=$res->avg_rating;
+				$arr[$res->item_id]['counter']=$res->counter;
+				$arr[$res->item_id]['sumrating']=$res->sumrating;
+				}
+			}
+		foreach ($property_uids as $property_uid)
+			{
+			if (isset($arr[$property_uid]))
+				$this->multi_query_result[$property_uid] = $arr[$property_uid];
+			else
+				{
+				$this->multi_query_result[$property_uid]['property_uid']=$property_uid;
+				$this->multi_query_result[$property_uid]['avg_rating']=0;
+				$this->multi_query_result[$property_uid]['counter']=0;
+				$this->multi_query_result[$property_uid]['sumrating']=0;
+				}
+			}
+		}
+	
+	public function showRating($item_id) {
+		if (!isset($this->multi_query_result[$item_id]))
+			{
+			$arr =array();
+			$sql = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' AND published = 1 GROUP BY item_id";
+			$result = doSelectSql($sql);
+			if (count($result)>0)
+				{
+				foreach ($result as $res)
+					{
+					$arr['property_uid']=$res->item_id;
+					$arr['avg_rating']=$res->avg_rating;
+					$arr['counter']=$res->counter;
+					$arr['sumrating']=$res->sumrating;
+					}
+				}
+			else
+				{
+				$arr['property_uid']=$this->property_uid;
+				$arr['avg_rating']=0;
+				$arr['counter']=0;
+				$arr['sumrating']=0;
 				}
 			}
 		else
-			{
-			$arr['property_uid']=$this->property_uid;
-			$arr['avg_rating']=0;
-			$arr['counter']=0;
-			$arr['sumrating']=0;
-			}
+			$arr = $this->multi_query_result[$item_id];
 		return $arr;
 	}
 
@@ -318,39 +355,6 @@ class jomres_reviews {
 			$totalPages = 0;
 			$return['totalPages'] = $totalPages;
 			} 
-		else 
-			{
-			// Not currently used, therefore commented out until it can be tested
-			// $sql = "SELECT count(*) as cnt FROM #__jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."' order by rating_date desc";
-			// $sql = str_replace("#__",$this->db_prefix,$sql);
-			// $return['sqlCnt'] = $sql;
-			// $rs = @mysql_query($sql);
-			// if(!$rs) {
-				// throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
-			// }
-			// $arr = mysql_fetch_array($rs);
-			// $totalRows = $arr['cnt'];
-			// $return['totalRows'] = $totalRows;
-
-			// if(!$max) $max = 10;
-			// $return['max'] = $max;
-			// if(!$pageNum) $pageNum = 0;
-			// $return['pageNum'] = $pageNum;
-			// $startRow = $pageNum * $max;
-			// $return['startRow'] = $startRow;
-			// $totalPages = ceil($totalRows/$max)-1;
-			// $return['totalPages'] = $totalPages;
-
-			// $sql = "SELECT * FROM __jomres_reviews_ratings WHERE item_id = '".(int)$this->property_uid."'";
-			// $sql .= " Limit ".$startRow.", ".$max;
-			// $return['sql'] = $sql;
-			// $sql = str_replace("#__",$this->db_prefix,$sql);
-			// $rs = @mysql_query($sql);
-			
-			// if(!$rs) {
-				// throw new Exception(mysql_error()." on line number ".__LINE__." of file ".__FILE__);
-			//}
-			}
 
 		foreach ($rs as $r)
 			{
