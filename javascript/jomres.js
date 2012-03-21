@@ -9,7 +9,7 @@ if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Err
 function module_popup(random_identifier,property_uid){
 	jomresJquery('#module_'+random_identifier+'_popup').dialog({
 	resizable: false,
-	height: 490,
+	height: 640,
 	width : 520,
 	modal : true,
 	resizable: true,
