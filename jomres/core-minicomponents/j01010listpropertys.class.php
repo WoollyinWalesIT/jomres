@@ -258,6 +258,13 @@ class j01010listpropertys {
 						$hotel_feature_full_desc=jr_gettext('_JOMRES_CUSTOMTEXT_FEATURES_DESC'.(int)$f->hotel_features_uid, stripslashes($f->hotel_feature_full_desc),false,false);
 						$featuresArray[$f->hotel_features_uid]=array('hotel_feature_abbv'=>$hotel_feature_abbv,'hotel_feature_full_desc'=>$hotel_feature_full_desc,'image'=>$f->image);
 						}
+						
+					if ($jrConfig['use_reviews'] =="1")
+						{
+						jr_import('jomres_reviews');
+						$Reviews = new jomres_reviews();
+						$Reviews->getRatingsMulti($propertysToShow);
+						}
 					}
 				}
 			$templateCounter=1;
@@ -323,8 +330,6 @@ class j01010listpropertys {
 
 						if ($jrConfig['use_reviews'] =="1")
 							{
-							jr_import('jomres_reviews');
-							$Reviews = new jomres_reviews();
 							$Reviews->property_uid = $property->propertys_uid;
 							$itemRating = $Reviews->showRating($property->propertys_uid);
 							$property_deets['AVERAGE_RATING']=number_format($itemRating['avg_rating'], 1, '.', '');
@@ -336,7 +341,7 @@ class j01010listpropertys {
 							$property_deets['_JOMRES_REVIEWS_CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 							$property_deets['COLON'] 								= " : ";
 							$property_deets['HYPHEN'] 								= " - ";
-							$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
+							//$property_deets['REVIEWS']								= $MiniComponents->specificEvent('06000',"show_property_reviews");
 							}
 						else
 							{

@@ -2,14 +2,33 @@ function toggle_review_div(uid,property_name)
 	{
 	div_id = "#property_reviews"+uid;
 	jomresJquery( div_id ).dialog({
-		title: property_name,
-		width: 800,
-		height: 500,
-		show: 'slide',
-		modal: true
+		resizable: false,
+		height: 490,
+		width : 520,
+		modal : true,
+		resizable: true,
+		open: function() 
+			{
+			jomresJquery.get(live_site_ajax+"&task=show_property_reviews&property_uid="+uid,
+			function(data){
+				jomresJquery('#property_reviews'+uid).html(data);
+				jomresJquery('.star').rating();
+				});
+			}
 		});
+	/* closes the dialog when you click elsewhere on the page. Modal in the dialog options must be set to True*/
+	jomresJquery('.ui-widget-overlay').live("click", function() {
+		//Close the dialog
+		jomresJquery(div_id).dialog("close");
+	});
 	};
+	
+	
 
+
+
+	
+	
 function shortlist(property_uid){
 	jomresJquery.get(live_site_ajax+"&task=ajax_shortlist&property_uid="+property_uid, function(data) {
 		jomresJquery('#shortlist_'+property_uid).html(data);
