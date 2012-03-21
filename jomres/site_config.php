@@ -239,6 +239,6 @@ $jrConfig['default_from_address'] = "";
 
 $jrConfig['css_caching_enabled'] = "0";
 $jrConfig['use_cleardate_checkbox'] = "1";
-$jrConfig['use_cookie_policy'] = "1";
+$jrConfig['use_cookie_policy'] = "0";
 
 ?>
