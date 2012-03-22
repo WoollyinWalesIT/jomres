@@ -23,6 +23,7 @@ class j06000show_shortlisted_properties
 			$this->template_touchable=false; return;
 			}
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$original_search_results = $tmpBookingHandler->tmpsearch_data['ajax_list_search_results'];
 		$shortlist_items = $tmpBookingHandler->tmpsearch_data['shortlist_items'];
 
 		$MiniComponents->triggerEvent('01004',$componentArgs); // optional
@@ -31,6 +32,7 @@ class j06000show_shortlisted_properties
 		$MiniComponents->triggerEvent('01007',$componentArgs); // optional
 		$componentArgs['propertys_uid'] = $shortlist_items;
 		$MiniComponents->triggerEvent('01010',$componentArgs); // listPropertys
+		$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $original_search_results;
 		}
 
 	function getRetVals()
