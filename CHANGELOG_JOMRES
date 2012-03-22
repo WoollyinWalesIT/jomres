@@ -1,3 +1,13 @@
+Jomres 6.6.0
+
+Added a new feature to the property list where people perusing properties can add chosen properties to a "shortlist". This is a temporary list, but unlike the "favourites" list users do not need to be logged in to add properties to that list. When their session has ended, the shortlist is lost.
+Also added a cookie warning feature, for those who want to abide by new EU cookie legislation. The legislation is badly written, and I personally wouldn't use this feature but the option is there for you. If you enable the feature and somebody doesn't agree to Jomres using cookies to make the system work, then users are limited to the property list and property details pages.
+Modified the property list template, broken the buttons out into their own template so that buttons don't have to be duplicated through different property list layout templates.
+Added an option in Tariffs and Currencies where the deposit can be set to the cost of the first night's stay. Tariffs and Currencies tab has been reorganised slightly, moved tax setting further up, verbose tariffs input into the property details page tab and removed some old code.
+A variety of performance enhancements designed to reduce the number of queries performed when viewing the property list page.
+Modified property list script so that it takes into account if the ajax search feature has been used and the headers will still show.
+
+
 Jomres 6.5.3
 
 Fixed a major bug where auto increment ids weren't being passed back correctly from the database class.
