@@ -57,7 +57,7 @@ class j01010listpropertys {
 		
 		$layout_rows = array();
 		$all_layouts = array();
-		if (JOMRES_NOHTML != 1 && count($property_list_layouts) > 1)
+		if ( (JOMRES_NOHTML != 1 ||  get_showtime('task') == "ajax_search_filter" ) && count($property_list_layouts) > 1)
 			{
 			foreach ($property_list_layouts as $key=>$layouts)
 				{
@@ -68,6 +68,7 @@ class j01010listpropertys {
 				$layout_rows[]=$r;
 				}
 			}
+
 		if (isset($_REQUEST['layout']) && in_array($_REQUEST['layout'],$all_layouts) )
 			{
 			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = $_REQUEST['layout'];
@@ -102,7 +103,7 @@ class j01010listpropertys {
 			$propertys_uids=$tmpArray;
 			}
 				
-		if (JOMRES_NOHTML != 1)
+		if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
 			{
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
 			$tmpBookingHandler->tmpsearch_data['ajax_list_search_results'] = $propertys_uids;
@@ -140,20 +141,20 @@ class j01010listpropertys {
 				$header_output['CLICKTOHIDE']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOHIDE',_JOMRES_REVIEWS_CLICKTOHIDE,false,false);
 				$header_output['CLICKTOSHOW']			=jr_gettext('_JOMRES_REVIEWS_CLICKTOSHOW',_JOMRES_REVIEWS_CLICKTOSHOW,false,false);
 				$compare = array();
-				if (JOMRES_NOHTML != 1)
+				if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
 					{
 					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script>var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'";</script>' );
 					if (get_showtime('task') != "show_shortlisted_properties")
 						$shortlist[]=array( '_JOMRES_VIEWSHORTLIST'=>jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST,false,false),'SHORTLISTLINK'=>jomresURL(JOMRES_SITEPAGE_URL."&task=show_shortlisted_properties" ));
 					}
 
-				if (JOMRES_NOHTML != 1)
+				if (JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
 					{
 					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\">var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."';</script>";
 					jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
 					}
 					
-				if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE'))
+				if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE') && JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
 					{
 					define('_JOMRES_MODULEPOPUP_AJAX_SOURCE',1);
 					$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
@@ -537,7 +538,7 @@ class j01010listpropertys {
 
 				if (!$data_only)
 					{
-					if (JOMRES_NOHTML != 1)
+					if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
 						{
 						$header_pageoutput[] = $header_output;
 						$tmpl = new patTemplate();
