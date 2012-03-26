@@ -2492,7 +2492,12 @@ class dobooking
 		{
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['wholeday_booking'] == "1")
-			$this->stayDays=$this->dateDiff($this->arrivalDate,$this->departureDate)+1;
+			{
+			if ( $this->cfg_fixedPeriodBookings == "1")
+				$this->stayDays=$this->dateDiff($this->arrivalDate,$this->departureDate);
+			else
+				$this->stayDays=$this->dateDiff($this->arrivalDate,$this->departureDate)+1;
+			}
 		else
 			$this->stayDays=$this->dateDiff($this->arrivalDate,$this->departureDate);
 		$this->setErrorLog("setStayDays::".$this->stayDays);
