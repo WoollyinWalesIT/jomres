@@ -48,7 +48,7 @@ class j06000ajax_list_properties
 				break;
 				}
 			}
-//var_dump($this->resultBucket);exit;
+
 		if (count($this->resultBucket) > 0)
 			{
 			$componentArgs=array();
