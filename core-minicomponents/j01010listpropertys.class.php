@@ -76,7 +76,11 @@ class j01010listpropertys {
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		
 		$propertys_uids=$componentArgs['propertys_uid'];
-
+		if (!isset($componentArgs['live_scrolling_enabled']))
+			$live_scrolling_enabled = true;
+		else
+			$live_scrolling_enabled = (bool)$componentArgs['live_scrolling_enabled'];
+		
 		if ($propertys_uids=="")
 			$propertys_uids=array();
 
@@ -102,7 +106,7 @@ class j01010listpropertys {
 				}
 			$propertys_uids=$tmpArray;
 			}
-				
+		
 		if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
 			{
 			$propertys_uids=$MiniComponents->triggerEvent('01009',array('propertys_uids'=>$propertys_uids) ); // Pre list properties parser. Allows us to to filter property lists if required
@@ -164,7 +168,11 @@ class j01010listpropertys {
 				$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
 				$query.=$g;
 				$order = implode($propertys_uids,",");
-				$query.=" ORDER BY FIELD(propertys_uid, $order) LIMIT ".(int)$jrConfig['property_list_limit'];
+				if ($live_scrolling_enabled)
+					$limit = (int)$jrConfig['property_list_limit'];
+				else
+					$limit = count($propertys_uids);
+				$query.=" ORDER BY FIELD(propertys_uid, $order) LIMIT ".$limit;
 				$propertyDeets = @doSelectSql($query);
 
 				if (count($propertyDeets) > 0)
