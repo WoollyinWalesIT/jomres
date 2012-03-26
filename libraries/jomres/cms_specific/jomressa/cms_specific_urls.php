@@ -20,7 +20,7 @@ $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 if (strstr($scriptname,'install_jomres.php'))
 	$jomresConfig_live_site=str_replace("/jomres","",get_showtime('live_site'));
 
-$ssllink	= str_replace("https://","http://",$jomresConfig_live_site;
+$ssllink	= str_replace("https://","http://",$jomresConfig_live_site);
 
 if (isset($_GET['format']) )
 	{
