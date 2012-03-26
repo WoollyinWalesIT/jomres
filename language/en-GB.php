@@ -1771,3 +1771,5 @@ define('_JOMRES_COOKIEPOLICY_6',"Yes, I accept the use of cookies in this way.")
 
 define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST','Deposit required is cost of the first night?');
 define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC','Prices are calculated on a per night basis. Do you want the deposit to be one night\'s charge? If so, you can ignore the following options.');
+
+define('_JOMRES_NOTHINGINSHORTLIST',"You haven't added any items to your shortlist.");
