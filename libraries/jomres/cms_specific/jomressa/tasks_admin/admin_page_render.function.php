@@ -54,7 +54,7 @@ function admin_page_render()
 			}
 		else
 			{
-			if ($JSAuser->user_pw == "40be4e59b9a2a2b5dffb918c0e86b3d7")
+			if ($JSAuser->user_pw == "40be4e59b9a2a2b5dffb918c0e86b3d7" && !isset($_REQUEST['no_html']))
 				echo "<h3>Warning, you're still using the default password 'welcome'. You are strongly advised to change your password as soon as possible</h3>";
 			
 			//$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
