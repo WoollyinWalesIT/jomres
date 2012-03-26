@@ -3,8 +3,8 @@ function toggle_review_div(uid,property_name)
 	div_id = "#property_reviews"+uid;
 	jomresJquery( div_id ).dialog({
 		resizable: false,
-		height: 800,
-		width : 500,
+		height: 500,
+		width : 800,
 		modal : true,
 		resizable: true,
 		open: function() 
