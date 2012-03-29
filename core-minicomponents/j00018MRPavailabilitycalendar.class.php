@@ -64,7 +64,7 @@ class  j00018MRPavailabilitycalendar {
 		$this->rooms_empty=0;
 		$this->rooms_quarter=(($this->numberOfRoomsInProperty/100)*.25)*100;
 		$this->rooms_half=(($this->numberOfRoomsInProperty/100)*.5)*100;
-		$this->rooms_threequarter=(($this->numberOfRoomsInProperty/100)*.99)*100;
+		$this->rooms_threequarter=(($this->numberOfRoomsInProperty/100)*.75)*100;
 		$this->rooms_full=$this->numberOfRoomsInProperty;
 
 		if ($mrConfig['showAvailabilityCalendar']=="1")
@@ -316,16 +316,16 @@ class  j00018MRPavailabilitycalendar {
 			{
 			$bgcolor=$this->colour_full;
 			// These two lines added so that the property isn't marked as full until it's completely full (previously it was marked full after 3/4 spaces taken to give properties room to maneouver)
-			if ($d == $this->rooms_full-1)
-				$bgcolor=$this->colour_threequarter;
-			if ($d <= $this->rooms_threequarter)
-				$bgcolor=$this->colour_threequarter;
-			if ($d <= $this->rooms_half)
-				$bgcolor=$this->colour_half;
-			if ($d <= $this->rooms_quarter)
-				$bgcolor=$this->colour_quarter;
+			if ($d == $this->rooms_full)
+				$bgcolor = $this->colour_full;
+			if ($d <= $this->rooms_full-1  && $d >= $this->rooms_threequarter )
+				$bgcolor = $this->colour_threequarter;
+			if ($d < $this->rooms_threequarter && $d >= $this->rooms_half)
+				$bgcolor = $this->colour_half;
+			if ($d < $this->rooms_half && $d >= $this->rooms_empty+1)
+				$bgcolor = $this->colour_quarter;
 			if ($d == $this->rooms_empty)
-				$bgcolor=$this->colour_empty;
+				$bgcolor = $this->colour_empty;
 			$datesArray[$key]=array('bgcolor'=>$bgcolor);
 			}
 
