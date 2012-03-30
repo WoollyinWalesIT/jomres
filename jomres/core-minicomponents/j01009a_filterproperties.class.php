@@ -48,7 +48,7 @@ class j01009a_filterproperties
 			if (isset($_REQUEST['jomsearch_sortby']) )
 				$sortid = intval(jomresGetParam( $_REQUEST, 'jomsearch_sortby', 1));
 			else
-				$sortid = 1;
+				$sortid = $jrConfig['search_order_default'];
 			}
 		 $tmpBookingHandler->user_settings['jomsearch_sortby'] = $sortid;
 		
