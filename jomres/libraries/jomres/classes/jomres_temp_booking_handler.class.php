@@ -213,7 +213,8 @@ class jomres_temp_booking_handler
 
 		$this->jomressession=$this->part;
 		$secret=get_showtime('secret');
-		$hash = sha1($secret.$this->part);
+		$userid = jomres_cmsspecific_getcurrentusers_id();
+		$hash = sha1($userid.$secret.$this->part);
 		$this->sessionfile=$this->session_directory.$hash.".txt";
 		
 		jr_import('jomres_custom_field_handler');
