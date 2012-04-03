@@ -25,10 +25,10 @@ function showSiteConfig(  )
 	{
 	global $version;
 
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
-	$jrtbar =jomres_getSingleton('jomres_toolbar');
+	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
@@ -285,7 +285,7 @@ function saveSiteConfig (  )
 
 function getJomresLanguagesDropdown()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$langs=array();
 
@@ -355,7 +355,7 @@ function getJomresLanguagesDropdown()
 					}
 				}
 			}
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$colourSchemeDataArray=$MiniComponents->triggerEvent('00021'); // optional
 		
 		if (is_array($colourSchemeDataArray))

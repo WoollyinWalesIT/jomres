@@ -71,7 +71,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 	$lang			= @ JFactory::getLanguage();
 	$jomresConfig_lang = $lang->_lang;
 	}
-$showtime = jomres_getSingleton('showtime');
+$showtime = jomres_singleton_abstract::getInstance('showtime');
 
 $showtime->error_reporting	= $CONFIG->error_reporting;
 

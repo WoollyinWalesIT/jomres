@@ -22,10 +22,10 @@ class jomres_editing_mode
 	 */
 	function jomres_editing_mode()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		// We'll specifically set the post and get routines here so that we don't end up saving the cookie/cms specific code every time if the cookie's the container for the lang.
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->editing_allowed = true;
 		if (!isset($tmpBookingHandler->user_settings['editing_on']))
@@ -55,7 +55,7 @@ class jomres_editing_mode
 		{
 		if (!$this->editing_allowed)
 			return false;
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$tmpBookingHandler->user_settings['editing_on']= true;
 		$tmpBookingHandler->close_jomres_session();
 		}
@@ -64,7 +64,7 @@ class jomres_editing_mode
 		{
 		if (!$this->editing_allowed)
 			return false;
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$tmpBookingHandler->user_settings['editing_on']= false;
 		$tmpBookingHandler->close_jomres_session();
 		}

@@ -18,7 +18,7 @@ class j06000show_hotel_details
 	function j06000show_hotel_details($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -28,7 +28,7 @@ class j06000show_hotel_details
 		$property_uid= (int)$componentArgs['property_uid'];
 		if ($property_uid ==0)
 			{
-			$thisJRUser=jomres_getSingleton('jr_user');
+			$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 			if ($thisJRUser->userIsManager)
 				{
 				$property_uid=getDefaultProperty();
@@ -40,7 +40,7 @@ class j06000show_hotel_details
 				}
 			}
 
-		$basic_property_details =jomres_getSingleton('basic_property_details');
+		$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($property_uid);
 
 		$output['HPROPERTYNAME']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME);

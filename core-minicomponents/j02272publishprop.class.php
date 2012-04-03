@@ -30,20 +30,20 @@ class j02272publishprop {
 	function j02272publishprop()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$defaultProperty=getDefaultProperty();
 		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 
-		$jomres_messaging =jomres_getSingleton('jomres_messages');
+		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 		
 
 		if (!isset($_REQUEST['property_uid']) )

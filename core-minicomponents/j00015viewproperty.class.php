@@ -28,12 +28,12 @@ class j00015viewproperty
 	 */
 	function j00015viewproperty($componentArgs)
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		
 		$jrConfig=$siteConfig->get();
-		$customTextObj =jomres_getSingleton('custom_text');
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		
 		if ($MiniComponents->template_touch)
 			{
@@ -51,7 +51,7 @@ class j00015viewproperty
 		if (!$userIsManager)
 			propertyClicked($property_uid);
 
-		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 
 		$pr_published=$current_property_details->published;

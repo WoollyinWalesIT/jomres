@@ -44,7 +44,7 @@ function JomresBuildRoute(&$query)
 		else
 			$pid = $route_query['property_uid'];
 		
-		$basic_property_details =jomres_getSingleton('basic_property_details');
+		$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		if (isset($basic_property_details->untranslated_property_names[$pid]))
 			$property_name = $basic_property_details->untranslated_property_names[$pid];
 		else

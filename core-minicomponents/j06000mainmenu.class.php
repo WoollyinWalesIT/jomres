@@ -28,7 +28,7 @@ class j06000mainmenu
 	 */
 	function j06000mainmenu()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;

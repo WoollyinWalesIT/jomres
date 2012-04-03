@@ -17,7 +17,7 @@ class j16000edit_taxrate {
 	function j16000edit_taxrate()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -41,7 +41,7 @@ class j16000edit_taxrate {
 		$output['DESCRIPTION']=$rate->description;
 		$output['RATE']=$rate->rate;
 		
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_taxrate');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=list_taxrates",'');

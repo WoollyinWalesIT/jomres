@@ -18,13 +18,13 @@ class j06000show_site_business
 	function j06000show_site_business($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$output=array();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		$output['HBUSINESSNAME']=jr_gettext('_JOMRES_COM_YOURBUSINESS_NAME',_JOMRES_COM_YOURBUSINESS_NAME);

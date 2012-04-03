@@ -20,18 +20,18 @@ ob_start("removeBOM");
 @ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
 
 require_once(dirname(__FILE__).'/integration.php');
-$MiniComponents =jomres_getSingleton('mcHandler');
-$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
-$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
 $jomressession  = $tmpBookingHandler->getJomressession();
 
 $showSearchOptions=true;
-$jomreslang =jomres_getSingleton('jomres_language');
+$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language();
-$customTextObj =jomres_getSingleton('custom_text');
+$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
@@ -78,9 +78,9 @@ if (strstr($_SERVER['SCRIPT_NAME'],'index3.php') || $nohtml == "1")
 else
 	define('JRPORTAL_AJAXCALL',false);
 
-$jomreslang =jomres_getSingleton('jomres_language');
+$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language($propertytype);
-$customTextObj =jomres_getSingleton('custom_text');
+$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 
 $MiniComponents->triggerEvent('00005'); // Optional
 
@@ -146,7 +146,7 @@ if (!JRPORTAL_AJAXCALL)
 	{
 	jr_import('cpanel');
 	$cpanel=new cpanel();
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];	
 	echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
 	}

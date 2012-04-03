@@ -30,7 +30,7 @@ class j02190confirmationform {
 	function j02190confirmationform()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -54,7 +54,7 @@ class j02190confirmationform {
 			$booking_number=$contract->tag;
 			}
 		
-		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($defaultProperty);
 		$property_policiesdisclaimers=$current_property_details->property_policies_disclaimers;
 		$property_checkintimes=$current_property_details->property_checkintimes;

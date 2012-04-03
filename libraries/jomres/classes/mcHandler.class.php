@@ -31,7 +31,7 @@ class mcHandler {
 		//$this->eventPoints = array();
 		//$this->nonOverridableEventClasses=array();
 		//$this->unWantedFolderContents=array('.','..','cvs','.svn');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		$this->miniComponentData=array();
@@ -70,7 +70,7 @@ class mcHandler {
 	function touch_templates()
 		{
 		global $ePointFilepath;
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		$eventArgs=null;
 		$mrConfig['editingOn']="1";
@@ -124,7 +124,7 @@ class mcHandler {
 	// Acutally calls the triggered event.
 	function triggerEvent($eventPoint,$eventArgs=null)
 		{
-		$jomres_access_control = jomres_getSingleton('jomres_access_control');
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 		global $ePointFilepath,$eLiveSite;
 		$retVal=null;
 		$eventClasses=$this->registeredClasses;
@@ -181,7 +181,7 @@ class mcHandler {
 	function specificEvent($eventPoint,$eventName,$eventArgs=null)
 		{
 		global $ePointFilepath,$eLiveSite;
-		$jomres_access_control = jomres_getSingleton('jomres_access_control');
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 		$retVal=null;
 		$eventClasses=$this->registeredClasses;
 		if (count($this->registeredClasses) > 0 )

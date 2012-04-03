@@ -17,12 +17,12 @@ class j06000show_shortlisted_properties
 	{
 	function j06000show_shortlisted_properties()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$original_search_results = $tmpBookingHandler->tmpsearch_data['ajax_list_search_results'];
 		$shortlist_items = $tmpBookingHandler->tmpsearch_data['shortlist_items'];
 		

@@ -30,7 +30,7 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 		else
 			{
 			$default_root = $this->_options[root]['__default'];
-			$custom_templates =jomres_getSingleton('jomres_custom_template_handler');
+			$custom_templates =jomres_singleton_abstract::getInstance('jomres_custom_template_handler');
 			if ($templatename != "srch.html" && $templatename != "index.html")
 				{
 				if (file_exists($custom_templates->default_template_files_folder.JRDS.$templatename) && !isset($_REQUEST['nocustomtemplate']) )

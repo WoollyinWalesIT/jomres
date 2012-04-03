@@ -22,7 +22,7 @@ require_once($dir.'/integration.php');
 
 if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending response codes
 	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
-$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession($jomressession);
 if (!defined('TEMPLATES_FRONTEND'))
 	{
@@ -35,7 +35,7 @@ $JSAuser 		= 	jomressa_getSingleton('jomressa_access_user');
 $jomresConfig = jomressa_getSingleton('jomressa_config');
 $jomresSitefactory	= 	jomressa_getSingleton('jomressa_site_factory');
 
-$jomreslang =jomres_getSingleton('jomres_language');
+$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 if (file_exists(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'language'.JRDS.get_showtime('lang').'.php'))
 	require(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'language'.JRDS.get_showtime('lang').'.php');
 else

@@ -28,9 +28,9 @@ class j06005muviewbooking {
 	 */
 	function j06005muviewbooking()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -247,7 +247,7 @@ class j06005muviewbooking {
 
 		if (!$bookedin && dateDiff($interval,date("Y/m/d"),$booking_arrival) > (int)$mrConfig['cancellation_threashold'] )
 			{
-			$jrtbar =jomres_getSingleton('jomres_toolbar');
+			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
 			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelGuestBooking&contract_uid=$booking_contract_uid"),'');

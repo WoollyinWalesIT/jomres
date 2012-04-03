@@ -16,12 +16,12 @@ class j06002my_commission_invoices
 	{
 	function j06002my_commission_invoices()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$defaultProperty=getDefaultProperty();
 		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info">';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );

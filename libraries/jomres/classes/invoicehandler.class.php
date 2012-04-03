@@ -25,7 +25,7 @@ class invoicehandler extends jrportal_invoice
 
 	function create_new_invoice($invoice_data, $line_items=array() )
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$default_status = 0;
 		$default_subscription=0;

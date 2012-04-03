@@ -18,12 +18,12 @@ class j06001addnote {
 	function j06001addnote()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->userIsManager)
 			return;
 		$pageoutput=array();
@@ -32,7 +32,7 @@ class j06001addnote {
 		if ($contract_uid==0)
 			return;
 
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'savenote');
 		$jrtb .= $jrtbar->toolbarItem('cancel','javascript:window.close();','');

@@ -17,18 +17,18 @@ class j06005muviewfavourites {
 	function j06005muviewfavourites()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
 		if ($thisJRUser->userIsRegistered)
 			{
-			$customTextObj =jomres_getSingleton('custom_text');
+			$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 			$pageoutput=array();
 			$output=array();
 			$rows=array();
@@ -46,7 +46,7 @@ class j06005muviewfavourites {
 				foreach ($favourites as $f)
 					{
 					$customTextObj->get_custom_text_for_property($property->propertys_uid);
-					$current_property_details =jomres_getSingleton('basic_property_details');
+					$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 					$current_property_details->gather_data($f->property_uid);
 					$r['PROPERTYNAME']=$current_property_details->get_property_name($f->property_uid);
 					

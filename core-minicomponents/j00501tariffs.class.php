@@ -28,14 +28,14 @@ class j00501tariffs {
 	function j00501tariffs($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$configurationPanel=$componentArgs['configurationPanel'];
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
 		
@@ -45,7 +45,7 @@ class j00501tariffs {
 		$tariffModeDD=$componentArgs['tariffModeDD'];
 	
 		$this->outputConversionJavascript();
-		$currfmt = jomres_getSingleton('jomres_currency_format');
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 		$cformatdropdown=$currfmt->get_currency_format_dropdowninput();
 
 

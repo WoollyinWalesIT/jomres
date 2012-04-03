@@ -52,7 +52,7 @@ if ($task != 'search' && $task != "dobooking" && $task != "viewproperty")
 //Include the jomres stuff
 require_once('jomres/integration.php');
 $jrConfig					=	getSiteSettings();
-$thisJRUser=jomres_getSingleton('jr_user');
+$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 if ($thisJRUser->superPropertyManager || $thisJRUser->userIsManager)
 	{
 	$dosef=false;

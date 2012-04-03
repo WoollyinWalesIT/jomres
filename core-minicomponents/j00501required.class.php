@@ -28,7 +28,7 @@ class j00501required {
 	function j00501required($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -37,10 +37,10 @@ class j00501required {
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
 		$configurationPanel=$componentArgs['configurationPanel'];
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$lists=$componentArgs['lists'];
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) )
 			{
 			$configurationPanel->startPanel(_JOMRES_REQUIREDFIELDS);

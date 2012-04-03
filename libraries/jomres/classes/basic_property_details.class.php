@@ -70,7 +70,7 @@ class basic_property_details
 			$query="SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".$property_uid."' LIMIT 1";
 			$property_name=doSelectSql($query,1);
 			$this->untranslated_property_names[$property_uid]=$property_name;
-			$customTextObj =jomres_getSingleton('custom_text');
+			$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 			$customTextObj->get_custom_text_for_property($property_uid);
 			$property_name=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$property_name,false,false);
 			$property_name = str_replace("&#39;", "'", $property_name);
@@ -84,10 +84,10 @@ class basic_property_details
 	
 	public function get_property_name_multi($property_uids=array(),$database_obj = false)
 		{
-		$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
+		$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 		$performance_monitor->set_point("pre-property name multi");
 		
-		$customTextObj =jomres_getSingleton('custom_text');
+		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 		
 		if (!isset($this->property_names))
 			$this->property_names = array();
@@ -147,7 +147,7 @@ class basic_property_details
 		if ($property_uid == $this->property_uid) // No need to re-gather the info
 			return true;
 		$this->property_uid = (int)$property_uid;
-		$customTextObj =jomres_getSingleton('custom_text');
+		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 		$customTextObj->get_custom_text_for_property($this->property_uid);
 		
 		if (array_key_exists($this->property_uid,$this->multi_query_result))
@@ -363,7 +363,7 @@ class basic_property_details
 			
 			$propertyData=doSelectSql($query);
 
-			$customTextObj =jomres_getSingleton('custom_text');
+			$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 			foreach ($propertyData as $data)
 				{
 				set_showtime('property_uid',$data->propertys_uid);

@@ -75,7 +75,7 @@ class jr_user
 					if ($authUser->suspended == "1")
 						$this->userIsSuspended = true;
 					
-					$basic_property_details =jomres_getSingleton('basic_property_details');
+					$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 
 					if ($authUser->pu == "1")
 						{

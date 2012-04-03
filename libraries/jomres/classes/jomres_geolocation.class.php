@@ -39,7 +39,7 @@ class jomres_geolocation
 		
 	private function init()
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!is_null($jrConfig['geolocation_api_key']) && $jrConfig['geolocation_api_key'] != "")
 			$this->api_key = $jrConfig['geolocation_api_key'];
@@ -50,7 +50,7 @@ class jomres_geolocation
 	
 	public function determine_user_location()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if (is_null($tmpBookingHandler->user_settings['geolocated_country']) && $this->api_key != "")
 			{
 			$ip = get_remote_ip_number();
@@ -73,7 +73,7 @@ class jomres_geolocation
 
 	public function auto_set_user_currency_code()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		jr_import('currency_codes');
 		$currency_codes =  new currency_codes();
 		$country_codes_to_currency_codes = $currency_codes->country_codes_to_currency_codes;

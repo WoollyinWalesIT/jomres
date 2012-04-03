@@ -30,7 +30,7 @@ class j06002reportbug {
 	function j06002reportbug($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -45,7 +45,7 @@ class j06002reportbug {
 		$jomresConfig_user=get_showtime('user');
 		$jomresConfig_password=get_showtime('password');
 
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->superPropertyManager)
 			return;
 		$mrConfig=getPropertySpecificSettings();
@@ -53,7 +53,7 @@ class j06002reportbug {
 		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
 		$current_version = $mrConfig['version'];
 
-		//$showtime = jomres_getSingleton('showtime');
+		//$showtime = jomres_singleton_abstract::getInstance('showtime');
 		if ($thisJRUser->superPropertyManager)
 			{
 			$link = mysql_connect($jomresConfig_host, $jomresConfig_user, $jomresConfig_password);
@@ -178,7 +178,7 @@ class j06002reportbug {
 			$debug.=$error_log."\n";
 			
 			
-			$jrtbar =jomres_getSingleton('jomres_toolbar');
+			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->customToolbarItem("SEND",jomresURL(JOMRES_SITEPAGE_URL."&task=sendbug&currentPage=$currentPage"),$text="Send Bug",$submitOnClick=true,$submitTask="sendbug",$image);
 			$jrtb .= $jrtbar->endTable();

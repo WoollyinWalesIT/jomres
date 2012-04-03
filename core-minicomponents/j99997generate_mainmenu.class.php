@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 class j99997generate_mainmenu {
 	function j99997generate_mainmenu($componentArgs)
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -27,7 +27,7 @@ class j99997generate_mainmenu {
 			return;
 		set_showtime('mainmenu_alreadyrun',true);
 		
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		$buttons = $componentArgs['jomres_mainmenu_buttons_categorised'];

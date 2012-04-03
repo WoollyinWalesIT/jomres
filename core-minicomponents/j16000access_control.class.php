@@ -17,15 +17,15 @@ class j16000access_control
 	{
 	function j16000access_control()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
-		$jomres_access_control = jomres_getSingleton('jomres_access_control');
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
 		$levels = array ("anybody","registered","manager","supermanager","nobody");
 		

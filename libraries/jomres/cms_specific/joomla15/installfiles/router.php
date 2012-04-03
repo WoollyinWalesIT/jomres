@@ -47,7 +47,7 @@ function JomresBuildRoute(&$query)
 		
 		// if (!isset($_REQUEST['tmpl']))
 			// {
-			// $current_property_details =jomres_getSingleton('basic_property_details');
+			// $current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 
 			// $tmpname_array = get_showtime("router_property_names_array");
 			// if (is_array($tmpname_array) && is_array($current_property_details->property_names) )

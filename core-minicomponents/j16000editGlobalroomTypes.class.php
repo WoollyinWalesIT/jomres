@@ -18,7 +18,7 @@ class j16000editGlobalroomTypes
 	function j16000editGlobalroomTypes()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -120,7 +120,7 @@ class j16000editGlobalroomTypes
 		$output['_JOMRES_IMAGE']=_JOMRES_IMAGE;
 		
 		
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;

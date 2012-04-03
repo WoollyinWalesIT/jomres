@@ -29,14 +29,14 @@ class  j00018MRPavailabilitycalendar {
 	function  j00018MRPavailabilitycalendar($componentArgs=null)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->retVals="";
 		$this->pop=jomresGetParam( $_REQUEST, 'popup', 0 );
@@ -183,7 +183,7 @@ class  j00018MRPavailabilitycalendar {
 		//global $jomresConfig_locale;
 		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$userIsManager=checkUserIsManager();
 		//setlocale(LC_ALL, $jomresConfig_locale);

@@ -29,19 +29,19 @@ class j03100adminconfirmationemail {
 	function j03100adminconfirmationemail($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$adminemail=$paypal_settings->paypalConfigOptions['email'];
 
 		if ($paypal_settings->paypalConfigOptions['override'] != "1") // The property paypal settings aren't overridden, so we'll not bother sending this email
 			return;
 
-		$currfmt = jomres_getSingleton('jomres_currency_format');
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
 		$guestDetails=$componentArgs['guestDetails'];
@@ -183,7 +183,7 @@ class j03100adminconfirmationemail {
 		$tmpl->addRows( 'rows',$rows);
 		$text=$tmpl->getParsedTemplate();
 
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$adminemail=$paypal_settings->paypalConfigOptions['email'];
 

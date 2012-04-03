@@ -39,9 +39,9 @@ function controlPanel($version)
  */
 function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$contentPanel =jomres_getSingleton('jomres_content_tabs');
+	$contentPanel =jomres_singleton_abstract::getInstance('jomres_content_tabs');
 	
 		?>
         <h2>Jomres <?php echo _JOMRES_A; ?></h2>

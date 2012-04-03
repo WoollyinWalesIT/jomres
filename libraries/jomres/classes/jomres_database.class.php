@@ -22,7 +22,7 @@ class jomres_database
 		$this->system_tables=array();
 		$this->error = null;
 		$this->result=null;
-		$showtime = jomres_getSingleton('showtime');
+		$showtime = jomres_singleton_abstract::getInstance('showtime');
 		$this->dbtype = get_showtime('dbtype');
 		if ( $this->dbtype == "mysqli" )
 			{
@@ -76,7 +76,7 @@ class jomres_database
 
 	function setQuery($query)
 		{
-		$performance_monitor = jomres_getSingleton('jomres_performance_monitor');
+		$performance_monitor = jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 		$performance_monitor->set_sqlquery_log("".whereCalled()." <br/>".$query ."<br/>" );
 		$q = str_replace("#__",$this->db_prefix,$query);
 		$this->query=$q;

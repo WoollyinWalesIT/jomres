@@ -17,7 +17,7 @@ class jomres_reviews {
 
 	public function __construct() {
 	$this->db_prefix=get_showtime('dbprefix');
-	$thisJRUser = jomres_getSingleton('jr_user');
+	$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 	$this->ip = $this->processString($_SERVER['REMOTE_ADDR']);
 	$this->userid = $thisJRUser->id;
 	$this->property_uid = 0;
@@ -25,7 +25,7 @@ class jomres_reviews {
 
 	public function this_user_can_report()
 		{
-		$thisJRUser = jomres_getSingleton('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsRegistered)
 			return true;
 		return false;
@@ -34,9 +34,9 @@ class jomres_reviews {
 	
 	public function this_user_can_review()
 		{
-		$thisJRUser = jomres_getSingleton('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		$can_post = false;
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		// This test mode allows property managers to make reviews where normally they wouldn't be allowed to.
 		if ($jrConfig['reviews_test_mode']=="1")
@@ -54,9 +54,9 @@ class jomres_reviews {
 
 	public function this_user_can_review_this_property()
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$thisJRUser = jomres_getSingleton('jr_user');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
 		// This test mode allows property managers to make reviews where normally they wouldn't be allowed to.
 		if ($jrConfig['reviews_test_mode']=="1" && $thisJRUser->userIsRegistered )
 			return true;
@@ -107,7 +107,7 @@ class jomres_reviews {
 	public function save_review($rating,$title,$description,$pros,$cons) 
 		{
 		$published = 0;
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['autopublish_reviews'] =="1")
 			$published = 1;

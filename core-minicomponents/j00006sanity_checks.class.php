@@ -18,14 +18,14 @@ class j00006sanity_checks {
 	function j00006sanity_checks($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		if (!defined('JOMRES_NOHTML'))
 			{
-			$thisJRUser=jomres_getSingleton('jr_user');
+			$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 			$accessLevel=$thisJRUser->accesslevel;
 
 			if ($thisJRUser->accesslevel == 2)

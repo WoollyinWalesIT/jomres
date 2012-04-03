@@ -30,16 +30,16 @@ class j06000contactowner {
 	function j06000contactowner($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$jomresConfig_secret = get_showtime('secret');
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$this->_remove_old_captcha_files();
 		require_once(JOMRESPATH_BASE.'/libraries/hn_captcha/hn_captcha.class.php');
 
@@ -49,7 +49,7 @@ class j06000contactowner {
 		if ($property_uid == 0 )
 			return;
 
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$all_properties_in_system =get_showtime('all_properties_in_system');
 		$published_properties_in_system =get_showtime('published_properties_in_system');
 		if (!in_array($property_uid,$all_properties_in_system) )
@@ -63,7 +63,7 @@ class j06000contactowner {
 			return;
 			}
 		
-		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$current_property_details->gather_data($property_uid);
 		
 		$this->QUERY_STRING = strlen(trim($_SERVER['QUERY_STRING'])) > 0 ? '?'.strip_tags($_SERVER['QUERY_STRING']) : '';
@@ -207,7 +207,7 @@ class j06000contactowner {
 	// We'll remove old capcha images if they're older than X
 	function _remove_old_captcha_files()
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->timeout = $jrConfig['lifetime'];
 		// $this->timeout = 60; // For testing

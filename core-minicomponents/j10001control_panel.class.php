@@ -18,7 +18,7 @@ class j10001control_panel
 	function j10001control_panel()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -184,7 +184,7 @@ class j10001control_panel
 	
 function plugin_check()
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$recommended_plugins = array();
 	$recommended_plugins['advanced_micromanage_tariff_editing_modes'] 	= array('minicomponent_name'=>'j02210listtariffs_advanced','message'=>'Offers the Advanced and Micromanage tariff editing modes, allowing property managers to construct much more detailed tariffs which mirror their real-world prices, for example different prices that cover different seasons.');
 	$recommended_plugins['core_gateway_paypal'] 						= array('minicomponent_name'=>'j00605paypal','message'=>'Offers the ability for property managers to take payments online via paypal.');
@@ -268,12 +268,12 @@ function jomresStatusTestFolderIsWritable($path)
 function jomresAccessControlSanityCheck()
 	{
 	$pass = false;
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
 	if ($jrConfig['full_access_control'] =="1")
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		jr_import('jomres_access_control_controlable');
 		$jomres_access_control_controlable = new jomres_access_control_controlable();
 		// Minicomponents that should never be forbidden from running
@@ -295,7 +295,7 @@ function jomresAccessControlSanityCheck()
 				}
 			}
 		// Next we'll find how many minicomponents actually have settings in the access control table
-		$jomres_access_control = jomres_getSingleton('jomres_access_control');
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 		
 		
 		// Now, it's possible that a minicomponent has been uninstalled, therefore we must go through the $jomres_access_control->controlled array and remove those records that refer to minicomps that aren't found in the $controllable array

@@ -18,12 +18,12 @@ class j06005save_subscriber
 	function j06005save_subscriber()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->userIsRegistered)
 			{
 			$MiniComponents->triggerEvent('02280');
@@ -46,7 +46,7 @@ class j06005save_subscriber
 
 			if ( $package_id == 0 )
 				{
-				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID);
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 				exit;
@@ -55,7 +55,7 @@ class j06005save_subscriber
 			
 			if (!array_key_exists($package_id,$all_packages))
 				{
-				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID);
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 				exit;
@@ -77,7 +77,7 @@ class j06005save_subscriber
 						// Status 2 = cancelled Status 3 = eot
 						if ($package_id == (int)$sub['package_id'] && (int)$sub['status'] < 2)
 							{
-							$jomres_messaging =jomres_getSingleton('jomres_messages');
+							$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 							$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE);
 							jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 							exit;
@@ -211,7 +211,7 @@ class j06005save_subscriber
 	function sendNewSubscription($subscription,$subscriber,$invoice_id,$init_total,$recur_total,$tax_code_id)
 		{
 		$jomresConfig_sitename=get_showtime('sitename');
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		$this->paypal_settings=$paypal_settings->paypalConfigOptions;
 		

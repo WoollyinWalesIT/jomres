@@ -18,13 +18,13 @@ class j01004property_list_list
 	function j01004property_list_list($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		$this_plugin = "list";
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		if ($layout == $this_plugin)
 			set_showtime("number_of_ajax_results_required",1); // This is for the list scrolling feature, we need to know the number of properties that should be returned

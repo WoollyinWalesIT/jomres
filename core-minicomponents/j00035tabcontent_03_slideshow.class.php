@@ -16,7 +16,7 @@ class j00035tabcontent_03_slideshow
 	{
 	function j00035tabcontent_03_slideshow($componentArgs)
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;

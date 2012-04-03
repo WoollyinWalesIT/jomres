@@ -74,7 +74,7 @@ class jomres_config_property_singleton
 		
 		if ($property_uid > 0)
 			{
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$temp_config=$this->default_config;
 			$this->property_uid = (int)$property_uid;
@@ -102,7 +102,7 @@ class jomres_config_property_singleton
 		
 	private function get_default_property_settings()
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$query="SELECT akey,value FROM #__jomres_settings WHERE property_uid = 0";
 		$settingsList=doSelectSql($query);

@@ -16,12 +16,12 @@ class j06001list_guests_invoices
 	{
 	function j06001list_guests_invoices()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->userIsManager)
 			return;
 		
@@ -55,7 +55,7 @@ class j06001list_guests_invoices
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
-				$basic_property_details =jomres_getSingleton('basic_property_details');
+				$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				
 				$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
 				$output['HUSER']=_JRPORTAL_INVOICES_USER;

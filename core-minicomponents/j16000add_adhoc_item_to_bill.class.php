@@ -18,7 +18,7 @@ class j16000add_adhoc_item_to_bill
 	function j16000add_adhoc_item_to_bill()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -44,7 +44,7 @@ class j16000add_adhoc_item_to_bill
 				$output['VALUE']=_JRPORTAL_ADD_ADHOC_ITEM_VALUE;
 				$output['DESCRIPTION']=_JRPORTAL_ADD_ADHOC_ITEM_DESCRIPTION;
 
-				$jrtbar =jomres_getSingleton('jomres_toolbar');
+				$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 				$link = JOMRES_SITEPAGE_URL_ADMIN;
@@ -91,7 +91,7 @@ class j16000add_adhoc_item_to_bill
 				$userFunctions=new jrportal_user_functions();
 				$output['MANAGER_DROPDOWN']=$userFunctions->makeManagersDropdown();
 				$output['MANAGER']=_JRPORTAL_ADD_ADHOC_ITEM_CHOOSEMANAGER;
-				$jrtbar =jomres_getSingleton('jomres_toolbar');
+				$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$image = $jrtbar->makeImageValid("/jomres/images/next.png");
 				$link = JOMRES_SITEPAGE_URL_ADMIN;

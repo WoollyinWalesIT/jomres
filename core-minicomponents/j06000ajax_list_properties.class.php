@@ -16,7 +16,7 @@ class j06000ajax_list_properties
 	{
 	function j06000ajax_list_properties()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -29,7 +29,7 @@ class j06000ajax_list_properties
 		if ($number_of_results ==0)
 			$number_of_results = 1;
 		
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$last_id = (int)$_REQUEST['lastID'];
 		$original_search_results = $tmpBookingHandler->tmpsearch_data['ajax_list_search_results'];
 		$count = count($original_search_results);

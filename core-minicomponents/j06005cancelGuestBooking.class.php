@@ -27,10 +27,10 @@ class j06005cancelGuestBooking {
 	 */
 	function j06005cancelGuestBooking()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -91,7 +91,7 @@ class j06005cancelGuestBooking {
 					if (!doInsertSql($query,""))
 						trigger_error ("Unable to update cancellations data for contract". (int)$contract_uid.", mysql db failure", E_USER_ERROR);
 					
-					$current_property_details =jomres_getSingleton('basic_property_details');
+					$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 					$current_property_details->gather_data($property_uid);
 			
 					$query="SELECT email,firstname,surname FROM #__jomres_guests WHERE guests_uid = ".$guest_uid." LIMIT 1";
@@ -243,7 +243,7 @@ class j06005cancelGuestBooking {
 				
 		if (!$bookedin)
 			{
-			$jrtbar =jomres_getSingleton('jomres_toolbar');
+			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelGuestBooking&popup=1&contract_uid=$booking_contract_uid"),'');
 			$jrtb .= $jrtbar->endTable();

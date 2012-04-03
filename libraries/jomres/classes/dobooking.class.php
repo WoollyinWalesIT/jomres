@@ -47,7 +47,7 @@ class dobooking
 	 */
 	function dobooking()
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		$this->jrConfig					= $jrConfig; // Importing the site config settings
@@ -343,7 +343,7 @@ class dobooking
 			$mrConfig['booking_form_daily_weekly_monthly']		= "D";
 		$this->cfg_booking_form_daily_weekly_monthly			= $mrConfig['booking_form_daily_weekly_monthly'];
 		
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		
 		if ($amend_contract)
@@ -388,7 +388,7 @@ class dobooking
 	 */
 	function getTmpBookingData()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$bookingDeets=$tmpBookingHandler->getBookingData();
 		$this->cfg_showExtras = $bookingDeets['show_extras'];
 		return $bookingDeets;
@@ -402,7 +402,7 @@ class dobooking
 	 */
 	function getTmpGuestData()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$userDeets=$tmpBookingHandler->getGuestData();
 		return $userDeets;
 		}
@@ -416,7 +416,7 @@ class dobooking
 	 */
 	function storeBookingDetails()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$this->writeToLogfile("<font color='grey'>".serialize($tmpBookingHandler->tmpguest)."</font>");
 
 		$tmpBookingHandler->tmpguest["mos_userid"]		=$this->mos_userid;
@@ -619,7 +619,7 @@ class dobooking
 
 	function getAllBookings()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		$amend_contractuid  = $tmpBookingHandler->getBookingFieldVal("amend_contractuid");
 		//$gor=genericOr($this->allPropertyRoomUids,'room_uid');
@@ -1005,7 +1005,7 @@ class dobooking
 				$extra_details[]=$extra_deets;
 				}
 			}
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->eventFileExistsCheck('05030'))
 			{
 			$MiniComponents->triggerEvent('05030',$this);
@@ -1418,7 +1418,7 @@ class dobooking
 	
 	function saveOverride($values)
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsManager)
 			{
 			$bang = explode("^",$values);
@@ -1464,7 +1464,7 @@ class dobooking
 	*/
 	function saveCoupon($coupon_code)
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$today = date("Y-m-d");
 		$query="SELECT `coupon_id`,`amount`,`is_percentage`,`rooms_only`,`booking_valid_from`,`booking_valid_to`,`guest_uid` FROM #__jomres_coupons WHERE coupon_code = '$coupon_code' AND `valid_from` <= '$today' AND `valid_to` >= '$today' AND (property_uid = $this->property_uid OR property_uid = 0) ";
 		$response = doSelectSql($query,2);
@@ -1929,7 +1929,7 @@ class dobooking
 	 */
 	function checkArrivalDate($arrivalDate)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		if ( empty($this->cfg_mindaysbeforearrival) )
 			$this->cfg_mindaysbeforearrival=0;
@@ -2028,7 +2028,7 @@ class dobooking
 	 */
 	function fixedDaysArrivaldateDropdown($arrivalDate)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
 		$date_elements	= explode("/",$arrivalDate);
 		$day=$date_elements[2];
@@ -2182,7 +2182,7 @@ class dobooking
 	//
 	function checkDepartureDate($departureDate)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$this->setErrorLog("checkDepartureDate::Checking Departure date ".$departureDate);
 		$this->setErrorLog("checkDepartureDate::Booker class ".$this->booker_class);
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
@@ -2580,7 +2580,7 @@ class dobooking
 	 */
 	function generateDateInput($fieldName,$dateValue,$myID=FALSE)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		// We need to give the javascript date function a random name because it will be called by both the component and modules
 		$uniqueID="";
 		// If this date picker is "arrivalDate" then we need to create a departure date input name too, then set it in showtime. With that we'll be able to tell this set of functionality what the id of the
@@ -3214,7 +3214,7 @@ class dobooking
 	 */
 	function initGuestDetails(&$bkg,$guest_deets)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		if ($amend_contract)
 			$this->existing_id=$this->guests_uid;
@@ -3241,7 +3241,7 @@ class dobooking
 	 */
 	function makeGuestData()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$userIsManager=$thisJRUser->userIsManager;
 		$guests_uid			=	0;
 		/*
@@ -5087,7 +5087,7 @@ class dobooking
 	function monitorBookingStatus()
 		{
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 
 		// Let's see if the form is ready to be booked.
@@ -5597,7 +5597,7 @@ class dobooking
 		$first_date = $dateRangeArray[0];
 		$last_element = count($dateRangeArray)-1;
 		$last_date = $dateRangeArray[$last_element];
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$query = "SELECT discount FROM #__jomres_partners_discounts WHERE partner_id = ".(int)$thisJRUser->id." AND property_id = ".(int)$this->property_uid." and valid_from <= '".$first_date."' AND valid_to >= '".$last_date."'";
 		$result = doSelectSql($query);
 		if (count($result)>0)
@@ -6012,7 +6012,7 @@ class dobooking
 			}
 		$this->deposit_required = $depositValue;
 		
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsManager)
 			{
 			if (isset($this->override_deposit) && $this->override_deposit > 0)
@@ -6187,7 +6187,7 @@ class dobooking
 	function setFlatRate()
 		{
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$disc=array();
 		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
 		$tmpBookingHandler->saveBookingData();
@@ -6252,7 +6252,7 @@ class dobooking
 
 	function outputDiscounts()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$discountData=$tmpBookingHandler->getBookingFieldVal("wiseprice_discount");
 		$discountOutput="";
 		if ( count($discountData)> 0)
@@ -6364,7 +6364,7 @@ class dobooking
 	function setAverageRate()
 		{
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if ( $mrConfig['tariffmode']=="2")
 			{
 			$this->setErrorLog("setAverageRate : going to te_setAverageRate");
@@ -6484,7 +6484,7 @@ class dobooking
 	function te_setAverageRate()
 		{
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$this->setErrorLog("te_setAverageRate:: Started");
 		$dateRangeArray=explode(",",$this->dateRangeString);
 		$tariffsArray=array();
@@ -6626,7 +6626,7 @@ class dobooking
 	function calcLastMinuteDiscount()
 		{
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if ($mrConfig['lastminuteactive'] == '1')
 			{
 			$discountsForTmpdata=array();

@@ -22,7 +22,7 @@ class jomres_sanity_check
 		if ($autorun)
 			{
 			$this->warnings = "";
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$this->jrConfig=$siteConfig->get();
 			$this->mrConfig=getPropertySpecificSettings();
 			$this->property_uid=getDefaultProperty();
@@ -55,7 +55,7 @@ class jomres_sanity_check
 		
 	function check_suspended()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$published = get_showtime('this_property_published');
 		if ($thisJRUser->userIsSuspended)
 			{
@@ -100,8 +100,8 @@ class jomres_sanity_check
 		
 	function check_editing_mode()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		
 		if ($this->jrConfig['editingModeAffectsAllProperties'] == "1" &&  $tmpBookingHandler->user_settings['editing_on'] == true && $thisJRUser->superPropertyManager)
 			{
@@ -114,7 +114,7 @@ class jomres_sanity_check
 		
 	function check_published()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$published = get_showtime('this_property_published');
 		if (isset($published) && $published != "1" && $thisJRUser->userIsManager)
 			{

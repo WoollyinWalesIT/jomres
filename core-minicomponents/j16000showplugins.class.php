@@ -21,7 +21,7 @@ class j16000showplugins
 		if (function_exists('jr_import'))
 			{
 			jr_import('minicomponent_registry');
-			$MiniComponents =jomres_getSingleton('mcHandler');
+			$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 			}
 		else
 			global $MiniComponents;
@@ -75,7 +75,7 @@ class j16000showplugins
 		
 		$developer_user = false;
 
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
 		$current_licenses = array();

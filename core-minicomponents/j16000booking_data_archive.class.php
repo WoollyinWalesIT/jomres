@@ -18,7 +18,7 @@ class j16000booking_data_archive
 	function j16000booking_data_archive()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -28,7 +28,7 @@ class j16000booking_data_archive
 		$output['PAGETITLE']=_JOMRES_DATA_ARCHIVE_TITLE;
 		$output['INFO']=_JOMRES_DATA_ARCHIVE_TITLE_DESC;
 		
-		$current_property_details =jomres_getSingleton('basic_property_details');
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		
 		$output['_JOMRES_SORTORDER_PROPERTYNAME']=_JOMRES_SORTORDER_PROPERTYNAME;
 		$output['_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED']=_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED;
@@ -65,7 +65,7 @@ class j16000booking_data_archive
 				}
 			}
 		
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
 		$jrtb .= $jrtbar->endTable();

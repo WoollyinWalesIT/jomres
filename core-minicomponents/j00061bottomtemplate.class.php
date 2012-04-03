@@ -18,12 +18,12 @@ class j00061bottomtemplate {
 	function j00061bottomtemplate($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$jomres_tooltips =jomres_getSingleton('jomres_tooltips');
+		$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		if ($management_view)

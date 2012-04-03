@@ -98,7 +98,7 @@ class jomres_suspensions
 			return false;
 		if (count($this->manager_properties) > 0)
 			{
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			foreach ($this->manager_properties as $property_uid)
 				{

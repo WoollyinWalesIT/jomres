@@ -17,7 +17,7 @@ class jomres_cart
 	{
 	function jomres_cart()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if (!isset($tmpBookingHandler->cart_data))
 			$tmpBookingHandler->cart_data = array();
 		$this->contract_total = 0.00;
@@ -27,7 +27,7 @@ class jomres_cart
 	
 	function calc_totals()
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if ( count($tmpBookingHandler->cart_data) > 0)
 			{
 			foreach ($tmpBookingHandler->cart_data as $data)
@@ -41,7 +41,7 @@ class jomres_cart
 	function move_from_temp_booking_to_cart_array()
 		{
 		$random_identifier = generateJomresRandomString(20);
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if (!isset($tmpBookingHandler->cart_data))
 			$tmpBookingHandler->cart_data = array();
 		$tmpBookingHandler->cart_data[$random_identifier] = $tmpBookingHandler->tmpbooking;
@@ -54,7 +54,7 @@ class jomres_cart
 	
 	function remove_from_cart($identifier)
 		{
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if (isset($tmpBookingHandler->cart_data[$identifier]))
 			{
 			unset($tmpBookingHandler->cart_data[$identifier]);
@@ -68,7 +68,7 @@ class jomres_cart
 	function build_booking_form_data_for_payment_gateways()
 		{
 		$this->calc_totals();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$tmpBookingHandler->resetTempBookingData();
 		$tmpBookingHandler->updateBookingField('contract_total',$this->contract_total);
 		$tmpBookingHandler->updateBookingField('deposit_required',$this->deposit_required);

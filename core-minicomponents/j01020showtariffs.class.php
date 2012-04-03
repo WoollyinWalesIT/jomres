@@ -29,7 +29,7 @@ class j01020showtariffs {
 	function j01020showtariffs($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -41,10 +41,10 @@ class j01020showtariffs {
 			{
 			//$showheader=$componentArgs['showheader'];
 			$property_uid = get_showtime('property_uid');
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$mrConfig=getPropertySpecificSettings($property_uid);
-			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 			$pop=jomresGetParam( $_REQUEST, 'popup', '0' );
 			$ccodes= currencyCodesArray();
 			if ($showheader)
@@ -144,7 +144,7 @@ class j01020showtariffs {
 						else
 							$mrConfig['ratemultiplier']+=0;
 
-						$currfmt = jomres_getSingleton('jomres_currency_format');
+						$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 						if ($mrConfig['prices_inclusive'] == 1)
 							$price_inc_vat = $tariff->roomrateperday;
 						else

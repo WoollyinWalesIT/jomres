@@ -29,16 +29,16 @@ class j06002switcheditingmode {
 	function j06002switcheditingmode()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		
-		//$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		//$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		//var_dump($tmpBookingHandler->user_settings['editing_on']);
 		
-		$editing_mode =jomres_getSingleton('jomres_editing_mode');
+		$editing_mode =jomres_singleton_abstract::getInstance('jomres_editing_mode');
 		$switchmode = (int)jomresGetParam( $_REQUEST, 'switchmode', 0 );
 		if ($switchmode == 1)
 			$editing_mode->switch_mode_on();

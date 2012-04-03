@@ -23,7 +23,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  
 header('Content-type: text/html; utf-8');
 
-$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 $bookingDeets=gettempBookingdata();
 $pid=$bookingDeets['property_uid'];
 
@@ -54,7 +54,7 @@ $firstrun= getEscaped( $firstrun );
 $retText="";
 
 $doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email","property_uid_check");
-$MiniComponents =jomres_getSingleton('mcHandler');
+$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 $bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
 $isSingleRoomProperty=$bkg->getSingleRoomPropertyStatus();
 $bkg->rebuildIgnoreList=$doNotRebuildRoomsListOnTheseFieldsArray;
@@ -366,7 +366,7 @@ if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) 
 
 if ($field != "heartbeat" && $field != "show_log")
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
 	$ajrq="show_log";
@@ -380,7 +380,7 @@ if ($field != "heartbeat" && $field != "show_log")
 		$bkg->writeToLogfile("Lastfield ".$lastfield);
 		$bkg->setErrorLog("Lastfield ".$lastfield);
 		
-		$currfmt = jomres_getSingleton('jomres_currency_format');
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 		if (!in_array($lastfield,$doNotRebuildRoomsListOnTheseFieldsArray) )
 			{
 			$bkg->resetTotals();
@@ -496,7 +496,7 @@ ob_end_flush();
 
 function updateBookingFormAddressDetails(&$bkg)
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$bkg->storeBookingDetails();
 	$result=$tmpBookingHandler->getGuestData();
 	echo '; document.ajaxform.firstname.value="'.$bkg->sanitiseOutput($result['firstname']).'"';

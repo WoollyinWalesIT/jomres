@@ -18,7 +18,7 @@ class j00060toptemplate {
 	function j00060toptemplate($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -26,10 +26,10 @@ class j00060toptemplate {
 		if (get_showtime('topoff'))
 			return;
 		
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		
 		$tz = $componentArgs['tz'];
 		$jomreslang = $componentArgs['jomreslang'];
@@ -44,7 +44,7 @@ class j00060toptemplate {
 			$output=array();
 			
 			$output['editing_mode_dropdown']='';
-			$editing_mode =jomres_getSingleton('jomres_editing_mode');
+			$editing_mode =jomres_singleton_abstract::getInstance('jomres_editing_mode');
 			$result = $editing_mode->make_editing_mode_dropdown();
 			if ($result)
 				$output['EDITING_MODE_DROPDOWN']=$result;
@@ -54,7 +54,7 @@ class j00060toptemplate {
 				if ($thisJRUser->userIsManager)
 					{
 					$defaultProperty=getDefaultProperty();
-					$current_property_details =jomres_getSingleton('basic_property_details');
+					$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 					$output['PROPERTYNAME']= $current_property_details->get_property_name($defaultProperty);
 
 					
@@ -89,7 +89,7 @@ class j00060toptemplate {
 			$sticky_messaging = array();
 			if ($jrConfig['useJomresMessaging'] == '1')
 				{
-				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$messages = $jomres_messaging->get_messages();
 				
 				if (count($messages)>0)
@@ -100,7 +100,7 @@ class j00060toptemplate {
 						$messaging[] = $m;
 						}
 					}
-				$jomres_sticky_messaging =jomres_getSingleton('jomres_sticky_messages');
+				$jomres_sticky_messaging =jomres_singleton_abstract::getInstance('jomres_sticky_messages');
 				$sticky_messages = $jomres_sticky_messaging->get_messages();
 				
 				if (count($sticky_messages)>0)

@@ -28,7 +28,7 @@ class j00501gateways {
 	function j00501gateways($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -37,7 +37,7 @@ class j00501gateways {
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
 		$configurationPanel=$componentArgs['configurationPanel'];
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		
 		if ($paypal_settings->paypalConfigOptions['override'] == "0")
