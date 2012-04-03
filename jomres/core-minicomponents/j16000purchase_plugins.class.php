@@ -18,7 +18,7 @@ class j16000purchase_plugins
 	function j16000purchase_plugins()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -32,7 +32,7 @@ class j16000purchase_plugins
 			jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins', "Error, you didn't enter your jomres.net username or password" );
 			exit;
 			}
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
 		if (!isset($jrConfig['license_server_username']))

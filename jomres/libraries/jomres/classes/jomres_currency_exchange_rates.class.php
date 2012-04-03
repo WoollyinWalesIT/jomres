@@ -21,7 +21,7 @@ class jomres_currency_exchange_rates
 		{
 		$this->update_now = $update_now;
 		$this->feature_enabled = true;
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['use_conversion_feature'] != "1" )
 			$this->feature_enabled = false;

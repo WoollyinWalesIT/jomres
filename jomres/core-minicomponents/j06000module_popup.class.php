@@ -16,7 +16,7 @@ class j06000module_popup
 	{
 	function j06000module_popup()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -26,14 +26,14 @@ class j06000module_popup
 		$result = '';
 		if ($property_uid > 0)
 			{
-			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 			$current_property_details->gather_data($property_uid);
 
 			$inline_calendar = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property_uid,'return_calendar'=>"1",'noshowlegend'=>"1") );
 			
 			$mrConfig=getPropertySpecificSettings($property_uid);
 			set_showtime('property_uid',$property_uid);
-			$customTextObj =jomres_getSingleton('custom_text');
+			$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 			$customTextObj->get_custom_text_for_property($property_uid);
 
 			$property_image=get_showtime('live_site')."/jomres/images/jrhouse.png";

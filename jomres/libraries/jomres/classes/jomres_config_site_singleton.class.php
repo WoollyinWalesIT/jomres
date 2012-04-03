@@ -54,7 +54,7 @@ class jomres_config_site_singleton
 		
 	public function insert_new_setting($k,$v)
 		{
-		$jomres_db =jomres_getSingleton('jomres_database');
+		$jomres_db =jomres_singleton_abstract::getInstance('jomres_database');
 		if (!array_key_exists($k,$this->config) )
 			{
 			$query="INSERT INTO #__jomres_site_settings (akey,value) VALUES ('".$k."','".$v."')";
@@ -76,8 +76,8 @@ class jomres_config_site_singleton
 		$jrConfig=array();
 		$query="SELECT akey,value FROM #__jomres_site_settings";
 		
-		// We need to bypass doSelectSql here because doSelectSql does $siteConfig = jomres_getSingleton('jomres_config_site_singleton'); too, and that'll cause a fatal error.
-		$jomres_db =jomres_getSingleton('jomres_database');
+		// We need to bypass doSelectSql here because doSelectSql does $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton'); too, and that'll cause a fatal error.
+		$jomres_db =jomres_singleton_abstract::getInstance('jomres_database');
 		$jomres_db->setQuery($query);
 		$settingsList=$jomres_db->loadObjectList();
 		if (count($settingsList)>0)

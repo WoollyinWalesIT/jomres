@@ -28,7 +28,7 @@ class j02110savecustomertypeorder {
 	function j02110savecustomertypeorder()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -43,7 +43,7 @@ class j02110savecustomertypeorder {
 			if (!doInsertSql($query,_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE))
 				trigger_error ("Unable to customer type order, mysql db failure", E_USER_ERROR);
 			}
-		$jomres_messaging =jomres_getSingleton('jomres_messages');
+		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 		//$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message(_JOMRES_MR_AUDIT_REORDER_CUSTOMERTYPE);
 			

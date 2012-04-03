@@ -41,8 +41,8 @@ $numberOfPropertiesInSystem=count($countproperties);
 if ($numberOfPropertiesInSystem > 200 ) 
 	set_showtime('heavyweight_system',true);
 
-$thisJRUser=jomres_getSingleton('jr_user');
-$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
 if ($jrConfig['mobile_redirect'] == "1")
@@ -64,7 +64,7 @@ if ($jrConfig['mobile_redirect'] == "1")
 		}
 	}
 
-$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
+$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 if ($jrConfig['errorChecking'] =="1")
 	$performance_monitor->switch_on();
 else
@@ -79,7 +79,7 @@ if ( isset($_REQUEST['is_wrapped']) )
 if (!isset($jrConfig['full_access_control']))
 	$jrConfig['full_access_control'] = "0";
 
-$MiniComponents =jomres_getSingleton('mcHandler');
+$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
@@ -93,7 +93,7 @@ if ( $_REQUEST['no_html']!="1")
 	@ini_set("display_errors", 1);
 	}
 
-$cron =jomres_getSingleton('jomres_cron');
+$cron =jomres_singleton_abstract::getInstance('jomres_cron');
 if ($cron->method == "Minicomponent")
 	{
 	$cron->triggerJobs();
@@ -106,7 +106,7 @@ set_showtime('jomressession',"");
 
 if (isset($_REQUEST['jsid']) ) // jsid is passed by gateway services sending response codes
 	$jomressession  =jomresGetParam( $_REQUEST, 'jsid', "" );
-$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 $tmpBookingHandler->initBookingSession($jomressession);
 
 $jomressession  = $tmpBookingHandler->getJomressession();
@@ -133,7 +133,7 @@ $propertyNamesArray=array();
 if ($tag != "" && get_showtime('task') != "editBooking")
 	set_showtime('task',"tagSearch");
 
-$jomreslang =jomres_getSingleton('jomres_language');
+$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 
 jr_import('jomres_currency_exchange_rates');
 $exchange_rates = new jomres_currency_exchange_rates("GBP");
@@ -278,10 +278,10 @@ else
 	
 
 $jomreslang->get_language($propertytype);
-$customTextObj =jomres_getSingleton('custom_text');
+$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 $customTextObj->get_custom_text_for_all_properties();
 
-$jomresPathway =jomres_getSingleton('jomres_pathway');
+$jomresPathway =jomres_singleton_abstract::getInstance('jomres_pathway');
 
 if ($property_uid >0)
 	{
@@ -307,7 +307,7 @@ if ($property_uid >0)
 if (isset($property_uid) && !empty($property_uid))
 	{
 	$customTextObj->get_custom_text_for_property($property_uid);
-	$basic_property_details =jomres_getSingleton('basic_property_details');
+	$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	}
 
 init_javascript();
@@ -419,7 +419,7 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 			if ($bookingdata['contract_total'] == 0.00)
 				$plugin = "NA";
 			
-			$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+			$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 			$paypal_settings->get_paypal_settings();
 			
 			if ($plugin != "NA")
@@ -1081,9 +1081,9 @@ else
 
 function no_task_set()
 	{
-	$jomresPathway =jomres_getSingleton('jomres_pathway');
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$jomresPathway =jomres_singleton_abstract::getInstance('jomres_pathway');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	if ( (isset($_REQUEST['calledByModule']) || isset($_REQUEST['plistpage'])) && $thisJRUser->userIsManager)
 		{
 		$jomresPathway->addItem("Search","listProperties","");

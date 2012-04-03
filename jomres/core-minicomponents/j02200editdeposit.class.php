@@ -30,7 +30,7 @@ class j02200editdeposit {
 	function j02200editdeposit()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -56,7 +56,7 @@ class j02200editdeposit {
 			$output['DEPOSITREQUIRED']	=output_price($depositRequired);
 			$output['CONTRACTUID']		=$contractUid;
 
-			$jrtbar =jomres_getSingleton('jomres_toolbar');
+			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveDeposit');
 			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings"),'');

@@ -30,13 +30,13 @@ class j06002delslideshowimages {
 	function j06002delslideshowimages()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->userIsManager)
 			return;
 			
@@ -76,7 +76,7 @@ class j06002delslideshowimages {
 			}
 		if ($success)
 			{
-			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 			$jomres_messaging->set_message(_JOMRES_FILE_DELETED);
 			//jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
 			}

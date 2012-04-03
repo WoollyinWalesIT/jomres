@@ -18,14 +18,14 @@ class j06005mulistbookings {
 	function j06005mulistbookings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$mrConfig=getPropertySpecificSettings();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($thisJRUser->userIsRegistered)
 			{
@@ -69,10 +69,10 @@ class j06005mulistbookings {
 							$r['STYLE'] ="odd";
 						else
 							$r['STYLE'] ="even";
-						$currfmt = jomres_getSingleton('jomres_currency_format');
+						$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 						$currency=$mrConfig['currency'];
 						
-						$basic_property_details =jomres_getSingleton('basic_property_details');
+						$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 						$basic_property_details->gather_data($c->property_uid);
 		
 						$r['PROPERTYNAME']=$basic_property_details->property_name;

@@ -29,7 +29,7 @@ class j02250showaudit {
 	function j02250showaudit()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -142,7 +142,7 @@ class j02250showaudit {
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_A_AUDITING_SHOWING',_JOMRES_COM_A_AUDITING_SHOWING);
 
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('archive',jomresURL(JOMRES_SITEPAGE_URL."&task=archiveAudit".jomresURLToken()."&no_html=1"),'');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');

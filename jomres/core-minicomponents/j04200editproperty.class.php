@@ -29,16 +29,16 @@ class j04200editproperty {
 	function j04200editproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		//global $selectedCountry;
 		
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$mrConfig=getPropertySpecificSettings();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$defaultText="Change Me!";
 		$propertyRights=$thisJRUser->defaultproperty;
@@ -79,7 +79,7 @@ class j04200editproperty {
 				$starsDropDownList.="</select></span>";
 				$ptypeid=$property->ptype_id;
 
-				$current_property_details =jomres_getSingleton('basic_property_details');
+				$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				$output['PROPERTY_NAME'] =$current_property_details->get_property_name($propertyUid);
 				
 				//$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
@@ -312,7 +312,7 @@ class j04200editproperty {
 		$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 		$output['PROPERTYUID']=$propertyUid;
 
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		if ($jrConfig['allowHTMLeditor']!="2" && $jrConfig['allowHTMLeditor'] != "3")
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveProperty');

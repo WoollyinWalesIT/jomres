@@ -31,14 +31,14 @@ class j03020insertbooking {
 	function j03020insertbooking($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		//global $jomresProccessingBookingObject;
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$depositPaid=$componentArgs['depositPaid'];
 		if (isset($componentArgs['usejomressessionasCartid']) )
 			$usejomressessionasCartid=$componentArgs['usejomressessionasCartid'];
@@ -223,7 +223,7 @@ class j03020insertbooking {
 					}
 					
 				jomres_audit(get_showtime('jomressession'),"Amend booking - updated room booking ".$amend_contractuid);
-				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message("Amend booking - updated room booking ".$amend_contractuid);
 				if (count($rates_uids)>1)
 					$rates_uids			= array_unique($rates_uids);

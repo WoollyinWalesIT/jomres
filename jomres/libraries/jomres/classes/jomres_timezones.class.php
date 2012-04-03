@@ -25,7 +25,7 @@ class jomres_timezones
 
 	function check_timezone_change()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (isset($_POST['user_timezone']) && $thisJRUser->userIsManager)
 			{
 			$selected_timezone = jomresGetParam( $_REQUEST, 'user_timezone', "" );
@@ -58,7 +58,7 @@ class jomres_timezones
 		
 	function get_users_timezone()
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		return $thisJRUser->users_timezone;
 		}
 		

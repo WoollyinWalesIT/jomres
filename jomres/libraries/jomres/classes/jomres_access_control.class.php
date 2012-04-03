@@ -27,7 +27,7 @@ class jomres_access_control
 		else
 			$this->feature_enabled = true;
 			
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
 		if (!isset($jrConfig['full_access_control']))
@@ -76,7 +76,7 @@ class jomres_access_control
 			$this->levels = array ("default"=>_JOMRES_ACCESS_CONTROL_LEVELS_DEFAULT, "anybody"=>_JOMRES_ACCESS_CONTROL_LEVELS_ANYBODY,"registered"=>_JOMRES_ACCESS_CONTROL_LEVELS_REGISTERED,"receptionist"=>_JOMRES_ACCESS_CONTROL_LEVELS_RECEPTIONIST,"manager"=>_JOMRES_ACCESS_CONTROL_LEVELS_MANAGER,"supermanager"=>_JOMRES_ACCESS_CONTROL_LEVELS_SUPERMANAGER,"nobody"=>_JOMRES_ACCESS_CONTROL_LEVELS_NOBODY);
 			}
 		
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!is_null($thisJRUser))
 			{
 			
@@ -191,7 +191,7 @@ class jomres_access_control
 	private function get_this_users_access_level()
 		{
 		$access_level = false;
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->id == 0)
 			$access_level = "anybody";
 			elseif ($thisJRUser->id > 0 && !$thisJRUser->userIsManager)

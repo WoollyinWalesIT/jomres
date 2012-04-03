@@ -29,14 +29,14 @@ class j00017SRPavailabilitycalendar {
 	function j00017SRPavailabilitycalendar($componentArgs=null)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		global $noshowroom;
 		$mrConfig=getPropertySpecificSettings();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->retVals="";
 		$this->showlinks=true;
@@ -184,7 +184,7 @@ class j00017SRPavailabilitycalendar {
 		// Adapted from source
 		// http://www.weberdev.com/get_example-1430.html
 		// Submitted by: Whiddon James on Dec 01st 1999
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		//global $jomresConfig_locale;
 		global $noshowroom;

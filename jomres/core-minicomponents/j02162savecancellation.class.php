@@ -29,7 +29,7 @@ class j02162savecancellation {
 	function j02162savecancellation()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -47,7 +47,7 @@ class j02162savecancellation {
 			$today = date("Y/m/d");
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_EB_GUEST_CANCELLED',_JOMRES_COM_MR_EB_GUEST_CANCELLED,FALSE);
 			//$jomres_messaging = new jomres_messages();
-			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$forfeit_retained="0";
 			if ($mrConfig['cancellationPolicyReserveDeposits']=="1")
@@ -73,7 +73,7 @@ class j02162savecancellation {
 			$guestData =doSelectSql($query,2);
 			$text=$tag.' - '.$saveMessage;
 			
-			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 			$current_property_details->gather_data($defaultProperty);
 			
 			if ($guestData['email']!='')

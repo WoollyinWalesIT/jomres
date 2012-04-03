@@ -17,12 +17,12 @@ class j16000ajax_change_access_level
 	function j16000ajax_change_access_level()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$jomres_access_control = jomres_getSingleton('jomres_access_control');
+		$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 		
 		$minicomp = jomresGetParam( $_GET, 'minicomp', "" );
 		$new_level = jomresGetParam( $_GET, 'new_level', "" );

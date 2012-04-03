@@ -23,12 +23,12 @@ class j00012manager_first_run {
 	function j00012manager_first_run($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (isset($_REQUEST['no_html']) && $_REQUEST['no_html'] == "1")
 			return;
 		if ($thisJRUser->id != 42)

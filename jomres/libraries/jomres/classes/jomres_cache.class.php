@@ -23,7 +23,7 @@ class jomres_cache
 	//function jomres_cache($args)
 	function jomres_cache($key="",$property_uid=0,$userSpecific=false)
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->useCaching = $jrConfig['useCaching'];
 		$this->lang = get_showtime('lang');
@@ -53,7 +53,7 @@ class jomres_cache
 		
 	function setUserID($userSpecific)
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($userSpecific)
 			$this->user_id = $thisJRUser->userid;
 		else
@@ -63,7 +63,7 @@ class jomres_cache
 	function generateFilename()
 		{
 		$jomresConfig_secret = get_showtime('secret');
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$registeredFlag = "0";
 		$receptionistFlag = "0";
 		$managerFlag = "0";

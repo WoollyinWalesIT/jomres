@@ -18,8 +18,8 @@ class j16000updates
 	function j16000updates()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		if (function_exists('jomres_getSingleton'))
-			$MiniComponents =jomres_getSingleton('mcHandler');
+		if (function_exists('jomres_singleton_abstract::getInstance'))
+			$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		else
 			global $MiniComponents,$jomresConfig_live_site;
 		$jomresConfig_offline			= true;
@@ -94,7 +94,7 @@ class j16000updates
 			}
 		else if (!isset($_REQUEST['ftp_user_name']))
 			{
-			if (function_exists('jomres_getSingleton'))
+			if (function_exists('jomres_singleton_abstract::getInstance'))
 				$liveSite="&live_site=".urlencode(get_showtime('live_site'));
 			else
 				$liveSite="&live_site=".$jomresConfig_live_site;
@@ -141,7 +141,7 @@ class j16000updates
 				if (!$this->test_download)
 					$this->dirmv($this->updateFolder.JRDS."unpacked".JRDS, JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS, $this->overwriteAllowed, $funcloc = "/");
 
-				if (function_exists('jomres_getSingleton'))
+				if (function_exists('jomres_singleton_abstract::getInstance'))
 					echo "Completed upgrade. Please ensure that you visit <a href=\"".get_showtime('live_site')."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";
 				else
 					echo "Completed upgrade. Please ensure that you visit <a href=\"".$jomresConfig_live_site."/jomres/install_jomres.php\">install_jomres.php</a> to complete any database changes that may be required";

@@ -16,13 +16,13 @@ class j06000show_property_reviews
 	{
 	function j06000show_property_reviews()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser = jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser = jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		$data_only = false;

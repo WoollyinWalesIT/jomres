@@ -29,16 +29,16 @@ class j04900saveproperty {
 	function j04900saveproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		if (!function_exists('jomres_getSingleton'))
+		if (!function_exists('jomres_singleton_abstract::getInstance'))
 			global $MiniComponents;
 		else
-			$MiniComponents =jomres_getSingleton('mcHandler');
+			$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		$this->newpropertyId	= 0;
@@ -116,7 +116,7 @@ class j04900saveproperty {
 			{
 			$apikey=createNewAPIKey();
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_INSERT,FALSE);
-			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			$query="INSERT INTO #__jomres_propertys (`property_name`,`property_street`,`property_town`,
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
@@ -205,7 +205,7 @@ class j04900saveproperty {
 				}
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE',_JOMRES_COM_MR_VRCT_PROPERTY_SAVE_UPDATE,FALSE);
 			
-			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 			$jomres_messaging->set_message($saveMessage);
 			
 			$query="UPDATE #__jomres_propertys SET

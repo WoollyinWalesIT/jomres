@@ -17,7 +17,7 @@ class j06000compare
 	{
 	function j06000compare()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -56,7 +56,7 @@ class j06000compare
 			$tick 	= get_showtime('live_site').'/jomres/images/jomresimages/small/Tick.png';
 			$cross 	= get_showtime('live_site').'/jomres/images/jomresimages/small/Cancel.png';
 			
-			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 			//$current_property_details->get_property_name_multi($propertys_uids);
 			$current_property_details->gather_data_multi($property_uids);
 			
@@ -197,7 +197,7 @@ class j06000compare
 			}
 		else // Oh, the naughty little tinker, they've removed all properties from their list, we'll just send them back to the search results
 			{
-			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+			$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 			$MiniComponents->triggerEvent('01004',$componentArgs); // optional
 			$MiniComponents->triggerEvent('01005',$componentArgs); // optional
 			$MiniComponents->triggerEvent('01006',$componentArgs); // optional

@@ -18,12 +18,12 @@ class j10002add_adhoc_item_to_bill
 	function j10002add_adhoc_item_to_bill()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$htmlFuncs =jomres_getSingleton('html_functions');
+		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		$this->cpanelButton="";
 		if ($MiniComponents->eventSpecificlyExistsCheck('00100',"nbill"))  // Check that at least one jrportal -> billing system plugin exists. If it does, we can show the button
 			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=add_adhoc_item_to_bill', 'AddItem.png', _JRPORTAL_CPANEL_ADD_ADHOC_ITEM,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS" , "bookings" ,false,false));

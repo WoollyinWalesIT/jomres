@@ -29,7 +29,7 @@ class j01010listpropertys {
 	function j01010listpropertys($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -38,12 +38,12 @@ class j01010listpropertys {
 		$data_only=false;
 		if (isset($_REQUEST['dataonly']))
 			$data_only=true;
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$customTextObj =jomres_getSingleton('custom_text');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 		
 		if (is_null($tmpBookingHandler->tmpsearch_data['current_property_list_layout']))
 			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = "list";
@@ -291,7 +291,7 @@ class j01010listpropertys {
 			$date_elements  = explode("/",$arrivalDate);
 			$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 
-			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 			$current_property_details->get_property_name_multi($propertys_uids);
 			$current_property_details->gather_data_multi($propertys_uids);
 

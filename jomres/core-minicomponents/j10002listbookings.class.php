@@ -18,16 +18,16 @@ class j10002listbookings
 	function j10002listbookings()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
-			$htmlFuncs =jomres_getSingleton('html_functions');
+			$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listbookings', 'ListBookings.png', _JRPORTAL_CPANEL_LISTBOOKINGS,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS" , "bookings" ,false,false));
 			}
 		}

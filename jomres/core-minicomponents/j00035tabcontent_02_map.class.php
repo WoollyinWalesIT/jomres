@@ -16,7 +16,7 @@ class j00035tabcontent_02_map
 	{
 	function j00035tabcontent_02_map($componentArgs)
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;

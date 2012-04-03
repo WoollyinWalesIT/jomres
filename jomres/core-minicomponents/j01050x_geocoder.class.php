@@ -30,7 +30,7 @@ class j01050x_geocoder {
 	function j01050x_geocoder($componentArgs=null)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -38,7 +38,7 @@ class j01050x_geocoder {
 		//if (isset($_REQUEST['jrajax'])) // Map will not render when called via ajax (for modal popup)
 		//	return;
 		
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)$componentArgs['property_uid'];
 		$editing=$componentArgs['editing_map'];
@@ -70,7 +70,7 @@ class j01050x_geocoder {
 			}
 		else
 			{
-			$current_property_details =jomres_getSingleton('basic_property_details');
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 			
 			if (isset($current_property_details->multi_query_result[$property_uid]))
 				{

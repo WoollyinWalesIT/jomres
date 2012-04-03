@@ -30,7 +30,7 @@ class jomSearch {
 		{
 		//var_dump($searchOptions);
 		$searchAll = jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->formname="";
 		$this->searchAll=$searchAll;
@@ -169,7 +169,7 @@ class jomSearch {
 
 			foreach ($propertynameList as $property)
 				{
-				$basic_property_details =jomres_getSingleton('basic_property_details');
+				$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				$pname=$basic_property_details->get_property_name($property->propertys_uid);
 				$this->prep['propertyname'][]=array('pn'=>$pname,'puid'=>$property->propertys_uid);
 				}
@@ -339,7 +339,7 @@ class jomSearch {
 	 */
 	function jomSearch_showresults()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$tmpResultsArray=end($this->propertys_uid);
 		if ( count($tmpResultsArray) > 0)
 			{
@@ -564,7 +564,7 @@ class jomSearch {
 	 */
 	function jomSearch_guestnumber()
 		{
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!isset( $jrConfig['guestnumbersearch']))
 			$jrConfig['guestnumbersearch'] = "equal";
@@ -1005,7 +1005,7 @@ function prepDescriptiveSearch()
  */
 function prepAvailabilitySearch()
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$result=array();
 	//$availabilityArray=array();
 	$today = date("Y/m/d");

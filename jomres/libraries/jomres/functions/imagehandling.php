@@ -22,7 +22,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
  */
 function getImagesSize($imageLocation)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$thumbnail_width=$jrConfig['thumbnail_width'];
 	$mysock = getimagesize($imageLocation);
@@ -63,7 +63,7 @@ function getImagesSize($imageLocation)
  */
 function batchUploadForm()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$defaultProperty=getDefaultProperty();
 	jr_import('jomres_cache');
@@ -95,7 +95,7 @@ function batchUploadForm()
 			}
 		}
 
-	$jrtbar =jomres_getSingleton('jomres_toolbar');
+	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'bUpload');
 	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&Itemid=$Itemid"),'');
@@ -182,7 +182,7 @@ function listImages($property_uid)
 function batchcheckImageUpload($property_uid,$resourceType,$resourceId,$uploadedFilename,$uploadedSize,$uploadedTemp)
 	{
 	global $mrConfig;
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$saveMessage=jr_gettext('_JOMRES_FILE_UPDATED',_JOMRES_FILE_UPDATED,FALSE);
 	$mrp=JOMRESCONFIG_ABSOLUTE_PATH.JOMRES_IMAGELOCATION_ABSPATH.$property_uid.'/';

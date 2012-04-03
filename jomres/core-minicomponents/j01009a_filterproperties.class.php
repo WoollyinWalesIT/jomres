@@ -25,12 +25,12 @@ class j01009a_filterproperties
 	function j01009a_filterproperties($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
 		$data_only=false;
@@ -40,7 +40,7 @@ class j01009a_filterproperties
 			$data_only=true;
 		$propertys_uids=$componentArgs['propertys_uids'];
 		
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if (!isset($_REQUEST['jomsearch_sortby']) && isset($tmpBookingHandler->user_settings['jomsearch_sortby']) )
 			$sortid = $tmpBookingHandler->user_settings['jomsearch_sortby'];
 		else

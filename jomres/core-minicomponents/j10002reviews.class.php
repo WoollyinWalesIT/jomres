@@ -18,12 +18,12 @@ class j10002reviews
 	function j10002reviews()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$htmlFuncs =jomres_getSingleton('html_functions');
+		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_reviews', 'reviews.png', _JOMRES_REVIEWS,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL" , "portal functionality" ,false,false));
 		}
 	

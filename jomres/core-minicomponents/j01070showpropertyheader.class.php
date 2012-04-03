@@ -30,13 +30,13 @@ class j01070showpropertyheader
 	function j01070showpropertyheader($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$mrConfig=getPropertySpecificSettings();
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$output=array();
 		$pageoutput = array();
@@ -54,7 +54,7 @@ class j01070showpropertyheader
 				$property_uid		= intval(jomresGetParam( $_REQUEST, 'property_uid', 0 ));
 			if ($property_uid>0)
 				{
-				$current_property_details =jomres_getSingleton('basic_property_details');
+				$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				$current_property_details->gather_data($property_uid);
 				
 				$stars=$current_property_details->stars;

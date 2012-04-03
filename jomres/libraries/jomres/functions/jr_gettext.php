@@ -30,7 +30,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	$customTextArray = $customTextObj->get_custom_text();
 
 	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-	if (get_showtime("jr_user_ready")) // If jr_user isn't ready yet, calling jomres_getSingleton('jr_user') will cause php to stop due to recursion, so we'll check that jr_user's been set up before we do anything else
+	if (get_showtime("jr_user_ready")) // If jr_user isn't ready yet, calling jomres_singleton_abstract::getInstance('jr_user') will cause php to stop due to recursion, so we'll check that jr_user's been set up before we do anything else
 		{
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
@@ -154,12 +154,12 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 // Added to this file because it's expected to be used by jr_gettext
 function jomres_purify_html($dirty,$editing)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$clean="";
-	$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
+	$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 	$performance_monitor->set_point("pre-purification ".time());
-	$html_purifier = jomres_getSingleton('jomres_input_filter_singleton');
+	$html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
 	$clean = $html_purifier->purify($dirty);
 	$performance_monitor->set_point("post-purification".time());
 	return $clean;

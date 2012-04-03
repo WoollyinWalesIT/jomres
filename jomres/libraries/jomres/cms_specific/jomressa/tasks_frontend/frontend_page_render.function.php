@@ -21,10 +21,10 @@ function frontend_page_render()
 	$jomresConfig 	= 	jomressa_getSingleton('jomressa_config');
 	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
 
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$tmpBookingHandler->initBookingSession($jomressession);
 	
-	$jomreslang =jomres_getSingleton('jomres_language');
+	$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 	$jomreslang->get_language('xx');
 
 	$output			=	array();

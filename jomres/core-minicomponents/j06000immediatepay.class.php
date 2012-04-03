@@ -18,12 +18,12 @@ class j06000immediatepay
 	function j06000immediatepay()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$invoice_id		= (int)jomresGetParam( $_GET, 'id', 0 );
 
 		// a quick anti hack check
@@ -55,7 +55,7 @@ class j06000immediatepay
 			}
 		else
 			{
-			$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+			$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 			$paypal_settings->get_paypal_settings();
 			$this->paypal_settings=$paypal_settings->paypalConfigOptions;
 			}

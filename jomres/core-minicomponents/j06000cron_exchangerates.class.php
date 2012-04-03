@@ -16,7 +16,7 @@ class j06000cron_exchangerates
 	{
 	function j06000cron_exchangerates ()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;

@@ -76,8 +76,8 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jom
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'multibye_functions.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'jr_gettext.php');
 require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_singleton_abstract.class.php');
-$showtime = jomres_getSingleton('showtime');
-$performance_monitor =jomres_getSingleton('jomres_performance_monitor');
+$showtime = jomres_singleton_abstract::getInstance('showtime');
+$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 $performance_monitor->set_point("pre-inclusions");
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 
@@ -122,7 +122,7 @@ $performance_monitor->set_point("post-inclusions");
 
 if (!strstr($scriptname,'install_jomres.php'))
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	}
 
@@ -142,10 +142,10 @@ if ($jomresConfig_lang=='')
 	$jomresConfig_lang = 'en-GB';
 	}
 
-$MiniComponents =jomres_getSingleton('mcHandler');
+$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 $MiniComponents->triggerEvent('00001'); // Start
 
-$jomres_access_control = jomres_getSingleton('jomres_access_control');
+$jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
 //require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
 
@@ -178,7 +178,7 @@ $performance_monitor->set_point("end integration run");
 
 function jomresURL($link, $ssl=2)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	if (!$jrConfig['isInIframe'] )
@@ -281,7 +281,7 @@ function jomres_parseRequest()  // A simple request parser to check that mosConf
 function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 	{
 
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
 	// If the array element is set, we'll set $dirty to that, otherwise we'll simply return the default
@@ -380,7 +380,7 @@ function jomres_purify_string($string)
 // function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used
 	// {
 	// global $R;
-	// $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	// $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	// $jrConfig=$siteConfig->get();
 	// if (isset($request[$element]) )
 		// $dirty=$request[$element];
@@ -431,7 +431,7 @@ function jomres_purify_string($string)
 			// break;
 		// default : // treat everything else as a string.
 			// $dirty = (string) $dirty;
-			// $jomres_db =jomres_getSingleton('jomres_database');
+			// $jomres_db =jomres_singleton_abstract::getInstance('jomres_database');
 			// $dirty=getEscaped(RemoveXSS($dirty)); // remove any XSS data
 			// if($jrConfig['allowHTMLeditor']!="1")
 				// $dirty=jomres_remove_HTML($dirty); // Strip out any html
@@ -523,7 +523,7 @@ function jomres_remove_HTML($s , $keep = 'p|br' , $expand = 'script|style|nofram
 // http://uk2.php.net/manual/en/function.strip-tags.php#73435
 function strip_tags_except($text,$strip=TRUE)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$all_tags=array();
 
@@ -603,15 +603,15 @@ function stripUnwanted($text)
 */
 function checkUserIsManager()
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	$userIsManager=$thisJRUser->userIsManager;
 	return $userIsManager;
 	}
 
 function doSelectSql($query,$mode=FALSE)
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$jomres_db =jomres_getSingleton('jomres_database');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$jomres_db =jomres_singleton_abstract::getInstance('jomres_database');
 	$jomres_db->setQuery($query);
 	$result = $jomres_db->loadObjectList();
 	$num=count($result);
@@ -668,14 +668,14 @@ function doSelectSql($query,$mode=FALSE)
 
 function doInsertSql($query,$op,$ignoreErrors=false)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	// Called doInsertSql, the title is not quite correct as this function also handles updates and deletes
 	// We'll use the lack of text in $op as a way of indicating that we don't want this operation logged
 	// This way we can call the audit directly from the insert internet booking function
 	// rather than logging EVERYTHING that's done by the function.
-	$jomres_db =jomres_getSingleton('jomres_database');
+	$jomres_db =jomres_singleton_abstract::getInstance('jomres_database');
 	$jomres_db->setQuery($query);
 	if (!$jomres_db->query())
 		{
@@ -697,9 +697,9 @@ function doInsertSql($query,$op,$ignoreErrors=false)
 
 function doSql($query)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$jomres_db =jomres_getSingleton('jomres_database');
+	$jomres_db =jomres_singleton_abstract::getInstance('jomres_database');
 	if ($jrConfig['errorChecking']) echo $query."<br>";
 	$jomres_db->setQuery($query);
 	if (!$jomres_db->query())
@@ -711,8 +711,8 @@ function doSql($query)
 
 function jomres_audit($query,$op)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['disableAudit']!="1")
 		{
@@ -730,7 +730,7 @@ function jomres_audit($query,$op)
 
 function getDefaultProperty()
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	$defaultProperty=$thisJRUser->currentproperty;
 	return (int)$defaultProperty;
 	}
@@ -778,7 +778,7 @@ function editCustomTextAll()
 
 function editCustomText()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$theConstant = jomresGetParam( $_REQUEST, 'theConstant', '' );
 	$defaultText = jomresGetParam( $_REQUEST, 'defaultText', '', _MOS_ALLOWHTML );
@@ -807,7 +807,7 @@ function editCustomText()
 
 	if (strlen($theText)==0)
 		$theText=stripslashes(constant($theConstant));
-	$jrtbar =jomres_getSingleton('jomres_toolbar');
+	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 	$jrtb	= $jrtbar->startTable();
 	if ($jrConfig['allowHTMLeditor'] != "2" && $jrConfig['allowHTMLeditor'] != "3")
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCustomText');
@@ -854,7 +854,7 @@ function editCustomText()
 
 function saveCustomText()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$property_uid=(int)getDefaultProperty();
@@ -885,8 +885,8 @@ function saveCustomText()
 
 function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	
 	$jrConfig=$siteConfig->get();
 	$testStr= trim(strip_tags_except($theValue));
@@ -1096,7 +1096,7 @@ function generateJomresRandomString($length=50)
 */
 function getSiteSettings()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	return $jrConfig;
 	}

@@ -18,12 +18,12 @@ class j10002listPfeatures
 	function j10002listPfeatures()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$htmlFuncs =jomres_getSingleton('html_functions');
+		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures', 'propertyFeatures.png', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
 		}
 	

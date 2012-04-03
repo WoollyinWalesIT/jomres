@@ -18,13 +18,13 @@ class j10002AAA_getting_started
 	function j10002AAA_getting_started()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		global $htmlFuncs;  // We'll leave this one instance of this variable as global here because some older plugins will need it, and as this plugin's the first to be run in administrator, this should fix it
-		$htmlFuncs =jomres_getSingleton('html_functions');
+		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		
 		
 		$logfile=JOMRES_SYSTEMLOG_PATH.'admins_first_run.txt';

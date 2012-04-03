@@ -60,7 +60,7 @@ else
 	//require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'jomres_database.class.php');
 	global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 	
-	$showtime = jomres_getSingleton('showtime');
+	$showtime = jomres_singleton_abstract::getInstance('showtime');
 	
 	$jomresConfig_host = $_POST['host'];
 	$jomresConfig_user = $_POST['username'];
@@ -176,7 +176,7 @@ class jomres_standalone_config
 	function jomres_standalone_config()
 		{
 		// Mysql connection information
-		$showtime = jomres_getSingleton(\'showtime\');
+		$showtime = jomres_singleton_abstract::getInstance(\'showtime\');
 		
 		$showtime->host				= "'.$_POST['host'].'";
 		$showtime->db				= "'.$_POST['database'].'";

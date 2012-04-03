@@ -18,13 +18,13 @@ class j06002list_my_subscriptions
 	function j06002list_my_subscriptions()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		
 		$task 				= get_showtime('task');
@@ -48,7 +48,7 @@ class j06002list_my_subscriptions
 		$pageoutput=array();
 		$rows=array();
 		
-		$currfmt = jomres_getSingleton('jomres_currency_format',2);
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format',2);
 		
 		$output['PAGETITLE']		=_JRPORTAL_SUBSCRIPTIONS_MYSUBSCRIPTIONS;
 		$output['HNAME']			=_JRPORTAL_SUBSCRIPTIONS_PACKAGES_NAME;

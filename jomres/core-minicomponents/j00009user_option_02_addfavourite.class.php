@@ -29,13 +29,13 @@ class j00009user_option_02_addfavourite {
 	function j00009user_option_02_addfavourite($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		$property_uid		= (int)jomresGetParam( $_REQUEST, 'property_uid', 0 );
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsRegistered)
 			{
 			$query="SELECT property_uid FROM #__jomcomp_mufavourites WHERE property_uid = '".(int)$property_uid."' AND my_id='".(int)$thisJRUser->id."'";

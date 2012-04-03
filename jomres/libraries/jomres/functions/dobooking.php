@@ -20,9 +20,9 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 $property_uid = get_showtime('property_uid');
 
-$MiniComponents =jomres_getSingleton('mcHandler');
-$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-$thisJRUser=jomres_getSingleton('jr_user');
+$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	
 
 $MiniComponents->triggerEvent('00100'); // Pre-dobooking. Optional
@@ -96,12 +96,12 @@ else
  */
 function dobooking($selectedProperty,$thisdate=false,$remus)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	$mrConfig=getPropertySpecificSettings();
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
 	$referrer=$_SERVER['HTTP_REFERER'];
 	$backWasClicked=false;
@@ -495,7 +495,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'uploadedimages'.JRDS.'totals_panel_bg.jpg'))
 		$output['TOTALS_PANEL_BG_PATH']='jomres/uploadedimages/';
 	
-	$current_property_details =jomres_getSingleton('basic_property_details');
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	$output['PROPERTYNAME'] = $current_property_details->get_property_name($selectedProperty);
 
 	$output['BOOKEDDATES']= $booked_dates_output;

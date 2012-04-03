@@ -29,16 +29,16 @@ class j00030search {
 	function j00030search($componentArgs)
 		{
 		global $jomresSearchFormname;
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$option=jomresGetParam( $_REQUEST, 'option',"" );
-		$customTextObj =jomres_getSingleton('custom_text');
+		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 		
 		$data_only=false;
 		if (isset($_REQUEST['dataonly']))
@@ -51,7 +51,7 @@ class j00030search {
 		$searchRestarted=false;
 		$showSearchOptions=true;
 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 
 		if (isset($componentArgs['doSearch']) )
 			$doSearch=$componentArgs['doSearch'];
@@ -68,15 +68,15 @@ class j00030search {
 			{
 			//$customTextObj = new custom_text();
 			//global $jomressession;
-			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+			$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 			//$tmpBookingHandler = new jomres_temp_booking_handler();
 			$tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
 			$jomressession  = $tmpBookingHandler->getJomressession();
 			$showSearchOptions=true;
-			$jomreslang =jomres_getSingleton('jomres_language');
+			$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 			//$jomreslang= new jomres_language();
 			$jomreslang->get_language('xx');
-			$customTextObj =jomres_getSingleton('custom_text');
+			$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 			//$customTextObj = new custom_text();
 			}
 			
@@ -97,7 +97,7 @@ class j00030search {
 
 		$calledByModule=getEscaped($calledByModule);
 
-		$customTextObj =jomres_getSingleton('custom_text');
+		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 
 			$infoIcon="/jomres/images/information.png";
 			$output=array();

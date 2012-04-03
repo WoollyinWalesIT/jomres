@@ -29,12 +29,12 @@ class j00011manager_option_11_debugging {
 	function j00011manager_option_11_debugging($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->superPropertyManager)
 			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=reportbug&currentPage=".get_showtime('task')), 'bug_icon.png', jr_gettext('_JOMRES_CUSTOMTEXT_REPORTBUG',"Report Bug",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" , "misc" ,false,false));
 		}

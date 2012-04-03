@@ -16,13 +16,13 @@ class j06000ajax_shortlist
 	{
 	function j06000ajax_shortlist()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$property_uid = (int)$_REQUEST['property_uid'];
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$shortlist_items = $tmpBookingHandler->tmpsearch_data['shortlist_items'];
 		if ((get_showtime('this_property_published') && !in_array($property_uid,$shortlist_items)) )
 			{

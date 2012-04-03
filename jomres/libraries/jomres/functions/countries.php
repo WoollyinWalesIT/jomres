@@ -100,7 +100,7 @@ function createSimpleCountriesDropdown($selectedCountry)
 
 function limitCountriesDropdown()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$countryCodes=countryCodesArray();
 	asort($countryCodes);

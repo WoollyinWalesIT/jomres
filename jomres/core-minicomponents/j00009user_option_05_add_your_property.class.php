@@ -29,17 +29,17 @@ class j00009user_option_05_add_your_property {
 	function j00009user_option_05_add_your_property($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!$thisJRUser->userIsRegistered)
 			return;
 		if ($thisJRUser->userIsManager)// No point in putting the "add your property" link to the toolbar if the user's already a manager.
 			return;
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if ($jrConfig['selfRegistrationAllowed']=="1" && $jrConfig['useSubscriptions']=="1" )
 			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=registerProp_step1", '', jr_gettext('_JOMRES_USER_LISTMYPROPERTY',_JOMRES_USER_LISTMYPROPERTY,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );

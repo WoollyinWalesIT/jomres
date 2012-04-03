@@ -16,12 +16,12 @@ class j06005save_review
 	{
 	function j06005save_review()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		if (!isset($_GET['property_uid']))
@@ -84,7 +84,7 @@ class j06005save_review
 					$thanks=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED',_JOMRES_REVIEWS_THANKS_FOR_REVIEW_MODERATED,false,false);
 					
 				$saveMessage=$thanks;
-				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&ja=1&property_uid=".$property_uid) ,"" );

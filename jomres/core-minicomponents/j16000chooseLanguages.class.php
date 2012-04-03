@@ -17,7 +17,7 @@ class j16000chooseLanguages
 	function j16000chooseLanguages()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -35,7 +35,7 @@ class j16000chooseLanguages
 		else
 			$langfiles = array();
 
-		$jomreslang =jomres_getSingleton('jomres_language');
+		$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 		$languagesArray = $jomreslang->define_langfile_to_languages_array();
 
 		$rows=array();
@@ -51,7 +51,7 @@ class j16000chooseLanguages
 			$rows[]=$r;
 			}
 		
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_languageChoiceSelection');
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');

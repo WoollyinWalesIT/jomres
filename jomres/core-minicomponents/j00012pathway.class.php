@@ -46,21 +46,21 @@ class j00012pathway {
 	function j00012pathway($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$numberOfPropertiesInSystem = get_showtime('numberOfPropertiesInSystem');
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
 		if (isset($_REQUEST['no_html']) && $_REQUEST['no_html'] == "1")
 			return;
 		$property_uid = $componentArgs['property_uid'];
 		
-		$jomresPathway =jomres_getSingleton('jomres_pathway');
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$jomresPathway =jomres_singleton_abstract::getInstance('jomres_pathway');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		if (_JOMRES_DETECTED_CMS == "jomressa")

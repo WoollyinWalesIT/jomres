@@ -17,7 +17,7 @@ class j16000save_languageChoiceSelection {
 	function j16000save_languageChoiceSelection()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -25,7 +25,7 @@ class j16000save_languageChoiceSelection {
 		// A slightly ugly way of doing things, but it saves us from having to make yet another database enquiry, this time to find out the available languages.
 		$languageChoices = $_POST['idarray'];
 		
-		$jomreslang =jomres_getSingleton('jomres_language');
+		$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 		$languagesArray = $jomreslang->define_langfile_to_languages_array();
 		
 		$temp_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS;

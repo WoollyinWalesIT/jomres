@@ -29,7 +29,7 @@ class j00010reception_option_03_dobooking {
 	function j00010reception_option_03_dobooking($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -39,7 +39,7 @@ class j00010reception_option_03_dobooking {
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
 	
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$output['BOOKAROOMLINK']=JOMRES_SITEPAGE_URL."&task=dobooking";
 		if ( $jrConfig['useSSLinBookingform'] == "1" )

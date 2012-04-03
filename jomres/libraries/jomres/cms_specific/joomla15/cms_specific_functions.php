@@ -40,10 +40,10 @@ function jomres_cmsspecific_areweinadminarea()
 function jomres_cmsspecific_createNewUserOnBooking()
 	{
 	global $jomresConfig_mailfrom,$jomresConfig_fromname;
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	if ($jrConfig['useNewusers']=="0")
 		return -1;
 	
@@ -138,7 +138,7 @@ function jomres_cmsspecific_createNewUserOnBooking()
 			$text .= jr_gettext('_JRPORTAL_NEWUSER_PASSWORD',_JRPORTAL_NEWUSER_PASSWORD,false,false)." ".$password." \t\n";
 			$text .= jr_gettext('_JRPORTAL_NEWUSER_LOG_IN',_JRPORTAL_NEWUSER_LOG_IN,false,false)." ".get_showtime('live_site')."\t\n\t\n";
 			
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			if ($jrConfig['useNewusers_sendemail'] == "1")
 				{
@@ -181,7 +181,7 @@ function jomres_cmsspecific_getcurrentusers_id()
 
 function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAndfilename="",$disable_compression=false)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$use_js_cache = false;
 	if ($jrConfig['javascript_caching_enabled'] == "1")
@@ -194,7 +194,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$fullpathAnd
 				{
 				$jomres_js_cache = get_showtime('js_cache');
 
-				$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+				$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 				if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache"))
 					mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_cache");
 

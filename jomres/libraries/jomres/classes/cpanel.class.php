@@ -17,10 +17,10 @@ class cpanel
 	{
 	function cpanel()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$rows		=array();
 		$pageoutput	=array();
-		$htmlFuncs =jomres_getSingleton('html_functions');
+		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		if (!file_exists(JOMRESPATH_BASE.'/images/jomresimages/small/ViewDatabase.png') )
 			{
 			$icon_database=makeImageValid("Help Index Results.jpg");

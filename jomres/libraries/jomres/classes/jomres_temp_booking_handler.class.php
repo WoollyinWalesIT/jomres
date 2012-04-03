@@ -34,7 +34,7 @@ class jomres_temp_booking_handler
 			return;
 		define('JOMRES_SESSONSTARTED',1);
 
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$this->task=get_showtime('task');
 		$this->jomressession=get_showtime('jomressession');
@@ -197,7 +197,7 @@ class jomres_temp_booking_handler
 			$this->part = $jomressession;
 		else
 			{
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$expire = time()+$jrConfig['lifetime'];
 			if (!isset($_COOKIE['jomressession']) || is_null($_COOKIE['jomressession']))

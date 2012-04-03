@@ -21,7 +21,7 @@ function add_gmaps_source($sensor=0)
 	if (!defined('GMAPS_SOURCE_ADDED'))
 		{
 		define('GMAPS_SOURCE_ADDED',1);
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$site_lang=get_showtime('lang');
 		$lang=explode('-',$site_lang);
@@ -35,12 +35,12 @@ function add_gmaps_source($sensor=0)
 
 function get_property_price_for_display_in_lists($property_uid)
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$mrConfig=getPropertySpecificSettings($property_uid);
 	set_showtime('property_uid',$property_uid);
-	$customTextObj =jomres_getSingleton('custom_text');
+	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 	$customTextObj->get_custom_text_for_property($property_uid);
-	$current_property_details =jomres_getSingleton('basic_property_details');
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	$current_property_details->gather_data($property_uid);
 	$plugin_will_provide_lowest_price = false;
 	$MiniComponents->triggerEvent('07015',array('property_uid'=>$property_uid) ); // Optional
@@ -152,8 +152,8 @@ function add_menu_option ( $task_and_args, $image, $title,$path=null, $category,
 // Builds the button link information that's later passed to the menu generator
 function jomres_mainmenu_option( $link, $image='', $text, $path='/jomres/images/jomresimages/small/',$category = null,$external = false,$disabled=false)
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$link = jomresURL($link);
 	$link = jomresValidateUrl($link);
@@ -200,7 +200,7 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 		$modal_width = imagesx($resource)+30;
 		if ($modal_width == 30 || !$modal_width) // Yet another security setting stopping PHP from doing it's job, let's fall back to the maxwidth config setting.
 			{
-			$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
 			$max_width = $jrConfig['maxwidth'];
 			$modal_width = $max_width+30;
@@ -380,16 +380,16 @@ function get_property_module_data($property_uid_array)
 	// for testing
 	//$property_uid_array = array(1,12,43,14);
 	add_gmaps_source();
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	if (!defined('_JOMRES_COM_MR_SHOWPROFILES'))
 		{
-		$jomreslang =jomres_getSingleton('jomres_language');
+		$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 		$jomreslang->get_language('');
 		}
 
 	$return_data = array();
 
-	$current_property_details =jomres_getSingleton('basic_property_details');
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	$property_data_array = $current_property_details->gather_data_multi($property_uid_array);
 
 
@@ -416,7 +416,7 @@ function get_property_module_data($property_uid_array)
 			}
 		}
 
-	$customTextObj =jomres_getSingleton('custom_text');
+	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 	foreach ($property_uid_array as $property_uid)
 		{
 		if ($property_uid > 0)
@@ -485,19 +485,19 @@ function init_javascript()
 	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
 	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
 
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
 		if (!defined(JOMRES_NOHTML) )
 			{
-			$jomreslang =jomres_getSingleton('jomres_language');
+			$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 			define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
 			$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
-			$MiniComponents =jomres_getSingleton('mcHandler');
+			$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 
 			if (!isset($jrConfig['load_jquery_ui']))
 				$jrConfig['load_jquery_ui'] = "1";
@@ -581,7 +581,7 @@ function init_javascript()
 
 function set_booking_number()
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$keeplooking=true;
 	while ($keeplooking):
 		$query="SELECT contract_uid FROM #__jomres_contracts WHERE tag like '".$cartnumber."' LIMIT 1";
@@ -596,7 +596,7 @@ function set_booking_number()
 
 function get_booking_number()
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	return (int)$tmpBookingHandler->tmpbooking["booking_number"];
 	}
 
@@ -648,8 +648,8 @@ function get_all_suspended_managers()
 
 function detect_property_uid()
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if (isset($_REQUEST['selectedProperty']))
 		$property_uid	= intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 	else
@@ -734,14 +734,14 @@ function detect_property_uid()
 
 function jomres_validate_gateway_plugin()
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if ($thisJRUser->userIsManager)
 		return "NA";
 
-	$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+	$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 	$paypal_settings->get_paypal_settings();
 	$mrConfig=getPropertySpecificSettings();
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$property_uid = get_showtime('property_uid');
 	if ($mrConfig['useOnlinepayment']=="1" || $paypal_settings->paypalConfigOptions['override'] == "1")
 		{
@@ -832,13 +832,13 @@ function output_price($value,$currencycode="",$do_conversion = true)
 	{
 	$price = (float)$value;
 
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['use_conversion_feature'] != "1")
 		$do_conversion = false;
 
 	$mrConfig=getPropertySpecificSettings();
-	$currfmt = jomres_getSingleton('jomres_currency_format');
+	$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 	$currfmt->get_format();
 
 	$wholepart=intval($price);
@@ -864,10 +864,10 @@ function output_price($value,$currencycode="",$do_conversion = true)
 	$converted_output_price = '';
 	jr_import('jomres_currency_conversion');
 	$conversion = new jomres_currency_conversion();
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	if (is_null($tmpBookingHandler->user_settings['current_exchange_rate']))
 		{
-		$jomres_geolocation = jomres_getSingleton('jomres_geolocation');
+		$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
 		$jomres_geolocation->auto_set_user_currency_code();
 		}
 	$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
@@ -920,7 +920,7 @@ function jomres_reconvertString($clean)
 function get_showtime($setting)
 	{
 	$showtime = jomres_singleton_abstract::getInstance('showtime');
-	//$showtime = jomres_getSingleton('showtime');
+	//$showtime = jomres_singleton_abstract::getInstance('showtime');
 	$result = $showtime->$setting;
 	//var_dump ($setting." ".$result);
 	return $result;
@@ -930,7 +930,7 @@ function set_showtime($setting,$value)
 	{
 	//echo $setting." - ".$value."<br>";
 	$showtime = jomres_singleton_abstract::getInstance('showtime');
-	//$showtime = jomres_getSingleton('showtime');
+	//$showtime = jomres_singleton_abstract::getInstance('showtime');
 	if (!$showtime->$setting=$value)
 		return false;
 	return true;
@@ -940,7 +940,7 @@ function set_showtime($setting,$value)
 function get_plugin_settings($plugin,$prop_id=0)
 	{
 	$settingArray = array();
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
 	if ($thisJRUser->userIsManager)
 		{
@@ -950,7 +950,7 @@ function get_plugin_settings($plugin,$prop_id=0)
 		{
 		if ($prop_id == 0)
 			{
-			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+			$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 			$property_uid=(int)$tmpBookingHandler->getBookingPropertyId();
 			}
 		else
@@ -970,7 +970,7 @@ function get_plugin_settings($plugin,$prop_id=0)
 
 	if ($plugin == "paypal")
 		{
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 
 			if ($paypal_settings->paypalConfigOptions['override'] == "1")
@@ -990,7 +990,7 @@ function jr_import($class)
 	{
 	if (class_exists('j00001start'))  // Wont init properly if we call this any time sooner than when j00001start has been set up
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$plugin_directories = $MiniComponents->miniComponentDirectories;
 		}
 	else
@@ -1042,7 +1042,7 @@ function jomresValidateUrl($url)
 
 function getIntegratedSearchModuleVals()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	$vals = array();
@@ -1076,7 +1076,7 @@ function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content=
 	{
 	// Uncomment the following line to tell Jomres to show the images and descriptions side by side, instead of using the jquery tooltip.
 	//$type_arguments['use_javascript']=false;
-	$jomres_tooltips =jomres_getSingleton('jomres_tooltips');
+	$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
 	//$jomres_tooltips = new jomres_tooltips();
 	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
 	}
@@ -1504,7 +1504,7 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 
 function mailer_get_css()
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
@@ -1537,7 +1537,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$jomresConfig_smtpport=get_showtime('smtpport');
 	$jomresConfig_mailer=get_showtime('mailer');
 	$jomresConfig_debug=true;
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	$emails=array();
@@ -1618,7 +1618,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$mail->Subject		= $subject;
 	$mail->Port			= $jomresConfig_smtpport;
 
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['alternate_smtp_use_settings']=="1")
 		{
@@ -1802,7 +1802,7 @@ function getCurrentBookingData($jomressession="")
 	{
 	// Whilst this is a new function to construct data from session variables, we'll need to do a bunch of jiggery pokery with the nice simple data pulled from the sess vars so that the data is in a format that's understood by other functions that previously received data that had been pulled from the database
 	//global $tmpBookingHandler;
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$obj=new stdClass;
 	$tempBookingDataList=array();
 	$userDeets=$tmpBookingHandler->getGuestData();
@@ -1839,7 +1839,7 @@ function getCurrentBookingData($jomressession="")
 */
 function getbookingguestdata()
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$userDeets=$tmpBookingHandler->getGuestData();
 	return $userDeets;
 	}
@@ -1851,7 +1851,7 @@ function getbookingguestdata()
 */
 function gettempBookingdata()
 	{
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$bookingDeets=$tmpBookingHandler->getBookingData();
 	return $bookingDeets;
 	}
@@ -1863,7 +1863,7 @@ function gettempBookingdata()
 */
 function addPropertyUidToUsersProperties($property_uid)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if (!in_array($property_uid,$thisJRUser->authorisedProperties) )
 		{
 		$query="INSERT INTO #__jomres_managers_propertys_xref (`manager_id`,`property_uid`) VALUES ('".(int)$thisJRUser->userid."','".(int)$property_uid."')";
@@ -1982,7 +1982,7 @@ function errorHandler ($errno, $errstr, $errfile, $errline, $errcontext)
 
 function recordError($errno, $errstr, $errfile, $errline, $errcontext)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
 	$errorstring = "Fatal Error: $errstr (# $errno).";
 	//$errorstring .= "User id '$jrUser->username'&nbsp;&nbsp;.";
@@ -2015,7 +2015,7 @@ function recordError($errno, $errstr, $errfile, $errline, $errcontext)
  */
 function error_logging($message,$emailMessage=true)
 	{
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	$logfile=JOMRES_SYSTEMLOG_PATH.'jomres_error_log.xml';
@@ -2181,7 +2181,7 @@ function jomresRedirect( $url, $msg='' )
 	// echo "<script>document.location.href='$url';</script>\n";
 	// exit();
 
-	// $siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	// $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	// $jrConfig=$siteConfig->get();
 
 
@@ -2241,7 +2241,7 @@ function hotelSettings()
 	{
 
 	//global $configurationPanel;
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 
 	$property_uid=(int)getDefaultProperty();
 	$mrConfig=getPropertySpecificSettings($property_uid);
@@ -2482,7 +2482,7 @@ function hotelSettings()
 		</table>
 	<?php
 
-	$jrtbar =jomres_getSingleton('jomres_toolbar');
+	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 	$jrtb	= $jrtbar->startTable();
 	$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveHotelSettings');
 	$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL.""),'');
@@ -2491,7 +2491,7 @@ function hotelSettings()
 
 	echo $output['JOMRESTOOLBAR'];
 
-	$configurationPanel =jomres_getSingleton('jomres_configpanel');
+	$configurationPanel =jomres_singleton_abstract::getInstance('jomres_configpanel');
 
 	$componentArgs['configurationPanel']=$configurationPanel;
 
@@ -2705,7 +2705,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		$dateValue = date("Y/m/d");
 	$dateValue=JSCalmakeInputDates($dateValue,$siteConfig);
 
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$dateFormat=$jrConfig['cal_input'];
 	$dateFormat = strtolower(str_replace("%","",$dateFormat)); // For the new jquery calendar, we'll strip out the % symbols. This should mean that we don't need to force upgraders to reset their settings.
@@ -2798,8 +2798,8 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 function insertInternetBooking($jomressession="",$depositPaid=false,$confirmationPageRequired=true,$customTextForConfirmationForm="",$usejomressessionasCartid=false)
 	{
 	$jomressession=get_showtime('jomressession');
-	$MiniComponents =jomres_getSingleton('mcHandler');
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 
 
 	gateway_log("insertInternetBooking: Attempting to insert booking jsid: ".get_showtime('jomressession'));
@@ -2832,7 +2832,7 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 			if ($userIsManager)
 				{
 				echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
-				$jrtbar =jomres_getSingleton('jomres_toolbar');
+				$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 				$jrtb	= $jrtbar->startTable();
 				$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$MiniComponents->miniComponentData['03020']['insertbooking']['contract_uid']),'');
 				$jrtb .= $jrtbar->endTable();
@@ -2866,7 +2866,7 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 					{
 					echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
 					//echo "<a href=\"".jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$contract_uid")."\">".jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE)."</a>";
-					$jrtbar =jomres_getSingleton('jomres_toolbar');
+					$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 					$jrtb	= $jrtbar->startTable();
 					$jrtb .= $jrtbar->toolbarItem('editbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=".$MiniComponents->miniComponentData['03020']['insertbooking']['contract_uid']),'');
 					$jrtb .= $jrtbar->endTable();
@@ -2896,8 +2896,8 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 function insertGuestDeets($jomressession)
 	{
 	$jomresConfig_secret=get_showtime('secret');
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$userIsManager=checkUserIsManager();
 
 	$xCustomers=$tmpBookingHandler->getGuestData();
@@ -3040,7 +3040,7 @@ function outputDate($thedate)
 function JSCalmakeInputDates($inputDate,$siteCal=FALSE)
 	{
 	$mrConfig=getPropertySpecificSettings();
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	// Lets make the calendar dates for display in the js calendar. will receive a Y/m/d formatted string &	output it in the desired format
@@ -3089,7 +3089,7 @@ function JSCalConvertInputDates($inputDate,$siteCal=FALSE)
 	{
 	// Lets convert the input calendar dates to Y/m/d
 	$mrConfig=getPropertySpecificSettings();
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	$dateFormat=$jrConfig['cal_input'];
@@ -3610,7 +3610,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		if ($unixDeparture< $unixToday && $bookedIn =="1")
 			$imgToShow=$img_stillhere;
 
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb	= $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$row->contract_uid ),'');
 		$jrtb .= $jrtbar->endTable();
@@ -3639,7 +3639,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 */
 function getPropertyAddressForPrint($propertyUid)
 	{
-	$current_property_details =jomres_getSingleton('basic_property_details');
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	if (!isset($current_property_details->multi_query_result[$propertyUid]))
 		{
 		//Returns an array containing the property address & contact details in table/row format. A rather crappy function, it's overused by other areas of Jomres, added indexedPropertyDetails for use by the global thisJomresPropertyDetails
@@ -3817,7 +3817,7 @@ function dropImage($defaultProperty=0,$imageType="",$itemUid="",$redirectOnDone 
 				{
 				unlink($fileFullPath_thumbnail);
 
-				$jomres_messaging =jomres_getSingleton('jomres_messages');
+				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message($saveMessage);
 				if ($redirectOnDone)
@@ -3836,7 +3836,7 @@ function dropImage($defaultProperty=0,$imageType="",$itemUid="",$redirectOnDone 
 		}
 	else
 		{
-		$jomres_messaging =jomres_getSingleton('jomres_messages');
+		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 		$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message("Could not discerne filename");
 		if ($redirectOnDone)
@@ -3871,7 +3871,7 @@ function uploadPropertyImage()
 		jr_import('jomres_cache');
 		$cache = new jomres_cache();
 		$cache->trashCacheForProperty($defaultProperty);
-		$jomres_messaging =jomres_getSingleton('jomres_messages');
+		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 		$jomres_messaging = new jomres_messages();
 		$jomres_messaging->set_message($saveMessage);
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), "" );
@@ -3918,7 +3918,7 @@ function uploadRoomImage()
 			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForProperty($defaultProperty);
-			$jomres_messaging =jomres_getSingleton('jomres_messages');
+			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 			$jomres_messaging = new jomres_messages();
 			$jomres_messaging->set_message($saveMessage);
 			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&roomUid=$roomUid"), $saveMessage );
@@ -3937,8 +3937,8 @@ function uploadRoomImage()
 */
 function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 
 	$elementsToRemove=array("\\","'",);
@@ -4023,7 +4023,7 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 */
 function getPropertyName($property_uid)
 	{
-	$current_property_details =jomres_getSingleton('basic_property_details');
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	if ( (int)$property_uid == 0)
 		return '';
 	return $current_property_details->get_property_name($property_uid);
@@ -4204,7 +4204,7 @@ function getThumbnailForImage($imagefullrelpath,$medium=false)
 function getPropertySpecificSettings($property_uid=null)
 	{
 	global $mrConfig;
-	$propertyConfig = jomres_getSingleton('jomres_config_property_singleton');
+	$propertyConfig = jomres_singleton_abstract::getInstance('jomres_config_property_singleton');
 	if ($propertyConfig->property_uid == 0)
 		$propertyConfig->init($property_uid);
 
@@ -4452,7 +4452,7 @@ function returnToPropertyConfig($saveMessage="")
  */
 function publishProperty()
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->specificEvent('02272',"publishprop");
 	}
 
@@ -4496,7 +4496,7 @@ function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $
  */
 function jomresShowSearch()
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->triggerEvent('00030'); //Search mini-comp
 	}
 
@@ -4513,7 +4513,7 @@ function jomresShowSearch()
 function makeFeatureImages($image,$title,$description,$retString=false,$altLivesite="")
 	{
 	$mrConfig=getPropertySpecificSettings();
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if (!empty($altLivesite))
 		set_showtime('live_site',$altLivesite);
 	$title=addslashes($title);
@@ -4661,7 +4661,7 @@ function showCalandarMonthDropdown()
  */
 function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear=12,$room_avl_enquiry=false)
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$componentArgs=array();
 	$componentArgs['roomUid']=$roomUid;
 	$componentArgs['requestedDate']=$requestedDate;
@@ -4678,7 +4678,7 @@ function showAvailability($roomUid,$requestedDate="",$property_uid,$showFullYear
  */
 function property_header($property_uid)
 	{
-	$MiniComponents =jomres_getSingleton('mcHandler');
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$MiniComponents->triggerEvent('01070',array('property_uid'=>$property_uid) ); // Call property header mini-component
 	}
 
@@ -5100,7 +5100,7 @@ function invoices_makeInvoiceStatusDropdown( $selected='0' )
 
 function subscribers_thisUserIsASubscriber($id=0)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT id FROM #__jomresportal_subscriptions WHERE cms_user_id =".(int)$id."";
@@ -5158,7 +5158,7 @@ function subscribers_getManagersPublishedProperties($cms_user_id)
 
 function subscribers_checkUserHasSubscriptionsToCreateNewProperty($id=0)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$allowedProperties = subscribers_getAvailablePropertySlots($id);
@@ -5171,7 +5171,7 @@ function subscribers_checkUserHasSubscriptionsToCreateNewProperty($id=0)
 
 function subscribers_getAvailablePropertySlots($id=0)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT property_limit FROM #__jomresportal_subscriptions WHERE cms_user_id ='".(int)$id."' AND `status` = 1";
@@ -5192,7 +5192,7 @@ function subscribers_getAvailablePropertySlots($id=0)
 
 function subscribers_getCurrentPropertiesNumbers($id=0)
 	{
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT COUNT(`manager_id`)  FROM #__jomres_managers_propertys_xref WHERE manager_id ='".(int)$id."'";
@@ -5207,7 +5207,7 @@ function subscribers_getCurrentPropertiesNumbers($id=0)
 function subscribers_getCurrentSubscriptionsForJosId($id=0)
 	{
 	$users_subscriptions=array();
-	$thisJRUser=jomres_getSingleton('jr_user');
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	if ($id == 0)
 		$id=$thisJRUser->id;
 	$query="SELECT * FROM #__jomresportal_subscriptions WHERE cms_user_id =".(int)$id;

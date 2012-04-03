@@ -108,7 +108,7 @@ class jomres_cron
 
 	function getAllJobs()
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$allJobs=array();
 		foreach ($MiniComponents->registeredClasses as $key=>$val)
 			{

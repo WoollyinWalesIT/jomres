@@ -29,7 +29,7 @@ class j00002usermanagement {
 	function j00002usermanagement($componentArgs=null)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -37,7 +37,7 @@ class j00002usermanagement {
 
 		//jr_import('jr_user');
 		set_showtime("jr_user_ready",false);
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		//$thisJRUser= new jr_user();
 		if ($thisJRUser->userIsManager==TRUE)
 			$thisJRUser->check_currentproperty();

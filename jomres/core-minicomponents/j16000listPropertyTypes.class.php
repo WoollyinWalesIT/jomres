@@ -18,7 +18,7 @@ class j16000listPropertyTypes
 	function j16000listPropertyTypes()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -59,7 +59,7 @@ class j16000listPropertyTypes
 				";
 			}
 
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_ptype_order');
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");

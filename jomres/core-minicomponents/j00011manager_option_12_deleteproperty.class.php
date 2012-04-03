@@ -29,12 +29,12 @@ class j00011manager_option_12_deleteproperty {
 	function j00011manager_option_12_deleteproperty($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ( $thisJRUser->superPropertyManager)
 		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken(), 'WasteBasket.png', jr_gettext('_JOMRES_COM_MR_PROPERTY_DELETE',_JOMRES_COM_MR_PROPERTY_DELETE,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard" ,false,false),false,true );
 		}

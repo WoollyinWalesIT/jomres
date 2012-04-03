@@ -16,16 +16,16 @@ class j00035tabcontent_02_bookingform
 	{
 	function j00035tabcontent_02_bookingform($componentArgs)
 		{
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
 			}
 		$property_uid=(int)$componentArgs['property_uid'];  
 		$mrConfig=getPropertySpecificSettings($property_uid);
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		
 		if ($mrConfig['registeredUsersOnlyCanBook'] == "1" && $thisJRUser->id == 0)
 			{

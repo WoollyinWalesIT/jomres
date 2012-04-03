@@ -30,15 +30,15 @@ class j03110guestconfirmationemail {
 	function j03110guestconfirmationemail($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
 		$output=array();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$mrConfig=getPropertySpecificSettings();
-		$currfmt = jomres_getSingleton('jomres_currency_format');
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
 		$guestDetails=$componentArgs['guestDetails'];

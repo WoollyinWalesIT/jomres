@@ -29,7 +29,7 @@ class j02220listguests {
 	function j02220listguests()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
@@ -133,7 +133,7 @@ class j02220listguests {
 			{
 			if (!in_array($guest->guests_uid,$ids_of_not_required_guests))
 				{
-				$jrtbar =jomres_getSingleton('jomres_toolbar');
+				$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				
 				$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
@@ -179,7 +179,7 @@ class j02220listguests {
 		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=0"), _JOMRES_HISTORIC_GUESTS_NOSHOW );
 		$output['HISTORIC_GUESTS_DROPDOWN']=jomresHTML::selectList( $yesno, 'all_guests','class="inputbox" size="1" onchange="window.open(this.options[this.selectedIndex].value,\'_top\')"', 'value', 'text', (int)$_REQUEST['all_guests']);
 		
-		$jrtbar =jomres_getSingleton('jomres_toolbar');
+		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		
 		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,$editable=false,$isLink=true) ;

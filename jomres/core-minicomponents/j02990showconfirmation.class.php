@@ -29,17 +29,17 @@ class j02990showconfirmation {
 	function j02990showconfirmation()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		$MiniComponents =jomres_getSingleton('mcHandler');
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=true; return;
 			}
-		$paypal_settings =jomres_getSingleton('jrportal_paypal_settings');
+		$paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 		$paypal_settings->get_paypal_settings();
 		
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		
 		$booking_parts=array();
@@ -71,7 +71,7 @@ class j02990showconfirmation {
 		
 		
 
-		$currfmt = jomres_getSingleton('jomres_currency_format');
+		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 
 		// Trigger point
 		$MiniComponents->triggerEvent('03000');
@@ -437,7 +437,7 @@ class j02990showconfirmation {
 		$booking_parts['BOOKINGSPECIALREQ']	=	jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ);
 		$booking_parts['DISCLAIMER']		=	jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ_DISCLAIMER);
 		
-		$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
 		if (!$userIsManager&& isset($MiniComponents->registeredClasses['06000show_cart']) )
