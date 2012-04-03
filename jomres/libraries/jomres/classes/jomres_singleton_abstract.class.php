@@ -117,7 +117,11 @@ class jomres_singleton_abstract
 
 function jomres_getSingleton($class,$args=array() )
 	{
-	$result = jomres_singleton_abstract::getInstance($class,$args);
-	return $result;
+	static $results;
+	if(!isset($results[$class])) 
+		{
+		$results[$class] = jomres_singleton_abstract::getInstance($class,$args);
+		}
+	return $results[$class];
 	}
 ?>
