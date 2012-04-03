@@ -16,20 +16,23 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
-	$customTextObj =jomres_getSingleton('custom_text');
-			
 	$property_uid = (int)get_showtime('property_uid');
+	
+	global $text_bucket;
+	if (!isset($text_bucket))
+		$text_bucket = array();
+	if (isset($text_bucket[$property_uid][$theConstant]))
+		return $text_bucket[$property_uid][$theConstant];
+	
+	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
+	
+	
 	$customTextArray = $customTextObj->get_custom_text();
 
-//exit;
-	// if ($theConstant == "_JOMRES_CUSTOMTEXT_PROPERTY_NAME")
-		// {
-		// var_dump($theConstant);echo "<br>";var_dump($customTextArray);echo "<br>";
-		// }
-	$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	if (get_showtime("jr_user_ready")) // If jr_user isn't ready yet, calling jomres_getSingleton('jr_user') will cause php to stop due to recursion, so we'll check that jr_user's been set up before we do anything else
 		{
-		$thisJRUser=jomres_getSingleton('jr_user');
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
 		if (!isset($tmpBookingHandler->user_settings['editing_on']))
 			$tmpBookingHandler->user_settings['editing_on']= false;
@@ -44,11 +47,9 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		}
 	else
 		$tmpBookingHandler->user_settings['editing_on']= false;
-	
-	//$tmpBookingHandler->close_jomres_session();
 
 	$mrConfig=getPropertySpecificSettings($property_uid);
-	$siteConfig = jomres_getSingleton('jomres_config_site_singleton');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if (isset($thisJRUser->accesslevel))
 		$accessLevel=$thisJRUser->accesslevel;
@@ -60,52 +61,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
 		
-/* 	// New in 4.3, and experimental, so it's disabled by default and there's no option to enable it
-	if ($jrConfig['auto_translate'] == "1")
-		{
-		if (!defined($theConstant) && !array_key_exists($theConstant,$customTextArray) && $theText != "")
-			{
-			//echo $property_uid;
-			//var_dump($customTextObj->property_uids_custom_text);exit;
-			$site_lang = $jrConfig['siteLang'];
-			$jomresConfig_lang = get_showtime('lang');
-			$site_tmp=explode("-",$site_lang);
-			$curr_lang_tmp = explode("-",$jomresConfig_lang);
-			
-			//$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theText)."&langpair=".$site_tmp[0]."%7C".$curr_lang_tmp[0];
-			// Autodetect the source language
-			$gquery = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&q=".urlencode($theText)."&langpair=%7C".$curr_lang_tmp[0];
-			//echo $gquery." ".$theConstant."<br>";
-			$curl_handle=curl_init($gquery);
-			curl_setopt($curl_handle,CURLOPT_URL);
-			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-			$response = trim(curl_exec($curl_handle));
-			curl_close($curl_handle);
-			$response = json_decode($response);
-			// Are we good?
-			if ( (int)$response->responseStatus == 200)
-				{
-				//echo $response->responseData->translatedText."<br/>";
-				$theText=filter_var($response->responseData->translatedText,FILTER_SANITIZE_SPECIAL_CHARS);
-				
-				$theText = str_replace("'", "&#39;", $theText);
-				$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theText."','".(int)$property_uid."','".get_showtime('lang')."')";
-				$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
-				// We'll disable this for now. The property features aren't associated with property ids so  it's generating lots of queries and saving lots of useless rows in the custom_text table
-				//$result=doInsertSql($query,$audit);
-				echo $property_uid." ".$theText."<br>";
-				$customTextObj->property_uids_custom_text[$property_uid][$theConstant] = $theText;
-				//var_dump($customTextObj->property_uids_custom_text[$property_uid]);exit;
-				}
-			else
-				{
-				//echo $response->responseStatus."<br>";
-				}
-			//echo $theText."<br/>";
-			}
-		} */
-	
 	if (count($customTextArray)>0)
 		{
 		if (array_key_exists($theConstant,$customTextArray) )
@@ -118,7 +73,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$defaultText=$theValue;
 			}
 		}
-	$theText=jomres_reconvertString($theText);
+	//$theText=jomres_reconvertString($theText);
 	if (isset($thisJRUser))
 		{
 		if ($_REQUEST['task']=="touch_templates" && $thisJRUser->userIsManager)
@@ -128,7 +83,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$jrConfig['editingModeAffectsAllProperties'] = "1";
 			$editing = true;
 			}
-			
+		
 		if($jrConfig['allowHTMLeditor']!="1")
 			$theText=jomres_remove_HTML($theText);
 		
@@ -191,19 +146,8 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		}
 	
 	//$theText = jomres_purify_html($theText,$editing);
-	
-	switch ($jrConfig['utfHTMLdecode'])
-		{
-		case 0:
-			return html_entity_decode($theText);
-			break;
-		case 1:
-			return jomres_html_entity_decode_utf8($theText);
-			break;
-		case 2:
-		default:
-			return $theText;
-		}
+	$text_bucket[$property_uid][$theConstant] = $theText;
+	return $theText;
 	}
 
 
