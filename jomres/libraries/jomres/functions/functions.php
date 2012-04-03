@@ -919,7 +919,8 @@ function jomres_reconvertString($clean)
 
 function get_showtime($setting)
 	{
-	$showtime = jomres_getSingleton('showtime');
+	$showtime = jomres_singleton_abstract::getInstance('showtime');
+	//$showtime = jomres_getSingleton('showtime');
 	$result = $showtime->$setting;
 	//var_dump ($setting." ".$result);
 	return $result;
@@ -928,7 +929,8 @@ function get_showtime($setting)
 function set_showtime($setting,$value)
 	{
 	//echo $setting." - ".$value."<br>";
-	$showtime = jomres_getSingleton('showtime');
+	$showtime = jomres_singleton_abstract::getInstance('showtime');
+	//$showtime = jomres_getSingleton('showtime');
 	if (!$showtime->$setting=$value)
 		return false;
 	return true;
