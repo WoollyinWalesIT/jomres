@@ -492,7 +492,7 @@ class j01010listpropertys {
 						if (!$property_deets['IMAGEMEDIUM'])
 							$property_deets['IMAGEMEDIUM'] = $no_image_image;
 						$property_deets['IMAGELARGE']=$property_image;
-						$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],"");
+						//$property_deets['IMAGE_POPUP']=jomres_make_image_popup($property_deets['PROPERTYNAME'],$property_image,"",array(),$property_deets['IMAGETHUMB'],""); // disabled, we're not using it and it's taking about a second to run for each thumbnail that shows in the image list.
 						$property_deets['_JOMRES_QUICK_INFO']=jr_gettext('_JOMRES_QUICK_INFO',_JOMRES_QUICK_INFO,false,false);
 						$property_deets['REMOTE_URL']=$mrConfig['galleryLink'];
 						$property_deets['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
