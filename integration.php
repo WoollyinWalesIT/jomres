@@ -1073,7 +1073,8 @@ function generateJomresRandomString($length=50)
 	{
 	$str = "";
 	// define possible characters
-	$possible = "0123456789bcdfghjkmnpqrstvwxyz";
+	//$possible = "0123456789bcdfghjkmnpqrstvwxyz";
+	$possible = "abcdfghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ";
 	// set up a counter
 	$i = 0;
 	// add random characters to $str until $length is reached
