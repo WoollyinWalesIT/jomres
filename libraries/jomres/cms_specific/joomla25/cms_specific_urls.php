@@ -36,21 +36,33 @@ if (!strstr($scriptname,'install_jomres.php'))
 		. "\n FROM #__menu"
 		. "\n WHERE "
 		. "\n published = 1"
-		. "\n AND link LIKE 'index.php?option=com_jomres%' AND menutype LIKE 'mainmenu' LIMIT 1 ";
+		. "\n AND link LIKE 'index.php?option=com_jomres&view=default%' AND language LIKE '".get_showtime('lang')."' LIMIT 1 ";
 
-	$itemQueryRes = doSelectSql($query);
+	$itemQueryRes = doSelectSql($query,1);
 	if (count($itemQueryRes)>0)
 		{
-		foreach ($itemQueryRes as $i)
-			{
-			$jomresItemid = $i->id;
-			}
+		$jomresItemid = $itemQueryRes;
 		}
 	else
-		{if (isset($jrConfig['jomresItemid']))
-			$jomresItemid = $jrConfig['jomresItemid'];
+		{
+		$query = "SELECT id"
+		. "\n FROM #__menu"
+		. "\n WHERE "
+		. "\n published = 1"
+		. "\n AND link LIKE 'index.php?option=com_jomres&view=default%' LIMIT 1 ";
+
+		$itemQueryRes = doSelectSql($query,1);
+		if (count($itemQueryRes)>0)
+			{
+			$jomresItemid = $itemQueryRes;
+			}
 		else
-			$jomresItemid = 0;
+			{
+			if (isset($jrConfig['jomresItemid']))
+				$jomresItemid = $jrConfig['jomresItemid'];
+			else
+				$jomresItemid = 0;
+			}
 		}
 	}
 else
