@@ -149,19 +149,19 @@ class j01010listpropertys {
 					{
 					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script type="text/javascript"><!-- var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'"; //--></script>' );
 					if (get_showtime('task') != "show_shortlisted_properties")
-						$shortlist[]=array( '_JOMRES_VIEWSHORTLIST'=>jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST,false,false),'SHORTLISTLINK'=>jomresURL(JOMRES_SITEPAGE_URL."&task=show_shortlisted_properties" ));
+						$shortlist[]=array( '_JOMRES_VIEWSHORTLIST'=>jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST,false,false),'SHORTLISTLINK'=>jomresURL(JOMRES_SITEPAGE_URL."&amp;task=show_shortlisted_properties" ));
 					}
 
 				if (JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
 					{
-					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\"><!-- var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."'; //--></script>";
+					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\"> var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."'; </script>";
 					jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
 					}
 					
 				if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE') && JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
 					{
 					define('_JOMRES_MODULEPOPUP_AJAX_SOURCE',1);
-					$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript"><!-- var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=" //--></script>';
+					$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&amp;task=module_popup&amp;nofollowtmpl=1&amp;id=" </script>';
 					}
 				
 				$g=genericOr($propertys_uids,'propertys_uid');
