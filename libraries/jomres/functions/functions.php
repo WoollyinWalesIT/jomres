@@ -29,7 +29,7 @@ function add_gmaps_source($sensor=0)
 		$s = "false";
 		if ($sensor == 1)
 			$s = "true";
-		echo '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&sensor='.$s.'&key='.$jrConfig['google_maps_api_key'].'&language='.$shortcode.'"></script>';
+		echo '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor='.$s.'&amp;key='.$jrConfig['google_maps_api_key'].'&amp;language='.$shortcode.'"></script>';
 		}
 	}
 

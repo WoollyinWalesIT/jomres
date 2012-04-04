@@ -10,13 +10,13 @@
 			<div class="half-column float-left align-left">{PROPERTY_TYPE}</div>
 			<div class="half-column float-right align-right compare-properties">
 				<div class="compare-add float-right align-center">{_JOMRES_COMPARE} <input type="checkbox" name="compare" value="{UID}" autocomplete="off" /></div>
-				<div class="shortlist-add float-right align-center"><a href="javascript:void(0);" id="shortlist_{UID}" onClick="shortlist('{UID}')">{SHORTLIST}</a></div>
+				<div class="shortlist-add float-right align-center"><a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a></div>
 			</div>
 		</td>
 	</tr>
 	<tr>
 		<td valign="top" align="center">
-			<div class="property-image"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});"><img src="{IMAGETHUMB}" /></a></div>
+			<div class="property-image"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});"><img src="{IMAGETHUMB}" alt="property_image"/></a></div>
 		</td>
 		<td valign="middle" align="left" width="100%">
 			<div class="property-title"><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS}</div>
@@ -33,7 +33,7 @@
 		<td class="fg-toolbar fg-buttonset plist-buttons" valign="top" align="right">
 				<a href="{LINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{BOOKTHIS_TEXT}</a>
 				<a href="{MOREINFORMATIONLINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{MOREINFORMATION}</a>
-				<a href="javascript:void(0);" onClick="quick_info({UID});" class=" ui-state-default ui-corner-all plist-button-last ui-helper-hidden">{_JOMRES_QUICK_INFO}</a>
+				<a href="javascript:void(0);" onclick="quick_info({UID});" class=" ui-state-default ui-corner-all plist-button-last ui-helper-hidden">{_JOMRES_QUICK_INFO}</a>
 		</td>
 	</tr>
 	<tr>
@@ -50,7 +50,7 @@
 				<div class="ui-widget-content ui-corner-all quick-info-right float-right">
 					<!-- <div><strong>{_JOMRES_REVIEWS}</strong></div>--> 
 					<div class="property-desc">{PROPERTYDESC}</div>
-					<a href="javascript:void(0);" onClick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+					<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
 					<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
 					<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
 					<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
@@ -60,9 +60,9 @@
 	</tr>
 </table>
 <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}">
-	<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" />
+	<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image" />
 </div>
-<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none" title="{PROPERTYNAME}"><img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
+<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none" title="{PROPERTYNAME}"><img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image" /></div>
 </patTemplate:tmpl>
 <patTemplate:comment>{HEADER}</patTemplate:comment>
 </patTemplate:tmpl>

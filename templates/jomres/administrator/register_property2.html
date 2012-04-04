@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput">
-<script language="javascript" type="text/javascript" >
+<script type="text/javascript" >
+<!--
 jomresJquery(document).ready(function () {
 	var select = '#mySelect';
 	jomresJquery(select).attr('selectedIndex', '-1');
@@ -12,6 +13,7 @@ jomresJquery(document).ready(function () {
 		});
 	}).change();
 });
+//-->
 </script>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}&amp;task=saveregisterprop" method="post" name="adminForm">
 {JOMRESTOOLBAR}

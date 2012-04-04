@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
+<!--
 var idarray = new Array();
 
 function updateInit_Total(id)
@@ -54,6 +55,7 @@ function updateRecurGrandTotal()
 		}
 	jomresJquery("#recur_grand_total").text(recur_total);
 	};
+//-->
 </script>
 <h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">

@@ -106,7 +106,7 @@ class jomres_tooltips
 					$div_string.='height="'.$height.'" ';
 				if (isset($type_arguments["border"]))
 					$div_string.='border="'.$border.'"';
-				$div_string.=' /></div>';
+				$div_string.=' alt="infoimage"/></div>';
 				$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 						activeClass: \'tooltip_bubble_width\',
 						cornerRadius: 10,
@@ -149,7 +149,7 @@ class jomres_tooltips
 					$div_string.='height="'.$height.'" ';
 				if (isset($type_arguments["border"]))
 					$div_string.='border="'.$border.'"';
-				$div_string.=' /></div>';
+				$div_string.=' alt="warningimage"/></div>';
 				$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 						activeClass: \'tooltip_bubble_width\',
 						cornerRadius: 10,
@@ -198,14 +198,14 @@ class jomres_tooltips
 						// $div_string.='height="'.$height.'" ';
 					if (isset($type_arguments["border"]))
 						$div_string.='border="'.$border.'"';
-						$div_string.='/></div>';
+						$div_string.=' alt="image"/></div>';
 					}
 				else
 					{
 					$div_string.=' ><img src="'.$imagethumb.'" ';
 					if (isset($type_arguments["border"]))
 						$div_string.='border="'.$border.'"';
-						$div_string.='/></div>';
+						$div_string.=' alt="thumbimage"/></div>';
 					}
 					
 					$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
@@ -247,7 +247,7 @@ class jomres_tooltips
 						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
 					*/
 					
-					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
+					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" alt="'.$hover_title.'" /></div>
 						<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 							cornerRadius: 10,        
 							strokeWidth: 0,
@@ -297,7 +297,7 @@ class jomres_tooltips
 					else
 						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
 					*/
-					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" /></div>
+					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" alt="'.$hover_title.'"/></div>
 						<script type="text/javascript">jomresJquery("#'.$div.'").bt({
 							cornerRadius: 10,        
 							strokeWidth: 0,

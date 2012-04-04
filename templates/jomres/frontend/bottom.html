@@ -6,6 +6,7 @@
 
 
 <script type="text/javascript">
+<!--
 /* Switches the cursor to the waiting cursor whenever jquery's ajax functionality kicks in. Nice way to give the user some feedback that something's happening in a non-intrusive way */
 jomresJquery(document).ready(function(){
 	jomresJquery("#loader").bind("ajaxSend", function() {
@@ -19,7 +20,7 @@ jomresJquery(document).ready(function(){
 		jomresJquery(this).fadeOut();
 	});
 });
-
+//-->
 </script>
 
 <div id="loader" class="loader ui-corner-all" style="display:none;">

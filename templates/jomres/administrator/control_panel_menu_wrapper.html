@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput">
-<script>
+<script type="text/javascript">
+<!--
 	jomresJquery(function() {
 		jomresJquery( "#accordion" ).accordion({
 			autoHeight: false,
@@ -7,6 +8,7 @@
 			collapsible: true
 		});
 	});
+//-->
 </script>
 <div id="accordion" style="width:20%;float:left;margin-bottom:20px;">
 	<patTemplate:tmpl name="button_output">

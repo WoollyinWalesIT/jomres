@@ -64,7 +64,7 @@ class j01010listpropertys {
 				$all_layouts[] = $key;
 				$r = array();
 				$r['TITLE']=$layouts["title"];
-				$r['LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=listProperties&layout=".$key);
+				$r['LINK']=jomresURL( JOMRES_SITEPAGE_URL."&amp;task=listProperties&amp;layout=".$key);
 				$layout_rows[]=$r;
 				}
 			}
@@ -147,21 +147,21 @@ class j01010listpropertys {
 				$compare = array();
 				if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
 					{
-					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script>var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'";</script>' );
+					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script type="text/javascript"><!-- var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'"; //--></script>' );
 					if (get_showtime('task') != "show_shortlisted_properties")
 						$shortlist[]=array( '_JOMRES_VIEWSHORTLIST'=>jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST,false,false),'SHORTLISTLINK'=>jomresURL(JOMRES_SITEPAGE_URL."&task=show_shortlisted_properties" ));
 					}
 
 				if (JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
 					{
-					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\">var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."';</script>";
+					$output['JOMRES_SITEPAGE_URL_AJAX']="<script type=\"text/javascript\"><!-- var live_site_ajax = '".JOMRES_SITEPAGE_URL_AJAX."'; //--></script>";
 					jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
 					}
 					
 				if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE') && JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
 					{
 					define('_JOMRES_MODULEPOPUP_AJAX_SOURCE',1);
-					$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
+					$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript"><!-- var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=" //--></script>';
 					}
 				
 				$g=genericOr($propertys_uids,'propertys_uid');
@@ -369,7 +369,7 @@ class j01010listpropertys {
 						$property_image=get_showtime('live_site')."/jomres/images/noimage.gif";
 						if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
 							$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$property->propertys_uid."_property_".$property->propertys_uid.".jpg";
-						$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" alt=\"star\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" />";
+						$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" alt=\"star\" border=\"0\" height=\"1\" hspace=\"10\" vspace=\"1\" />";
 						if ($stars!="0")
 							{
 							$starslink="";

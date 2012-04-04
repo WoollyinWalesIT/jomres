@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
+<!--
 function get_properties(initial)
 	{
 	jomresJquery.get('{AJAXURL}&task=listpropertys&tmpl=component&no_html=1&initial='+initial,
@@ -8,6 +9,7 @@ function get_properties(initial)
 			}
 		);
 	}
+//-->
 </script>
 <h2>{_JRPORTAL_CPANEL_LISTCRATES}</h2>
 <p>{_JOMRES_CRATES_CLICKINITIAL}</p>
