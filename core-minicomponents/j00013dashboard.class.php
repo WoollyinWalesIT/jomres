@@ -311,8 +311,8 @@ class j00013dashboard extends jomres_dashboard
 		{
 		$mrConfig=getPropertySpecificSettings();
 		$output="";
-		$bookinglink=JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$this->property_uid.'&arrivalDate='.JSCalmakeInputDates(date("Y/m/d",$currdate));
-		$viewbookinglink=JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$contract_uid;
+		$bookinglink=JOMRES_SITEPAGE_URL.'&amp;task=dobooking&amp;selectedProperty='.$this->property_uid.'&amp;arrivalDate='.JSCalmakeInputDates(date("Y/m/d",$currdate));
+		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 
 		$output.='<td align="center" valign="middle" bgcolor="'.$bgcolor.'" >';
@@ -423,7 +423,7 @@ class j00013dashboard extends jomres_dashboard
 			$nextMonth= getThisMonthName(strftime("%m", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0])),false)." ".$year;
 			$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
 			}
-		$dropdown=jomresHTML::selectList( $monthsArray, 'requestedMonth', 'size="1" OnChange="location.href=dashboardmonthdropdown.requestedMonth.options[selectedIndex].value" ', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&requestedMonth='.$this->requestedMonth ) );
+		$dropdown=jomresHTML::selectList( $monthsArray, 'requestedMonth', 'size="1" onchange="location.href=dashboardmonthdropdown.requestedMonth.options[selectedIndex].value" ', 'value', 'text', jomresURL(JOMRES_SITEPAGE_URL.'&requestedMonth='.$this->requestedMonth ) );
 		$output='<form action="'.jomresURL(JOMRES_SITEPAGE_URL).'" name="dashboardmonthdropdown">';
 		$output.=$dropdown;
 		$output.='</form>';
@@ -477,7 +477,7 @@ class j00013dashboard extends jomres_dashboard
 		$output.='<td>'.jr_gettext('_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY',_JOMRES_COM_AVLCAL_PROVISIONALCOLOUR_KEY).'</td><td bgcolor="'.$this->cfg_provisionalcolour.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>';
 		//$output.='<td>'.jr_gettext('_JOMRES_COM_AVLCAL_BOOKING_KEY',_JOMRES_COM_AVLCAL_BOOKING_KEY).'</td><td bgcolor="'.$this->cfg_booking.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>';
 		//$output.='<td>'.jr_gettext('_JOMRES_COM_AVLCAL_BLACK_KEY',_JOMRES_COM_AVLCAL_BLACK_KEY).'</td><td bgcolor="'.$this->cfg_black.'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>';
-		$output.='</table>';
+		$output.='</tr></table>';
 		return $output;
 		}
 
