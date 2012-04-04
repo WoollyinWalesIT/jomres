@@ -113,7 +113,10 @@ if (!JRPORTAL_AJAXCALL)
                 	<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
                 <?php } ?>
                 <div>&nbsp;</div>
-                <div>Select Jomres Language <?php echo $jomreslang->get_languageselection_dropdown();?></div>
+				<?php
+				if (_JOMRES_DETECTED_CMS != "joomla25")
+					echo '<div>Select Jomres Language '.$jomreslang->get_languageselection_dropdown().'</div>';
+				?>
             </td>
         </tr>
     </table>
