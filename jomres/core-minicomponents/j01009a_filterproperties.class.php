@@ -132,7 +132,7 @@ class j01009a_filterproperties
 		
 		$order['HORDER']=jr_gettext('_JOMRES_ORDER',_JOMRES_ORDER);
 
-		$order['ORDER']=jomresHTML::selectList( $sortArray, 'sortby', 'onchange="generic_reload(\'jomsearch_sortby\',this.value);" id="sortby" size="1"', 'value', 'text', $sortid );
+		$order['ORDER']=jomresHTML::selectList( $sortArray, 'sortby', 'onchange="generic_reload(\'jomsearch_sortby\',this.value);" size="1"', 'value', 'text', $sortid );
 		$sortorder=array();
 		$sortorder[]=$order;
 
