@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
+<!--
   function ResizeTableRows() {
     // select tables by css class name using jquery
     var tables = jomresJquery('.compare-table');
@@ -50,7 +51,7 @@ function SetCellHeight(cells, maxRowHeight) {
     jomresJquery(document).ready(function() {
         ResizeTableRows();
     });
-
+//-->
 </script>
 
 {JOMRES_POPUPURL_GLOBALVAR}

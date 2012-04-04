@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
+<!--
 jomresJquery(document).ready(function() {
 	var oTable = jomresJquery('#list_advanced_tariffs').dataTable({
 		"bJQueryUI": true,
@@ -7,6 +8,7 @@ jomresJquery(document).ready(function() {
 		"sPaginationType": "full_numbers"
 	});
 } );
+//-->
 </script>
 {JOMRESTOOLBAR}
 <table width="100%" border="0" id="list_advanced_tariffs">

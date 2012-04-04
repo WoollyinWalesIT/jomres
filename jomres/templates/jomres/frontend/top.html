@@ -17,15 +17,13 @@
 <div style="clear:both;"></div>
 {SANITY_CHECKS}
 <patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-	<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
-	<script type="text/javascript">
-		jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });
+	<script type="text/javascript"><!--
+		jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
 	</script>
 </patTemplate:tmpl>
 <patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-	<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
-	<script type="text/javascript">
-		jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
+	<script type="text/javascript"><!--
+		jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
 	</script>
 </patTemplate:tmpl>
 </patTemplate:tmpl>

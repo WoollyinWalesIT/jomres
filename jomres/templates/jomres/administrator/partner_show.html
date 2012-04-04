@@ -13,7 +13,8 @@
 <p>{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS}</p>
 <div id="discount_list" style="width:42%;float:left;">{DISCOUNT_LIST}</div>
 <div id="property_discounts" style="width:57%;float:right;"></div>
-<script>
+<script type="text/javascript">
+<!--
 	jomresJquery(function() {
 		jomresJquery( "#propertyname_input" ).autocomplete({
 			source: ajaxurl+'partners_property_find',
@@ -73,5 +74,6 @@ function delete_discount(discount_id,property_id) {
 			}
 		);
 	}
+//-->
 </script>
 </patTemplate:tmpl>

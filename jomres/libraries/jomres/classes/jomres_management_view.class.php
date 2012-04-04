@@ -26,7 +26,7 @@ class jomres_management_view
 		
 		$pos = strpos($_SERVER['REQUEST_URI'], "?");
 		if ($pos !== false)
-			$connector = "&";
+			$connector = "&amp;";
 		else
 			$connector = "?";
 		
@@ -35,7 +35,11 @@ class jomres_management_view
 			if (isset($_REQUEST['tmpl']) )
 				$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'._JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW.'</a>';
 			else
-				$response = '<a href="'.get_showtime('liv_site').$_SERVER['REQUEST_URI'].$connector.'tmpl=component">'._JOMRES_COM_MANAGEMENTVIEW_MANAGMENT.'</a>';
+				{
+				$request_uri = str_replace("&amp;","&",$_SERVER['REQUEST_URI']);
+				$request_uri = str_replace("&","&amp;",$request_uri);
+				$response = '<a href="'.get_showtime('liv_site').$request_uri.$connector.'tmpl=component">'._JOMRES_COM_MANAGEMENTVIEW_MANAGMENT.'</a>';
+				}
 			}
 		return $response;
 		}
@@ -46,10 +50,10 @@ class jomres_management_view
 			{
 			if($variable != $key)
 				{
-				$url .= $variable.'='.$value.'&';
+				$url .= $variable.'='.$value.'&amp;';
 				}
 			}
-		$url = rtrim($url,'&');
+		$url = rtrim($url,'&amp;');
 		return $url; 
 		}
 	}

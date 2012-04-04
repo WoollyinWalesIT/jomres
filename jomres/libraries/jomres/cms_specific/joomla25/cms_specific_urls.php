@@ -68,7 +68,7 @@ if (!isset($_GET['tmpl']) )
 if ( ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || $_GET['tmpl'] == 'component' ) && !isset($_REQUEST['nofollowtmpl']) )
 	{
 	$index = "index.php";
-	$tmpl="&tmpl=component";
+	$tmpl="&amp;tmpl=component";
 	define("JOMRES_WRAPPED",1);
 	}
 else
@@ -83,19 +83,19 @@ if (isset($_GET['format']) )
 if ( isset($_REQUEST['is_wrapped']) )
 	{
 	if ( $_REQUEST['is_wrapped']=="1" )
-		$tmpl .= $tmpl."&is_wrapped=1";
+		$tmpl .= $tmpl."&amp;is_wrapped=1";
 	}
 
 if ( isset($_REQUEST['menuoff']) )
 	{
 	if ( $_REQUEST['menuoff']=="1" )
 		{
-		$tmpl .= $tmpl."&menuoff=1";
+		$tmpl .= $tmpl."&amp;menuoff=1";
 		set_showtime('menuoff',true);
 		}
 	else
 		{
-		$tmpl .= $tmpl."&menuoff=0";
+		$tmpl .= $tmpl."&amp;menuoff=0";
 		set_showtime('menuoff',false);
 		}
 	}
@@ -104,34 +104,34 @@ if ( isset($_REQUEST['topoff']) )
 	{
 	if ( $_REQUEST['topoff']=="1" )
 		{
-		$tmpl .= $tmpl."&topoff=1";
+		$tmpl .= $tmpl."&amp;topoff=1";
 		set_showtime('topoff',true);
 		}
 	else
 		{
-		$tmpl .= $tmpl."&topoff=0";
+		$tmpl .= $tmpl."&amp;topoff=0";
 		set_showtime('topoff',false);
 		}
 	}
 	
 	
 	
-define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&no_html=1&popup=1&Itemid=".$jomresItemid."");
+define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/'."index.php?option=com_jomres&amp;tmpl=component&amp;no_html=1&amp;popup=1&amp;Itemid=".$jomresItemid."");
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl);
-define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&Itemid=".$jomresItemid."");
-define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&jrajax=1&no_html=1&popup=1&Itemid=".$jomresItemid."");
-define("JOMRES_SITEPAGE_URL_AJAX_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&jrajax=1&no_html=1&popup=1");
-define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=com_jomres&format=raw");
+define("JOMRES_SITEPAGE_URL_SSL",$ssllink."/index.php?option=com_jomres&amp;Itemid=".$jomresItemid."");
+define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&amp;tmpl=component&amp;jrajax=1&amp;no_html=1&amp;popup=1&amp;Itemid=".$jomresItemid."");
+define("JOMRES_SITEPAGE_URL_AJAX_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&amp;tmpl=component&amp;jrajax=1&amp;no_html=1&amp;popup=1");
+define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=com_jomres&amp;format=raw");
 define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres");
 
 if (class_exists('JFactory'))
 	{
 	$app = JFactory::getApplication();  // Many thanks maakit
 	if($app->getCfg('sef'))
-		define("JOMRES_SITEPAGE_URL", $index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
+		define("JOMRES_SITEPAGE_URL", $index."?option=com_jomres&amp;Itemid=".$jomresItemid.$tmpl);
 	else
-		define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
+		define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&amp;Itemid=".$jomresItemid.$tmpl);
 	}
 else
-	define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&Itemid=".$jomresItemid.$tmpl);
+	define("JOMRES_SITEPAGE_URL",get_showtime('live_site')."/".$index."?option=com_jomres&amp;Itemid=".$jomresItemid.$tmpl);
 

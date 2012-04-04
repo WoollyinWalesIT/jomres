@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
+<!--
 	function select_all(obj)
 		{ 
 		var text_val=eval(obj);
@@ -9,6 +10,7 @@
 			r= text_val.createTextRange();
 		r.execCommand('copy');
 		} 
+//-->
 </script>
 <h2>{PAGETITLE}: {PROPERTY_NAME}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">

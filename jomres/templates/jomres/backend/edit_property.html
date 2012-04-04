@@ -5,13 +5,15 @@ span.required {color:red;}
 </style>
 
 <script language="javascript">
+<!--
 function OnChange(dropdown)
 	{	
 	var myindex	= dropdown.selectedIndex
-	var baseURL= "{JOMRES_SITEPAGE_URL}&task=editProperty"
+	var baseURL= "{JOMRES_SITEPAGE_URL}&amp;task=editProperty"
 	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
 	return true;
 	}
+//-->
 </script>
 <h2>{PAGETITLE}</h2>
 <p class="ui-state-highlight">{CHANGECOUNTRYWARNING}</p>

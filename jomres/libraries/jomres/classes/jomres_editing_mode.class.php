@@ -79,7 +79,7 @@ class jomres_editing_mode
 		$mode_options = array();
 		$mode_options[] = jomresHTML::makeOption( '0' ,  $off_text);
 		$mode_options[] = jomresHTML::makeOption( '1' , $on_text );
-		$javascript = 'onChange="switch_editing_mode(\''.JOMRES_SITEPAGE_URL_RAW.'\',this.value)";';
+		$javascript = 'onchange="switch_editing_mode(\''.JOMRES_SITEPAGE_URL_RAW.'\',this.value)";';
 		return jomresHTML::selectList( $mode_options, 'jomres_editing_mode',' AUTOCOMPLETE="OFF" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->editing);
 		}
 	

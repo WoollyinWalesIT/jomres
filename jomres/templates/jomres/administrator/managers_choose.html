@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
+<!--
 var ajaxurl	= "{AJAXURL}";
 var livesite= "{LIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
 jomresJquery(function() {
@@ -18,6 +19,7 @@ jomresJquery(document).ready(function() {
 		"sPaginationType": "full_numbers"
 	});
 } );
+//-->
 </script>
 <h2>{_JOMRES_COM_MR_SHOWPROFILES}</h2>
 <table border="0" width="100%" class="ui-widget-content ui-corner-all">

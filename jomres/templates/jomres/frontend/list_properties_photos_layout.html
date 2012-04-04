@@ -34,7 +34,7 @@
 	<tr>
 		<td>
 			<div class="compare-properties-photoview">
-				<div class="half-column float-left align-left"><a href="javascript:void(0);" id="shortlist_{UID}" onClick="shortlist('{UID}')">{SHORTLIST}</a></div>
+				<div class="half-column float-left align-left"><a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a></div>
 				<div class="half-column float-left align-right">{_JOMRES_COMPARE} <input type="checkbox" name="compare" value="{UID}" autocomplete="off" /></div>
 			</div>
 		</td>
@@ -43,7 +43,7 @@
 	<td class="fg-toolbar fg-buttonset plist-buttons" valign="top" align="right">
 		<a href="{LINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{BOOKTHIS_TEXT}</a>
 		<a href="{MOREINFORMATIONLINK}" class=" ui-state-default ui-corner-all plist-button ui-helper-hidden">{MOREINFORMATION}</a>
-		<a href="javascript:void(0);" onClick="quick_info({UID});" class=" ui-state-default ui-corner-all plist-button-last ui-helper-hidden">{_JOMRES_QUICK_INFO}</a>
+		<a href="javascript:void(0);" onclick="quick_info({UID});" class=" ui-state-default ui-corner-all plist-button-last ui-helper-hidden">{_JOMRES_QUICK_INFO}</a>
 	</td>
 	</patTemplate:comment>
 	<tr>
@@ -62,7 +62,7 @@
 				   	<!--<div><strong>{_JOMRES_REVIEWS}</strong></div>-->
 					<div><strong>{_JOMRES_REVIEWS_TOTAL_VOTES}</strong> {NUMBER_OF_REVIEWS}</div>
 					<div><strong>{_JOMRES_REVIEWS_AVERAGE_RATING}</strong>{AVERAGE_RATING}</div>
-					<a href="javascript:void(0);" onClick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+					<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
 					<div>&nbsp;</div>
 					<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 				</div>

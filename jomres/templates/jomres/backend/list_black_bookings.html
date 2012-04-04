@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
+<!--
 jomresJquery(document).ready(function() {
 	var oTable = jomresJquery('#list_black_bookings').dataTable({
 		"bJQueryUI": true,
@@ -7,6 +8,7 @@ jomresJquery(document).ready(function() {
 		"sPaginationType": "full_numbers"
 	});
 } );
+//-->
 </script>
 <h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">

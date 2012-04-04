@@ -1,5 +1,6 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
+<!--
 function get_properties(initial)
 	{
 	jomresJquery.get('{AJAXURL}&task=ui_find_properties&initial='+initial,
@@ -8,6 +9,7 @@ function get_properties(initial)
 			}
 		);
 	}
+//-->
 </script>
 <h2>{_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY}</h2>
 <table class="ui-widget-content ui-corner-all" width="100%" border="0">
