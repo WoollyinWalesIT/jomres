@@ -1003,34 +1003,106 @@ function jr_import($class)
 			}
 		else
 			{
-			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
+			search_core_and_remote_dirs_for_classfiles();
+			$classes = get_showtime('plugin_classes_paths');
+			if ( isset($classes[$class]) && file_exists($classes[$class]['path'].$class.".class.php" ) )
 				{
-				$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
+				$result = require($classes[$class]['path'].$class.".class.php");
 				}
 			else
 				{
-				if ($plugin_directories)
+				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
 					{
-					foreach ($plugin_directories as $directory)
-						{
-						if (file_exists($directory.$class.".class.php") )
-							$result = require($directory.$class.".class.php");
-						}
-					if (!class_exists($class)) // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed
-						{
-						echo "Error, class ".$class." doesn't exist.";
-						exit;
-						}
+					$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
 					}
 				else
 					{
-					trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+					if ($plugin_directories)
+						{
+						foreach ($plugin_directories as $directory)
+							{
+							if (file_exists($directory.$class.".class.php") )
+								$result = require($directory.$class.".class.php");
+							}
+						if (!class_exists($class)) // We'll echo and exit here. Assuming that we're a developer we'll want to see on the page that the class doesn't exist, rather than have an error triggered. Addition of this also means that the following trigger_error will never kick in if any plugins are installed
+							{
+							echo "Error, class ".$class." doesn't exist.";
+							exit;
+							}
+						}
+					else
+						{
+						trigger_error("Error, class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist");
+						}
 					}
 				}
 			}
 		}
 	}
 
+function search_core_and_remote_dirs_for_classfiles()
+	{
+	$classes = get_showtime('plugin_classes_paths');
+	if (is_null($classes))
+		{
+		$core_plugins_directories = array();
+		$remote_plugin_directories = array();
+		$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
+		$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
+		
+		$d = @dir($core_plugins_directory);
+		while (FALSE !== ($entry = $d->read()))
+			{
+			if( substr($entry,0,1) != '.' )
+				{
+				$core_plugins_directories[] =$core_plugins_directory.$entry.JRDS;
+				}
+			}
+		$d = @dir($remote_plugin_directory);
+		while (FALSE !== ($entry = $d->read()))
+			{
+			if( substr($entry,0,1) != '.' )
+				{
+				$remote_plugin_directories[] =$remote_plugin_directory.$entry.JRDS;
+				}
+			}
+		
+		$all_directories = array_merge($core_plugins_directories,$remote_plugin_directories);
+		
+		$classes = array();
+		foreach ($all_directories as $directory)
+			{
+			$d = @dir($directory);
+			if($d)
+				{
+				while (FALSE !== ($entry = $d->read()))
+					{
+					$filename = $entry;
+					if( substr($entry,0,1) != '.' )
+						{
+						if (strstr($entry,'.class.php'))
+							{
+							if (strlen($filename)>8)
+								{
+								$strippedName = str_replace(".","",$filename);
+								$strippedName = substr($strippedName, 0 , -8);
+								}
+							else
+								$strippedName = $filename;
+							$classfileEventPoint=substr($strippedName, 1, 5);
+							if ( !is_numeric ($classfileEventPoint) )
+								{
+								$classes[$strippedName] =array("path"=>$directory,"class"=>$strippedName);
+								}
+							}
+						}
+					}
+				$d->close();
+				}
+			}
+		set_showtime('plugin_classes_paths',$classes);
+		}
+	}
 
 function jomresValidateUrl($url)
 	{
