@@ -1050,20 +1050,27 @@ function search_core_and_remote_dirs_for_classfiles()
 		$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
 		$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		
-		$d = @dir($core_plugins_directory);
-		while (FALSE !== ($entry = $d->read()))
+		if (is_dir($core_plugins_directory))
 			{
-			if( substr($entry,0,1) != '.' )
+			$d = @dir($core_plugins_directory);
+			while (FALSE !== ($entry = $d->read()))
 				{
-				$core_plugins_directories[] =$core_plugins_directory.$entry.JRDS;
+				if( substr($entry,0,1) != '.' )
+					{
+					$core_plugins_directories[] =$core_plugins_directory.$entry.JRDS;
+					}
 				}
 			}
-		$d = @dir($remote_plugin_directory);
-		while (FALSE !== ($entry = $d->read()))
+		
+		if (is_dir($remote_plugin_directory))
 			{
-			if( substr($entry,0,1) != '.' )
+			$d = @dir($remote_plugin_directory);
+			while (FALSE !== ($entry = $d->read()))
 				{
-				$remote_plugin_directories[] =$remote_plugin_directory.$entry.JRDS;
+				if( substr($entry,0,1) != '.' )
+					{
+					$remote_plugin_directories[] =$remote_plugin_directory.$entry.JRDS;
+					}
 				}
 			}
 		
