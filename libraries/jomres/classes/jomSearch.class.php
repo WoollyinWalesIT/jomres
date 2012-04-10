@@ -484,7 +484,56 @@ class jomSearch {
 			$query="SELECT propertys_uid FROM #__jomres_propertys ";
 			$query.=" WHERE ( $where ) ";
 			$query.=" $property_ors AND published = '1' ";
-			$this->resultBucket=doSelectSql($query);
+			$set1 = doSelectSql($query);
+
+			$query='';
+			$wheres = array();
+			foreach ($words as $word)
+				{
+				$wheres2 = array();
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(`customtext`) LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres[] = implode( ' OR ', $wheres2 );
+				}
+			$where = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheres ) . ')';
+			$query="SELECT property_uid FROM #__jomres_custom_text ";
+			$query.=" WHERE ( $where ) ";
+			$set2 = doSelectSql($query);
+			
+			$result = array();
+			
+			if ($set1)
+				{
+				foreach ($set1 as $val)
+					{
+					$obj = new stdClass();
+					$v = $val->propertys_uid;
+					$obj->propertys_uid = $v;
+					$result[] = $obj;
+					}
+				}
+			if ($set2)
+				{
+				foreach ($set2 as $val)
+					{
+					$obj = new stdClass();
+					$v = $val->property_uid;
+					$obj->propertys_uid = $v;
+					$result[] = $obj;
+					}
+				}
+			
+			$this->resultBucket=$result;
+			//var_dump($this->resultBucket);exit;
 			}
 		else
 			$this->resultBucket=array();
@@ -554,6 +603,7 @@ class jomSearch {
 			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE ptype_id LIKE '$filter'  $property_ors AND published = '1'";
 			$this->resultBucket=doSelectSql($query);
 			}
+//		var_dump($this->resultBucket);exit;
 		$this->sortResult();
 		}
 
