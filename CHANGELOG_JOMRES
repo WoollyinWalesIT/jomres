@@ -1,3 +1,30 @@
+Jomres 6.6.1
+
+Set review popup width/height to 800/500 respectively (swapped from 500/800)
+Modified list properties default layout to show images as thumbs, not the medium images.
+Fixed a parse error in SA's cms_specific_urls.php
+Added a "no items in shortlist" lang definition for when no items have been selected.
+Tweaked how the property list is generated, added an option that effectively allows calling scripts to disable the live scrolling effect.
+Jomres SA. Modified warning so that if your password is still "welcome" then it will not show up when ajax queries are done.
+Small tweak to the booking engine. If the property is configured to show dropdowns in the booking form for date selection, then subtract 1 from the staydays.
+Modified the limit where a mostly booked property's availability calendar changes from orange to red.
+Fixed a bug where the default sort order wasn't being used.
+Added the user's userid to add an extra layer of ambiguity to the session file name.
+Modified the get singleton abstract to optimise server load.
+Optimised a variety of methods in the dobooking class to reduce cpu load.
+Tweaked how some singletons are called, calling them directly instead of through a function.
+Changed how singletons are accessed. Instead of using functions, we're going straight to the source. Functions left in situ for BC.
+Disabled jomres_make_image_popup function call in the property list. We're not using it now we're using the newer "module popup" js, and it's chewing up a second for each property image. Horrendous.
+Modified the random string generator, it is often used to name forms, and you can't have form names that start with a number.
+Wide ranging improvements to help with html validation.
+Improved how the itemid is found to help multi language sites.
+Removed the language selection dropdown from the administrator area, as we've changed our recommendations on how this should be used.
+Added translatable submit buttons to reg property 1/2 templates.
+Modified the jr_import function, by adding a new function that searches all core-plugins and remote_plugins sub directories for class files. 
+Added lat/long instructions to edit property page.
+Added functionality that allows description searches to also search the custom text table.
+
+
 Jomres 6.6.0
 
 Added a new feature to the property list where people perusing properties can add chosen properties to a "shortlist". This is a temporary list, but unlike the "favourites" list users do not need to be logged in to add properties to that list. When their session has ended, the shortlist is lost.
