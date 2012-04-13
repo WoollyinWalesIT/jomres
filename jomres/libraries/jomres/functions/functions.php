@@ -2237,7 +2237,9 @@ function writexml($logfile,$rootelement,$entry,$newlines)
 function jomresRedirect( $url, $msg='' )
 	{
 	// msg depreciated now as we're using growl for feedback after redirect, however we'll leave it in-situ in case we want it back again sometime in the future.
-
+	
+	$url = str_replace ( "&amp;","&",$url);
+	
 	jr_import('browser_detect');
 	$b = new browser_detect();
 	$browser = $b->getBrowser();
