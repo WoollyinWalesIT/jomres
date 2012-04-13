@@ -147,7 +147,7 @@ class j01010listpropertys {
 				$compare = array();
 				if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
 					{
-					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script type="text/javascript"><!-- var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'"; //--></script>' );
+					$compare[]=array( '_JOMRES_COMPARE'		=>jr_gettext('_JOMRES_COMPARE',_JOMRES_COMPARE,false,false),'COMPARELINK'			=>'<script type="text/javascript">var compare_url = "'.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'";</script>' );
 					if (get_showtime('task') != "show_shortlisted_properties")
 						$shortlist[]=array( '_JOMRES_VIEWSHORTLIST'=>jr_gettext('_JOMRES_VIEWSHORTLIST',_JOMRES_VIEWSHORTLIST,false,false),'SHORTLISTLINK'=>jomresURL(JOMRES_SITEPAGE_URL."&amp;task=show_shortlisted_properties" ));
 					}
