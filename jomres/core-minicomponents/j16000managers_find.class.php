@@ -22,7 +22,7 @@ class j16000managers_find
 			{
 			$this->template_touchable=false; return;
 			}
-		$search_string	= strtolower(jomresGetParam( $_REQUEST, 'term', '' ));
+		$search_string	= trim(strtolower(jomresGetParam( $_REQUEST, 'term', '' )));
 		$all_users = jomres_cmsspecific_getCMSUsers();
 		
 		$existing_managers = array();
@@ -51,11 +51,7 @@ class j16000managers_find
 				if ($results[$i]['username'] !== null && !in_array($results[$i]['id'],$existing_managers ) )
 					$result_array[] =$results[$i]['username'];
 				}
-				
-/* 			foreach ($results as $res)
-				{
-				$result_array[] =$res['username'];
-				} */
+
 			echo json_encode($result_array);
 			}
 		}
