@@ -2797,16 +2797,6 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	if (!defined('_JOMRES_CALENDAR_RTL'))
 		define('_JOMRES_CALENDAR_RTL','false');
 
-	$alt_field_string = "";
-	$depature_date_doc_ready = "";
-	if ($fieldName=="arrivalDate")
-		{
-		$alt_field_string = '
-			altField: "#'.get_showtime('departure_date_unique_id').'",
-
-			';
-		}
-
 	$clear_checkbox_js = '&nbsp;';
 	if ($fieldName == "departureDate" && $jrConfig['use_cleardate_checkbox'] == "1")
 		{
