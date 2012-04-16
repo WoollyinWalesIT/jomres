@@ -21,8 +21,8 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	global $text_bucket;
 	if (!isset($text_bucket))
 		$text_bucket = array();
-	if (isset($text_bucket[$property_uid][$theConstant]))
-		return $text_bucket[$property_uid][$theConstant];
+	if (isset($text_bucket[$property_uid][$theConstant][$okToEdit]))
+		return $text_bucket[$property_uid][$theConstant][$okToEdit];
 	
 	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 	
@@ -146,7 +146,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		}
 	
 	//$theText = jomres_purify_html($theText,$editing);
-	$text_bucket[$property_uid][$theConstant] = $theText;
+	$text_bucket[$property_uid][$theConstant][$okToEdit] = $theText;
 	return $theText;
 	}
 
