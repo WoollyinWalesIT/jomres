@@ -1,3 +1,11 @@
+Jomres 6.6.2
+
+Modified jomresRedirect function, replaced &amp; with & when redirecting, otherwise the correct url isn't used.
+Removed some commenting that prevents javascript in the body being ignored by validators, as it causes the DOM to not see the globally scoped compare_url var.
+Added a new javascript function that allows us to parse js returned by ajax functionality to find and trigger any javascript in the returned data.
+Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/
+
+
 Jomres 6.6.1
 
 Set review popup width/height to 800/500 respectively (swapped from 500/800)
