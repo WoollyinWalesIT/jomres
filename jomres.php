@@ -301,8 +301,6 @@ if ($property_uid >0)
 		}
 	}
 
-
-		
 // This little routine sets the custom text for an individual property.
 if (isset($property_uid) && !empty($property_uid))
 	{
@@ -310,13 +308,11 @@ if (isset($property_uid) && !empty($property_uid))
 	$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	}
 
+$MiniComponents->triggerEvent('00004'); // Pre-javascript initialisation.
 init_javascript();
-
 set_showtime('include_room_booking_functionality',true);
-
 $MiniComponents->triggerEvent('00005');
 $MiniComponents->triggerEvent('00006');
-
 
 $MiniComponents->triggerEvent('00060',array('tz'=>$tz,'jomreslang'=>$jomreslang)); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.
 
