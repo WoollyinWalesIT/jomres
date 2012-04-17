@@ -35,6 +35,9 @@ class j00004a_init_javascript_css_files {
 			{
 			$this->template_touchable=false; return;
 			}
+		if (defined("JOMRES_JSCALLED") )
+			return;
+		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!isset($jrConfig['jquery_ui_theme_detected']))

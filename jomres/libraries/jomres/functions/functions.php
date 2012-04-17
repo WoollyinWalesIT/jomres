@@ -23,13 +23,12 @@ function init_javascript()
 	else
 		return;
 
-	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', 0 );
-	$popup				= (int)jomresGetParam( $_REQUEST, 'popup', 0 );
+	$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', false );
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-
+	
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
@@ -78,15 +77,15 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.hoverIntent.js.relpath"),get_showtime("jquery.hoverIntent.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.rating.js.relpath"),get_showtime("jquery.rating.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.validate.js.relpath"),get_showtime("jquery.validate.js"));
-			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js"));
-			jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css"));
-			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("excanvas.js.relpath"),get_showtime("excanvas.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.chainedSelects.js.relpath"),get_showtime("jquery.chainedSelects.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.ui.potato.menu.js.relpath"),get_showtime("jquery.ui.potato.menu.js"));
 
 			if ($thisJRUser->userIsRegistered)
 				{
+				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js"));
 				jomres_cmsspecific_addheaddata("css",get_showtime("TableTools_JUI.css.relpath"),get_showtime("TableTools_JUI.css"));
 				jomres_cmsspecific_addheaddata("css",get_showtime("tables_jui.css.relpath"),get_showtime("tables_jui.css"));
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.dataTables.min.js.relpath"),get_showtime("jquery.dataTables.min.js"));
