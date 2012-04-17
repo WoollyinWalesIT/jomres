@@ -1770,3 +1770,9 @@ define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST','Deposit required is cost of the f
 define('_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC','Prices are calculated on a per night basis. Do you want the deposit to be one night\'s charge? If so, you can ignore the following options.');
 
 define('_JOMRES_NOTHINGINSHORTLIST',"You haven't added any items to your shortlist.");
+
+define('_JOMRES_MOBILE_SETTINGS',"Mobile device settings");
+define('_JOMRES_SIMULATE_MOBILE',"Simulate mobile mode");
+define('_JOMRES_SIMULATE_MOBILE_DESC',"Set this to yes to force Jomres to always switch to mobile view. Useful if you're developing templates that are for mobile devices. NOTE : You will need a mobile template plugin installed.");
+define('_JOMRES_SIMULATE_MOBILE_RESTRICTION',"Simulation IP");
+define('_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC',"You can configure the simulation setting to only come into force if the user's IP = xxx.xxx.xxx.xxx, so for example if you're developing on localhost, you would set the IP number to 127.0.0.1.");

@@ -233,6 +233,7 @@ function showSiteConfig(  )
 	$lists['css_caching_enabled']					= jomresHTML::selectList( $yesno, 'cfg_css_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['css_caching_enabled'] );
 	$lists['use_cleardate_checkbox']				= jomresHTML::selectList( $yesno, 'cfg_use_cleardate_checkbox', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_cleardate_checkbox'] );
 	$lists['use_cookie_policy']						= jomresHTML::selectList( $yesno, 'cfg_use_cookie_policy', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_cookie_policy'] );
+	$lists['mobile_simulation']						= jomresHTML::selectList( $yesno, 'cfg_mobile_simulation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['mobile_simulation'] );
 	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
 	}

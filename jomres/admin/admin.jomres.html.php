@@ -153,111 +153,106 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">&nbsp;</td>
 			</tr>
 			<tr valign="middle" class="odd">
-				<td valign="middle">'._JOMRES_MOBILE_REDIRECT.'</td>
-				<td valign="middle">'.$lists['mobile_redirect'].'</td>
-				<td valign="middle">'._JOMRES_MOBILE_REDIRECT_DESC.'</td>
-			</tr>
-			<tr valign="middle" class="even">
 				 <td valign="middle">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN.'</td>
 				 <td valign="middle">'.$lists['showLangDropdown'].'</td>
 				 <td valign="middle">'._JOMRES_COM_CHOOSELANGUAGES_SHOWDROPDOWN_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				 <td valign="middle">'._JOMRES_COM_GROWL.'</td>
 				 <td valign="middle">'.$lists['useJomresMessaging'].'</td>
 				 <td valign="middle">'._JOMRES_COM_GROWL_DESC.'</td>
 			</tr>
 			<!--
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				 <td valign="middle">'._JOMRES_MANAGEROPTIONSASIMAGES.'</td>
 				 <td valign="middle">'.$lists['menusAsImages'].'</td>
 				 <td valign="middle">&nbsp;</td>
 			</tr>
 			-->
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'.JOMRES_COM_A_MINIMALCONFIG.'</td>
 				<td valign="middle">'.$lists['minimalconfiguration'].'</td>
 				<td valign="middle">'.JOMRES_COM_A_MINIMALCONFIG_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				 <td valign="middle">'._JOMRES_COM_TIMEZONE_SWITCHER.'</td>
 				 <td valign="middle">'.$lists['use_timezone_switcher'].'</td>
 				 <td valign="middle">&nbsp;</td>
 			</tr>
 			'.$sslinput.'
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_COM_CACHING.'</td>
 				<td valign="middle">'.$lists['useCaching'].'</td>
 				<td valign="middle">'._JOMRES_COM_CACHING_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JRPORTAL_CONFIG_DEFAULT_CRATE.'</td>
 				<td valign="middle">'.$lists['defaultCrate'].'</td>
 				<td valign="middle">'._JRPORTAL_CONFIG_DEFAULT_CRATE_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_GLOBALEDITING.'</td>
 				<td valign="middle">'.$lists['editingModeAffectsAllProperties'].'</td>
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_GLOBALEDITING_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_COM_SELFREGISTRATION.'</td>
 				<td valign="middle">'.$lists['selfRegistrationAllowed'].'</td>
 				<td valign="middle">'._JOMRES_COM_SELFREGISTRATION_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_COM_CALENDAROUTPUT.'</td>
 				<td valign="middle"><input type="text" class="inputbox" name="cfg_cal_output" value="'.$jrConfig['cal_output'].'" /></td>
 				<td valign="middle">'._JOMRES_COM_CALENDAROUTPUT_DESC.'</td>
 			</tr>
 			
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_CONTACTOWNER_TO_ADMIN.'</td>
 				<td valign="middle">'.$lists['contact_owner_emails_to_alternative'].'</td>
 				<td valign="middle">'._JOMRES_CONTACTOWNER_TO_ADMIN_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_CONTACTOWNER_TO_ADMIN_ALTERNATIVE.'</td>
 				<td valign="middle"><input type="text" class="inputbox" name="cfg_contact_owner_emails_to_alternative_email" value="'.$jrConfig['contact_owner_emails_to_alternative_email'].'" /></td>
 				<td valign="middle">&nbsp;</td>
 			</tr>
 			<!--
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_COM_JOMRESEMAILCHECK.'</td>
 				<td valign="middle">'.$lists['useJomresEmailCheck'].'</td>
 				<td valign="middle">'._JOMRES_COM_JOMRESEMAILCHECK_DESC.'</td>
 			</tr> -->
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_ISWRAPPED.'</td>
 				<td valign="middle">'.$lists['isInIframe'].'</td>
 				<td valign="middle">'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_TITLE.'</td>
 				 <td valign="middle">'.$lists['full_access_control'].'</td>
 				 <td valign="middle">'._JOMRES_ACCESS_CONTROL_CONFIG_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY.'</td>
 				<td valign="middle">'.$lists['load_jquery'].'</td>
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_CSS.'</td>
 				<td valign="middle">'.$lists['load_jquery_ui_css'].'</td>
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_CSS_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI.'</td>
 				<td valign="middle">'.$lists['load_jquery_ui'].'</td>
 				<td valign="middle">'._JOMRES_CONFIG_JQUERY_UI_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_TITLE.'</td>
 				<td valign="middle">'.$lists['javascript_caching_enabled'].'</td>
 				<td valign="middle">'._JOMRES_JAVASCRIPT_CACHING_DESC.'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'._JOMRES_CSS_CACHING_TITLE.'</td>
 				<td valign="middle">'.$lists['css_caching_enabled'].'</td>
 				<td valign="middle">'._JOMRES_CSS_CACHING_DESC.'</td>
@@ -270,6 +265,39 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</table>');
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
+	
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$contentPanel->startPanel(jr_gettext('_JOMRES_MOBILE_SETTINGS',_JOMRES_MOBILE_SETTINGS,FALSE));
+		$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+			<tr valign="middle" class="even">
+				<th width="20%" class="ui-state-default">&nbsp;</th>
+				<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_MOBILE_REDIRECT.'</td>
+				<td valign="middle">'.$lists['mobile_redirect'].'</td>
+				<td valign="middle">'._JOMRES_MOBILE_REDIRECT_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_SIMULATE_MOBILE.'</td>
+				<td valign="middle">'.$lists['mobile_simulation'].'</td>
+				<td valign="middle">'._JOMRES_SIMULATE_MOBILE_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_SIMULATE_MOBILE_RESTRICTION.'</td>
+				<td valign="middle"><input type="text" class="inputbox" name="cfg_mobile_simulation_ip_restriction" value="'.$jrConfig['mobile_simulation_ip_restriction'].'" /></td>
+				<td valign="middle">'._JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC.'</td>
+			</tr>
+			<tr valign="middle">
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
 	
 	if ($jrConfig['advanced_site_config'] == 1)
 		{
