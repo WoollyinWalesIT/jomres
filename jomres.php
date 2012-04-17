@@ -45,24 +45,7 @@ $thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
-if ($jrConfig['mobile_redirect'] == "1")
-	{
-	jr_import('browser_detect');
-	$b = new browser_detect();
-	$is_mobile = $b->isMobile();
-	set_showtime('mobile_browser',$is_mobile );
 
-	if ( $is_mobile && !isset($_REQUEST['tmpl']) )
-		{
-		$st="?";
-		foreach ($_GET as $key=>$val)
-			{
-			$st .= $key."=".$val."&";
-			}
-		header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component&is_wrapped=1");
-		die();
-		}
-	}
 
 $performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 if ($jrConfig['errorChecking'] =="1")
@@ -80,6 +63,8 @@ if (!isset($jrConfig['full_access_control']))
 	$jrConfig['full_access_control'] = "0";
 
 $MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+
+$MiniComponents->triggerEvent('00003'); // 
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
