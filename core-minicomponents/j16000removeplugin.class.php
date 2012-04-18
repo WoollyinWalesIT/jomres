@@ -34,7 +34,7 @@ class j16000removeplugin
 		$registry = new minicomponent_registry(false);
 		$registry->regenerate_registry();
 		
-		if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
+		if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName);
 		}
 
 
