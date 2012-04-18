@@ -80,11 +80,12 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("excanvas.js.relpath"),get_showtime("excanvas.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.chainedSelects.js.relpath"),get_showtime("jquery.chainedSelects.js"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.ui.potato.menu.js.relpath"),get_showtime("jquery.ui.potato.menu.js"));
-
+			jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
+			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
+			
 			if ($thisJRUser->userIsRegistered)
 				{
-				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
+
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js"));
 				jomres_cmsspecific_addheaddata("css",get_showtime("TableTools_JUI.css.relpath"),get_showtime("TableTools_JUI.css"));
 				jomres_cmsspecific_addheaddata("css",get_showtime("tables_jui.css.relpath"),get_showtime("tables_jui.css"));
