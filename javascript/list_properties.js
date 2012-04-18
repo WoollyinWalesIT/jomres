@@ -65,15 +65,6 @@ jomresJquery(window).scroll(function(){
 	});
 
 
-jomresJquery(".plist-button").livequery(function() {
-	jomresJquery(this).button();
-	jomresJquery(this).show();
-	});
-
-jomresJquery(".plist-button-last").livequery(function() {
-	jomresJquery(this).button();
-	jomresJquery(this).show();
-	});
 
 
 jomresJquery(document).ready(function() {
