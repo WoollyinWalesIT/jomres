@@ -137,7 +137,7 @@ class j16000addplugin
 				{
 				if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
 					{
-					echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting";
+					echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting.";
 					return false;
 					}
 
@@ -153,7 +153,7 @@ class j16000addplugin
 				$curl_handle = curl_init($queryServer);
 				$file_handle = fopen($newfilename, 'wb');
 				if ($file_handle == FALSE)
-					{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; exit; }
+					{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; return false; }
 
 				curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
 				curl_setopt($curl_handle, CURLOPT_HEADER, 0);
@@ -299,12 +299,12 @@ class j16000addplugin
 						}
 					else
 						{
-						if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins");
+						if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName);
 						}
 					}
 				else
 					{ 
-					if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins"); 
+					if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName); 
 					}
 				
 				//

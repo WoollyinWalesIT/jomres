@@ -442,10 +442,7 @@ class j16000showplugins
 			$local_version=$installed_plugins[$plugin_name]['version'];
 			if (!array_key_exists($plugin_name,$installed_plugins ) )
 				$local_version="N/A";
-			
 
-				
-				
 			$style = "";
 			if ($rp['price'] == 0 && $row_class=='ui-widget-content ui-corner-all')
 				{
@@ -477,7 +474,7 @@ class j16000showplugins
 			// <td class=\"ui-corner-all\" $style>".$image."</td>
 			echo
 			"<tr class=\"".$row_class." \" >
-				<td class=\"ui-corner-all\" $style>".$strong1.$rp['name'].$strong2."</td>
+				<td class=\"ui-corner-all\" $style><a name=".$rp['name']."></a> ".$strong1.$rp['name'].$strong2."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['min_jomres_ver']."</td>
 				<td class=\"ui-corner-all\" $style>".$local_version."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
