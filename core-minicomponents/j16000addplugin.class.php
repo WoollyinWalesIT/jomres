@@ -290,7 +290,10 @@ class j16000addplugin
 					require_once ($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
 				touch ($remote_pluginsDirPath.$pluginName.JRDS."index.html");
-
+				jr_import('minicomponent_registry');
+				$registry = new minicomponent_registry(false);
+				$registry->regenerate_registry();
+				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
 				if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
 					{
 					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
@@ -314,10 +317,7 @@ class j16000addplugin
 			}
 		else
 			echo "Error creating unpack folder";
-		jr_import('minicomponent_registry');
-		$registry = new minicomponent_registry(false);
-		$registry->regenerate_registry();
-		emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
+
 		}
 
 	// This must be included in every Event/Mini-component
