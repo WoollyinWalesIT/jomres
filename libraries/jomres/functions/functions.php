@@ -143,6 +143,19 @@ function get_property_price_for_display_in_lists($property_uid)
 			}
 		}
 
+	switch ($mrConfig['booking_form_daily_weekly_monthly'])
+		{
+		case "D":
+			$multiplier = 1;
+			break;
+		case "W":
+			$multiplier = 7;
+			break;
+		case "M":
+			$multiplier = 30;
+			break;
+			}
+	
 	$price = 0.00;
 	$output_lowest = false;
 	if ($plugin_will_provide_lowest_price)
@@ -152,7 +165,7 @@ function get_property_price_for_display_in_lists($property_uid)
 		if (!is_null($plugin_price))
 			{
 			$pre_text = $plugin_price['PRE_TEXT'];
-			$price =  $plugin_price['PRICE'];
+			$price =  $plugin_price['PRICE'] * $multiplier;
 			$post_text =  $plugin_price['POST_TEXT'];
 			}
 		}
@@ -181,9 +194,9 @@ function get_property_price_for_display_in_lists($property_uid)
 			if (isset($pricesFromArray[$property_uid]))
 				{
 				if ($mrConfig['prices_inclusive']=="0")
-					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid));
+					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid) * $multiplier);
 				else
-					$price=output_price ($pricesFromArray[$property_uid]);
+					$price=output_price ($pricesFromArray[$property_uid] * $multiplier);
 				if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
 					$post_text = "&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 				else
@@ -197,10 +210,25 @@ function get_property_price_for_display_in_lists($property_uid)
 						}
 					else
 						{
-						if ($mrConfig['perPersonPerNight']=="0" )
-							$post_text ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
-						else
-							$post_text ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+						switch ($mrConfig['booking_form_daily_weekly_monthly'])
+							{
+							case "D":
+								if ($mrConfig['wholeday_booking'] == "1")
+									$post_text =jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
+								else
+									$post_text =jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY);
+								break;
+							case "W":
+								$post_text =jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY);
+								break;
+							case "M":
+								$post_text =jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY);
+								break;
+							}
+						// if ($mrConfig['perPersonPerNight']=="0" )
+							// $post_text ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+						// else
+							// $post_text ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
 						}
 					}
 				$pre_text = jr_gettext('_JOMRES_TARIFFSFROM',_JOMRES_TARIFFSFROM,false,false);
