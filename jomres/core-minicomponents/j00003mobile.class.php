@@ -65,7 +65,7 @@ class j00003mobile {
 					{
 					$st .= $key."=".$val."&";
 					}
-				header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component&is_wrapped=1");
+				header("Location: ".$_SERVER['SCRIPT_URI'].$_SERVER['SCRIPT_NAME'].$st."tmpl=component&is_wrapped=1",true);
 				die();
 				}
 			}

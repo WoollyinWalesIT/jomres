@@ -2261,7 +2261,7 @@ function jomresRedirect( $url, $msg='' )
 			/>';
 		}
 	else
-		header('Location: '.$url);
+		header('Location: '.$url,true);
 	exit;
 
 
