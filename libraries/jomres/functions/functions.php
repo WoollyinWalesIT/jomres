@@ -166,7 +166,7 @@ function get_property_price_for_display_in_lists($property_uid)
 		if (!is_null($plugin_price))
 			{
 			$pre_text = $plugin_price['PRE_TEXT'];
-			$price =  $plugin_price['PRICE'] * $multiplier;
+			$price =  $plugin_price['PRICE'];
 			$post_text =  $plugin_price['POST_TEXT'];
 			}
 		}
