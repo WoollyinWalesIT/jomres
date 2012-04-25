@@ -1,3 +1,16 @@
+Jomres 6.6.3
+
+Added a new trigger 00004 which allows us to set up JavaScript and css files via a minicomp. This makes it possible to programatically replace, among other things, the jquery core, ui and ui themes via a plugin.
+Improved Jomres' mobile device detection, added a simulation option and a new define _JOMRES_MOBILE which mobile sensitive plugins would be expected to use.
+Modified the live site url to ensure that the current language is always passed in the urls.
+Fixed a not defined error message in Jomres SA.
+Moved some jquery binding from list properties javascript file into a template. Reason being, if list properties.js is on the same page as the property details template, the book a room etc buttons have the binding applied twice, doubling their size. With the advent of the parse_ajax_returned_scripts js function, this isn't required, we can put the binding into the list properties header script so that it's only applied if the property list is returned.
+Plugin manager updated to use anchors to make it a little more user friendly.
+Moved rebuild registry code to ensure that the registry is rebuilt after a plugin is installed.
+Modified templates to stop register property step two from checking data has been entered into the property description field, because it's not possible to check if a field has been populated when the editor is used.
+Modified the get_property_price_for_display_in_lists function to use per day/night/week/month texts in property lists, modules etc.
+Added some "true" options to redirects to see if this resolves an obscure 500 somebody on fastCGI is seeing.
+
 Jomres 6.6.2
 
 Modified jomresRedirect function, replaced &amp; with & when redirecting, otherwise the correct url isn't used.
