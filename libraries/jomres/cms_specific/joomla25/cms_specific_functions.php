@@ -419,11 +419,12 @@ function jomres_cmsspecific_makeSEF_URL($link)
 function jomres_cmsspecific_parseByBots($str)
 	{
 	$limitstart = 0;
+	$params = '';
 	$dispatcher	=& JDispatcher::getInstance();
 	JPluginHelper::importPlugin('content');
 	$obj = new stdClass;
 	$obj->text=$str;
-	$output = $dispatcher->trigger('onPrepareContent', array (&$obj, & $params, $limitstart));
+	$output = $dispatcher->trigger('onContentPrepare', array ('onContentPrepare',&$obj, & $params, $limitstart));
 	$output= $obj->text;
 	return $output;
 	}
