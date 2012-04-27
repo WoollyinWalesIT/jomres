@@ -28,7 +28,7 @@ function init_javascript()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-	
+
 	// Include all the various css & javascript files we need
 	if (!$no_html)
 		{
@@ -39,7 +39,7 @@ function init_javascript()
 
 			if (!isset($jrConfig['load_jquery_ui_css']))
 				$jrConfig['load_jquery_ui_css'] = "1";
-			
+
 			if ($jrConfig['load_jquery_ui'] =="1")
 				{
 				if ($jrConfig['load_jquery_ui_css'] =="1")
@@ -82,7 +82,7 @@ function init_javascript()
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.ui.potato.menu.js.relpath"),get_showtime("jquery.ui.potato.menu.js"));
 			jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
 			jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
-			
+
 			if ($thisJRUser->userIsRegistered)
 				{
 
@@ -92,7 +92,7 @@ function init_javascript()
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.dataTables.min.js.relpath"),get_showtime("jquery.dataTables.min.js"));
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("TableTools.min.js.relpath"),get_showtime("TableTools.min.js"));
 				}
-				
+
 			$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 			$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 			}
@@ -142,7 +142,7 @@ function get_property_price_for_display_in_lists($property_uid)
 				}
 			}
 		}
-	
+
 	$multiplier = 1;
 	switch ($mrConfig['booking_form_daily_weekly_monthly'])
 		{
@@ -156,8 +156,8 @@ function get_property_price_for_display_in_lists($property_uid)
 		case "M":
 			$multiplier = 30;
 			break;
-			}
-	
+		}
+
 	$price = 0.00;
 	$output_lowest = false;
 	if ($plugin_will_provide_lowest_price)
@@ -558,7 +558,7 @@ function get_property_module_data($property_uid_array)
 
 			$property_data['PROPERTY_UID']=$property_uid;
 			$property_data['RANDOM_IDENTIFIER'] = generateJomresRandomString(10);
-			
+
 			$property_data['LIVE_SITE']=get_showtime('live_site');
 			$property_data['MOREINFORMATION']= jr_gettext('_JOMRES_COM_A_CLICKFORMOREINFORMATION',_JOMRES_COM_A_CLICKFORMOREINFORMATION,$editable=false,true) ;
 			$property_data['MOREINFORMATIONLINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property_uid) ;
@@ -567,13 +567,13 @@ function get_property_module_data($property_uid_array)
 				{
 				$property_data['STARSIMAGES'].="<img src=\"".get_showtime('live_site')."/jomres/images/star.png\" alt=\"star\" border=\"0\" />";
 				}
-			
+
 			if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE'))
 				{
 				define('_JOMRES_MODULEPOPUP_AJAX_SOURCE',1);
 				$property_data['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=";</script>';
 				}
-			
+
 			$pageoutput = array($property_data);
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -1062,7 +1062,7 @@ function search_core_and_remote_dirs_for_classfiles()
 		$remote_plugin_directories = array();
 		$core_plugins_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
 		$remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
-		
+
 		if (is_dir($core_plugins_directory))
 			{
 			$d = @dir($core_plugins_directory);
@@ -1074,7 +1074,7 @@ function search_core_and_remote_dirs_for_classfiles()
 					}
 				}
 			}
-		
+
 		if (is_dir($remote_plugin_directory))
 			{
 			$d = @dir($remote_plugin_directory);
@@ -1086,9 +1086,9 @@ function search_core_and_remote_dirs_for_classfiles()
 					}
 				}
 			}
-		
+
 		$all_directories = array_merge($core_plugins_directories,$remote_plugin_directories);
-		
+
 		$classes = array();
 		foreach ($all_directories as $directory)
 			{
@@ -2250,9 +2250,9 @@ function writexml($logfile,$rootelement,$entry,$newlines)
 function jomresRedirect( $url, $msg='' )
 	{
 	// msg depreciated now as we're using growl for feedback after redirect, however we'll leave it in-situ in case we want it back again sometime in the future.
-	
+
 	$url = str_replace ( "&amp;","&",$url);
-	
+
 	jr_import('browser_detect');
 	$b = new browser_detect();
 	$browser = $b->getBrowser();
@@ -2670,7 +2670,7 @@ function saveHotelSettings()
 				{
 				$v = filter_var($v,FILTER_SANITIZE_SPECIAL_CHARS);
 				}
-			
+
 			if (substr( $k, 4 ) =="currencyCodes")
 				{
 				$theArray=$_POST['cfg_currencyCodes'];
@@ -2865,7 +2865,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	</script>
 	<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly"/>
 	';
-	
+
 	$pageoutput[]=array("INPUT"=>$output,"CHECKBOX"=>$clear_checkbox_js);
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -4029,6 +4029,11 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
 	$newName=strtolower(str_replace(" ","_", $newName));
 
+	$slideshow_image_upload = false; 
+	$batchUploadFormElements = array('image0','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','image11'); 
+	if (in_array($formelement,$batchUploadFormElements)) 
+		$slideshow_image_upload = true; 
+	
 	if (isset($formelement) && isset($newName) && isset($saveToPath) )
 		{
 		if (!is_dir($saveToPath) )
@@ -4074,6 +4079,19 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 				}
 			else
 				{
+				
+				
+				if ( this_cms_is_joomla() && $slideshow_image_upload ) // For Joomla plugin galleries
+					{
+					$joomla_dir = JOMRES_IMAGE_UPLOAD_PATH.'joomla'.JRDS;
+
+					if (!is_dir($joomla_dir) )
+						mkdir($joomla_dir);
+					if (!is_dir($joomla_dir.'large') )
+						mkdir($joomla_dir.'large');
+					$img->saveImage($joomla_dir.'large'.JRDS.$newName,$ok_to_delete);
+					}
+
 				// We've managed to do the upload of the image, let's now use the same functionality to create the thumbnail. Everything's worked so far so there's no need to perform the same checks so this should be much simpler.
 				$ok_to_delete = true;
 				$filename= split("\.", $newName);
@@ -4087,9 +4105,23 @@ function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
 				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_list_max_width']), floor( (int)$jrConfig['thumbnail_property_list_max_height']));
 				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_small,$ok_to_delete) ;
 
+				if ( this_cms_is_joomla() && $slideshow_image_upload ) // For Joomla plugin galleries
+					{
+					if (!is_dir($joomla_dir.'small') )
+						mkdir($joomla_dir.'small');
+					$img->saveImage($joomla_dir.'small'.JRDS.$thumbnail_name_small,$ok_to_delete) ;
+					}
+
 				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
 				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_header_max_width']),floor( (int)$jrConfig['thumbnail_property_header_max_height']));
 				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_med,$ok_to_delete) ;
+
+				if ( this_cms_is_joomla() && $slideshow_image_upload ) // For Joomla plugin galleries
+					{
+					if (!is_dir($joomla_dir.'medium') )
+						mkdir($joomla_dir.'medium');
+					$img->saveImage($joomla_dir.'medium'.JRDS.$thumbnail_name_med,$ok_to_delete) ;
+					}
 				}
 			}
 		else
@@ -5546,6 +5578,42 @@ if (!function_exists('is_iPhone'))
 			return "NO";
 			}
 		}
+	}
+
+function scandir_getdirectories($path) 
+	{
+	$data = array();
+	foreach(scandir($path) as $dir) 
+		{
+		if(is_dir($path . $dir)) 
+			{
+			if ($dir != "." && $dir != "..") 
+				{
+				$data[] =$dir;
+				}
+			}
+		}
+	return $data;
+	}
+
+function scandir_getfiles($path) 
+	{
+	$data = array();
+	foreach(scandir($path) as $file) 
+		{
+		if(is_file($path .JRDS. $file)) 
+			{
+			$data[] =$file;
+			} 
+		}
+	return $data;
+	}
+
+function this_cms_is_joomla()
+	{
+	if ( (_JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" ))
+		return false;
+	return true;
 	}
 
 function jomres_decode($string)
