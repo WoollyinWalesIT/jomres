@@ -73,18 +73,17 @@ class j06000immediatepay
 		$this->add_field('item_number', $invoice_id);
 		$this->add_field('invoice', $invoice_id);
 		$this->add_field('custom', $invoice_id);
-		//$this->add_field('image_url', "https://www.yoursite.com/logo.gif");
 		$this->add_field('no_shipping', "1");
-		$this->add_field('amount', number_format($invoice->init_total,2));
+		if ($invoice->subscription == 1)
+			$this->add_field('amount', number_format($invoice->recur_total,2));
+		else
+			$this->add_field('amount', number_format($invoice->init_total,2));
 		$this->add_field('return', JOMRES_SITEPAGE_URL_NOSEF);
 		//$this->add_field('cancel_return', JOMRES_SITEPAGE_URL.'&task=canc_subscribed&Itemid='.$Itemid);
 		$this->add_field('notify_url', $ourCallbackURL.'&action=ipn');
 		$this->add_field('no_note', "1");
 		$this->add_field('currency_code', $this->paypal_settings['currencycode']);
 
-		//echo '<script type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jquery.js"></script>';
-		//echo '<script type="text/javascript">jomresJquery.noConflict();</script>';
-		
 		?>
 		<script>
 		jomresJquery(document).ready(function() {

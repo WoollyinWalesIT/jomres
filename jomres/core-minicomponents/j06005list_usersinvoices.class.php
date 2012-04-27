@@ -116,9 +116,14 @@ class j06005list_usersinvoices
 					$r['FREQ']			=$invoice['recur_frequency'];
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
 					$settingArray = get_plugin_settings("paypal",$invoice['property_uid']);
-					if (isset($settingArray['active']) && $settingArray['active'] == "1")
+					
+					jr_import('jrportal_paypal_settings');
+					$jrportal_paypal_settings = new jrportal_paypal_settings();
+					$paypal_settings=$jrportal_paypal_settings->get_paypal_settings();
+					
+					if ( (isset($settingArray['active']) && $settingArray['active'] == "1") || ($invoice['subscription'] == 1 && $paypal_settings['email'] != "") )
 						{
-						if ($invoice['subscription'] == "0" && $invoice['status'] != "1")
+						if ($invoice['status'] != "1")
 							$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
 						}
 					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
