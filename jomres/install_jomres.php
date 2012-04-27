@@ -196,7 +196,6 @@ if ($folderChecksPassed && ACTION != "Migration")
 
 			if (ACTION == "Install")   // Installing
 				{
-				
 				if (!AUTO_UPGRADE) echo  "Creating Jomres tables if they don't already exist.<br>";
 				createJomresTables();
 				if (!AUTO_UPGRADE) echo  "Inserting sample data<br>";
@@ -219,6 +218,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 				$registry->regenerate_registry();
 				if (!AUTO_UPGRADE) echo  "Data already installed, no need to re-create it<br>";
 				doTableUpdates();
+				updateImages();
 				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
 				showCompletedText();
 				}
@@ -247,6 +247,129 @@ function track_installation_upgrade()
 		}
 	}
 
+// For Jomres 6.6.5, see if we need to copy large,medium and thumb images to a joomla subdirectory. Allows the use of Joomla gallery plugins.
+function updateImages()
+	{
+	
+	if (!this_cms_is_joomla())
+		return true;
+
+	$docs =  scandir_getdirectories(JOMRES_IMAGELOCATION_ABSPATH);
+	foreach ($docs as $dir)
+		{
+		if (is_dir(JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.	"joomla")) // The directory already has a "joomla" subdir, therefore we will believe that this system has already been updated so we'll just drop out.
+			return true;
+		}
+	
+	if (!AUTO_UPGRADE) echo "<strong>Preparing to copy images and thumbs to a subdirectory to support Joomla gallery plugins.</strong><br>";
+	if (!AUTO_UPGRADE) echo "Scanning ".JOMRES_IMAGELOCATION_ABSPATH."<br>";
+	foreach ($docs as $dir)
+		{
+		$large_images_array = array();
+		$medium_images_array = array();
+		$small_images_array = array();
+		
+		if (is_numeric ($dir))
+			{
+			// First we'll sort files into an appropriate corresponding array.
+			$directory_files = scandir_getfiles(JOMRES_IMAGELOCATION_ABSPATH.$dir);
+			foreach ($directory_files as $file)
+				{
+				if (strstr($file,"thumbnail.jpg"))
+					$small_images_array[] = $file;
+				elseif (strstr($file,"thumbnail_med.jpg"))
+						$medium_images_array[] = $file;
+					else 
+						$large_images_array[] = $file;
+				}
+			// Next, we're going to look for thumbnails that don't have a corresponding larger image. This is because previous versions of Jomres didn't clean up thumbnails properly when main images were deleted
+			if (!AUTO_UPGRADE) echo "<strong>Cleaning up ".JOMRES_IMAGELOCATION_ABSPATH.$dir.", deleting any images that do not have a corresponding main image file.</strong><br>";
+			foreach ($small_images_array as $key=>$small_image)
+				{
+				$main_filename = str_replace("_thumbnail.jpg",".jpg",$small_image);
+				if (!file_exists(JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$main_filename))
+					{
+					unlink(JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$small_image);
+					if (!AUTO_UPGRADE) echo "Deleting ".JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$small_image."<br>";
+					unset($small_images_array[$key]);
+					}
+				}
+			foreach ($medium_images_array as $key=>$medium_image)
+				{
+				$main_filename = str_replace("_thumbnail_med.jpg",".jpg",$medium_image);
+				if (!file_exists(JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$main_filename))
+					{
+					unlink(JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$medium_image);
+					if (!AUTO_UPGRADE) echo "Deleting ".JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$medium_image."<br>";
+					unset($medium_images_array[$key]);
+					}
+				}
+			// Now we need to copy files from xxx.$dir tothe joomla/large, medium and small dirs
+			$joomla_dir = JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.'joomla';
+			
+			if (!mkdir($joomla_dir))
+				{
+				if (!AUTO_UPGRADE) echo "Error, unable to make the directory ".$joomla_dir." so cannot continue with image update";
+				return false;
+				}
+			else
+				{
+				if (!AUTO_UPGRADE) echo "Copying images to ".$joomla_dir." <br/>";
+				mkdir($joomla_dir.JRDS.'large');
+				mkdir($joomla_dir.JRDS.'medium');
+				mkdir($joomla_dir.JRDS.'small');
+				if (count($large_images_array)>0)
+					{
+					foreach ($large_images_array as $image)
+						{
+						//if (!AUTO_UPGRADE) echo "Copying ".JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$image." to ".$joomla_dir.JRDS.'large'.JRDS.$image." <br/>";
+						copy (JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$image, $joomla_dir.JRDS.'large'.JRDS.$image);
+						}
+					}
+				if (count($medium_images_array)>0)
+					{
+					foreach ($medium_images_array as $image)
+						{
+						//if (!AUTO_UPGRADE) echo "Copying ".JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$image." to ".$joomla_dir.JRDS.'medium'.JRDS.$image." <br/>";
+						copy (JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$image, $joomla_dir.JRDS.'medium'.JRDS.$image);
+						}
+					}
+				if (count($small_images_array)>0)
+					{
+					foreach ($small_images_array as $image)
+						{
+						//if (!AUTO_UPGRADE) echo "Copying ".JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$image." to ".$joomla_dir.JRDS.'small'.JRDS.$image." <br/>";
+						copy (JOMRES_IMAGELOCATION_ABSPATH.$dir.JRDS.$image, $joomla_dir.JRDS.'small'.JRDS.$image);
+						}
+					}
+				}
+			
+			}
+			
+			
+		}
+		
+			// if (count($docs)>0)
+				// {
+				// sort($docs);
+				// foreach ($docs as $doc)
+					// {
+					// $listdir=$jrePath.$doc.JRDS;
+					// $dr = @dir($listdir);
+					// if($dr)
+						// {
+						// while (FALSE !== ($entry = $dr->read()))
+							// {
+							// $filename = $entry;
+							// $this->registerComponentFile($listdir,$filename,"component");
+							// }
+						// $dr->close();
+						// }
+					// }
+				// }
+		//}
+	}
+	
 function doTableUpdates()
 	{
 	if (!checkInvoicesPropertyuidColExists() )

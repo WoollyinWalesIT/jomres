@@ -53,19 +53,46 @@ class j06002delslideshowimages {
 				{
 				trigger_error("Error, User tried to delete image ".$imageName, E_USER_ERROR);
 				}
-				
+			
+			$full_filename = '';
+			for ($i=0;$i<count($filename)-1;$i++)
+				$full_filename .= $filename[$i];
+			
 			if (file_exists($mrp.$imageName) )
 				{
 				if (is_writable($mrp.$imageName) )
+					{
 					if (!unlink($mrp.$imageName) )
 						{
 						$success=false;
 						error_logging( "Error, unable to delete ".$mrp.$imageName);
 						}
 					else
-						echo $imageName. ' '.jr_gettext('_JOMRES_FILE_DELETED',_JOMRES_FILE_DELETED);
-					else
-				echo "<br>";
+						{
+						// Now we'll delete the various other thumbnails/gallery files. We'll not put a ton of writability checks here, it'd be unreadable, slower and we've already confirmed that the file above is writable, so these SHOULD also be writable.
+						
+						$filename_large = $full_filename.".".$filename[$numExtensions];
+						$filename_small = $full_filename."_thumbnail.".$filename[$numExtensions];
+						$filename_med = $full_filename."_thumbnail_med.".$filename[$numExtensions];
+						
+						if (file_exists($mrp.$filename_med) )
+							unlink ($mrp.$filename_med);
+						if (file_exists($mrp.$filename_small) )
+							unlink ($mrp.$filename_small);
+
+						$joomla_dir = $mrp.'joomla'.JRDS;
+						if (file_exists($joomla_dir."large".JRDS.$filename_large) )
+							unlink ($joomla_dir."large".JRDS.$filename_large);
+						if (file_exists($joomla_dir."medium".JRDS.$filename_med) )
+							unlink ($joomla_dir."medium".JRDS.$filename_med);
+						if (file_exists($joomla_dir."small".JRDS.$filename_small) )
+							unlink ($joomla_dir."small".JRDS.$filename_small);
+						
+						$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
+						$jomres_messaging = new jomres_messages();
+						$jomres_messaging->set_message($imageName. ' '.jr_gettext('_JOMRES_FILE_DELETED',_JOMRES_FILE_DELETED,false));
+						}
+					}
 				}
 			else
 				{
@@ -74,11 +101,10 @@ class j06002delslideshowimages {
 				}
 				
 			}
+
 		if ($success)
 			{
-			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-			$jomres_messaging->set_message(_JOMRES_FILE_DELETED);
-			//jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
+			jomresRedirect( JOMRES_SITEPAGE_URL."&task=bUploadForm");
 			}
 		}
 
