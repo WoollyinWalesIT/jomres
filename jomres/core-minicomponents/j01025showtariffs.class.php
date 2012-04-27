@@ -125,13 +125,47 @@ class j01025showtariffs {
 						$mrConfig['ratemultiplier']=1;
 					else
 						$mrConfig['ratemultiplier']+=0;
-
-					$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
+					
 					if ($mrConfig['prices_inclusive'] == 1)
 						$price_inc_vat = $tariff->roomrateperday;
 					else
 						$price_inc_vat = $current_property_details->get_gross_accommodation_price($tariff->roomrateperday,$property_uid);
 					
+					$multiplier = 1;
+					switch ($mrConfig['booking_form_daily_weekly_monthly'])
+						{
+						case "D":
+							$multiplier = 1;
+							break;
+						case "W":
+							if ($mrConfig['tariffChargesStoredWeeklyYesNo'] != "1")
+								$multiplier = 7;
+							break;
+						case "M":
+							$multiplier = 30;
+							break;
+						}
+					switch ($mrConfig['booking_form_daily_weekly_monthly'])
+						{
+						case "D":
+							if ($mrConfig['wholeday_booking'] == "1")
+								$post_text =jr_gettext('_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY',_JOMRES_FRONT_TARIFFS_PN_DAY_WHOLEDAY);
+							else
+								{
+								if ($mrConfig['perPersonPerNight']=="0" )
+									$post_text ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
+								else
+									$post_text ="&nbsp;".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+								}
+							break;
+						case "W":
+							$post_text =jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY);
+							break;
+						case "M":
+							$post_text =jr_gettext('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY',_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY);
+							break;
+						}
+				
 					if ($mrConfig['wholeday_booking'] == "1")
 						{
 						if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
@@ -142,9 +176,7 @@ class j01025showtariffs {
 					else
 						{
 						if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
-							$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
-						else
-							$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN);
+							$r['ROOMRATEPERDAY']=output_price($price_inc_vat  * $multiplier)." ".$post_text;
 						}
 					
 					if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1" && $mrConfig['tariffmode'] == "1")
@@ -153,7 +185,6 @@ class j01025showtariffs {
 							$price_inc_vat = $price_inc_vat * 7;
 						$r['ROOMRATEPERDAY']=output_price($price_inc_vat)." ".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 						}
-					//$output['roomrateperday']=$mrConfig['currency'].number_format($tariff->roomrateperday,2)." ".jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN);
 
 					if ($tariff->allow_we=="0")
 						$r['NOTWEEKENDS']=jr_gettext('_JOMRES_FRONT_TARIFFS_NOTWEEKEND',_JOMRES_FRONT_TARIFFS_NOTWEEKEND);
