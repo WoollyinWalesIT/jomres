@@ -503,10 +503,25 @@ class j01010listpropertys {
 						else
 							$property_deets['SHORTLIST'] =jr_gettext('_JOMRES_REMOVEFROMSHORTLIST',_JOMRES_REMOVEFROMSHORTLIST,false,false);
 						
-						$Args=array('property_uid'=>$property->propertys_uid,"width"=>'119',"height"=>'95',"disable_ui"=>true);
-						$MiniComponents->specificEvent('01050','x_geocoder',$Args);
-						$property_deets['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
-
+						$showmaps = false;
+						$layout=$tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
+						if (get_showtime('layout_showmaps') != null || $layout == "listwithmaps")
+							{
+							if (get_showtime('layout_mapwidth') == null)
+								{
+								$mapwidth = "119";
+								$mapheight = "95";
+								}
+							else
+								{
+								$mapwidth = get_showtime('layout_mapwidth');
+								$mapheight = get_showtime('layout_mapheight');
+								}
+							$args=array('property_uid'=>$property->propertys_uid,"width"=>$mapwidth,"height"=>$mapheight,"disable_ui"=>true);
+							$MiniComponents->specificEvent('01050','x_geocoder',$args);
+							$property_deets['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+							}
+						
 						$sizes=array('thwidth'=>$jrConfig['thumbnail_width'],'thheight'=>$jrConfig['thumbnail_width']);
 						if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 							$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
