@@ -184,27 +184,24 @@ class j06005view_invoice {
 		$output['HLI_TAX_DESCRIPTION']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION',_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION);
 		$output['HLI_TAX_RATE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
 
+		$jrportal_paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
+		$paypal_settings=$jrportal_paypal_settings->get_paypal_settings();
+
+		$settingArray = get_plugin_settings("paypal",$invoice->property_uid);
+		
 		if ($show_paypal_link)
 			{
 			if (!$thisJRUser->userIsManager)
 				{
-				$settingArray = get_plugin_settings("paypal",$invoice->property_uid);
-				if ($settingArray)
+				if ( (isset($settingArray['active']) && $settingArray['active'] == "1") || ($invoice->subscription == 1 && $paypal_settings['email'] != "" && $invoice->status != "1") )
 					{
-					if (isset($settingArray['active']) && $settingArray['active'] == "1")
-						{
-						if ($invoice->subscription == "0" && $invoice->status != "1")
-							{
-							$ip=array();
-							$immediate_pay=array();
-							$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
-							$ip['INV_ID']	=$invoice->id;
-							$ip['LIVESITE']=get_showtime('live_site').'/';
-							$ip['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
-							
-							$immediate_pay[]=$ip;
-							}
-						}
+					$ip=array();
+					$immediate_pay=array();
+					$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
+					$ip['INV_ID']	=$invoice->id;
+					$ip['LIVESITE']=get_showtime('live_site').'/';
+					$ip['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
+					$immediate_pay[]=$ip;
 					}
 				}
 			elseif ($invoice->is_commission)
@@ -260,10 +257,14 @@ class j06005view_invoice {
 			$tmpl->readTemplatesFromInput( 'frontend_view_invoice.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
-		if ($invoice->subscription == "0" && $invoice->init_total > 0.00)
+		if ($invoice->subscription == 0 && $invoice->init_total > 0.00)
 			{
 			$tmpl->addRows( 'immediate_pay',$immediate_pay);
 			}
+		elseif ($invoice->subscription == 1 && $invoice->recur_total > 0.00)
+			{
+			$tmpl->addRows( 'immediate_pay',$immediate_pay);
+			}	
 		if (!$return_template)
 			$tmpl->displayParsedTemplate();
 		else
