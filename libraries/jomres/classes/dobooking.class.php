@@ -1940,14 +1940,10 @@ class dobooking
 		if ($this->cfg_limitAdvanceBookingsYesNo=='1') {
 			$unixLatestArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$this->cfg_advanceBookingsLimit,$date_elements[0]);
 			}
-		// $unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-		// $date_elements  = explode("/",$arrivalDate);
-		// $unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-		// $date_elements  = explode("/",$this->today);
-		// $unixEarliestArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$this->cfg_mindaysbeforearrival,$date_elements[0]);
-		
+
 		$unixArrivalDate = $this->getMkTime($arrivalDate);
-		$unixEarliestArrivalDate = $this->getMkTime($this->today);
+		$date_elements  = explode("/",$this->today);
+		$unixEarliestArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$this->cfg_mindaysbeforearrival,$date_elements[0]);
 		
 		if ( !isset($arrivalDate) )
 			{
