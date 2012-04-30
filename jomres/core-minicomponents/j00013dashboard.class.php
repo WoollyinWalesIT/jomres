@@ -315,7 +315,7 @@ class j00013dashboard extends jomres_dashboard
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 
-		$output.='<td align="center" valign="middle" bgcolor="'.$bgcolor.'" >';
+		$output.='<td align="center" valign="middle" bgcolor="'.$bgcolor.'" width="16" height="16">';
 		if ($dobookingLink && !$pastDate)
 			{
 			if ($mrConfig['fixedArrivalDateYesNo']=="1")
