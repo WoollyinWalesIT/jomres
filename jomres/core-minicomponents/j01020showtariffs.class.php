@@ -195,8 +195,7 @@ class j01020showtariffs {
 							}
 						else
 							{
-							if ($tariff->ignore_pppn || $mrConfig['perPersonPerNight']=="0" )
-								$output['ROOMRATEPERDAY']=output_price($price_inc_vat  * $multiplier)." ".$post_text;
+							$output['ROOMRATEPERDAY']=output_price($price_inc_vat  * $multiplier)." ".$post_text;
 							}
 							
 						if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1" && $mrConfig['tariffmode'] == "1")
