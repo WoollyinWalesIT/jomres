@@ -150,6 +150,8 @@ class j01020showtariffs {
 							$price_inc_vat = $current_property_details->get_gross_accommodation_price($tariff->roomrateperday,$property_uid);
 
 						$multiplier = 1;
+						if (!isset($mrConfig['booking_form_daily_weekly_monthly'])) // This shouldn't be needed, as the setting is automatically pulled from jomres_config.php, but there's always one weird server...
+							$mrConfig['booking_form_daily_weekly_monthly'] = "D";
 						switch ($mrConfig['booking_form_daily_weekly_monthly'])
 							{
 							case "D":
