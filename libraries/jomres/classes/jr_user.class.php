@@ -46,7 +46,7 @@ class jr_user
 		$this->superPropertyManager 			= FALSE;
 		$this->superPropertyManagersAreGods 	= TRUE;   // Change this to false to prevent super property managers from having rights to ALL properties
 		$this->userIsRegistered					= FALSE;
-		$this->users_timezone					= "America/Lima";
+		//$this->users_timezone					= "America/Lima";
 		$this->jomres_manager_id				= 0;
 		$this->userIsSuspended					= FALSE;
 

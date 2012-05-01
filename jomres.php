@@ -22,7 +22,6 @@ ob_start("removeBOM");
 ini_set("display_errors",1);
 //ini_set('error_reporting', E_ALL| E_STRICT);
 //@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE);
-date_default_timezone_set('UTC');
 
 global $thisJRUser,$task,$jomresPathway;
 global $property_uid,$Itemid,$jomressession;
@@ -45,7 +44,8 @@ $thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
-
+jr_import('jomres_timezones');
+$tz = new jomres_timezones();
 
 $performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
 if ($jrConfig['errorChecking'] =="1")
@@ -202,9 +202,6 @@ if ($thisJRUser->userIsSuspended)
 	if (!$jomres_suspensions->suspended_manager_allowed_task(get_showtime('task')))
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=suspended"), "" );
 	}
-
-jr_import('jomres_timezones');
-$tz = new jomres_timezones();
 
 $property_uid = detect_property_uid();
 
