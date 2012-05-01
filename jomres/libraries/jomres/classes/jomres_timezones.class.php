@@ -19,6 +19,11 @@ class jomres_timezones
 	function jomres_timezones()
 		{
 		$this->check_timezone_change();
+		if (_JOMRES_DETECTED_CMS == "joomla25")
+			{
+			$CONFIG = new JConfig();
+			$this->default_timezone = $CONFIG->offset;
+			}
 		$this->users_timezone=$this->get_users_timezone();
 		date_default_timezone_set($this->users_timezone);
 		}
@@ -59,7 +64,10 @@ class jomres_timezones
 	function get_users_timezone()
 		{
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		return $thisJRUser->users_timezone;
+		if (isset($thisJRUser->users_timezone))
+			return $thisJRUser->users_timezone;
+		else
+			return $this->default_timezone;
 		}
 		
 	function get_supported_timezones()
