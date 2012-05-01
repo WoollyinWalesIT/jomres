@@ -39,6 +39,9 @@ class jomres_currency_exchange_rates
 		{
 		if (!$this->feature_enabled)
 			return;
+		
+		$current_rates = $this->get_exchange_rates();
+
 		$update_exchange_rates = false;
 		if ( !$this->exchange_rate_file_exists() )
 			$update_exchange_rates = true;
@@ -46,13 +49,15 @@ class jomres_currency_exchange_rates
 			$update_exchange_rates = true;
 			elseif ($this->update_now)
 				$update_exchange_rates = true;
-
+				elseif (count ($current_rates->rates) == 0)
+					$update_exchange_rates = true;
+				
 		if ($update_exchange_rates)
 			{
 			$this->update_exchange_rates();
 			$this->save_rates();
 			}
-		$this->get_exchange_rates();
+		$rates = $this->get_exchange_rates();
 		}
 	
 	function get_exchange_rates()
@@ -62,6 +67,7 @@ class jomres_currency_exchange_rates
 		require_once ($this->exchange_rate_classfile);
 		$rates = new jomres_currency_exchange_rates_temp_data();
 		set_showtime('temp_exchangerate_data', $rates->rates );
+		return $rates;
 		}
 	
 	function exchange_rate_file_expired()
@@ -91,6 +97,7 @@ class jomres_currency_exchange_rates
 		{
 		if (!$this->feature_enabled)
 			return;
+			
 		$this->rates = array();
 		$currenciesArray=array();
 		$currencyQuery="";
@@ -104,15 +111,11 @@ class jomres_currency_exchange_rates
 			}
 		$currencyQuery= substr($currencyQuery,0,-1);
 		$csv = $this->csv_to_array($this->get_exchange_rates_csv($currencyQuery),',');
-		foreach ($csv as $val)
+		foreach ($csv as $k)
 			{
-			$currenciesArray[]=array_values($val);
-			}
-		foreach ($currenciesArray as $k)
-			{
-			$base_code=substr($k[0],0,-5);
-			$code=substr($k[0],3,-2);
-			$rate=$k[1];
+			$base_code=$k["from"];
+			$code=$k["to"];
+			$rate=$k["rate"];
 			$this->rates[$base_code][$code]=$rate;
 			}
 		ignore_user_abort (false);
@@ -163,6 +166,7 @@ class jomres_currency_exchange_rates
 		curl_setopt($c, CURLOPT_HEADER, 0);
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 		$csv = curl_exec($c);
+		
 		curl_close($c);
 		return $csv;
 		}
@@ -172,22 +176,39 @@ class jomres_currency_exchange_rates
 		$header = null;
 		$data = array();
 		$csvData = str_getcsv($input, "\n");
-		foreach($csvData as $csvLine){
-			if(is_null($header)) 
-				$header = explode($delimiter, $csvLine[0]);
-			else
-				{
-				$items = explode($delimiter, $csvLine[0]);
-				for($n = 0, $m = count($header); $n < $m; $n++)
-					{
-					$prepareData[$header[$n]] = $items[$n];
-					}
-				$data[] = $prepareData;
-				}
+		foreach($csvData as $csvLine)
+			{
+			$items = explode($delimiter, $csvLine);
+			$from_code = substr($items[0],0,3);
+			$to_code = substr($items[0],3,3);
+			$data[] = array("from"=>$from_code,"to"=>$to_code,"rate" => $items[4]);
 			}
 		return $data;
-		} 
+		}
 	}
+	
+			// if(is_null($header)) 
+				// $header = explode($delimiter, $csvLine[0]);
+			// else
+				// {
+				// $items = explode($delimiter, $csvLine[0]);
+				// if ($items[0] == "G")
+					// {
+					// $items = explode($delimiter, $csvLine);
+					// $currencycode = substr($items[0],3,3);
+					// $data[][$currencycode] = $items[4];
+					// }
+				// else
+					// {
+					// $count = count($items);
+					// for($n = 0, $m = $count; $n < $m; $n++)
+						// {
+						// $prepareData[$header[$n]] = $items[$n];
+						// }
+					// $data[] = $prepareData;
+					// }
+				
+				// }
 	
 if (!function_exists('str_getcsv'))
 	{
