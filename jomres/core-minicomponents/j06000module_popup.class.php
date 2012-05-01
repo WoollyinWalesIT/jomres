@@ -80,7 +80,13 @@ class j06000module_popup
 			$output['PROPERTY_AIRPORTS'] = $current_property_details->property_airports;
 			$output['PROPERTY_OTHERTRANSPORT'] = $current_property_details->property_othertransport;
 			$output['PROPERTY_POLICIES_DISCLAIMERS'] = $current_property_details->property_policies_disclaimers;
+			
+			$output['_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS'] = jr_gettext(_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS,_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS,false,false);
+			$output['_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE'] = jr_gettext(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE,_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE,false,false);
 
+			
+			
+			
 			$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 			$rt= doSelectSql($query);
 			if (count($rt)>0)
