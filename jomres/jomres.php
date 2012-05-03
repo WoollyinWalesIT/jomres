@@ -290,7 +290,6 @@ if (isset($property_uid) && !empty($property_uid))
 	$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 	}
 
-$MiniComponents->triggerEvent('00004'); // Pre-javascript initialisation.
 init_javascript();
 set_showtime('include_room_booking_functionality',true);
 $MiniComponents->triggerEvent('00005');
