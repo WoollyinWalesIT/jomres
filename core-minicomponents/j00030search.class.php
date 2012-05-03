@@ -80,7 +80,6 @@ class j00030search {
 			//$customTextObj = new custom_text();
 			}
 			
-		$MiniComponents->triggerEvent('00004'); // Pre-javascript initialisation.
 		init_javascript();
 		//$runningMiniComp=false;
 		if ($calledByModule == "" && isset($_REQUEST['calledByModule']) )

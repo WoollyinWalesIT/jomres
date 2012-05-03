@@ -123,7 +123,6 @@ if (!JRPORTAL_AJAXCALL)
         </tr>
     </table>
     <?php
-	$MiniComponents->triggerEvent('00004'); // Pre-javascript initialisation.
 	init_javascript();
 	// And a couple that are only used in the admin area
 	?>
