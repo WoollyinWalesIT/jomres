@@ -503,6 +503,7 @@ class j01010listpropertys {
 						else
 							$property_deets['SHORTLIST'] =jr_gettext('_JOMRES_REMOVEFROMSHORTLIST',_JOMRES_REMOVEFROMSHORTLIST,false,false);
 						
+						add_gmaps_source(); // Needs to be included, regardless of the settings below because the module popup will not work without it.
 						$showmaps = false;
 						$layout=$tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 						if (get_showtime('layout_showmaps') != null || $layout == "listwithmaps")
