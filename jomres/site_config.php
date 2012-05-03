@@ -242,4 +242,5 @@ $jrConfig['use_cleardate_checkbox'] = "1";
 $jrConfig['use_cookie_policy'] = "0";
 $jrConfig['mobile_simulation'] = "0";
 $jrConfig['mobile_simulation_ip_restriction'] = "";
+$jrConfig['safe_mode'] = "0";
 ?>

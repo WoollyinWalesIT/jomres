@@ -35,14 +35,7 @@ class j00001start {
 			{
 			$this->template_touchable=false; return;
 			}
-
 		
-		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
-			define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend");
-		if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
-			define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."backend");
-		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
-			define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."administrator");
 		}
 
 	/**

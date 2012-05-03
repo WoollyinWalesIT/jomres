@@ -72,12 +72,21 @@ class minicomponent_registry
 		
 	function regenerate_registry()
 		{
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if (!isset($jrConfig['safe_mode']))
+			$jrConfig['safe_mode'] = "0";
+		
 		$this->registeredClasses = array();
 		$this->getMiniComponentCoreClasses();
 		$this->getMiniComponentCMSSpecificClasses();
-		$this->getMiniCorePluginsClasses();
-		$this->getMiniComponentRemoteClasses();
-		$this->getMiniComponentComponentClasses();
+		if ($jrConfig['safe_mode'] == "0")
+			{
+			$this->getMiniCorePluginsClasses();
+			$this->getMiniComponentRemoteClasses();
+			// $this->getMiniComponentComponentClasses(); // Was added for BC, these minicomponents should no longer be used (since circa v3 of Jomres) so this line will be disabled
+			}
+		
 		asort($this->registeredClasses);
 		$this->save_registry_file();
 		if ($this->original_filesize != $this->new_filesize && $this->force_reload_allowed )
@@ -138,43 +147,44 @@ class jomres_mc_registry
 			}
 		}
 		
-	function getMiniComponentComponentClasses()
-		{
-		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS;
-		$d = @dir($jrePath);
-		$docs = array();
-		if($d)
-			{
-			while (FALSE !== ($entry = $d->read()))
-				{
-				$filename = $entry;
-				if( substr($entry,0,1) != '.' )
-					{
-						if (substr($entry,0,11) == 'com_jomcomp')
-					$docs[] =$entry;
-					}
-				}
-			$d->close();
-			if (count($docs)>0)
-				{
-				sort($docs);
-				foreach ($docs as $doc)
-					{
-					$listdir=$jrePath.$doc.JRDS;
-					$dr = @dir($listdir);
-					if($dr)
-						{
-						while (FALSE !== ($entry = $dr->read()))
-							{
-							$filename = $entry;
-							$this->registerComponentFile($listdir,$filename,"component");
-							}
-						$dr->close();
-						}
-					}
-				}
-			}
-		}
+	// Had been added to circa v3 of Jomres for BC. As these have long since stopped being used, we'll disable this method
+	// function getMiniComponentComponentClasses()
+		// {
+		// $jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS;
+		// $d = @dir($jrePath);
+		// $docs = array();
+		// if($d)
+			// {
+			// while (FALSE !== ($entry = $d->read()))
+				// {
+				// $filename = $entry;
+				// if( substr($entry,0,1) != '.' )
+					// {
+						// if (substr($entry,0,11) == 'com_jomcomp')
+					// $docs[] =$entry;
+					// }
+				// }
+			// $d->close();
+			// if (count($docs)>0)
+				// {
+				// sort($docs);
+				// foreach ($docs as $doc)
+					// {
+					// $listdir=$jrePath.$doc.JRDS;
+					// $dr = @dir($listdir);
+					// if($dr)
+						// {
+						// while (FALSE !== ($entry = $dr->read()))
+							// {
+							// $filename = $entry;
+							// $this->registerComponentFile($listdir,$filename,"component");
+							// }
+						// $dr->close();
+						// }
+					// }
+				// }
+			// }
+		// }
 
 
 	// Reads in class files from the components table and inserts them into the registeredClasses array

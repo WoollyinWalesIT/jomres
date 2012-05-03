@@ -760,6 +760,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 			</tr>
 			<tr valign="middle" class="odd">
+				<td valign="middle">'._JOMRES_SAFEMODE.'</td>
+				<td valign="middle">'.$lists['safe_mode'].'</td>
+				<td valign="middle">'._JOMRES_SAFEMODE_DESC.'</td>
+			</tr>
+			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_COM_A_ERRORCHECKING.'</td>
 				<td valign="middle">'.$lists['errorChecking'].'</td>
 				<td valign="middle">'._JOMRES_COM_A_ERRORCHECKING_DESC.'</td>

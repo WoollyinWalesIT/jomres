@@ -147,8 +147,9 @@ $MiniComponents->triggerEvent('00001'); // Start
 
 $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_control');
 
-//require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
-
+if (!defined('JOMRES_CSSRELPATH'))
+	define('JOMRES_CSSRELPATH','jomres/css/');
+	
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
 set_error_handler('errorHandler');
