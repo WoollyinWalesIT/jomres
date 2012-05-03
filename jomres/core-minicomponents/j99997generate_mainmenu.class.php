@@ -35,7 +35,9 @@ class j99997generate_mainmenu {
 
 		$categories = array();
 		$jomres_mainmenu_category_images = get_showtime('jomres_mainmenu_category_images');
-
+		
+		$management_view=$componentArgs['management_view'];
+		
 		foreach ($buttons as $category=>$buts)
 			{
 			$categories[$category]=$category;
@@ -70,15 +72,20 @@ class j99997generate_mainmenu {
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			if ($jrConfig['alternate_mainmenu'] == "0")
-				$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+			if (!$management_view)
+				{
+				if ($jrConfig['alternate_mainmenu'] == "0")
+					$tmpl->readTemplatesFromInput( 'mainmenu_options.html' );
+				else
+					$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
+				}
 			else
-				$tmpl->readTemplatesFromInput( 'mainmenu_options_alternate.html' );
+				$tmpl->readTemplatesFromInput( 'management_mainmenu_options.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[]['DIV']= $tmpl->getParsedTemplate();
 			}
-
+		
 		$output=array();
 		$pageoutput = array();
 		$output['_JOMRES_CONTROLPANEL']=_JOMRES_CONTROLPANEL;
@@ -87,10 +94,15 @@ class j99997generate_mainmenu {
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		if ($jrConfig['alternate_mainmenu'] == "0")
-			$tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
+		if (!$management_view)
+			{
+			if ($jrConfig['alternate_mainmenu'] == "0")
+				$tmpl->readTemplatesFromInput( 'mainmenu_wrapper.html' );
+			else
+				$tmpl->readTemplatesFromInput( 'mainmenu_wrapper_alternate.html' );
+			}
 		else
-			$tmpl->readTemplatesFromInput( 'mainmenu_wrapper_alternate.html' );
+			$tmpl->readTemplatesFromInput( 'management_menu_wrapper.html' );
 		$tmpl->addRows( 'button_output', $button_o );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$this->ret_vals = $tmpl->getParsedTemplate();
