@@ -14,8 +14,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
-class j00004define_template_paths {
-	function j00004define_template_paths($componentArgs)
+class j00005define_template_paths {
+	function j00005define_template_paths($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -24,13 +24,11 @@ class j00004define_template_paths {
 			$this->template_touchable=false; return;
 			}
 		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
-			define('JOMRES_TEMPLATEPATH_FRONTEND',"templates".JRDS."jomres".JRDS."frontend");
+			define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend");
 		if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
-			define('JOMRES_TEMPLATEPATH_BACKEND',"templates".JRDS."jomres".JRDS."backend");
+			define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."backend");
 		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
-			define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
-		if (!defined('JOMRES_CSSRELPATH'))
-			define('JOMRES_CSSRELPATH','jomres/css/');
+			define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."administrator");
 		}
 
 	/**

@@ -55,8 +55,6 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'admin.j
 
 $nohtml	= jomresGetParam( $_REQUEST, 'no_html',0 );
 
-
-
 if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml == 0)
 	{
 	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
@@ -84,7 +82,7 @@ $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 
-$MiniComponents->triggerEvent('00005'); // Optional
+$MiniComponents->triggerEvent('00005');
 
 jr_import('jomres_obsolete_file_handling');
 $obsolete_files = new jomres_obsolete_file_handling();

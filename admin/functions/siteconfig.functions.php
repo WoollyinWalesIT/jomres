@@ -234,7 +234,8 @@ function showSiteConfig(  )
 	$lists['use_cleardate_checkbox']				= jomresHTML::selectList( $yesno, 'cfg_use_cleardate_checkbox', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_cleardate_checkbox'] );
 	$lists['use_cookie_policy']						= jomresHTML::selectList( $yesno, 'cfg_use_cookie_policy', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_cookie_policy'] );
 	$lists['mobile_simulation']						= jomresHTML::selectList( $yesno, 'cfg_mobile_simulation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['mobile_simulation'] );
-	
+	$lists['safe_mode']								= jomresHTML::selectList( $yesno, 'cfg_safe_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['safe_mode'] );
+
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
 	}
 
@@ -281,6 +282,9 @@ function saveSiteConfig (  )
 				}
 			}
 		}
+	jr_import('minicomponent_registry');
+	$registry = new minicomponent_registry(false);
+	$registry->regenerate_registry();
 	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=showSiteConfig", "Configuration saved" );
 	}
 
