@@ -149,15 +149,6 @@ $jomres_access_control = jomres_singleton_abstract::getInstance('jomres_access_c
 
 //require_once('libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.'remote.class.php');
 
-if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
-	define('JOMRES_TEMPLATEPATH_FRONTEND',"templates".JRDS."jomres".JRDS."frontend");
-if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
-	define('JOMRES_TEMPLATEPATH_BACKEND',"templates".JRDS."jomres".JRDS."backend");
-if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
-	define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',"templates".JRDS."jomres".JRDS."administrator");
-if (!defined('JOMRES_CSSRELPATH'))
-	define('JOMRES_CSSRELPATH','jomres/css/');
-	
 require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_urls.php");
 
 set_error_handler('errorHandler');
