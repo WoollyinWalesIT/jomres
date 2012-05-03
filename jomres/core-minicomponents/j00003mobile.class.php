@@ -23,9 +23,6 @@ class j00003mobile {
 			{
 			$this->template_touchable=false; return;
 			}
-		if (defined("JOMRES_JSCALLED") )
-			return;
-		
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
