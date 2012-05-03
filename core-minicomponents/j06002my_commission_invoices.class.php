@@ -110,57 +110,69 @@ class j06002my_commission_invoices
 				foreach ($invoices as $invoice)
 					{
 					$r=array();
-					$inv_id = $invoice['id'];
-					$r['ID']=$inv_id ;
-					$cms_user_id = $invoice['cms_user_id'];
-					if (!array_key_exists($cms_user_id,$property_guests) || (int)$cms_user_id ==0 )
+					if ($invoice['is_commission']==1)
 						{
-						$query="SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice['contract_id']." LIMIT 1";
-						$guest_uid =doSelectSql($query,1);
-						$query = "SELECT firstname,surname FROM #__jomres_guests WHERE guests_uid = ".(int)$guest_uid." LIMIT 1";
-						$guest_name =doSelectSql($query,2);
-						$r['GUEST']=$guest_name['firstname']." ".$guest_name['surname'];
-						//$r['GUEST']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
+						$inv_id = $invoice['id'];
+						$r['ID']=$inv_id ;
+						$cms_user_id = $invoice['cms_user_id'];
+						if (!array_key_exists($cms_user_id,$property_guests) || (int)$cms_user_id ==0 )
+							{
+							$query="SELECT guest_uid FROM #__jomres_contracts WHERE contract_uid = ".(int)$invoice['contract_id']." LIMIT 1";
+							$guest_uid =doSelectSql($query,1);
+							$query = "SELECT firstname,surname FROM #__jomres_guests WHERE guests_uid = ".(int)$guest_uid." LIMIT 1";
+							$guest_name =doSelectSql($query,2);
+							$r['GUEST']=$guest_name['firstname']." ".$guest_name['surname'];
+							//$r['GUEST']=_JOMRES_MR_AUDIT_UNKNOWNUSER;
+							}
+						else
+							{
+							//$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
+							$r['GUEST']=$property_guests[$cms_user_id]['firstname']." ".$property_guests[$cms_user_id]['surname'];
+							}
+						
+						$invoice_items = $invoices_items[$inv_id];
+						$item_name_string = "";
+						foreach ($invoice_items as $invoice_item)
+							{
+							$item_name_string .= $invoice_item['name']."<br/>";
+							}
+						$r['ITEMS']=$item_name_string;
+						jr_import('jrportal_user_functions');
+						$user_obj = new jrportal_user_functions();
+						$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
+						$r['USER']=$user_deets['name'];
+						if ($invoice['status'] == "0")
+							$r['STATUS']=_JRPORTAL_INVOICES_STATUS_UNPAID;
+						elseif ($invoice['status'] == "1")
+							$r['STATUS']=_JRPORTAL_INVOICES_STATUS_PAID;
+							elseif ($invoice['status'] == "2")
+								$r['STATUS']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
+								else
+									$r['STATUS']=_JRPORTAL_INVOICES_STATUS_PENDING;
+						$r['RAISED']=$invoice['raised_date'];
+						$r['DUE']=$invoice['due_date'];
+						$r['PAID']=$invoice['paid'];
+						if ($invoice['subscription'] == "1")
+							$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
+						else
+							$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
+						$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
+						$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
+						$r['FREQ']			=$invoice['recur_frequency'];
+						$r['CURRENCYCODE']	=$invoice['currencycode'];
+						
+						$jrportal_paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
+						$paypal_settings=$jrportal_paypal_settings->get_paypal_settings();
+						
+						if ( ($invoice['subscription'] == 1  || $invoice['is_commission']==1) && $paypal_settings['email'] != "" && $invoice['status'] != "1")
+							{
+							if ($invoice['status'] != "1")
+								$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';
+							}
+	
+						$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
+						$rows[]=$r;
 						}
-					else
-						{
-						//$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
-						$r['GUEST']=$property_guests[$cms_user_id]['firstname']." ".$property_guests[$cms_user_id]['surname'];
-						}
-					
-					$invoice_items = $invoices_items[$inv_id];
-					$item_name_string = "";
-					foreach ($invoice_items as $invoice_item)
-						{
-						$item_name_string .= $invoice_item['name']."<br/>";
-						}
-					$r['ITEMS']=$item_name_string;
-					jr_import('jrportal_user_functions');
-					$user_obj = new jrportal_user_functions();
-					$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
-					$r['USER']=$user_deets['name'];
-					if ($invoice['status'] == "0")
-						$r['STATUS']=_JRPORTAL_INVOICES_STATUS_UNPAID;
-					elseif ($invoice['status'] == "1")
-						$r['STATUS']=_JRPORTAL_INVOICES_STATUS_PAID;
-						elseif ($invoice['status'] == "2")
-							$r['STATUS']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
-							else
-								$r['STATUS']=_JRPORTAL_INVOICES_STATUS_PENDING;
-					$r['RAISED']=$invoice['raised_date'];
-					$r['DUE']=$invoice['due_date'];
-					$r['PAID']=$invoice['paid'];
-					if ($invoice['subscription'] == "1")
-						$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
-					else
-						$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-					$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
-					$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
-					$r['FREQ']			=$invoice['recur_frequency'];
-					$r['CURRENCYCODE']	=$invoice['currencycode'];
-
-					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
-					$rows[]=$r;
 					}
 				$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 				
