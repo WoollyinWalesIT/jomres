@@ -1485,10 +1485,20 @@ class patTemplate
 		$template = strtolower($template);
 
 		if (!isset($this->_templates[$template])) {
-			return	patErrorManager::raiseWarning(
-													PATTEMPLATE_WARNING_NO_TEMPLATE,
-													"Template '$template' does not exist."
-												);
+			if (!isset($this->_root))
+				{
+				return	patErrorManager::raiseWarning(
+														PATTEMPLATE_WARNING_NO_TEMPLATE,
+														"Path to template is not set."
+													);
+				}
+			else
+				{
+				return	patErrorManager::raiseWarning(
+														PATTEMPLATE_WARNING_NO_TEMPLATE,
+														"Template '".$template."' does not exist in : ".$this->_root."."
+													);
+				}
 		}
 
 		/**
