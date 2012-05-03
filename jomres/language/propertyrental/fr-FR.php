@@ -1789,3 +1789,6 @@ define('_JOMRES_SIMULATE_MOBILE',"Simulate mobile mode");
 define('_JOMRES_SIMULATE_MOBILE_DESC',"Set this to yes to force Jomres to always switch to mobile view. Useful if you're developing templates that are for mobile devices. NOTE : You will need a mobile template plugin installed.");
 define('_JOMRES_SIMULATE_MOBILE_RESTRICTION',"Simulation IP");
 define('_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC',"You can configure the simulation setting to only come into force if the user's IP = xxx.xxx.xxx.xxx, so for example if you're developing on localhost, you would set the IP number to 127.0.0.1.");
+
+define('_JOMRES_SAFEMODE',"Enable safe mode?");
+define('_JOMRES_SAFEMODE_DESC',"Set this to Yes to trigger safe mode. This will disable all plugins so that Jomres will only use it's core functionality.");
