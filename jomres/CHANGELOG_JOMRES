@@ -1,3 +1,30 @@
+Jomres 6.6.4
+
+Slideshow image handling modified. Images are now copied to uploadedimages/N/joomla/large,medium,small on upload. Existing images are also copied to those directories when install_jomres.php is run. This facilitates the possibility of using Joomla gallery/slideshow mambots.
+Added code to set defaults for mrConfig 'booking_form_daily_weekly_monthly' if it hasn't already been set elsewhere.
+Added per day/week/month output to show tariff pages too.
+Added a default setting for the price multiplier.
+Removed a multiplier that was incorrectly added for Jintour based properties.
+Ensured that multiplier's not used if the tariff charges are already stored weekly, and that the correct pppn/pn text is used.
+Changed how mambots (Joomla plugins) are called in J2.5.
+Modified how we check when to show the pay now button. In the event that a user doesn't choose to pay for the subscription immediately, the button will now show next to the invoice.
+Added some image sizing to dashboard star image, as it can't be seen on some J templates.
+Some further improvements to how the paypal button is shown in the list invoices page.
+Allowed super property managers to see their commission invoices in the frontend.
+Fixed an issue where the minimum days before arrival option wasn't being used in the booking form, due to a change in the last version.
+Modified how maps are generated in list properties, enabled the ability for layout plugins to set map sizes and if the map should be shown at all.
+Timezone setting tweaks.
+Fix : Address and Tel in module popup are translatable.
+Rewrote currency conversion functionality to be more robust.
+Fix : paypal button is shown on the commission invoices list.
+Changed how javascript/css is implemented, files are now added through a minicomponent.
+Made a change to ensure that add_gmaps_source(); is used regardless of other map settings in list properties. Without this, the module popup map will not show.
+Moved template path definitions. Paths are now defined in a 00004 minicomponent, allowing us to use 00003 minicomps to set our own paths.
+Tweaked patTemplates to output the path to the template if an error is triggered.
+Added a "safe mode" feature that can disable all plugins. Useful for debugging client sites.
+Changed how the mobile detection minicomp works. Doesn't return if the Jomres javascript files have already been called.
+
+
 Jomres 6.6.3
 
 Added a new trigger 00004 which allows us to set up JavaScript and css files via a minicomp. This makes it possible to programatically replace, among other things, the jquery core, ui and ui themes via a plugin.
