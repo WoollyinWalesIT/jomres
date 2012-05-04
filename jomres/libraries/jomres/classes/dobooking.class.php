@@ -2421,7 +2421,6 @@ class dobooking
 		for ($i=0, $n=$stayDays; $i < $n; $i++)
 			{
 			$currentDay=date("Y/m/d",$unixCurrentDate);
-			//$currentDay=date("Y-m-d", strtotime($arrivalDate.'+'.$i.'days UTC') );
 			$dateRangeArray[]=$currentDay;
 			$date_elements  = explode("/",$currentDay);
 			$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+1,$date_elements[0]);
@@ -2445,7 +2444,6 @@ class dobooking
 		for ($i=0, $n=$days; $i <= $n; $i++)
 			{
 			$currentDay=date("Y/m/d",$unixCurrentDate);
-			//$currentDay=date("Y-m-d", strtotime($arrivalDate.'+'.$i.'days UTC') );
 			$dateRangeArray[]=$currentDay;
 			$date_elements  = explode("/",$currentDay);
 			$unixCurrentDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+1,$date_elements[0]);

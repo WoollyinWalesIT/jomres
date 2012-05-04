@@ -65,7 +65,8 @@ class j00060toptemplate {
 					if ($jrConfig['use_timezone_switcher'] == "1")
 						{
 						$output['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
-						$output['TIMEZONEBLURB']= outputDate(date("Y/m/d"))." ".date("H:i:s");
+						$date = new DateTime(null, new DateTimeZone($thisJRUser->users_timezone));
+						$output['TIMEZONEBLURB']= outputDate(date_format($date, "Y/m/d"))." ".date_format($date, "H:i:s");
 						}
 					}
 				}
