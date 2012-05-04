@@ -120,7 +120,7 @@ class j06005list_usersinvoices
 					$jrportal_paypal_settings =jomres_singleton_abstract::getInstance('jrportal_paypal_settings');
 					$paypal_settings=$jrportal_paypal_settings->get_paypal_settings();
 					
-					if ( (isset($settingArray['active']) && $settingArray['active'] == "1") || ($invoice['subscription'] == 1 && $paypal_settings['email'] != "" && $invoice['status'] != "1") )
+					if ( (isset($settingArray['active']) && $settingArray['active'] == "1") || ($invoice['subscription'] == 1 && $paypal_settings['email'] != "" && $invoice['status'] != "1") || ($invoice['is_commission'] == 1 && $paypal_settings['email'] != "" && $invoice['status'] != "1") )
 						{
 						if ($invoice['status'] != "1")
 							$r['PAYNOW']='<a href="'.JOMRES_SITEPAGE_URL.'&task=immediatepay&id='.$invoice['id'].'"><img src = "jomres/images/btn_paynow_SM.gif" /></a>';

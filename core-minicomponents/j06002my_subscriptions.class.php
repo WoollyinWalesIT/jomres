@@ -28,11 +28,11 @@ class j06002my_subscriptions
 		$jrConfig=$siteConfig->get();
 		$task 				= get_showtime('task');
 
-		$MiniComponents->specificEvent('06005','list_my_subscriptions');
+		$MiniComponents->specificEvent('06002','list_my_subscriptions');
 		echo "<br/>";
 		$MiniComponents->specificEvent('06005','list_subscription_packages');
 		echo "<br/>";
-		$MiniComponents->specificEvent('00013','a_listyourproperties');
+		$MiniComponents->specificEvent('00013','x_listyourproperties');
 		echo "<br/>";
 		$MiniComponents->specificEvent('06005','list_usersinvoices');
 		echo "<br/>";		
