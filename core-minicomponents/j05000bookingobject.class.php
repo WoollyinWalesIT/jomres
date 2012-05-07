@@ -53,16 +53,6 @@ class j05000bookingobject {
 		}
 	}
 
-/**
-#
- * Inherits from jomres_booking.  Is the class tht's called by handlereq.php via j05000bookingobject
- #
-  * This is the main controller for the booking engine. Use this object to override the jomres_booking class methods to customise how the bookings process is managed
- #
-* @package Jomres
-#
- */
-class booking extends dobooking
-	{
-	}
+if (!class_exists('booking'))
+	{ class booking extends dobooking { } }
 ?>
