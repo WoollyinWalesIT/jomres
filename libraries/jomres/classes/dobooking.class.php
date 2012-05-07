@@ -6297,10 +6297,12 @@ class dobooking
 		else
 			{
 			$tmpBookingHandler->updateBookingField("wisepricediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
-			echo '; populateDiv("discount","")';
+			if (get_showtime('task') == "handlereq")
+				echo '; populateDiv("discount","")';
 			//echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",0);';
 			}
-		echo '; populateDiv("discount","'.$discountOutput.'")';
+		if (get_showtime('task') == "handlereq")
+			echo '; populateDiv("discount","'.$discountOutput.'")';
 		//echo '; document.getElementById("discount").innerHTML = "'.$discountOutput.'" ; fadeIn("discount",0);';
 		}
 
