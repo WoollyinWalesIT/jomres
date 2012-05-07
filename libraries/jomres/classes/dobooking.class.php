@@ -51,6 +51,11 @@ class dobooking
 		$jrConfig=$siteConfig->get();
 
 		$this->jrConfig					= $jrConfig; // Importing the site config settings
+		
+		$this->suppress_output = true;
+		if (get_showtime('task') == "handlereq" || get_showtime('task') == "dobooking")
+			$this->suppress_output = false;
+		
 		$this->requestedRoom			= array();
 		$this->rate_pernight			= 0.00;
 		$this->total_in_party			= 0;
@@ -868,6 +873,12 @@ class dobooking
 		$msg = $this->sanitiseOutput($message);
 		if ($_REQUEST['field']!="property_uid_check")
 			$this->growlmessages['guest_feedback']=$msg;
+		}
+		
+	function echo_populate_div($message)
+		{
+		if (!$this->suppress_output)
+			echo $message;
 		}
 	/**
 	#
@@ -5226,24 +5237,24 @@ class dobooking
 	function outputZeroPrices()
 		{
 		if ($this->getGuestVariantCount() > 0)
-			echo '; populateDiv("totalinparty","'.$this->getTotalInParty().'")';
+			$this->echo_populate_div('; populateDiv("totalinparty","'.$this->getTotalInParty().'")');
 		
 		$staydays = $this->getStayDays();
 		$num_period = $this->get_part_of_stay_period($staydays);
-		echo '; populateDiv("staydays","'.$num_period.'")';
+		$this->echo_populate_div('; populateDiv("staydays","'.$num_period.'")');
 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="0")
-			echo '; populateDiv("roompernight","'.output_price("0.00").'")';
-		echo '; populateDiv("roomtotal","'.output_price("0.00").'")';
+			$this->echo_populate_div( '; populateDiv("roompernight","'.output_price("0.00").'")');
+		$this->echo_populate_div('; populateDiv("roomtotal","'.output_price("0.00").'")');
 		if ($this->cfg_showExtras)
-			echo '; populateDiv("extrastotal","'.output_price("0.00").'")';
+			$this->echo_populate_div('; populateDiv("extrastotal","'.output_price("0.00").'")');
 		if ($this->jrConfig['show_tax_in_totals_summary'] == "1")
-			echo '; populateDiv("taxtotal","'.output_price("0.00").'")';
-		echo '; populateDiv("single_suppliment","'.output_price("0.00").'")';
-		echo '; populateDiv("grandtotal","'.output_price("0.00").'")';
+			$this->echo_populate_div('; populateDiv("taxtotal","'.output_price("0.00").'")');
+		$this->echo_populate_div( '; populateDiv("single_suppliment","'.output_price("0.00").'")');
+		$this->echo_populate_div( '; populateDiv("grandtotal","'.output_price("0.00").'")');
 		if ($this->cfg_showDeposit=="1")
-			echo '; populateDiv("deposit","'.output_price("0.00").'")';
-		echo '; populateDiv("discount","")';
-		echo '; populateDiv("coupon_discount_value","")';
+			$this->echo_populate_div( '; populateDiv("deposit","'.output_price("0.00").'")');
+		$this->echo_populate_div( '; populateDiv("discount","")');
+		$this->echo_populate_div( '; populateDiv("coupon_discount_value","")');
 		}
 	/**
 	#
@@ -5597,7 +5608,7 @@ class dobooking
 			$this->room_total = $this->room_total - $percentage_to_remove;
 			$this->setErrorLog("makeNightlyRoomCharges:: Percentage to remove ".$percentage_to_remove );
 			$this->setErrorLog("makeNightlyRoomCharges:: New room value ".$this->room_total );
-			echo $this->sanitiseOutput('; populateDiv("personal_discount","'.output_price($percentage_to_remove).'")');
+			$this->echo_populate_div( $this->sanitiseOutput('; populateDiv("personal_discount","'.output_price($percentage_to_remove).'")'));
 			$note = jr_gettext('_JOMRES_PERSONAL_DISCOUNT',_JOMRES_PERSONAL_DISCOUNT,false,false)." ".output_price($percentage_to_remove);
 			$this->addBookingNote(_JOMRES_PERSONAL_DISCOUNT,$note);
 			}
@@ -6297,13 +6308,9 @@ class dobooking
 		else
 			{
 			$tmpBookingHandler->updateBookingField("wisepricediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
-			if (get_showtime('task') == "handlereq")
-				echo '; populateDiv("discount","")';
-			//echo '; document.getElementById("discount").innerHTML = "" ; fadeIn("discount",0);';
+			$this->echo_populate_div( '; populateDiv("discount","")');
 			}
-		if (get_showtime('task') == "handlereq")
-			echo '; populateDiv("discount","'.$discountOutput.'")';
-		//echo '; document.getElementById("discount").innerHTML = "'.$discountOutput.'" ; fadeIn("discount",0);';
+		$this->echo_populate_div('; populateDiv("discount","'.$discountOutput.'")');
 		}
 
 	function getPercentageOfRoomsBookedForRoomtype($roomtypeid)
@@ -6665,24 +6672,21 @@ class dobooking
 				$this->total_discount=$discount;
 				$this->setErrorLog("<b>calcLastMinuteDiscount:: Room total modified to: ".$this->room_total."</b>");
 				$disc_txt=_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1.' '._JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2.': '.output_price($discount);
-				echo '; populateDiv("discount","'.$disc_txt.'")';
-				//echo '; document.getElementById("discount").innerHTML = "'.$disc_txt.'" ; fadeIn("discount",0);';
+				$this->echo_populate_div('; populateDiv("discount","'.$disc_txt.'")');
 				$tmpBookingHandler->updateBookingField("lastminutediscount",$disc_txt );
 				$tmpBookingHandler->updateBookingField("booking_discounted",true );
 				$discountsForTmpdata[]=array("type"=>"SRP","roomtypeabbr"=>"N/A","discountfrom"=>output_price($original_total),"discountto"=>output_price($this->room_total) );
 				}
 			else
 				{
-				echo '; populateDiv("discount","&nbsp;")';
-				//echo '; document.getElementById("discount").innerHTML = "&nbsp;" ; fadeIn("discount",0);';
+				$this->echo_populate_div('; populateDiv("discount","&nbsp;")');
 				$tmpBookingHandler->updateBookingField("lastminutediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
 				}
 			$tmpBookingHandler->updateBookingField("discounts",$discountsForTmpdata);
 			}
 		else
 			{
-			echo '; populateDiv("discount","&nbsp;")';
-			//echo '; document.getElementById("discount").innerHTML = "&nbsp;" ; fadeIn("discount",0);';
+			$this->echo_populate_div('; populateDiv("discount","&nbsp;")');
 			$tmpBookingHandler->updateBookingField("lastminutediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
 			}
 		$tmpBookingHandler->saveBookingData();
