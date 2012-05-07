@@ -64,10 +64,21 @@ class jomres_currency_exchange_rates
 		{
 		if (!$this->feature_enabled)
 			return;
-		require_once ($this->exchange_rate_classfile);
-		$rates = new jomres_currency_exchange_rates_temp_data();
-		set_showtime('temp_exchangerate_data', $rates->rates );
-		return $rates;
+		if (!file_exists($this->exchange_rate_classfile))
+			{
+			$this->update_exchange_rates();
+			$this->save_rates();
+			}
+		if (file_exists($this->exchange_rate_classfile))
+			{
+			require_once ($this->exchange_rate_classfile);
+			$rates = new jomres_currency_exchange_rates_temp_data();
+			set_showtime('temp_exchangerate_data', $rates->rates );
+			return $rates;
+			}
+		else
+			return array();
+		
 		}
 	
 	function exchange_rate_file_expired()
