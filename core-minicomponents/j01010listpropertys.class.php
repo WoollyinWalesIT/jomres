@@ -158,12 +158,6 @@ class j01010listpropertys {
 					jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"list_properties.js",'',true);
 					}
 					
-				if (!defined('_JOMRES_MODULEPOPUP_AJAX_SOURCE') && JOMRES_NOHTML != 1 && get_showtime('task') != "ajax_search_filter")
-					{
-					define('_JOMRES_MODULEPOPUP_AJAX_SOURCE',1);
-					$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&amp;task=module_popup&amp;nofollowtmpl=1&amp;id=" </script>';
-					}
-				
 				$g=genericOr($propertys_uids,'propertys_uid');
 				$query="SELECT propertys_uid,property_name,property_town,property_description,stars,property_features,ptype_id,property_key FROM #__jomres_propertys WHERE ";
 				$query.=$g;
