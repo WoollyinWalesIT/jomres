@@ -187,12 +187,19 @@ class jomres_currency_exchange_rates
 		$header = null;
 		$data = array();
 		$csvData = str_getcsv($input, "\n");
+		
 		foreach($csvData as $csvLine)
 			{
-			$items = explode($delimiter, $csvLine);
-			$from_code = substr($items[0],0,3);
-			$to_code = substr($items[0],3,3);
-			$data[] = array("from"=>$from_code,"to"=>$to_code,"rate" => $items[4]);
+			if (is_array($csvLine))
+				$items = explode($delimiter, $csvLine[0]);
+			else
+				$items = explode($delimiter, $csvLine);
+			if ($items[4] != "N/A" )
+				{
+				$from_code = substr($items[0],0,3);
+				$to_code = substr($items[0],3,3);
+				$data[] = array("from"=>$from_code,"to"=>$to_code,"rate" => $items[4]);
+				}
 			}
 		return $data;
 		}
