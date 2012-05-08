@@ -182,7 +182,8 @@ class j02190confirmationform {
 		$output['HNAME']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME',_JOMRES_COM_MR_EB_ROOM_NAME);
 		$output['HNUMBER']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER);
 		$output['HARRIVAL']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
-		$output['HDEPARTURE']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+		if ($mrConfig['showdepartureinput'] == "1")
+			$output['HDEPARTURE']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
 		$output['HDEPOSITREQUIRED']=jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
 		$output['HCONTRACT_TOTAL']=jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL',_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL);
 		$output['HROOMTYPE']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV',_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV);
@@ -227,7 +228,8 @@ class j02190confirmationform {
 		$output['ROOM_NAME']=$room_name;
 		$output['ROOM_NUMBER']=$room_number;
 		$output['ARRIVAL']=outputDate($arrival);
-		$output['DEPARTURE']=outputDate($departure);
+		if ($mrConfig['showdepartureinput'] == "1")
+			$output['DEPARTURE']=outputDate($departure);
 		$output['DEPOSIT_REQUIRED']=output_price($deposit_required);
 		$output['CONTRACT_TOTAL']=output_price($contract_total);
 		$output['ROOMTYPE']=$room_class_abbv;

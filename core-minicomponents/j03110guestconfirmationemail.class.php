@@ -190,8 +190,11 @@ class j03110guestconfirmationemail {
 		$output['BOOKINGNO']=$cartnumber;
 		$output['HARRIVAL']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL',_JOMRES_FRONT_MR_EMAIL_TEXT_ARRIVAL,FALSE,FALSE);
 		$output['ARRIVAL']=outputDate($arrivalDate);
-		$output['HDEPARTURE']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE',_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE,FALSE,FALSE);
-		$output['DEPARTURE']=outputDate($departureDate);
+		if ($mrConfig['showdepartureinput'] == "1")
+			{
+			$output['HDEPARTURE']=jr_gettext('_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE',_JOMRES_FRONT_MR_EMAIL_TEXT_DEPARTURE,FALSE,FALSE);
+			$output['DEPARTURE']=outputDate($departureDate);
+			}
 		$output['HNAME']=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO',_JOMRES_FRONT_GUEST_EMAIL_TEXT_HELLO,FALSE,FALSE);
 		$output['FIRSTNAME']=stripslashes($firstname);
 		$output['SURNAME']=stripslashes($surname);

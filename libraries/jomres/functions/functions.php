@@ -3576,7 +3576,12 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 					{
 					?>
 					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);?></th>
-					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);?></th>
+					<th><?php 
+							if ($mrConfig['showdepartureinput'] == "1")
+								echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+							else
+								echo "&nbsp;";
+					?></th>
 					<?php
 					}
 				?>
@@ -3624,7 +3629,10 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 				<td><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></td>
 				<td><?php echo $row->tag; ?></td>
 				<td><?php echo outputDate($row->arrival); ?></td>
-				<td><?php echo outputDate($row->departure); ?></td>
+				<td><?php 
+				if ($mrConfig['showdepartureinput'] == "1")
+					echo outputDate($row->departure); 
+				?></td>
 			</tr>
 		<?php
 		}
