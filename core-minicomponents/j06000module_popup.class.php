@@ -34,7 +34,6 @@ class j06000module_popup
 			$mrConfig=getPropertySpecificSettings($property_uid);
 			set_showtime('property_uid',$property_uid);
 			$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
-			$customTextObj->get_custom_text_for_property($property_uid);
 
 			$property_image=get_showtime('live_site')."/jomres/images/jrhouse.png";
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
