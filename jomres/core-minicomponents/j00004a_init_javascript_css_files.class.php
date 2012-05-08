@@ -38,6 +38,9 @@ class j00004a_init_javascript_css_files {
 		if (defined("JOMRES_JSCALLED") )
 			return;
 		
+		if (!defined(JOMRES_NOHTML) )
+			echo '<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
+		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!isset($jrConfig['jquery_ui_theme_detected']))

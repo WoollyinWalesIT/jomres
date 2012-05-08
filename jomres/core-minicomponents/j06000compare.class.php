@@ -40,7 +40,6 @@ class j06000compare
 		else $property_uids = array();
 		
 		$output = array();
-		$output['JOMRES_POPUPURL_GLOBALVAR']='<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
 		$output['_JOMRES_RETURN_TO_RESULTS']=jr_gettext('_JOMRES_RETURN_TO_RESULTS',_JOMRES_RETURN_TO_RESULTS,false,false);
 		$output['RETURN_TO_RESULTS_LINK']=jomresURL( JOMRES_SITEPAGE_URL."&task=compare") ;
 		
