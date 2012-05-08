@@ -38,9 +38,6 @@ class j00004a_init_javascript_css_files {
 		if (defined("JOMRES_JSCALLED") )
 			return;
 		
-		if ( $_REQUEST['no_html']!="1")
-			echo '<script type="text/javascript">var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id="</script>';
-		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!isset($jrConfig['jquery_ui_theme_detected']))
@@ -127,6 +124,10 @@ class j00004a_init_javascript_css_files {
 		
 		set_showtime("TableTools.min.js","TableTools.min.js");
 		set_showtime("TableTools.min.js.relpath","jomres/javascript/");
+		
+		set_showtime("module_popup.js","module_popup.js"); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+		set_showtime("module_popup.js.abspath",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
+		set_showtime("module_popup.js.relpath","jomres/temp/");
 		}
 
 	/**
