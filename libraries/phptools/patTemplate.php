@@ -780,6 +780,14 @@ class patTemplate
 	*/
 	function addRows( $template, $rows, $prefix = '' )
 	{
+	$this->json=false;
+	if (isset($_REQUEST['JRJSON']))
+		{
+		$this->json=true;
+		if (!isset($this->json_output))
+			$this->json_output = array();
+		}
+		
 		$template	=	strtolower( $template );
 		$prefix		=	strtoupper( $prefix );
 
@@ -793,7 +801,10 @@ class patTemplate
 
 			foreach( $rows[$i] as $varname => $value )
 			{
-				$this->_vars[$template]['rows'][$i][$prefix.$varname]	=	$value;
+				if ($this->json)
+					$this->json_output [$template]['rows'][$i][$prefix.$varname]	=	$value;
+				else
+					$this->_vars[$template]['rows'][$i][$prefix.$varname]	=	$value;
 			}
 		}
 	}
@@ -2312,7 +2323,9 @@ class patTemplate
 		for ($i = 0; $i < $cnt; $i++) {
 			$result = $this->_outputFilters[$i]->apply( $result );
 		}
-
+	if (isset($this->json_output))
+		return json_encode($this->json_output);
+	else
 		return $result;
 	}
 
