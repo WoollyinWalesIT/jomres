@@ -149,7 +149,8 @@ class j02990showconfirmation {
 
 		$booking_parts['EDITBOOKING']	=	jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE);
 		$booking_parts['ARRIVAL']		=	outputDate($bookingDeets['arrivalDate']);
-		$booking_parts['DEPARTURE']		=	outputDate($bookingDeets['departureDate']);
+		if ($mrConfig['showdepartureinput'] == "1")
+			$booking_parts['DEPARTURE']		=	outputDate($bookingDeets['departureDate']);
 		$booking_parts['DAYSSTAYING']	= 	$bookingDeets['stayDays'];
 		if ($mrConfig['roomTaxYesNo']=="1" || $mrConfig['euroTaxYesNo']=="1")
 			$booking_parts['TAX']		=	output_price($bookingDeets['tax']);
@@ -425,7 +426,8 @@ class j02990showconfirmation {
 		if ($mrConfig['wholeday_booking'] == "1")
 			{
 			$booking_parts['HARRIVAL']			=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);
-			$booking_parts['HDEPARTURE']		=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);
+			if ($mrConfig['showdepartureinput'] == "1")
+				$booking_parts['HDEPARTURE']		=	jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);
 			}
 		else
 			{
