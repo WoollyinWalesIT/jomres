@@ -68,7 +68,7 @@ class j00004x_init_javascript_css_files {
 				if (jomres_cmsspecific_areweinadminarea() && ($jrConfig['load_jquery_ui_css'] =="0" || $jrConfig['load_jquery_ui_css'] == "0") ) // Regardless of the frontend setting, if we're in the admin area, we'll need the jquery UI
 					jomres_cmsspecific_addheaddata("css",get_showtime("jquery.ui.theme.relpath"),get_showtime("jquery.ui.theme"),$skip=true);
 
-				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.rating.css.relpath"),get_showtime("jquery.rating.css"));
+				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.rating.css.relpath"),get_showtime("jquery.rating.css"),true);
 				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.ui.potato.menu.css.relpath"),get_showtime("jquery.ui.potato.menu.css"));
 
 				if (jomres_cmsspecific_areweinadminarea())
