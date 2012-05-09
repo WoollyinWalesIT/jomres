@@ -1056,6 +1056,7 @@ else
 	ob_end_flush();
 // Script stops here
 
+
 function no_task_set()
 	{
 	$jomresPathway =jomres_singleton_abstract::getInstance('jomres_pathway');
@@ -1104,5 +1105,33 @@ function removeBOM($str="")
 		// {
 		// $str=substr($str, 3);
 		// }
+		
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
+	if ($jrConfig['javascript_caching_enabled'] == "1")
+		{
+		// Remove whitespaces
+		
+		// Originally was :
+		// $search = array(
+			// '/\>[^\S ]+/s', //strip whitespaces after tags, except space
+			// '/[^\S ]+\</s', //strip whitespaces before tags, except space
+			// '/(\s)+/s'  // shorten multiple whitespace sequences
+			// );
+		// however the shorten multiple whitespace sequences breaks the included javascript
+		// Nevertheless, without it an example page is shortened from 1746 lines to 1182, as it is, we are removing a significant amount of whitespace.
+		
+		$search = array(
+			'/\>[^\S ]+/s', //strip whitespaces after tags, except space
+			'/[^\S ]+\</s' //strip whitespaces before tags, except space
+			);
+		$replace = array(
+			'>',
+			'<',
+			'\\1'
+			);
+		$str = preg_replace($search, $replace, $str);
+		}
 	return $str;
 	}
