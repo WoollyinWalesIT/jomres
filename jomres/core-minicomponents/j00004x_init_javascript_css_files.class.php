@@ -104,7 +104,6 @@ class j00004x_init_javascript_css_files {
 
 				if ($thisJRUser->userIsRegistered)
 					{
-
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js"));
 					jomres_cmsspecific_addheaddata("css",get_showtime("TableTools_JUI.css.relpath"),get_showtime("TableTools_JUI.css"));
 					jomres_cmsspecific_addheaddata("css",get_showtime("tables_jui.css.relpath"),get_showtime("tables_jui.css"));
@@ -119,15 +118,23 @@ class j00004x_init_javascript_css_files {
 				if (!file_exists(get_showtime("module_popup.js.abspath").get_showtime("module_popup.js")))
 					{
 					$module_popup_str = '
-var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&lang='.substr(get_showtime('lang'),0,2).'&nofollowtmpl=1&id=";
-'; // Remove the tabs to make the js file just that wee bit smaller
+					var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&lang='.substr(get_showtime('lang'),0,2).'&nofollowtmpl=1&id=";
+					';
 					file_put_contents (get_showtime("module_popup.js.abspath").get_showtime("module_popup.js"),$module_popup_str);
 					}
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("module_popup.js.relpath"),get_showtime("module_popup.js"));
+
+				if (!file_exists(get_showtime("livesite_ajax.js.abspath").get_showtime("livesite_ajax.js")))
+					{
+					$livesite_ajax = '
+					var live_site_ajax = \''.JOMRES_SITEPAGE_URL_AJAX.'\';
+					';
+					file_put_contents (get_showtime("livesite_ajax.js.abspath").get_showtime("livesite_ajax.js"),$livesite_ajax);
+					}
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("livesite_ajax.js.relpath"),get_showtime("livesite_ajax.js"));
 				}
 			}
 		}
-
+	
 	/**
 	#
 	 * Must be included in every mini-component
