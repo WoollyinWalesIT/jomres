@@ -177,22 +177,22 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	$use_js_cache = false;
-	// if ($jrConfig['javascript_caching_enabled'] == "1")
-		// $use_js_cache = true;
+	if ($jrConfig['javascript_caching_enabled'] == "1")
+		$use_js_cache = true;
 	set_showtime('javascript_caching_enabled',$use_js_cache);
 	
 	$use_css_cache = false;
-	// if ($jrConfig['css_caching_enabled'] == "1")
-		// $use_css_cache = true;
+	if ($jrConfig['css_caching_enabled'] == "1")
+		$use_css_cache = true;
 	set_showtime('css_caching_enabled',$use_css_cache);
 
 	switch ($type) 
 		{
 		case "javascript":
+		
 			if ($use_js_cache && !jomres_cmsspecific_areweinadminarea() && !$skip )
 				{
 				$jomres_js_cache = get_showtime('js_cache');
-				$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 				if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_css_cache"))
 					mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_css_cache");
 				$original_javascript = file_get_contents($path.$filename);
@@ -201,8 +201,11 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 				set_showtime('js_cache',$jomres_js_cache);
 				if (!defined('CACHE_FILE_INSERTED'))
 					{
-					$cached_js_filename = "javascript_cache.js";
-					$cached_js_file_livesite = 'jomres/temp/javascript_css_cache/';
+					$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+					$identifier = md5(get_showtime("secret").$tmpBookingHandler->jomressession);
+					set_showtime('js_cache_identifier',$identifier);
+					$cached_js_filename = $identifier."_javascript_cache.js";
+					
 					$cached_js_file_abs = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_css_cache".JRDS;
 					set_showtime('js_cache_path',$cached_js_file_abs);
 					set_showtime('js_cache_filename',$cached_js_filename);
@@ -210,13 +213,14 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 					fwrite($fp,'');
 					fclose($fp);
 					define('CACHE_FILE_INSERTED',1);
-					jomres_cmsspecific_addheaddata("javascript",$cached_js_file_livesite,$cached_js_filename,$skip=true);
+					
 					}
 				}
 			else
 				{
-				//echo "<b>".$filename."</b><br>";
-				JHTML::script($filename, $path, false);
+				//JHTML::script($filename, $path, false);  // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+				$doc = JFactory::getDocument();
+				$doc->addScript(get_showtime('live_site')."/".$path.$filename);
 				}
 		break;
 		case "css":
@@ -232,8 +236,11 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 				set_showtime('css_cache',$jomres_css_cache);
 				if (!defined('CSS_CACHE_FILE_INSERTED'))
 					{
-					$cached_css_filename = "css_cache.css";
-					$cached_css_file_livesite = 'jomres/temp/javascript_css_cache/';
+					$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+					$identifier = md5(get_showtime("secret").$tmpBookingHandler->jomressession);
+					set_showtime('css_cache_identifier',$identifier);
+					$cached_css_filename = $identifier."_css_cache.css";
+					
 					$cached_css_file_abs = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."javascript_css_cache".JRDS;
 					set_showtime('css_cache_path',$cached_css_file_abs);
 					set_showtime('css_cache_filename',$cached_css_filename);
@@ -241,13 +248,13 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 					fwrite($fp,'');
 					fclose($fp);
 					define('CSS_CACHE_FILE_INSERTED',1);
-					jomres_cmsspecific_addheaddata("css",$cached_css_file_livesite,$cached_css_filename,$skip=true);
 					}
 				}
 			else
 				{
-				//echo "<b>".$filename."</b><br>";
-				JHTML::stylesheet($path.$filename,array(),false,false );
+				//JHTML::stylesheet($path.$filename,array(),false,false );// If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+				$doc = JFactory::getDocument();
+				$doc->addStyleSheet(get_showtime('live_site')."/".$path.$filename);
 				}
 			
 		break;
