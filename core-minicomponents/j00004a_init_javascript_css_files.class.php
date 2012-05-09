@@ -129,9 +129,9 @@ class j00004a_init_javascript_css_files {
 		set_showtime("module_popup.js.abspath",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
 		set_showtime("module_popup.js.relpath","jomres/temp/");
 		
-		set_showtime("livesite_ajax.js","livesite_ajax.js"); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
-		set_showtime("livesite_ajax.js.abspath",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
-		set_showtime("livesite_ajax.js.relpath","jomres/temp/");
+		set_showtime("misc_url_definitions.js","misc_url_definitions.js"); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
+		set_showtime("misc_url_definitions.js.abspath",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
+		set_showtime("misc_url_definitions.js.relpath","jomres/temp/");
 		}
 
 	/**

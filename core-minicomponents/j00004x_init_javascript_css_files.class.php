@@ -122,15 +122,18 @@ class j00004x_init_javascript_css_files {
 					';
 					file_put_contents (get_showtime("module_popup.js.abspath").get_showtime("module_popup.js"),$module_popup_str);
 					}
-
-				if (!file_exists(get_showtime("livesite_ajax.js.abspath").get_showtime("livesite_ajax.js")))
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("module_popup.js.relpath"),get_showtime("module_popup.js"));
+				if (!file_exists(get_showtime("misc_url_definitions.js.abspath").get_showtime("misc_url_definitions.js")))
 					{
 					$livesite_ajax = '
 					var live_site_ajax = \''.JOMRES_SITEPAGE_URL_AJAX.'\';
 					';
-					file_put_contents (get_showtime("livesite_ajax.js.abspath").get_showtime("livesite_ajax.js"),$livesite_ajax);
+					$compare_url = '
+					var compare_url = \''.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'\';
+					';
+					file_put_contents (get_showtime("misc_url_definitions.js.abspath").get_showtime("misc_url_definitions.js"),$livesite_ajax.$compare_url);
 					}
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("livesite_ajax.js.relpath"),get_showtime("livesite_ajax.js"));
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("misc_url_definitions.js.relpath"),get_showtime("misc_url_definitions.js"));
 				}
 			}
 		}
