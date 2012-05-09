@@ -1015,11 +1015,6 @@ if (!defined('JOMRES_NOHTML') && !isset($_REQUEST['popup']) ) // Generate the ma
 
 $performance_monitor->set_point("post-menu generation");
 
-
-// $componentArgs=array();
-// $MiniComponents->triggerEvent('99999',$componentArgs); // Javascript and CSS caching
-// $componentArgs=array();
-
 $tmpBookingHandler->close_jomres_session();
 
 $performance_monitor->set_point("end run");
