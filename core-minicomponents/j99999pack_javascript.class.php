@@ -41,45 +41,46 @@ class j99999pack_javascript
 		if (defined("JOMRES_JS")) // This has already been run, let's not do it again
 			return;
 		define("JOMRES_JS",1);
-		
-		
-		/////// JAVASCRIPT
-		
-		$cached_js_file_abs = get_showtime('js_cache_path');
-		$cached_js_filename = get_showtime('js_cache_filename');
-		$jomres_js_cache = get_showtime('js_cache');
+		if (jomres_cmsspecific_areweinadminarea())
+			return;
 
+		$identifier = get_showtime('js_cache_identifier');
 		if (get_showtime('javascript_caching_enabled'))
 			{
+			$cached_js_file_abs = get_showtime('js_cache_path');
+			$cached_js_file_livesite = 'jomres/temp/javascript_css_cache/';
+
+			/////// JAVASCRIPT 1, the rarely changing files
+			$cached_js_filename = $identifier."_javascript_cache_1.js";
+			$jomres_js_cache = get_showtime('js_cache_1');
+
 			file_put_contents ($cached_js_file_abs.$cached_js_filename,$jomres_js_cache);
-			}
-		//else { echo "oops, didn't make any output";exit;}
-		
-		$cached_js_file_livesite = 'jomres/temp/javascript_css_cache/';
-		if (!jomres_cmsspecific_areweinadminarea())
-			{
-			$version = "?v".$this->check_watch_file("js",get_showtime('js_cache_identifier'),$cached_js_file_abs.$cached_js_filename);
+			$version = "?v".$this->check_watch_file("js_1",$identifier,$cached_js_file_abs.$cached_js_filename);
 			jomres_cmsspecific_addheaddata("javascript",$cached_js_file_livesite,$cached_js_filename.$version,true);
+			set_showtime('js_cache_1_filename',get_showtime('live_site')."/".$cached_js_file_livesite.$cached_js_filename.$version);
+			
+			/////// JAVASCRIPT 2, All the others
+			$cached_js_filename = $identifier."_javascript_cache_2.js";
+			$jomres_js_cache = get_showtime('js_cache_2');
+
+			file_put_contents ($cached_js_file_abs.$cached_js_filename,$jomres_js_cache);
+			$version = "?v".$this->check_watch_file("js_2",$identifier,$cached_js_file_abs.$cached_js_filename);
+			jomres_cmsspecific_addheaddata("javascript",$cached_js_file_livesite,$cached_js_filename.$version,true);
+			set_showtime('js_cache_2_filename',get_showtime('live_site')."/".$cached_js_file_livesite.$cached_js_filename.$version);
 			}
 		
-		/////// CSS
-		
-		$cached_css_file_abs = get_showtime('css_cache_path');
-		$cached_css_filename = get_showtime('css_cache_filename');
-		$jomres_css_cache = get_showtime('css_cache');
 		if (get_showtime('css_caching_enabled'))
 			{
+			/////// CSS
+			$cached_css_file_abs = get_showtime('css_cache_path');
+			$cached_css_filename = get_showtime('css_cache_filename');
+			$jomres_css_cache = get_showtime('css_cache');
 			file_put_contents ($cached_css_file_abs.$cached_css_filename,$jomres_css_cache);
-			}
-		//else { echo "oops, didn't make any output";exit;}
-		
-		$cached_css_file_livesite = 'jomres/temp/javascript_css_cache/';
-		if (!jomres_cmsspecific_areweinadminarea())
-			{
+			$cached_css_file_livesite = 'jomres/temp/javascript_css_cache/';
 			$version = "?v".$this->check_watch_file("css",get_showtime('css_cache_identifier'),$cached_css_file_abs.$cached_css_filename);
 			jomres_cmsspecific_addheaddata("css",$cached_css_file_livesite,$cached_css_filename.$version,true);
 			}
-			
+		
 		$this->_remove_old_files(); // A little maintenance
 		}
 
@@ -89,7 +90,7 @@ class j99999pack_javascript
 	function check_watch_file($type="js",$identifier,$watched_file)
 		{
 		$watch_filename = $identifier."_".$type."_watchfile.php";
-		if (type=="js")
+		if ($type=="js_1" || $type=="js_2")
 			$abs_path = get_showtime('js_cache_path');
 		else
 			$abs_path = get_showtime('css_cache_path');
@@ -114,13 +115,6 @@ class j99999pack_javascript
 				$obj->watched_file_hash=$current_filehash;
 				$obj->version++;
 				file_put_contents ($abs_path.$watch_filename,json_encode($obj));
-				}
-			else // No change
-				{
-				
-				// Do we really need to fput here?
-				
-				//file_put_contents ($abs_path.$watch_filename,json_encode($obj));
 				}
 			}
 		return $obj->version;
