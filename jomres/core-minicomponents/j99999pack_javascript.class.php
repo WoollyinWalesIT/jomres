@@ -79,6 +79,8 @@ class j99999pack_javascript
 			$version = "?v".$this->check_watch_file("css",get_showtime('css_cache_identifier'),$cached_css_file_abs.$cached_css_filename);
 			jomres_cmsspecific_addheaddata("css",$cached_css_file_livesite,$cached_css_filename.$version,true);
 			}
+			
+		$this->_remove_old_files(); // A little maintenance
 		}
 
 	// The purpose of the exercise here is to create a watch file, based on the identifier of the user,
@@ -126,14 +128,19 @@ class j99999pack_javascript
 	
 	function _remove_old_files()
 		{
-		$d = @dir($this->session_directory);
+		// We'll use the same settings for this routine as we use in the temp booking session handler
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		$timeout = (int)$jrConfig['lifetime'];
+		
+		$d = @dir(get_showtime('js_cache_path'));
 		$docs = array();
 		if($d)
 			{
 			while (FALSE !== ($entry = $d->read()))
 				{
 				$filename = $entry;
-				if(is_file($this->session_directory.$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
+				if(is_file(get_showtime('js_cache_path').$filename) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
 					{
 					$docs[] =$filename;
 					}
@@ -143,11 +150,11 @@ class j99999pack_javascript
 				{
 				foreach ($docs as $f)
 					{
-					$last_modified = filemtime  ( $this->session_directory."/".$f);
+					$last_modified = filemtime  ( get_showtime('js_cache_path')."/".$f);
 					$seconds_timediff = time() - $last_modified;
 					//echo $seconds_timediff;
-					if ($seconds_timediff>$this->timeout)
-						unlink  ($this->session_directory."/".$f);
+					if ($seconds_timediff>$timeout)
+						unlink  (get_showtime('js_cache_path')."/".$f);
 					}
 				}
 			}

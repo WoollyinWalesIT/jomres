@@ -119,11 +119,9 @@ class j00004x_init_javascript_css_files {
 				if (!file_exists(get_showtime("module_popup.js.abspath").get_showtime("module_popup.js")))
 					{
 					$module_popup_str = '
-					var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=";
-					';
-					$fp=fopen(get_showtime("module_popup.js.abspath").get_showtime("module_popup.js"),'w');
-					fwrite($fp, $module_popup_str );
-					fclose($fp);
+var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&lang='.substr(get_showtime('lang'),0,2).'&nofollowtmpl=1&id=";
+'; // Remove the tabs to make the js file just that wee bit smaller
+					file_put_contents (get_showtime("module_popup.js.abspath").get_showtime("module_popup.js"),$module_popup_str);
 					}
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("module_popup.js.relpath"),get_showtime("module_popup.js"));
 				}
