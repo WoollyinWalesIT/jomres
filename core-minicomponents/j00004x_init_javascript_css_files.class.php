@@ -118,7 +118,7 @@ class j00004x_init_javascript_css_files {
 				if (!file_exists(get_showtime("module_popup.js.abspath").get_showtime("module_popup.js")))
 					{
 					$module_popup_str = '
-					var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&lang='.substr(get_showtime('lang'),0,2).'&nofollowtmpl=1&id=";
+					var module_pop_ajax_url = "'.JOMRES_SITEPAGE_URL_AJAX.'&task=module_popup&nofollowtmpl=1&id=";
 					';
 					file_put_contents (get_showtime("module_popup.js.abspath").get_showtime("module_popup.js"),$module_popup_str);
 					}
