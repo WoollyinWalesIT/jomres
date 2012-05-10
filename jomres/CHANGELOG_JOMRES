@@ -1,3 +1,16 @@
+Jomres 6.6.5
+
+Tweaked the booking engine to only output discount information if the "task" is set to "handlereq". This allows us to use the booking class outside of just the booking form. Add the ability to completely suppress any output that the booking engine would normally generate (and cleaned up a couple of superfluous lines).
+Added a check to see if the booking class exists before trying to create it.
+Further improvements to the exchange rate selector. I don't know what the heck Yahoo's doing, but hopefully these changes resolve the issues.
+Moved a definition of module popup url to the javascript initialisation minicomp.
+Removed a line that was preventing the correct language from showing in the module popup.
+Disabling some output if departure date not to be shown option is set to Yes.
+Added a flag to tell the patTemplate library to output variables as json encoded instead of rendered template output.
+Permanently disabled caching feature, it creates more problems than it solves.
+Changed the live scrolling number of properties from 1 to 3.
+Fixed a bug where intermittently stars wouldn't show in the dashboard calendar to indicate an arrival.
+
 Jomres 6.6.4
 
 Slideshow image handling modified. Images are now copied to uploadedimages/N/joomla/large,medium,small on upload. Existing images are also copied to those directories when install_jomres.php is run. This facilitates the possibility of using Joomla gallery/slideshow mambots.
@@ -23,6 +36,7 @@ Moved template path definitions. Paths are now defined in a 00004 minicomponent,
 Tweaked patTemplates to output the path to the template if an error is triggered.
 Added a "safe mode" feature that can disable all plugins. Useful for debugging client sites.
 Changed how the mobile detection minicomp works. Doesn't return if the Jomres javascript files have already been called.
+Added a check for the existence of the exchange rate temporary file.
 
 
 Jomres 6.6.3
