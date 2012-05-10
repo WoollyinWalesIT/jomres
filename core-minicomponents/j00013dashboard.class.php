@@ -349,7 +349,7 @@ class j00013dashboard extends jomres_dashboard
 			if ($contract_uid!="")
 				{
 				$is_firstday = false;
-				if (date("Y/m/d",$currdate) == $this->contracts[$contract_uid]['arrival'])
+				if ((date("Y/m/d",$currdate) == $this->contracts[$contract_uid]['arrival']) || (date("Y/n/j",$currdate) == $this->contracts[$contract_uid]['arrival']))
 					{
 					$output='<td align="center" class="arrivaldate_tdback" valign="middle" bgcolor="'.$bgcolor.'" >';
 					}
