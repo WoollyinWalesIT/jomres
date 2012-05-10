@@ -1039,6 +1039,12 @@ if (is_array($MiniComponents->miniComponentData['16003']))
 		}
 	}
 
+if (get_showtime('javascript_caching_enabled'))
+	{
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$MiniComponents->triggerEvent('99999',$componentArgs); // Javascript and CSS caching
+	}
+
 if (defined("JOMRES_RETURNDATA") )
 	{
 	$contents = ob_get_contents();

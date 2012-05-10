@@ -176,11 +176,19 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 	$use_js_cache = false;
 	if ($jrConfig['javascript_caching_enabled'] == "1")
 		$use_js_cache = true;
+		
+	// Feature is currently disabled
+	$use_js_cache = false;
+		
 	set_showtime('javascript_caching_enabled',$use_js_cache);
 	
 	$use_css_cache = false;
 	if ($jrConfig['css_caching_enabled'] == "1")
 		$use_css_cache = true;
+		
+	// Feature is currently disabled
+	$use_css_cache = false;
+	
 	set_showtime('css_caching_enabled',$use_css_cache);
 
 	switch ($type) 
@@ -241,9 +249,9 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 				}
 			else
 				{
-				//JHTML::script($filename, $path, false);  // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-				$doc = JFactory::getDocument();
-				$doc->addScript(get_showtime('live_site')."/".$path.$filename);
+				JHTML::script($filename, $path, false);  // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+				// $doc = JFactory::getDocument();
+				// $doc->addScript(get_showtime('live_site')."/".$path.$filename);
 				}
 		break;
 		case "css":
@@ -275,9 +283,9 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 				}
 			else
 				{
-				//JHTML::stylesheet($path.$filename,array(),false,false );// If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
-				$doc = JFactory::getDocument();
-				$doc->addStyleSheet(get_showtime('live_site')."/".$path.$filename);
+				JHTML::stylesheet($path.$filename,array(),false,false );// If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+				// $doc = JFactory::getDocument();
+				// $doc->addStyleSheet(get_showtime('live_site')."/".$path.$filename);
 				}
 			
 		break;
