@@ -5990,7 +5990,10 @@ class dobooking
 		$this->setErrorLog("calcDeposit::Days til booking : ".count($datesTilBooking) );
 		if ($mrConfig['depositIsOneNight'] =="1")
 			{
-			$depositValue = $this->rate_pernight;
+			if ($this->stayDays == 1)
+				$depositValue = $this->billing_grandtotal;
+			else
+				$depositValue = $this->rate_pernight;
 			// This line can be modified, if we want the deposit to be first night X number of rooms you'd change the above line to 
 			// $depositValue = $this->rate_pernight*count ($this->requestedRoom);
 			
