@@ -27,6 +27,8 @@ class j06000module_popup
 		if ($property_uid > 0)
 			{
 			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+			//$current_property_details->gather_data($property_uid);
+
 
 			$inline_calendar = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property_uid,'return_calendar'=>"1",'noshowlegend'=>"1") );
 			
