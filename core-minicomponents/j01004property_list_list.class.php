@@ -27,7 +27,7 @@ class j01004property_list_list
 		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$layout = $tmpBookingHandler->tmpsearch_data['current_property_list_layout'];
 		if ($layout == $this_plugin)
-			set_showtime("number_of_ajax_results_required",1); // This is for the list scrolling feature, we need to know the number of properties that should be returned
+			set_showtime("number_of_ajax_results_required",3); // This is for the list scrolling feature, we need to know the number of properties that should be returned
 		
 		$property_list_layouts = get_showtime('property_list_layouts');
 		if (is_null($property_list_layouts))
