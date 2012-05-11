@@ -3806,11 +3806,13 @@ function dropImage($defaultProperty=0,$imageType="",$itemUid="",$redirectOnDone 
 		case 'property':
 			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty.".jpg";
 			$fileFullPath_thumbnail=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty."_thumbnail.jpg";
+			$fileFullPath_thumbnail_medium=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty."_thumbnail_med.jpg";
 			$returnTask="editProperty&propertyUid=".$defaultProperty;
 		break;
 		case 'room':
 			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid.".jpg";
 			$fileFullPath_thumbnail=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid."_thumbnail.jpg";
+			$fileFullPath_thumbnail_medium=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid."_thumbnail_med.jpg";
 			$returnTask="editRoom&roomUid=".$itemUid;
 		break;
 		}
@@ -3826,7 +3828,8 @@ function dropImage($defaultProperty=0,$imageType="",$itemUid="",$redirectOnDone 
 			else
 				{
 				unlink($fileFullPath_thumbnail);
-
+				unlink($fileFullPath_thumbnail_medium);
+				
 				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging = new jomres_messages();
 				$jomres_messaging->set_message($saveMessage);
