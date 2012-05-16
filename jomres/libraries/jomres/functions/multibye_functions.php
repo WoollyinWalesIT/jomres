@@ -18,7 +18,7 @@ function jr_substr($str,$arg1,$arg2)
 	if (!function_exists('mb_substr'))
 		$result = substr($str,$arg1,$arg2);
 	else
-		$result = mb_substr($str,$arg1,$arg2);
+		$result = mb_substr($str,$arg1,$arg2,'UTF-8');
 	return $result;
 	}
 
