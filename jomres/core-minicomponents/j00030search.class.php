@@ -790,7 +790,7 @@ class j00030search {
 				$output['THEBUTTON']='<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false).'" class="button" />';
 				}
 
-			$output['JOMRES_SITEPAGE_URL']=jomresValidateUrl(JOMRES_SITEPAGE_URL);
+			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
 			
 			$pageoutput[]=$output;
 			
