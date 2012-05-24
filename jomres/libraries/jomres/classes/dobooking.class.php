@@ -2092,23 +2092,28 @@ class dobooking
 					$unixCurrentDate=$unixCurrentDate+$secondsInDay;
 					}
 
-				foreach ($dateRangeArray as $eachDate)
+				if (!$amend_contract)
 					{
-					if (!$amend_contract)
-					{
-					$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE date = '$eachDate' AND property_uid = '$this->property_uid'";
-					$datelist=doSelectSql($query);
+					if (!isset($this->fixedDaysArrivaldateDropdown_checkdates))
+						{
+						$gor=genericOr($dateRangeArray,'date',false);
+						$query="SELECT room_bookings_uid FROM #__jomres_room_bookings WHERE $gor AND property_uid = '$this->property_uid'";
+						$datelist=doSelectSql($query);
+						$this->fixedDaysArrivaldateDropdown_checkdates = $datelist;
+						}
+					else
+						$datelist = $this->fixedDaysArrivaldateDropdown_checkdates;
+					
 					if (count($datelist)>0)
 						{
 						$okToAddDate=FALSE;
 						}
 					}
-					else
+				else
+					{
+					if (isset($this->allBookings[$eachDate][$this->allPropertyRoomUids[0]]))
 						{
-						if (isset($this->allBookings[$eachDate][$this->allPropertyRoomUids[0]]))
-							{
-							$okToAddDate=FALSE;
-							}
+						$okToAddDate=FALSE;
 						}
 					}
 				}
