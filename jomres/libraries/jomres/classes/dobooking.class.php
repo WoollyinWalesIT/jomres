@@ -2072,6 +2072,7 @@ class dobooking
 
 		foreach ($datesListArray as $thisDate)
 			{
+			unset($this->fixedDaysArrivaldateDropdown_checkdates);
 			$selected="";
 			$okToAddDate=TRUE;
 			// If fixed period bookings are used, we need to ensure that all dates within a period are free
