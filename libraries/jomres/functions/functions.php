@@ -802,7 +802,7 @@ function output_price($value,$currencycode="",$do_conversion = true)
 		$jomres_geolocation->auto_set_user_currency_code();
 		}
 	$foreign = $tmpBookingHandler->user_settings['current_exchange_rate'];
-	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign && $do_conversion && $foreign != "")
+	if($conversion-> this_code_can_be_converted($currencycode) && $currencycode != $foreign && $do_conversion && $foreign != "" && $price > 0.00)
 		{
 		$base = $currencycode;
 		$converted_price = $conversion->convert_sum($price,$base,$foreign);
@@ -824,9 +824,16 @@ function output_price($value,$currencycode="",$do_conversion = true)
 		{
 		$c_codes = new currency_codes($currencycode);
 		$symbols = $c_codes->getSymbol();
-
-		$price = $currfmt->get_formatted($price);
-		$price = $symbols['pre'].$price.$symbols['post'];
+		
+		if ($price > 0.00)
+			{
+			$price = $currfmt->get_formatted($price);
+			$price = $symbols['pre'].$price.$symbols['post'];
+			}
+		else
+			{
+			$price = $symbols['pre'].jr_gettext('_JOMRES_PRICE_ON_APPLICATION',_JOMRES_PRICE_ON_APPLICATION,false,false).$symbols['post'];
+			}
 		}
 
 	return $price;
