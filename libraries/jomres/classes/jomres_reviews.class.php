@@ -266,7 +266,7 @@ class jomres_reviews {
 		$g=genericOr($property_uids,'item_id');
 		if (!isset($this->multi_query_result))
 			$this->multi_query_result = array();
-		$sql = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE ".$g."' AND published = 1 GROUP BY item_id";
+		$sql = "SELECT item_id, AVG(rating) as avg_rating, COUNT(rating) as counter, SUM(rating) as sumrating FROM #__jomres_reviews_ratings WHERE ".$g." AND published = 1 GROUP BY item_id";
 		$result = doSelectSql($sql);
 		$arr =array();
 		if (count($result)>0)
