@@ -1825,3 +1825,5 @@ define('_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC',"You can configure the simulat
 
 define('_JOMRES_SAFEMODE',"Enable safe mode?");
 define('_JOMRES_SAFEMODE_DESC',"Set this to Yes to trigger safe mode. This will disable all plugins so that Jomres will only use it's core functionality.");
+
+define('_JOMRES_PRICE_ON_APPLICATION',"POA");

@@ -1800,3 +1800,5 @@ define('_JOMRES_SIMULATE_MOBILE_RESTRICTION',"IP dla symulacji");
 define('_JOMRES_SIMULATE_MOBILE_RESTRICTION_DESC',"Można skonfigurować ustawienia symulacji tylko dla wybranego IP = XXX.XXX.XXX.XXX, więc na przykład, jeśli tworzysz na localhost, należy ustawić numer IP na 127.0.0.1.");
 define('_JOMRES_SAFEMODE',"Włącz tryb awaryjny?");
 define('_JOMRES_SAFEMODE_DESC',"Ustaw na Tak, aby uruchomić tryb awaryjny. Spowoduje to wyłączenie wszystkich wtyczek. Dostępne będą jedynie podstawowe funkcje.");
+
+define('_JOMRES_PRICE_ON_APPLICATION',"POA");
