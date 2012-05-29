@@ -88,6 +88,8 @@ class j06001list_property_invoices
 				$output['HFREQ']=_JRPORTAL_INVOICES_RECUR_FREQUENCY;
 				$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 				$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
+				$output['_JRPORTAL_INVOICES_LINEITEMS']=_JRPORTAL_INVOICES_LINEITEMS;
+				
 
 				if ($thisJRUser->userIsManager)
 					{
@@ -156,8 +158,8 @@ class j06001list_property_invoices
 							$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 						else
 							$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-						$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
-						$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
+						$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode'],false,true);
+						$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode'],false,true);
 						$r['FREQ']			=$invoice['recur_frequency'];
 						$r['CURRENCYCODE']	=$invoice['currencycode'];
 
