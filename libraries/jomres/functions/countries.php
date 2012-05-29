@@ -129,7 +129,7 @@ function createCountriesDropdown($selectedCountry,$input_name = "country")
 	{
 	$countryCodes=countryCodesArray();
 	asort($countryCodes);
-	$countryDropdown = '<span><select id="'.$input_name.'" class="inputbox" name="'.$input_name.'" onchange="OnChange(this.form.'.$input_name.')">';
+	$countryDropdown = '<select id="'.$input_name.'" name="'.$input_name.'" onchange="OnChange(this.form.'.$input_name.')">';
 	foreach ($countryCodes as $k=>$v)
 		{
 		$loopedCountry=$v;
@@ -139,7 +139,7 @@ function createCountriesDropdown($selectedCountry,$input_name = "country")
 			$selected="";
 		$countryDropdown .= "<option value=\"".$k."\" ".$selected." >".$loopedCountry."</option>";
 		}
-	$countryDropdown.="</select></span>";
+	$countryDropdown.="</select>";
 	return $countryDropdown;
 	}
 
