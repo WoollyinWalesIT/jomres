@@ -759,7 +759,7 @@ function jomres_generate_tab_anchor($string)
 	}
 
 
-function output_price($value,$currencycode="",$do_conversion = true)
+function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = false)
 	{
 	$price = (float)$value;
 
@@ -825,7 +825,7 @@ function output_price($value,$currencycode="",$do_conversion = true)
 		$c_codes = new currency_codes($currencycode);
 		$symbols = $c_codes->getSymbol();
 		
-		if ($price > 0.00)
+		if ($price > 0.00 || $zeroOK)
 			{
 			$price = $currfmt->get_formatted($price);
 			$price = $symbols['pre'].$price.$symbols['post'];
