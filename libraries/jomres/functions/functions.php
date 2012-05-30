@@ -120,9 +120,9 @@ function get_property_price_for_display_in_lists($property_uid)
 			if (isset($pricesFromArray[$property_uid]))
 				{
 				if ($mrConfig['prices_inclusive']=="0")
-					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid) * $multiplier);
+					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid) * $multiplier,true,false);
 				else
-					$price=output_price ($pricesFromArray[$property_uid] * $multiplier);
+					$price=output_price ($pricesFromArray[$property_uid] * $multiplier,true,false);
 				if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
 					$post_text = "&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 				else
@@ -164,13 +164,13 @@ function get_property_price_for_display_in_lists($property_uid)
 			else
 				{
 				$pre_text =jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
-				$price = output_price($current_property_details->real_estate_property_price);
+				$price = output_price($current_property_details->real_estate_property_price,true,false);
 				$post_text = '';
 				}
 			}
 		else
 			{
-			$pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE);
+			$pre_text = jr_gettext('_JOMRES_COM_MR_EXTRA_PRICE',_JOMRES_COM_MR_EXTRA_PRICE,true,false);
 			$price=output_price($current_property_details->real_estate_property_price);
 			$post_text = '';
 			}
@@ -759,7 +759,7 @@ function jomres_generate_tab_anchor($string)
 	}
 
 
-function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = false)
+function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = true)
 	{
 	$price = (float)$value;
 
