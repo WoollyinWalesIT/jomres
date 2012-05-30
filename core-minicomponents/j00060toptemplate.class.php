@@ -89,6 +89,7 @@ class j00060toptemplate {
 			$output['PREVIOUS']=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false);
 		
 			$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
+			set_showtime("menuitem_langdropdown",$output['LANGDROPDOWN']);
 			$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 			$output['LIVESITE']=get_showtime('live_site');
 			$output['DATEPICKERLANG']=JOMRESDATEPICKERLANG;

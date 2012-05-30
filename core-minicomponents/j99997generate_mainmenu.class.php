@@ -94,6 +94,8 @@ class j99997generate_mainmenu {
 		$output['MENUITEM_TIMEZONEBLURB']				= get_showtime("menuitem_timezoneblurb");
 		$output['MENUITEM_MANAGEMENT_VIEW_DROPDOWN']	= get_showtime("menuitem_management_view_dropdown");
 		$output['MENUITEM_EDITING_MODE_DROPDOWN']		= get_showtime("menuitem_editing_mode_dropdown");
+		$output['MENUITEM_LANGDROPDOWN']				= get_showtime("menuitem_langdropdown");
+		
 		
 		$output['_JOMRES_CONTROLPANEL']=_JOMRES_CONTROLPANEL;
 		$output['_JOMRES_MENU_SHOW']=_JOMRES_MENU_SHOW;
