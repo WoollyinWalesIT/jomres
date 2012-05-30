@@ -780,6 +780,19 @@ class patTemplate
 	*/
 	function addRows( $template, $rows, $prefix = '' )
 	{
+	$common = $this-> add_common_jomres_strings();
+	if (count($rows>0))
+		{
+		$new_rows = array();
+		foreach ($rows as $row)
+			{
+			$r = array();
+			$r = array_merge($row,$common);
+			$new_rows[]=$r;
+			}
+		$rows = $new_rows;
+		}
+
 	$this->json=false;
 	if (isset($_REQUEST['JRJSON']))
 		{
@@ -809,6 +822,17 @@ class patTemplate
 		}
 	}
 
+	// Vince Added to add some commonly used elements to all templates
+	function add_common_jomres_strings()
+		{
+		$common_strings = array();
+		$common_strings['COMMON_NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false);
+		$common_strings['COMMON_CANCEL'] = jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,false);
+		$common_strings['COMMON_SUBMIT']=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT,false);
+		$common_strings['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		
+		return $common_strings;
+		}
    /**
 	* Adds an object to a template
 	*
