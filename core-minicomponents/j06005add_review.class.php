@@ -84,7 +84,7 @@ class j06005add_review
 				$output['_JOMRES_REVIEWS_COMPLETEALLFIELDS']				=jr_gettext('_JOMRES_REVIEWS_COMPLETEALLFIELDS',_JOMRES_REVIEWS_COMPLETEALLFIELDS,false,false);
 				$output['JOMRES_SITEPAGE_URL']								=JOMRES_SITEPAGE_URL;
 				$output['PROPERTY_UID'] = $property_uid;
-				
+				$output['_JOMRES_COM_A_CANCEL'] = jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,false);
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();
 				$tmpl->addRows( 'pageoutput', $pageoutput );
