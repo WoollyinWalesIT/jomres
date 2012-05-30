@@ -32,14 +32,41 @@ class jomres_singleton_abstract
 				}
 			else
 				{
-				if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
+				$classfilefound = false;
+
+				$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
+				$d = @dir($jrePath);
+				$docs = array();
+				if($d)
 					{
-					$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
-					self::$_instances[$class] = new $class($arg1);
+					while (FALSE !== ($entry = $d->read()))
+						{
+						$filename = $entry;
+						if( substr($entry,0,1) != '.' )
+							{
+							$docs[] =$entry;
+							}
+						}
+					$d->close();
+					if (count($docs)>0)
+						{
+						sort($docs);
+						foreach ($docs as $doc)
+							{
+							$listdir=$jrePath.$doc.JRDS;
+							if (file_exists($listdir.$class.".class.php") )
+								{
+								$result = require($listdir.$class.".class.php");
+								self::$_instances[$class] = new $class($arg1);
+								$classfilefound = true;
+								}
+							}
+						}
 					}
-				else
+				
+				if (!$classfilefound)
 					{
-					$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
+					$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
 					$d = @dir($jrePath);
 					$docs = array();
 					if($d)
@@ -55,7 +82,6 @@ class jomres_singleton_abstract
 						$d->close();
 						if (count($docs)>0)
 							{
-							$classfilefound = false;
 							sort($docs);
 							foreach ($docs as $doc)
 								{
@@ -69,44 +95,19 @@ class jomres_singleton_abstract
 								}
 							}
 						}
-					if (!$classfilefound)
-						{
-						$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
-						$d = @dir($jrePath);
-						$docs = array();
-						if($d)
-							{
-							while (FALSE !== ($entry = $d->read()))
-								{
-								$filename = $entry;
-								if( substr($entry,0,1) != '.' )
-									{
-									$docs[] =$entry;
-									}
-								}
-							$d->close();
-							if (count($docs)>0)
-								{
-								$classfilefound = false;
-								sort($docs);
-								foreach ($docs as $doc)
-									{
-									$listdir=$jrePath.$doc.JRDS;
-									if (file_exists($listdir.$class.".class.php") )
-										{
-										$result = require($listdir.$class.".class.php");
-										self::$_instances[$class] = new $class($arg1);
-										$classfilefound = true;
-										}
-									}
-								}
-							}
-						}
-					if (!$classfilefound)
-						{
-						echo "Class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist";
-						exit;
-						}
+					}
+				
+				if (!$classfilefound && file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php") )
+					{
+					$result = require(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php");
+					self::$_instances[$class] = new $class($arg1);
+					$classfilefound = true;
+					}
+					
+				if (!$classfilefound)
+					{
+					echo "Class file ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'classes'.JRDS.$class.".class.php"." doesn't exist";
+					exit;
 					}
 				}
 			}
