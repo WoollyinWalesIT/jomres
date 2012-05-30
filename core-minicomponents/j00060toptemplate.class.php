@@ -43,12 +43,12 @@ class j00060toptemplate {
 			{
 			$output=array();
 			
-			$output['editing_mode_dropdown']='';
+			$output['EDITING_MODE_DROPDOWN']='';
 			$editing_mode =jomres_singleton_abstract::getInstance('jomres_editing_mode');
 			$result = $editing_mode->make_editing_mode_dropdown();
 			if ($result)
 				$output['EDITING_MODE_DROPDOWN']=$result;
-			
+			set_showtime("menuitem_editing_mode_dropdown",$output['EDITING_MODE_DROPDOWN']);
 			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
 				{
 				if ($thisJRUser->userIsManager)
@@ -56,18 +56,24 @@ class j00060toptemplate {
 					$defaultProperty=getDefaultProperty();
 					$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 					$output['PROPERTYNAME']= $current_property_details->get_property_name($defaultProperty);
-
+					set_showtime("menuitem_propertyname",$output['PROPERTYNAME']);
 					
 					jr_import('jomres_management_view');
 					$jomres_management_view = new jomres_management_view();
 					$management_dropdown = $jomres_management_view->get_dropdown();
 					$output['MANAGEMENT_VIEW_DROPDOWN']=$management_dropdown;
+					set_showtime("menuitem_management_view_dropdown",$output['MANAGEMENT_VIEW_DROPDOWN']);
+					
+					$output['TIMEZONE_DROPDOWN'] = '';
+					$output['TIMEZONEBLURB']= '';
 					if ($jrConfig['use_timezone_switcher'] == "1")
 						{
 						$output['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
 						$date = new DateTime(null, new DateTimeZone($thisJRUser->users_timezone));
 						$output['TIMEZONEBLURB']= outputDate(date_format($date, "Y/m/d"))." ".date_format($date, "H:i:s");
 						}
+					set_showtime("menuitem_timezone_dropdown",$output['TIMEZONE_DROPDOWN']);
+					set_showtime("menuitem_timezoneblurb",$output['TIMEZONEBLURB']);
 					}
 				}
 			
