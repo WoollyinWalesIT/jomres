@@ -33,7 +33,7 @@ class j06005add_review
 			$property_uid = (int)$_GET['property_uid'];
 			}
 		
-		jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.validate.min.js");
+		jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/',"jquery.validate.js");
 		
 		
 		//property_header($property_uid);
