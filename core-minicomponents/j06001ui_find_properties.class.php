@@ -36,7 +36,7 @@ class j06001ui_find_properties
 		$initial = jr_strtolower(jomresGetParam( $_REQUEST, 'initial', "" ));
 		$query = "SELECT propertys_uid,property_name FROM #__jomres_propertys WHERE property_name LIKE '".$initial."%' AND ".$gor. "ORDER BY `property_name`";
 		$result = doSelectSql($query);
-		$output = '';
+
 		if (count($result)>0)
 			{
 			foreach ($result as $property)
@@ -46,9 +46,16 @@ class j06001ui_find_properties
 				else
 					$pn=$thisJRUser->authorisedPropertyDetails[$property->propertys_uid]['property_name'];
 				
-				$output .= '<div><a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid).'" class="fg-button ui-state-default ui-corner-all">'.$pn.'</a/div>' ;
+				$rows[] = array("URL"=>jomresURL(JOMRES_SITEPAGE_URL.'&thisProperty='.$property->propertys_uid),"PROPERTYNAME"=>$pn);
 				}
 			}
+
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->readTemplatesFromInput( 'ajax_switch_property.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'rows',$rows);
+		echo $tmpl->getParsedTemplate();
 		echo $output;
 		}
 	
