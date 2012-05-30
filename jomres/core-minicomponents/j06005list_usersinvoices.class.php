@@ -70,11 +70,16 @@ class j06005list_usersinvoices
 			$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 			$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
 
-			$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
-			$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
-			$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
-			$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
-			$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
+			$output['TASK_FILTER_ANY']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices';
+			$output['_JOMRES_FRONT_ROOMSMOKING_EITHER']=_JOMRES_FRONT_ROOMSMOKING_EITHER;
+			$output['TASK_FILTER_UNPAID']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=unpaid';
+			$output['_JRPORTAL_INVOICES_STATUS_UNPAID']=_JRPORTAL_INVOICES_STATUS_UNPAID;
+			$output['TASK_FILTER_PAID']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=paid';
+			$output['_JRPORTAL_INVOICES_STATUS_PAID']=_JRPORTAL_INVOICES_STATUS_PAID;
+			$output['TASK_FILTER_CANCELLED']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=cancelled';
+			$output['_JRPORTAL_INVOICES_STATUS_CANCELLED']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
+			$output['TASK_FILTER_PENDING']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=pending';
+			$output['_JRPORTAL_INVOICES_STATUS_PENDING']=_JRPORTAL_INVOICES_STATUS_PENDING;
 
 			if (count($invoices)>0)
 				{
@@ -111,8 +116,8 @@ class j06005list_usersinvoices
 						$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
 					else
 						$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
-					$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
-					$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
+					$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode'],false,true);
+					$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode'],false,true);
 					$r['FREQ']			=$invoice['recur_frequency'];
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
 					$settingArray = get_plugin_settings("paypal",$invoice['property_uid']);
