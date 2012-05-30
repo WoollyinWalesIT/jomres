@@ -29,7 +29,7 @@ class j99997generate_mainmenu {
 		
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-
+		
 		$buttons = $componentArgs['jomres_mainmenu_buttons_categorised'];
 		$button_o = array();
 
@@ -88,6 +88,13 @@ class j99997generate_mainmenu {
 		
 		$output=array();
 		$pageoutput = array();
+		
+		$output['PROPERTYNAME']							= get_showtime("menuitem_propertyname");
+		$output['MENUITEM_TIMEZONE_DROPDOWN']			= get_showtime("menuitem_timezone_dropdown");
+		$output['MENUITEM_TIMEZONEBLURB']				= get_showtime("menuitem_timezoneblurb");
+		$output['MENUITEM_MANAGEMENT_VIEW_DROPDOWN']	= get_showtime("menuitem_management_view_dropdown");
+		$output['MENUITEM_EDITING_MODE_DROPDOWN']		= get_showtime("menuitem_editing_mode_dropdown");
+		
 		$output['_JOMRES_CONTROLPANEL']=_JOMRES_CONTROLPANEL;
 		$output['_JOMRES_MENU_SHOW']=_JOMRES_MENU_SHOW;
 		$output['_JOMRES_MENU_HIDE']=_JOMRES_MENU_HIDE;
