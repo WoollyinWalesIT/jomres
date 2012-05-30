@@ -44,12 +44,8 @@ class jomres_sanity_check
 	function construct_warning($message)
 		{
 		$warning = "";
-		
-		$warning .="<div class=\"ui-state-error\" >";
 		$warning .=_JOMRES_WARNINGS_DANGERWILLROBINSON." ";
 		$warning .=$message;
-		$warning .="</div>";
-		
 		return $warning;
 		}
 		
