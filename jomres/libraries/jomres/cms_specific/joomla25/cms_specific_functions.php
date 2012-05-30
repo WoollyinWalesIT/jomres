@@ -147,9 +147,19 @@ function jomres_cmsspecific_getRegistrationURL()
 	
 function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width, $height, $col, $row)
 	{
-	$ret = ""; 
-	$editor =& JFactory::getEditor(); 
-	$ret =$editor->display($name, $content, $width, $height, $col, $row);
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$jrConfig['use_jomres_own_editor']= "1";
+	if ($jrConfig['use_jomres_own_editor'] == "1")
+		{
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+		$ret = $MiniComponents->specificEvent('06005','editor',array("name"=>$name,"content"=>$content,"height"=>$height));
+		}
+	else
+		{
+		$editor =& JFactory::getEditor(); 
+		$ret =$editor->display($name, $content, $width, $height, $col, $row);
+		}
 	return $ret;
 	}
 

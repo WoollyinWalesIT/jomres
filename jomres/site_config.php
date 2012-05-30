@@ -243,4 +243,5 @@ $jrConfig['use_cookie_policy'] = "0";
 $jrConfig['mobile_simulation'] = "0";
 $jrConfig['mobile_simulation_ip_restriction'] = "";
 $jrConfig['safe_mode'] = "0";
+$jrConfig['use_jomres_own_editor'] = "1";
 ?>

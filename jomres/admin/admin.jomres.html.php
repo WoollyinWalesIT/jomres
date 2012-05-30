@@ -136,7 +136,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			 <td valign="middle">'.$lists['allowHTMLeditor'].'</td>
 			 <td valign="middle">'._JOMRES_COM_ALLOWHTMLEDITOR_DESC.'</td>
 		</tr>
-		
+		<tr valign="middle" class="even">
+			 <td valign="middle">'._JOMRES_USE_JOMRESEDITOR.'</td>
+			 <td valign="middle">'.$lists['use_jomres_own_editor'].'</td>
+			 <td valign="middle">'._JOMRES_USE_JOMRESEDITOR_DESC.'</td>
+		</tr>
 		');
 	
 
