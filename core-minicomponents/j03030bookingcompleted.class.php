@@ -62,20 +62,9 @@ class j03030bookingcompleted {
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'completed', $save_details );
 		$componentArgs=array('tmpl'=>$tmpl);
-		if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00208') )
-			{
-			$MiniComponents->triggerEvent('00208',$componentArgs); //
-			}
-		elseif ($MiniComponents->eventFileExistsCheck('00210'))
-			{
-			$MiniComponents->triggerEvent('00210',$componentArgs); //
-			}
-		else
-			{
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-			$tmpl->readTemplatesFromInput( 'bookings_completed.html');
-			$tmpl->displayParsedTemplate();
-			}
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( 'bookings_completed.html');
+		$tmpl->displayParsedTemplate();
 		}
 
 	function touch_template_language()
