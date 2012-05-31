@@ -6,7 +6,7 @@ table{ border-collapse:separate !important;}
 a, a:link, a:visited, a:hover, a:active, a:focus {text-decoration:none !important;}
 p {margin:10px 0 15px !important;padding:0;}
 img { border: 0 none; }
-form div {margin:0 !important;}
+
 #accordion h3{margin:0 !important;}
 #toolbar-box {display:none;}
 #submenu-box {display:none;}
