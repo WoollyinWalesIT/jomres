@@ -112,6 +112,7 @@ class j06005editor
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/libraries/editor/',"jquery.wysiwyg.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/libraries/editor/',"wysiwyg.link.js");
 			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/libraries/editor/',"wysiwyg.table.js");
+			jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/libraries/editor/',"wysiwyg.i18n.js");
 			switch (get_showtime("lang"))
 				{
 				case "cs-CZ":
