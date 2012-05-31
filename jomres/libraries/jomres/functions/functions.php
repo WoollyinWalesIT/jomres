@@ -3505,7 +3505,6 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	$img_departtoday=$pathToImages."/departtoday.gif";
 	$img_stillhere=$pathToImages."/stillhere.gif";
 	$img_late=$pathToImages."/late.gif";
-	$editIcon='<img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
 
 	$contract_ids = array();
 
@@ -3517,90 +3516,45 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	$gor=genericOr($contract_ids,'contract_uid');
 	$query="SELECT * FROM #__jomres_contracts WHERE property_uid = '".(int)$defaultProperty."' AND ".$gor;
 	$booking_data = doSelectSql($query);
-	//var_dump($booking_data);exit;
-	?>
-	<script language="JavaScript" type="text/javascript">
-	jomresJquery(document).ready(function() {
-		var oTable = jomresJquery('#showLiveBookings').dataTable({
-			"bJQueryUI": true,
-			"bStateSave": true,
-			"sPaginationType": "full_numbers",
-			"sDom": '<"H"lTfr>t<"F"ip>',
-			"oTableTools": {
-				"sSwfPath": "<?php echo get_showtime('live_site'); ?>/jomres/javascript/copy_cvs_xls_pdf.swf",
-				"aButtons": [
-					"copy",
-					{
-					"sExtends": "csv",
-					"sCharSet": "utf8"
-					},
-					{
-					"sExtends": "xls",
-					"sCharSet": "utf16le"
-					},
-					{
-					"sExtends": "pdf",
-					"sCharSet": "utf8",
-					"sPdfOrientation": "landscape",
-					"sTitle": "{PAGETITLE}"
-					},
-					"print"
-				]
-			}
-		});
-	} );
-	</script>
-	<h2><?php echo $title;?></h2>
-		<table width="100%" border="0" class="ui-widget-content ui-corner-all">
-			<tr>
-				<td><img src="<?php echo $img_pending;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);?></td>
-				<td><img src="<?php echo $img_arrivetoday;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);?></td>
-				<td><img src="<?php echo $img_resident;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);?></td>
-			</tr>
-			<tr>
-				<td><img src="<?php echo $img_late;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);;?></td>
-				<td><img src="<?php echo $img_departtoday;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);?></td>
-				<td><img src="<?php echo $img_stillhere;?>" border=\"0\" /></td><td><?php echo $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);?></td>
-			</tr>
-		</table>
-		<br />
-		<table width="100%" border="0" id="showLiveBookings">
-			<thead>
-			<tr>
-				<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);?></th>
-				<th><?php echo jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE);?></th>
-				<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);?></th>
-				<th><?php echo jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);?></th>
-				<?php
-				if ($mrConfig['wholeday_booking'] == "1")
-					{
-					?>
-					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);?></th>
-					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);?></th>
-					<?php
-					}
-				else
-					{
-					?>
-					<th><?php echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);?></th>
-					<th><?php 
-							if ($mrConfig['showdepartureinput'] == "1")
-								echo jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
-							else
-								echo "&nbsp;";
-					?></th>
-					<?php
-					}
-				?>
-			</tr>
-			</thead>
-			<tbody>
-	<?php
-	//$k = 0;
-	//$i = 0;
+	
+	$output=array();
+	$output['PAGETITLE']=$title;
+	$output['IMG_PENDING']=$img_pending;
+	$output['IMG_ARRIVETODAY']=$img_arrivetoday;
+	$output['IMG_RESIDENT']=$img_resident;
+	$output['IMG_LATE']=$img_late;
+	$output['IMG_DEPARTTODAY']=$img_departtoday;
+	$output['IMG_STILLHERE']=$img_stillhere;
+	
+	$output['TEXT_PENDING']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);
+	$output['TEXT_ARRIVETODAY']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);
+	$output['TEXT_RESIDENT']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);
+	$output['TEXT_LATE']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);
+	$output['TEXT_DEPARTTODAY']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);
+	$output['TEXT_STILLHERE']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);
+	
+	$output['_JOMRES_COM_MR_VIEWBOOKINGS_STATUS']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);
+	$output['_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);
+	$output['_JOMRES_COM_MR_EDITBOOKINGTITLE']=jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE);
+	$output['_JOMRES_BOOKING_NUMBER']= jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,true,false);
+	if ($mrConfig['wholeday_booking'] == "1")
+		{
+		$output['ARRIVAL']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);
+		$output['DEPARTURE']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE_WHOLEDAY);
+		}
+	else
+		{
+		$output['ARRIVAL']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
+		if ($mrConfig['showdepartureinput'] == "1")
+			$output['DEPARTURE']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
+		else
+			$output['DEPARTURE']="&nbsp;";
+		}
 
+	$rows=array();
 	for ($i=0, $n=count( $contractsList ); $i < $n; $i++)
 		{
+		$r=array();
 		$imgToShow=$img_pending;
 		$row = $contractsList[$i];
 		$arrival=$row->arrival;
@@ -3624,29 +3578,29 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		if ($unixDeparture< $unixToday && $bookedIn =="1")
 			$imgToShow=$img_stillhere;
 
-		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
-		$jrtb	= $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('edit',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$row->contract_uid ),'');
-		$jrtb .= $jrtbar->endTable();
-		//$rw=$jrtb;
-		?>
-			<tr>
-				<td align="center"><?php echo "<img src=\"".$imgToShow."\" border=\"0\" />";?></td>
-				<td><a href="<?php echo jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );?>"><?php echo $editIcon ?></a></td>
-				<td><?php echo ($row->firstname );echo "&nbsp;"; echo ($row->surname ); ?></td>
-				<td><?php echo $row->tag; ?></td>
-				<td><?php echo outputDate($row->arrival); ?></td>
-				<td><?php 
-				if ($mrConfig['showdepartureinput'] == "1")
-					echo outputDate($row->departure); 
-				?></td>
-			</tr>
-		<?php
+		$r['STATE_IMAGE']=$imgToShow;
+		$r['EDIT_URL']= jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );
+		$r['EDIT_TEXT']=jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE,false);
+		$r['FIRSTNAME']=$row->firstname;
+		$r['SURNAME']=$row->surname;
+		$r['BOOKING_NO']=$row->tag;
+		$r['ARRIVALDATE']=outputDate($row->arrival);
+		if ($mrConfig['showdepartureinput'] == "1")
+			$r['DEPARTURE']=outputDate($row->departure);
+		else
+			$r['DEPARTURE']="&nbsp;";
+		$rows[]=$r;
 		}
-	?>
-		</tbody>
-	</table>
-<?php
+
+	$pageoutput[]=$output;
+	
+	$tmpl = new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+	$tmpl->readTemplatesFromInput( 'list_property_bookings.html');
+	$tmpl->addRows( 'pageoutput',$pageoutput);
+	$tmpl->addRows( 'rows',$rows);
+	$tmpl->displayParsedTemplate();
+
 }//end function showLiveBookings
 
 /**

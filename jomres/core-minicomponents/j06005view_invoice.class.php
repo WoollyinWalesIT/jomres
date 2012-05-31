@@ -131,16 +131,19 @@ class j06005view_invoice {
 		$output['HCURRENCYCODE']=jr_gettext('_JRPORTAL_INVOICES_CURRENCYCODE',_JRPORTAL_INVOICES_CURRENCYCODE);
 		$output['HINVOICENO']=jr_gettext('_JOMRES_INVOICE_NUMBER',_JOMRES_INVOICE_NUMBER);
 
+		
+		$markaspaid_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->property_uid > 0 && (int) $invoice->status != 1)
 			{
 			$markaspaid=jr_gettext('_JOMRES_INVOICE_MARKASPAID',_JOMRES_INVOICE_MARKASPAID,false,false);
-			$output['MARKASPAID_LINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=mark_booking_invoice_paid&no_html=1&id='.$invoice->id.'">'.$markaspaid.'</a>';
+			$markaspaid_link[] = array('MARKASPAID_LINK'=> JOMRES_SITEPAGE_URL.'&task=mark_booking_invoice_paid&no_html=1&id='.$invoice->id,'MARKASPAID_TEXT'=>$markaspaid);
 			}
 
+		$viewbooking_link = array();
 		if ($thisJRUser->userIsManager && (int) $invoice->contract_id > 0)
 			{
 			$viewbooking=jr_gettext('_JOMCOMP_MYUSER_VIEWBOOKING',_JOMCOMP_MYUSER_VIEWBOOKING,false,false);
-			$output['VIEWBOOKING_LINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$invoice->contract_id.'">'.$viewbooking.'</a>';
+			$viewbooking_link[] = array('VIEWBOOKING_LINK'=>JOMRES_SITEPAGE_URL.'&task=editBooking&contract_uid='.$invoice->contract_id,'VIEWBOOKING_TEXT'=>$viewbooking);
 			}
 			
 		$output['ID']=$invoice->id;
@@ -257,6 +260,9 @@ class j06005view_invoice {
 			$tmpl->readTemplatesFromInput( 'frontend_view_invoice.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
+		$tmpl->addRows( 'markaspaid_link',$markaspaid_link);
+		$tmpl->addRows( 'viewbooking_link',$viewbooking_link);
+		
 		if ($invoice->subscription == 0 && $invoice->init_total > 0.00)
 			{
 			$tmpl->addRows( 'immediate_pay',$immediate_pay);
@@ -264,7 +270,7 @@ class j06005view_invoice {
 		elseif ($invoice->subscription == 1 && $invoice->recur_total > 0.00)
 			{
 			$tmpl->addRows( 'immediate_pay',$immediate_pay);
-			}	
+			}
 		if (!$return_template)
 			$tmpl->displayParsedTemplate();
 		else
