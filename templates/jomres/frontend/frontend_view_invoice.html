@@ -1,11 +1,16 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
-		<td><a href="{PRINTLINK}" target="_blank">{PRINTTEXT}</a></td>
-		<td>{MARKASPAID_LINK}</td>
-		<td>{VIEWBOOKING_LINK}</td>
+		<patTemplate:tmpl name="viewbooking_link" type="simpleCondition" requiredVars="viewbooking_text">
+			<td><a href="{VIEWBOOKING_LINK}" target="_blank">{VIEWBOOKING_TEXT}</a></td>
+		</patTemplate:tmpl>
+			<td><a  href="{PRINTLINK}"target="_blank">{PRINTTEXT}</a></td>
+		<patTemplate:tmpl name="markaspaid_link" type="simpleCondition" requiredVars="markaspaid_text">
+			<td><a href="{MARKASPAID_LINK}" target="_blank">{MARKASPAID_TEXT}</a></td>
+		</patTemplate:tmpl>
 	</tr>
 </table>
+
 <h2>{HINVOICENO}: {ID}</h2>
 <table width="100%" border="0">
 	<tr>
