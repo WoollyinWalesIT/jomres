@@ -149,7 +149,7 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	$jrConfig['use_jomres_own_editor']= "1";
+
 	if ($jrConfig['use_jomres_own_editor'] == "1")
 		{
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
