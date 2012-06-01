@@ -90,7 +90,6 @@ class j02260editbooking {
 		$query="SELECT * FROM #__jomres_room_classes WHERE  $room_classes_uidOr";
 		$rClass  = doSelectSql($query);
 
-		echo "<br>";
 		$this->editBooking_html($contract_uid,$bookingData,$extraBillingData,$guestData,$roomBookingData,$roomInfo,$rClass,$rFeatures,$bookersUsername );
 		}
 
@@ -326,17 +325,32 @@ class j02260editbooking {
 				}
 			else
 				{
-				if (!$bookedin)
-					echo "<div id='jomresmenu_hint' style=color:red; >&nbsp;</div>";
-					
+				
 				$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid"),'');
 				add_menu_option ("&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
 				}
 			$jrtb .= $jrtbar->endTable();
-			echo '<h2>'.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,$editable=true,$isLink=false).'&nbsp;'.$booking_tag.' - '.$guest_firstname." ".$guest_surname.'</h2>';
-			echo $jrtb;
+			
+			$output=array();
+			$pagetoutput=array();
+			
+			$output['_JOMRES_BOOKING_NUMBER']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,$editable=true,$isLink=false);
+			$output['BOOKING_NUMBER']=$booking_tag;
+			$output['GUEST_FIRSTNAME']=$guest_firstname;
+			$output['GUEST_SURNAME']=$guest_surname;
+			$output['TOOLBAR']=$jrtb;
+			
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			$tmpl->readTemplatesFromInput( 'edit_booking_header.html');
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			echo $tmpl->getParsedTemplate();
 			}
 
+		$output=array();
+		$pagetoutput=array();
+		
 		if ($mrConfig['wholeday_booking'] == "1")
 			{
 			$arrivalText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL_WHOLEDAY);
@@ -347,9 +361,6 @@ class j02260editbooking {
 			$arrivalText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVAL);
 			$departureText = jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTURE);
 			}
-
-		$output=array();
-		$pagetoutput=array();
 		
 		$output['_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL']=jr_gettext('_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL',_JOMRES_COM_MR_EB_ARRIVALFIRSTNAME_EXPL);
 		$output['GUEST_FIRSTNAME']=$guest_firstname;
@@ -376,10 +387,6 @@ class j02260editbooking {
 		$tmpl->readTemplatesFromInput( 'edit_booking_tabcontents_arrdep.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$arrdep_template = $tmpl->getParsedTemplate();
-		
-		
-
-		
 		
 		$output=array();
 		$pagetoutput=array();
