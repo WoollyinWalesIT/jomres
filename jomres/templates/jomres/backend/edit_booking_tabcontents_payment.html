@@ -1,0 +1,86 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<table width="100%" border="0">
+	<tr>
+		<td width="30%">{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID}</td>
+		<td>{DEPOSITPAID}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED}</td>
+		<td>{BOOKING_DEPOSIT_REQUIRED}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL}</td>
+		<td>{BOOKING_CONTRACT_TOTAL}</td>
+	</tr>
+	<tr>
+		<td>{HNIGHTS}</td>
+		<td>{NUM_NIGHTS}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF}</td>
+		<td>{BOOKING_DEPOSIT_REF}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON}</td>
+		<td>{SINGLE_PERSON_SUPPLIMENT}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_FRONT_ROOMTAX}</td>
+		<td>{TAX}</td>
+	</tr>
+	<tr>
+		<td><hr /></td>
+		<td><hr /></td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<patTemplate:tmpl name="guest_type_rows" type="simpleCondition" requiredVars="guest_type_title">
+	<tr>
+		<td>{GUEST_TYPE_TITLE}</td>
+		<td>{GUEST_TYPE_QTY}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td><hr /></td>
+		<td><hr /></td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_MR_EXTRA_TITLE}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<patTemplate:tmpl name="extras_rows" type="simpleCondition" requiredVars="extra_name">
+	<tr>
+		<td>&nbsp;</td>
+		<td>{EXTRA_NAME}  {EXTRA_INCLUSIVE_PRICE} ({EXTRA_TAX}%) X {EXTRA_QUANTITY}</td>
+	</tr>
+	</patTemplate:tmpl>
+	<tr>
+		<td>{_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE}</td>
+		<td>{EXTRASOPTIONSVALUE}</td>
+	</tr>
+	<tr>
+		<td><hr /></td>
+		<td><hr /></td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_ADDSERVICE_BOOKINGDESC}</td>
+		<td><patTemplate:tmpl name="other_services_rows" type="simpleCondition" requiredVars="other_service">
+			{OTHER_SERVICE}<br/></patTemplate:tmpl>
+		</td>
+	</tr>
+	<tr>
+		<td><hr /></td>
+		<td><hr /></td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_INVOICE_LETTER_GRANDTOTAL}</td>
+		<td>{GRAND_TOTAL}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_COM_MR_EDITBOOKING_REMAINDERTOPAY}</td>
+		<td><strong>{REMAINDER_TO_PAY}</strong></td>
+	</tr>
+</table>
+</patTemplate:tmpl>
