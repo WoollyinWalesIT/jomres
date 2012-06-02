@@ -829,6 +829,7 @@ class patTemplate
 		$common_strings['COMMON_NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false);
 		$common_strings['COMMON_CANCEL'] = jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,false);
 		$common_strings['COMMON_SUBMIT']=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT,false);
+		$common_strings['COMMON_SAVE']=jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false);
 		$common_strings['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		
 		return $common_strings;
