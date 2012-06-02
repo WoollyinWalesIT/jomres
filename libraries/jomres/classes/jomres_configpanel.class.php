@@ -42,7 +42,7 @@ class jomres_configpanel extends jomres_content_tabs
 			$rowclass="even";
 		$this->panes[]='
 		<tr class="'.$rowclass.'">
-			<td>'.$this->left.'</td>
+			<td width="30%">'.$this->left.'</td>
 			<td>'.$this->middle.'</td>
 			<td>'.$this->right.'</td>
 		</tr>
