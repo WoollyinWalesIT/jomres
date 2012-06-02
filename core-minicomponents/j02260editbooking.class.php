@@ -319,9 +319,9 @@ class j02260editbooking {
 					add_menu_option ('&task=view_invoice&id='.$invoice_number,null, $output['SHOWINVOICE'],null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
 					}
 					
-				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&popup=1&tmpl=component&contract_uid='.$booking_contract_uid;
-				$jrtb .= $jrtbar->toolbarItem('note','javascript:void window.open(\''.$notesLink.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=false));
-				add_menu_option ('javascript:void window.open(\''.$notesLink.'\', \'win2\', \''.$status.'\');',null, jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&contract_uid='.$booking_contract_uid;
+				$jrtb .= $jrtbar->toolbarItem('note',$notesLink,jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=false));
+				add_menu_option ($notesLink,null, jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
 				}
 			else
 				{
