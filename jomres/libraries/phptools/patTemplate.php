@@ -826,12 +826,17 @@ class patTemplate
 	function add_common_jomres_strings()
 		{
 		$common_strings = array();
-		$common_strings['COMMON_NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false);
-		$common_strings['COMMON_CANCEL'] = jr_gettext('_JOMRES_COM_A_CANCEL',_JOMRES_COM_A_CANCEL,false);
-		$common_strings['COMMON_SUBMIT']=jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT,false);
-		$common_strings['COMMON_SAVE']=jr_gettext('_JOMRES_COM_MR_SAVE',_JOMRES_COM_MR_SAVE,false);
+		$common_strings['COMMON_NEXT']=jr_gettext('COMMON_NEXT',COMMON_NEXT,false);
+		$common_strings['COMMON_CANCEL'] = jr_gettext('COMMON_CANCEL',COMMON_CANCEL,false);
+		$common_strings['COMMON_SUBMIT']=jr_gettext('COMMON_SUBMIT',COMMON_SUBMIT,false);
+		$common_strings['COMMON_SAVE']=jr_gettext('COMMON_SAVE',COMMON_SAVE,false);
+		$common_strings['COMMON_DELETE']=jr_gettext('COMMON_DELETE',COMMON_DELETE,false);
+		$common_strings['COMMON_RETURN']=jr_gettext('COMMON_RETURN',COMMON_RETURN,false);
+		$common_strings['COMMON_CLOSE']=jr_gettext('COMMON_CLOSE',COMMON_CLOSE,false);
+		$common_strings['COMMON_BACK']=jr_gettext('COMMON_BACK',COMMON_BACK,false);
+		$common_strings['COMMON_HOME']=jr_gettext('COMMON_HOME',COMMON_HOME,false);
 		$common_strings['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
-		
+
 		return $common_strings;
 		}
    /**

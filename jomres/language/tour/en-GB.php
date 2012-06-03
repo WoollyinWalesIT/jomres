@@ -1788,3 +1788,5 @@ define('_JOMRES_PRICE_ON_APPLICATION',"POA");
 
 define('_JOMRES_USE_JOMRESEDITOR',"Use Jomres' WYSIWYG editor? (recommended)");
 define('_JOMRES_USE_JOMRESEDITOR_DESC',"If you've enabled the WYSIWYG editor, you can choose to use the html editor(s) available for your CMS, or the one supplied with Jomres. This one is optimised for use by Property Managers and it is recommended that you choose to use it.");
+
+define('COMMON_HOME',"Home");

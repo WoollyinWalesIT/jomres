@@ -86,6 +86,16 @@ class j16000miscdefinesfortouchtemplating
 		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_5',_JOMRES_COOKIEPOLICY_5);
 		$output[]		= jr_gettext('_JOMRES_COOKIEPOLICY_6',_JOMRES_COOKIEPOLICY_6);
 		
+		$output[]		= jr_gettext('COMMON_NEXT',COMMON_NEXT);
+		$output[]		= jr_gettext('COMMON_CANCEL',COMMON_CANCEL);
+		$output[]		= jr_gettext('COMMON_SUBMIT',COMMON_SUBMIT);
+		$output[]		= jr_gettext('COMMON_SAVE',COMMON_SAVE);
+		$output[]		= jr_gettext('COMMON_DELETE',COMMON_DELETE);
+		$output[]		= jr_gettext('COMMON_RETURN',COMMON_RETURN);
+		$output[]		= jr_gettext('COMMON_CLOSE',COMMON_CLOSE);
+		$output[]		= jr_gettext('COMMON_BACK',COMMON_BACK);
+		$output[]		= jr_gettext('COMMON_HOME',COMMON_HOME);
+		
 		$countryCodes=countryCodesArray();
 		foreach ($countryCodes as $k=>$v)
 			{
