@@ -835,6 +835,7 @@ class patTemplate
 		$common_strings['COMMON_CLOSE']=jr_gettext('COMMON_CLOSE',COMMON_CLOSE,false);
 		$common_strings['COMMON_BACK']=jr_gettext('COMMON_BACK',COMMON_BACK,false);
 		$common_strings['COMMON_HOME']=jr_gettext('COMMON_HOME',COMMON_HOME,false);
+		$common_strings['COMMON_NEW']=jr_gettext('COMMON_NEW',COMMON_NEW,false);
 		$common_strings['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 
 		return $common_strings;
