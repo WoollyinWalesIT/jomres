@@ -50,6 +50,18 @@ class j99997generate_mainmenu {
 			$rows = array();
 			foreach ($buts as $key=>$val)
 				{
+				$old_task='';
+				$elements = str_replace("&amp;","&",$val['link']);
+				$bits = explode("&",$elements);
+				foreach ($bits as $bobs)
+					{
+					$bob = explode("=",$bobs);
+					if ($bob[0]=="task")
+						{
+						$old_task='&attempted_task='.$bob[1];
+						}
+					}
+
 				$r=$val;
 				$r['LIVESITE']=get_showtime('live_site');
 				$r['TARGET'] = '';
@@ -59,7 +71,7 @@ class j99997generate_mainmenu {
 				$r['disabled_class']='';
 				if ($r['disabled'])
 					{
-					$r['link']='#';
+					$r['link']=JOMRES_SITEPAGE_URL_NOSEF."&task=feature_not_available".$old_task;
 					$r['disabled_class']= ' ui-widget-shadow';
 					}
 

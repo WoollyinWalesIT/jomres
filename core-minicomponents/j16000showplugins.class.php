@@ -198,6 +198,8 @@ class j16000showplugins
 						if (class_exists($cname))
 							{
 							$info = new $cname();
+							// When developing it's easy to incorrectly rename a plugin info.php file. Uncomment the next line and run showplugins again to see which was the last plugin info that was called correctly before the script crashed
+							// echo $cname."<br/>";
 							$installed_plugins[$info->data['name']]=$info->data;
 							}
 						}
@@ -472,9 +474,10 @@ class j16000showplugins
 			
 			// old image showing html, removed because it slowed down the plugin list
 			// <td class=\"ui-corner-all\" $style>".$image."</td>
+			$readable_name = ucwords(" ".str_replace("_"," ",$rp['name']));
 			echo
 			"<tr class=\"".$row_class." \" >
-				<td class=\"ui-corner-all\" $style><a name=".$rp['name']."></a> ".$strong1.$rp['name'].$strong2."</td>
+				<td class=\"ui-corner-all\" $style><a name=".$rp['name']."></a> ".$strong1.$readable_name.$strong2."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['min_jomres_ver']."</td>
 				<td class=\"ui-corner-all\" $style>".$local_version."</td>
 				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
