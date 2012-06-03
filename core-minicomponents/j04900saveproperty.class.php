@@ -96,7 +96,10 @@ class j04900saveproperty {
 		$pid							= jomresGetParam( $_POST, 'pid', array() );
 
 		if ($property_name=="")
-			$property_name='New property';
+			{
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+			$output['PROPERTY_NAME'] =$current_property_details->get_property_name($propertyUid);
+			}
 
 		if (!empty($features_list) )
 			$features_list=array_merge($features_list,$pid);
