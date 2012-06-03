@@ -319,22 +319,31 @@ class j04200editproperty {
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),'');
 		$usersProperties=$thisJRUser->authorisedPropertyDetails;
 
-		if (!function_exists('botJRHP') && !JOMRES_SINGLEPROPERTY && count($usersProperties) > 1)
-			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken().""),'');
-		else
-			{
-			if (JOMRES_GUESTLIMIT==50)
-				$output['DELETEWARNING']=_JOMRES_EDITPROPERTY_CONNOTDELETE1." "._JOMRES_EDITPROPERTY_CONNOTDELETE2;
-			else
-				$output['DELETEWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_CONNOTDELETE1',_JOMRES_EDITPROPERTY_CONNOTDELETE1);
-			}
+		//if (!function_exists('botJRHP') && !JOMRES_SINGLEPROPERTY && count($usersProperties) > 1)
+		//	$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken().""),'');
+		//else
+		//	{
+		//	if (JOMRES_GUESTLIMIT==50)
+		//		$output['DELETEWARNING']=_JOMRES_EDITPROPERTY_CONNOTDELETE1." "._JOMRES_EDITPROPERTY_CONNOTDELETE2;
+		//	else
+		//		$output['DELETEWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_CONNOTDELETE1',_JOMRES_EDITPROPERTY_CONNOTDELETE1);
+		//	}
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
 		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_PROPERTYS',_JOMRES_COM_MR_VRCT_TAB_PROPERTYS);
 		$output['IMAGE']=$propertyImageLocation;
-		if ($propertyImageLocation!="")
-			$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=property&no_html=1&itemUid=".$propertyUid."$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
+		if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$propertyUid."_property_".$propertyUid.".jpg"))
+			{
+			
+			$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL.'&task=dropImage&imageType=property&no_html=1&itemUid='.$propertyUid).'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
+			$delimg_output = array();
+			$delimg_rows = array();
+			$delimg_output['IMAGE']=$propertyImageLocation;
+			$delimg_output['DELETEIMAGE_LINK']=jomresURL(JOMRES_SITEPAGE_URL.'&task=dropImage&imageType=property&no_html=1&itemUid='.$propertyUid);
+			$delimg_output['DELETEIMAGE_TEXT']=jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE,false);
+			$delimg_rows[]=$delimg_output;
+			}
 		$output['UPLOADIMAGE']=jr_gettext('_JOMRES_UPLOAD_IMAGE',_JOMRES_UPLOAD_IMAGE,FALSE);
 
 		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
@@ -349,6 +358,7 @@ class j04200editproperty {
 		else
 			$tmpl->readTemplatesFromInput( 'edit_property.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'delimg_rows',$delimg_rows);
 		if ($jrConfig['useGlobalPFeatures']=="1")
 			$tmpl->addRows( 'globalPfeatures',$globalPfeatures);
 		$tmpl->displayParsedTemplate();

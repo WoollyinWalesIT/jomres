@@ -16,14 +16,18 @@
 	<tr>
 		<td colspan="2"></td>
 	</tr>
-	<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone" unusedvars="nbsp">
+	
+	<patTemplate:tmpl name="reason_output" type="simpleCondition" requiredVars="reason">
 	<tr>
 		<td valign="top">Reason</td>
 		<td><textarea cols="30" rows="2" name="bbReason"></textarea></td>
 	</tr>
+	</patTemplate:tmpl>
 </table>
+
 <br />
 <table width="100%" border="0" class="ui-widget-content ui-corner-all">
+	<patTemplate:tmpl name="rowsheader" type="simpleCondition" requiredVars="totalinlistplusone" unusedvars="nbsp">
 	<tr>
 		<th class="ui-state-default"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
 		<th class="ui-state-default">Room number/name</th>
