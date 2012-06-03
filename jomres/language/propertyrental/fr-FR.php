@@ -1808,3 +1808,5 @@ define('COMMON_CLOSE',"Close");
 define('COMMON_BACK',"Back");
 
 define('COMMON_HOME',"Home");
+
+define('COMMON_NEW',"New");
