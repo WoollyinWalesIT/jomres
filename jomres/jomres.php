@@ -1123,16 +1123,16 @@ function removeBOM($str="")
 		// however the shorten multiple whitespace sequences breaks the included javascript
 		// Nevertheless, without it an example page is shortened from 1746 lines to 1182, as it is, we are removing a significant amount of whitespace.
 		
-		$search = array(
-			'/\>[^\S ]+/s', //strip whitespaces after tags, except space
-			'/[^\S ]+\</s' //strip whitespaces before tags, except space
-			);
-		$replace = array(
-			'>',
-			'<',
-			'\\1'
-			);
-		$str = preg_replace($search, $replace, $str);
+		// $search = array(
+			// '/\>[^\S ]+/s', //strip whitespaces after tags, except space
+			// '/[^\S ]+\</s' //strip whitespaces before tags, except space
+			// );
+		// $replace = array(
+			// '>',
+			// '<',
+			// '\\1'
+			// );
+		// $str = preg_replace($search, $replace, $str);
 		}
 	return $str;
 	}
