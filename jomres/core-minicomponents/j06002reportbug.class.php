@@ -180,9 +180,10 @@ class j06002reportbug {
 			
 			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
-			$jrtb .= $jrtbar->customToolbarItem("SEND",jomresURL(JOMRES_SITEPAGE_URL."&task=sendbug&currentPage=$currentPage"),$text="Send Bug",$submitOnClick=true,$submitTask="sendbug",$image);
+			$jrtb .= $jrtbar->customToolbarItem("SEND",jomresURL(JOMRES_SITEPAGE_URL_NOSEF."&task=sendbug&currentPage=$currentPage"),$text="Send Bug",$submitOnClick=true,$submitTask="sendbug",$image);
 			$jrtb .= $jrtbar->endTable();
 
+			$output['SEND_URL']=JOMRES_SITEPAGE_URL."&task=sendbug&currentPage=$currentPage"; 
 			$output['SENDBUTTON']=$jrtb;
 			$output['DEBUGINFO']=$debug;
 			$output['ADMINEMAIL']=$jomresConfig_mailfrom;
@@ -190,8 +191,6 @@ class j06002reportbug {
 			$output['_JOMRES_DEBUGGING_FULLNAME']=_JOMRES_DEBUGGING_FULLNAME;
 			$output['_JOMRES_DEBUGGING_YOUREMAIL']=_JOMRES_DEBUGGING_YOUREMAIL;
 			$output['_JOMRES_DEBUGGING_ISSUE']=_JOMRES_DEBUGGING_ISSUE;
-
-			$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'" />';
 
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
