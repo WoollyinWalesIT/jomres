@@ -166,12 +166,14 @@ class j04010editroom {
 			}
 		else
 			{
+			$output=array();
+			$pageoutput=array();
+			
 			$query = "SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 			$original_room_classes_uid =doSelectSql($query,1);
 			$query = "SELECT max_people FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."'";
 			$max_people =doSelectSql($query,1);
-			
-			echo '<form action="'.JOMRES_SITEPAGE_URL.'" method="post" name="adminForm">';
+
 			$query = "SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 AND `srp_only` = '1'  ORDER BY room_class_abbv ";
 			$roomClasses=doSelectSql($query);
 			$dropDownList ="<select class=\"inputbox\" name=\"roomClass\">";
@@ -186,20 +188,25 @@ class j04010editroom {
 				
 				}
 			$dropDownList.="</select>";
-			
-			
-			
+
 			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoom');
 			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
 			$jrtb .= $jrtbar->endTable();
 			
-			echo $jrtb." "._JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO." ".$dropDownList;
-			echo ' '.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE).'<input type="text" class="inputbox" size="18" name="max_people" value="'.$max_people.'" />';
-			echo '<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
-			echo '<input type="hidden" name="task" value="saveRoom" />';
-			echo '</form><br/>';
+			$output['_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO',_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE);
+			$output['DROPDOWNLIST']=$dropDownList;
+			$output['JOMRESTOOLBAR']=$jrtb;
+			$output['MAX_PEOPLE']=$max_people;
+			
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			$tmpl->readTemplatesFromInput( 'edit_SRP_propertytype.html');
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->displayParsedTemplate();
 			}
 		}
 
