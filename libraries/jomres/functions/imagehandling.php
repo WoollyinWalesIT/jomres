@@ -90,6 +90,7 @@ function batchUploadForm()
 				$r['IMAGEOUTPUT']= $thumb;
 			else
 				$r['IMAGEOUTPUT']=$r['IMAGEPATH'].$r['IMAGENAME'];
+			$r['COUNT']=count($rows);
 			$r['CHECKBOX']='<input type="checkbox" id="cb'.count($rows).'" name="idarray[]" value="'.$r['IMAGENAME'].'">';
 			$rows[]=$r;
 			}
