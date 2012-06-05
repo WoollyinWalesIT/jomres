@@ -2788,7 +2788,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 
 	});
 	</script>
-	<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly"/>
+	<input type="text" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" class="input_40perc" />
 	';
 
 	$pageoutput[]=array("INPUT"=>$output,"CHECKBOX"=>$clear_checkbox_js);

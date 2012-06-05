@@ -1,0 +1,29 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+	jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#room_features').dataTable({
+	"bJQueryUI": true,
+	"bStateSave": true,
+	"sPaginationType": "full_numbers"
+	});
+} );
+</script>
+<h2>{PAGETITLE}</h2>
+<table class="table table-condensed" id="room_features">
+	<thead>
+		<tr>
+			<th>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK}</th>
+			<th>{_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{BUTTONS}</td>
+			<td>{FEATURE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+
+</patTemplate:tmpl>
