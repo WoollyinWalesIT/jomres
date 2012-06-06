@@ -26,7 +26,7 @@ class j02265viewbookingnotes {
 	 * Constructor: Constructs the javascript tab booking details page
 	#
 	 */
-	function j02265viewbookingnotes()
+	function j02265viewbookingnotes($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -54,7 +54,7 @@ class j02265viewbookingnotes {
 				{
 				$r['NOTE']=$d->note;
 				$r['DATETIME']=$d->timestamp;
-				$r['EDITLINK']=JOMRES_SITEPAGE_URL_NOSEF."&task=editnote&note_id=".$d->id;
+				$r['EDITLINK']=JOMRES_SITEPAGE_URL_NOSEF."&task=editnote&note_id=".$d->id."contract_uid=".(int)$componentArgs['booking_contract_uid'];
 				$r['EDITTEXT']=jr_gettext('_JOMCOMP_BOOKINGNOTES_EDIT',_JOMCOMP_BOOKINGNOTES_EDIT,$editable=false,$isLink=true);
 				$r['DELETELINK']=JOMRES_SITEPAGE_URL_NOSEF.'&task=deletenote&note_id='.$d->id.'&contract_uid='.$contract_uid;
 				$r['DELETETEXT']=jr_gettext('_JOMCOMP_BOOKINGNOTES_DELETE',_JOMCOMP_BOOKINGNOTES_DELETE,$editable=false,$isLink=true);
