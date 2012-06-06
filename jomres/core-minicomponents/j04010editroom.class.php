@@ -135,8 +135,18 @@ class j04010editroom {
 			$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 
 			$output['IMAGE']=$roomImageLocation;
-			if ($roomImageLocation!="")
+			
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$roomUid.".jpg"))
+				{
 				$output['DELETEIMAGE']	='<a href="'. jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=room&itemUid=$output[ROOMUID]").'">'.jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE).'</a>';
+				
+				$delimg_rows=array();
+				$delimg=array();
+				$delimg['DELETEIMAGE_LINK']	=jomresURL(JOMRES_SITEPAGE_URL."&task=dropImage&imageType=room&itemUid=$output[ROOMUID]");
+				$delimg['DELETEIMAGE_TEXT']	=jr_gettext('_JOMRES_FILE_DELETE',_JOMRES_FILE_DELETE);
+				$delimg['IMAGE']	=$output['IMAGE'];
+				$delimg_rows[]=$delimg;
+				}
 
 			$output['UPLOADIMAGE']		=jr_gettext('_JOMRES_UPLOAD_IMAGE',_JOMRES_UPLOAD_IMAGE,FALSE);
 			$output['PAGETITLE']			=jr_gettext('_JOMRES_COM_MR_VRCT_TAB_ROOM',_JOMRES_COM_MR_VRCT_TAB_ROOM);
@@ -162,6 +172,7 @@ class j04010editroom {
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 			$tmpl->readTemplatesFromInput( 'edit_room.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->addRows( 'delimg_rows',$delimg_rows);
 			$tmpl->displayParsedTemplate();
 			}
 		else
