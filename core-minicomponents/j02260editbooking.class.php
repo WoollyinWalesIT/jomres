@@ -332,7 +332,7 @@ class j02260editbooking {
 			$jrtb .= $jrtbar->endTable();
 			
 			$output=array();
-			$pagetoutput=array();
+			$pageoutput=array();
 			
 			$output['_JOMRES_BOOKING_NUMBER']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,$editable=true,$isLink=false);
 			$output['BOOKING_NUMBER']=$booking_tag;
@@ -349,7 +349,7 @@ class j02260editbooking {
 			}
 
 		$output=array();
-		$pagetoutput=array();
+		$pageoutput=array();
 		
 		if ($mrConfig['wholeday_booking'] == "1")
 			{
@@ -375,7 +375,7 @@ class j02260editbooking {
 		$output['BOOKING_DEPARTURE']=outputDate($booking_departure);
 		
 		$output['_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
-		$output['EMAIL_LINK']='<a href="mailto:'.$guest_email.'?subject='.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag.' @ '.$property_name.'&body='.jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR,false).ucfirst($guest_firstname).' '.ucfirst($guest_surname).' RE '.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag;
+		$output['EMAIL_LINK']='mailto:'.$guest_email.'?subject='.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag.' @ '.$property_name.'&body='.jr_gettext('_JOMRES_COM_CONFIRMATION_DEAR',_JOMRES_COM_CONFIRMATION_DEAR,false).ucfirst($guest_firstname).' '.ucfirst($guest_surname).' RE '.jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE).' '.$booking_tag;
 		$output['EMAIL_ADDRESS']=$guest_email;
 		
 		$output['_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ',_JOMRES_COM_MR_EB_ROOM_BOOKINGSPECIALREQ);
@@ -389,7 +389,7 @@ class j02260editbooking {
 		$arrdep_template = $tmpl->getParsedTemplate();
 		
 		$output=array();
-		$pagetoutput=array();
+		$pageoutput=array();
 		
 		$output['_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_HOUSE_EXPL);
 		$output['GUEST_HOUSE']=$guest_house;
@@ -591,8 +591,6 @@ class j02260editbooking {
 		$tmpl->addRows( 'guest_type_rows',$guest_type_rows);
 		$tmpl->addRows( 'other_services_rows',$other_services_rows);
 		$payment_template = $tmpl->getParsedTemplate();
-		
-
 
 		$componentArgs = null;
 		$notes=$MiniComponents->triggerEvent('02265',$componentArgs);
