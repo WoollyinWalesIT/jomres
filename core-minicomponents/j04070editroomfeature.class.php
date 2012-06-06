@@ -34,7 +34,7 @@ class j04070editroomfeature {
 			{
 			$this->template_touchable=true; return;
 			}
-		$featureUid = jomresGetParam( $_REQUEST, 'featureUid',	"" );
+		$featureUid = jomresGetParam( $_REQUEST, 'featureUid',	0 );
 		$clone		= intval( jomresGetParam( $_REQUEST, 'clone',	FALSE ) );
 		$defaultProperty=getDefaultProperty();
 		if ($featureUid!="")
@@ -67,7 +67,7 @@ class j04070editroomfeature {
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','',$saveText,true,'saveRoomFeature');
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),$cancelText);
-		if (!$clone)
+		if (!$clone && $featureUid)
 			$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteRoomFeature".jomresURLToken()."&roomFeatureUid=".$featureUid.""),$deleteText);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;

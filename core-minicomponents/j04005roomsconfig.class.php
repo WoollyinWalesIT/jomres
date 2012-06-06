@@ -55,8 +55,6 @@ class j04005roomsconfig {
 		
 		$propertyRowInfo="";
 
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
-
 		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."' ORDER BY room_number ";
 		$roomsList =doSelectSql($query);
 
@@ -146,10 +144,10 @@ class j04005roomsconfig {
 				$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomType->room_classes_uid,		stripslashes($roomType->room_class_abbv),false,false);
 						
 				$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
-				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 150, 1, "numberofRooms[$roomtype_id]", 'size="1" class="inputbox"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
-				$r['ROOMRATEPERDAY']='<input class="inputbox" style="text-align:right" size="4" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
-				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'size="1" class="inputbox"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
-				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'size="1" class="inputbox"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
+				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 150, 1, "numberofRooms[$roomtype_id]", 'size="1" class="input_40perc"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
+				$r['ROOMRATEPERDAY']='<input class="input_20perc"  style="text-align:right" size="4" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
+				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'size="1" class="input_40perc"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
+				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'size="1" class="input_40perc"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
 				$existingrooms="";
 				$counter=1;
 				$numberOfExistingRooms=count($roomTypesArray[$roomType->room_classes_uid]['existingrooms']);
@@ -192,7 +190,7 @@ class j04005roomsconfig {
 				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK;
 			else
 				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY;
-			$output['ROOMRATEPERDAY']='<input class="inputbox" style="text-align:right" size="4" type="text" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
+			$output['ROOMRATEPERDAY']='<input class="input_10perc" style="text-align:right" type="text" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
 			$output['MAX_PEOPLE']='<input class="inputbox" style="text-align:right" size="4" type="text" name="max_people" value="'.$roomTypesArray[$type_id]['max_people'].'" />';
 			$rows=array();
 			foreach ($roomsClassList as $roomType) // First we need to gather some information about tariffs & rooms
