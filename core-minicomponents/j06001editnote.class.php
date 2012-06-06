@@ -30,13 +30,14 @@ class j06001editnote {
 		$pageoutput=array();
 		$output=array();
 		$note_id				= jomresGetParam( $_REQUEST, 'note_id', 0 );
+		$contract_uid			= jomresGetParam( $_REQUEST, 'contract_uid', 0 );
 		if ($note_id==0)
 			return;
 
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		$jrtb .= $jrtbar->toolbarItem('save','','',true,'savenote');
-		$jrtb .= $jrtbar->toolbarItem('cancel','javascript:window.close();','');
+		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$contract_uid),'');
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -45,7 +46,7 @@ class j06001editnote {
 		$output['HNEWTEXT']=jr_gettext('_JOMCOMP_BOOKINGNOTES_EDIT',_JOMCOMP_BOOKINGNOTES_EDIT);
 		$output['NOTE_ID']= $note_id;
 
-		$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'"><input type="hidden" name="no_html" value="1"/>';
+		$output['JOMRESTOKEN'] ='<input type="hidden" name="no_html" value="1"/>';
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		
 		$pageoutput[]=$output;

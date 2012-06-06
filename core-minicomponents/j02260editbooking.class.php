@@ -592,7 +592,7 @@ class j02260editbooking {
 		$tmpl->addRows( 'other_services_rows',$other_services_rows);
 		$payment_template = $tmpl->getParsedTemplate();
 
-		$componentArgs = null;
+		$componentArgs = array("booking_contract_uid"=>$booking_contract_uid);
 		$notes=$MiniComponents->triggerEvent('02265',$componentArgs);
 		
 		

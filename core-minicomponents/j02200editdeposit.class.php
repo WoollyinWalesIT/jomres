@@ -36,11 +36,11 @@ class j02200editdeposit {
 			$this->template_touchable=false; return;
 			}
 		$mrConfig=getPropertySpecificSettings();
-		$contractUid=jomresGetParam( $_REQUEST, 'contractUid',0 );
-		if ($contractUid>0)
+		$contract_uid=jomresGetParam( $_REQUEST, 'contractUid',0 );
+		if ($contract_uid>0)
 			{
 			$defaultProperty=getDefaultProperty();
-			$query="SELECT guest_uid,deposit_required,contract_total,tag FROM #__jomres_contracts WHERE contract_uid = '".(int)$contractUid."' AND property_uid = '".(int)$defaultProperty."'";
+			$query="SELECT guest_uid,deposit_required,contract_total,tag FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' AND property_uid = '".(int)$defaultProperty."'";
 			$depositList =doSelectSql($query,2);
 			$guestUid=$depositList['guest_uid'];
 			$contract_total=$depositList['contract_total'];
@@ -54,12 +54,12 @@ class j02200editdeposit {
 			$output['BOOKINGNUMBER']	=$tag;
 			$output['CONTRACT_TOTAL']	=output_price($contract_total);
 			$output['DEPOSITREQUIRED']	=output_price($depositRequired);
-			$output['CONTRACTUID']		=$contractUid;
+			$output['CONTRACTUID']		=$contract_uid;
 
 			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveDeposit');
-			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=listNewBookings"),'');
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".$contract_uid),'');
 			$jrtb .= $jrtbar->endTable();
 			$output['JOMRESTOOLBAR']=$jrtb;
 
