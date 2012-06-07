@@ -442,17 +442,6 @@ class j02990showconfirmation {
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
-		if (!$userIsManager&& isset($MiniComponents->registeredClasses['06000show_cart']) )
-			{
-			
-			if ($paypal_settings->paypalConfigOptions['override'] == "1" && $jrConfig['useshoppingcart'] == "1")
-				{
-				
-				$booking_parts['_JOMRES_CART_OR']			=jr_gettext('_JOMRES_CART_OR',_JOMRES_CART_OR);
-				$booking_parts['_JOMRES_SAVEFORLATER']		='<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false).'" class="button" onclick="return confirmation_validate(true);" />';
-				}
-			}
-
 		$booking_parts['THEBUTTON']			=	jr_gettext('_JOMRES_COM_MR_CONFIRMBOOKING',_JOMRES_COM_MR_CONFIRMBOOKING,false);
 
 		$booking_parts['HFIRSTNAME']		=	jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME',_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME);
@@ -531,7 +520,19 @@ class j02990showconfirmation {
 		$booking_parts['PROCESSURL_SAVETOCART']=JOMRES_SITEPAGE_URL.'&task=save_booking_to_cart';
 		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
 		
-		
+		if (!$userIsManager&& isset($MiniComponents->registeredClasses['06000show_cart']) )
+			{
+			
+			if ( ($paypal_settings->paypalConfigOptions['override'] == "1" && $jrConfig['useshoppingcart'] == "1") || count($gatewayDeets) == 0)
+				{
+				
+				$booking_parts['_JOMRES_CART_OR']			=jr_gettext('_JOMRES_CART_OR',_JOMRES_CART_OR);
+				$booking_parts['_JOMRES_SAVEFORLATER']		='<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false).'" class="button" onclick="return confirmation_validate(true);" />';
+				$cartoutput = array();
+				$cartoutput[] = array("_JOMRES_SAVEFORLATER"=>jr_gettext('_JOMRES_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false),"_JOMRES_CART_OR"=>$booking_parts['_JOMRES_CART_OR']);
+				
+				}
+			}
 		// v 4.5.7 stripping out the room specific stuff into a new array.
 		
 		if (get_showtime('include_room_booking_functionality'))
@@ -570,6 +571,7 @@ class j02990showconfirmation {
 		$tmpl->addRows( 'booking_extras', $booking_extras);
 		$tmpl->addRows( 'booking_extratext', $extrastext);
 		$tmpl->addRows( 'booking_rooms', $booking_rooms);
+		$tmpl->addRows( 'cartoutput', $cartoutput);
 		if (isset($gatewayDeets) && count($gatewayDeets)>0)
 			{
 			$tmpl->addRows( 'gateways', $gateways );
