@@ -159,7 +159,8 @@ class jomres_temp_booking_handler
 		);
 		$this->user_settings = array(
 			"editing_on" => false,
-			"property_management_view" => false
+			"property_management_view" => false,
+			"last_viewed_property_uid" => 0
 		);
 
 		$this->customFieldValues = array();

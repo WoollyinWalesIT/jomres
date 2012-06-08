@@ -1821,3 +1821,11 @@ define('COMMON_BACK',"Back");
 define('COMMON_HOME',"Home");
 
 define('COMMON_NEW',"New");
+
+define('COMMON_SEND',"Send");
+
+define('RECAPTCHA_TITLE',"reCaptcha");
+define('RECAPTCHA_INFO',"Captcha is used to ensure that the client using web forms is a human being, and is used to prevent Property Managers from being \"spammed\" by robots on the internet. To use the Contact Us form in Jomres you will need to register at <a href=\"http://www.google.com/recaptcha\" target=\"_blank\">the Google reCaptcha</a> home page and set your domain to receive your public and private keys. When you have received those keys, please enter them below. The reCapcha service is a free service provided by Google.");
+define('RECAPTCHA_PUBLIC_KEY',"Public key");
+define('RECAPTCHA_PRIVATE_KEY',"Private key");
+
