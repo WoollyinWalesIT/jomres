@@ -12,30 +12,30 @@ function validateContactForm()
 
 	if ( document.regForm.guest_name.value == "" )
 		{
-		document.regForm.guest_name.className="REmail";
+		document.regForm.guest_name.className="alert-error";
 		valid = false;
 		}
 	if ( document.regForm.enquiry.value == "" )
 		{
-		document.regForm.enquiry.className="REmail";
+		document.regForm.enquiry.className="alert-error";
 		valid = false;
 		}
 	if ( document.regForm.hncaptcha_private_key.value == "" )
 		{
-		document.regForm.hncaptcha_private_key.className="REmail";
+		document.regForm.hncaptcha_private_key.className="alert-error";
 		valid = false;
 		}
 	
 	var emailID=document.regForm.guest_email
 	if ((emailID.value==null)||(emailID.value=="")){
-		document.regForm.guest_email.className="REmail";
+		document.regForm.guest_email.className="alert-error";
 		emailID.focus()
 		valid = false;
 		}
 	else
 		{
 		if (echeck(emailID.value)==false){
-			document.regForm.guest_email.className="REmail";
+			document.regForm.guest_email.className="alert-error";
 			emailID.value=""
 			emailID.focus()
 			 valid = false;
@@ -92,24 +92,43 @@ function echeck(str) {
 	}
 //-->
 </script>
-{FORMSTART}
 <h2>{SUBJECT}</h2>
-<table class="ui-widget-content ui-corner-all" width="100%" border="0">
-	<tr>
-		<td width="30%">{HNAME}</td>
-		<td><input class="inputbox" type="text" size="40" name="guest_name" value="{GUEST_NAME}" /></td>
-	</tr>
-	<tr>
-		<td>{HEMAIL}</td>
-		<td><input class="inputbox" type="text" size="40" name="guest_email" value="{GUEST_EMAIL}" type="email" /></td>
-	</tr>
-	<tr>
-		<td>{HENQUIRY}</td>
-		<td><textarea class="inputbox" cols="40" rows="5" name="enquiry">{ENQUIRY}</textarea></td>
-	</tr>
-</table>
-{JOMRESTOKEN}
-{CAPTCHA}
+<form name="regForm" action="{JOMRES_SITEPAGE_URL_NOSEF}&task=contactowner" method="POST" class="well form-horizontal">
+<label></label>
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="guest_name">{HNAME}</label>
+			<div class="controls">
+				<input class="inputbox" type="text" size="40" name="guest_name" value="{GUEST_NAME}" />
+			</div> 
+		</div> 
+		<div class="control-group">
+		<label class="control-label" for="guest_email">{HEMAIL}</label>
+			<div class="controls">
+				<input class="inputbox" type="text" size="40" name="guest_email" value="{GUEST_EMAIL}" type="email" />
+			</div> 
+		</div> 
+		<div class="control-group">
+		<label class="control-label" for="enquiry">{HENQUIRY}</label>
+			<div class="controls">
+				<textarea class="inputbox" cols="40" rows="5" name="enquiry">{ENQUIRY}</textarea>
+			</div> 
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				{CAPTCHA}
+			</div>
+		</div>
+		
+		<div class="form-actions">
+			<div class="btn-group">
+				<a href="{JOMRES_SITEPAGE_URL_NOSEF}&task=viewproperty&property_uid={COMMON_LAST_VIEWED_PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="submit" class="btn btn-primary">{COMMON_SEND} <i class="icon-arrow-right icon-white"></i> </button>
+			</div>
+		</div>
+	</fieldset>
+
+
 <input type="hidden" name="property_uid" value="{PROPERTY_UID}" />
 </form>
 </patTemplate:tmpl>

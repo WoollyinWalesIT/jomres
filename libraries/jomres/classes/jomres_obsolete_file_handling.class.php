@@ -516,6 +516,12 @@ class jomres_obsolete_file_handling
 		
 		
 		$this->add_obs_file($this->dir_minicomponents.'j01009filterproperties.class.php');
+		
+		$this->add_obs_file($this->dir_libraries.'hn_captcha'.JRDS.'fonts'.JRDS.'abbeymediumextended.ttf');
+		$this->add_obs_file($this->dir_libraries.'hn_captcha'.JRDS.'hn_captcha.class.php');
+		$this->add_obs_file($this->dir_libraries.'hn_captcha'.JRDS.'hn_captcha.class-php5.php');
+		$this->add_obs_file($this->dir_libraries.'hn_captcha'.JRDS.'index.html');
+		
 		}
 	
 	function add_obs_file($path_and_file)

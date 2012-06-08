@@ -1070,6 +1070,35 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			$contentPanel->insertContent();
 			$contentPanel->endPanel();
 			}
+			
+			$contentPanel->startPanel(RECAPTCHA_TITLE);
+			$contentPanel->setcontent('
+			<table  class="jradmin_table" border="0">
+				<tr valign="middle">
+					<td valign="top" colspan="3">'.RECAPTCHA_INFO.'</td>
+				</tr>
+				<tr valign="middle">
+					<th width="20%" class="ui-state-default">&nbsp;</th>
+					<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+					<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
+				</tr>
+				<tr valign="middle" class="odd">
+					<td valign="middle">'.RECAPTCHA_PUBLIC_KEY.'</td>
+					<td valign="middle"><input type="text" class="inputbox" name="cfg_recaptcha_public_key" value="'.$jrConfig['recaptcha_public_key'].'" /></td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="even">
+					<td valign="middle">'.RECAPTCHA_PRIVATE_KEY.'</td>
+					<td valign="middle"><input type="text" class="inputbox" name="cfg_recaptcha_private_key" value="'.$jrConfig['recaptcha_private_key'].'" /></td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle">
+					<th colspan="3">&nbsp;</th>
+				</tr>
+				</table>');
+			$contentPanel->insertContent();
+			$contentPanel->endPanel();
+			
 		$contentPanel->endTabs();
 		?>
 

@@ -149,7 +149,11 @@ class j06000show_property_reviews
 					
 					$r['REPORT_REVIEWLINK'] = "";
 					if ($thisJRUser->userIsRegistered)
+						{
 						$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
+						$r['REPORT_URL']=jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']);
+						$r['REPORT_TEXT']=$r['_JOMRES_REVIEWS_REPORT_REVIEW'];
+						}
 					
 					$confirm_states = $Reviews->showConfirm($review['rating_id']);
 					

@@ -230,13 +230,21 @@ if ( (isset($property_uid) && !empty($property_uid) ) || ( isset($selectedProper
 if ($property_uid > 0)
 	{
 	set_showtime('property_uid',$property_uid);
-	$tmpBookingHandler->saveBookingData();
+	
 	$pdeets=getPropertyAddressForPrint($property_uid);
 	$thisJomresPropertyDetails=$pdeets[3];
 	$published=$thisJomresPropertyDetails['published'];
 	set_showtime('this_property_published',$published);
 	if (get_showtime('task') == "viewproperty")
+		{
 		set_showtime('last_viewed_property_uid',$property_uid); // showtime's property_uid variable can change, for example in the property list the property uid will change while the system is viewing different properties and finding language strings for each. We'll set a specific variable here that can be reliably be used to take the user back to the last viewed property. Typically for cancel buttons, we can use the patTemplate common definition COMMON_LAST_VIEWED_PROPERTY_UID to allow cancel buttons to take us back to the last viewed property without having to specifically code for it in the script calling the template.
+		$tmpBookingHandler->user_settings['last_viewed_property_uid']=$property_uid;
+		}
+	else
+		{
+		set_showtime('last_viewed_property_uid',$tmpBookingHandler->user_settings['last_viewed_property_uid']);
+		}
+	$tmpBookingHandler->saveBookingData();
 	}
 
 // Getting the language file
