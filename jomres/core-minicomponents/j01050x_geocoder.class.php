@@ -63,6 +63,13 @@ class j01050x_geocoder {
 			$output['MAP_HEIGHT']=(int)$componentArgs['height'];
 			}
 		
+		if (_JOMRES_MOBILE)
+			{
+			$output['MAP_WIDTH'] = $output['MAP_WIDTH'] / 2;
+			$output['MAP_HEIGHT'] = $output['MAP_HEIGHT'] / 2;
+			}
+		
+		
 		if ($property_uid == 999999999)
 			{
 			$output['LAT']=$jrConfig['default_lat'];
