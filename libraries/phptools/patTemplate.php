@@ -836,7 +836,12 @@ class patTemplate
 		$common_strings['COMMON_BACK']=jr_gettext('COMMON_BACK',COMMON_BACK,false);
 		$common_strings['COMMON_HOME']=jr_gettext('COMMON_HOME',COMMON_HOME,false);
 		$common_strings['COMMON_NEW']=jr_gettext('COMMON_NEW',COMMON_NEW,false);
+		$common_strings['COMMON_SEND']=jr_gettext('COMMON_SEND',COMMON_SEND,false);
+
 		$common_strings['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
+		$common_strings['JOMRES_SITEPAGE_URL_NOSEF']=JOMRES_SITEPAGE_URL_NOSEF;
+		$common_strings['LIVE_SITE']=get_showtime("live_site");
+		$common_strings['COMMON_LAST_VIEWED_PROPERTY_UID']=get_showtime('last_viewed_property_uid');
 
 		return $common_strings;
 		}
