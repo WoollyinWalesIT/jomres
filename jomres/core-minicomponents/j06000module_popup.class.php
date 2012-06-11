@@ -126,7 +126,7 @@ class j06000module_popup
 			else
 				$output['HFEATURES']	=	"";
 			
-			$componentArgs=array('property_uid'=>$property_uid,"width"=>'320',"height"=>'214');
+			$componentArgs=array('property_uid'=>$property_uid,"width"=>'200',"height"=>'214');
 			$MiniComponents->specificEvent('01050','x_geocoder',$componentArgs);
 			$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
 			
