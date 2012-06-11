@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" ><table class="table table-condensed">
+	<thead>
+		<tr>
+			<td>
+				{HNUMBEROFROOMS}
+			</td>
+			<td>
+				{HROOM_TYPE_TEXT}
+			</td>
+			<td>
+				{HTARIFF_NAME_TEXT}
+			</td>
+			<td class="hidden-phone">
+				{HGUESTPER_ROOM}
+			</td>
+			<td class="hidden-phone">
+				{HGUESTPER_BOOKING}
+			</td>
+			<td>
+				{HRATE_TEXT}
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" >
+		<tr>
+			<td>
+				{NUMBEROFROOMS}
+			</td>
+			<td>
+				{ROOM_TYPE_TEXT}
+			</td>
+			<td>
+				{TARIFF_NAME_TEXT}
+			</td>
+			<td class="hidden-phone">
+				{GUESTPER_ROOM}
+			</td>
+			<td class="hidden-phone">
+				{GUESTPER_BOOKING}
+			</td>
+			<td>
+				{RATE_TEXT}
+			</td>
+		</tr>
+	</tbody>
+	</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
