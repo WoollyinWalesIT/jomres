@@ -3749,19 +3749,16 @@ class dobooking
 				$roomTariffOutputText=$result['roomandtariffinfo'];
 				$roomDeets[] = $this->makeRoomOverlibdata( $currentUids[0],$currentUids[1],$roomTariffOutputId,$roomTariffOutputText,true);
 				}
-			//foreach ($roomDeets as $rm)
-			//	{
-				$pageoutput = array();
-				$output = $tariff_headers_array;
-				
-				$pageoutput[]=$output;
-				$tmpl = new patTemplate();
-				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-				$tmpl->addRows( 'pageoutput',$pageoutput);
-				$tmpl->addRows( 'rows',$roomDeets);
-				$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist.html');
-				$template_output = $tmpl->getParsedTemplate();
-				$return_output .=$template_output;
+			$pageoutput = array();
+
+			$pageoutput[]=$tariff_headers_array;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->addRows( 'rows',$roomDeets);
+			$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist.html');
+			$template_output = $tmpl->getParsedTemplate();
+			$return_output .=$template_output;
 					
 				//$return_output .= $rm;
 			//	}
@@ -4397,9 +4394,6 @@ class dobooking
 	 */
 	function generateRoomsList($roomAndTariffArray)
 		{
-		// Depreciated in 6.6.6
-		//$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table valign="top" width="100%" border="0">';
-		
 		$return_output='<div id="roombuttoncontainer2"><div id="roombutton">';
 		if ((int)$this->cfg_returnRoomsLimit > 0 && $this->cfg_booking_form_rooms_list_style == "1")
 			{
@@ -4407,11 +4401,8 @@ class dobooking
 			$roomAndTariffArray=$this->limitRoomsList($roomAndTariffArray);
 			}
 		$this->setErrorLog("generateRoomsList::Generating rooms list");
-		
-		// Depreciated in 6.6.6
-		// $return_output .= $this->makeTariffHeaders();
+
 		$tariff_headers_array = $this->makeTariffHeaders();
-		
 		if ($this->checkArrivalDate($this->arrivalDate) )
 			{
 			if (count($roomAndTariffArray)>0 )
@@ -4437,7 +4428,6 @@ class dobooking
 				$roomDeets=array();
 				$roomUidArray=array();
 				$tariffUidArray=array();
-				$counter=0;
 				$roomDeets=array();
 				$number = count($roomAndTariffArray);
 				for ($i=0;$i<$number;$i++)
@@ -4457,14 +4447,6 @@ class dobooking
 						if ($this->cfg_booking_form_rooms_list_style == "1")
 							{
 							$roomDeets[] = $this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
-							
-							// Depreciated in 6.6.6
-							// foreach ($roomDeets as $rm)
-								// {
-								// $return_output .= $rm;
-								// }
-								
-							
 							}
 						if ($this->cfg_booking_form_rooms_list_style == "2")
 							{
@@ -4476,7 +4458,6 @@ class dobooking
 						$return_output=jr_gettext('_JOMRES_SRP_WEHAVEVACANCIES',_JOMRES_SRP_WEHAVEVACANCIES,false,false).'<font color="white">~</font><div id="availRooms" class="roomslist"></div>';
 						$this->addToSelectedRooms($result['requestedRoom']);
 						}
-					$counter++;
 					}
 				if ($this->cfg_singleRoomProperty == "0" )
 					{
@@ -4610,8 +4591,6 @@ class dobooking
 	if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
 		$gpb_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false);
 	
-	//$return_output = '<table width="100%" style="text-align:center;"><tr><td>'.$nor.'</td><td>'.$rmtype_text.'</td><td>'.$tariffname_text.'</td><td>'.$gpr_text.'</td>'.$gpb_text.'<td>'.$rate_text.'</td></tr>';
-	
 	// New for 6.6.6
 	$pageoutput = array();
 	$output = array();
@@ -4626,11 +4605,6 @@ class dobooking
 	
 	foreach ($dropdown_output as $routput)
 		{
-		// $return_output .= "<tr class=\"ui-state-default\"><td>".$routput['dropdown']." </td><td> ".$routput['room_type']." </td><td> ".$routput['tariff_title']." </td><td>".$routput['max_guests_per_room']."</td>";
-		// if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-			// $return_routput .= "<td>".$routput['max_guests_per_booking']."</td>";
-		// $return_routput .= "<td>".$routput['room_price_inc_tax']."</td><tr>";
-		
 		$r = array();
 		$r['GUESTPER_ROOM']=$routput['max_guests_per_room'];
 		$r['GUESTPER_BOOKING']=$routput['max_guests_per_booking'];
@@ -4694,18 +4668,13 @@ class dobooking
 			$this->roomImagePath=JOMRES_IMAGELOCATION_RELPATH.$this->property_uid.'_room_'.$roomuid.'.jpg';
 		else
 			$this->roomImagePath=get_showtime('live_site')."/jomres/images/noimage.gif";
-		// $room_number=$this->allPropertyRooms[$roomuid]['room_number'];
-		// $room_name=$this->allPropertyRooms[$roomuid]['room_name'];
-		// $tariffTitle=$this->allPropertyTariffs[$tariffuid]['rate_title'];
+
 		$roomTariffOutputId=$roomuid."^".$tariffuid;
 		$roomTariffOutputText="";
 
 		$classId=$this->allPropertyRooms[$roomuid]['room_classes_uid'];
 
 		$this->typeImage =get_showtime('live_site').'/'.$this->allRoomClasses[$classId]['image'];
-
-		//if ($this->cfg_bookingform_roomlist_showroomno ==  "1")
-		//	$roomTariffOutputText.="<img src=\"".$typeImage."\" />";
 
 		return array('requestedRoom'=>$roomTariffOutputId, 'roomandtariffinfo'=>$roomTariffOutputText);
 		}
@@ -4737,46 +4706,8 @@ class dobooking
 		if ($this->tariffModel == "2")
 			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
 
-		// if ($roomStuff['DISABLEDACCESS'] == 1)
-			// $disabledAccess= jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
-		// else
-			// $disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO) ;
-		
 		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
 		$this->room_type_style_output[$tariffUid]['room_price_inc_tax'] = $room_price_inc_tax;
-
-		$room_imagetd="";
-		if ($this->cfg_showRoomImageInBookingFormOverlib)
-			{
-			$room_imagetd='<td><img src="'.$this->roomImagePath.'" height="30" width="30" /></td>';
-			}
-		$room_imagetypetd="";
-		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypetd='<td><img src="'.$this->typeImage.'" height="30" width="30" /></td>';
-
-		$buttonClassStuff = "";
-		if ($this->jrConfig['booking_form_lnks_as_buttons'] =="1")
-			$buttonClassStuff = ' class="fg-button ui-state-default ui-corner-all" ';
-
-		// Depreciated in 6.6.6
-		$overlib='<tr class="ui-state-default">';
-		$overlib.='<td width="120"><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );" '.$buttonClassStuff.'>'.$caption.'</a></div></td>';
-		if ($this->cfg_bookingform_roomlist_showroomno == "1")
-			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );">'.$roomStuff['ROOMNUMBER'].'</a></td>';
-		$overlib.=$room_imagetd;
-		$overlib.=$room_imagetypetd;
-		if ($this->cfg_bookingform_roomlist_showroomname == "1")
-			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMNAME'].'</a></td>';
-		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMTYPE'].'</a></td>';
-		if ($this->cfg_tariffmode != 0)
-			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
-			
-		$overlib.='<td>'.output_price($room_price_inc_tax).'</td>';
-		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
-			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
-		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['MAXPEOPLE'].'</a></td>';
-		$overlib.='</tr>';
 
 		$tariffStuff['FORMATTED_PRICE']=output_price($room_price_inc_tax);
 		$tariffStuff['ROOMTARIFFOUTPUTID']=$roomTariffOutputId;
@@ -4788,8 +4719,6 @@ class dobooking
 		if ($this->cfg_booking_form_rooms_list_style == "1")
 			{
 			return array_merge($roomStuff,$tariffStuff);
-			// Depreciated in 6.6.6
-			// return $overlib;
 			}
 
 		if ($this->cfg_booking_form_rooms_list_style == "2")
