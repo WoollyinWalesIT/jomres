@@ -673,6 +673,7 @@ class dobooking
 		{
 		$string=str_replace('"','\"',$string);
 		$string=str_replace("'","\'",$string);
+		$string=trim( preg_replace( '/\s+/', ' ', $string ));// strips carriage returns from strings generated through templates
 		return $string;
 		}
 
@@ -1008,7 +1009,7 @@ class dobooking
 					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
 					}
 				if ($ex->maxquantity > 1)
-					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="inputbox"  AUTOCOMPLETE="OFF" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d" );
+					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="input-medium"  AUTOCOMPLETE="OFF" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d" );
 
 				$extra_deets['AJAXFORM_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 				$extra_deets['AJAXFORM_EXTRAS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));
@@ -1629,7 +1630,7 @@ class dobooking
 				else
 					$defNo=0;
 				}
-			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype', 'size="1" class="inputbox" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
+			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype', 'size="1" class="input-small" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
 			$cust[]=$customerTypes;
 			}
 		return $cust;
@@ -1857,7 +1858,7 @@ class dobooking
 		$smokingOpts[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES);
 		$smokingOpts[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO);
 		$smokingOpts[] = jomresHTML::makeOption( '2', _JOMRES_FRONT_ROOMSMOKING_EITHER);
-		$smokingDropdown = jomresHTML::selectList( $smokingOpts, 'smoking', 'size="1" class="inputbox" onchange="getResponse_particulars(\'smoking\',this.value);" ', 'value', 'text', $smoking );
+		$smokingDropdown = jomresHTML::selectList( $smokingOpts, 'smoking', 'size="1" class="input-medium" onchange="getResponse_particulars(\'smoking\',this.value);" ', 'value', 'text', $smoking );
 		return $smokingDropdown;
 		}
 
@@ -2064,7 +2065,7 @@ class dobooking
 			$day++;
 			}
 		$datesListArray=$this->calcPeriods($arrivalDate);
-		$fixedPeriodDropdown='<select class="inputbox" name="arrivalDate" onchange="getResponse_particulars(\'arrival_period\',this.value)";>';
+		$fixedPeriodDropdown='<select class="input-medium" name="arrivalDate" onchange="getResponse_particulars(\'arrival_period\',this.value)";>';
 		$counter=0;
 		//$selectedDateisNthDate=1;
 		$selectedDate = $arrivalDate;
@@ -2335,7 +2336,7 @@ class dobooking
 				$step=$i*$this->cfg_fixedPeriodBookingsNumberOfDays;
 				$periods[] = jomresHTML::makeOption( $step, $step );
 				}
-			$fixedPeriodDropdown = jomresHTML::selectList( $periods, 'fixedPeriod_periodsRequested', 'size="1" class="inputbox" onchange="getResponse_particulars(\'departure_period\',this.value)";', 'value', 'text', $defaultPeriod );
+			$fixedPeriodDropdown = jomresHTML::selectList( $periods, 'fixedPeriod_periodsRequested', 'size="1" class="input-medium" onchange="getResponse_particulars(\'departure_period\',this.value)";', 'value', 'text', $defaultPeriod );
 			return $fixedPeriodDropdown;
 			}
 		}
@@ -2694,7 +2695,7 @@ class dobooking
 
 		});
 		</script>
-		<input type="text" size="10" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" autocomplete="off" />
+		<input type="text"  class="input-mini" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" autocomplete="off" />
 		';
 		return $output;
 		}
@@ -3322,7 +3323,7 @@ class dobooking
 				}
 			}
 
-		$guest_deets['COUNTRY']=createSimpleCountriesDropdown($guest_country);
+		//$guest_deets['COUNTRY']=createSimpleCountriesDropdown($guest_country);
 		$guest_deets['HFIRSTNAME']=jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME',_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME);
 		$guest_deets['HSURNAME']= jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_SURNAME',_JOMRES_FRONT_MR_DISPGUEST_SURNAME);
 		$guest_deets['HHOUSENO']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL) ;
@@ -3375,7 +3376,7 @@ class dobooking
 				//$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes($customer->surname).", ".stripslashes($customer->firstname).", ".stripslashes($customer->street).". ".stripslashes($customer->town));
 				$ec[] = jomresHTML::makeOption( $customer->guests_uid, stripslashes($customer->surname).", ".stripslashes($customer->firstname) );
 				}
-			$dropDownList = jomresHTML::selectList( $ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="inputbox"', 'value', 'text', 0 );
+			$dropDownList = jomresHTML::selectList( $ec, 'existingCustomers', ' onchange="getResponse_existing(\'existingCustomers\',this.value);" size="1" class="input-medium"', 'value', 'text', 0 );
 			}
 		return  $dropDownList;
 		}
@@ -3398,7 +3399,7 @@ class dobooking
 			{
 			$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
 			}
-		$countryDropdown= jomresHTML::selectList($thecountryCodes, 'country', ' class="inputbox"', 'value', 'text', $selectedCountry);
+		$countryDropdown= jomresHTML::selectList($thecountryCodes, 'country', ' class="input-medium"', 'value', 'text', $selectedCountry);
 		return $countryDropdown;
 		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3738,8 +3739,8 @@ class dobooking
 
 		if (!empty($this->requestedRoom) )
 			{
-			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected"><table valign="top" width="100%" border="0">';
-			$return_output .= $this->makeTariffHeaders();
+			$return_output='<div id="roombuttoncontainer_selected2"><div id="roombutton_selected">';
+			$tariff_headers_array = $this->makeTariffHeaders();
 			foreach ($this->requestedRoom as $rr)
 				{
 				$currentUids=explode("^",$rr);
@@ -3748,11 +3749,23 @@ class dobooking
 				$roomTariffOutputText=$result['roomandtariffinfo'];
 				$roomDeets[] = $this->makeRoomOverlibdata( $currentUids[0],$currentUids[1],$roomTariffOutputId,$roomTariffOutputText,true);
 				}
-			foreach ($roomDeets as $rm)
-				{
-				$return_output .= $rm;
-				}
-			$return_output .='</table></div></div>';
+			//foreach ($roomDeets as $rm)
+			//	{
+				$pageoutput = array();
+				$output = $tariff_headers_array;
+				
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->addRows( 'pageoutput',$pageoutput);
+				$tmpl->addRows( 'rows',$roomDeets);
+				$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist.html');
+				$template_output = $tmpl->getParsedTemplate();
+				$return_output .=$template_output;
+					
+				//$return_output .= $rm;
+			//	}
+			$return_output .='</div></div>';
 			}
 		return $return_output;
 		}
@@ -4384,15 +4397,21 @@ class dobooking
 	 */
 	function generateRoomsList($roomAndTariffArray)
 		{
-		$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table valign="top" width="100%" border="0">';
+		// Depreciated in 6.6.6
+		//$return_output='<div id="roombuttoncontainer2"><div id="roombutton"><table valign="top" width="100%" border="0">';
+		
+		$return_output='<div id="roombuttoncontainer2"><div id="roombutton">';
 		if ((int)$this->cfg_returnRoomsLimit > 0 && $this->cfg_booking_form_rooms_list_style == "1")
 			{
 			$this->setErrorLog("generateRoomsList:: Limiting rooms list ");
 			$roomAndTariffArray=$this->limitRoomsList($roomAndTariffArray);
 			}
 		$this->setErrorLog("generateRoomsList::Generating rooms list");
-		$return_output .= $this->makeTariffHeaders();
-
+		
+		// Depreciated in 6.6.6
+		// $return_output .= $this->makeTariffHeaders();
+		$tariff_headers_array = $this->makeTariffHeaders();
+		
 		if ($this->checkArrivalDate($this->arrivalDate) )
 			{
 			if (count($roomAndTariffArray)>0 )
@@ -4419,7 +4438,9 @@ class dobooking
 				$roomUidArray=array();
 				$tariffUidArray=array();
 				$counter=0;
-				for ($i=0;$i<count($roomAndTariffArray);$i++)
+				$roomDeets=array();
+				$number = count($roomAndTariffArray);
+				for ($i=0;$i<$number;$i++)
 					{
 					$roomuid=$roomAndTariffArray[$i][0];
 					//$this->setErrorLog("generateRoomsList::Room uid".$roomuid);
@@ -4428,7 +4449,7 @@ class dobooking
 
 					if ($this->cfg_singleRoomProperty == "0" )
 						{
-						$roomDeets=array();
+						
 						$roomTariffOutputId=$result['requestedRoom'];
 						$roomTariffOutputText=$result['roomandtariffinfo'];
 						$roomUidArray[]=$roomuid;
@@ -4436,10 +4457,14 @@ class dobooking
 						if ($this->cfg_booking_form_rooms_list_style == "1")
 							{
 							$roomDeets[] = $this->makeRoomOverlibdata( $roomuid,$tariffuid ,$roomTariffOutputId,$roomTariffOutputText);
-							foreach ($roomDeets as $rm)
-								{
-								$return_output .= $rm;
-								}
+							
+							// Depreciated in 6.6.6
+							// foreach ($roomDeets as $rm)
+								// {
+								// $return_output .= $rm;
+								// }
+								
+							
 							}
 						if ($this->cfg_booking_form_rooms_list_style == "2")
 							{
@@ -4454,7 +4479,23 @@ class dobooking
 					$counter++;
 					}
 				if ($this->cfg_singleRoomProperty == "0" )
-					$return_output .='</table></div></div>';
+					{
+					// New for 6.6.6
+					// Now we can make our template's output
+					
+					$pageoutput = array();
+					$output = $tariff_headers_array;
+					
+					$pageoutput[]=$output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->addRows( 'pageoutput',$pageoutput);
+					$tmpl->addRows( 'rows',$roomDeets);
+					$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist.html');
+					$template_output = $tmpl->getParsedTemplate();
+					$return_output .=$template_output.'</div></div>';
+
+					}
 				}
 			else
 				{
@@ -4549,7 +4590,7 @@ class dobooking
 				$room_and_tariff_outputIds_string .= $tariff_and_roomtypes['roomTariffOutputId'][$i-1].",";
 				$rooms_list_style_dropdown[] = jomresHTML::makeOption( $room_and_tariff_outputIds_string,  sprintf("%02d",$i) );
 				}
-			$dropdown_output[$tariff_id]['dropdown'] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="inputbox" size="1"  AUTOCOMPLETE="OFF" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
+			$dropdown_output[$tariff_id]['dropdown'] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="input-small" size="1"  AUTOCOMPLETE="OFF" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
 			$dropdown_output[$tariff_id]['room_type']=$tariff_and_roomtypes['room_type'];
 			$dropdown_output[$tariff_id]['tariff_title']=$tariff_and_roomtypes['tariff_title'];
 			$dropdown_output[$tariff_id]['room_price_inc_tax']=output_price($tariff_and_roomtypes['room_price_inc_tax']);
@@ -4567,18 +4608,49 @@ class dobooking
 
 	$gpb_text = '';
 	if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-		$gpb_text = '<td>'.jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false).'</td>';
+		$gpb_text = jr_gettext('_JOMRES_MAX_GUESTS_PER_BOOKING',_JOMRES_MAX_GUESTS_PER_BOOKING,false,false);
 	
-	$return_output = '<table width="100%" style="text-align:center;"><tr><td>'.$nor.'</td><td>'.$rmtype_text.'</td><td>'.$tariffname_text.'</td><td>'.$gpr_text.'</td>'.$gpb_text.'<td>'.$rate_text.'</td></tr>';
+	//$return_output = '<table width="100%" style="text-align:center;"><tr><td>'.$nor.'</td><td>'.$rmtype_text.'</td><td>'.$tariffname_text.'</td><td>'.$gpr_text.'</td>'.$gpb_text.'<td>'.$rate_text.'</td></tr>';
 	
-	foreach ($dropdown_output as $output)
+	// New for 6.6.6
+	$pageoutput = array();
+	$output = array();
+	
+	$output['HGUESTPER_ROOM']=$gpr_text;
+	$output['HGUESTPER_BOOKING']=$gpb_text;
+	$output['HNUMBEROFROOMS']=$nor;
+	$output['HROOM_TYPE_TEXT']=$rmtype_text;
+	$output['HTARIFF_NAME_TEXT']=$tariffname_text;
+	$output['HRATE_TEXT']=$rate_text;
+	
+	
+	foreach ($dropdown_output as $routput)
 		{
-		$return_output .= "<tr class=\"ui-state-default\"><td>".$output['dropdown']." </td><td> ".$output['room_type']." </td><td> ".$output['tariff_title']." </td><td>".$output['max_guests_per_room']."</td>";
-		if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-			$return_output .= "<td>".$output['max_guests_per_booking']."</td>";
-		$return_output .= "<td>".$output['room_price_inc_tax']."</td><tr>";
+		// $return_output .= "<tr class=\"ui-state-default\"><td>".$routput['dropdown']." </td><td> ".$routput['room_type']." </td><td> ".$routput['tariff_title']." </td><td>".$routput['max_guests_per_room']."</td>";
+		// if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
+			// $return_routput .= "<td>".$routput['max_guests_per_booking']."</td>";
+		// $return_routput .= "<td>".$routput['room_price_inc_tax']."</td><tr>";
+		
+		$r = array();
+		$r['GUESTPER_ROOM']=$routput['max_guests_per_room'];
+		$r['GUESTPER_BOOKING']=$routput['max_guests_per_booking'];
+		$r['NUMBEROFROOMS']=$routput['dropdown'];
+		$r['ROOM_TYPE_TEXT']=$routput['room_type'];
+		$r['TARIFF_NAME_TEXT']=$routput['tariff_title'];
+		$r['RATE_TEXT']=$routput['room_price_inc_tax'];
+		
+		$rows[]=$r;
 		}
-	return $return_output;
+	
+	$pageoutput[]=$output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+	$tmpl->addRows( 'pageoutput',$pageoutput);
+	$tmpl->addRows( 'rows',$rows);
+	$tmpl->readTemplatesFromInput( 'booking_form_roomtype_roomslist.html');
+	return $tmpl->getParsedTemplate();
+	
+	//return $return_output;
 	}
 
 	/**
@@ -4669,7 +4741,9 @@ class dobooking
 			// $disabledAccess= jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
 		// else
 			// $disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO) ;
-
+		
+		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
+		$this->room_type_style_output[$tariffUid]['room_price_inc_tax'] = $room_price_inc_tax;
 
 		$room_imagetd="";
 		if ($this->cfg_showRoomImageInBookingFormOverlib)
@@ -4684,6 +4758,7 @@ class dobooking
 		if ($this->jrConfig['booking_form_lnks_as_buttons'] =="1")
 			$buttonClassStuff = ' class="fg-button ui-state-default ui-corner-all" ';
 
+		// Depreciated in 6.6.6
 		$overlib='<tr class="ui-state-default">';
 		$overlib.='<td width="120"><div id="'.$roomTariffOutputId.'" ><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );" '.$buttonClassStuff.'>'.$caption.'</a></div></td>';
 		if ($this->cfg_bookingform_roomlist_showroomno == "1")
@@ -4695,9 +4770,7 @@ class dobooking
 		$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['ROOMTYPE'].'</a></td>';
 		if ($this->cfg_tariffmode != 0)
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$tariffStuff['TITLE'].'</a></td>';
-		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
-		$this->room_type_style_output[$tariffUid]['room_price_inc_tax'] = $room_price_inc_tax;
-
+			
 		$overlib.='<td>'.output_price($room_price_inc_tax).'</td>';
 		if ($this->cfg_bookingform_roomlist_showdisabled == "1")
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['DISABLEDACCESS'].'</a></td>';
@@ -4705,9 +4778,18 @@ class dobooking
 			$overlib.='<td><a href="javascript:void(0);" onClick="getResponse_rooms(\'requestedRoom\',\''.$roomTariffOutputId.'\' );	">'.$roomStuff['MAXPEOPLE'].'</a></td>';
 		$overlib.='</tr>';
 
+		$tariffStuff['FORMATTED_PRICE']=output_price($room_price_inc_tax);
+		$tariffStuff['ROOMTARIFFOUTPUTID']=$roomTariffOutputId;
+		$tariffStuff['CAPTION']=$caption;
+		
+		$roomStuff['ROOM_TYPE_IMAGE']=$this->typeImage;
+		$roomStuff['ROOM_IMAGE']=$this->roomImagePath;
+		
 		if ($this->cfg_booking_form_rooms_list_style == "1")
 			{
-			return $overlib;
+			return array_merge($roomStuff,$tariffStuff);
+			// Depreciated in 6.6.6
+			// return $overlib;
 			}
 
 		if ($this->cfg_booking_form_rooms_list_style == "2")
@@ -4802,7 +4884,7 @@ class dobooking
 		$roomRow['ROOMNAME']= $this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMNAME_TITLE'.$roomUid,stripslashes($room['room_name']),false,false ) );
 		$roomRow['ROOMFLOOR']= $this->sanitiseOutput(stripslashes($room['room_floor']) );
 		$roomRow['DISABLEDACCESS']= $disabledAccess;
-		$roomRow['MAXPEOPLE']= $this->sanitiseOutput($room['max_people']);
+		$roomRow['MAXPEOPLE_INROOM']= $this->sanitiseOutput($room['max_people']);
 		$roomRow['FEATURES']= $roomFeatureDescriptions;
 
 		return $roomRow;
@@ -5072,33 +5154,40 @@ class dobooking
 		$roomRow['HEADER_DISABLEDACCESS']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS,false,false) );
 		$roomRow['HEADER_MAXPEOPLE']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE,false,false) );
 		$roomRow['HEADER_FEATURES']= $this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST',_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST,false,false) );
+		
+		// New for 6.6.6
+		$roomRow['HEADER_IMAGE']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) );
+		$roomRow['HEADER_ROOMTYPE']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) );
+		return array_merge($roomRow,$tariffStuff);
+		
+		// Depreciated n 6.6.6
+		// $room_imageTH="";
+		// if ($this->cfg_showRoomImageInBookingFormOverlib)
+			// $room_imageTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) )."</td>";
+		// $room_imagetypeTH="";
+		// if ($this->cfg_showRoomTypeImageInBookingForm)
+			// $room_imagetypeTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</td>";
+		
+		
+		// $return_output='<tr>';
+			// $return_output.='<td>&nbsp;</td>';
+			// if ($this->cfg_bookingform_roomlist_showroomno == "1")
+				// $return_output.='<td>'.$roomRow['HEADER_ROOMNUMBER'].'</td>';
+			// $return_output.=''.$room_imageTH.'';
+			// $return_output.=''.$room_imagetypeTH.'';
+			// if ($this->cfg_bookingform_roomlist_showroomname == "1")
+				// $return_output.='<td>'.$roomRow['HEADER_ROOMNAME'].'</td>';
+			// $return_output.='<td>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
+			// if ($this->cfg_tariffmode != 0)
+				// $return_output.='<td>'.$tariffStuff['HTITLE'].'</td>';
+			// $return_output.='<td>'.$tariffStuff['HRATEPERNIGHT'].'</td>';
+			// if ($this->cfg_bookingform_roomlist_showdisabled == "1")
+				// $return_output.='<td>'.$roomRow['HEADER_DISABLEDACCESS'].'</td>';
+			// if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
+				// $return_output.='<td>'.$roomRow['HEADER_MAXPEOPLE'].'</td>';
+			// $return_output.='</tr>';
 
-		$room_imageTH="";
-		if ($this->cfg_showRoomImageInBookingFormOverlib)
-			$room_imageTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) )."</td>";
-		$room_imagetypeTH="";
-		if ($this->cfg_showRoomTypeImageInBookingForm)
-			$room_imagetypeTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</td>";
-
-		$return_output='<tr>';
-			$return_output.='<td>&nbsp;</td>';
-			if ($this->cfg_bookingform_roomlist_showroomno == "1")
-				$return_output.='<td>'.$roomRow['HEADER_ROOMNUMBER'].'</td>';
-			$return_output.=''.$room_imageTH.'';
-			$return_output.=''.$room_imagetypeTH.'';
-			if ($this->cfg_bookingform_roomlist_showroomname == "1")
-				$return_output.='<td>'.$roomRow['HEADER_ROOMNAME'].'</td>';
-			$return_output.='<td>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
-			if ($this->cfg_tariffmode != 0)
-				$return_output.='<td>'.$tariffStuff['HTITLE'].'</td>';
-			$return_output.='<td>'.$tariffStuff['HRATEPERNIGHT'].'</td>';
-			if ($this->cfg_bookingform_roomlist_showdisabled == "1")
-				$return_output.='<td>'.$roomRow['HEADER_DISABLEDACCESS'].'</td>';
-			if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-				$return_output.='<td>'.$roomRow['HEADER_MAXPEOPLE'].'</td>';
-			$return_output.='</tr>';
-
-		return $return_output;
+		// return $return_output;
 		}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
