@@ -65,8 +65,8 @@ class j01050x_geocoder {
 		
 		if (_JOMRES_MOBILE)
 			{
-			$output['MAP_WIDTH'] = $output['MAP_WIDTH'] / 2;
-			$output['MAP_HEIGHT'] = $output['MAP_HEIGHT'] / 2;
+			$output['MAP_WIDTH'] = $output['MAP_WIDTH'] / 1.5;
+			$output['MAP_HEIGHT'] = $output['MAP_HEIGHT'] / 1.5;
 			}
 		
 		
