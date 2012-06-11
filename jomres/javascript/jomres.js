@@ -38,10 +38,25 @@ function parse_ajax_returned_scripts(_source) {
 
 
 function module_popup(random_identifier,property_uid){
+	var modal_popup_height = 640;
+	var modal_popup_width = 520;
+	if ((screen.width<=960)) {
+		var modal_popup_height = 440;
+		var modal_popup_width = 320;
+		}
+	else if ((screen.width<=758)) {
+		var modal_popup_height = 340;
+		var modal_popup_width = 220;
+		}
+	else if ((screen.width<=524)) {
+		var modal_popup_height = 240;
+		var modal_popup_width = 120;
+		}
+		
 	jomresJquery('#module_'+random_identifier+'_popup').dialog({
 	resizable: false,
-	height: 640,
-	width : 520,
+	height: modal_popup_height,
+	width : modal_popup_width,
 	modal : true,
 	resizable: true,
 	open: function() 
