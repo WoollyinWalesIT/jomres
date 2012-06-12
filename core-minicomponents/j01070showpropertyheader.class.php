@@ -70,6 +70,8 @@ class j01070showpropertyheader
 					}
 				$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 				$output['IMAGETHUMB']=getThumbnailForImage($output['IMAGE'],true);
+				if (!$output['IMAGETHUMB'])
+					$output['IMAGETHUMB']=$output['IMAGE'];
 				
 				$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
 

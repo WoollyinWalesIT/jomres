@@ -652,33 +652,23 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$tmpl->addRows( 'extras', $extra_details );
 		}
 	$componentArgs=array('tmpl'=>$tmpl);
-	if ($mrConfig['singleRoomProperty'] == "0" && $MiniComponents->eventFileExistsCheck('00200'))
-		{
-		$MiniComponents->triggerEvent('00200',$componentArgs); //
-		}
-	elseif ($MiniComponents->eventFileExistsCheck('00202'))
-		{
-		$MiniComponents->triggerEvent('00202',$componentArgs); //
-		}
+
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+	if (!get_showtime('include_room_booking_functionality'))
+		$tmpl->readTemplatesFromInput( 'dobooking_norooms.html');
 	else
 		{
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		if (!get_showtime('include_room_booking_functionality'))
-			$tmpl->readTemplatesFromInput( 'dobooking_norooms.html');
+		if ( ($mrConfig['singleRoomProperty'] == "1" ) )
+			$tmpl->readTemplatesFromInput( 'dobooking_srp.html');
 		else
-			{
-			if ( ($mrConfig['singleRoomProperty'] == "1" ) )
-				$tmpl->readTemplatesFromInput( 'dobooking_srp.html');
-			else
-				$tmpl->readTemplatesFromInput( 'dobooking.html');
-			}
-		if (!defined('DOBOOKING_IN_DETAILS'))
-			$tmpl->displayParsedTemplate();
-		else
-			{
-			$booking_form = $tmpl->getParsedTemplate();
-			define("BOOKING_FORM_FOR_PROPERTY_DETAILS",$booking_form);
-			}
+			$tmpl->readTemplatesFromInput( 'dobooking.html');
+		}
+	if (!defined('DOBOOKING_IN_DETAILS'))
+		$tmpl->displayParsedTemplate();
+	else
+		{
+		$booking_form = $tmpl->getParsedTemplate();
+		define("BOOKING_FORM_FOR_PROPERTY_DETAILS",$booking_form);
 		}
 
 	if ($jrConfig['dumpTemplate']=="1")
