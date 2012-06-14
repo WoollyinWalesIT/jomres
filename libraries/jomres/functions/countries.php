@@ -94,7 +94,7 @@ function createSimpleCountriesDropdown($selectedCountry)
 		{
 		$thecountryCodes[]=jomresHTML::makeOption( $k, $v);
 		}
-	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'guest_country', 'class="span1" ', 'value', 'text', $selectedCountry);
+	$countryDropdown= jomresHTML::selectList($thecountryCodes, 'guest_country', '', 'value', 'text', $selectedCountry);
 	return $countryDropdown;
 	}
 
