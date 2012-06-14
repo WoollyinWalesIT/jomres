@@ -520,7 +520,7 @@ class j02990showconfirmation {
 		$booking_parts['PROCESSURL_SAVETOCART']=JOMRES_SITEPAGE_URL.'&task=save_booking_to_cart';
 		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
 		
-		if (!$userIsManager&& isset($MiniComponents->registeredClasses['06000show_cart']) )
+		if (isset($MiniComponents->registeredClasses['06000show_cart']) )
 			{
 			
 			if ( ($paypal_settings->paypalConfigOptions['override'] == "1" && $jrConfig['useshoppingcart'] == "1") || count($gatewayDeets) == 0)
