@@ -296,12 +296,11 @@ class j01010listpropertys {
 				{
 				$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$p->id,$p->ptype,false,false);
 				}
-
+			$class_counter=0;
 			if (count($propertyDeets) >0)
 				{
 				$property_details=array();
 				$MiniComponents->triggerEvent('01011',array('property_uids'=>$propertys_uids) ); // Discount finding script uses this trigger. We'll send it an array of property uids to reduce the number of queries it performs.
-
 				foreach ($propertyDeets as $property)
 					{
 					jr_import('jomres_cache');
@@ -534,6 +533,13 @@ class j01010listpropertys {
 
 						$property_deets['STARS']=$starslink;
 						//$property_deets['TEMPLATEPATH']=$templatepath;
+						
+						if ($class_counter%2)
+							$property_deets['ROWCLASS']="row-even";
+						else
+							$property_deets['ROWCLASS']="row-odd";
+						
+						$class_counter++;
 
 						$MiniComponents->triggerEvent('01011',array('property_uid'=>$property->propertys_uid) ); // Optional
 						$mcOutput=$MiniComponents->getAllEventPointsData('01011');
