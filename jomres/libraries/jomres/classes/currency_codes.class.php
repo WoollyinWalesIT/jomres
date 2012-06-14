@@ -490,11 +490,18 @@ class currency_codes
 	
 	function makeCodesDropdown()
 		{
+		// We need to limit the available currency codes to those which can be converted. If we don't then the shopping cart calculations will all be wrong, so we'll use the conversion code can be converted method to check that we can use the currency code.
+		// We'll leave this as a programattic thing, as the codes will change depending on the codes that yahoo give to Jomres
+		jr_import('jomres_currency_conversion');
+		$conversion = new jomres_currency_conversion();
+	
 		$options = array();
 		ksort  ($this->codes);
 		foreach ($this->codes as $k=>$v)
 			{
-			$options[] = jomresHTML::makeOption( $k, $v );
+			if($conversion->this_code_can_be_converted($k))
+				$options[] = jomresHTML::makeOption( $k, $v );
+			
 			}
 		return jomresHTML::selectList( $options, $this->input_name,'class="inputbox" size="1"', 'value', 'text', $this->code);
 		}
