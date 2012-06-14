@@ -163,7 +163,7 @@
 			
 		</td>
 		<td style="text-align:right;">
-			{_JOMRES_CART_OR} {_JOMRES_SAVEFORLATER}
+			<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR} <input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="{_JOMRES_SAVEFORLATER}" class="button" onclick="return confirmation_validate(true);" /></patTemplate:tmpl>
 		</td>
 	</tr>
 </table>
