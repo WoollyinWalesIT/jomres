@@ -68,16 +68,16 @@ class dobooking
 		$this->lastminute_id			= "";
 		$this->arrivalDate				= "";
 		$this->departureDate			= "";
-		$this->stayDays				= 1;
+		$this->stayDays					= 1;
 		$this->dateRangeString			= "";
 		$this->guests_uid				= "";
-		$this->property_uid			= "";
+		$this->property_uid				= "";
 		$this->rates_uid				= "";
 		$this->tag						= "";
-		$this->resource				= "";
+		$this->resource					= "";
 		$this->rate_rules				= 0.00;
 		$this->single_person_suppliment = 0.00;
-		$this->deposit_required		= 0.00;
+		$this->deposit_required			= 0.00;
 		$this->contract_total			= 0.00;
 
 		$this->extrasvalue				= 0.00;
@@ -103,6 +103,7 @@ class dobooking
 		$this->vq						= "";
 		$this->vv						= "";
 		$this->rr						= "";
+		
 
 		$this->existing_id		= "";
 		$this->mos_userid		= 0;
@@ -173,6 +174,8 @@ class dobooking
 			$this->third_party_extras_private_data		= unserialize($bookingDeets['third_party_extras_private_data']);
 			$this->room_allocations			= unserialize($bookingDeets['room_allocations']);
 			$this->room_allocations_note	= $bookingDeets['room_allocations_note'];
+			$this->property_currencycode	= $bookingDeets['property_currencycode'];
+			
 
 			$this->tax						= $bookingDeets['tax'];
 			$this->extras					= $bookingDeets['extras'];
@@ -341,6 +344,8 @@ class dobooking
 		$this->cfg_bookingform_requiredfields_mobile		= $mrConfig['bookingform_requiredfields_mobile'];
 		$this->cfg_bookingform_requiredfields_email			= $mrConfig['bookingform_requiredfields_email'];
 		
+		$this->property_currencycode	= $mrConfig['property_currencycode'];
+		
 		if (!isset($mrConfig['booking_form_rooms_list_style']))
 			$mrConfig['booking_form_rooms_list_style']		= "1";
 		
@@ -501,6 +506,7 @@ class dobooking
 		$tmpBookingHandler->tmpbooking["override_deposit"]				= $this->override_deposit;
 
 		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
+		$tmpBookingHandler->tmpbooking["property_currencycode"]			= $this->property_currencycode;
 
 		$tmpBookingHandler->saveBookingData();
 		}
