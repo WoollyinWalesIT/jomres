@@ -532,6 +532,8 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 		$freeRoomsArray=$bkg->getAllRoomUidsForProperty();
 		if (count($freeRoomsArray) > 0 )
 			$freeRoomsArray=$bkg->findFreeRoomsInDateRange($freeRoomsArray);
+
+		
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
 		if (count($freeRoomsArray) > 0 ) // This must be before the rest of these functions
 			$freeRoomsArray=$bkg->checkPeopleNumbers($freeRoomsArray);
@@ -568,6 +570,8 @@ function bookingformlistRooms($isSingleRoomProperty,&$bkg)
 			if (count($freeRoomsArray) > 0 )
 				$freeRoomsArray=$bkg->removeRoomuidsAlreadyInThisBooking($freeRoomsArray);
 			}
+		if (count($freeRoomsArray) > 0 )
+			$freeRoomsArray=$bkg->extractLockedRooms($freeRoomsArray);
 		$bkg->setErrorLog("handlereq-bookingformlistRooms:: Number of free rooms ".count($freeRoomsArray));
 		$bkg->number_of_free_rooms = count($freeRoomsArray);
 		if (count($freeRoomsArray) > 0 )
