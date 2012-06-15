@@ -2819,25 +2819,25 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 		foreach ($tmpBookingHandler->cart_data as $key=>$cart_data)
 			{
 			$tmpBookingHandler->tmpbooking = $cart_data;
-
-			$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
-			$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
-			$userIsManager=checkUserIsManager();
+			$tmpBookingHandler->tmpguest = $cart_data['tmpguest'];
 			$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 			$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
 			gateway_log("insertInternetBooking: ".serialize($MiniComponents->miniComponentData['03020']) );
 			if (!$MiniComponents->miniComponentData['03020']['insertbooking']['insertSuccessful'])
 				$insert_failed = true;
 			$tmpBookingHandler->resetTempBookingData();
+			$tmpBookingHandler->resetTempGuestData();
 			}
 
 		gateway_log("insertInternetBooking: Insert successful ");
 		if ($confirmationPageRequired && !$insert_failed)
 			{
 			gateway_log("insertInternetBooking:Outputting confirmation page ");
+			$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 			$componentArgs=array('property_uid'=>$property_uid);
 			$componentArgs=array('customText'=>$customTextForConfirmationForm);
 			$MiniComponents->triggerEvent('03030',$componentArgs); // Booking completed message
+			$userIsManager=checkUserIsManager();
 			if ($userIsManager)
 				{
 				echo jr_gettext('_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE',_JOMRES_COM_MR_BOOKINGSAVEDMESSAGE)."<br />";
@@ -2854,10 +2854,6 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 		}
 	else
 		{
-		$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
-		$contract_total=(float)$tmpBookingHandler->getBookingFieldVal("contract_total");
-		// if ($contract_total == 0.00)
-			// jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=$property_uid"), "" );
 		$userIsManager=checkUserIsManager();
 		$componentArgs=array('jomressession'=>get_showtime('jomressession'),'depositPaid'=>$depositPaid,'usejomressessionasCartid'=>$usejomressessionasCartid);
 		$result=$MiniComponents->triggerEvent('03020',$componentArgs); // Trigger the insert booking mini-comp
@@ -2868,6 +2864,7 @@ function insertInternetBooking($jomressession="",$depositPaid=false,$confirmatio
 			if ($confirmationPageRequired)
 				{
 				gateway_log("insertInternetBooking:Outputting confirmation page ");
+				$property_uid=(int)$tmpBookingHandler->getBookingFieldVal("property_uid");
 				$componentArgs=array('property_uid'=>$property_uid);
 				$componentArgs=array('customText'=>$customTextForConfirmationForm);
 				$MiniComponents->triggerEvent('03030',$componentArgs); // Booking completed message
