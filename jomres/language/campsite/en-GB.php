@@ -1809,3 +1809,7 @@ define('RECAPTCHA_INFO',"Captcha is used to ensure that the client using web for
 define('RECAPTCHA_PUBLIC_KEY',"Public key");
 define('RECAPTCHA_PRIVATE_KEY',"Private key");
 
+
+define('_JOMRES_BOOKINGFORM_LOCK_TITLE',"Lockfile timeout");
+define('_JOMRES_BOOKINGFORM_LOCK_DESC',"To prevent the danger of guests double booking rooms Jomres uses a lockfile to prevent a room from being added to the available rooms list in the booking form if somebody else has already added the room to theirs for the same dates. By default this lock will time out in 3600 seconds, or one hour. You can change the time it takes to expire this lock by changing this figure.");
+

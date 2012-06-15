@@ -700,9 +700,8 @@ class dobooking
 		return $fully_booked_dates;
 		}
 	
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	//	Generic variant handling
@@ -768,6 +767,9 @@ class dobooking
 	 */
 	function resetRequestedRoom()
 		{
+		jr_import('jomres_roomlocks');
+		$room_locker = new jomres_roomlocks();
+		$room_locker->unlock_all_rooms_for_session();
 		$this->requestedRoom=array();
 		}
 
@@ -3453,6 +3455,8 @@ class dobooking
 	 */
 	function updateSelectedRoom($roomAndTariff)
 		{
+		jr_import('jomres_roomlocks');
+		$room_locker = new jomres_roomlocks();
 		if (count($this->requestedRoom)>0) // The requestedRooms list is not empty, let's see of we're adding or removing this selection
 			{
 			// See if we're actually removing a room from the list of those selected
@@ -3460,25 +3464,40 @@ class dobooking
 				{
 				$this->checkExistingRoomsTariffsForRoomsTariffsWhereMinRoomSettingIsNoLongerMet($roomAndTariff);
 				if ( $this->removeFromSelectedRooms($roomAndTariff) )
+					{
+					
 					return true;
+					}
 				else
+					{
 					return false;
+					}
 				}
 			else // We are adding the room to the list
 				{
 				// Let's check that this tariff tallies with this room type
 				if ($this->addToSelectedRooms($roomAndTariff) )
+					{
+					$room_locker->lock_room($roomAndTariff,$this->dateRangeString);
 					return true;
+					}
 				else
+					{
 					return false;
+					}
 				}
 			}
 		else // We've got to be adding the room to the currently empty list of requested rooms
 			{
 			if ($this->addToSelectedRooms($roomAndTariff) )
+				{
+				$room_locker->lock_room($roomAndTariff,$this->dateRangeString);
 				return true;
+				}
 			else
+				{
 				return false;
+				}
 			}
 		}
 
@@ -3630,13 +3649,21 @@ class dobooking
 	 */
 	function removeFromSelectedRooms($roomAndTariff)
 		{
+		jr_import('jomres_roomlocks');
+		$room_locker = new jomres_roomlocks();
+		
 		$tmpArray=array();
 		foreach ($this->requestedRoom as $rt)
 			{
 			$this->setErrorLog("removeFromSelectedRooms::Checking to see if $rt is to be removed.");
 			if ($rt !=  $roomAndTariff )
+				{
 				$tmpArray[]=$rt;
-
+				}
+			else
+				{
+				$room_locker->unlock_room($roomAndTariff,$this->dateRangeString);
+				}
 			}
 		$this->requestedRoom=$tmpArray;
 		$this->checkAllGuestsAllocatedToRooms();
@@ -3701,6 +3728,7 @@ class dobooking
 			}
 		return true;
 		}
+
 
 	/**
 	#
@@ -3881,6 +3909,40 @@ class dobooking
 		return $tmpArray;
 		}
 
+		
+	/**
+	#
+	 * Filters rooms out that have been locked 
+	#
+	 */
+	function extractLockedRooms($freeRoomsArray)
+		{
+		jr_import('jomres_roomlocks');
+		$room_locker = new jomres_roomlocks();
+		$tmpArray=array();
+		$this->setErrorLog("extractLockedRooms :: Looking for free rooms in date range: ".serialize($freeRoomsArray) );
+		if (count($freeRoomsArray)>0 )
+			{
+			foreach ($freeRoomsArray as $roomUid)
+				{
+				$roomIsFree=TRUE;
+				if ($room_locker->is_room_locked($roomUid,$this->dateRangeString))
+					{
+					$this->setErrorLog("extractLockedRooms :: Removing room: ".$roomUid. " As is locked." );
+					$roomIsFree=FALSE;
+					}
+				if ($roomIsFree)
+					$tmpArray[]=$roomUid;
+				}
+			if (empty($tmpArray) )
+				$this->setErrorLog("extractLockedRooms::No free rooms found in date range");
+			}
+		else
+			$this->setErrorLog("extractLockedRooms::Room uids array empty");
+		$this->setErrorLog("extractLockedRooms::Contents of the freeRoomsArray after looking for free rooms: ".serialize($tmpArray) );
+		return $tmpArray;
+		}
+		
 	/**
 	#
 	 * Filters the free rooms array based on the smoking requirements

@@ -354,6 +354,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td valign="middle">'.$lists['useNewusers_sendemail'].'</td>
 				 <td valign="middle">'._JOMRES_BOOKINGORM_EMAIL_NEWUSER_EMAIL_LOGIN_DETAILS_DESC.'</td>
 			</tr>
+			<tr valign="middle" class="odd">
+				 <td valign="middle">'._JOMRES_BOOKINGFORM_LOCK_TITLE.'</td>
+				 <td valign="middle"><input type="text" class="inputbox" name="cfg_room_lock_timeout" value="'.$jrConfig['room_lock_timeout'].'" /></td>
+				 <td valign="middle">'._JOMRES_BOOKINGFORM_LOCK_DESC.'</td>
+			</tr>
 			<tr valign="middle">
 				<th colspan="3">&nbsp;</th>
 			</tr>
