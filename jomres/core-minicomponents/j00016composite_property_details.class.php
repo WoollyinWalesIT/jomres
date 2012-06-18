@@ -94,14 +94,22 @@ class j00016composite_property_details {
 			{
 			$tab_titles = array();
 			$tab_contents = array();
+			$tab_active=false;
 			foreach ($MiniComponents->miniComponentData['00035'] as $key=>$tabs)
 				{
 				if ($tabs['TAB_ANCHOR'] != "" && $tabs['TAB_TITLE'] != "" && $tabs['TAB_CONTENT'] != "")
 					{
+					if (!$tab_active)
+						{
+						$tab_class="active";
+						$tab_active=true;
+						}
+					else
+						$tab_class="";
 					$content = $tabs['TAB_CONTENT'];
 					$title = $tabs['TAB_TITLE'];
-					$tab_titles[] = array("TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"TAB_TITLE"=>$title);
-					$tab_contents[] = array("TAB_CONTENT"=>$content,"TAB_TITLE"=>$title,"TAB_ANCHOR"=>$tabs['TAB_ANCHOR']);
+					$tab_titles[] = array("TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"TAB_TITLE"=>$title,"ACTIVE"=>$tab_class);
+					$tab_contents[] = array("TAB_CONTENT"=>$content,"TAB_TITLE"=>$title,"TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"ACTIVE"=>$tab_class);
 					$output[strtoupper($key."_tabtitle")] = $title;
 					$output[strtoupper($key."_tab_content")] =$content;
 					}
