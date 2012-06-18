@@ -94,7 +94,7 @@ class j01060slideshow {
 				$rows[]=$r;
 				}
 			
-			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/slideshow_themes/classic/',"galleria-1.2.5.min.js");
+			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/slideshow_themes/classic/',"galleria-1.2.7.min.js");
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/slideshow_themes/classic/',"galleria.classic.min.js");
 			jomres_cmsspecific_addheaddata("css",'jomres/javascript/slideshow_themes/classic/','galleria.classic.css',true); // Can't be cached
 			

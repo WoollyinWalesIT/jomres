@@ -3,10 +3,11 @@
  * Copyright (c) 2010, Aino
  * Licensed under the MIT license.
  */
- 
+
 .galleria-container {
     position: relative;
     overflow: hidden;
+    background: transparent;
 }
 .galleria-container img {
     -moz-user-select: none;
@@ -36,25 +37,28 @@
 .galleria-thumbnails .galleria-image {
     height: 40px;
     width: 60px;
+    background: #000;
     margin: 0 5px 0 0;
+    border: 1px solid #000;
     float: left;
     cursor: pointer;
 }
 .galleria-counter {
     position: absolute;
     bottom: 10px;
-    left: 0;
+    left: 10px;
     text-align: right;
-    color: #000;
+    color: #fff;
     font: normal 11px/1 arial,sans-serif;
     z-index: 1;
 }
 .galleria-loader {
+    background: #000;
     width: 20px;
     height: 20px;
     position: absolute;
     top: 10px;
-    right: 0;
+    right: 10px;
     z-index: 2;
     display: none;
     background: url(classic-loader.gif) no-repeat 2px 2px;
@@ -67,6 +71,7 @@
     position: absolute;
 }
 .galleria-info-text {
+    background-color: #000;
     padding: 12px;
     display: none;
     /* IE7 */ zoom:1;
@@ -74,8 +79,8 @@
 .galleria-info-title {
     font: bold 12px/1.1 arial,sans-serif;
     margin: 0;
-    color: #000;
-	margin-bottom: 7px;
+    color: #fff;
+    margin-bottom: 7px;
 }
 .galleria-info-description {
     font: italic 12px/1.4 georgia,serif;
@@ -110,6 +115,7 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
+    background-color: #000;
 }
 .notouch .galleria-info-link:hover {
     opacity: 1;
@@ -184,11 +190,13 @@
 .notouch .galleria-thumb-nav-right:hover {
     opacity: 1;
     filter: alpha(opacity=100);
+    background-color: transparent;
 }
 .touch .galleria-thumb-nav-left:active,
 .touch .galleria-thumb-nav-right:active {
     opacity: 1;
     filter: alpha(opacity=100);
+    background-color: #111;
 }
 .notouch .galleria-thumbnails-container .disabled:hover {
     opacity: .2;
