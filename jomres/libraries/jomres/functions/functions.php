@@ -1134,56 +1134,56 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				error_logging( "Error, unable to write to ".$module_target." Please ensure that the parent path is writable by the web server ");
 				return false;
 				}
-			$query= "SELECT id FROM #__modules where title = '".$plugin_name."'";
-			$result=doSelectSql($query);
-			if (count($result)>0)
+			
+
+			if (!file_exists($module_target.JRDS.$module_full_name.".xml"))
 				{
-				$query="DELETE FROM #__modules WHERE `title` = '".$plugin_name."'";
+				$query= "SELECT id FROM #__modules where title = '".$plugin_name."'";
+				$result=doSelectSql($query);
+				if (count($result)>0)
+					{
+					$query="DELETE FROM #__modules WHERE `title` = '".$plugin_name."'";
+					$result=doInsertSql($query,"");
+					}
+
+				if ( _JOMRES_DETECTED_CMS == "joomla15")
+					{
+					$query="INSERT INTO #__modules
+					(`title`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`numnews`,`access`,`showtitle`,`params`,`iscore`,`client_id`)
+					VALUES
+					('".$plugin_name."','','0','left','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','0','1','".$params."','0','0')";
+					}
+				elseif ( _JOMRES_DETECTED_CMS == "joomla16" )
+					{
+					$query="INSERT INTO #__modules
+					(
+					`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
+					VALUES
+					('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
+					}
+				elseif ( _JOMRES_DETECTED_CMS == "joomla17" )
+					{
+					$query="INSERT INTO #__modules
+					(
+					`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
+					VALUES
+					('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
+					}
+				elseif ( _JOMRES_DETECTED_CMS == "joomla25" )
+					{
+					$query="INSERT INTO #__modules
+					(
+					`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
+					VALUES
+					('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
+					}
 				$result=doInsertSql($query,"");
 				}
-
-			if ( _JOMRES_DETECTED_CMS == "joomla15")
-				{
-				$query="INSERT INTO #__modules
-				(`title`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`numnews`,`access`,`showtitle`,`params`,`iscore`,`client_id`)
-				VALUES
-				('".$plugin_name."','','0','left','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','0','1','".$params."','0','0')";
-				}
-			elseif ( _JOMRES_DETECTED_CMS == "joomla16" )
-				{
-				$query="INSERT INTO #__modules
-				(
-				`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
-				VALUES
-				('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
-				}
-			elseif ( _JOMRES_DETECTED_CMS == "joomla17" )
-				{
-				$query="INSERT INTO #__modules
-				(
-				`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
-				VALUES
-				('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
-				}
-			elseif ( _JOMRES_DETECTED_CMS == "joomla25" )
-				{
-				$query="INSERT INTO #__modules
-				(
-				`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
-				VALUES
-				('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
-				}
-			$result=doInsertSql($query,"");
-			if ($result)
-				{
-				//echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
-				$module_xml_move_result=dirmv($module_xml_source, $module_target, true, $funcloc = "/");
-				$module_move_result=dirmv($module_source, $module_target, true, $funcloc = "/");
-				if ($module_move_result['success'] && $module_xml_move_result['success'])
-					return true;
-				else
-					return false;
-				}
+				
+			$module_xml_move_result=dirmv($module_xml_source, $module_target, true, $funcloc = "/");
+			$module_move_result=dirmv($module_source, $module_target, true, $funcloc = "/");
+			if ($module_move_result['success'] && $module_xml_move_result['success'])
+				return true;
 			else
 				return false;
 			break;
@@ -1208,7 +1208,6 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
 				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name;
 				}
-
 
 			if (_JOMRES_DETECTED_CMS == "joomla15")
 				$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type;
@@ -1253,7 +1252,6 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				}
 			else
 				{
-				//echo "failed";
 				return false;
 				}
 
