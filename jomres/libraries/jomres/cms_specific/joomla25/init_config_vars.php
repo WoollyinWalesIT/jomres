@@ -24,7 +24,7 @@ global $jomresConfig_lang,$jomresConfig_absolute_path,$jomresConfig_live_site,$j
 global $jomresConfig_user,$jomresConfig_password,$jomresConfig_dbprefix,$jomresConfig_host,$jomresConfig_db;
 
 $scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
-
+ini_set("display_errors",0);
 global $jrConfig;
 require_once( JOMRESCONFIG_ABSOLUTE_PATH .JRDS.'configuration.php' );
 $CONFIG = new JConfig();
