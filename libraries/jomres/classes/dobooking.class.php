@@ -756,7 +756,7 @@ class dobooking
 	 */
 	function makeStringSafe($data)
 		{
-		$data=getEscaped( $data );
+		$data		=	filter_var($data,FILTER_SANITIZE_SPECIAL_CHARS);
 		return $data;
 		}
 

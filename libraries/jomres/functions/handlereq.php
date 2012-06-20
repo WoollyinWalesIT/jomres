@@ -499,18 +499,18 @@ function updateBookingFormAddressDetails(&$bkg)
 	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 	$bkg->storeBookingDetails();
 	$result=$tmpBookingHandler->getGuestData();
-	echo '; document.ajaxform.firstname.value="'.$bkg->sanitiseOutput($result['firstname']).'"';
-	echo '; document.ajaxform.surname.value="'.$bkg->sanitiseOutput($result['surname']).'"';
-	echo '; document.ajaxform.house.value="'.$bkg->sanitiseOutput($result['house']).'"';
-	echo '; document.ajaxform.street.value="'.$bkg->sanitiseOutput($result['street']).'"';
-	echo '; document.ajaxform.town.value="'.$bkg->sanitiseOutput($result['town']).'"';
-	echo '; document.ajaxform.region.value="'.$bkg->sanitiseOutput($result['region']).'"';
-	echo '; document.ajaxform.country.value="'.$bkg->sanitiseOutput($result['country']).'"';
-	echo '; document.ajaxform.postcode.value="'.$bkg->sanitiseOutput($result['postcode']).'"';
-	echo '; document.ajaxform.tel_landline.value="'.$bkg->sanitiseOutput($result['tel_landline']).'"';
-	echo '; document.ajaxform.tel_mobile.value="'.$bkg->sanitiseOutput($result['tel_mobile']).'"';
+	echo '; document.ajaxform.firstname.value="'.jomres_decode($result['firstname']).'"';
+	echo '; document.ajaxform.surname.value="'.jomres_decode($result['surname']).'"';
+	echo '; document.ajaxform.house.value="'.jomres_decode($result['house']).'"';
+	echo '; document.ajaxform.street.value="'.jomres_decode($result['street']).'"';
+	echo '; document.ajaxform.town.value="'.jomres_decode($result['town']).'"';
+	echo '; document.ajaxform.region.value="'.jomres_decode($result['region']).'"';
+	echo '; document.ajaxform.country.value="'.jomres_decode($result['country']).'"';
+	echo '; document.ajaxform.postcode.value="'.jomres_decode($result['postcode']).'"';
+	echo '; document.ajaxform.tel_landline.value="'.jomres_decode($result['tel_landline']).'"';
+	echo '; document.ajaxform.tel_mobile.value="'.jomres_decode($result['tel_mobile']).'"';
 	if ( $bkg->checkEmail($result['email']) )
-		echo '; document.ajaxform.eemail.value="'.$bkg->sanitiseOutput($result['email']).'"';
+		echo '; document.ajaxform.eemail.value="'.jomres_decode($result['email']).'"';
 	}
 	
 function bookingformlistRooms($isSingleRoomProperty,&$bkg)

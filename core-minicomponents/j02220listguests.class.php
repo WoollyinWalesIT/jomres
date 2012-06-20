@@ -38,12 +38,12 @@ class j02220listguests {
 		$rows=array();
 		$surnameFirstChars         = jomresGetParam( $_REQUEST, 'surnameFirstChars', '' );
 		$defaultProperty=getDefaultProperty();
-		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
+		$output['PAGETITLE']	=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
-		$output['HEDITLINK']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS',_JOMRES_COM_MR_DISPGUEST_EDITDETAILS);
-		$output['HINVOICELINK']=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES);
+		$output['HEDITLINK']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS',_JOMRES_COM_MR_DISPGUEST_EDITDETAILS);
+		$output['HINVOICELINK']	=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES);
 		$output['HFIRSTNAME']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME',_JOMRES_COM_MR_DISPGUEST_FIRSTNAME);
-		$output['HSURNAME']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
+		$output['HSURNAME']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
 		$output['HHOUSE']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE',_JOMRES_COM_MR_DISPGUEST_HOUSE);
 		$output['HSTREET']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_STREET',_JOMRES_COM_MR_DISPGUEST_STREET);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
@@ -154,11 +154,11 @@ class j02220listguests {
 					$rw['INVOICELINK']=$jrtb;
 					}
 
-				$rw['FIRSTNAME']=$guest->firstname;
-				$rw['SURNAME']=$guest->surname;
-				$rw['HOUSE']=$guest->house;
-				$rw['STREET']=$guest->street;
-				$rw['TOWN']=$guest->town;
+				$rw['FIRSTNAME']	=jomres_decode($guest->firstname);
+				$rw['SURNAME']		=jomres_decode($guest->surname);
+				$rw['HOUSE']		=jomres_decode($guest->house);
+				$rw['STREET']		=jomres_decode($guest->street);
+				$rw['TOWN']			=jomres_decode($guest->town);
 				// $status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
 				// $link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
 				// $rw['CREDITCARDLINK']=$link;

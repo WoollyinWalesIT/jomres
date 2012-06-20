@@ -2909,17 +2909,17 @@ function insertGuestDeets($jomressession)
 	$guests_uid		=(int)$xCustomers['guests_uid'];
 	$mos_userid		=(int)$xCustomers['mos_userid'];
 	$existing_id	=(int)$xCustomers['existing_id'];
-	$email		=	getEscaped($xCustomers['email']);
-	$firstname	=	getEscaped($xCustomers['firstname']);
-	$surname	=	getEscaped($xCustomers['surname']);
-	$house		=	getEscaped($xCustomers['house']);
-	$street		=	getEscaped($xCustomers['street']);
-	$town		=	getEscaped($xCustomers['town']);
-	$region		=	getEscaped($xCustomers['region']);
-	$country	=	getEscaped($xCustomers['country']);
-	$postcode	=	getEscaped($xCustomers['postcode']);
-	$landline	=	getEscaped($xCustomers['tel_landline']);
-	$mobile		=	getEscaped($xCustomers['tel_mobile']);
+	$email		=	filter_var($xCustomers['email'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$firstname	=	filter_var($xCustomers['firstname'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$surname	=	filter_var($xCustomers['surname'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$house		=	filter_var($xCustomers['house'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$street		=	filter_var($xCustomers['street'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$town		=	filter_var($xCustomers['town'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$region		=	filter_var($xCustomers['region'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$country	=	filter_var($xCustomers['country'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$postcode	=	filter_var($xCustomers['postcode'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$landline	=	filter_var($xCustomers['tel_landline'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$mobile		=	filter_var($xCustomers['tel_mobile'],FILTER_SANITIZE_SPECIAL_CHARS);
 	$property_uid=	(int)$tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
 
 	$ccard_no	=	getEscaped($xCustomers['ccard_no']);
@@ -5504,6 +5504,8 @@ function this_cms_is_joomla()
 function jomres_decode($string)
 	{
 	$string = htmlspecialchars_decode ($string,ENT_QUOTES);
+	
+	$string = str_replace ("&#38;#39;",'"',$string);
 	$string = str_replace ("&#34;",'"',$string);
 	$string = str_replace ("&#38;","&",$string);
 	$string = str_replace ("&#39;","'",$string);
