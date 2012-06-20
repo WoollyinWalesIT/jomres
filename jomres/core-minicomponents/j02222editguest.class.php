@@ -51,17 +51,17 @@ class j02222editguest {
 				{
 				foreach ($guestData as $data)
 					{
-					$output['FIRSTNAME']=$data->firstname;
-					$output['SURNAME']=$data->surname;
-					$output['HOUSE']=$data->house;
-					$output['STREET']=$data->street ;
-					$output['TOWN']=$data->town;
-					$output['REGION']=$data->county;
-					$output['COUNTRY']=createSimpleCountriesDropdown($data->country);
-					$output['POSTCODE']=$data->postcode ;
-					$output['LANDLINE']=$data->tel_landline;
-					$output['MOBILE']=$data->tel_mobile;
-					$output['FAX']=$data->tel_fax;
+					$output['FIRSTNAME']	=jomres_decode($data->firstname);
+					$output['SURNAME']		=jomres_decode($data->surname);
+					$output['HOUSE']		=jomres_decode($data->house);
+					$output['STREET']		=jomres_decode($data->street);
+					$output['TOWN']			=jomres_decode($data->town);
+					$output['REGION']		=jomres_decode($data->county);
+					$output['COUNTRY']		=createSimpleCountriesDropdown($data->country);
+					$output['POSTCODE']		=jomres_decode($data->postcode);
+					$output['LANDLINE']		=jomres_decode($data->tel_landline);
+					$output['MOBILE']		=jomres_decode($data->tel_mobile);
+					$output['FAX']			=jomres_decode($data->tel_fax);
 					$output['EMAIL']=$data->email;
 					$output['DISCOUNT']=jomresHTML::integerSelectList( 0,100,1, 'discount','class="inputbox" size="1"', $data->discount);
 					}
