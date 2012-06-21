@@ -35,11 +35,9 @@ class j00009user_option_03_logout {
 			$this->template_touchable=true; return;
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		
-		$login_task=jomres_cmsspecific_getlogout_task();
-		
+
 		if ($thisJRUser->userIsRegistered)
-			$this->cpanelButton=jomres_mainmenu_option(get_showtime('live_site').'/'.$login_task, '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT',"Logout",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
+			$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=logout", '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT',"Logout",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
 		}
 
 	function touch_template_language()

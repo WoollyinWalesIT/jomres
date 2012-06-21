@@ -232,8 +232,6 @@ class jomres_temp_booking_handler
 		$hash = sha1($userid.$secret.$this->part);
 		$this->sessionfile=$this->session_directory.$hash.".txt";
 		
-		system_log("Starting session file ".$this->sessionfile);
-		
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
