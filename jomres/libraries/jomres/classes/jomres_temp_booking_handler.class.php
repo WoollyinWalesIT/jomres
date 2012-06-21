@@ -41,7 +41,7 @@ class jomres_temp_booking_handler
 		
 		$this->timeout = (int)$jrConfig['lifetime'];
 
-		$this->session_directory = JOMRESPATH_BASE."/sessions/";
+		$this->session_directory = JOMRESPATH_BASE.JRDS."sessions".JRDS;
 		if (!is_dir($this->session_directory) )
 			{
 			if (!@mkdir($this->session_directory)) 
@@ -50,7 +50,20 @@ class jomres_temp_booking_handler
 				exit;
 				}
 			}
-
+		if (!is_dir($this->session_directory.JRDS."admin") )
+			{
+			if (!@mkdir($this->session_directory.JRDS."admin")) 
+				{
+				echo "Error, unable to make folder ".$this->session_directory.JRDS."admin"." automatically therefore cannot store booking session data. Please create the folder manually and ensure that it's writable by the web server";
+				exit;
+				}
+			}
+		
+		if (jomres_cmsspecific_areweinadminarea())
+			{
+			$this->session_directory .= "admin".JRDS;
+			}
+		
 		if (!is_writable($this->session_directory) )
 			{
 			echo "Error, ".$this->session_directory." is not writable therefore cannot store booking session data. Please ensure that it's writable by the web server";
@@ -219,6 +232,8 @@ class jomres_temp_booking_handler
 		$hash = sha1($userid.$secret.$this->part);
 		$this->sessionfile=$this->session_directory.$hash.".txt";
 		
+		system_log("Starting session file ".$this->sessionfile);
+		
 		jr_import('jomres_custom_field_handler');
 		$custom_fields = new jomres_custom_field_handler();
 		$allCustomFields = $custom_fields->getAllCustomFields();
@@ -233,9 +248,7 @@ class jomres_temp_booking_handler
 		
 		if (file_exists($this->sessionfile) )
 			{
-			$fp=fopen($this->sessionfile,'r');
-			$data = fread($fp, filesize($this->sessionfile));
-			fclose($fp);
+			$data = file_get_contents($this->sessionfile);
 			$dataArrays=unserialize($data);
 			$this->tmpbooking=$dataArrays['tmpbooking'];
 			$this->tmpguest=$dataArrays['tmpguest'];
@@ -245,18 +258,12 @@ class jomres_temp_booking_handler
 			$this->user_settings=$dataArrays['user_settings'];
 			
 			$data=array('tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
-			$fp=fopen($this->sessionfile,'w+');
-			if (!fwrite($fp, serialize($data)) )
-				error_log(" Error writing to session file ");
-			fclose($fp);
+			file_put_contents($this->sessionfile, serialize($data));
 			}
 		else // session file doesn't exist, let's create it
 			{
 			$data=array('tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
-			$fp=fopen($this->sessionfile,'w+');
-			if (!fwrite($fp, serialize($data)) )
-				error_log(" Error writing to session file ");
-			fclose($fp);
+			file_put_contents($this->sessionfile, serialize($data));
 			}
 		$this->_remove_old_jomres_sessions();
 		}
@@ -264,11 +271,7 @@ class jomres_temp_booking_handler
 	function close_jomres_session()
 		{
 		$data=array('IP'=>$_SERVER,'tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
-		$fp=fopen($this->sessionfile,'w+');
-		if (!fwrite($fp, serialize($data)) )
-			error_log(" Error writing to session file ");
-		//echo "<h1>Saving file ".$this->sessionfile."</h1>";
-		fclose($fp);
+		file_put_contents($this->sessionfile, serialize($data));
 		}
 
 	function _remove_old_jomres_sessions()
