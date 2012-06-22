@@ -13,7 +13,7 @@ var isSRP=false;
 /*var x*/
 var mininterval = {MININTERVAL};
 var rel_path	= "{RELPATH}";
-var livesite	= "{LIVESITE}";
+var livesite	= "{SUBMITURL}";
 var ajaxurl	= "{AJAXURL}";
 
 var noroomsselectedyetmessage				= "{NOROOMSSELECTEDYETMESSAGE}";
@@ -35,6 +35,7 @@ var rooms_list_enabled		= {JOMRES_ROOMSLISTENABLED};
 
 var error_class = "ui-state-error";
 var highlight_class = "ui-state-highlight";
+var success_class = "";
 
 function dateStatus(date) {
 	var min = new Date({EARLIESTYEAR},{EARLIESTMON},{EARLIESTDAY});
@@ -45,6 +46,8 @@ function dateStatus(date) {
 		return false; // leave other dates enabled
 	//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
 }
+
+var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
 jomresJquery(document).ready(function() {
 	{MODAL}

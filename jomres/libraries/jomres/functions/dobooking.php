@@ -612,6 +612,11 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	
 	$output['PROPERTYUID'] =$selectedProperty;
 	
+	$output['BOOTSTRAP_JS_VAR']='false';
+	if (defined('JOMRES_BOOTSTRAP'))
+		$output['BOOTSTRAP_JS_VAR']='true';
+	
+	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	

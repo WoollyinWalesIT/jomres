@@ -14,7 +14,7 @@ var isSRP=true;
 /*var x*/
 var mininterval = {MININTERVAL};
 var rel_path	= "{RELPATH}";
-var livesite	= "{LIVESITE}";
+var livesite	= "{SUBMITURL}";
 var ajaxurl	= "{AJAXURL}";
 
 var blockui_recheckingroomavailability		= "{BLOCKUI_RECHECKINGROOMAVAILABILITY}";
@@ -40,6 +40,9 @@ var rooms_list_enabled		= {JOMRES_ROOMSLISTENABLED};
 
 var error_class = "ui-state-error";
 var highlight_class = "ui-state-highlight";
+var success_class = "";
+
+var running_bootstrap = {BOOTSTRAP_JS_VAR};
 
 function dateStatus(date) {
 	var min = new Date({EARLIESTYEAR},{EARLIESTMON},{EARLIESTDAY});
