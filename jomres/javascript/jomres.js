@@ -775,11 +775,11 @@ function submitBooking(){
 	};
 	
 function setInputFillToOkColour(field){
-	jomresJquery(field).removeClass("ui-state-highlight");
+	jomresJquery(field).addClass(success_class);
 	};
 	
 function setInputFillToErrorColour(field){
-	jomresJquery(field).addClass("ui-state-highlight");
+	jomresJquery(field).addClass(error_class);
 	};
 	
 function submitenter(myfield,e){
