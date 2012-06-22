@@ -841,6 +841,7 @@ class patTemplate
 		$common_strings['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		$common_strings['JOMRES_SITEPAGE_URL_NOSEF']=JOMRES_SITEPAGE_URL_NOSEF;
 		$common_strings['LIVE_SITE']=get_showtime("live_site");
+		$common_strings['LIVESITE']=get_showtime("live_site");
 		$common_strings['COMMON_LAST_VIEWED_PROPERTY_UID']=get_showtime('last_viewed_property_uid');
 
 		return $common_strings;
