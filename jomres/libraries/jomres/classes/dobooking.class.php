@@ -3174,60 +3174,84 @@ class dobooking
 		$output['VALIDATION_CELLMOBILE']="false";
 		$output['VALIDATION_EMAIL']="false";
 
+		$output['BOOTSTRAP_FIRSTNAME_WARNING']="";
+		$output['BOOTSTRAP_SURNAME_WARNING']="";
+		$output['BOOTSTRAP_HOUSENO_WARNING']="";
+		$output['BOOTSTRAP_STREET_WARNING']="";
+		$output['BOOTSTRAP_TOWN_WARNING']="";
+		$output['BOOTSTRAP_POSTCODE_WARNING']="";
+		$output['BOOTSTRAP_REGION_WARNING']="";
+		$output['BOOTSTRAP_COUNTRY_WARNING']="";
+		$output['BOOTSTRAP_LANDLINE_WARNING']="";
+		$output['BOOTSTRAP_CELLMOBILE_WARNING']="";
+		$output['BOOTSTRAP_EMAIL_WARNING']="";
+
+		
 		if ($mrConfig['bookingform_requiredfields_name'] =="1")
 			{
 			$output['REQUIRED_FIRSTNAME']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_FIRSTNAME']="true";
+			$output['BOOTSTRAP_FIRSTNAME_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_surname'] =="1")
 			{
 			$output['REQUIRED_SURNAME']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_SURNAME']="true";
+			$output['BOOTSTRAP_SURNAME_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_houseno'] =="1")
 			{
 			$output['REQUIRED_HOUSENO']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_HOUSENO']="true";
+			$output['BOOTSTRAP_HOUSENO_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_street'] =="1")
 			{
 			$output['REQUIRED_STREET']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_STREET']="true";
+			$output['BOOTSTRAP_STREET_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_town'] =="1")
 			{
 			$output['REQUIRED_TOWN']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_TOWN']="true";
+			$output['BOOTSTRAP_TOWN_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_postcode'] =="1")
 			{
 			$output['REQUIRED_POSTCODE']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_POSTCODE']="true";
+			$output['BOOTSTRAP_POSTCODE_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_region'] =="1")
 			{
 			$output['REQUIRED_REGION']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_REGION']="true";
+			$output['BOOTSTRAP_REGION_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_country'] =="1")
 			{
 			$output['REQUIRED_COUNTRY']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_COUNTRY']="true";
+			$output['BOOTSTRAP_COUNTRY_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_tel'] =="1")
 			{
 			$output['REQUIRED_LANDLINE']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_LANDLINE']="true";
+			$output['BOOTSTRAP_LANDLINE_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_mobile'] =="1")
 			{
 			$output['REQUIRED_CELLMOBILE']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_CELLMOBILE']="true";
+			$output['BOOTSTRAP_CELLMOBILE_WARNING']=" warning";
 			}
 		if ($mrConfig['bookingform_requiredfields_email'] =="1")
 			{
 			$output['REQUIRED_EMAIL']='<font color="red">'.$icon.'</font>';
 			$output['VALIDATION_EMAIL']="true";
+			$output['BOOTSTRAP_EMAIL_WARNING']=" warning";
 			}
 		return $output;
 		}
