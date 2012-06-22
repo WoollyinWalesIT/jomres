@@ -38,12 +38,12 @@ class j02220listguests {
 		$rows=array();
 		$surnameFirstChars         = jomresGetParam( $_REQUEST, 'surnameFirstChars', '' );
 		$defaultProperty=getDefaultProperty();
-		$output['PAGETITLE']	=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
+		$output['PAGETITLE']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN',_JOMRES_FRONT_MR_MENU_ADMIN_GUESTADMIN);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
-		$output['HEDITLINK']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS',_JOMRES_COM_MR_DISPGUEST_EDITDETAILS);
-		$output['HINVOICELINK']	=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES);
+		$output['HEDITLINK']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_EDITDETAILS',_JOMRES_COM_MR_DISPGUEST_EDITDETAILS);
+		$output['HINVOICELINK']=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES);
 		$output['HFIRSTNAME']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FIRSTNAME',_JOMRES_COM_MR_DISPGUEST_FIRSTNAME);
-		$output['HSURNAME']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
+		$output['HSURNAME']	=jr_gettext('_JOMRES_COM_MR_DISPGUEST_SURNAME',_JOMRES_COM_MR_DISPGUEST_SURNAME);
 		$output['HHOUSE']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_HOUSE',_JOMRES_COM_MR_DISPGUEST_HOUSE);
 		$output['HSTREET']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_STREET',_JOMRES_COM_MR_DISPGUEST_STREET);
 		$output['HTOWN']		=jr_gettext('_JOMRES_COM_MR_DISPGUEST_TOWN',_JOMRES_COM_MR_DISPGUEST_TOWN);
@@ -177,7 +177,7 @@ class j02220listguests {
 		$yesno = array();
 		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=1"), _JOMRES_HISTORIC_GUESTS_SHOW );
 		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=0"), _JOMRES_HISTORIC_GUESTS_NOSHOW );
-		$output['HISTORIC_GUESTS_DROPDOWN']=jomresHTML::selectList( $yesno, 'all_guests','class="inputbox" size="1" onchange="window.open(this.options[this.selectedIndex].value,\'_top\')"', 'value', 'text', (int)$_REQUEST['all_guests']);
+		$output['HISTORIC_GUESTS_DROPDOWN']=jomresHTML::selectList( $yesno, 'all_guests','onchange="window.open(this.options[this.selectedIndex].value,\'_top\')"', 'value', 'text', (int)$_REQUEST['all_guests']);
 		
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();

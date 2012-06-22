@@ -102,15 +102,15 @@ class j06000show_property_reviews
 			if ( $this_user_can_review_this_property)
 				{
 				$url=jomresURL(JOMRES_SITEPAGE_URL."&task=add_review&amp;property_uid=".$property_uid);
-				$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<a href = "'.$url.'"><img src="'.$add_review_icon.'" style="vertical-align:middle;"/>'.jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false).'</a>';
+				$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<div class="align-center"><a href = "'.$url.'" class="btn btn-primary"><i class="icon-plus icon-white"></i> '.jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW',_JOMRES_REVIEWS_ADD_REVIEW,false,false).'</a></div>';
 				}
 			else 
 				{
 				if (!$thisJRUser->userIsRegistered) 
-					$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN,false,false);
+					$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<div class="alert alert-info">'.jr_gettext('_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN',_JOMRES_REVIEWS_ADD_REVIEW_NOTLOGGEDIN,false,false).'</div>';
 				elseif (!$thisJRUser->userIsManager)
 					{
-					$output['_JOMRES_REVIEWS_ADD_REVIEW']			=jr_gettext('_JOMRES_REVIEWS_ALREADYREVIEWED',_JOMRES_REVIEWS_ALREADYREVIEWED,false,false);
+					$output['_JOMRES_REVIEWS_ADD_REVIEW']			='<div class="alert">'.jr_gettext('_JOMRES_REVIEWS_ALREADYREVIEWED',_JOMRES_REVIEWS_ALREADYREVIEWED,false,false).'</div>';
 					}
 				}
 			
@@ -148,12 +148,12 @@ class j06000show_property_reviews
 						$r['RATING_STARS'].='<img src="'.$star.'"/>';
 					
 					$r['REPORT_REVIEWLINK'] = "";
-					if ($thisJRUser->userIsRegistered)
-						{
+					//if ($thisJRUser->userIsRegistered)
+						//{
 						$r['REPORT_REVIEWLINK'] = '<a href="'.jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']).'">'.$r['_JOMRES_REVIEWS_REPORT_REVIEW'].'</a>';
 						$r['REPORT_URL']=jomresURL(JOMRES_SITEPAGE_URL.'&task=report_review&amp;rating_id='.$r['RATING_ID']);
 						$r['REPORT_TEXT']=$r['_JOMRES_REVIEWS_REPORT_REVIEW'];
-						}
+						//}
 					
 					$confirm_states = $Reviews->showConfirm($review['rating_id']);
 					
@@ -167,56 +167,49 @@ class j06000show_property_reviews
 						$r['_JOMRES_REVIEWS_RATING_5']					=jr_gettext('_JOMRES_REVIEWS_RATING_5',_JOMRES_REVIEWS_RATING_5,false,false);
 						$r['_JOMRES_REVIEWS_RATING_6']					=jr_gettext('_JOMRES_REVIEWS_RATING_6',_JOMRES_REVIEWS_RATING_6,false,false);
 						
-						$r['rating_1']='';
-						$r['rating_2']='';
-						$r['rating_3']='';
-						$r['rating_4']='';
-						$r['rating_5']='';
-						$r['rating_6']='';
-					
-						for ($i=1;$i<=10;$i++)
-							{
-							$r['rating_1'].='<input name="'.$review['rating_id'].'_1" type="radio" class="star" disabled="disabled"';
-							$r['rating_2'].='<input name="'.$review['rating_id'].'_2" type="radio" class="star" disabled="disabled"';
-							$r['rating_3'].='<input name="'.$review['rating_id'].'_3" type="radio" class="star" disabled="disabled"';
-							$r['rating_4'].='<input name="'.$review['rating_id'].'_4" type="radio" class="star" disabled="disabled"';
-							$r['rating_5'].='<input name="'.$review['rating_id'].'_5" type="radio" class="star" disabled="disabled"';
-							$r['rating_6'].='<input name="'.$review['rating_id'].'_6" type="radio" class="star" disabled="disabled"';
-							if ($i == $review_details[$review['rating_id']][0])
-								$r['rating_1'].=' checked="checked" ';
-							if ($i == $review_details[$review['rating_id']][1])
-								$r['rating_2'].=' checked="checked" ';
-							if ($i == $review_details[$review['rating_id']][2])
-								$r['rating_3'].=' checked="checked" ';
-							if ($i == $review_details[$review['rating_id']][3])
-								$r['rating_4'].=' checked="checked" ';
-							if ($i == $review_details[$review['rating_id']][4])
-								$r['rating_5'].=' checked="checked" ';
-							if ($i == $review_details[$review['rating_id']][5])
-								$r['rating_6'].=' checked="checked" ';
-							$r['rating_1'].='/>';
-							$r['rating_2'].='/>';
-							$r['rating_3'].='/>';
-							$r['rating_4'].='/>';
-							$r['rating_5'].='/>';
-							$r['rating_6'].='/>';
-							}
-						$r['rating_1'].='';
-						$r['rating_2'].='';
-						$r['rating_3'].='';
-						$r['rating_4'].='';
-						$r['rating_5'].='';
-						$r['rating_6'].='';
+						$r['rating_1']=$review_details[$review['rating_id']][0].'/10';
+						$r['rating_2']=$review_details[$review['rating_id']][1].'/10';
+						$r['rating_3']=$review_details[$review['rating_id']][2].'/10';
+						$r['rating_4']=$review_details[$review['rating_id']][3].'/10';
+						$r['rating_5']=$review_details[$review['rating_id']][4].'/10';
+						$r['rating_6']=$review_details[$review['rating_id']][5].'/10';
+
+//						for ($i=1;$i<=10;$i++)
+//							{
+//							$r['rating_1'].='<input name="'.$review['rating_id'].'_1" type="radio" class="star" disabled="disabled"';
+//							$r['rating_2'].='<input name="'.$review['rating_id'].'_2" type="radio" class="star" disabled="disabled"';
+//							$r['rating_3'].='<input name="'.$review['rating_id'].'_3" type="radio" class="star" disabled="disabled"';
+//							$r['rating_4'].='<input name="'.$review['rating_id'].'_4" type="radio" class="star" disabled="disabled"';
+//							$r['rating_5'].='<input name="'.$review['rating_id'].'_5" type="radio" class="star" disabled="disabled"';
+//							$r['rating_6'].='<input name="'.$review['rating_id'].'_6" type="radio" class="star" disabled="disabled"';
+//							if ($i == $review_details[$review['rating_id']][0])
+//								$r['rating_1'].=' checked="checked" ';
+//							if ($i == $review_details[$review['rating_id']][1])
+//								$r['rating_2'].=' checked="checked" ';
+//							if ($i == $review_details[$review['rating_id']][2])
+//								$r['rating_3'].=' checked="checked" ';
+//							if ($i == $review_details[$review['rating_id']][3])
+//								$r['rating_4'].=' checked="checked" ';
+//							if ($i == $review_details[$review['rating_id']][4])
+//								$r['rating_5'].=' checked="checked" ';
+//							if ($i == $review_details[$review['rating_id']][5])
+//								$r['rating_6'].=' checked="checked" ';
+//							$r['rating_1'].='/>';
+//							$r['rating_2'].='/>';
+//							$r['rating_3'].='/>';
+//							$r['rating_4'].='/>';
+//							$r['rating_5'].='/>';
+//							$r['rating_6'].='/>';
+//							}
+//						$r['rating_1'].='';
+//						$r['rating_2'].='';
+//						$r['rating_3'].='';
+//						$r['rating_4'].='';
+//						$r['rating_5'].='';
+//						$r['rating_6'].='';
 						
 						}
 					//if (in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
-					
-					
-					if (!in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
-						{
-						$r['THUMB_UP']='<a href ="javascript:void(0);" title="'.$r['_JOMRES_REVIEWS_IAGREE'].'"  onClick="confirm_review('.$review['rating_id'].',1);" style="outline: none;"><img src="'.$thumb_up.'"/></a>';
-						$r['THUMB_DOWN']='<a href ="javascript:void(0);" title="'.$r['_JOMRES_REVIEWS_IDISAGREE'].'"  onClick="confirm_review('.$review['rating_id'].',0);"  style="outline: none;"><img src="'.$thumb_down.'"/></a>';
-						}
 
 					if ($confirm_states['agree']!=0)
 						{
@@ -226,6 +219,12 @@ class j06000show_property_reviews
 						else
 							$r['_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW']	=jr_gettext('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW,false,false);
 						}
+					else
+						{
+						$r['NUMBER_AGREE']='0';
+						$r['_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW']	=jr_gettext('_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_AGREE_WITHREVIEW,false,false);
+						}
+					
 					if ($confirm_states['disagree']!=0)
 						{
 						$r['NUMBER_DISAGREE']=$confirm_states['disagree'];
@@ -234,6 +233,17 @@ class j06000show_property_reviews
 						else
 							$r['_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW']=jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW,false,false);
 						}
+					else
+						{
+						$r['NUMBER_DISAGREE']='0';
+						$r['_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW']=jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW,false,false);
+						}
+					//if (!in_array($Reviews->ip,$confirm_states['confirm_ips']) && $this_user_can_review)
+						//{
+						$r['THUMB_UP']='<a href ="javascript:void(0);" title="'.$r['_JOMRES_REVIEWS_IAGREE'].'"  onClick="confirm_review('.$review['rating_id'].',1);" class="btn btn"><img src="'.$thumb_up.'" width="14" height="14"/> '.$r['NUMBER_AGREE'].'</a>';
+						$r['THUMB_DOWN']='<a href ="javascript:void(0);" title="'.$r['_JOMRES_REVIEWS_IDISAGREE'].'"  onClick="confirm_review('.$review['rating_id'].',0);" class="btn"><img src="'.$thumb_down.'" width="14" height="14"/> '.$r['NUMBER_DISAGREE'].'</a>';
+						//}
+
 					$r['RATING_DATE']=$review['rating_date'];
 					$rows[]=$r;
 					}

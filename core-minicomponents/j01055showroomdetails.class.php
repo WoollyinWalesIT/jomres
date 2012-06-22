@@ -80,8 +80,7 @@ class j01055showroomdetails {
 				{
 				$classAbbvs[(int)$roomClass->room_classes_uid] = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
 				}
-			
-			$counter=0;
+
 			foreach ($roomList as $room)
 				{
 				$roomRow=array();
@@ -143,11 +142,6 @@ class j01055showroomdetails {
 				$roomRow['ROOMFLOOR']= $room_floor;
 				$roomRow['DISABLEDACCESS']= $disabledAccess;
 				$roomRow['MAXPEOPLE']= $max_people;
-				
-				if ($counter%2)
-					$roomRow['CLASS']="even";
-				else
-					$roomRow['CLASS']="odd";
 
 				$rows[]=$roomRow;
 				$counter++;
