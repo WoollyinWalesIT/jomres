@@ -1134,8 +1134,6 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				error_logging( "Error, unable to write to ".$module_target." Please ensure that the parent path is writable by the web server ");
 				return false;
 				}
-			
-
 			if (!file_exists($module_target.JRDS.$module_full_name.".xml"))
 				{
 				$query= "SELECT id FROM #__modules where title = '".$plugin_name."'";
@@ -1180,10 +1178,16 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				$result=doInsertSql($query,"");
 				}
 				
-			$module_xml_move_result=dirmv($module_xml_source, $module_target, true, $funcloc = "/");
-			$module_move_result=dirmv($module_source, $module_target, true, $funcloc = "/");
-			if ($module_move_result['success'] && $module_xml_move_result['success'])
-				return true;
+			if ($result)
+				{
+				//echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
+				$module_xml_move_result=dirmv($module_xml_source, $module_target, true, $funcloc = "/");
+				$module_move_result=dirmv($module_source, $module_target, true, $funcloc = "/");
+				if ($module_move_result['success'] && $module_xml_move_result['success'])
+					return true;
+				else
+					return false;
+				}
 			else
 				return false;
 			break;
@@ -1208,6 +1212,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				$mambot_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name.JRDS.$remote_plugin_mambot_folder.JRDS;
 				$mambot_xml_source=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS.$plugin_name;
 				}
+
 
 			if (_JOMRES_DETECTED_CMS == "joomla15")
 				$mambot_target=JOMRESCONFIG_ABSOLUTE_PATH.JRDS."plugins".JRDS.$mambot_type;
@@ -1252,6 +1257,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 				}
 			else
 				{
+				//echo "failed";
 				return false;
 				}
 
@@ -2492,11 +2498,7 @@ function hotelSettings()
 	?>
 
 		<form action="<?php echo JOMRES_SITEPAGE_URL; ?>" method="post" name="adminForm">
-		<table cellpadding="4" cellspacing="0" border="0" width="100%">
-		<tr>
-		 <td width="100%" class="sectionname"><h2><?php echo _JOMRES_COM_MR_GENERALCONFIGDESC; ?></h2></td>
-		</tr>
-		</table>
+		<h2 class="page-header"><?php echo _JOMRES_COM_MR_GENERALCONFIGDESC; ?></h2>
 	<?php
 
 	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
@@ -2506,7 +2508,7 @@ function hotelSettings()
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 
-	echo $output['JOMRESTOOLBAR'];
+	echo '<div class="well"><div class="span12">'.$output['JOMRESTOOLBAR'].'</div></div>';
 
 	$configurationPanel =jomres_singleton_abstract::getInstance('jomres_configpanel');
 
@@ -2538,7 +2540,6 @@ function hotelSettings()
 	<?php
 	ob_end_flush();
 	}
-
 
 /**
 #
@@ -2909,17 +2910,17 @@ function insertGuestDeets($jomressession)
 	$guests_uid		=(int)$xCustomers['guests_uid'];
 	$mos_userid		=(int)$xCustomers['mos_userid'];
 	$existing_id	=(int)$xCustomers['existing_id'];
-	$email		=	filter_var($xCustomers['email'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$firstname	=	filter_var($xCustomers['firstname'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$surname	=	filter_var($xCustomers['surname'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$house		=	filter_var($xCustomers['house'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$street		=	filter_var($xCustomers['street'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$town		=	filter_var($xCustomers['town'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$region		=	filter_var($xCustomers['region'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$country	=	filter_var($xCustomers['country'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$postcode	=	filter_var($xCustomers['postcode'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$landline	=	filter_var($xCustomers['tel_landline'],FILTER_SANITIZE_SPECIAL_CHARS);
-	$mobile		=	filter_var($xCustomers['tel_mobile'],FILTER_SANITIZE_SPECIAL_CHARS);
+	$email		=	getEscaped($xCustomers['email']);
+	$firstname	=	getEscaped($xCustomers['firstname']);
+	$surname	=	getEscaped($xCustomers['surname']);
+	$house		=	getEscaped($xCustomers['house']);
+	$street		=	getEscaped($xCustomers['street']);
+	$town		=	getEscaped($xCustomers['town']);
+	$region		=	getEscaped($xCustomers['region']);
+	$country	=	getEscaped($xCustomers['country']);
+	$postcode	=	getEscaped($xCustomers['postcode']);
+	$landline	=	getEscaped($xCustomers['tel_landline']);
+	$mobile		=	getEscaped($xCustomers['tel_mobile']);
 	$property_uid=	(int)$tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
 
 	$ccard_no	=	getEscaped($xCustomers['ccard_no']);
@@ -3574,8 +3575,10 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 			$imgToShow=$img_stillhere;
 
 		$r['STATE_IMAGE']=$imgToShow;
+		$r['EDIT_LINK']= '<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) ).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE,false).'</a>';
 		$r['EDIT_URL']= jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );
 		$r['EDIT_TEXT']=jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE,false);
+		
 		$r['FIRSTNAME']=$row->firstname;
 		$r['SURNAME']=$row->surname;
 		$r['BOOKING_NO']=$row->tag;
@@ -5504,8 +5507,6 @@ function this_cms_is_joomla()
 function jomres_decode($string)
 	{
 	$string = htmlspecialchars_decode ($string,ENT_QUOTES);
-	
-	$string = str_replace ("&#38;#39;",'"',$string);
 	$string = str_replace ("&#34;",'"',$string);
 	$string = str_replace ("&#38;","&",$string);
 	$string = str_replace ("&#39;","'",$string);

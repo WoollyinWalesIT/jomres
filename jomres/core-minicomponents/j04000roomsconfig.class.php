@@ -100,13 +100,17 @@ class j04000roomsconfig {
 				$jrtb .= $jrtbar->endTable();
 				$newRoomButton=$jrtb;
 				}
-
+			
+			$newRoomButton='<div class="well"><div class="span12">'.$newRoomButton.'</div></div>';
+			
 			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
 			$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;"),'');
 				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&"),'');
 			$jrtb .= $jrtbar->endTable();
 			$newRoomFeatureButton=$jrtb;
+			
+			$newRoomFeatureButton='<div class="well"><div class="span12">'.$newRoomFeatureButton.'</div></div>';
 
 			$newRoomClassButton="";
 			if ($mrConfig['singleRoomProperty'] ==  '1' && $roomTypeCount<1 )
@@ -248,7 +252,7 @@ class j04000roomsconfig {
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
-		echo "<h2>".jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
+		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();

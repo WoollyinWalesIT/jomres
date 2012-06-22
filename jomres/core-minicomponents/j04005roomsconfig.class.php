@@ -135,7 +135,6 @@ class j04005roomsconfig {
 			{
 			// Now we can start to create our rows
 			$rows=array();
-			$classcounter=0;
 			foreach ($roomsClassList as $roomType) // First we need to gather some information about tariffs & rooms
 				{
 				$roomtype_id=$roomType->room_classes_uid;
@@ -144,10 +143,10 @@ class j04005roomsconfig {
 				$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomType->room_classes_uid,		stripslashes($roomType->room_class_abbv),false,false);
 						
 				$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
-				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 150, 1, "numberofRooms[$roomtype_id]", 'size="1" class="input_40perc"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
-				$r['ROOMRATEPERDAY']='<input class="input_20perc"  style="text-align:right" size="4" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
-				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'size="1" class="input_40perc"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
-				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'size="1" class="input_40perc"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
+				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 300, 1, "numberofRooms[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
+				$r['ROOMRATEPERDAY']='<input class="input-mini" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
+				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
+				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
 				$existingrooms="";
 				$counter=1;
 				$numberOfExistingRooms=count($roomTypesArray[$roomType->room_classes_uid]['existingrooms']);
@@ -160,12 +159,7 @@ class j04005roomsconfig {
 					$counter++;
 					}
 				$r['existingrooms']='<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.$existingrooms.'" />';
-				if ($classcounter%2)
-					$r['CLASS']="even";
-				else
-					$r['CLASS']="odd";
 				$rows[]=$r;
-				$classcounter++;
 				}
 				
 			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
@@ -190,8 +184,8 @@ class j04005roomsconfig {
 				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK;
 			else
 				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY;
-			$output['ROOMRATEPERDAY']='<input class="input_10perc" style="text-align:right" type="text" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
-			$output['MAX_PEOPLE']='<input class="inputbox" style="text-align:right" size="4" type="text" name="max_people" value="'.$roomTypesArray[$type_id]['max_people'].'" />';
+			$output['ROOMRATEPERDAY']='<input class="input-mini" type="text" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
+			$output['MAX_PEOPLE']='<input class="input-mini" type="text" name="max_people" value="'.$roomTypesArray[$type_id]['max_people'].'" />';
 			$rows=array();
 			foreach ($roomsClassList as $roomType) // First we need to gather some information about tariffs & rooms
 				{
@@ -266,7 +260,7 @@ class j04005roomsconfig {
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
-		echo "<h2>".jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
+		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
