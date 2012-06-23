@@ -173,7 +173,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	
 	$output['RELPATH']=get_showtime('live_site');
 	$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
-	$output['LIVESITE']=JOMRES_SITEPAGE_URL;
+	$output['SUBMITURL']=JOMRES_SITEPAGE_URL;
 	if (!$thisJRUser->userIsManager)
 		$bkg->setBookerClass("000");
 	else
