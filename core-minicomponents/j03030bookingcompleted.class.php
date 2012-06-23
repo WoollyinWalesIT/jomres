@@ -46,10 +46,7 @@ class j03030bookingcompleted {
 		//$save_deets['LIVESITE']=JOMRES_SITEPAGE_URL;
 		
 
-		if ( $jrConfig['useSSLinBookingform'] == 1 )
-			$save_deets['LIVESITE'] = str_replace("https://","http://",JOMRES_SITEPAGE_URL);
-		else
-			$save_deets['LIVESITE'] = JOMRES_SITEPAGE_URL;
+		$save_deets['RETURN_URL'] = JOMRES_SITEPAGE_URL;
 
 		if (defined('_JR_GATEWAY_AFTERWORD') )
 			$save_deets['JR_GATEWAY_AFTERWORD']=jr_gettext('_JR_GATEWAY_AFTERWORD',_JR_GATEWAY_AFTERWORD);

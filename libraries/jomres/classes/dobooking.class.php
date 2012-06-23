@@ -2703,7 +2703,7 @@ class dobooking
 
 		});
 		</script>
-		<input type="text"  class="input-mini" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" autocomplete="off" />
+		<input type="text"  class="input-mini" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" autocomplete="off" />
 		';
 		return $output;
 		}
