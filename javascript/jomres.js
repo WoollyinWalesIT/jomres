@@ -36,7 +36,25 @@ function parse_ajax_returned_scripts(_source) {
 		return source;
 }
 
-
+function bind_data_toggle()
+	{
+	jomresJquery(function() {
+		jomresJquery('[data-toggle="modal"]').click(function(e) {
+			random_identifier = jomresJquery(this).attr('random_identifier');
+			property_uid = jomresJquery(this).attr('property_uid');
+			property_name = jomresJquery(this).attr('property_name');
+			
+			loader = '<img src="'+path_to_jomres_dir+'/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image" />';
+			jomresJquery('#module_'+random_identifier+'_popup').html(loader);
+			e.preventDefault();
+			jomresJquery.get(module_pop_ajax_url+property_uid, function(data) {
+				result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>'+property_name+'</h4></div><div class="modal-body">'+data+'</div>';
+				jomresJquery('#module_'+random_identifier+'_popup').html(result);
+				});
+			});
+		});
+	}
+	
 function module_popup(random_identifier,property_uid){
 	var modal_popup_height = 640;
 	var modal_popup_width = 520;

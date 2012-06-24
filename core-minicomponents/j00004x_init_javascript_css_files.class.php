@@ -131,6 +131,9 @@ class j00004x_init_javascript_css_files {
 					$compare_url = '
 					var compare_url = \''.jomresURL(JOMRES_SITEPAGE_URL."&task=compare").'\';
 					';
+					$compare_url = '
+					var path_to_jomres_dir = \''.get_showtime('live_site').'/\';
+					';
 					file_put_contents (get_showtime("misc_url_definitions.js.abspath").get_showtime("misc_url_definitions.js"),$livesite_ajax.$compare_url);
 					}
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("misc_url_definitions.js.relpath"),get_showtime("misc_url_definitions.js"));
