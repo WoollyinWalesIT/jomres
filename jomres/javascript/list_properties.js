@@ -42,6 +42,7 @@ function lastAddedLiveFunc()
 			jomresJquery("#animation").remove();
 			if (data != "") {
 				jomresJquery(".jomres_property_list_propertywrapper:last").after(data);
+				bind_data_toggle();
 				}
 			
 			killScroll = false; // IMPORTANT - Make function available again.
@@ -70,6 +71,7 @@ jomresJquery(document).ready(function() {
 		var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
 		jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled",bol);
 		});
+	bind_data_toggle();
 	});
 
 function trigger_comparison(form) {
