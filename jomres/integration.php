@@ -1012,7 +1012,10 @@ class jomresHTML
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
 		{
 		$attribs = str_replace('class="inputbox"',"",$attribs);
+		$attribs = str_replace('class="input-medium"',"",$attribs);
+		
 		$attribs .= ' class="input-medium" ';
+		
 		$output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
 		for ($i=0, $n= count( $arr ); $i < $n; $i++ )
 			{
@@ -1030,7 +1033,9 @@ class jomresHTML
 	function integerSelectList( $start, $end, $increment, $name, $attribs, $selected, $format="" )
 		{
 		$attribs = str_replace(' class="inputbox" ',"",$attribs);
-		$attribs .= 'class="input-medium"';
+		$attribs = str_replace(' class="input-medium" ',"",$attribs);
+		$attribs .= ' class="input-small"';
+		
 		$arry 	= array();
 		for ($i=(int)$start; $i <= (int)$end; $i+=(int)$increment)
 			{
