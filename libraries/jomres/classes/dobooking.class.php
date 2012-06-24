@@ -965,8 +965,8 @@ class dobooking
 				$tax_output = "";
 				if ($rate > 0)
 					$tax_output = " (".$rate."%)";
-				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) )).$tax_output." ( ".$model_text." )";
-
+				$extra_deets['NAME']=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_EXTRANAME'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->name)), ENT_QUOTES) ));
+				$extra_deets['MODELTEXT'] = $tax_output." ( ".$model_text." )";
 				$extra_deets['PRICE']=output_price($inc_price);
 				if ($mrConfig['wholeday_booking'] == "1")
 					{
@@ -986,7 +986,7 @@ class dobooking
 
 				$descriptionForOverlib=jr_gettext('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid, htmlspecialchars(trim(stripslashes($ex->desc)), ENT_QUOTES),false,true);
 				//$extra_deets['OVERLIB_DESCRIPTION']='<a href="javascript:void(0);" onmouseover="return overlib(\''.$extra_deets['PERNIGHT'].' '.$descriptionForOverlib.'\', WIDTH, 300, BELOW, CENTER );" onmouseout="return nd(0);"><img alt="" border="0" src="'.get_showtime('live_site').'/jomres/images/info.png" />';
-				$extra_deets['OVERLIB_DESCRIPTION']=jomres_makeTooltip('_JOMRES_CUSTOMTEXT_EXTRADESC'.$ex->uid,$extra_deets['PERNIGHT'],$descriptionForOverlib,$model_text." ".$descriptionForOverlib,$class="",$type="infoimage",array("width"=>20,"height"=>20) );
+				$extra_deets['OVERLIB_DESCRIPTION']=$descriptionForOverlib;
 
 				$checked="";
 				if ($this->extraAlreadySelected($ex->uid) || (int)$ex->auto_select == 1 )
@@ -1009,13 +1009,16 @@ class dobooking
 				//if ($ex->maxquantity > 1)
 				//	$clickUnlock='jomresJquery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
 				if ($model['force']!="1")
+					{
 					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
+					}
 				else
 					{
 					$this->forcedExtras[] =$ex->uid;
 					$this->setExtras($ex->uid);
 					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" checked disabled=" "; name="extras['.$ex->uid.']" value="'.$ex->uid.'" />';
 					}
+				$extra_deets['FIELDNAME']='extras['.$ex->uid.']';
 				if ($ex->maxquantity > 1)
 					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="input-medium"  AUTOCOMPLETE="OFF" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d" );
 
@@ -1444,7 +1447,9 @@ class dobooking
 			$bang = explode("^",$values);
 			$this->override_room_total = (float)$bang[0];
 			$this->override_deposit = (float)$bang[1];
+			//return "OK!";
 			}
+			
 		}
 		
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1638,7 +1643,8 @@ class dobooking
 				else
 					$defNo=0;
 				}
-			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype', 'size="1" class="input-small" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
+			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype'.$ct->id, 'size="1" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
+			$customerTypes['FIELDNAME']=  'guesttype'.$ct->id;
 			$cust[]=$customerTypes;
 			}
 		return $cust;
