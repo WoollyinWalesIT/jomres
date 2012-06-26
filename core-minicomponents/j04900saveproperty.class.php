@@ -70,35 +70,45 @@ class j04900saveproperty {
 		$lat							= parseFloat(jomresGetParam( $_POST, 'lat', '' ));
 		$long							= parseFloat(jomresGetParam( $_POST, 'long', '' ));
 		$price=str_replace(",","",$price);
+		
 		if ($jrConfig['allowHTMLeditor'] == "0")
 			{
-			$property_description			= jomresGetParam( $_POST, 'property_description', "" );
-			$property_checkin_times			= jomresGetParam( $_POST, 'property_checkin_times', "" );
-			$property_area_activities		= jomresGetParam( $_POST, 'property_area_activities', "" );
-			$property_driving_directions	= jomresGetParam( $_POST, 'property_driving_directions', "" );
-			$property_airports				= jomresGetParam( $_POST, 'property_airports', "" );
-			$property_othertransport		= jomresGetParam( $_POST, 'property_othertransport', "" );
-			$property_policies_disclaimers	= jomresGetParam( $_POST, 'property_policies_disclaimers', "" );
+			$property_description			= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_description', "" ));
+			$property_checkin_times			= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_checkin_times', "" ));
+			$property_area_activities		= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_area_activities', "" ));
+			$property_driving_directions	= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_driving_directions', "" ));
+			$property_airports				= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_airports', "" ));
+			$property_othertransport		= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_othertransport', "" ));
+			$property_policies_disclaimers	= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_policies_disclaimers', "" ));
+			
+			$property_description			= strip_tags(  $property_description );
+			$property_checkin_times			= strip_tags(  $property_checkin_times);
+			$property_area_activities		= strip_tags(  $property_area_activities );
+			$property_driving_directions	= strip_tags(  $property_driving_directions);
+			$property_airports				= strip_tags(  $property_airports );
+			$property_othertransport		= strip_tags(  $property_othertransport );
+			$property_policies_disclaimers	= strip_tags(  $property_policies_disclaimers );
 			}
 		else
 			{
-			$property_description			= jomresGetParam( $_POST, 'property_description', "" , _MOS_ALLOWHTML );
-			$property_checkin_times			= jomresGetParam( $_POST, 'property_checkin_times', "" , _MOS_ALLOWHTML );
-			$property_area_activities		= jomresGetParam( $_POST, 'property_area_activities', "" , _MOS_ALLOWHTML );
-			$property_driving_directions	= jomresGetParam( $_POST, 'property_driving_directions', "" , _MOS_ALLOWHTML );
-			$property_airports				= jomresGetParam( $_POST, 'property_airports', "" , _MOS_ALLOWHTML );
-			$property_othertransport		= jomresGetParam( $_POST, 'property_othertransport', "" , _MOS_ALLOWHTML );
-			$property_policies_disclaimers	= jomresGetParam( $_POST, 'property_policies_disclaimers', "" , _MOS_ALLOWHTML );
+			$property_description			= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_description', "" ));
+			$property_checkin_times			= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_checkin_times', "" ));
+			$property_area_activities		= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_area_activities', "" ));
+			$property_driving_directions	= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_driving_directions', "" ));
+			$property_airports				= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_airports', "" ));
+			$property_othertransport		= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_othertransport', "" ));
+			$property_policies_disclaimers	= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_policies_disclaimers', "" ));
 			
 			if ($jrConfig['use_jomres_own_editor'])
 				{
-				$property_description 				= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_description); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
-				$property_checkin_times 			= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_checkin_times); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
-				$property_area_activities 			= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_area_activities); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
-				$property_driving_directions 		= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_driving_directions); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
-				$property_airports 					= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_airports); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
-				$property_othertransport 			= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_othertransport); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
-				$property_policies_disclaimers 		= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_policies_disclaimers); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$unwanted = array("<p><br></p>","<brb>","</brb>","<p></p>");
+				$property_description 				= '<p></p>'.str_replace($unwanted,"",$property_description).'<p></p>'; // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_checkin_times 			= '<p></p>'.str_replace($unwanted,"",$property_checkin_times.'<p></p>'); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_area_activities 			= '<p></p>'.str_replace($unwanted,"",$property_area_activities).'<p></p>'; // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_driving_directions 		= '<p></p>'.str_replace($unwanted,"",$property_driving_directions).'<p></p>'; // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_airports 					= '<p></p>'.str_replace($unwanted,"",$property_airports).'<p></p>'; // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_othertransport 			= '<p></p>'.str_replace($unwanted,"",$property_othertransport).'<p></p>'; // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_policies_disclaimers 		= '<p></p>'.str_replace($unwanted,"",$property_policies_disclaimers).'<p></p>'; // The Jomres editor adds stray spaces and <p> to the end, this will remove them
 				}
 			}
 		$property_type					= jomresGetParam( $_POST, 'propertyType', 0 );
@@ -273,7 +283,13 @@ class j04900saveproperty {
 			}
 
 		}
-
+	
+	function convert_lessgreaterthans($string)
+		{
+		$string			= str_replace( "&#60;","<", $string );
+		$string			= str_replace( "&#62;",">", $string );
+		return $string;
+		}
 	/**
 	#
 	 * Must be included in every mini-component
