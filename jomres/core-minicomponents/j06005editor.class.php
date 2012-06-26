@@ -171,7 +171,7 @@ class j06005editor
 			}
 			
 		$ret = '
-			<textarea id="editor_'.$componentArgs['name'].'" name="'.$componentArgs['name'].'" style="height: '.$componentArgs['height'].'px; width:95%">
+			<textarea id="editor_'.$componentArgs['name'].'" name="'.$componentArgs['name'].'" style="height: '.$componentArgs['height'].'px; width:95%" autocomplete=\'off\'>
 			</textarea><script type="text/javascript">
 				jomresJquery(document).ready(function() { jomresJquery(\'#editor_'.$componentArgs['name'].'\').wysiwyg({ controls: editor_settings });
 				jomresJquery(\'#editor_'.$componentArgs['name'].'\').wysiwyg("insertHtml", "'.$componentArgs['content'].'");
