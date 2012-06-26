@@ -69,7 +69,7 @@ class j00016composite_property_details {
 			$random_identifier = generateJomresRandomString(10);
 			$output['ARROW'] = '<div id="sd" class="select-dates"></div>';
 
-			$inline_calendar = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property_uid,'return_calendar'=>"1") );
+			$inline_calendar = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
 
 			$output['INLINE_CALENDAR_ARROW_OPENINGDIV'] = '<div class="arrival-select" >';
 			$output['INLINE_CALENDAR'] = $inline_calendar;
