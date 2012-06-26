@@ -78,7 +78,9 @@ class j00035tabcontent_01_main_details
 			}
 		if ($discount_text != "")
 			$discount_output[] = array("DISCOUNT_OUTPUT"=>$discount_text);
-
+		
+		$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->addRows( 'pageoutput', $pageoutput );
