@@ -21,6 +21,7 @@ class j00035tabcontent_02_map
 			{
 			$this->template_touchable=false; return;
 			}
+		return;
 		$property_uid=(int)$componentArgs['property_uid'];  
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		
