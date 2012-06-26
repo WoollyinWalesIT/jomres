@@ -89,6 +89,17 @@ class j04900saveproperty {
 			$property_airports				= jomresGetParam( $_POST, 'property_airports', "" , _MOS_ALLOWHTML );
 			$property_othertransport		= jomresGetParam( $_POST, 'property_othertransport', "" , _MOS_ALLOWHTML );
 			$property_policies_disclaimers	= jomresGetParam( $_POST, 'property_policies_disclaimers', "" , _MOS_ALLOWHTML );
+			
+			if ($jrConfig['use_jomres_own_editor'])
+				{
+				$property_description 				= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_description); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_checkin_times 			= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_checkin_times); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_area_activities 			= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_area_activities); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_driving_directions 		= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_driving_directions); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_airports 					= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_airports); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_othertransport 			= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_othertransport); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				$property_policies_disclaimers 		= str_replace("&#60;/p&#62;&#60;p&#62;&#38;nbsp;","",$property_policies_disclaimers); // The Jomres editor adds stray spaces and <p> to the end, this will remove them
+				}
 			}
 		$property_type					= jomresGetParam( $_POST, 'propertyType', 0 );
 		$property_stars					= jomresGetParam( $_POST, 'stars', 0 );
