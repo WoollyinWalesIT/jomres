@@ -196,6 +196,7 @@ class j01010listpropertys {
 						}
 
 					// Tariffs
+					// Believe this section is depreciated, however we'll leave it in-situ for now, as people may be using it. Will leave it for some months until we can be reasonably confident that people are now using the get_property_price_for_display_in_lists function instead.
 					$pricesFromArray=array();
 					$maxPeopleArray = array();
 					$searchDate = date("Y/m/d");
