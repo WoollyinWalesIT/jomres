@@ -18,10 +18,7 @@ class j16000addplugin
 	function j16000addplugin()
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
-		if (function_exists('jomres_singleton_abstract::getInstance'))
-			$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-		else
-			global $MiniComponents,$jomresConfig_live_site;
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
 			$this->template_touchable=false; return;
@@ -30,6 +27,7 @@ class j16000addplugin
 		define ("JOMRES_INSTALLER",1);
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
+		$autoupgrade=jomresGetParam( $_REQUEST, 'autoupgrade', 0 );
 		$pluginName=str_replace("<x>","",$pluginName);
 		$pluginName=str_replace("&#60;x&#62;","",$pluginName);
 
@@ -54,7 +52,8 @@ class j16000addplugin
 		if (strlen($pluginName)==0 && !$thirdparty)
 			{
 			echo "Error, no plugin name passed";
-			return false;
+			if ($autoupgrade == 0) if ($autoupgrade == 0) return false; else { echo "FALSE"; return;} else { echo "FALSE"; return;}
+
 			}
 
 		if (!is_dir($remote_pluginsDirPath) )
@@ -62,7 +61,7 @@ class j16000addplugin
 			if (!mkdir($remote_pluginsDirPath))
 				{
 				echo "Couldn't make $remote_pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
-				return false;
+				if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 				}
 			else
 				if ($debugging) echo "Made ".$remote_pluginsDirPath."<br>";
@@ -128,7 +127,7 @@ class j16000addplugin
 			if ($error)
 				{
 				echo $errorDesc;
-				return false;
+				if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 				}
 			}
 		else
@@ -138,7 +137,7 @@ class j16000addplugin
 				if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
 					{
 					echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting.";
-					return false;
+					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 					}
 
 				if ($debugging) echo "Attempting download of ".$pluginName."<br>";
@@ -153,7 +152,7 @@ class j16000addplugin
 				$curl_handle = curl_init($queryServer);
 				$file_handle = fopen($newfilename, 'wb');
 				if ($file_handle == FALSE)
-					{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; return false; }
+					{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; if ($autoupgrade == 0) return false; else { echo "FALSE"; return;} }
 
 				curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
 				curl_setopt($curl_handle, CURLOPT_HEADER, 0);
@@ -169,7 +168,7 @@ class j16000addplugin
 		if (!file_exists($newfilename) || filesize($newfilename)==0 )
 			{
 			echo "Something went wrong downloading the update files. Quitting";
-			return false;
+			if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 			}
 
 		if ($debugging) echo "<br>Downloaded $newfilename<br>";
@@ -203,7 +202,7 @@ class j16000addplugin
 					emptyDir($updateDirPath."unpacked");
 					rmdir($updateDirPath."unpacked");
 					echo $result['msg'];
-					return false;
+					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 					}
 				$zip->close();
 				}
@@ -225,7 +224,7 @@ class j16000addplugin
 						{
 						echo $d;
 						}
-					return;
+					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 					}
 				}
 				
@@ -241,7 +240,7 @@ class j16000addplugin
 						echo $d."<br/>";
 						}
 					echo " One or more may be installed, this list is a list of plugins that the plugin that you are trying to install will conflict with. <br/>";
-					return;
+					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 					}
 				}
 			
@@ -274,7 +273,7 @@ class j16000addplugin
 				if ($error)
 					{
 					echo "Error, this plugin requires at least version ".$plugin_class->data['min_jomres_ver']." of Jomres";
-					return;
+					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 					}
 				}
 			
@@ -294,22 +293,28 @@ class j16000addplugin
 				$registry = new minicomponent_registry(false);
 				$registry->regenerate_registry();
 				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
-				if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
+				if ($autoupgrade == 0)
 					{
-					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
+					if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
 						{
-						if (!$debugging) jomresRedirect(get_showtime("live_site")."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_installer&view=discover");
+						if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
+							{
+							if (!$debugging) jomresRedirect(get_showtime("live_site")."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_installer&view=discover");
+							}
+						else
+							{
+							if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName);
+							}
 						}
 					else
-						{
-						if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName);
+						{ 
+						if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName); 
 						}
 					}
 				else
-					{ 
-					if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName); 
+					{
+					echo "TRUE";
 					}
-				
 				//
 				}
 			else
