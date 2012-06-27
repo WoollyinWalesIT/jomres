@@ -116,7 +116,7 @@ class j06000contactowner {
 			if(!jomresMailer( $output['GUEST_EMAIL'], $current_property_details->property_name, $target_email, $subject, $output['ENQUIRY'] ,$mode=1))
 				error_logging('Failure in sending enquiry email to hotel. Target address: '.$target_email.' Subject'.$subject);
 
-			if(!jomresMailer( $current_property_details->property_email, $current_property_details->property_name, $output['GUEST_EMAIL'], $subject, $output['ENQUIRY'] ,$mode=1))
+			if(!jomresMailer( $target_email, $current_property_details->property_name, $output['GUEST_EMAIL'], $subject, $output['ENQUIRY'] ,$mode=1))
 				error_logging('Failure in sending enquiry email to guest. Target address: '.$output['GUEST_EMAIL'].' Subject'.$subject);
 
 			$output['BACKTOPROPERTY']=jr_gettext('_JOMRES_BACKTOPROPERTYDETAILSLINK',_JOMRES_BACKTOPROPERTYDETAILSLINK);
