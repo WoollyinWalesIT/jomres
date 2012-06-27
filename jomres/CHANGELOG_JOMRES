@@ -1,3 +1,84 @@
+Jomres 6.6.6.
+
+Contact owner captcha replaced with reCaptcha (remember to set the public and private keys in Site Config)
+Added a new feature to lock rooms in the booking form. To prevent the danger of rooms being double booked when they're added to a shopping cart a room lock will prevent a room from being added to another user's booking form (rather, from being shown in the available rooms list) if the dates of their booking coincide with the dates of another user's booking being made at the same time.
+Added a new editor to Jomres.
+Modified the functionality that generates the module popup .js file to include the domain, prevents issues where users are using multiple domains from having cross domain problems.
+Modified currency codes class to exclude those code which cannot be converted. If we don't a property can choose an unconvertable code then the cart stops showing the correct figures.
+Modified the insert booking function to copy over guest details, allows a property manager to put two bookings into the cart against two different guests.
+Shopping cart modified to show prices converted to the global currency code. Without this change, if two bookings are saved to the cart, if they're using different currencies then the wrong prices will be shown on the cart.
+Tweaked module installer so that modules that already exist shouldn't require uninstalling before they're upgraded.
+A variety of changes to separate the rooms lists in the booking form's html from the booking engine.
+Modified singleton abstract class so that plugin dirs can be scanned for abstract classes.
+Added new code that allows us to have some language strings available to all templates.
+Modified various templates to further standardise layout in templates, and finally, after 7 years, template-ified the list properties page. 
+Changed how the edit booking page is rendered, finally moved various output data into their own templates.
+Added a new feature that tells a user they've clicked on a link for a task where the plugin has not yet been installed, and gives them a link to that plugin in the plugin manager.
+Made plugin names human readable in the plugin manager.
+A variety of changes to improve consistency with input and output filtering. Resolves an issue where guests with cities with an apostrophe weren't being encoded then decoded properly. For legacy reasons elements of the booking engine used older escaping functionality, by changing the filtering to filter_input we can easily decode the sanitised strings. Not security related, just aesthetics related.
+The Google map has been moved out of it's own tab and into the first, Property Description tab instead.
+
+Image path fixes for paypal in invoices.
+Small tweak to make the deposit the entire booking's price if the deposit is set to be the first night's price, and the booking's only for one night.
+Tweak to the drop image function to ensure that medium thumbs are also deleted when other images are deleted.
+Improved multibyte handling.
+Tweak to ensure SEF'd urls don't bork form action search urls.
+Improved how the booking engine finds free slots when the booking form is first generated.
+Added an updated Polish language file to the system.
+Solved a problem with the reviews average rating and number of reviews not being shown in property list.
+Added a new language definition POA to language files. Modified the price output function to output POA if price isn't otherwise set. Got sick of seeing $0.00 when tariffs were not available for a property.
+Further improvements to the code added to speed up generation of the booking form if the property is using fixed arrival days.
+Removed some spans from dropdown creation functions.
+Improved new code in output_price which allows 0.00 to be output in certain circumstances.
+Modified how links to invoices in different states are constructed in templates.
+Changed the validation js file called, as the minified version is no longer shipped with Jomres.
+Added a cancel word to addreview script.
+toptemplate functionality tweaked to enable menu generator to use the various top template dropdowns.
+Modified switch property feature to use template when generating buttons.
+Modified sanity check functionality to remove html out of code and into it's corresponding template.
+Tweaked how report bug information is built.
+Updated list guests invoices script to account for new links.
+Tweaked editproperty to provide further output for url/text separation in templates.
+Modifed saveproperty so that if the property name is blank, the old property name is reused.
+Edited new black booking template so that new text separation functionality is used.
+Further layout separation tweaks to the rooms list and edit room and edit room feature pages.
+Layout tweaks to list_property_bookings.html
+Tweaked edit booking related pages, made it so that add/edit notes doesn't try to close the page, and that cancel booking/edit deposit pages return to the edit booking page when cancel clicked.
+Modified the add header code in cms_specific/joomla25/cms_specific_functions.php so that if the filename isn't set, then the add to header functionality for that file is abandoned (allows us to disable some .js or .css scripts programatically)
+Added loading animation to bottom of live scrolling feature so that user can tell if a new property is being loaded.
+Show property reviews code and html separation changes
+Modified geocoder script so that if mobile detected, then show a halfsize map instead of the originally defined size.
+Modified dobooking to ensure estimate warning is available to the booking form template.
+A number of changes made to jomres.js to allow the system to resize modal popups depending on the client device's resolution. These sizes are arbitrary currently and will need to be reviewed.
+Modified input select functionality to automatically add class="input-medium", this will probably need to change in the future, but it'll do for now.
+Modified the property header script to add the default thumb if the property doesn't have an image uploaded.
+Removed some redundant code from dobooking.php
+Removed span classes from countries.php dropdowns.
+Added odd/even rows to list properties for use in templates.
+Modified temp booking handler and booking engine to ensure that the property's currency code is stored along with the rest of the booking information. This allows us to build the cart later with the correct converted prices.
+Confirmation form updated to correctly show new template changes.
+Updated galleria slideshow to the responsive 1.2.7
+Added a new class to the composite property details that'll help activate bootstrap'd tabs.
+Added a strip tags and removed parse by bots from list properties. Breaks too much css if left in.
+Added a display errors off to init_config_vars.php for Joomla 2.5
+Modified show profiles, it'll be seen in the administrator's menu regardless of the advanced config option setting.
+Changed temp booking handler so that administrator's sessions go into their own directories.
+Changed file write functionality to use file get and file put instead of fopen.
+Added some new classes for use in bootstrapped template booking forms. (dobooking.class.php)
+Recent changes to the patTemplate livesite variable necessitate changing the name of one of the urls passed to the dobooking templates to ensure that the form can be submitted.
+Updated the version of jquery validate
+LIVESITE in booking completed script renamed to RETURN_URL to prevent conflicts with new LIVESITE patTemplate variable.
+Javascript changes to support bootstrap dialog popups.
+Added some extra data to booking form elements so that we can use control groups properly.
+
+Tracked and chased down an error where logged in user's bookings weren't getting inserted when being paid through a payment gateway.
+Problem was caused by changeset 2215 ( https://jomres.trac.cvsdude.com/Jomres_core_v4/changeset/2215 ) the addition of the userid to the salt which helps make the filename difficult to find. The idea of the change was resolve an issue where a user could log out, however their address details would still be in the temp guest data if they'd visited the confirm booking stage, so even after logging out a user could go to the booking form and retrieve those details. 
+Whilst the fix changed that, unbenownst to us the payment gateways now could not insert a booking because the wrong session file was being found.
+
+The fix involves removing that user id so that gateways can pass payment information back and bookings can be inserted, and adding a new logout task to the Jomres toolbar. When this is used the user is one-click logged out of Joomla, and their temporary data is destroyed.
+
+
+
 Jomres 6.6.5
 
 Tweaked the booking engine to only output discount information if the "task" is set to "handlereq". This allows us to use the booking class outside of just the booking form. Add the ability to completely suppress any output that the booking engine would normally generate (and cleaned up a couple of superfluous lines).
