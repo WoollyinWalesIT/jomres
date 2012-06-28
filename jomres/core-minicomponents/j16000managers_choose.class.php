@@ -49,7 +49,7 @@ class j16000managers_choose
 		
 		
 		$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN."&format=raw&no_html=1&task=";
-		$output['LIVESITE']=JOMRES_SITEPAGE_URL_ADMIN."";
+		$output['ADMINLIVESITE']=JOMRES_SITEPAGE_URL_ADMIN."";
 		$output['_JOMRES_COM_MR_SHOWPROFILES']=_JOMRES_COM_MR_SHOWPROFILES;
 		
 		$output['_JOMRES_MANAGER_CHOOSE_SEARCHTITLE']=_JOMRES_MANAGER_CHOOSE_SEARCHTITLE;
@@ -123,11 +123,11 @@ class j16000managers_choose
 				}
 			}
 		unset($all_users);
-		
+
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'managers_choose.html' );
+		$tmpl->readTemplatesFromInput( 'managers_choose.html' );
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->displayParsedTemplate();
