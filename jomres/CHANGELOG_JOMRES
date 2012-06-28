@@ -1,3 +1,8 @@
+Jomres 6.6.7
+
+Fixed an issue where users could not choose managers in Show Profiles.
+
+
 Jomres 6.6.6.
 
 Contact owner captcha replaced with reCaptcha (remember to set the public and private keys in Site Config)
