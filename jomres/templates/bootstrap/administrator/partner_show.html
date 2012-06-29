@@ -1,0 +1,79 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{_JOMRES_PARTNER_SHOW_TITLE} {USERNAME}</h2>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td>
+			<h3>{_JOMRES_PARTNER_SHOW_SEARCHTITLE}</h3>
+			<p>{_JOMRES_PARTNER_SHOW_SEARCHINSTRUCTIONS}</p>
+			<input id="propertyname_input" />
+		</td>
+	</tr>
+</table>
+<h3>{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES}</h3>
+<p>{_JOMRES_PARTNER_SHOW_CURRENTPROPERTIES_INSTRUCTIONS}</p>
+<div id="discount_list" style="width:42%;float:left;">{DISCOUNT_LIST}</div>
+<div id="property_discounts" style="width:57%;float:right;"></div>
+<script type="text/javascript">
+<!--
+	jomresJquery(function() {
+		jomresJquery( "#propertyname_input" ).autocomplete({
+			source: ajaxurl+'partners_property_find',
+			minLength: 2,
+			select: function( event, ui ) {
+				addPropertyToPartner(ui.item.value);
+			}
+		});
+	});
+
+var ajaxurl	= "{AJAXURL}";
+var cmsuserid	= "{CMSUSERID}";
+
+function addPropertyToPartner(property_name) {
+	jomresJquery.get(ajaxurl+'partners_add_property_to_partner_portfolio',{ 'property_name': property_name, 'cmsuserid' : cmsuserid },
+		function(data){
+			jomresJquery('#discount_list').html(data);
+			}
+		);
+	}
+	
+function show_property_discounts(property_id) {
+	jomresJquery.get(ajaxurl+'partner_show_discounts_for_property',{ 'partner_id': cmsuserid, 'property_id' : property_id },
+		function(data){
+			jomresJquery('#property_discounts').html(data);
+			}
+		);
+	}
+	
+function save_discount_settings(discount_id,property_id) {
+	valid_from_input = 'valid_from_'+discount_id;
+	valid_to_input = 'valid_to_'+discount_id;
+	discount_input = 'discount_'+discount_id;
+	var valid_from = jomresJquery('[name='+valid_from_input+']').val();
+	var valid_to = jomresJquery('[name='+valid_to_input+']').val();
+	var discount = jomresJquery('[name='+discount_input+']').val();
+	jomresJquery.get(ajaxurl+'partner_save_discount_settings',{ 'discount_id': discount_id, 'valid_from' : valid_from, 'valid_to' : valid_to, 'discount' : discount },
+		function(data){
+			jomresJquery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
+				function(data){
+					jomresJquery('#discount_list').html(data);
+					}
+				);
+			}
+		);
+	}
+	
+function delete_discount(discount_id,property_id) {
+	jomresJquery.get(ajaxurl+'partner_delete_discount',{ 'discount_id': discount_id },
+		function(data){
+			document.getElementById('property_discounts').innerHTML = "";
+			jomresJquery.get(ajaxurl+'partner_list_discounts',{ 'id': cmsuserid },
+				function(data){
+					jomresJquery('#discount_list').html(data);
+					}
+				);
+			}
+		);
+	}
+//-->
+</script>
+</patTemplate:tmpl>

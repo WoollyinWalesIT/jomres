@@ -1,0 +1,19 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+	<table cellpadding="4" cellspacing="0" border="0" width="100%" class="adminlist">
+		<tr>
+			<th class="contentheading">&nbsp;</td>
+			<th align="left" class="contentheading" id="datetime">{DATETIME}</td>
+			<th align="left" class="contentheading" id="">{TASK}</td>
+			<th align="left" class="contentheading" id="">{MESSAGE}</td>
+		</tr class="">
+		<patTemplate:tmpl name="rows">
+		<tr>
+			<td scope="row"><img src="{LIVESITE}/jomres/images/info.png" border="0" onclick="toggleDetail('provider{COUNTER}_type',1)"></td>
+			<td>{DATETIME}</td>
+			<td>{TASK}</td>
+			<td>{MESSAGEFULL}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</table>
+</patTemplate:tmpl>
+

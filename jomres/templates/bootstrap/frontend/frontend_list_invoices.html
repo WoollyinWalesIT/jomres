@@ -1,0 +1,102 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#frontend_list_invoices').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+	</div>
+</div>
+<div class="well">
+	<div class="span12">
+		<div class="pull-right">	
+			<div class="btn-group">
+				<button class="btn">View</button>
+				<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="{TASK_FILTER_ANY}"><i class="icon-list-alt"></i> {_JOMRES_FRONT_ROOMSMOKING_EITHER}</a></li>
+					<li><a href="{TASK_FILTER_UNPAID}"><i class="icon-list-alt"></i> {_JRPORTAL_INVOICES_STATUS_UNPAID}</a></li>
+					<li><a href="{TASK_FILTER_PAID}"><i class="icon-list-alt"></i> {_JRPORTAL_INVOICES_STATUS_PAID}</a></li>
+					<li><a href="{TASK_FILTER_CANCELLED}"><i class="icon-list-alt"></i> {_JRPORTAL_INVOICES_STATUS_CANCELLED}</a></li>
+					<li><a href="{TASK_FILTER_PENDING}"><i class="icon-list-alt"></i> {_JRPORTAL_INVOICES_STATUS_PENDING}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<p>&nbsp;</p>
+<table id="frontend_list_invoices" class="table table-striped table-bordered table-condensed" width="100%">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>ID</th>
+			<th>{HUSER}</th>
+			<th>{HSTATUS}</th>
+			<th class="visible-desktop">Line Items</th>
+			<th class="visible-desktop">{HRAISED}</th>
+			<th class="visible-desktop">{HDUE}</th>
+			<th class="visible-desktop">{HPAID}</th>
+			<th>{HSUBSCRIPTION}</th>
+			<th>{HINITTOTAL}</th>
+			<th class="visible-desktop">{HRECURTOTAL}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{ID}</td>
+			<td>{USER}</td>
+			<td>{STATUS}</td>
+			<td class="visible-desktop">{ITEMS}</td>
+			<td class="visible-desktop">{RAISED}</td>
+			<td class="visible-desktop">{DUE}</td>
+			<td class="visible-desktop">{PAID}</td>
+			<td>{SUBSCRIPTION}</td>
+			<td>{INITTOTAL}({CURRENCYCODE})</td>
+			<td class="visible-desktop">{RECURTOTAL}({CURRENCYCODE})</td>
+			<td>{PAYNOW}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

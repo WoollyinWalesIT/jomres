@@ -1,0 +1,85 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_coupons').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+		<p>{INFO}</p>
+	</div>
+</div>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<div class="well">
+	<div class="span12">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+<table id="list_coupons" width="100%" border="0" class="table table-bordered table-condensed tabble-striped">
+	<thead>
+		<tr>
+			<th>{HEDITLINK}</th>
+			<th>{HCOUPONCODE}</th>
+			<th>{HVALIDFROM}</th>
+			<th>{HVALIDTO}</th>
+			<th>{_JRPORTAL_COUPONS_BOOKING_VALIDFROM}</th>
+			<th>{_JRPORTAL_COUPONS_BOOKING_VALIDTO}</th>
+			<th>{HAMOUNT}</th>
+			<th>{HISPERCENTAGE}</th>
+			<th>{_JRPORTAL_COUPONS_GUESTNAME}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{COUPONCODE}</td>
+			<td>{VALIDFROM}</td>
+			<td>{VALIDTO}</td>
+			<td>{BOOKING_VALIDFROM}</td>
+			<td>{BOOKING_VALIDTO}</td>
+			<td>{AMOUNT}</td>
+			<td>{ISPERCENTAGE}</td>
+			<td>{GUEST_NAME}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="task" value="newExtra" />
+</form>
+</patTemplate:tmpl>

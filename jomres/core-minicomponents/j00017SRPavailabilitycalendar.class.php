@@ -86,11 +86,18 @@ class j00017SRPavailabilitycalendar {
 			$monthsToYearEnd=12-$currentMonth;
 			$this->retVals.='
 			<center>
-			<div class="ui-widget-content ui-corner-all"  style="margin-bottom: 10px;">
-						<table width="100%">
-							<tr >
-								<td class="ui-widget-header ui-corner-all">
-									<table>
+			';
+			if (using_bootstrap())
+				$this->retVals.='<div class="well" style="margin-bottom: 10px;">';
+			else
+				$this->retVals.='<div class="class="ui-widget-content ui-corner-all"" style="margin-bottom: 10px;">';
+			$this->retVals.='<table width="100%">
+							<tr >';
+							if (using_bootstrap())
+								$this->retVals.=	'<td class="alert alert-info">';
+							else
+								$this->retVals.=	'<td class="ui-widget-header ui-corner-all">';
+									$this->retVals.='<table>
 										';
 										if ($mrConfig['visitorscanbookonline']=="1"	&& !$noshowroom && $this->showlinks && $jrConfig['show_booking_form_in_property_details'] != '1')
 											{
@@ -243,7 +250,10 @@ class j00017SRPavailabilitycalendar {
 			$thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.date("M",$stdate),strftime( "%B",$stdate),true);
 		
 		$this->retVals.="\n<table class=\"rescal\" cellspacing=\"0\">\n";
-		$this->retVals.="<tr>\n<th class=\"ui-widget-header ui-corner-all\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
+		if (using_bootstrap())
+			$this->retVals.="<tr>\n<th class=\"alert alert-info\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
+		else
+			$this->retVals.="<tr>\n<th class=\"ui-widget-header ui-corner-all\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		if ($jrConfig['calendarstartofweekday'] == "1")
 			{
 			$this->retVals.="<tr class=\"availability_calendar_days\">\n<th width=\"$width\" height=\"$height\" valign=\"middle\" align=\"center\"><font face=\"$face\"

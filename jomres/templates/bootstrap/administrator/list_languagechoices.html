@@ -1,0 +1,18 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{PAGETITLE}</h2>
+<p>{INFO}</p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr class="ui-widget-content">
+		<td width="30">{CHECKBOX}</td>
+		<td width="60">{SHORTCODE}</td>
+		<td>{LONGCODE}</td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="save_languageChoiceSelection" />
+</form>
+</patTemplate:tmpl>

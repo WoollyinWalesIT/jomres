@@ -69,6 +69,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
 		</tr>
+		<tr valign="middle" class="odd">
+			 <td valign="middle">Use bootstrap templates?</td>
+			 <td valign="middle">'.$lists['use_bootstrap'].'</td>
+			 <td valign="middle">This option will be removed prior to going live with Jomres 7, for testing purposes only.</td>
+		</tr>
 		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
 			<td valign="middle">'.$lists['advanced_site_config'].'</td>

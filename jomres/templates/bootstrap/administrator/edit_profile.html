@@ -1,0 +1,52 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+function selectAll() {
+	jomresJquery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
+}
+//-->
+</script>
+<h2>{_JOMRES_EDIT_PROFILE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table width="100%" class="ui-widget-content ui-corner-all" border="0">
+	<tr>
+		<td width="30%">{HACCESSLEVEL}</td>
+		<td>{ACCESSLEVEL}</td>
+	</tr>
+	<tr>
+		<td>{HSUPERPROP}</td>
+		<td>{SUPERPROP}</td>
+	</tr>
+	<tr>
+		<td>APIKEY:</td>
+		<td><input type="text" size="80" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this);"/>&nbsp;{NEWAPIKEY_LINK}</td>
+	</tr>
+</table>
+<br />
+<table width="100%" class="ui-widget-content ui-corner-all" border="0">
+	<thead>
+		<tr>
+			<th class="ui-state-default"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+			<th class="ui-state-default">{_JRPORTAL_PROPERTIES_PROPERTYNAME}</th>
+			<th class="ui-state-default">{_JOMRES_SHOWPROFILES_USERSWITHACCESS}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<tr class="{CLASS}">
+			<td>{INPUT}</td>
+			<td>{PROPERTYNAME}</td>
+			<td>{MANAGERS}</td>
+		</tr>
+		</patTemplate:tmpl>
+   </tbody>
+</table>
+<input type="hidden" name="boxchecked" value="0">
+<input type="hidden" name="no_html" value="1" />
+<input type="hidden" name="userid" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="saveProfile" />
+</form>
+</patTemplate:tmpl>

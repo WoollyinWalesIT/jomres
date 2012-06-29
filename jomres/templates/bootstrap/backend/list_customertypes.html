@@ -1,0 +1,85 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_customertypes').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+	</div>
+</div>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<div class="well">
+	<div class="span12">
+		{JOMRESTOOLBAR}
+	</div>
+</div>
+<table id="list_customertypes" width="100%" border="0" class="table table-condensed table-striped table-bordered">
+	<thead>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>{HTYPE}</th>
+			<th class="hidden-phone">{HNOTES}</th>
+			<th>{HMAXIMUM}</th>
+			<th class="hidden-phone">{HISPERCENTAGE}</th>
+			<th class="hidden-phone">{HPOSNEG}</th>
+			<th class="hidden-phone">{HVARIANCE}</th>
+			<th>{HORDER}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{PUBLISHLINK}</td>
+			<td>{TYPE}</td>
+			<td class="hidden-phone">{NOTES}</td>
+			<td>{MAXIMUM}</td>
+			<td class="hidden-phone">{ISPERCENTAGE}</td>
+			<td class="hidden-phone">{POSNEG}</td>
+			<td class="hidden-phone">{VARIANCE}</td>
+			<td><input class="input-mini" type="text" style="text-align:center" name="order[{ID}]" value="{ORDER}" /></td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="task" value="newExtra" />
+<input type="hidden" name="option" value="com_jomres" />
+</form>
+</patTemplate:tmpl>

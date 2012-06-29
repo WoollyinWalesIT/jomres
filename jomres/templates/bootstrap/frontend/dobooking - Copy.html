@@ -1,0 +1,564 @@
+<patTemplate:tmpl name="pageoutput">
+<script src="{LIVE_SITE}/jomres/core-plugins/bootstrap_templates/javascript/jquery.jlabel-1.3.js" type="text/javascript"></script>
+<style type="text/css">
+#totals.fixed {position:fixed !important;top:0;}
+#totalsWrapper { /* required to avoid jumping */
+  position: relative;
+}
+
+label.valid {
+    width: 24px;
+    height: 24px;
+    background: url({LIVE_SITE}/jomres/core-plugins/bootstrap_templates/images/valid.png) center center no-repeat;
+    display: inline-block;
+    text-indent: -9999px;
+    }
+
+label.error {
+    font-weight: bold;
+    color: red;
+    padding: 2px 8px;
+    margin-top: 2px;
+    }
+
+</style>
+<script type="text/javascript">
+<!--
+{BOOKEDDATES}
+var isSRP=false;
+/*var x*/
+var mininterval = {MININTERVAL};
+var rel_path	= "{RELPATH}";
+var livesite	= "{SUBMITURL}";
+var ajaxurl	= "{AJAXURL}";
+
+var noroomsselectedyetmessage				= "{NOROOMSSELECTEDYETMESSAGE}";
+
+var validation_firstname				= {VALIDATION_FIRSTNAME};
+var validation_surname					= {VALIDATION_SURNAME};
+var validation_houseno					= {VALIDATION_HOUSENO};
+var validation_street					= {VALIDATION_STREET};
+var validation_town						= {VALIDATION_TOWN};
+var validation_postcode					= {VALIDATION_POSTCODE};
+var validation_region					= {VALIDATION_REGION};
+var validation_country					= {VALIDATION_COUNTRY};
+var validation_landline					= {VALIDATION_LANDLINE};
+var validation_cellmobile				= {VALIDATION_CELLMOBILE};
+var validation_email					= {VALIDATION_EMAIL};
+
+var show_extras		= {SHOWEXTRAS};
+var rooms_list_enabled		= {JOMRES_ROOMSLISTENABLED};
+
+var error_class = "alert alert-error";
+var highlight_class = "alert alert-warning";
+
+function dateStatus(date) {
+	var min = new Date({EARLIESTYEAR},{EARLIESTMON},{EARLIESTDAY});
+	//var max = new Date(2050,10,05);
+	if (date.getTime() < min.getTime())
+		return true; // true says "disable"
+	else
+		return false; // leave other dates enabled
+	//if (date.getTime() < min.getTime() || date.getTime() > max.getTime())
+}
+
+var success_class = "alert alert-success";
+
+// We're using a jquery plugin called jlabel to place labels inside inputs, unfortunately it didn't work with bootstrap so we've coded our own solution
+// The solution is hard coded into jquery.jlbel-1.3.js and may or may not work with other bootstrap templates. At this time it's too early to tell, there aren't enough bootstrap joomla templates out there yet
+// so we've added adjustment variables here so that the position can be tweaked without playing around with the .js file.
+/*
+var jLabel_left_adjustment = 3;
+var jLabel_top_adjustment = 2;
+*/
+var running_bootstrap = {BOOTSTRAP_JS_VAR};
+
+jomresJquery(document).ready(function() {
+	
+	/*
+	jomresJquery('#firstname').jLabel();
+	jomresJquery('#surname').jLabel();
+	jomresJquery('#house').jLabel();
+	jomresJquery('#street').jLabel();
+	jomresJquery('#town').jLabel();
+	jomresJquery('#region').jLabel();
+	jomresJquery('#postcode').jLabel();
+	jomresJquery('#tel_landline').jLabel();
+	jomresJquery('#tel_mobile').jLabel();
+	jomresJquery('#eemail').jLabel();
+	*/
+	
+	jomresJquery('#ajaxform').validate(
+		{
+		rules: {
+			firstname: {
+				minlength: 1,
+				required : {VALIDATION_FIRSTNAME}
+				},
+			surname: {
+				minlength: 1,
+				required : {VALIDATION_SURNAME}
+				},
+			house: {
+				minlength: 1,
+				required : {VALIDATION_HOUSENO}
+				},
+			street: {
+				minlength: 1,
+				required : {VALIDATION_STREET}
+				},
+			town: {
+				minlength: 1,
+				required : {VALIDATION_TOWN}
+				},
+			region: {
+				minlength: 1,
+				required : {VALIDATION_REGION}
+				},
+			postcode: {
+				minlength: 1,
+				required : {VALIDATION_POSTCODE}
+				},
+			tel_landline: {
+				minlength: 1,
+				required : {VALIDATION_LANDLINE}
+				},
+			tel_mobile: {
+				minlength: 1,
+				required : {VALIDATION_CELLMOBILE}
+				},
+			eemail: {
+				email: true,
+				required : {VALIDATION_EMAIL}
+				}
+		},
+	
+	highlight: function(label) {
+		jomresJquery(label).closest('.control-group').addClass('error');
+		},
+	success: function(label) {
+		label
+		.text('OK!').addClass('valid')
+		.closest('.control-group').addClass('success');
+		}
+	});
+	
+	
+	
+	{MODAL}
+	jomresJquery.jheartbeat.set({
+		url: ajaxurl+"&task=handlereq&no_html=1&field=heartbeat",
+		delay: 30000
+	});
+	var slider_enabled = '{SLIDER_ENABLED}';
+	if (slider_enabled == 'true') {
+		var totalsWidth = jomresJquery('#totals').width();
+		jomresJquery('#totals').css('width',totalsWidth);
+		jomresJquery('#totalsWrapper').css('width',totalsWidth);
+		if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
+			jomresJquery("#totals").css( 'position','absolute' );
+		}
+		var top = jomresJquery('#totals').offset().top - parseFloat(jomresJquery('#totals').css('margin-top').replace(/auto/, 0));
+		jomresJquery(window).scroll(function (event) {
+			// what the y position of the scroll is
+			var y = jomresJquery(this).scrollTop();
+
+			// whether that's below the form
+			if (y >= top) {
+				// if so, ad the fixed class
+				jomresJquery('#totals').addClass('fixed');
+			} else {
+			// otherwise remove it
+				jomresJquery('#totals').removeClass('fixed');
+			}
+		});
+	};
+	<patTemplate:tmpl name="onload">{ONLOAD}</patTemplate:tmpl>
+});
+
+function open_booking_form() {
+	jomresJquery( "#booking_form" ).dialog( "open" );
+};
+
+//-->
+</script>
+{CUSTOMFIELD_JAVASCRIPT}
+{OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
+<div id="booking_form" {HIDDENSTYLE} title="{PROPERTYNAME}">
+<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" class="form-horizontal">
+<div class="row-fluid">
+	<div class="span12">
+		<div id="messages">&nbsp;</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9">
+			<patTemplate:tmpl name="manager_pricing" type="simpleCondition" requiredVars="_jomcomp_amend_override_accommodation_total">
+			<table  class="table table-condensed well">
+				<thead>
+				<tr>
+					<th>{_JOMCOMP_AMEND_OVERRIDE_ACCOMMODATION_TOTAL}</th>
+					<th>{_JOMCOMP_AMEND_OVERRIDE_DEPOSIT}</th>
+					<th>&nbsp;</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input class="input-medium" type="number" name="override_room_total" id="override_room_total" value="" /></td>
+						<td><input class="input-medium" type="number" name="override_deposit" id="override_deposit" value="" /></td>
+						<td><a href ="javascript:void(0);" onclick="getResponse_override('override',jomresJquery('#override_room_total').val()+'^'+jomresJquery('#override_deposit').val())" class="btn" >{_JOMCOMP_AMEND_OVERRIDE_SAVE}</a></td>
+					</tr>
+					<tr>
+						<td colspan="3"><div id="override_response" class="jomres_message"></div></td>
+					</tr>
+				</tbody>
+			</table>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="coupons" type="simpleCondition" requiredVars="coupon_title">
+			<table class="table table-condensed well" >
+				<thead>
+					<tr>
+						<th colspan="2">{COUPON_TITLE}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2" class="alert alert-info">{COUPON_INSTRUCTIONS}</td>
+					</tr>
+					<tr>
+						<td width="30"><input class="input-medium" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" /></td>
+						<td><a class="btn" href ="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a></td>
+					</tr>
+					<tr>
+						<td colspan="2"><div id="coupon_response" class="jomres_message"></div></td>
+					</tr>
+				</tbody>
+			</table>
+			</patTemplate:tmpl>
+			<div id="arrivalcontainer">
+			<table class="table table-condensed well" >
+				<thead>
+					<tr>
+						<th colspan="2">{AJAXFORM_PARTICULARS}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2" class="alert alert-info">{AJAXFORM_PARTICULARS_DESC}</td>
+					</tr>
+					<tr>
+						<td>{HARRIVALDATE}</td>
+						<td>{ARRIVALDATE}</td>
+					</tr>
+					<tr>
+						<td>{HDEPARTUREDATE}</td>
+						<td>{DEPARTUREDATE}</td>
+					</tr>
+					<tr>
+						<patTemplate:tmpl name="guesttypes">
+						<td>{TEXT}</td>
+						<td>{DROPDOWN}</td>
+						</patTemplate:tmpl>
+					</tr>
+					<patTemplate:tmpl name="smoking" type="simpleCondition" requiredVars="hsmokingtitle">
+					<tr>
+						<td>{HSMOKINGTITLE}</td>
+						<td>{SMOKING}</td>
+					</tr>
+					</patTemplate:tmpl>
+				</tbody>
+			</table>
+			</div>
+			<table  class="table table-condensed well">
+				<patTemplate:tmpl name="classic_rooms_list" type="simpleCondition" requiredVars="ajaxform_available_desc">
+				<thead>
+					<tr>
+						<th>{AJAXFORM_AVAILABLE_DESC}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="alert alert-info">{LOOKRIGHT}</td>
+					</tr>
+					<patTemplate:tmpl name="roomfeaturesrowheader" type="simpleCondition" requiredVars="_jomres_bookingorm_roomfeature_filter">
+					<tr>
+						<td><strong>{_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER}</strong></td>
+					</tr>
+					</patTemplate:tmpl>
+					<patTemplate:tmpl name="roomfeaturesrow" type="simpleCondition" requiredVars="inputbox">
+					<tr>
+						<td>{INPUTBOX} {DESCRIPTION}</td>
+					</tr>
+					</patTemplate:tmpl>
+					<tr>
+						<td valign="top">
+							<div id="selectedRooms">
+								{SELECTEDROOM}
+							</div>
+							<div id="availRooms">
+								{AVAILABLEROOMS}
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="alert alert-warning">{ESTIMATEWARNING}</td>
+					</tr>
+				</tbody>
+				</patTemplate:tmpl>
+			
+				<patTemplate:tmpl name="roomtype_dropdown_list" type="simpleCondition" requiredVars="ajaxform_available_desc">
+				<thead>
+					<tr>
+						<th>{AJAXFORM_AVAILABLE_DESC}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td valign="top">
+							{AMENDBOOKING_SELECTEDROOMSDIV}
+							<div id="availRooms">
+								{AVAILABLEROOMS}
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="alert alert-warning">{ESTIMATEWARNING}</td>
+					</tr>
+				</tbody>
+				</patTemplate:tmpl>
+			</table>
+			<patTemplate:tmpl name="extrasrow" type="simpleCondition" requiredVars="extras_header">
+			<div id="extrascontainer">
+				<table  class="table table-condensed well">
+					<thead>
+						<tr>
+							<th colspan="5">{EXTRAS_HEADER}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<patTemplate:tmpl name="third_party_extras" type="simpleCondition" requiredVars="third_party_extra">
+						<tr>{THIRD_PARTY_EXTRA}</tr>
+						</patTemplate:tmpl>
+						<patTemplate:tmpl name="extras" type="simpleCondition" requiredVars="ajaxform_extras">
+						<tr>
+							<td>{INPUTBOX}</td>
+							<td colspan="2">{OVERLIB_DESCRIPTION}</td>
+							<td>{NAME}</td>
+							<td align="right">{PRICE}</td>
+						</tr>
+						</patTemplate:tmpl>
+					</tbody>
+				</table>
+			</div>
+			</patTemplate:tmpl>
+			<table class="table table-condensed well" id="bookingform_address">
+				<thead>
+					<tr>
+						<th colspan="4">{AJAXFORM_ADDRESS}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="4">{GUESTDROPDOWN}</td>
+					</tr>
+					<tr>
+						<td>
+							<fieldset>
+								<div class="control-group {BOOTSTRAP_FIRSTNAME_WARNING}">
+								<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+									<div class="controls">
+										<input type="text" name="firstname" id="firstname" value="{FIRSTNAME}" title="{HFIRSTNAME}" />
+									</div> 
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_SURNAME_WARNING}">
+								<label class="control-label" for="surname">{HSURNAME}</label>
+									<div class="controls">
+										<input type="text" name="surname" id="surname" value="{SURNAME}" title="{HSURNAME}"  />
+									</div> 
+								</div>
+								
+								<div class="control-group  {BOOTSTRAP_HOUSENO_WARNING}">
+								<label class="control-label" for="house">{HHOUSENO}</label>
+									<div class="controls">
+										<input type="text" name="house" id="house" value="{HOUSENO}" title="{HHOUSENO}"  />
+									</div> 
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_STREET_WARNING}">
+								<label class="control-label" for="street">{HSTREET}</label>
+									<div class="controls">
+										<input type="text" name="street" id="street" value="{STREET}" title="{HSTREET}"  />
+									</div> 
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_TOWN_WARNING}">
+								<label class="control-label" for="town">{HTOWN}</label>
+									<div class="controls">
+										<input type="text" name="town" id="town" value="{TOWN}" title="{HTOWN}"  />
+									</div> 
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_REGION_WARNING}">
+								<label class="control-label" for="region">{HREGION}</label>
+									<div class="controls">
+										<input type="text" name="region" id="region" value="{REGION}" title="{HREGION}"  />
+									</div> 
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_POSTCODE_WARNING}">
+								<label class="control-label" for="postcode">{HPOSTCODE}</label>
+									<div class="controls">
+										<input type="text" name="postcode" id="postcode" value="{POSTCODE}" title="{HPOSTCODE}"  />
+									</div>
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_COUNTRY_WARNING}">
+								<label class="control-label" for="country">{HCOUNTRY}</label>
+									<div class="controls">
+										{COUNTRY}
+									</div>
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_LANDLINE_WARNING}">
+								<label class="control-label" for="tel_landline">{HTEL}</label>
+									<div class="controls">
+										<input type="tel" name="tel_landline" id="tel_landline" value="{TEL}" title="{HTEL}"  />
+									</div>
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_CELLMOBILE_WARNING}">
+								<label class="control-label" for="tel_mobile">{HMOBILE}</label>
+									<div class="controls">
+										<input type="tel" name="tel_mobile" id="tel_mobile" value="{MOBILE}" title="{HMOBILE}"  />
+									</div>
+								</div>
+								
+								<div class="control-group {BOOTSTRAP_EMAIL_WARNING}">
+								<label class="control-label" for="eemail">{HEMAIL}</label>
+									<div class="controls">
+										<input type="email" name="eemail" id="eemail" value="{EMAIL}" title="{HEMAIL}"  />
+									</div>
+								</div>
+								
+								<patTemplate:tmpl name="customfields" type="simpleCondition" requiredVars="fieldname">
+								<div class="control-group {WARNING}">
+								<label class="control-label" for="{FIELDNAME}">{DESCRIPTION}</label>
+									<div class="controls">
+										<input type="text" name="{FIELDNAME}" id="{FIELDNAME}" value="{DEFAULT_VALUE}" />
+									</div>
+								<span class="help-block"> {REQUIRED}</span>
+								</div>
+								</patTemplate:tmpl>
+							</fieldset>
+						<td>
+					</tr>
+					<tr>
+						<td colspan="4" class="alert alert-info">{AJAXFORM_INSTRUCTIONS}</td>
+					</tr>
+					<tr>
+						<td colspan="4" class="alert alert-warning">{REQUIREDTEXT}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row-fluid" id="bookingform_footer">
+				<div class="span12">
+						<div id="submitbutton">
+							<input type="submit" name="confirmbooking" value="{SUBMIT}"   class="btn btn-large btn-primary"/>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="span3" id="totalsWrapper">
+			<table class="table table-condensed" id="totals">
+				<thead>
+					<tr>
+						<th colspan="4">{PRICE_SUMMARY}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><div id="staydays" style="font-weight: bold;"></div></td>
+						<td>{ACCOMMODATION_NIGHTS}</td>
+						<td><div id="roompernight"></div></td>
+						<td>{ACCOMMODATION_PERROOM}</td>
+					</tr>
+					<tr>
+						<td><div id="totalinparty" style="font-weight: bold;"></div></td>
+						<td colspan="2">{BILLING_TOTALINPARTY}</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="4"><div id="discount" class="jomres_message">&nbsp;</div></td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{ROOM_TOTAL_EX_TAX}</strong></td>
+						<td><strong><div id="room_total_ex_tax" style="text-align:right;"></div></strong></td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{ROOM_TOTAL_INC_TAX}</strong></td>
+						<td><strong><div id="room_total_inc_tax" style="text-align:right;"></div></strong></td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{ROOM_TOTAL_ACCOM_TAX}</strong></td>
+						<td><strong><div id="taxtotal" style="text-align:right;"></div></strong></td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{EXTRAS_TOTAL}</strong></td>
+						<td><strong><div id="extrastotal_totals_panel" style="text-align:right;"></div></strong></td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{EXTRAS_TAX}</strong></td>
+						<td>
+							<strong><div id="extra_tax" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+					<patTemplate:tmpl name="coupons_totals" type="simpleCondition" requiredVars="coupon_discount_value">
+					<tr>
+						<td colspan="3"><strong>{COUPON_DISCOUNT_VALUE}</strong></td>
+						<td>
+							<strong><div id="coupon_discount_value" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+					</patTemplate:tmpl>
+					<tr>
+						<td colspan="3"><strong>{PERSONAL_DISCOUNT}</strong></td>
+						<td>
+							<strong><div id="personal_discount" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{SINGLE_PERSON_SUPPLIMENT}</strong></td>
+						<td>
+							<strong><div id="single_suppliment" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{BILLING_TOTAL}</strong></td>
+						<td>
+							<strong><div id="grandtotal" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{DEPOSIT}</strong></td>
+						<td>
+							<strong><div id="deposit" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3"><strong>{_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE}</strong></td>
+						<td>
+							<strong><div id="balance" style="text-align:right;"></div></strong>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!--<div>{AJAXFORM_INSTRUCTIONS}</div>-->
+<input type="hidden" id="booking_form_property_uid" name="property_uid" value="{PROPERTYUID}">
+</form>
+</div>
+<div style="clear:both;">&nbsp;</div>
+</patTemplate:tmpl>

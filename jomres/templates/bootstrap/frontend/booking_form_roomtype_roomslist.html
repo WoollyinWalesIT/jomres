@@ -1,0 +1,51 @@
+<patTemplate:tmpl name="pageoutput" >
+<div class="row-fluid">
+	<div class="span2 hidden-phone">
+		{HNUMBEROFROOMS}
+	</div>
+	<div class="span2 hidden-phone">
+		{HROOM_TYPE_TEXT}
+	</div>
+	<div class="span2 hidden-phone">
+		{HTARIFF_NAME_TEXT}
+	</div>
+	<div class="span2 hidden-phone">
+		{HGUESTPER_ROOM}
+	</div>
+	<div class="span2 hidden-phone">
+		{HGUESTPER_BOOKING}
+	</div>
+	<div class="span2 hidden-phone">
+		{HRATE_TEXT}
+	</div>
+	<div class="span12 visible-phone">
+		&nbsp;
+	</div>
+</div>
+
+	<patTemplate:tmpl name="rows" >
+	<div class="row-fluid">
+		<div class="span2 hidden-phone">
+			{NUMBEROFROOMS}
+		</div>
+		<div class="span2 hidden-phone">
+			{ROOM_TYPE_TEXT}
+		</div>
+		<div class="span2 hidden-phone">
+			{TARIFF_NAME_TEXT}
+		</div>
+		<div class="span2 hidden-phone">
+			{GUESTPER_ROOM}
+		</div>
+		<div class="span2 hidden-phone">
+			{GUESTPER_BOOKING}
+		</div>
+		<div class="span2 hidden-phone">
+			{RATE_TEXT}
+		</div>
+		<div class="span12 visible-phone">
+			{NUMBEROFROOMS} {ROOM_TYPE_TEXT} {RATE_TEXT}
+		</div>
+	</div>
+	</patTemplate:tmpl>
+</patTemplate:tmpl>

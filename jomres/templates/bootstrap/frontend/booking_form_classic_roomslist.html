@@ -1,0 +1,115 @@
+<patTemplate:tmpl name="pageoutput" >
+	<patTemplate:comment> 
+	Also possibly available to the template :
+	{HEADER_SMOKING} e.g.  'Smoking'
+	{HEADER_ROOMFLOOR} e.g.  'Floor'
+	{HEADER_FEATURES} e.g.  'Resource features list'
+	{HDESC} e.g.  'Tariff description'
+	{HSTARTS} e.g.  'Valid from'
+	{HENDS} e.g.  'Valid til'
+	{HMINDAYS} e.g.  'Minimum days'
+	{HMAXDAYS} e.g.  'Maximum days'
+	{HMINPEEPS} e.g.  'Min people'
+	</patTemplate:comment>
+<div  style="font-size:.9em;">
+	<div class="row-fluid">
+		<div class="span2 hidden-phone">
+			&nbsp;
+		</div>
+		<div class="span1 hidden-phone">
+			{HEADER_ROOMNUMBER}
+		</div>
+		<div class="span1 hidden-phone ">
+			{HEADER_IMAGE}
+		</div>
+		<div class="span1 hidden-phone">
+			{HEADER_ROOMTYPE}
+		</div>
+		<div class="span1 hidden-phone">
+			{HEADER_ROOMTYPE}
+		</div>
+		<div class="span2 hidden-phone">
+			{HEADER_ROOMNAME}
+		</div>
+		<div class="span1 hidden-phone">
+			{HTITLE}
+		</div>
+		<div class="span1 hidden-phone">
+			{HRATEPERNIGHT}
+		</div>
+		<div class="span1 hidden-phone">
+			{HEADER_DISABLEDACCESS}
+		</div>
+		<div class="span1 hidden-phone">
+			{HMAXPEEPS}
+		</div>
+		<div class="span12 visible-phone">
+			&nbsp;
+		</div>
+	
+	</div>
+		<patTemplate:tmpl name="rows" >
+		<div class="row-fluid" style="padding:5px">
+			<div class="span2 hidden-phone">
+				<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn btn-primary btn-small">{CAPTION}</a></div>
+			</div>
+			<div class="span1 hidden-phone">
+				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );">{ROOMNUMBER}</a>
+			</div>
+			<div class="span1 hidden-phone">
+				<img src="{ROOM_IMAGE}" height="30" width="30">
+			</div>
+			<div class="span1 hidden-phone">
+				<img src="{ROOM_TYPE_IMAGE}" height="30" width="30">
+			</div>
+			<div class="span1 hidden-phone">
+				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMTYPE}</a>
+			</div>
+			<div class="span2 hidden-phone">
+				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{ROOMNAME}</a>
+			</div>
+			<div class="span1 hidden-phone">
+				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{TITLE}</a>
+			</div>
+			<div class="span1 hidden-phone">
+				{ROOMRATEPERDAY}
+			</div>
+			<div class="span1 hidden-phone">
+				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a>
+			</div>
+			<div class="span1 hidden-phone">
+				<a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a>
+			</div>
+			<div class="span12 visible-phone">
+				<div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn btn-primary btn-small">{CAPTION}</a> {ROOMNAME} {ROOMTYPE} {ROOMRATEPERDAY}</div>
+			</div>
+		</div>
+
+		<patTemplate:comment> 
+		Also possibly available to the template :
+		'VALIDFROM' e.g.  '5th Jun 2012'
+		'VALIDTO' e.g.  '7th Jun 2014'
+		'MINDAYS' e.g.  '1' 
+		'MAXDAYS' e.g.  '10'
+		'MINPEOPLE' e.g.  '1' 
+		'RATEPERNIGHT' e.g.  '100' 
+		'TARIFF_ROOMTYPE' e.g.  '3' 
+		'SMOKING e.g.  'Yes'
+		'ROOMFLOOR e.g.  '1' 
+		'MAXPEOPLE e.g.  '10'
+		'FEATURES e.g.  'Tea & Coffee Making facilities<br/>'
+		'FORMATTED_PRICE' => float 120
+		'ROOMTARIFFOUTPUTID e.g.  '1^6'
+		'CAPTION e.g.  'Add to your selection'
+		</patTemplate:comment>
+		</patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>
+
+
+  
+  
+  
+ 
+
+	  

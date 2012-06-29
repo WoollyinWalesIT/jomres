@@ -1,0 +1,41 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_custom_fields').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+//-->
+</script>
+<h2>{TITLE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table id="list_custom_fields" border="0" width="100%">
+	<thead>
+		<tr>
+			<th></th>
+			<th>{HFIELDNAME}</th>
+			<th>{HDEFAULTVALUE}</th>
+			<th>{HDESCRIPTION}</th>
+			<th>{HREQUIRED}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{FIELDNAME}</td>
+			<td>{DEFAULT_VALUE}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{REQUIRED}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="task" value="edit_custom_field" />
+</form>
+</patTemplate:tmpl>

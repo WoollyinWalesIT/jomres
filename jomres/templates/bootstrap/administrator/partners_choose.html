@@ -1,0 +1,49 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{_JOMRES_PARTNERS_TITLE}</h2>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td>
+			<h3>{_JOMRES_PARTNER_CHOOSE_SEARCHTITLE}</h3>
+			<p>{_JOMRES_PARTNER_CHOOSE_SEARCH_INSTRUCTIONS}</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="ui-widget">
+				<input id="username_input" />
+			</div>
+		</td>
+	</tr>
+</table>
+<br />
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td>
+		  <h3>{_JOMRES_PARTNER_CHOOSE_EXISTINGTITLE}</h3>
+		  <p>{_JOMRES_PARTNER_CHOOSE_EXISTING_INSTRUCTIONS}</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+				{LINK}&nbsp;&nbsp;{DELETELINK}<br/>
+			</patTemplate:tmpl>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+<!--
+var ajaxurl	= "{AJAXURL}";
+var livesite= "{LIVESITE}&task=partner_show&name=";
+jomresJquery(function() {
+	jomresJquery( "#username_input" ).autocomplete({
+		source: ajaxurl+'partners_find',
+		minLength: 2,
+		select: function( event, ui ) {
+			location.href = livesite+ui.item.value;
+		}
+	});
+});
+//-->
+</script>
+</patTemplate:tmpl>

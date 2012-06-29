@@ -1,0 +1,112 @@
+<patTemplate:tmpl name="pageoutput">
+<script type="text/javascript">
+<!--
+// In it's default state the template will not be pinned to the top of the page. Uncomment this set, and comment out the following, to get it to move above the Jomres content area instead.
+// If you do that, note that the main menu will NOT work well on small screens (phone/tablet in portrait mode).
+
+jomresJquery(document).ready(function(){
+	var $content = jomresJquery('#jomres-menu-pinned').html();
+	jomresJquery('#jomres_alternate_menu_position').html($content);
+	jomresJquery('#jomres-menu-pinned').empty(); // making sure that the old div doesn't have the accordion applied to it.
+	});
+
+//-->
+</script>
+
+<script type="text/javascript">
+<!--
+/*
+jomresJquery(document).ready(function(){
+	jomresJquery('#jomres_mainmenu').buttonset();
+	jomresJquery('#jomres_mainmenu').ptMenu();
+	jomresJquery("#jomres-menu-pinned").fadeIn("slow");
+	jomresJquery("#jomres-menu-sub-panel").click(function(){
+		// Toggle the bar up 
+		jomresJquery("#jomres-menu-top-panel").slideToggle();
+		// Settings
+		var el = jomresJquery("#shText");
+		// Lets us know whats inside the element
+		var state = jomresJquery("#shText").html();
+		// Change the state  
+		state = (state == '{_JOMRES_MENU_SHOW}' ? '<span id="shText">{_JOMRES_MENU_HIDE}</span>' : '<span id="shText">{_JOMRES_MENU_SHOW}</span>');
+		// Finally change whats insdide the element ID
+		el.replaceWith(state); 
+		}); // end sub panel click function
+		
+	(function() {
+		//settings
+		var fadeSpeed = 200, fadeTo = 0.5, topDistance = 30;
+		var topbarME = function() { jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed,1); }, topbarML = function() { jomresJquery('#jomres-menu-pinned').fadeTo(fadeSpeed,fadeTo); };
+		var inside = false;
+		//do
+		jomresJquery(window).scroll(function() {
+			position = jomresJquery(window).scrollTop();
+			if(position > topDistance && !inside) {
+				//add events
+				topbarML();
+				jomresJquery('#jomres-menu-pinned').bind('mouseenter',topbarME);
+				jomresJquery('#jomres-menu-pinned').bind('mouseleave',topbarML);
+				inside = true;
+			}
+			else if (position < topDistance){
+				topbarME();
+				jomresJquery('#jomres-menu-pinned').unbind('mouseenter',topbarME);
+				jomresJquery('#jomres-menu-pinned').unbind('mouseleave',topbarML);
+				inside = false;
+			}
+		});
+	})();
+	});
+*/
+//-->
+</script>
+
+<style type="text/css">
+/* Gives us the pinned to the top main menu */
+#jomres-menu-pinned{
+	position:fixed; 
+	top:0; 
+	z-index:9998; /* potato menu's z-index is set to 1000, so we'll set this to 1 less */
+	width:100%;
+	left:0;
+	height: 0;
+}
+
+/* allows the menu to open on hover. If it creates problems, comment it out/remove it */
+ul.nav li.dropdown:hover ul.dropdown-menu{
+    display: block;    
+}
+</style>
+<div id="jomres-menu-pinned" class="ui-helper-hidden">
+	<div class="row-fluid">
+		<div class="span12">
+			<h2>{PROPERTYNAME}</h2>
+		</div>
+	</div>
+	<div id="navbar" class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="nav-collapse">
+					<ul class="nav">
+						<patTemplate:tmpl name="button_output">
+							{DIV}
+						</patTemplate:tmpl>
+					</ul>
+				</div>
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+			</div>
+			<!--<div class="container">
+				<div class="navbar-form pull-right">{MENUITEM_TIMEZONE_DROPDOWN}</div>
+				<div class="navbar-form pull-right">{MENUITEM_EDITING_MODE_DROPDOWN}</div>
+				<div class="navbar-form pull-right">{MENUITEM_LANGDROPDOWN}</div>
+				<li class="nav pull-right">{MENUITEM_MANAGEMENT_VIEW_DROPDOWN}</li>
+				<li class="nav pull-right">{MENUITEM_TIMEZONEBLURB}</li>
+			</div>-->
+		</div>
+	</div>
+</div>
+</patTemplate:tmpl>

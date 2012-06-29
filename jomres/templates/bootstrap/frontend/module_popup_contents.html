@@ -1,0 +1,58 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div title="{PROPERTY_NAME}" class="ui-widget-content ui-corner-all ui-helper-clearfix">
+<div class="row-fluid">
+	<div class="span6">
+		<div title="{PROPERTY_NAME}_map" class="ui-helper-clearfix" >
+			{MAP}
+		</div>
+	</div>
+	<div class="span6">
+		<a href="{MOREINFORMATIONLINK}" ><img src = "{THUMBNAIL}" width="130" height="98" style="margin-bottom:3px;border:1px solid #fff;"/></a>
+		<br/>
+		<div class="ui-state-highlight ui-corner-all price-wrapper-popup" align="center">
+			<div class="prices-from">{PRICE_PRE_TEXT}</div>
+			<div class="big-price">{PRICE_PRICE}</div>
+			<div class="prices-period">{PRICE_POST_TEXT}</div>
+		</div>
+		<br/>
+		<a href="{MOREINFORMATIONLINK}" class="btn btn-primary" >{MOREINFORMATION}</a>
+	</div>
+</div>
+
+<br />
+<table width="100%" border="0">
+	<tr>
+		<td>{STARSIMAGES}</td>
+	</tr>
+	<tr>
+		<td>
+			<div><strong>{_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS} </strong>{PROPERTY_STREET}, {PROPERTY_TOWN}, {PROPERTY_POSTCODE}, {PROPERTY_REGION}, {PROPERTY_COUNTRY} <br />
+				<strong>{_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE} </strong>{PROPERTY_TEL}<br /><br />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<strong>{HRTYPES}</strong>
+			<div style="clear:both;">
+			<patTemplate:tmpl name="room_types" type="simpleCondition" requiredVars="room_type">
+				{ROOM_TYPE}
+			</patTemplate:tmpl>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<strong>{HFEATURES}</strong>
+			<div style="clear:both;">
+			<patTemplate:tmpl name="property_features" type="simpleCondition" requiredVars="feature">
+				{FEATURE}
+			</patTemplate:tmpl>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>{PROPERTY_DESCRIPTION}</td>
+	</tr>
+</table>
+</patTemplate:tmpl>

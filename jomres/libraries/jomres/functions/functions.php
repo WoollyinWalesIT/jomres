@@ -13,6 +13,16 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function using_bootstrap()
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS != "joomla3")
+		return false;
+	if ($jrConfig['use_bootstrap']=="1")
+		return true;
+	return false;
+	}
 
 function init_javascript()
 	{
