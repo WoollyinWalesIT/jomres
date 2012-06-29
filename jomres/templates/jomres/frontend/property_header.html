@@ -1,10 +1,26 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="full-width ui-helper-clearfix">
-    <div class="property-title"><h2>{PROPERTY_NAME}&nbsp;{STARS}</h2></div>
-    <div>{STREET}, {TOWN}, {REGION}, {POSTCODE}, {COUNTRY}<br />{HTELEPHONE}{TELEPHONE}, {HFAX}{FAX}</div>
-    <div>{GALLERYLINK}</div>
-	<div>&nbsp;</div>
-    <!--<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
-    <patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>-->
+<div itemscope itemtype="http://data-vocabulary.org/Organization"> 
+	<div class="full-width ui-helper-clearfix">
+		<div class="property-title"><h2><span itemprop="name">{PROPERTY_NAME}</span>&nbsp;{STARS}</h2></div>
+		<div> 
+			<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+				<span itemprop="street-address">{STREET}</span>, 
+				<span itemprop="locality">{TOWN}</span>, 
+				<span itemprop="region">{REGION}</span>, 
+				{POSTCODE}, 
+				{COUNTRY}<br />
+				{HTELEPHONE}
+				<span itemprop="tel">{TELEPHONE}</span>, 
+				{HFAX}
+				{FAX}
+			</span>
+		</div>
+		
+		<div>{GALLERYLINK}</div>
+		<div>&nbsp;</div>
+		<!--<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>
+		<patTemplate:tmpl name="featurelist" type="simpleCondition" requiredVars="feature">{FEATURE}</patTemplate:tmpl>-->
+	</div>
 </div>
+
 </patTemplate:tmpl>
