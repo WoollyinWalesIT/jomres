@@ -5,8 +5,6 @@ jomresJquery(document).ready(function(){
   jomresJquery("#pdetails_tabs").tabs();
 });
 jomresJquery(window).load(function(){
-  jomresJquery("#property_details_loading").fadeOut("fast");
-  jomresJquery("#property_details").fadeIn("fast");
   jomresJquery("#sd").effect("pulsate", { times:5 }, 1500);
 });
 //-->
@@ -16,8 +14,7 @@ jomresJquery(window).load(function(){
 .select-dates{background: url("{LIVE_SITE}/jomres/images/calendar_msg_bubble.png") no-repeat scroll 0 0 transparent;bottom: -15px;display: block;height: 68px;left: -37px;position: relative;width: 45px;z-index: 10000;}
 </style>
 <div class="full-width ui-helper-clearfix">
-	<div id="property_details_loading" ><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
-	<div id="property_details" class="ui-helper-hidden">
+	<div id="property_details">
 		<div id="gallerywrapper" class="ui-widget-content ui-corner-all left-column-slideshow float-left">{SLIDESHOW}</div>
 		<div class="right-column-buttons float-right ui-widget-content ui-helper-jomres-buttons">
 			<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
