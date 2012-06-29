@@ -1,0 +1,86 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#admin_list_invoices').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lTfr>t<"F"ip>',
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+} );
+//-->
+</script>
+<h2>{PAGETITLE}</h2>
+<!--<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}-->
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr align="center">
+		<td>{TASK_FILTER_ANY}</td>
+		<td>{TASK_FILTER_UNPAID}</td>
+		<td>{TASK_FILTER_PAID}</td>
+		<td>{TASK_FILTER_CANCELLED}</td>
+		<td>{TASK_FILTER_PENDING}</td>
+	</tr>
+</table>
+<br />
+<table id="admin_list_invoices" width="100%">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>ID</th>
+			<th>{HUSER}</th>
+			<th>{HSTATUS}</th>
+			<th>Line Items</th>
+			<th>{HRAISED}</th>
+			<th>{HDUE}</th>
+			<th>{HPAID}</th>
+			<th>{HSUBSCRIPTION}</th>
+			<th>{HINITTOTAL}</th>
+			<th>{HRECURTOTAL}</th>
+			<th>{HFREQ}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{ID}</td>
+			<td>{USER}</td>
+			<td>{STATUS}</td>
+			<td>{ITEMS}</td>
+			<td>{RAISED}</td>
+			<td>{DUE}</td>
+			<td>{PAID}</td>
+			<td>{SUBSCRIPTION}</td>
+			<td>{INITTOTAL}({CURRENCYCODE})</td>
+			<td>{RECURTOTAL}({CURRENCYCODE})</td>
+			<td>{FREQ}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<!--<input type="hidden" name="task" value="edit_invoice" />
+</form>-->
+</patTemplate:tmpl>

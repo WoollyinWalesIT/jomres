@@ -1,0 +1,32 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+function get_properties(initial)
+	{
+	jomresJquery.get('{AJAXURL}&task=listpropertys&tmpl=component&no_html=1&initial='+initial,
+		function(data){
+			populateDiv('found_properties',data);
+			}
+		);
+	}
+//-->
+</script>
+<h2>{_JRPORTAL_CPANEL_LISTCRATES}</h2>
+<p>{_JOMRES_CRATES_CLICKINITIAL}</p>
+<table width="100%">
+	<tr valign="top">
+		<td>
+			<patTemplate:tmpl name="rows" unusedvars="strip">
+			<div>
+				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
+			</div>
+			</patTemplate:tmpl>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div id="found_properties"></div>
+		</td>
+	</tr>
+</table>
+</patTemplate:tmpl>

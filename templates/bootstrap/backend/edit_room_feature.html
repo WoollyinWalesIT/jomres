@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="editroomfeature" unusedvars="strip">
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+	</div>
+</div>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="feature_description">{HFEATUREDESCRIPTION}</label>
+			<div class="controls">
+				<input type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" />
+			</div> 
+		</div>
+		<div class="form-actions">
+			<div class="">
+				{JOMRESTOOLBAR}
+			</div>
+		</div>
+	</fieldset>
+	<input type="hidden" name="roomFeatureUid" value="{ROOMFEATUREUID}">
+	<input type="hidden" name="task" value="saveRoomFeature" />
+</form>
+</patTemplate:tmpl>
+</patTemplate:tmpl>

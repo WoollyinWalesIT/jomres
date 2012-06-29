@@ -1,0 +1,60 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+var ajaxurl	= "{AJAXURL}";
+var livesite= "{ADMINLIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
+jomresJquery(function() {
+	jomresJquery( "#username_input" ).autocomplete({
+		source: ajaxurl+'managers_find',
+		minLength: 2,
+		select: function( event, ui ) {
+			location.href = livesite+ui.item.value;
+		}
+	});
+});
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#managers_choose').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+//-->
+</script>
+<h2>{_JOMRES_COM_MR_SHOWPROFILES}</h2>
+<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+	<tr>
+		<td>
+			<h3>{_JOMRES_MANAGER_CHOOSE_SEARCHTITLE}</h3>
+			<p>{_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS}</p>
+			<input id="username_input" />
+		</td>
+	</tr>
+</table>
+<h3>{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</h3>
+<p>{KEY}</p>
+<table id="managers_choose" width="100%">
+	<thead>
+		<tr>
+			<th>{HLINKTEXT}</th>
+            <th>{HUSERNAME}</th>
+			<th>{HACCESSLEVEL}</th>
+			<th>{_JOMRES_CHOOSEMANAGER_NUMBEROFPROPERTIES_ASSIGNED}</th> 
+			<th>{HSUSPENSION}</th> 
+			<th>{HGRANTLINK}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<tr>
+			<td>{LINKTEXT}</td>
+            <td>{USERNAME}</td>
+			<td>{ACCESSLEVELIMAGE}</td>
+			<td>{NUMBEROFPROPERTIES}</td>
+			<td>{SUSPENSIONLINK}</td>
+			<td>{GRANTLINK}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>		
+</table>
+</patTemplate:tmpl>

@@ -123,20 +123,19 @@ class j06000compare
 				if (count($propertyFeaturesArray)>0)
 					{
 					$fs=array();
-					$i=0;
 					foreach ($featuresArray as $k=>$v)
 						{
 						if (in_array($k,$all_used_features))
 							{
-							if ($i%2)
-								$class="odd";
-							else
-								$class="even";
 							if (in_array($k,$propertyFeaturesArray ))
-								$fs[]=array("IMAGE"=>'<div class="ui-icon ui-icon-check" style="height:20px;"></div>',"CLASS"=>$class);
+								{
+								if (!using_bootstrap())
+									$fs[]=array("IMAGE"=>'<div class="ui-icon ui-icon-check" style="height:20px;"></div>',"CLASS"=>$class);
+								else
+									$fs[]=array("IMAGE"=>'<i class="icon-ok"></i></div>');
+								}
 							else
-								$fs[]=array("IMAGE"=>'',"CLASS"=>$class);
-							$i++;
+								$fs[]=array("IMAGE"=>'');
 							}
 						}
 					$t = new patTemplate();

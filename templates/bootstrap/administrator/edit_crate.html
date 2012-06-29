@@ -1,0 +1,27 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td>{HTITLE}</td>
+		<td><input class="inputbox" type="text" size="15" name="title" value="{TITLE}" /></td>
+	</tr>
+	<tr>
+		<td>{HTYPE}</td>
+		<td>{TYPE}</td>
+	</tr>
+	<tr>
+		<td>{HVALUE}</td>
+		<td><input class="inputbox" type="text" size="15" name="value" value="{VALUE}" /></td>
+	</tr>
+		<td>{HCURRENCYCODE}</td>
+		<td>{CURRENCYCODE}</td>
+	</tr>
+</table>
+{JOMRESTOKEN}
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="savecrate" />
+</form>
+</patTemplate:tmpl>

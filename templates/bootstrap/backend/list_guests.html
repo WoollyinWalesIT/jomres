@@ -1,0 +1,87 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_guests').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+	</div>
+</div>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
+<div class="well">
+	<div class="span12">
+		<div class="pull-left">
+			{JOMRESTOOLBAR}
+		</div>
+		<div class="pull-right">
+			{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}-->
+		</div>
+	</div>
+</div>
+<table width="100%" border="0" id="list_guests" class="table table-bordered table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>{HEDITLINK}</th>
+			<th>{HINVOICELINK}</th>
+			<th>{HFIRSTNAME}</th>
+			<th>{HSURNAME}</th>
+			<th class="hidden-phone">{HHOUSE}</th>
+			<th class="hidden-phone">{HSTREET}</th>
+			<th class="hidden-phone">{HTOWN}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td>{INVOICELINK}</td>
+			<td>{FIRSTNAME}</td>
+			<td>{SURNAME}</td>
+			<td class="hidden-phone">{HOUSE}</td>
+			<td class="hidden-phone">{STREET}</td>
+			<td class="hidden-phone">{TOWN}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</div>
+<input type="hidden" name="guestUid" value="" />
+<input type="hidden" name="task" value="listguests" />
+</form>
+</patTemplate:tmpl>

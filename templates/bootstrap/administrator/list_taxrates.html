@@ -1,0 +1,40 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_taxrates').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+//-->
+</script>
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table id="list_taxrates" width="100%">
+	<thead>
+		<tr>
+			<th></th>
+			<th>ID</th>
+			<th>{HCODE}</th>
+			<th>{HDESCRIPTION}</th>
+			<th>{HRATE}</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<tr>
+		<td>{EDITLINK}</td>
+		<td>{ID}</td>
+		<td>{CODE}</td>
+		<td>{DESCRIPTION}</td>
+		<td>{RATE}</td>
+	</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="task" value="editTaxrate" />
+</form>
+</patTemplate:tmpl>

@@ -36,17 +36,34 @@ class jomres_configpanel extends jomres_content_tabs
 		$rowclass="";
 		if (!$this->counter)
 			$this->counter=0;
-		if ($this->counter%2)
-			$rowclass="odd";
+		if (!using_bootstrap())
+			{
+			if ($this->counter%2)
+				$rowclass="odd";
+			else
+				$rowclass="even";
+			$this->panes[]='
+			<tr class="'.$rowclass.'">
+				<td width="30%">'.$this->left.'</td>
+				<td>'.$this->middle.'</td>
+				<td>'.$this->right.'</td>
+			</tr>
+			';
+			}
 		else
-			$rowclass="even";
-		$this->panes[]='
-		<tr class="'.$rowclass.'">
-			<td width="30%">'.$this->left.'</td>
-			<td>'.$this->middle.'</td>
-			<td>'.$this->right.'</td>
-		</tr>
-		';
+			{
+			if ($this->counter%2)
+				$rowclass="row-even";
+			else
+				$rowclass="row-odd";
+			$this->panes[]='
+			<div class="row-fluid '.$rowclass.'">
+				<div class="span3">'.$this->left.'</div>
+				<div class="span4">'.$this->middle.'</div>
+				<div class="span5">'.$this->right.'</div>
+			</div>
+			';
+			}
 		$this->left="&nbsp;";
 		$this->middle="&nbsp;";
 		$this->right="&nbsp;";

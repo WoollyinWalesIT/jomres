@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{TITLE}</h2>
+<table width="100%" border="0" class="table table-striped table-condensed">
+	<tr>
+		<th class="hidden-phone">&nbsp;</th>
+		<th>{HPNAME}</th>
+		<th>{HARRIVAL}</th>
+		<th>{HDEPARTURE}</th>
+		<th>{HEXTRAS}</th>
+		<th>{HTOTAL}</th>
+		<th>&nbsp;</th>
+	</tr>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td class="hidden-phone">{IMAGE}</td>
+		<td><strong><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></strong></td>
+		<td>{ARRIVAL}</td>
+		<td>{DEPARTURE}</td>
+		<td>{EXTRASVALUE}</td>
+		<td>{CONTRACT_TOTAL}</td>
+		<td><a href="{VIEWLINK}">{VIEWLINK_TEXT}</a></td>
+	</tr>
+	</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>

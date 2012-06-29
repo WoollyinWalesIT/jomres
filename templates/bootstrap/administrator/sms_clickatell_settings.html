@@ -1,0 +1,26 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{PAGETITLE}</h2>
+<p>{INSTRUCTIONS}</p>
+<form action="index.php?option=com_jomres" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td>{HACTIVE}</td>
+		<td>{ACTIVE}</td>
+	</tr>
+	<tr>
+		<td>{HUSERNAME}</td>
+		<td><input class="inputbox" type="text" name="username" value="{USERNAME}" size="20" /></td>
+	</tr>
+	<tr>
+		<td>{HPASSWORD}</td>
+		<td><input class="inputbox" type="text" name="password" value="{PASSWORD}" size="20" /></td>
+	</tr>
+	<tr>
+		<td>{HAPI_ID}</td>
+		<td><input class="inputbox" type="text" name="api_id" value="{API_ID}" size="20" /></td>
+	</tr>
+</table>
+<input type="hidden" name="task" value="save_sms_clickatell_settings" />
+</form>
+</patTemplate:tmpl>

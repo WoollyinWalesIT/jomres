@@ -1,0 +1,24 @@
+<patTemplate:tmpl name="pageoutput" >
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<div class="ui-widget-header ui-corner-all">{PAGETITLE}</div><br/>
+<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+	<tr>
+		<td class="ui-widget-header ui-corner-all">{HEXNAME}</td>
+		<td class="ui-widget-header ui-corner-all">{HEXDESC}</td>
+		<td class="ui-widget-header ui-corner-all">{HEXPRICE}</td>
+		<td class="ui-widget-header ui-corner-all">{HEXCHARGEABLEDAILY}</td>
+	</tr>
+	<tr>
+		<td><input class="inputbox" type="text" name="name" value="{EXNAME}" /></td>
+		<td><input class="inputbox" type="text" name="desc" value="{EXDESCRIPTION}" /></td>
+		<td>{CURRENCY}<input class="inputbox" type="text" name="price" value="{EXPRICE}" size="7" /></td>
+		<td>{EXCHARGEABLEDAILY}</td>
+	</tr>
+</table>
+
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="add_adhoc_item_to_bill" />
+</form>
+</patTemplate:tmpl>

@@ -110,7 +110,15 @@ class j00004x_init_javascript_css_files {
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.dataTables.min.js.relpath"),get_showtime("jquery.dataTables.min.js"));
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("TableTools.min.js.relpath"),get_showtime("TableTools.min.js"));
 					}
-
+				
+				if (using_bootstrap())
+					{
+					jomres_cmsspecific_addheaddata("javascript",get_showtime("DT_bootstrap.js.relpath"),get_showtime("DT_bootstrap.js"));
+					
+					jomres_cmsspecific_addheaddata("css",get_showtime("DT_bootstrap.css.relpath"),get_showtime("DT_bootstrap.css"));
+					jomres_cmsspecific_addheaddata("javascript",get_showtime("DT_bootstrap.js.relpath"),get_showtime("DT_bootstrap.js"));
+					}
+				
 				$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 				$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 				

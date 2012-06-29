@@ -23,12 +23,28 @@ class j00005define_template_paths {
 			{
 			$this->template_touchable=false; return;
 			}
+		
 		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
-			define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend");
+			{
+			if (!using_bootstrap())
+				define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."frontend");
+			else
+				define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."bootstrap".JRDS."frontend");
+			}
 		if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
-			define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."backend");
+			{
+			if (!using_bootstrap())
+				define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."backend");
+			else
+				define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."bootstrap".JRDS."backend");
+			}
 		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
-			define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."administrator");
+			{
+			if (!using_bootstrap())
+				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jomres".JRDS."administrator");
+			else
+				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."bootstrap".JRDS."administrator");
+			}
 		}
 
 	/**

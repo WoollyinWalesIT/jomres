@@ -1,0 +1,39 @@
+<patTemplate:tmpl name="list_ptypes" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_ptypes').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+//-->
+</script>
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<table id="list_ptypes" width="100%">
+	<thead>
+		<patTemplate:tmpl name="pageheaders" unusedvars="nbsp">
+		<tr>
+			<th>{HPTYPE}</th>
+			<th>{HPTYPE_DESC}</th>
+			<th>{HPUBLISHED}</th>
+		</tr>
+		</patTemplate:tmpl>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+		<tr>
+			<td><a href="index.php?option=com_jomres&task=editpropertytype&id={ID}">{PTYPE}</a></td>
+			<td>{PTYPE_DESC}</td>
+			<td>{PUBLISHED}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="editcrate" />
+<input type="hidden" name="boxchecked" value="0">
+</form>
+</patTemplate:tmpl>

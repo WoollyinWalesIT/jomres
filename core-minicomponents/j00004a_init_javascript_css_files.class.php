@@ -38,18 +38,41 @@ class j00004a_init_javascript_css_files {
 		if (defined("JOMRES_JSCALLED") )
 			return;
 		
-		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-		$jrConfig=$siteConfig->get();
-		if (!isset($jrConfig['jquery_ui_theme_detected']))
-			$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css";
-		
-		$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
-		$subdir = $themeArr[0];
-		$filename = $themeArr[1];
-		if (isset($themeArr[2]))
-			$themePath = $themeArr[2]."/";
+		if (!using_bootstrap())
+			{
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig=$siteConfig->get();
+			if (!isset($jrConfig['jquery_ui_theme_detected']))
+				$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css";
+			
+			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
+			$subdir = $themeArr[0];
+			$filename = $themeArr[1];
+			if (isset($themeArr[2]))
+				$themePath = $themeArr[2]."/";
+			else
+				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
+			
+			set_showtime("jquery.ui.theme",$filename);
+			set_showtime("jquery.ui.theme.relpath",$themePath);
+			
+			set_showtime("tables_jui.css","tables_jui.css");
+			set_showtime("tables_jui.css.relpath","jomres/css/");
+			}
 		else
-			$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
+			{
+			set_showtime("jquery.ui.theme",'jquery-ui-1.8.16.custom.css');
+			set_showtime("jquery.ui.theme.relpath",'jomres/css/jquery-ui-bootstrap/css/custom-theme/');
+			
+			set_showtime("DT_bootstrap.css","DT_bootstrap.css");
+			set_showtime("DT_bootstrap.css.relpath","jomres/css/");
+			
+			set_showtime("DT_bootstrap.js","DT_bootstrap.js");
+			set_showtime("DT_bootstrap.js.relpath","jomres/javascript/");
+
+			set_showtime("tables_jui.css","");
+			set_showtime("tables_jui.css.relpath","jomres/css/");
+			}
 		
 		$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 		define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
@@ -59,8 +82,7 @@ class j00004a_init_javascript_css_files {
 		set_showtime("jquery.core.js.relpath",'jomres/javascript/');
 		set_showtime("jquery.ui.js","jquery-ui-1.8.16.custom.min.js");
 		set_showtime("jquery.ui.js.relpath",'jomres/javascript/');
-		set_showtime("jquery.ui.theme",$filename);
-		set_showtime("jquery.ui.theme.relpath",$themePath);
+
 			
 		set_showtime("jquery.rating.css",'jquery.rating.css');
 		set_showtime("jquery.rating.css.relpath",'jomres/css/');
@@ -116,8 +138,6 @@ class j00004a_init_javascript_css_files {
 		set_showtime("TableTools_JUI.css","TableTools_JUI.css");
 		set_showtime("TableTools_JUI.css.relpath","jomres/css/");
 		
-		set_showtime("tables_jui.css","tables_jui.css");
-		set_showtime("tables_jui.css.relpath","jomres/css/");
 		
 		set_showtime("jquery.dataTables.min.js","jquery.dataTables.min.js");
 		set_showtime("jquery.dataTables.min.js.relpath","jomres/javascript/");

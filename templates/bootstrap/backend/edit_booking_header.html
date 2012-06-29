@@ -1,0 +1,36 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	jomresJquery('#page-help').each(function() {
+		var $dialog = jomresJquery('<div></div>');
+		var $link = jomresJquery(this).one('click', function() {
+			$dialog
+				.load($link.attr('href'))
+				.dialog({
+					title: $link.attr('title'),
+					width: 500,
+					height: 300
+				});
+			$link.click(function() {
+				$dialog.dialog('open');
+				return false;
+			});
+			return false;
+		});
+	});
+});
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{_JOMRES_BOOKING_NUMBER} {BOOKING_NUMBER} - {GUEST_FIRSTNAME} {GUEST_SURNAME}</h2>
+	</div>
+</div>
+<div class="well">
+	<div class="span12">
+		{TOOLBAR}
+	</div>
+	<div class="clearfix"></div>
+</div>
+</patTemplate:tmpl>

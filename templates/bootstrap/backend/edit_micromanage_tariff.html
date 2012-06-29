@@ -1,0 +1,274 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<script>
+function jomres_micromanage_rate_picker()
+	{
+	from_value = jomresJquery('input[name=picker_from]').val();
+	to_value = jomresJquery('input[name=picker_to]').val();
+	new_rate = jomresJquery('#picker_value').val();
+
+	epoch_from = jomres_micromanage_picker_get_epoch(from_value);
+	epoch_to = jomres_micromanage_picker_get_epoch(to_value);
+	var i = epoch_from;
+	var r_colour = random_colour();
+	
+	while (i <= epoch_to)
+		{
+		jomresJquery("input[name='tariffinput["+i/1000+"]']").css("border","2px solid #"+r_colour);
+		jomresJquery("input[name='tariffinput["+i/1000+"]']").val(new_rate);
+		tomorrow = new Date( i.getTime() + 86400000 ); 
+		i = tomorrow;
+		}
+	}
+
+function jomres_micromanage_picker_get_epoch(jsdate)
+	{
+	dformat = "{DATE_FORMAT}";
+	var day=0
+	var mon=0
+	var year=0
+	if (dformat=="%d/%m/%Y"){
+		dateArray=jsdate.split("/")
+		day=dateArray[0]
+		mon=dateArray[1]
+		year=dateArray[2]
+		}
+	if (dformat=="%Y/%m/%d"){
+		dateArray=jsdate.split("/")
+		day=dateArray[2]
+		mon=dateArray[1]
+		year=dateArray[0]
+		}
+	if (dformat=="%m/%d/%Y"){
+		dateArray=jsdate.split("/")
+		day=dateArray[1]
+		mon=dateArray[0]
+		year=dateArray[2]
+		}
+	if (dformat=="%d-%m-%Y"){
+		dateArray=jsdate.split("-")
+		day=dateArray[0]
+		mon=dateArray[1]
+		year=dateArray[2]
+		}
+	if (dformat=="%Y-%m-%d"){
+		dateArray=jsdate.split("-")
+		day=dateArray[2]
+		mon=dateArray[1]
+		year=dateArray[0]
+		}
+	if (dformat=="%m-%d-%Y"){
+		dateArray=jsdate.split("-")
+		day=dateArray[1]
+		mon=dateArray[0]
+		year=dateArray[2]
+		}
+	return new Date(Date.UTC(year,mon-1,day,0,0,0)); 
+	}
+
+	// http://www.namepros.com/code/37251-javascript-random-hex-color.html
+	function random_colour()
+		{
+		colours = new Array(14)
+		colours[0]="0"
+		colours[1]="1"
+		colours[2]="2"
+		colours[3]="3"
+		colours[4]="4"
+		colours[5]="5"
+		colours[5]="6"
+		colours[6]="7"
+		colours[7]="8"
+		colours[8]="9"
+		colours[9]="a"
+		colours[10]="b"
+		colours[11]="c"
+		colours[12]="d"
+		colours[13]="e"
+		colours[14]="f"
+
+		digit = new Array(5)
+		colour=""
+		for (i=0;i<6;i++){
+			digit[i]=colours[Math.round(Math.random()*14)]
+			colour = colour+digit[i]
+			}
+		return colour;
+		}
+		
+function select_all(obj)
+	{ var text_val=eval(obj);
+	text_val.focus();
+	text_val.select();
+	}
+</script>
+<h2>{_JOMRES_COM_MR_LISTTARIFF_LINKTEXT}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="well form-horizontal">
+<div class="well">
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="tarifftypename">{HTARIFFTITLE}</label>
+			<div class="controls">
+				<input type="text" name="tarifftypename" value="{TARIFFTYPENAME}" />
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="roomClass">{HROOMTYPEDROPDOWN}</label>
+			<div class="controls">
+				{ROOMTYPEDROPDOWN}
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="mindays">{HMINDAYS}</label>
+			<div class="controls">
+				{MINDAYS_DROPDOWN}
+				<patTemplate:comment><input class="inputbox" type="text" style="text-align:right" size="4" name="mindays" value="{MINDAYS}" /></patTemplate:comment>
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="maxdays">{HMAXDAYS}</label>
+			<div class="controls">
+				{MAXDAYS_DROPDOWN}
+				<patTemplate:comment><input class="inputbox" type="text" style="text-align:right" size="4" name="maxdays" value="{MAXDAYS}" /></patTemplate:comment>
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="minpeople">{HMINPEOPLE}</label>
+			<div class="controls">
+				{MINPEOPLE_DROPDOWN}
+				<patTemplate:comment> <input class="inputbox" type="text" style="text-align:right" size="4" name="minpeople" value="{MINPEOPLE}" /></patTemplate:comment>
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="maxpeople">{HMAXPEOPLE}</label>
+			<div class="controls">
+				{MAXPEOPLE_DROPDOWN}
+				<patTemplate:comment><input class="inputbox" type="text" style="text-align:right" size="4" name="maxpeople" value="{MAXPEOPLE}" /></patTemplate:comment>
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="ignore_pppn">{HIGNOREPPPNDROPDOWN}</label>
+			<div class="controls">
+				{IGNOREPPPNDROPDOWN}
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="allow_we">{HALLOWWEEKENDSDROPDOWN}</label>
+			<div class="controls">
+				{ALLOWWEEKENDSDROPDOWN}
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="weekendonly">{HWEEKENDONLY}</label>
+			<div class="controls">
+				{WEEKENDONLY}
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="fixed_dayofweek">{HFIXED_DAYOFWEEK}</label>
+			<div class="controls">
+				{FIXED_ARRIVAL_DAYOFWEEK}
+			</div> 
+		</div>
+		<patTemplate:tmpl name="already_selected_rows" type="simpleCondition" requiredVars="hminrooms">
+		<div class="control-group">
+		<label class="control-label" for="minrooms_alreadyselected">{HMINROOMS}</label>
+			<div class="controls">
+				{MINROOMS_ALREADYSELECTED}
+				<p class="help-block">{MINROOMS_DESC}</p>
+			</div> 
+		</div> 
+		<div class="control-group">
+		<label class="control-label" for="maxrooms_alreadyselected">{HMAXROOMS}</label>
+			<div class="controls">
+				{MAXROOMS_ALREADYSELECTED}
+				<p class="help-block">{MAXROOMS_DESC}</p>
+			</div> 
+		</div> 
+		</patTemplate:tmpl>
+	</fieldset>
+</div>
+
+<div class="well">
+	<div  class="alert alert-info">{PICKER_DAYSOFWEEK}</div>
+	<patTemplate:tmpl name="prefills" unusedvars="nbsp">
+		<div class="control-group">
+		<label class="control-label" for="picker_from">{BUTTON}{JS}</label>
+			<div class="controls">
+				{INPUT}
+			</div> 
+		</div>
+	</patTemplate:tmpl>
+</div>
+
+<div class="well">
+	<div class="alert alert-info">{PICKER_DATERANGES}</div>
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="picker_from">{PICKER_DATERANGES_START}</label>
+			<div class="controls">
+				{PICKER_FROM}
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="picker_to">{PICKER_DATERANGES_END}</label>
+			<div class="controls">
+				{PICKER_TO}
+			</div> 
+		</div>
+		<div class="control-group">
+		<label class="control-label" for="picker_from">{PICKER_DATERANGES_RATE}</label>
+			<div class="controls">
+				<input type="text" class="input_40perc" id="picker_value" value="55" />
+			</div> 
+		</div>
+		<div class="control-group">
+		<div class="form-actions">
+			<input type="button" id="set_value" value="{PICKER_DATERANGES_SET}" onClick="jomres_micromanage_rate_picker()" />
+		</div>
+	</fieldset>
+</div>
+
+	<div class="form-actions">
+		{JOMRESTOOLBAR}
+	</div>
+
+	<patTemplate:tmpl name="daterows" unusedvars="nbsp">
+	<div class="well">
+		<div class="row-fluid">
+			
+			<div class="span12">
+				<strong>{YEAR} {MONTH}</strong>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<table width="100%" border="0">
+					<tr>
+						{DAYS1}
+					</tr>
+					<tr>
+						{INPUTS1}
+					</tr>
+				</table>
+				<table width="100%" border="0">
+					<tr>
+						{DAYS2}
+					</tr>
+					<tr>
+						{INPUTS2}
+					</tr>
+				</table>
+			</div>
+			
+		</div>
+	</div>
+	</patTemplate:tmpl>
+	
+	<div class="form-actions">
+		{JOMRESTOOLBAR}
+	</div>
+<input type="hidden" name="tarifftypeid" value="{TARIFFTYPEID}" />
+<input type="hidden" name="task" value="saveTariff" />
+</form>
+</patTemplate:tmpl>

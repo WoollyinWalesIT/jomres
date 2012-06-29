@@ -38,7 +38,7 @@ class j05020dobooking {
 		
 		$property_uid = get_showtime('property_uid');
 		$mrConfig=getPropertySpecificSettings();
-		if (get_showtime('include_room_booking_functionality') && !defined('JOMRES_BOOTSTRAP'))
+		if (get_showtime('include_room_booking_functionality') && !using_bootstrap() )
 			{
 			if ( $mrConfig['singleRoomProperty'] )
 				{

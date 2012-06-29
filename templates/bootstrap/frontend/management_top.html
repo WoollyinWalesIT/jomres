@@ -1,0 +1,30 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+{SANITY_CHECKS}
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3">
+			<div id="jomres_alternate_menu_position"></div> <!-- available if required by a plugin -->
+		</div>
+		<div class="span9">
+			<div id="jomres_content_area"> <!-- opens the jomres content area -->
+			<noscript>
+			<blockquote>
+			<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+			<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so please enable before continuing. For assistance in enabling JavaScript, please contact the webmaster.</font></p>
+			</blockquote>
+			</noscript>
+			<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
+				<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+				<script type="text/javascript">
+					jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });
+				</script>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
+				<!-- <a href="javascript:void(0);" onclick="jomresJquery.jGrowl('{MESSAGE}',{sticky: true});">Message</a> -->
+				<script type="text/javascript">
+					jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });
+				</script>
+			</patTemplate:tmpl>
+</patTemplate:tmpl>

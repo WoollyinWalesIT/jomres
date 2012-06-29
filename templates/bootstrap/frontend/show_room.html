@@ -1,0 +1,44 @@
+<patTemplate:tmpl name="property_header" unusedvars="strip">
+<div>&nbsp;</div>
+<div class="well">
+	<table class="table table-condensed">
+		<patTemplate:tmpl name="room_headers">
+		<thead>
+		<tr>
+			<th></th>
+			<th>{HEADER_ROOMNUMBER}</th>
+			<th>{HEADER_ROOMTYPE}</th>
+			<th>{HEADER_MAXPEOPLE}</th>
+			<th>{HEADER_ROOMNAME}</th>
+			<th class="hidden-phone">{HEADER_ROOMFLOOR}</th>
+			<th class="hidden-phone">{HEADER_SMOKING}</th> 
+			<th>{HEADER_DISABLEDACCESS}</th>
+		</tr>
+		</thead>
+		</patTemplate:tmpl>
+		<patTemplate:tmpl name="room_details">
+		<tbody>
+		<tr align="center">
+			<td>{IMAGE}</td>
+			<td>{ROOMNUMBER}</td>
+			<td>{ROOMTYPE}</td>
+			<td>{MAXPEOPLE}</td>
+			<td>{ROOMNAME}</td>
+			<td class="hidden-phone">{ROOMFLOOR}</td>
+			<td class="hidden-phone">{SMOKING}</td>
+			<td>{DISABLEDACCESS}</td>
+		</tr>
+		</tbody>
+		</patTemplate:tmpl>
+	</table>
+	<br />
+	<table border="0" width="100%">
+	<patTemplate:tmpl name="room_features">
+		<tr>
+			<td class="alert alert-info">{ROOMFEATURE}</td>    
+		</tr>
+	</patTemplate:tmpl>
+	</table>
+</div>
+<br /><br />
+</patTemplate:tmpl>

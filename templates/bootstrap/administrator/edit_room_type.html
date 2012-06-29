@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2>{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+{JOMRESTOOLBAR}
+<table class="ui-widget-content ui-corner-all" width="100%">
+	<tr>
+		<td width="30%">{HABBV}</td>
+		<td><input type="text" name="room_class_abbv" value="{CLASSABBV}" /></td>
+	</tr>
+	<tr>
+		<td>{HDESC}</td>
+		<td><input type="text" name="room_class_full_desc" value="{CLASSDESC}" /></td>
+	</tr>
+	<tr>
+		<td>{HSRP_ONLY}</td>
+		<td>{SRP_ONLY}</td>
+	</tr>
+	<tr>
+		<td>
+			{_JOMRES_PROPERTY_TYPE_ASSIGNMENT}
+		</td>
+		<td>
+			<patTemplate:tmpl name="all_ptype_rows">
+			<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />{PROPERTYTYPE_DESC} 
+			</patTemplate:tmpl>
+		</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_IMAGE}</td>
+		<td>
+			<patTemplate:tmpl name="rows">
+			<input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" />
+			</patTemplate:tmpl>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="roomClassUid" value="{ROOMCLASSUID}">
+<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
+<input type="hidden" name="Itemid" value="{ITEMID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="{TASK}" />
+</form>
+</patTemplate:tmpl>

@@ -1,0 +1,28 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<h2>{TITLE}</h2>
+<p>{INSTRUCTIONS}</p>
+<p>{EDITWARNINGNOTE}</p>
+<!--{JOMRESTOOLBAR}-->
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
+	<thead>
+		<tr>
+			<th class="ui-state-default">{HTEMPLATENAME}</th>
+			<th class="ui-state-default">{HCUSTOMISED}</th>
+			<th class="ui-state-default">{HLAST_EDITED_DISK}</th>
+			<th class="ui-state-default">{HLAST_EDITED_DB}</th>
+			<th class="ui-state-default">{HLAST_WARNINGICON}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr class="{CLASS}">
+			<td>{EDITLINK}</td>
+			<td>{EDITED}</td>
+			<td>{LAST_EDITED_DISK}</td>
+			<td>{LAST_EDITED_DB}</td>
+			<td>{WARNINGICON}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

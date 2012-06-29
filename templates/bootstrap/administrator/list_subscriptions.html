@@ -1,0 +1,53 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#list_subscriptions').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+} );
+//-->
+</script>
+<h2>{PAGETITLE}</h2>
+<!--{JOMRESTOOLBAR}-->
+<table id="list_subscriptions" border="0" width="100%">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>{HCMS_USER_ID}</th>
+			<th>{HGATEWAY_SUBSCRIPTION_ID}</th>
+			<th>{HNAME}</th>
+			<th>{HDESCRIPTION}</th>
+			<th>{HFREQUENCY}</th>
+			<th>{HTRIAL_PERIOD}</th>
+			<th>{HTRIAL_AMOUNT}</th>
+			<th>{HFULL_AMOUNT}</th>
+			<th>{HPROPERTY_LIMIT}</th>
+			<th>{HSTATUS}</th>
+			<th>{HRAISED_DATE}</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{ID}</td>
+			<td>{CMS_USER_NAME}</td>
+			<td>{GATEWAY_SUBSCRIPTION_ID}</td>
+			<td>{NAME}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{FREQUENCY}</td>
+			<td>{TRIAL_PERIOD}</td>
+			<td>{TRIAL_AMOUNT}</td>
+			<td>{FULL_AMOUNT}</td>
+			<td>{PROPERTY_LIMIT}</td>
+			<td>{STATUS}</td>
+			<td>{RAISED_DATE}</td>
+			<td>{DELETELINK}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

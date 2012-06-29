@@ -1,0 +1,68 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#frontend_list_properties').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+	</div>
+</div>
+<form action="index.php" method="post" name="adminForm">
+<table width="100%" id="frontend_list_properties" border="0" class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th>{HPUBLISHLINK}</th>
+			<th>{HPROPERTYNAME}</th>
+			<th class="hidden-phone">{HPROPERTYADDRESS}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{PUBLISHLINK}</td>
+			<td><a href="{SWITCHLINK}">{PROPERTYNAME}</a></td>
+			<td class="hidden-phone">{PROPERTYADDRESS}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="" />
+</form>
+</patTemplate:tmpl>

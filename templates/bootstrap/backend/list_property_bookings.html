@@ -1,0 +1,101 @@
+<patTemplate:tmpl name="pageoutput">
+<script language="JavaScript" type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#showLiveBookings').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVE_SITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
+//-->
+</script>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="page-header">{PAGETITLE}</h2>
+	</div>
+</div>
+<div class="well">
+	<div class="row-fluid">
+		<div class="span4">
+			<img src="{IMG_PENDING}"/>
+			{TEXT_PENDING}
+		</div>
+		<div class="span4">
+			<img src="{IMG_ARRIVETODAY}"/>
+			{TEXT_ARRIVETODAY}
+		</div>
+		<div class="span4">
+			<img src="{IMG_RESIDENT}"/>
+			{TEXT_RESIDENT}
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<img src="{IMG_LATE}"/>
+			{TEXT_LATE}
+		</div>
+		<div class="span4">
+			<img src="{IMG_DEPARTTODAY}"/>
+			{TEXT_DEPARTTODAY}
+		</div>
+		<div class="span4">
+			<img src="{IMG_STILLHERE}"/>
+			{TEXT_STILLHERE}
+		</div>
+	</div>
+</div>
+
+<table class="table table-bordered table-striped table-condensed" id="showLiveBookings">
+	<thead>
+		<tr>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_STATUS}</th>
+			<th>{_JOMRES_COM_MR_EDITBOOKINGTITLE}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME}</th>
+			<th>{_JOMRES_BOOKING_NUMBER}</th>
+			<th>{ARRIVAL}</th>
+			<th>{DEPARTURE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td><img src="{STATE_IMAGE}" /></td>
+			<td><a href="{EDIT_URL}">{EDIT_TEXT}</a></td>
+			<td>{FIRSTNAME} {SURNAME}</td>
+			<td>{BOOKING_NO}</td>
+			<td>{ARRIVALDATE}</td>
+			<td>{DEPARTURE}</td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>

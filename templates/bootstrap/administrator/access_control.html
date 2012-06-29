@@ -1,0 +1,45 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#access_control_list').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
+	});
+});
+
+function change_access_level(minicomp,level)
+	{
+	cmd = '{AJAXURL}&task=ajax_change_access_level&minicomp='+minicomp+'&new_level='+level;
+	jomresJquery.get(cmd, function(data) {
+	//	if (data == 1)
+	//		{
+			
+	//		jomresJquery(div_name).attr("src",curr_img);
+	//		}
+		});
+	}
+//-->
+</script>
+<h2>{_JOMRES_ACCESS_CONTROL_TITLE}</h2>
+<p>{_JOMRES_ACCESS_CONTROL_DESC}</p>
+<p>{_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM}</p>
+
+<table id="access_control_list" width="100%">
+	<thead>
+		<tr>
+			<th>Minicomponent name</th>
+			<th>Access level</th>
+		</tr>
+	</thead>
+	<tbody>
+	<patTemplate:tmpl name="rows" unusedvars="nbsp">
+	<tr>
+		<td >{SCRIPTNAME}</td>
+		<td >{DROPDOWN}</td>
+	</tr>
+	</patTemplate:tmpl>
+	</tbody>
+</table>
+</patTemplate:tmpl>
