@@ -117,6 +117,8 @@ class j00501bookings1 {
 			if ( $mrConfig['singleRoomProperty'] != "1" )
 				{
 				
+/* 				Disabled as 6.6.6 has the rooms list templatised and easily edited.
+
 				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE);
 				$configurationPanel->setmiddle($lists['showRoomImageInBookingFormOverlib']);
 				$configurationPanel->setright();
@@ -145,7 +147,7 @@ class j00501bookings1 {
 				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE);
 				$configurationPanel->setmiddle($lists['bookingform_roomlist_showmaxpeople']);
 				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
+				$configurationPanel->insertSetting(); */
 				
 				/*
 				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE);
