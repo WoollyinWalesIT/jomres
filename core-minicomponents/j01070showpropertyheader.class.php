@@ -175,7 +175,7 @@ class j01070showpropertyheader
 	
 					$output['GALLERYLINK']= preg_replace("
 						#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie",
-						"'<a href=\"$1\" target=\"_blank\">$3</a>$4'",
+						"'<a href=\"$1\" target=\"_blank\" itemprop=\"url\" >$3</a>$4'",
 						$mrConfig['galleryLink']
 						);
 					}
