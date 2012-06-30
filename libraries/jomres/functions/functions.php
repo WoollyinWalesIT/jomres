@@ -133,6 +133,7 @@ function get_property_price_for_display_in_lists($property_uid)
 					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid) * $multiplier,true,false);
 				else
 					$price=output_price ($pricesFromArray[$property_uid] * $multiplier,true,false);
+					
 				if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
 					$post_text = "&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 				else
@@ -789,7 +790,7 @@ function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = tr
 	if ($decimalpart > .99)
 		$price = $wholepart+1;
 
-	if ($currencycode=="")
+	if ($currencycode=="" || $currencycode === true)
 		{
 		if (!isset($mrConfig['property_currencycode'])) // for v4.5 converting the old currencyCode value to property_currencycode
 			$mrConfig['property_currencycode'] = $mrConfig['currencyCode'];
