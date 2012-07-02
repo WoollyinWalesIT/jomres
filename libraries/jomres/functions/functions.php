@@ -2746,6 +2746,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		define('_JOMRES_CALENDAR_RTL','false');
 
 	$clear_checkbox_js = '&nbsp;';
+
 	if ($fieldName == "departureDate" && $jrConfig['use_cleardate_checkbox'] == "1")
 		{
 		$arr_date_unique_id = str_replace("_XXX","",$uniqueID);
@@ -2808,8 +2809,11 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	</script>
 	<input type="text" '.$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" class="'.$input_class.'" />
 	';
-
-	$pageoutput[]=array("INPUT"=>$output,"CHECKBOX"=>$clear_checkbox_js);
+	$br="";
+	if ($fieldName == "departureDate" && $jrConfig['use_cleardate_checkbox'] == "1")
+		$br = "<br/>";
+	
+	$pageoutput[]=array("INPUT"=>$output,"CHECKBOX"=>$clear_checkbox_js,"BR"=>$br);
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 	$tmpl->readTemplatesFromInput( 'js_calendar_input.html');
