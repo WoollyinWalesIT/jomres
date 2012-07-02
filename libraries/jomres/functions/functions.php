@@ -2752,7 +2752,15 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		$clear = jr_gettext('_JOMRES_CLEARDATES',_JOMRES_CLEARDATES);
 		$clear_checkbox_js = '<input type="checkbox" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'setDate\' , null );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'setDate\' , null );" /> '.$clear;
 		}
-
+	
+	$size = " size=\"10\" ";
+	$input_class="";
+	if (using_bootstrap())
+		{ 
+		$size="";
+		$input_class=" input-small ";
+		}
+	
 	$output .= '<script type="text/javascript">
 	jomresJquery(function() {
 		jomresJquery("#'.$uniqueID.'").datepicker( {
@@ -2798,7 +2806,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 
 	});
 	</script>
-	<input type="text" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" class="input_40perc" />
+	<input type="text" '.$size.' name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" class="'.$input_class.'" />
 	';
 
 	$pageoutput[]=array("INPUT"=>$output,"CHECKBOX"=>$clear_checkbox_js);
