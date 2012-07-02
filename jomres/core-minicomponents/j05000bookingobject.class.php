@@ -120,6 +120,14 @@ if (!class_exists('booking'))
 			else
 				$onchange.=' getResponse_particulars(\'departureDate\',this.value); ';
 
+			$size = " size=\"10\" ";
+			$input_class="";
+			if (using_bootstrap())
+				{ 
+				$size="";
+				$input_class=" input-small ";
+				}
+		
 			$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 			$output .= '<script type="text/javascript">
 			jomresJquery(function() {
@@ -161,7 +169,7 @@ if (!class_exists('booking'))
 
 			});
 			</script>
-			<input type="text"  class="input-mini" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" autocomplete="off" />
+			<input type="text" '.$size.' class="'.$input_class.'" name="'.$fieldName.'" id="'.$uniqueID.'" value="'.$dateValue.'" readonly="readonly" autocomplete="off" />
 			';
 			return $output;
 			}
