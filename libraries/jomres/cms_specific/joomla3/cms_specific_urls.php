@@ -63,6 +63,22 @@ else
 
 $jrConfig=$siteConfig->set_setting("jomresItemid",$jomresItemid);
 
+$disable_cache = false;
+
+if (isset($_REQUEST["task"]))
+	{
+	if ($_REQUEST["task"] == "handlereq")
+		$disable_cache = true;
+	}
+
+if (isset($_REQUEST['jrnocache']))
+	$disable_cache = true;
+
+if ($disable_cache)
+	{
+	JFactory::getConfig()->setValue('config.caching', 0);
+	}
+
 $index = "index.php";
 $tmpl="";
 if (!isset($_GET['tmpl']) )
