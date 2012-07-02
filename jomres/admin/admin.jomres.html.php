@@ -68,12 +68,17 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<th width="20%" class="ui-state-default">&nbsp;</th>
 			<th width="20%" class="ui-state-default">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
 			<th width="60%" class="ui-state-default">'._JOMRES_COM_A_EXPLANATION.'</th>
-		</tr>
-		<tr valign="middle" class="odd">
-			 <td valign="middle">Use bootstrap templates?</td>
-			 <td valign="middle">'.$lists['use_bootstrap'].'</td>
-			 <td valign="middle">This option will be removed prior to going live with Jomres 7, for testing purposes only.</td>
-		</tr>
+		</tr>');
+		
+		if (_JOMRES_DETECTED_CMS == "joomla25" )
+			{
+			$contentPanel->setcontent('<tr valign="middle" class="odd">
+				 <td valign="middle">'._JOMRES_BOOTSTRAPSWITCH.'</td>
+				 <td valign="middle">'.$lists['use_bootstrap'].'</td>
+				 <td valign="middle">'._JOMRES_BOOTSTRAPSWITCH_DESC.'</td>
+			</tr>');
+			}
+		$contentPanel->setcontent('
 		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
 			<td valign="middle">'.$lists['advanced_site_config'].'</td>
@@ -114,9 +119,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_long" value="'.$jrConfig['default_long'].'" /></td>
 			<td valign="middle"></td>
 		</tr>
+		');
 		
-		
-		<tr valign="middle" class="even">
+
+			
+		$contentPanel->setcontent('<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
 			<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
 			<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
