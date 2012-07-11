@@ -32,7 +32,7 @@ class j00011manager_option_09_myproperties {
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -42,7 +42,18 @@ class j00011manager_option_09_myproperties {
 			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), 'listProperties.png', jr_gettext('_JOMRES_MYPROPERTIES',_JOMRES_MYPROPERTIES,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard",false,false),false,false );
 		}
 	
-	
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]	= jr_gettext( "_JOMRES_MYPROPERTIES" , _JOMRES_MYPROPERTIES);
+
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
