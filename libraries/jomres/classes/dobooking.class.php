@@ -4663,7 +4663,7 @@ class dobooking
 						$this->room_type_style_output[$tariff_id]['room_type']=$room_and_tariff_data['roomStuff']['ROOMTYPE'];
 						$this->room_type_style_output[$tariff_id]['roomTariffOutputId'][]=$room_and_tariff_data['roomTariffOutputId'];
 						$this->room_type_style_output[$tariff_id]['roomTariffOutputId'] = array_unique($this->room_type_style_output[$tariff_id]['roomTariffOutputId']);
-						$this->room_type_style_output[$tariff_id]['max_guests_per_room']=$room_and_tariff_data['roomStuff']['MAXPEOPLE'];
+						$this->room_type_style_output[$tariff_id]['max_guests_per_room']=$room_and_tariff_data['roomStuff']['MAXPEOPLE_INROOM'];
 						$this->room_type_style_output[$tariff_id]['max_guests_per_booking']=$room_and_tariff_data['tariffStuff']['MAXPEOPLE'];
 						}
 					}
