@@ -32,7 +32,7 @@ class j00010reception_option_09_list_invoices {
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
