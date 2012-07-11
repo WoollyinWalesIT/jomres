@@ -33,7 +33,7 @@ if (isset($_REQUEST['no_html']) )
 else
 	$no_html = 0;
 
-
+JFactory::getConfig()->setValue('config.caching', 0);
 
 if (!strstr($scriptname,'install_jomres.php'))
 	{
