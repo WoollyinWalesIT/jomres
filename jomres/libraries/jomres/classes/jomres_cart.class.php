@@ -100,7 +100,7 @@ class jomres_cart
 		{
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$this->calc_totals();
+
 		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$tmpBookingHandler->resetTempBookingData();
 		$tmpBookingHandler->updateBookingField('contract_total',$this->contract_total);
