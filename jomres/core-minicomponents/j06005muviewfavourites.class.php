@@ -33,34 +33,41 @@ class j06005muviewfavourites {
 			$output=array();
 			$rows=array();
 			$r=array();
+			$fav=array();
 
 			$query="SELECT property_uid FROM #__jomcomp_mufavourites WHERE my_id = '".(int)$thisJRUser->id."'";
 			$favourites=doSelectSql($query);
 			if (count($favourites)>0)
 				{
+				foreach ($favourites as $prop)
+					{
+					$fav[]=$prop->property_uid;
+					}
+				$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+				$current_property_details->get_property_name_multi($fav);
+				$current_property_details->gather_data_multi($fav);
+					
 				$output['HPNAME']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME',_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME,$editable=false,$isLink=false);
 				$counter=0;
 				$output['HPTYPES']=jr_gettext('_JOMCOMP_MYUSER_PROPERTYTYPE',_JOMCOMP_MYUSER_PROPERTYTYPE,$editable=false,$isLink=false);
 				$output['_JOMCOMP_MYUSER_VIEWFAVOURITES']=jr_gettext('_JOMCOMP_MYUSER_VIEWFAVOURITES',_JOMCOMP_MYUSER_VIEWFAVOURITES);
 
-				foreach ($favourites as $f)
+				foreach ($fav as $f)
 					{
-					$customTextObj->get_custom_text_for_property($property->propertys_uid);
-					$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
-					$current_property_details->gather_data($f->property_uid);
-					$r['PROPERTYNAME']=$current_property_details->get_property_name($f->property_uid);
+					$customTextObj->get_custom_text_for_property($f);
+					$r['PROPERTYNAME']=getPropertyName($f);
 					
-					$r['PROP_STREET']=$current_property_details->property_street;
-					$r['PROP_TOWN']=$current_property_details->property_town;
-					$r['PROP_POSTCODE']=$current_property_details->property_postcode;
-					$r['PROP_REGION']=$current_property_details->property_region;
-					$r['PROP_COUNTRY']=$current_property_details->property_country;
-					$r['PROP_TEL']=$current_property_details->property_tel;
+					$r['PROP_STREET']=$current_property_details->multi_query_result[$f]['property_street'];
+					$r['PROP_TOWN']=$current_property_details->multi_query_result[$f]['property_town'];
+					$r['PROP_POSTCODE']=$current_property_details->multi_query_result[$f]['property_postcode'];
+					$r['PROP_REGION']=$current_property_details->multi_query_result[$f]['property_region'];
+					$r['PROP_COUNTRY']=$current_property_details->multi_query_result[$f]['property_country'];
+					$r['PROP_TEL']=$current_property_details->multi_query_result[$f]['property_tel'];
 					
 					
-					$query="SELECT ptype FROM #__jomres_ptypes WHERE id = '".(int)$current_property_details->ptype_id."' LIMIT 1";
+					$query="SELECT ptype FROM #__jomres_ptypes WHERE id = '".(int)$current_property_details->multi_query_result[$f]['ptype_id']."' LIMIT 1";
 					$ptype=doSelectSql($query,1);
-  					$r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$current_property_details->ptype_id,$ptype,false,false);
+  					$r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$current_property_details->multi_query_result[$f]['ptype_id'],$ptype,false,false);
 					
 					// $query="SELECT ptype_id FROM #__jomres_propertys WHERE propertys_uid = '".(int)$f->property_uid."' LIMIT 1";
 					// $type_id=doSelectSql($query,1);
@@ -83,12 +90,12 @@ class j06005muviewfavourites {
 					// $r['TYPE']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$type_id,$ptype,false,false);
 
 					$property_image=get_showtime('live_site')."/jomres/images/jrlogo.png";
-					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$f->property_uid."_property_".$f->property_uid.".jpg") )
-						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$f->property_uid."_property_".$f->property_uid.".jpg";
+					if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$f."_property_".$f.".jpg") )
+						$property_image=get_showtime('live_site')."/jomres/uploadedimages/".$f."_property_".$f.".jpg";
 					$r['IMAGE']='<img src="'.$property_image.'" width="40">';
 					
-					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$f->property_uid;
-					$r['REMOVELINK']=JOMRES_SITEPAGE_URL.'&task=muremovefavourite&no_html=1&property_uid='.$f->property_uid;
+					$r['PROPERTYDETAILSLINK']=JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$f;
+					$r['REMOVELINK']=JOMRES_SITEPAGE_URL.'&task=muremovefavourite&no_html=1&property_uid='.$f;
 					$r['REMOVETEXT']=jr_gettext('_JOMCOMP_MYUSER_REMOVE',_JOMCOMP_MYUSER_REMOVE,false,false);
 					
 					$rows[]=$r;
