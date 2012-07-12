@@ -93,7 +93,7 @@ class j10001control_panel
 					
 					if ($best_before_expired)
 						{
-						$output['HIGHLIGHT'] = "ui-state-error";
+						$output['HIGHLIGHT'] = (using_bootstrap() ? "alert alert-error" :"ui-state-error");
 						$output['ALERT'] = _JOMRES_VERSIONCHECK_VERSIONWARNING;
 						$output['EFFECT'] = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
 						}
@@ -134,7 +134,7 @@ class j10001control_panel
 			if (count($cache)>0)
 				{
 				$output['CACHE_WARNING']= _JOMRES_WARNING_SYSTEM_CACHE;
-				$output['CACHE_HIGHLIGHT'] = "ui-state-error";
+				$output['CACHE_HIGHLIGHT'] = (using_bootstrap() ? "alert alert-error" :"ui-state-error");
 				}
 			}
 
@@ -143,7 +143,7 @@ class j10001control_panel
 		$access_control_check = jomresAccessControlSanityCheck();
 		if (!$access_control_check['result'])
 			{
-			$output['ACCESS_CONTROL_HIGHLIGHT'] = "ui-state-error";
+			$output['ACCESS_CONTROL_HIGHLIGHT'] = (using_bootstrap() ? "alert alert-error" :"ui-state-error");
 			$output['ACCESS_CONTROL_ALERT'] = $access_control_check['message'];
 			}
 		
@@ -162,7 +162,26 @@ class j10001control_panel
 			$news = json_decode($buffer);
 			foreach ($news as $row)
 				{
-				$news_rows[] = array("DATE"=>filter_var($row->date,FILTER_SANITIZE_SPECIAL_CHARS),"NEWS"=>filter_var($row->news,FILTER_SANITIZE_SPECIAL_CHARS),"STATE"=>filter_var($row->state,FILTER_SANITIZE_SPECIAL_CHARS),"TITLE"=>filter_var($row->title,FILTER_SANITIZE_SPECIAL_CHARS),"URL"=>filter_var($row->url,FILTER_SANITIZE_URL),"URL_TEXT"=>filter_var($row->url_text,FILTER_SANITIZE_SPECIAL_CHARS)); // Filter var added here so that in the unlikely event that the updates server is compromised, no naughty data is downloaded from the updates server to be executed on this server/user's browser.
+				if (using_bootstrap())
+					{
+					$old_state = filter_var($row->state,FILTER_SANITIZE_SPECIAL_CHARS);
+					switch ($old_state)
+						{
+						case "ui-state-error":
+							$state = "alert alert-error";
+						break;
+						case "ui-state-highlight":
+							$state = "alert alert-warning";
+						break;
+						case "ui-state-default":
+						default:
+							$state = "alert alert-info";
+						break;
+						}
+					}
+				else
+					$state = filter_var($row->state,FILTER_SANITIZE_SPECIAL_CHARS);
+				$news_rows[] = array("DATE"=>filter_var($row->date,FILTER_SANITIZE_SPECIAL_CHARS),"NEWS"=>filter_var($row->news,FILTER_SANITIZE_SPECIAL_CHARS),"STATE"=>$state,"TITLE"=>filter_var($row->title,FILTER_SANITIZE_SPECIAL_CHARS),"URL"=>filter_var($row->url,FILTER_SANITIZE_URL),"URL_TEXT"=>filter_var($row->url_text,FILTER_SANITIZE_SPECIAL_CHARS)); // Filter var added here so that in the unlikely event that the updates server is compromised, no naughty data is downloaded from the updates server to be executed on this server/user's browser.
 				}
 			}
 
@@ -194,17 +213,18 @@ function plugin_check()
 	$recommended_plugins['property_creation_plugins'] 					= array('minicomponent_name'=>'j02300regprop1','message'=>'If you need to create more properties then you will need the Property Creation Plugin.');
 
 	$messages = '';
+	$highlight = (using_bootstrap() ? "alert alert-info" :"ui-state-highlight");
 	foreach ($recommended_plugins as $plugin_name=>$plugin)
 		{
 		$event_point = substr($plugin['minicomponent_name'],1,strlen($plugin['minicomponent_name']) );
-		if (!array_key_exists($event_point,$MiniComponents->registeredClasses) )
+		if (array_key_exists($event_point,$MiniComponents->registeredClasses) )
 			{
-			$messages .= "<div class='ui-state-highlight'><strong> Recommended plugin </strong>: ".$plugin_name."<strong><br/> Functionality : </strong>".$plugin['message']."</div>";
+			$messages .= "<div class='".$highlight."'><strong> Recommended plugin </strong>: ".$plugin_name."<strong><br/> Functionality : </strong>".$plugin['message']."</div>";
 			}
 		}
 	if ($messages != "")
 		{
-		$messages = "<p><div class='ui-state-highlight'><br/> <strong>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need. If in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin. If you do not have a download and support key you can use the Plugin Shop in the Jomres Plugin Manager to purchase plugins.</strong></p>".$messages;
+		$messages = "<p>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need. If in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin. If you do not have a download and support key you can use the Plugin Shop in the Jomres Plugin Manager to purchase plugins.</p>".$messages;
 		}
 	return $messages;
 	}
