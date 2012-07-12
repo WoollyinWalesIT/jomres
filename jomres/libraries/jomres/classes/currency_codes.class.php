@@ -494,12 +494,15 @@ class currency_codes
 		// We'll leave this as a programattic thing, as the codes will change depending on the codes that yahoo give to Jomres
 		jr_import('jomres_currency_conversion');
 		$conversion = new jomres_currency_conversion();
-	
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		
 		$options = array();
 		ksort  ($this->codes);
 		foreach ($this->codes as $k=>$v)
 			{
-			if($conversion->this_code_can_be_converted($k))
+			if( $conversion->this_code_can_be_converted($k) || ($jrConfig['useGlobalCurrency'] == "0" &&  $jrConfig['use_conversion_feature'] == "0" ) )
 				$options[] = jomresHTML::makeOption( $k, $v );
 			
 			}
