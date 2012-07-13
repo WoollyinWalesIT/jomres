@@ -2,7 +2,7 @@
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
-* @version Jomres 6 
+* @version Jomres 7
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
@@ -37,7 +37,8 @@ else
 
 if (!strstr($scriptname,'install_jomres.php'))
 	{
-	JFactory::getConfig()->setValue('config.caching', 0);
+	//JFactory::getConfig()->setValue('config.caching', 0);
+	//JRegistry::set('config.caching', 0);
 	if (class_exists('JURI'))
 		{
 		$jomresConfig_live_site=@JURI::base();

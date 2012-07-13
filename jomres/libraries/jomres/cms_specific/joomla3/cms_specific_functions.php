@@ -2,7 +2,7 @@
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
-* @version Jomres 6 
+* @version Jomres 7
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
@@ -262,7 +262,7 @@ function jomres_cmsspecific_addheaddata($type,$path="",$filename="",$skip=false)
 				}
 			else
 				{
-				JHTML::script($filename, $path, false);  // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
+				JHTML::script($path.$filename, false);  // If we want to include version numbers in script filenames, we can't use this. Instead we need to directly access JFactory as below
 				// $doc = JFactory::getDocument();
 				// $doc->addScript(get_showtime('live_site')."/".$path.$filename);
 				}

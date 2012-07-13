@@ -2,7 +2,7 @@
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
-* @version Jomres 6 
+* @version Jomres 7 
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
@@ -17,12 +17,12 @@ function JomresBuildRoute(&$query)
 	$route_query = $query;  // We need to work within this function with the $route_query variable, not $query. It seems to be that the assignation &$query on some servers means that once the property name query further down has been run, then Joomla's $query becomes whatever the sql query was. Don't know why, and I'm not going to dig around to find out. We'll work internally on $route_query, then set $query to $route_query at the end, that seems to fix it.
 	if (!defined('_JOMRES_INITCHECK')) define('_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
-	if (file_exists(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php'))
-		require_once(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php');
-	elseif (file_exists(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php') )
-		require_once(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php');
+	if (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php'))
+		require_once(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php');
+	elseif (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php') )
+		require_once(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php');
 	else
-		require_once(JPATH_BASE.DS.'jomres'.DS.'integration.php');
+		require_once(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'integration.php');
 	
 	$jrConfig					=	getSiteSettings();
 	$segments = array();
@@ -149,12 +149,12 @@ function JomresParseRoute($segments)
 	{
 		if (!defined('_JOMRES_INITCHECK')) define('_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
-	if (file_exists(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php'))
-		require_once(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php');
-	elseif (file_exists(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php') )
-		require_once(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php');
+	if (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php'))
+		require_once(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'core-plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php');
+	elseif (file_exists(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php') )
+		require_once(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'remote_plugins'.DIRECTORY_SEPARATOR.'alternative_init'.DIRECTORY_SEPARATOR.'alt_init.php');
 	else
-		require_once(JPATH_BASE.DS.'jomres'.DS.'integration.php');
+		require_once(JPATH_BASE.DIRECTORY_SEPARATOR.'jomres'.DIRECTORY_SEPARATOR.'integration.php');
 	$vars = array();
 	global $thisJRUser;
 	if (!defined('_JOMRES_INITCHECK'))
