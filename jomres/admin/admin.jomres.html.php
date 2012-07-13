@@ -122,13 +122,15 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		');
 		
 
-			
-		$contentPanel->setcontent('<tr valign="middle" class="even">
-			<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
-			<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
-			<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
-		</tr>
-		<tr valign="middle" class="odd">
+		if (!using_bootstrap())
+			{
+			$contentPanel->setcontent('<tr valign="middle" class="even">
+				<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
+				<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
+				<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
+			</tr>');
+			}
+		$contentPanel->setcontent('<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
 			<td valign="middle">'.$language_context_dropdown.'</td>
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT_DESC.'</td>
@@ -1148,47 +1150,8 @@ function editPfeature_html($output,$rows)
 	$tmpl->addRows( 'rows',$rows);
 	$tmpl->displayParsedTemplate();
 	}
-/**
-#
- * Shows the list property types output
-#
- */
-function listpropertyTypes_html($pList,$rowInfo,$counter,$jrtb)
-		{
-		?>
-        <script language="JavaScript" type="text/javascript">
-		jomresJquery(document).ready(function() {
-			var oTable = jomresJquery('#listpropertyTypes_html').dataTable({
-				"bJQueryUI": true,
-				"sPaginationType": "full_numbers"
-			});
-		} );
-		</script>
-        <h2><?php echo $pList['PAGETITLE']; ?></h2>
-		<?php echo $jrtb;
-		?>
-		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
-		<table id="listpropertyTypes_html" border="0" width="100%">
-        	<thead>
-                <tr>
-                    <th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll(<?php echo $counter+1; ?>);" /></th>
-                    <th>&nbsp;</th>
-                    <th><?php echo $pList['HPTYPE']; ?></th>
-                    <th><?php echo $pList['HPTYPE_DESC']; ?></th>
-                    <th><?php echo $pList['HPUBLISHED']; ?></th>
-                    <th><?php echo $pList['_JOMRES_ORDER']; ?></th>
-                </tr>
-            </thead>
-            <tbody>
-			<?php echo $rowInfo; ?>
-            </tbody>
-		</table>
-		<input type="hidden" name="task" value="" />
-		<input type="hidden" name="option" value="com_jomres" />
-		<input type="hidden" name="boxchecked" value="0">
-		</form>
-		<?php
-		}//end function List property types
+
+
 
 /**
 #

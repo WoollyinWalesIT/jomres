@@ -96,6 +96,10 @@ class j16000miscdefinesfortouchtemplating
 		$output[]		= jr_gettext('COMMON_BACK',COMMON_BACK);
 		$output[]		= jr_gettext('COMMON_HOME',COMMON_HOME);
 		$output[]		=jr_gettext('COMMON_NEW',COMMON_NEW);
+
+		$output[]		= jr_gettext('COMMON_FULLSCREENVIEW',COMMON_FULLSCREENVIEW);
+		$output[]		= jr_gettext('COMMON_NORMALVIEW',COMMON_NORMALVIEW);
+
 		$countryCodes=countryCodesArray();
 		foreach ($countryCodes as $k=>$v)
 			{

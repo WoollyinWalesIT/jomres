@@ -28,10 +28,15 @@ class j16000support_tickets
 		$this->key_valid = $key_validation->key_valid;
 		if ($this->key_valid)
 			{
+			if (!using_bootstrap())
+				$class = "ui-widget-content ui-corner-all";
+			else
+				$class = "well";
+			
 			echo '
 			<h2>Jomres Support Tickets</h2>
 			<p>Here you can submit support request tickets. Please make sure you login first (create an account if you don`t already have one).</p>
-			<div class="ui-widget-content ui-corner-all" style="width:100%;">
+			<div class="'.$class.'" style="width:100%;">
 			<div style="margin-left:5px;margin-right:5px;">
 			<iframe src="http://tickets.jomres.net" width="100%" height="1000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
 			</div></div>

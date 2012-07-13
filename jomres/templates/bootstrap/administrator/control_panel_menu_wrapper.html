@@ -1,18 +1,19 @@
 <patTemplate:tmpl name="pageoutput">
-<script type="text/javascript">
-<!--
-	jomresJquery(function() {
-		jomresJquery( "#accordion" ).accordion({
-			autoHeight: false,
-			navigation: true,
-			collapsible: true
-		});
-	});
-//-->
-</script>
-<div id="accordion" style="width:20%;float:left;margin-bottom:20px;">
-	<patTemplate:tmpl name="button_output">
-		{DIV}
-	</patTemplate:tmpl>
+
+<div class="navbar navbar-fixed-bottom">
+	<div class="navbar-inner">
+		<div class="container" style="text-align: left;">
+			<div class="nav-collapse">
+				<patTemplate:tmpl name="button_output">
+				{DIV}
+				</patTemplate:tmpl>
+			</div>
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+		</div>
+	</div>
 </div>
 </patTemplate:tmpl>

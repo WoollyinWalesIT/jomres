@@ -25,12 +25,13 @@ class j16000listPropertyTypes
 			}
 		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0">';
 		$ptypeData=array();
-		$pList=array();
-		$pList['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE;
-		$pList['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
-		$pList['HPTYPE_DESC'] =_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR;
-		$pList['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
-		$pList['_JOMRES_ORDER']=_JOMRES_ORDER;
+		$output=array();
+		$output['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE;
+		$output['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
+		$output['HPTYPE_DESC'] =_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR;
+		$output['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
+		$output['_JOMRES_ORDER']=_JOMRES_ORDER;
+		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 		
 		$query="SELECT `id`,`ptype`,`ptype_desc`,`published`,`order` FROM #__jomres_ptypes ORDER BY `order` ASC";
 		$ptypeList = doSelectSql($query);
@@ -47,21 +48,25 @@ class j16000listPropertyTypes
 				$ptypeData['published'] = get_showtime('live_site').'/jomres/images/jomresimages/small/Tick.png';
 			else
 				$ptypeData['published'] = get_showtime('live_site').'/jomres/images/jomresimages/small/Cancel.png';
-			$rowInfo.="
-				<tr>
-					<td class=\"jradmin_subheader_la\" width=\"20\"><input type=\"checkbox\" id=\"cb".$counter."\" name=\"idarray[]\" value=\"".$ptypeData['id']."\" onClick=\"jomres_isChecked(this.checked);\"></td>
-					<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=editPropertyType&id=".$ptypeData['id']."\">".$editIcon."</a></td>
-					<td class=\"jradmin_subheader_la\">".$ptypeData['ptype']."</td>
-					<td class=\"jradmin_subheader_la\">".$ptypeData['ptype_desc']."</td>
-					<td class=\"jradmin_subheader_la\"><a href=\"".JOMRES_SITEPAGE_URL_ADMIN."&task=publishPropertyType&id=".$ptypeData['id']."\"><img src=\"".$ptypeData['published']."\" border=\"0\" width=\"20px\" height=\"20px\" /></a></td>
-					<td class=\"jradmin_subheader_la\"><input class=\"inputbox\" type=\"text\" size=\"5\" name=\"order_array[".$ptypeData['id']."]\" value='".$ptype->order."'/></td>
-				</tr>
-				";
+			
+			
+			$r=array();
+			$r['COUNTER']=$counter;
+			$r['ID']=$ptypeData['id'];
+			$r['EDITURL']=JOMRES_SITEPAGE_URL_ADMIN."&task=editPropertyType&id=".$ptypeData['id'];
+			$r['EDITICON']=$editIcon;
+			$r['PTYPE']=$ptypeData['ptype'];
+			$r['PTYPEDESC']=$ptypeData['ptype_desc'];
+			
+			$r['PUBLISHURL']=JOMRES_SITEPAGE_URL_ADMIN."&task=publishPropertyType&id=".$ptypeData['id'];
+			$r['PUBLISHIMAGE']=$ptypeData['published'];
+			$r['ORDER']=$ptype->order;
+			
+			$rows[]=$r;
 			}
 
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('save','','',true,'save_ptype_order');
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('editPropertyType',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editPropertyType",$image);
@@ -71,8 +76,17 @@ class j16000listPropertyTypes
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('deletePropertyType',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deletePropertyType",$image);
 		$jrtb .= $jrtbar->endTable();
+		
+		$output['JOMRESTOOLBAR']=$jrtb;
 
-		HTML_jomres::listpropertyTypes_html( $pList,$rowInfo,$counter,$jrtb);
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'list_ptypes.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->addRows( 'rows',$rows);
+		$tmpl->displayParsedTemplate();
+	
 		}
 
 	function touch_template_language()

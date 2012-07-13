@@ -1,21 +1,37 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>{PAGETITLE}</h2>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" width="100%">
-	<tr>
-		<td width="30%">{HCODE}</td>
-		<td><input type="text" name="code" value="{CODE}" /></td>
-	</tr>
-	<tr>
-		<td>{HDESCRIPTION}</td>
-		<td><input type="text" name="description" value="{DESCRIPTION}" /></td>
-	</tr>
-	<tr>
-		<td>{HRATE}</td>
-		<td><input type="text" name="rate" value="{RATE}" size="7" /></td>
-	</tr>
-</table>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+
+<div class="row-fluid">
+	<div class="span12">
+			<h2>{PAGETITLE}</h2>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="code">{HCODE}</label>
+					<div class="controls">
+						<input type="text" name="code" value="{CODE}" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="description">{HDESCRIPTION}</label>
+					<div class="controls">
+						<input type="text" name="description" value="{DESCRIPTION}" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="firstname">{HRATE}</label>
+					<div class="controls">
+						<input type="text" name="rate" value="{RATE}" size="7" />
+					</div> 
+				</div>
+			
+				<div class="form-actions">
+					{JOMRESTOOLBAR}
+				</div>
+			</fieldset>
+	</div>
+</div>
+
 <input type="hidden" name="id" value="{ID}" />
 <input type="hidden" name="option" value="com_jomres" />
 <input type="hidden" name="task" value="save_taxrate" />

@@ -99,35 +99,67 @@ if ($obsolete_files->ready_to_go() )
 
 if (!JRPORTAL_AJAXCALL)
 	{
-	?>
-    <table border="0" width="100%" class="ui-widget-content ui-corner-all">
-        <tr valign="middle">
-            <td align="left" width="50%">
-                <a href="http://www.jomres.net" target="_blank"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/></a>
-            </td>
-            <td align="right">
-            	<?php
+	if (!using_bootstrap())
+		{
+		?>
+		<table border="0" width="100%" class="ui-widget-content ui-corner-all">
+			<tr valign="middle">
+				<td align="left" width="50%">
+					<a href="http://www.jomres.net" target="_blank"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/></a>
+				</td>
+				<td align="right">
+					<?php
+						if (isset($_REQUEST['tmpl']) ) { ?>
+						<div><a href="<?php echo get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl"); ?>">Default view</a></div>
+					<?php } else { ?>
+						<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
+					<?php } ?>
+					<div>&nbsp;</div>
+					<?php
+					if (_JOMRES_DETECTED_CMS != "joomla25")
+						echo '<div>Select Jomres Language '.$jomreslang->get_languageselection_dropdown().'</div>';
+					?>
+				</td>
+			</tr>
+		</table>
+		<?php
+		}
+	else
+		{
+		?>
+		<div class="row-fluid">
+			<div class="span6">
+				<ul class="thumbnails">
+					<li class="span4">
+						<a href="http://www.jomres.net" target="_blank" class="thumbnail">
+							<img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/>
+						</a>
+					</li>
+				</ul>
+	
+			</div>
+			<div class="span6 push-right">
+				<?php
 					if (isset($_REQUEST['tmpl']) ) { ?>
-            		<div><a href="<?php echo get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl"); ?>">Default view</a></div>
-                <?php } else { ?>
-                	<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
-                <?php } ?>
-                <div>&nbsp;</div>
+						<div><a href="<?php echo get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl"); ?>">Default view</a></div>
+				<?php } else { ?>
+					<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
+				<?php } ?>
+				<div>&nbsp;</div>
 				<?php
 				if (_JOMRES_DETECTED_CMS != "joomla25")
 					echo '<div>Select Jomres Language '.$jomreslang->get_languageselection_dropdown().'</div>';
 				?>
-            </td>
-        </tr>
-    </table>
-    <?php
+			</div>
+		</div>
+		<?php
+		}
+	
 	init_javascript();
 	// And a couple that are only used in the admin area
 	?>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/graphs.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
-	<div id="jomresmenu_hint" style="color:red;">&nbsp;</div>
-    
 	<?php
 	}
 if (isset($_REQUEST['statoption']))
@@ -149,8 +181,10 @@ if (!JRPORTAL_AJAXCALL)
 	jr_import('cpanel');
 	$cpanel=new cpanel();
 	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];	
-	echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
+	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
+	if (!using_bootstrap())
+		echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
+	
 	}
 
 switch (get_showtime('task')) {
@@ -212,8 +246,13 @@ switch (get_showtime('task')) {
 		break;
 	}
 	
-if (!JRPORTAL_AJAXCALL)
-	echo '</div>';
+if (!JRPORTAL_AJAXCALL )
+	{
+	if (!using_bootstrap())
+		{
+		echo '</div>';
+		}
+	}
 	
 $head_contents = '';
 $MiniComponents->triggerEvent('16003');

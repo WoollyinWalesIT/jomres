@@ -7,12 +7,12 @@ table.ui-widget-header ui-corner-all tr.row2 {
 </style>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<thead>
 		<tr>
-			<th class="ui-state-default">{HPROPERTYNAME}</th>
-			<th class="ui-state-default" >{HPROPERTYADDRESS}</th>
-			<th class="ui-state-default" >{HCRATE_DROPDOWN}</th>
+			<th>{HPROPERTYNAME}</th>
+			<th>{HPROPERTYADDRESS}</th>
+			<th>{HCRATE_DROPDOWN}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,7 +21,7 @@ table.ui-widget-header ui-corner-all tr.row2 {
 			<td>{VIEWLINK}{PROPERTYNAME}</td>
 			<td>{PROPERTYADDRESS}</td>
 			<td>{CRATE_DROPDOWN}</td>
-		</tr>		
+		</tr>
 		</patTemplate:tmpl>
    	</tbody>
 </table>

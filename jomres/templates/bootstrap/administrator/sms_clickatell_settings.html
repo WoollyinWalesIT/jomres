@@ -1,26 +1,43 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<h2>{PAGETITLE}</h2>
-<p>{INSTRUCTIONS}</p>
-<form action="index.php?option=com_jomres" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td>{HACTIVE}</td>
-		<td>{ACTIVE}</td>
-	</tr>
-	<tr>
-		<td>{HUSERNAME}</td>
-		<td><input class="inputbox" type="text" name="username" value="{USERNAME}" size="20" /></td>
-	</tr>
-	<tr>
-		<td>{HPASSWORD}</td>
-		<td><input class="inputbox" type="text" name="password" value="{PASSWORD}" size="20" /></td>
-	</tr>
-	<tr>
-		<td>{HAPI_ID}</td>
-		<td><input class="inputbox" type="text" name="api_id" value="{API_ID}" size="20" /></td>
-	</tr>
-</table>
+
+<form action="index.php?option=com_jomres" method="post" name="adminForm" class="form-horizontal">
+
+<div class="row-fluid">
+	<div class="span12">
+			<h2>{PAGETITLE}</h2>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="active">{HACTIVE}</label>
+					<div class="controls">
+						{ACTIVE}
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="username">{HUSERNAME}</label>
+					<div class="controls">
+						<input class="inputbox" type="text" name="username" value="{USERNAME}" size="20" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="password">{HPASSWORD}</label>
+					<div class="controls">
+						<input class="inputbox" type="text" name="password" value="{PASSWORD}" size="20" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="api_id">{HAPI_ID}</label>
+					<div class="controls">
+						<input class="inputbox" type="text" name="api_id" value="{API_ID}" size="20" />
+					</div> 
+				</div>
+			
+				<div class="form-actions">
+					{JOMRESTOOLBAR}
+				</div>
+			</fieldset>
+	</div>
+</div>
 <input type="hidden" name="task" value="save_sms_clickatell_settings" />
 </form>
+<p>{INSTRUCTIONS}</p>
 </patTemplate:tmpl>

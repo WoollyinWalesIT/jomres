@@ -1,0 +1,34 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+<div class="row-fluid">
+	<div class="span12">
+		<h2>{PAGETITLE}</h2>
+		<div class="alert alert-info">{FURTHER}</div>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="ptype">{HPTYPE}</label>
+					<div class="controls">
+						<input class="inputbox" name="ptype" size='60' value="{PTYPE}" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="ptype_desc">{HPTYPE_DESC}</label>
+					<div class="controls">
+						<input class="inputbox" name="ptype_desc" size='60' value="{PTYPE_DESC}" />
+					</div> 
+				</div>
+				<div class="form-actions">
+					<div class="">
+						{JOMRESTOOLBAR}
+					</div>
+				</div>
+			</fieldset>
+	</div>
+</div>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="savePropertyType" />
+</form>
+
+</patTemplate:tmpl>

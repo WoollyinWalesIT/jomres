@@ -11,14 +11,19 @@ function get_properties(initial)
 	}
 //-->
 </script>
-<h2>{_JRPORTAL_CPANEL_LISTCRATES}</h2>
-<p>{_JOMRES_CRATES_CLICKINITIAL}</p>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="">{_JRPORTAL_CPANEL_LISTCRATES}</h2>
+	</div>
+</div>
+
+<p class="alert alert-info">{_JOMRES_CRATES_CLICKINITIAL}</p>
 <table width="100%">
 	<tr valign="top">
 		<td>
 			<patTemplate:tmpl name="rows" unusedvars="strip">
 			<div>
-				<a href="javascript:void(0);" class="fg-button ui-state-default ui-corner-all" onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
+				<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
 			</div>
 			</patTemplate:tmpl>
 		</td>
