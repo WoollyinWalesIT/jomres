@@ -1,20 +1,51 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
+<script language="JavaScript" type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#booking_data_archive').dataTable({
-		"bJQueryUI": true,
+	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+		"bJQueryUI": false,
 		"bStateSave": true,
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
 	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
 } );
 //-->
 </script>
-<h2>{PAGETITLE}</h2>
-<!--<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}-->
-<p>{INFO}</p>
-<table id="booking_data_archive" border="0" width="100%">
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="">{PAGETITLE}</h2>
+	</div>
+</div>
+
+<p class="alert alert-info">{INFO}</p>
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<thead>
 		<tr>
 			<td>{_JOMRES_SORTORDER_PROPERTYNAME}</td>
@@ -30,5 +61,4 @@ jomresJquery(document).ready(function() {
 		</patTemplate:tmpl>
 	</tbody>
 </table>
-<!--</form>-->
 </patTemplate:tmpl>

@@ -16,7 +16,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 
 
-if ( jomres_cmsspecific_areweinadminarea() )
+if (!using_bootstrap())
 	{
 	jr_import('jomres_toolbar_normal');
 	

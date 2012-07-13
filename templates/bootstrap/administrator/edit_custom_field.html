@@ -1,25 +1,42 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <h2>{_JOMRES_COM_CUSTOMFIELDS_TITLE_EDIT}</h2>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-		<td width="30%">{HFIELD}</td>
-		<td><input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" /></td>
-	</tr>
-	<tr>
-		<td>{HDEFAULT_VALUE}</td>
-		<td><input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" /></td>
-	</tr>
-	<tr>
-		<td>{HDESCRIPTION}</td>
-		<td><input class="inputbox" type="text" name="description" value="{DESCRIPTION}" /></td>
-	</tr>
-	<tr>
-		<td>{HREQUIRED}</td>
-		<td>{REQUIRED}</td>
-	</tr>
-</table>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+<div class="row-fluid">
+	<div class="span12">
+		<h2>{PAGETITLE}</h2>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="fieldname">{HFIELD}</label>
+				<div class="controls">
+					<input class="inputbox" type="text" name="fieldname" value="{FIELDNAME}" />
+				</div> 
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="default_value">{HDEFAULT_VALUE}</label>
+				<div class="controls">
+					<input class="inputbox" type="text" name="default_value" value="{DEFAULT_VALUE}" />
+				</div> 
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="description">{HDESCRIPTION}</label>
+				<div class="controls">
+					<input class="inputbox" type="text" name="description" value="{DESCRIPTION}" />
+				</div> 
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="required">{HREQUIRED}</label>
+				<div class="controls">
+					{REQUIRED}
+				</div> 
+			</div>
+			<div class="form-actions">
+				<div class="">
+					{JOMRESTOOLBAR}
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
 <input type="hidden" name="uid" value="{UID}">
 <input type="hidden" name="task" value="{TASK}" />
 </form>

@@ -1,19 +1,48 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
+<script language="JavaScript" type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#list_pfeatures').dataTable({
-		"bJQueryUI": true,
+	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+		"bJQueryUI": false,
 		"bStateSave": true,
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
 	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
 } );
 //-->
 </script>
 <h2>{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table id="list_pfeatures" width="100%">
+<br/>
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<thead>
 		<tr>
 			<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>

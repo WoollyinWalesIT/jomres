@@ -4,38 +4,99 @@
 function selectAll() {
 	jomresJquery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
 }
+
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
 //-->
 </script>
-<h2>{_JOMRES_EDIT_PROFILE}</h2>
-<p>{INSTRUCTIONS}</p>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<table width="100%" class="ui-widget-content ui-corner-all" border="0">
-	<tr>
-		<td width="30%">{HACCESSLEVEL}</td>
-		<td>{ACCESSLEVEL}</td>
-	</tr>
-	<tr>
-		<td>{HSUPERPROP}</td>
-		<td>{SUPERPROP}</td>
-	</tr>
-	<tr>
-		<td>APIKEY:</td>
-		<td><input type="text" size="80" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this);"/>&nbsp;{NEWAPIKEY_LINK}</td>
-	</tr>
-</table>
-<br />
-<table width="100%" class="ui-widget-content ui-corner-all" border="0">
+
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="">{_JOMRES_EDIT_PROFILE}</h2>
+	</div>
+</div>
+
+<div class="alert alert-info">{INSTRUCTIONS}</div>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+
+<div class="row-fluid">
+	<div class="span12">
+		<div>
+			<h2>{PAGETITLE}</h2>
+		</div>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="accesslevel">{HACCESSLEVEL}</label>
+				<div class="controls">
+					{ACCESSLEVEL}
+				</div> 
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="superpropertymanager">{HSUPERPROP}</label>
+				<div class="controls">
+					{SUPERPROP}
+				</div> 
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="apikey">APIKEY:</label>
+				<div class="controls">
+					<input type="text" size="80" class="inputbox" name="apikey" value="{APIKEY}" READONLY onclick="select_all(this);"/>&nbsp;{NEWAPIKEY_LINK}
+				</div> 
+			</div>
+			<div class="form-actions">
+				<div>
+					{JOMRESTOOLBAR}
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
+
+
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<thead>
 		<tr>
-			<th class="ui-state-default"><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
-			<th class="ui-state-default">{_JRPORTAL_PROPERTIES_PROPERTYNAME}</th>
-			<th class="ui-state-default">{_JOMRES_SHOWPROFILES_USERSWITHACCESS}</th>
+			<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
+			<th>{_JRPORTAL_PROPERTIES_PROPERTYNAME}</th>
+			<th>{_JOMRES_SHOWPROFILES_USERSWITHACCESS}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="strip">
-		<tr class="{CLASS}">
+		<tr>
 			<td>{INPUT}</td>
 			<td>{PROPERTYNAME}</td>
 			<td>{MANAGERS}</td>

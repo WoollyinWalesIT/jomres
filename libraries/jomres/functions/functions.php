@@ -292,17 +292,26 @@ function admins_first_run($manual_trigger = false)
 		else
 			echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
 
+		if (!using_bootstrap())
+			$class = "ui-state-highlight";
+		else
+			$class = "alert alert-info";
+		
 		if (!$manual_trigger)
 			echo '<p class="ui-state-highlight">This appears to be the first time you\'ve used Jomres* so here is a little reading material you will probably want to look at.</p>';
 
-
+		if (!using_bootstrap())
+			$class = "ui-widget-content ui-corner-all";
+		else
+			$class = "well";
+		
 		echo '
 		<h2>Getting Started with Jomres</h2>
-		<div class="ui-widget-content ui-corner-all" style="width:100%;">
+		<div class="'.$class.'" style="width:100%;">
 		<div style="margin-left:5px;margin-right:5px;">
 		<h3>Introduction.</h3>
 		<p>Firstly, a basic installation of Jomres, with absolutely no plugins, is a working booking extension for Joomla. Whilst this is sufficient for a small site with just one property you will quickly find that you want to add more functionality and features to the system, taking it from a simple booking system to a full online booking portal where you can gain revenue from listing properties on your site, earning commission, or taking booking deposits online.</p>
-		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> We have approximately <a href="http://manual.jomres.net/site_managers_guide_plugins.html" target="_blank">70 plugins available</a> that extend the system and we\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a full <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=14" target="_blank">Silver</a> or <a href="http://license-server.jomres.net/order.php?cmd=products/licenses/view&license_id=24" target="_blank">Gold</a> download and support key, then you will be able to download any plugins listed in the Plugin Manager at no extra cost, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig" target="_blank">Site Configuration.</a> If you are unable or unwilling to purchase a full license then you can still use the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Plugin Manager</a> to purchase and download individual plugins once you have registered a username on the <a href="http://license-server.jomres.net/index.php?cmd=register" target="_blank">license server.</a> If your project is running on a budget, this is probably a good option for you.</p>
+		<p>Unless you want to build the code yourself, the best source of additional functionality is usually the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Jomres Plugin Manager.</a> We have approximately <a href="http://manual.jomres.net/site_managers_guide_plugins.html" target="_blank">70 plugins available</a> that extend the system and we\'ve worked hard to make the Plugin Manager extremely easy to use. If you have a full <a href="http://www.jomres.net/my-account/buy" target="_blank">Silver</a> or <a href="http://www.jomres.net/my-account/buy" target="_blank">Gold</a> download and support key, then you will be able to download any plugins listed in the Plugin Manager at no extra cost, once you have entered your license number in the Support Key field in <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showSiteConfig" target="_blank">Site Configuration.</a> If you are unable or unwilling to purchase a full license then you can still use the <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showplugins" target="_blank">Plugin Manager</a> to purchase and download individual plugins once you have registered a username on the <a href="http://www.jomres.net/my-account/register" target="_blank">license server.</a> If your project is running on a budget, this is probably a good option for you.</p>
 		<h3>First steps.</h3>
 		<p>Now that you\'ve seen some of the extra features on offer, you are ready to start setting up your site. To begin with, we\'d like you to ignore the "administrator" area of Jomres altogether for the time being, a new installation of Jomres includes sample data that you can play around with later, but for now you should experiment with configuring your default property.
 		<ol>
@@ -319,8 +328,13 @@ function admins_first_run($manual_trigger = false)
 		</div></div>
 		';
 
+		if (!using_bootstrap())
+			$class = "ui-state-highlight";
+		else
+			$class = "alert alert-info";
+		
 		if (!$manual_trigger)
-			echo ' <div style="font-size:80%" class="ui-state-highlight"> *If you\'ve used Jomres before or are happy exploring the manual on your own just click the big X at the top right of this popup and we won\'t bother you again.</div>';
+			echo ' <div style="font-size:80%" class="'.$class.'"> *If you\'ve used Jomres before or are happy exploring the manual on your own just click the big X at the top right of this popup and we won\'t bother you again.</div>';
 
 		echo '</div>
 		';

@@ -1,39 +1,65 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
+<script language="JavaScript" type="text/javascript">
 <!--
-var ajaxurl	= "{AJAXURL}";
-var livesite= "{ADMINLIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
-jomresJquery(function() {
-	jomresJquery( "#username_input" ).autocomplete({
-		source: ajaxurl+'managers_find',
-		minLength: 2,
-		select: function( event, ui ) {
-			location.href = livesite+ui.item.value;
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
 		}
 	});
-});
-jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#managers_choose').dataTable({
-		"bJQueryUI": true,
-		"bStateSave": true,
-		"sPaginationType": "full_numbers"
-	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
 } );
 //-->
 </script>
-<h2>{_JOMRES_COM_MR_SHOWPROFILES}</h2>
-<table border="0" width="100%" class="ui-widget-content ui-corner-all">
-	<tr>
-		<td>
-			<h3>{_JOMRES_MANAGER_CHOOSE_SEARCHTITLE}</h3>
-			<p>{_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS}</p>
-			<input id="username_input" />
-		</td>
-	</tr>
-</table>
-<h3>{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</h3>
+<div class="row-fluid">
+	<div class="span12">
+		<h2>{_JOMRES_COM_MR_SHOWPROFILES}</h2>
+	</div>
+</div>
+
+
+
+<h3>{_JOMRES_MANAGER_CHOOSE_SEARCHTITLE}</h3>
+<div class="alert alert-info">{_JOMRES_MANAGER_CHOOSE_SEARCH_INSTRUCTIONS}</div>
+<input id="username_input" />
+
+<br/><br/>
+
+<div class="row-fluid">
+	<div class="span12">
+		<h3>{_JOMRES_MANAGER_CHOOSE_EXISTINGTITLE}</h3>
+	</div>
+</div>
+
 <p>{KEY}</p>
-<table id="managers_choose" width="100%">
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<thead>
 		<tr>
 			<th>{HLINKTEXT}</th>
@@ -55,6 +81,6 @@ jomresJquery(document).ready(function() {
 			<td>{GRANTLINK}</td>
 		</tr>
 		</patTemplate:tmpl>
-	</tbody>		
+	</tbody>
 </table>
 </patTemplate:tmpl>

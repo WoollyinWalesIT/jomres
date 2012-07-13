@@ -1,11 +1,19 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<h2>{PAGETITLE}</h2>
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{LOGFILELINK}</td>
-		<td>{LOGFILELINK_NOUPDATE}</td>
-	</tr>
-	</patTemplate:tmpl>
-</table>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="">{PAGETITLE}</h2>
+	</div>
+</div>
+
+<patTemplate:tmpl name="rows" unusedvars="nbsp">
+<div class="row-fluid well">
+	<div class="span6">
+		{LOGFILELINK}
+	</div>
+	<div class="span6">
+		{LOGFILELINK_NOUPDATE}
+	</div>
+</div>
+</patTemplate:tmpl>
+
 </patTemplate:tmpl>

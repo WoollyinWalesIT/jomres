@@ -1,59 +1,78 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<h2>{_JOMRES_COM_A_CRON_TITLE}</h2>
-<p>{_JOMRES_COM_A_CRON_DESC}</p>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table width="100%" class="ui-widget-content ui-corner-all" border="0">
-	<tr>
-    	<td colspan="3"><h3>Settings</h3></td>
-    </tr>
-	<tr align="center" class="ui-state-default">
-		<th width="20%">&nbsp;</th>
-		<th width="20%">{_JOMRES_COM_A_CURRENT_SETTINGS}</th>
-		<th width="60%">{_JOMRES_COM_A_EXPLANATION}</th>
-	</tr>
-	<tr valign="middle" class="odd">
-		<td valign="middle">{_JOMRES_COM_A_CRON_METHOD}</td>
-		<td valign="middle">{METHODDROPDOWN}</td>
-		<td valign="middle">{_JOMRES_COM_A_CRON_METHOD_DESC}</td>
-	</tr>
-	<tr valign="middle" class="even">
-		<td valign="middle">{_JOMRES_COM_A_CRON_LOGGING}</td>
-		<td valign="middle">{DISPLAYLOGGINGDROPDOWN}</td>
-		<td valign="middle">{_JOMRES_COM_A_CRON_LOGGING_DESC}</td>
-	</tr>
-	<tr valign="middle" class="odd">
-		<td valign="middle">{_JOMRES_COM_A_CRON_LOGGINGENABLED}</td>
-		<td valign="middle">{LOGGINGDROPDOWN}</td>
-		<td valign="middle">{_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC}</td>
-	</tr>
-	<tr valign="middle" class="even">
-		<td valign="middle">{_JOMRES_COM_A_CRON_VERBOSELOGS}</td>
-		<td valign="middle">{VERBOSEDROPDOWN}</td>
-		<td valign="middle">{_JOMRES_COM_A_CRON_VERBOSELOGS_DESC}</td>
-	</tr>
-    <tr valign="middle">
-		<td colspan="3"><input type="submit" value="Save settings" class="fg-button ui-state-default ui-corner-all" /></td>
-	</tr>
-</table>
+
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="">{_JOMRES_COM_A_CRON_TITLE}</h2>
+	</div>
+</div>
+
+<div class="alert alert-info">{_JOMRES_COM_A_CRON_DESC}</div>
+
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+
+<div class="row-fluid">
+	<div class="span12">
+		<h2>{PAGETITLE}</h2>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="method">{_JOMRES_COM_A_CRON_METHOD}</label>
+				<div class="controls">
+					{METHODDROPDOWN}
+				</div> 
+				<p class="help-block">{_JOMRES_COM_A_CRON_METHOD_DESC}</p>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="displaylogging">{_JOMRES_COM_A_CRON_LOGGING}</label>
+				<div class="controls">
+					{DISPLAYLOGGINGDROPDOWN}
+				</div> 
+				<p class="help-block">{_JOMRES_COM_A_CRON_LOGGING_DESC}</p>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="logging">{_JOMRES_COM_A_CRON_LOGGINGENABLED}</label>
+				<div class="controls">
+					{LOGGINGDROPDOWN}
+				</div> 
+				<p class="help-block">{_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC}</p>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="verbose">{_JOMRES_COM_A_CRON_VERBOSELOGS}</label>
+				<div class="controls">
+					{VERBOSEDROPDOWN}
+				</div> 
+				<p class="help-block">{_JOMRES_COM_A_CRON_VERBOSELOGS_DESC}</p>
+				
+			</div>
+			<div class="form-actions">
+				<div>
+					<a class="btn btn-primary" href="javascript:jomres_submitbutton('pseudocron');"><i class="icon-ok icon-white "></i> {COMMON_SAVE}</a> 
+					<a href="{JOMRES_SITEPAGE_URL_ADMIN}" class="btn " title="{COMMON_CANCEL}"><i class="icon-remove"></i> {COMMON_CANCEL}</a> 
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
+
 <input type="hidden" name="task" value="pseudocron" />
 <input type="hidden" name="option" value="com_jomres" />
 </form>
 <br />
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
-	<tr>
-    	<td>
-        	<h3>Current Cron Jobs</h3>
-            <p>{_JOMRES_COM_A_CRON_IMMEDIATERUN}</p>
-        </td>
-    </tr>
+
+<div class="row-fluid">
+	<div class="span12">
+		<h3>Current Cron Jobs</h3>
+		<div class="alert alert-info">{_JOMRES_COM_A_CRON_IMMEDIATERUN}</div>
+	</div>
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{JOB}</td>
- 	</tr>
+	<div class="span12">
+		{JOB}
+	</div>
 	</patTemplate:tmpl>
-</table>
+</div>
+
 <br />
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<patTemplate:tmpl name="logs" unusedvars="nbsp">
 	<tr>
 		<td>{LOG}</td>

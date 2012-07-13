@@ -1,39 +1,51 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>{PAGETITLE}</h2>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-{JOMRESTOOLBAR}
-<table class="ui-widget-content ui-corner-all" width="100%">
-	<tr>
-		<td width="30%">{HABBV}</td>
-		<td><input type="text" name="room_class_abbv" value="{CLASSABBV}" /></td>
-	</tr>
-	<tr>
-		<td>{HDESC}</td>
-		<td><input type="text" name="room_class_full_desc" value="{CLASSDESC}" /></td>
-	</tr>
-	<tr>
-		<td>{HSRP_ONLY}</td>
-		<td>{SRP_ONLY}</td>
-	</tr>
-	<tr>
-		<td>
-			{_JOMRES_PROPERTY_TYPE_ASSIGNMENT}
-		</td>
-		<td>
-			<patTemplate:tmpl name="all_ptype_rows">
-			<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />{PROPERTYTYPE_DESC} 
-			</patTemplate:tmpl>
-		</td>
-	</tr>
-	<tr>
-		<td>{_JOMRES_IMAGE}</td>
-		<td>
-			<patTemplate:tmpl name="rows">
-			<input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" />
-			</patTemplate:tmpl>
-		</td>
-	</tr>
-</table>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+<div class="row-fluid">
+	<div class="span12">
+			<h2>{PAGETITLE}</h2>
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="room_class_abbv">{HABBV}</label>
+					<div class="controls">
+						<input type="text" name="room_class_abbv" value="{CLASSABBV}" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="room_class_full_desc">{HDESC}</label>
+					<div class="controls">
+						<input type="text" name="room_class_full_desc" value="{CLASSDESC}" />
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="srp_only">{HSRP_ONLY}</label>
+					<div class="controls">
+						{SRP_ONLY}
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="ptype_ids">{_JOMRES_PROPERTY_TYPE_ASSIGNMENT}</label>
+					<div class="controls">
+						<patTemplate:tmpl name="all_ptype_rows">
+						<input type="checkbox" name="ptype_ids[]" value="{PROPERTYTYPE_ID}" {CHECKED} />{PROPERTYTYPE_DESC} <br/>
+						</patTemplate:tmpl>
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="image">{_JOMRES_IMAGE}</label>
+					<div class="controls">
+						<patTemplate:tmpl name="rows">
+						<input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" />
+						</patTemplate:tmpl>
+					</div> 
+				</div>
+				
+				<div class="form-actions">
+					{JOMRESTOOLBAR}
+				</div>
+			</fieldset>
+	</div>
+</div>
+
 <input type="hidden" name="roomClassUid" value="{ROOMCLASSUID}">
 <input type="hidden" name="property_uid" value="{PROPERTYUID}" />
 <input type="hidden" name="Itemid" value="{ITEMID}" />

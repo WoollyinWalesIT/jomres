@@ -1,32 +1,54 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script type="text/javascript">
+<script language="JavaScript" type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#access_control_list').dataTable({
-		"bJQueryUI": true,
+	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+		"bJQueryUI": false,
 		"bStateSave": true,
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
 	});
-});
-
-function change_access_level(minicomp,level)
-	{
-	cmd = '{AJAXURL}&task=ajax_change_access_level&minicomp='+minicomp+'&new_level='+level;
-	jomresJquery.get(cmd, function(data) {
-	//	if (data == 1)
-	//		{
-			
-	//		jomresJquery(div_name).attr("src",curr_img);
-	//		}
-		});
-	}
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+} );
 //-->
 </script>
-<h2>{_JOMRES_ACCESS_CONTROL_TITLE}</h2>
-<p>{_JOMRES_ACCESS_CONTROL_DESC}</p>
-<p>{_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM}</p>
+<div class="row-fluid">
+	<div class="span12">
+		<h2 class="">{_JOMRES_ACCESS_CONTROL_TITLE}</h2>
+	</div>
+</div>
 
-<table id="access_control_list" width="100%">
+
+<div class="alert alert-info">{_JOMRES_ACCESS_CONTROL_DESC}</div>
+<div class="alert alert-info">{_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM}</div>
+
+<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
 	<thead>
 		<tr>
 			<th>Minicomponent name</th>
@@ -34,12 +56,12 @@ function change_access_level(minicomp,level)
 		</tr>
 	</thead>
 	<tbody>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td >{SCRIPTNAME}</td>
-		<td >{DROPDOWN}</td>
-	</tr>
-	</patTemplate:tmpl>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{SCRIPTNAME}</td>
+			<td>{DROPDOWN}</td>
+		</tr>
+		</patTemplate:tmpl>
 	</tbody>
 </table>
 </patTemplate:tmpl>

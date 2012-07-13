@@ -48,41 +48,31 @@ function editPropertyType()
 	{
 	$id = jomresGetParam( $_GET, 'id', 0 );
 	$ptypeData=array();
-	$pList=array();
-	$pList['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE_EDIT;
-	$pList['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
-	$pList['HPTYPE_DESC'] =_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR;
-	$pList['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
-	$pList['FURTHER']=_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER;
+	$output=array();
+	$output['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE_EDIT;
+	$output['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
+	$output['HPTYPE_DESC'] =_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR;
+	$output['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
+	$output['FURTHER']=_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER;
+	$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 	
-	$ptypeData['ptype']="";
-	$ptypeData['ptype_desc']="";
-	$ptypeData['published'] ="";
+	
+	$output['PTYPE']="";
+	$output['PTYPE_DESC']="";
+	$output['PUBLISHED'] ="";
 	if (isset($id) && !empty($id) )
 		{
 		$query="SELECT ptype,ptype_desc,published FROM #__jomres_ptypes WHERE id = '".(int)$id."' ";
 		$ptypeList = doSelectSql($query);
-		$rowInfo="";
 		foreach ($ptypeList as $ptype)
 			{
-			$ptypeData['ptype']=stripslashes($ptype->ptype);
-			$ptypeData['ptype_desc']=stripslashes($ptype->ptype_desc);
-			$published=$ptype->published;
-			if ($published)
-				$ptypeData['published'] = JOMRES_ADMINISTRATORDIRECTORY."/images/tick.png";
-			else
-				$ptypeData['published'] = JOMRES_ADMINISTRATORDIRECTORY."/images/publish_x.png";
+			$output['PTYPE']=stripslashes($ptype->ptype);
+			$output['PTYPE_DESC']=stripslashes($ptype->ptype_desc);
 			}
 		}
-	$rowInfo="";
-	$rowInfo="
-		<tr>
-			<td class=\"\"><input class=\"inputbox\" name=\"ptype\" size='60' value=\"".$ptypeData['ptype']."\" /></td>
-			<td class=\"\"><input class=\"inputbox\" name=\"ptype_desc\" size='60' value=\"".$ptypeData['ptype_desc']."\" /></td>
-		</tr>
-		";
 
-	$hidden="<input type=\"hidden\" name=\"id\" value=\"".$id."\" />";
+
+	$output['ID']=$id;
 
 	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 	$jrtb  = $jrtbar->startTable();
@@ -91,9 +81,15 @@ function editPropertyType()
 	$jrtb .= $jrtbar->customToolbarItem('savePropertyType',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="savePropertyType",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",'');
 	$jrtb .= $jrtbar->endTable();
-
-
-	HTML_jomres::editpropertyType_html( $pList,$rowInfo,$hidden,$jrtb);
+	
+	$output['JOMRESTOOLBAR']=$jrtb;
+	
+	$pageoutput[]=$output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+	$tmpl->readTemplatesFromInput( 'edit_property_type.html');
+	$tmpl->addRows( 'pageoutput',$pageoutput);
+	$tmpl->displayParsedTemplate();
 	}
 
 /**
