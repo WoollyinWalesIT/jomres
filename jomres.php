@@ -2,7 +2,7 @@
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
-* @version Jomres 6 
+* @version Jomres 7
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
@@ -1112,37 +1112,6 @@ function removeBOM($str="")
 	{
 	$bom = pack("CCC",0xef,0xbb,0xbf);
 	$str = str_replace($bom,"",$str);
-	// if(substr($str, 0,3) == pack("CCC",0xef,0xbb,0xbf))
-		// {
-		// $str=substr($str, 3);
-		// }
-		
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	
-	if ($jrConfig['javascript_caching_enabled'] == "1")
-		{
-		// Remove whitespaces
-		
-		// Originally was :
-		// $search = array(
-			// '/\>[^\S ]+/s', //strip whitespaces after tags, except space
-			// '/[^\S ]+\</s', //strip whitespaces before tags, except space
-			// '/(\s)+/s'  // shorten multiple whitespace sequences
-			// );
-		// however the shorten multiple whitespace sequences breaks the included javascript
-		// Nevertheless, without it an example page is shortened from 1746 lines to 1182, as it is, we are removing a significant amount of whitespace.
-		
-		// $search = array(
-			// '/\>[^\S ]+/s', //strip whitespaces after tags, except space
-			// '/[^\S ]+\</s' //strip whitespaces before tags, except space
-			// );
-		// $replace = array(
-			// '>',
-			// '<',
-			// '\\1'
-			// );
-		// $str = preg_replace($search, $replace, $str);
-		}
+
 	return $str;
 	}

@@ -2,7 +2,7 @@
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
-* @version Jomres 6 
+* @version Jomres 7
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
@@ -135,7 +135,7 @@ if ($folderChecksPassed)
 			) VALUES (
 			'main','com_jomres','Jomres','Jomres',
 			'','index.php?option=com_jomres','component',1,
-			1,1,".$component_id.",0,
+			1,1,".$component_id.",1,
 			0,'0000-00-00 00:00:00',0,1,
 			'class:component',0,'',
 			".$lft.",".$rgt.",0,'*',1
