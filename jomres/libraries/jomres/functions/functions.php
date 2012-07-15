@@ -5551,7 +5551,7 @@ function scandir_getfiles($path)
 
 function this_cms_is_joomla()
 	{
-	if ( (_JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" ))
+	if ( (_JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30" ))
 		return false;
 	return true;
 	}
