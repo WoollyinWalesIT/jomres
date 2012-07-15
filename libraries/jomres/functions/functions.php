@@ -13,6 +13,12 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function endrun()
+	{
+	if (file_exists(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_endrun.php'))
+		require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_endrun.php');
+	}
+
 function using_bootstrap()
 	{
 

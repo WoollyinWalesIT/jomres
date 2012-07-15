@@ -68,19 +68,23 @@ $tmpl="";
 if (!isset($_GET['tmpl']) )
 	$_GET['tmpl']=false;
 
-if ( ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || $_GET['tmpl'] == 'component' ) && !isset($_REQUEST['nofollowtmpl']) )
-	{
-	$index = "index.php";
-	$tmpl="&tmpl=component";
-	define("JOMRES_WRAPPED",1);
-	}
-else
-	define("JOMRES_WRAPPED",0);
-
 if (isset($_GET['format']) )
 	{
 	if ($_GET['format'] == "raw")
 		define("JOMRES_WRAPPED",1);
+	else
+		define("JOMRES_WRAPPED",0);
+	}
+else
+	{
+	if ( ($jrConfig['isInIframe'] == (bool)"1" || $_GET['tmpl'] == 'component' ) && !isset($_REQUEST['nofollowtmpl']) )
+		{
+		$index = "index.php";
+		$tmpl="&tmpl=component";
+		define("JOMRES_WRAPPED",1);
+		}
+	else
+		define("JOMRES_WRAPPED",0);
 	}
 
 if ( isset($_REQUEST['is_wrapped']) )
