@@ -149,7 +149,7 @@ if ($folderChecksPassed)
 		echo "Unable to create main Jomres admin menu option<br>";
 
 
-$admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id(28);
+/* $admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id(28);
 $admin_user = $admin_user[28];
 
 echo "Making <i>".$admin_user['username']."</i> a super property manager<br>";
@@ -162,4 +162,4 @@ $result=doInsertSql($query,"");
 if ($result)
 	echo "Inserted ".$admin_user['username']." as manager<br>";
 else
-	echo "Could not create ".$admin_user['username']." as manager<br>";
+	echo "Could not create ".$admin_user['username']." as manager<br>"; */

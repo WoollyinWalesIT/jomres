@@ -23,6 +23,8 @@ class j00061bottomtemplate {
 			{
 			$this->template_touchable=false; return;
 			}
+		if (AJAXCALL)
+			return;
 		$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );

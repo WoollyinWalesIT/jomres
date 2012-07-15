@@ -39,7 +39,7 @@ class j00060toptemplate {
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 		
 		
-		if (!defined('JOMRES_NOHTML') && $popup != 1 )
+		if (!AJAXCALL && $popup != 1 )
 			{
 			$output=array();
 			
