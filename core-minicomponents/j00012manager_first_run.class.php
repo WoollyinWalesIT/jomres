@@ -29,7 +29,7 @@ class j00012manager_first_run {
 			$this->template_touchable=false; return;
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		if (isset($_REQUEST['no_html']) && $_REQUEST['no_html'] == "1")
+		if (AJAXCALL)
 			return;
 		if ($thisJRUser->id != 42)
 			return;

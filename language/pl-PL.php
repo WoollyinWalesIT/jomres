@@ -1104,7 +1104,7 @@ global $jomresConfig_secret;
 define('_JOMRES_COM_A_CRON_METHOD','Metoda');
 define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jeśli nie masz dostępu do crona, ustaw funkcję uruchamiania cyklicznych zadań wbudowanych w Jomres. W przeciwnym razie ustaw uruchamianie zadań przez Twojego crona na serwerze.
 					<br />
-					<i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i>");
+					<i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i>");
 
 define('_JOMRES_COM_A_CRON_LOGGING','Wyświetlanie logowania w przeglądarce');
 define('_JOMRES_COM_A_CRON_LOGGING_DESC','Działa tylko jeśli metoda jest ustawiona na Minicomponent.');
@@ -1165,7 +1165,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Użyj piaskownicy?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Twój adres e-mail PayPal");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Uwaga! Aby korzystać z PayPal musisz zalogować się do swojego konta PayPal i wyłączyć Autoreturn. (Profil/WWW Preferencje płatności), a zestaw IPN (Profil / Instant Preferencje powiadomienia o płatności), aby w adresie URL:
 					<br />
-					<b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
+					<b>&nbsp;".JOMRES_SITEPAGE_URL_AJAX."&task=completebk");
 
 define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Ta faktura jest już wymagalna. Proszę kliknąć przycisk i opłacić ją przez system PayPal.");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Zastępują standardowe ustawienia bramki Jomres?");

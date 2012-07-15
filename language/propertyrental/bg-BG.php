@@ -1043,7 +1043,7 @@ define('_JOMRES_COM_A_CRON_DESC','Тази функционалност е за 
 define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Да се използва от системния администратор.');
 global $jomresConfig_secret;
 define('_JOMRES_COM_A_CRON_METHOD','Метод');
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"Да се използва от системния администратор<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"Да се използва от системния администратор<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 define('_JOMRES_COM_A_CRON_LOGGING','Логване в браузера');
 define('_JOMRES_COM_A_CRON_LOGGING_DESC','Да се използва от системния администратор.');
 define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Логването е активирано');
@@ -1101,7 +1101,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"опции за PayPal ");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Код за валута");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Тест?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"PayPal мейл");
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Note: Да се използва от системния администратор:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Note: Да се използва от системния администратор:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_AJAX."&task=completebk");
 define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Да се използва от системния администратор.");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Промени стандартните настройки за PayPal?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"Да се използва от системния администратор.");

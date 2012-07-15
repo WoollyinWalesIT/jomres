@@ -318,7 +318,7 @@ class j00030search {
 							<script language="JavaScript" type="text/javascript">
 							jomresJquery(function()
 							{
-								jomresJquery(\'#country\').chainSelect(\'#rregion\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=country\',
+								jomresJquery(\'#country\').chainSelect(\'#rregion\',\''.JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=country\',
 								{ 
 									before:function (target) //before request hide the target combobox and display the loading message
 									{ 
@@ -331,7 +331,7 @@ class j00030search {
 										jomresJquery(target).css("display","inline");
 									}
 								});
-								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\''.JOMRES_SITEPAGE_URL_NOHTML.'&task=selectcombo&filter=region\',
+								jomresJquery(\'#rregion\').chainSelect(\'#ttown\',\''.JOMRES_SITEPAGE_URL_AJAX.'&task=selectcombo&filter=region\',
 								{ 
 									before:function (target) 
 									{ 

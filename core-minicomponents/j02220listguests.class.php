@@ -160,7 +160,7 @@ class j02220listguests {
 				$rw['STREET']		=jomres_decode($guest->street);
 				$rw['TOWN']			=jomres_decode($guest->town);
 				// $status = 'status=no,toolbar=20,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=400,height=400,directories=no,location=no';
-				// $link =makePopupLink(JOMRES_SITEPAGE_URL_NOHTML."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
+				// $link =makePopupLink(JOMRES_SITEPAGE_URL_AJAX."?option=com_jomres&task=editCreditcard&popup=1&guestUid=".$guest->guests_uid."",jr_gettext('_JOMRES_MR_CREDITCARD_EDIT',_JOMRES_MR_CREDITCARD_EDIT,false));
 				// $rw['CREDITCARDLINK']=$link;
 
 				$rows[]=$rw;

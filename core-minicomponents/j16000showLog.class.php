@@ -25,7 +25,6 @@ class j16000showLog
 			$this->template_touchable=false; return;
 			}
 		$logfile = jomresGetParam( $_REQUEST, 'logfile',	'' );
-		$no_html = jomresGetParam( $_REQUEST, 'no_html',	0 );
 		$no_update = jomresGetParam( $_REQUEST, 'no_update',	0 );
 		
 		$xmlelements = get_showtime('xmlelements');
@@ -43,7 +42,7 @@ class j16000showLog
 		$output['REQUESTURI']='requesturi';
 		$output['MESSAGE']=JOMRES_COM_A_MESSAGE;
 
-		if ($no_html == 0)
+		if (!AJAXCALL)
 			{
 			$output['DELETE']=_JOMRES_COM_MR_ROOM_DELETE;
 			$output['DELETELINK']=JOMRES_SITEPAGE_URL_ADMIN.'&task=clearLog&logfile='.$logfile;
@@ -57,7 +56,7 @@ class j16000showLog
 				$output['HEARTBEAT']= '<script>
 				jomresJquery(document).ready(function() {
 					jomresJquery.jheartbeat.set({
-						url: "'.JOMRES_SITEPAGE_URL_ADMIN.'&task=showLog&no_html=1&logfile='.$logfile.'",
+						url: "'.JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=showLog&logfile='.$logfile.'",
 						delay: 5000,
 						div_id: "logfileresult"
 					});

@@ -66,7 +66,7 @@ class j16000access_control
 			}
 
 		$output = array();
-		$output['AJAXURL'] = JOMRES_SITEPAGE_URL_AJAX_ADMIN;
+		$output['AJAXURL'] = JOMRES_SITEPAGE_URL_ADMIN_AJAX;
 		if ($jrConfig['full_access_control'] =="0")
 			{
 			$output['_JOMRES_ACCESS_CONTROL_TITLE'] = _JOMRES_ACCESS_CONTROL_TITLE;

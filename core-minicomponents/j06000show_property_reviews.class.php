@@ -91,7 +91,7 @@ class j06000show_property_reviews
 			$itemRating = $Reviews->showRating($property_uid);
 			$this_user_can_review = $Reviews->this_user_can_review();
 			
-			$output['AJAXURL']=JOMRES_SITEPAGE_URL_NOHTML;
+			$output['AJAXURL']=JOMRES_SITEPAGE_URL_AJAX;
 			
 			$thumb_up = get_showtime('live_site')."/jomres/images/thumb_up.png";
 			$thumb_down = get_showtime('live_site')."/jomres/images/thumb_down.png";

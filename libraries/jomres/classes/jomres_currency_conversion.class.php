@@ -66,7 +66,7 @@ class jomres_currency_conversion
 				$fmts[] = jomresHTML::makeOption( $currency_code, $text );
 				}
 			}
-		$javascript = 'onChange="switch_exchange_rate(\''.JOMRES_SITEPAGE_URL_NOHTML.'\',this.value)";';
+		$javascript = 'onChange="switch_exchange_rate(\''.JOMRES_SITEPAGE_URL_AJAX.'\',this.value)";';
 		$dropdown= jomresHTML::selectList($fmts, 'user_current_currency_code', 'class="inputbox" size="1"'.$javascript, 'value', 'text', $base);
 		return $dropdown;
 		}

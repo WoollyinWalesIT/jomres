@@ -32,8 +32,11 @@ function using_bootstrap()
 
 function init_javascript()
 	{
-	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-	$MiniComponents->triggerEvent('00004'); 
+	if (!AJAXCALL )
+		{
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+		$MiniComponents->triggerEvent('00004'); 
+		}
 	}
 
 

@@ -326,7 +326,7 @@ class j02260editbooking {
 			else
 				{
 				
-				$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_NOHTML."&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid"),'');
+				$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_AJAX."&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid"),'');
 				add_menu_option ("&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
 				}
 			$jrtb .= $jrtbar->endTable();

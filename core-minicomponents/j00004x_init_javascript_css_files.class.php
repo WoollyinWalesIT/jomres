@@ -42,14 +42,12 @@ class j00004x_init_javascript_css_files {
 		else
 			return;
 
-		$no_html			= (int)jomresGetParam( $_REQUEST, 'no_html', false );
-
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 
 		// Include all the various css & javascript files we need
-		if (!$no_html)
+		if (!AJAXCALL)
 			{
 			if (!defined(JOMRES_NOHTML) )
 				{

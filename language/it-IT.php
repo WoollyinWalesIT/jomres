@@ -1131,7 +1131,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Impostazioni Paypal");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Currency code (es EUR)");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Usa sandbox?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Il tuo indirizzo email paypal");
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Nota: Per usare paypal devi entrare nel tuo account paypal &egrave; disabilitare Autoreturn. (Profilo/Preferenze pagamenti), e selezionare IPN (Profilo/Preferenze di notifica pagamenti istantanei)nella URL di:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Nota: Per usare paypal devi entrare nel tuo account paypal &egrave; disabilitare Autoreturn. (Profilo/Preferenze pagamenti), e selezionare IPN (Profilo/Preferenze di notifica pagamenti istantanei)nella URL di:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_AJAX."&task=completebk");
 define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Questo pagamento &egrave; in scadenza. Cliccare il pulsante per entrare in paypal.");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Sovrascrivi impostazioni standard gateway di Jomres?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"Se le impostazioni di sovrascrittura di paypal sono impostate su SI avvengono svariate modifiche: La configurazione generale non mostra piu nessuna impostazione gateway. e due, quando viene effettuata una prenotazione le impostazioni usate qui vengono utilizzate in modo che quel pagamento venga inviato all indirizzo inserito qui, e non a quello precedentemente impostato nella Configurazione generale.");

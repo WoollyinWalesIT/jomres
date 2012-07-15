@@ -1038,7 +1038,7 @@ define('_JOMRES_COM_A_CRON_DESC','Pseudocron job information. The pseudocron fun
 define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Installed cron minicomponents. To run an individual cron job use the links specified below. Note that the cron jobs do not produce any output so you will not see any information on the page. Instead, refer to the job log below.');
 global $jomresConfig_secret;
 define('_JOMRES_COM_A_CRON_METHOD','Method');
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"If you do not have access to cron jobs, set this to Minicomponent, otherwise create a cron job and tell it to run<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 define('_JOMRES_COM_A_CRON_LOGGING','Display logging in the browser');
 define('_JOMRES_COM_A_CRON_LOGGING_DESC','Only works if the method is set to Minicomponent.');
 define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Logging enabled');
@@ -1096,7 +1096,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Paypal uzstādījumi");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Valūtas kods (piem. EUR)");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Lietot sandbox? Uzmanību! Domāts tikai pārbaudei");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Jūsu paypal e-pasta adrese");
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Piezīme: Lai lietotu paypal, Jums ir jāielogojas savā paypal kontā un jāatzīmē 'disable Autoreturn'. Tad uzstādījumos (Profile/Website Payment Preferences),jānorāda IPN (Profile/Instant Payment Notification Preferences)uz sekojošu URL adresi:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk   Ja Jums šeit vajag papildus informāciju, rakstiet uz info@bookingpro.eu");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Piezīme: Lai lietotu paypal, Jums ir jāielogojas savā paypal kontā un jāatzīmē 'disable Autoreturn'. Tad uzstādījumos (Profile/Website Payment Preferences),jānorāda IPN (Profile/Instant Payment Notification Preferences)uz sekojošu URL adresi:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_AJAX."&task=completebk   Ja Jums šeit vajag papildus informāciju, rakstiet uz info@bookingpro.eu");
 define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Šis rēķins ir jāapmaksā. Lūdzu spiežiet uz pogas un veiciet apmaksu caur paypal.");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Override standard Jomres gateway settings?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal settings override option is set to Yes then several things happen: General Configuration no longer shows any gateway settings, and two, when a booking is made the settings used here are used so that payment is sent to the address entered here, not that previously configured in General Configuration.");

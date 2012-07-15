@@ -1056,7 +1056,7 @@ if (get_showtime('javascript_caching_enabled'))
 	}
 
 // For development on Joomla 3, Alpha 1. Bootstrap isn't yet included by Joomla, so we'll do this for now
-if (using_bootstrap() )
+if (using_bootstrap() && !AJAXCALL )
 	{
 	echo '
 	<link href="//twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">

@@ -141,6 +141,13 @@ if (isset($jrConfig['loggingBooking']))
 	define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
 	}
 
+$jrajax				= (int)jomresGetParam( $_REQUEST, 'jrajax', 0 );
+if ($jrajax == 1)
+	define('AJAXCALL',true);
+else
+	define('AJAXCALL',false);
+
+	
 // loads en language file by default
 if ($jomresConfig_lang=='')
 	{
