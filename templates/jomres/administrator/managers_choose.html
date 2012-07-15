@@ -1,7 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
-var ajaxurl	= "{JOMRES_SITEPAGE_URL_ADMIN_AJAX}";
+var ajaxurl	= "{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=";
 var livesite= "{ADMINLIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
 jomresJquery(function() {
 	jomresJquery( "#username_input" ).autocomplete({
