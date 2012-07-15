@@ -1016,6 +1016,32 @@ class jomresHTML
 	{
 	function makeOption( $val, $text='', $value_name='value', $text_name='text' )
 		{
+		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() )
+			{
+			echo '
+			<script>
+			jQuery(function(jomresJquery) {
+				jomresJquery(\'div.btn-group[data-toggle-name=*]\').each(function(){
+					var group   = jomresJquery(this);
+					var form    = group.parents(\'form\').eq(0);
+					var name    = group.attr(\'data-toggle-name\');
+					var hidden  = jomresJquery(\'input[name="\' + name + \'"]\', form);
+					jomresJquery(\'button\', group).each(function(){
+						var button = jomresJquery(this);
+						button.live(\'click\', function(){
+							hidden.val(jomresJquery(this).val());
+					});
+					if(button.val() == hidden.val()) {
+						button.addClass(\'active\');
+					  }
+					});
+				  });
+				});
+			</script>
+			';
+			define('SELECTLISTJAVASCRIPT',1);
+			}
+		
 		$obj = new stdClass;
 		$obj->$value_name = $val;
 		$obj->$text_name = trim( $text ) ? $text : $value;
@@ -1024,22 +1050,38 @@ class jomresHTML
 
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
 		{
-		$attribs = str_replace('class="inputbox"',"",$attribs);
-		$attribs = str_replace('class="input-medium"',"",$attribs);
-		
-		$attribs .= ' class="input-medium" ';
-		
-		$output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
-		for ($i=0, $n= count( $arr ); $i < $n; $i++ )
+		if (!using_bootstrap() || count($arr) != 2)
 			{
-			$k = $arr[$i]->$key;
-			$txt = $arr[$i]->$text;
-			$selected ='';
-			if ($k == $default)
-				$selected .=' selected="selected" ';
-			$output .= '<option value="'.$k.'" '.$selected.'>'.$txt.'</option>';
-		}
-		$output .= "</select>";
+			$attribs = str_replace('class="inputbox"',"",$attribs);
+			$attribs = str_replace('class="input-medium"',"",$attribs);
+			
+			$attribs .= ' class="input-medium" ';
+			
+			$output = '<select name="'.$name.'" id="'.$name.'" '.$attribs.'>';
+			for ($i=0, $n= count( $arr ); $i < $n; $i++ )
+				{
+				$k = $arr[$i]->$key;
+				$txt = $arr[$i]->$text;
+				$selected ='';
+				if ($k == $default)
+					$selected .=' selected="selected" ';
+				$output .= '<option value="'.$k.'" '.$selected.'>'.$txt.'</option>';
+			}
+			$output .= "</select>";
+			}
+		else
+			{
+			$output = '<div class="btn-group" data-toggle-name="'.$name.'" data-toggle="buttons-radio" >';
+			for ($i=0, $n= count( $arr ); $i < $n; $i++ )
+				{
+				$k = $arr[$i]->$key;
+				$txt = $arr[$i]->$text;
+				$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
+				}
+			$output .='</div>
+			<input type="hidden" name="'.$name.'" value="'.$default.'" />';
+			
+			}
 		return $output;
 		}
 
