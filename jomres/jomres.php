@@ -1077,6 +1077,8 @@ if (using_bootstrap() && !AJAXCALL )
 	';
 	}
 
+endrun();
+
 if (defined("JOMRES_RETURNDATA") )
 	{
 	$contents = ob_get_contents();

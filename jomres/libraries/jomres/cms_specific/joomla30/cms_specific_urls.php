@@ -71,33 +71,30 @@ if (isset($_REQUEST["task"]))
 		$disable_cache = true;
 	}
 
-if (isset($_REQUEST['jrnocache']))
-	$disable_cache = true;
-
-if ($disable_cache)
-	{
-	JFactory::getConfig()->setValue('config.caching', 0);
-	}
-
 $index = "index.php";
 $tmpl="";
 if (!isset($_GET['tmpl']) )
 	$_GET['tmpl']=false;
 
-if ( ($jrConfig['isInIframe'] == (bool)"1" || strstr($scriptname,'index2.php') || $_GET['tmpl'] == 'component' ) && !isset($_REQUEST['nofollowtmpl']) )
-	{
-	$index = "index.php";
-	$tmpl="&tmpl=component";
-	define("JOMRES_WRAPPED",1);
-	}
-else
-	define("JOMRES_WRAPPED",0);
-
 if (isset($_GET['format']) )
 	{
 	if ($_GET['format'] == "raw")
 		define("JOMRES_WRAPPED",1);
+	else
+		define("JOMRES_WRAPPED",0);
 	}
+else
+	{
+	if ( ($jrConfig['isInIframe'] == (bool)"1" || $_GET['tmpl'] == 'component' ) && !isset($_REQUEST['nofollowtmpl']) )
+		{
+		$index = "index.php";
+		$tmpl="&tmpl=component";
+		define("JOMRES_WRAPPED",1);
+		}
+	else
+		define("JOMRES_WRAPPED",0);
+	}
+
 
 if ( isset($_REQUEST['is_wrapped']) )
 	{
@@ -147,9 +144,9 @@ define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=co
 */
 
 define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang);
-define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&format=raw&jrajax=1&Itemid=".$jomresItemid."&lang=".$lang);
+define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1&Itemid=".$jomresItemid."&lang=".$lang);
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl);
-define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&format=raw&jrajax=1");
+define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1");
 
 if (class_exists('JFactory'))
 	{
