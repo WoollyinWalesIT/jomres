@@ -23,7 +23,8 @@ class j99995jomres_mainmenu {
 			}
 		
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-
+		if (AJAXCALL)
+			return;
 		// Stops the main menu from being generated twice.
 		if (get_showtime('mainmenu_alreadyrun'))
 			return;
