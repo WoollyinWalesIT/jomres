@@ -54,10 +54,10 @@ if ($folderChecksPassed)
 			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."index.html 
 			automatically, please do this manually through FTP</h1><br/>";
 	
-	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php", 	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."admin.jomres.php"))
+	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php", 	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.php"))
 		echo "<h1>Error, unable to copy ".
 			_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php to ".
-			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."admin.jomres.php 
+			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.php 
 			automatically, please do this manually through FTP</h1><br/>";
 	
 	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."jomres.xml",			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.xml"))
@@ -105,17 +105,20 @@ if ($folderChecksPassed)
 	$query="INSERT INTO #__extensions	(
 	`name`,`type`,`element`,`folder`,
 	`client_id`,`enabled`,`access`,`protected`,
-	`manifest_cache`,`params`,`custom_data`,`system_data`,
+	`manifest_cache`,
+	`params`,`custom_data`,`system_data`,
 	`checked_out`,`checked_out_time`,`ordering`,`state`
 	)
 	VALUES
 	(
 	'com_jomres','component','com_jomres','',
 	'1','1','1','0',
-	'','','','',
+	'{\"legacy\":false,\"name\":\"Jomres\",\"type\":\"component\",\"creationDate\":\"2005-03-18\",\"author\":\"Vince Wooll\",\"copyright\":\"(C) 2005 - 2011 Vince Wooll. All rights reserved.\t\",\"authorEmail\":\"sales@jomres.net\",\"authorUrl\":\"www.jomres.net\",\"version\":\"7\",\"description\":\"Jomres\",\"group\":\"\"}',
+	'{}','','',
 	'0','0000-00-00 00:00:00','0','0'
 	)
 	";
+
 
 	$component_id=doInsertSql($query,"");
 	if ($component_id)
@@ -133,7 +136,7 @@ if ($folderChecksPassed)
 			`img`,`template_style_id`,`params`,`lft`,
 			`rgt`,`home`,`language`,`client_id`
 			) VALUES (
-			'main','com_jomres','Jomres','Jomres',
+			'mainmenu','Jomres','Jomres','Jomres',
 			'','index.php?option=com_jomres','component',1,
 			1,1,".$component_id.",1,
 			0,'0000-00-00 00:00:00',0,1,
@@ -145,8 +148,9 @@ if ($folderChecksPassed)
 	else
 		echo "Unable to create main Jomres admin menu option<br>";
 
-$admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id(42);
-$admin_user = $admin_user[42];
+
+$admin_user = jomres_cmsspecific_getCMS_users_admin_userdetails_by_id(28);
+$admin_user = $admin_user[28];
 
 echo "Making <i>".$admin_user['username']."</i> a super property manager<br>";
 $query="INSERT INTO #__jomres_managers
@@ -154,7 +158,6 @@ $query="INSERT INTO #__jomres_managers
 VALUES
 ('42','".$admin_user['username']."','0','2','1','1')";
 $result=doInsertSql($query,"");
-//echo $query;
 
 if ($result)
 	echo "Inserted ".$admin_user['username']." as manager<br>";

@@ -206,7 +206,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 				copyImages();
 				saveKey2db($lkey);
 				insertPortalTables();
-				//installCronjobs();
+
 				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
 				showCompletedText();
 				}

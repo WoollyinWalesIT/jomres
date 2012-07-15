@@ -147,7 +147,7 @@ if (!JRPORTAL_AJAXCALL)
 				<?php } ?>
 				<div>&nbsp;</div>
 				<?php
-				if (_JOMRES_DETECTED_CMS != "joomla25")
+				if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla3")
 					echo '<div>Select Jomres Language '.$jomreslang->get_languageselection_dropdown().'</div>';
 				?>
 			</div>
@@ -267,6 +267,28 @@ if (is_array($MiniComponents->miniComponentData['16003']))
 $componentArgs=array();
 $MiniComponents->triggerEvent('99999',$componentArgs);
 $componentArgs=array();
+
+// For development on Joomla 3, Alpha 1. Bootstrap isn't yet included by Joomla, so we'll do this for now
+if (using_bootstrap() )
+	{
+	echo '
+	<link href="//twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="//twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+	';
+	}
 	
 if (defined("JOMRES_RETURNDATA") )
 	{
