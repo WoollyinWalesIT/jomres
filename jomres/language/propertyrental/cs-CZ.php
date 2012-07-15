@@ -1033,7 +1033,7 @@ define('_JOMRES_COM_A_CRON_DESC','Inforamce o úloze Cron. Tato úloha je nezbyt
 define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Intalované minikomponenty úlohy Cron. Ke spuštění dané úlohy použijte příslušný odkaz. Uvědomte si, že úloha nebude mít žádný výstup na obrazovku a nebudete tím pádem mít žádnou zpětnou vazbu. Místo toho nahlédněte do log souboru níže.');
 global $jomresConfig_secret;
 define('_JOMRES_COM_A_CRON_METHOD','Metoda');
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"Jestliže nemáte přístup k procesu Cron, nastavte tuto minikomponentu. Jinak vytvřte Cron úlohu a jako parametr ke spuštění zadejte <br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 define('_JOMRES_COM_A_CRON_LOGGING','Zobrazit logy v prohlížeči');
 define('_JOMRES_COM_A_CRON_LOGGING_DESC','Pracuje pouze, pokud je metoda nastavena na minikomponentu.');
 define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Záznam logu povolen');
@@ -1091,7 +1091,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Nastavení Paypal");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Kód měny (např. EUR)");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"Použít schránku sandbox?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Vaše emailová adresa pro paypal");
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Poznámka: Pokud chcete používat PayPal, musíte se nejprve do něj přihlásit a zrušit funkci Autoreturn. (Profile/Website Payment Preferences), a nastavit IPN (Profile/Instant Payment Notification Preferences) na URL adresu:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Poznámka: Pokud chcete používat PayPal, musíte se nejprve do něj přihlásit a zrušit funkci Autoreturn. (Profile/Website Payment Preferences), a nastavit IPN (Profile/Instant Payment Notification Preferences) na URL adresu:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_AJAX."&task=completebk");
 define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',"Faktura je nyní splatná. Stiskem tlačítka ji zaplatíte pomocí PayPal.");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"Ignorovat standardní nastavení platební brány Jomres?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"Pokud je nastaveno na ANO, stane se následující: V Hlavní konfiguraci se neobjeví žádná nastavení platební brány, a za druhé, pokud je provedena rezervace, je také platba odeslána na adresu uvedenou zde, nikoliv na tu uvedenou před tím v Hlavní konfiguraci.");

@@ -73,11 +73,6 @@ if ($jrConfig['useSubscriptions']=="1" && $nohtml == "0")
 		}
 	}
 
-if (strstr($_SERVER['SCRIPT_NAME'],'index3.php') || $nohtml == "1")
-	define('JRPORTAL_AJAXCALL',true);
-else
-	define('JRPORTAL_AJAXCALL',false);
-
 $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language($propertytype);
 $customTextObj =jomres_singleton_abstract::getInstance('custom_text');
@@ -97,7 +92,7 @@ if ($obsolete_files->ready_to_go() )
 	$obsolete_files->output_file_deletion_warning();
 	}
 
-if (!JRPORTAL_AJAXCALL)
+if (!AJAXCALL)
 	{
 	if (!using_bootstrap())
 		{
@@ -176,7 +171,7 @@ if (isset($_REQUEST['periodoption']))
 
 admins_first_run();
 
-if (!JRPORTAL_AJAXCALL)
+if (!AJAXCALL)
 	{
 	jr_import('cpanel');
 	$cpanel=new cpanel();
@@ -246,7 +241,7 @@ switch (get_showtime('task')) {
 		break;
 	}
 	
-if (!JRPORTAL_AJAXCALL )
+if (!AJAXCALL )
 	{
 	if (!using_bootstrap())
 		{
@@ -269,7 +264,7 @@ $MiniComponents->triggerEvent('99999',$componentArgs);
 $componentArgs=array();
 
 // For development on Joomla 3, Alpha 1. Bootstrap isn't yet included by Joomla, so we'll do this for now
-if (using_bootstrap() )
+if (using_bootstrap() && !AJAXCALL )
 	{
 	echo '
 	<link href="//twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">

@@ -1060,7 +1060,7 @@ define('_JOMRES_COM_A_CRON_DESC','Pseudocron información del trabajo. La funcio
 define('_JOMRES_COM_A_CRON_IMMEDIATERUN','Instalado minicomponents cron. Para ejecutar una tarea de cron individual utilice los enlaces que se especifican a continuación. Tenga en cuenta que el cron jobs no produce ningún resultado por lo que no verá ninguna información en la página. En cambio, se refiere a las anotaciones de trabajo referidas a continuación.');
 global $jomresConfig_secret;
 define('_JOMRES_COM_A_CRON_METHOD','Método');
-define('_JOMRES_COM_A_CRON_METHOD_DESC',"Si usted no tiene acceso a cron jobs, active este minicomponente, de lo contrario cree una tarea programada y dígale que se ejecute<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_NOHTML."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
+define('_JOMRES_COM_A_CRON_METHOD_DESC',"Si usted no tiene acceso a cron jobs, active este minicomponente, de lo contrario cree una tarea programada y dígale que se ejecute<br /> <i>curl -s ".JOMRES_SITEPAGE_URL_AJAX."&task=cronjobs&tmpl=component&no_html=1&secret=".$jomresConfig_secret."> /dev/null</i> ");
 define('_JOMRES_COM_A_CRON_LOGGING','Mostrar el registro en el navegador');
 define('_JOMRES_COM_A_CRON_LOGGING_DESC','Sólo funciona si el método se establece en minicomponente.');
 define('_JOMRES_COM_A_CRON_LOGGINGENABLED','Registro habilitado');
@@ -1118,7 +1118,7 @@ define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE',"Ajustes Paypal");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_CURRENCYCODE',"Código de moneda (eg EUR)");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_USESANDBOX',"¿Usar sandbox?");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_PAYPALEMAIL',"Su correo electrónico Paypal");
-define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Nota: Para usar PayPal, usted debe ir a su cuenta de paypal y desactivar AutoReturn. (Perfil/Preferencias de pago Sitio Web), y establecer IPN (Perfil/Preferencias de Notificación de pago instantánea) para el URL:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_NOHTML."&task=completebk");
+define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_NOTES',"Nota: Para usar PayPal, usted debe ir a su cuenta de paypal y desactivar AutoReturn. (Perfil/Preferencias de pago Sitio Web), y establecer IPN (Perfil/Preferencias de Notificación de pago instantánea) para el URL:<br/><b>&nbsp;".JOMRES_SITEPAGE_URL_AJAX."&task=completebk");
 define('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',".Esta factura ya está lista. Por favor haga clic en el botón para escoger paypal");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE',"¿Reemplazar los ajustes estándar de la pasarela Jomres? ");
 define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"Si la opción de reemplazar los ajustes de PayPal se establece en Sí, entonces suceden varias cosas: Configuración general ya no muestra la configuración de pasarela, y dos, cuando se hace una reserva los ajustes utilizados aquí se utilizan para que el pago se envíe a la dirección ingresada aquí, no a la que previamente se configuro en Configuración General.");

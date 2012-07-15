@@ -35,7 +35,7 @@ class j10004generate_control_panel {
 			{
 			$this->template_touchable=false; return;
 			}
-		
+
 		$buttons = $componentArgs['control_panel_buttons_categorised'];
 		$button_o = array();
 		
@@ -70,7 +70,7 @@ class j10004generate_control_panel {
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[]['DIV']= $tmpl->getParsedTemplate();
 			}
-
+		
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->readTemplatesFromInput( 'control_panel_menu_wrapper.html' );

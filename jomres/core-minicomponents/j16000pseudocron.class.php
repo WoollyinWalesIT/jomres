@@ -80,7 +80,7 @@ class j16000pseudocron
 		foreach ($cron->allUnlockedJobs as $job)
 			{
 			$r=array();
-			$r['JOB'] = '<a href="'.JOMRES_SITEPAGE_URL_NOHTML."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret.'" target="_blank" >'.$job['job_name'].'</a>';
+			$r['JOB'] = '<a href="'.JOMRES_SITEPAGE_URL_AJAX."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret.'" target="_blank" >'.$job['job_name'].'</a>';
 			$rows[]=$r;
 			}
 

@@ -48,7 +48,7 @@ class j16000managers_choose
 		$img_output_superpropertymanager='<img src = "'.$img_superpropertymanager.'"  style="border:none;">';
 		
 		
-		$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN."&format=raw&no_html=1&task=";
+		$output['AJAXURL']=JOMRES_SITEPAGE_URL_ADMIN_AJAX."&task=";
 		$output['ADMINLIVESITE']=JOMRES_SITEPAGE_URL_ADMIN."";
 		$output['_JOMRES_COM_MR_SHOWPROFILES']=_JOMRES_COM_MR_SHOWPROFILES;
 		

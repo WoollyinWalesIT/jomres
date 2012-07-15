@@ -24,7 +24,7 @@ class j10001control_panel
 			$this->template_touchable=false; return;
 			}
 		
-		if (JRPORTAL_AJAXCALL)
+		if (AJAXCALL)
 			return;
 		
 		$output = array();

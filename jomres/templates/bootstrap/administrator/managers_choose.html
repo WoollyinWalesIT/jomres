@@ -1,6 +1,17 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 <!--
+var ajaxurl	= "{AJAXURL}";
+var livesite= "{ADMINLIVESITE}&task=grantMosUser&no_html=1&grantAct=y&name=";
+jomresJquery(function() {
+	jomresJquery( "#username_input" ).autocomplete({
+		source: ajaxurl+'managers_find',
+		minLength: 2,
+		select: function( event, ui ) {
+			location.href = livesite+ui.item.value;
+		}
+	});
+});
 jomresJquery(document).ready(function() {
 	var oTable = jomresJquery('#jomres_admin_table').dataTable({
 		"bJQueryUI": false,

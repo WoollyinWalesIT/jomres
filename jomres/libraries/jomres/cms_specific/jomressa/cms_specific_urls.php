@@ -28,12 +28,9 @@ if (isset($_GET['format']) )
 		define("JOMRES_WRAPPED",1);
 	}
 
-define("JOMRES_SITEPAGE_URL_NOHTML",get_showtime('live_site').'/jomres/index.php?no_html=1&a=k');
+define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/jomres/index.php?no_html=1&a=k');
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/jomres/index.php?admin');
-define("JOMRES_SITEPAGE_URL_SSL",$ssllink.'/jomres/index.php?a=k');
 define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site')."/jomres/index.php?&a=k&tmpl=component&jrajax=1&no_html=1&popup=1");
-define("JOMRES_SITEPAGE_URL_AJAX_ADMIN",get_showtime('live_site')."/jomres/index.php?&a=k&tmpl=component&jrajax=1&no_html=1&popup=1"); 
-define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/jomres/index.php?a=k&format=raw");
 define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/jomres/index.php?a=k");
 
 define("JOMRES_SITEPAGE_URL",$jomresConfig_live_site."/jomres/index.php?a=k");

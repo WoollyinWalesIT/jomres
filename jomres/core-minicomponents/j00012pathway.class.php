@@ -55,7 +55,7 @@ class j00012pathway {
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
 			return;
-		if (isset($_REQUEST['no_html']) && $_REQUEST['no_html'] == "1")
+		if (AJAXCALL)
 			return;
 		$property_uid = $componentArgs['property_uid'];
 		
@@ -81,10 +81,9 @@ class j00012pathway {
 			$breadcrumbs->setPathway();
 			}
 
-		$no_html			= jomresGetParam( $_REQUEST, 'no_html', 0 );
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 
-		if ($no_html==0 && $popup==0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem> 1)
+		if (!AJAXCALL && $popup==0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem> 1)
 			{
 			$pathwayArray=array();
 			$pathway="";
