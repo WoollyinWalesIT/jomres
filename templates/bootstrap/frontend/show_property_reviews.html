@@ -17,7 +17,7 @@ function confirm_review(rating_id,state)
 	{
 	div_name = '#agree_thumbs'+rating_id;
 	// 
-	jomresJquery.get('{AJAXURL}&task=review_confirm&rating_id='+rating_id+'&state='+state, function(data) {
+	jomresJquery.get('{JOMRES_SITEPAGE_URL_AJAX}&task=review_confirm&rating_id='+rating_id+'&state='+state, function(data) {
 		jomresJquery('.result').html(data);
 		
 		if (data == 1)

@@ -563,7 +563,7 @@ class j01010listpropertys {
 
 				if (!$data_only)
 					{
-					if (JOMRES_NOHTML != 1 || get_showtime('task') == "ajax_search_filter")
+					if (!AJAXCALL || get_showtime('task') == "ajax_search_filter")
 						{
 						$header_pageoutput[] = $header_output;
 						$tmpl = new patTemplate();

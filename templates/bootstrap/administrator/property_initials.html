@@ -3,7 +3,7 @@
 <!--
 function get_properties(initial)
 	{
-	jomresJquery.get('{AJAXURL}&task=listpropertys&tmpl=component&no_html=1&initial='+initial,
+	jomresJquery.get('{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=listpropertys&initial='+initial,
 		function(data){
 			populateDiv('found_properties',data);
 			}

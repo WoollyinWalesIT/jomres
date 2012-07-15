@@ -11,7 +11,7 @@ jomresJquery(document).ready(function() {
 
 function change_access_level(minicomp,level)
 	{
-	cmd = '{AJAXURL}&task=ajax_change_access_level&minicomp='+minicomp+'&new_level='+level;
+	cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_change_access_level&minicomp='+minicomp+'&new_level='+level;
 	jomresJquery.get(cmd, function(data) {
 	//	if (data == 1)
 	//		{
