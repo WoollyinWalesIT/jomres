@@ -1856,3 +1856,6 @@ define('_JOMRES_BOOKINGFORM_LOCK_DESC',"To prevent the danger of guests double b
 
 define('_JOMRES_BOOTSTRAPSWITCH',"Enable Twitter Bootstrap templates");
 define('_JOMRES_BOOTSTRAPSWITCH_DESC',"Joomla 2.5 only option. Setting this to Yes will tell Jomres to use it's bootstrap templates (frontend only). In Joomla 3 this option will be hidden and the switch is done automatically.");
+
+define('COMMON_ACTION',"Action");
+define('COMMON_VIEW',"View");
