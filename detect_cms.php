@@ -23,7 +23,7 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'cms'.JRDS.'ver
 	// Added in anticipation of Joomla 3, may need updating
 	if ($jversion->RELEASE == '3.0')
 		{
-		define("_JOMRES_DETECTED_CMS","joomla3");
+		define("_JOMRES_DETECTED_CMS","joomla30");
 		define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
 		}
 	}
