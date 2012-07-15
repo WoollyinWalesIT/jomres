@@ -847,7 +847,10 @@ class patTemplate
 		$common_strings['LIVE_SITE']=get_showtime("live_site");
 		$common_strings['LIVESITE']=get_showtime("live_site");
 		$common_strings['COMMON_LAST_VIEWED_PROPERTY_UID']=get_showtime('last_viewed_property_uid');
-
+		
+		$common_strings['COMMON_ACTION']=jr_gettext('COMMON_ACTION',COMMON_ACTION,false);
+		$common_strings['COMMON_VIEW']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
+		
 		return $common_strings;
 		}
    /**
