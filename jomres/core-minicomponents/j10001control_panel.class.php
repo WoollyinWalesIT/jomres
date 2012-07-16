@@ -110,7 +110,7 @@ class j10001control_panel
 			}
 
 		$output['PLUGIN_CHECK'] = plugin_check();
-		
+
 		$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
 		$licensekey=doSelectSql($query,1);
 		$licensekey = '';
@@ -216,8 +216,9 @@ function plugin_check()
 	$highlight = (using_bootstrap() ? "alert alert-info" :"ui-state-highlight");
 	foreach ($recommended_plugins as $plugin_name=>$plugin)
 		{
+		
 		$event_point = substr($plugin['minicomponent_name'],1,strlen($plugin['minicomponent_name']) );
-		if (array_key_exists($event_point,$MiniComponents->registeredClasses) )
+		if (!array_key_exists($event_point,$MiniComponents->registeredClasses) )
 			{
 			$messages .= "<div class='".$highlight."'><strong> Recommended plugin </strong>: ".$plugin_name."<strong><br/> Functionality : </strong>".$plugin['message']."</div>";
 			}
