@@ -97,61 +97,25 @@ class j16000showplugins
 				}
 			}
 
-		//if (function_exists('json_decode'))
-			$json = true;
+		$remote_plugins_data=queryUpdateServer("","r=dp&format=json&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
 
-		if ($json)
-			$remote_plugins_data=queryUpdateServer("","r=dp&format=json&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
-		else
-			$remote_plugins_data=queryUpdateServer("","r=dp&cms="._JOMRES_DETECTED_CMS."&key=".$key_validation->key_hash);
-		
-		if ($json)
+		$rp_array=json_decode($remote_plugins_data);
+		foreach ($rp_array as $rp)
 			{
-			
-			$rp_array=json_decode($remote_plugins_data);
-			foreach ($rp_array as $rp)
-				{
-				$remote_plugins[trim(addslashes(@$rp->name))]=array(
-					"name"					=>trim(addslashes(@$rp->name)),
-					"version"				=>(float)@$rp->version,
-					"lastupdate"			=>addslashes(@$rp->lastupdate),
-					"description"			=>addslashes(@$rp->description),
-					"type"					=>addslashes(@$rp->type),
-					"min_jomres_ver"		=>addslashes(@$rp->min_jomres_ver),
-					"price"					=>(float)@$rp->price,
-					"manual_link"			=>addslashes(@$rp->manual_link),
-					"change_log"			=>addslashes(@$rp->change_log),
-					"highlight"				=>addslashes(@$rp->highlight),
-					"image"					=>addslashes(@$rp->image),
-					"demo_url"				=>addslashes(@$rp->demo_url),
-					);
-				}
-			}
-		else
-			{
-			$rp_array=explode("<br/>",$remote_plugins_data);
-			foreach ($rp_array as $rp)
-				{
-				$rp_string=explode("^",$rp);
-				$cname=addslashes($rp_string[1]);
-				$name=htmlentities($rp_string[1], ENT_QUOTES, 'UTF-8') ;
-				if ($cname!="")
-					{
-					$remote_plugins[$cname]=array(
-						"name"=>trim(addslashes($name)),
-						"version"=>(float)$rp_string[2],
-						"lastupdate"=>addslashes($rp_string[3]),
-						"description"=>addslashes($rp_string[4])
-						);
-					if (isset($rp_string[5]) )
-						$remote_plugins[$cname]['type']=$rp_string[5];
-					else
-						$remote_plugins[$cname]['type']="internal";
-
-					if (isset($rp_string[6]))
-						$remote_plugins[$cname]['min_jomres_ver']=$rp_string[6];
-					}
-				}
+			$remote_plugins[trim(addslashes(@$rp->name))]=array(
+				"name"					=>trim(addslashes(@$rp->name)),
+				"version"				=>(float)@$rp->version,
+				"lastupdate"			=>addslashes(@$rp->lastupdate),
+				"description"			=>addslashes(@$rp->description),
+				"type"					=>addslashes(@$rp->type),
+				"min_jomres_ver"		=>addslashes(@$rp->min_jomres_ver),
+				"price"					=>(float)@$rp->price,
+				"manual_link"			=>addslashes(@$rp->manual_link),
+				"change_log"			=>addslashes(@$rp->change_log),
+				"highlight"				=>addslashes(@$rp->highlight),
+				"image"					=>addslashes(@$rp->image),
+				"demo_url"				=>addslashes(@$rp->demo_url),
+				);
 			}
 
 		$d = @dir($jrePath);
@@ -214,89 +178,36 @@ class j16000showplugins
 					}
 				}
 			}
-			
+		
+		$output = array();
+		$pageoutput = array();
 		//////////////////////////////////////////////////////
 		
-		echo '<h2>Jomres Plugin Manager</h2>';
-		echo '<table width="100%" border="0"><tr><td width="75%" valign="top">';
+		$output['PAGETITLE']= 'Jomres Plugin Manager';
+
+		$bronze_users = array();
 		if (!$developer_user)
 			{
-			echo '
-			<div id="cart_wrapper" style="width:500px;">
-			
-				<div class="ui-widget-header ui-corner-all"><img src = "'.get_showtime('live_site').'/jomres/images/cart_red_transparent.png"/>Your shopping cart</div>
-				<form id="cart">
-				</form>
-				<div class="ui-state-highlight ui-corner-all">Total <strong>&pound;<span id="total"></span></strong></div>
-				<button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Order plugin(s)</button>
-				<p>
-				Note, if you have a Jomres Developer or Perpetual license number, please make sure you\'ve entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
-				</p>
-			</div>
-			<div id="username_input" style="display:none">
-				<fieldset>
-				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you\'ve done that, click the Purchase Plugins! button.<br/>
-					<legend>Your details</legend>
-						<ul>
-							<li>
-								<label for=name>Username</label>
-								<input id=name name=name type=text placeholder="Your username" value="'.$jrConfig['license_server_username'].'" required autofocus>
-							</li>
-							<li>
-								<label for=password>Password</label>
-								<input id=password name=password type=password placeholder="Your password" value="'.$jrConfig['license_server_password'].'" required>
-							</li>
-						</ul>
-				</fieldset>
-				<small>Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</small><br/>
-				<small>Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Developer or Jomres Perpetual license.</small><br/>
-				<div style="align:center;"><button class="fg-button ui-state-default ui-corner-all" id="purchase_button" onClick="sumbint();" style="width:275px" >Purchase plugins!</button></div>
-			</div>
-			<br/><br/><br/>
-			';
+			if ($jrConfig['license_server_username'] == "") // With the required vars setting in the template, if we don't make these at least spaces the appropriate cart section will not show.
+				{
+				$jrConfig['license_server_username'] = " ";
+				$jrConfig['license_server_password'] = " ";
+				}
+			$bronze_users[0]['license_server_username'] = $jrConfig['license_server_username'];
+			$bronze_users[0]['license_server_password'] = $jrConfig['license_server_password'];
 			}
-		
+
 		////////////////////////////////////////////////////// Third party plugins
+		$developer_users = array();
 		if ($developer_user)
-		echo '
-		<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3><br/>Bold items in the core plugins list are generally essential when building a portal, and if you have upgraded from v4 you should consider installing those plugins to continue working as before.';
-		
-		echo '</td>';
-		echo '<td width="25%" valign="top">
-			<table width="100%" border="0">
-			<tr>
-				<th class="ui-widget-header ui-corner-tl ui-corner-tr" align="center">Legend</td>
-			</tr>
-			<tr class="ui-state-highlight">
-				<td align="center">Already installed</td>
-			</tr>
-			<tr class="ui-state-error">
-				<td  align="center">Upgrade is available</td>
-			</tr>
-            <tr>
-				<td align="center" style="border-style:solid;border-color:#00ff00;border-width:1px;">Free plugin</td>
-			</tr>
-			<tr>
-				<td align="center" class="ui-widget-content">Third party plugin</td>
-			</tr>
-		</table>
-		</td></tr></table>
-		';
-		echo '<table width="100%" border="0">
-			<tr>
-				<th class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="6">Third party plugins</th>
-			</tr>
-			<tr>
-				<th class="ui-state-default">Name</th>
-				<th class="ui-state-default">Your Version</th>
-				<th class="ui-state-default">Description</th>
-				<th class="ui-state-default">Author</th>
-				<th class="ui-state-default">Author email</th>
-				<th class="ui-state-default">Remove plugin</th>
-			</tr>';
+			{
+			$bronze_users[0]['dummy'] = " ";
+			}
+
 		$uninstall_text="Uninstall";
 		$externalPluginTypes=array("component","module","mambot");
 		$this->set_main_plugins();
+		$thirdpartyplugins = array();
 		foreach ($third_party_plugins as $tpp)
 			{
 			$type=$tpp['type'];
@@ -305,98 +216,52 @@ class j16000showplugins
 			$installAction=$install_text;
 			$uninstallAction=" ";
 			$already_installed = false;
+			$uninstallLink="";
 			if (array_key_exists($n,$installed_plugins ) )
 				{
 				$already_installed = true;
 				$uninstallAction=$uninstall_text;
 				$installAction=$reinstall_text;
 				$row_class='alreadyinstalled';
-				$action="Reinstall";
-				$uninstall="<a href=\"".$uninstallLink."\">".$uninstallText."</a>";
+				$uninstallLink=JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n;
 				}
-
-			$uninstallLink="";
-			
-			$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
 
 			$local_version=$installed_plugins[$n]['version'];
 			if (!array_key_exists($n,$installed_plugins ) )
 				$local_version="N/A";
-			echo
-			"<tr class=\"".$row_class."\">
-				<td class=\"ui-widget-content ui-corner-all\">".$tpp['name']."</td>
-				<td class=\"ui-widget-content ui-corner-all\">".$local_version."</td>
-				<td class=\"ui-widget-content ui-corner-all\">".stripslashes($tpp['description'])."</td>
-				<td class=\"ui-widget-content ui-corner-all\">".stripslashes($tpp['author'])."</td>
-				<td class=\"ui-widget-content ui-corner-all\"><a href=\"mailto:".stripslashes($tpp['authoremail'])."?subject=".$tpp['name']."\">".stripslashes($tpp['authoremail'])."</a> </td>
-				<td class=\"ui-widget-content ui-corner-all\">".$uninstallLink."</td>
-			</tr>";
+				
+			$r = array();
+			$r['UNINSTALL']=$uninstallAction;
+			$r['ROWCLASS']=$row_class;
+			$r['NAME']			=$tpp['name'];
+			$r['LOCALVERSION']=$local_version;
+			$r['DESCRIPTION']=stripslashes($tpp['description']);
+			$r['AUTHOR']=stripslashes($tpp['author']);
+			$r['AUTHOREMAIL']=stripslashes($tpp['authoremail']);
+			$r['UNINSTALLLINK']=$uninstallLink;
+
+			$thirdpartyplugins[]=$r;
 			}
-		echo '</table>
-		';
-		// echo '<script type="text/javascript">
-			// jomresJquery(function() {
-				// jomresJquery(\'tr\').hover(function() {
-					// jomresJquery(this).contents(\'td\').css({\'border\': \'1px solid red\', \'border-left\': \'none\', \'border-right\': \'none\'});
-					// jomresJquery(this).contents(\'td:first\').css(\'border-left\', \'1px solid red\');
-					// jomresJquery(this).contents(\'td:last\').css(\'border-right\', \'1px solid red\');
-				// },
-				// function() {
-					// jomresJquery(this).contents(\'td\').css(\'border\', \'none\');
-				// });
-			// });
-			// </script>';
-			
-			echo '<br /><br /><form enctype="multipart/form-data" action="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&thirdparty=1" method="post">
-			<input type="hidden" name="no_html" value="1" />
-			<table width="100%" border="0">
-                <tr>
-                    <th class="ui-widget-header ui-corner-tl ui-corner-tr">Install third party plugin</th>
-                </tr>
-                <tr>
-                    <td class="ui-widget-content ui-corner-all"><input type="file" name="pluginfile" size="40"/> <input type="submit" value="Install" class="fg-button ui-state-default ui-corner-all" /></td>
-                </tr>
-			</table>
-			</form>
-		<br/>
-		<br/>
-		
-		';
-		
+
+
 		////////////////////////////////////////////////////// Remote plugins
 		$span = 12;
 		if ($developer_user)
 			$span=11;
-		
-		echo '<table width="100%" border="0">
-			<tr>
-				<td class="ui-widget-header ui-corner-tl ui-corner-tr" colspan="'.$span.'" align="center">Jomres.net plugins</td>
-			</tr>
-			<tr>
-				<th class="ui-state-default">Name</th>
-				<!-- <th class="ui-state-default">Image</th>  -->
-				<th class="ui-state-default">Minimum Jomres version</th>
-				<th class="ui-state-default">Your Version</th>
-				<th class="ui-state-default">Current Version</th>
-				<th class="ui-state-default">Last updated</th>
-				<th class="ui-state-default">Description</th>
-				<th class="ui-state-default">Changelog</th>
-				<th class="ui-state-default">Warnings</th>
-				<th class="ui-state-default">Add/reinstall/upgrade plugin</th>
-				<th class="ui-state-default">Remove plugin</th>
-				';
-				if (!$developer_user)
-					echo '<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>';
-			echo '</tr>';
+		$OUTPUT['SPAN'] = $span;
+
 		$install_text="Install";
 		$reinstall_text="Reinstall";
 		$upgrade_text="Upgrade";
 		$uninstall_text="Uninstall";
 		$externalPluginTypes=array("component","module","mambot");
-		$counter = 0;
-		
+
+		$jomresdotnet_plugins = array();
+
 		foreach ($remote_plugins as $rp)
 			{
+			$r=array();
+			
 			$type=$rp['type'];
 			$plugin_name = $rp['name'];
 			if ($developer_user)
@@ -418,6 +283,8 @@ class j16000showplugins
 				$row_class='ui-state-highlight';
 				$action="Reinstall";
 				$uninstall="<a href=\"".$uninstallLink."\">".$uninstallText."</a>";
+				$r['UNINSTALL_LINK'] = $uninstallLink;
+				$r['UNINSTALL_TEXT'] = $uninstallText;
 				if ($rp['version'] > $installed_plugins[$plugin_name]['version'])
 					{
 					$installAction=$upgrade_text;
@@ -432,15 +299,30 @@ class j16000showplugins
 				$strong1 = '<strong>';
 				$strong2 = '</strong>';
 				}
+			$r['STRONG1']=$strong1;
+			$r['STRONG2']=$strong2;
 			
-			$installLink='';
+			$r['INSTALL_LINK'] ='';
+			$r['INSTALL_TEXT'] ='';
 			if (array_key_exists($plugin_name,$current_licenses) || $developer_user)
-				$installLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$n.'">'.$installAction.'</a>';
+				{
+				$r['INSTALL_LINK'] =JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$n;
+				$r['INSTALL_TEXT'] =$installAction;
+				}
 
-			$uninstallLink="";
-			if (!in_array($rp['type'],$externalPluginTypes) )
-				$uninstallLink='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n.'">'.$uninstallAction.'</a>';
-
+			$r['UNINSTALL_LINK'] ='';
+			$r['UNINSTALL_TEXT'] ='';
+			$r['UNINSTALL'] ='';
+			if (!in_array($rp['type'],$externalPluginTypes) && array_key_exists($rp['name'],$installed_plugins ) )
+				{
+				$r['UNINSTALL_LINK'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n;
+				$r['UNINSTALL_TEXT'] = $uninstallAction;
+				if (using_bootstrap())
+					$r['UNINSTALL'] = '<a href="'.$r['UNINSTALL_LINK'].'" class="btn btn-danger" > <i class="icon-trash icon-white"></i>'.$r['UNINSTALL_TEXT'].'</a>';
+				else
+					$r['UNINSTALL'] = '<a href="'.$r['UNINSTALL_LINK'].'" class="fg-button ui-state-default ui-corner-all" >'.$r['UNINSTALL_TEXT'].'</a>';
+				}
+				
 			$local_version=$installed_plugins[$plugin_name]['version'];
 			if (!array_key_exists($plugin_name,$installed_plugins ) )
 				$local_version="N/A";
@@ -451,81 +333,146 @@ class j16000showplugins
 				$row_class='';
 				$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
 				}
-				
-			$manual_link ='';
+			
+			$r['MANUAL_LINK'] ='';
+			$r['MANUAL_TEXT'] ='';
 			if( isset($rp['manual_link']) && $rp['manual_link'] != '')
-				$manual_link = '&nbsp;<a href="http://manual.jomres.net/'.$rp['manual_link'].'.html" target="_blank">Manual</a>';
-				
-			$demo_url ='';
+				{
+				$r['MANUAL_LINK'] = 'http://manual.jomres.net/'.$rp['manual_link'].'.html';
+				$r['MANUAL_TEXT'] = 'Manual';
+				}
+			
+			$r['DEMO_LINK'] ='';
+			$r['DEMO_TEXT'] ='';
 			if( isset($rp['demo_url']) && $rp['demo_url'] != '')
-				$demo_url = '&nbsp;<a href="'.$rp['demo_url'].'.html" target="_blank">Demo</a>';
-			
-			$changelog = '';
-			if ($rp['change_log'] != '' )
-				$changelog = jomres_makeTooltip($rp['name'],$hover_title="",$rp['change_log'],$rp['change_log'],$class="",$type="infoimage");
-				
-			$highlight = '';
-			if ($rp['highlight'] != '' )
-				$highlight = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
-			
-			// $image = '';
-			// if ($rp['image'] != '' )
-				// $image = jomres_make_image_popup($rp['name'],$rp['image']);
-			
-			// old image showing html, removed because it slowed down the plugin list
-			// <td class=\"ui-corner-all\" $style>".$image."</td>
-			$readable_name = ucwords(" ".str_replace("_"," ",$rp['name']));
-			echo
-			"<tr class=\"".$row_class." \" >
-				<td class=\"ui-corner-all\" $style><a name=".$rp['name']."></a> ".$strong1.$readable_name.$strong2."</td>
-				<td class=\"ui-corner-all\" $style>".$rp['min_jomres_ver']."</td>
-				<td class=\"ui-corner-all\" $style>".$local_version."</td>
-				<td class=\"ui-corner-all\" $style>".$rp['version']."</td>
-				<td class=\"ui-corner-all\" $style>".$rp['lastupdate']."</td>
-				<td class=\"ui-corner-all\" $style>".$strong1.stripslashes($rp['description']).$strong2.$manual_link." ".$demo_url."</td>
-				<td class=\"ui-corner-all\" $style>".$changelog."</td>
-				<td class=\"ui-corner-all\" $style>".$highlight."</td>
-				";
-				if ( count($min_jomres_ver) == 3 && count($this_jomres_version) == 3)
-					{
-					$min_major_version = $min_jomres_ver[0];
-					$min_minor_version = $min_jomres_ver[1];
-					$min_revis_version = $min_jomres_ver[2];
-					
-					$current_major_version = $this_jomres_version[0];
-					$current_minor_version = $this_jomres_version[1];
-					$current_revis_version = $this_jomres_version[2];
-					
+				{
+				$r['DEMO_LINK'] =$rp['demo_url'];
+				$r['DEMO_TEXT'] ='Demo';
+				}
 
-					if ( $current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version >= $min_revis_version )
-						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
-					elseif ($current_major_version >= $min_major_version && $current_minor_version > $min_minor_version)
-						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
-					elseif ($current_major_version > $min_major_version) 
-						echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
-					else 
-						echo "<td class=\"ui-corner-all\" $style>Requires a later version of Jomres</td>";
+			$r['CHANGELOG'] ='';
+			if ($rp['change_log'] != '' )
+				{
+				$r['CHANGELOG'] = $rp['change_log'];
+				$r['CHANGELOG_TOOLTIP'] =jomres_makeTooltip($rp['name'],$hover_title="",$rp['change_log'],$rp['change_log'],$class="",$type="infoimage");
+				}
+				
+			$r['HIGHLIGHT'] = '';
+			if ($rp['highlight'] != '' )
+				{
+				$r['HIGHLIGHT'] = $rp['highlight'];
+				$r['HIGHLIGHT_TOOLTIP'] = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
+				}
+
+			$r['IMAGE']=$rp['image'];
+			
+			$readable_name = ucwords(" ".str_replace("_"," ",$rp['name']));
+			$r['READABLE_NAME']=$readable_name;
+			$r['PLUGIN_NAME']=$rp['name'];
+			$r['MIN_JOMRES_VER']=$rp['min_jomres_ver'];
+			$r['LOCAL_VER']=$local_version;
+			$r['REMOTE_VER']=$rp['version'];
+			$r['PLUGIN_DESC']=stripslashes($rp['description']);
+			$r['LASTUPDATE']=$rp['lastupdate'];
+
+			$min_major_version = $min_jomres_ver[0];
+			$min_minor_version = $min_jomres_ver[1];
+			$min_revis_version = $min_jomres_ver[2];
+			
+			$current_major_version = $this_jomres_version[0];
+			$current_minor_version = $this_jomres_version[1];
+			$current_revis_version = $this_jomres_version[2];
+			
+			$r['LATERVERSION']="Requires a later version of Jomres";
+			
+			if ( $current_major_version >= $min_major_version && $current_minor_version >= $min_minor_version && $current_revis_version >= $min_revis_version )
+				$condition=1;
+			elseif ($current_major_version >= $min_major_version && $current_minor_version > $min_minor_version)
+				$condition=1;
+			elseif ($current_major_version > $min_major_version) 
+				$condition=1;
+			else 
+				$condition=0;
+			
+			if ($condition == 1 )
+				$r['LATERVERSION']="";
+			
+			if ($condition == 1 && array_key_exists($rp['name'],$current_licenses ) )
+				{
+				if (using_bootstrap())
+					$r['INSTALL'] = '<a href="'.$r['INSTALL_LINK'].'" class="btn btn-primary" > <i class="icon-download-alt icon-white"></i> '.$r['INSTALL_TEXT'].'</a>';
+				else
+					$r['INSTALL'] = '<a href="'.$r['INSTALL_LINK'].'" class="fg-button ui-state-default ui-corner-all" >'.$r['INSTALL_TEXT'].'</a>';
+				}
+			
+
+			
+			$r['PRICE']=$rp['price'];
+			if ( !array_key_exists($rp['name'],$installed_plugins ) && !array_key_exists($rp['name'],$current_licenses ) )
+				{
+				if ($rp['price'] == 0)
+					{
+					$rp['price'] = 0.00;
+					}
+					//
+				$r['PRICE']=$rp['price'];
+				$r['ADD_TEXT']="Add to cart";
+				}
+			
+			if (  (array_key_exists($rp['name'],$installed_plugins) || array_key_exists($rp['name'],$current_licenses ) ) || $developer_user )
+				{
+				$r['PRICE']='';
+				$r['ADD_TEXT']="";
+				$r['ADD_TO_CART_BUTTON'] = "";
+				}
+			else
+				{
+				if (using_bootstrap())
+					{
+					$btn_emphasis = "btn-success";
+					if ($r['PRICE'] == 0)
+						$btn_emphasis = "btn-inverse";
+					
+					$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" > <i class="icon-shopping-cart icon-white"></i>&pound;'.$r['PRICE'].'</button>';
 					}
 				else
-					echo "<td class=\"ui-corner-all\" $style>".$installLink."</td>";
-
-				echo "<td class=\"ui-corner-all\" $style>".$uninstallLink."</td>";
-				$button = '';
+					$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" >&pound;'.$r['PRICE'].'</button>';
 				
-				if ( !array_key_exists($rp['name'],$installed_plugins ) && !array_key_exists($rp['name'],$current_licenses ) )
+				}
+
+			if (using_bootstrap())
+				{
+				switch ($row_class)
 					{
-					$button ='Add to cart <button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');" >&pound;'.number_format($rp['price']).'</button>';
-					//$button = '<button id="'.$rp['name'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$rp['name'].'\',\''.$rp['price'].'\');jomresJquery(\'#cart_wrapper\').effect( \'pulsate\',1000 );">&pound;'.number_format($rp['price']).'</button>';
+					case 'ui-state-highlight':
+						$row_class='alert alert-info';
+					break;
+					case 'ui-state-error':
+						$row_class='alert alert-error';
+					break;
+					default :
+						$row_class='well';
+					break;
 					}
-				if (!$developer_user)
-					echo "<td class=\"ui-corner-all\" $style>".$button."</td>";
-			echo "</tr>
-			";
-			$counter++;
-			}
+				
+				}
+			$r['ROWCLASS']=$row_class;
 			
-		echo '</table>
-		';
+			$r['STYLE']=$style;
+			
+			$jomresdotnet_plugins[]=$r;
+			}
+
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'bronze_users', $bronze_users );
+		$tmpl->addRows( 'thirdpartyplugins', $thirdpartyplugins );
+		$tmpl->addRows( 'jomresdotnet_plugins', $jomresdotnet_plugins );
+
+		$tmpl->readTemplatesFromInput( 'plugin_manager.html' );
+		$tmpl->displayParsedTemplate();
 		}
 
 	function set_main_plugins()

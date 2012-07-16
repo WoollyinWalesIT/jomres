@@ -43,5 +43,53 @@ jomresJquery(document).ready(function(){
 		/* opacity:0.;   By default the loader icon is disabled, remove the comment tags here enable it, and in the above div */
 	}
 </style>
-
+<script type="text/javascript">
+/* Shamelessly pinched from JED */
+jomresJquery(document).ready(function(){
+	jomresJquery(function () 
+		{
+		var scrollDiv = document.createElement('div');
+		jomresJquery(scrollDiv).attr('id', 'toTop').html('^ Back to Top').appendTo('body');    
+		jomresJquery(window).scroll(function () 
+			{
+			console.log(jomresJquery(this).scrollTop());
+			if (jomresJquery(this).scrollTop() != 0) 
+				{
+				jomresJquery('#toTop').fadeIn();
+				} 
+			else 
+				{
+				jomresJquery('#toTop').fadeOut();
+				}
+			});
+		jomresJquery('#toTop').click(function () 
+			{
+			jomresJquery('body,html').animate({
+				scrollTop: 0
+				},
+				800);
+			});
+		});
+		
+	jomresJquery(".collapse").collapse();
+	});
+</script>
+<style>
+#toTop {
+    background: none repeat scroll 0 0 #121212;
+    border: 1px solid #333333;
+    bottom: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: none;
+    font-size: 0.9em;
+    padding: 5px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    text-transform: lowercase;
+    width: 100px;
+    z-index: 10;
+}
+</style>
 </patTemplate:tmpl>
