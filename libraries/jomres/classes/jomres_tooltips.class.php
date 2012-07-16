@@ -34,6 +34,7 @@ class jomres_tooltips
 
 	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments)
 		{
+		$hover_content = filter_var($hover_content,FILTER_SANITIZE_SPECIAL_CHARS);
 		$keeplooking=true;
 		$beautyTip_opacity = .9;
 		// Just in the off-chance that we supply the same div name twice

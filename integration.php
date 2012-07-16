@@ -1032,7 +1032,7 @@ class jomresHTML
 							hidden.val(jomresJquery(this).val());
 					});
 					if(button.val() == hidden.val()) {
-						button.addClass(\'active\');
+						button.addClass(\'btn-primary\');
 					  }
 					});
 				  });
