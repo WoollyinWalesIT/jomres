@@ -1016,7 +1016,9 @@ class jomresHTML
 	{
 	function makeOption( $val, $text='', $value_name='value', $text_name='text' )
 		{
-		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() )
+		if (defined('AJAXCALL'))
+			return;
+		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap())
 			{
 			echo '
 			<script>
