@@ -1016,9 +1016,7 @@ class jomresHTML
 	{
 	function makeOption( $val, $text='', $value_name='value', $text_name='text' )
 		{
-		if (defined('AJAXCALL'))
-			return;
-		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap())
+		if (!defined('SELECTLISTJAVASCRIPT') && using_bootstrap() && !AJAXCALL)
 			{
 			echo '
 			<script>
@@ -1052,7 +1050,8 @@ class jomresHTML
 
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
 		{
-		if (!using_bootstrap() || count($arr) != 2)
+		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone");
+		if (!using_bootstrap() || count($arr) != 2 || in_array($name,$not_for_these_dropdowns) || get_showtime('task') == "handlereq")
 			{
 			$attribs = str_replace('class="inputbox"',"",$attribs);
 			$attribs = str_replace('class="input-medium"',"",$attribs);
