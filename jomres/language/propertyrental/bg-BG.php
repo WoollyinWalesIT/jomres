@@ -1802,3 +1802,5 @@ define('_JOMRES_BOOTSTRAPSWITCH_DESC',"Joomla 2.5 only option. Setting this to Y
 
 define('COMMON_ACTION',"Action");
 define('COMMON_VIEW',"View");
+
+define('BACKTOTOP',"Back to top");
