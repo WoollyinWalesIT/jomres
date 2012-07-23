@@ -310,6 +310,12 @@ class j16000showplugins
 				$r['INSTALL_TEXT'] =$installAction;
 				}
 
+			$r['HPLUGINPRICE']='';
+			if (!$developer_user)
+				{
+				$r['HPLUGINPRICE']="Plugin price<br/> (Click to add to your cart)";
+				}
+			
 			$r['UNINSTALL_LINK'] ='';
 			$r['UNINSTALL_TEXT'] ='';
 			$r['UNINSTALL'] ='';
@@ -397,7 +403,7 @@ class j16000showplugins
 			if ($condition == 1 )
 				$r['LATERVERSION']="";
 			
-			if ($condition == 1 && array_key_exists($rp['name'],$current_licenses ) )
+			if ($condition == 1 && ( array_key_exists($rp['name'],$current_licenses) || $developer_user) )
 				{
 				if (using_bootstrap())
 					$r['INSTALL'] = '<a href="'.$r['INSTALL_LINK'].'" class="btn btn-primary" > <i class="icon-download-alt icon-white"></i> '.$r['INSTALL_TEXT'].'</a>';
