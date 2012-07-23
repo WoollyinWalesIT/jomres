@@ -1055,28 +1055,6 @@ if (get_showtime('javascript_caching_enabled'))
 	$MiniComponents->triggerEvent('99999',$componentArgs); // Javascript and CSS caching
 	}
 
-// For development on Joomla 3, Alpha 1. Bootstrap isn't yet included by Joomla, so we'll do this for now
-if (using_bootstrap() && !AJAXCALL )
-	{
-	echo '
-	<link href="//twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-	<link href="//twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
-	<script src="//twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
-	';
-	}
-
 endrun();
 
 if (defined("JOMRES_RETURNDATA") )
