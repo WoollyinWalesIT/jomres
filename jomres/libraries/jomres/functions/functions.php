@@ -1215,6 +1215,14 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 					VALUES
 					('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
 					}
+				elseif ( _JOMRES_DETECTED_CMS == "joomla30" )
+					{
+					$query="INSERT INTO #__modules
+					(
+					`title`,`note`,`content`,`ordering`,`position`,`checked_out`,`checked_out_time`,`published`,`module`,`access`,`showtitle`,`params`)
+					VALUES
+					('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
+					}
 				$result=doInsertSql($query,"");
 				}
 				
