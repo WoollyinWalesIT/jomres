@@ -21,20 +21,36 @@ class j00061bottomtemplate {
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=false; return;
+			$this->template_touchable=true; return;
 			}
 		if (AJAXCALL)
 			return;
 		$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
+		
+		$pageoutput = array( array('BACKTOTOP'=>jr_gettext('BACKTOTOP',BACKTOTOP,false)));
+
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		if ($management_view)
 			$tmpl->readTemplatesFromInput( 'management_bottom.html');
 		else
 			$tmpl->readTemplatesFromInput( 'bottom.html');
+		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->displayParsedTemplate();
 		}
 
+	function touch_template_language()
+		{
+		$output=array();
+
+		$output[]		=jr_gettext('BACKTOTOP',BACKTOTOP) ;
+		
+		foreach ($output as $o)
+			{
+			echo $o;
+			echo "<br/>";
+			}
+		}
 	/**
 	#
 	 * Must be included in every mini-component

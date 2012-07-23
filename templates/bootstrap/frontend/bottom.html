@@ -1,4 +1,4 @@
-<patTemplate:tmpl name="bottom">
+<patTemplate:tmpl name="pageoutput">
 
 <center><a href="http://www.jomres.net">Powered by Jomres</a></center>
 
@@ -44,12 +44,15 @@ jomresJquery(document).ready(function(){
 	}
 </style>
 <script type="text/javascript">
-/* Shamelessly pinched from JED */
+/* Shamelessly pinched from JED. Uncomment it to activate it. */
+/*
 jomresJquery(document).ready(function(){
 	jomresJquery(function () 
 		{
 		var scrollDiv = document.createElement('div');
-		jomresJquery(scrollDiv).attr('id', 'toTop').html('^ Back to Top').appendTo('body');    
+		jomresJquery(scrollDiv).attr('id', 'toTop').html('^ {BACKTOTOP}').appendTo('body');
+		jomresJquery(scrollDiv).addClass('alert alert-info');
+		
 		jomresJquery(window).scroll(function () 
 			{
 			console.log(jomresJquery(this).scrollTop());
@@ -76,10 +79,8 @@ jomresJquery(document).ready(function(){
 </script>
 <style>
 #toTop {
-    background: none repeat scroll 0 0 #121212;
-    border: 1px solid #333333;
+    background: none repeat scroll 0 0 ;
     bottom: 0;
-    color: #FFFFFF;
     cursor: pointer;
     display: none;
     font-size: 0.9em;
@@ -92,4 +93,7 @@ jomresJquery(document).ready(function(){
     z-index: 10;
 }
 </style>
+
+*/
+
 </patTemplate:tmpl>

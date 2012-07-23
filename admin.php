@@ -128,7 +128,8 @@ if (!AJAXCALL)
 			jomresJquery(function () 
 				{
 				var scrollDiv = document.createElement('div');
-				jomresJquery(scrollDiv).attr('id', 'toTop').html('^ Back to Top').appendTo('body');    
+				jomresJquery(scrollDiv).attr('id', 'toTop').html('^ <?php echo jr_gettext('BACKTOTOP',BACKTOTOP,false) ?>').appendTo('body');
+				jomresJquery(scrollDiv).addClass('alert alert-info');
 				jomresJquery(window).scroll(function () 
 					{
 					console.log(jomresJquery(this).scrollTop());
@@ -155,10 +156,8 @@ if (!AJAXCALL)
 		</script>
 		<style>
 		#toTop {
-			background: none repeat scroll 0 0 #121212;
-			border: 1px solid #333333;
+			background: none repeat scroll 0 0 ;
 			bottom: 0;
-			color: #FFFFFF;
 			cursor: pointer;
 			display: none;
 			font-size: 0.9em;
