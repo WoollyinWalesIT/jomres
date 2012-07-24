@@ -5632,6 +5632,12 @@ class dobooking
 	function calcTotals()
 		{
 		$this->setErrorLog("calcTotals:: Started");
+		$this->setErrorLog("calcTotals:: room total ".$this->room_total);
+		$this->setErrorLog("calcTotals:: tax ".$this->tax);
+		$this->setErrorLog("calcTotals:: sps ".$this->single_person_suppliment);
+		$this->setErrorLog("calcTotals:: extras ".$this->extrasvalue);
+		
+		
 		$this->billing_grandtotal=($this->room_total+$this->extrasvalue+$this->tax+$this->single_person_suppliment);
 		$this->room_total_ex_tax=$this->room_total+$this->single_person_suppliment;
 		$this->room_total_inc_tax=$this->room_total+$this->single_person_suppliment+$this->tax;
@@ -5790,45 +5796,17 @@ class dobooking
 		$this->setErrorLog("calcTax:: Started");
 		$totalTax=0.00;
 		$totalBooking=$this->getRoomtotal();
-		//$extrasTotal=$this->getExtrasTotal();
-		if ($this->cfg_roomTaxYesNo=="1")
-			{
-			$fixedRateAllDays=0;
-			$percentageToAdd=0;
-			$roomTaxFixedRate =$this->cfg_roomTaxFixed;
-			$roomTaxPercentageRate =$this->cfg_roomTaxPercentage;
-			if ($roomTaxPercentageRate!=0)
-				{
-				$percentageToAdd=($totalBooking/100)*$roomTaxPercentageRate;
-				}
-			if ($roomTaxFixedRate!=0)
-				$fixedRateAllDays=$roomTaxFixedRate*$this->stayDays;
-			$totalTax=$fixedRateAllDays+$percentageToAdd;
-			}
-		else
-			{
-			$totalBooking=$totalBooking+$this->single_person_suppliment;
-			$this->setErrorLog("calcTax:: Calculating basic rate tax");
-			$mrConfig=getPropertySpecificSettings($this->property_uid);
-			//$this->setErrorLog("calcTax::mrConfig ".serialize($mrConfig) );
-			//$this->setErrorLog("calcTax::Using config tax code ".$mrConfig['accommodation_tax_code']);
-			if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
-				{
-				$taxrates = taxrates_getalltaxrates();
-				$cfgcode = $mrConfig['accommodation_tax_code'];
-				$taxrate = $taxrates[$cfgcode];
-				//$this->setErrorLog("calcTax::Tax rate ".serialize($taxrate) );
-				$rate=(float)$taxrate['rate'];
-				$this->setErrorLog("calcTax::Tax rate detected as ".$rate );
-				$percentageToAdd=$totalBooking*($rate/100);
-				$totalTax=$percentageToAdd;
-				}
-			else
-				$this->setErrorLog("calcTax:: Tax code not set so tax not calculated.");
-			}
+		
+		$totalBooking=$totalBooking+$this->single_person_suppliment;
+		
+		$rate=$this->accommodation_tax_rate;
+		$this->setErrorLog("calcTax::Tax rate detected as ".$rate );
+		$percentageToAdd=$totalBooking*($rate/100);
+		$totalTax=$percentageToAdd;
+		$this->setErrorLog("calcTax:: Total tax calculated as ".$totalTax);
+
 		$this->tax=$totalTax;
 		$this->setErrorLog("calcTax:: Ended");
-
 
 		}
 
