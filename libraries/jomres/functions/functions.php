@@ -5446,7 +5446,7 @@ function taxrates_makerateDropdown( $rates=array(),$selected='0',$name='taxrate'
 	if (count($rates)<1)
 		$rates=taxrates_getalltaxrates();
 
-	$ratesOptions[]=jomresHTML::makeOption( 0, '' );
+	//$ratesOptions[]=jomresHTML::makeOption( 0, '' ); // This would allow a blank option, i.e. allow users to set no tax rate. As, nowadays, internally the booking system NEEDS to know the tax rate when calculating the final price, we can't allow users to select a blank option any more.
 
 	if (count($rates>0) )
 		{
