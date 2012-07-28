@@ -108,9 +108,9 @@ if ( isset($_REQUEST['topoff']) )
 $lang=substr(get_showtime('lang'),0,2);
 
 define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang);
-define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&jrajax=1&Itemid=".$jomresItemid."&lang=".$lang);
+define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&jrajax=1&no_html=1&Itemid=".$jomresItemid."&lang=".$lang);
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl);
-define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&jrajax=1&format=raw");
+define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&jrajax=1&format=raw&no_html=1");
 
 if (class_exists('JFactory'))
 	{
