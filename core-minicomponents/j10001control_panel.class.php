@@ -147,13 +147,17 @@ class j10001control_panel
 			$output['ACCESS_CONTROL_ALERT'] = $access_control_check['message'];
 			}
 		
-		$curl_handle=curl_init();
-		curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres4.net/news.php");
-		curl_setopt($curl_handle,CURLOPT_TIMEOUT, 8);
-		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-		$buffer = curl_exec($curl_handle);
-		curl_close($curl_handle);
+		if (function_exists("curl_init"))
+			{
+			$curl_handle=curl_init();
+			curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres4.net/news.php");
+			curl_setopt($curl_handle,CURLOPT_TIMEOUT, 8);
+			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+			$buffer = curl_exec($curl_handle);
+			curl_close($curl_handle);
+			}
+		
 		if (empty($buffer))
 			$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest Jomres news, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
 		else
