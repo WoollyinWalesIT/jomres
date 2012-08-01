@@ -78,8 +78,11 @@ class j00004a_init_javascript_css_files {
 		define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
 		$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
 		
-		set_showtime("jquery.core.js",'jquery-1.7.1.min.js');
-		set_showtime("jquery.core.js.relpath",'jomres/javascript/');
+		if (!using_bootstrap())
+			{
+			set_showtime("jquery.core.js",'jquery-1.7.1.min.js');
+			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
+			}
 		set_showtime("jquery.ui.js","jquery-ui-1.8.16.custom.min.js");
 		set_showtime("jquery.ui.js.relpath",'jomres/javascript/');
 
@@ -87,9 +90,15 @@ class j00004a_init_javascript_css_files {
 		set_showtime("jquery.rating.css",'jquery.rating.css');
 		set_showtime("jquery.rating.css.relpath",'jomres/css/');
 		
-		set_showtime("jquery.ui.potato.menu.css","jquery.ui.potato.menu.css");
-		set_showtime("jquery.ui.potato.menu.css.relpath","jomres/css/");
-		
+		if (!using_bootstrap())
+			{
+			set_showtime("jquery.ui.potato.menu.css","jquery.ui.potato.menu.css");
+			set_showtime("jquery.ui.potato.menu.css.relpath","jomres/css/");
+			
+			set_showtime("jquery.cookee.for_tabs.js","jquery.cookee.for_tabs.js");
+			set_showtime("jquery.cookee.for_tabs.js.relpath","jomres/javascript/");
+			}
+			
 		set_showtime("jomres.js","jomres.js");
 		set_showtime("jomres.js.relpath","jomres/javascript/");
 
@@ -99,8 +108,7 @@ class j00004a_init_javascript_css_files {
 		set_showtime("jquery.cookee.js","jquery.cookee.js");
 		set_showtime("jquery.cookee.js.relpath","jomres/javascript/");
 		
-		set_showtime("jquery.cookee.for_tabs.js","jquery.cookee.for_tabs.js");
-		set_showtime("jquery.cookee.for_tabs.js.relpath","jomres/javascript/");
+
 		
 		set_showtime("heartbeat.js","heartbeat.js");
 		set_showtime("heartbeat.js.relpath","jomres/javascript/");
