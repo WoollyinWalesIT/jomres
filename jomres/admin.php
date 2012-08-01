@@ -78,22 +78,31 @@ $jomreslang->get_language($propertytype);
 $customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 
 $MiniComponents->triggerEvent('00005');
-
-jr_import('jomres_obsolete_file_handling');
-$obsolete_files = new jomres_obsolete_file_handling();
-$obsolete_files->set_default_obs_files_array();
-$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
-if (jomresGetDomain() != "localhost")
-	$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php');
-
-if ($obsolete_files->ready_to_go() )
-	{
-	$obsolete_files->remove_obs_files();
-	$obsolete_files->output_file_deletion_warning();
-	}
-
 if (!AJAXCALL)
 	{
+
+	jr_import('cpanel');
+	$cpanel=new cpanel();
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
+	if (!using_bootstrap())
+		echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
+	
+
+	jr_import('jomres_obsolete_file_handling');
+	$obsolete_files = new jomres_obsolete_file_handling();
+	$obsolete_files->set_default_obs_files_array();
+	$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
+	if (jomresGetDomain() != "localhost")
+		$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php');
+
+	if ($obsolete_files->ready_to_go() )
+		{
+		$obsolete_files->remove_obs_files();
+		$obsolete_files->output_file_deletion_warning();
+		}
+
+
 	if (!using_bootstrap())
 		{
 		?>
@@ -150,7 +159,7 @@ if (!AJAXCALL)
 					});
 				});
 				
-			$(".collapse").collapse();
+			jomresJquery(".collapse").collapse();
 			});
 		</script>
 		<style>
@@ -218,16 +227,7 @@ if (isset($_REQUEST['periodoption']))
 
 admins_first_run();
 
-if (!AJAXCALL)
-	{
-	jr_import('cpanel');
-	$cpanel=new cpanel();
-	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
-	if (!using_bootstrap())
-		echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
-	
-	}
+
 
 switch (get_showtime('task')) {
 	case "convertCustomTextAll":
