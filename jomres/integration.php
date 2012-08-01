@@ -1020,19 +1020,20 @@ class jomresHTML
 			{
 			echo '
 			<script>
-			jQuery(function(jomresJquery) {
+			jomresJquery(function(jomresJquery) {
 				jomresJquery(\'div.btn-group[data-toggle-name=*]\').each(function(){
 					var group   = jomresJquery(this);
 					var form    = group.parents(\'form\').eq(0);
 					var name    = group.attr(\'data-toggle-name\');
 					var hidden  = jomresJquery(\'input[name="\' + name + \'"]\', form);
 					jomresJquery(\'button\', group).each(function(){
+						
 						var button = jomresJquery(this);
 						button.live(\'click\', function(){
 							hidden.val(jomresJquery(this).val());
 					});
 					if(button.val() == hidden.val()) {
-						button.addClass(\'btn-primary\');
+						button.addClass(\'btn-primary active\');
 					  }
 					});
 				  });
@@ -1050,7 +1051,7 @@ class jomresHTML
 
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
 		{
-		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone");
+		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone","existingCustomers");
 		if (!using_bootstrap() || count($arr) != 2 || in_array($name,$not_for_these_dropdowns) || get_showtime('task') == "handlereq")
 			{
 			$attribs = str_replace('class="inputbox"',"",$attribs);
@@ -1072,16 +1073,29 @@ class jomresHTML
 			}
 		else
 			{
-			$output = '<div class="btn-group" data-toggle-name="'.$name.'" data-toggle="buttons-radio" >';
+			$output = '
+			<div class="control-group">
+			<div class="controls">
+			<fieldset id="'.$name.'" class="radio btn-group">
+			';
 			for ($i=0, $n= count( $arr ); $i < $n; $i++ )
 				{
 				$k = $arr[$i]->$key;
 				$txt = $arr[$i]->$text;
-				$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
+				//$output .= '<button type="button" value="'.$k.'" class="btn" data-toggle="button">'.$txt.'</button>';
+				$checked = '';
+				if ($k == $default)
+					$checked = 'checked="checked" ';
+				$output .= '
+				<input type="radio" id="'.$name.$k.'" name="'.$name.'" '.$checked.' value="'.$k.'"/>
+				<label for="'.$name.$k.'">'.$txt.'</label>
+				';
+				
 				}
-			$output .='</div>
-			<input type="hidden" name="'.$name.'" value="'.$default.'" />';
-			
+			$output .='</fieldset>
+			</div>
+			</div>
+			';
 			}
 		return $output;
 		}
