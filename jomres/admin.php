@@ -67,8 +67,8 @@ if (!AJAXCALL)
 	{
 	// And a couple that are only used in the admin area
 	init_javascript();
-	jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','graphs.js');
-	jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jrportal.js');
+	jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','graphs.js');
+	jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jrportal.js');
 	
 	// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
 	if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins'))

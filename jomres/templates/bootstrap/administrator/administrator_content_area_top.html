@@ -6,7 +6,7 @@
 			jomresJquery(function () 
 				{
 				var scrollDiv = document.createElement('div');
-				jomresJquery(scrollDiv).attr('id', 'toTop').html('^ <?php echo jr_gettext('BACKTOTOP',BACKTOTOP,false) ?>').appendTo('body');
+				jomresJquery(scrollDiv).attr('id', 'toTop').html('^ {BACKTOTOP}').appendTo('body');
 				jomresJquery(scrollDiv).addClass('alert alert-info');
 				jomresJquery(window).scroll(function () 
 					{
