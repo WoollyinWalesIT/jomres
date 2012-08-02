@@ -93,14 +93,16 @@ if (!AJAXCALL)
 		if (count($packages)==0)
 			{
 			$soutput['SUBSCRIPTION_WARNING'] = 'Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.';
+			
+			$spageoutput[]=$soutput;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'subscription_warning.html');
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$output['SUBSCRIPTION_WARNING']=$tmpl->getParsedTemplate();
 			}
 		
-		$spageoutput[]=$soutput;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-		$tmpl->readTemplatesFromInput( 'subscription_warning.html');
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$output['SUBSCRIPTION_WARNING']=$tmpl->getParsedTemplate();
+		
 		}
 	
 	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -224,10 +226,12 @@ switch (get_showtime('task')) {
 	
 if (!AJAXCALL )
 	{
-	if (!using_bootstrap())
-		{
-		echo '</div>';
-		}
+	$pageoutput[]=$output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+	$tmpl->readTemplatesFromInput( 'administrator_content_area_bottom.html');
+	$tmpl->addRows( 'pageoutput',$pageoutput);
+	echo $tmpl->getParsedTemplate();
 	}
 
 

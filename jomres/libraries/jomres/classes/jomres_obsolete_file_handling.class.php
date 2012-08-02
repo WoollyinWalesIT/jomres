@@ -524,7 +524,7 @@ class jomres_obsolete_file_handling
 		
 		// Jomres v7
 		$this->add_obs_file($this->dir_classes.'cpanel.class.php');
-		$this->add_obs_file($this->dir_templates_backend.'cpanel.html');
+		$this->add_obs_file($this->dir_templates_administrator.'cpanel.html');
 		
 		}
 	
@@ -577,10 +577,10 @@ class jomres_obsolete_file_handling
 			$pageoutput=array();
 			$output=array();
 			
-			if ( (!$this->success && $this->warnmode) )
+			if ( ($this->warnmode) )
 				$output['DELETION_WARNING']=$this->output_file_deletion_warning();
 			else
-				$output['DELETION_WARNING']='';;
+				$output['DELETION_WARNING']='';
 			
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
