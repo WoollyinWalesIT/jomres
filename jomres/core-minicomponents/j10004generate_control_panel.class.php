@@ -65,7 +65,7 @@ class j10004generate_control_panel {
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-			$tmpl->readTemplatesFromInput( 'cpanel.html' );
+			$tmpl->readTemplatesFromInput( 'control_panel_menu_options.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
 			$button_o[]['DIV']= $tmpl->getParsedTemplate();

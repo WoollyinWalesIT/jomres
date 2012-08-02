@@ -1,3 +1,61 @@
+Jomres 7.0.-3
+
+***
+* Summary 
+*
+* The main changes in Jomres 7 refer to using Jomres in Joomla 3, adapting it's templates to work seamlessly through Twitter's Bootstrap CSS framework.
+*
+***
+
+Updated composite property details to resolve issues of the gmap not rendering in old style templates.
+Rooms list configuration options disabled in property config as the rooms list is now templatised. It is more logical than having these options in the property config area.
+Added microdata ( http://support.google.com/webmasters/bin/answer.py?hl=en&answer=176035 ) to property header.
+Integrated Bootstrap templates into Jomres. Joomla 3 cms specific functionality included, but not yet tested against Joomla 3, so will need revisiting.
+CSS and layout tweaks for Jomres 7
+Fixed a bug where the currency wasn't always being shown in property lists.
+Tweaked the rooms list in the booking form
+Moved a button's position so that it's inside the form elements.
+Added an option to enable programatically disabling Joomla's cache feature for certain pages.
+Implemented changes to allow Jomres to switch the date input's class depending on whether or not we're running bootstrap.
+Added a new switch to enable/disable bootstrap templates in J2.5. This is a temporary option to be used during development.
+Added a BR to the js_calendar_input.html template to allow a line break after the departure date input.
+Corrected a template error where the wrong data was shown in property details.
+Solved an issue where property addresses weren't being shown correctly in favourites list.
+Fixed a bug where prices weren't being shown for mrps/srps.
+Changed a minicomponent to be touch templatable so that the Invoices word can be translated.
+Bootstrap dobooking tweaks to make the booking estimate warning smaller.
+Fixed a bug where the shopping cart's price was set to twice the deposit actually required, when the price is sent to paypal.
+Tweaked new functionality to ensure that max people in room number is shown in rooms lists in the booking form.
+Tweaked currency code dropdown creation method so that if global currencies is off, and currency conversion is disabled, the dropdown will still be shown in the tariffs and currencies tab of Property Config.
+Added cache enabled warning to admin area control panel for j2.5
+Tweaked cache disabling functionality so that it's not called when install_jomres.php is called, otherwise an error will be triggered.
+Added a minwidth setting to the booking form.
+Numerous changes to facilitate Bootstrap in the administrator area of Jomres.
+Made a variety to changes to ensure that Jomres will install and run in Joomla 3 alpha 1.
+Made a lot of preliminary changes to simplify the defined urls used in Jomres, ensuring that there are dedicated ajax urls for both site and administrator areas, and that they're used in favour of other, older urls.
+Renamed joomla 3 cms specific files dir from joomla3 to joomla 30
+Fixed paths for manager selection
+Implemented a new cms specific file that allows us to do some "post run" stuff. Joomla 3 insists on outputting html despite tmpl=component being set, which basically blows everybody's ajax out of the water. The new endrun file includes JFactory::getApplication()->close(); if it's an ajax call, which effectively tells Joomla to stop what it's doing and behave.
+Added common Action and View language strings.
+Removed some stray code from the edit_SRP_propertytype.html template. Cheers David.
+Added a feature that allows us to use bootstrap radio buttons if an option (ie dropdown) has only two choices.
+Added tweaks and notes to main menu wrapper alternate. This is fast becoming the "default" main menu wrapper, the accordion is likely to go the way of the dodo. As a result, it's worth considering renaming these menu templates altogether before Jr7 is released, removing obsolete ones and making this template's name more self explanatory.
+Improved the plugin reporting on the control panel.
+Modified plugin manager to use a template for most (not all) of it's information generation. 
+Added a Back to top button that appears bottom right when a user scrolls down.
+Tweaked new functionality to ensure that the bootstrap Yes/No buttons javascript isn't output if the call is via ajax.
+Some url tweaks to ensure that ajax continues to work successfully in J2.5.
+Various tweaks to allow modules to install and work in Joomla 3.0
+Changed which variable is used in the classic rooms list, means that price is output inc tax, if the property prices are configured to be gross.
+Tidied up the tax calculation method in the booking engine, removed some obsolete stuff.
+Changed wording in English lang files to clarify Gross and Nett setting in tariffs and currencies.
+Blank option in Tariffs and Currencies tax code dropdown removed. This had been left in-situ when we first adapted Jomres to calculate ex-tax prices in the booking engine. Now that proper tax breakdowns are used everywhere it makes sense to remove the blank option from the tax codes dropdown, thereby forcing all new users to select a tax code when configuring.
+Added a missing line to Jomres J1.5 url generation script. This was as a result of previous, post 6.6.7 url tweaks that provide more concise url definitions.
+Modified property switcher to ensure that nofollowtmpl is used.
+Setting a default, development option to No.
+
+
+
 Jomres 6.6.7
 
 Fixed an issue where users could not choose managers in Show Profiles.

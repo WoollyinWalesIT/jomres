@@ -1,0 +1,79 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
+		<script type="text/javascript">
+		/* Shamelessly pinched from JED */
+		jomresJquery(document).ready(function(){
+			jomresJquery(function () 
+				{
+				var scrollDiv = document.createElement('div');
+				jomresJquery(scrollDiv).attr('id', 'toTop').html('^ <?php echo jr_gettext('BACKTOTOP',BACKTOTOP,false) ?>').appendTo('body');
+				jomresJquery(scrollDiv).addClass('alert alert-info');
+				jomresJquery(window).scroll(function () 
+					{
+					if (jomresJquery(this).scrollTop() != 0) 
+						{
+						jomresJquery('#toTop').fadeIn();
+						} 
+					else 
+						{
+						jomresJquery('#toTop').fadeOut();
+						}
+					});
+				jomresJquery('#toTop').click(function () 
+					{
+					jomresJquery('body,html').animate({
+						scrollTop: 0
+						},
+						800);
+					});
+				});
+				
+			jomresJquery(".collapse").collapse();
+			});
+		</script>
+		<style>
+		#toTop {
+			background: none repeat scroll 0 0 ;
+			bottom: 0;
+			cursor: pointer;
+			display: none;
+			font-size: 0.9em;
+			padding: 5px;
+			position: fixed;
+			right: 0;
+			text-align: center;
+			text-transform: lowercase;
+			width: 100px;
+			z-index: 10;
+		}
+		</style>
+		
+		{CONTROL_PANEL_MENU}
+		
+		<div class="row-fluid">
+			<div class="span6">
+				<ul class="thumbnails">
+					<li class="span4">
+						<a href="http://www.jomres.net" target="_blank" class="thumbnail">
+							<img src="{LIVE_SITE}/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/>
+						</a>
+					</li>
+				</ul>
+	
+			</div>
+			<div class="span6 push-right">
+				<a href="{VIEWURL}">{VIEWTEXT}</a>
+				<div>&nbsp;</div>
+			</div>
+		</div>
+
+
+
+
+{SUBSCRIPTION_WARNING}
+
+{OBSOLETE_FILES_WARNINGS}
+
+
+
+</patTemplate:tmpl>
