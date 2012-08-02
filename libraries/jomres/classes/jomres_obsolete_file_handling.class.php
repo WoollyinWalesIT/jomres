@@ -33,7 +33,7 @@ class jomres_obsolete_file_handling
 		$this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'css'.JRDS;
 		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'javascript'.JRDS;
 		
-		$this->dir_templates_frontend = JOMRES_TEMPLATEPATH_FRONTEND.JRDS;
+		$this->dir_templates_frontend = JOMRES_TEMPLATEPATH_ADMINISTRATOR.JRDS;
 		$this->dir_templates_backend =JOMRES_TEMPLATEPATH_BACKEND.JRDS;
 		$this->dir_templates_administrator = JOMRES_TEMPLATEPATH_ADMINISTRATOR.JRDS;
 		}
@@ -522,6 +522,9 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_libraries.'hn_captcha'.JRDS.'hn_captcha.class-php5.php');
 		$this->add_obs_file($this->dir_libraries.'hn_captcha'.JRDS.'index.html');
 		
+		// Jomres v7
+		$this->add_obs_file($this->dir_classes.'cpanel.class.php');
+
 		}
 	
 	function add_obs_file($path_and_file)
@@ -533,17 +536,69 @@ class jomres_obsolete_file_handling
 		{
 		$this->success = true;
 		$this->number_of_files_require_deletion = 0;
+
 		foreach ($this->obs_files as $path_and_file)
 			{
+			$this->obsolete_file_message = '';
 			if (!$this->remove_obs_file($path_and_file))
 				{
+				$pageoutput=array();
+				$output=array();
+				
+				$output['MESSAGE']=$this->obsolete_file_message;
+				if ( ($this->success && $this->warnmode) )
+					{
+					$template = 'obsolete_files_warning.html';
+					}
+				elseif (!$this->success && $this->warnmode)
+					{
+					$template = 'obsolete_files_delete_failure.html';
+					}
+				elseif ($this->success && !$this->warnmode)
+					{
+					$template = 'obsolete_files_delete_success.html';
+					}
 				$this->number_of_files_require_deletion++;
-				$this->success = false;
+				
+				
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+				$tmpl->readTemplatesFromInput( $template );
+				$tmpl->addRows( 'pageoutput',$pageoutput);
+				$rows[]=array("WARNINGS"=>$tmpl->getParsedTemplate());
+
 				}
 			}
-		jr_import('minicomponent_registry');
-		$registry = new minicomponent_registry(true);
-		$registry->regenerate_registry();
+		
+		if ($this->number_of_files_require_deletion > 0 )
+			{
+			$pageoutput=array();
+			$output=array();
+			
+			if ( (!$this->success && $this->warnmode) )
+				$output['DELETION_WARNING']=$this->output_file_deletion_warning();
+			else
+				$output['DELETION_WARNING']='';;
+			
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'obsolete_files_wrapper.html');
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->addRows( 'rows',$rows);
+			$result=$tmpl->getParsedTemplate();
+
+			jr_import('minicomponent_registry');
+			$registry = new minicomponent_registry(true);
+			$registry->regenerate_registry();
+			
+			return $result;
+			}
+		else
+			{
+			return '';
+			}
 		}
 		
 	function remove_obs_file($path_and_file)
@@ -554,40 +609,54 @@ class jomres_obsolete_file_handling
 				{
 				if (is_writable($path_and_file))
 					{
-					echo '<font color="red" face="arial" size="1">File Delete checking. File '.$path_and_file.' is writable and Jomres would expect to be able to delete it.</font><br/>';
+					$this->obsolete_file_message = 'File Delete checking. File '.$path_and_file.' is writable and Jomres would expect to be able to delete it.';
+					$this->success = true;
 					}
 				else
 					{
-					echo '<font color="red" face="arial" size="1">File Delete test mode. File '.$path_and_file.' is not writable and Jomres would probably not be able to delete it.</font><br/>';
+					$this->obsolete_file_message = 'File Delete checking. File '.$path_and_file.' is not writable and Jomres would probably not be able to delete it.';
+					$this->success = false;
 					}
 				}
 			else
 				{
 				if (!@unlink($path_and_file) )
 					{
-					echo '<font color="red" face="arial" size="1">Warning: file '.$path_and_file.' still exists in your system. Jomres has tried to delete it automatically but was unsuccessful. Please delete it.</font><br/>';
+					$this->obsolete_file_message = 'Warning: file '.$path_and_file.' still exists in your system. Jomres has tried to delete it automatically but was unsuccessful. Please delete it.';
+					$this->success = false;
 					}
 				else
 					{
-					echo '<font color="blue" face="arial" size="1">Obsolete file '.$path_and_file.' was removed as it is no longer part of a production installation of Jomres.</font><br/>';
-					return true;
+					$this->obsolete_file_message = 'Obsolete file '.$path_and_file.' was removed as it is no longer part of a production installation of Jomres.';
+					$this->success = true;
 					}
 				}
+			return false;
 			}
 		else
-			if ($this->warnmode)
-				{
-				//echo '<font color="blue" face="arial" size="1">File Delete warnings. File '.$path_and_file.' does not exist and is assumed to have been already deleted.</font><br/>';
-				return true;
-				}
-			else
-				return true;
+			return true;
+
 		}
 		
 	function output_file_deletion_warning()
 		{
 		if ($this->number_of_files_require_deletion > 0)
-			echo '<font color="blue" face="arial" size="3"><b>Jomres has found that you have <b>'.$this->number_of_files_require_deletion.'</b> files remaining on the system that should be deleted. <a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&warnconfirm=1">Click here to remove those files</a>, if you need to back them up, do that first please.</b></font><br/>';
+			{
+			$output['MESSAGE1'] = 'Jomres has found that you have <b>'.$this->number_of_files_require_deletion.'</b> files remaining on the system that should be deleted. ';
+			$output['LINKKTEXT'] = ' Click here to try to remove those files.';
+			$output['MESSAGE2'] = ' If you need to back them up, do that first please.';
+			$output['LINK'] = JOMRES_SITEPAGE_URL_ADMIN.'&warnconfirm=1';
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'obsolete_files_link.html' );
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			return $tmpl->getParsedTemplate();
+			}
+		else
+			{
+			return '';
+			}
 		}
 	}
 

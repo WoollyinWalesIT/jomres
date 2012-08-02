@@ -55,23 +55,8 @@ require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'admin'.JRDS.'admin.j
 
 $nohtml	= jomresGetParam( $_REQUEST, 'no_html',0 );
 
-if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') && $nohtml == 0)
-	{
-	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
-	rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
-	if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') )
-		echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins still exists. Please delete it.</font><br/>';
-	emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
-	}
+
 	
-if ($jrConfig['useSubscriptions']=="1" && $nohtml == "0")
-	{
-	$packages=subscriptions_packages_getallpackages();
-	if (count($packages)==0)
-		{
-		echo '<font color="red" face="arial" size="1">Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.</font><br/>';
-		}
-	}
 
 $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language($propertytype);
@@ -80,138 +65,87 @@ $customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 $MiniComponents->triggerEvent('00005');
 if (!AJAXCALL)
 	{
-
-	jr_import('cpanel');
-	$cpanel=new cpanel();
-	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-	echo $MiniComponents->miniComponentData['10004']['generate_control_panel'];
-	if (!using_bootstrap())
-		echo '<div style="float:right;width:79%;margin-bottom:20px;">';// Needed otherwise the accordion goes wandering off to the right
+	// And a couple that are only used in the admin area
+	init_javascript();
+	jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','graphs.js');
+	jomres_cmsspecific_addheaddata("javascript",get_showtime('live_site').'/jomres/javascript/','jrportal.js');
 	
-
+	// Dates back to Jomres v4. Could be removed, but we'll leave it in for those users upgrading from v4, as v4 spanned two years
+	if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins'))
+		{
+		emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
+		rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins');
+		if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins') )
+			echo '<font color="red" face="arial" size="1">Warning: directory '.JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'plugins still exists. Please delete it.</font><br/>';
+		emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
+		}
+	
+	$pageoutput=array();
+	$output=array();
+	
+	$output['SUBSCRIPTION_WARNING'] = '';
+	if ($jrConfig['useSubscriptions']=="1")
+		{
+		$souput = array();
+		$spageoutput=array();
+		
+		$packages=subscriptions_packages_getallpackages();
+		if (count($packages)==0)
+			{
+			$soutput['SUBSCRIPTION_WARNING'] = 'Warning: You have enabled subscription handling, but not yet created any subscription packages therefore only Super Property Managers will be able to create propertys on your server.';
+			}
+		
+		$spageoutput[]=$soutput;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		$tmpl->readTemplatesFromInput( 'subscription_warning.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$output['SUBSCRIPTION_WARNING']=$tmpl->getParsedTemplate();
+		}
+	
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	$MiniComponents->triggerEvent('10002'); // 10002 scripts build the menu options
+	$MiniComponents->getAllEventPointsData('10002');
+	$MiniComponents->triggerEvent('10003'); // 10003 builds the menu arrays
+	$output['CONTROL_PANEL_MENU'] =  $MiniComponents->miniComponentData['10004']['generate_control_panel']; // 10004 Builds the actual menu items
+	
+	$ouput['OBSOLETE_FILES_WARNINGS']='';
 	jr_import('jomres_obsolete_file_handling');
 	$obsolete_files = new jomres_obsolete_file_handling();
 	$obsolete_files->set_default_obs_files_array();
 	$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'administrator'.JRDS.'components'.JRDS.'com_jomres'.JRDS.'jomres_webinstall.php');
-	if (jomresGetDomain() != "localhost")
+
+	if (jomresGetDomain() != "localhost" && !strstr($_SERVER['SERVER_ADDR'],'192.168.1') )
 		$obsolete_files->add_obs_file(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'install_jomres.php');
 
 	if ($obsolete_files->ready_to_go() )
 		{
-		$obsolete_files->remove_obs_files();
-		$obsolete_files->output_file_deletion_warning();
+		$output['OBSOLETE_FILES_WARNINGS']=$obsolete_files->remove_obs_files();
 		}
 
-
-	if (!using_bootstrap())
+	if (isset($_REQUEST['tmpl']) ) 
 		{
-		?>
-		<table border="0" width="100%" class="ui-widget-content ui-corner-all">
-			<tr valign="middle">
-				<td align="left" width="50%">
-					<a href="http://www.jomres.net" target="_blank"><img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/></a>
-				</td>
-				<td align="right">
-					<?php
-						if (isset($_REQUEST['tmpl']) ) { ?>
-						<div><a href="<?php echo get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl"); ?>">Default view</a></div>
-					<?php } else { ?>
-						<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
-					<?php } ?>
-					<div>&nbsp;</div>
-					<?php
-					if (_JOMRES_DETECTED_CMS != "joomla25")
-						echo '<div>Select Jomres Language '.$jomreslang->get_languageselection_dropdown().'</div>';
-					?>
-				</td>
-			</tr>
-		</table>
-		<?php
+		$output['VIEWURL'] = get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl");
+		$output['VIEWTEXT'] = _JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW;
 		}
 	else
 		{
-		?>
-		<script type="text/javascript">
-		/* Shamelessly pinched from JED */
-		jomresJquery(document).ready(function(){
-			jomresJquery(function () 
-				{
-				var scrollDiv = document.createElement('div');
-				jomresJquery(scrollDiv).attr('id', 'toTop').html('^ <?php echo jr_gettext('BACKTOTOP',BACKTOTOP,false) ?>').appendTo('body');
-				jomresJquery(scrollDiv).addClass('alert alert-info');
-				jomresJquery(window).scroll(function () 
-					{
-					if (jomresJquery(this).scrollTop() != 0) 
-						{
-						jomresJquery('#toTop').fadeIn();
-						} 
-					else 
-						{
-						jomresJquery('#toTop').fadeOut();
-						}
-					});
-				jomresJquery('#toTop').click(function () 
-					{
-					jomresJquery('body,html').animate({
-						scrollTop: 0
-						},
-						800);
-					});
-				});
-				
-			jomresJquery(".collapse").collapse();
-			});
-		</script>
-		<style>
-		#toTop {
-			background: none repeat scroll 0 0 ;
-			bottom: 0;
-			cursor: pointer;
-			display: none;
-			font-size: 0.9em;
-			padding: 5px;
-			position: fixed;
-			right: 0;
-			text-align: center;
-			text-transform: lowercase;
-			width: 100px;
-			z-index: 10;
-		}
-		</style>
-		<div class="row-fluid">
-			<div class="span6">
-				<ul class="thumbnails">
-					<li class="span4">
-						<a href="http://www.jomres.net" target="_blank" class="thumbnail">
-							<img src="<?php echo get_showtime('live_site'); ?>/jomres/images/jrlogo.png" border="0" alt="Jomres logo"/>
-						</a>
-					</li>
-				</ul>
-	
-			</div>
-			<div class="span6 push-right">
-				<?php
-					if (isset($_REQUEST['tmpl']) ) { ?>
-						<div><a href="<?php echo get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl"); ?>">Default view</a></div>
-				<?php } else { ?>
-					<div><a href="<?php echo get_showtime('liv_site').$_SERVER['REQUEST_URI']; ?>&tmpl=component">Fullscreen view</a></div>
-				<?php } ?>
-				<div>&nbsp;</div>
-				<?php
-				if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla3")
-					echo '<div>Select Jomres Language '.$jomreslang->get_languageselection_dropdown().'</div>';
-				?>
-			</div>
-		</div>
-		<?php
+		$output['VIEWURL'] = get_showtime('liv_site').$_SERVER['REQUEST_URI'].'&tmpl=component';
+		$output['VIEWTEXT'] = _JOMRES_COM_MANAGEMENTVIEW_MANAGMENT;
 		}
 	
-	init_javascript();
-	// And a couple that are only used in the admin area
-	?>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/graphs.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo get_showtime('live_site'); ?>/jomres/javascript/jrportal.js"></script>
-	<?php
+	$output['LANGDROPDOWN'] ='';
+	if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30")
+		$output['LANGDROPDOWN'] = $jomreslang->get_languageselection_dropdown();
+					
+	$output['BACKTOTOP']=jr_gettext('BACKTOTOP',BACKTOTOP,false);
+	
+	$pageoutput[]=$output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+	$tmpl->readTemplatesFromInput( 'administrator_content_area_top.html');
+	$tmpl->addRows( 'pageoutput',$pageoutput);
+	echo $tmpl->getParsedTemplate();
 	}
 if (isset($_REQUEST['statoption']))
 	{
@@ -295,7 +229,8 @@ if (!AJAXCALL )
 		echo '</div>';
 		}
 	}
-	
+
+
 $head_contents = '';
 $MiniComponents->triggerEvent('16003');
 if (is_array($MiniComponents->miniComponentData['16003']))
