@@ -524,7 +524,8 @@ class jomres_obsolete_file_handling
 		
 		// Jomres v7
 		$this->add_obs_file($this->dir_classes.'cpanel.class.php');
-
+		$this->add_obs_file($this->dir_templates_backend.'cpanel.html');
+		
 		}
 	
 	function add_obs_file($path_and_file)
