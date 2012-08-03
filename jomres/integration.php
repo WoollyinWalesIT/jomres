@@ -1074,8 +1074,6 @@ class jomresHTML
 		else
 			{
 			$output = '
-			<div class="control-group">
-			<div class="controls">
 			<fieldset id="'.$name.'" class="radio btn-group">
 			';
 			for ($i=0, $n= count( $arr ); $i < $n; $i++ )
@@ -1093,8 +1091,6 @@ class jomresHTML
 				
 				}
 			$output .='</fieldset>
-			</div>
-			</div>
 			';
 			}
 		return $output;
