@@ -33,14 +33,12 @@
 </table>
 <script type="text/javascript">
 <!--
-var ajaxurl	= "{JOMRES_SITEPAGE_URL_ADMIN_AJAX}";
-var livesite= "{LIVESITE}&task=partner_show&name=";
 jomresJquery(function() {
 	jomresJquery( "#username_input" ).autocomplete({
-		source: ajaxurl+'partners_find',
+		source: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=partners_find',
 		minLength: 2,
 		select: function( event, ui ) {
-			location.href = livesite+ui.item.value;
+			location.href = "{JOMRES_SITEPAGE_URL_ADMIN}&task=partner_show&name="+ui.item.value;
 		}
 	});
 });
