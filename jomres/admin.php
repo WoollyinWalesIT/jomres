@@ -142,6 +142,11 @@ if (!AJAXCALL)
 					
 	$output['BACKTOTOP']=jr_gettext('BACKTOTOP',BACKTOTOP,false);
 	
+	if (using_bootstrap())
+		$output['USING_BOOTSTRAP'] = "true";
+	else
+		$output['USING_BOOTSTRAP'] = "false";
+	
 	$pageoutput[]=$output;
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );

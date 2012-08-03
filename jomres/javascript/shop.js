@@ -9,8 +9,11 @@ function addToCart(plugin_name,price) {
 			}
 		});
 	if (!already_exists) {
-		addition = '<input type="hidden" id="'+plugin_name+'" type="text" value="'+price+'" /><div id="row'+plugin_name+'" class="ui-widget-content ui-corner-all"><label for="' + plugin_name + '"><strong>Plugin :</strong> '+plugin_name+' <strong>Price :</strong> &pound;'+price+'  <a style="float:right" href="#" onClick=\'removeFromCart(\"' + plugin_name +'\"); return false;\'>Remove</a><br/></div>';
-
+		if (!jomres_using_bootstrap)
+			addition = '<input type="hidden" id="'+plugin_name+'" type="text" value="'+price+'" /><div id="row'+plugin_name+'" class="ui-widget-content ui-corner-all"><label for="' + plugin_name + '"><strong>Plugin :</strong> '+plugin_name+' <strong>Price :</strong> &pound;'+price+'  <a style="float:right" href="#" onClick=\'removeFromCart(\"' + plugin_name +'\"); return false;\'>Remove</a><br/></div>';
+		else
+			addition = '<input type="hidden" id="'+plugin_name+'" type="text" value="'+price+'" /><div id="row'+plugin_name+'" class="ui-widget-content ui-corner-all"><label for="' + plugin_name + '"><strong>Plugin :</strong> '+plugin_name+' <strong>Price :</strong> &pound;'+price+'  <a style="float:right" href="#" onClick=\'removeFromCart(\"' + plugin_name +'\"); return false;\'>Remove</a><br/></div>';
+		
 		jomresJquery(addition).appendTo('#cart');
 		
 		total = 0;

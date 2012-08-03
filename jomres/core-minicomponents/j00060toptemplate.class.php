@@ -120,7 +120,12 @@ class j00060toptemplate {
 						}
 					}
 				}
-
+			
+			if (using_bootstrap())
+				$output['USING_BOOTSTRAP'] = "true";
+			else
+				$output['USING_BOOTSTRAP'] = "false";
+		
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
