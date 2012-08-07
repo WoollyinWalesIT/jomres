@@ -49,7 +49,7 @@ class j00060toptemplate {
 			if ($result)
 				$output['EDITING_MODE_DROPDOWN']=$result;
 			set_showtime("menuitem_editing_mode_dropdown",$output['EDITING_MODE_DROPDOWN']);
-			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
+			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30")
 				{
 				if ($thisJRUser->userIsManager)
 					{

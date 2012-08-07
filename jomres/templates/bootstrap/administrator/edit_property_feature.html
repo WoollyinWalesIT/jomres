@@ -1,48 +1,43 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
-<div class="row-fluid">
-	<div class="span12">
-			<h2>{PAGETITLE}</h2>
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="feature_abbv">{HFEATUREABBV}</label>
-					<div class="controls">
-						<input class="inputbox" type="text" name="feature_abbv" value="{FEATURE_ABBV}" />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="feature_description">{HFEATUREDESCRIPTION}</label>
-					<div class="controls">
-						<input class="inputbox" type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="propertyType">{_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT}</label>
-					<div class="controls">
-						{PROPERTY_TYPE_DROPDOWN}
-					</div> 
-				</div>
-				
-				<div class="span12">
-					<div class="alert alert-info">{PROPERTYFEATUREINFO}</div>
-				</div>
-</fieldset>
-						<patTemplate:tmpl name="rows">
-						<span style="white-space:nowrap" ><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}><img src="{IMAGE}" style="padding:3px"/></span>
-						</patTemplate:tmpl>
-			
-				<div class="form-actions">
-					{JOMRESTOOLBAR}
-				</div>
-			
-	</div>
-</div>
-
-<input type="hidden" name="propertyFeatureUid" value="{PROPERTYFEATUREUID}">
-<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
-<input type="hidden" name="Itemid" value="{ITEMID}" />
-<input type="hidden" name="option" value="com_jomres" />
-<input type="hidden" name="task" value="savePropertyFeature" />
+{JOMRESTOOLBAR}
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="name">{HFEATUREABBV}</label>
+			<div class="controls">
+				<input type="text" name="feature_abbv" value="{FEATURE_ABBV}" class="input-large"/>
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{HFEATUREDESCRIPTION}</label>
+			<div class="controls">
+				<input type="text" name="feature_description" value="{FEATURE_DESCRIPTION}" class="input-large"/>
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{_JOMRES_FEATURE_PROPERTY_TYPE_ASSIGNMENT}</label>
+			<div class="controls">
+				{PROPERTY_TYPE_DROPDOWN}
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{PROPERTYFEATUREINFO}</label>
+			<div class="controls">
+				<patTemplate:tmpl name="rows">
+				<span style="white-space:nowrap;"><input type="radio" name="image" value="{IMAGEPATH}" {ISCHECKED}/><img src="{IMAGE}" /></span>
+				</patTemplate:tmpl>
+			</div> 
+		</div>
+		
+		<input type="hidden" name="propertyFeatureUid" value="{PROPERTYFEATUREUID}">
+		<input type="hidden" name="property_uid" value="{PROPERTYUID}" />
+		<input type="hidden" name="Itemid" value="{ITEMID}" />
+		<input type="hidden" name="option" value="com_jomres" />	
+		<input type="hidden" name="task" value="savePropertyFeature" />
+	</fieldset>
 </form>
 </patTemplate:tmpl>

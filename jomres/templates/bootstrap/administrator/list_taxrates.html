@@ -1,12 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+	var oTable = jomresJquery('#list_taxrates').dataTable({
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -38,29 +38,29 @@ jomresJquery(document).ready(function() {
 } );
 //-->
 </script>
-<h2>{PAGETITLE}</h2>
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
+<table id="list_taxrates" width="100%" class="table table-striped">
 	<thead>
 		<tr>
 			<th></th>
-			<th>ID</th>
+			<th class="hidden-phone">ID</th>
 			<th>{HCODE}</th>
 			<th>{HDESCRIPTION}</th>
 			<th>{HRATE}</th>
 		</tr>
 	</thead>
 	<tbody>
-	<patTemplate:tmpl name="rows" unusedvars="strip">
-	<tr>
-		<td>{EDITLINK}</td>
-		<td>{ID}</td>
-		<td>{CODE}</td>
-		<td>{DESCRIPTION}</td>
-		<td>{RATE}</td>
-	</tr>
-	</patTemplate:tmpl>
+		<patTemplate:tmpl name="rows" unusedvars="strip">
+		<tr>
+			<td>{EDITLINK}</td>
+			<td class="hidden-phone">{ID}</td>
+			<td>{CODE}</td>
+			<td>{DESCRIPTION}</td>
+			<td>{RATE}</td>
+		</tr>
+		</patTemplate:tmpl>
 	</tbody>
 </table>
 <input type="hidden" name="task" value="editTaxrate" />

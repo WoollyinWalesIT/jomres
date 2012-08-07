@@ -1,9 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
 	<fieldset>
 		<div class="control-group">
@@ -109,9 +105,7 @@
 	</table>
 	</patTemplate:tmpl>
 	<div class="form-actions">
-		<div class="">
-			{JOMRESTOOLBAR}
-		</div>
+		{JOMRESTOOLBAR}
 	</div>
 	<input type="hidden" name="uid" value="{EXTRAID}" />
 	<input type="hidden" name="task" value="saveExtra" />

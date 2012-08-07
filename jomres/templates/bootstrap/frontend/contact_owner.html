@@ -92,45 +92,38 @@ function echeck(str) {
 	}
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h2>{SUBJECT}</h2>
+
+<h2 class="page-header">{SUBJECT}</h2>
+<form name="regForm" action="{JOMRES_SITEPAGE_URL_NOSEF}&task=contactowner" method="POST" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="guest_name">{HNAME}</label>
+			<div class="controls">
+				<input type="text" name="guest_name" value="{GUEST_NAME}" class="input-large"/>
+			</div> 
+		</div> 
+		<div class="control-group">
+			<label class="control-label" for="guest_email">{HEMAIL}</label>
+			<div class="controls">
+				<input type="email" name="guest_email" value="{GUEST_EMAIL}" type="email" class="input-large"/>
+			</div> 
+		</div> 
+		<div class="control-group">
+			<label class="control-label" for="enquiry">{HENQUIRY}</label>
+			<div class="controls">
+				<textarea class="input-xlarge" rows="10" name="enquiry" placeholder="{ENQUIRY}"></textarea>
+			</div> 
 		</div>
-		<form name="regForm" action="{JOMRES_SITEPAGE_URL_NOSEF}&task=contactowner" method="POST" class="form-horizontal">
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="guest_name">{HNAME}</label>
-					<div class="controls">
-						<input type="text" name="guest_name" value="{GUEST_NAME}" />
-					</div> 
-				</div> 
-				<div class="control-group">
-					<label class="control-label" for="guest_email">{HEMAIL}</label>
-					<div class="controls">
-						<input type="email" name="guest_email" value="{GUEST_EMAIL}" type="email" />
-					</div> 
-				</div> 
-				<div class="control-group">
-					<label class="control-label" for="enquiry">{HENQUIRY}</label>
-					<div class="controls">
-						<textarea class="input-xlarge" rows="10" name="enquiry" placeholder="{ENQUIRY}"></textarea>
-					</div> 
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						{CAPTCHA}
-					</div>
-				</div>
-				<div class="form-actions">
-					<div class="btn-toolbar">
-						<a href="{JOMRES_SITEPAGE_URL_NOSEF}&task=viewproperty&property_uid={COMMON_LAST_VIEWED_PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-						<button type="submit" class="btn btn-primary">{COMMON_SEND} <i class="icon-arrow-right icon-white"></i></button>
-					</div>
-				</div>
-			</fieldset>
-		<input type="hidden" name="property_uid" value="{PROPERTY_UID}" />
-		</form>
-	</div>
-</div>
+		<div class="control-group">
+			<div class="controls">
+				{CAPTCHA}
+			</div>
+		</div>
+		<div class="form-actions">
+			<a href="{JOMRES_SITEPAGE_URL_NOSEF}&task=viewproperty&property_uid={COMMON_LAST_VIEWED_PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+			<button type="submit" class="btn btn-primary">{COMMON_SEND} <i class="icon-arrow-right icon-white"></i></button>
+		</div>
+	</fieldset>
+<input type="hidden" name="property_uid" value="{PROPERTY_UID}" />
+</form>
 </patTemplate:tmpl>

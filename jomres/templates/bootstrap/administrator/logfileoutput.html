@@ -1,4 +1,4 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script type="text/javascript">
 <!--
 function toggleDetail(id,number) 
@@ -29,25 +29,17 @@ function toggleDetail(id,number)
 //-->
 </script>
 
-<style>
-.odd {
-	background-color: #f1e8e6;
-	}
-.even {
-	background-color: #f1f3f5;
-	}
-</style>
-<h2>{TITLE}</h2>
+<h2 class="page-header">{TITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
-<table class="ui-widget-content ui-corner-all" border="0" width="100%">
+<table class="table well" width="100%">
 	<tr>
-		<td align="left">{BACKLINK}</td>
-		<td align="right"><a href="{DELETELINK}"><img src="{LIVESITE}/jomres/images/jomresimages/small/WasteBasket.png" border="0" alt="" /></a></td>
+		<td class="pull-left">{BACKLINK}</td>
+		<td class="pull-right"><a href="{DELETELINK}"><img src="{LIVESITE}/jomres/images/jomresimages/small/WasteBasket.png" border="0" alt="" /></a></td>
 	</tr>
 </table>
 <div>&nbsp;</div>
 <div id="tbl">
-		<div id="logfileresult">{LOGFILEDATA}</div>
+	<div id="logfileresult">{LOGFILEDATA}</div>
 </div>
 <input type="hidden" name="task" value="cpanel" />
 </form>

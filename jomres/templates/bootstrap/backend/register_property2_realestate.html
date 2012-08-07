@@ -127,99 +127,93 @@ jomresJquery(document).ready(function () {
 });
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h2>{_JOMRES_REGISTRATION_STEP_2_OF_2}</h2>
+<h2 class="page-header">{_JOMRES_REGISTRATION_STEP_2_OF_2}</h2>
+<p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group warning">
+			<label class="control-label" for="property_name">{HNAME}</label>
+			<div class="controls">
+				<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}"/>
+			</div> 
+		</div> 
+		<div class="control-group warning">
+			<label class="control-label" for="property_street">{HSTREET}</label>
+			<div class="controls">
+				<input id="property_street" name="property_street" type="text" size="20" value="{PROPERTY_STREET}"/>
+			</div> 
+		</div> 
+		<div class="control-group warning">
+			<label class="control-label" for="property_town">{HTOWN}</label>
+			<div class="controls">
+				<input id="property_town" name="property_town" type="text" size="20" value="{PROPERTY_TOWN}"/>
+			</div> 
+		</div> 
+		<div class="control-group warning">
+			<label class="control-label" for="property_postcode">{HPOSTCODE}</label>
+			<div class="controls">
+				<input id="property_postcode" name="property_postcode" type="text" size="20" value="{PROPERTY_POSTCODE}"/>
+			</div> 
+		</div> 
+		<div class="control-group warning">
+			<label class="control-label" for="property_tel">{HTELEPHONE}</label>
+			<div class="controls">
+				<input id="property_tel" name="property_tel" type="text" size="20" value="{PROPERTY_TEL}"/>
+			</div> 
+		</div> 
+		<div class="control-group warning">
+			<label class="control-label" for="property_email">{HEMAIL}</label>
+			<div class="controls">
+				<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}"/>
+			</div> 
 		</div>
-		<p>{JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_1} {JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2}</p>
-		<form action="{JOMRES_SITEPAGE_URL}" method="post" name="regForm" class="form-horizontal">
-			<fieldset>
-				<div class="control-group warning">
-					<label class="control-label" for="property_name">{HNAME}</label>
-					<div class="controls">
-						<input id="property_name" name="property_name" type="text" size="20" value="{PROPERTY_NAME}"/>
-					</div> 
-				</div> 
-				<div class="control-group warning">
-					<label class="control-label" for="property_street">{HSTREET}</label>
-					<div class="controls">
-						<input id="property_street" name="property_street" type="text" size="20" value="{PROPERTY_STREET}"/>
-					</div> 
-				</div> 
-				<div class="control-group warning">
-					<label class="control-label" for="property_town">{HTOWN}</label>
-					<div class="controls">
-						<input id="property_town" name="property_town" type="text" size="20" value="{PROPERTY_TOWN}"/>
-					</div> 
-				</div> 
-				<div class="control-group warning">
-					<label class="control-label" for="property_postcode">{HPOSTCODE}</label>
-					<div class="controls">
-						<input id="property_postcode" name="property_postcode" type="text" size="20" value="{PROPERTY_POSTCODE}"/>
-					</div> 
-				</div> 
-				<div class="control-group warning">
-					<label class="control-label" for="property_tel">{HTELEPHONE}</label>
-					<div class="controls">
-						<input id="property_tel" name="property_tel" type="text" size="20" value="{PROPERTY_TEL}"/>
-					</div> 
-				</div> 
-				<div class="control-group warning">
-					<label class="control-label" for="property_email">{HEMAIL}</label>
-					<div class="controls">
-						<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}"/>
-					</div> 
+		<div class="control-group">
+			<label class="control-label" for="lat">Lat: (nn.nnnn)</label>
+			<div class="controls">
+				<input id="lat" name="lat" type="text" size="20" value="{LAT}"/>
+			</div> 
+		</div> 
+		<div class="control-group">
+			<label class="control-label" for="long">Long: (nn.nnnn)</label>
+			<div class="controls">
+				<input id="lng" name="long" type="text" size="20" value="{FIRSTNAME}"/>
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{LATLONG_DESC}</label>
+			<div class="controls">
+				{MAP}
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="pid">{HFEATURES}</label>
+			<div class="controls">
+				<patTemplate:tmpl name="globalPfeatures">
+				<div style="float:left;">
+					<label class="checkbox">
+						<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" > {FEATURE}
+					</label>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="lat">Lat: (nn.nnnn)</label>
-					<div class="controls">
-						<input id="lat" name="lat" type="text" size="20" value="{LAT}"/>
-					</div> 
-				</div> 
-				<div class="control-group">
-					<label class="control-label" for="long">Long: (nn.nnnn)</label>
-					<div class="controls">
-						<input id="lng" name="long" type="text" size="20" value="{FIRSTNAME}"/>
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="firstname">{LATLONG_DESC}</label>
-					<div class="controls">
-						{MAP}
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="pid">{HFEATURES}</label>
-					<div class="controls">
-						<patTemplate:tmpl name="globalPfeatures">
-						<div style="float:left;">
-							<label class="checkbox">
-								<input type="checkbox" name="pid[]" value="{PID}" style="float:left;" > {FEATURE}
-							</label>
-						</div>
-						</patTemplate:tmpl>
-					</div> 
-				</div> 
-				<div class="control-group warning">
-					<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label>
-					<div class="controls">
-						{PROPERTY_DESCRIPTION}
-					</div> 
-				</div> 
-				<div class="form-actions">
-					<div class="">
-						<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-						<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">{_JOMRES_REVIEWS_SUBMIT} <i class="icon-arrow-right icon-white"></i> </button>
-					</div>
-				</div>
-			</fieldset>
-			<input type="hidden" name="propertyType" value="{PROPERTYTYPE}" />
-			<input type="hidden" name="property_region" value="{PROPERTY_REGION}" />
-			<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}" />
-			<input type="hidden" name="realestate" value="1" />
-			<input type="hidden" name="no_html" value="1" />
-		</form>
-	</div>
-</div>
+				</patTemplate:tmpl>
+			</div> 
+		</div> 
+		<div class="control-group warning">
+			<label class="control-label" for="property_description">{HPROPDESCRIPTION}</label>
+			<div class="controls">
+				{PROPERTY_DESCRIPTION}
+			</div> 
+		</div> 
+		<div class="form-actions">
+			<div class="">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="button" class="btn btn-primary" onclick="validatePropertyRegistration();">{_JOMRES_REVIEWS_SUBMIT} <i class="icon-arrow-right icon-white"></i> </button>
+			</div>
+		</div>
+		<input type="hidden" name="propertyType" value="{PROPERTYTYPE}" />
+		<input type="hidden" name="property_region" value="{PROPERTY_REGION}" />
+		<input type="hidden" name="property_country" value="{PROPERTY_COUNTRY}" />
+		<input type="hidden" name="realestate" value="1" />
+		<input type="hidden" name="no_html" value="1" />
+	</fieldset>
+</form>
 </patTemplate:tmpl>

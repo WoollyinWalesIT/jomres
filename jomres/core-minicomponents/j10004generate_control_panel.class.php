@@ -54,9 +54,22 @@ class j10004generate_control_panel {
 				if ($r['disabled'])
 					{
 					$r['link']='#';
-					$r['disabled_class']= 'ui-state-error ui-state-disabled';
+					if (!using_bootstrap())
+						$r['disabled_class']= 'ui-state-error ui-state-disabled';
+					else
+						$r['disabled_class']= 'disabled';
 					}
-				
+				parse_str($val['link'],$url_params);
+				$button_task=$url_params['task'];
+				if ($button_task==jomresGetParam( $_REQUEST, 'task', "" ))
+					{
+					if (!using_bootstrap())
+						$r['ACTIVE']="ui-state-active";
+					else
+						$r['ACTIVE']="active";
+					}
+				else
+					$r['ACTIVE']="";
 				$rows[]=$r;
 				}
 

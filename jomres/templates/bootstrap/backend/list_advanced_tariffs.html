@@ -6,7 +6,7 @@ jomresJquery(document).ready(function() {
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -39,11 +39,9 @@ jomresJquery(document).ready(function() {
 //-->
 </script>
 <div class="well">
-	<div class="span12">
-		{JOMRESTOOLBAR}
-	</div>
+	{JOMRESTOOLBAR}
 </div>
-<table width="100%" border="0" id="list_advanced_tariffs" class="table table-bordered table-condensed table-striped">
+<table width="100%" id="list_advanced_tariffs" class="table table-striped">
 	<thead>
 		<tr>
 			<th>{HLINKTEXT}</th>

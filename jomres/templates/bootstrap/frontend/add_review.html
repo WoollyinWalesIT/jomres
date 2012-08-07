@@ -48,16 +48,16 @@ jomresJquery(document).ready(function(){
 //-->
 </script>
 
-<div width="100%" id="messageBox" class="alert alert-block"></div>
+<div id="messageBox" class="alert alert-block"></div>
 
-<h2>{_JOMRES_REVIEWS_ADD_REVIEW}</h2>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" class="well form-horizontal">
+<h2 class="page-header">{_JOMRES_REVIEWS_ADD_REVIEW}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" class="form-horizontal">
 <label></label>
 	<fieldset>
 		<div class="control-group">
 		<label class="control-label" for="review_title">{_JOMRES_REVIEWS_TITLE}</label>
 			<div class="controls">
-				<input id="review_title" name="review_title" type="text" size="20" value="" class="required " />
+				<input id="review_title" name="review_title" type="text" value="" class="input-large required " />
 			</div> 
 		</div> 
 
@@ -71,13 +71,13 @@ jomresJquery(document).ready(function(){
 		<div class="control-group">
 		<label class="control-label" for="pros">{_JOMRES_REVIEWS_PROS}</label>
 			<div class="controls">
-				<input id="pros" name="pros" type="text" size="20" value="" class="required " />
+				<input id="pros" name="pros" type="text" value="" class="input-large required " />
 			</div> 
 		</div> 
 		<div class="control-group">
 		<label class="control-label" for="cons">{_JOMRES_REVIEWS_CONS}</label>
 			<div class="controls">
-				<input id="cons" name="cons" type="text" size="20" value="" class="required " />
+				<input id="cons" name="cons" type="text" value="" class="input-large required " />
 			</div> 
 		</div> 
 
@@ -179,15 +179,12 @@ jomresJquery(document).ready(function(){
 		</div> 
 
 		<div class="form-actions">
-			<div class="btn-group">
-				<a href="{JOMRES_SITEPAGE_URL}&task=viewproperty&property_uid={PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-				<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> {_JOMRES_REVIEWS_SUBMIT}</button>
-			</div>
+			<a href="{JOMRES_SITEPAGE_URL}&task=viewproperty&property_uid={PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+			<button type="submit" class="btn btn-primary"><i class="icon-ok"></i> {_JOMRES_REVIEWS_SUBMIT}</button>
 		</div>
 	</fieldset>
-
-<input type="hidden" name="property_uid" value="{PROPERTY_UID}" />
-<input type="hidden" name="no_html" value="1" />
-<input type="hidden" name="task" value="save_review" />
+	<input type="hidden" name="property_uid" value="{PROPERTY_UID}" />
+	<input type="hidden" name="no_html" value="1" />
+	<input type="hidden" name="task" value="save_review" />
 </form>
 </patTemplate:tmpl>

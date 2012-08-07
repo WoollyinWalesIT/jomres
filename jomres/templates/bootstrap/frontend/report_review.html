@@ -29,22 +29,20 @@ jomresJquery(document).ready(function(){
 });
 //-->
 </script>
-<h2>{_JOMRES_REVIEWS_REPORT_REVIEW}</h2>
-<p class="alert alert-info">{_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL}</p>
+<h2 class="page-header">{_JOMRES_REVIEWS_REPORT_REVIEW}</h2>
+<p>{_JOMRES_REVIEWS_REPORT_REVIEW_MOREDETAIL}</p>
 <ul id="messageBox" class="alert alert-error"></ul>
-<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" class="well form-horizontal">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" class="form-horizontal">
 	<fieldset>
 		<div class="control-group">
-		<label class="control-label" for="report"></label>
+		<label class="control-label" for="report">Message</label>
 			<div class="controls">
-				<textarea name="report" cols="50" rows="5" class="required"></textarea>
+				<textarea name="report" class="input-xlarge" rows="5" class="required"></textarea>
 			</div> 
 		</div> 
 		<div class="form-actions">
-			<div class="btn-group">
-				<a href="{JOMRES_SITEPAGE_URL}&task=viewproperty&property_uid={COMMON_LAST_VIEWED_PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-				<button class="btn btn-primary" type="submit">{_JOMRES_REVIEWS_SUBMIT}</button>
-			</div>
+			<a href="{JOMRES_SITEPAGE_URL}&task=viewproperty&property_uid={COMMON_LAST_VIEWED_PROPERTY_UID}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+			<button class="btn btn-primary" type="submit">{_JOMRES_REVIEWS_SUBMIT}</button>
 		</div>
 	</fieldset>
 <input type="hidden" name="rating_id" value="{RATING_ID}" />

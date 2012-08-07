@@ -72,10 +72,20 @@ class j16000list_reviews
 				}
 
 			$r['row_class']='';
-			if ($review_count > 0)
-				$r['row_class']="ui-state-highlight";
-			if ($unpublished_count > 0)
-				$r['row_class']="ui-state-error";
+			if (!using_bootstrap())
+				{
+				if ($review_count > 0)
+					$r['row_class']="ui-state-highlight";
+				if ($unpublished_count > 0)
+					$r['row_class']="ui-state-error";
+				}
+			else
+				{
+				if ($review_count > 0)
+					$r['row_class']="alert alert-info";
+				if ($unpublished_count > 0)
+					$r['row_class']="alert";
+				}
 
 			$r['NUMBERUNPUBLISHED']=$unpublished_count;
 			$r['NUMBERTOTAL']=$review_count;

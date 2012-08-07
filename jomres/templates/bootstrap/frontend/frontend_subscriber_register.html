@@ -1,26 +1,25 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2>{PAGETITLE}</h2>
-<p class="alert alert-info">{DESC}</p>
-
-<form action="index.php?option=com_jomres" method="post" name="adminForm" class="well form-horizontal">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p>{DESC}</p>
+<form action="index.php?option=com_jomres" method="post" name="adminForm" class="form-horizontal">
 <label></label>
 	<fieldset>
 		<div class="control-group">
 		<label class="control-label" for="firstname">{HFIRSTNAME}</label>
 			<div class="controls">
-				<input class="jomres_inputbox" type="text" name="firstname" value="{FIRSTNAME}" />
+				<input class="input-large" type="text" name="firstname" value="{FIRSTNAME}" />
 			</div> 
 		</div> 
 		<div class="control-group">
 		<label class="control-label" for="firstname">{HSURNAME}</label>
 			<div class="controls">
-				<input class="jomres_inputbox" type="text" name="surname" value="{SURNAME}" />
+				<input class="input-large" type="text" name="surname" value="{SURNAME}" />
 			</div> 
 		</div> 
 		<div class="control-group">
 		<label class="control-label" for="firstname">{HADDRESS}</label>
 			<div class="controls">
-				<input class="jomres_inputbox" type="text" name="address" value="{ADDRESS}" />
+				<input class="input-large" type="text" name="address" value="{ADDRESS}" />
 			</div> 
 		</div> 
 		<div class="control-group">
@@ -32,20 +31,17 @@
 		<div class="control-group">
 		<label class="control-label" for="firstname">{HPOSTCODE}</label>
 			<div class="controls">
-				<input class="jomres_inputbox" type="text" name="postcode" value="{POSTCODE}" />
+				<input class="input-large" type="text" name="postcode" value="{POSTCODE}" />
 			</div> 
 		</div> 
 		<div class="form-actions">
-			<div class="btn-group">
-				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-				<input type="button" name="send" value="{COMMON_NEXT}" class="btn btn-primary" onclick="document.adminForm.submit();"/>
-			</div>
+			<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+			<a href="javascript:document.adminForm.submit();" class="btn btn-primary">{COMMON_NEXT} <i class="icon-arrow-right icon-white"></i></a>
 		</div>
 	</fieldset>
-
-<input type="hidden" name="package_id" value="{PACKAGE_ID}" />
-<input type="hidden" name="option" value="com_jomres" />
-<input type="hidden" name="task" value="save_subscriber" />
-<input type="hidden" name="no_html" value="1" />
+	<input type="hidden" name="package_id" value="{PACKAGE_ID}" />
+	<input type="hidden" name="option" value="com_jomres" />
+	<input type="hidden" name="task" value="save_subscriber" />
+	<input type="hidden" name="no_html" value="1" />
 </form>
 </patTemplate:tmpl>

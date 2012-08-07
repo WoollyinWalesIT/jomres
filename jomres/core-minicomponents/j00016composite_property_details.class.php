@@ -84,7 +84,7 @@ class j00016composite_property_details {
 			$output['INLINE_CALENDAR_ARROW_CLOSINGDIV'] = '';
 			}
 		
-		$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
+		//$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
@@ -108,7 +108,8 @@ class j00016composite_property_details {
 						$tab_class="";
 					$content = $tabs['TAB_CONTENT'];
 					$title = $tabs['TAB_TITLE'];
-					$tab_titles[] = array("TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"TAB_TITLE"=>$title,"ACTIVE"=>$tab_class);
+					$tab_id = $tabs['TAB_ID'];
+					$tab_titles[] = array("TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"TAB_TITLE"=>$title,"ACTIVE"=>$tab_class,"TAB_ID"=>$tab_id);
 					$tab_contents[] = array("TAB_CONTENT"=>$content,"TAB_TITLE"=>$title,"TAB_ANCHOR"=>$tabs['TAB_ANCHOR'],"ACTIVE"=>$tab_class);
 					$output[strtoupper($key."_tabtitle")] = $title;
 					$output[strtoupper($key."_tab_content")] =$content;

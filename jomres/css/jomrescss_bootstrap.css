@@ -3,11 +3,13 @@
 .align-center{text-align:center;}
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
 .property_details_buttons {width: 100px !important;}
+#jomres_content_area{padding-bottom:20px;}
 
 .thumbnails > li.photoview {margin:0;width:100%;}
 .row-fluid [class*="jomres_property_list_propertywrapper span"] {margin-left: 0.5%;}
 .photoview_list{height:410px;}
 .thumbnail.photoview-height{height:410px;}
+input[class^="jomres_te_"] {width: 25px !important;}
 
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }

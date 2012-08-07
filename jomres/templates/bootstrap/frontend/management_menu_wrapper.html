@@ -5,21 +5,29 @@
 	var $content = jomresJquery('#jomres_menu_wrapper').html();
 	jomresJquery('#jomres_alternate_menu_position').html($content);
 	jomresJquery('#jomres_menu_wrapper').empty(); // making sure that the old div doesn't have the accordion applied to it.
-		jomresJquery( "#accordion" ).accordion({
-			autoHeight: false,
-			navigation: true,
-			collapsible: true
-		});
-
 	});
 //-->
 </script>
 
-<div id="jomres_menu_wrapper" style="display:none">
-	<div id="accordion">
-		<patTemplate:tmpl name="button_output">
-			{DIV}
-		</patTemplate:tmpl>
+<div id="jomres_menu_wrapper" style="display:none;">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				  	<span class="icon-bar"></span>
+				  	<span class="icon-bar"></span>
+				  	<span class="icon-bar"></span>
+				</a>
+				<!--<a class="brand" href="#">Jomres Management View</a>-->
+				<div class="nav-collapse">
+					<ul class="nav">
+						<patTemplate:tmpl name="button_output">
+						{DIV}
+						</patTemplate:tmpl>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 </patTemplate:tmpl>

@@ -1,18 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-					<ul class="nav pull-left btn-group">
-						<li class="dropdown btn">
-							<a href="#"
-								class="dropdown-toggle"
-								data-toggle="dropdown">
-								{CATEGORY}
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<patTemplate:tmpl name="rows" unusedvars="strip"><a class="{DISABLED_CLASS}" href="{LINK}" {TARGET} ><img src="{IMAGE_PATH}" border="0" width="25px" height="25px" style="vertical-align:middle;margin-right:5px;"/>{MENU_NAME}</a>
-								</patTemplate:tmpl>
-							</ul>
-						</li>
-					</ul>
-					
-					
+	<li class="nav-header">
+		{CATEGORY}
+	</li>
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<li class="{ACTIVE} {DISABLED_CLASS}"><a href="{LINK}" {TARGET} ><img src="{IMAGE_PATH}" border="0" width="14" height="14"/> {MENU_NAME}</a></li>
+	</patTemplate:tmpl>
+	<li class="divider"></li>
 </patTemplate:tmpl>

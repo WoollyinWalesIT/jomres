@@ -11,31 +11,13 @@ function get_properties(initial)
 	}
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h2>{_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY}</h2>
-		</div>
-		<p>{_JOMRES_PORTALUI_CLICKINITIAL}</p>
-	</div>
+<h2 class="page-header">{_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY}</h2>
+<p>{_JOMRES_PORTALUI_CLICKINITIAL}</p>
+<div class="btn-toolbar">
+	<patTemplate:tmpl name="rows">
+		<a href="javascript:void(0);" class="btn btn-toolbar" onclick="get_properties('{INITIAL}');">{INITIAL}  ({COUNT})</a>
+	</patTemplate:tmpl>
 </div>
-<div class="row-fluid">
-	<div class="span12 btn-toolbar">
-		<patTemplate:tmpl name="rows">
-			<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL}  ({COUNT})</a>
-		</patTemplate:tmpl>
-	</div>
-</div>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h3>{_JOMRES_FOUNDPROPERTIES}</h3>
-		</div>
-	</div>
-</div>
-<div class="row-fluid">
-	<div class="span12">
-		<div id="found_properties"></div>
-	</div>
-</div>
+<h3 class="page-header">{_JOMRES_FOUNDPROPERTIES}</h3>
+<div id="found_properties"></div>
 </patTemplate:tmpl>

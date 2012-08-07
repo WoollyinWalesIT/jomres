@@ -37,24 +37,23 @@ function confirm_review(rating_id,state)
 //-->
 </script>
 
-<div id="thanks_field" class="row-fluid">
-	<div class="span12 alert alert-success">
+<div id="thanks_field">
+	<div class="alert alert-success">
 		<button class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
 		{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12">
-		<h2>{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</h2>
-	</div>
-</div>
+<h2>{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</h2>
 <patTemplate:tmpl name="rows" unusedvars="strip">
-<div class="row-fluid page-header">
-	<div class="span9"><h3>{REVIEW_TITLE}</h3></div>
-	<div class="span3" align="right">{RATING_STARS}</div>
+<div class="page-header">
+	<div class="row-fluid">
+		<div class="span9"><h3>{REVIEW_TITLE}</h3></div>
+		<div class="span3" align="right">{RATING_STARS}</div>
+	</div>
+	<div class="small">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}{USERNAME}</div>
 </div>
 <div class="row-fluid">
-	<div class="span3 well">
+	<div class="span4 well">
 		<div class="row-fluid">
 			<div class="span9">{_JOMRES_REVIEWS_RATING_1}</div>
 			<div class="span3">{RATING_1}</div>
@@ -80,7 +79,7 @@ function confirm_review(rating_id,state)
 			<div class="span3">{RATING_6}</div>
 		</div>
 	</div>
-	<div class="span9">
+	<div class="span8">
 		<dl>
 			<dt>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</dt>
 			<dd>{REVIEW_DESCRIPTION}</dd>
@@ -90,7 +89,6 @@ function confirm_review(rating_id,state)
 			<dd>{CONS}</dd>
 		</dl>
 		<div class="btn-toolbar">
-			<div class="small pull-right" align="right"><span class="label">{_JOMRES_REVIEWS_DATE} {RATING_DATE} {_JOMRES_REVIEWS_REVIEWED_BY}{USERNAME}</span></div>
 			<div class="btn-group" id="agree_thumbs{RATING_ID}">
 				{THUMB_UP}{THUMB_DOWN}
 			</div>

@@ -1,9 +1,5 @@
 <patTemplate:tmpl name="editroomfeature" unusedvars="strip">
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
 	<fieldset>
@@ -14,9 +10,7 @@
 			</div> 
 		</div>
 		<div class="form-actions">
-			<div class="">
-				{JOMRESTOOLBAR}
-			</div>
+			{JOMRESTOOLBAR}
 		</div>
 	</fieldset>
 	<input type="hidden" name="roomFeatureUid" value="{ROOMFEATUREUID}">

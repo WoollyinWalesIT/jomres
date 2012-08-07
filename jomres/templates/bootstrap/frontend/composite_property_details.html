@@ -1,45 +1,40 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
-<div class="rowfluid">
-	<div id="property_details">
-		<div class="span12">
-			<div id="gallerywrapper" class="span7 well pull-left">{SLIDESHOW}</div>
-			<div class="span5 pull-right">
-				<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
-				<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-					<div class="btn-toolbar"><a href="{LINK}" class="btn btn-primary btn-large">{TEXT}</a></div></patTemplate:tmpl>
-				<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
-				<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
-				<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
-				<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
-					<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
-				<div style="clear:both;"></div>
-				<div>{INLINE_CALENDAR}</div>
-				
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<div class="tabbable">
-					<ul class="nav nav-tabs">
-						<patTemplate:tmpl name="tabs_titles">
-						<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab">{TAB_TITLE}</a></li>
-						</patTemplate:tmpl>
-					</ul>
-					<div class="tab-content">
-						<patTemplate:tmpl name="tabs_content">
-						<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
-							{TAB_CONTENT}
-						</div>
-						</patTemplate:tmpl>
-					</div>
-				</div>
-			</div>
+<div id="property_details">
+	<div class="rowfluid">
+		<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
+		<div class="span5">
+			<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+			<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar"><a href="{LINK}" class="btn btn-primary btn-large">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<div style="clear:both;"></div>
+			<div>{INLINE_CALENDAR}</div>
 		</div>
 	</div>
 </div>
-<div></div}
+<div class="clearfix"></div>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<patTemplate:tmpl name="tabs_titles">
+		<li class="{ACTIVE}"><a href="#{TAB_ANCHOR}" data-toggle="tab" id="{TAB_ID}">{TAB_TITLE}</a></li>
+		</patTemplate:tmpl>
+	</ul>
+	<div class="tab-content">
+		<patTemplate:tmpl name="tabs_content">
+		<div class="tab-pane {ACTIVE}" id="{TAB_ANCHOR}">
+			{TAB_CONTENT}
+		</div>
+		</patTemplate:tmpl>
+	</div>
+</div>
+<div class="clearfix"></div>
+<p>&nbsp;</p>
 </patTemplate:tmpl>

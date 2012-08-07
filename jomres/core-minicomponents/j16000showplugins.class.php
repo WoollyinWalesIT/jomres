@@ -248,7 +248,7 @@ class j16000showplugins
 		$span = 12;
 		if ($developer_user)
 			$span=11;
-		$OUTPUT['SPAN'] = $span;
+		$output['SPAN'] = $span;
 
 		$install_text="Install";
 		$reinstall_text="Reinstall";
@@ -273,7 +273,7 @@ class j16000showplugins
 
 			$min_jomres_ver = explode(".",$rp['min_jomres_ver']);
 			
-			$row_class='ui-widget-content ui-corner-all';
+			$row_class='';
 			$installAction=$install_text;
 			$uninstallAction=" ";
 			if (array_key_exists($rp['name'],$installed_plugins ) )
@@ -313,7 +313,7 @@ class j16000showplugins
 			$r['HPLUGINPRICE']='';
 			if (!$developer_user)
 				{
-				$r['HPLUGINPRICE']="Plugin price<br/> (Click to add to your cart)";
+				$r['HPLUGINPRICE']="Plugin price<br/>(Click to add to your cart)";
 				}
 			
 			$r['UNINSTALL_LINK'] ='';
@@ -324,9 +324,9 @@ class j16000showplugins
 				$r['UNINSTALL_LINK'] = JOMRES_SITEPAGE_URL_ADMIN.'&task=removeplugin&no_html=1&plugin='.$n;
 				$r['UNINSTALL_TEXT'] = $uninstallAction;
 				if (using_bootstrap())
-					$r['UNINSTALL'] = '<a href="'.$r['UNINSTALL_LINK'].'" class="btn btn-danger" > <i class="icon-trash icon-white"></i>'.$r['UNINSTALL_TEXT'].'</a>';
+					$r['UNINSTALL'] = '<a href="'.$r['UNINSTALL_LINK'].'" class="btn btn-danger" >'.$r['UNINSTALL_TEXT'].'</a>';
 				else
-					$r['UNINSTALL'] = '<a href="'.$r['UNINSTALL_LINK'].'" class="fg-button ui-state-default ui-corner-all" >'.$r['UNINSTALL_TEXT'].'</a>';
+					$r['UNINSTALL'] = '<a href="'.$r['UNINSTALL_LINK'].'" class="fg-button ui-state-default ui-corner-all">'.$r['UNINSTALL_TEXT'].'</a>';
 				}
 				
 			$local_version=$installed_plugins[$plugin_name]['version'];
@@ -334,10 +334,18 @@ class j16000showplugins
 				$local_version="N/A";
 
 			$style = "";
-			if ($rp['price'] == 0 && $row_class=='ui-widget-content ui-corner-all')
+			if ($rp['price'] == 0 && $row_class=='')
 				{
-				$row_class='';
-				$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
+				if (!using_bootstrap())
+					{
+					$row_class='';
+					$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
+					}
+				else
+					{
+					$row_class='freeplugin';
+					$style = '';
+					}
 				}
 			
 			$r['MANUAL_LINK'] ='';
@@ -406,7 +414,7 @@ class j16000showplugins
 			if ($condition == 1 && ( array_key_exists($rp['name'],$current_licenses) || $developer_user) )
 				{
 				if (using_bootstrap())
-					$r['INSTALL'] = '<a href="'.$r['INSTALL_LINK'].'" class="btn btn-primary" > <i class="icon-download-alt icon-white"></i> '.$r['INSTALL_TEXT'].'</a>';
+					$r['INSTALL'] = '<a href="'.$r['INSTALL_LINK'].'" class="btn btn-primary" >'.$r['INSTALL_TEXT'].'</a>';
 				else
 					$r['INSTALL'] = '<a href="'.$r['INSTALL_LINK'].'" class="fg-button ui-state-default ui-corner-all" >'.$r['INSTALL_TEXT'].'</a>';
 				}
@@ -420,7 +428,6 @@ class j16000showplugins
 					{
 					$rp['price'] = 0.00;
 					}
-					//
 				$r['PRICE']=$rp['price'];
 				$r['ADD_TEXT']="Add to cart";
 				}
@@ -439,7 +446,7 @@ class j16000showplugins
 					if ($r['PRICE'] == 0)
 						$btn_emphasis = "btn-inverse";
 					
-					$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" > <i class="icon-shopping-cart icon-white"></i>&pound;'.$r['PRICE'].'</button>';
+					$r['ADD_TO_CART_BUTTON'] = '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');">&pound;'.$r['PRICE'].'</button>';
 					}
 				else
 					$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" >&pound;'.$r['PRICE'].'</button>';
@@ -451,13 +458,16 @@ class j16000showplugins
 				switch ($row_class)
 					{
 					case 'ui-state-highlight':
-						$row_class='alert alert-info';
+						$row_class='alert alert-success';
 					break;
 					case 'ui-state-error':
 						$row_class='alert alert-error';
 					break;
+					case 'freeplugin':
+						$row_class='alert alert-info';
+					break;
 					default :
-						$row_class='well';
+						$row_class='';
 					break;
 					}
 				

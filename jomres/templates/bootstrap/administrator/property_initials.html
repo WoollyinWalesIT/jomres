@@ -9,29 +9,21 @@ function get_properties(initial)
 			}
 		);
 	}
+jomresJquery(function() {
+	var $content = jomresJquery('#properties_initials').html();
+	jomresJquery('#toolbar').html($content);
+	jomresJquery('#properties_initials').empty();
+	});
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="">{_JRPORTAL_CPANEL_LISTCRATES}</h2>
+<h2 class="page-header">{_JRPORTAL_CPANEL_LISTCRATES}</h2>
+<p>{_JOMRES_CRATES_CLICKINITIAL}</p>
+<div id="properties_initials">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<div class="btn-group">
+		<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL} ({COUNT})</a>
 	</div>
+	</patTemplate:tmpl>
 </div>
-
-<p class="alert alert-info">{_JOMRES_CRATES_CLICKINITIAL}</p>
-<table width="100%">
-	<tr valign="top">
-		<td>
-			<patTemplate:tmpl name="rows" unusedvars="strip">
-			<div>
-				<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');" >{INITIAL}  ({COUNT})</a>
-			</div>
-			</patTemplate:tmpl>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div id="found_properties"></div>
-		</td>
-	</tr>
-</table>
+<div id="found_properties"></div>
 </patTemplate:tmpl>

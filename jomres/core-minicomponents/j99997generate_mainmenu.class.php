@@ -72,8 +72,24 @@ class j99997generate_mainmenu {
 				if ($r['disabled'])
 					{
 					$r['link']=JOMRES_SITEPAGE_URL_NOSEF."&task=feature_not_available".$old_task;
-					$r['disabled_class']= ' ui-widget-shadow';
+					if (!using_bootstrap())
+						$r['disabled_class']= 'ui-state-error ui-state-disabled';
+					else
+						$r['disabled_class']= 'disabled';
 					}
+				
+				$button_link=str_replace('&amp;','&',$val['link']);
+				parse_str($button_link,$url_params);
+				$button_task=$url_params['task'];
+				if ($button_task==jomresGetParam( $_REQUEST, 'task', "" ))
+					{
+					if (!using_bootstrap())
+						$r['ACTIVE']="ui-state-active";
+					else
+						$r['ACTIVE']="active";
+					}
+				else
+					$r['ACTIVE']="";
 
 				$rows[]=$r;
 				}
