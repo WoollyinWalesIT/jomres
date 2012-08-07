@@ -1,58 +1,26 @@
-<patTemplate:tmpl name="pageoutput" >
-<div class="row-fluid hidden-phone hidden-tablet">
-	<div class="span4">
-		{HNUMBEROFROOMS}
-	</div>
-	<div class="span3">
-		{HROOM_TYPE_TEXT}
-	</div>
-	<div class="span1">
-		{HTARIFF_NAME_TEXT}
-	</div>
-	<div class="span1">
-		{HGUESTPER_ROOM}
-	</div>
-	<div class="span1">
-		{HGUESTPER_BOOKING}
-	</div>
-	<div class="span2">
-		{HRATE_TEXT}
-	</div>
-</div>
-
-<div class="row-fluid visible-phone visible-tablet">
-	<div class="span12">
-		&nbsp;
-	</div>
-</div>
-
-
-	<patTemplate:tmpl name="rows" >
-	<div class="row-fluid hidden-phone hidden-tablet">
-		<div class="span4">
-			{NUMBEROFROOMS}
-		</div>
-		<div class="span3">
-			{ROOM_TYPE_TEXT}
-		</div>
-		<div class="span1">
-			{TARIFF_NAME_TEXT}
-		</div>
-		<div class="span1">
-			{GUESTPER_ROOM}
-		</div>
-		<div class="span1">
-			{GUESTPER_BOOKING}
-		</div>
-		<div class="span2">
-			{RATE_TEXT}
-		</div>
-	</div>
-
-	<div class="row-fluid visible-phone visible-tablet">
-		<div class="span12">
-			{NUMBEROFROOMS} {ROOM_TYPE_TEXT} {RATE_TEXT}
-		</div>
-	</div>
-	</patTemplate:tmpl>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<table class="table table-striped" width="100%">
+	<thead>
+		<tr>
+			<th class="visible-desktop">{HNUMBEROFROOMS}</th>
+			<th class="visible-desktop">{HROOM_TYPE_TEXT}</th>
+			<th class="visible-desktop">{HTARIFF_NAME_TEXT}</th>
+			<th class="visible-desktop">{HGUESTPER_ROOM}</th>
+			<th class="visible-desktop">{HGUESTPER_BOOKING}</th>
+			<th class="visible-desktop">{HRATE_TEXT}</th>
+			<th class="hidden-desktop"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" >
+		<tr>
+			<td class="visible-desktop">{NUMBEROFROOMS}</td>
+			<td class="visible-desktop">{ROOM_TYPE_TEXT}</td>
+			<td class="visible-desktop">{TARIFF_NAME_TEXT}</td>
+			<td class="visible-desktop">{GUESTPER_ROOM}</td>
+			<td class="visible-desktop">{GUESTPER_BOOKING}</td>
+			<td class="visible-desktop">{RATE_TEXT}</td>
+			<td class="hidden-desktop">{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</td>
+		</tr>
+		</patTemplate:tmpl>
 </patTemplate:tmpl>

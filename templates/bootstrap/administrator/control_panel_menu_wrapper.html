@@ -1,22 +1,11 @@
-<patTemplate:tmpl name="pageoutput">
-
-	<!-- Subheader -->
-	
-	<a class="btn btn-subhead" data-toggle="collapse" data-target=".subhead-collapse"></a>
-	<div class="subhead-collapse">
-		<div class="subhead">
-			<div class="container-fluid">
-				<div class="container-collapse"></div>
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="btn-toolbar" id="toolbar">
-							<patTemplate:tmpl name="button_output">
-							{DIV} 
-							</patTemplate:tmpl>
-						</div>
-				</div>
-			</div>
-		</div>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<div class="span2">
+	<patTemplate:tmpl name="button_output">
+	<div class="sidebar-nav">
+		<ul class="nav nav-list">
+			{DIV}
+		</ul>
 	</div>
-
+	</patTemplate:tmpl>
+</div>
 </patTemplate:tmpl>

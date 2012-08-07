@@ -1,43 +1,40 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<div class="alert alert-info">{NOTES}</div>
-<div class="alert alert-warning">{HOVERRIDE_DESC}</b></div>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
+<p class="alert alert-info">{NOTES}</b></p>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
-
-<div class="row-fluid">
-	<div class="span12">
-			<h2>{PAGETITLE}</h2>
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="currencycode">{HCURRENCYCODE}</label>
-					<div class="controls">
-						<input type="text" name="currencycode" value="{CURRENCYCODE}" size="5"/>
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="usesandbox">{HSANDBOX}</label>
-					<div class="controls">
-						{USESANDBOX}
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="email">{HEMAIL}</label>
-					<div class="controls">
-						<input type="text" name="email" value="{PAYPALEMAIL}" size="50" />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="override">{HOVERRIDE}</label>
-					<div class="controls">
-						{OVERRIDE}
-					</div> 
-				</div>
-				
-				<div class="form-actions">
-					{JOMRESTOOLBAR}
-				</div>
-			</fieldset>
-	</div>
-</div>
-<input type="hidden" name="task" value="save_paypal_settings" />
+{JOMRESTOOLBAR}
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="name">{HCURRENCYCODE}</label>
+			<div class="controls">
+				<input type="text" name="currencycode" value="{CURRENCYCODE}" class="input-mini" maxlength="3"/>
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{HSANDBOX}</label>
+			<div class="controls">
+				{USESANDBOX}
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{HEMAIL}</label>
+			<div class="controls">
+				<input type="text" name="email" value="{PAYPALEMAIL}" class="input-large" />
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{HOVERRIDE}</label>
+			<div class="controls">
+				{OVERRIDE}
+				<p class="help-block">
+					{HOVERRIDE_DESC}
+				</p>
+			</div> 
+		</div>
+		<input type="hidden" name="task" value="save_paypal_settings" />
+	</fieldset>
 </form>
 </patTemplate:tmpl>

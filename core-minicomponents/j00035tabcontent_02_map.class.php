@@ -21,7 +21,7 @@ class j00035tabcontent_02_map
 			{
 			$this->template_touchable=false; return;
 			}
-		return;
+
 		$property_uid=(int)$componentArgs['property_uid'];  
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		
@@ -29,7 +29,7 @@ class j00035tabcontent_02_map
 		// j01050 geocoder (google maps)
 		if (strlen($MiniComponents->miniComponentData['01050']['x_geocoder'])>0)
 			{
-			
+			$tab_id="mapTab";
 			$anchor = jomres_generate_tab_anchor($output['TITLE_MAP']);
 			?>
 			<script type="text/javascript">
@@ -44,6 +44,7 @@ class j00035tabcontent_02_map
 			<?php
 			$tab = array(
 				"TAB_ANCHOR"=>$anchor,
+				"TAB_ID"=>$tab_id,
 				"TAB_TITLE"=>$output['TITLE_MAP'],
 				"TAB_CONTENT"=>$MiniComponents->miniComponentData['01050']['x_geocoder']
 				);

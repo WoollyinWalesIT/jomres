@@ -1,78 +1,77 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="">{_JOMRES_COM_A_CRON_TITLE}</h2>
-	</div>
-</div>
-
-<div class="alert alert-info">{_JOMRES_COM_A_CRON_DESC}</div>
-
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+jomresJquery(function() {
+	var $content = jomresJquery('#save-cron-settings').html();
+	jomresJquery('#toolbar').html($content);
+	jomresJquery('#save-cron-settings').empty();
+	});
+//-->
+</script>
+<h2 class="page-header">{_JOMRES_COM_A_CRON_TITLE}</h2>
+<p>{_JOMRES_COM_A_CRON_DESC}</p>
+<h3 class="page-header">Settings</h3>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+		<label class="control-label" for="name">{_JOMRES_COM_A_CRON_METHOD}</label>
+			<div class="controls">
+				{METHODDROPDOWN}
+				<p class="help-block">
+					{_JOMRES_COM_A_CRON_METHOD_DESC}
+				</p>
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{_JOMRES_COM_A_CRON_LOGGING}</label>
+			<div class="controls">
+				{DISPLAYLOGGINGDROPDOWN}
+				<p class="help-block">
+					{_JOMRES_COM_A_CRON_LOGGING_DESC}
+				</p>
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{_JOMRES_COM_A_CRON_LOGGINGENABLED}</label>
+			<div class="controls">
+				{LOGGINGDROPDOWN}
+				<p class="help-block">
+					{_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC}
+				</p>
+			</div> 
+		</div>
+		
+		<div class="control-group">
+		<label class="control-label" for="name">{_JOMRES_COM_A_CRON_VERBOSELOGS}</label>
+			<div class="controls">
+				{VERBOSEDROPDOWN}
+				<p class="help-block">
+					{_JOMRES_COM_A_CRON_VERBOSELOGS_DESC}
+				</p>
+			</div> 
+		</div>
+		
+		<div id="save-cron-settings">
+			<div class="btn-group"><button type="submit" class="btn btn-primary" href="#" onclick="javascript:jomres_submitbutton('pseudocron');"><i class="icon-ok icon-white"></i> Save settings</button></div>
+		</div>
 
-<div class="row-fluid">
-	<div class="span12">
-		<h2>{PAGETITLE}</h2>
-		<fieldset>
-			<div class="control-group">
-				<label class="control-label" for="method">{_JOMRES_COM_A_CRON_METHOD}</label>
-				<div class="controls">
-					{METHODDROPDOWN}
-				</div> 
-				<p class="help-block">{_JOMRES_COM_A_CRON_METHOD_DESC}</p>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="displaylogging">{_JOMRES_COM_A_CRON_LOGGING}</label>
-				<div class="controls">
-					{DISPLAYLOGGINGDROPDOWN}
-				</div> 
-				<p class="help-block">{_JOMRES_COM_A_CRON_LOGGING_DESC}</p>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="logging">{_JOMRES_COM_A_CRON_LOGGINGENABLED}</label>
-				<div class="controls">
-					{LOGGINGDROPDOWN}
-				</div> 
-				<p class="help-block">{_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC}</p>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="verbose">{_JOMRES_COM_A_CRON_VERBOSELOGS}</label>
-				<div class="controls">
-					{VERBOSEDROPDOWN}
-				</div> 
-				<p class="help-block">{_JOMRES_COM_A_CRON_VERBOSELOGS_DESC}</p>
-				
-			</div>
-			<div class="form-actions">
-				<div>
-					<a class="btn btn-primary" href="javascript:jomres_submitbutton('pseudocron');"><i class="icon-ok icon-white "></i> {COMMON_SAVE}</a> 
-					<a href="{JOMRES_SITEPAGE_URL_ADMIN}" class="btn " title="{COMMON_CANCEL}"><i class="icon-remove"></i> {COMMON_CANCEL}</a> 
-				</div>
-			</div>
-		</fieldset>
-	</div>
-</div>
-
-<input type="hidden" name="task" value="pseudocron" />
-<input type="hidden" name="option" value="com_jomres" />
+		<input type="hidden" name="task" value="pseudocron" />
+		<input type="hidden" name="option" value="com_jomres" />
+	</fieldset>
 </form>
-<br />
-
-<div class="row-fluid">
-	<div class="span12">
-		<h3>Current Cron Jobs</h3>
-		<div class="alert alert-info">{_JOMRES_COM_A_CRON_IMMEDIATERUN}</div>
-	</div>
+<h3 class="page-header">Current Cron Jobs</h3>
+<p>{_JOMRES_COM_A_CRON_IMMEDIATERUN}</p>
+<table width="100%" class="table table-striped">
 	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<div class="span12">
-		{JOB}
-	</div>
+	<tr>
+		<td>{JOB}</td>
+ 	</tr>
 	</patTemplate:tmpl>
-</div>
-
-<br />
-
-<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
+</table>
+<h3 class="page-header">Logs</h3>
+<table class="table table-striped" width="100%">
 	<patTemplate:tmpl name="logs" unusedvars="nbsp">
 	<tr>
 		<td>{LOG}</td>

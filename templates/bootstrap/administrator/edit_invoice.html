@@ -57,11 +57,10 @@ function updateRecurGrandTotal()
 	};
 //-->
 </script>
-<h2>{PAGETITLE}</h2>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-
-<table class="table table-condensed" width="100%">
+<table class="well" width="100%">
 	<tr>
 		<td width="30%">{_JOMRES_ADMIN_LISTALLUSERSINVOICES}</td>
 		<td>{USERSINVOICESLINK}</td>
@@ -76,7 +75,7 @@ function updateRecurGrandTotal()
 	</tr>
 	<tr>
 		<td>{HDUE}</td>
-		<td><input class="jomres_inputbox" type="text" name="due_date" value="{DUE}" size="30"/></td>
+		<td><input class="input-large" type="text" name="due_date" value="{DUE}" /></td>
 	</tr>
 	<tr>
 		<td>{HSUBSCRIPTION}</td>
@@ -99,8 +98,8 @@ function updateRecurGrandTotal()
 		<td>{FREQ}</td>
 	</tr>
 </table>
-<h3>{LIPAGETITLE}</h3>
-<table class="table table-striped table-condensed" width="100%">
+<h3 class="page-header">{LIPAGETITLE}</h3>
+<table class="table table-triped" width="100%">
 	<thead>
 		<tr>
 			<th>&nbsp;</th>
@@ -132,13 +131,13 @@ function updateRecurGrandTotal()
 				<td>{LI_NAME}</td>
 				<td>{LI_DESCRIPTION}</td>
 				<td>{LI_INIT_PRICE}</td>
-				<td><input class="jomres_inputbox" type="text" size="5" id="init_qty_{ID}" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
-				<td><input class="jomres_inputbox" type="text" size="5" id="init_discount_{ID}" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
+				<td><input class="input-mini" type="text" id="init_qty_{ID}" name="init_qty[{ID}]" value="{LI_INIT_QTY}" onChange="updateInit_Total({ID});"/></td>
+				<td><input class="input-mini" type="text" id="init_discount_{ID}" name="init_discount[{ID}]" value="{LI_INIT_DISCOUNT}" onChange="updateInit_Total({ID});"/></td>
 				<td><div id="init_total_{ID}">{LI_INIT_TOTAL}</div></td>
 				<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
 				<td>{LI_RECUR_PRICE}</td>
-				<td><input class="jomres_inputbox" type="text" size="5" id="recur_qty_{ID}" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
-				<td><input class="jomres_inputbox" type="text" size="5" id="recur_discount_{ID}" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
+				<td><input class="input-mini" type="text" id="recur_qty_{ID}" name="recur_qty[{ID}]" value="{LI_RECUR_QTY}" onChange="updateRecur_Total({ID});"/></td>
+				<td><input class="input-mini" type="text" id="recur_discount_{ID}" name="recur_discount[{ID}]" value="{LI_RECUR_DISCOUNT}" onChange="updateRecur_Total({ID});"/></td>
 				<td><div id="recur_total_{ID}">{LI_RECUR_TOTAL}</div></td>
 				<td>{LI_TAX_CODE}</td>
 				<td>{LI_TAX_DESCRIPTION}</td>

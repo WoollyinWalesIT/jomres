@@ -3,7 +3,7 @@
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">{CATEGORY}<b class="caret"></b></a>
 	<ul class="dropdown-menu">
 	<patTemplate:tmpl name="rows" unusedvars="strip">
-		<li><a href="{LINK}" {TARGET}><img src="{IMAGE_PATH}{IMAGE}" border="0" width="25px" height="25px" style="vertical-align:middle;margin-right:5px;"  class="menu_jomres_horiz"  alt="{MENU_NAME}" />{MENU_NAME}</a></li>
+		<li class="{ACTIVE} {DISABLED_CLASS}"><a href="{LINK}" {TARGET}><img src="{IMAGE_PATH}{IMAGE}" border="0" width="20px" height="20px" alt="{MENU_NAME}" /> {MENU_NAME}</a></li>
 	</patTemplate:tmpl>
 	</ul>
 </li>

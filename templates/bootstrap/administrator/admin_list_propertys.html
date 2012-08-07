@@ -1,27 +1,28 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <style type="text/css">
 table.ui-widget-header ui-corner-all tr.row2 {
 	background-color: #fc0000;
 	text-align: left;
 }
 </style>
+
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
+<table class="table table-striped" width="100%">
 	<thead>
 		<tr>
 			<th>{HPROPERTYNAME}</th>
-			<th>{HPROPERTYADDRESS}</th>
-			<th>{HCRATE_DROPDOWN}</th>
+			<th >{HPROPERTYADDRESS}</th>
+			<th >{HCRATE_DROPDOWN}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
-		<tr class="{STYLE}">
+		<tr>
 			<td>{VIEWLINK}{PROPERTYNAME}</td>
 			<td>{PROPERTYADDRESS}</td>
 			<td>{CRATE_DROPDOWN}</td>
-		</tr>
+		</tr>		
 		</patTemplate:tmpl>
    	</tbody>
 </table>

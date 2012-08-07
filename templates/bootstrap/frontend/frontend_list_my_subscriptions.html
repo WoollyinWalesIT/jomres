@@ -3,17 +3,45 @@
 <!--
 jomresJquery(document).ready(function() {
 	var oTable = jomresJquery('#frontend_list_my_subscriptions').dataTable({
-		"bJQueryUI": true,
+		"bJQueryUI": false,
 		"bStateSave": true,
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "{PAGETITLE}"
+				},
+				"print"
+			]
+		}
 	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
 } );
 //-->
 </script>
-<h2>{PAGETITLE}</h2>
+<h2 class="page-header">{PAGETITLE}</h2>
 <p>{STATUSEXPL}</p>
 {JOMRESTOOLBAR}
-<table id="frontend_list_my_subscriptions" width="100%" border="0">
+<table id="frontend_list_my_subscriptions" width="100%" class="table table-striped">
 	<thead>
 		<tr>
 			<th>{HNAME}</th>

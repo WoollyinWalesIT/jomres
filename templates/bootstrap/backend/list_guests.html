@@ -6,7 +6,7 @@ jomresJquery(document).ready(function() {
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -38,23 +38,17 @@ jomresJquery(document).ready(function() {
 } );
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 <div class="well">
-	<div class="span12">
-		<div class="pull-left">
-			{JOMRESTOOLBAR}
-		</div>
-		<div class="pull-right">
-			{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}-->
-		</div>
+	<div class="pull-left">
+		{JOMRESTOOLBAR}
+	</div>
+	<div class="pull-right">
+		{HISTORIC_GUESTS_DROPDOWN}<!--{SURNAMEDROPDOWN}-->
 	</div>
 </div>
-<table width="100%" border="0" id="list_guests" class="table table-bordered table-condensed table-striped">
+<table width="100%" id="list_guests" class="table table-striped">
 	<thead>
 		<tr>
 			<th>{HEDITLINK}</th>
@@ -80,7 +74,6 @@ jomresJquery(document).ready(function() {
 		</patTemplate:tmpl>
 	</tbody>
 </table>
-</div>
 <input type="hidden" name="guestUid" value="" />
 <input type="hidden" name="task" value="listguests" />
 </form>

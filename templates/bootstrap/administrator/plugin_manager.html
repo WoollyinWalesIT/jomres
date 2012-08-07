@@ -1,183 +1,144 @@
-<patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
-<h2>{PAGETITLE}</h2>
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<h2 class="page-header">{PAGETITLE}</h2>
 
 <div class="row-fluid">
 	<div class="span9">
 		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-		<div id="cart_wrapper" style="width:500px;" class="well">
-			<div class="alert alert-success"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</div>
-			<form id="cart">
-			</form>
-			<div class="alert alert-success">Total <strong>&pound;<span id="total"></span></strong></div>
-			<button id="purchase" class="btn btn-success" onClick="purchase();">Order plugin(s)</button>
-			<br/>
-			<p class="alert alert-info">
-			Note, if you have a Jomres Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
-			</p>
+		<div id="cart_wrapper" class="well">
+			<h3 class="page-header"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</h3>
+			<div class="row-striped">
+				<form id="cart">
+				</form>
+			</div>
+			<p><strong>Total &pound;<span id="total"></span></strong></p>
+			<div class="btn-toolbar"><button id="purchase" class="btn btn-primary" onClick="purchase();">Order plugin(s)</button></div>
+			<p class="alert alert-warning">Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.</p>
 		</div>
-		<div id="username_input" style="display:none">
+		<div id="username_input" style="display:none;">
 			<fieldset>
-			Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.<br/>
-				<legend>Your details</legend>
-					<ul>
-						<li>
-							<label for=name>Username</label>
-							<input id=name name=name type=text placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
-						</li>
-						<li>
-							<label for=password>Password</label>
-							<input id=password name=password type=password placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
-						</li>
-					</ul>
+			<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
+			<!--<legend>Your details</legend>-->
+				<label for="name">Username</label>
+				<input id="name" name="name" type="text" placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
+				<label for="password">Password</label>
+				<input id="password" name="password" type="password" placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
 			</fieldset>
-			<small>Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</small><br/>
-			<small>Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Silver or Gold license.</small><br/>
-			<div style="align:center;"><button class="btn btn-success" id="purchase_button" onClick="sumbint();" style="width:275px" >Purchase plugins!</button></div>
+			<p class="small">Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</p><br/>
+			<p class="small">Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Developer or Jomres Perpetual license.</p><br />
+			<div class="form-actions"><button class="btn btn-primary" id="purchase_button" onClick="sumbint();">Purchase plugins!</button></div>
 		</div>
-		<br/><br/><br/>
 		</patTemplate:tmpl>
-
-<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
-		<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3><br/>Bold items in the core plugins list are generally essential when building a portal, and if you have upgraded from v4 you should consider installing those plugins to continue working as before.
-</patTemplate:tmpl>
+		<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
+			<p class="alert alert-warning">Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. <br />Bold items in the core plugins list are generally essential when building a portal, and if you have upgraded from v4 you should consider installing those plugins to continue working as before.</p>
+		</patTemplate:tmpl>
 	</div>
-	<div class="span3 well">
-		<div class="row-fluid">
-			<div class="span12">
-				Legend
-			</div>
-			<div class="span12 alert alert-info">
-				Already installed
-			</div>
-			<div class="span12 alert alert-error">
-				Upgrade is available
-			</div>
-			<div class="span12 someclass">
-				Third party plugin
-			</div>
-		</div>
+	<div class="span3">
+		<h3 class="page-header">Legend</h3>
+		<table width="100%" class="">
+			<tr class="alert alert-success">
+				<td align="center">Already installed</td>
+			</tr>
+			<tr class="alert alert-error">
+				<td align="center">Upgrade is available</td>
+			</tr>
+			<tr class="alert alert-info">
+				<td align="center">Free plugin</td>
+			</tr>
+			<!--<tr class="alert">
+				<td align="center">Third party plugin</td>
+			</tr>-->
+		</table>
 	</div>
-
 </div>
-
-<h3>Third party plugins</h3>
-<table width="100%" class="table table-striped table-bordered table-condensed">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Your Version</th>
-			<th>Description</th>
-			<th>Author</th>
-			<th>Author email</th>
-			<th>Remove plugin</th>
-		</tr>
-	</thead>
-	<tbody>
-		<patTemplate:tmpl name="thirdpartyplugins" unusedvars="nbsp">
-		<tr class="{ROWCLASS}">
-			<td>{NAME}</td>
-			<td>{LOCALVERSION}</td>
-			<td>{DESCRIPTION}</td>
-			<td>{AUTHOR}</td>
-			<td><a href="mailto:{AUTHOREMAIL}?subject={NAME}">{AUTHOREMAIL}</a></td>
-			<td><a href="{UNINSTALLLINK}">{UNINSTALL}</td>
-		</tr>
-		</patTemplate:tmpl>
-	</tbody>
-</table>
-
-<br /><br />
-<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL_ADMIN}&task=addplugin&thirdparty=1" method="post">
-	<input type="hidden" name="no_html" value="1" />
-	<table width="100%" border="0">
-		<tr>
-			<th class="ui-widget-header ui-corner-tl ui-corner-tr">Install third party plugin</th>
-		</tr>
-		<tr>
-			<td><input type="file" name="pluginfile" size="40" /></td>
-		</tr>
-		<tr>
-			<td> <input type="submit" value="Install" class="btn btn-primary" /></td>
-		</tr>
-	</table>
-</form>
-<br/>
-<br/>
-
-<h3>Jomres.net plugins</h3>
-<table width="100%" class="table table-striped table-bordered table-condensed">
-	<thead>
-	<tr>
-		<th>Name</th>
-		<!--
-		<th>Image</th>
-		-->
-		<th>Minimum Jomres version</th>
-		<th>Your Version</th>
-		<th>Current Version</th>
-		<th>Last updated</th>
-		<th>Changelog</th>
-		<th>Warnings</th>
-		<th>Add/reinstall/upgrade plugin</th>
-		<th>Remove plugin</th>
-		<th>{HPLUGINPRICE}</th>
-		<th>Description</th>
-	</tr>
-	</thead>
-	<tbody>
-	<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="nbsp">
-	<tr class="{ROWCLASS}">
-		<td STYLE}>
-			<a name="{PLUGIN_NAME}"></a><span class="badge badge-info">{STRONG1}{READABLE_NAME}{STRONG2}</span>
-		</td>
-		<!--
-		<td class="ui-corner-all" {STYLE}>
-			<a href="#" class="thumbnail">
-				<img src="{IMAGE}" alt="">
-			</a>
-		</td>
-		-->
-		<td {STYLE}>
-			{MIN_JOMRES_VER}
-		</td>
-		<td {STYLE}>
-			{LOCAL_VER}
-		</td>
-		<td {STYLE}>
-			{REMOTE_VER}
-		</td>
-		<td {STYLE}>
-			{LASTUPDATE}
-		</td>
-		<td {STYLE}>
-			{CHANGELOG_TOOLTIP}
-		</td>
-		<td {STYLE}>
-			{HIGHLIGHT_TOOLTIP}
-		</td>
-		<td {STYLE}>
-			{INSTALL} {LATERVERSION}
-		</td>
-		<td {STYLE}>
-			{UNINSTALL}
-		</td>
-		<td {STYLE}>
-			{ADD_TO_CART_BUTTON}
-		</td>
-		
-		<td {STYLE}>
-			<button class="btn btn-info" data-toggle="collapse" data-target="#info{PLUGIN_NAME}">
-			<i class="icon-info-sign icon-white"></i> More info
-			</button>
-			 
-			<div id="info{PLUGIN_NAME}" class="collapse in"> 
-			{STRONG1}{PLUGIN_DESC}{STRONG2} <a href="{MANUAL_LINK}" target="_blank">{MANUAL_TEXT}</a>  <a href="{DEMO_LINK}" target="_blank">{DEMO_TEXT}</a>
-			</div>
-			
-			
-		</td>
-	</tr>
-	</patTemplate:tmpl>
-	</tbody>
-</table>
+<h3 class="page-header">Plugins</h3>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#coreplugins" data-toggle="tab">Jomres.net plugins</a></li>
+		<li><a href="#3rdpplugins" data-toggle="tab">Third party plugins</a></li>
+		<li><a href="#install3rdpplugin" data-toggle="tab">Install third party plugin</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="coreplugins">
+			<table width="100%" class="table">
+				<tr>
+					<th>Name</th>
+					<!--
+					<th>Image</th>
+					-->
+					<th>Minimum Jomres version</th>
+					<th>Your Version</th>
+					<th>Current Version</th>
+					<th>Last updated</th>
+					<th>Description</th>
+					<th>Changelog</th>
+					<th>Warnings</th>
+					<th>Add/reinstall/upgrade plugin</th>
+					<th>Remove plugin</th>
+					<th>{HPLUGINPRICE}</th>
+				</tr>
+				<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="strip">
+				<tr>
+					<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
+					<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
+					<td>{MIN_JOMRES_VER}</td>
+					<td>{LOCAL_VER}</td>
+					<td>{REMOTE_VER}</td>
+					<td>{LASTUPDATE}</td>
+					<td>{STRONG1}{PLUGIN_DESC}{STRONG2} <a href="{MANUAL_LINK}" target="_blank">{MANUAL_TEXT}</a>&nbsp;&nbsp;<a href="{DEMO_LINK}" target="_blank">{DEMO_TEXT}</a></td>
+					<td>{CHANGELOG_TOOLTIP}</td>
+					<td>{HIGHLIGHT_TOOLTIP}</td>
+					<td>{INSTALL} {LATERVERSION}</td>
+					<td>{UNINSTALL}</td>
+					<td>{ADD_TO_CART_BUTTON}</td>
+				</patTemplate:tmpl>
+				</tr>
+			</table>
+		</div>
+		<div class="tab-pane" id="3rdpplugins">
+			<table width="100%" class="table table-striped">
+				<thead>
+					<tr>
+						<th colspan="6"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Name</th>
+						<th>Your Version</th>
+						<th>Description</th>
+						<th>Author</th>
+						<th>Author email</th>
+						<th>Remove plugin</th>
+					</tr>
+					<patTemplate:tmpl name="thirdpartyplugins" unusedvars="nbsp">
+					<tr>
+						<td>{NAME}</td>
+						<td>{LOCALVERSION}</td>
+						<td>{DESCRIPTION}</td>
+						<td>{AUTHOR}</td>
+						<td><a href="mailto:{AUTHOREMAIL}?subject={NAME}">{AUTHOREMAIL}</a></td>
+						<td><a href="{UNINSTALLLINK}" class="btn btn-danger">{UNINSTALL}</a></td>
+					</tr>
+					</patTemplate:tmpl>
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="install3rdpplugin">
+			<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL_ADMIN}&task=addplugin&thirdparty=1" method="post" class="form-horizontal">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="pluginfile">Install third party plugin</label>
+						<div class="controls">
+							<input type="file" name="pluginfile" class="input-file"/>
+						</div> 
+					</div>
+					<div class="form-actions">
+						<input type="submit" value="Install" class="btn btn-primary" />
+					</div>
+					<input type="hidden" name="no_html" value="1" />
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
 </patTemplate:tmpl>

@@ -1,9 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <p class="alert alert-warning">{SUPPLIMENT_DESC}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
 	<fieldset>
@@ -62,43 +58,35 @@
 			</div> 
 		</div>
 		<div class="form-actions">
-			<div class="">
-				{JOMRESTOOLBAR}
-			</div>
+			{JOMRESTOOLBAR}
 		</div>
 	</fieldset>
 	<input type="hidden" name="roomUid" value="{ROOMUID}" />
 	<input type="hidden" name="task" value="saveRoom" />
 </form>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h3>{UPLOADIMAGE}</h3>
-		</div>
-		<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&amp;task=uploadRoomImage" method="post" name="upload" class="form-horizontal">
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="image">Image</label>
-					<div class="controls">
-						<input type='file' name='image'/>
-					</div>
-				</div>
-				<div class="form-actions">
-					<input name="upload_button" type="submit" value="{UPLOADIMAGE}" class="btn btn-primary" />
-				</div>
-			</fieldset>
-			<patTemplate:tmpl name="delimg_rows" type="simpleCondition" requiredVars="deleteimage_link">
-			<div class="row-fluid">
-				<div class="span3">
-					<a href="{DELETEIMAGE_LINK}" class="btn btn-danger"><i class="icon-trash icon-white"></i> {DELETEIMAGE_TEXT}</a>
-				</div>
-				<div class="span9">
-					{IMAGE}
-				</div>
+<h3 class="page-header">{UPLOADIMAGE}</h3>
+<form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}&amp;task=uploadRoomImage" method="post" name="upload" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="image">Image</label>
+			<div class="controls">
+				<input type='file' name='image'/>
 			</div>
-			</patTemplate:tmpl>
-			<input type="hidden" name="roomUid" value="{ROOMUID}" />
-		</form>
+		</div>
+		<div class="form-actions">
+			<input name="upload_button" type="submit" value="{UPLOADIMAGE}" class="btn btn-primary" />
+		</div>
+	</fieldset>
+	<patTemplate:tmpl name="delimg_rows" type="simpleCondition" requiredVars="deleteimage_link">
+	<div class="row-fluid">
+		<div class="span3">
+			<a href="{DELETEIMAGE_LINK}" class="btn btn-danger"><i class="icon-trash icon-white"></i> {DELETEIMAGE_TEXT}</a>
+		</div>
+		<div class="span9">
+			{IMAGE}
+		</div>
 	</div>
-</div>
+	</patTemplate:tmpl>
+	<input type="hidden" name="roomUid" value="{ROOMUID}" />
+</form>
 </patTemplate:tmpl>

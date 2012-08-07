@@ -1,4 +1,4 @@
-<patTemplate:tmpl name="pageoutput">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <script language="JavaScript" type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
@@ -6,7 +6,7 @@ jomresJquery(document).ready(function() {
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVE_SITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -38,11 +38,7 @@ jomresJquery(document).ready(function() {
 } );
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <div class="well">
 	<div class="row-fluid">
 		<div class="span4">
@@ -74,7 +70,7 @@ jomresJquery(document).ready(function() {
 	</div>
 </div>
 
-<table class="table table-bordered table-striped table-condensed" id="showLiveBookings">
+<table class="table table-striped" id="showLiveBookings" width="100%">
 	<thead>
 		<tr>
 			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_STATUS}</th>

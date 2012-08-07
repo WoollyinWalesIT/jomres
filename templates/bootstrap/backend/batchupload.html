@@ -1,9 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <form enctype="multipart/form-data" action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
 	<div class="row-fluid">
 		<div class="span6">
@@ -59,37 +55,28 @@
 	<input type="hidden" name="task" value="batchUploadPropertyImages" />
 </form>
 
-<div class="row-fluid">
-	<div class="span12">
-		<h3 class="page-header">{IMAGESALREADYINDIR}</h3>
-	</div>
-</div>
-<table class="table table-condensed table-striped">
+<h3 class="page-header">{IMAGESALREADYINDIR}</h3>
 <form action="{JOMRES_SITEPAGE_URL_DELIMAGES}" method="post" name="imageList" class="form-horizontal">
 	<fieldset>
-		<patTemplate:tmpl name="rows">
-		<tr>
-			<td>
-				{CHECKBOX}
-			</td>
-			<td class="hidden-phone">
-				<label class="control-label" for="cb{COUNT}"> {IMAGENAME}</label>
-			</td>
-			<td>
-				<img src="{IMAGEOUTPUT}" class="thumbnail"/>
-			</td>
-		</tr>
-		</patTemplate:tmpl>
-		<tr>
-			<td colspan="2">
-				<div class="form-actions">
-					<input type="submit" value="{DELETEIMAGES}" class="btn btn-danger" />
-				</div>			
-			</td>
-		</tr>
+		<div class="row-striped">
+			<patTemplate:tmpl name="rows">
+			<div class="row-fluid">
+				<div class="span1">
+					{CHECKBOX}
+				</div>
+				<div class="hidden-phone span7">
+					<label class="control-label" for="cb{COUNT}"> {IMAGENAME}</label>
+				</div>
+				<div class="span4">
+					<img src="{IMAGEOUTPUT}" class="thumbnail"/>
+				</div>
+			</div>
+			</patTemplate:tmpl>
+		</div>
+		<div class="form-actions">
+			<input type="submit" value="{DELETEIMAGES}" class="btn btn-danger" />
+		</div>
 	</fieldset>
-
 </form>
 </table>
-
 </patTemplate:tmpl>

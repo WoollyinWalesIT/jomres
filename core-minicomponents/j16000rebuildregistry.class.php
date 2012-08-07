@@ -26,12 +26,33 @@ class j16000rebuildregistry
 		jr_import('minicomponent_registry');
 		$registry = new minicomponent_registry(true);
 		$registry->regenerate_registry();
-		if ($registry->error_detected)
-			echo _JOMRES_REGISTRYREBUILD_FAILURE;
+		
+		if (!using_bootstrap())
+			{
+			if ($registry->error_detected)
+				echo _JOMRES_REGISTRYREBUILD_FAILURE;
+			else
+				echo _JOMRES_REGISTRYREBUILD_SUCCESS;
+			echo '<br />';
+			echo _JOMRES_REGISTRYREBUILD_NOTES;
+			}
 		else
-			echo _JOMRES_REGISTRYREBUILD_SUCCESS;
-		echo "<br/>";
-		echo _JOMRES_REGISTRYREBUILD_NOTES;
+			{
+			if ($registry->error_detected)
+				echo '
+				<div class="alert alert-block alert-error">
+					<h4 class="alert-heading">'._JOMRES_REGISTRYREBUILD_FAILURE.'</h4>
+					<p>'._JOMRES_REGISTRYREBUILD_NOTES.'</p>
+				</div>
+				';
+			else
+				echo '
+				<div class="alert alert-block alert-success">
+					<h4 class="alert-heading">'._JOMRES_REGISTRYREBUILD_SUCCESS.'</h4>
+					<p>'._JOMRES_REGISTRYREBUILD_NOTES.'</p>
+				</div>
+				';
+			}
 		}
 
 

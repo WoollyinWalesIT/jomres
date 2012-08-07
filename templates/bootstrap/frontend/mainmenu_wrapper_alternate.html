@@ -12,26 +12,19 @@ jomresJquery(document).ready(function(){
 </script>
 
 <div id="jomres-menu-pinned" class="ui-helper-hidden">
-	<div class="row-fluid">
-		<div class="span12">
-			<h2>{PROPERTYNAME}</h2>
-		</div>
-	</div>
-	<div id="navbar" class="navbar navbar-fixed-top"> <patTemplate:comment>  for Pills remove 'navbar navbar-fixed-bottom'. To pin to the top, add navbar-fixed-top to the class, to pin it to the bottom add navbar-fixed-bottom.  </patTemplate:comment>
+	<div id="navbar" class="navbar"> <patTemplate:comment>  for Pills remove 'navbar navbar-fixed-bottom'. To pin to the top, add navbar-fixed-top to the class, to pin it to the bottom add navbar-fixed-bottom.  </patTemplate:comment>
 		<div class="navbar-inner"> <patTemplate:comment>  for Pills remove 'navbar-inner' </patTemplate:comment>
-			<div class="container">
-				<div class="nav-collapse">
-					<ul class="nav"> <patTemplate:comment>  for Pills add 'nav-pills' to the class here </patTemplate:comment>
-						<patTemplate:tmpl name="button_output">
-							{DIV}
-						</patTemplate:tmpl>
-					</ul>
-				</div>
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<div class="nav-collapse">
+				<ul class="nav"> <patTemplate:comment>  for Pills add 'nav-pills' to the class here </patTemplate:comment>
+					<patTemplate:tmpl name="button_output">
+						{DIV}
+					</patTemplate:tmpl>
+				</ul>
 			</div>
 			<!--<div class="container">
 				<div class="navbar-form pull-right">{MENUITEM_TIMEZONE_DROPDOWN}</div>

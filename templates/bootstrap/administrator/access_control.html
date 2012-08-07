@@ -1,12 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+	var oTable = jomresJquery('#access_control_list').dataTable({
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -24,7 +24,7 @@ jomresJquery(document).ready(function() {
 				"sExtends": "pdf",
 				"sCharSet": "utf8",
 				"sPdfOrientation": "landscape",
-				"sTitle": "{PAGETITLE}"
+				"sTitle": "{_JOMRES_ACCESS_CONTROL_TITLE}"
 				},
 				"print"
 			]
@@ -36,19 +36,25 @@ jomresJquery(document).ready(function() {
 		"sSortable": "header"
 	} );
 } );
+
+function change_access_level(minicomp,level)
+	{
+	cmd = '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=ajax_change_access_level&minicomp='+minicomp+'&new_level='+level;
+	jomresJquery.get(cmd, function(data) {
+	//	if (data == 1)
+	//		{
+			
+	//		jomresJquery(div_name).attr("src",curr_img);
+	//		}
+		});
+	}
 //-->
 </script>
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="">{_JOMRES_ACCESS_CONTROL_TITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{_JOMRES_ACCESS_CONTROL_TITLE}</h2>
+<p>{_JOMRES_ACCESS_CONTROL_DESC}</p>
+<p>{_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM}</p>
 
-
-<div class="alert alert-info">{_JOMRES_ACCESS_CONTROL_DESC}</div>
-<div class="alert alert-info">{_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM}</div>
-
-<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
+<table id="access_control_list" width="100%" class="table table-striped">
 	<thead>
 		<tr>
 			<th>Minicomponent name</th>

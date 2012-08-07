@@ -29,12 +29,14 @@ function init_map_{RANDOM_IDENTIFIER}()
 
 	}
 	
-jomresJquery('#map_{RANDOM_IDENTIFIER}').on('shown', function (e) {
-	google.maps.event.trigger(map, 'resize');
+jomresJquery(document).ready(function() {
+	jomresJquery('body').on('shown','#mapTab', function (e) {
+		init_map_{RANDOM_IDENTIFIER}();
+		});
 	});
 //-->
 </script>
 <div id="map_canvas">
-	<div id="map_{RANDOM_IDENTIFIER}"  style="width:{MAP_WIDTH}px; height:{MAP_HEIGHT}px"></div>
-</div> <!-- do not set these sizes to 100% or anything with percentages in, the map will not show if you do. I wasted ages figuring that out. -->
+	<div id="map_{RANDOM_IDENTIFIER}" style="width:{MAP_WIDTH}px; height:{MAP_HEIGHT}px"></div>
+</div><!-- do not set these sizes to 100% or anything with percentages in, the map will not show if you do. I wasted ages figuring that out. -->
 </patTemplate:tmpl>

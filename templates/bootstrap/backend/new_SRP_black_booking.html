@@ -1,9 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <p>{INSTRUCTIONS}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm" class="form-horizontal">
 	<fieldset>
@@ -31,9 +27,7 @@
 			<p class="{BBMESSAGE_CLASS}">{BBMESSAGE}{HIDDEN}</p>
 		</patTemplate:tmpl>
 		<div class="form-actions">
-			<div class="">
-				{JOMRESTOOLBAR}
-			</div>
+			{JOMRESTOOLBAR}
 		</div>
 	</fieldset>
 	<input type="hidden" name="boxchecked" value="0">

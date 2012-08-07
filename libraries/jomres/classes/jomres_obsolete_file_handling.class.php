@@ -33,9 +33,18 @@ class jomres_obsolete_file_handling
 		$this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'css'.JRDS;
 		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'javascript'.JRDS;
 		
-		$this->dir_templates_frontend = JOMRES_TEMPLATEPATH_ADMINISTRATOR.JRDS;
-		$this->dir_templates_backend =JOMRES_TEMPLATEPATH_BACKEND.JRDS;
-		$this->dir_templates_administrator = JOMRES_TEMPLATEPATH_ADMINISTRATOR.JRDS;
+		$this->dir_templates_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres'.JRDS.'backend'.JRDS;
+		$this->dir_templates_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres'.JRDS.'administrator'.JRDS;
+		
+		$this->dir_templates_bootstrap_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_bootstrap_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
+		$this->dir_templates_bootstrap_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator'.JRDS;
+		
+		$this->dir_images = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS;
+		$this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS;
+		$this->dir_images_small = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS;
+		
 		}
 
 	function ready_to_go()
@@ -525,6 +534,133 @@ class jomres_obsolete_file_handling
 		// Jomres v7
 		$this->add_obs_file($this->dir_classes.'cpanel.class.php');
 		$this->add_obs_file($this->dir_templates_administrator.'cpanel.html');
+		
+		
+		$this->add_obs_file($this->dir_minicomponents.'j16000add_adhoc_item_to_bill.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j10002add_adhoc_item_to_bill.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000addproperty.class.php');
+		$this->add_obs_file($this->dir_minicomponents.'j16000addproperty2.class.php');
+
+
+		$this->add_obs_file($this->dir_templates_administrator.'addhoc_item.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'addhoc_item.html');
+		$this->add_obs_file($this->dir_templates_administrator.'adhocitem_step1.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'adhocitem_step1.html');
+		$this->add_obs_file($this->dir_templates_administrator.'adhocitem_step2.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'adhocitem_step2.html');
+		$this->add_obs_file($this->dir_templates_administrator.'edit_taxrates.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'edit_taxrates.html');
+		$this->add_obs_file($this->dir_templates_administrator.'list_tariffs.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'list_tariffs.html');
+		$this->add_obs_file($this->dir_templates_administrator.'register_property1.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'register_property1.html');
+		$this->add_obs_file($this->dir_templates_administrator.'register_property2.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'register_property2.html');
+
+		$this->add_obs_file($this->dir_images_large.'AddItem.png');
+		$this->add_obs_file($this->dir_images_large.'AddProperty.png');
+		$this->add_obs_file($this->dir_images_large.'addService.png');
+		$this->add_obs_file($this->dir_images_large.'auditLog.png');
+		$this->add_obs_file($this->dir_images_large.'blank.png');
+		$this->add_obs_file($this->dir_images_large.'BookGuestIn.png');
+		$this->add_obs_file($this->dir_images_large.'BookGuestOut.png');
+		$this->add_obs_file($this->dir_images_large.'bug_icon.png');
+		$this->add_obs_file($this->dir_images_large.'Cancel.png');
+		$this->add_obs_file($this->dir_images_large.'ChartBarTrend.png');
+		$this->add_obs_file($this->dir_images_large.'commissionRates.png');
+		$this->add_obs_file($this->dir_images_large.'ContactCard.png');
+		$this->add_obs_file($this->dir_images_large.'ContactCardAdd.png');
+		$this->add_obs_file($this->dir_images_large.'ContactCardDelete.png');
+		$this->add_obs_file($this->dir_images_large.'ContactCardEdit.png');
+		$this->add_obs_file($this->dir_images_large.'CopyItem.png');
+		$this->add_obs_file($this->dir_images_large.'couponAdmin.png');
+		$this->add_obs_file($this->dir_images_large.'cron.png');
+		$this->add_obs_file($this->dir_images_large.'Desktop.png');
+		$this->add_obs_file($this->dir_images_large.'DownloadDisabled.png');
+		$this->add_obs_file($this->dir_images_large.'EditBlackBookings.png');
+		$this->add_obs_file($this->dir_images_large.'EditConfiguration.png');
+		$this->add_obs_file($this->dir_images_large.'EditGuestTypes.png');
+		$this->add_obs_file($this->dir_images_large.'EditItem.png');
+		$this->add_obs_file($this->dir_images_large.'EditOptions.png');
+		$this->add_obs_file($this->dir_images_large.'EditText.png');
+		$this->add_obs_file($this->dir_images_large.'EmailSend.png');
+		$this->add_obs_file($this->dir_images_large.'enterDeposit.png');
+		$this->add_obs_file($this->dir_images_large.'GlobalConfiguration.png');
+		$this->add_obs_file($this->dir_images_large.'guestAdd.png');
+		$this->add_obs_file($this->dir_images_large.'GuestAdmin.png');
+		$this->add_obs_file($this->dir_images_large.'guestEdit.png');
+		$this->add_obs_file($this->dir_images_large.'Home.png');
+		$this->add_obs_file($this->dir_images_large.'HotelReservationEdit.png');
+		$this->add_obs_file($this->dir_images_large.'HotelReservationStop.png');
+		$this->add_obs_file($this->dir_images_large.'Invoice.png');
+		$this->add_obs_file($this->dir_images_large.'ListBookings.png');
+		$this->add_obs_file($this->dir_images_large.'ListNewBookings.png');
+		$this->add_obs_file($this->dir_images_large.'listProperties.png');
+		$this->add_obs_file($this->dir_images_large.'listTemplates.png');
+		$this->add_obs_file($this->dir_images_large.'logs.png');
+		$this->add_obs_file($this->dir_images_large.'NewBooking.png');
+		$this->add_obs_file($this->dir_images_large.'partners.png');
+		$this->add_obs_file($this->dir_images_large.'paypal.png');
+		$this->add_obs_file($this->dir_images_large.'plugin_button.png');
+		$this->add_obs_file($this->dir_images_large.'pluginManagerDisabled.png');
+		$this->add_obs_file($this->dir_images_large.'plugins.png');
+		$this->add_obs_file($this->dir_images_large.'postnote.png');
+		$this->add_obs_file($this->dir_images_large.'Preview.png');
+		$this->add_obs_file($this->dir_images_large.'Printer.png');
+		$this->add_obs_file($this->dir_images_large.'Prompt.png');
+		$this->add_obs_file($this->dir_images_large.'PropertyAdmin.png');
+		$this->add_obs_file($this->dir_images_large.'propertyFeatures.png');
+		$this->add_obs_file($this->dir_images_large.'propertyTypes.png');
+		$this->add_obs_file($this->dir_images_large.'PublishProperty.png');
+		$this->add_obs_file($this->dir_images_large.'rebuildregistry.png');
+		$this->add_obs_file($this->dir_images_large.'Recycle Bin.png');
+		$this->add_obs_file($this->dir_images_large.'ReservationsHistoric.png');
+		$this->add_obs_file($this->dir_images_large.'reviews.png');
+		$this->add_obs_file($this->dir_images_large.'roomTypes.png');
+		$this->add_obs_file($this->dir_images_large.'Save.png');
+		$this->add_obs_file($this->dir_images_large.'SlideShowImages.png');
+		$this->add_obs_file($this->dir_images_large.'subscriptions.png');
+		$this->add_obs_file($this->dir_images_large.'Symbol Refresh.png');
+		$this->add_obs_file($this->dir_images_large.'TariffsConfig.png');
+		$this->add_obs_file($this->dir_images_large.'Taxes.png');
+		$this->add_obs_file($this->dir_images_large.'Thumbs.db');
+		$this->add_obs_file($this->dir_images_large.'Tick.png');
+		$this->add_obs_file($this->dir_images_large.'United_Kingdom.png');
+		$this->add_obs_file($this->dir_images_large.'UnpublishProperty.png');
+		$this->add_obs_file($this->dir_images_large.'upgrades.png');
+		$this->add_obs_file($this->dir_images_large.'Vendors.png');
+		$this->add_obs_file($this->dir_images_large.'ViewArchive.png');
+		$this->add_obs_file($this->dir_images_large.'ViewDatabase.png');
+		$this->add_obs_file($this->dir_images_large.'ViewHistory.png');
+		$this->add_obs_file($this->dir_images_large.'WasteBasket.png');
+		
+		
+		$this->add_obs_file($this->dir_images.'bg_header_down.jpg');
+		$this->add_obs_file($this->dir_images.'bg_header_sortable.jpg');
+		$this->add_obs_file($this->dir_images.'bg_header_sorting.jpg');
+		$this->add_obs_file($this->dir_images.'bg_header_up.jpg');
+		$this->add_obs_file($this->dir_images.'bullet1.gif');
+		$this->add_obs_file($this->dir_images.'bullet2.gif');
+		$this->add_obs_file($this->dir_images.'col_alt.jpg');
+		$this->add_obs_file($this->dir_images.'info.gif');
+		$this->add_obs_file($this->dir_images.'information.png');
+		$this->add_obs_file($this->dir_images.'jomres_button.gif');
+		$this->add_obs_file($this->dir_images.'KeyCard.png');
+		$this->add_obs_file($this->dir_images.'KeyCardAdd.png');
+		$this->add_obs_file($this->dir_images.'KeyCardDelete.png');
+		$this->add_obs_file($this->dir_images.'number1.png');
+		$this->add_obs_file($this->dir_images.'number2.png');
+		$this->add_obs_file($this->dir_images.'number3.png');
+		$this->add_obs_file($this->dir_images.'number4.png');
+		$this->add_obs_file($this->dir_images.'shade.gif');
+		$this->add_obs_file($this->dir_images.'shadeactive.gif');
+		$this->add_obs_file($this->dir_images.'shadowback.gif');
+		$this->add_obs_file($this->dir_images.'shadowback_white.gif');
+		$this->add_obs_file($this->dir_images.'tab1.gif');
+		$this->add_obs_file($this->dir_images.'tab3.gif');
+		$this->add_obs_file($this->dir_images.'tab4.gif');
+		$this->add_obs_file($this->dir_images.'td_alt.jpg');
+		
 		
 		}
 	

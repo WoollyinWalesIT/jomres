@@ -25,15 +25,21 @@ class j16000manual
 			}
 
 		if (!using_bootstrap())
+			{
 			$class = "ui-widget-content ui-corner-all";
+			$style="margin-left:5px;margin-right:5px;";
+			}
 		else
-			$class = "well";
+			{
+			$class = "";
+			$style="";
+			}
 			
 		echo '
-			<h2>Jomres Manual</h2>
+			<h2 class="page-header">Jomres Manual</h2>
 			<p>The Jomres Manual</p>
 			<div class="'.$class.'" style="width:100%;">
-			<div style="margin-left:5px;margin-right:5px;">
+			<div style="'.$style.'">
 			<iframe src="http://manual.jomres.net" width="100%" height="1000" id="tickets" marginheight="0" frameborder="0">You need to enable frames in your browser to view this content.</iframe> 
 			</div></div>
 			';

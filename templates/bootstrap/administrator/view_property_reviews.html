@@ -32,11 +32,11 @@ function delete_review(rating_id)
 		});
 	}
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+	var oTable = jomresJquery('#view_property_reviews').dataTable({
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -68,40 +68,39 @@ jomresJquery(document).ready(function() {
 } );
 //-->
 </script>
-<h2>{HPROPERTYNAME}: {PROPERTY_NAME}</h2>
-<div class="alert alert-info">{_JOMRES_REVIEWS_REPORT_INSTRUCTIONS}</div>
-<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
+<h2 class="page-header">{HPROPERTYNAME}: {PROPERTY_NAME}</h2>
+<p>{_JOMRES_REVIEWS_REPORT_INSTRUCTIONS}</p>
+<table id="view_property_reviews" width="100%" class="table table-striped">
 	<thead>
 		<tr>
-		<th>&nbsp;</th>
-		<th>{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}</th>
-		<th>{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</th>
-		<th>{_JOMRES_MR_AUDIT_LISTING_USER}</th>
-		<th>{_JOMRES_REVIEWS_SUBMITTEDDATE}</th>
-		<th>{_JOMRES_REVIEWS_TITLE}</th>
-		<th>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</th>
-		<th>{_JOMRES_REVIEWS_PROS}</th>
-		<th>{_JOMRES_REVIEWS_CONS}</th>
-		<th>{_JOMRES_REVIEWS_RATING}</th>
-		<th>{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</th>
+			<th class="hidden-phone">&nbsp;</th>
+			<th><!--{_JOMRES_REVIEWS_ADMIN_PUBLISHREVIEW}--></th>
+			<!--<th>{_JOMRES_REVIEWS_ADMIN_DELETEREVEIEW}</th>-->
+			<th>{_JOMRES_MR_AUDIT_LISTING_USER}</th>
+			<th class="hidden-phone">{_JOMRES_REVIEWS_SUBMITTEDDATE}</th>
+			<th>{_JOMRES_REVIEWS_TITLE}</th>
+			<th class="hidden-phone">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</th>
+			<th class="hidden-phone">{_JOMRES_REVIEWS_PROS}</th>
+			<th class="hidden-phone">{_JOMRES_REVIEWS_CONS}</th>
+			<th class="hidden-phone">{_JOMRES_REVIEWS_RATING}</th>
+			<th class="hidden-phone">{_JOMRES_REVIEWS_REPORT_REVIEW_TITLE}</th>
 		</tr>
 	</thead>
 	<tbody>
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr id="{ROW_ID}">
-		<td >{RATING_ID}</td>
-		<td><a href="javascript:void(0);"  style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img id="publish_icon{RATING_ID}" src="{PUBLISH_ICON}" /></a></td>
-		<td><a href="javascript:void(0);" style="outline: none;" onClick="delete_review({RATING_ID});"><img src="{DELETE_ICON}" /></a></td>
-		<td>{USER_ID}</td>
-		<td>{RATING_DATE}</td>
-		<td>{REVIEW_TITLE}</td>
-		<td>{REVIEW_DESCRIPTION}</td>
-		<td>{PROS}</td>
-		<td>{CONS}</td>
-		<td>{RATING}</td>
-		<td>{REPORTS}</td>
-	</tr>
-	</patTemplate:tmpl>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr id="{ROW_ID}">
+			<td class="hidden-phone">{RATING_ID}</td>
+			<td><a href="javascript:void(0);"  style="outline: none;" onClick="publish_review({RATING_ID},{PUBLISHED});"><img id="publish_icon{RATING_ID}" src="{PUBLISH_ICON}" /></a> <a href="javascript:void(0);" style="outline: none;" onClick="delete_review({RATING_ID});"><img src="{DELETE_ICON}" /></a></td>
+			<td>{USER_ID}</td>
+			<td class="hidden-phone">{RATING_DATE}</td>
+			<td>{REVIEW_TITLE}</td>
+			<td class="hidden-phone">{REVIEW_DESCRIPTION}</td>
+			<td class="hidden-phone">{PROS}</td>
+			<td class="hidden-phone">{CONS}</td>
+			<td class="hidden-phone">{RATING}</td>
+			<td class="hidden-phone">{REPORTS}</td>
+		</tr>
+		</patTemplate:tmpl>
 	</tbody>
 </table>
 </patTemplate:tmpl>

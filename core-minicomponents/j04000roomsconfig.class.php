@@ -101,7 +101,7 @@ class j04000roomsconfig {
 				$newRoomButton=$jrtb;
 				}
 			
-			$newRoomButton='<div class="well"><div class="span12">'.$newRoomButton.'</div></div>';
+			$newRoomButton='<div class="well">'.$newRoomButton.'</div>';
 			
 			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 			$jrtb  = $jrtbar->startTable();
@@ -110,7 +110,7 @@ class j04000roomsconfig {
 			$jrtb .= $jrtbar->endTable();
 			$newRoomFeatureButton=$jrtb;
 			
-			$newRoomFeatureButton='<div class="well"><div class="span12">'.$newRoomFeatureButton.'</div></div>';
+			$newRoomFeatureButton='<div class="well">'.$newRoomFeatureButton.'</div>';
 
 			$newRoomClassButton="";
 			if ($mrConfig['singleRoomProperty'] ==  '1' && $roomTypeCount<1 )

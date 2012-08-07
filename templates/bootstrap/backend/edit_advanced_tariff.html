@@ -1,27 +1,23 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<div class="row-fluid">
-	<div class="span12">
-		<h2 class="page-header">{PAGETITLE}</h2>
-	</div>
-</div>
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL}"  method="post" name="adminForm" class="form-horizontal">
 <fieldset>
 	<div class="control-group">
 	<label class="control-label" for="rate_title">{HTARIFFTITLE}</label>
 		<div class="controls">
-			<input type="text" name="rate_title" value="{TARIFFTITLE}"></input>
+			<input type="text" name="rate_title" value="{TARIFFTITLE}" class="input-large"></input>
 		</div> 
 	</div> 
 	<div class="control-group">
 	<label class="control-label" for="rate_description">{HTARIFFDESC}</label>
 		<div class="controls">
-			<input type="text" name="rate_description" value="{TARIFFDESC}"></input>
+			<input type="text" name="rate_description" value="{TARIFFDESC}" class="input-large"></input>
 		</div> 
 	</div> 
 	<div class="control-group">
 	<label class="control-label" for="rate_title">{HRATEPERDAY}</label>
 		<div class="controls">
-			{CURRENCY}<input type="text" name="roomrateperday" value="{RATEPERDAY}" />
+			{CURRENCY}<input type="text" name="roomrateperday" value="{RATEPERDAY}"  class="input-mini"/>
 		</div> 
 	</div> 
 	<div class="control-group">
@@ -39,25 +35,25 @@
 	<div class="control-group">
 	<label class="control-label" for="mindays">{HMINDAYS}</label>
 		<div class="controls">
-			<input type="text" name="mindays" value="{MINDAYS}" />
+			<input type="text" name="mindays" value="{MINDAYS}" class="input-mini"/>
 		</div> 
 	</div> 
 	<div class="control-group">
 	<label class="control-label" for="maxdays">{HMAXDAYS}</label>
 		<div class="controls">
-			<input type="text" name="maxdays" value="{MAXDAYS}" />
+			<input type="text" name="maxdays" value="{MAXDAYS}" class="input-mini"/>
 		</div> 
 	</div> 
 	<div class="control-group">
 	<label class="control-label" for="minpeople">{HMINPEOPLE}</label>
 		<div class="controls">
-			<input type="text" name="minpeople" value="{MINPEOPLE}" />
+			<input type="text" name="minpeople" value="{MINPEOPLE}" class="input-mini"/>
 		</div> 
 	</div> 
 	<div class="control-group">
 	<label class="control-label" for="maxpeople">{HMAXPEOPLE}</label>
 		<div class="controls">
-			<input type="text" name="maxpeople" value="{MAXPEOPLE}" />
+			<input type="text" name="maxpeople" value="{MAXPEOPLE}" class="input-mini"/>
 		</div> 
 	</div> 
 	<div class="control-group">

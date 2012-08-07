@@ -1,33 +1,38 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<style>
-a {
-   outline: 0 !important;
-}
-</style>
-<div id="jomres_content_area" class="row-fluid">
-<div id = "jomres_alternate_menu_position"></div> <!-- available if required by a plugin -->
-<noscript><blockquote>
-	<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
-	<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so please enable before continuing. For assistance in enabling JavaScript, please contact the webmaster.</font></p>
-</blockquote></noscript>
-
-<div style="text-align:right;width:100%;">
-	<div>{MANAGEMENT_VIEW_DROPDOWN}</div>
-	<div>{TIMEZONEBLURB}</div>
-	<div style="float:right;">{TIMEZONE_DROPDOWN}</div>
-	<div style="float:right;">{EDITING_MODE_DROPDOWN}</div>
-	<div style="float:right;">{LANGDROPDOWN}</div>
-</div>
-<div class="clearfix"></div>
-{SANITY_CHECKS}
-<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
-	<script type="text/javascript"><!--
-		jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
-	</script>
-</patTemplate:tmpl>
-<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
-	<script type="text/javascript"><!--
-		jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
-	</script>
-</patTemplate:tmpl>
+<div id="jomres_content_area">
+	<div id = "jomres_alternate_menu_position"></div> <!-- available if required by a plugin -->
+	<noscript>
+		<blockquote>
+		<p><font size="3" color="#FF0000"><b>You do not have JavaScript enabled.</b></font><br/>
+		<font size="2" color="#000080">The functionality of this site requires the use of JavaScript so please enable before continuing. For assistance in enabling JavaScript, please contact the webmaster.</font></p>
+		</blockquote>
+	</noscript>
+	
+	<div class="">
+		<h2>{PROPERTYNAME}<span class="small pull-right">{MANAGEMENT_VIEW_DROPDOWN}</span></h2>
+		<p>{TIMEZONEBLURB}</p>
+		<div class="row-fluid">
+			<div class="span4">
+				{TIMEZONE_DROPDOWN}
+			</div>
+			<div class="span4">
+				{LANGDROPDOWN}
+			</div>
+			<div class="span4">
+				{EDITING_MODE_DROPDOWN}
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	{SANITY_CHECKS}
+	<patTemplate:tmpl name="messages" type="simpleCondition" requiredVars="message">
+		<script type="text/javascript"><!--
+			jomresJquery.jGrowl("{MESSAGE}", { life: 10000 });//-->
+		</script>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="sticky_messages" type="simpleCondition" requiredVars="message">
+		<script type="text/javascript"><!--
+			jomresJquery.jGrowl("{MESSAGE}", { life: 10000, sticky: true });//-->
+		</script>
+	</patTemplate:tmpl>
 </patTemplate:tmpl>

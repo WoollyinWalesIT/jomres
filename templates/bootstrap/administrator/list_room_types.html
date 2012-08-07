@@ -1,12 +1,12 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#jomres_admin_table').dataTable({
+	var oTable = jomresJquery('#list_room_types').dataTable({
 		"bJQueryUI": false,
 		"bStateSave": true,
 		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span3'l><'span5'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
 		"oTableTools": {
 			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
@@ -38,19 +38,18 @@ jomresJquery(document).ready(function() {
 } );
 //-->
 </script>
-<h2>{PAGETITLE}</h2>
+<h2 class="page-header">{PAGETITLE}</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-<br/>
-<table id="jomres_admin_table" class="table table-striped table-bordered table-condensed" width="100%">
+<table id="list_room_types" width="100%" class="table table-striped">
 	<thead>
 		<tr>
 			<th><input type="checkbox" name="toggle" value="" onclick="jomres_checkAll({TOTALINLISTPLUSONE});" /></th>
 			<th></th>
 			<th>{HRTTITLE}</th>
-			<th>{HRTDESCRIPTION}</th>
-			<th>{HJOMRES_A_ICON}</th>
-			<th>Property types assignment</th>
+			<!--<th class="hidden-phone">{HRTDESCRIPTION}</th>-->
+			<th class="hidden-phone">{HJOMRES_A_ICON}</th>
+			<th class="hidden-phone">Property types assignment</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -59,9 +58,9 @@ jomresJquery(document).ready(function() {
 			<td>{CHECKBOX}</td>
 			<td>{LINKTEXT}</td>
 			<td>{RTTITLE}</td>
-			<td>{RTDESCRIPTION}</td>
-			<td><img src="{IMAGE}" /></td>
-			<td>{PROPERTY_TYPES}</td>
+			<!--<td class="hidden-phone">{RTDESCRIPTION}</td>-->
+			<td class="hidden-phone"><img src="{IMAGE}" /></td>
+			<td class="hidden-phone">{PROPERTY_TYPES}</td>
 		</tr>
 		</patTemplate:tmpl>
    </tbody>

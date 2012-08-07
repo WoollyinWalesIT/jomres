@@ -44,89 +44,83 @@ jomresJquery(document).ready(function(){
 </script>
 
 <div id="messageBox" class="alert alert-error"></div>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h2>{PAGETITLE}</h2>
+<h2 class="page-header">{PAGETITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" class="form-horizontal">
+	<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{HFIRSTNAME}</label>
+			<div class="controls">
+				<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required " />
+			</div> 
 		</div>
-		<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" class="form-horizontal">
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="firstname">{HFIRSTNAME}</label>
-					<div class="controls">
-						<input id="firstname" name="firstname" type="text" value="{FIRSTNAME}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="surname">{HSURNAME}</label>
-					<div class="controls">
-						<input id="surname" name="surname" type="text" value="{SURNAME}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="house">{HHOUSE}</label>
-					<div class="controls">
-						<input id="house" name="house" type="text" value="{HOUSE}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="street">{HSTREET}</label>
-					<div class="controls">
-						<input id="street" name="street" type="text" value="{STREET}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="postcode">{HPOSTCODE}</label>
-					<div class="controls">
-						<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="town">{HTOWN}</label>
-					<div class="controls">
-						<input id="town" name="town" type="text" value="{TOWN}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="region">{HREGION}</label>
-					<div class="controls">
-						<input id="region" name="region" type="text" value="{REGION}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="country">{HCOUNTRY}</label>
-					<div class="controls">
-						{COUNTRY}
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="landline">{HLANDLINE}</label>
-					<div class="controls">
-						<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="mobile">{HMOBILE}</label>
-					<div class="controls">
-						<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required " />
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="firstname">{HEMAIL}</label>
-					<div class="controls">
-						<input id="email" name="email" type="text" value="{EMAIL}" class="required " />
-					</div> 
-				</div>
-				<div class="form-actions">
-					<div class="">
-						<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
-						<button type="submit" class="btn btn-primary">{_JOMRES_REVIEWS_SUBMIT} <i class="icon-arrow-right icon-white"></i> </button>
-					</div>
-				</div>
-				<input type="hidden" name="no_html" value="1" />
-				<input type="hidden" name="task" value="save_my_account" />
-			</fieldset>
-		</form>
-	</div>
-</div>
+		<div class="control-group">
+			<label class="control-label" for="surname">{HSURNAME}</label>
+			<div class="controls">
+				<input id="surname" name="surname" type="text" value="{SURNAME}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="house">{HHOUSE}</label>
+			<div class="controls">
+				<input id="house" name="house" type="text" value="{HOUSE}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="street">{HSTREET}</label>
+			<div class="controls">
+				<input id="street" name="street" type="text" value="{STREET}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="postcode">{HPOSTCODE}</label>
+			<div class="controls">
+				<input id="postcode" name="postcode" type="text" value="{POSTCODE}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="town">{HTOWN}</label>
+			<div class="controls">
+				<input id="town" name="town" type="text" value="{TOWN}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="region">{HREGION}</label>
+			<div class="controls">
+				<input id="region" name="region" type="text" value="{REGION}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="country">{HCOUNTRY}</label>
+			<div class="controls">
+				{COUNTRY}
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="landline">{HLANDLINE}</label>
+			<div class="controls">
+				<input id="landline" name="landline" type="text" value="{LANDLINE}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="mobile">{HMOBILE}</label>
+			<div class="controls">
+				<input id="mobile" name="mobile" type="text" value="{MOBILE}" class="required " />
+			</div> 
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="firstname">{HEMAIL}</label>
+			<div class="controls">
+				<input id="email" name="email" type="text" value="{EMAIL}" class="required " />
+			</div> 
+		</div>
+		<div class="form-actions">
+			<div class="">
+				<a href="{JOMRES_SITEPAGE_URL}" class="btn"><i class="icon-remove"></i> {COMMON_CANCEL}</a>
+				<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> {_JOMRES_REVIEWS_SUBMIT}</button>
+			</div>
+		</div>
+		<input type="hidden" name="no_html" value="1" />
+		<input type="hidden" name="task" value="save_my_account" />
+	</fieldset>
+</form>
 </patTemplate:tmpl>
