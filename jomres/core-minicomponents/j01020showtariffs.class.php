@@ -227,6 +227,7 @@ class j01020showtariffs {
 			$tmpl = new patTemplate();
 			$tmpl->addRows( 'pageoutput', $tariff_deets );
 			$tmpl->addRows( 'hiddenlayerlink', $hiddenlayerlink );
+			$tmpl->addRows( 'show_tariffs', $tariff_deets );
 			$mcOutput=$MiniComponents->getAllEventPointsData('01020');
 			if (count($mcOutput)>0)
 				{
