@@ -111,7 +111,7 @@ if ($folderChecksPassed)
 	)
 	VALUES
 	(
-	'com_jomres','component','com_jomres','',
+	'Jomres','component','com_jomres','',
 	'1','1','1','0',
 	'{\"legacy\":false,\"name\":\"Jomres\",\"type\":\"component\",\"creationDate\":\"2005-03-18\",\"author\":\"Vince Wooll\",\"copyright\":\"(C) 2005 - 2011 Vince Wooll. All rights reserved.\t\",\"authorEmail\":\"sales@jomres.net\",\"authorUrl\":\"www.jomres.net\",\"version\":\"7\",\"description\":\"Jomres\",\"group\":\"\"}',
 	'{}','','',
@@ -121,6 +121,7 @@ if ($folderChecksPassed)
 
 
 	$component_id=doInsertSql($query,"");
+
 	if ($component_id)
 		{
 		$query = "SELECT max(rgt) FROM #__menu";
@@ -131,18 +132,19 @@ if ($folderChecksPassed)
 		$query = "INSERT INTO #__menu (
 			`menutype`,`title`,`alias`,`note`,
 			`path`,`link`,`type`,`published`,
-			`parent_id`,`level`,`component_id`,`ordering`,
+			`parent_id`,`level`,`component_id`,
 			`checked_out`,`checked_out_time`,`browserNav`,`access`,
 			`img`,`template_style_id`,`params`,`lft`,
 			`rgt`,`home`,`language`,`client_id`
 			) VALUES (
 			'mainmenu','Jomres','Jomres','Jomres',
 			'','index.php?option=com_jomres','component',1,
-			1,1,".$component_id.",1,
+			1,1,".$component_id.",
 			0,'0000-00-00 00:00:00',0,1,
 			'class:component',0,'',
 			".$lft.",".$rgt.",0,'*',1
 			)";
+		
 		$result=doInsertSql($query,"");
 		}
 	else
