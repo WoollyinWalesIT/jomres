@@ -9,7 +9,7 @@
 			</button>
 			<ul class="dropdown-menu">
 				<patTemplate:tmpl name="layout_rows" type="simpleCondition" requiredVars="title">
-				<li><a href="{LINK}"><i class="icon-list"></i> {TITLE}</a></li>
+				<li><a href="{LINK}">{TITLE}</a></li>
 				</patTemplate:tmpl>
 			</ul>
 		</div>
@@ -20,10 +20,10 @@
 			</button>
 			<ul class="dropdown-menu">
 				<patTemplate:tmpl name="shortlist" type="simpleCondition" requiredVars="_jomres_viewshortlist">
-				<li><a href="{SHORTLISTLINK}"><i class="icon-list-alt"></i> {_JOMRES_VIEWSHORTLIST}</a></li>
+				<li><a href="{SHORTLISTLINK}">{_JOMRES_VIEWSHORTLIST}</a></li>
 				</patTemplate:tmpl>
 				<patTemplate:tmpl name="compare" type="simpleCondition" requiredVars="_jomres_compare">
-				<li>{COMPARELINK}<a href="javascript:void(0);" onclick="return trigger_comparison(this);"><i class="icon-list-alt"></i> {_JOMRES_COMPARE}</a><form action=""><input type="hidden" id="comparison_ids" name="ids" value="" /></form></li>
+				<li>{COMPARELINK}<a href="javascript:void(0);" onclick="return trigger_comparison(this);">{_JOMRES_COMPARE}</a><form action=""><input type="hidden" id="comparison_ids" name="ids" value="" /></form></li>
 				</patTemplate:tmpl>
 			</ul>
 		</div>
