@@ -102,6 +102,10 @@ class j16000showplugins
 		$rp_array=json_decode($remote_plugins_data);
 		foreach ($rp_array as $rp)
 			{
+			$price_known = true;
+			if (!isset($rp->price))
+				$price_known = false;
+			
 			$remote_plugins[trim(addslashes(@$rp->name))]=array(
 				"name"					=>trim(addslashes(@$rp->name)),
 				"version"				=>(float)@$rp->version,
@@ -109,7 +113,7 @@ class j16000showplugins
 				"description"			=>addslashes(@$rp->description),
 				"type"					=>addslashes(@$rp->type),
 				"min_jomres_ver"		=>addslashes(@$rp->min_jomres_ver),
-				"price"					=>(float)@$rp->price,
+				"price"					=>@$rp->price,
 				"manual_link"			=>addslashes(@$rp->manual_link),
 				"change_log"			=>addslashes(@$rp->change_log),
 				"highlight"				=>addslashes(@$rp->highlight),
@@ -261,7 +265,7 @@ class j16000showplugins
 		foreach ($remote_plugins as $rp)
 			{
 			$r=array();
-			
+
 			$type=$rp['type'];
 			$plugin_name = $rp['name'];
 			if ($developer_user)
@@ -334,6 +338,7 @@ class j16000showplugins
 				$local_version="N/A";
 
 			$style = "";
+
 			if ($rp['price'] == 0 && $row_class=='')
 				{
 				if (!using_bootstrap())
@@ -440,17 +445,21 @@ class j16000showplugins
 				}
 			else
 				{
-				if (using_bootstrap())
+				if ($price_known)
 					{
-					$btn_emphasis = "btn-success";
-					if ($r['PRICE'] == 0)
-						$btn_emphasis = "btn-inverse";
-					
-					$r['ADD_TO_CART_BUTTON'] = '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');">&pound;'.$r['PRICE'].'</button>';
+					if (using_bootstrap())
+						{
+						$btn_emphasis = "btn-success";
+						if ($r['PRICE'] == 0)
+							$btn_emphasis = "btn-inverse";
+						
+						$r['ADD_TO_CART_BUTTON'] = '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');">&pound;'.$r['PRICE'].'</button>';
+						}
+					else
+						$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" >&pound;'.$r['PRICE'].'</button>';
 					}
 				else
-					$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" >&pound;'.$r['PRICE'].'</button>';
-				
+					$r['ADD_TO_CART_BUTTON'] = 'Price unknown, unable to query remote server.';
 				}
 
 			if (using_bootstrap())
