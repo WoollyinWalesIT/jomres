@@ -199,7 +199,7 @@ $jrConfig['manager_bookings_trigger_commission'] = "0";
 $jrConfig['commission_autosuspend_on_overdue'] = "0";
 $jrConfig['commission_autosuspend_on_overdue_threashold'] = "60";
 
-$jrConfig['language_context'] = "";
+$jrConfig['language_context'] = "propertyrental";
 $jrConfig['advanced_site_config'] = 0;
 $jrConfig['booking_form_lnks_as_buttons'] = "1";
 
