@@ -1,24 +1,25 @@
-<patTemplate:tmpl name="pageoutput" ><table class="table table-condensed">
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<table class="ui-widget-content ui-corner-all" width="100%" border="0">
 	<thead>
 		<tr>
-			<td>
+			<th class="ui-state-default">
 				{HNUMBEROFROOMS}
-			</td>
-			<td>
+			</th>
+			<th class="ui-state-default">
 				{HROOM_TYPE_TEXT}
-			</td>
-			<td>
+			</th>
+			<th class="ui-state-default">
 				{HTARIFF_NAME_TEXT}
-			</td>
-			<td class="hidden-phone">
+			</th>
+			<th class="ui-state-default">
 				{HGUESTPER_ROOM}
-			</td>
-			<td class="hidden-phone">
+			</th>
+			<th class="ui-state-default">
 				{HGUESTPER_BOOKING}
-			</td>
-			<td>
+			</th>
+			<th class="ui-state-default">
 				{HRATE_TEXT}
-			</td>
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,17 +34,17 @@
 			<td>
 				{TARIFF_NAME_TEXT}
 			</td>
-			<td class="hidden-phone">
+			<td>
 				{GUESTPER_ROOM}
 			</td>
-			<td class="hidden-phone">
+			<td>
 				{GUESTPER_BOOKING}
 			</td>
 			<td>
 				{RATE_TEXT}
 			</td>
 		</tr>
+		</patTemplate:tmpl>
 	</tbody>
-	</patTemplate:tmpl>
 </table>
 </patTemplate:tmpl>
