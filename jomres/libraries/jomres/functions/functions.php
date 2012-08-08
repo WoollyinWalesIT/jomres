@@ -21,7 +21,11 @@ function endrun()
 
 function using_bootstrap()
 	{
-
+	// Once Joomla 3 includes bootstrap, we will need to move this to the top of this function. For now, whilst J3 doesn't we'll make this switchable via the use_boostrap switch above which is set in Site Config - Misc tab
+	// Users will commonly take Jomres svn changes and apply them without necessarily knowing what they do, with this approach Jomres Core will still be usable before J3 is formally released and Jomres is fully tested against it.
+	if (_JOMRES_DETECTED_CMS == "joomla30")
+		return true;
+	
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['use_bootstrap']=="0")
@@ -29,10 +33,7 @@ function using_bootstrap()
 	if ($jrConfig['use_bootstrap']=="1")
 		return true;
 		
-	// Once Joomla 3 includes bootstrap, we will need to move this to the top of this function. For now, whilst J3 doesn't we'll make this switchable via the use_boostrap switch above which is set in Site Config - Misc tab
-	// Users will commonly take Jomres svn changes and apply them without necessarily knowing what they do, with this approach Jomres Core will still be usable before J3 is formally released and Jomres is fully tested against it.
-	if (_JOMRES_DETECTED_CMS == "joomla3")
-		return true;
+
 	return false;
 	}
 
