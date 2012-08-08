@@ -234,7 +234,7 @@ $jrConfig['useshoppingcart'] = "1";
 $jrConfig['default_lat'] = "51.50068";
 $jrConfig['default_long'] = "-0.14317";
 
-$jrConfig['mobile_redirect'] = "1";
+$jrConfig['mobile_redirect'] = "0";
 $jrConfig['default_from_address'] = "";
 
 $jrConfig['css_caching_enabled'] = "0";
