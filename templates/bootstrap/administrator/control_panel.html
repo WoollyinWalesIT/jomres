@@ -9,8 +9,9 @@
 				<patTemplate:tmpl name="news_rows" unusedvars="strip">
 					<div class="row-fluid">
 						<div class="span12">
-							<h5 class="{STATUS}">{TITLE} {DATE}</h5>
-							<p>{NEWS}<br /><a href="{URL}" target="_blank">{URL_TEXT}</a></p>
+							<h4 class="{STATUS}"><a data-original-title="{DATE}" href="#" rel="tooltip">{TITLE}</a></h4>
+							<p>{NEWS}</p>
+							<a href="{URL}" target="_blank">{URL_TEXT}</a>
 						</div>
 					</div>
 				</patTemplate:tmpl>
