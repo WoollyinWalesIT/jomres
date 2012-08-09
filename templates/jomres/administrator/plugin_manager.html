@@ -19,24 +19,24 @@
 				Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
 				</p>
 			</div>
-			<div id="username_input" style="display:none">
+			<div id="username_input" style="display:none;">
 				<fieldset>
 				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.<br/>
 					<legend>Your details</legend>
 						<ul>
 							<li>
-								<label for=name>Username</label>
-								<input id=name name=name type=text placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
+								<label for="name">Username</label>
+								<input id="name" name="name" type="text" placeholder="Your username" value="{LICENSE_SERVER_USERNAME}" required autofocus>
 							</li>
 							<li>
-								<label for=password>Password</label>
-								<input id=password name=password type=password placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
+								<label for="password">Password</label>
+								<input id="password" name="password" type="password" placeholder="Your password" value="{LICENSE_SERVER_PASSWORD}" required>
 							</li>
 						</ul>
 				</fieldset>
 				<small>Once you have paid your invoice, Jomres will automatically offer you an installation link next to your purchased plugin(s), click that link to install the plugin(s).</small><br/>
 				<small>Note that purchase of a plugin download does not entitle you to support for Jomres. If you require support we would encourage you to purchase a Jomres Developer or Jomres Perpetual license.</small><br/>
-				<div style="align:center;"><button class="fg-button ui-state-default ui-corner-all" id="purchase_button" onClick="sumbint();" style="width:275px" >Purchase plugins!</button></div>
+				<div style="align:center;"><button class="fg-button ui-state-default ui-corner-all" id="purchase_button" onClick="sumbint();" style="width:275px;" >Purchase plugins!</button></div>
 			</div>
 			<br/><br/><br/>
 </patTemplate:tmpl>
