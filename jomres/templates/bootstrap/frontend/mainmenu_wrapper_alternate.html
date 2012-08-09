@@ -14,25 +14,27 @@ jomresJquery(document).ready(function(){
 <div id="jomres-menu-pinned" class="ui-helper-hidden">
 	<div id="navbar" class="navbar"> <patTemplate:comment>  for Pills remove 'navbar navbar-fixed-bottom'. To pin to the top, add navbar-fixed-top to the class, to pin it to the bottom add navbar-fixed-bottom.  </patTemplate:comment>
 		<div class="navbar-inner"> <patTemplate:comment>  for Pills remove 'navbar-inner' </patTemplate:comment>
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			<div class="nav-collapse">
-				<ul class="nav"> <patTemplate:comment>  for Pills add 'nav-pills' to the class here </patTemplate:comment>
-					<patTemplate:tmpl name="button_output">
-						{DIV}
-					</patTemplate:tmpl>
-				</ul>
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<div class="nav-collapse">
+					<ul class="nav"> <patTemplate:comment>  for Pills add 'nav-pills' to the class here </patTemplate:comment>
+						<patTemplate:tmpl name="button_output">
+							{DIV}
+						</patTemplate:tmpl>
+					</ul>
+				</div>
+				<!--<div class="container">
+					<div class="navbar-form pull-right">{MENUITEM_TIMEZONE_DROPDOWN}</div>
+					<div class="navbar-form pull-right">{MENUITEM_EDITING_MODE_DROPDOWN}</div>
+					<div class="navbar-form pull-right">{MENUITEM_LANGDROPDOWN}</div>
+					<li class="nav pull-right">{MENUITEM_MANAGEMENT_VIEW_DROPDOWN}</li>
+					<li class="nav pull-right">{MENUITEM_TIMEZONEBLURB}</li>
+				</div>-->
 			</div>
-			<!--<div class="container">
-				<div class="navbar-form pull-right">{MENUITEM_TIMEZONE_DROPDOWN}</div>
-				<div class="navbar-form pull-right">{MENUITEM_EDITING_MODE_DROPDOWN}</div>
-				<div class="navbar-form pull-right">{MENUITEM_LANGDROPDOWN}</div>
-				<li class="nav pull-right">{MENUITEM_MANAGEMENT_VIEW_DROPDOWN}</li>
-				<li class="nav pull-right">{MENUITEM_TIMEZONEBLURB}</li>
-			</div>-->
 		</div>
 	</div>
 </div>
