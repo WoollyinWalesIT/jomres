@@ -148,7 +148,7 @@ if (!class_exists('booking'))
 					showOn: "both",
 					changeMonth: true,
 					changeYear: true,';
-					if ($fieldName=="arrivalDate")
+					if ($fieldName=="arrivalDate" && !using_bootstrap() )
 						$output .= 'numberOfMonths: 3,';
 					else
 						$output .= 'numberOfMonths: 1,';
