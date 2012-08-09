@@ -5,9 +5,10 @@
 .property_details_buttons {width: 100px !important;}
 #jomres_content_area{padding-bottom:20px;}
 
-.photoview_list{height:410px;width:30.5%;}
+.photoview_list{height:410px;max-width:210px;}
 input[class^="jomres_te_"] {width: 25px !important;}
 .dataTable th {color:#0088CC;}
+.jomres_property_list_propertywrapper .well {padding:10px;}
 
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
