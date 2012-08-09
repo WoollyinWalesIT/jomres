@@ -1630,7 +1630,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 			foreach ($to as $t)
 				{
 				if (strlen($t)>0 && jomres_check_email_address($to))
-					$emails[]=$to;
+					$emails[]=$t;
 				}
 			}
 		else
@@ -1653,10 +1653,9 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		}
 	else
 		{
-		if (strpos($to,",") ) // we've been passed a comma seperated list of emails, explode them then parse them
+		if (is_array($to) )
 			{
-			$addys=explode(",",$to);
-			foreach ($addys as $t)
+			foreach ($to as $t)
 				{
 				if (strlen($t)>0)
 					$emails[]=$t;
@@ -1664,8 +1663,20 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 			}
 		else
 			{
-			if (strlen($to)>0)
-				$emails[]=$to;
+			if (strpos($to,",") ) // we've been passed a comma seperated list of emails, explode them then parse them
+				{
+				$addys=explode(",",$to);
+				foreach ($addys as $t)
+					{
+					if (strlen($t)>0)
+						$emails[]=$t;
+					}
+				}
+			else
+				{
+				if (strlen($to)>0)
+					$emails[]=$to;
+				}
 			}
 		}
 
