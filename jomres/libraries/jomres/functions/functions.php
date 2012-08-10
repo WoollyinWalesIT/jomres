@@ -26,13 +26,15 @@ function using_bootstrap()
 	if (_JOMRES_DETECTED_CMS == "joomla30")
 		return true;
 	
+	if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS != "joomla30")
+		return false;
+		
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['use_bootstrap']=="0")
 		return false;
 	if ($jrConfig['use_bootstrap']=="1")
 		return true;
-		
 
 	return false;
 	}
