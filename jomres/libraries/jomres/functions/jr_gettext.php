@@ -145,7 +145,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			}
 		}
 	
-	//$theText = jomres_purify_html($theText,$editing);
+	//$theText = jomres_purify_html($theText);
 	$text_bucket[$property_uid][$theConstant][$okToEdit] = $theText;
 	return $theText;
 	}

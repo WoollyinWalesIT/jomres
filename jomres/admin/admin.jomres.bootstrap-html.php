@@ -37,7 +37,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown)
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -73,14 +73,15 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			</thead>
 			<tbody>');
 		
-		//if (_JOMRES_DETECTED_CMS == "joomla25" )
-		//	{
+		if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
+			{
 			$contentPanel->setcontent('<tr>
 				 <td>'._JOMRES_BOOTSTRAPSWITCH.'</td>
 				 <td>'.$lists['use_bootstrap'].'</td>
 				 <td>'._JOMRES_BOOTSTRAPSWITCH_DESC.'</td>
 			</tr>');
-		//	}
+			}
+		
 		$contentPanel->setcontent('
 		<tr>
 			<td>'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
@@ -153,11 +154,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			 <td>'.$lists['allowHTMLeditor'].'</td>
 			 <td>'._JOMRES_COM_ALLOWHTMLEDITOR_DESC.'</td>
 		</tr>
+		<!-- More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
 		<tr>
 			 <td>'._JOMRES_USE_JOMRESEDITOR.'</td>
 			 <td>'.$lists['use_jomres_own_editor'].'</td>
 			 <td>'._JOMRES_USE_JOMRESEDITOR_DESC.'</td>
 		</tr>
+		-->
 		');
 	
 
@@ -285,6 +288,44 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 	
+
+	if ($jrConfig['advanced_site_config'] == 1)
+		{
+		$contentPanel->startPanel(jr_gettext('_JOMRES_INPUTFILTERING',_JOMRES_INPUTFILTERING,FALSE));
+		$contentPanel->setcontent('
+			<table class="table table-striped" width="100%">
+			<thead>
+			<tr>
+				<th width="20%">&nbsp;</th>
+				<th width="20%">'._JOMRES_COM_A_CURRENT_SETTINGS.'</th>
+				<th>'._JOMRES_COM_A_EXPLANATION.'</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				 <td>'._JOMRES_INPUTFILTERING_LEVEL_TITLE.'</td>
+				 <td>'.$filtering_level_dropdown.'</td>
+				 <td>'._JOMRES_INPUTFILTERING_LEVEL_DESC.'</td>
+			</tr>
+			<tr>
+				 <td>'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE.'</td>
+				 <td><input type="text" class="input-large" name="cfg_html_purifier_allowed_tags" value="'.$jrConfig['html_purifier_allowed_tags'].'" /></td>
+				 <td>'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC.'</td>
+			</tr>
+			<tr>
+				<td>'._JOMRES_INPUTFILTERING_INPUTS_TITLE.'</td>
+				<td><textarea class="input-large" name="cfg_inputs_allowing_html" >'.$jrConfig['inputs_allowing_html'].'</textarea></td>
+				<td>'._JOMRES_INPUTFILTERING_INPUTS_DESC.'</td>
+			</tr>
+			<tr>
+				<th colspan="3">&nbsp;</th>
+			</tr>
+			</tbody>
+			</table>');
+		$contentPanel->insertContent();
+		$contentPanel->endPanel();
+		}
+		
 	if ($jrConfig['advanced_site_config'] == 1)
 		{
 		$contentPanel->startPanel(jr_gettext('_JOMRES_MOBILE_SETTINGS',_JOMRES_MOBILE_SETTINGS,FALSE));

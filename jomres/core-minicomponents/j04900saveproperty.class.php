@@ -81,13 +81,13 @@ class j04900saveproperty {
 			$property_othertransport		= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_othertransport', "" ));
 			$property_policies_disclaimers	= $this->convert_lessgreaterthans(jomresGetParam( $_POST, 'property_policies_disclaimers', "" ));
 			
-			$property_description			= strip_tags(  $property_description );
-			$property_checkin_times			= strip_tags(  $property_checkin_times);
-			$property_area_activities		= strip_tags(  $property_area_activities );
-			$property_driving_directions	= strip_tags(  $property_driving_directions);
-			$property_airports				= strip_tags(  $property_airports );
-			$property_othertransport		= strip_tags(  $property_othertransport );
-			$property_policies_disclaimers	= strip_tags(  $property_policies_disclaimers );
+			$property_description			= strip_tags(  $property_description , "<p><br>");
+			$property_checkin_times			= strip_tags(  $property_checkin_times , "<p><br>");
+			$property_area_activities		= strip_tags(  $property_area_activities , "<p><br>" );
+			$property_driving_directions	= strip_tags(  $property_driving_directions , "<p><br>");
+			$property_airports				= strip_tags(  $property_airports , "<p><br>" );
+			$property_othertransport		= strip_tags(  $property_othertransport , "<p><br>" );
+			$property_policies_disclaimers	= strip_tags(  $property_policies_disclaimers , "<p><br>" );
 			}
 		else
 			{
@@ -99,7 +99,7 @@ class j04900saveproperty {
 			$property_othertransport		=jomresGetParam( $_POST, 'property_othertransport', "" );
 			$property_policies_disclaimers	=jomresGetParam( $_POST, 'property_policies_disclaimers', "" );
 			
-			if ($jrConfig['use_jomres_own_editor'])
+/* 			if ($jrConfig['use_jomres_own_editor'])
 				{
 				$property_description			= $this->convert_lessgreaterthans($property_description);
 				$property_checkin_times			= $this->convert_lessgreaterthans($property_checkin_times);
@@ -125,8 +125,9 @@ class j04900saveproperty {
 				$property_airports				= $this->encode_lessgreaterthans($property_airports);
 				$property_othertransport		= $this->encode_lessgreaterthans($property_othertransport);
 				$property_policies_disclaimers	= $this->encode_lessgreaterthans($property_policies_disclaimers);
-				}
+				} */
 			}
+
 		$property_type					= jomresGetParam( $_POST, 'propertyType', 0 );
 		$property_stars					= jomresGetParam( $_POST, 'stars', 0 );
 		$features_list					= jomresGetParam( $_POST, 'features_list', "" );

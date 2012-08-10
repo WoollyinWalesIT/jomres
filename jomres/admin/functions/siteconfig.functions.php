@@ -171,6 +171,12 @@ function showSiteConfig(  )
 		}
 	$language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['language_context']);
 
+	$filtering_level = array();
+	$filtering_level[] = jomresHTML::makeOption( 'weak', _JOMRES_INPUTFILTERING_LEVEL_WEAK );
+	$filtering_level[] = jomresHTML::makeOption( 'strong', _JOMRES_INPUTFILTERING_LEVEL_STRONG );
+	$filtering_level_dropdown = jomresHTML::selectList($filtering_level, 'cfg_input_filtering', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['input_filtering']);
+	
+	
 	$lists['integratedSearch_enable']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_enable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_enable'] );
 	$lists['integratedSearch_useCols']				= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_useCols', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_useCols'] );
 	$lists['integratedSearch_selectcombo']			= jomresHTML::selectList( $yesno, 'cfg_integratedSearch_selectcombo', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_selectcombo'] );
@@ -238,7 +244,7 @@ function showSiteConfig(  )
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
 	$lists['use_bootstrap']							= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap'] );
 
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown);
 	}
 
 /**
