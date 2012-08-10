@@ -13,6 +13,15 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
+	{
+	// Uncomment the following line to tell Jomres to show the images and descriptions side by side, instead of using the jquery tooltip.
+	//$type_arguments['use_javascript']=false;
+	$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
+	//$jomres_tooltips = new jomres_tooltips();
+	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
+	}
+
 function endrun()
 	{
 	if (file_exists(_JOMRES_DETECTED_CMS_SPECIFIC_FILES.'cms_specific_endrun.php'))
@@ -632,6 +641,7 @@ function get_all_suspended_managers()
 	return $suspended_managers;
 	}
 
+
 function detect_property_uid()
 	{
 	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -766,33 +776,7 @@ function jomres_validate_gateway_plugin()
 	return $plugin;
 	}
 
-function jomres_search_dir($path, $pattern)
-	{
-	global $jomres_dir_contents;
-	$jomres_dir_contents = array();
-	$path = rtrim(str_replace("\\",JRDS, $path), JRDS) . JRDS;
-	$matches = Array();
-	$entries = Array();
-	$dir = dir($path);
-	while (false !== ($entry = $dir->read()))
-		{
-		$entries[] = $entry;
-		}
-	$dir->close();
-	foreach ($entries as $entry)
-		{
-		$fullname = $path . $entry;
-		if ($entry != '.' && $entry != '..' && $entry != ".svn" && is_dir($fullname))
-			{
-			jomres_sdir($fullname, $pattern, $callback);
-			}
-		else if (is_file($fullname) && stristr($entry,$pattern ))
-			{
-			$jomres_dir_contents[] = $fullname;
-			}
-		}
-	return $jomres_dir_contents;
-	}
+
 
 function jomres_generate_tab_anchor($string)
 	{
@@ -894,20 +878,7 @@ function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = tr
 	return $price;
 	}
 
-// This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
-// The string will already have been cleaned by filter var sanitize string.
-function jomres_reconvertString($clean)
-	{
-	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
-	$clean = str_replace("&#60;br /&#62;", "<br />", $clean);
-	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
-	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
-	$clean = str_replace(" & "," &amp; " , $clean);
 
-
-	//var_dump($clean);
-	return $clean;
-	}
 
 
 function get_showtime($setting)
@@ -1142,19 +1113,6 @@ function getIntegratedSearchModuleVals()
 
 	return $vals;
 	}
-
-
-function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
-	{
-	// Uncomment the following line to tell Jomres to show the images and descriptions side by side, instead of using the jquery tooltip.
-	//$type_arguments['use_javascript']=false;
-	$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
-	//$jomres_tooltips = new jomres_tooltips();
-	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
-	}
-
-
-
 
 
 function getThisMonthName($monthNumber,$editable=true)
@@ -1631,7 +1589,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 			{
 			foreach ($to as $t)
 				{
-				if (strlen($t)>0 && jomres_check_email_address($to))
+				if (strlen($t)>0)
 					$emails[]=$t;
 				}
 			}
@@ -1642,13 +1600,13 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 				$addys=explode(",",$to);
 				foreach ($addys as $t)
 					{
-					if (strlen($t)>0 && jomres_check_email_address($to))
+					if (strlen($t)>0)
 						$emails[]=$t;
 					}
 				}
 			else
 				{
-				if (strlen($to)>0 && jomres_check_email_address($to))
+				if (strlen($to)>0)
 					$emails[]=$to;
 				}
 			}
@@ -1742,91 +1700,6 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		}
 	return true;
 	}
-
-/**
-#
- *Tests to see if an email address is valid. Includes tests of the A and MX records.
-#
-*/
-function jomres_check_email_address($email)
-	{
-	return true;
-	}
-
-/* Depreciated
-function jomres_check_email_address($email)
-	{
-
-	// Are we on windows? If so we can try to give our win user their own checkndsrr function. The exec might cause problems depending on how wamp/xamp/jsas is set up, but there's no harm in trying
-	// http://uk2.php.net/manual/en/function.checkdnsrr.php#75158
-	if(!function_exists('checkdnsrr'))
-		{
-		function checkdnsrr($hostName, $recType = '')
-			{
-			if(!empty($hostName))
-				{
-				if( $recType == '' ) $recType = "MX";
-				@exec("nslookup -type=$recType $hostName", $result);
-				// check each line to find the one that starts with the host name. If it exists then the function succeeded.
-				foreach ($result as $line)
-					{
-					if(eregi("^$hostName",$line))
-						{
-						return true;
-						}
-					}
-				// otherwise there was no mail handler for the domain
-				return false;
-				}
-			return false;
-			}
-		}
-
-
-	// First, we check that there's one @ symbol, and that the lengths are right
-	if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email))
-		{
-		// Email invalid because wrong number of characters in one section, or wrong number of @ symbols.
-		return false;
-		}
-
-	// Split it into sections to make life easier
-	$email_array = explode("@", $email);
-	$local_array = explode(".", $email_array[0]);
-	for ($i = 0; $i < sizeof($local_array); $i++)
-		{
-		if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i]))
-			{
-			return false;
-			}
-		}
-
-	if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1]))
-		{ // Check if domain is IP. If not, it should be valid domain name
-		$domain_array = explode(".", $email_array[1]);
-		if (sizeof($domain_array) < 2)
-			{
-			return false; // Not enough parts to domain
-			}
-		for ($i = 0; $i < sizeof($domain_array); $i++)
-			{
-			if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i]))
-				{
-				return false;
-				}
-			}
-		}
-		//getmxrr($domain,$mxrecords)
-	// DNS check of MX of the specified domainname
-	if( !checkdnsrr($email_array[1], "MX") )
-		{
-		if( !checkdnsrr($email_array[1], "A"))
-			{
-			return false;
-			}
-		}
-	return true;
-	} */
 
 /**
 #
@@ -1927,17 +1800,7 @@ function getCurrentBookingData($jomressession="")
 	return $obj;
 	}
 
-/**
-#
- * Returns the guest details from the tmpguests session data
-#
-*/
-function getbookingguestdata()
-	{
-	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-	$userDeets=$tmpBookingHandler->getGuestData();
-	return $userDeets;
-	}
+
 
 /**
 #
@@ -2116,8 +1979,6 @@ function error_logging($message,$emailMessage=true)
 	$logfile=JOMRES_SYSTEMLOG_PATH.'jomres_error_log.xml';
 
 	$log = "<![CDATA[".$message . "]]>";
-	if ($jrConfig['emailErrors']=='1' && $emailMessage)
-		mailJomresdotnet($message);
 	writexml($logfile,"errorlog","errorlogentry",$log);
 	}
 
@@ -2399,7 +2260,6 @@ function hotelSettings()
 	//$jsInputDateFormats[] =	jomresHTML::makeOption("%d.%m.%Y", "01.02.2006");
 	$jsInputFormatDropdownList= jomresHTML::selectList($jsInputDateFormats, 'cfg_cal_input', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['cal_input']);
 
-	//$slideshowNames=listSlideshows();
 	//$slideshowDropdownList= jomresHTML::selectList($slideshowNames, 'cfg_slideshow', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['slideshow']);
 	$smokingOptionDropdownList= jomresHTML::selectList($smokingOptions, 'cfg_defaultSmokingOption', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['defaultSmokingOption']);
 	$weekdayDropdown= jomresHTML::selectList($weekDays, 'cfg_fixedArrivalDay', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['fixedArrivalDay']);
@@ -2676,7 +2536,7 @@ function saveHotelSettings()
 				}
 			if (substr( $k, 4 ) =="encKey")
 				{
-				saveKey($v);
+				//saveKey($v); // Commented out, the function is no longer available, however keeping the IF statement here allows to be absolutely sure that if encKey is set (by a very naughty person) then nothing is done.
 				}
 			else
 				{
@@ -2731,15 +2591,7 @@ function removeAllPropertyTariffs($property_uid)
 	doInsertSql($query,'');
 	}
 
-function jomres_makeColourPickerInput($setting,$value)
-	{
-	$txt = '
-		<input class="inputbox" id="cfg_'.$setting.'" name="cfg_'.$setting.'" size="7" value="'.$value.'" onChange="relateColor(\''.$setting.'\', this.value);">
-				<a href="javascript:pickColor(\''.$setting.'\');"
-				id="'.$setting.'" style="border: 1px solid '.$value.'; background:'.$value.'; font-family:Verdana; font-size:16px; text-decoration: none;">
-				&nbsp;&nbsp;&nbsp;</a>';
-	return $txt;
-	}
+
 
 /**
 #
@@ -3079,11 +2931,7 @@ function insertGuestDeets($jomressession)
 			$query="INSERT INTO #__jomres_guest_profile (`cms_user_id`,`firstname`,`surname`,`house`,`street`,`town`,`county`,`country`,`postcode`,`tel_landline`,`tel_mobile`,`email`) VALUES ('".(int)$thisJRUser->id."','$firstname','$surname','$house','$street','$town','$region','$country','$postcode','$landline','$mobile','$email')";
 			doInsertSql($query,'');
 			}
-
 		}
-
-
-
 
 	if (!$returnid)
 		{ echo "Error saving users details";exit; }
@@ -3091,18 +2939,7 @@ function insertGuestDeets($jomressession)
 	return $returnid;
 	}
 
-/**
-#
- * depreciated
-#
-*/
-function ValidateMail($Email) {
-	$rBool=FALSE;
-	if(preg_match("/[\w\.\-]+@\w+[\w\.\-]*?\.\w{1,4}/", $Email)){
-		$rBool=TRUE;
-	}
-	return $rBool;
-} // end of function
+
 
 
 /**
@@ -3224,99 +3061,6 @@ function JSCalConvertInputDates($inputDate,$siteCal=FALSE)
 	}
 
 
-/**
-#
- * Generates the javascript used to update the departure date to 'whatever' date after arrival date. Shares the same function name as that used when creating the input, so that the basic script can be reused on the same page
-#
-*/
-function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
-	{
-	if (isset($_REQUEST['dataonly']))
-		return;
-	global $jomresSearchFormname;
-	if (isset($jomresSearchFormname) && !empty($jomresSearchFormname) )
-		$formname=$jomresSearchFormname;
-	else
-		$formname="bookingForm";
-	?>
-	<script language="JavaScript" type="text/javascript">
-		function <?php echo $javascriptFunctionName;?>(arrivalDate,thisform){
-		var dformat="<?php echo trim($dformat); ?>"
-		var newday=0
-		var day=0
-		var mon=0
-		var year=0
-		if (dformat=="%d/%m/%Y"){
-			dateArray=arrivalDate.split("/")
-			day=dateArray[0]
-			mon=dateArray[1]
-			year=dateArray[2]
-			}
-		if (dformat=="%Y/%m/%d"){
-			dateArray=arrivalDate.split("/")
-			day=dateArray[2]
-			mon=dateArray[1]
-			year=dateArray[0]
-			}
-		if (dformat=="%m/%d/%Y"){
-			dateArray=arrivalDate.split("/")
-			day=dateArray[1]
-			mon=dateArray[0]
-			year=dateArray[2]
-			}
-		if (dformat=="%d-%m-%Y"){
-			dateArray=arrivalDate.split("-")
-			day=dateArray[0]
-			mon=dateArray[1]
-			year=dateArray[2]
-			}
-		if (dformat=="%Y-%m-%d"){
-			dateArray=arrivalDate.split("-")
-			day=dateArray[2]
-			mon=dateArray[1]
-			year=dateArray[0]
-			}
-		if (dformat=="%m-%d-%Y"){
-			dateArray=arrivalDate.split("-")
-				day=dateArray[1]
-			mon=dateArray[0]
-			year=dateArray[2]
-			}
-
-		var d = new Date(year,mon-1,day); with (d) setDate(getDate()+1)
-		sday=String(d.getDate());
-		smonth=String(d.getMonth()+1);
-		if (sday.length == 1)
-			fday="0"+sday;
-		else
-			fday=sday;
-		if (smonth.length == 1)
-			fmonth="0"+smonth;
-		else
-			fmonth=smonth;
-		if (dformat=="%d/%m/%Y"){
-			dd=fday+"/"+fmonth+"/"+String(d.getFullYear())
-			}
-		if (dformat=="%Y/%m/%d"){
-			dd=String(d.getFullYear())+"/"+fmonth+"/"+fday
-			}
-		if (dformat=="%m/%d/%Y"){
-			dd=fmonth+"/"+fday+"/"+String(d.getFullYear())
-			}
-		if (dformat=="%d-%m-%Y"){
-			dd=fday+"-"+fmonth+"-"+String(d.getFullYear())
-			}
-		if (dformat=="%Y-%m-%d"){
-			dd= String(d.getFullYear())+"-"+fmonth+"-"+fday
-			}
-		if (dformat=="%m-%d-%Y"){
-			dd=fmonth+"-"+ fday+"-"+String(d.getFullYear())
-			}
-		document.<?php echo $formname;?>.departureDate.value=dd;
-		}
-		</script>
-	<?php
-	}
 
 
 
@@ -3448,67 +3192,7 @@ function listGateways()
 	return $folders;
 	}
 
-/**
-#
- * Queries the slideshow folder for slideshows then creates a dropdown list to be used in the configuration panels
-#
-*/
-function listSlideshows()
-	{
 
-	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/jomres/plugins/slideshows/";
-	// get list of templates
-	$d = @dir($listdir);
-	if($d)
-		{
-		$folders = array();
-		//$docs = array();
-		while (FALSE !== ($entry = $d->read()))
-			{
-			$template_folder = $entry;
-			if(is_dir($listdir.'/'.$template_folder) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
-				{
-				$folders[] =jomresHTML::makeOption( $template_folder, $template_folder );
-				}
-			}
-		$d->close();
-		}
-
-	return $folders;
-	}
-
-
-/**
-#
- * depreciated
-#
-*/
-function saveKey ( $mykey )
-	{
-
-	$defaultProperty=getDefaultProperty();
-	//Add code to check if config file is writeable.
-	if (isset($mykey) && !empty($mykey) )
-		{
-		$keyFile = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/jomres/tmp/'.$defaultProperty.'_key.php';
-		@chmod ($keyFile, 0700);
-		if (is_file($keyFile) && !is_writable($keyFile))
-				{
-				jomresRedirect(JOMRES_SITEPAGE_URL."", "FATAL ERROR: Key File Not writeable" );
-				}
-			$txt = "<?php if (defined('JPATH_BASE'))";
-			$txt .= "	defined( '_JEXEC' ) or die( '' );\n";
-			$txt .= "else";
-			$txt .= "	defined( '_VALID_MOS' ) or die( '' );\n";
-			$txt.='$mykey="'.$mykey.'";?>';
-
-		if ($fp = fopen( $keyFile, "w"))
-			{
-			fputs($fp, $txt, strlen($txt));
-			fclose ($fp);
-			}
-		}
-	}
 
 
 
@@ -3833,281 +3517,6 @@ function getGuestForPrint($guestUid)
 
 /**
 #
- * Deletes an image
-#
-*/
-function dropImage($defaultProperty=0,$imageType="",$itemUid="",$redirectOnDone = true)
-	{
-	$imageType		= getEscaped( jomresGetParam( $_REQUEST, 'imageType', '' ) );
-	$itemUid		= getEscaped( jomresGetParam( $_REQUEST, 'itemUid', 0 ) );
-
-	$defaultProperty=getDefaultProperty();
-	$saveMessage =jr_gettext('_JOMRES_FILE_DELETED',_JOMRES_FILE_DELETED,FALSE);
-	$fileFullPath="";
-	$returnTask="editProperty&propertyUid=".$defaultProperty;
-
-	switch ($imageType)
-		{
-		case 'property':
-			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty.".jpg";
-			$fileFullPath_thumbnail=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty."_thumbnail.jpg";
-			$fileFullPath_thumbnail_medium=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_property_".$defaultProperty."_thumbnail_med.jpg";
-			$returnTask="editProperty&propertyUid=".$defaultProperty;
-		break;
-		case 'room':
-			$fileFullPath=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid.".jpg";
-			$fileFullPath_thumbnail=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid."_thumbnail.jpg";
-			$fileFullPath_thumbnail_medium=JOMRES_IMAGELOCATION_ABSPATH.$defaultProperty."_room_".$itemUid."_thumbnail_med.jpg";
-			$returnTask="editRoom&roomUid=".$itemUid;
-		break;
-		}
-	if (strlen($fileFullPath)>0)
-		{
-		if (file_exists($fileFullPath) )
-			{
-			if (!unlink($fileFullPath))
-				{
-				error_logging("Error, couldn't delete ".$fileFullPath);
-				return false;
-				}
-			else
-				{
-				unlink($fileFullPath_thumbnail);
-				unlink($fileFullPath_thumbnail_medium);
-				
-				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-				$jomres_messaging = new jomres_messages();
-				$jomres_messaging->set_message($saveMessage);
-				if ($redirectOnDone)
-					jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), $saveMessage );
-				else
-					return true;
-				}
-			}
-		else
-			{
-			if ($redirectOnDone)
-				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), $saveMessage );
-			else
-				return false;
-			}
-		}
-	else
-		{
-		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-		$jomres_messaging = new jomres_messages();
-		$jomres_messaging->set_message("Could not discerne filename");
-		if ($redirectOnDone)
-			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=$returnTask"), '' );
-		else
-			return false;
-		}
-	}
-
-/**
-#
- * Basic function for uploading a property image
-#
-*/
-function uploadPropertyImage()
-	{
-	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-	$defaultProperty=getDefaultProperty();
-	$saveMessage=_JOMRES_FILE_UPDATED;
-
-	$uploadedImage	=	$_FILES['image']['name'];
-	$filename= split("\.", $_FILES['image']['name']);
-	$numExtensions=(count($filename))-1;
-	//$fileName=$filename[0];
-	$fileExt=$filename[$numExtensions];
-	$newFileName=$defaultProperty."_property_".(int)$defaultProperty.".".$fileExt;
-
-	if ($uploadedImage)
-		$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
-	if ($checkedImage)
-		{
-		jr_import('jomres_cache');
-		$cache = new jomres_cache();
-		$cache->trashCacheForProperty($defaultProperty);
-		$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-		$jomres_messaging = new jomres_messages();
-		$jomres_messaging->set_message($saveMessage);
-		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=$defaultProperty"), "" );
-		}
-	else
-		echo "Error";
-	}
-
-/**
-#
- * Basic function for uploading a room image
-#
-*/
-
-function uploadRoomImage()
-	{
-	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
-	$defaultProperty=getDefaultProperty();
-	$saveMessage=_JOMRES_FILE_UPDATED;
-	$roomUid = intval(jomresGetParam( $_POST, 'roomUid', 0 ));
-
-	$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = ".(int)$defaultProperty."";
-	$roomsList =doSelectSql($query);
-	$propertysRooms=array();
-
-	foreach ($roomsList as $r)
-		{
-		$propertysRooms[]=$r->room_uid;
-		}
-	if (in_array($roomUid,$propertysRooms) )
-		{
-		$uploadedImage	=	$_FILES['image']['name'];
-		$filename= split("\.", $_FILES['image']['name']);
-		$numExtensions=(count($filename))-1;
-		//$fileName=$filename[0];
-		$fileExt=$filename[$numExtensions];
-		$newFileName=$defaultProperty."_room_".$roomUid.".".$fileExt;
-
-		if ($uploadedImage)
-			$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
-
-		if ($checkedImage)
-			{
-			jr_import('jomres_cache');
-			$cache = new jomres_cache();
-			$cache->trashCacheForProperty($defaultProperty);
-			$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-			$jomres_messaging = new jomres_messages();
-			$jomres_messaging->set_message($saveMessage);
-			jomresRedirect(jomresURL(JOMRES_SITEPAGE_URL."&task=editRoom&roomUid=$roomUid"), $saveMessage );
-			}
-		}
-	else
-		trigger_error ("Unable to upload image, room uid does not match property's rooms", E_USER_ERROR);
-	}
-
-/**
-#
- * Uploads an image an resizes it accoring to $jrConfig['maxwidth'] & $jrConfig['maxheight']
-#
-* @see images
-#
-*/
-function uploadImageFromPost($formelement=null,$newName=null,$saveToPath=null)
-	{
-	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-
-	$elementsToRemove=array("\\","'",);
-	$newName=strtolower(str_replace($elementsToRemove,"", $newName));
-	$newName=strtolower(str_replace(" ","_", $newName));
-
-	$slideshow_image_upload = false; 
-	$batchUploadFormElements = array('image0','image1','image2','image3','image4','image5','image6','image7','image8','image9','image10','image11'); 
-	if (in_array($formelement,$batchUploadFormElements)) 
-		$slideshow_image_upload = true; 
-	
-	if (isset($formelement) && isset($newName) && isset($saveToPath) )
-		{
-		if (!is_dir($saveToPath) )
-			{
-			if (!mkdir($saveToPath) )
-				{
-				echo "Unable to make dir ".$saveToPath."<br>";
-				return false;
-				}
-			}
-		if (!defined("JOMRES_IMAGE_MAX_SIZE")||!defined("JOMRES_IMAGE_UPLOAD_PATH"))
-			{
-			define("JOMRES_IMAGE_MAX_SIZE",$jrConfig['fileSize']);
-			define("JOMRES_IMAGE_UPLOAD_PATH",$saveToPath);
-			}
-		$maxwidth = $jrConfig['maxwidth'];
-		$maxHeight = $jrConfig['maxwidth'];
-
-
-		// load the class
-		jr_import('images');
-		$img = new images();
-		// open a file
-		$ok_to_delete = false;
-		if ($img->getImageFromPost($formelement) )
-			{
-			// make the image fit
-			// Image resizing is a security function, as well as simply resizing the image. It reduces the liklihood of malformed headers in image files.
-			$img->transformToFit($maxwidth,$maxHeight);
-			if (!$img->imageresizeresult)
-				{
-				@unlink($img->fileToBeDeletedAtEnd);
-				@unlink($img->orgImage);
-				trigger_error ("Unable to resize image. Poss malformed image </b> ".$_FILES[$formelement]['name']." User id ".$thisJRUser->id, E_USER_ERROR);
-				}
-			// add a red stroke of 2 pixels to the image
-			//$img->strokeImage(2,"FF0000");
-			// save the image
-			if (!$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$newName,$ok_to_delete) )
-				{
-				echo "Unable to save file ".JOMRES_IMAGE_UPLOAD_PATH.$newName." ";
-				return false;
-				}
-			else
-				{
-				
-				
-				if ( this_cms_is_joomla() && $slideshow_image_upload ) // For Joomla plugin galleries
-					{
-					$joomla_dir = JOMRES_IMAGE_UPLOAD_PATH.'joomla'.JRDS;
-
-					if (!is_dir($joomla_dir) )
-						mkdir($joomla_dir);
-					if (!is_dir($joomla_dir.'large') )
-						mkdir($joomla_dir.'large');
-					$img->saveImage($joomla_dir.'large'.JRDS.$newName,$ok_to_delete);
-					}
-
-				// We've managed to do the upload of the image, let's now use the same functionality to create the thumbnail. Everything's worked so far so there's no need to perform the same checks so this should be much simpler.
-				$ok_to_delete = true;
-				$filename= split("\.", $newName);
-				$numExtensions=(count($filename))-1;
-				$fileExt=$filename[$numExtensions];
-				$filename = $filename[0];
-				$thumbnail_name_small = $filename."_thumbnail.".$fileExt;
-				$thumbnail_name_med = $filename."_thumbnail_med.".$fileExt;
-
-				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
-				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_list_max_width']), floor( (int)$jrConfig['thumbnail_property_list_max_height']));
-				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_small,$ok_to_delete) ;
-
-				if ( this_cms_is_joomla() && $slideshow_image_upload ) // For Joomla plugin galleries
-					{
-					if (!is_dir($joomla_dir.'small') )
-						mkdir($joomla_dir.'small');
-					$img->saveImage($joomla_dir.'small'.JRDS.$thumbnail_name_small,$ok_to_delete) ;
-					}
-
-				$img->openImage(JOMRES_IMAGE_UPLOAD_PATH.$newName);
-				$img->transformToFit(floor( (int)$jrConfig['thumbnail_property_header_max_width']),floor( (int)$jrConfig['thumbnail_property_header_max_height']));
-				$img->saveImage(JOMRES_IMAGE_UPLOAD_PATH.$thumbnail_name_med,$ok_to_delete) ;
-
-				if ( this_cms_is_joomla() && $slideshow_image_upload ) // For Joomla plugin galleries
-					{
-					if (!is_dir($joomla_dir.'medium') )
-						mkdir($joomla_dir.'medium');
-					$img->saveImage($joomla_dir.'medium'.JRDS.$thumbnail_name_med,$ok_to_delete) ;
-					}
-				}
-			}
-		else
-			{
-			return false;
-			}
-		}
-	return $saveToPath.$newName;
-	}
-
-/**
-#
  * Returns the property's name when passed a property uid
 #
 */
@@ -4149,27 +3558,6 @@ function gatewayPostage($outgoingURL,$postage,$method="post")
 
 /**
 #
- * Takes a url, indexed array and a postage method. For use by gateways to post data to payment services.
-#
-*/
-/*
-function gatewayPostage($outgoingURL,$postage,$method="post")
-	{
-	// $method is currently unused
-	$fields = "";
-	foreach( $postage as $key => $value ) $fields .= "$key=" . urlencode( $value ) . "&";
-	$ch = curl_init($outgoingURL);
-	curl_setopt($ch, CURLOPT_HEADER, 0); // set to 0 to eliminate header info from response
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // Returns response data instead of TRUE(1)
-	curl_setopt($ch, CURLOPT_POSTFIELDS, rtrim( $fields, "& " )); // use HTTP POST to send form data
-	### curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // uncomment this line if you get no gateway response. ###
-	$resp = curl_exec($ch); //execute post and get results
-	curl_close ($ch);
-	}
-*/
-
-/**
-#
  * Works out the difference between two dates in days
 #
 */
@@ -4183,38 +3571,6 @@ function dateDiff($interval,$first_date,$second_date)
 	return $days;
 	}
 
-/**
-#
- * Pass an image location, will construct a size optimised <img src=""> string back, based on the image's original size
-#
-*/
-function showImage($imageLocation,$target)
-	{
-
-	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH."/".$imageLocation))
-		{
-		//get the image size of the picture and load it into an array
-		$mysock = getimagesize($imageLocation);
-		if ($mysock)
-			{
-			// http://www.sitepoint.com/article/image-resizing-php
-			//takes the larger size of the width and height and applies the formula accordingly...this is so this script will work dynamically with any size image
-			$width=$mysock[0];
-			$height=$mysock[1];
-			if ($width > $height)
-				$percentage = ($target / $width);
-			else
-				$percentage = ($target / $height);
-			//gets the new value and applies the percentage, then rounds the value
-			$width = round($width * $percentage);
-			$height = round($height * $percentage);
-			$result=" width=\"$width\" height=\"$height\"";
-			echo "<img src=\"".$imageLocation."\" border=\"0\" ".$result." />";
-			}
-		else
-			echo "&nbsp;";
-		}
-	}
 
 function getImageForProperty($imageType,$property_uid,$itemUid)
 	{
@@ -4546,33 +3902,12 @@ function publishProperty()
 	$MiniComponents->specificEvent('02272',"publishprop");
 	}
 
-/**
-#
- * Validates a url passed from the configuration while saving
-#
-*/
-function validateURL($url)
-	{
-	$url=urldecode($url);
-	if (!strncasecmp($url,'javascript',10)) {
-		$url="";
-		}
-	else
-		{
-		$url=strip_tags($url,'%26');
-		}
-	return $url;
-	}
+
 
 //-----------------------------------------------------------------
 //-E D I T	R O O M S	A N D	P R O P E R T Y	D E T A I L S
 //-----------------------------------------------------------------
 
-/**
-#
- * Not used (yet). Intended to be developed in the future for generating wysiwyg editors for property details intpu
-#
-*/
 // Returns the editor area as a text string for inclusion in a template
 function editorAreaText( $name, $content, $hiddenField, $width, $height, $col, $row )
 	{
@@ -4595,11 +3930,6 @@ function jomresShowSearch()
  * Creates data for displaying an image. If $retString is true it will return <img etc, if false then it will return the same text in an array variable for passing to patTemplate
 #
  */
- /*
-
- ************ Depreciated ****************
-
- */
 function makeFeatureImages($image,$title,$description,$retString=false,$altLivesite="")
 	{
 	$mrConfig=getPropertySpecificSettings();
@@ -4620,13 +3950,7 @@ function makeFeatureImages($image,$title,$description,$retString=false,$altLives
 
 	$captionpopup="";
 	$descriptonpopup="";
-	/*
-	if ($mrConfig['editingOn']=="1" && $thisJRUser->userIsManager)
-		{
-		$captionpopup=jr_gettext('_JOMRES_CUSTOMTEXT_FEATUREBLURB_CAPTION'.$image,$title,true,true );
-		$descriptonpopup=jr_gettext('_JOMRES_CUSTOMTEXT_FEATUREBLURB_DESCRIPTION'.$image,$description,true,true );
-		}
-	*/
+
 	$title=jr_gettext('_JOMRES_CUSTOMTEXT_FEATUREBLURB_CAPTION'.strtoupper($image),stripslashes($title),false,false );
 	$description=jr_gettext('_JOMRES_CUSTOMTEXT_FEATUREBLURB_DESCRIPTION'.strtoupper($image),stripslashes($description),false,false );
 
@@ -4720,29 +4044,7 @@ function showSingleRoomPropAvl($property_uid)
 	showAvailability($roomUid,"",$property_uid,12);
 	}
 
-/**
-#
- * Creates and echos the calendar month dropdown
-#
- */
-function showCalandarMonthDropdown()
-	{
-	$currentMonth=date("Y/m/d");
-	$dateElements=explode("/",$currentMonth);
-	$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1],1,$dateElements[0]));
-	$nm= mktime(0, 0, 0,$dateElements[1],1,$dateElements[0]);
-	echo "<table><tr>";
-	for ($i=1;$i<=16;$i++)
-		{
-		$link="<td><a href=\"".sefRelToAbs(JOMRES_SITEPAGE_URL."&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
-		echo $link;
-		$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
-		$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
-		if ($i%8==0 and $i<16)
-			echo "</tr><tr>";
-		}
-	echo "</tr></table>";
-	}
+
 
 /**
 #
@@ -4808,72 +4110,6 @@ function sendAdminEmail($subject,$message)
 		}
 	}
 
-
-/**
-#
- * Creates the javascript calendar language selection dropdown
-#
- */
-function createJSLanguageDropdown()
-	{
-	$mrConfig=getPropertySpecificSettings();
-	$currentLangFile=$mrConfig['jscalendarLangfile'];
-	$calendarFileNamesArray=array("calendar-en.js","calendar-af.js","calendar-al.js","calendar-bg.js","calendar-big5.js","calendar-big5-utf8.js","calendar-br.js","calendar-ca.js","calendar-cs-utf8.js","calendar-cs-win.js","calendar-da.js","calendar-de.js","calendar-du.js","calendar-el.js","calendar-es.js","calendar-fi.js","calendar-fr.js","calendar-he-utf8.js","calendar-hr.js","calendar-hr-utf8.js","calendar-hu.js","calendar-it.js","calendar-jp.js","calendar-ko.js","calendar-ko-utf8.js","calendar-lt.js","calendar-lt-utf8.js","calendar-lv.js","calendar-nl.js","calendar-no.js","calendar-pl.js","calendar-pl-utf8.js","calendar-pt.js","calendar-ro.js","calendar-ru.js","calendar-ru_win_.js","calendar-si.js","calendar-sk.js","calendar-sp.js","calendar-sv.js","calendar-tr.js","calendar-zh.js","cn_utf8.js");
-	$listTxt = '<span><select id="cfg_jscalendarLangfile" class="inputbox" name="cfg_jscalendarLangfile">';
-	//$listTxt="<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";
-	foreach ($calendarFileNamesArray as $fileName)
-		{
-		$selected="";
-		if ($fileName == $currentLangFile)
-			$selected="selected";
-		$listTxt .= "<option ".$selected." value=\"".$fileName."\" >".$fileName."</option>/n";
-		}
-	$listTxt .="</select></span>";
-	return $listTxt;
-	}
-
-/**
-#
- *  Creates the javascript calendar css selection dropdown
-#
- */
-function createJSCSSDropdown()
-	{
-	$mrConfig=getPropertySpecificSettings();
-	$currentCSSFile=$mrConfig['jscalendarCSSfile'];
-	$calendarFileNamesArray=array("calendar-win2k-cold-2.css","calendar-blue2.css","calendar-blue.css","calendar-brown.css","calendar-green.css","calendar-system.css","calendar-tas.css","calendar-win2k-1.css","calendar-win2k-2.css","calendar-win2k-cold-1.css");
-	$listTxt = '<span><select id="cfg_jscalendarCSSfile" class="inputbox" name="cfg_jscalendarCSSfile">';
-	//$listTxt="<select class=\"inputbox\" name=\"cfg_jscalendarCSSfile\">";
-	foreach ($calendarFileNamesArray as $fileName)
-		{
-		$selected="";
-		if ($fileName == $currentCSSFile)
-			$selected="selected";
-		$listTxt .= "<option ".$selected." value=\"".$fileName."\" >".$fileName."</option>/n";
-		}
-	$listTxt .="</select></span>";
-	return $listTxt;
-	}
-
-	/**
-	 * This method creates a standard cpanel button
-	 *
-	 * @param unknown_type $link
-	 * @param unknown_type $image
-	 * @param unknown_type $text
-	 */
-	function _quickiconButton( $link, $image, $text, $path='/administrator/images/' ) {
-		?>
-		<div style="padding:0 2px 0 0;text-align:center;vertical-align:middle;float:left;width:120px;height:110px;">
-			<div class="icon" align="center">
-				<a href="<?php echo $link; ?>" style="text-decoration:none;">
-				<img src="<?php echo get_showtime('live_site').$path.$image;?>" border="0" /><br />
-				<span><?php echo $text; ?></span>
-				</a>
-			</div>
-		</div>
-		<?php
-	}
 
 function makeJsGraphOutput($graphLabels,$graphValues,$type="hBar",$legend,$div='divGraph')
 	{
@@ -5535,24 +4771,7 @@ function parseFloat($ptString) {
             return $result;
 }
 
-if (!function_exists('is_iPhone'))
-	{
-	function is_iPhone($agent='')
-	{
-	if(empty($agent)) $agent = $_SERVER['HTTP_USER_AGENT'];
-	if(!empty($agent) and preg_match("~Mozilla/[^ ]+ \((iPhone|iPod); U; CPU [^;]+ Mac OS X; [^)]+\) AppleWebKit/[^ ]+ \(KHTML, like Gecko\) Version/[^ ]+ Mobile/[^ ]+ Safari/[^ ]+~",$agent,$match))
-		{
-		return "YES";
-		} elseif(stristr($agent,'iphone') or stristr($agent,'ipod'))
-			{
-			return "MAYBE";
-			}
-			else
-			{
-			return "NO";
-			}
-		}
-	}
+
 
 function scandir_getdirectories($path) 
 	{
@@ -5609,29 +4828,7 @@ function jomres_decode($string)
 //-T E X T	M O D I F I C A T I O N	 ----
 //----------------------------------------
 
-function editCustomTextAll()
-	{
-	$mrConfig=getPropertySpecificSettings();
-	$mrConfig['editingOn']="1";
-	$allDefinedContants=get_defined_constants();
-	$jomresConstants=array();
-	foreach ($allDefinedContants as $key=>$value)
-		{
-		if (substr($key,0,7)=="_JOMRES")
-			$jomresConstants[$key]=$value;
-		if (substr($key,0,7)=="_JOMCOMP")
-			$jomresConstants[$key]=$value;
-		}
-	$mrConfig['editingOn']="1";
-	foreach ($jomresConstants as $key=>$value)
-		{
-		if ( get_showtime('lang') == "en")
-			echo jr_gettext($key,$value)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
-		else
-			echo jr_gettext($key,$value,true,FALSE)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
-		echo "<br>";
-		}
-	}
+
 
 function editCustomText()
 	{
@@ -5885,41 +5082,7 @@ function getSiteSettings()
 	}
 
 
-/**
-#
- * Alternative function for str_ireplace
-#
- */
 
-if(!function_exists('str_ireplace'))
-	{
-	function str_ireplace($search,$replace,$subject)
-		{
-		$token = chr(1);
-		$haystack = strtolower($subject);
-		//$needle = strtolower($search);
-		if (is_array($search) )
-			{
-			$count=count($search);
-			for ($i=0;$i<$count;$i++)
-				{
-				//echo $search[$i];echo "<br/>";
-				$search[$i]= strtolower($search[$i]);
-				}
-			$needle=$search;
-			}
-		else
-			$needle = strtolower($search);
-		while (($pos=strpos($haystack,$needle))!==FALSE)
-			{
-			$subject = substr_replace($subject,$token,$pos,strlen($search));
-			$haystack = substr_replace($haystack,$token,$pos,strlen($search));
-			}
-		$subject = str_replace($token,$replace,$subject);
-		return $subject;
-		}
-	}
-	
 
 /**
 #
@@ -5942,24 +5105,7 @@ if ( !function_exists('gregoriantojd') )
 	}
 	
 
-function mailJomresdotnet($message)
-	{
-	if (jomresGetDomain() != "localhost")
-		{
-		$to = "bugs@jomres.net ";
-		$subject = "Error report from ".get_showtime('sitename');
-		$from = get_showtime('mailfrom');
 
-		$body = " on ".date('d/m/Y');
-		$body .= " at ".date('g:i A')."\n\nDetails:\n";
-		$body .= "Server details follow\n\n";
-		$body .= "Livesite: ".get_showtime('live_site')."\n";
-		$body .= "Site name: ".get_showtime('sitename')."\n";
-		$body .= "Users email address: ".get_showtime('mailfrom')."\n";
-		$body =	$message."\n";
-		jomresMailer( $from, get_showtime('sitename'), $to, $subject, $body,0);
-		}
-	}
 
 
 /**
@@ -5992,34 +5138,6 @@ function getPropertyNameNoTables($property_uid)
 		}
 	$propertyNamesArray[]=$propertyName;
 	return $propertyName;
-	}
-
-
-
-// Returns the utf string corresponding to the unicode value (from php.net, courtesy - romans@void.lv)
-function jomres_code2utf($num)
-	{
-	if ($num < 128) return chr($num);
-	if ($num < 2048) return chr(($num >> 6) + 192) . chr(($num & 63) + 128);
-	if ($num < 65536) return chr(($num >> 12) + 224) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
-	if ($num < 2097152) return chr(($num >> 18) + 240) . chr((($num >> 12) & 63) + 128) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
-	return '';
-	}
-
-function jomres_get_var_type($variable)
-	{
-	if (is_array($variable))
-		return 'array';
-	elseif (is_bool($variable))
-		return 'boolean';
-	elseif (is_float($variable))
-		return 'float';
-	elseif (is_int($variable))
-		return 'int';
-	elseif (is_string($variable))
-		return 'string';
-	else
-		return false;
 	}
 
 
@@ -6104,6 +5222,583 @@ class dummy_params_class
 		}
 	}
 
+/* 
+function jomres_search_dir($path, $pattern)
+	{
+	global $jomres_dir_contents;
+	$jomres_dir_contents = array();
+	$path = rtrim(str_replace("\\",JRDS, $path), JRDS) . JRDS;
+	$matches = Array();
+	$entries = Array();
+	$dir = dir($path);
+	while (false !== ($entry = $dir->read()))
+		{
+		$entries[] = $entry;
+		}
+	$dir->close();
+	foreach ($entries as $entry)
+		{
+		$fullname = $path . $entry;
+		if ($entry != '.' && $entry != '..' && $entry != ".svn" && is_dir($fullname))
+			{
+			jomres_sdir($fullname, $pattern, $callback);
+			}
+		else if (is_file($fullname) && stristr($entry,$pattern ))
+			{
+			$jomres_dir_contents[] = $fullname;
+			}
+		}
+	return $jomres_dir_contents;
+	}
+ */
+ 
+ // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
+// The string will already have been cleaned by filter var sanitize string.
+/* function jomres_reconvertString($clean)
+	{
+	$clean = str_replace("&lt;br/&gt;", "<br>", $clean);
+	$clean = str_replace("&#60;br /&#62;", "<br />", $clean);
+	$clean = str_replace("&#60;p&#62;", "<p>", $clean);
+	$clean = str_replace("&#60;/p&#62;", "</p>", $clean);
+	$clean = str_replace(" & "," &amp; " , $clean);
+
+
+	//var_dump($clean);
+	return $clean;
+	}
+ */
+	
+
+/**
+#
+ *Tests to see if an email address is valid. Includes tests of the A and MX records.
+#
+*/
+/* function jomres_check_email_address($email)
+	{
+	return true;
+	} */
+
+/* Depreciated
+function jomres_check_email_address($email)
+	{
+
+	// Are we on windows? If so we can try to give our win user their own checkndsrr function. The exec might cause problems depending on how wamp/xamp/jsas is set up, but there's no harm in trying
+	// http://uk2.php.net/manual/en/function.checkdnsrr.php#75158
+	if(!function_exists('checkdnsrr'))
+		{
+		function checkdnsrr($hostName, $recType = '')
+			{
+			if(!empty($hostName))
+				{
+				if( $recType == '' ) $recType = "MX";
+				@exec("nslookup -type=$recType $hostName", $result);
+				// check each line to find the one that starts with the host name. If it exists then the function succeeded.
+				foreach ($result as $line)
+					{
+					if(eregi("^$hostName",$line))
+						{
+						return true;
+						}
+					}
+				// otherwise there was no mail handler for the domain
+				return false;
+				}
+			return false;
+			}
+		}
+
+
+	// First, we check that there's one @ symbol, and that the lengths are right
+	if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email))
+		{
+		// Email invalid because wrong number of characters in one section, or wrong number of @ symbols.
+		return false;
+		}
+
+	// Split it into sections to make life easier
+	$email_array = explode("@", $email);
+	$local_array = explode(".", $email_array[0]);
+	for ($i = 0; $i < sizeof($local_array); $i++)
+		{
+		if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i]))
+			{
+			return false;
+			}
+		}
+
+	if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1]))
+		{ // Check if domain is IP. If not, it should be valid domain name
+		$domain_array = explode(".", $email_array[1]);
+		if (sizeof($domain_array) < 2)
+			{
+			return false; // Not enough parts to domain
+			}
+		for ($i = 0; $i < sizeof($domain_array); $i++)
+			{
+			if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i]))
+				{
+				return false;
+				}
+			}
+		}
+		//getmxrr($domain,$mxrecords)
+	// DNS check of MX of the specified domainname
+	if( !checkdnsrr($email_array[1], "MX") )
+		{
+		if( !checkdnsrr($email_array[1], "A"))
+			{
+			return false;
+			}
+		}
+	return true;
+	} */
+
+/**
+#
+ * Returns the guest details from the tmpguests session data
+#
+*/
+/* function getbookingguestdata()
+	{
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$userDeets=$tmpBookingHandler->getGuestData();
+	return $userDeets;
+	} */
+
+/* function jomres_makeColourPickerInput($setting,$value)
+	{
+	$txt = '
+		<input class="inputbox" id="cfg_'.$setting.'" name="cfg_'.$setting.'" size="7" value="'.$value.'" onChange="relateColor(\''.$setting.'\', this.value);">
+				<a href="javascript:pickColor(\''.$setting.'\');"
+				id="'.$setting.'" style="border: 1px solid '.$value.'; background:'.$value.'; font-family:Verdana; font-size:16px; text-decoration: none;">
+				&nbsp;&nbsp;&nbsp;</a>';
+	return $txt;
+	}
+ */
+	
+/**
+#
+ * depreciated
+#
+*/
+/* function ValidateMail($Email) {
+	$rBool=FALSE;
+	if(preg_match("/[\w\.\-]+@\w+[\w\.\-]*?\.\w{1,4}/", $Email)){
+		$rBool=TRUE;
+	}
+	return $rBool;
+} // end of function */
+
+
+
+/**
+#
+ * Generates the javascript used to update the departure date to 'whatever' date after arrival date. Shares the same function name as that used when creating the input, so that the basic script can be reused on the same page
+#
+*/
+
+/* 
+function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
+	{
+	if (isset($_REQUEST['dataonly']))
+		return;
+	global $jomresSearchFormname;
+	if (isset($jomresSearchFormname) && !empty($jomresSearchFormname) )
+		$formname=$jomresSearchFormname;
+	else
+		$formname="bookingForm";
+	?>
+	<script language="JavaScript" type="text/javascript">
+		function <?php echo $javascriptFunctionName;?>(arrivalDate,thisform){
+		var dformat="<?php echo trim($dformat); ?>"
+		var newday=0
+		var day=0
+		var mon=0
+		var year=0
+		if (dformat=="%d/%m/%Y"){
+			dateArray=arrivalDate.split("/")
+			day=dateArray[0]
+			mon=dateArray[1]
+			year=dateArray[2]
+			}
+		if (dformat=="%Y/%m/%d"){
+			dateArray=arrivalDate.split("/")
+			day=dateArray[2]
+			mon=dateArray[1]
+			year=dateArray[0]
+			}
+		if (dformat=="%m/%d/%Y"){
+			dateArray=arrivalDate.split("/")
+			day=dateArray[1]
+			mon=dateArray[0]
+			year=dateArray[2]
+			}
+		if (dformat=="%d-%m-%Y"){
+			dateArray=arrivalDate.split("-")
+			day=dateArray[0]
+			mon=dateArray[1]
+			year=dateArray[2]
+			}
+		if (dformat=="%Y-%m-%d"){
+			dateArray=arrivalDate.split("-")
+			day=dateArray[2]
+			mon=dateArray[1]
+			year=dateArray[0]
+			}
+		if (dformat=="%m-%d-%Y"){
+			dateArray=arrivalDate.split("-")
+				day=dateArray[1]
+			mon=dateArray[0]
+			year=dateArray[2]
+			}
+
+		var d = new Date(year,mon-1,day); with (d) setDate(getDate()+1)
+		sday=String(d.getDate());
+		smonth=String(d.getMonth()+1);
+		if (sday.length == 1)
+			fday="0"+sday;
+		else
+			fday=sday;
+		if (smonth.length == 1)
+			fmonth="0"+smonth;
+		else
+			fmonth=smonth;
+		if (dformat=="%d/%m/%Y"){
+			dd=fday+"/"+fmonth+"/"+String(d.getFullYear())
+			}
+		if (dformat=="%Y/%m/%d"){
+			dd=String(d.getFullYear())+"/"+fmonth+"/"+fday
+			}
+		if (dformat=="%m/%d/%Y"){
+			dd=fmonth+"/"+fday+"/"+String(d.getFullYear())
+			}
+		if (dformat=="%d-%m-%Y"){
+			dd=fday+"-"+fmonth+"-"+String(d.getFullYear())
+			}
+		if (dformat=="%Y-%m-%d"){
+			dd= String(d.getFullYear())+"-"+fmonth+"-"+fday
+			}
+		if (dformat=="%m-%d-%Y"){
+			dd=fmonth+"-"+ fday+"-"+String(d.getFullYear())
+			}
+		document.<?php echo $formname;?>.departureDate.value=dd;
+		}
+		</script>
+	<?php
+	}
+ */
+	
+
+/**
+#
+ * Queries the slideshow folder for slideshows then creates a dropdown list to be used in the configuration panels
+#
+*/
+/* function listSlideshows()
+	{
+
+	$listdir=JOMRESCONFIG_ABSOLUTE_PATH."/jomres/plugins/slideshows/";
+	// get list of templates
+	$d = @dir($listdir);
+	if($d)
+		{
+		$folders = array();
+		//$docs = array();
+		while (FALSE !== ($entry = $d->read()))
+			{
+			$template_folder = $entry;
+			if(is_dir($listdir.'/'.$template_folder) && substr($entry,0,1) != '.' && strtolower($entry) !== 'cvs')
+				{
+				$folders[] =jomresHTML::makeOption( $template_folder, $template_folder );
+				}
+			}
+		$d->close();
+		}
+
+	return $folders;
+	} */
+
+
+/**
+#
+ * depreciated
+#
+*/
+/* function saveKey ( $mykey )
+	{
+
+	$defaultProperty=getDefaultProperty();
+	//Add code to check if config file is writeable.
+	if (isset($mykey) && !empty($mykey) )
+		{
+		$keyFile = JOMRESCONFIG_ABSOLUTE_PATH.'/administrator/jomres/tmp/'.$defaultProperty.'_key.php';
+		@chmod ($keyFile, 0700);
+		if (is_file($keyFile) && !is_writable($keyFile))
+				{
+				jomresRedirect(JOMRES_SITEPAGE_URL."", "FATAL ERROR: Key File Not writeable" );
+				}
+			$txt = "<?php if (defined('JPATH_BASE'))";
+			$txt .= "	defined( '_JEXEC' ) or die( '' );\n";
+			$txt .= "else";
+			$txt .= "	defined( '_VALID_MOS' ) or die( '' );\n";
+			$txt.='$mykey="'.$mykey.'";?>';
+
+		if ($fp = fopen( $keyFile, "w"))
+			{
+			fputs($fp, $txt, strlen($txt));
+			fclose ($fp);
+			}
+		}
+	}
+ */
+	
+
+/**
+#
+ * Pass an image location, will construct a size optimised <img src=""> string back, based on the image's original size
+#
+*/
+/* function showImage($imageLocation,$target)
+	{
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH."/".$imageLocation))
+		{
+		//get the image size of the picture and load it into an array
+		$mysock = getimagesize($imageLocation);
+		if ($mysock)
+			{
+			// http://www.sitepoint.com/article/image-resizing-php
+			//takes the larger size of the width and height and applies the formula accordingly...this is so this script will work dynamically with any size image
+			$width=$mysock[0];
+			$height=$mysock[1];
+			if ($width > $height)
+				$percentage = ($target / $width);
+			else
+				$percentage = ($target / $height);
+			//gets the new value and applies the percentage, then rounds the value
+			$width = round($width * $percentage);
+			$height = round($height * $percentage);
+			$result=" width=\"$width\" height=\"$height\"";
+			echo "<img src=\"".$imageLocation."\" border=\"0\" ".$result." />";
+			}
+		else
+			echo "&nbsp;";
+		}
+	}
+ */
+	
+/**
+#
+ * Validates a url passed from the configuration while saving
+#
+*/
+/* function validateURL($url)
+	{
+	$url=urldecode($url);
+	if (!strncasecmp($url,'javascript',10)) {
+		$url="";
+		}
+	else
+		{
+		$url=strip_tags($url,'%26');
+		}
+	return $url;
+	}
+ */
+	
+/**
+#
+ * Creates and echos the calendar month dropdown
+#
+ */
+/* function showCalandarMonthDropdown()
+	{
+	$currentMonth=date("Y/m/d");
+	$dateElements=explode("/",$currentMonth);
+	$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1],1,$dateElements[0]));
+	$nm= mktime(0, 0, 0,$dateElements[1],1,$dateElements[0]);
+	echo "<table><tr>";
+	for ($i=1;$i<=16;$i++)
+		{
+		$link="<td><a href=\"".sefRelToAbs(JOMRES_SITEPAGE_URL."&requestedMonth=$nm")."\"><font size=\"1\">|".$nextMonth."</font></a></td>";
+		echo $link;
+		$nextMonth=strftime("%B %Y", mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]));
+		$nm= mktime(0, 0, 0,$dateElements[1]+$i,1,$dateElements[0]);
+		if ($i%8==0 and $i<16)
+			echo "</tr><tr>";
+		}
+	echo "</tr></table>";
+	}
+ */
+
+/**
+#
+ * Creates the javascript calendar language selection dropdown
+#
+ */
+/* function createJSLanguageDropdown()
+	{
+	$mrConfig=getPropertySpecificSettings();
+	$currentLangFile=$mrConfig['jscalendarLangfile'];
+	$calendarFileNamesArray=array("calendar-en.js","calendar-af.js","calendar-al.js","calendar-bg.js","calendar-big5.js","calendar-big5-utf8.js","calendar-br.js","calendar-ca.js","calendar-cs-utf8.js","calendar-cs-win.js","calendar-da.js","calendar-de.js","calendar-du.js","calendar-el.js","calendar-es.js","calendar-fi.js","calendar-fr.js","calendar-he-utf8.js","calendar-hr.js","calendar-hr-utf8.js","calendar-hu.js","calendar-it.js","calendar-jp.js","calendar-ko.js","calendar-ko-utf8.js","calendar-lt.js","calendar-lt-utf8.js","calendar-lv.js","calendar-nl.js","calendar-no.js","calendar-pl.js","calendar-pl-utf8.js","calendar-pt.js","calendar-ro.js","calendar-ru.js","calendar-ru_win_.js","calendar-si.js","calendar-sk.js","calendar-sp.js","calendar-sv.js","calendar-tr.js","calendar-zh.js","cn_utf8.js");
+	$listTxt = '<span><select id="cfg_jscalendarLangfile" class="inputbox" name="cfg_jscalendarLangfile">';
+	//$listTxt="<select class=\"inputbox\" name=\"cfg_jscalendarLangfile\">";
+	foreach ($calendarFileNamesArray as $fileName)
+		{
+		$selected="";
+		if ($fileName == $currentLangFile)
+			$selected="selected";
+		$listTxt .= "<option ".$selected." value=\"".$fileName."\" >".$fileName."</option>/n";
+		}
+	$listTxt .="</select></span>";
+	return $listTxt;
+	}
+ */
+	
+/**
+#
+ *  Creates the javascript calendar css selection dropdown
+#
+ */
+/* function createJSCSSDropdown()
+	{
+	$mrConfig=getPropertySpecificSettings();
+	$currentCSSFile=$mrConfig['jscalendarCSSfile'];
+	$calendarFileNamesArray=array("calendar-win2k-cold-2.css","calendar-blue2.css","calendar-blue.css","calendar-brown.css","calendar-green.css","calendar-system.css","calendar-tas.css","calendar-win2k-1.css","calendar-win2k-2.css","calendar-win2k-cold-1.css");
+	$listTxt = '<span><select id="cfg_jscalendarCSSfile" class="inputbox" name="cfg_jscalendarCSSfile">';
+	//$listTxt="<select class=\"inputbox\" name=\"cfg_jscalendarCSSfile\">";
+	foreach ($calendarFileNamesArray as $fileName)
+		{
+		$selected="";
+		if ($fileName == $currentCSSFile)
+			$selected="selected";
+		$listTxt .= "<option ".$selected." value=\"".$fileName."\" >".$fileName."</option>/n";
+		}
+	$listTxt .="</select></span>";
+	return $listTxt;
+	}
+ */
+	
+	/**
+	 * This method creates a standard cpanel button
+	 *
+	 * @param unknown_type $link
+	 * @param unknown_type $image
+	 * @param unknown_type $text
+	 */
+/* 	function _quickiconButton( $link, $image, $text, $path='/administrator/images/' ) {
+		?>
+		<div style="padding:0 2px 0 0;text-align:center;vertical-align:middle;float:left;width:120px;height:110px;">
+			<div class="icon" align="center">
+				<a href="<?php echo $link; ?>" style="text-decoration:none;">
+				<img src="<?php echo get_showtime('live_site').$path.$image;?>" border="0" /><br />
+				<span><?php echo $text; ?></span>
+				</a>
+			</div>
+		</div>
+		<?php
+	} */
+
+	
+/* if (!function_exists('is_iPhone'))
+	{
+	function is_iPhone($agent='')
+	{
+	if(empty($agent)) $agent = $_SERVER['HTTP_USER_AGENT'];
+	if(!empty($agent) and preg_match("~Mozilla/[^ ]+ \((iPhone|iPod); U; CPU [^;]+ Mac OS X; [^)]+\) AppleWebKit/[^ ]+ \(KHTML, like Gecko\) Version/[^ ]+ Mobile/[^ ]+ Safari/[^ ]+~",$agent,$match))
+		{
+		return "YES";
+		} elseif(stristr($agent,'iphone') or stristr($agent,'ipod'))
+			{
+			return "MAYBE";
+			}
+			else
+			{
+			return "NO";
+			}
+		}
+	}
+ */
+	
+/* function editCustomTextAll()
+	{
+	$mrConfig=getPropertySpecificSettings();
+	$mrConfig['editingOn']="1";
+	$allDefinedContants=get_defined_constants();
+	$jomresConstants=array();
+	foreach ($allDefinedContants as $key=>$value)
+		{
+		if (substr($key,0,7)=="_JOMRES")
+			$jomresConstants[$key]=$value;
+		if (substr($key,0,7)=="_JOMCOMP")
+			$jomresConstants[$key]=$value;
+		}
+	$mrConfig['editingOn']="1";
+	foreach ($jomresConstants as $key=>$value)
+		{
+		if ( get_showtime('lang') == "en")
+			echo jr_gettext($key,$value)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
+		else
+			echo jr_gettext($key,$value,true,FALSE)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
+		echo "<br>";
+		}
+	}
+*/
+
+/**
+#
+ * Alternative function for str_ireplace
+#
+ */
+
+/* if(!function_exists('str_ireplace'))
+	{
+	function str_ireplace($search,$replace,$subject)
+		{
+		$token = chr(1);
+		$haystack = strtolower($subject);
+		//$needle = strtolower($search);
+		if (is_array($search) )
+			{
+			$count=count($search);
+			for ($i=0;$i<$count;$i++)
+				{
+				//echo $search[$i];echo "<br/>";
+				$search[$i]= strtolower($search[$i]);
+				}
+			$needle=$search;
+			}
+		else
+			$needle = strtolower($search);
+		while (($pos=strpos($haystack,$needle))!==FALSE)
+			{
+			$subject = substr_replace($subject,$token,$pos,strlen($search));
+			$haystack = substr_replace($haystack,$token,$pos,strlen($search));
+			}
+		$subject = str_replace($token,$replace,$subject);
+		return $subject;
+		}
+	}
+ */
+	
+/* function mailJomresdotnet($message)
+	{
+	if (jomresGetDomain() != "localhost")
+		{
+		$to = "bugs@jomres.net ";
+		$subject = "Error report from ".get_showtime('sitename');
+		$from = get_showtime('mailfrom');
+
+		$body = " on ".date('d/m/Y');
+		$body .= " at ".date('g:i A')."\n\nDetails:\n";
+		$body .= "Server details follow\n\n";
+		$body .= "Livesite: ".get_showtime('live_site')."\n";
+		$body .= "Site name: ".get_showtime('sitename')."\n";
+		$body .= "Users email address: ".get_showtime('mailfrom')."\n";
+		$body =	$message."\n";
+		jomresMailer( $from, get_showtime('sitename'), $to, $subject, $body,0);
+		}
+	} */
 
 
 ?>

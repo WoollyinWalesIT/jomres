@@ -204,7 +204,7 @@ if ($folderChecksPassed && ACTION != "Migration")
 				importSettings(0);
 				if (!AUTO_UPGRADE) echo  "Creating images folders<br>";
 				copyImages();
-				saveKey2db($lkey);
+
 				insertPortalTables();
 
 				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
@@ -1550,42 +1550,7 @@ function showCompletedText()
 	}
 
 
-function saveKey2db($lkey)
-	{
-	$lkey = trim($lkey);
-	$query="SELECT value FROM #__jomres_settings WHERE property_uid = '0' AND akey = 'jomres_licensekey'";
-	$settingsList=doSelectSql($query);
-	if (count($settingsList)==0)
-		$query="INSERT INTO #__jomres_settings (property_uid,akey,value) VALUES ('0','jomres_licensekey','$lkey')";
-	else
-		$query="UPDATE #__jomres_settings SET `value`='".$lkey."' WHERE property_uid = '0' and akey = 'jomres_licensekey'";
-	$result=doInsertSql($query,'');
-	return $result;
-	}
 
-/*
-function saveKey($lkey)
-	{
-	$lkey = trim($lkey);
-	//Add code to check if licensekey file is writeable.
-	$configfile = JOMRESPATH_BASE.'/media/jomres_licensekey.php';
-	if ( strcmp( "Win", _CUR_OS ) == 1 && !is_writable($configfile))
-		return false;
-	else
-		{
-		$txt='<?php $license_key ="'.$lkey.'" ?>';
-		if ($fp = fopen( $configfile, "w"))
-			{
-			fputs($fp, $txt, strlen($txt));
-			fclose ($fp);
-			@chmod ($configfile, 0700);
-			return true;
-			}
-		else
-			return false;
-		}
-	}
-*/
 
 function checkPropertyTableExists()
 	{

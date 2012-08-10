@@ -131,35 +131,6 @@ function RemoveXSS($val)
 	return $val;
 	}
 
-function jomres_parseRequest()  // A simple request parser to check that mosConf.... isn't in the request string.
-	{
-	// %6D%6F%73%43%6F%6E%66 = mosConf : urlencode
-	// %6D%72%43%6F%6E%66%69%67  mrConfig hex
-	//%6A%72%43%6F%6E%66%69%67  jrConfig hex
-	foreach ($_REQUEST as $key=>$val)
-		{
-		$ex_base64 = base64_decode($val);
-		if (gettype($val)=="string")
-			{
-			if (strstr($key,"php://") || strstr($val,"php://") || strstr($ex_base64,"php://") )
-				{
-				trigger_error ("Hack attempt", E_USER_ERROR);
-				}
-			if (strstr($key,"mosConf") || strstr($val,"mosConf") || strstr($ex_base64,"mosConf") || stristr($val,"%6D%6F%73%43%6F%6E%66" ))
-				{
-				trigger_error ("Hack attempt", E_USER_ERROR);
-				}
-			if (strstr($key,"mrConfig") || strstr($val,"mrConfig") || strstr($ex_base64,"mrConfig") || stristr($val,"%6D%72%43%6F%6E%66%69%67" ))
-				{
-				trigger_error ("Hack attempt", E_USER_ERROR);
-				}
-			if (strstr($key,"jrConfig") || strstr($val,"jrConfig") || strstr($ex_base64,"jrConfig") || stristr($val,"%6A%72%43%6F%6E%66%69%67" ))
-				{
-				trigger_error ("Hack attempt", E_USER_ERROR);
-				}
-			}
-		}
-	}
 
 
 function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
@@ -251,15 +222,6 @@ function jomres_purify_html($dirty,$editing)
 	}
 	
 
-function jomres_purify_string($string)
-	{
-	$dirty = (string) $string;
-	$dirty = jomres_purify_html($dirty,false);
-	$dirty=jomres_remove_HTML($dirty); // Strip out any html
-	$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
-	}
-
-	
 
 function getEscaped( $text ) {
 	$text=str_replace("'","&#39;",$text);
@@ -378,15 +340,65 @@ function strip_tags_except($text,$strip=TRUE)
 	return $text;
 	}
 
-function stripUnwanted($text)
+// Returns the utf string corresponding to the unicode value (from php.net, courtesy - romans@void.lv)
+function jomres_code2utf($num)
 	{
-	$theLen=strlen();
-	if (!strncasecmp($result,$text,$theLen)) {
-		$text="";
+	if ($num < 128) return chr($num);
+	if ($num < 2048) return chr(($num >> 6) + 192) . chr(($num & 63) + 128);
+	if ($num < 65536) return chr(($num >> 12) + 224) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
+	if ($num < 2097152) return chr(($num >> 18) + 240) . chr((($num >> 12) & 63) + 128) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
+	return '';
+	}
+	
+function jomres_get_var_type($variable)
+	{
+	if (is_array($variable))
+		return 'array';
+	elseif (is_bool($variable))
+		return 'boolean';
+	elseif (is_float($variable))
+		return 'float';
+	elseif (is_int($variable))
+		return 'int';
+	elseif (is_string($variable))
+		return 'string';
+	else
+		return false;
+	}
+	
+function jomres_parseRequest()  // A simple request parser to check that mosConf.... isn't in the request string.
+	{
+	// %6D%6F%73%43%6F%6E%66 = mosConf : urlencode
+	// %6D%72%43%6F%6E%66%69%67  mrConfig hex
+	//%6A%72%43%6F%6E%66%69%67  jrConfig hex
+	foreach ($_REQUEST as $key=>$val)
+		{
+		$ex_base64 = base64_decode($val);
+		if (gettype($val)=="string")
+			{
+			if (strstr($key,"php://") || strstr($val,"php://") || strstr($ex_base64,"php://") )
+				{
+				trigger_error ("Hack attempt", E_USER_ERROR);
+				}
+			if (strstr($key,"mosConf") || strstr($val,"mosConf") || strstr($ex_base64,"mosConf") || stristr($val,"%6D%6F%73%43%6F%6E%66" ))
+				{
+				trigger_error ("Hack attempt", E_USER_ERROR);
+				}
+			if (strstr($key,"mrConfig") || strstr($val,"mrConfig") || strstr($ex_base64,"mrConfig") || stristr($val,"%6D%72%43%6F%6E%66%69%67" ))
+				{
+				trigger_error ("Hack attempt", E_USER_ERROR);
+				}
+			if (strstr($key,"jrConfig") || strstr($val,"jrConfig") || strstr($ex_base64,"jrConfig") || stristr($val,"%6A%72%43%6F%6E%66%69%67" ))
+				{
+				trigger_error ("Hack attempt", E_USER_ERROR);
+				}
+			}
 		}
-	return $text;
 	}
 
+// Functions identified as probably no longer used by Jomres scripts, we'll keep them around for now, as the code may be useful in the future
+
+/* 
 function jomres_html_entity_decode_utf8($string)
 	{
 	static $trans_tbl;
@@ -402,7 +414,25 @@ function jomres_html_entity_decode_utf8($string)
 			$trans_tbl[$key] = utf8_encode($val);
 		}
 	return strtr($string, $trans_tbl);
-	}
+	} */
 	
 
+
+
+/* function jomres_purify_string($string)
+	{
+	$dirty = (string) $string;
+	$dirty = jomres_purify_html($dirty,false);
+	$dirty=jomres_remove_HTML($dirty); // Strip out any html
+	$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); // Final check to ensure that anything left over has been sanitised.
+	} */
+	
+/* function stripUnwanted($text)
+	{
+	$theLen=strlen();
+	if (!strncasecmp($result,$text,$theLen)) {
+		$text="";
+		}
+	return $text;
+	} */
 ?>
