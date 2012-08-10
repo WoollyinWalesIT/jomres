@@ -120,18 +120,6 @@ require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_functions.php");
 
 $performance_monitor->set_point("post-inclusions");
 
-if (!strstr($scriptname,'install_jomres.php'))
-	{
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	
-	if (_JOMRES_DETECTED_CMS == "joomla3")
-		$jrConfig['use_bootstrap'] ="1";
-	
-	if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS != "joomla3")
-		$jrConfig['use_bootstrap'] ="0";
-	}
-
 if (isset($jrConfig['loggingBooking']))
 	{
 	define('LOGGINGBOOKING',$jrConfig['loggingBooking']);
