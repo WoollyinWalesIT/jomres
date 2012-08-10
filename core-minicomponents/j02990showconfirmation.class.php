@@ -395,7 +395,10 @@ class j02990showconfirmation {
 		$booking_parts['ACCOMMODATION_NIGHTS']	=	jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS);
 		$booking_parts['ACCOMMODATION_PERROOM']	=	jr_gettext('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM);
 		$booking_parts['PRICE_SUMMARY']			=	jr_gettext('_JOMRES_AJAXFORM_PRICE_SUMMARY',_JOMRES_AJAXFORM_PRICE_SUMMARY);
-		$booking_parts['HTOTALINPARTY']			=	jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY',_JOMRES_AJAXFORM_BILLING_TOTALINPARTY);
+		if (get_showtime('include_room_booking_functionality'))
+			{
+			$booking_parts['HTOTALINPARTY']			=	jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY',_JOMRES_AJAXFORM_BILLING_TOTALINPARTY);
+			}
 		$booking_parts['TOTALINPARTY']			=	$bookingDeets['total_in_party'];
 		
 		if ((int)$bookingDeets['single_person_suppliment'] > 0)
