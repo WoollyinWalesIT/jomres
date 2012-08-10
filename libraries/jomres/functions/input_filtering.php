@@ -135,7 +135,6 @@ function RemoveXSS($val)
 
 function jomresGetParam($request,$element,$def=null,$mask='')	// variable type not used, we'll cast the variable type depending on the default ($def) that's passed to the function
 	{
-
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
@@ -145,11 +144,6 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 	else
 		return $def;
 		
-	// This is probably redundant
-	// $clean=null;
-	// if (is_null($dirty))
-		// $dirty=$def;
-	
 	// We'll discover the type of $dirty, so that we can cast the variable to a given type
 	$type = jomres_get_var_type($dirty);
 	if (!$type) // If the data passed isn't recognised, we'll just return out, passing a nice safe null the calling script can work with.
@@ -196,28 +190,49 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 				}
 			break;
 		default : // treat everything else as a string.
+			
+			$allowed_inputs = get_showtime("inputs_allowing_html");
+			
+			if (isset($jrConfig['input_filtering']))
+				$jrConfig['input_filtering'] = 'strong';
+
 			$dirty = (string) $dirty;
-			$dirty = jomres_purify_html($dirty,false);
-			if($jrConfig['allowHTMLeditor']!="1")
-				$dirty=jomres_remove_HTML($dirty); // Strip out any html
-			// Final check to ensure that anything left over has been sanitised. 
-			$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS); 
+
+			if (in_array($element,$allowed_inputs))
+				{
+				if ($jrConfig['input_filtering'] != "weak")
+					{
+					$clean = jomres_purify_html($dirty);
+					}
+				else
+					{
+					$clean = $dirty;
+					}
+				}
+			else
+				{
+				$clean = jomres_sanitise_string($dirty);
+				}
 			break;
 		}
+	
+	return $clean;
+	}
+	
+function jomres_sanitise_string($dirty)
+	{
+	$html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
+	$dirty=jomres_remove_HTML($dirty); // Strip out any html
+	$dirty = $html_purifier->purify($dirty);
+	$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS);
 	return $clean;
 	}
 
-// Added to this file because it's expected to be used by jr_gettext
-function jomres_purify_html($dirty,$editing)
+function jomres_purify_html($dirty)
 	{
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	$clean="";
-	$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-	$performance_monitor->set_point("pre-purification ".time());
 	$html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
-	$clean = $html_purifier->purify($dirty);
-	$performance_monitor->set_point("post-purification".time());
+	$dirty = $html_purifier->purify($dirty,$allow_html = true);
+	$clean=filter_var($dirty,FILTER_SANITIZE_SPECIAL_CHARS);
 	return $clean;
 	}
 	

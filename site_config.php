@@ -246,4 +246,10 @@ $jrConfig['safe_mode'] = "0";
 $jrConfig['use_jomres_own_editor'] = "1";
 $jrConfig['room_lock_timeout'] = "3600";
 $jrConfig['use_bootstrap'] = "0";
+
+$jrConfig['input_filtering'] = "strong";
+$jrConfig['html_purifier_allowed_tags'] = "p,b,strong,a[href],i";
+$jrConfig['inputs_allowing_html'] = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers";
+
+
 ?>

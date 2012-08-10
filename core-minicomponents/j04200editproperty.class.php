@@ -151,50 +151,23 @@ class j04200editproperty {
 					$selectedCountry=$property->property_country;
 				}
 			}
-		else
+		else // Probably superfluous
 			{
 			if (!isset($jrConfig['allowHTMLeditor']) )
 				$jrConfig['allowHTMLeditor']="1";
-			if ($jrConfig['allowHTMLeditor']=="1" || $jrConfig['allowHTMLeditor']=="2" || $jrConfig['allowHTMLeditor'] == "3")
+			if ($jrConfig['allowHTMLeditor']=="1")
 				{
-				if ($jrConfig['allowHTMLeditor'] == "1")
-					{
-					$hiddenField="property_description";
-					$width="450";
-					$height="250";
-					$col="20";
-					$row="10";
-					$output['PROPERTY_DESCRIPTION']=editorAreaText( 'property_description', $defaultText, 'property_description', $width, $height, $col, $row );
-					$output['PROPERTY_CHECKIN_TIMES']=editorAreaText( 'property_checkin_times', $defaultText, 'property_checkin_times', $width, $height, $col, $row );
-					$output['PROPERTY_AREA_ACTIVITIES']=editorAreaText( 'property_area_activities', $defaultText, 'property_area_activities', $width, $height, $col, $row );
-					$output['PROPERTY_DRIVING_DIRECTIONS']=editorAreaText( 'property_driving_directions', $defaultText, 'property_driving_directions', $width, $height, $col, $row );
-					$output['PROPERTY_AIRPORTS']=editorAreaText( 'property_airports', $defaultText, 'property_airports', $width, $height, $col, $row );
-					$output['PROPERTY_OTHERTRANSPORT']=editorAreaText( 'property_othertransport', $defaultText, 'property_othertransport', $width, $height, $col, $row );
-					$output['PROPERTY_POLICIES_DISCLAIMERS']=editorAreaText( 'property_policies_disclaimers', $defaultText, 'property_policies_disclaimers', $width, $height, $col, $row );
-					}
-				else
-					{
-					if ($jrConfig['allowHTMLeditor'] == "2")
-						{
-						$output['PROPERTY_DESCRIPTION']= flashArea('property_description', $defaultText);
-						$output['PROPERTY_CHECKIN_TIMES']= flashArea('property_checkin_times', $defaultText);
-						$output['PROPERTY_AREA_ACTIVITIES']= flashArea('property_area_activities', $defaultText);
-						$output['PROPERTY_DRIVING_DIRECTIONS']= flashArea('property_driving_directions', $defaultText);
-						$output['PROPERTY_AIRPORTS']=flashArea('property_airports', $defaultText);
-						$output['PROPERTY_OTHERTRANSPORT'] = flashArea('property_othertransport', $defaultText);
-						$output['PROPERTY_POLICIES_DISCLAIMERS']= flashArea('property_policies_disclaimers', $defaultText);
-						}
-					if ($jrConfig['allowHTMLeditor'] == "3")
-						{
-						$output['PROPERTY_DESCRIPTION']= flashArea('property_description', $defaultText);
-						$output['PROPERTY_CHECKIN_TIMES']='<textarea class="inputbox" cols="40" rows="3" name="property_checkin_times">'.$defaultText.'</textarea>';
-						$output['PROPERTY_AREA_ACTIVITIES']='<textarea class="inputbox" cols="40" rows="3" name="property_area_activities">'.$defaultText.'</textarea>';
-						$output['PROPERTY_DRIVING_DIRECTIONS']='<textarea class="inputbox" cols="40" rows="3" name="property_driving_directions">'.$defaultText.'</textarea>';
-						$output['PROPERTY_AIRPORTS']='<textarea class="inputbox" cols="40" rows="3" name="property_airports">'.$defaultText.'</textarea>';
-						$output['PROPERTY_OTHERTRANSPORT']='<textarea class="inputbox" cols="40" rows="3" name="property_othertransport">'.$defaultText.'</textarea>';
-						$output['PROPERTY_POLICIES_DISCLAIMERS']='<textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">'.$defaultText.'</textarea>';
-						}
-					}
+				$width="450";
+				$height="250";
+				$col="20";
+				$row="10";
+				$output['PROPERTY_DESCRIPTION']=editorAreaText( 'property_description', $defaultText, 'property_description', $width, $height, $col, $row );
+				$output['PROPERTY_CHECKIN_TIMES']=editorAreaText( 'property_checkin_times', $defaultText, 'property_checkin_times', $width, $height, $col, $row );
+				$output['PROPERTY_AREA_ACTIVITIES']=editorAreaText( 'property_area_activities', $defaultText, 'property_area_activities', $width, $height, $col, $row );
+				$output['PROPERTY_DRIVING_DIRECTIONS']=editorAreaText( 'property_driving_directions', $defaultText, 'property_driving_directions', $width, $height, $col, $row );
+				$output['PROPERTY_AIRPORTS']=editorAreaText( 'property_airports', $defaultText, 'property_airports', $width, $height, $col, $row );
+				$output['PROPERTY_OTHERTRANSPORT']=editorAreaText( 'property_othertransport', $defaultText, 'property_othertransport', $width, $height, $col, $row );
+				$output['PROPERTY_POLICIES_DISCLAIMERS']=editorAreaText( 'property_policies_disclaimers', $defaultText, 'property_policies_disclaimers', $width, $height, $col, $row );
 				}
 			else
 				{
@@ -206,6 +179,7 @@ class j04200editproperty {
 				$output['PROPERTY_OTHERTRANSPORT']='<textarea class="inputbox" cols="40" rows="3" name="property_othertransport">'.$defaultText.'</textarea>';
 				$output['PROPERTY_POLICIES_DISCLAIMERS']='<textarea class="inputbox" cols="40" rows="3" name="property_policies_disclaimers">'.$defaultText.'</textarea>';
 				}
+			
 			$starsDropDownList="<select class=\"inputbox\" name=\"stars\">";
 			for ($i=0, $n=7; $i <= $n; $i++)
 				{
