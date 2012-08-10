@@ -5604,4 +5604,506 @@ function jomres_decode($string)
 	return $string;
 	}
 
+
+//----------------------------------------
+//-T E X T	M O D I F I C A T I O N	 ----
+//----------------------------------------
+
+function editCustomTextAll()
+	{
+	$mrConfig=getPropertySpecificSettings();
+	$mrConfig['editingOn']="1";
+	$allDefinedContants=get_defined_constants();
+	$jomresConstants=array();
+	foreach ($allDefinedContants as $key=>$value)
+		{
+		if (substr($key,0,7)=="_JOMRES")
+			$jomresConstants[$key]=$value;
+		if (substr($key,0,7)=="_JOMCOMP")
+			$jomresConstants[$key]=$value;
+		}
+	$mrConfig['editingOn']="1";
+	foreach ($jomresConstants as $key=>$value)
+		{
+		if ( get_showtime('lang') == "en")
+			echo jr_gettext($key,$value)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
+		else
+			echo jr_gettext($key,$value,true,FALSE)."&nbsp;&nbsp;::&nbsp;&nbsp;".$key;
+		echo "<br>";
+		}
+	}
+
+function editCustomText()
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	$theConstant = jomresGetParam( $_REQUEST, 'theConstant', '' );
+	$defaultText = jomresGetParam( $_REQUEST, 'defaultText', '', _MOS_ALLOWHTML );
+	$property_uid=(int)getDefaultProperty();
+	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '0' AND language = '".get_showtime('lang')."'";
+	$customTextList=doSelectSql($query);
+	$theText = false;
+	if (count($customTextList))
+		{
+		foreach ($customTextList as $text)
+			{
+			$theText=stripslashes($text->customtext);
+			}
+		}
+	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '$theConstant' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
+	$textList=doSelectSql($query);
+	if (count($textList)==1)
+		{
+		foreach ($textList as $text)
+			{
+			$theText=stripslashes($text->customtext);
+			}
+		}
+	if (!$theText)
+		$theText=urldecode($defaultText);
+
+	if (strlen($theText)==0)
+		$theText=stripslashes(constant($theConstant));
+	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
+	$jrtb	= $jrtbar->startTable();
+	if ($jrConfig['allowHTMLeditor'] != "2" && $jrConfig['allowHTMLeditor'] != "3")
+		$jrtb .= $jrtbar->toolbarItem('save','','',true,'saveCustomText');
+	$jrtb .= $jrtbar->toolbarItem('cancel','javascript:window.close();','');
+	$jrtb .= $jrtbar->endTable();
+	$output['JOMRESTOOLBAR']=$jrtb;
+	$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
+	$output['HCURRENTTEXT']=_JOMRES_COM_A_EDITING_CURRENTTEXT;
+	$output['HNEWTEXT']=_JOMRES_COM_A_EDITING_NEWTEXT;
+	$output['PROPERTYUID']=$property_uid;
+	$output['THECONSTANT']=$theConstant;
+	$output['CURRENTTEXT']=$theText;
+	if ($jrConfig['allowHTMLeditor']=="1" || $jrConfig['allowHTMLeditor']=="2" || $jrConfig['allowHTMLeditor'] == "3")
+		{
+		if ($jrConfig['allowHTMLeditor'] == "1")
+			{
+			$width="450";
+			$height="250";
+			$col="20";
+			$row="10";
+			$tmpTxt=editorAreaText( 'newtext', stripslashes($theText), 'newtext', $width, $height, $col, $row );
+			}
+		if ($jrConfig['allowHTMLeditor'] == "2" || $jrConfig['allowHTMLeditor'] == "3")
+			{
+			$tmpTxt= flashArea('newtext', stripslashes($theText));
+			}
+		}
+	else
+		{
+		$tmpTxt='<textarea class="inputbox" cols="40" rows="6" name="newtext">'.$theText.'</textarea>';
+		}
+
+	$output['NEWTEXT']=$tmpTxt;
+	$output['JOMRESTOKEN'] ='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+
+	$pageoutput[]=$output;
+
+	$tmpl	=	new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+	$tmpl->readTemplatesFromInput( 'edit_custom_text.html' );
+	$tmpl->addRows( 'pageoutput', $pageoutput );
+	$tmpl->displayParsedTemplate();
+	}
+
+function saveCustomText()
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+	$property_uid=(int)getDefaultProperty();
+	if ($jrConfig['allowHTMLeditor'] == "1")
+		{
+		$customText = jomresGetParam( $_POST, 'newtext', "" , _MOS_ALLOWHTML );
+		$theConstant = jomresGetParam( $_POST, 'theConstant', '' );
+		}
+	else
+		{
+		$customText = jomresGetParam( $_POST, 'newtext', '','string' );
+		$theConstant = jomresGetParam( $_POST, 'theConstant', '' );
+		}
+	// Not currently used, but put into place if I decide that people are translating Yes to No in error too often
+	//if ($theConstant == "_JOMRES_COM_MR_YES" || $theConstant == "_JOMRES_COM_MR_NO")
+	//	return;
+	$result=updateCustomText($theConstant,$customText,$property_uid);
+	if ($result)
+		{
+		$tmpl	=	new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->readTemplatesFromInput( 'save_custom_text.html' );
+		$tmpl->displayParsedTemplate();
+		}
+	else
+		echo "Error, no data to save";
+	}
+
+function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
+	{
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	
+	$jrConfig=$siteConfig->get();
+	$testStr= trim(strip_tags_except($theValue));
+	$crsEtc=array("\t","\n","\r");
+	$testStr=str_replace($crsEtc,"",$testStr);
+	if (strlen($testStr)==0 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT" 
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS" )
+		return false;
+	if (!isset($property_uid))
+		{
+		if ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true )
+			$property_uid=0;
+		else
+			$property_uid=(int)getDefaultProperty();
+		}
+	//$theValue=htmlentities($theValue);
+	$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
+	$textList=doSelectSql($query);
+	if (strlen($theValue)==0)
+		{
+		$query="DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
+		}
+	else
+		{
+		if (count($textList)<1)
+			$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$theValue."','".(int)$property_uid."','".get_showtime('lang')."')";
+		else
+			$query="UPDATE #__jomres_custom_text SET `customtext`='".$theValue."' WHERE constant = '".$theConstant."' AND property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
+		}
+	//echo $query;
+	if ($audit)
+		$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
+		
+	doInsertSql($query,$audit);
+	//$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
+	//echo doSelectSql($query,1);
+	return true;
+	}
+
+
+function jomresGetDomain()
+	{
+	$thisSvrName=$_SERVER['SERVER_NAME'];
+	$dmn=str_replace("http://www.","",$thisSvrName);
+	$domain=str_replace("www.","",$dmn);
+	//echo "<H2>Found domain".$domain."</H2>";
+	return strtolower($domain);
+	}
+
+function parseConfiguration()
+	{
+	ob_start();
+	phpinfo(INFO_CONFIGURATION);
+	$s = ob_get_contents();
+	ob_end_clean();
+	$s = strip_tags($s,'<h2><th><td>');
+	$s = preg_replace('/<th[^>]*>([^<]+)<\/th>/',"<info>\\1</info>",$s);
+	$s = preg_replace('/<td[^>]*>([^<]+)<\/td>/',"<info>\\1</info>",$s);
+	$vTmp = preg_split('/(<h2>[^<]+<\/h2>)/',$s,-1,PREG_SPLIT_DELIM_CAPTURE);
+	$vModules = array();
+	for ($i=1;$i<count($vTmp);$i++)
+		{
+		if (preg_match('/<h2>([^<]+)<\/h2>/',$vTmp[$i],$vMat))
+			{
+			$vName = trim($vMat[1]);
+			$vTmp2 = explode("\n",$vTmp[$i+1]);
+			foreach ($vTmp2 AS $vOne)
+				{
+				$vPat = '<info>([^<]+)<\/info>';
+				$vPat3 = "/$vPat\s*$vPat\s*$vPat/";
+				$vPat2 = "/$vPat\s*$vPat/";
+				if (preg_match($vPat3,$vOne,$vMat))
+					{ // 3cols
+					$vModules[$vName][trim($vMat[1])] = array(trim($vMat[2]),trim($vMat[3]));
+					} elseif (preg_match($vPat2,$vOne,$vMat)) { // 2cols
+						$vModules[$vName][trim($vMat[1])] = trim($vMat[2]);
+					}
+				}
+			}
+		}
+	return $vModules;
+	}
+
+
+function createNewAPIKey()
+	{
+	$apikey=generateJomresRandomString();
+	$keeplooking=true;
+	while ($keeplooking):
+		$query="SELECT propertys_uid FROM #__jomres_propertys WHERE apikey = '".$apikey."' LIMIT 1";
+		$plist=doSelectSql($query);
+		$query="SELECT manager_uid FROM #__jomres_managers WHERE apikey = '".$apikey."' LIMIT 1";
+		$clist=doSelectSql($query);
+		if (count($plist)==0 && count($clist)==0)
+			$keeplooking=false;
+		if ($keeplooking)
+			$apikey=generateJomresRandomString();
+	endwhile;
+	return $apikey;
+	}
+
+function generateJomresRandomString($length=50)
+	{
+	$str = "";
+	// define possible characters
+	//$possible = "0123456789bcdfghjkmnpqrstvwxyz";
+	$possible = "abcdfghijklmnopqrstuvwxyzABCDFGHIJKLMNOPQRSTUVWXYZ";
+	// set up a counter
+	$i = 0;
+	// add random characters to $str until $length is reached
+	while ($i < $length)
+		{
+		// pick a random character from the possible ones
+		$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
+		$str .= $char;
+		$i++;
+		}
+	return $str;
+	}
+
+
+
+/**
+#
+ * Constructs the mrConfig data when passed a property uid. $mrConfig is read in first to set up mrConfig in the event that property settings haven't been configured previously (eg during an import)
+#
+*/
+function getSiteSettings()
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	return $jrConfig;
+	}
+
+
+/**
+#
+ * Alternative function for str_ireplace
+#
+ */
+
+if(!function_exists('str_ireplace'))
+	{
+	function str_ireplace($search,$replace,$subject)
+		{
+		$token = chr(1);
+		$haystack = strtolower($subject);
+		//$needle = strtolower($search);
+		if (is_array($search) )
+			{
+			$count=count($search);
+			for ($i=0;$i<$count;$i++)
+				{
+				//echo $search[$i];echo "<br/>";
+				$search[$i]= strtolower($search[$i]);
+				}
+			$needle=$search;
+			}
+		else
+			$needle = strtolower($search);
+		while (($pos=strpos($haystack,$needle))!==FALSE)
+			{
+			$subject = substr_replace($subject,$token,$pos,strlen($search));
+			$haystack = substr_replace($haystack,$token,$pos,strlen($search));
+			}
+		$subject = str_replace($token,$replace,$subject);
+		return $subject;
+		}
+	}
+	
+
+/**
+#
+ * Alternative function for gregoriantojd
+#
+ */
+if ( !function_exists('gregoriantojd') )
+	{
+	function gregoriantojd( $m, $d, $y )
+		{
+		$y = $m == 1 || $m == 2 ? --$y : $y;
+		$m = $m == 1 || $m == 2 ? $m + 12 : $m;
+		$a = intval( $y / 100 );
+		$b = intval( $a / 4 );
+		$c = 2 - $a + $b;
+		$e = intval( 365.25 * ( $y + 4716 ) );
+		$f = intval( 30.6001 * ( $m + 1 ) );
+		return $c + $d + $e + $f - 1524.5 + 0.5;
+		}
+	}
+	
+
+function mailJomresdotnet($message)
+	{
+	if (jomresGetDomain() != "localhost")
+		{
+		$to = "bugs@jomres.net ";
+		$subject = "Error report from ".get_showtime('sitename');
+		$from = get_showtime('mailfrom');
+
+		$body = " on ".date('d/m/Y');
+		$body .= " at ".date('g:i A')."\n\nDetails:\n";
+		$body .= "Server details follow\n\n";
+		$body .= "Livesite: ".get_showtime('live_site')."\n";
+		$body .= "Site name: ".get_showtime('sitename')."\n";
+		$body .= "Users email address: ".get_showtime('mailfrom')."\n";
+		$body =	$message."\n";
+		jomresMailer( $from, get_showtime('sitename'), $to, $subject, $body,0);
+		}
+	}
+
+
+/**
+#
+ * xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#
+*/
+function checkUserIsManager()
+	{
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$userIsManager=$thisJRUser->userIsManager;
+	return $userIsManager;
+	}
+
+function getDefaultProperty()
+	{
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	$defaultProperty=$thisJRUser->currentproperty;
+	return (int)$defaultProperty;
+	}
+
+function getPropertyNameNoTables($property_uid)
+	{
+	global $propertyNamesArray;
+	$query = "SELECT property_name FROM #__jomres_propertys WHERE propertys_uid = '".(int)$property_uid."'";
+	$propertysList =doSelectSql($query);
+	foreach ($propertysList as $propertys)
+		{
+		$propertyName = $propertys->property_name;
+		}
+	$propertyNamesArray[]=$propertyName;
+	return $propertyName;
+	}
+
+
+
+// Returns the utf string corresponding to the unicode value (from php.net, courtesy - romans@void.lv)
+function jomres_code2utf($num)
+	{
+	if ($num < 128) return chr($num);
+	if ($num < 2048) return chr(($num >> 6) + 192) . chr(($num & 63) + 128);
+	if ($num < 65536) return chr(($num >> 12) + 224) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
+	if ($num < 2097152) return chr(($num >> 18) + 240) . chr((($num >> 12) & 63) + 128) . chr((($num >> 6) & 63) + 128) . chr(($num & 63) + 128);
+	return '';
+	}
+
+function jomres_get_var_type($variable)
+	{
+	if (is_array($variable))
+		return 'array';
+	elseif (is_bool($variable))
+		return 'boolean';
+	elseif (is_float($variable))
+		return 'float';
+	elseif (is_int($variable))
+		return 'int';
+	elseif (is_string($variable))
+		return 'string';
+	else
+		return false;
+	}
+
+
+function jomresURL($link, $ssl=2)
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+
+	if (!$jrConfig['isInIframe'] )
+		{
+		$link=jomres_cmsspecific_makeSEF_URL($link);
+		
+		// As we've dropped support for "ssl in the booking form" in 4.7, these lines are no longer applicable.
+		// if ($ssl == 1)
+			// $link	= str_replace("http://","https://",$link);
+		// else
+			// $link	= str_replace("https://","http://",$link);
+		}
+	// else
+		// {
+		// $link=str_replace("index.php","index.php",$link);
+		// }
+	// $link=str_replace("&amp;","&",$link);
+	// $link=str_replace("&","&amp;",$link);
+	return $link;
+	}
+
+// Called by, eg, $output['TOKEN']='<input type="hidden" name="jomrestoken" value="'.jomresSetToken().'">';
+function jomresSetToken()
+	{
+	/*
+	$token = md5(uniqid(rand(), TRUE));
+	if (!@session_start())
+		{
+		@ini_set('session.save_handler', 'files');
+		session_start();
+		}
+	$_SESSION['jomresValidTokens'][] = $token;
+	session_write_close();
+	return $token;
+	*/
+	return "xxx";
+	}
+
+function jomresURLToken()
+	{
+	$t=jomresSetToken();
+	return "&jomrestoken=".$t;
+	}
+
+// if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
+function jomresCheckToken()
+	{
+	return true;
+	/*
+	if (!@session_start())
+		{
+		@ini_set('session.save_handler', 'files');
+		session_start();
+		}
+	if (in_array($_REQUEST['jomrestoken'], $_SESSION['jomresValidTokens']))
+		{
+		$t=$_REQUEST['jomrestoken'];
+		$idx=array_search($t,$_SESSION['jomresValidTokens']);
+		// Caching can cause problems with tokens being reused, so we'll only trash the token if it's not in $_GET
+		if (!isset($_REQUEST['jomrestoken']) )
+			unset($_SESSION['jomresValidTokens'][$idx]);
+		session_write_close();
+		return true;
+		}
+	session_write_close();
+	return false;
+	*/
+	}
+
+
+class dummy_params_class
+	{
+	function get()
+		{
+		$a=0;
+		}
+	}
+
+
+
 ?>
