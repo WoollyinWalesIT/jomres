@@ -151,19 +151,4 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	}
 
 
-// Added to this file because it's expected to be used by jr_gettext
-function jomres_purify_html($dirty,$editing)
-	{
-	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	$jrConfig=$siteConfig->get();
-	$clean="";
-	$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
-	$performance_monitor->set_point("pre-purification ".time());
-	$html_purifier = jomres_singleton_abstract::getInstance('jomres_input_filter_singleton');
-	$clean = $html_purifier->purify($dirty);
-	$performance_monitor->set_point("post-purification".time());
-	return $clean;
-	}
-
-
 ?>
