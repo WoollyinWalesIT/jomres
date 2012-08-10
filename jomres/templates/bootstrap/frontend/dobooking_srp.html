@@ -152,8 +152,9 @@ function open_booking_form() {
 </script>
 {CUSTOMFIELD_JAVASCRIPT}
 {OPENBOOKINGOFRM_BUTTON} {BUTTON_BACK_TO_PROPERTY_DETAILS}
-<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" class="form-horizontal">
+
 <div id="booking_form" {HIDDENSTYLE} title="{PROPERTYNAME}">
+<form action="javascript:dobooking_validate();" name="ajaxform" id="ajaxform" method="post" class="form-horizontal">
 	<div id="messages">&nbsp;</div>
 	<!--<p>{AJAXFORM_INSTRUCTIONS}</p>-->
 				
@@ -472,10 +473,10 @@ function open_booking_form() {
 			<input type="submit" name="confirmbooking" value="{SUBMIT}"   class="btn btn-large btn-primary"/>
 		</div>
 	</div>
-</div>
 <!--<div>{AJAXFORM_INSTRUCTIONS}</div>-->
 <input type="hidden" id="booking_form_property_uid" name="property_uid" value="{PROPERTYUID}">
 </form>
+</div>
 <div style="clear:both;">&nbsp;</div>
 
 </patTemplate:tmpl>
