@@ -44,8 +44,8 @@ class jomres_sanity_check
 	function construct_warning($message)
 		{
 		$warning = "";
-		$warning .=_JOMRES_WARNINGS_DANGERWILLROBINSON." ";
-		$warning .=$message;
+		$warning .=_JOMRES_WARNINGS_DANGERWILLROBINSON;
+		$warning .=$message."<br/>";
 		return $warning;
 		}
 		
