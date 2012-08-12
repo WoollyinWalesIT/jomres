@@ -192,6 +192,8 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 		default : // treat everything else as a string.
 			
 			$allowed_inputs = get_showtime("inputs_allowing_html");
+			if (!is_array($allowed_inputs))
+				$allowed_inputs = array();
 			
 			if (isset($jrConfig['input_filtering']))
 				$jrConfig['input_filtering'] = 'strong';
