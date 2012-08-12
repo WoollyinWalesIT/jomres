@@ -13,6 +13,12 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function no_search_results()
+	{
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+	return $MiniComponents->specificEvent('06000','no_search_results');
+	}
+
 function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
 	{
 	// Uncomment the following line to tell Jomres to show the images and descriptions side by side, instead of using the jquery tooltip.
