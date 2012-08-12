@@ -4802,6 +4802,39 @@ function scandir_getfiles($path)
 	return $data;
 	}
 
+function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '')
+	{
+        $arrayItems = array();
+        $skipByExclude = false;
+        $handle = opendir($directory);
+        if ($handle) {
+            while (false !== ($file = readdir($handle))) {
+            preg_match("/(^(([\.]){1,2})$|(\.(svn|git|md))|(Thumbs\.db|\.DS_STORE))$/iu", $file, $skip);
+            if($exclude){
+                preg_match($exclude, $file, $skipByExclude);
+            }
+            if (!$skip && !$skipByExclude) {
+                if (is_dir($directory. DIRECTORY_SEPARATOR . $file)) {
+                    if($recursive) {
+                        $arrayItems = array_merge($arrayItems, scandir_getfiles_recursive($directory. DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude));
+                    }
+                    if($listDirs){
+                        $file = $directory . DIRECTORY_SEPARATOR . $file;
+                        $arrayItems[] = $file;
+                    }
+                } else {
+                    if($listFiles){
+                        $file = $directory . DIRECTORY_SEPARATOR . $file;
+                        $arrayItems[] = $file;
+                    }
+                }
+            }
+        }
+        closedir($handle);
+        }
+	return $arrayItems;
+	}
+
 function this_cms_is_joomla()
 	{
 	if ( (_JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30" ))
