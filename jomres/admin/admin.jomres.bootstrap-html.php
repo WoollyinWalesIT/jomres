@@ -397,22 +397,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td>'._JOMRES_BOOKINGORM_TAX_OUTPUT_DESC.'</td>
 			</tr>
 			<tr>
-				 <td>'._JOMRES_BOOKINGORM_SLIDERENABLED.'</td>
-				 <td>'.$lists['booking_form_totals_panel_as_slider'].'</td>
-				 <td>'._JOMRES_BOOKINGORM_SLIDERENABLED_DESC.'</td>
-			</tr>
-			<!-- <tr>
-				<td>'._JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION.'</td>
-				<td><input type="text" class="input-large" name="cfg_booking_form_totalspanel_position" value="'.$jrConfig['booking_form_totalspanel_position'].'" /></td>
-				<td>'._JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC.'</td>
-			</tr>
-
-			<tr>
-				<td>'._JOMRES_BOOKINGFORMWIDTH.'</td>
-				<td><input type="text" class="input-large" name="cfg_booking_form_width" value="'.$jrConfig['booking_form_width'].'" /></td>
-				<td></td>
-			</tr> -->
-			<tr>
 				 <td>'._JOMRES_COM_NEWUSER.'</td>
 				 <td>'.$lists['useNewusers'].'</td>
 				 <td>'._JOMRES_COM_NEWUSER_DESC.'</td>
