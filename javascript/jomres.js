@@ -5,6 +5,15 @@ var jomresJquery = jQuery.noConflict();
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
+function toggle_button_class(id)
+	{
+	var isActive = jomresJquery(id).hasClass('active');
+	if (isActive)
+		jomresJquery(id).removeClass('active btn-primary');
+	else
+		jomresJquery(id).addClass('active btn-primary');
+	}
+
 /* Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/ */
 function parse_ajax_returned_scripts(_source) {
 		var source = _source;
