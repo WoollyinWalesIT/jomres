@@ -4868,6 +4868,9 @@ function jomres_decode($string)
 	$string = str_replace ("&#60;x&#62;","",$string);
 	$string= str_replace ("&#60;","<", $string);
 	$string= str_replace ("&#62;",">", $string);
+	$string= str_replace ("&lt;","<", $string);
+	$string= str_replace ("&gt;",">", $string);
+	
 	$string = str_replace( "\xe2\x80\xa8",'', $string); // Strip out some naughty little ascii line seperators that are absolute devils to remove if you're not looking for them. They'll break your javascript.
 	//$string = str_replace ("&#39;","'",$string);
 	return $string;
