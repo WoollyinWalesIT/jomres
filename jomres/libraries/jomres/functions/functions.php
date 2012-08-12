@@ -4789,19 +4789,30 @@ function scandir_getdirectories($path)
 	return $data;
 	}
 
-function scandir_getfiles($path) 
+function scandir_getfiles($path,$extension = false) 
 	{
 	$data = array();
 	foreach(scandir($path) as $file) 
 		{
 		if(is_file($path .JRDS. $file)) 
 			{
-			$data[] =$file;
+			if (!$extension)
+				$data[] =$file;
+			else
+				{
+				$filename = strtolower($file) ; 
+				$exts = split("[/\\.]", $filename) ; 
+				$n = count($exts)-1; 
+				$exts = $exts[$n];
+				if ($exts == $extension)
+					$data[] = $file;
+				}
 			} 
 		}
 	return $data;
 	}
 
+// Credit : http://www.php.net/manual/en/function.scandir.php#109140
 function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '')
 	{
         $arrayItems = array();
