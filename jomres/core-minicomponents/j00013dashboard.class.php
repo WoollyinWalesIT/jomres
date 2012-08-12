@@ -5,7 +5,7 @@
 * @version Jomres 7
 * @package Jomres
 * @copyright	2005-2012 Vince Wooll
-* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
+* Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable.
 **/
 
 // ################################################################
@@ -124,9 +124,9 @@ class j00013dashboard extends jomres_dashboard
 			$this->unixTodaysDate=mktime(0,0,0,$today['mon'],$today['mday'],$today['year']);
 			$this->setDates();
 			$this->getRoomsForProperty();
-			
-			
-			
+
+
+
 			$cachableContent = $this->dashboardMakeMonthList();
 			// Uncomment the next line to show the current dashboard month & year in a table
 			//$cachableContent .= $this->getMonthAndYearOutput();
@@ -134,11 +134,11 @@ class j00013dashboard extends jomres_dashboard
 			//$cachableContent .=$this->getCss();
 			$cachableContent .=$this->viewRoomsHorizontal();
 			$cachableContent .=$this->getLegend();
-			
+
 			$cache->setCache($cachableContent);
 			unset($cache);
 			echo $cachableContent;
-			
+
 			}
 		}
 
@@ -159,7 +159,7 @@ class j00013dashboard extends jomres_dashboard
 		$i=1;
 		while ($i <= $monthsToShow)
 			{
-			$output.="<table>";
+			$output.="<table style=\"table-layout:fixed;font-size: 10px;line-height: 12px;\">";
 			foreach ($this->roomsArray as $room)
 				{
 				$n=1;
@@ -180,9 +180,7 @@ class j00013dashboard extends jomres_dashboard
 				else
 					{
 					$output.='<td>'.$room['room_number'].'</td>';
-					//$output.='<td>'.$room['room_name'].'</td>';
 					}
-				//$output.=$this->getHorizontalRoom($room['id'],$roomList);
 				$output.=$this->getHorizontalRoom($room['id'],$bookings);
 				$output.="</tr>";
 				}
@@ -213,18 +211,10 @@ class j00013dashboard extends jomres_dashboard
 		$output="";
 		$i=0;
 
-		//var_dump($roomList);
 		$roomsArray=array();
 		$bookingsArray=array();
 		foreach ($bookings as $rm)
 			{
-			/*
-			$date=$rm->date;
-			$contractUid=$rm->contract_uid;
-			$blackbooking=$rm->black_booking;
-			$bookingsArray[$date]=array('contract_uid'=>$contractUid,'black_booking'=>$blackbooking);
-			*/
-
 			$date=$rm['date'];
 			$contractUid=$rm['contract_uid'];
 			$blackbooking=$rm['black_booking'];
@@ -257,18 +247,6 @@ class j00013dashboard extends jomres_dashboard
 					$black_booking=$t['black_booking'];
 					if ($black_booking!="1")
 						{
-						/*
-						$query="SELECT deposit_paid FROM #__jomres_contracts WHERE contract_uid = '".(int)$contract_uid."' LIMIT 1";
-						//echo $query;
-						$contractList = doSelectSql($query);
-
-						foreach ($contractList as $contract)
-							{
-				  			$deposit_paid=$contract->deposit_paid;
-							if (!$deposit_paid)
-								$bgcolor=$this->cfg_provisionalcolour;
-							}
-						*/
 						$deposit_paid=$this->contracts[$contract_uid]["deposit_paid"];
 						if (!$deposit_paid)
 							$bgcolor=$this->cfg_provisionalcolour;
@@ -287,7 +265,7 @@ class j00013dashboard extends jomres_dashboard
 
 			if (!$viewbookingLink && !$blackBookingLink)
 				$dobookingLink = true;
-			if ( ($mrConfig['limitAdvanceBookingsYesNo']=="1" && ($currdate>=$this->unixLatestDate) ) ||$currdate<$this->unixTodaysDate)
+			if ( ($mrConfig['limitAdvanceBookingsYesNo']=="1" && ($currdate>=$this->unixLatestDate) ) /* ||$currdate<$this->unixTodaysDate */)
 				{
 				$pastDate=true;
 				$bgcolor = $this->cfg_pastcolour;
@@ -309,15 +287,80 @@ class j00013dashboard extends jomres_dashboard
 	 */
 	function showDate($pastDate,$dobookingLink,$bgcolor,$fcolor,$currdate,$sqlDate2,$contract_uid="",$room_id,$border,$blackBookingLink)
 		{
+		$paddingtop				=	"0px";
+		$paddingbottom			=	"0px";
+		$paddingleft			=	"0px";
+		$paddingright			=	"0px";
+		$padding 				= 	"0px";			## overrides jomress.css values, padding is treated differently by browsers and causes image problems
+		$weekdayheaderpadding	=	"0px";
+
+		static $PREVIOUS_BGCOLOR= "";
+
 		$mrConfig=getPropertySpecificSettings();
+		
+		$cfg_inbgcolor	= $mrConfig['avlcal_inbgcolour'];  ## cell bgcolor for days in the display month - GREEN
+		$cfg_outbgcolor	= $mrConfig['avlcal_outbgcolour'];  ## cell bgcolor for days not in display month
+		$cfg_occupiedcolour	= $mrConfig['avlcal_occupiedcolour'];  ## cell bgcolour for occupied days
+		$cfg_provisionalcolour= $mrConfig['avlcal_provisionalcolour'];  ## cell bgcolour for occupied days
+		$cfg_pastcolour	= $mrConfig['avlcal_pastcolour'];  ## cell bgcolour for occupied days
+
+		$cell_width="";
+
+		
 		$output="";
 		$bookinglink=JOMRES_SITEPAGE_URL.'&amp;task=dobooking&amp;selectedProperty='.$this->property_uid.'&amp;arrivalDate='.JSCalmakeInputDates(date("Y/m/d",$currdate));
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
-
-		$output.='<td align="center" valign="middle" bgcolor="'.$bgcolor.'" width="16" height="16">';
-		if ($dobookingLink && !$pastDate)
+		
+		$style="style='overflow:hidden;white-space:nowrap;height:$height; padding-top:$paddingtop; padding-bottom:$paddingbottom; padding-left:$paddingleft; padding-right:$paddingright; padding:$padding'";
+		$width_height = "width=12px height=12px'";
+		
+		$output.='<td align="center" '.$style.' valign="middle" bgcolor="'.$bgcolor.'"  '.$width_height.'>';
+		
+		if ($dobookingLink /* && !$pastDate */)
 			{
+			if ($bgcolor == $cfg_inbgcolor && $bgcolor != $PREVIOUS_BGCOLOR)	/* current date is an AVAILABLE and is different to previous */
+				{
+				switch($PREVIOUS_BGCOLOR)
+					{
+					case $cfg_provisionalcolour:  /* previous was PROVISIONAL */
+						switch($bgcolor)
+							{
+							case $cfg_inbgcolor: 		/* PROVISIONAL to AVAILABLE ==DEPARTURE== */
+								$output='<td align="center" class="date_ProvisionalToAvailable" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							default:
+								break;
+							}
+						break;
+					case $cfg_occupiedcolour:  	/* previous was BOOKED */
+						switch($bgcolor)
+							{
+							case $cfg_inbgcolor: 		/* BOOKED to AVAILABLE == DEPARTURE ==  */
+								$output='<td align="center" class="date_BookedToAvailable" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							default:
+								break;
+							}
+						break;
+					case $cfg_pastcolour:  	/* previous was PAST DATE*/
+						switch($bgcolor)
+							{
+							case $cfg_inbgcolor: 		/* PAST DATE to AVAILABLE  */
+								break;
+							case $cfg_provisionalcolour:  /* PAST DATE to PROVISIONAL */
+								break;
+							case $cfg_occupiedcolour:  	/* PAST DATE TO BOOKED */
+								break;
+							default:
+								break;
+							}
+						break;
+					default:
+						break;
+					}
+				}
+
 			if ($mrConfig['fixedArrivalDateYesNo']=="1")
 				{
 				$currdow=date("w",$currdate);
@@ -327,44 +370,136 @@ class j00013dashboard extends jomres_dashboard
 						{
 						if (!$mrConfig['singleRoomProperty'])
 							$bookinglink.='&remus='.$room_id;
-						$output.= '<a href="'.jomresValidateUrl(jomresURL($bookinglink)).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</div></td>
+						$output.= '<a href="'.jomresValidateUrl(jomresURL($bookinglink)).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("d",$currdate)).'</a>'.'</div></td>
 						';
 						}
 					else
-						$output.= date ("j",$currdate);
+						$output.= date ("d",$currdate);
 					}
 				else
-					$output.= date ("j",$currdate);
+					$output.= date ("d",$currdate);
 				}
 			else
 				{
 				if (!$mrConfig['singleRoomProperty'])
 					$bookinglink.='&remus='.$room_id;
-				$output.='<a href="'.jomresValidateUrl(jomresURL($bookinglink)).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("j",$currdate)).'</a>'.'</td>
+				$output.='<a href="'.jomresValidateUrl(jomresURL($bookinglink)).'" class="rescal_dashboard"  style="color:'.$fcolor.'; '.$border.'">'.(date ("d",$currdate)).'</a>'.'</td>
 				';
 				}
 			}
 		else
 			{
+			
+			if ($bgcolor != $PREVIOUS_BGCOLOR) /* first deal with case when current is different to previous */
+				{
+				switch($PREVIOUS_BGCOLOR)
+					{
+					case $cfg_inbgcolor: 		/* previous was AVAILABLE  */
+						switch($bgcolor)
+							{
+							case $cfg_provisionalcolour:  /* AVAILABLE to PROVISIONAL */
+								$output='<td align="center" class="date_AvailableToProvisional" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							case $cfg_occupiedcolour:  	/* AVAILABLE to BOOKED */
+								$output='<td align="center" class="date_AvailableToBooked" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							default:
+								break;
+							}
+						break;
+					case $cfg_provisionalcolour:  /* previous colour was PROVISIONAL */
+						switch($bgcolor)
+							{
+							case $cfg_inbgcolor: 		/* PROVISIONAL to AVAILABLE ==DEPARTURE== */
+								echo "YELLOW/GREEN....";
+								$output='<td align="center" class="date_ProvisionalToAvailable" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							case $cfg_occupiedcolour:  	/* PROVISIONAL to BOOKED */
+								$output='<td align="center" class="date_ProvisionalToBooked" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							default:
+								break;
+							}
+						break;
+					case $cfg_occupiedcolour:  	/* previous was BOOKED */
+						switch($bgcolor)
+							{
+							case $cfg_inbgcolor: 		/* BOOKED to AVAILABLE == departure == */
+								$output='<td align="center" class="date_BookedToAvailable" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							case $cfg_provisionalcolour:  /* BOOKED to PROVISIONAL */
+								$output='<td align="center" class="date_BookedToProvisional" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+								break;
+							default:
+								break;
+							}
+						break;
+					case $cfg_outbgcolor:  	/* previous PAST DATE */
+						switch($bgcolor)
+							{
+							case $cfg_inbgcolor: 		/* PAST DATE to AVAILABLE */
+								break;
+							case $cfg_provisionalcolour:  /* PAST DATE to PROVISIONAL */
+								break;
+							case $cfg_occupiedcolour:  	/* PAST DATE to BOOKED */
+								break;
+							default:
+								break;
+							}
+						break;
+					default:
+						break;
+					}
+				}
+
 			if ($contract_uid!="")
 				{
-				$is_firstday = false;
-				if ((date("Y/m/d",$currdate) == $this->contracts[$contract_uid]['arrival']) || (date("Y/n/j",$currdate) == $this->contracts[$contract_uid]['arrival']))
+				
+				/* now deal with case that we have a changeover but colour is same for previous and new booking */
+				if (($bgcolor == $PREVIOUS_BGCOLOR) && (date("Y/m/d",$currdate) == $this->contracts[$contract_uid]['arrival']))
 					{
-					$output='<td align="center" class="arrivaldate_tdback" valign="middle" bgcolor="'.$bgcolor.'" >';
+					switch($PREVIOUS_BGCOLOR)
+						{
+						case $cfg_provisionalcolour:  /* previous was PROVISIONAL */
+							switch($bgcolor)
+								{
+								case $cfg_provisionalcolour: 		/* PROVISIONAL to PROVISIONAL */
+									$output='<td align="center" class="date_ProvisionalToProvisional" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+									break;
+								default:
+									break;
+								}
+							break;
+						case $cfg_occupiedcolour:  	/* previous was BOOKED */
+							switch($bgcolor)
+								{
+								case $cfg_occupiedcolour: 		/* BOOKED to BOOKED */
+									$output='<td align="center" class="date_BookedToBooked" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
+									break;
+								default:
+									break;
+								}
+							break;
+						default:
+							break;
+						}
 					}
+
+				$is_firstday = false;
+
 				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
 				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
 
-				$output.=jomres_makeTooltip(date ("j",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresValidateUrl(jomresURL($viewbookinglink)).'">'.(date ("j",$currdate)).'</a>',"")."</td>
+				$output.=jomres_makeTooltip(date ("d",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresValidateUrl(jomresURL($viewbookinglink)).'">'.(date ("d",$currdate)).'</a>',"")."</td>
 				";
 				}
 			else
 				{
-				$output.=$basicFont.date ("j",$currdate)."</div></td>
+				$output.=$basicFont.date ("d",$currdate)."</div></td>
 				";
 				}
 			}
+		$PREVIOUS_BGCOLOR=$bgcolor;
 		return $output;
 		}
 
@@ -404,7 +539,7 @@ class j00013dashboard extends jomres_dashboard
 	function dashboardMakeMonthList($orientation="")
 		{
 		//global $jomresConfig_locale;
-		
+
 		$monthsArray=array();
 		$output="";
 		//setlocale(LC_ALL, $jomresConfig_locale );
@@ -468,7 +603,19 @@ class j00013dashboard extends jomres_dashboard
 		$output='
 <style type="text/css">
 <!--
-.arrivaldate_tdback { background-image: url(jomres/images/star.png);}
+/* >>>>>>>>> PD November 2009 - Added for split arrive/depart day image feature >>>>>>>>>>>>>>> */
+.date_AvailableToProvisional { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/AvailableToProvisional.png);}
+.date_AvailableToBooked { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/AvailableToBooked.png); background-position: top left; background-repeat: no-repeat;}
+.date_ProvisionalToBooked { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/ProvisionalToBooked.png);}
+.date_BookedToProvisional { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/BookedToProvisional.png);}
+.date_ProvisionalToAvailable { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/ProvisionalToAvailable.png);}
+.date_BookedToAvailable { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/BookedToAvailable.png) ; background-position: top left; background-repeat: no-repeat;}
+.date_ProvisionalToProvisional { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/ProvisionalToProvisional.png);}
+.date_BookedToBooked { background-image: url('.get_showtime('live_site').'/jomres/images/dashboard/BookedToBooked.png);}
+.date_STAR { background-image: url(jomres/images/star.png);}
+.date_ICON { background-image: url(jomres/images/jricon.png);}
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+}
 -->
 </style>';
 		$output.='<table>';
