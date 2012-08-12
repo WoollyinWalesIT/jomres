@@ -102,6 +102,9 @@ require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_functions.php");
 
 $performance_monitor->set_point("post-inclusions");
 
+$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+$jrConfig=$siteConfig->get();
+
 if (isset($jrConfig['loggingBooking']))
 	{
 	define('LOGGINGBOOKING',$jrConfig['loggingBooking']);
@@ -111,12 +114,16 @@ if (isset($jrConfig['loggingBooking']))
 	define('LOGGINGPORTAL',$jrConfig['loggingPortal']);
 	}
 
-$jrajax				= (int)jomresGetParam( $_REQUEST, 'jrajax', 0 );
-if ($jrajax == 1)
-	define('AJAXCALL',true);
+if (isset($_REQUEST['jrajax']))
+	{
+	if ((int)$_REQUEST['jrajax'] == 1)
+		define('AJAXCALL',true);
+	else
+		define('AJAXCALL',false);
+	}
 else
 	define('AJAXCALL',false);
-
+	
 	
 // loads en language file by default
 if ($jomresConfig_lang=='')

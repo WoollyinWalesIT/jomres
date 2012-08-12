@@ -14,8 +14,8 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
-class j00005input_filtering {
-	function j00005input_filtering($componentArgs)
+class j00003x_input_filtering {
+	function j00003x_input_filtering($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return 
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -41,7 +41,7 @@ class j00005input_filtering {
 			else
 				$inputs_allowing_html = array();
 			}
-		
+
 		set_showtime("inputs_allowing_html",$inputs_allowing_html);
 		}
 
