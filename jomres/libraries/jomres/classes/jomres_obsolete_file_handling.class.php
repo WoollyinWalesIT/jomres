@@ -661,6 +661,11 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_images.'tab4.gif');
 		$this->add_obs_file($this->dir_images.'td_alt.jpg');
 		
+		$files_htmlpurifier430standalone = scandir_getfiles_recursive($this->dir_libraries.'htmlpurifier'.JRDS.'htmlpurifier-4.3.0-standalone');
+		foreach ($files_htmlpurifier430standalone as $file)
+			{
+			$this->add_obs_file($file);
+			}
 		
 		}
 	
