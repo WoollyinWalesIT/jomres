@@ -191,13 +191,13 @@ function open_booking_form() {
 			<label class="control-label" for="coupon">{COUPON_BUTTON}</label>
 			<div class="controls">
 				<input class="input-medium ignore" size="25" type="text" name="coupon" id="coupon" value="{COUPON_CODE}" />
+				<div id="coupon_response" class="jomres_message help-block"></div>
 			</div> 
 		</div>
 		<div class="form-actions">
 			<a class="btn" href ="javascript:void(0);" onclick="getResponse('coupon',jomresJquery('#coupon').val())" >{COUPON_BUTTON}</a>
 		</div>
 	</fieldset>
-	<div id="coupon_response" class="jomres_message"></div>
 	</patTemplate:tmpl>
 
 	<div id="arrivalcontainer">
