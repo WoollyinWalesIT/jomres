@@ -9,9 +9,9 @@ function toggle_button_class(id)
 	{
 	var isActive = jomresJquery(id).hasClass('active');
 	if (isActive)
-		jomresJquery(id).removeClass('active btn-primary');
+		jomresJquery(id).removeClass('active btn-success');
 	else
-		jomresJquery(id).addClass('active btn-primary');
+		jomresJquery(id).addClass('active btn-success');
 	}
 
 /* Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/ */
