@@ -9,6 +9,9 @@
 		<div class="caption">
 			<h5><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS}</h5>
 			<p>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
+			<div class="hidden-phone">
+				<input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}
+			</div>
 		</div>
 		<div class="align-center"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle" /></a></div>
 		<div class="caption">
@@ -17,15 +20,8 @@
 				<span class="big-price">{PRICE_PRICE}</span>
 				{PRICE_POST_TEXT}
 			</div>
-			<div class="btn-group pull-right hidden-phone">
-				<button class="btn">Actions</button>
-				<button class="btn dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')"><i class="icon-plus"></i> {SHORTLIST}</a></li>
-					<li><input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}</li>
-				</ul>
+			<div class="hidden-phone">
+				<a class="btn" href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')">{SHORTLIST}</a>
 			</div>
 		</div>
 	</div>

@@ -556,7 +556,10 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'register_property1.html');
 		$this->add_obs_file($this->dir_templates_administrator.'register_property2.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_administrator.'register_property2.html');
-
+		
+		
+		// Generate tidy up of older images no longer used
+		
 		$this->add_obs_file($this->dir_images_large.'AddItem.png');
 		$this->add_obs_file($this->dir_images_large.'AddProperty.png');
 		$this->add_obs_file($this->dir_images_large.'addService.png');
@@ -661,12 +664,19 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_images.'tab4.gif');
 		$this->add_obs_file($this->dir_images.'td_alt.jpg');
 		
+		// html purifier updated to 4.4, so 4.3 scripts can be deleted
 		$files_htmlpurifier430standalone = scandir_getfiles_recursive($this->dir_libraries.'htmlpurifier'.JRDS.'htmlpurifier-4.3.0-standalone');
 		foreach ($files_htmlpurifier430standalone as $file)
 			{
 			$this->add_obs_file($file);
 			}
 		
+		// Old 'jomres' templates directory renamed to 'jqueryui', will help to reduce confusion, so files in the /jomres/templates/jomres will need to be deleted
+		$files_old_jomres_templates = scandir_getfiles_recursive(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres');
+		foreach ($files_old_jomres_templates as $file)
+			{
+			$this->add_obs_file($file);
+			}
 		}
 	
 	function add_obs_file($path_and_file)

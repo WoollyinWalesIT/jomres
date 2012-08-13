@@ -9,6 +9,10 @@
 input[class^="jomres_te_"] {width: 25px !important;}
 .dataTable th {color:#0088CC;}
 .jomres_property_list_propertywrapper .well {padding:10px;}
+.jomres-compare{line-height:27px;}
+.jomres-propertylist-toolbar .hero-unit{padding:10px;text-align:left;margin:0;}
+.jomres-propertylist-toolbar .hero-unit > * {text-shadow:none;}
+.jomres-propertylist-toolbar form {margin:0;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }

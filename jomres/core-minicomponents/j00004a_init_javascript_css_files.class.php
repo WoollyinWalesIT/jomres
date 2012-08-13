@@ -78,7 +78,9 @@ class j00004a_init_javascript_css_files {
 		define("JOMRESDATEPICKERLANG",$jomreslang->datepicker_crossref[$jomreslang->lang]);
 		$datepicker_localisation_file = 'jquery.ui.datepicker-'.JOMRESDATEPICKERLANG.'.js';
 		
-		if (!using_bootstrap())
+		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
+		
+		if (!using_bootstrap() || $management_view )
 			{
 			set_showtime("jquery.core.js",'jquery-1.7.1.min.js');
 			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
