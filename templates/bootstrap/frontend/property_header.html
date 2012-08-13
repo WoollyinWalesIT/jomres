@@ -4,20 +4,19 @@
 	<address>
 		<div> 
 			<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-				<abbr title="Address"><span itemprop="street-address">{STREET}</span>, </abbr>
+				<span itemprop="street-address">{STREET}</span>,
 				<span itemprop="locality">{TOWN}</span>, 
 				<span itemprop="region">{REGION}</span>, 
-				{POSTCODE}, 
-				{COUNTRY}<br />
-				<abbr >{HTELEPHONE}</abbr>
+				<span itemprop="postal-code">{POSTCODE}</span>, 
+				<span itemprop="country_name">{COUNTRY}</span><br />
+				{HTELEPHONE} 
 				<span itemprop="tel">{TELEPHONE}</span>,
 				{HFAX}
 				{FAX}
 			</span>
 		</div>
-	
 	</address>
-	<br />{GALLERYLINK}
+	<div>{GALLERYLINK}</div>
     <!--
 	<img src="{IMAGETHUMB}"/>
 	<patTemplate:tmpl name="roomtypes" type="simpleCondition" requiredVars="room_type">{ROOM_TYPE}</patTemplate:tmpl>

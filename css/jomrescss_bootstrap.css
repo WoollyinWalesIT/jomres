@@ -2,14 +2,13 @@
 .big-price{font-weight:bold;font-size:150%;display:block;line-height:120%;}
 .align-center{text-align:center;}
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
-.property_details_buttons {width: 100px !important;}
+.property_details_buttons {min-width: 100px !important;}
 #jomres_content_area{padding-bottom:20px;}
-
+.jomres_message{color:#ff0000;}
 .photoview_list{min-height:390px;max-height:410px;max-width:210px;}
 input[class^="jomres_te_"] {width: 25px !important;}
 .dataTable th {color:#0088CC;}
 .jomres_property_list_propertywrapper .well {padding:10px;}
-
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
