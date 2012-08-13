@@ -314,7 +314,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			</tr>
 			<tr>
 				 <td>'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE.'</td>
-				 <td><input type="text" class="input-large" name="cfg_html_purifier_allowed_tags" value="'.$jrConfig['html_purifier_allowed_tags'].'" /></td>
+				 <td><textarea type="text" class="input-large" name="cfg_html_purifier_allowed_tags" >'.$jrConfig['html_purifier_allowed_tags'].' </textarea></td>
 				 <td>'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC.'</td>
 			</tr>
 			<tr>

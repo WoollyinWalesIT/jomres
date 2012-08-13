@@ -312,9 +312,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td valign="middle">'._JOMRES_INPUTFILTERING_LEVEL_DESC.'</td>
 			</tr>
 			<tr valign="middle" class="even">
-				<td valign="middle">'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE.'</td>
-				<td valign="middle"><input type="text" class="input-large" name="cfg_html_purifier_allowed_tags" value="'.$jrConfig['html_purifier_allowed_tags'].'" /></td>
-				<td valign="middle">'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC.'</td>
+				 <td valign="middle">'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_TITLE.'</td>
+				 <td valign="middle"><textarea type="text" class="input-large" name="cfg_html_purifier_allowed_tags" >'.$jrConfig['html_purifier_allowed_tags'].' </textarea></td>
+				 <td valign="middle">'._JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC.'</td>
 			</tr>
 			<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_INPUTFILTERING_INPUTS_TITLE.'</td>
