@@ -1,16 +1,20 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 {JOMRES_POPUPURL_GLOBALVAR}
-<div title="{PROPERTY_NAME}" class="ui-widget ui-widget-content ui-corner-all" style="float:left;width:140px;margin-bottom:10px;margin:5px;"  >
+<div title="{PROPERTY_NAME}" class="thumbnail pull-left" style="width:135px;"  >
 	<center>
-		<div style="padding:5px;" class="ui-helper-clearfix">
-			<div style="font-weight:bold;">{PROPERTY_NAME}</div>
+		<div class="clearfix">
+			<div style="height:16px;"><h4>{PROPERTY_NAME}</h4></div>
 			<div style="height:16px;">{STARSIMAGES}</div>
-			<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;height:100px;"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{PROPERTY_UID});" ><img src = "{THUMBNAIL}" class="ngm_image"/></a></div>
-			<div style="font-size:11px;height: 36px;">{PRICE_PRE_TEXT} {PRICE_PRICE} {PRICE_POST_TEXT}</div>
-            <div align="center" style="text-align:center;margin:5px 0;"><a href="{MOREINFORMATIONLINK}" class="fg-button ui-state-default ui-corner-all more-info-link" >{MOREINFORMATION}</a></div>
+			<div class="row-fluid">
+				<div class="span12">
+					<div id="module_{RANDOM_IDENTIFIER}" style="margin-top:5px;"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{PROPERTY_UID});" class="thumbnail ngm_image"><img src = "{THUMBNAIL}" /></a></div>
+				</div>
+			</div>
+			<p class="small">{PRICE_PRE_TEXT} <br />{PRICE_PRICE} {PRICE_POST_TEXT}</p>
+            <div align="center" class="btn-toolbar"><a href="{MOREINFORMATIONLINK}" class="btn" >{MOREINFORMATION}</a></div>
 		</div>
 	</center>
-	<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none" title="{PROPERTY_NAME}"><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
+	<div id='module_{RANDOM_IDENTIFIER}_popup' class="hide" title="{PROPERTY_NAME}"><img src="{LIVE_SITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
 </div>
 
 </patTemplate:tmpl>
