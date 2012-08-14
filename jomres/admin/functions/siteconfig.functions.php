@@ -243,7 +243,8 @@ function showSiteConfig(  )
 	$lists['safe_mode']								= jomresHTML::selectList( $yesno, 'cfg_safe_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['safe_mode'] );
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
 	$lists['use_bootstrap']							= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap'] );
-
+	$lists['property_details_in_tabs']				= jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['property_details_in_tabs'] );
+	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown);
 	}
 
