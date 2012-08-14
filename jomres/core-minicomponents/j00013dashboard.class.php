@@ -159,7 +159,7 @@ class j00013dashboard extends jomres_dashboard
 		$i=1;
 		while ($i <= $monthsToShow)
 			{
-			$output.="<table style=\"table-layout:fixed;font-size: 10px;line-height: 12px;\">";
+			$output.="<table style=\"table-layout:fixed;font-size: 11px;line-height: 16px;border-collapse: inherit;border-spacing: 1px;\">";
 			foreach ($this->roomsArray as $room)
 				{
 				$n=1;
@@ -259,7 +259,8 @@ class j00013dashboard extends jomres_dashboard
 					}
 				}
 			if ( $this->isWeekend($currdate) )
-				$border='border:solid 1px '.$this->cfg_weekendborder.';';
+				//$border='border:solid 1px '.$this->cfg_weekendborder.';';
+				$border="";
 			else
 				$border="";
 
@@ -312,8 +313,8 @@ class j00013dashboard extends jomres_dashboard
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 		
-		$style="style='overflow:hidden;white-space:nowrap;height:$height; padding-top:$paddingtop; padding-bottom:$paddingbottom; padding-left:$paddingleft; padding-right:$paddingright; padding:$padding'";
-		$width_height = "width=12px height=12px'";
+		$style="style='overflow:hidden;white-space:nowrap;height:$height; padding-top:$paddingtop; padding-bottom:$paddingbottom; padding-left:$paddingleft; padding-right:$paddingright; padding:$padding;'";
+		$width_height = "width=16px height=16px";
 		
 		$output.='<td align="center" '.$style.' valign="middle" bgcolor="'.$bgcolor.'"  '.$width_height.'>';
 		
