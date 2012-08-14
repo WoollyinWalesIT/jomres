@@ -85,7 +85,9 @@ class j06000module_popup
 			$output['_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE'] = jr_gettext(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE,_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE,false,false);
 
 			
-			
+			$output['PROPERTY_IMAGE_LARGE']= JOMRES_IMAGELOCATION_RELPATH.$property_image;
+			$output['PROPERTY_IMAGE_MEDIUM']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail_med.jpg";
+			$output['PROPERTY_IMAGE_SMALL']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail.jpg";
 			
 			$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 			$rt= doSelectSql($query);
