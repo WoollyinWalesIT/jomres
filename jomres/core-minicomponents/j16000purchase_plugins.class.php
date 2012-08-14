@@ -53,12 +53,22 @@ class j16000purchase_plugins
 		$response = query_shop($request);
 		if ($response->success)
 			{
-			echo "Thank you for your purchase, a link to the invoice has been created and emailed to you. When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s).";
+			$output['MESSAGE'] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. Alternatively, you can log in below to purchase. Once you select a payment method the frame will be removed.<br/> When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s).";
+			$template = 'purchase_success.html';
 			}
 		else
 			{
-			echo "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and password are correct.";
+			$output['MESSAGE'] = "Sorry, there was a problem creating the invoice, please press the back button in your browser and choose your plugins again, then double check your License Server username and password are correct.";
+			$template = 'purchase_failure.html';
 			}
+			
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+
+		$tmpl->readTemplatesFromInput( $template );
+		$tmpl->displayParsedTemplate();
 		}
 
 
