@@ -27,21 +27,21 @@ class j00005define_template_paths {
 		if (!defined('JOMRES_TEMPLATEPATH_FRONTEND'))
 			{
 			if (!using_bootstrap())
-				define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jqueryui".JRDS."frontend");
+				define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jquery_ui".JRDS."frontend");
 			else
 				define('JOMRES_TEMPLATEPATH_FRONTEND',JOMRESPATH_BASE.JRDS."templates".JRDS."bootstrap".JRDS."frontend");
 			}
 		if (!defined('JOMRES_TEMPLATEPATH_BACKEND'))
 			{
 			if (!using_bootstrap())
-				define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jqueryui".JRDS."backend");
+				define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."jquery_ui".JRDS."backend");
 			else
 				define('JOMRES_TEMPLATEPATH_BACKEND',JOMRESPATH_BASE.JRDS."templates".JRDS."bootstrap".JRDS."backend");
 			}
 		if (!defined('JOMRES_TEMPLATEPATH_ADMINISTRATOR'))
 			{
 			if (!using_bootstrap())
-				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jqueryui".JRDS."administrator");
+				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."jquery_ui".JRDS."administrator");
 			else
 				define('JOMRES_TEMPLATEPATH_ADMINISTRATOR',JOMRESPATH_BASE.JRDS."templates".JRDS."bootstrap".JRDS."administrator");
 			}
