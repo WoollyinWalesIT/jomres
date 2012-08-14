@@ -1,0 +1,128 @@
+<patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
+
+<div id="property_details">
+	<div class="rowfluid">
+		<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
+		<div class="span5">
+			<div class="big-price">{REAL_ESTATE_PROPERTY_PRICE}</div>
+			<patTemplate:tmpl name="bookinglink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar"><a href="{LINK}" class="btn btn-primary btn-large">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="contactuslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="slideshowlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="tariffslink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
+				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<div style="clear:both;"></div>
+			<div>{INLINE_CALENDAR}</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<p>&nbsp;</p>
+
+<patTemplate:comment>
+	
+	Automatically ordered output
+	
+	If you are using items listed in the comments below you are advised to remove this div and it's contents, otherwise you'll have duplicate information in the template/page
+</patTemplate:comment>
+<patTemplate:tmpl name="tabs_content">
+<div class="well">
+	<h2>{TAB_TITLE}</h2>
+	{TAB_CONTENT}
+</div>
+</patTemplate:tmpl>
+
+<div class="clearfix"></div>
+<p>&nbsp;</p>
+
+<patTemplate:comment>
+	
+	You can use these tags instead of the data output in the automatically ordered output, noted above. This allows you to absolutely fine-tune the property details page to your liking
+	
+	This is a list of variables that may be available to this template. It assumes that you haven't edited the j00035 scripts to change tab ordering
+	If a plugin adds a new element the elements will not be shown in this list, and you'll be forced to use some detective work to figure out what the names are.
+	
+
+{HFEATURES}
+{HRTYPES}
+{LIVE_SITE}
+{HPROPERTYNAME}
+{HSTREET}
+{HTOWN}
+{HREGION}
+{HCOUNTRY}
+{HPOSTCODE}
+{HTELEPHONE}
+{HFAX}
+{HMAPPINGLINK}
+{HDESCRIPTION}
+{HCHECKINTIMES}
+{HAREAACTIVITIES}
+{HDRIVINGDIRECTIONS}
+{HAIRPORTS}
+{HOTHERTRANSPORT}
+{HPOLICIESDISCLAIMERS}
+{TITLE_PROPERTYDETAILS}
+{TITLE_PROPERTYDETAILS_ANCHOR}
+{TITLE_MOREINFO}
+{TITLE_MOREINFO_ANCHOR}
+{TITLE_AVAILABILITYCALENDAR}
+{TITLE_ROOMSLIST}
+{TITLE_SLIDESHOW}
+{TITLE_MAP}
+{TITLE_TARIFF}
+{COM_A_BASICTEMPLATE_SHOWADDRESS}
+{COM_A_BASICTEMPLATE_SHOWDETAILS}
+{COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE}
+{COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE}
+{POSTCODE}
+{TELEPHONE}
+{FAX}
+{STREET}
+{TOWN}
+{REGION}
+{COUNTRY}
+{DESCRIPTION}
+{CHECKINTIMES}
+{AREAACTIVITIES}
+{DRIVINGDIRECTIONS}
+{AIRPORTS}
+{OTHERTRANSPORT}
+{POLICIESDISCLAIMERS}
+{PRINT_ICON}
+{PRINT_LINK}
+{SLIDESHOW}
+
+{ARROW}
+{INLINE_CALENDAR_ARROW_OPENINGDIV}
+{INLINE_CALENDAR}
+{INLINE_CALENDAR_ARROW_CLOSINGDIV}
+
+{TABCONTENT_01_MAIN_DETAILS_TABTITLE}
+{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}
+{TABCONTENT_01_MORE_INFO_TABTITLE}
+{TABCONTENT_01_MORE_INFO_TAB_CONTENT}
+{TABCONTENT_02_BOOKINGFORM_TABTITLE}  // Assumes that the option to show the booking form in the property details is set to Yes
+{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}  // Assumes that the option to show the booking form in the property details is set to Yes
+{TABCONTENT_02_MAP_TABTITLE}
+{TABCONTENT_02_MAP_TAB_CONTENT}
+{TABCONTENT_03_CONTACT_TABTITLE}  // Assumes that contact form in tabs plugin is installed
+{TABCONTENT_03_CONTACT_TAB_CONTENT}  // Assumes that contact form in tabs plugin is installed
+{TABCONTENT_03_REVIEWS_TABTITLE}
+{TABCONTENT_03_REVIEWS_TAB_CONTENT}
+{TABCONTENT_05_TARIFFS_TABTITLE}
+{TABCONTENT_05_TARIFFS_TAB_CONTENT}
+{TABCONTENT_04_ROOMSLIST_TABTITLE}
+{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}
+{XDISQUS_TABTITLE}  // Assumes that Comments Tab Disqus plugin is installed
+{XDISQUS_TAB_CONTENT}  // Assumes that Comments Tab Disqus plugin is installed
+
+</patTemplate:comment>
+  
+  
+</patTemplate:tmpl>

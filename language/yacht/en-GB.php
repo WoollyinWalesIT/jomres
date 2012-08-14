@@ -1829,3 +1829,6 @@ define('_JOMRES_INPUTFILTERING_PURIFIER_ALLOWED_DESC',"You can edit the tags tha
 define('_JOMRES_INPUTFILTERING_INPUTS_TITLE',"Allowed inputs");
 define('_JOMRES_INPUTFILTERING_INPUTS_DESC',"You can define which form inputs will allow html by editing this option, any input added to this list will be parsed through HTML Purifier instead of having all html stripped. Default is : 'property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers'. Add more inputs by adding their from names, separated by a space.");
 
+
+define('_JOMRES_PROPERTYDETAILS_INTABS_TITLE',"Property details in tabs?");
+define('_JOMRES_PROPERTYDETAILS_INTABS_DESC',"Set this option to show property details in tabs. Set it to no to show them without tabs.");

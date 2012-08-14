@@ -37,13 +37,22 @@ class j06000contactowner {
 			}
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
-		$jomresConfig_secret = get_showtime('secret');
+		
+		$use_recaptcha = false;
+		if ($jrConfig['recaptcha_public_key'] != "" && $jrConfig['recaptcha_private_key'] != "")
+			$use_recaptcha = true;
+		
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		$this->_remove_old_captcha_files();  // In time, this can be removed. Since going to reCaptcha there will no longer be a need for the old validation files, but for now (8/6/2012) we'll leave it in-situ so that we're cleaning up after ourselves.
-		require_once(JOMRESPATH_BASE.'/libraries/recaptcha/recaptchalib.php');
-
-		$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
+		
+		if ($use_recaptcha)
+			require_once(JOMRESPATH_BASE.'/libraries/recaptcha/recaptchalib.php');
+		
+		if (isset($componentArgs['property_uid']))
+			$property_uid = intval($componentArgs['property_uid']);
+		else
+			$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
 		if (isset($_POST['property_uid']) )
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		if ($property_uid == 0 )
@@ -89,20 +98,33 @@ class j06000contactowner {
 		$output['JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2_BUTTON']				=jr_gettext('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2',_JOMRES_REGISTRATION_INSTRUCTIONS_STEP2_2,false,false);
 		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
 		
-		if (isset($_POST["recaptcha_challenge_field"]))
+		if ($use_recaptcha)
 			{
-			$resp = recaptcha_check_answer ($jrConfig['recaptcha_private_key'],
-				$_SERVER["REMOTE_ADDR"],
-				$_POST["recaptcha_challenge_field"],
-				$_POST["recaptcha_response_field"]);
+			if (isset($_POST["recaptcha_challenge_field"]))
+				{
+				$resp = recaptcha_check_answer ($jrConfig['recaptcha_private_key'],
+					$_SERVER["REMOTE_ADDR"],
+					$_POST["recaptcha_challenge_field"],
+					$_POST["recaptcha_response_field"]);
+				}
+			else
+				{
+				$resp = new stdClass;
+				$resp->is_valid = false;
+				}
 			}
 		else
 			{
 			$resp = new stdClass;
-			$resp->is_valid = false;
+			if ($output['SUBJECT'] != "" && $output['ENQUIRY'] != "" && $output['GUEST_NAME'] != "")
+				$resp->is_valid = true;
+			else
+				$resp->is_valid = false;
 			}
+		
+		
 		$oktosend=false;
-
+		
 		if ($resp->is_valid)
 			{
 			$oktosend=true;
@@ -126,7 +148,8 @@ class j06000contactowner {
 			}
 		else
 			{
-			$output['CAPTCHA'] =recaptcha_get_html($jrConfig['recaptcha_public_key']);
+			if ($use_recaptcha)
+				$output['CAPTCHA'] =recaptcha_get_html($jrConfig['recaptcha_public_key']);
 			}
 
 		$pageoutput[]=$output;
@@ -137,7 +160,11 @@ class j06000contactowner {
 		else
 			$tmpl->readTemplatesFromInput( 'contact_owner.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->displayParsedTemplate();
+
+		if (isset($componentArgs['noshownow']))
+			$this->ret_vals = $tmpl->getParsedTemplate();
+		else
+			$tmpl->displayParsedTemplate();
 		}
 
 	function touch_template_language()
@@ -206,7 +233,7 @@ class j06000contactowner {
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->ret_vals;
 		}
 	}
 	

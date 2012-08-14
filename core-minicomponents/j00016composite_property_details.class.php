@@ -86,9 +86,9 @@ class j00016composite_property_details {
 		
 		//$output['MAP'] = $MiniComponents->miniComponentData['01050']['x_geocoder'];
 		
-		$pageoutput[]=$output;
+		
 		$tmpl = new patTemplate();
-		$tmpl->addRows( 'pageoutput', $pageoutput );
+		
 
 		if (count($MiniComponents->miniComponentData['00035']) > 0)
 			{
@@ -118,7 +118,9 @@ class j00016composite_property_details {
 			$tmpl->addRows( 'tabs_titles', $tab_titles );
 			$tmpl->addRows( 'tabs_content', $tab_contents );
 			}
-		
+
+		$pageoutput[]=$output;
+		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->addRows( 'bookinglink', $bookinglink);
 		$tmpl->addRows( 'slideshowlink', $slideshowlink);
 		if ($mrConfig['is_real_estate_listing']==0)
@@ -134,7 +136,15 @@ class j00016composite_property_details {
 		if (isset($_REQUEST['jr_printable']))
 			$tmpl->readTemplatesFromInput( 'composite_property_details_printable.html');
 		else
-			$tmpl->readTemplatesFromInput( 'composite_property_details.html');
+			{
+			if (!isset($jrConfig['property_details_in_tabs']))
+				$jrConfig['property_details_in_tabs'] = "1";
+			
+			if ($jrConfig['property_details_in_tabs'] == "1")
+				$tmpl->readTemplatesFromInput( 'composite_property_details.html');
+			else
+				$tmpl->readTemplatesFromInput( 'composite_property_details_notabs.html');
+			}
 
 		$cachableContent = $tmpl->getParsedTemplate();
 		$task 				= get_showtime('task');

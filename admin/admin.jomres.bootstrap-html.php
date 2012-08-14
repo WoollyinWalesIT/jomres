@@ -82,17 +82,22 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			</tr>');
 			}
 		
+		if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
+			{
+			$contentPanel->setcontent('
+			<tr>
+				 <td>'._JOMRES_MENU_SHOW_TITLE.'</td>
+				 <td>'.$lists['alternate_mainmenu'].'</td>
+				 <td>'._JOMRES_MENU_SHOW_DESC.'</td>
+			</tr>');
+			}
 		$contentPanel->setcontent('
 		<tr>
 			<td>'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
 			<td>'.$lists['advanced_site_config'].'</td>
 			<td>'._JOMRES_COM_ADVANCED_SITE_CONFIG_DESC.'</td>
 		</tr>
-		<tr>
-			 <td>'._JOMRES_MENU_SHOW_TITLE.'</td>
-			 <td>'.$lists['alternate_mainmenu'].'</td>
-			 <td>'._JOMRES_MENU_SHOW_DESC.'</td>
-		</tr>
+		
 		<tr>
 			<td>'._JOMRES_SUPPORTKEY.'</td>
 			<td><input type="text" class="input-large" name="cfg_licensekey" value="'.$licensekey.'" /></td>
@@ -107,6 +112,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td>'._JOMRES_LICENSESERVER_PASSWORD.'</td>
 			<td><input type="password" class="input-large" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>'._JOMRES_PROPERTYDETAILS_INTABS_TITLE.'</td>
+			<td>'.$lists['property_details_in_tabs'].'</td>
+			<td>'._JOMRES_PROPERTYDETAILS_INTABS_DESC.'</td>
 		</tr>
 		<tr>
 			<td>'._JOMRES_COOKIEPOLICY_TITLE.'</td>
