@@ -1,6 +1,10 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="nbsp">
 <style>
-
+.fixed-dialog{
+	position: fixed;
+	top:50%; 
+	left:50%;
+}
 </style>
 
 <h2>{PAGETITLE}</h2>
@@ -9,16 +13,21 @@
 	<tr>
 		<td width="75%" valign="top">
 <patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-			<div id="cart_wrapper" style="width:500px;">
+		<div class="fg-button ui-state-default ui-corner-all" onClick="showCart()">Show cart</div>
+		<div class="ui-state-highlight">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</div>
+			<div id="cart_wrapper" class="ui-helper-hidden">
 				<div class="ui-widget-header ui-corner-all"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</div>
+				<button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Order plugin(s)</button>
 				<form id="cart">
 				</form>
+				
 				<div class="ui-state-highlight ui-corner-all">Total <strong>&pound;<span id="total"></span></strong></div>
-				<button id="purchase" class="fg-button ui-state-default ui-corner-all" onClick="purchase();">Order plugin(s)</button>
+				
 				<p>
 				Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.
 				</p>
 			</div>
+			<div id="hidden_inputs"  class="ui-helper-hidden"></div>
 			<div id="username_input" style="display:none;">
 				<fieldset>
 				Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.<br/>

@@ -453,10 +453,10 @@ class j16000showplugins
 						if ($r['PRICE'] == 0)
 							$btn_emphasis = "btn-inverse";
 						
-						$r['ADD_TO_CART_BUTTON'] = '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');">&pound;'.$r['PRICE'].'</button>';
+						$r['ADD_TO_CART_BUTTON'] = '<button id="'.$r['PLUGIN_NAME'].'" class="btn '.$btn_emphasis.'" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');">&pound;'.number_format($r['PRICE'],2).'</button>';
 						}
 					else
-						$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" >&pound;'.$r['PRICE'].'</button>';
+						$r['ADD_TO_CART_BUTTON'] =  '<button id="'.$r['PLUGIN_NAME'].'" class="fg-button ui-state-default ui-corner-all" onClick="addToCart(\''.$r['PLUGIN_NAME'].'\',\''.$r['PRICE'].'\');" >&pound;'.number_format($r['PRICE'],2).'</button>';
 					}
 				else
 					$r['ADD_TO_CART_BUTTON'] = 'Price unknown, unable to query remote server.';

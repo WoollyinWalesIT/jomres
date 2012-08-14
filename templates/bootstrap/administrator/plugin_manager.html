@@ -1,19 +1,28 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <h2 class="page-header">{PAGETITLE}</h2>
-
+<style>
+.fixed-dialog{
+	position: fixed;
+	top:50%; 
+	left:50%;
+}
+</style>
 <div class="row-fluid">
 	<div class="span9">
 		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
-		<div id="cart_wrapper" class="well">
+		<div class="btn btn-primary" onClick="showCart()"><i class="icon-cart icon-white"></i> Show cart</div>
+		<div class="alert alert-info">Prices do not include VAT. If you are liable to pay VAT this will show on your invoice once you have placed your order.</div>
+		<div id="cart_wrapper" class="ui-helper-hidden">
 			<h3 class="page-header"><img src = "{LIVE_SITE}/jomres/images/cart_red_transparent.png"/>Your shopping cart</h3>
+			<p><strong>Total &pound;<span id="total"></span></strong></p>
+			<div class="btn-toolbar"><button id="purchase" class="btn btn-primary" onClick="purchase();">Order plugin(s)</button></div>
 			<div class="row-striped">
 				<form id="cart">
 				</form>
 			</div>
-			<p><strong>Total &pound;<span id="total"></span></strong></p>
-			<div class="btn-toolbar"><button id="purchase" class="btn btn-primary" onClick="purchase();">Order plugin(s)</button></div>
 			<p class="alert alert-warning">Note, if you have a Jomres  Silver or Gold license number, please make sure you've entered it in the <i>Site Configuration -> Misc tab -> Support key</i> field, otherwise you will not be able to download plugins that you are entitled to.</p>
 		</div>
+		<div id="hidden_inputs"  class="ui-helper-hidden"></div>
 		<div id="username_input" style="display:none;">
 			<fieldset>
 			<p class="small">Before you can purchase plugins, you need a Username and Password, which you can get by registering for free at <a href="http://www.jomres.net/my-account/register" target="_blank">Jomres.net</a>.<br/> If you already have a username and password please enter them here. When you've done that, click the Purchase Plugins! button.</p>
