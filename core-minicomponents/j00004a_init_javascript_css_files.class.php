@@ -37,33 +37,28 @@ class j00004a_init_javascript_css_files {
 			}
 		if (defined("JOMRES_JSCALLED") )
 			return;
+
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if (!isset($jrConfig['jquery_ui_theme_detected']))
+			$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css";
 		
-		if (!using_bootstrap())
-			{
-			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-			$jrConfig=$siteConfig->get();
-			if (!isset($jrConfig['jquery_ui_theme_detected']))
-				$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css";
-			
-			$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
-			$subdir = $themeArr[0];
-			$filename = $themeArr[1];
-			if (isset($themeArr[2]))
-				$themePath = $themeArr[2]."/";
-			else
-				$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
-			
-			set_showtime("jquery.ui.theme",$filename);
-			set_showtime("jquery.ui.theme.relpath",$themePath);
-			
-			set_showtime("tables_jui.css","tables_jui.css");
-			set_showtime("tables_jui.css.relpath","jomres/css/");
-			}
+		$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
+		$subdir = $themeArr[0];
+		$filename = $themeArr[1];
+		if (isset($themeArr[2]))
+			$themePath = $themeArr[2]."/";
 		else
+			$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
+		
+		set_showtime("jquery.ui.theme",$filename);
+		set_showtime("jquery.ui.theme.relpath",$themePath);
+		
+		set_showtime("tables_jui.css","tables_jui.css");
+		set_showtime("tables_jui.css.relpath","jomres/css/");
+		
+		if (using_bootstrap())
 			{
-			set_showtime("jquery.ui.theme",'jquery-ui-1.8.16.custom.css');
-			set_showtime("jquery.ui.theme.relpath",'jomres/css/jquery-ui-bootstrap/css/custom-theme/');
-			
 			set_showtime("DT_bootstrap.css","DT_bootstrap.css");
 			set_showtime("DT_bootstrap.css.relpath","jomres/css/");
 			

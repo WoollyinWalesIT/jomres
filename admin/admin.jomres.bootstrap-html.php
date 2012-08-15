@@ -136,14 +136,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		');
 		
 
-		if (!using_bootstrap())
-			{
-			$contentPanel->setcontent('<tr>
-				<td>'._JOMRES_JQUERYTHEME.'</td>
-				<td>'.$jqueryUIthemesDropdownList.'</td>
-				<td>'._JOMRES_JQUERYTHEME_DESC.'</td>
-			</tr>');
-			}
+		$contentPanel->setcontent('
+		<tr>
+			<td>'._JOMRES_JQUERYTHEME.'</td>
+			<td>'.$jqueryUIthemesDropdownList.'</td>
+			<td>'._JOMRES_JQUERYTHEME_DESC.'</td>
+		</tr>');
+
 		$contentPanel->setcontent('<tr>
 			<td>'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
 			<td>'.$language_context_dropdown.'</td>
