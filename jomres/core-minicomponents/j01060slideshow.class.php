@@ -100,7 +100,7 @@ class j01060slideshow {
 			
 			$pageoutput[]=$output;
 			$tmpl    =    new patTemplate();
-			$tmpl->setRoot( $ePointFilepath."templates" );
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->readTemplatesFromInput( 'slideshow.html' );
 			$tmpl->addRows( 'pageoutput', $pageoutput );
 			$tmpl->addRows( 'rows', $rows );
