@@ -53,7 +53,7 @@ class j16000purchase_plugins
 		$response = query_shop($request);
 		if ($response->success)
 			{
-			$output['MESSAGE'] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. Alternatively, you can log in below to purchase. Once you select a payment method the frame will be removed.<br/> When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s).";
+			$output['MESSAGE'] = "Thank you for your purchase, a link to the invoice has been created and emailed to you. Alternatively, you can log in below to purchase. Once you select a payment method the frame will be removed.<br/> When the invoice has been paid you will be able to use the Jomres Plugin Manager to install the plugin(s). If you have ordered only free plugins then no invoice will be created, but you will be able to install them through the plugin manager.";
 			$template = 'purchase_success.html';
 			}
 		else
