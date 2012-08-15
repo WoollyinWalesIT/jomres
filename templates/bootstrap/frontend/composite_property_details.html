@@ -1,5 +1,4 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
 <div id="property_details">
 	<div class="rowfluid">
 		<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
@@ -15,6 +14,7 @@
 				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
 			<patTemplate:tmpl name="roomslistlink" type="simpleCondition" requiredVars="link"  unusedvars="nbsp">
 				<div class="btn-toolbar "><a href="{LINK}" class="btn property_details_buttons">{TEXT}</a></div></patTemplate:tmpl>
+			<div class="btn-toolbar"><a href="{PRINT_LINK}" target="_blank" class="btn property_details_buttons">{COMMON_PRINT}</a></div>
 			<div style="clear:both;"></div>
 			<div>{INLINE_CALENDAR}</div>
 		</div>

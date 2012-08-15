@@ -1869,3 +1869,5 @@ define('_JOMRES_INPUTFILTERING_INPUTS_DESC',"You can define which form inputs wi
 
 define('_JOMRES_PROPERTYDETAILS_INTABS_TITLE',"Property details in tabs?");
 define('_JOMRES_PROPERTYDETAILS_INTABS_DESC',"Set this option to show property details in tabs. Set it to no to show them without tabs.");
+
+define('COMMON_PRINT',"Print");

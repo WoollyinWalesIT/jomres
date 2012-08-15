@@ -850,6 +850,7 @@ class patTemplate
 		
 		$common_strings['COMMON_ACTION']=jr_gettext('COMMON_ACTION',COMMON_ACTION,false);
 		$common_strings['COMMON_VIEW']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
+		$common_strings['COMMON_PRINT']=jr_gettext('COMMON_PRINT',COMMON_PRINT,false);
 		
 		return $common_strings;
 		}
