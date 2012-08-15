@@ -58,8 +58,17 @@ class j00016composite_property_details {
 		$componentArgs['currrent_output']=$output;
 		$MiniComponents->triggerEvent('00035',$componentArgs);
 
-		if ($mrConfig['showOnlyAvailabilityCalendar'])
+			if ($mrConfig['showOnlyAvailabilityCalendar'] == "1")
+				{
+				if (($mrConfig['showAvailabilityCalendar'] && $mrConfig['singleRoomProperty']) )
+					showSingleRoomPropAvl($property_uid);
+				elseif ($mrConfig['showRoomsInPropertyDetails'])
+					{
+					$componentArgs=array('all'=>"all",'property_uid'=>$property_uid);
+					$MiniComponents->triggerEvent('00018',$componentArgs);
+					}
 				return;
+				}
 		
 		$output['SLIDESHOW']=$MiniComponents->miniComponentData['01060']['slideshow']['slideshow'];
 		

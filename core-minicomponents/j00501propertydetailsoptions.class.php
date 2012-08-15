@@ -56,14 +56,6 @@ class j00501propertydetailsoptions {
 		
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
-			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
-				{
-				$configurationPanel->setleft(_JOMRES_COM_A_SHOWONLYAVLCAL);
-				$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
-				$configurationPanel->setright(_JOMRES_COM_A_SHOWONLYAVLCAL_DESC);
-				$configurationPanel->insertSetting();
-				}
-
 			if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) && $mrConfig['singleRoomProperty'] != "1" )
 				{
 				$configurationPanel->setleft(_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS);
