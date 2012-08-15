@@ -153,7 +153,7 @@ class j00017SRPavailabilitycalendar {
 			';
 			}
 			
-		if ( $room_avl_enquiry || $jrConfig['composite_property_details']!="1" || (jomresGetParam( $_REQUEST, 'task', '' )=="dobooking") || $jrConfig['is_single_property_installation'] =="1")
+		if ( $room_avl_enquiry || $jrConfig['composite_property_details']!="1" || (jomresGetParam( $_REQUEST, 'task', '' )=="dobooking") || $jrConfig['is_single_property_installation'] =="1"|| $mrConfig['showOnlyAvailabilityCalendar'] =="1" )
 			{
 			echo $this->retVals;
 			unset($this->retVals);

@@ -140,7 +140,9 @@ class  j00018MRPavailabilitycalendar {
 			</center>
 			';
 			}
-		if ($jrConfig['composite_property_details']!="1" || (jomresGetParam( $_REQUEST, 'task', '' )=="dobooking") || $jrConfig['is_single_property_installation'] =="1")
+			
+			
+		if ($jrConfig['composite_property_details']!="1" || (jomresGetParam( $_REQUEST, 'task', '' )=="dobooking") || $jrConfig['is_single_property_installation'] =="1" || $mrConfig['showOnlyAvailabilityCalendar'] =="1" )
 			{
 			echo $this->retVals;
 			unset($this->retVals);
