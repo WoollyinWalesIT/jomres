@@ -672,7 +672,7 @@ class jomres_obsolete_file_handling
 			}
 		
 		// Old 'jomres' templates directory renamed to 'jqueryui', will help to reduce confusion, so files in the /jomres/templates/jomres will need to be deleted
-		$files_old_jomres_templates = scandir_getfiles_recursive(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres');
+		$files_old_jomres_templates = scandir_getfiles_recursive(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres');
 		foreach ($files_old_jomres_templates as $file)
 			{
 			$this->add_obs_file($file);
