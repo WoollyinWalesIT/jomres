@@ -21,7 +21,7 @@
 				</ul>
 			</div>
 		</div>-->
-		<div class="span3">
+		<div class="span3 hidden-phone">
 			<div class="jomres-compare" align="right">
 				<input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}
 			</div>
@@ -37,12 +37,6 @@
 			<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
 			<p>{PROPERTYDESC}</p>
 			<p class="jomres_message">{LASTMINUTE}</p>
-			<p>
-				<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
-				<a href="{MOREINFORMATIONLINK}" class="btn">{MOREINFORMATION}</a>
-				<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn">{SHORTLIST}</a>
-				<!--<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn hidden-phone">{_JOMRES_QUICK_INFO}</a>-->
-			</p>
 		</div>
 		<div class="span3">
 			<div class="well align-center">
@@ -52,30 +46,39 @@
 			</div>
 		</div>
 	</div>
-</div>		
-
-<patTemplate:comment>
-<div id="effect{UID}" class="hide row-fluid">
-	<div class="span6 well">
-		<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
-		<div>{ROOMTYPES}</div>
-		<div style="clear:both;"></div>
-		<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
-		<div>{FEATURELIST}</div>
-		<div style="clear:both;"></div>
+	<div class="row-fluid">
+		<div class="span2 hidden-phone"></div>
+		<div class="span10">
+			<p>
+				<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
+				<a href="{MOREINFORMATIONLINK}" class="btn">{MOREINFORMATION}</a>
+				<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn hidden-phone">{SHORTLIST}</a>
+				<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn visible-desktop">{_JOMRES_QUICK_INFO}</a>
+			</p>
+		</div>
 	</div>
-	<div class="span6 well">
-		<div><strong>{_JOMRES_REVIEWS}</strong></div>
-		<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
-		<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
-		<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
-		<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+	<div id="effect{UID}" class="hide row-fluid">
+		<div class="span6 well">
+			<div><strong>{_JOMRES_FRONT_ROOMTYPES}</strong></div>
+			<div>{ROOMTYPES}</div>
+			<div style="clear:both;"></div>
+			<div><strong>{_JOMRES_COM_MR_VRCT_ROOM_HEADER_FEATURES}</strong></div>
+			<div>{FEATURELIST}</div>
+			<div style="clear:both;"></div>
+		</div>
+		<div class="span6 well">
+			<div><strong>{_JOMRES_REVIEWS}</strong></div>
+			<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
+			<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
+			<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');" class="visible-desktop">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+			<div>&nbsp;</div>
+			<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
+		</div>
+	</div>
+	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}">
+		<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image" />
 	</div>
 </div>
-<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}">
-	<img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image" />
-</div>
-</patTemplate:comment>
 
 <div class="modal hide" id="module_{RANDOM_IDENTIFIER}_popup">
 	<div class="modal-header">
