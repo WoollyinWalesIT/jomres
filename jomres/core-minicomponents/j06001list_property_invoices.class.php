@@ -171,8 +171,8 @@ class j06001list_property_invoices
 						$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode'],false,true);
 						$r['FREQ']			=$invoice['recur_frequency'];
 						$r['CURRENCYCODE']	=$invoice['currencycode'];
-
-						$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
+						$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
+						$r['EDIT_URL']=JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'];
 						$rows[]=$r;
 						}
 					}
