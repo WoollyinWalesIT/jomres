@@ -84,11 +84,19 @@ class j06000module_popup
 			$output['_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS'] = jr_gettext(_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS,_JOMRES_COM_MR_PROPERTIESLISTING_THISPROPERTYADDRESS,false,false);
 			$output['_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE'] = jr_gettext(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE,_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE,false,false);
 
-			
-			$output['PROPERTY_IMAGE_LARGE']= JOMRES_IMAGELOCATION_RELPATH.$property_image;
-			$output['PROPERTY_IMAGE_MEDIUM']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail_med.jpg";
-			$output['PROPERTY_IMAGE_SMALL']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail.jpg";
-			
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
+				{
+				$output['PROPERTY_IMAGE_LARGE']= JOMRES_IMAGELOCATION_RELPATH.$property_image;
+				$output['PROPERTY_IMAGE_MEDIUM']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail_med.jpg";
+				$output['PROPERTY_IMAGE_SMALL']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail.jpg";
+				}
+			else
+				{
+				$output['PROPERTY_IMAGE_LARGE']=  get_showtime('live_site')."/jomres/images/noimage.gif";
+				$output['PROPERTY_IMAGE_MEDIUM']= get_showtime('live_site')."/jomres/images/noimage.gif";
+				$output['PROPERTY_IMAGE_SMALL']=  get_showtime('live_site')."/jomres/images/noimage.gif";
+
+				}
 			$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 			$rt= doSelectSql($query);
 			if (count($rt)>0)
