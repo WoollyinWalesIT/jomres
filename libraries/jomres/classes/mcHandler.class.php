@@ -67,6 +67,83 @@ class mcHandler {
 			}
 		}
 
+	function asamodule_report()
+		{
+		global $ePointFilepath;
+		$output = array();
+		$pageoutput = array();
+		
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		$mrConfig=getPropertySpecificSettings($property_uid);
+		$eventArgs=null;
+		$mrConfig['editingOn']="1";
+
+		$eventClasses=$this->registeredClasses;
+		$this->template_touch=true;
+		$output['INFO'] = jr_gettext('_JOMRES_CUSTOMTEXT_TOUCHTEMPLATES',"This feature lists all minicomponents that <em>could</em> called by the Jomres ASAModule Joomla module.");
+
+		$rows = array();
+		
+		$asamodule_plugin_information = get_showtime('asamodule_plugin_information');
+		
+		foreach ( $eventClasses as $eClass)
+			{
+			$ePointFilepath=$eClass['filepath'];
+			set_showtime('ePointFilepath',$eClass['filepath']);
+			$classFileSuffix='.class.php';
+			$filename='j'.$eClass['eventPoint'].$eClass['eventName'].$classFileSuffix;
+			if (file_exists($eClass['filepath'].$filename) )
+				{
+				include_once($eClass['filepath'].$filename);
+				if ($this->logging_enbled)
+					$this->log[]=$eClass['filepath'].$filename;
+				$event=new stdClass;
+				$ePoint=$eClass['eventPoint'];
+				$eName=$eClass['eventName'];
+				$eLiveSite=str_replace(JOMRESCONFIG_ABSOLUTE_PATH,get_showtime('live_site'),$eClass['filepath']);
+				$eLiveSite=str_replace(JRDS,"/",$eLiveSite);
+				set_showtime('eLiveSite',$eLiveSite);
+				$event='j'.$ePoint.$eName;
+				$e = new $event($eventArgs);
+				if (array_key_exists($event,$asamodule_plugin_information))
+					{
+					$r=array();
+					$r['EVENT']=$event;
+					$r['TASK']=$asamodule_plugin_information[$event]['asamodule_task'];
+					$r['INFO']=$asamodule_plugin_information[$event]['asamodule_info'];
+					$example_link=$asamodule_plugin_information[$event]['asamodule_example_link'];
+					$manual_link=$asamodule_plugin_information[$event]['asamodule_manual_link'];
+					if (using_bootstrap())
+						{
+						if ($asamodule_plugin_information[$event]['asamodule_example_link'] != "")
+							$r['EXAMPLE_LINK']= '<a href="'.$example_link.'" class="btn" target="_blank">Example link</a>';
+						if ($asamodule_plugin_information[$event]['asamodule_manual_link'] != "")
+							$r['MANUAL_LINK']= '<a href="'.$manual_link.'" class="btn" target="_blank">Manual link</a>';
+						}
+					else
+						{
+						if ($asamodule_plugin_information[$event]['asamodule_example_link'] != "")
+							$r['EXAMPLE_LINK']= '<a href="'.$example_link.'" target="_blank">Example link</a>';
+						if ($asamodule_plugin_information[$event]['asamodule_manual_link'] != "")
+							$r['MANUAL_LINK']= '<a href="'.$manual_link.'" target="_blank">Manual link</a>';
+						}
+					$rows[]=$r;
+					}
+				
+				unset($e);
+				}
+			
+			}
+
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->addRows( 'pageoutput', $pageoutput );
+		$tmpl->addRows( 'rows', $rows );
+		$tmpl->readTemplatesFromInput( 'asamodule_report.html' );
+		$tmpl->displayParsedTemplate();
+		}
+		
 	function touch_templates()
 		{
 		global $ePointFilepath;
