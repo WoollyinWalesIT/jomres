@@ -27,14 +27,6 @@ class j10001control_panel
 		if (AJAXCALL)
 			return;
 		
-		// We're going to silently delete any .js files in the temp dir. This is a basic cleanup, if a server's moved from A to B or an upgrade changes something then we'll delete .js files that might cause problems if they're wrong. Any .js files that don't exist are automatically recreated so this will ensure that the js remains fresh.
-		
-		$javascript_files_in_temp_dir = scandir_getfiles(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS,$extension = "js");
-		foreach ($javascript_files_in_temp_dir as $file)
-			{
-			unlink (JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.$file);
-			}
-		
 		$output = array();
 		$page_output = array();
 		
@@ -176,6 +168,7 @@ class j10001control_panel
 				{
 				if (using_bootstrap())
 					{
+					$state = '';
 					$old_state = filter_var($row->state,FILTER_SANITIZE_SPECIAL_CHARS);
 					switch ($old_state)
 						{
@@ -187,7 +180,7 @@ class j10001control_panel
 						break;
 						case "ui-state-default":
 						default:
-							$state = "alert alert-info";
+							//$state = "alert alert-info";
 						break;
 						}
 					}
@@ -237,7 +230,7 @@ function plugin_check()
 		}
 	if ($messages != "")
 		{
-		$messages = "<p>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need. If in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin. If you do not have a download and support key you can use the Plugin Shop in the Jomres Plugin Manager to purchase plugins.</p>".$messages;
+		$messages = "<hr><p>Note, we have detected that several important plugins are not installed. These plugins are generally considered to be required if you wish to create a booking portal. You do not <i>need</i> these plugins to use the system but you may be missing functionality that you wish to use. You can use the Jomres Plugin Manager to install any plugins you need. If in doubt, check the manual link in the plugin's information panel to see more detailed information about that plugin. If you do not have a download and support key you can use the Plugin Shop in the Jomres Plugin Manager to purchase plugins.</p>".$messages;
 		}
 	return $messages;
 	}
