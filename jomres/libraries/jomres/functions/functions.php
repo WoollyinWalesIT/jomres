@@ -1416,7 +1416,6 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 		}
 	else
 		{
-		
 		$curl_handle=curl_init();
 		curl_setopt($curl_handle,CURLOPT_URL,$updateServer."/".$script."?".$queryString."&jomresver=".$current_version);
 		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);

@@ -23,6 +23,8 @@ class j16000addplugin
 			{
 			$this->template_touchable=false; return;
 			}
+		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
+		$this_jomres_version = explode(".",$mrConfig['version']);
 		$debugging=false;
 		define ("JOMRES_INSTALLER",1);
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
@@ -145,7 +147,8 @@ class j16000addplugin
 				$p='';
 				if (isset($_REQUEST['plugin']))
 					$p="&plugin=".$pluginName;
-					$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&key=".$key_validation->key_hash.$p;
+				
+				$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&key=".$key_validation->key_hash.$p."&jomresver=".$mrConfig['version'];
 
 				if ($debugging) echo $queryServer;
 				
@@ -244,8 +247,7 @@ class j16000addplugin
 					}
 				}
 			
-			include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
-			$this_jomres_version = explode(".",$mrConfig['version']);
+
 			require_once($updateDirPath."unpacked".JRDS."plugin_info.php");
 			$classname = "plugin_info_".$pluginName;
 			$plugin_class = new $classname();
