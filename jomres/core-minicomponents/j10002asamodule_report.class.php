@@ -24,7 +24,8 @@ class j10002asamodule_report
 			$this->template_touchable=true; return;
 			}
 		// Currently disabled, until we decide if this is a good idea
-		
+		return;
+	
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=asamodule_report', 'EditText.png', "ASAModule","/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS" , "developer tools" ,false,false));
 		}
