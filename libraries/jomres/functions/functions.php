@@ -38,12 +38,21 @@ function using_bootstrap()
 	{
 	// Once Joomla 3 includes bootstrap, we will need to move this to the top of this function. For now, whilst J3 doesn't we'll make this switchable via the use_boostrap switch above which is set in Site Config - Misc tab
 	// Users will commonly take Jomres svn changes and apply them without necessarily knowing what they do, with this approach Jomres Core will still be usable before J3 is formally released and Jomres is fully tested against it.
-	if (_JOMRES_DETECTED_CMS == "joomla30")
+	
+	// As of J3A2 Joomla is supplied by default with Beez template as the default template in the frontend. As we don't know if this is how J3 will be delivered in Stable, we need to allow the user to choose whether or not to use the Jomres bootstrap templates. As a result, we can't automatically go "Oh look, we're on J3, we're going to use bootstrap everywhere, it needs to be selected in Jomres Site Config (for now).
+	
+	// if (_JOMRES_DETECTED_CMS == "joomla30")
+		// return true;
+	
+	// J3 administrator area, we use bootstrap
+	if (_JOMRES_DETECTED_CMS == "joomla30" && jomres_cmsspecific_areweinadminarea() )
 		return true;
 	
+	// Joomla 1.5 or 2.5, if we're in admin area, don't use bootstrap
 	if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS != "joomla30")
 		return false;
 		
+	// Now we let the site manager decide if we're using BS
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	if ($jrConfig['use_bootstrap']=="0")
