@@ -1820,8 +1820,8 @@ define('_JOMRES_BOOKINGFORM_LOCK_TITLE',"Lockfile timeout");
 define('_JOMRES_BOOKINGFORM_LOCK_DESC',"To prevent the danger of guests double booking rooms Jomres uses a lockfile to prevent a room from being added to the available rooms list in the booking form if somebody else has already added the room to theirs for the same dates. By default this lock will time out in 3600 seconds, or one hour. You can change the time it takes to expire this lock by changing this figure.");
 
 
-define('_JOMRES_BOOTSTRAPSWITCH',"Enable Twitter Bootstrap templates");
-define('_JOMRES_BOOTSTRAPSWITCH_DESC',"Joomla 2.5 only option. Setting this to Yes will tell Jomres to use it's bootstrap templates (frontend only). In Joomla 3 this option will be hidden and the switch is done automatically.");
+define('_JOMRES_BOOTSTRAPSWITCH',"Enable Jomres' Bootstrap templates and functionality?");
+define('_JOMRES_BOOTSTRAPSWITCH_DESC',"If you are running a bootstrap enabled template in the frontend of this site set this option to Yes.");
 
 define('COMMON_ACTION',"Action");
 define('COMMON_VIEW',"View");
