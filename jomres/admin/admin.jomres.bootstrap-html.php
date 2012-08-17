@@ -73,14 +73,14 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			</thead>
 			<tbody>');
 		
-		if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
-			{
+		//if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
+		//	{
 			$contentPanel->setcontent('<tr>
 				 <td>'._JOMRES_BOOTSTRAPSWITCH.'</td>
 				 <td>'.$lists['use_bootstrap'].'</td>
 				 <td>'._JOMRES_BOOTSTRAPSWITCH_DESC.'</td>
 			</tr>');
-			}
+		//	}
 		
 		if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
 			{
