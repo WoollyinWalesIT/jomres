@@ -1400,8 +1400,9 @@ Does what it says on the tin
 */
 function queryUpdateServer($script,$queryString,$serverType="plugin")
 	{
-	$mrConfig=getPropertySpecificSettings($property_uid);
-
+	include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
+	$current_version = $mrConfig['version'];
+		
 	if ($serverType == "plugin")
 		$updateServer="http://plugins.jomres4.net";
 	else
@@ -1415,8 +1416,9 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 		}
 	else
 		{
+		
 		$curl_handle=curl_init();
-		curl_setopt($curl_handle,CURLOPT_URL,$updateServer."/".$script."?".$queryString."&jomresver=".$mrConfig['version']);
+		curl_setopt($curl_handle,CURLOPT_URL,$updateServer."/".$script."?".$queryString."&jomresver=".$current_version);
 		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
 		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
 		$response = trim(curl_exec($curl_handle));
