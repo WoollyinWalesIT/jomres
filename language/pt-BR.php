@@ -559,7 +559,7 @@ define('_JOMRES_A_GLOBAL_SEARCHOPTION','Selecione o plugin de busca que deseja u
 define('_JOMRES_FRONT_NORESULTS','<b>Desculpe, nenhum resultado encontrado. Por favor tente novamente .</b>');
 define('_JOMRES_AREYOUSURE','Confirma?');
 // Translate from here
-define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Book a room');
+define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Book now!');
 define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Book this property');
 define('_JOMRES_COM_MR_DISPGUEST_CCV','Security number');
 //v1.4c
