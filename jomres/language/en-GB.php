@@ -442,7 +442,7 @@ define('_JOMRES_COM_A_CURRENCYSYMBOL','Currency symbol');
 define('_JOMRES_COM_A_CURRENCYSYMBOL_DESC','Eg &amp;pound&#59; Please note that you should use the HTML entities code for the required symbol. For a list of these entities please visit <a href="http://www.w3schools.com/tags/ref_entities.asp">w3schools</a>');
 define('_JOMRES_COM_A_CURRENCYCODE','Currency code');
 define('_JOMRES_COM_A_CURRENCYCODE_DESC','Eg GBP. This is used in the email to the customer confirming their booking.');
-define('_JOMRES_COM_A_CLICKFORMOREINFORMATION','More info');
+define('_JOMRES_COM_A_CLICKFORMOREINFORMATION','Read more');
 define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO','Limit advance bookings?');
 define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC','Set this to yes if you want to limit advance bookings (use the next field to set the limit in terms of days). If you do set this to yes then if the user tries to book more than n days in advance then their arrival date will be restored to todays date');
 define('_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS','Days advanced bookings limited to:');
@@ -537,7 +537,7 @@ define('_JOMRES_A_GLOBAL_SEARCHOPTION','Select the search plugin that you want t
 define('_JOMRES_FRONT_NORESULTS','<b>Sorry, your search did not return any results. Please modify your search and try again.</b>');
 define('_JOMRES_AREYOUSURE','Are you sure you wish to do this?');
 define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Book a resource');
-define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Book now');
+define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Book now!');
 define('_JOMRES_COM_MR_DISPGUEST_CCV','Security number');
 define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE','Show tariffs inline?');
 define('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS','Address');
