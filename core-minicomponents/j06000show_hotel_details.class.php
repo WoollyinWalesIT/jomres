@@ -25,7 +25,11 @@ class j06000show_hotel_details
 			}
 		$output=array();
 				
-		$property_uid= (int)$componentArgs['property_uid'];
+		if (isset($_REQUEST['id']))
+			$property_uid = (int)$_REQUEST['id'];
+		else
+			$property_uid= (int)$componentArgs['property_uid'];
+			
 		if ($property_uid ==0)
 			{
 			$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
@@ -69,6 +73,10 @@ class j06000show_hotel_details
 		$tmpl->readTemplatesFromInput( 'show_hotel_details.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$this->retVals=$tmpl->getParsedTemplate();
+		
+		if (isset($_REQUEST['id']))
+			echo $this->retVals;
+		
 		}
 	
 	
