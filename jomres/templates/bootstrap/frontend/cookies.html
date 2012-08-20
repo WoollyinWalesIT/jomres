@@ -1,11 +1,4 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<style>
-.cookiePane {
-    margin: 5px auto;
-    padding: 5px 10px;
-    width: 500px;
-}
-</style>
 <script type="text/javascript">
 <!--
 function setCookie(c_name, value, expiredays) {
@@ -42,24 +35,25 @@ function getCookie(c_name) {
 			} 
 		else {
 			$('.cookiePane').show();
-			$('.slidingDiv').hide();
-			$('.show_hide').show();
-			$('.show_hide').click(function () {
-				$('.slidingDiv').slideToggle();
-				});
+			//$('.slidingDiv').hide();
+			//$('.show_hide').show();
+			//$('.show_hide').click(function () {
+				//$('.slidingDiv').slideToggle();
+				//});
 			} //end if
 		});
 	})(jomresJquery);
 //-->
 </script>
 
-<div class="cookiePane ui-widget-content ui-corner-all ui-helper-clearfix" id="cookiePane">
-	<div class="ui-state-highlight ui-corner-all" style="padding:5px;font-size:16px;font-weight:bold;">{_JOMRES_COOKIEPOLICY_1}</div>
-	<p>{_JOMRES_COOKIEPOLICY_2} <a href="#" class="show_hide">{_JOMRES_COOKIEPOLICY_3}</a></p>
-	<div class="slidingDiv">
+<div class="cookiePane alert alert-block" id="cookiePane">
+	<h4 class="alert-heading">{_JOMRES_COOKIEPOLICY_1}</h4>
+	<p>{_JOMRES_COOKIEPOLICY_2}</p>
+	<a href="#" class="show_hide btn btn-warning btn-toolbar" data-toggle="collapse" data-target=".slidingDiv">{_JOMRES_COOKIEPOLICY_3}</a>
+	<div class="slidingDiv collapse">
 		<p>{_JOMRES_COOKIEPOLICY_4}</p>
 		<p>{_JOMRES_COOKIEPOLICY_5}</p>
-		<p><a href="#" id="acceptCookies">{_JOMRES_COOKIEPOLICY_6}</a></p>
+		<p><a href="#" id="acceptCookies" class="btn btn-warning btn-toolbar">{_JOMRES_COOKIEPOLICY_6}</a></p>
 	</div>
 </div>
 </patTemplate:tmpl>
