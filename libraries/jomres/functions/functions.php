@@ -5287,6 +5287,18 @@ class dummy_params_class
 		}
 	}
 
+/**
+#
+ * Returns the guest details from the tmpguests session data
+#
+*/
+ function getbookingguestdata()
+	{
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$userDeets=$tmpBookingHandler->getGuestData();
+	return $userDeets;
+	}
+
 /* 
 function jomres_search_dir($path, $pattern)
 	{
@@ -5419,17 +5431,6 @@ function jomres_check_email_address($email)
 	return true;
 	} */
 
-/**
-#
- * Returns the guest details from the tmpguests session data
-#
-*/
-/* function getbookingguestdata()
-	{
-	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
-	$userDeets=$tmpBookingHandler->getGuestData();
-	return $userDeets;
-	} */
 
 /* function jomres_makeColourPickerInput($setting,$value)
 	{
