@@ -298,6 +298,9 @@ class j01010listpropertys {
 				$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$p->id,$p->ptype,false,false);
 				}
 			$class_counter=0;
+			
+			$featured_properties = get_showtime("featured_properties");
+			
 			if (count($propertyDeets) >0)
 				{
 				$property_details=array();
@@ -317,6 +320,7 @@ class j01010listpropertys {
 						$property_deets=array();
 						set_showtime('property_uid',$property->propertys_uid);
 
+							
 						$customTextObj->get_custom_text_for_property($property->propertys_uid);
 
 						$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
@@ -330,7 +334,14 @@ class j01010listpropertys {
 						$ptown=stripslashes($property->property_town);
 						$stars=$property->stars;
 						$propertyDesc=strip_tags(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION',$property->property_description,false,false ));
-
+						
+						if (in_array($property->propertys_uid,$featured_properties))
+							{
+							if (!isset($jrConfig['featured_listings_emphasis']))
+								$jrConfig['featured_listings_emphasis'] = "alert alert-info";
+							$property_deets['FEATURED_LISTINGS_CLASS']=$jrConfig['featured_listings_emphasis'];
+							}
+						
 						if ($jrConfig['use_reviews'] =="1")
 							{
 							$Reviews->property_uid = $property->propertys_uid;
