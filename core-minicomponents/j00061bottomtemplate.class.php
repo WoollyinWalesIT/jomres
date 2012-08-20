@@ -26,9 +26,39 @@ class j00061bottomtemplate {
 		if (AJAXCALL)
 			return;
 		$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
-		
-		$pageoutput = array( array('BACKTOTOP'=>jr_gettext('BACKTOTOP',BACKTOTOP,false)));
 
+		$output=array();
+		
+		if (using_bootstrap())
+			{
+			$output['RADIO_BUTTON_JAVASCRIPT'] = '
+			<!-- Joomla 3 frontend doesn\'t yet have this, and Jomres needs it for the property config (among others). Put in for now, will see if we need to remove it when Alpha 2 is released -->
+
+			<script>
+				(function($){
+					// Turn radios into btn-group
+					$(\'.radio.btn-group label\').addClass(\'btn\')
+					$(".btn-group label:not(.active)").click(function(){
+						var label = $(this);
+						var input = $(\'#\' + label.attr(\'for\'));
+
+						if (!input.prop(\'checked\')){
+							label.closest(\'.btn-group\').find("label").removeClass(\'active btn-primary\');
+							label.addClass(\'active btn-primary\');
+							input.prop(\'checked\', true);
+						}
+					});
+					$(".btn-group input[checked=checked]").each(function(){
+						$("label[for=" + $(this).attr(\'id\') + "]").addClass(\'active btn-primary\');
+					});
+				})(jQuery);
+			</script>';
+			}
+		$output['BACKTOTOP']=jr_gettext('BACKTOTOP',BACKTOTOP,false);
+		
+		
+		$pageoutput[] = $output;
+		
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		if ($management_view)
@@ -37,6 +67,7 @@ class j00061bottomtemplate {
 			$tmpl->readTemplatesFromInput( 'bottom.html');
 		$tmpl->addRows( 'pageoutput', $pageoutput );
 		$tmpl->displayParsedTemplate();
+
 		}
 
 	function touch_template_language()
