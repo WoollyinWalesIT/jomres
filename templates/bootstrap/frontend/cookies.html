@@ -5,7 +5,6 @@ function setCookie(c_name, value, expiredays) {
 	var exdate=new Date();
 	exdate.setDate(exdate.getDate() + expiredays);
 	var c_value=escape(value) + ((expiredays==null) ? "" : "; expires="+exdate.toUTCString()+"; path=/");
-	console.log(c_value);
 	document.cookie=c_name + "=" + c_value;
 	}
 
@@ -22,38 +21,34 @@ function getCookie(c_name) {
 	return "";
 	}
 
-(function ($) {
-	$(function () {
-		$('#acceptCookies').click(function () {
-			setCookie('jomresCookiePermission', 'True', 730);
-			$(".cookiePane").hide();
-			});
-		$('.cookiePane').show();
-		var theCookie = getCookie("jomresCookiePermission");
-		if (theCookie != "") {
-			$('.cookiePane').hide();
-			} 
-		else {
-			$('.cookiePane').show();
-			//$('.slidingDiv').hide();
-			//$('.show_hide').show();
-			//$('.show_hide').click(function () {
-				//$('.slidingDiv').slideToggle();
-				//});
-			} //end if
-		});
-	})(jomresJquery);
-//-->
+function accept_cookies() {
+	setCookie('jomresCookiePermission', 'True', 730);
+	jomresJquery('.cookiePane').hide();
+	return "";
+	}
+
+jomresJquery(document).ready(function () {
+	var theCookie = getCookie('jomresCookiePermission');
+	if (theCookie != "") {
+		jomresJquery('.cookiePane').hide();
+		} 
+	else {
+		jomresJquery('.cookiePane').show();
+		}
+	});
+-->
 </script>
 
-<div class="cookiePane alert alert-block" id="cookiePane">
-	<h4 class="alert-heading">{_JOMRES_COOKIEPOLICY_1}</h4>
-	<p>{_JOMRES_COOKIEPOLICY_2}</p>
-	<a href="#" class="show_hide btn btn-warning btn-toolbar" data-toggle="collapse" data-target=".slidingDiv">{_JOMRES_COOKIEPOLICY_3}</a>
-	<div class="slidingDiv collapse">
-		<p>{_JOMRES_COOKIEPOLICY_4}</p>
-		<p>{_JOMRES_COOKIEPOLICY_5}</p>
-		<p><a href="#" id="acceptCookies" class="btn btn-warning btn-toolbar">{_JOMRES_COOKIEPOLICY_6}</a></p>
+<div class="cookiePane">
+	<div class="alert alert-block">
+		<h4 class="alert-heading">{_JOMRES_COOKIEPOLICY_1}</h4>
+		<p>{_JOMRES_COOKIEPOLICY_2}</p>
+		<a href="javascript:void();" class="btn btn-warning btn-toolbar" data-toggle="collapse" data-target=".slidingDiv">{_JOMRES_COOKIEPOLICY_3}</a>
+		<div class="slidingDiv collapse">
+			<p>{_JOMRES_COOKIEPOLICY_4}</p>
+			<p>{_JOMRES_COOKIEPOLICY_5}</p>
+			<p><a href="javascript:void();" id="acceptCookies" class="btn btn-warning btn-toolbar" onclick="accept_cookies();">{_JOMRES_COOKIEPOLICY_6}</a></p>
+		</div>
 	</div>
 </div>
 </patTemplate:tmpl>
