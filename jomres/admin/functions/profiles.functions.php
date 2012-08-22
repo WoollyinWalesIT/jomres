@@ -67,7 +67,7 @@ function editProfile()
 		$managersToPropertyArray[]=(int)$x->property_uid;
 		}
 		
-	$query="SELECT propertys_uid,property_name FROM #__jomres_propertys";
+	$query="SELECT propertys_uid,property_name FROM #__jomres_propertys ORDER BY property_name";
 	$propertyList = doSelectSql($query);
 	foreach ($propertyList as $property)
 		{
