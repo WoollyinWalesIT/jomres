@@ -19,6 +19,12 @@ class jomres_database
 	{
 	function jomres_database()
 		{
+		// Check if magic_quotes_runtime is active
+		if(get_magic_quotes_runtime())
+			{
+			// Deactivate
+			@set_magic_quotes_runtime(false);
+			}
 		$this->system_tables=array();
 		$this->error = null;
 		$this->result=null;
