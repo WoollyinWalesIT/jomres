@@ -234,6 +234,7 @@ if (!AUTO_UPGRADE) showfooter();
 if (AUTO_UPGRADE) echo "1";
 
 
+	
 // This function added to help us to understand installation success/failure to see if there are any changes needed to improve the behaviour of the installer. 
 // We are only interested in tracking that the installation completed successfully, so there's no need to trigger this on upgrade
 function track_installation_upgrade()
@@ -438,9 +439,33 @@ function doTableUpdates()
 	
 	if (!checkAccessControlTableExists() )
 		createAccessControlTable();
-	
+		
+	if (!checkInvoicesGuestidColExists() )
+		alterInvoicesGuestidCol();
+		
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function checkInvoicesGuestidColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomresportal_invoices LIKE 'guest_id'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterInvoicesGuestidCol()
+	{
+	if (!AUTO_UPGRADE) echo  "Editing __jomresportal_invoices table adding guest_id column<br>";
+	$query = "ALTER TABLE `#__jomresportal_invoices` ADD `guest_id` int(11) NOT NULL DEFAULT '0' AFTER `cms_user_id` ";
+	if (!doInsertSql($query,'') )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomresportal_invoices guest_id</b><br>";
+		}
 	}
 
 function createAccessControlTable()
@@ -1798,6 +1823,7 @@ function createJomresTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
+		`guest_id` int(11) NOT NULL DEFAULT '0'
 		`status` tinyint(4) NOT NULL default '0',
 		`raised_date` datetime,
 		`due_date` datetime,

@@ -106,24 +106,24 @@ class j02220listguests {
 		$guestList =doSelectSql($query);
 		if (count($guestList)==0)
 			return;
-		$mos_userids = array();
+		$guest_userids = array();
 		foreach($guestList as $guest)
 			{
-			$mos_userids[]=$guest->mos_userid;
+			$guest_userids[]=$guest->guests_uid;
 			}
 		
 		$invoices = array();
-		$gor= genericOr($mos_userids ,'cms_user_id');
-		$query = "SELECT cms_user_id,id FROM #__jomresportal_invoices WHERE ".$gor;
+		$gor= genericOr($guest_userids ,'guest_id');
+		$query = "SELECT guest_id,id FROM #__jomresportal_invoices WHERE ".$gor;
 		$result =doSelectSql($query);
 		if (count($result)>0)
 			{
 			foreach ($result as $r)
 				{
-				$invoices[$r->cms_user_id] = $r->id;
+				$invoices[$r->guest_id] = $r->id;
 				}
 			}
-		
+
 		$surnameFirstCharArray=array();
 		$editIcon='<IMG SRC="'.JOMRES_SITEPAGE_URL.'/administrator/images/edit_f2.png" border="0" width="'.$mrConfig['editiconsize'].'" height="'.$mrConfig['editiconsize'].'">';
 
@@ -135,7 +135,7 @@ class j02220listguests {
 				{
 				$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
-				
+				$rw=array();
 				$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
 				$link=JOMRES_SITEPAGE_URL.'&task=editGuest&guestUid='.($guest->guests_uid);
 				$targetTask='bookGuestIn';
@@ -143,11 +143,11 @@ class j02220listguests {
 				$jrtb .= $jrtbar->endTable();
 				$rw['EDITLINK']=$jrtb;
 
-				if (array_key_exists($guest->mos_userid,$invoices) )
+				if (array_key_exists($guest->guests_uid,$invoices) && (int)$guest->guests_uid != 0)
 					{
 					$jrtb  = $jrtbar->startTable();
 					$text=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,$editable=false,$isLink=true) ;
-					$link=JOMRES_SITEPAGE_URL.'&task=list_guests_invoices&id='.($guest->mos_userid);
+					$link=JOMRES_SITEPAGE_URL.'&task=list_guests_invoices&id='.($guest->guests_uid);
 					$targetTask='';
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$invoice_image);
 					$jrtb .= $jrtbar->endTable();

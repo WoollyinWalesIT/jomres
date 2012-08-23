@@ -52,6 +52,7 @@ class j03025insertbooking_invoice {
 		
 		jr_import('invoicehandler');
 		
+		$guest_id						= $componentArgs['guests_uid'];
 		$single_person_suppliment		= $tmpBookingHandler->getBookingFieldVal("single_person_suppliment");
 		$deposit_required				= $tmpBookingHandler->getBookingFieldVal("deposit_required");
 		$extras							= $tmpBookingHandler->getBookingFieldVal("extras");
@@ -294,14 +295,14 @@ class j03025insertbooking_invoice {
 			{
 			$invoice_data= array();
 			$invoice_data['cms_user_id']=$tmpBookingHandler->tmpguest['mos_userid'];
+			
+			$invoice_data['guest_id']=$guest_id;
 			$invoice_data['subscription']=false;
 			
-
 			if ($jrConfig['useGlobalCurrency'] == "1")
 				$invoice_data['currencycode'] = $jrConfig['globalCurrencyCode'];
 			else
 				$invoice_data['currencycode'] = $mrConfig['property_currencycode'];
-
 			
 			$invoice_handler = new invoicehandler();
 			$invoice_handler->contract_id=$contract_uid;

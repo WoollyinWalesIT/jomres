@@ -87,7 +87,7 @@ class j00005asamodule_report_tasks {
 			array(
 				"asamodule_task"=>"show_hotel_details",
 				"asamodule_info"=>"A direct link to the hotel contact details page.",
-				"asamodule_example_link"=>JOMRES_SITEPAGE_URL_NOSEF.'&tmpl=component&topoff=1&task=show_hotel_details&id='.$property_uid,
+				"asamodule_example_link"=>JOMRES_SITEPAGE_URL_NOSEF.'&tmpl=component&topoff=1&task=show_hotel_details&property_uid='.$property_uid,
 				"asamodule_manual_link"=>''
 				);
 				

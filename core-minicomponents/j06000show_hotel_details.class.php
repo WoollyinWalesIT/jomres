@@ -25,11 +25,11 @@ class j06000show_hotel_details
 			}
 		$output=array();
 				
-		if (isset($_REQUEST['id']))
-			$property_uid = (int)$_REQUEST['id'];
+		if (isset($_REQUEST['property_uid']))
+			$property_uid = (int)$_REQUEST['property_uid'];
 		else
 			$property_uid= (int)$componentArgs['property_uid'];
-			
+
 		if ($property_uid ==0)
 			{
 			$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
@@ -43,6 +43,7 @@ class j06000show_hotel_details
 				return;
 				}
 			}
+
 
 		$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		$basic_property_details->gather_data($property_uid);
