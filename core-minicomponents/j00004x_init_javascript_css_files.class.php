@@ -100,6 +100,8 @@ class j00004x_init_javascript_css_files {
 				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
 
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.easing.compatibility.js.relpath"),get_showtime("jquery.easing.compatibility.js"));
+					
 				if ($thisJRUser->userIsRegistered)
 					{
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js"));
