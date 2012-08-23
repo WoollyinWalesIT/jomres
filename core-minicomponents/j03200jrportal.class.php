@@ -38,7 +38,7 @@ class j03200jrportal {
 		$booking->property_uid			= $property_uid;
 		$booking->guest_id				= $guests_uid;
 		$booking->affiliate_id			= '';
-		$booking->invoice_id			= 0;
+		$booking->invoice_id			= get_showtime("inserted_booking_invoice_id");
 		$booking->booking_total			= $contract_total;
 		$booking->contract_id			= $contract_uid;
 		$booking->tag					= $cartnumber;

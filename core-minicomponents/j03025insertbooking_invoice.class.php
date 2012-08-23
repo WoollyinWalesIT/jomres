@@ -316,6 +316,7 @@ class j03025insertbooking_invoice {
 				$invoice_handler->mark_invoice_paid();
 			$query = "UPDATE #__jomres_contracts SET invoice_uid = ".$invoice_handler->id." WHERE contract_uid = ".$contract_uid;
 			doInsertSql($query,"");
+			set_showtime("inserted_booking_invoice_id",$invoice_handler->id);
 			$this->results=array("invoice_id"=>$invoice_handler->id);
 			}
 
