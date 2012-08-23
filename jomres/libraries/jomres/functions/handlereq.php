@@ -422,9 +422,6 @@ if ($field != "heartbeat" && $field != "show_log")
 					}
 				}
 
-			
-			
-
 			if ($jrConfig['show_tax_in_totals_summary'] == "1")
 				{
 				echo '; populateDiv("room_total_ex_tax","'.output_price($bkg->room_total_ex_tax).'")';
