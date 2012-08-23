@@ -102,8 +102,8 @@ class j00015viewproperty
 
 			$rtRows=array();
 			$roomtypes=array();
-			if ($mrConfig['singleRoomProperty'] != "1")
-				{
+			//if ($mrConfig['singleRoomProperty'] != "1")
+			//	{
 				
 				$RoomClassAbbvs = array();
 				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
@@ -144,7 +144,7 @@ class j00015viewproperty
 							}
 						}
 					}
-				}
+			//	}
 
 			if ($mrConfig['showSlideshowInline']=="1" && ($jrConfig['slideshowLocation'] == 1 || $jrConfig['slideshowLocation'] == 3 ))
 				{
