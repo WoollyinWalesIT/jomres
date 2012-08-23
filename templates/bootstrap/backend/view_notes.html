@@ -1,12 +1,16 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<table width="100%" border="0" class="table-condensed">
-	<patTemplate:tmpl name="rows" unusedvars="nbsp">
-	<tr>
-		<td>{DATETIME}</td>
-		<td>{NOTE}</td>
-		<td><a href="{EDITLINK}" class="btn btn-info"><i class="icon-edit icon-white "></i> {EDITTEXT}</a></td>
-		<td><a href="{DELETELINK}" class="btn btn-danger"><i class="icon-remove icon-white "></i> {DELETETEXT}</a></td>
-	</tr>
+<div class="row-striped">
+	<patTemplate:tmpl name="rows" unusedvars="strip">
+	<div class="row-fluid">
+		<div class="span2">{DATETIME}</div>
+		<div class="span6">{NOTE}</div>
+		<div class="span4">
+			<div class="btn-toolbar">
+				<a href="{EDITLINK}" class="btn btn-info"><i class="icon-edit icon-white "></i> {EDITTEXT}</a>
+				<a href="{DELETELINK}" class="btn btn-danger"><i class="icon-remove icon-white "></i> {DELETETEXT}</a>
+			</div>
+		</div>
+	</div>
 	</patTemplate:tmpl>
-</table>
+</div>
 </patTemplate:tmpl>
