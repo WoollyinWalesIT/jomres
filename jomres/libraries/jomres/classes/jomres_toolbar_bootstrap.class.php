@@ -208,9 +208,9 @@ class jomres_toolbar_bootstrap
 		
 		
 		if ($submitOnClick)
-			$submit='<a class="btn btn-group ' .$emphasis.'" href="javascript:jomres_submitbutton(\''.$submitTask.'\');"><i class="'.$icon.'"></i> '.$text.'</a>';
+			$submit='<a class="btn ' .$emphasis.'" href="javascript:jomres_submitbutton(\''.$submitTask.'\');"><i class="'.$icon.'"></i> '.$text.'</a> ';
 		else
-			$submit='<a href="'.$link.'" class="btn btn-group ' .$emphasis.'"><i class="'.$icon.'"></i> '.$text.'</a>';
+			$submit='<a href="'.$link.'" class="btn ' .$emphasis.'"><i class="'.$icon.'"></i> '.$text.'</a> ';
 		$output=$submit;
 		return $output;
 		}

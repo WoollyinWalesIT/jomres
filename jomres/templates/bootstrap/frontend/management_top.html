@@ -6,8 +6,9 @@
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 -35px 35px rgba(255, 255, 255, 0.6);
     padding: 2px 10px;
 }
-#jomres_status .btn-toolbar, #jomres_status p {
+#jomres_status {
     margin: 0;
+	padding:8px 10px 0;
 }
 body {
 	padding-top: 40px !important;
@@ -53,14 +54,8 @@ body {
 	</div>
 </div>
 <div id="jomres_status" class="navbar navbar-fixed-bottom hidden-phone">
-	<div class="btn-toolbar">
-		<div class="btn-group pull-right">
-			<p>Copyright: &copy; 2005 - 2012 Vince Wooll</p>
-		</div>
-		<div class="btn-group">
-			<i class="icon-share-alt"></i> {MANAGEMENT_VIEW_DROPDOWN}
-		</div>
-	</div>
+	<p class="pull-right">Copyright: &copy; 2005 - 2012 Vince Wooll</p>
+	<i class="icon-share-alt"></i> {MANAGEMENT_VIEW_DROPDOWN}
 </div>
 {SANITY_CHECKS}
 <div class="container-fluid management-wrapper">

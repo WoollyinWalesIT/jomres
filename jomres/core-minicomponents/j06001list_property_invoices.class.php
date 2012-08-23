@@ -61,8 +61,8 @@ class j06001list_property_invoices
 				}
 			
 
-			if (count($invoices)>0)
-				{
+			//if (count($invoices)>0)
+				//{
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
@@ -186,7 +186,7 @@ class j06001list_property_invoices
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->addRows( 'rows',$rows);
 				$tmpl->displayParsedTemplate();
-				}
+				//}
 			}
 		}
 	

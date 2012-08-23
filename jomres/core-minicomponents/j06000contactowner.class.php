@@ -77,7 +77,8 @@ class j06000contactowner {
 		$current_property_details->gather_data($property_uid);
 
 		$output=array();
-		$output['SUBJECT'] = ucfirst(_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE.$current_property_details->property_name);
+		$output['PAGETITLE'] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL,false,false);
+		$output['SUBJECT'] = jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE,false,false).$current_property_details->property_name;
 		$output['ENQUIRY'] = jomresGetParam( $_REQUEST, 'enquiry', jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY));
 
 		$output['GUEST_NAME'] = jomresGetParam( $_REQUEST, 'guest_name', '' );

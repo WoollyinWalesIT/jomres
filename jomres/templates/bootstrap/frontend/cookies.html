@@ -1,4 +1,7 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<style type="text/css">
+.slidingDiv{margin-top:5px;}
+</style>
 <script type="text/javascript">
 <!--
 function setCookie(c_name, value, expiredays) {
@@ -43,11 +46,11 @@ jomresJquery(document).ready(function () {
 	<div class="alert alert-block">
 		<h4 class="alert-heading">{_JOMRES_COOKIEPOLICY_1}</h4>
 		<p>{_JOMRES_COOKIEPOLICY_2}</p>
-		<a href="javascript:void();" class="btn btn-warning btn-toolbar" data-toggle="collapse" data-target=".slidingDiv">{_JOMRES_COOKIEPOLICY_3}</a>
+		<p><a href="javascript:void();" class="btn btn-warning" data-toggle="collapse" data-target=".slidingDiv">{_JOMRES_COOKIEPOLICY_3}</a></p>
 		<div class="slidingDiv collapse">
 			<p>{_JOMRES_COOKIEPOLICY_4}</p>
 			<p>{_JOMRES_COOKIEPOLICY_5}</p>
-			<p><a href="javascript:void();" id="acceptCookies" class="btn btn-warning btn-toolbar" onclick="accept_cookies();">{_JOMRES_COOKIEPOLICY_6}</a></p>
+			<p><a href="javascript:void();" id="acceptCookies" class="btn btn-warning" onclick="accept_cookies();">{_JOMRES_COOKIEPOLICY_6}</a></p>
 		</div>
 	</div>
 </div>
