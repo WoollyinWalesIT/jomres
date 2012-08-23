@@ -1538,6 +1538,21 @@ class dobooking
 		return count($result);
 		}
 
+	function getNumberOfGuestsSelected()
+		{
+		$result=$this->getVariantsOfType('guesttype');
+		$qty = 0;
+		if (count($result)>0)
+			{
+			foreach ($result as $r)
+				{
+				$qty = $qty + $r['qty'];
+				}
+			
+			}
+		return $qty;
+		}
+	
 	/**
 	#
 	 * Guest type variants:  return the details of a given guest type when passed it's id
@@ -1643,7 +1658,11 @@ class dobooking
 				else
 					$defNo=0;
 				}
-			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( 0, $ct->maximum, 1, 'guesttype'.$ct->id, 'size="1" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
+			$default_start = 1;
+			if (count($exList)>1)
+				$default_start = 0;
+			
+			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( $default_start, $ct->maximum, 1, 'guesttype'.$ct->id, 'size="1" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
 			$customerTypes['FIELDNAME']=  'guesttype'.$ct->id;
 			$cust[]=$customerTypes;
 			}
