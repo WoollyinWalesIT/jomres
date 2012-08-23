@@ -19,6 +19,7 @@ class jrportal_invoice
 		{
 		$this->id					= 0;
 		$this->cms_user_id			= 0;
+		$this->guest_id				= 0;
 		$this->status				= 0;
 		$this->raised_date			= '';
 		$this->due_date				= '';
@@ -40,7 +41,7 @@ class jrportal_invoice
 		if ($this->id > 0 )
 			{
 			$query = "SELECT
-				`id`,`cms_user_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
+				`id`,`cms_user_id`,`guest_id`,`status`,`raised_date`,`due_date`,`paid`,`subscription`,`init_total`,
 				`recur_total`,`recur_frequency`,`recur_dayofmonth`,`currencycode`,`subscription_id`,`contract_id`,`property_uid`,`is_commission`
 				FROM #__jomresportal_invoices WHERE `id`='$this->id' LIMIT 1";
 
@@ -51,6 +52,7 @@ class jrportal_invoice
 					{
 					$this->id					= $r->id;
 					$this->cms_user_id			= $r->cms_user_id;
+					$this->guest_id				= $r->guest_id;
 					$this->status				= $r->status;
 					$this->raised_date			= $r->raised_date;
 					$this->due_date				= $r->due_date;
@@ -98,6 +100,7 @@ class jrportal_invoice
 			$query="INSERT INTO #__jomresportal_invoices
 				(
 				`cms_user_id`,
+				`guest_id`,
 				`status`,
 				`raised_date`,
 				`due_date`,
@@ -116,6 +119,7 @@ class jrportal_invoice
 				VALUES
 				(
 				'$this->cms_user_id',
+				'$this->guest_id',
 				'$this->status',
 				'$this->raised_date',
 				'$this->due_date',
@@ -153,6 +157,7 @@ class jrportal_invoice
 			{
 			$query="UPDATE #__jomresportal_invoices SET
 				`cms_user_id`		= '$this->cms_user_id',
+				`guest_id`			= '$this->guest_id',
 				`status`			= '$this->status',
 				`raised_date`		= '$this->raised_date',
 				`due_date`			= '$this->due_date',

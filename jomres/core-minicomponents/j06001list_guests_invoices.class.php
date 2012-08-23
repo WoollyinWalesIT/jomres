@@ -49,7 +49,8 @@ class j06001list_guests_invoices
 				break;
 				}
 
-			$invoices=invoices_getinvoicesfor_juser_byproperty_uid($id,$stat,$defaultProperty);
+			$invoices=invoices_getinvoicesfor_jomresuserid_byproperty_uid($id,$stat,$defaultProperty);
+			
 			if (count($invoices)>0)
 				{
 				$output=array();

@@ -49,6 +49,8 @@ class invoicehandler extends jrportal_invoice
 			}
 			
 		$this->cms_user_id= (int)$invoice_data['cms_user_id'];
+		$this->guest_id= (int)$invoice_data['guest_id'];
+		
 		if (!isset($invoice_data['is_commission']))
 			$this->is_commission= 0;
 		else

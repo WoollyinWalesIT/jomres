@@ -88,8 +88,8 @@ class j06005view_invoice {
 				$query="SELECT guests_uid FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."'  AND property_uid = '".(int)$invoice->property_uid."'";
 				$guest_uid =doSelectSql($query,1);
 
-				$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6005','show_guest_details',array('guest_uid'=>$guest_uid));
-				$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('6000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
+				$output['CLIENT_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('06005','show_guest_details',array('guest_uid'=>$guest_uid));
+				$output['BUSINESS_DETAILS_TEMPLATE'] = $MiniComponents->specificEvent('06000','show_hotel_details',array('property_uid'=>$invoice->property_uid));
 				}
 			else // Let's check that this property manager can view this commission/subscription invoice
 				{
