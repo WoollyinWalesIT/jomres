@@ -38,14 +38,13 @@ class jomres_tooltips
 		$keeplooking=true;
 		$beautyTip_opacity = .9;
 		// Just in the off-chance that we supply the same div name twice
-		$div="jrTooltip".preg_replace('/[^A-Za-z0-9_-]+/', "", $div);
-		if (strlen($div)==0)
-			$div=generateJomresRandomString(10);
+		//$div="jrTooltip".preg_replace('/[^A-Za-z0-9_-]+/', "", $div);
+		$div=generateJomresRandomString(10);
 		while ($keeplooking):
 			if (is_null($this->divs[$div]))
 				$keeplooking=false;
 			else
-			$div=$div.mt_rand ( 10000000,99999999 );
+				$div=$div.mt_rand ( 10000000,99999999 );
 		endwhile;
 		
 		$this->divs[$div]=$div;
@@ -316,7 +315,8 @@ class jomres_tooltips
 								{
 								color: \'#F9FB61\'
 								}
-							});</script>
+							});
+						</script>
 						';
 					}
 				else
