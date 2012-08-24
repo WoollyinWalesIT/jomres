@@ -119,6 +119,7 @@ class j00030search {
 
 			$metaTitle="";
 			
+			
 			$unwanted=array("%","'","\"");
 			if (!empty($_REQUEST['propertyname'] ) ) {
 				if ($_REQUEST['propertyname'] ==$searchAll)
@@ -758,29 +759,30 @@ class j00030search {
 						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$sch->filter['propertyname']);
 						jomresRedirect( jomresURL($l), $saveMessage );
 						}
-					if (in_array("country",$searchOptions) && !empty($sch->filter['country']) )
+					
+					if (!empty($sch->filter['country']) )
 						$sch->jomSearch_country();
-					if (in_array("region",$searchOptions) && !empty($sch->filter['region']) )
+					if (!empty($sch->filter['region']) )
 						$sch->jomSearch_region();
-					if (in_array("town",$searchOptions) && !empty($sch->filter['town']) )
+					if (!empty($sch->filter['town']) )
 						$sch->jomSearch_town();
-					if (in_array("ptype",$searchOptions) && !empty($sch->filter['ptype']) )
+					if (!empty($sch->filter['ptype']) )
 						$sch->jomSearch_ptypes();
-					if (in_array("guestnumber",$searchOptions) && !empty($sch->filter['guestnumber']) )
+					if (!empty($sch->filter['guestnumber']) )
 						$sch->jomSearch_guestnumber();
-					if (in_array("stars",$searchOptions) && !empty($sch->filter['stars']) )
+					if (!empty($sch->filter['stars']) )
 						$sch->jomSearch_stars();
 
 						
-					if (in_array("priceranges",$searchOptions) && !empty($sch->filter['priceranges']) )
+					if (!empty($sch->filter['priceranges']) )
 						$sch->jomSearch_priceranges();
-					if (in_array("feature_uids",$searchOptions) && !empty($sch->filter['feature_uids']) )
+					if (!empty($sch->filter['feature_uids']) )
 						$sch->jomSearch_features();
-					if (in_array("room_type",$searchOptions) && !empty($sch->filter['room_type']) )
+					if (!empty($sch->filter['room_type']) )
 						$sch->jomSearch_roomtypes();
-					if (in_array("description",$searchOptions) && !empty($sch->filter['description']) )
+					if (!empty($sch->filter['description']) )
 						$sch->jomSearch_description();
-					if (in_array("availability",$searchOptions) && !empty($sch->filter['arrival']) )
+					if (!empty($sch->filter['arrival']) )
 						$sch->jomSearch_availability();
 					}
 				}

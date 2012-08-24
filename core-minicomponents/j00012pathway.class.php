@@ -52,101 +52,78 @@ class j00012pathway {
 			$this->template_touchable=false; return;
 			}
 		$numberOfPropertiesInSystem = get_showtime('numberOfPropertiesInSystem');
-		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		if ($thisJRUser->userIsManager && !isset($_REQUEST['task']) )
+		
+		if ( _JOMRES_DETECTED_CMS == "joomla15" ) // J1.5 pathways are not supported
 			return;
 		if (AJAXCALL)
 			return;
-		$property_uid = $componentArgs['property_uid'];
-		
+
 		$jomresPathway =jomres_singleton_abstract::getInstance('jomres_pathway');
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 
-		if (_JOMRES_DETECTED_CMS == "jomressa")
-			$showJomresPathway = true; // Change this line to $showJomresPathway = false;  If you don't want to show the Jomres pathway.
-		else
-			$showJomresPathway = false; // Change this line to $showJomresPathway = true;  If you want to show the Jomres pathway when using Joomla.
-
-		if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
-			{
-			$mainframe =& JFactory::getApplication();
-			$breadcrumbs = & $mainframe->getPathWay();
-			$breadcrumbs->setPathway();
-			}
-		if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
-			{
-			$mainframe =& JFactory::getApplication();
-			$breadcrumbs = & $mainframe->getPathway();
-			$breadcrumbs->setPathway();
-			}
-
 		$popup				= intval( jomresGetParam( $_REQUEST, 'popup', 0 ) );
 
-		if (!AJAXCALL && $popup==0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem> 1)
+		if ($popup==0 && !JOMRES_SINGLEPROPERTY && $numberOfPropertiesInSystem> 1)
 			{
 			$pathwayArray=array();
-			$pathway="";
 
-			$arrowImgSrc='<img src="'.get_showtime('live_site').'/jomres/images/arrow_right_grey.png" border="0" alt="arrow" />';  // Change this to change the arrow
-
-			if ($thisJRUser->userIsManager==TRUE)
+			$property_uid = $componentArgs['property_uid'];
+			if ($thisJRUser->userIsManager)
 				$property_uid=(int)$thisJRUser->defaultproperty;
+			
 			$task 				= get_showtime('task');
-			if ($selectedProperty>0)
-				$property_uid=(int)$selectedProperty;
+			
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data($property_uid);
 
-			$query="SELECT name,link FROM #__menu WHERE `link` LIKE JOMRES_SITEPAGE_URL.'%' LIMIT 1";
-			$menuNames =doSelectSql($query);
-			if (count($menuNames) > 0)
-				{
-				foreach ($menuNames as $menuName)
-					{
-					$name=$menuName->name;
-					$task="";
-					}
-				}
+			$query="SELECT ptype FROM #__jomres_ptypes WHERE ptype=".(int)$current_property_details->ptype_id;
+			$ptype = doSelectSql($query,1);
+			$property_type=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$current_property_details->ptype_id,$ptype,false,false);
 
 			$tasks =array();
-			$tasks['XXXXXX']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL);
-			$tasks['listProperties']=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,'url'=>JOMRES_SITEPAGE_URL);
-			$tasks['viewproperty']=array('text'=>_JOMRES_PATHWAY_PROPERTYDETAILS.getPropertyName($property_uid),'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&property_uid='.$property_uid);
-			$tasks['dobooking']=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$property_uid);
+			
+			//$tasks['XXXXXX']			=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,										'url'=>JOMRES_SITEPAGE_URL);
+			//$tasks['listProperties']	=array('text'=>_JOMRES_PATHWAY_PROPERTYLIST,										'url'=>JOMRES_SITEPAGE_URL);
+			$tasks['property_type']		=array('text'=>$property_type,														'url'=>jomresURL( JOMRES_SITEPAGE_URL."&amp;task=search&amp;ptype=".$current_property_details->ptype_id));
+			
+			$tasks['country']			=array('text'=>$current_property_details->property_country,							'url'=>JOMRES_SITEPAGE_URL.'&amp;task=search&country='.$current_property_details->property_country_code );
+			$tasks['region']			=array('text'=>$current_property_details->property_region,							'url'=>JOMRES_SITEPAGE_URL."&amp;task=search&amp;region=".$current_property_details->property_region);
+			$tasks['town']				=array('text'=>$current_property_details->property_town,							'url'=>JOMRES_SITEPAGE_URL."&amp;task=search&amp;town=".$current_property_details->property_town);
+			$tasks['viewproperty']		=array('text'=>getPropertyName($property_uid),										'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&amp;property_uid='.$property_uid);
+			$tasks['showTariffs']		=array('text'=>_JOMRES_COM_MR_LISTTARIFF_TITLE." ".getPropertyName($property_uid),	'url'=>JOMRES_SITEPAGE_URL.'&task=showTariffs&amp;op=1&amp;property_uid='.$property_uid);
+			$tasks['dobooking']			=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,											'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid);
 
 			switch ($task)
 				{
 				case '':
-					$pathwayArray[]=$tasks['listProperties'];
+				case 'extended_maps':
+				//	$pathwayArray[]=$tasks['listProperties'];
 				break;
 				case 'viewproperty':
-					$pathwayArray[]=$tasks['XXXXXX'];
+				//	$pathwayArray[]=$tasks['XXXXXX'];
+					$pathwayArray[]=$tasks['country'];
+					$pathwayArray[]=$tasks['region'];
+					$pathwayArray[]=$tasks['town'];
 					$pathwayArray[]=$tasks['viewproperty'];
 				break;
 				case 'dobooking':
-					$pathwayArray[]=$tasks['XXXXXX'];
+				//	$pathwayArray[]=$tasks['XXXXXX'];
 					$pathwayArray[]=$tasks['viewproperty'];
 					$pathwayArray[]=$tasks['dobooking'];
+				case 'showTariffs':
+				//	$pathwayArray[]=$tasks['XXXXXX'];
+					$pathwayArray[]=$tasks['viewproperty'];
+					$pathwayArray[]=$tasks['showTariffs'];
 				break;
 				}
-			$pathway.='<div id="pathway_text"><span class="pathway">';
-			$counter=1;
+				
 			foreach ($pathwayArray as $p)
 				{
-				if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25")
-					$breadcrumbs->addItem( $p['text'],  jomresURL(''.$p['url']) );
-
-				if ($counter<count($pathwayArray))
-					$pathway.='<a href="'.jomresValidateUrl(jomresURL(''.$p['url'])).'" class="pathway">'.$p['text'].'</a>';
-				else
-					$pathway.=$p['text'];
-				$pathway=str_replace("https://","http://",$pathway);  
-				$counter++;
-				if ($counter<=count($pathwayArray))
-					$pathway.=$arrowImgSrc;
+				$app	= JFactory::getApplication();
+				$pathway = $app->getPathway();
+				$pathway->addItem($p['text'], $p['url']);
 				}
-			$pathway.='</span></div>';
-			if ($showJomresPathway)
-				echo $pathway;
 			}
 		}
 
