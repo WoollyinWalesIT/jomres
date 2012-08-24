@@ -74,6 +74,12 @@ function OnChange(dropdown)
 				<input id="property_email" name="property_email" type="text" size="20" value="{PROPERTY_EMAIL}"/>
 			</div> 
 		</div>
+		<div class="control-group warning">
+		<label class="control-label" for="property_email">{HPRICE}</label>
+			<div class="controls">
+				{CURRENCY}</span><input class="input-small" type="text" name="price" value="{PRICE}" />
+			</div> 
+		</div>
 		<div class="control-group">
 		<label class="control-label" for="lat">Lat: (nn.nnnn)</label>
 			<div class="controls">
@@ -128,7 +134,7 @@ function OnChange(dropdown)
 				<input class="inputbox" type="text" size="70" name="metadescription" value="{METADESCRIPTION}" />
 			</div> 
 		</div>
-		<div class="form-actions">
+		<div class="form-actions btn-toolbar">
 			{JOMRESTOOLBAR}
 		</div>
 	</fieldset>
