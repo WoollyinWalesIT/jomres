@@ -93,6 +93,7 @@ class j00012pathway {
 			$tasks['viewproperty']		=array('text'=>getPropertyName($property_uid),										'url'=>JOMRES_SITEPAGE_URL.'&task=viewproperty&amp;property_uid='.$property_uid);
 			$tasks['showTariffs']		=array('text'=>_JOMRES_COM_MR_LISTTARIFF_TITLE." ".getPropertyName($property_uid),	'url'=>JOMRES_SITEPAGE_URL.'&task=showTariffs&amp;op=1&amp;property_uid='.$property_uid);
 			$tasks['dobooking']			=array('text'=>_JOMRES_PATHWAY_BOOKINGFORM,											'url'=>JOMRES_SITEPAGE_URL.'&task=dobooking&amp;selectedProperty='.$property_uid);
+			$tasks['slideshow']			=array('text'=>_JOMRES_FRONT_SLIDESHOW,												'url'=>JOMRES_SITEPAGE_URL.'&task=slideshow&amp;op=1&amp;property_uid='.$property_uid);
 
 			switch ($task)
 				{
@@ -101,20 +102,30 @@ class j00012pathway {
 				//	$pathwayArray[]=$tasks['listProperties'];
 				break;
 				case 'viewproperty':
-				//	$pathwayArray[]=$tasks['XXXXXX'];
 					$pathwayArray[]=$tasks['country'];
 					$pathwayArray[]=$tasks['region'];
 					$pathwayArray[]=$tasks['town'];
 					$pathwayArray[]=$tasks['viewproperty'];
 				break;
 				case 'dobooking':
-				//	$pathwayArray[]=$tasks['XXXXXX'];
+					$pathwayArray[]=$tasks['country'];
+					$pathwayArray[]=$tasks['region'];
+					$pathwayArray[]=$tasks['town'];
 					$pathwayArray[]=$tasks['viewproperty'];
 					$pathwayArray[]=$tasks['dobooking'];
 				case 'showTariffs':
-				//	$pathwayArray[]=$tasks['XXXXXX'];
+					$pathwayArray[]=$tasks['country'];
+					$pathwayArray[]=$tasks['region'];
+					$pathwayArray[]=$tasks['town'];
 					$pathwayArray[]=$tasks['viewproperty'];
 					$pathwayArray[]=$tasks['showTariffs'];
+				break;
+				case 'slideshow':
+					$pathwayArray[]=$tasks['country'];
+					$pathwayArray[]=$tasks['region'];
+					$pathwayArray[]=$tasks['town'];
+					$pathwayArray[]=$tasks['viewproperty'];
+					$pathwayArray[]=$tasks['slideshow'];
 				break;
 				}
 				
