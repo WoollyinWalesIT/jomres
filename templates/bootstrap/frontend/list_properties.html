@@ -4,7 +4,7 @@
 {HEADER}
 
 <patTemplate:tmpl name="property_details" unusedvars="strip">
-<div class="{ROWCLASS} jomres_property_list_propertywrapper {FEATURED_LISTINGS_CLASS}" id="{UID}">
+<div class="jomres_property_list_propertywrapper {FEATURED_LISTINGS_CLASS}" id="{UID}">
 	<div class="row-fluid">
 		<div class="span9">
 			<h3><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a></h3>
@@ -33,7 +33,7 @@
 			<a href="{MOREINFORMATIONLINK}" class="visible-phone thumbnail"><img src="{IMAGETHUMB}" alt="{PROPERTYNAME}" /></a>
 		</div>
 		<div class="span7">
-			<p><a href="{PROPERTY_TYPE_SEARCH_URL}"><span class="label">{PROPERTY_TYPE}</span></a> <span class="small">{STARS}</span></p>
+			<p><span class="label">{PROPERTY_TYPE}</span> <span class="small">{STARS}</span></p>
 			<p class="small"><em>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</em></p>
 			<p>{PROPERTYDESC}</p>
 			<p class="jomres_message">{LASTMINUTE}</p>
@@ -92,6 +92,7 @@
 		</div>
 	</div>
 </div>
+<hr />
 </patTemplate:tmpl>
 
 <patTemplate:comment>{HEADER}</patTemplate:comment>
