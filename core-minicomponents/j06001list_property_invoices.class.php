@@ -23,7 +23,7 @@ class j06001list_property_invoices
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$defaultProperty=getDefaultProperty();
-		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info">';
+		$infoIcon	='<img src="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" alt="info"/>';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
 
 		if ($thisJRUser->userIsManager)
@@ -171,6 +171,7 @@ class j06001list_property_invoices
 						$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode'],false,true);
 						$r['FREQ']			=$invoice['recur_frequency'];
 						$r['CURRENCYCODE']	=$invoice['currencycode'];
+						$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$editIcon.'</a>';
 						$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
 						$r['EDIT_URL']=JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'];
 						$rows[]=$r;
