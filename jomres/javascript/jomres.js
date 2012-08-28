@@ -7,9 +7,12 @@ if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Err
 
 jomresJquery.fn.fadeThenSlideToggle = function(speed, easing, callback) {
   if (this.is(":hidden")) {
-    return this.slideDown(speed, easing).fadeTo(speed, 1, easing, callback);
+    // temp disabled, we'll use fade in/out for now as sliding doesn't work on ipad
+	//return this.slideDown(speed, easing).fadeTo(speed, 1, easing, callback);
+	return this.fadeIn();
   } else {
-    return this.fadeTo(speed, 0, easing).slideUp(speed, easing, callback);
+    //return this.fadeTo(speed, 0, easing).slideUp(speed, easing, callback);
+	return this.fadeOut();
   }
 };
 
