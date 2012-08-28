@@ -23,7 +23,7 @@ class j16000list_invoices
 			{
 			$this->template_touchable=false; return;
 			}
-		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$editIcon	='<img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" alt="editicon"/>';
 		jr_import('jrportal_user_functions');
 		$user_obj = new jrportal_user_functions();
 		jr_import('invoicehandler');
@@ -147,6 +147,8 @@ class j16000list_invoices
 			$r['CURRENCYCODE']	=$invoice['currencycode'];
 			
 			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_invoice&id='.$invoice['id'].'">'.$editIcon.'</a>';
+			$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
+			$r['EDIT_URL']=JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_invoice&id='.$invoice['id'];
 			$rows[]=$r;
 			}
 
