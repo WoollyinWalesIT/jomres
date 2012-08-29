@@ -43,7 +43,7 @@ class j16000showplugins
 		
 		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
 		$this_jomres_version = explode(".",$mrConfig['version']);
-		
+		jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jquery.expander.min.js');
 		$installed_plugins=array();
 		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$third_party_plugins = array();
