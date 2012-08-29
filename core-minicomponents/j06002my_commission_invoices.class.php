@@ -23,7 +23,7 @@ class j06002my_commission_invoices
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		$defaultProperty=getDefaultProperty();
-		$infoIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info">';
+		$infoIcon	='<img src="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" border="0" alt="info" />';
 		$status= jomresGetParam( $_REQUEST, 'status', "" );
 
 		if ($thisJRUser->userIsManager)
@@ -89,32 +89,42 @@ class j06002my_commission_invoices
 				$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
 				$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
 
-				if ($thisJRUser->userIsManager)
+				if (!using_bootstrap())
 					{
-					$output['TASK_FILTER_ANY']=JOMRES_SITEPAGE_URL.'&task=list_property_invoices';
-					$output['_JOMRES_FRONT_ROOMSMOKING_EITHER']=_JOMRES_FRONT_ROOMSMOKING_EITHER;
-					$output['TASK_FILTER_UNPAID']=JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=unpaid';
-					$output['_JRPORTAL_INVOICES_STATUS_UNPAID']=_JRPORTAL_INVOICES_STATUS_UNPAID;
-					$output['TASK_FILTER_PAID']=JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=paid';
-					$output['_JRPORTAL_INVOICES_STATUS_PAID']=_JRPORTAL_INVOICES_STATUS_PAID;
-					$output['TASK_FILTER_CANCELLED']=JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=cancelled';
-					$output['_JRPORTAL_INVOICES_STATUS_CANCELLED']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
-					$output['TASK_FILTER_PENDING']=JOMRES_SITEPAGE_URL.'&task=list_property_invoices&status=pending';
-					$output['_JRPORTAL_INVOICES_STATUS_PENDING']=_JRPORTAL_INVOICES_STATUS_PENDING;
+					//if ($thisJRUser->userIsManager)
+						//{
+						$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
+						$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
+						$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
+						$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
+						$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
+						//}
+					//else
+//						{
+//						$output['TASK_FILTER_ANY']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices';
+//						$output['_JOMRES_FRONT_ROOMSMOKING_EITHER']=_JOMRES_FRONT_ROOMSMOKING_EITHER;
+//						$output['TASK_FILTER_UNPAID']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=unpaid';
+//						$output['_JRPORTAL_INVOICES_STATUS_UNPAID']=_JRPORTAL_INVOICES_STATUS_UNPAID;
+//						$output['TASK_FILTER_PAID']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=paid';
+//						$output['_JRPORTAL_INVOICES_STATUS_PAID']=_JRPORTAL_INVOICES_STATUS_PAID;
+//						$output['TASK_FILTER_CANCELLED']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=cancelled';
+//						$output['_JRPORTAL_INVOICES_STATUS_CANCELLED']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
+//						$output['TASK_FILTER_PENDING']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=pending';
+//						$output['_JRPORTAL_INVOICES_STATUS_PENDING']=_JRPORTAL_INVOICES_STATUS_PENDING;
+//						}
 					}
 				else
 					{
-					$output['TASK_FILTER_ANY']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices';
+					$output['TASK_FILTER_ANY']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices';
 					$output['_JOMRES_FRONT_ROOMSMOKING_EITHER']=_JOMRES_FRONT_ROOMSMOKING_EITHER;
-					$output['TASK_FILTER_UNPAID']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=unpaid';
+					$output['TASK_FILTER_UNPAID']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=unpaid';
 					$output['_JRPORTAL_INVOICES_STATUS_UNPAID']=_JRPORTAL_INVOICES_STATUS_UNPAID;
-					$output['TASK_FILTER_PAID']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=paid';
+					$output['TASK_FILTER_PAID']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=paid';
 					$output['_JRPORTAL_INVOICES_STATUS_PAID']=_JRPORTAL_INVOICES_STATUS_PAID;
-					$output['TASK_FILTER_CANCELLED']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=cancelled';
+					$output['TASK_FILTER_CANCELLED']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=cancelled';
 					$output['_JRPORTAL_INVOICES_STATUS_CANCELLED']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
-					$output['TASK_FILTER_PENDING']=JOMRES_SITEPAGE_URL.'&task=list_usersinvoices&status=pending';
+					$output['TASK_FILTER_PENDING']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=pending';
 					$output['_JRPORTAL_INVOICES_STATUS_PENDING']=_JRPORTAL_INVOICES_STATUS_PENDING;
-
 					}
 					
 				foreach ($invoices as $invoice)
@@ -180,6 +190,8 @@ class j06002my_commission_invoices
 							}
 	
 						$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
+						$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
+						$r['EDIT_URL']=JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_invoice&id='.$invoice['id'];
 						$rows[]=$r;
 						}
 					}
