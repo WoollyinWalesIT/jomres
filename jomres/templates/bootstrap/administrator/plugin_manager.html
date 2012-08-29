@@ -7,6 +7,21 @@
 	left:50%;
 }
 </style>
+<script>
+jomresJquery(document).ready(function() {
+	jomresJquery('div.expander').expander({
+	preserveWords: true,
+	slicePoint: 40,
+	expandText: '<div class="btn btn-mini btn-info"><i class="icon-arrow-down"></i></div>',
+	userCollapseText: '<div class="btn btn-mini btn-inverse"><i class="icon-arrow-up"></i></div>',
+	expandEffect: 'slideDown',
+	expandSpeed: 250,
+	collapseEffect: 'slideUp',
+	collapseSpeed: 200,
+   });
+});
+
+</script>
 <div class="row-fluid">
 	<div class="span9">
 		<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
@@ -86,6 +101,7 @@
 					<th>{HPLUGINPRICE}</th>
 				</tr>
 				<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="strip">
+				
 				<tr>
 					<td class="{ROWCLASS}"><a name="{PLUGIN_NAME}"></a>{STRONG1}{READABLE_NAME}{STRONG2}</td>
 					<!--<td><a href="#" class="thumbnail"><img src="{IMAGE}" alt=""></a></td>-->
@@ -93,7 +109,7 @@
 					<td>{LOCAL_VER}</td>
 					<td>{REMOTE_VER}</td>
 					<td>{LASTUPDATE}</td>
-					<td>{STRONG1}{PLUGIN_DESC}{STRONG2} <a href="{MANUAL_LINK}" target="_blank">{MANUAL_TEXT}</a>&nbsp;&nbsp;<a href="{DEMO_LINK}" target="_blank">{DEMO_TEXT}</a></td>
+					<td><div class="expander">{STRONG1}{PLUGIN_DESC}{STRONG2} <a href="{MANUAL_LINK}" target="_blank">{MANUAL_TEXT}</a>&nbsp;&nbsp;<a href="{DEMO_LINK}" target="_blank">{DEMO_TEXT}</a></div></td>
 					<td>{CHANGELOG_TOOLTIP}</td>
 					<td>{HIGHLIGHT_TOOLTIP}</td>
 					<td>{INSTALL} {LATERVERSION}</td>
