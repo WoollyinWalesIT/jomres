@@ -63,7 +63,18 @@ jomresJquery(document).ready(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td>{LINKTEXT}</td>
+			<td>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-edit"></i>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+						<li><a tabindex="-1" href="{COPY_URL}">{COMMON_COPY}</a></li>
+					</ul>
+				</div>
+			</td>
 			<td>{ROOMCLASS}</td>
 			<td>{RATETITLE}</td>
 			<!-- <td>{RATEDESCRIPTION}</td> -->

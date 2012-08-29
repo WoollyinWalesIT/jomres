@@ -56,7 +56,18 @@ jomresJquery(document).ready(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td>{BUTTONS}</td>
+			<td>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-edit"></i>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+						<li><a tabindex="-1" href="{COPY_URL}">{COMMON_COPY}</a></li>
+					</ul>
+				</div>
+			</td>
 			<td>{ROOM_TYPE}</td>
 			<td class="hidden-phone">{ROOM_NAME}</td>
 			<td>{ROOM_NUMBER}</td>
@@ -64,7 +75,7 @@ jomresJquery(document).ready(function() {
 			<td class="hidden-phone">{DISABLED_ACCESS}</td>
 			<td>{MAX_PEOPLE}</td>
 			<td class="hidden-phone">{SMOKING}</td>
-			<td class="hidden-phone">{ROOM_FEATURES}</td>
+			<td class="hidden-phone"><small>{ROOM_FEATURES}</small></td>
 			<td class="hidden-phone"><img src="{ROOM_IMAGE}" class="thumbnail" /></td>
 		</tr>
 		</patTemplate:tmpl>

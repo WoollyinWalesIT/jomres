@@ -142,7 +142,10 @@ class j02220listguests {
 				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
 				$jrtb .= $jrtbar->endTable();
 				$rw['EDITLINK']=$jrtb;
-
+				
+				$rw['EDIT_TEXT']=$text;
+				$rw['EDIT_URL']=$link;
+				
 				if (array_key_exists($guest->guests_uid,$invoices) && (int)$guest->guests_uid != 0)
 					{
 					$jrtb  = $jrtbar->startTable();
@@ -152,6 +155,8 @@ class j02220listguests {
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$invoice_image);
 					$jrtb .= $jrtbar->endTable();
 					$rw['INVOICELINK']=$jrtb;
+					$rw['INVOICE_TEXT']=$text;
+					$rw['INVOICE_URL']=$link;
 					}
 
 				$rw['FIRSTNAME']	=jomres_decode($guest->firstname);
