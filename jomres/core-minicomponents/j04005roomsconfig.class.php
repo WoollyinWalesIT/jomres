@@ -144,7 +144,7 @@ class j04005roomsconfig {
 						
 				$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
 				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 300, 1, "numberofRooms[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
-				$r['ROOMRATEPERDAY']='<input class="input-mini" type="text" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
+				$r['ROOMRATEPERDAY']='<input class="input-mini" type="number" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
 				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
 				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
 				$existingrooms="";
@@ -184,7 +184,7 @@ class j04005roomsconfig {
 				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK;
 			else
 				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY;
-			$output['ROOMRATEPERDAY']='<input class="input-mini" type="text" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
+			$output['ROOMRATEPERDAY']='<input class="input-mini" type="number" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
 			$output['MAX_PEOPLE']='<input class="input-mini" type="text" name="max_people" value="'.$roomTypesArray[$type_id]['max_people'].'" />';
 			$rows=array();
 			foreach ($roomsClassList as $roomType) // First we need to gather some information about tariffs & rooms
