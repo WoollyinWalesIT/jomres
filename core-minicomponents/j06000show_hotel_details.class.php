@@ -75,7 +75,7 @@ class j06000show_hotel_details
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$this->retVals=$tmpl->getParsedTemplate();
 		
-		if (isset($_REQUEST['id']))
+		if (isset($_REQUEST['property_uid']))
 			echo $this->retVals;
 		
 		}
