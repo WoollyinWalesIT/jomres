@@ -80,14 +80,24 @@ function confirm_review(rating_id,state)
 		</div>
 	</div>
 	<div class="span8">
-		<dl>
-			<dt>{_JOMRES_REVIEWS_REVIEWBODY_SAID}</dt>
-			<dd>{REVIEW_DESCRIPTION}</dd>
-			<dt>{_JOMRES_REVIEWS_PROS}</dt>
-			<dd>{PROS}</dd>
-			<dt>{_JOMRES_REVIEWS_CONS}</dt>
-			<dd>{CONS}</dd>
-		</dl>
+		<small><cite title="{USERNAME}">{_JOMRES_REVIEWS_REVIEWBODY_SAID}</cite></small>
+		<blockquote>
+			<p>
+			{REVIEW_DESCRIPTION}
+			</p>
+		</blockquote>
+		<small>{_JOMRES_REVIEWS_PROS}</small>
+		<blockquote>
+			<p>
+			{PROS}
+			</p>
+		</blockquote>
+		<small>{_JOMRES_REVIEWS_CONS}</small>
+		<blockquote>
+			<p>
+			{CONS}
+			</p>
+		</blockquote>
 		<div class="btn-toolbar">
 			<div class="btn-group" id="agree_thumbs{RATING_ID}">
 				{THUMB_UP}{THUMB_DOWN}
