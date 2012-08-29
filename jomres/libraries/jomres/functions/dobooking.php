@@ -504,8 +504,16 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		{
 		$output['MODAL'] = 'jomresJquery( "#booking_form" ).dialog({width:1000,modal:true});';
 		$output['HIDDENSTYLE']='style="display:none;"';
-		$output['OPENBOOKINGOFRM_BUTTON']='<a href="javascript:open_booking_form();" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM'].'</a>';
-		$output['BUTTON_BACK_TO_PROPERTY_DETAILS']='<a href="'.jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$selectedProperty).'" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS'].'</a>';
+		if (!using_bootstrap())
+			{
+			$output['OPENBOOKINGOFRM_BUTTON']='<a href="javascript:open_booking_form();" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM'].'</a>';
+			$output['BUTTON_BACK_TO_PROPERTY_DETAILS']='<a href="'.jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$selectedProperty).'" class="fg-button ui-state-default ui-corner-all">'.$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS'].'</a>';
+			}
+		else
+			{
+			$output['OPENBOOKINGOFRM_BUTTON']='<a href="javascript:open_booking_form();" class="btn btn-primary">'.$output['_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM'].'</a>';
+		$output['BUTTON_BACK_TO_PROPERTY_DETAILS']='<a href="'.jomresURL( JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$selectedProperty).'" class="btn">'.$output['_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS'].'</a>';
+			}
 		
 		}
 
