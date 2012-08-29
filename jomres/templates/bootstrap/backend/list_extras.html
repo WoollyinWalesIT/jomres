@@ -55,7 +55,18 @@ jomresJquery(document).ready(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td>{EDITLINK}</td>
+			<td>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-edit"></i>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
+						<li><a tabindex="-1" href="{PUBLISH_URL}">{PUBLISH_TEXT}</a></li>
+					</ul>
+				</div>
+			</td>
 			<td>{EXNAME}</td>
 			<td>{EXDESC}</td>
 			<td>{CURRENCY} {EXPRICE}</td>

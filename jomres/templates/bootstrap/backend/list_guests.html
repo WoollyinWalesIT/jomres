@@ -52,7 +52,6 @@ jomresJquery(document).ready(function() {
 	<thead>
 		<tr>
 			<th>{HEDITLINK}</th>
-			<th>{HINVOICELINK}</th>
 			<th>{HFIRSTNAME}</th>
 			<th>{HSURNAME}</th>
 			<th class="hidden-phone">{HHOUSE}</th>
@@ -63,8 +62,19 @@ jomresJquery(document).ready(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td>{EDITLINK}</td>
-			<td>{INVOICELINK}</td>
+			<td>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-edit"></i>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li><a tabindex="-1" href="{EDIT_URL}">{EDIT_TEXT}</a></li>
+						<li><a tabindex="-1" href="{INVOICE_URL}">{INVOICE_TEXT}</a></li>
+					</ul>
+				</div>
+			</td>
+
 			<td>{FIRSTNAME}</td>
 			<td>{SURNAME}</td>
 			<td class="hidden-phone">{HOUSE}</td>

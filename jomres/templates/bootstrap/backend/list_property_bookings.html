@@ -73,8 +73,8 @@ jomresJquery(document).ready(function() {
 <table class="table table-striped" id="showLiveBookings" width="100%">
 	<thead>
 		<tr>
-			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_STATUS}</th>
 			<th>{_JOMRES_COM_MR_EDITBOOKINGTITLE}</th>
+			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_STATUS}</th>
 			<th>{_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME}</th>
 			<th>{_JOMRES_BOOKING_NUMBER}</th>
 			<th>{ARRIVAL}</th>
@@ -84,8 +84,18 @@ jomresJquery(document).ready(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
+			<td>
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-edit"></i>
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+						<li><a tabindex="-1" href="{EDIT_URL}">{EDIT_TEXT}</a></li>
+					</ul>
+				</div>
+			</td>
 			<td><img src="{STATE_IMAGE}" /></td>
-			<td><a href="{EDIT_URL}">{EDIT_TEXT}</a></td>
 			<td>{FIRSTNAME} {SURNAME}</td>
 			<td>{BOOKING_NO}</td>
 			<td>{ARRIVALDATE}</td>
