@@ -1,3 +1,31 @@
+Jomres 7.0.-2
+
+Tweaked show hotel details page so that it can be viewed via a direct url, as well as called from another plugin.
+Updated asamodule report functionality to output more information.
+Changed some wording in lang files, replaced Book now and Book a room with Book now! and More Info with Read more (as that's more in tune with Joomla's UI)
+Featured listings has a new feature where featured properties can have a class applied to them so they shop up emphasised in the property list, added changes to Jomres property list functionality to support this feature. 
+Changed how powered by is added to bottom of the page, and changed how radio button rendering code in frontend is built so that if using  bootstrap on j2.5, then the radio buttons will still work.
+Tweaks to some J3 BS templates, including how the map is rendered so that it's width is responsive.
+Re-enabled the function getbookingguestdata, thought to be depreciated, but the paypal gateway plugin uses it.
+Fixed a bug where IE wouldn't disable the cookies pane.
+Added property name to reviews dialogue.
+Added order by property name to property list in Show Profiles.
+Added radio button group styles to Jomres bootstrap css script, as they're likely to be missing in some J3 BS templates.
+Added code to disable magic quotes if it's enabled, due to one funny server (I'm looking at you, exploretravel!)
+Tooltip tweaks to allow tooltips to work in module popups.
+Removed dialog alert class from image popup function.
+Various bootstrap template improvements to account for using BS 2.1.
+contact form tweaked to have a page title and sub-text
+Invoices changed to display page even if no invoices, when using the filtering
+Added a new method to count the number of guests, and added a count that says if there's only one guest type then don't offer 0 as an option in the guest number dropdown.
+Added guest id to invoices list, ensured that it's added to the invoice table when a new booking is made and when the guest list is viewed invoice buttons are associated with guest ids.
+Added jquery easing and a new slide and toggle jquery function.
+Disabled the Jomres text editor in J2.5 
+More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
+Pathway functionality updated to work with J2.5 & 3, and search functionality modified so that a setting doesn't need to be enabled in a module for the setting to kick in during searching.
+Layout and css tweaks to new bootstrap templates.
+
+
 Jomres 7.0.-3
 
 ***
