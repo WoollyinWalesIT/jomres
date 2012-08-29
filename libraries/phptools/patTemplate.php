@@ -852,6 +852,10 @@ class patTemplate
 		$common_strings['COMMON_VIEW']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
 		$common_strings['COMMON_PRINT']=jr_gettext('COMMON_PRINT',COMMON_PRINT,false);
 		
+		$common_strings['COMMON_EDIT']=jr_gettext('COMMON_EDIT',COMMON_EDIT,false);
+		$common_strings['COMMON_COPY']=jr_gettext('COMMON_COPY',COMMON_COPY,false);
+		
+		
 		return $common_strings;
 		}
    /**

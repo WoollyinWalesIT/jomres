@@ -1860,3 +1860,7 @@ define('_JOMRES_PROPERTYDETAILS_INTABS_TITLE',"Property details in tabs?");
 define('_JOMRES_PROPERTYDETAILS_INTABS_DESC',"Set this option to show property details in tabs. Set it to no to show them without tabs.");
 
 define('COMMON_PRINT',"Print");
+
+define('COMMON_EDIT',"Edit");
+define('COMMON_COPY',"Copy");
+
