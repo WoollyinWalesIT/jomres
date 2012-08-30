@@ -57,7 +57,7 @@ class jomresHTML
 
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
 		{
-		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone","existingCustomers","management_process","all_guests");
+		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone","existingCustomers","management_process","all_guests","force[]");
 		if (!using_bootstrap() || count($arr) != 2 || in_array($name,$not_for_these_dropdowns) || get_showtime('task') == "handlereq")
 			{
 			$attribs = str_replace('class="inputbox"',"",$attribs);
