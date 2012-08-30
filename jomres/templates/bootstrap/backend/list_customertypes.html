@@ -47,6 +47,7 @@ jomresJquery(document).ready(function() {
 	<thead>
 		<tr>
 			<th></th>
+			<th></th>
 			<th>{HTYPE}</th>
 			<th class="hidden-phone">{HNOTES}</th>
 			<th>{HMAXIMUM}</th>
@@ -67,12 +68,13 @@ jomresJquery(document).ready(function() {
 					</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 						<li><a tabindex="-1" href="{EDIT_URL}">{COMMON_EDIT}</a></li>
-						<li><a tabindex="-1" href="{PUBLISH_URL}">{PUBLISH_TEXT}</a></li>
 					</ul>
 				</div>
 			
 			</td>
-			
+			<td>
+				<a href="{PUBLISH_URL}" class="btn {EMPHASIS}">{PUBLISH_TEXT}</a>
+			</td>
 			<td>{TYPE}</td>
 			<td class="hidden-phone">{NOTES}</td>
 			<td>{MAXIMUM}</td>
