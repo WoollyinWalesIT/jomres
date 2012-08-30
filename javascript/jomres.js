@@ -25,6 +25,42 @@ function toggle_button_class(id)
 		jomresJquery(id).addClass('active btn-success');
 	}
 
+function make_datatable(div_id,pagetitle,livesite) {
+	var oTable = jomresJquery('#'+div_id).dataTable({
+		"bJQueryUI": false,
+		"bStateSave": true,
+		"sPaginationType": "bootstrap",
+		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+		"sWrapper": "dataTables_wrapper form-inline",
+		"oTableTools": {
+			"sSwfPath": livesite+"/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": pagetitle
+				},
+				"print"
+			]
+		}
+	});
+	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
+		"sSortAsc": "header headerSortDown",
+		"sSortDesc": "header headerSortUp",
+		"sSortable": "header"
+	} );
+}
+
 /* Credit : http://www.developersnippets.com/2009/05/20/evaluate-scripts-while-working-on-ajax-requests/ */
 function parse_ajax_returned_scripts(_source) {
 		var source = _source;
