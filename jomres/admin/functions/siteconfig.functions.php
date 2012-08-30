@@ -242,8 +242,24 @@ function showSiteConfig(  )
 	$lists['mobile_simulation']						= jomresHTML::selectList( $yesno, 'cfg_mobile_simulation', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['mobile_simulation'] );
 	$lists['safe_mode']								= jomresHTML::selectList( $yesno, 'cfg_safe_mode', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['safe_mode'] );
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
-	$lists['use_bootstrap']							= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap'] );
 	$lists['property_details_in_tabs']				= jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['property_details_in_tabs'] );
+	
+	if (!isset($jrConfig['use_bootstrap_in_admin']))
+		{
+		if (_JOMRES_DETECTED_CMS == "joomla30")
+			{
+			$jrConfig['use_bootstrap_in_admin'] = "1";
+			$jrConfig['use_bootstrap_in_frontend'] = "1";
+			}
+		else
+			{
+			$jrConfig['use_bootstrap_in_admin'] = "0";
+			$jrConfig['use_bootstrap_in_frontend'] = "0";
+			}
+		}
+	
+	$lists['use_bootstrap_in_admin']				= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap_in_admin'] );
+	$lists['use_bootstrap_in_frontend']				= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap_in_frontend'] );
 	
 	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown);
 	}

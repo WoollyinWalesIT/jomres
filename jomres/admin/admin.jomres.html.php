@@ -106,16 +106,31 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle"></td>
 		</tr>
 		<tr valign="middle" class="odd">
+			 <td></td>
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
+			 <td></td>
+		</tr>
+		<tr valign="middle" class="even">
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_FRONTEND.'</td>
+			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
+			 <td></td>
+		</tr>
+		<tr valign="middle" class="odd">
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR.'</td>
+			 <td>'.$lists['use_bootstrap_in_admin'].'</td>
+			 <td></td>
+		</tr>
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COOKIEPOLICY_TITLE.'</td>
 			<td valign="middle">'.$lists['use_cookie_policy'].'</td>
 			<td valign="middle">'._JOMRES_COOKIEPOLICY_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_DEFAULT_LAT_STARTPOINT.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_lat" value="'.$jrConfig['default_lat'].'" /></td>
 			<td valign="middle">'._JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_DEFAULT_LONG_STARTPOINT.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_long" value="'.$jrConfig['default_long'].'" /></td>
 			<td valign="middle"></td>
@@ -125,35 +140,35 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 		if (!using_bootstrap())
 			{
-			$contentPanel->setcontent('<tr valign="middle" class="even">
+			$contentPanel->setcontent('<tr valign="middle" class="odd">
 				<td valign="middle">'._JOMRES_JQUERYTHEME.'</td>
 				<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
 				<td valign="middle">'._JOMRES_JQUERYTHEME_DESC.'</td>
 			</tr>');
 			}
 		
-		$contentPanel->setcontent('<tr valign="middle" class="odd">
+		$contentPanel->setcontent('<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT.'</td>
 			<td valign="middle">'.$language_context_dropdown.'</td>
 			<td valign="middle">'._JOMRES_COM_LANGUAGE_CONTEXT_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_SINGLEPROPERTYINSTALLATION_TITLE.'</td>
 			<td valign="middle">'.$lists['is_single_property_installation'].'</td>
 			<td valign="middle">'._JOMRES_SINGLEPROPERTYINSTALLATION_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'.JOMRES_COM_A_MAPSKEY.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_google_maps_api_key" value="'.$jrConfig['google_maps_api_key'].'" /></td>
 			<td valign="middle">'.JOMRES_COM_A_MAPSKEY_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_COM_ALLOWHTMLEDITOR.'</td>
 			<td valign="middle">'.$lists['allowHTMLeditor'].'</td>
 			<td valign="middle">'._JOMRES_COM_ALLOWHTMLEDITOR_DESC.'</td>
 		</tr>
 		<!-- More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_USE_JOMRESEDITOR.'</td>
 			<td valign="middle">'.$lists['use_jomres_own_editor'].'</td>
 			<td valign="middle">'._JOMRES_USE_JOMRESEDITOR_DESC.'</td>
