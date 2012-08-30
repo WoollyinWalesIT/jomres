@@ -43,7 +43,7 @@ class j16000showplugins
 		
 		include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
 		$this_jomres_version = explode(".",$mrConfig['version']);
-		jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jquery.expander.min.js');
+		
 		$installed_plugins=array();
 		$jrePath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		$third_party_plugins = array();
@@ -295,16 +295,6 @@ class j16000showplugins
 					$row_class='ui-state-error';
 					}
 				}
-				
-			$strong1 = '';
-			$strong2 = '';
-			if (in_array($rp['name'],$this->main_plugins))
-				{
-				$strong1 = '<strong>';
-				$strong2 = '</strong>';
-				}
-			$r['STRONG1']=$strong1;
-			$r['STRONG2']=$strong2;
 			
 			$r['INSTALL_LINK'] ='';
 			$r['INSTALL_TEXT'] ='';
@@ -355,38 +345,59 @@ class j16000showplugins
 			
 			$r['MANUAL_LINK'] ='';
 			$r['MANUAL_TEXT'] ='';
+			$r['MANUAL_CLASS'] ='';
 			if( isset($rp['manual_link']) && $rp['manual_link'] != '')
 				{
 				$r['MANUAL_LINK'] = 'http://manual.jomres.net/'.$rp['manual_link'].'.html';
 				$r['MANUAL_TEXT'] = 'Manual';
+				$r['MANUAL_CLASS'] = 'btn';
 				}
 			
 			$r['DEMO_LINK'] ='';
 			$r['DEMO_TEXT'] ='';
+			$r['DEMO_CLASS'] ='';
 			if( isset($rp['demo_url']) && $rp['demo_url'] != '')
 				{
 				$r['DEMO_LINK'] =$rp['demo_url'];
 				$r['DEMO_TEXT'] ='Demo';
+				$r['DEMO_CLASS'] ='btn';
 				}
-
-			$r['CHANGELOG'] ='';
-			if ($rp['change_log'] != '' )
-				{
-				$r['CHANGELOG'] = $rp['change_log'];
-				$r['CHANGELOG_TOOLTIP'] =jomres_makeTooltip($rp['name'],$hover_title="",$rp['change_log'],$rp['change_log'],$class="",$type="infoimage");
-				}
-				
-			$r['HIGHLIGHT'] = '';
-			if ($rp['highlight'] != '' )
-				{
-				$r['HIGHLIGHT'] = $rp['highlight'];
-				$r['HIGHLIGHT_TOOLTIP'] = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
-				}
-
-			$r['IMAGE']=$rp['image'];
 			
+			if (!using_bootstrap())
+				{
+				$r['CHANGELOG'] ='';
+				$r['CHANGELOG_TOOLTIP']='';
+				if ($rp['change_log'] != '' )
+					{
+					$r['CHANGELOG'] = $rp['change_log'];
+					$r['CHANGELOG_TOOLTIP'] =jomres_makeTooltip($rp['name'],$hover_title="",$rp['change_log'],$rp['change_log'],$class="",$type="infoimage");
+					}
+				$r['HIGHLIGHT'] = '';
+				$r['HIGHLIGHT_TOOLTIP'] ='';
+				if ($rp['highlight'] != '' )
+					{
+					$r['HIGHLIGHT'] = $rp['highlight'];
+					$r['HIGHLIGHT_TOOLTIP'] = jomres_makeTooltip($rp['name']."_warning",$hover_title="",$rp['highlight'],$rp['highlight'],$class="",$type="warning");
+					}
+				}
+			else
+				{
+				$r['CHANGELOG'] ='';
+				if ($rp['change_log'] != '' )
+					{
+					$r['CHANGELOG'] = '<a class="btn" id="changelog_'.$rp['name'].'" rel="popover" title="Changelog" data-content="'.$rp['change_log'].'">Changelog</a>';
+					}
+				$r['HIGHLIGHT'] = '';
+				if ($rp['highlight'] != '' )
+					{
+					$r['HIGHLIGHT'] = '<a class="btn btn-warning" id="highlight_'.$rp['name'].'" rel="popover" title="Warning" data-content="'.$rp['highlight'].'">Warning</a>';
+					}
+				}
 			$readable_name = ucwords(" ".str_replace("_"," ",$rp['name']));
 			$r['READABLE_NAME']=$readable_name;
+			
+			$r['IMAGE']=$rp['image'];
+
 			$r['PLUGIN_NAME']=$rp['name'];
 			$r['MIN_JOMRES_VER']=$rp['min_jomres_ver'];
 			$r['LOCAL_VER']=$local_version;
