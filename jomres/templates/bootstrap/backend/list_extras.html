@@ -2,39 +2,7 @@
 <script type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#list_extras').dataTable({
-		"bJQueryUI": false,
-		"bStateSave": true,
-		"sPaginationType": "bootstrap",
-		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-		"sWrapper": "dataTables_wrapper form-inline",
-		"oTableTools": {
-			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
-			"aButtons": [
-				"copy",
-				{
-				"sExtends": "csv",
-				"sCharSet": "utf8"
-				},
-				{
-				"sExtends": "xls",
-				"sCharSet": "utf16le"
-				},
-				{
-				"sExtends": "pdf",
-				"sCharSet": "utf8",
-				"sPdfOrientation": "landscape",
-				"sTitle": "{PAGETITLE}"
-				},
-				"print"
-			]
-		}
-	});
-	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
-		"sSortAsc": "header headerSortDown",
-		"sSortDesc": "header headerSortUp",
-		"sSortable": "header"
-	} );
+	make_datatable('list_extras','{PAGETITLE}','{LIVESITE}');
 } );
 //-->
 </script>
@@ -47,7 +15,6 @@ jomresJquery(document).ready(function() {
 	<thead>
 		<tr>
 			<th>{HEDITLINK}</th>
-			<th></th>
 			<th>{HEXNAME}</th>
 			<th>{HEXDESC}</th>
 			<th>{HEXPRICE}</th>
@@ -67,9 +34,6 @@ jomresJquery(document).ready(function() {
 						<li><a tabindex="-1" href="{PUBLISH_URL}">{PUBLISH_TEXT}</a></li>
 					</ul>
 				</div>
-			</td>
-			<td>
-				<a href="{PUBLISH_URL}" class="btn {EMPHASIS}">{PUBLISH_TEXT}</a>
 			</td>
 			<td>{EXNAME}</td>
 			<td>{EXDESC}</td>
