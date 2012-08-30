@@ -72,16 +72,6 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				</tr>
 			</thead>
 			<tbody>');
-		
-		//if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
-		//	{
-			$contentPanel->setcontent('<tr>
-				 <td>'._JOMRES_BOOTSTRAPSWITCH.'</td>
-				 <td>'.$lists['use_bootstrap'].'</td>
-				 <td>'._JOMRES_BOOTSTRAPSWITCH_DESC.'</td>
-			</tr>');
-		//	}
-		
 		if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
 			{
 			$contentPanel->setcontent('
@@ -112,6 +102,21 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td>'._JOMRES_LICENSESERVER_PASSWORD.'</td>
 			<td><input type="password" class="input-large" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
 			<td></td>
+		</tr>
+		<tr>
+			 <td></td>
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
+			 <td></td>
+		</tr>
+		<tr>
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_FRONTEND.'</td>
+			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
+			 <td></td>
+		</tr>
+		<tr>
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR.'</td>
+			 <td>'.$lists['use_bootstrap_in_admin'].'</td>
+			 <td></td>
 		</tr>
 		<tr>
 			<td>'._JOMRES_PROPERTYDETAILS_INTABS_TITLE.'</td>
