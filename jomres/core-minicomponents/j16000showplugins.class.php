@@ -106,18 +106,18 @@ class j16000showplugins
 			if (!isset($rp->price))
 				$price_known = false;
 			
-			$remote_plugins[trim(addslashes(@$rp->name))]=array(
-				"name"					=>trim(addslashes(@$rp->name)),
+			$remote_plugins[trim(jomres_sanitise_string(@$rp->name))]=array(
+				"name"					=>trim(jomres_sanitise_string(@$rp->name)),
 				"version"				=>(float)@$rp->version,
-				"lastupdate"			=>addslashes(@$rp->lastupdate),
-				"description"			=>addslashes(@$rp->description),
-				"type"					=>addslashes(@$rp->type),
-				"min_jomres_ver"		=>addslashes(@$rp->min_jomres_ver),
+				"lastupdate"			=>jomres_sanitise_string(@$rp->lastupdate),
+				"description"			=>jomres_sanitise_string(@$rp->description),
+				"type"					=>jomres_sanitise_string(@$rp->type),
+				"min_jomres_ver"		=>jomres_sanitise_string(@$rp->min_jomres_ver),
 				"price"					=>@$rp->price,
-				"manual_link"			=>addslashes(@$rp->manual_link),
-				"change_log"			=>addslashes(@$rp->change_log),
-				"highlight"				=>addslashes(@$rp->highlight),
-				"image"					=>addslashes(@$rp->image),
+				"manual_link"			=>jomres_sanitise_string(@$rp->manual_link),
+				"change_log"			=>jomres_sanitise_string(@$rp->change_log),
+				"highlight"				=>jomres_sanitise_string(@$rp->highlight),
+				"image"					=>jomres_sanitise_string(@$rp->image),
 				"demo_url"				=>addslashes(@$rp->demo_url),
 				);
 			}
