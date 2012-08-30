@@ -77,11 +77,8 @@ class j00004a_init_javascript_css_files {
 		
 		if (_JOMRES_DETECTED_CMS != "joomla30")
 			{
-			if (!using_bootstrap() || $management_view )
-				{
-				set_showtime("jquery.core.js",'jquery-1.7.1.min.js');
-				set_showtime("jquery.core.js.relpath",'jomres/javascript/');
-				}
+			set_showtime("jquery.core.js",'jquery-1.7.1.min.js');
+			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
 			}
 		
 		set_showtime("jquery.ui.js","jquery-ui-1.8.16.custom.min.js");
