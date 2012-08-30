@@ -2,43 +2,30 @@
 <script language="JavaScript" type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#view_favourites').dataTable({
-		"bJQueryUI": false,
-		"bStateSave": true,
-		"sDom": "<'H'lTfr>t<'F'ip>",
-		"sPaginationType": "bootstrap"
-	});
-	jomresJquery.extend( jomresJquery.fn.dataTableExt.oStdClasses, {
-		"sSortAsc": "header headerSortDown",
-		"sSortDesc": "header headerSortUp",
-		"sSortable": "header"
-	} );
-} );
+	make_datatable('view_favourites','{PAGETITLE}','{LIVESITE}');
 //-->
 </script>
-<div class="well">
-	<h2>{_JOMCOMP_MYUSER_VIEWFAVOURITES}</h2>
-	<table id="view_favourites" width="100%" border="0" class="table table-striped">
-		<thead>
-			<tr>
-				<th>&nbsp;</th>
-				<th>{HPNAME}</th>
-				<th>&nbsp;</th>
-				<th>{HPTYPES}</th>
-				<th>&nbsp;</th>
-			</tr>
-		</thead>
-		<tbody>
-			<patTemplate:tmpl name="rows" unusedvars="nbsp">
-			<tr>
-				<td>{IMAGE}</td>
-				<td><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></td>
-				<td>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}, {PROP_TEL}</td>
-				<td>{TYPE}</td>
-				<td><a href="{REMOVELINK}">{REMOVETEXT}</a></td>
-			</tr>
-			</patTemplate:tmpl>
-		</tbody>
-	</table>
-</div>
+<h2 class="page-header">{_JOMCOMP_MYUSER_VIEWFAVOURITES}</h2>
+<table id="view_favourites" width="100%" class="table table-striped">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th>{HPNAME}</th>
+			<th>&nbsp;</th>
+			<th>{HPTYPES}</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<patTemplate:tmpl name="rows" unusedvars="nbsp">
+		<tr>
+			<td>{IMAGE}</td>
+			<td><a href="{PROPERTYDETAILSLINK}">{PROPERTYNAME}</a></td>
+			<td>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}, {PROP_TEL}</td>
+			<td>{TYPE}</td>
+			<td><a href="{REMOVELINK}" class="btn btn-danger">{REMOVETEXT}</a></td>
+		</tr>
+		</patTemplate:tmpl>
+	</tbody>
+</table>
 </patTemplate:tmpl>
