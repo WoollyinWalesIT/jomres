@@ -71,40 +71,35 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>');
 		
 		$contentPanel->setcontent('
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
 			<td valign="middle">'.$lists['advanced_site_config'].'</td>
 			<td valign="middle">'._JOMRES_COM_ADVANCED_SITE_CONFIG_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			 <td valign="middle">'._JOMRES_MENU_SHOW_TITLE.'</td>
 			 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
 			 <td valign="middle">'._JOMRES_MENU_SHOW_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_SUPPORTKEY.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td valign="middle">'._JOMRES_SUPPORTKEY_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_LICENSESERVER_USERNAME.'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_license_server_username" value="'.$jrConfig['license_server_username'].'" /></td>
 			<td valign="middle">'._JOMRES_LICENSESERVER_USERNAME_DESC.'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'._JOMRES_LICENSESERVER_PASSWORD.'</td>
 			<td valign="middle"><input type="password" class="inputbox" size="30" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
 			<td valign="middle"></td>
 		</tr>
-		<tr valign="middle" class="odd">
-			 <td></td>
-			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
-			 <td></td>
-		</tr>
 		<tr valign="middle" class="even">
 			 <td>'._JOMRES_BOOTSTRAPSWITCH_FRONTEND.'</td>
 			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
-			 <td></td>
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
 		</tr>
 		<tr valign="middle" class="odd">
 			 <td>'._JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR.'</td>
