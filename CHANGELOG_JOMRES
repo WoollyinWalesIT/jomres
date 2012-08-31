@@ -1,3 +1,32 @@
+Jomres 7.0.0
+
+Changed the REQUEST element checked before outputting hotel details to property_uid from id.
+Added some more bootstrap specific labels to the my commission invoices script.
+Added a new no image thumbnail image
+Added two new common lang strings, Edit and Copy, to lang files.
+Added bootstrap code to the Back to property details and open booking form links shown when the booking form is coded to show as a popup.
+Modified the show reviews template to use bootstrap's blockquote styling.
+Corrected a price input into a number type in edit extra
+Changed normal mode tariffs so that the price input is a html5 number type.
+Modified a number of templates & scripts to use a more aesthetically pleasing dropdown & edit icon in various lists.
+List extras and list customer types modified so that publish button is more obvious (and coloured).
+Added a new data tables function and removed an experimental .js script that was used in the plugin manager.
+Improved the bootstrap plugin manager layout further.
+Changed how data sent from the plugin manager is sanitised (not that we expect this data to be suspicious, but it never hurts to be careful).
+Temporarily disabled management view in J3 until at least Joomla 3's formal release.
+Added site config switches to decide if we should use bootstrap or not.
+
+
+Jomres 7.-1.0
+
+Disabled the Jomres text editor in J2.5 More trouble than it is worth atm, if somebody enters something that creates a javascript error the editor crashes and burns
+Added slideshow to pathway
+Various list invoices tweaks.
+Moved jomres_alternate_menu_position outside jomres_content_area so that we retain the menu if ajax search composite is used.
+Disabled a new js function's bells as it doesn't whistle on the ipad.
+
+
+
 Jomres 7.0.-2
 
 Tweaked show hotel details page so that it can be viewed via a direct url, as well as called from another plugin.
