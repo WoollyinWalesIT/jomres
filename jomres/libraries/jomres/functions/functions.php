@@ -352,7 +352,18 @@ function admins_first_run($manual_trigger = false)
 			$count=0;
 			}
 		if (!$manual_trigger)
-			echo '<div id = "first_run" style="display:none;" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			{
+			echo '<div  class="modal"  tabindex="-1" role="dialog" id="first_run" style="display:none;width:960px" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
+			if (using_bootstrap())
+				{
+				echo '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h3>Getting Started with Jomres</h3></div>';
+				}
+			else
+				{
+				echo '<h3>Getting Started with Jomres</h3>';
+				}
+			
+			}
 		else
 			echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
 
@@ -376,7 +387,7 @@ function admins_first_run($manual_trigger = false)
 			}
 		
 		echo '
-		<h2 class="page-header">Getting Started with Jomres</h2>
+		<div class="modal-body">
 		<div class="'.$class.'" style="width:100%;">
 		<div style="'.$style.'">
 		<h3 class="page-header">Introduction.</h3>
@@ -395,7 +406,7 @@ function admins_first_run($manual_trigger = false)
 		<h3 class="page-header">Further reading.</h3>
 		<p>Jomres is fully documented in the <a href="http://manual.jomres.net/" target="_blank">online manual</a>. There is a wealth of information here, including the <a href="http://manual.jomres.net/site_managers_guide_plugins.html"  target="_blank">plugin list</a>, but a good place to begin at is the <a href="http://manual.jomres.net/site_managers_guide_gettingstarted.html" target="_blank">Getting Started</a> page.</p>
 		<p>To learn how to configure your property(s) you should take a look at the <a href="http://manual.jomres.net/property_managers_guide.html" target="_blank">Property Manager\'s guide.</a> This section of the manual is aimed at Property Managers themselves, and discusses among other things the <a href="http://manual.jomres.net/property_managers_guide_toolbar.html" target="_blank">Manager\'s Toolbar.</a> Note that the toolbar shows the manager\'s toolbar with all of the most commonly installed plugin\'s buttons, until you\'ve installed the relevant plugins your toolbar will not have as many icons.</p>
-		</div></div>
+		</div></div></div>
 		';
 
 		if (!using_bootstrap())
@@ -409,34 +420,40 @@ function admins_first_run($manual_trigger = false)
 		echo '</div>
 		';
 		if (!$manual_trigger)
-			echo '<script>jomresJquery( "#first_run" ).dialog({width:980,modal:true});</script>';
-		}
-	else
-		{
-		$count = (int)file_get_contents ($logfile);
-		
-		if (!using_bootstrap())
-			$class = "ui-state-highlight";
-		else
-			$class = "alert alert-info";
-		
-		if ($count == $threshold)
 			{
-			echo '<div id = "jed" style="display:none;" title="Review Jomres on the Joomla Extension Directory">';
-			echo '<p>Please remember to post a review about Jomres on the <a href="http://extensions.joomla.org/extensions/vertical-markets/booking-a-reservations/booking/335" target="_blank">Joomla Extension Directory.</a> The JED is our primary source of business and we need your review!</p>';
-			echo '<p class="'.$class.'">This is the one and only time you will see this feedback request (unless you delete <i>"'.$logfile.'"</i>).</p>';
-			echo '</div>';
-			echo '<script>jomresJquery( "#jed" ).dialog({width:500,modal:true});</script>';
+			if (using_bootstrap())
+				echo '<script>jomresJquery(document).ready(function() {jomresJquery(\'#first_run\').modal()});</script>';
+			else
+				echo '<script>jomresJquery( "#first_run" ).dialog({width:1024,modal:true});</script>';
 			}
 		}
+	// else
+		// {
+		// $count = (int)file_get_contents ($logfile);
+		
+		// if (!using_bootstrap())
+			// $class = "ui-state-highlight";
+		// else
+			// $class = "alert alert-info";
+		
+		// if ($count == $threshold)
+			// {
+			// echo '<div id = "jed" style="display:none;" title="Review Jomres on the Joomla Extension Directory">';
+			// echo '<p>Please remember to post a review about Jomres on the <a href="http://extensions.joomla.org/extensions/vertical-markets/booking-a-reservations/booking/335" target="_blank">Joomla Extension Directory.</a> The JED is our primary source of business and we need your review!</p>';
+			// echo '<p class="'.$class.'">This is the one and only time you will see this feedback request (unless you delete <i>"'.$logfile.'"</i>).</p>';
+			// echo '</div>';
+			// echo '<script>jomresJquery( "#jed" ).dialog({width:500,modal:true});</script>';
+			
+			// }
+		// }
 
-	if ($count <= $threshold && !$manual_trigger && !isset($_REQUEST['no_html']) )
-		{
-		$count++;
-		$fp=fopen($logfile,'r+');
-		fwrite($fp, $count );
-		fclose($fp);
-		}
+	// if ($count <= $threshold && !$manual_trigger && !isset($_REQUEST['no_html']) )
+		// {
+		// $count++;
+		// $fp=fopen($logfile,'r+');
+		// fwrite($fp, $count );
+		// fclose($fp);
+		// }
 	}
 
 function query_shop($request = '' )
