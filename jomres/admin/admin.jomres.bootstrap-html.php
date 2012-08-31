@@ -104,14 +104,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td></td>
 		</tr>
 		<tr>
-			 <td></td>
-			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
-			 <td></td>
-		</tr>
-		<tr>
 			 <td>'._JOMRES_BOOTSTRAPSWITCH_FRONTEND.'</td>
 			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
-			 <td></td>
+			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
 		</tr>
 		<tr>
 			 <td>'._JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR.'</td>
