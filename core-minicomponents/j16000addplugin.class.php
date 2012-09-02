@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 
 class j16000addplugin
 	{
-	function j16000addplugin()
+	function j16000addplugin($componentArgs)
 		{
 		// Must be in all minicomponents. Minicomponents with templates that can contain editable text should run $this->template_touch() else just return
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -28,8 +28,24 @@ class j16000addplugin
 		$debugging=false;
 		define ("JOMRES_INSTALLER",1);
 		$thirdparty=jomresGetParam( $_REQUEST, 'thirdparty', false );
+		
 		$pluginName=jomresGetParam( $_REQUEST, 'plugin', '' );
-		$autoupgrade=jomresGetParam( $_REQUEST, 'autoupgrade', 0 );
+		if (isset($componentArgs['plugin']))
+			$pluginName = $componentArgs['plugin'];
+		
+		$autoupgrade=jomresGetParam( $_REQUEST, 'autoupgrade', false );
+		if (isset($componentArgs['autoupgrade']))
+			$autoupgrade=$componentArgs['autoupgrade'];
+
+		$progress_messages = array();
+		$error_messsage = array();
+		$output = array();
+		$pageoutput=array();
+		$auto_installation_result=array();
+		$auto_installation_results=array();
+		
+		$output['NEXT_STEP']='';
+		
 		$pluginName=str_replace("<x>","",$pluginName);
 		$pluginName=str_replace("&#60;x&#62;","",$pluginName);
 
@@ -48,54 +64,81 @@ class j16000addplugin
 			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		else
 			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
-		
-		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS;
 
 		if (strlen($pluginName)==0 && !$thirdparty)
 			{
-			echo "Error, no plugin name passed";
-			if ($autoupgrade == 0) if ($autoupgrade == 0) return false; else { echo "FALSE"; return;} else { echo "FALSE"; return;}
-
+			$error_messsage["ERROR"]="Error, no plugin name passed";
+			if ($autoupgrade) return false; 
 			}
-
+		
+		
+		
 		if (!is_dir($remote_pluginsDirPath) )
 			{
 			if (!mkdir($remote_pluginsDirPath))
 				{
-				echo "Couldn't make $remote_pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.<br/>";
-				if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+				$error_messsage["ERROR"]= "Couldn't make $remote_pluginsDirPath folder. Please create it manually and ensure that apache/your web server has write access to that folder.";
+				if ($autoupgrade) return false;
 				}
 			else
-				if ($debugging) echo "Made ".$remote_pluginsDirPath."<br>";
+				$progress_messages[] =  array("MESSAGE"=>"Made ".$remote_pluginsDirPath."");
 			}
 		else
-			if ($debugging) echo "No need to make ".$remote_pluginsDirPath."<br>";
+			$progress_messages[] =  array("MESSAGE"=>"No need to make ".$remote_pluginsDirPath."");
 
 		if (strlen($pluginName)>0)
 			{
 			if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName) )
 				{
 				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName);
-				if ($debugging) echo "Removing ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName."<br>";
+				$progress_messages[] =  array("MESSAGE"=>"Removing ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName."");
 				@rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS.$pluginName);
 				}
 			if (is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName) )
 				{
 				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName);
-				if ($debugging) echo "Removing ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName."<br>";
+				$progress_messages[] =  array("MESSAGE"=>"Removing ".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName."");
 				@rmdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS.$pluginName);
 				}
 			}
-
+		
+		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS.$pluginName.JRDS;
+		
+		
+		
 		if (is_dir($updateDirPath."unpacked") )
 			{
-			if ($debugging) echo "<br>Removing ".$updateDirPath."unpacked<br>";
+			$progress_messages[] =  array("MESSAGE"=>"Cleaning up ".$updateDirPath." unpacked for a new installation of the plugin.");
 			emptyDir($updateDirPath."unpacked");
 			rmdir($updateDirPath."unpacked");
 			}
+		
+		if (is_dir($updateDirPath) )
+			{
+			$progress_messages[] =  array("MESSAGE"=>"Cleaning up ".$updateDirPath." for a new installation of the plugin.");
+			emptyDir($updateDirPath);
+			rmdir($updateDirPath);
+			}
 
-		emptyDir($updateDirPath);
-
+		if (mkdir($updateDirPath))
+			$progress_messages[] =  array("MESSAGE"=>"Made ".$updateDirPath." for a new installation of the plugin.");
+		else
+			{
+			$error_messsage["ERROR"]="Couldn't make the folder ".$updateDirPath." so quitting.";
+			echo $error_messsage["ERROR"];
+			return;
+			}
+			
+		if (mkdir($updateDirPath."unpacked"))
+			$progress_messages[] =  array("MESSAGE"=>"Made ".$updateDirPath."unpacked for a new installation of the plugin.");
+		else
+			{
+			$error_messsage["ERROR"]="Couldn't make the folder ".$updateDirPath."unpacked so quitting.";
+			echo $error_messsage["ERROR"];
+			return;
+			}
+		
+		
 		if ($thirdparty)
 			{
 			$error=false;
@@ -128,8 +171,8 @@ class j16000addplugin
 				}
 			if ($error)
 				{
-				echo $errorDesc;
-				if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+				$error_messsage["ERROR"]=$errorDesc;
+				if ($autoupgrade) return false;
 				}
 			}
 		else
@@ -138,11 +181,11 @@ class j16000addplugin
 				{
 				if (!mkdir($remote_pluginsDirPath.$pluginName.JRDS))
 					{
-					echo "Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting.";
-					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+					$error_messsage["ERROR"]="Couldn't make the folder ".$remote_pluginsDirPath.$pluginName.JRDS." so quitting.";
+					if ($autoupgrade) return false;
 					}
 
-				if ($debugging) echo "Attempting download of ".$pluginName."<br>";
+				$progress_messages[] =  array("MESSAGE"=>"Attempting download of ".$pluginName."");
 				$newfilename=$updateDirPath.$pluginName.".vnw";
 				$p='';
 				if (isset($_REQUEST['plugin']))
@@ -150,12 +193,15 @@ class j16000addplugin
 				
 				$queryServer="http://plugins.jomres4.net/index.php?r=gp&cms="._JOMRES_DETECTED_CMS."&vnw=1&key=".$key_validation->key_hash.$p."&jomresver=".$mrConfig['version'];
 
-				if ($debugging) echo $queryServer;
+				$progress_messages[] =  array("MESSAGE"=>$queryServer);
 				
 				$curl_handle = curl_init($queryServer);
 				$file_handle = fopen($newfilename, 'wb');
 				if ($file_handle == FALSE)
-					{ print "Couldn't create new file $newfilename. Possible file permission problem?<br/>"; if ($autoupgrade == 0) return false; else { echo "FALSE"; return;} }
+					{
+					$error_messsage["ERROR"]= "Couldn't create new file $newfilename. Possible file permission problem?";
+					if ($autoupgrade) return false; 
+					}
 
 				curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
 				curl_setopt($curl_handle, CURLOPT_HEADER, 0);
@@ -170,15 +216,15 @@ class j16000addplugin
 
 		if (!file_exists($newfilename) || filesize($newfilename)==0 )
 			{
-			echo "Something went wrong downloading the update files. Quitting";
-			if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+			$error_messsage["ERROR"]="Something went wrong downloading the update files. Quitting";
+			if ($autoupgrade) return false;
 			}
 
-		if ($debugging) echo "<br>Downloaded $newfilename<br>";
+		$progress_messages[] =  array("MESSAGE"=>"Downloaded $newfilename");
 
-		if (mkdir($updateDirPath."unpacked"))
+		if (is_dir($updateDirPath."unpacked"))
 			{
-			if ($debugging) echo "<br>Starting extraction of $newfilename<br>";
+			$progress_messages[] =  array("MESSAGE"=>"Starting extraction of $newfilename");
 			clearstatcache() ;
 
 			if ($thirdparty)
@@ -201,19 +247,19 @@ class j16000addplugin
 				$result=$zip->unZipAll($updateDirPath."unpacked");
 				if ($result['result']==false)
 					{
-					echo "Emptying ".$updateDirPath."unpacked"."<br>";
+					$error_messsage["ERROR"]= "Emptying ".$updateDirPath."unpacked"."";
 					emptyDir($updateDirPath."unpacked");
 					rmdir($updateDirPath."unpacked");
-					echo $result['msg'];
-					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+					$error_messsage["ERROR"]= $result['msg'];
+					if ($autoupgrade) return false;
 					}
 				$zip->close();
 				}
 
-			if(!unlink($newfilename)) echo "Error removing $newfilename<br/>";
+			if(!unlink($newfilename)) $error_messsage["ERROR"]= "Error removing $newfilename";
 
-			if ($debugging) echo "<br>Completed extract of $newfilename<br>";
-			if ($debugging) echo "<br>Moving contents of ".$updateDirPath."unpacked to ".$remote_pluginsDirPath.$pluginName."<br>";
+			$progress_messages[] =  array("MESSAGE"=>"Completed extract of $newfilename");
+			$progress_messages[] =  array("MESSAGE"=>"Moving contents of ".$updateDirPath."unpacked to ".$remote_pluginsDirPath.$pluginName."");
 
 			if (file_exists($updateDirPath."unpacked".JRDS."plugin_dependencies_check.php") )
 				{
@@ -222,28 +268,53 @@ class j16000addplugin
 				
 				if (!$info->test_result)
 					{
-					echo " Failed dependencies check. Please ensure that you've installed the following plugins before attempting to install this one: <br/>";
+					if ($this->key_valid)
+						{
+						foreach ($info->dependencies as $d)
+							{
+							$auto_installation_result = array();
+							if (!$autoupgrade)
+								$auto_installation_result['MESSAGE']= "Attempting to auto-install dependancies";
+							$result = $MiniComponents->specificEvent('16000','addplugin',array("plugin"=>$d,"autoupgrade"=>true));
+							if (!$autoupgrade)
+								{
+								$discovery_required = false;
+								if ($result['success'])
+									{
+									$auto_installation_result['MESSAGE']= "Auto installed ".$d." as it is required by ".$pluginName.".";
+									if ($result['discovery_required'])
+										$discovery_required = true;
+									}
+								else
+									$auto_installation_result['MESSAGE']= "Failed to auto install ".$d.". Please install the plugin manually through the plugin manager.";
+								$auto_installation_results[] = $auto_installation_result;
+								}
+							}
+						}
+					}
+				else
+					{
+					$error_messsage["ERROR"]=" Failed dependencies check. Please ensure that you've installed the following plugins before attempting to install this one: ";
 					foreach ($info->dependencies as $d)
 						{
-						echo $d;
+						$error_messsage["ERROR"].= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$d.'" target="_blank">'.$d.'</a>';
 						}
-					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
 					}
 				}
-				
+
 			if (file_exists($updateDirPath."unpacked".JRDS."plugin_exclusions_check.php") )
 				{
 				require_once($updateDirPath."unpacked".JRDS."plugin_exclusions_check.php");
 				$info = new plugin_check_exclusions();
 				if (!$info->test_result)
 					{
-					echo " Failed plugin_check_exclusions check. Please ensure that you've un-installed the following plugins before attempting to install this one: <br/>";
+					$error_messsage["ERROR"]= " Failed plugin_check_exclusions check. Please ensure that you've un-installed the following plugins before attempting to install this one: ";
 					foreach ($info->exclusions as $d)
 						{
-						echo $d."<br/>";
+						$exclusions[] = array("MESSAGE"=> "Error, the plugin you are trying to install cannot be installed because ".$d." is already installed.");
 						}
-					echo " One or more may be installed, this list is a list of plugins that the plugin that you are trying to install will conflict with. <br/>";
-					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+					//$error_messsage["ERROR"]= " One or more may be installed, this list is a list of plugins that the plugin that you are trying to install will conflict with. ";
+					if ($autoupgrade) return false;
 					}
 				}
 			
@@ -274,63 +345,111 @@ class j16000addplugin
 
 				if ($error)
 					{
-					echo "Error, this plugin requires at least version ".$plugin_class->data['min_jomres_ver']." of Jomres";
-					if ($autoupgrade == 0) return false; else { echo "FALSE"; return;}
+					$error_messsage["ERROR"]="Error, this plugin requires at least version ".$plugin_class->data['min_jomres_ver']." of Jomres";
+					if ($autoupgrade) return false;
 					}
 				}
+			
+			$plugin_installed_successfully = false;
 			
 			$result=dirmv($updateDirPath."unpacked", $remote_pluginsDirPath.$pluginName, true, $funcloc = "/");
 			if ($result['success'])
 				{
 				//echo $remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php";exit;
-				if ($debugging) echo "<br>Moved contents of $newfilename to ".$remote_pluginsDirPath.$pluginName."<br>";
-				if(!rmdir($updateDirPath."unpacked")) echo "Error removing $updateDirPath/unpacked<br/>";
+				$progress_messages[] =  array("MESSAGE"=>"Moved contents of $newfilename to ".$remote_pluginsDirPath.$pluginName."");
+				if(!rmdir($updateDirPath."unpacked")) echo "Error removing $updateDirPath/unpacked";
 				if (file_exists($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php") )
 					{
-					
 					require_once ($remote_pluginsDirPath.$pluginName.JRDS."plugin_install.php");
 					}
 				touch ($remote_pluginsDirPath.$pluginName.JRDS."index.html");
-				jr_import('minicomponent_registry');
-				$registry = new minicomponent_registry(false);
-				$registry->regenerate_registry();
-				emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
-				if ($autoupgrade == 0)
+
+				if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
 					{
-					if ($plugin_class->data['type'] == "mambot" || $plugin_class->data['type'] == "module")
+					if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30")
 						{
-						if (_JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30")
+						if (!$autoupgrade)
 							{
-							if (!$debugging) jomresRedirect(get_showtime("live_site")."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_installer&view=discover");
+							$plugin_installed_successfully = true;
+							$discovery_required = true;
 							}
 						else
-							{
-							if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName);
-							}
+							$this->retVals = array("success"=>true,"discovery_required"=>true);
 						}
 					else
-						{ 
-						if (!$debugging) jomresRedirect(JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName); 
+						{
+						if (!$autoupgrade) 
+							{
+							$plugin_installed_successfully = true;
+							if (!isset($discovery_required))
+								$discovery_required = false;
+							}
+						else
+							$this->retVals = array("success"=>true,"discovery_required"=>false);
 						}
 					}
 				else
-					{
-					echo "TRUE";
+					{ 
+					if (!$autoupgrade) 
+						{
+						$plugin_installed_successfully = true;
+						if (!isset($discovery_required))
+							$discovery_required = false;
+						}
+					else
+						$this->retVals = array("success"=>true,"discovery_required"=>false);
 					}
-				//
 				}
 			else
-				echo "There was an error while unpacking and moving the plugin";
+				$error_messsage["ERROR"]="There was an error while unpacking and moving the plugin";
 			}
 		else
-			echo "Error creating unpack folder";
+			$error_messsage["ERROR"]="Error ".$updateDirPath."unpacked does not exist";
+		
+		if (!$autoupgrade) 
+			{
+			if ($plugin_installed_successfully)
+				{
+				$success = array();
+				if ($discovery_required)
+					{
+					$output['NEXT_STEP']=get_showtime("live_site")."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_installer&view=discover";
+					$success[] = array("MESSAGE"=>"Successfully installed the ".$pluginName." plugin. The next button will take you to the Extension Discovery page where you can finish the plugin's installation.");
+					}
+				else
+					{
+					$output['NEXT_STEP']=JOMRES_SITEPAGE_URL_ADMIN."&task=showplugins#".$pluginName;
+					$success[] = array("MESSAGE"=>"Successfully installed the ".$pluginName." plugin. The next page will take you back to the Jomres plugin manager.");
+					}
+				}
+			
+			jr_import('minicomponent_registry');
+			$registry = new minicomponent_registry(false);
+			$registry->regenerate_registry();
+			emptyDir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'cache'.JRDS);
+			
+			$pageoutput[]=$output;
+			$error_messages[]=$error_messsage;
+			
 
+			$tmpl = new patTemplate();
+			$tmpl->addRows( 'pageoutput', $pageoutput );
+			$tmpl->addRows( 'error_messages', $error_messages);
+			$tmpl->addRows( 'auto_installation_results', $auto_installation_results);
+			$tmpl->addRows( 'progress_messages', $progress_messages);
+			$tmpl->addRows( 'exclusions', $exclusions);
+			$tmpl->addRows( 'success', $success);
+			
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'plugin_installation_result.html' );
+			$tmpl->displayParsedTemplate();
+			}
 		}
 
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return null;
+		return $this->retVals;
 		}
 	}
 ?>
