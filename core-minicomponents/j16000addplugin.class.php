@@ -291,15 +291,16 @@ class j16000addplugin
 								}
 							}
 						}
-					}
-				else
-					{
-					$error_messsage["ERROR"]=" Failed dependencies check. Please ensure that you've installed the following plugins before attempting to install this one: ";
-					foreach ($info->dependencies as $d)
+					else
 						{
-						$error_messsage["ERROR"].= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$d.'" target="_blank">'.$d.'</a>';
+						$error_messsage["ERROR"]=" Failed dependencies check. Please ensure that you've installed the following plugins before attempting to install this one: ";
+						foreach ($info->dependencies as $d)
+							{
+							$error_messsage["ERROR"].= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$d.'" target="_blank">'.$d.'</a>';
+							}
 						}
 					}
+
 				}
 
 			if (file_exists($updateDirPath."unpacked".JRDS."plugin_exclusions_check.php") )
