@@ -3658,10 +3658,11 @@ function getImageForProperty($imageType,$property_uid,$itemUid)
 
 function getThumbnailForImage($imagefullrelpath,$medium=false)
 	{
-	$filedata= split("/", $imagefullrelpath);
+	$filedata= explode("/", $imagefullrelpath);
 	$count = count($filedata);
 	$image_name = $filedata[$count-1];
-	$filename= split("\.", $image_name);
+	$filename= explode(".", $image_name);
+
 	$filename = $filename[0];
 	if (!$medium)
 		$thumbnail_image_name = $filename."_thumbnail.jpg";
@@ -3670,7 +3671,7 @@ function getThumbnailForImage($imagefullrelpath,$medium=false)
 
 	// Now we need to recombine the image path again. We already know parts of it.
 	$path = str_replace(JOMRES_IMAGELOCATION_RELPATH,"",$imagefullrelpath);
-	$pathdata= split("/", $path);
+	$pathdata= explode("/", $path);
 	$thumbnail_image_abspath = JOMRES_IMAGELOCATION_ABSPATH;
 	$thumbnail_image_relpath = JOMRES_IMAGELOCATION_RELPATH;
 	if (count($pathdata)>1)
@@ -4894,7 +4895,7 @@ function scandir_getfiles($path,$extension = false)
 			else
 				{
 				$filename = strtolower($file) ; 
-				$exts = split("[/\\.]", $filename) ; 
+				$exts = explode(".", $filename) ; 
 				$n = count($exts)-1; 
 				$exts = $exts[$n];
 				if ($exts == $extension)
