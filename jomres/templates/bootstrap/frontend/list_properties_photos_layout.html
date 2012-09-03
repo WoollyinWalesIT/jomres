@@ -15,12 +15,12 @@ clear:both;
 			<div class="thumbnail {FEATURED_LISTINGS_CLASS}">
 				<div class="caption">
 					<h4><a href="{MOREINFORMATIONLINK}">{PROPERTYNAME}</a>&nbsp;{STARS}</h4>
-					<p>{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
+					<p class="small">{PROP_TOWN}, {PROP_REGION}, {PROP_COUNTRY}</p>
 					<div class="hidden-phone">
 						<input type="checkbox" name="compare" value="{UID}" autocomplete="off" /> {_JOMRES_COMPARE}
 					</div>
 				</div>
-				<div class="align-center"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle" /></a></div>
+				<div class="align-center photoview-image"><a href="javascript: module_popup('{RANDOM_IDENTIFIER}',{UID});" class="thumbnail"><img src="{IMAGEMEDIUM}" align="middle" /></a></div>
 				<div class="caption">
 					<div class="well align-center">
 						{PRICE_PRE_TEXT}
@@ -33,6 +33,8 @@ clear:both;
 				</div>
 			</div>
 		</div>
+		
+		<div id="module_{RANDOM_IDENTIFIER}_popup" style="display:none;" title="{PROPERTYNAME}"><img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
 		
 		<patTemplate:comment>
 		<div id="effect{UID}" class="quick-info ui-helper-hidden">
@@ -53,13 +55,12 @@ clear:both;
 				<div>&nbsp;</div>
 				<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 			</div>
-		</div>-->
+		</div>
 		<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable ui-helper-hidden" id="property_reviews{UID}">
 			{REVIEWS}
 		</div>
 		</patTemplate:comment>
-		
-		<div id='module_{RANDOM_IDENTIFIER}_popup' style="display:none;" title="{PROPERTYNAME}"><img src="{LIVESITE}/jomres/images/ajax_animation/broken_circle.gif" /></div>
+
 		</patTemplate:tmpl>
 		<div class="clearfix"></div>
 	</div>
