@@ -10,6 +10,7 @@ input[class^="jomres_te_"] {width: 25px !important;}
 .jomres-compare{line-height:27px;}
 #jomres_content_area .well{padding:10px;}
 .jomres-propertylist-toolbar form {margin:0;}
+.photoview-image img{max-height:134px;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
