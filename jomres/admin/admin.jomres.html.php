@@ -101,11 +101,20 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
 			 <td>'._JOMRES_BOOTSTRAPSWITCH_INFO.'</td>
 		</tr>
-		<tr valign="middle" class="odd">
-			 <td>'._JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR.'</td>
-			 <td>'.$lists['use_bootstrap_in_admin'].'</td>
-			 <td></td>
-		</tr>
+		');
+		
+		if (_JOMRES_DETECTED_CMS == "joomla30" )
+			{
+			$contentPanel->setcontent('
+			<tr valign="middle" class="odd">
+				 <td>'._JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR.'</td>
+				 <td>'.$lists['use_bootstrap_in_admin'].'</td>
+				 <td></td>
+			</tr>
+			');
+			}
+		
+		$contentPanel->setcontent('
 		<tr valign="middle" class="even">
 			<td valign="middle">'._JOMRES_COOKIEPOLICY_TITLE.'</td>
 			<td valign="middle">'.$lists['use_cookie_policy'].'</td>
