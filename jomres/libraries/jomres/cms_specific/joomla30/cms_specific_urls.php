@@ -99,19 +99,19 @@ else
 if ( isset($_REQUEST['is_wrapped']) )
 	{
 	if ( $_REQUEST['is_wrapped']=="1" )
-		$tmpl .= $tmpl."&is_wrapped=1";
+		$tmpl .= "&is_wrapped=1";
 	}
 
 if ( isset($_REQUEST['menuoff']) )
 	{
 	if ( $_REQUEST['menuoff']=="1" )
 		{
-		$tmpl .= $tmpl."&menuoff=1";
+		$tmpl .= "&menuoff=1";
 		set_showtime('menuoff',true);
 		}
 	else
 		{
-		$tmpl .= $tmpl."&menuoff=0";
+		$tmpl .= "&menuoff=0";
 		set_showtime('menuoff',false);
 		}
 	}
@@ -120,12 +120,12 @@ if ( isset($_REQUEST['topoff']) )
 	{
 	if ( $_REQUEST['topoff']=="1" )
 		{
-		$tmpl .= $tmpl."&topoff=1";
+		$tmpl .= "&topoff=1";
 		set_showtime('topoff',true);
 		}
 	else
 		{
-		$tmpl .= $tmpl."&topoff=0";
+		$tmpl .= "&topoff=0";
 		set_showtime('topoff',false);
 		}
 	}
@@ -143,7 +143,7 @@ define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=co
 
 */
 
-define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang);
+define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang.$tmpl);
 define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1&Itemid=".$jomresItemid."&lang=".$lang);
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl);
 define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1");
