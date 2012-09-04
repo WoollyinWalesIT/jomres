@@ -2970,9 +2970,10 @@ function showGetKeyInput()
 	$mrConfig=getPropertySpecificSettings();
 	?>
 	<form action="" method="post" name="adminForm">
-
-	<h3><font="red">Press the GO button when you are ready to proceed with installation/upgrade<br></font></h3>
-	<input type="submit" name="go" value="GO!" class="button" >
+	 <div class="hero-unit">
+		<h3><font="red">Press the GO button when you are ready to proceed with installation/upgrade<br></font></h3>
+		<input type="submit" name="go" value="GO!" class="btn btn-primary btn-large" >
+	</div>
 	</form>
 	<hr>
 
@@ -2980,7 +2981,7 @@ function showGetKeyInput()
 	<h3><font="red">Remove Jomres tables<br></font></h3>
 	<input type="hidden" name="option" value="com_jomres" />
 	<input type="hidden" name="trashtables" value="1" />
-	<input type="submit" value="Remove Jomres Tables" class="button" >
+	<input type="submit" value="Remove Jomres Tables" class="btn btn-danger" >
 	</form>
 	<font="red">Please, do not use this button unless you're sure you want to remove all your current Jomres tables. <br></font>
 	<h4><font="red">This action is only recoverable by restoring a database backup. <br></font></h4>
@@ -3005,31 +3006,16 @@ function showheader()
 	<html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.0.4/bootstrap.min.js"></script>
+	
+	
 	<title>Jomres installation</title>
-	<style type="text/css">
-	<!--
-	.pagebackground {
-		background-color: #FF0000;
-		text-align: center;
-		position: relative;
-		background-position: center center;
-	}
-	.connectivitybackground {
-		background-color: #FFff00;
-		text-align: center;
-		position: relative;
-		background-position: center center;
-	}
-	.panel {
-		background-color: #FFFFFF;
-		border: #FF0000;
-		background-position: center center;
-	}
-	-->
-	</style>
-	<div class="pagebackground">
-		<p align="center">&nbsp;</p>
-	<div class= "panel">
+	</head>
+	<body>
+	<div class= "container">
 
 		<p><img src="images/jrlogo.png" width="287" height="70"></p>
 		<p><h1>Jomres installation</h1></p>
@@ -3040,8 +3026,6 @@ function showheader()
 function showfooter()
 	{
 	?>
-	</div>
-	<p>&nbsp;</p>
 	</div>
 	</body>
 	</html>
