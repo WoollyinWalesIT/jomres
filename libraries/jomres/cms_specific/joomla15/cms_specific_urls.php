@@ -74,19 +74,19 @@ if (isset($_GET['format']) )
 if ( isset($_REQUEST['is_wrapped']) )
 	{
 	if ( $_REQUEST['is_wrapped']=="1" )
-		$tmpl .= $tmpl."&is_wrapped=1";
+		$tmpl .= "&is_wrapped=1";
 	}
 
 if ( isset($_REQUEST['menuoff']) )
 	{
 	if ( $_REQUEST['menuoff']=="1" )
 		{
-		$tmpl .= $tmpl."&menuoff=1";
+		$tmpl .= "&menuoff=1";
 		set_showtime('menuoff',true);
 		}
 	else
 		{
-		$tmpl .= $tmpl."&menuoff=0";
+		$tmpl .= "&menuoff=0";
 		set_showtime('menuoff',false);
 		}
 	}
@@ -95,12 +95,12 @@ if ( isset($_REQUEST['topoff']) )
 	{
 	if ( $_REQUEST['topoff']=="1" )
 		{
-		$tmpl .= $tmpl."&topoff=1";
+		$tmpl .= "&topoff=1";
 		set_showtime('topoff',true);
 		}
 	else
 		{
-		$tmpl .= $tmpl."&topoff=0";
+		$tmpl .= "&topoff=0";
 		set_showtime('topoff',false);
 		}
 	}
