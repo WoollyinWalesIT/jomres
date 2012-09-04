@@ -18,11 +18,12 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
 	$property_uid = (int)get_showtime('property_uid');
 	
-	global $text_bucket;
-	if (!isset($text_bucket))
-		$text_bucket = array();
-	if (isset($text_bucket[$property_uid][$theConstant][$okToEdit]))
-		return $text_bucket[$property_uid][$theConstant][$okToEdit];
+	// Disabling the text bucket. Whilst a good idea to improve performance, the functionality can cause unpredictable behaviour and will be disabled for now.
+	// global $text_bucket;
+	// if (!isset($text_bucket))
+		// $text_bucket = array();
+	// if (isset($text_bucket[$property_uid][$theConstant][$okToEdit]))
+		// return $text_bucket[$property_uid][$theConstant][$okToEdit];
 	
 	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 	
