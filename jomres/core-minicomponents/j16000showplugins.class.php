@@ -300,7 +300,7 @@ class j16000showplugins
 			$r['INSTALL_TEXT'] ='';
 			if (array_key_exists($plugin_name,$current_licenses) || $developer_user)
 				{
-				$r['INSTALL_LINK'] =JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&no_html=1&plugin='.$n;
+				$r['INSTALL_LINK'] =JOMRES_SITEPAGE_URL_ADMIN.'&task=addplugin&plugin='.$n;
 				$r['INSTALL_TEXT'] =$installAction;
 				}
 
