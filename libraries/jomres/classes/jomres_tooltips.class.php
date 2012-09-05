@@ -41,13 +41,15 @@ class jomres_tooltips
 		//$div="jrTooltip".preg_replace('/[^A-Za-z0-9_-]+/', "", $div);
 		$div=generateJomresRandomString(10);
 		while ($keeplooking):
-			if (is_null($this->divs[$div]))
+			if (!array_key_exists($div,$this->divs))
 				$keeplooking=false;
 			else
 				$div=$div.mt_rand ( 10000000,99999999 );
 		endwhile;
 		
 		$this->divs[$div]=$div;
+		
+		$div_string='';
 
 		switch ($type) 
 			{
