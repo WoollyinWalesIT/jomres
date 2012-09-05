@@ -10,7 +10,23 @@ input[class^="jomres_te_"] {width: 25px !important;}
 .jomres-compare{line-height:27px;}
 #jomres_content_area .well{padding:10px;}
 .jomres-propertylist-toolbar form {margin:0;}
-.photoview-image img{max-height:134px;}
+.photoview-ptitle,.photoview-paddress{width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+@media (max-width: 768px) {
+	.photoview{width:100%;}
+	.photoview-image img{max-height:130px;}
+}
+@media (min-width: 768px) and (max-width: 979px) {
+	.photoview{width:31.3%;margin-right:10px;}
+	.photoview-image img{height:86px;}
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+	.photoview{width:31.8%;margin-right:10px;}
+	.photoview-image img{height:110px;}
+}
+@media (min-width: 1200px) {
+	.photoview{width:31.9%;margin-right:10px;}
+	.photoview-image img{height:130px;}
+}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
