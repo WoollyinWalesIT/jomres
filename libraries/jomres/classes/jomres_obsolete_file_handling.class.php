@@ -646,7 +646,7 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_images.'bullet2.gif');
 		$this->add_obs_file($this->dir_images.'col_alt.jpg');
 		$this->add_obs_file($this->dir_images.'info.gif');
-		$this->add_obs_file($this->dir_images.'information.png');
+		//$this->add_obs_file($this->dir_images.'information.png');
 		$this->add_obs_file($this->dir_images.'jomres_button.gif');
 		$this->add_obs_file($this->dir_images.'KeyCard.png');
 		$this->add_obs_file($this->dir_images.'KeyCardAdd.png');
