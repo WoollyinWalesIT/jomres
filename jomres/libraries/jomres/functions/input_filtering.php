@@ -195,7 +195,7 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 			if (!is_array($allowed_inputs))
 				$allowed_inputs = array();
 			
-			if (isset($jrConfig['input_filtering']))
+			if (!isset($jrConfig['input_filtering']))
 				$jrConfig['input_filtering'] = 'strong';
 
 			$dirty = (string) $dirty;
