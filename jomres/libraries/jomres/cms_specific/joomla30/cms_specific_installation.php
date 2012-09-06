@@ -113,7 +113,7 @@ if ($folderChecksPassed)
 	(
 	'Jomres','component','com_jomres','',
 	'1','1','1','0',
-	'{\"legacy\":false,\"name\":\"Jomres\",\"type\":\"component\",\"creationDate\":\"2005-03-18\",\"author\":\"Vince Wooll\",\"copyright\":\"(C) 2005 - 2011 Vince Wooll. All rights reserved.\t\",\"authorEmail\":\"sales@jomres.net\",\"authorUrl\":\"www.jomres.net\",\"version\":\"7\",\"description\":\"Jomres\",\"group\":\"\"}',
+	'{\"name\":\"Jomres\",\"type\":\"component\",\"creationDate\":\"2005-03-18\",\"author\":\"Vince Wooll\",\"copyright\":\"(C) 2005 - 2011 Vince Wooll. All rights reserved.\t\",\"authorEmail\":\"sales@jomres.net\",\"authorUrl\":\"www.jomres.net\",\"version\":\"7\",\"description\":\"Jomres\",\"group\":\"\"}',
 	'{}','','',
 	'0','0000-00-00 00:00:00','0','0'
 	)
