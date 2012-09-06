@@ -1037,18 +1037,6 @@ if ($no_html==0 && $jrConfig['errorChecking']==1)
 	}
 	
 
-	
-// The idea here is to decide if we're going to output the data here (at the end of jomres.php runing) or dump out data into a define that the bridging script can then use to pass back to the cms
-$head_contents = '';
-$MiniComponents->triggerEvent('16003');
-if (is_array($MiniComponents->miniComponentData['16003']))
-	{
-	foreach ($MiniComponents->miniComponentData['16003'] as $concatenate)
-		{
-		$head_contents .= $concatenate;
-		}
-	}
-
 if (get_showtime('javascript_caching_enabled'))
 	{
 	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');

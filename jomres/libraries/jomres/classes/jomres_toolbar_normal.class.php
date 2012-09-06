@@ -142,8 +142,6 @@ class jomres_toolbar_normal
 	*/
 	function makeCell($image,$targetTask,$link,$text,$submitOnClick=false,$submitTask="")
 		{
-		$clean = str_replace("&amp;","&" , $clean);
-		$clean = str_replace("&","&amp;" , $clean);
 		$image = urlencode($image);
 		$image = str_replace('+' , '%20' , $image);
 		$image = str_replace('%2F' , '/' , $image);

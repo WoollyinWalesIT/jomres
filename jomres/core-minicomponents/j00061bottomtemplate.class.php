@@ -26,6 +26,8 @@ class j00061bottomtemplate {
 		if (AJAXCALL)
 			return;
 		$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
+		
+		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
 
 		$output=array();
 		

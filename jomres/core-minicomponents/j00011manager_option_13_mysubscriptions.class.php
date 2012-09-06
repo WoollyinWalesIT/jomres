@@ -45,7 +45,10 @@ class j00011manager_option_13_mysubscriptions {
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		if (isset($this->cpanelButton))
+			return $this->cpanelButton;
+		else
+			return null;
 		}
 	}
 ?>

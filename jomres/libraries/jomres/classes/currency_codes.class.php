@@ -379,7 +379,7 @@ class currency_codes
 			'KMF'=>array("pre"=>"CF","post"=>""),
 			'CRC'=>array("pre"=>"₡","post"=>""),
 			'HRK'=>array("pre"=>"kn","post"=>""),
-			'CUP'=>array("pre"=>"$MN","post"=>""),
+			'CUP'=>array("pre"=>"MN$","post"=>""),
 			'DKK'=>array("pre"=>"","post"=>"kr"),
 			'DJF'=>array("pre"=>"Fdj","post"=>""),
 			'DOP'=>array("pre"=>"RD$","post"=>""),
