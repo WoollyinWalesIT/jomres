@@ -106,6 +106,8 @@ class j16000miscdefinesfortouchtemplating
 		$output[]		= jr_gettext('COMMON_EDIT',COMMON_EDIT);
 		$output[]		= jr_gettext('COMMON_COPY',COMMON_COPY);
 		
+		$output[]		= jr_gettext('_JOMRES_ALTERNATIVE_SEARCH_RESULT',_JOMRES_ALTERNATIVE_SEARCH_RESULT);
+		
 		$countryCodes=countryCodesArray();
 		foreach ($countryCodes as $k=>$v)
 			{
