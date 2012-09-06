@@ -1,4 +1,9 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script>
+setTimeout(function() {
+  window.location.href = "{NEXT_STEP}";
+}, 5000);
+</script>
 <h2 class="page-header">Plugin installation result</h2>
 	
 	<patTemplate:tmpl name="error_messages" type="simpleCondition" requiredVars="error">
