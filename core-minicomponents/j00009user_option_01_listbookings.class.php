@@ -35,7 +35,7 @@ class j00009user_option_01_listbookings {
 			$this->template_touchable=true; return;
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		if ($thisJRUser->userIsRegistered)
+		if ($thisJRUser->userIsRegistered && !$thisJRUser->userIsManager)
 			{
 			$query="SELECT guests_uid FROM #__jomres_guests WHERE mos_userid = ".(int)$thisJRUser->id;
 			$guestEntries=doSelectSql($query);
