@@ -464,7 +464,7 @@ function jomres_cmsspecific_makeSEF_URL($link)
 	jimport('joomla.application.helper');
 	if (class_exists('JRoute') )
 		{
-		$link =  JRoute::_( $link, $xhtml = true, $ssl );
+		$link =  JRoute::_( $link, $xhtml = true );
 		}
 	$link=jomres_decode($link);
 	return stripslashes($link);
