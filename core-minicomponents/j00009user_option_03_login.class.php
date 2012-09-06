@@ -57,7 +57,10 @@ class j00009user_option_03_login {
 	// This must be included in every Event/Mini-component
 	function getRetVals()
 		{
-		return $this->cpanelButton;
+		if (isset($this->cpanelButton))
+			return $this->cpanelButton;
+		else
+			return null;
 		}
 	}
 ?>

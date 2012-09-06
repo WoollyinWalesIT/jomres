@@ -34,6 +34,7 @@ class j00010reception_option_09_list_invoices {
 			{
 			$this->template_touchable=true; return;
 			}
+		$property_uid=getDefaultProperty();
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;

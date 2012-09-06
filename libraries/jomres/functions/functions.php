@@ -2681,6 +2681,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	{
 	// We need to give the javascript date function a random name because it will be called by both the component and modules
 	$uniqueID="";
+	$output="";
 	// If this date picker is "arrivalDate" then we need to create a departure date input name too, then set it in showtime. With that we'll be able to tell this set of functionality what the id of the
 	// departureDate is so that it can set it's date when this one changes
 	if ($fieldName != "departureDate")

@@ -80,16 +80,19 @@ class j99997generate_mainmenu {
 				
 				$button_link=str_replace('&amp;','&',$val['link']);
 				parse_str($button_link,$url_params);
-				$button_task=$url_params['task'];
-				if ($button_task==jomresGetParam( $_REQUEST, 'task', "" ))
+				if (array_key_exists('task',$url_params))
 					{
-					if (!using_bootstrap())
-						$r['ACTIVE']="ui-state-active";
+					$button_task=$url_params['task'];
+					if ($button_task==jomresGetParam( $_REQUEST, 'task', "" ))
+						{
+						if (!using_bootstrap())
+							$r['ACTIVE']="ui-state-active";
+						else
+							$r['ACTIVE']="active";
+						}
 					else
-						$r['ACTIVE']="active";
+						$r['ACTIVE']="";
 					}
-				else
-					$r['ACTIVE']="";
 
 				$rows[]=$r;
 				}
