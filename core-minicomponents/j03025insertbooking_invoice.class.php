@@ -280,8 +280,28 @@ class j03025insertbooking_invoice {
 		if ($amend_contract && $amend_contractuid != 0 && $userIsManager)
 			{
 			$query="SELECT id FROM #__jomresportal_invoices WHERE contract_id = ".$amend_contractuid;
-			$invoice_id=doSelectSql($query,1);
-
+			$invoice_id=(int)doSelectSql($query,1);
+			
+			$query="SELECT service_description,service_value,tax_code FROM  #__jomres_extraServices WHERE contract_uid = ".$amend_contractuid."";
+			$extra_services = doSelectSql($query);
+			if (count($extra_services)>0)
+				{
+				foreach ($extra_services as $es)
+					{
+					$line_item_data = array (
+						'tax_code_id'=>(int)$es->tax_code,
+						'name'=>$es->service_description,
+						'description'=>'',
+						'init_price'=>number_format($es->service_value,2, '.', ''),
+						'init_qty'=>"1",
+						'init_discount'=>"0",
+						'recur_price'=>"0.00",
+						'recur_qty'=>"0",
+						'recur_discount'=>"0.00"
+						);
+					$line_items[]=$line_item_data;
+					}
+				}
 			$invoice_handler = new invoicehandler();
 			$invoice_handler->id=$invoice_id;
 			$invoice_handler->getInvoice();

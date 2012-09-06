@@ -442,9 +442,33 @@ function doTableUpdates()
 		
 	if (!checkInvoicesGuestidColExists() )
 		alterInvoicesGuestidCol();
-		
+	
+	if (!checkExtraServicesTaxtax_codeColExists() )
+		alterExtraServicesTaxtax_codeCol();
+	
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function checkExtraServicesTaxtax_codeColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_extraServices LIKE 'tax_code'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+
+function alterExtraServicesTaxtax_codeCol()
+	{
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_extraServices table adding tax_code column<br>";
+	$query = "ALTER TABLE `#__jomres_extraServices` ADD `tax_code` CHAR (10) DEFAULT '0' ";
+	if (!doInsertSql($query,'') )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_extraServices tax_code</b><br>";
+		}
 	}
 
 function checkInvoicesGuestidColExists()
@@ -632,6 +656,7 @@ function createExtraServicesTable()
 		`contract_uid` VARCHAR(11),
 		`property_uid` VARCHAR(11),
 		`tax_rate_val` CHAR (10) DEFAULT '0',
+		`tax_code` CHAR (10) DEFAULT '0',
 		PRIMARY KEY	(`extraservice_uid`)
 		) ";
 	$result=doInsertSql($query,"");
@@ -2174,6 +2199,7 @@ function createJomresTables()
 		`contract_uid` VARCHAR(11),
 		`property_uid` VARCHAR(11),
 		`tax_rate_val` CHAR (10) DEFAULT '0',
+		`tax_code` CHAR (10) DEFAULT '0',
 		PRIMARY KEY	(`extraservice_uid`)
 		) ";
 	if (!doInsertSql($query))
