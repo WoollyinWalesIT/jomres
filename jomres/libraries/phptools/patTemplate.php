@@ -1547,9 +1547,19 @@ class patTemplate
 		if (!isset($this->_templates[$template])) {
 			if (!isset($this->_root))
 				{
+				$backtrace = debug_backtrace();
+				$files = '';
+ 				foreach ($backtrace as $trace)
+					{
+					$file = $trace['file'];
+					$bang = explode(JRDS,$file);
+					$filename = $bang[ count($bang)-1 ];
+					if ($filename !=  'patTemplate.php' && $filename !=  'index.php' && $filename !=  'application.php' && $filename !=  'helper.php' && $filename !=  'mcHandler.class.php')
+						$files .= " ".$filename."<br/>";
+					} 
 				return	patErrorManager::raiseWarning(
 														PATTEMPLATE_WARNING_NO_TEMPLATE,
-														"Path to template is not set."
+														"Path to template is not set. <br/>Related to ".$this->_options['root']['__default']." <br/>Backtrace of files <br/>".$files
 													);
 				}
 			else
