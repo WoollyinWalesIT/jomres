@@ -1,3 +1,21 @@
+Jomres 7.0.1
+
+Added a new feature where plugins which are required by other plugins are installed automagically.
+Removed some depreciated "split"s and replaced with explode. Other changes to resolve JCE's strict error level settings causing problems.
+Added a timed redirect to the bootstrapped plugin installation advisory page.
+Added a space that would appear between "price" and "poa" for properties that don't have prices set.
+Added a missing template to the jquery ui library.
+Bootstrapped the installer.
+Fixed issue where wrong query was resulting in the wrong property type in the pathway script. As the pathway is run pretty early on this was then setting the property type wrong in lots of other places due to caching of output text in the jr_gettext function.
+Changed the install plugin link, removed no_html as it's no longer appropriate now that we've added the installation feedback output.
+Corrected some url generation.
+Removed the ability for users to enable bootstrapped Jomres templates in the administrator area if they're not using Joomla 3+
+Added a couple of images to our image library.
+css and html for photo view to make it more responsive and fit properly ...the last version had problems when clicking on modal...also made it use the bootstrap modal instead of jui one.
+Added functionality to provide output in the event of an error finding paths in patTemplate.
+
+
+
 Jomres 7.0.0
 
 Changed the REQUEST element checked before outputting hotel details to property_uid from id.
