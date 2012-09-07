@@ -108,6 +108,17 @@ class j10001control_panel
 				
 				}
 			}
+		
+		$beez_warning = array();
+		if (_JOMRES_DETECTED_CMS == "joomla30")
+			{
+			$query = "SELECT `home` FROM #__template_styles WHERE `template` = 'beez3' AND `home` = 1 ";
+			$result = doSelectSql($query);
+			if (count($result)>0)
+				{
+				$beez_warning[] = array('_JOMRES_BEEZ_WARNING' => _JOMRES_BEEZ_WARNING);
+				}
+			}
 
 		$output['PLUGIN_CHECK'] = plugin_check();
 
@@ -195,6 +206,7 @@ class j10001control_panel
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'news_rows',$news_rows);
+		$tmpl->addRows( 'beez_warning',$beez_warning);
 		$tmpl->readTemplatesFromInput( 'control_panel.html' );
 		$tmpl->displayParsedTemplate();
 		}
