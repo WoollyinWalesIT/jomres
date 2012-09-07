@@ -12,6 +12,8 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+jr_import('jomres_dashboard');
+
 class j06001dashboard extends jomres_dashboard
 	{
 	function j06001dashboard($componentArgs)
@@ -23,6 +25,13 @@ class j06001dashboard extends jomres_dashboard
 			}
 		
 		$property_uid = $componentArgs['property_uid'];
+		$this->show_legend=false;
+		if (isset($componentArgs['show_legend']))
+			$this->show_legend = $componentArgs['show_legend'];
+		
+		$this->show_date_dropdown = false;
+		if (isset($componentArgs['show_date_dropdown']))
+			$this->show_date_dropdown = $componentArgs['show_date_dropdown'];
 		
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!in_array($property_uid,$thisJRUser->authorisedProperties))
@@ -118,14 +127,15 @@ class j06001dashboard extends jomres_dashboard
 			$this->getRoomsForProperty();
 
 
+			$cachableContent ='';
+			
+			if ($this->show_date_dropdown)
+				$cachableContent .= $this->dashboardMakeMonthList();
 
-			$cachableContent = $this->dashboardMakeMonthList();
-			// Uncomment the next line to show the current dashboard month & year in a table
-			//$cachableContent .= $this->getMonthAndYearOutput();
-
-			//$cachableContent .=$this->getCss();
 			$cachableContent .=$this->viewRoomsHorizontal();
-			$cachableContent .=$this->getLegend();
+
+			if ($this->show_legend)
+				$cachableContent .=$this->getLegend();
 
 			$cache->setCache($cachableContent);
 			unset($cache);
