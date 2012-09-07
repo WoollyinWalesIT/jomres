@@ -20,9 +20,7 @@ jomresJquery(function() {
 <p>{_JOMRES_CRATES_CLICKINITIAL}</p>
 <div id="properties_initials">
 	<patTemplate:tmpl name="rows" unusedvars="strip">
-	<div class="btn-group">
-		<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL} ({COUNT})</a>
-	</div>
+	<a href="javascript:void(0);" class="btn" onclick="get_properties('{INITIAL}');">{INITIAL} ({COUNT})</a>
 	</patTemplate:tmpl>
 </div>
 <div id="found_properties"></div>
