@@ -301,7 +301,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	if ($jrConfig['advanced_site_config'] == 1)
 		{
 		if (!isset($jrConfig['html_purifier_allowed_tags']))
-			$jrConfig['html_purifier_allowed_tags'] = "p,b,strong,a[href],i";
+			$jrConfig['html_purifier_allowed_tags'] = "p,b,strong,a[href],i,img[src]";
 		if (!isset($jrConfig['inputs_allowing_html']))
 			$jrConfig['inputs_allowing_html'] = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers";
 		
