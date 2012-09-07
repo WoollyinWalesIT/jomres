@@ -1848,7 +1848,7 @@ function createJomresTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
-		`guest_id` int(11) NOT NULL DEFAULT '0'
+		`guest_id` int(11) NOT NULL DEFAULT '0',
 		`status` tinyint(4) NOT NULL default '0',
 		`raised_date` datetime,
 		`due_date` datetime,
@@ -3589,6 +3589,7 @@ function addNewTables()
 	$query="CREATE TABLE IF NOT EXISTS `#__jomresportal_invoices` (
 		`id` int(11) NOT NULL auto_increment,
 		`cms_user_id` int(11) NOT NULL default '0',
+		`guest_id` int(11) NOT NULL DEFAULT '0',
 		`status` tinyint(4) NOT NULL default '0',
 		`raised_date` datetime,
 		`due_date` datetime,
@@ -3602,6 +3603,7 @@ function addNewTables()
 		`subscription_id` int(11) NOT NULL default '0',
 		`contract_id` int(11),
 		`property_uid` INT NULL DEFAULT '0',
+		`is_commission` INT NULL DEFAULT '0',
 		PRIMARY KEY  (`id`)
 		)";
 	if (!doInsertSql($query))
