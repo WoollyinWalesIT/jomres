@@ -27,10 +27,8 @@ class j00013dashboard
 			}
 		
 		$property_uid = getDefaultProperty();
-		//var_dump($property_uid);exit;
-		$result = $MiniComponents->specificEvent('06001','dashboard',array('property_uid'=>$property_uid,'return_calendar'=>"1"));
+		$result = $MiniComponents->specificEvent('06001','dashboard',array('property_uid'=>$property_uid,'show_legend'=>true,'show_date_dropdown'=>true));
 		echo $result;
-
 		}
 
 
