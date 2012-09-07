@@ -480,7 +480,7 @@ if ($field != "heartbeat" && $field != "show_log")
 		{
 		$errorLog=$bkg->getErrorLog();
 		}
-	echo '; populateDiv("room_allocations","'.$bkg->getRoomAllocationOutput().'")';
+	echo '; populateDiv("room_allocations","'.$bkg->getRoomAllocationOutput().'");';
 	$bkg->setErrorLogFirst($ajrq);
 	$bkg->storeBookingDetails();
 	}
