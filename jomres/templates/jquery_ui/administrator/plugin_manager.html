@@ -12,6 +12,7 @@
 <table width="100%" border="0">
 	<tr>
 		<td width="75%" valign="top">
+			<!--
 			<patTemplate:tmpl name="bronze_users" type="simpleCondition" requiredVars="license_server_username">
 			<p><a href="javascript:showCart();" class="ui-button fg-button ui-state-default ui-corner-all">Show cart</a></p>
 			<br />
@@ -50,7 +51,7 @@
 				</div>
 				<br/><br/><br/>
 			</patTemplate:tmpl>
-
+			-->
 			<patTemplate:tmpl name="developer_users" type="simpleCondition" requiredVars="dummy">
 						<h3>Please do not install all plugins with the hope that they will come in useful later. They are not all mutually exclusive, I.E. one plug may interfere with another, so it is recommended that you only install a plugin when you\'ve identified a requirement that the individual plugin fulfills. </h3><br/>Bold items in the core plugins list are generally essential when building a portal, and if you have upgraded from v4 you should consider installing those plugins to continue working as before.
 			</patTemplate:tmpl>
@@ -70,9 +71,9 @@
 				<tr>
 					<td align="center" style="border-style:solid;border-color:#00ff00;border-width:1px;">Free plugin</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td align="center" class="ui-widget-content">Third party plugin</td>
-				</tr>
+				</tr>-->
 			</table>
 		</td>
 	</tr>
@@ -133,7 +134,7 @@
 		<th class="ui-state-default">Warnings</th>
 		<th class="ui-state-default">Add/reinstall/upgrade plugin</th>
 		<th class="ui-state-default">Remove plugin</th>
-		<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>
+		<!--<th class="ui-state-default">Plugin price<br/> (Click to add to your cart)</th>-->
 	</tr>
 	
 	<patTemplate:tmpl name="jomresdotnet_plugins" unusedvars="nbsp">
@@ -175,9 +176,9 @@
 		<td class="ui-corner-all" {STYLE}>
 			{UNINSTALL}
 		</td>
-		<td class="ui-corner-all" {STYLE}>
+		<!--<td class="ui-corner-all" {STYLE}>
 			{ADD_TO_CART_BUTTON}
-		</td>
+		</td>-->
 	</patTemplate:tmpl>
 	</tr>
 </table>
