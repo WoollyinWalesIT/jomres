@@ -93,6 +93,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td><input type="text" class="input-large" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td>'._JOMRES_SUPPORTKEY_DESC.'</td>
 		</tr>
+		<!--
 		<tr>
 			<td>'._JOMRES_LICENSESERVER_USERNAME.'</td>
 			<td><input type="text" class="input-large" name="cfg_license_server_username" value="'.$jrConfig['license_server_username'].'" /></td>
@@ -103,6 +104,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td><input type="password" class="input-large" name="cfg_license_server_password" value="'.$jrConfig['license_server_password'].'" /></td>
 			<td></td>
 		</tr>
+		-->
 		<tr>
 			 <td>'._JOMRES_BOOTSTRAPSWITCH_FRONTEND.'</td>
 			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
