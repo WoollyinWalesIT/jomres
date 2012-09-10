@@ -39,7 +39,7 @@ function using_bootstrap()
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
-	if (!isset($jrConfig['use_bootstrap_in_admin']))
+	if (!isset($jrConfig['use_bootstrap_in_frontend']))
 		{
 		if (_JOMRES_DETECTED_CMS == "joomla30")
 			{
