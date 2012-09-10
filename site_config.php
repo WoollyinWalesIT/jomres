@@ -245,7 +245,6 @@ $jrConfig['mobile_simulation_ip_restriction'] = "";
 $jrConfig['safe_mode'] = "0";
 $jrConfig['use_jomres_own_editor'] = "1";
 $jrConfig['room_lock_timeout'] = "3600";
-$jrConfig['use_bootstrap'] = "0";
 
 $jrConfig['input_filtering'] = "strong";
 $jrConfig['html_purifier_allowed_tags'] = "p,b,strong,a[href],i";
