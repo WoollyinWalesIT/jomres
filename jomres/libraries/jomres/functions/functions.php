@@ -5133,10 +5133,10 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 function jomresGetDomain()
 	{
 	$thisSvrName=$_SERVER['SERVER_NAME'];
-	$dmn=str_replace("http://www.","",$thisSvrName);
-	$domain=str_replace("www.","",$dmn);
+	$dmn=str_replace("http://","",$thisSvrName);
+	//$domain=str_replace("www.","",$dmn);
 	//echo "<H2>Found domain".$domain."</H2>";
-	return strtolower($domain);
+	return strtolower($dmn);
 	}
 
 function parseConfiguration()
