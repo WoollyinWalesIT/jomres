@@ -244,7 +244,7 @@ function showSiteConfig(  )
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
 	$lists['property_details_in_tabs']				= jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['property_details_in_tabs'] );
 	
-	if (!isset($jrConfig['use_bootstrap_in_admin']))
+	if (!isset($jrConfig['use_bootstrap_in_frontend']))
 		{
 		if (_JOMRES_DETECTED_CMS == "joomla30")
 			{
