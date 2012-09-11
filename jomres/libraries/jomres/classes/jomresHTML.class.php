@@ -55,9 +55,12 @@ class jomresHTML
 		return $obj;
 		}
 
-	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL )
+	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL, $use_bootstrap_radios=true )
 		{
 		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone","existingCustomers","management_process","all_guests","force[]");
+		if (!$use_bootstrap_radios)
+			$not_for_these_dropdowns[] = $name;
+		
 		if (!using_bootstrap() || count($arr) != 2 || in_array($name,$not_for_these_dropdowns) || get_showtime('task') == "handlereq")
 			{
 			$attribs = str_replace('class="inputbox"',"",$attribs);
@@ -102,7 +105,7 @@ class jomresHTML
 		return $output;
 		}
 
-	function integerSelectList( $start, $end, $increment, $name, $attribs, $selected, $format="" )
+	function integerSelectList( $start, $end, $increment, $name, $attribs, $selected, $format="", $use_bootstrap_radios=true )
 		{
 		$attribs = str_replace(' class="inputbox" ',"",$attribs);
 		$attribs = str_replace(' class="input-medium" ',"",$attribs);
@@ -117,7 +120,7 @@ class jomresHTML
 				$no=$i;
 			$arry[] = jomresHTML::makeOption( $i, $no );
 			}
-		return jomresHTML::selectList( $arry, $name, $attribs, 'value', 'text', $selected );
+		return jomresHTML::selectList( $arry, $name, $attribs, 'value', 'text', $selected, $use_bootstrap_radios );
 		}
 	}
 ?>
