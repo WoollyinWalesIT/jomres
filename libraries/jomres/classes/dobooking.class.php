@@ -3288,7 +3288,7 @@ class dobooking
 			{
 			$thecountryCodes[]=jomresHTML::makeOption( $k, jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$v,$v,false,false) );
 			}
-		$countryDropdown= jomresHTML::selectList($thecountryCodes, 'country', ' class="input-medium"', 'value', 'text', $selectedCountry);
+		$countryDropdown= jomresHTML::selectList($thecountryCodes, 'country', ' class="input-medium" ', 'value', 'text', $selectedCountry);
 		return $countryDropdown;
 		}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
