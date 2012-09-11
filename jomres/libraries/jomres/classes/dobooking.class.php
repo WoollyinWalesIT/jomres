@@ -303,7 +303,9 @@ class dobooking
 		$this->cfg_dateFormatStyle							= $mrConfig['dateFormatStyle'];
 		//$this->cfg_inputBoxErrorBorder								= $mrConfig['inputBoxErrorBorder'];
 		$this->cfg_inputBoxErrorBackground					= $mrConfig['inputBoxErrorBackground'];
-		$this->cfg_defaultcountry							= $mrConfig['defaultcountry'];
+		
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$this->cfg_defaultcountry							= $tmpBookingHandler->user_settings['geolocated_country'];
 		//if ($this->booker_class == "100")
 		//	$this->cfg_minimuminterval						= 1;
 		//else
@@ -353,7 +355,7 @@ class dobooking
 			$mrConfig['booking_form_daily_weekly_monthly']		= "D";
 		$this->cfg_booking_form_daily_weekly_monthly			= $mrConfig['booking_form_daily_weekly_monthly'];
 		
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		
 		$amend_contract  = $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		
 		if ($amend_contract)

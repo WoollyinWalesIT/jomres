@@ -54,7 +54,10 @@ function configCountries()
 	{
 	global $mrConfig;
 	if (!isset($mrConfig['defaultcountry']) || empty($mrConfig['defaultcountry']) )
-		$selectedCountry="GB";
+		{
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		$selectedCountry=$tmpBookingHandler->user_settings['geolocated_country'];
+		}
 	else
 		$selectedCountry=$mrConfig['defaultcountry'];
 	$selectedCountry=strtoupper($selectedCountry);

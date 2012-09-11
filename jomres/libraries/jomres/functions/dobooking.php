@@ -237,7 +237,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	else
 		{
 		$arrivalDate=$defaultArrivalDate=$bkg->initArrivalDate();
-		$bkg->setGuest_country($mrConfig['defaultcountry']);
+		$bkg->setGuest_country($tmpBookingHandler->user_settings['geolocated_country']);
 
 		if ($thisdate && isset($_REQUEST['arrivalDate']) )
 			{
