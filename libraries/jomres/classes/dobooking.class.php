@@ -1235,7 +1235,7 @@ class dobooking
 				$output['_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE',_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE,false,false));
 			$output['_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER']=$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER',_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER,false,false));
 
-			if (get_showtime('include_room_booking_functionality'))
+			if (get_showtime('include_room_booking_functionality') && $this->cfg_singlePersonSuppliment=="1" )
 				$output['SINGLE_PERSON_SUPPLIMENT']			=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
 
 			$output['ESTIMATEWARNING']=$this->sanitiseOutput(jr_gettext('_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING',_JRPORTAL_HORIZROOMSLIST_ESTIMATEWARNING));
@@ -5220,7 +5220,8 @@ class dobooking
 			$this->echo_populate_div('; populateDiv("extrastotal","'.output_price("0.00").'")');
 		if ($this->jrConfig['show_tax_in_totals_summary'] == "1")
 			$this->echo_populate_div('; populateDiv("taxtotal","'.output_price("0.00").'")');
-		$this->echo_populate_div( '; populateDiv("single_suppliment","'.output_price("0.00").'")');
+		if ($this->cfg_singlePersonSuppliment=="1")
+			$this->echo_populate_div( '; populateDiv("single_suppliment","'.output_price("0.00").'")');
 		$this->echo_populate_div( '; populateDiv("grandtotal","'.output_price("0.00").'")');
 		if ($this->cfg_showDeposit=="1")
 			$this->echo_populate_div( '; populateDiv("deposit","'.output_price("0.00").'")');

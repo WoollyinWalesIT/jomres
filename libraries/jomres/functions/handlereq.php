@@ -437,7 +437,7 @@ if ($field != "heartbeat" && $field != "show_log")
 				echo '; populateDiv("balance","'.output_price( $bkg->getGrandTotal() - $bkg->getDeposit() ).'")';
 			if ($showDeposit=="1")
 				echo '; populateDiv("deposit","'.output_price($bkg->getDeposit()).'")';
-			if ($bkg->singlePersonSupplimentCalculated)
+			if ($bkg->singlePersonSupplimentCalculated && $bkg->cfg_singlePersonSuppliment=="1")
 				echo '; populateDiv("single_suppliment","'.output_price($bkg->getSinglePersonSuppliment()).'")';
 			if ($bkg->coupon_code != "")
 				{
