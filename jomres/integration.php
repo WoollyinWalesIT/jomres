@@ -155,6 +155,9 @@ if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 if (!defined('JOMRES_SINGLEPROPERTY'))
 	define('JOMRES_SINGLEPROPERTY',false);
 	
+$jomres_geolocation = jomres_singleton_abstract::getInstance('jomres_geolocation');
+$jomres_geolocation->auto_set_user_currency_code();
+
 $performance_monitor->set_point("end integration run");
 // Stops here
 

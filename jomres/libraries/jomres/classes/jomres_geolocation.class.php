@@ -62,6 +62,8 @@ class jomres_geolocation
 				$locations = $ipLite->getCountry($ip);
 				if ($locations['statusCode'] == "OK")
 					$this->detected_country = $locations['countryCode'];
+				if ($this->detected_country == "UK")
+					$this->detected_country = "GB"; // Iso standards say that the UK code is GB, but ip2location returns UK, so we'll convert this to GB here. It's likely that other countries might need the same treatement. http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements.htm
 				$tmpBookingHandler->user_settings['geolocated_country'] = $this->detected_country;
 				}
 			else
