@@ -1662,7 +1662,7 @@ class dobooking
 			if (count($exList)>1)
 				$default_start = 0;
 			
-			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( $default_start, $ct->maximum, 1, 'guesttype'.$ct->id, 'size="1" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0" );
+			$customerTypes['DROPDOWN']= jomresHTML::integerSelectList( $default_start, $ct->maximum, 1, 'guesttype'.$ct->id, 'size="1" onchange="getResponse_guesttype(\''.$ct->id.'\',this.value);"' , $defNo, "0", $use_bootstrap_radios = false );
 			$customerTypes['FIELDNAME']=  'guesttype'.$ct->id;
 			$cust[]=$customerTypes;
 			}
