@@ -2,24 +2,24 @@
 <table class="table table-striped" width="100%">
 	<thead>
 		<tr>
-			<th class="visible-desktop">{HNUMBEROFROOMS}</th>
-			<th class="visible-desktop">{HROOM_TYPE_TEXT}</th>
-			<th class="visible-desktop">{HTARIFF_NAME_TEXT}</th>
-			<th class="visible-desktop">{HGUESTPER_ROOM}</th>
-			<th class="visible-desktop">{HGUESTPER_BOOKING}</th>
-			<th class="visible-desktop">{HRATE_TEXT}</th>
+			<th class="hidden-phone">{HNUMBEROFROOMS}</th>
+			<th class="hidden-phone">{HROOM_TYPE_TEXT}</th>
+			<th class="hidden-phone">{HTARIFF_NAME_TEXT}</th>
+			<th class="hidden-phone">{HGUESTPER_ROOM}</th>
+			<th class="hidden-phone">{HGUESTPER_BOOKING}</th>
+			<th class="hidden-phone">{HRATE_TEXT}</th>
 			<th class="hidden-desktop"></th>
 		</tr>
 	</thead>
 	<tbody>
 		<patTemplate:tmpl name="rows" >
 		<tr>
-			<td class="visible-desktop">{NUMBEROFROOMS}</td>
-			<td class="visible-desktop">{ROOM_TYPE_TEXT}</td>
-			<td class="visible-desktop">{TARIFF_NAME_TEXT}</td>
-			<td class="visible-desktop">{GUESTPER_ROOM}</td>
-			<td class="visible-desktop">{GUESTPER_BOOKING}</td>
-			<td class="visible-desktop">{RATE_TEXT}</td>
+			<td class="hidden-phone">{NUMBEROFROOMS}</td>
+			<td class="hidden-phone">{ROOM_TYPE_TEXT}</td>
+			<td class="hidden-phone">{TARIFF_NAME_TEXT}</td>
+			<td class="hidden-phone">{GUESTPER_ROOM}</td>
+			<td class="hidden-phone">{GUESTPER_BOOKING}</td>
+			<td class="hidden-phone">{RATE_TEXT}</td>
 			<td class="hidden-desktop">{NUMBEROFROOMS} {ROOM_TYPE_TEXT} - {RATE_TEXT}</td>
 		</tr>
 		</patTemplate:tmpl>
