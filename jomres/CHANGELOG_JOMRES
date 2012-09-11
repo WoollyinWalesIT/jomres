@@ -1,3 +1,26 @@
+Jomres 7.0.2
+
+Added a couple of small changes to ensure that Jomres will install on Joomla 3, Beta 1.
+Added img src to default html purifier options.
+Fixed a bug where the invoices table wasn't being created due to a new feature added in the last version.
+Added warning to administrator area if Beez3 is the default site template, and a few minor tweaks to other template files (Joomla 3)
+Split dashboard functionality out into it's own 06000 script.
+Added a ; to stop falang from throwing a wobbly.
+Tweaked new dashboard functionality to allow switching on and off of legend and month dropdown.
+Modified a file's name to ensure it includes the country in the file's name.
+Default language context set back to Nothing.
+Changed how the default bootstrap/non-bootstrap settings are chosen in site config.
+Removed a defunct settings that was only used during beta development from site config setting array.
+Disabled plugin shop in the plugin manager.
+Improved the domain determining function.
+Brought admin's first run instructions up to date.
+Fixed an issue in rooms list caused by BS 2.1 changes.
+Added guest types to BS radio exceptions.
+Single person suppliment data isn't output in the booking form if it's disabled in configuration.
+Added some changes to use the geo_located country instead of the old mrConfig country.
+Fixed some edit guest inputs that were incorrectly labelled. (Bootstrap)
+
+
 Jomres 7.0.1
 
 Added a new feature where plugins which are required by other plugins are installed automagically.
