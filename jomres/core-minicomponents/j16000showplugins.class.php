@@ -190,7 +190,7 @@ class j16000showplugins
 		$output['PAGETITLE']= 'Jomres Plugin Manager';
 
 		$bronze_users = array();
-		if (!$developer_user)
+		if (!$developer_user && $jrConfig['license_server_username'] == "")
 			{
 			if ($jrConfig['license_server_username'] == "") // With the required vars setting in the template, if we don't make these at least spaces the appropriate cart section will not show.
 				{
@@ -202,7 +202,6 @@ class j16000showplugins
 			}
 
 		////////////////////////////////////////////////////// Third party plugins
-		$developer_users = array();
 		if ($developer_user)
 			{
 			$bronze_users[0]['dummy'] = " ";
