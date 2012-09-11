@@ -25,7 +25,7 @@ Also possibly available to the template :
 			<th class="hidden-phone">{HRATEPERNIGHT}</th>
 			<th class="hidden-phone">{HEADER_DISABLEDACCESS}</th>
 			<th class="hidden-phone">{HMAXPEEPS}</th>
-			<th class="hidden-desktop"></th>
+			<th class="hidden-desktop hidden-tablet"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,7 +41,7 @@ Also possibly available to the template :
 			<td class="hidden-phone">{FORMATTED_PRICE}</td>
 			<td class="hidden-phone"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a></td>
 			<td class="hidden-phone"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a></td>
-			<td class="hidden-desktop"><div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn btn-primary btn-small" title="{CAPTION}"><i class="icon-plus-2 icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} - {FORMATTED_PRICE}</div></td>
+			<td class="hidden-desktop hidden-tablet"><div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn btn-primary btn-small" title="{CAPTION}"><i class="icon-plus-2 icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} - {FORMATTED_PRICE}</div></td>
 		</tr>
 		</patTemplate:tmpl>
 	</tbody>
