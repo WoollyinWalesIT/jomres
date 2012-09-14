@@ -129,7 +129,7 @@ class j01055showroomdetails {
 				$roomRow['ROOMTYPE']= $classAbbv;
 				$roomRow['SMOKING']= $smoking;
 				$roomRow['ROOMNAME']= $room_name;
-				if ($all && !isset($_REQUEST['tmpl']))
+				if ($all)
 					{
 					$roomRow['AVLCALLINK']= $avl_link;
 					$roomRow['AVLCALTITLE']= $avl_title;
