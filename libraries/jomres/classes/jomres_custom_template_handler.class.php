@@ -65,6 +65,9 @@ class jomres_custom_template_handler
 	
 	function getTemplateData($templatename)
 		{
+		$cssFile="jomrescss.css";
+		if (using_bootstrap())
+			$cssFile="jomrescss_bootstrap.css";
 		if ($this->hasThisTemplateBeenCustomised($templatename))
 			{
 			$query = "SELECT value FROM #__jomres_custom_templates WHERE `template_name` = '".$templatename."'";
@@ -79,8 +82,8 @@ class jomres_custom_template_handler
 			}
 		else  // We need to read in from the file itself
 			{
-			if ($templatename == "jomrescss.css")
-				return file_get_contents(JOMRESPATH_BASE.JRDS."css".JRDS."jomrescss.css" );
+			if ($templatename == $cssFile)
+				return file_get_contents(JOMRESPATH_BASE.JRDS."css".JRDS.$cssFile );
 			else
 				return file_get_contents($this->default_template_files_folder.JRDS.$templatename );
 			}
