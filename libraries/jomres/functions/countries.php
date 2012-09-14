@@ -378,7 +378,10 @@ function regionNamesArray()
 		"ZA" => array("W. Cape","N. Cape","Eastern Cape","Free State","Limpopo","North West","KwaZulu-Natal","Gauteng","Mpumalanga"),
 		"ZM" => array("W.","Central","Eastern","Luapula","N.","North-W.","S.ern","Copperbelt","Lusaka"),
 		"ZR" => array("Bandundu","Equateur","Kasai-Occidental","Kasai-Oriental","Shaba","Kinshasa","Kivu","Bas-Zaire","Haut-Zaire"),
-		"ZW" => array("Manicaland","Midlands","Mashonaland Central","Mashonaland East","Mashonaland West","Matabeleland North","Matabeleland S.","Masvingo","Bulawayo","Harare")
+		"ZW" => array("Manicaland","Midlands","Mashonaland Central","Mashonaland East","Mashonaland West","Matabeleland North","Matabeleland S.","Masvingo","Bulawayo","Harare"),
+		"CW" => array("Curaçao"),
+		"AW" => array("Aruba"),
+		"BQ" => array("Bonaire, Sint Eustatius and Saba")
 	);
 	return $FIPS;
 	}
@@ -441,7 +444,7 @@ function countryNameArray()
 	"Uganda", "U. States Minor Out. Is.", "United States", "Uruguay",
 	"Uzbekistan", "Vatican City", "St. Vincent", "Venezuela", "Virgin Is., British", "Virgin Is., U.S.",
 	"Vietnam", "Vanuatu", "Wallis", "Samoa", "Yemen", "Mayotte",
-	"Yugoslavia", "S. Africa", "Zambia", "Zaire", "Zimbabwe","Serbia","Montenegro"
+	"Yugoslavia", "S. Africa", "Zambia", "Zaire", "Zimbabwe","Serbia","Montenegro","Curaçao","Aruba","Bonaire, Sint Eustatius and Saba"
 	);
 	return $countryNames;
 	}
@@ -534,7 +537,8 @@ function countryCodesArray($translate=true)
 	"VE" => "Venezuela", "VG" => "Virgin Is., British", "VI" => "Virgin Is., U.S.",
 	"VN" => "Vietnam","VU" => "Vanuatu", "WF" => "Wallis", "WS" => "Samoa", "YE" => "Yemen",
 	"YT" => "Mayotte", "ZA" => "S. Africa", "ZM" => "Zambia",
-	"ZR" => "Zaire", "ZW" => "Zimbabwe","RS" => "Serbia", "MN" => "Montenegro"
+	"ZR" => "Zaire", "ZW" => "Zimbabwe","RS" => "Serbia", "MN" => "Montenegro",
+	"CW" => "Curaçao","AW" => "Aruba","BQ" => "Bonaire, Sint Eustatius and Saba"
 	);
 	if ($translate)
 		{
