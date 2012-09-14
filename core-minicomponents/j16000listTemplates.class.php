@@ -60,7 +60,10 @@ class j16000listTemplates
 				$r['EDITED']=_JOMRES_COM_MR_NO;
 				if ($custom_templates->hasThisTemplateBeenCustomised("jomrescss.css"))
 					$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
-				$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
+				if (!using_bootstrap())
+					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
+				else
+					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss_bootstrap.css">jomrescss_bootstrap.css</a>' ;
 				$rows[]=$r;
 				
 				$counter=0;
