@@ -72,18 +72,7 @@ function configCountries()
 	return $countryDropdown;
 	}
 
-#
-/**
-#
- * Creates the countries dropdown
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
+
 function createSimpleCountriesDropdown($selectedCountry)
 	{
 	global $mrConfig;
