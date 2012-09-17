@@ -22,13 +22,13 @@ jomresJquery(document).ready(function() {
 			<th>ID</th>
 			<th>{HUSER}</th>
 			<th>{HSTATUS}</th>
-			<th class="visible-desktop">Line Items</th>
-			<th class="visible-desktop">{HRAISED}</th>
-			<th class="visible-desktop">{HDUE}</th>
-			<th class="visible-desktop">{HPAID}</th>
+			<th class="hidden-phone hidden-tablet">Line Items</th>
+			<th class="hidden-phone hidden-tablet">{HRAISED}</th>
+			<th class="hidden-phone hidden-tablet">{HDUE}</th>
+			<th class="hidden-phone hidden-tablet">{HPAID}</th>
 			<th>{HSUBSCRIPTION}</th>
 			<th>{HINITTOTAL}</th>
-			<th class="visible-desktop">{HRECURTOTAL}</th>
+			<th class="hidden-phone hidden-tablet">{HRECURTOTAL}</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -39,13 +39,13 @@ jomresJquery(document).ready(function() {
 			<td>{ID}</td>
 			<td>{USER}</td>
 			<td>{STATUS}</td>
-			<td class="visible-desktop">{ITEMS}</td>
-			<td class="visible-desktop">{RAISED}</td>
-			<td class="visible-desktop">{DUE}</td>
-			<td class="visible-desktop">{PAID}</td>
+			<td class="hidden-phone hidden-tablet">{ITEMS}</td>
+			<td class="hidden-phone hidden-tablet">{RAISED}</td>
+			<td class="hidden-phone hidden-tablet">{DUE}</td>
+			<td class="hidden-phone hidden-tablet">{PAID}</td>
 			<td>{SUBSCRIPTION}</td>
 			<td>{INITTOTAL}({CURRENCYCODE})</td>
-			<td class="visible-desktop">{RECURTOTAL}({CURRENCYCODE})</td>
+			<td class="hidden-phone hidden-tablet">{RECURTOTAL}({CURRENCYCODE})</td>
 			<td>{PAYNOW}</td>
 		</tr>
 		</patTemplate:tmpl>

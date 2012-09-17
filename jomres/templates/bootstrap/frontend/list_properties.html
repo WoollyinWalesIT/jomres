@@ -53,7 +53,7 @@
 				<a href="{LINK}" class="btn btn-primary">{BOOKTHIS_TEXT}</a>
 				<a href="{MOREINFORMATIONLINK}" class="btn btn-info">{MOREINFORMATION}</a>
 				<a href="javascript:void(0);" id="shortlist_{UID}" onclick="shortlist('{UID}')" class="btn hidden-phone">{SHORTLIST}</a>
-				<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn visible-desktop">{_JOMRES_QUICK_INFO}</a>
+				<a href="javascript:void(0);" onclick="quick_info({UID});" class="btn hidden-phone hidden-tablet">{_JOMRES_QUICK_INFO}</a>
 			</p>
 		</div>
 	</div>
@@ -70,7 +70,7 @@
 			<div><strong>{_JOMRES_REVIEWS}</strong></div>
 			<div>{_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</div>
 			<div>{_JOMRES_REVIEWS_AVERAGE_RATING}{AVERAGE_RATING}</div>
-			<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');" class="visible-desktop">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
+			<a href="javascript:void(0);" onclick="toggle_review_div({UID},'{JS_SAFE_PROPERTYNAME}');" class="hidden-phone">{_JOMRES_REVIEWS_CLICKTOSHOW}</a>
 			<div>&nbsp;</div>
 			<div class="{LASTBOOKING_STYLE}">{LASTBOOKED}</div>
 		</div>
