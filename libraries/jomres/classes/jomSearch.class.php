@@ -96,25 +96,25 @@ class jomSearch {
 		//$this->overlibLables=$useoverlibLabels;
 		$this->randomSearchLimit=$randomsearchlimit;
 		$searchOptions=array();
-		if ($pn || isset($_REQUEST['propertyname']))
+		if ($pn)
 			$searchOptions[]="propertyname";
-		if ($ptype || isset($_REQUEST['ptype']))
+		if ($ptype)
 			$searchOptions[]="ptype";
-		if ($room_type || isset($_REQUEST['room_type']))
+		if ($room_type)
 			$searchOptions[]="room_type";
-		if ($features || isset($_REQUEST['feature_uids']))
+		if ($features)
 			$searchOptions[]="feature_uids";
-		if ($description || isset($_REQUEST['description']))
+		if ($description)
 			$searchOptions[]="description";
 		if ($geosearchtype)
 			$searchOptions[]=$geosearchtype;
-		if ($availability || isset($_REQUEST['arrivalDate']))
+		if ($availability)
 			$searchOptions[]="availability";
-		if ($priceranges || isset($_REQUEST['priceranges']))
+		if ($priceranges)
 			$searchOptions[]="priceranges";
-		if ($guestnumber || isset($_REQUEST['guestnumber']))
+		if ($guestnumber)
 			$searchOptions[]="guestnumber";
-		if ($stars || isset($_REQUEST['stars']))
+		if ($stars)
 			$searchOptions[]="stars";
 
 		if ($selectcombo)
