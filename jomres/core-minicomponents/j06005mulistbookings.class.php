@@ -75,7 +75,7 @@ class j06005mulistbookings {
 						$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 						$basic_property_details->gather_data($c->property_uid);
 		
-						$r['PROPERTYNAME']=$basic_property_details->property_name;
+						$r['PROPERTYNAME']=getPropertyName($c->property_uid);
 
 						$r['ARRIVAL']=outputDate($c->arrival);
 						$r['DEPARTURE']=outputDate($c->departure);
