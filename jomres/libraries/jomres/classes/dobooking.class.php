@@ -305,7 +305,15 @@ class dobooking
 		$this->cfg_inputBoxErrorBackground					= $mrConfig['inputBoxErrorBackground'];
 		
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$this->cfg_defaultcountry							= $tmpBookingHandler->user_settings['geolocated_country'];
+		
+		if (!isset($mrConfig['auto_detect_country_for_booking_form']))
+			$mrConfig['auto_detect_country_for_booking_form'] = "1";
+		
+		if ($mrConfig['auto_detect_country_for_booking_form'] =="1")
+			$this->cfg_defaultcountry							= $tmpBookingHandler->user_settings['geolocated_country'];
+		else
+			$this->cfg_defaultcountry							= $mrConfig['defaultcountry'];
+		
 		//if ($this->booker_class == "100")
 		//	$this->cfg_minimuminterval						= 1;
 		//else

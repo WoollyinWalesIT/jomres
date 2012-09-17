@@ -45,6 +45,11 @@ class j00501odds {
 		$editIconSize=$componentArgs['editIconSize'];
 		$configurationPanel->startPanel(_JOMRES_COM_A_ODDS);
 
+		$configurationPanel->setleft(_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT);
+		$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
+		$configurationPanel->setright(_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC);
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft(_JOMRES_COM_CONFIGCOUNTRIES);
 		$configurationPanel->setmiddle(configCountries());
 		$configurationPanel->setright();

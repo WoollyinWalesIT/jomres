@@ -237,8 +237,15 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 	else
 		{
 		$arrivalDate=$defaultArrivalDate=$bkg->initArrivalDate();
-		$bkg->setGuest_country($tmpBookingHandler->user_settings['geolocated_country']);
-
+		
+		if (!isset($mrConfig['auto_detect_country_for_booking_form']))
+			$mrConfig['auto_detect_country_for_booking_form'] = "1";
+		
+		if ($mrConfig['auto_detect_country_for_booking_form'] =="1")
+			$bkg->setGuest_country($tmpBookingHandler->user_settings['geolocated_country']);
+		else
+			$bkg->setGuest_country($mrConfig['defaultcountry']);
+//var_dump($bkg->country);exit;
 		if ($thisdate && isset($_REQUEST['arrivalDate']) )
 			{
 			if ( $bkg->checkArrivalDate($thisdate) )

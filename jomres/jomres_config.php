@@ -184,4 +184,6 @@ $mrConfig['cancellation_threashold'] ="14";
 
 $mrConfig['depositIsOneNight']='0';
 
+$mrConfig['auto_detect_country_for_booking_form']='1';
+
 ?>
