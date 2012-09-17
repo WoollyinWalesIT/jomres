@@ -855,6 +855,8 @@ class patTemplate
 		$common_strings['COMMON_EDIT']=jr_gettext('COMMON_EDIT',COMMON_EDIT,false);
 		$common_strings['COMMON_COPY']=jr_gettext('COMMON_COPY',COMMON_COPY,false);
 		
+		$backtrace = debug_backtrace();
+		$common_strings['COMMON_SOURCE_SCRIPT']=$backtrace[1]['file'];
 		
 		return $common_strings;
 		}
