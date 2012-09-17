@@ -2463,6 +2463,11 @@ function hotelSettings()
 	$lists['prices_inclusive']							= jomresHTML::selectList( $yesno, 'cfg_prices_inclusive', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['prices_inclusive'] );
 	$lists['wholeday_booking']							= jomresHTML::selectList( $yesno, 'cfg_wholeday_booking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['wholeday_booking'] );
 	$lists['depositIsOneNight']							= jomresHTML::selectList( $yesno, 'cfg_depositIsOneNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['depositIsOneNight'] );
+	
+	if (!isset($mrConfig['auto_detect_country_for_booking_form']))
+		$mrConfig['auto_detect_country_for_booking_form'] = "1";
+	
+	$lists['auto_detect_country_for_booking_form']		= jomresHTML::selectList( $yesno, 'cfg_auto_detect_country_for_booking_form', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['auto_detect_country_for_booking_form'] );
 
 
 	$componentArgs=array();
