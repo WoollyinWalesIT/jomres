@@ -1,6 +1,14 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-{INFO}
-<table id="admin_list_bookings" width="100%" class="table table-striped">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	make_datatable('asamodule_report','Asamodule Info','{LIVESITE}');
+} );
+//-->
+</script>
+<h2 class="page-header">Asamodule Info</h2>
+<p>{INFO}</p>
+<table id="asamodule_report" width="100%" class="table table-striped">
 	<thead>
 		<tr>
 			<th>Event</th>

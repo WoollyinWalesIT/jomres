@@ -1,6 +1,40 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-{INFO}
-<table id="admin_list_bookings" width="100%" class="table table-striped">
+<script type="text/javascript">
+<!--
+jomresJquery(document).ready(function() {
+	var oTable = jomresJquery('#asamodule_report').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers",
+		"sDom": '<"H"lTfr>t<"F"ip>',
+		"oTableTools": {
+			"sSwfPath": "{LIVESITE}/jomres/javascript/copy_cvs_xls_pdf.swf",
+			"aButtons": [
+				"copy",
+				{
+				"sExtends": "csv",
+				"sCharSet": "utf8"
+				},
+				{
+				"sExtends": "xls",
+				"sCharSet": "utf16le"
+				},
+				{
+				"sExtends": "pdf",
+				"sCharSet": "utf8",
+				"sPdfOrientation": "landscape",
+				"sTitle": "Asamodule Info"
+				},
+				"print"
+			]
+		}
+	});
+} );
+//-->
+</script>
+<h2 class="page-header">Asamodule Info</h2>
+<p>{INFO}</p>
+<table id="asamodule_report" class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<thead>
 		<tr>
 			<th>Event</th>
