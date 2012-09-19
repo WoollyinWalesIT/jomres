@@ -161,12 +161,18 @@ function showSiteConfig(  )
 	$result = doSelectSql($query);
 	
 	$language_context = array();
+	$ptype_descs=array();
 	$language_context[] =jomresHTML::makeOption('','');
 	if (count($result)>0)
 		{
 		foreach ($result as $lang)
 			{
-			$language_context[] = jomresHTML::makeOption($lang->ptype_desc,$lang->ptype);
+			$ptype_descs[]=$lang->ptype_desc;
+			}
+		$ptype_descs=array_unique($ptype_descs);
+		foreach ($ptype_descs as $desc)
+			{
+			$language_context[] = jomresHTML::makeOption($desc,$desc);
 			}
 		}
 	$language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['language_context']);
