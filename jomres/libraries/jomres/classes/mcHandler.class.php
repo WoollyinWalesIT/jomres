@@ -39,9 +39,12 @@ class mcHandler {
 		$this->template_touch=false;
 		$this->log = array();
 		$this->logging_enbled = false;
-		if ($jrConfig['errorChecking'] =="1")
-			$this->logging_enbled = true;
-			
+		if (isset($jrConfig['errorChecking']))
+			{
+			if ($jrConfig['errorChecking'] =="1")
+				$this->logging_enbled = true;
+			}
+		
 		$this->currentEvent = "";
 
 		$this->remote_plugin_directory = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."remote_plugins".JRDS;
