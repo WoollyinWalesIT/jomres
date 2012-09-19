@@ -242,6 +242,7 @@ class patTemplate
 		}
 
 		$this->setType( $type );
+		$this->applyInputFilter('StripComments');
 	}
 
    /**
