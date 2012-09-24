@@ -262,11 +262,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td>'.$lists['isInIframe'].'</td>
 				<td>'._JOMRES_COM_JRCONFIG_ISWRAPPED_DESC.'</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				 <td>'._JOMRES_ACCESS_CONTROL_CONFIG_TITLE.'</td>
 				 <td>'.$lists['full_access_control'].'</td>
 				 <td>'._JOMRES_ACCESS_CONTROL_CONFIG_DESC.'</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td>'._JOMRES_CONFIG_JQUERY.'</td>
 				<td>'.$lists['load_jquery'].'</td>
