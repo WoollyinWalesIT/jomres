@@ -1,6 +1,8 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <!--<a href="{PRINT_LINK}" target="_blank"><img src="{PRINT_ICON}" width="25px" height="25px"/></a>-->
-
+<br/>
+<a name="{COMMON_HOME|urlencode}" class="text-info">{COMMON_HOME}</a>
+<br/>
 <div id="property_details">
 	<div class="rowfluid">
 		<div id="gallerywrapper" class="span7 well">{SLIDESHOW}</div>
@@ -24,29 +26,108 @@
 <div class="clearfix"></div>
 <p>&nbsp;</p>
 
-<patTemplate:comment>
+
+
+	<patTemplate:tmpl name="tabs_content">
+	<!-- Automatically ordered output -->
 	
-	Automatically ordered output
-	
-	If you are using items listed in the comments below you are advised to remove this div and it's contents, otherwise you'll have duplicate information in the template/page
-</patTemplate:comment>
-<patTemplate:tmpl name="tabs_content">
-<div class="well">
-	<h2>{TAB_TITLE}</h2>
-	{TAB_CONTENT}
-</div>
-</patTemplate:tmpl>
+	<div class="well">
+		<h2>{TAB_TITLE}</h2>
+		{TAB_CONTENT}
+	</div>
+	</patTemplate:tmpl>
 
 <div class="clearfix"></div>
 <p>&nbsp;</p>
 
+
+	<patTemplate:comment>
+	
+	By default this template will show the data that's normally in a tab in it's own separate panels instead, that's the section marked Automatically ordered.
+	
+	You can, however choose to comment out the automatically ordered stuff and instead remove the comments surrounding the stuff below. This is the most normally used output already structured to be used, along with a bootstrap navbar that's fixed to the bottom of the page.
+	
+	This output isn't enabled by default because it requires that you, the site integrator, are at least resonably familiar with Jomres' templating system and understand that some stuff may need to be added manually or enabled in site config before they can show.
+	
+	</patTemplate:comment>
+
+
 <patTemplate:comment>
+<div class="navbar navbar-fixed-bottom">
+	<div class="btn-toolbar">
+		<div class="btn-group">
+			<a href="{COMMON_THIS_PAGE_URL}#{COMMON_HOME|urlencode}" class="btn btn-info">{COMMON_HOME}</a>
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a>
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_01_MORE_INFO_TABTITLE}</a>
+			<!-- <a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a> -->
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_02_MAP_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_02_MAP_TABTITLE}</a>
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_CONTACT_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_03_CONTACT_TABTITLE}</a>
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_03_REVIEWS_TABTITLE}</a>
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_05_TARIFFS_TABTITLE}</a>
+			<a href="{COMMON_THIS_PAGE_URL}#{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}" class="btn btn-info">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a>
+			<!--<a href="{COMMON_THIS_PAGE_URL}#{XDISQUS_TABTITLE|urlencode}" class="btn btn-info">{XDISQUS_TABTITLE}</a>-->
+		</div>
+	</div>
+</div>
+
+<h2><a name="{TABCONTENT_01_MAIN_DETAILS_TABTITLE|urlencode}" class="text-info">{TABCONTENT_01_MAIN_DETAILS_TABTITLE}</a></h2>
+<div class="well">
 	
-	You can use these tags instead of the data output in the automatically ordered output, noted above. This allows you to absolutely fine-tune the property details page to your liking
+	{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}
+</div>
+
+<h2><a name="{TABCONTENT_01_MORE_INFO_TABTITLE|urlencode}">{TABCONTENT_01_MORE_INFO_TABTITLE}</a></h2>
+<div class="well">
+	{TABCONTENT_01_MORE_INFO_TAB_CONTENT}
+</div>
+
+<patTemplate:comment>// Assumes that the option to show the booking form in the property details is set to Yes</patTemplate:comment>
+<h2><a name="{TABCONTENT_02_BOOKINGFORM_TABTITLE|urlencode}">{TABCONTENT_02_BOOKINGFORM_TABTITLE}</a></h2>
+<div class="well">
+	{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}
+</div>
+
+<h2><a name="{TABCONTENT_02_MAP_TABTITLE|urlencode}">{TABCONTENT_02_MAP_TABTITLE}</a></h2>
+<div class="well">
 	
-	This is a list of variables that may be available to this template. It assumes that you haven't edited the j00035 scripts to change tab ordering
-	If a plugin adds a new element the elements will not be shown in this list, and you'll be forced to use some detective work to figure out what the names are.
+	{TABCONTENT_02_MAP_TAB_CONTENT}
+</div>
+
+<patTemplate:comment>// Assumes that contact form in tabs plugin is installed</patTemplate:comment>
+<h2><a name="{TABCONTENT_03_CONTACT_TABTITLE|urlencode}">{TABCONTENT_03_CONTACT_TABTITLE}</a></h2>
+<div class="well">
+	{TABCONTENT_03_CONTACT_TAB_CONTENT}
+</div>
+
+<h2><a name="{TABCONTENT_03_REVIEWS_TABTITLE|urlencode}">{TABCONTENT_03_REVIEWS_TABTITLE}</a></h2>
+<div class="well">
 	
+	{TABCONTENT_03_REVIEWS_TAB_CONTENT}
+</div>
+
+<h2><a name="{TABCONTENT_05_TARIFFS_TABTITLE|urlencode}">{TABCONTENT_05_TARIFFS_TABTITLE}</a></h2>
+<div class="well">
+	{TABCONTENT_05_TARIFFS_TAB_CONTENT}
+</div>
+
+<h2><a name="{TABCONTENT_04_ROOMSLIST_TABTITLE|urlencode}">{TABCONTENT_04_ROOMSLIST_TABTITLE}</a></h2>
+<div class="well">
+	{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}
+</div>
+
+<!--
+<patTemplate:comment>// Assumes that Comments Tab Disqus plugin is installed</patTemplate:comment>
+<h2><a name="{XDISQUS_TABTITLE|urlencode}">{XDISQUS_TABTITLE}</a></h2>
+<div class="well">
+	{XDISQUS_TAB_CONTENT}
+</div>
+-->
+</patTemplate:comment>
+
+
+<patTemplate:comment>
+
+More stuff that can be used on this page
 
 {HFEATURES}
 {HRTYPES}
@@ -102,27 +183,6 @@
 {INLINE_CALENDAR_ARROW_OPENINGDIV}
 {INLINE_CALENDAR}
 {INLINE_CALENDAR_ARROW_CLOSINGDIV}
-
-{TABCONTENT_01_MAIN_DETAILS_TABTITLE}
-{TABCONTENT_01_MAIN_DETAILS_TAB_CONTENT}
-{TABCONTENT_01_MORE_INFO_TABTITLE}
-{TABCONTENT_01_MORE_INFO_TAB_CONTENT}
-{TABCONTENT_02_BOOKINGFORM_TABTITLE}  // Assumes that the option to show the booking form in the property details is set to Yes
-{TABCONTENT_02_BOOKINGFORM_TAB_CONTENT}  // Assumes that the option to show the booking form in the property details is set to Yes
-{TABCONTENT_02_MAP_TABTITLE}
-{TABCONTENT_02_MAP_TAB_CONTENT}
-{TABCONTENT_03_CONTACT_TABTITLE}  // Assumes that contact form in tabs plugin is installed
-{TABCONTENT_03_CONTACT_TAB_CONTENT}  // Assumes that contact form in tabs plugin is installed
-{TABCONTENT_03_REVIEWS_TABTITLE}
-{TABCONTENT_03_REVIEWS_TAB_CONTENT}
-{TABCONTENT_05_TARIFFS_TABTITLE}
-{TABCONTENT_05_TARIFFS_TAB_CONTENT}
-{TABCONTENT_04_ROOMSLIST_TABTITLE}
-{TABCONTENT_04_ROOMSLIST_TAB_CONTENT}
-{XDISQUS_TABTITLE}  // Assumes that Comments Tab Disqus plugin is installed
-{XDISQUS_TAB_CONTENT}  // Assumes that Comments Tab Disqus plugin is installed
-
 </patTemplate:comment>
-  
   
 </patTemplate:tmpl>
