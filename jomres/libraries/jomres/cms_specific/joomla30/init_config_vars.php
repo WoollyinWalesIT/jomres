@@ -41,7 +41,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 	//JRegistry::set('config.caching', 0);
 	if (class_exists('JURI'))
 		{
-		$jomresConfig_live_site=@JURI::base();
+		$jomresConfig_live_site=@JURI::root();
 		}
 	else
 		{
