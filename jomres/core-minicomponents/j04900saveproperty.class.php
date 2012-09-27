@@ -51,7 +51,7 @@ class j04900saveproperty {
 		if ($jrConfig['selfRegistrationAllowed']=="0" && $propertyUid == 0)
 			$propertyUid=getDefaultProperty();
 
-		$property_name					= jomresGetParam( $_POST, 'property_name', "" );
+		$property_name					= trim(jomresGetParam( $_POST, 'property_name', "" ));
 		$property_street				= jomresGetParam( $_POST, 'property_street', "" );
 		$property_town					= jomresGetParam( $_POST, 'property_town', "" );
 		$property_region				= jomresGetParam( $_POST, 'region', "" );
