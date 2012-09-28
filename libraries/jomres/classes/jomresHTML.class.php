@@ -27,7 +27,7 @@ class jomresHTML
 			echo '
 			<script>
 			jomresJquery(function(jomresJquery) {
-				jomresJquery(\'div.btn-group[data-toggle-name=*]\').each(function(){
+				jomresJquery(\'div.btn-group[data-toggle-name="*"]\').each(function(){
 					var group   = jomresJquery(this);
 					var form    = group.parents(\'form\').eq(0);
 					var name    = group.attr(\'data-toggle-name\');

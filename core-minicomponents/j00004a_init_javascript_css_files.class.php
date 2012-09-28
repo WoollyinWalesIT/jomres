@@ -75,13 +75,13 @@ class j00004a_init_javascript_css_files {
 		
 		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
 		
-		//if (_JOMRES_DETECTED_CMS != "joomla30")
-		//	{
-			set_showtime("jquery.core.js",'jquery-1.7.1.min.js');
+		if (_JOMRES_DETECTED_CMS != "joomla30")
+			{
+			set_showtime("jquery.core.js",'jquery-1.8.2.min.js');
 			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
-		//	}
+			}
 		
-		set_showtime("jquery.ui.js","jquery-ui-1.8.16.custom.min.js");
+		set_showtime("jquery.ui.js","jquery-ui-1.8.23.custom.min.js");
 		set_showtime("jquery.ui.js.relpath",'jomres/javascript/');
 
 			
