@@ -33,13 +33,13 @@ class jomres_obsolete_file_handling
 		$this->dir_css = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'css'.JRDS;
 		$this->dir_javascript = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'javascript'.JRDS;
 		
-		$this->dir_templates_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS;
-		$this->dir_templates_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres'.JRDS.'backend'.JRDS;
-		$this->dir_templates_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'jomres'.JRDS.'administrator'.JRDS;
+		$this->dir_templates_frontend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'backend'.JRDS;
+		$this->dir_templates_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'administrator'.JRDS;
 		
-		$this->dir_templates_bootstrap_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
-		$this->dir_templates_bootstrap_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
-		$this->dir_templates_bootstrap_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator'.JRDS;
+		$this->dir_templates_bootstrap_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_bootstrap_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
+		$this->dir_templates_bootstrap_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator'.JRDS;
 		
 		$this->dir_images = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS;
 		$this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS;
@@ -681,6 +681,13 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_templates_bootstrap_frontend.'list_normalmode_roomtariffs.html');
 		$this->add_obs_file($this->dir_templates_frontend.'list_normalmode_roomtariffs.html');
 		
+		
+		$this->add_obs_file($this->dir_javascript.'jquery-1.5.2.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-1.6.4.min.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-1.7.1.min.js');
+		
+		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.13.custom.js');
+		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.16.custom.min.js');
 		}
 	
 	function add_obs_file($path_and_file)
