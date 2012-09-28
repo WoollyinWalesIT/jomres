@@ -62,8 +62,8 @@ class j00060toptemplate {
 					$jomres_management_view = new jomres_management_view();
 					$management_dropdown = $jomres_management_view->get_dropdown();
 					$output['MANAGEMENT_VIEW_DROPDOWN']=$management_dropdown;
-					if (using_bootstrap())
-						$output['MANAGEMENT_VIEW_DROPDOWN']= ''; // Management view temporarily disabled until J3's formal release
+					//if (using_bootstrap())
+						//$output['MANAGEMENT_VIEW_DROPDOWN']= ''; // Management view temporarily disabled until J3's formal release
 					
 					set_showtime("menuitem_management_view_dropdown",$output['MANAGEMENT_VIEW_DROPDOWN']);
 					
