@@ -333,11 +333,13 @@ class j16000showplugins
 				if (!using_bootstrap())
 					{
 					$row_class='';
-					$style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" ';
+					// $style = 'style="border-style:solid;border-color:#00ff00;border-width:1px;" '; // Shop now disabled
+					$style = '';
 					}
 				else
 					{
-					$row_class='freeplugin';
+					//$row_class='freeplugin'; // Shop now disabled
+					$row_class= '';
 					$style = '';
 					}
 				}
