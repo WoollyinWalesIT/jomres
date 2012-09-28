@@ -72,15 +72,12 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				</tr>
 			</thead>
 			<tbody>');
-		if (_JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla15")
-			{
-			$contentPanel->setcontent('
-			<tr>
-				 <td>'._JOMRES_MENU_SHOW_TITLE.'</td>
-				 <td>'.$lists['alternate_mainmenu'].'</td>
-				 <td>'._JOMRES_MENU_SHOW_DESC.'</td>
-			</tr>');
-			}
+		
+		
+		$contentPanel->setcontent('<input type="hidden" name="cfg_alternate_mainmenu" value="1" />'); // For upgraders, we'll force them to use the "alternate" main menu, which is the newer bootstrapped menu.
+		
+		
+		
 		$contentPanel->setcontent('
 		<tr>
 			<td>'._JOMRES_COM_ADVANCED_SITE_CONFIG.'</td>
