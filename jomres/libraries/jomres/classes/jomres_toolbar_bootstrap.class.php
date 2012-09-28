@@ -158,9 +158,9 @@ class jomres_toolbar_bootstrap
 		if (strpos($image,'guestAdd.png'))
 			$icon = 'icon-plus';
 		if (strpos($image,'Cancel.png'))
-			$icon = 'icon-remove';
+			$icon = 'icon-cancel';
 		if (strpos($image,'Save.png'))
-			$icon = 'icon-ok';
+			$icon = 'icon-apply';
 		if (strpos($image,'WasteBasket.png'))
 			$icon = 'icon-trash';
 		if (strpos($image,'Symbol%20Refresh.png'))
