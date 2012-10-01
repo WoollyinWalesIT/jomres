@@ -27,6 +27,7 @@ class basic_property_details
 		$this->multi_query_result = array();
 		$this->untranslated_property_names = array();
 		$this->get_all_room_types();
+		$this->get_all_property_types();
 		}
 
 	public static function getInstance()
@@ -165,6 +166,7 @@ class basic_property_details
 				$this->property_email			=$this->multi_query_result[$this->property_uid]['property_email'];
 				$this->published				=$this->multi_query_result[$this->property_uid]['published'];
 				$this->ptype_id					=$this->multi_query_result[$this->property_uid]['ptype_id'];
+				$this->property_type			=$this->multi_query_result[$this->property_uid]['property_type'];
 				$this->stars					=$this->multi_query_result[$this->property_uid]['stars'];
 				$this->lat						=$this->multi_query_result[$this->property_uid]['lat'];
 				$this->long						=$this->multi_query_result[$this->property_uid]['long'];
@@ -216,6 +218,8 @@ class basic_property_details
 				$this->property_email			=$data->property_email;
 				$this->published				=(int)$data->published;
 				$this->ptype_id					=(int)$data->ptype_id;
+				$this->property_type			=$this->all_property_types[(int)$data->ptype_id];
+
 				$this->stars					=(int)$data->stars;
 				$this->lat						=$data->lat;
 				$this->long						=$data->long;
@@ -386,6 +390,8 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['property_email']					=$data->property_email;
 				$this->multi_query_result[$data->propertys_uid]['published'] 						=(int)$data->published;
 				$this->multi_query_result[$data->propertys_uid]['ptype_id'] 						=(int)$data->ptype_id;
+				$this->multi_query_result[$data->propertys_uid]['property_type']					=$this->all_property_types[(int)$data->ptype_id];
+				
 				$this->multi_query_result[$data->propertys_uid]['stars'] 							=(int)$data->stars;
 				$this->multi_query_result[$data->propertys_uid]['lat']								=$data->lat;
 				$this->multi_query_result[$data->propertys_uid]['long']								=$data->long;
@@ -441,7 +447,6 @@ class basic_property_details
 		}
 
 
-	// Experimental code that isn't yet used
 	private function get_all_room_types()
 		{
 		$this->classAbbvs = array();
@@ -473,6 +478,21 @@ class basic_property_details
 		foreach ($roomtypes as $roomClass)
 			{
 			$this->roomtypes_propertytypes_xref[(int)$roomClass->propertytype_id] = $this->classAbbvs[$roomClass->roomtype_id];
+			}
+		}
+		
+	
+	private function get_all_property_types()
+		{
+		$this->all_property_types = array();
+		$query="SELECT id,ptype_desc FROM #__jomres_ptypes";
+		$propertytypes =doSelectSql($query);
+		if (count($propertytypes)>0)
+			{
+			foreach ($propertytypes as $pt)
+				{
+				$this->all_property_types[$pt->id]=$pt->ptype_desc;
+				}
 			}
 		}
 /* 		
