@@ -688,6 +688,8 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.13.custom.js');
 		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.16.custom.min.js');
+		
+		$this->add_obs_file($this->dir_minicomponents.'j00501editingmode.class.php');
 		}
 	
 	function add_obs_file($path_and_file)
