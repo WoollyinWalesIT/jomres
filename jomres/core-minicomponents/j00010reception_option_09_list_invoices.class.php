@@ -38,14 +38,14 @@ class j00010reception_option_09_list_invoices {
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
-		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=list_property_invoices"), 'Invoice.png', jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices" ,false,false) );
+		$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=list_property_invoices"), 'Invoice.png', jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING ,false,false) );
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING);
 		$output[]	= jr_gettext( "_JOMRES_MANAGER_SHOWINVOICES" , _JOMRES_MANAGER_SHOWINVOICES);
 
 		foreach ($output as $o)

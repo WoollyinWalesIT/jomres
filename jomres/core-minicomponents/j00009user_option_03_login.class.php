@@ -39,13 +39,13 @@ class j00009user_option_03_login {
 		$login_task=jomres_cmsspecific_getlogin_task();
 		
 		if (!$thisJRUser->userIsRegistered)
-			$this->cpanelButton=jomres_mainmenu_option(get_showtime('live_site').'/'.$login_task, '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',"Login",false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details" ,false,false) );
+			$this->cpanelButton=jomres_mainmenu_option(get_showtime('live_site').'/'.$login_task, '', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT ,false,false) );
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
-		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',"Login");
+		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN);
 
 		foreach ($output as $o)
 			{

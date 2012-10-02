@@ -39,14 +39,14 @@ class j00011manager_option_07_stats {
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
 			
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=fe_stats", 'ChartBarTrend.png', jr_gettext('_JRPORTAL_STATS_PATETITLE',_JRPORTAL_STATS_PATETITLE,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" , "misc" ,false,false));
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=fe_stats", 'ChartBarTrend.png', jr_gettext('_JRPORTAL_STATS_PATETITLE',_JRPORTAL_STATS_PATETITLE,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" ,_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC,false,false));
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" , "misc");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" ,_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC);
 
 		foreach ($output as $o)
 			{

@@ -47,14 +47,14 @@ class j00010reception_option_03_dobooking {
 		else
 			$link=jomresURL($output['BOOKAROOMLINK']);
 			
-		$this->cpanelButton=jomres_mainmenu_option($link, 'NewBooking.png', jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , "reserve" ,false,false) );
+		$this->cpanelButton=jomres_mainmenu_option($link, 'NewBooking.png', jr_gettext('_JOMRES_FRONT_MR_MENU_BOOKAROOM',_JOMRES_FRONT_MR_MENU_BOOKAROOM,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK ,false,false) );
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , "reserve");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK);
 
 		foreach ($output as $o)
 			{

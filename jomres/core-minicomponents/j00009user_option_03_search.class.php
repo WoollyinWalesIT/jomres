@@ -34,13 +34,13 @@ class j00009user_option_03_search {
 			{
 			$this->template_touchable=true; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=search", 'find.png', jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false,false),null,jr_gettext( "_JOMRES_SEARCH_BUTTON" , _JOMRES_SEARCH_BUTTON ,false,false) );
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=search", 'find.png', jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH',_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH,false,false),null,jr_gettext( "_JOMRES_SEARCH_BUTTON" , _JOMRES_SEARCH_BUTTON ,false,false) );
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
-		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', "search");
+		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH);
 		$output[]		=jr_gettext('_JOMRES_MAINMENU_SEARCH',_JOMRES_MAINMENU_SEARCH);
 		
 		

@@ -34,14 +34,14 @@ class j00011manager_option_01_propertydetails {
 			{
 			$this->template_touchable=true; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=".(int)getDefaultProperty(), 'TariffsConfig.png', jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS',_JOMRES_PATHWAY_PROPERTYDETAILS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings" ,false,false) );
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=".(int)getDefaultProperty(), 'TariffsConfig.png', jr_gettext('_JOMRES_PATHWAY_PROPERTYDETAILS',_JOMRES_PATHWAY_PROPERTYDETAILS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS ,false,false) );
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" ,_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS);
 
 		foreach ($output as $o)
 			{

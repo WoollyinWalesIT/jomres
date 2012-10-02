@@ -38,7 +38,7 @@ class j00010reception_option_06_listoldbookings {
 		$mrConfig=getPropertySpecificSettings($property_uid);
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listoldbookings", 'ReservationsHistoric.png', jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS',_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS" , "management" ,false,false) );
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=listoldbookings", 'ReservationsHistoric.png', jr_gettext('_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS',_JOMRES_COM_MR_EDITBOOKING_ADMIN_HISTORICBOOKINGS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS ,false,false) );
 		}
 	
 	
