@@ -24,7 +24,7 @@ class j10002sms_clickatell
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=sms_clickatell_settings', 'clickatell.jpg', _JRPORTAL_SMS_CLICKATELL_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION" , "integration" ,false,false),false,true);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=sms_clickatell_settings', 'clickatell.jpg', jr_gettext( "_JRPORTAL_SMS_CLICKATELL_TITLE" ,_JRPORTAL_SMS_CLICKATELL_TITLE,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION,false,false));
 		
 		}
 	
@@ -32,7 +32,7 @@ class j10002sms_clickatell
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION" , "integration");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION);
 
 		foreach ($output as $o)
 			{

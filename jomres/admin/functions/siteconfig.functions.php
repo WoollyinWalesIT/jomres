@@ -43,14 +43,14 @@ function showSiteConfig(  )
 	$list = array();
 	// make a standard yes/no list
 	$yesno = array();
-	$yesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
-	$yesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
+	$yesno[] = jomresHTML::makeOption( '0', jr_gettext(_JOMRES_COM_MR_NO,'_JOMRES_COM_MR_NO',false) );
+	$yesno[] = jomresHTML::makeOption( '1', jr_gettext(_JOMRES_COM_MR_YES,'_JOMRES_COM_MR_YES',false) );
 
 	$langDropdown=getJomresLanguagesDropdown();
 
 	$editoryesno = array();
-	$editoryesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
-	$editoryesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
+	$editoryesno[] = jomresHTML::makeOption( '0', jr_gettext(_JOMRES_COM_MR_NO,'_JOMRES_COM_MR_NO',false) );
+	$editoryesno[] = jomresHTML::makeOption( '1', jr_gettext(_JOMRES_COM_MR_YES,'_JOMRES_COM_MR_YES',false) );
 	
 	$sortArray = array();  // The search order dropdown list, this configure's the default.
 	$sortArray[]=jomresHTML::makeOption("1", jr_gettext('_JOMRES_SORTORDER_DEFAULT',_JOMRES_SORTORDER_DEFAULT,false,false));
@@ -95,7 +95,7 @@ function showSiteConfig(  )
 		{
 		$crateOptions[] = jomresHTML::makeOption( $c['id'], $c['title'] );
 		}
-	$lists['defaultCrate']	= jomresHTML::selectList( $crateOptions, 'cfg_defaultCrate','class="inputbox" size="1"', 'value', 'text', $jrConfig['defaultCrate']);
+	$lists['defaultCrate']				= jomresHTML::selectList( $crateOptions, 'cfg_defaultCrate','class="inputbox" size="1"', 'value', 'text', $jrConfig['defaultCrate']);
 	$lists['menusAsImages']				= jomresHTML::selectList( $yesno, 'cfg_menusAsImages','class="inputbox" size="1"', 'value', 'text', $jrConfig['menusAsImages']);
 	$lists['errorChecking']				= jomresHTML::selectList( $yesno, 'cfg_errorChecking','class="inputbox" size="1"', 'value', 'text', $jrConfig['errorChecking']);
 	$lists['useGlobalCurrency']			= jomresHTML::selectList( $yesno, 'cfg_useGlobalCurrency','class="inputbox" size="1"', 'value', 'text', $jrConfig['useGlobalCurrency']);
@@ -106,7 +106,7 @@ function showSiteConfig(  )
 	$lists['isInIframe']				= jomresHTML::selectList( $yesno, 'cfg_isInIframe','class="inputbox" size="1"', 'value', 'text', $jrConfig['isInIframe']);
 	$lists['allowHTMLeditor']			= jomresHTML::selectList( $editoryesno, 'cfg_allowHTMLeditor','class="inputbox" size="1"', 'value', 'text', $jrConfig['allowHTMLeditor']);
 	$lists['dumpTemplate'] 				= jomresHTML::selectList( $yesno, 'cfg_dumpTemplate', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['dumpTemplate'] );
-	$lists['useSSLinBookingform']	= jomresHTML::selectList( $yesno, 'cfg_useSSLinBookingform', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useSSLinBookingform'] );
+	$lists['useSSLinBookingform']		= jomresHTML::selectList( $yesno, 'cfg_useSSLinBookingform', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useSSLinBookingform'] );
 	$lists['emailErrors'] 				= jomresHTML::selectList( $yesno, 'cfg_emailErrors', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['emailErrors'] );
 	$lists['minimalconfiguration'] 		= jomresHTML::selectList( $yesno, 'cfg_minimalconfiguration', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['minimalconfiguration'] );
 	$lists['useJomresEmailCheck'] 		= jomresHTML::selectList( $yesno, 'cfg_useJomresEmailCheck', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['useJomresEmailCheck'] );
@@ -134,13 +134,13 @@ function showSiteConfig(  )
 	
 	$geosearchList = array();
 	$geosearchList[] = jomresHTML::makeOption( '', '' );
-	$geosearchList[] = jomresHTML::makeOption( 'town', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN );
-	$geosearchList[] = jomresHTML::makeOption( 'region', _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION );
+	$geosearchList[] = jomresHTML::makeOption( 'town', jr_gettext(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,'_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',false) );
+	$geosearchList[] = jomresHTML::makeOption( 'region', jr_gettext(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,'_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',false) );
 	$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_geosearchtype']);
 
 	$calendarStartDays = array();
-	$calendarStartDays[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_WEEKDAYS_SUNDAY );
-	$calendarStartDays[] = jomresHTML::makeOption( '2', _JOMRES_COM_MR_WEEKDAYS_MONDAY );
+	$calendarStartDays[] = jomresHTML::makeOption( '1', jr_gettext(_JOMRES_COM_MR_WEEKDAYS_SUNDAY,'_JOMRES_COM_MR_WEEKDAYS_SUNDAY',false) );
+	$calendarStartDays[] = jomresHTML::makeOption( '2', jr_gettext(_JOMRES_COM_MR_WEEKDAYS_MONDAY,'_JOMRES_COM_MR_WEEKDAYS_MONDAY',false) );
 	$calendarStartDaysDropdownList = jomresHTML::selectList($calendarStartDays, 'cfg_calendarstartofweekday', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['calendarstartofweekday']);
 
 	if (!isset( $jrConfig['guestnumbersearch']))
@@ -178,8 +178,8 @@ function showSiteConfig(  )
 	$language_context_dropdown = jomresHTML::selectList($language_context, 'cfg_language_context', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['language_context']);
 
 	$filtering_level = array();
-	$filtering_level[] = jomresHTML::makeOption( 'weak', _JOMRES_INPUTFILTERING_LEVEL_WEAK );
-	$filtering_level[] = jomresHTML::makeOption( 'strong', _JOMRES_INPUTFILTERING_LEVEL_STRONG );
+	$filtering_level[] = jomresHTML::makeOption( 'weak', jr_gettext(_JOMRES_INPUTFILTERING_LEVEL_WEAK,'_JOMRES_INPUTFILTERING_LEVEL_WEAK',false) );
+	$filtering_level[] = jomresHTML::makeOption( 'strong', jr_gettext(_JOMRES_INPUTFILTERING_LEVEL_STRONG,'_JOMRES_INPUTFILTERING_LEVEL_STRONG',false) );
 	$filtering_level_dropdown = jomresHTML::selectList($filtering_level, 'cfg_input_filtering', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['input_filtering']);
 	
 	

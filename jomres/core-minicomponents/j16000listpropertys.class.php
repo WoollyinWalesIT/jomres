@@ -57,12 +57,12 @@ class j16000listpropertys
 			$portalPropertyIds[]=$p['property_id'];
 			}
 		
-		$output['PAGETITLE']=_JRPORTAL_CPANEL_LISTPROPERTIES;
+		$output['PAGETITLE']=jr_gettext("_JRPORTAL_CPANEL_LISTPROPERTIES",_JRPORTAL_CPANEL_LISTPROPERTIES);
 		$output['TOTALINLISTPLUSONE']=count($crateList);
-		$output['HPROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
-		$output['HPROPERTYADDRESS']=_JRPORTAL_PROPERTIES_PROPERTYADDRESS;
-		$output['HCRATE_DROPDOWN']=_JRPORTAL_CRATE_VALUE;
-		$output['LEGEND']=_JRPORTAL_PROPERTIES_LEGEND;
+		$output['HPROPERTYNAME']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYNAME",_JRPORTAL_PROPERTIES_PROPERTYNAME);
+		$output['HPROPERTYADDRESS']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYADDRESS",_JRPORTAL_PROPERTIES_PROPERTYADDRESS);
+		$output['HCRATE_DROPDOWN']=jr_gettext("_JRPORTAL_CRATE_VALUE",_JRPORTAL_CRATE_VALUE);
+		$output['LEGEND']=jr_gettext("_JRPORTAL_PROPERTIES_LEGEND",_JRPORTAL_PROPERTIES_LEGEND);
 		$counter=0;
 		
 		foreach($jomresPropertyList as $k=>$p)
@@ -106,7 +106,7 @@ class j16000listpropertys
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
 		$jrtb .= $jrtbar->customToolbarItem('saveCrates',$link,$text="Save",$submitOnClick=true,$submitTask="savecrates",$image);
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL));
 		$jrtb .= $jrtbar->spacer();
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;

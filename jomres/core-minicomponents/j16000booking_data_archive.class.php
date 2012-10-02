@@ -25,13 +25,13 @@ class j16000booking_data_archive
 			}
 		$rows=array();
 
-		$output['PAGETITLE']=_JOMRES_DATA_ARCHIVE_TITLE;
-		$output['INFO']=_JOMRES_DATA_ARCHIVE_TITLE_DESC;
+		$output['PAGETITLE']=jr_gettext("_JOMRES_DATA_ARCHIVE_TITLE",_JOMRES_DATA_ARCHIVE_TITLE);
+		$output['INFO']=jr_gettext("_JOMRES_DATA_ARCHIVE_TITLE_DESC",_JOMRES_DATA_ARCHIVE_TITLE_DESC);
 		
 		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 		
-		$output['_JOMRES_SORTORDER_PROPERTYNAME']=_JOMRES_SORTORDER_PROPERTYNAME;
-		$output['_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED']=_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED;
+		$output['_JOMRES_SORTORDER_PROPERTYNAME']=jr_gettext("_JOMRES_SORTORDER_PROPERTYNAME",_JOMRES_SORTORDER_PROPERTYNAME);
+		$output['_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED']=jr_gettext("_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED",_JRPORTAL_LISTBOOKINGS_HEADER_DATEARCHIVED);
 		
 		$query = "SELECT id,data,date FROM #__jomres_booking_data_archive";
 		$result = doSelectSql($query);
@@ -67,7 +67,7 @@ class j16000booking_data_archive
 		
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL));
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 		

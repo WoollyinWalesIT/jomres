@@ -36,40 +36,40 @@ class j16000pseudocron
 		$methodDropdown=jomresHTML::selectList( $method, 'method','class="inputbox" size="1"', 'value', 'text', $cronConfigOptions['method']);
 
 		$displaylogging = array();
-		$displaylogging[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
-		$displaylogging[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
+		$displaylogging[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES) );
+		$displaylogging[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO) );
 		$displayloggingDropdown=jomresHTML::selectList( $displaylogging, 'displaylogging','class="inputbox" size="1"', 'value', 'text', $cronConfigOptions['displaylogging']);
 
 		$logging = array();
-		$logging[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
-		$logging[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
+		$logging[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES) );
+		$logging[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO) );
 		$loggingDropdown=jomresHTML::selectList( $logging, 'logging','class="inputbox" size="1"', 'value', 'text', $cronConfigOptions['logging']);
 
 		$verbose = array();
-		$verbose[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
-		$verbose[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
+		$verbose[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES) );
+		$verbose[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO) );
 		$verboseDropdown=jomresHTML::selectList( $verbose, 'verbose','class="inputbox" size="1"', 'value', 'text', $cronConfigOptions['verbose']);
 		
 		$output = array();
 		
 		$output['JOMRES_SITEPAGE_URL_ADMIN']				=JOMRES_SITEPAGE_URL_ADMIN;
-		$output['_JOMRES_COM_A_CRON_TITLE']					=_JOMRES_COM_A_CRON_TITLE;
-		$output['_JOMRES_COM_A_CRON_DESC']					=_JOMRES_COM_A_CRON_DESC;
-		$output['_JOMRES_COM_A_CURRENT_SETTINGS']			=_JOMRES_COM_A_CURRENT_SETTINGS;
-		$output['_JOMRES_COM_A_EXPLANATION']				=_JOMRES_COM_A_EXPLANATION;
-		$output['_JOMRES_COM_A_CRON_METHOD']				=_JOMRES_COM_A_CRON_METHOD;
+		$output['_JOMRES_COM_A_CRON_TITLE']					=jr_gettext('_JOMRES_COM_A_CRON_TITLE',_JOMRES_COM_A_CRON_TITLE);
+		$output['_JOMRES_COM_A_CRON_DESC']					=jr_gettext('_JOMRES_COM_A_CRON_DESC',_JOMRES_COM_A_CRON_DESC);
+		$output['_JOMRES_COM_A_CURRENT_SETTINGS']			=jr_gettext('_JOMRES_COM_A_CURRENT_SETTINGS',_JOMRES_COM_A_CURRENT_SETTINGS);
+		$output['_JOMRES_COM_A_EXPLANATION']				=jr_gettext('_JOMRES_COM_A_EXPLANATION',_JOMRES_COM_A_EXPLANATION);
+		$output['_JOMRES_COM_A_CRON_METHOD']				=jr_gettext('_JOMRES_COM_A_CRON_METHOD',_JOMRES_COM_A_CRON_METHOD);
 		$output['METHODDROPDOWN']							=$methodDropdown;
-		$output['_JOMRES_COM_A_CRON_METHOD_DESC']			=_JOMRES_COM_A_CRON_METHOD_DESC;
-		$output['_JOMRES_COM_A_CRON_LOGGING']				=_JOMRES_COM_A_CRON_LOGGING;
+		$output['_JOMRES_COM_A_CRON_METHOD_DESC']			=jr_gettext('_JOMRES_COM_A_CRON_METHOD_DESC',_JOMRES_COM_A_CRON_METHOD_DESC);
+		$output['_JOMRES_COM_A_CRON_LOGGING']				=jr_gettext('_JOMRES_COM_A_CRON_LOGGING',_JOMRES_COM_A_CRON_LOGGING);
 		$output['DISPLAYLOGGINGDROPDOWN']					=$displayloggingDropdown;
-		$output['_JOMRES_COM_A_CRON_LOGGING_DESC']			=_JOMRES_COM_A_CRON_LOGGING_DESC;
-		$output['_JOMRES_COM_A_CRON_LOGGINGENABLED']		=_JOMRES_COM_A_CRON_LOGGINGENABLED;
+		$output['_JOMRES_COM_A_CRON_LOGGING_DESC']			=jr_gettext('_JOMRES_COM_A_CRON_LOGGING_DESC',_JOMRES_COM_A_CRON_LOGGING_DESC);
+		$output['_JOMRES_COM_A_CRON_LOGGINGENABLED']		=jr_gettext('_JOMRES_COM_A_CRON_LOGGINGENABLED',_JOMRES_COM_A_CRON_LOGGINGENABLED);
 		$output['LOGGINGDROPDOWN']							=$loggingDropdown;
-		$output['_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC']	=_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC;
-		$output['_JOMRES_COM_A_CRON_VERBOSELOGS']			=_JOMRES_COM_A_CRON_VERBOSELOGS;
+		$output['_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC']	=jr_gettext('_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC',_JOMRES_COM_A_CRON_LOGGINGENABLED_DESC);
+		$output['_JOMRES_COM_A_CRON_VERBOSELOGS']			=jr_gettext('_JOMRES_COM_A_CRON_VERBOSELOGS',_JOMRES_COM_A_CRON_VERBOSELOGS);
 		$output['VERBOSEDROPDOWN']							=$verboseDropdown;
-		$output['_JOMRES_COM_A_CRON_VERBOSELOGS_DESC']		=_JOMRES_COM_A_CRON_VERBOSELOGS_DESC;
-		$output['_JOMRES_COM_A_CRON_IMMEDIATERUN']		=_JOMRES_COM_A_CRON_IMMEDIATERUN;
+		$output['_JOMRES_COM_A_CRON_VERBOSELOGS_DESC']		=jr_gettext('_JOMRES_COM_A_CRON_VERBOSELOGS_DESC',_JOMRES_COM_A_CRON_VERBOSELOGS_DESC);
+		$output['_JOMRES_COM_A_CRON_IMMEDIATERUN']		=jr_gettext('_JOMRES_COM_A_CRON_IMMEDIATERUN',_JOMRES_COM_A_CRON_IMMEDIATERUN);
 
 		$rows = array();
 		$logs = array();

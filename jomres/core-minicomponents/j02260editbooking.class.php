@@ -258,7 +258,7 @@ class j02260editbooking {
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HAMENDBOOKING'],$submitOnClick=false,$submitTask="",$image);
-					add_menu_option ( '&task=amendBooking&no_html=1&contractUid='.$booking_contract_uid,null,$output['HAMENDBOOKING'],null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ( '&task=amendBooking&no_html=1&contractUid='.$booking_contract_uid,null,$output['HAMENDBOOKING'],null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
@@ -269,9 +269,9 @@ class j02260editbooking {
 						$targetTask='bookGuestIn';
 						$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
 						$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTIN'],$submitOnClick=false,$submitTask="",$image);
-						add_menu_option ( '&task=bookGuestIn&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+						add_menu_option ( '&task=bookGuestIn&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 						$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelBooking&contract_uid=$booking_contract_uid"),'');
-						add_menu_option ( '&task=cancelBooking&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+						add_menu_option ( '&task=cancelBooking&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 						}
 					else
 						{
@@ -280,31 +280,31 @@ class j02260editbooking {
 						$targetTask='bookGuestOut';
 						$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
 						$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTOUT'],$submitOnClick=false,$submitTask="",$image);
-						add_menu_option ( '&task=bookGuestOut&dueDepart='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+						add_menu_option ( '&task=bookGuestOut&dueDepart='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 						}
 					}
 				if (!$booking_deposit_paid && $bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->toolbarItem('enterdeposit',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$booking_contract_uid"),'');
-					add_menu_option ("&task=editDeposit&contractUid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ("&task=editDeposit&contractUid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
 				$status = 'status=no,toolbar=yes,scrollbars=yes,titlebar=yes,menubar=yes,resizable=yes,width=710,height=500,directories=no,location=no';
 				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&popup=1&tmpl=component&contract_uid='.$booking_contract_uid;
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->toolbarItem('addservice',jomresURL(JOMRES_SITEPAGE_URL."&task=addServiceToBill&contract_uid=$booking_contract_uid"),jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=false));
-					add_menu_option ("&task=addServiceToBill&contract_uid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ("&task=addServiceToBill&contract_uid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_ADDSERVICE_TITLE',_JOMRES_COM_ADDSERVICE_TITLE,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->toolbarItem('printer','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_CONFIRMATION_PRINT',_JOMRES_COM_CONFIRMATION_PRINT,$editable=false,$isLink=false));
-					add_menu_option ('javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',null, jr_gettext('_JOMRES_COM_CONFIRMATION_PRINT',_JOMRES_COM_CONFIRMATION_PRINT,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ('javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',null, jr_gettext('_JOMRES_COM_CONFIRMATION_PRINT',_JOMRES_COM_CONFIRMATION_PRINT,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
 				$link = JOMRES_SITEPAGE_URL.'&task=confirmationForm&no_html=1&contract_uid='.$booking_contract_uid.'&sendemail=1';
 				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->toolbarItem('emailsend','javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=false));
-					add_menu_option ('javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',null, jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ('javascript:void window.open(\''.$link.'\', \'win2\', \''.$status.'\');',null, jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_EMAIL,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
 
 				$query = "SELECT id FROM #__jomresportal_invoices WHERE contract_id = ".$booking_contract_uid;
@@ -316,18 +316,18 @@ class j02260editbooking {
 					$targetTask='view_invoice';
 					$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/Invoice.png';
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['SHOWINVOICE'],$submitOnClick=false,$submitTask="",$image);
-					add_menu_option ('&task=view_invoice&id='.$invoice_number,null, $output['SHOWINVOICE'],null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+					add_menu_option ('&task=view_invoice&id='.$invoice_number,null, $output['SHOWINVOICE'],null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
 					
 				$notesLink=JOMRES_SITEPAGE_URL.'&task=addnote&contract_uid='.$booking_contract_uid;
 				$jrtb .= $jrtbar->toolbarItem('note',$notesLink,jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=false));
-				add_menu_option ($notesLink,null, jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+				add_menu_option ($notesLink,null, jr_gettext('_JOMCOMP_BOOKINGNOTES_ADD',_JOMCOMP_BOOKINGNOTES_ADD,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 				}
 			else
 				{
 				
 				$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL_AJAX."&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid"),'');
-				add_menu_option ("&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, _JOMRES_COM_MR_EDITBOOKINGTITLE);
+				add_menu_option ("&task=cancelBooking&popup=1&contract_uid=$booking_contract_uid",null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 				}
 			$jrtb .= $jrtbar->endTable();
 			

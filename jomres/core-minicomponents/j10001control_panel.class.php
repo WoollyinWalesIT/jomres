@@ -98,25 +98,14 @@ class j10001control_panel
 						$output['EFFECT'] = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
 						}
 					}
-				$output['_JOMRES_VERSIONCHECK_THISJOMRESVERSION'] = _JOMRES_VERSIONCHECK_THISJOMRESVERSION;
-				$output['_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION'] = _JOMRES_VERSIONCHECK_LATESTJOMRESVERSION;
+				$output['_JOMRES_VERSIONCHECK_THISJOMRESVERSION'] = jr_gettext(_JOMRES_VERSIONCHECK_THISJOMRESVERSION,'_JOMRES_VERSIONCHECK_THISJOMRESVERSION',false);
+				$output['_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION'] = jr_gettext(_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION,'_JOMRES_VERSIONCHECK_LATESTJOMRESVERSION',false);
 				
 				
 				$output['LATEST_JOMRES_VERSION'] = (int)$latest_major_version.".".(int)$latest_minor_version.".".(int)$latest_revis_version;
 				$output['THIS_JOMRES_VERSION'] = (int)$current_major_version.".".(int)$current_minor_version.".".(int)$current_revis_version;
 				
 				
-				}
-			}
-		
-		$beez_warning = array();
-		if (_JOMRES_DETECTED_CMS == "joomla30")
-			{
-			$query = "SELECT `home` FROM #__template_styles WHERE `template` = 'beez3' AND `home` = 1 ";
-			$result = doSelectSql($query);
-			if (count($result)>0)
-				{
-				$beez_warning[] = array('_JOMRES_BEEZ_WARNING' => _JOMRES_BEEZ_WARNING);
 				}
 			}
 
@@ -128,8 +117,8 @@ class j10001control_panel
 		$output['PRODUCT_INFORMATION']='';
 		if (trim($licensekey)=="")
 			{
-			$output['_JOMRES_PRODUCT_INFORMATION']=_JOMRES_PRODUCT_INFORMATION;
-			$output['_JOMRES_PRODUCT_INFORMATION2']=_JOMRES_PRODUCT_INFORMATION2;
+			$output['_JOMRES_PRODUCT_INFORMATION']=jr_gettext(_JOMRES_PRODUCT_INFORMATION,'_JOMRES_PRODUCT_INFORMATION',false);
+			$output['_JOMRES_PRODUCT_INFORMATION2']=jr_gettext(_JOMRES_PRODUCT_INFORMATION2,'_JOMRES_PRODUCT_INFORMATION2',false);
 			}
 		
 		$output['CACHE_WARNING']="";
@@ -144,7 +133,7 @@ class j10001control_panel
 
 			if (count($cache)>0)
 				{
-				$output['CACHE_WARNING']= _JOMRES_WARNING_SYSTEM_CACHE;
+				$output['CACHE_WARNING']= jr_gettext(_JOMRES_WARNING_SYSTEM_CACHE,'_JOMRES_WARNING_SYSTEM_CACHE',false);
 				$output['CACHE_HIGHLIGHT'] = (using_bootstrap() ? "alert alert-error" :"ui-state-error");
 				}
 			}
@@ -206,7 +195,6 @@ class j10001control_panel
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'news_rows',$news_rows);
-		$tmpl->addRows( 'beez_warning',$beez_warning);
 		$tmpl->readTemplatesFromInput( 'control_panel.html' );
 		$tmpl->displayParsedTemplate();
 		}
@@ -359,5 +347,5 @@ function jomresAccessControlSanityCheck()
 	else $pass = true;
 	
 	
-	return array("result"=>$pass,"message"=>_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING." Controlled ".count($jomres_access_control->controlled)." Controllable ".count($controllable));
+	return array("result"=>$pass,"message"=>jr_gettext(_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING,'_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING',false)." Controlled ".count($jomres_access_control->controlled)." Controllable ".count($controllable));
 	}

@@ -28,7 +28,7 @@ class j10002invoices
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices', 'Invoice.png', _JRPORTAL_INVOICES_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING" , "accounting" ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_invoices', 'Invoice.png', jr_gettext( "_JRPORTAL_INVOICES_TITLE" , _JRPORTAL_INVOICES_TITLE ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING ,false,false));
 			}
 		}
 	

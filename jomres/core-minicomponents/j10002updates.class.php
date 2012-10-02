@@ -26,17 +26,17 @@ class j10002updates
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
 		if (function_exists("curl_init"))
 			{
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=updates', 'upgrades.png', "Upgrades","/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance" ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=updates', 'upgrades.png', jr_gettext( "_JOMRES_CUSTOMCODE_UPGRADES" , _JOMRES_CUSTOMCODE_UPGRADES ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE ,false,false));
 			}
 		else
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=nocurl', 'DownloadDisabled.png', "Upgrades","/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance" ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=nocurl', 'DownloadDisabled.png', jr_gettext( "_JOMRES_CUSTOMCODE_UPGRADES" , _JOMRES_CUSTOMCODE_UPGRADES ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE ,false,false));
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE);
 
 		foreach ($output as $o)
 			{

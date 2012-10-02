@@ -41,14 +41,14 @@ class j16000listPfeatures
 			}
 		
 		$output['INDEX']="index.php";
-		$output['PAGETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK;
-		$output['HLINKTEXT']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
-		$output['HLINKTEXTCLONE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC;
+		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK);
+		$output['HLINKTEXT']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV);
+		$output['HLINKTEXTCLONE']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC);
 		//$output['PROPERTYFEATUREUID']=$propertyFeatureUid;
-		$output['HPFEATURETITLE']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV;
-		$output['HPFEATUREDESCRIPTION']=_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC;
-		$output['HJOMRES_A_ICON']=_JOMRES_A_ICON;
-		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'._JOMRES_COM_MR_BACK.'</a>';
+		$output['HPFEATURETITLE']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_ABBV);
+		$output['HPFEATUREDESCRIPTION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC',_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_DESC);
+		$output['HJOMRES_A_ICON']=jr_gettext('_JOMRES_A_ICON',_JOMRES_A_ICON);
+		$output['BACKLINK']='<a href="javascript:submitbutton(\'cpanel\')">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 
 		foreach($propertyFeaturesList as $propertyFeature)
 			{
@@ -70,12 +70,12 @@ class j16000listPfeatures
 		$jrtb  = $jrtbar->startTable();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/AddItem.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem('editPfeature',$link,_JOMRES_COM_MR_NEWTARIFF,$submitOnClick=true,$submitTask="editPfeature",$image);
+		$jrtb .= $jrtbar->customToolbarItem('editPfeature',$link,jr_gettext('_JOMRES_COM_MR_NEWTARIFF',_JOMRES_COM_MR_NEWTARIFF),$submitOnClick=true,$submitTask="editPfeature",$image);
 		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 		$jrtb .= $jrtbar->spacer();
 		$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/WasteBasket.png");
 		$link = JOMRES_SITEPAGE_URL_ADMIN;
-		$jrtb .= $jrtbar->customToolbarItem('deletePfeature',$link,_JOMRES_COM_MR_ROOM_DELETE,$submitOnClick=true,$submitTask="deletePfeature",$image);
+		$jrtb .= $jrtbar->customToolbarItem('deletePfeature',$link,jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE),$submitOnClick=true,$submitTask="deletePfeature",$image);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 		

@@ -23,7 +23,7 @@ class j16000touch_templates
 			$this->template_touchable=false; return;
 			}
 			
-		echo '<h2>'._JOMRES_TOUCHTEMPLATES.'</h2>';
+		echo '<h2>'.jr_gettext("_JOMRES_TOUCHTEMPLATES",_JOMRES_TOUCHTEMPLATES).'</h2>';
 		
 		echo "<br/><h3>".get_showtime('lang')."</h3><br/>";
 		

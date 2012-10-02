@@ -56,7 +56,7 @@ class j01070showpropertyheader
 				{
 				$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				$current_property_details->gather_data($property_uid);
-				
+
 				$stars=$current_property_details->stars;
 				$starslink="<img src=\"".get_showtime('live_site')."/jomres/images/blank.png\" border=\"0\" HEIGHT=\"1\" hspace=\"10\" VSPACE=\"1\" alt=\"blank\" />";
 				if ($stars!="0")

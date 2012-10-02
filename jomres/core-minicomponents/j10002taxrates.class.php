@@ -24,14 +24,14 @@ class j10002taxrates
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates', 'Taxes.png', _JRPORTAL_TAXRATES_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES" , "taxes" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_taxrates', 'Taxes.png', jr_gettext( "_JRPORTAL_TAXRATES_TITLE" , _JRPORTAL_TAXRATES_TITLE ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES" ,_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES,false,false));
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES);
 
 		foreach ($output as $o)
 			{

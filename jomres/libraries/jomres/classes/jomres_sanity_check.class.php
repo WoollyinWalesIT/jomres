@@ -44,7 +44,7 @@ class jomres_sanity_check
 	function construct_warning($message)
 		{
 		$warning = "";
-		$warning .=_JOMRES_WARNINGS_DANGERWILLROBINSON;
+		$warning .=jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON',_JOMRES_WARNINGS_DANGERWILLROBINSON);
 		$warning .=$message."<br/>";
 		return $warning;
 		}
@@ -55,7 +55,7 @@ class jomres_sanity_check
 		$published = get_showtime('this_property_published');
 		if ($thisJRUser->userIsSuspended)
 			{
-			$message = _JOMRES_SUSPENSIONS_MANAGER_SUSPENDED;
+			$message = jr_gettext('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED',_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED);
 			return $this->construct_warning($message);
 			}
 		}
@@ -69,7 +69,7 @@ class jomres_sanity_check
 			$result = doSelectSql($query);
 			if ( (int)$this->mrConfig['perPersonPerNight'] == 1 && count($result) ==0 )
 				{
-				$message = _JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES;
+				$message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES',_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES);
 				return $this->construct_warning($message);
 				}
 			}
@@ -87,7 +87,7 @@ class jomres_sanity_check
 			$result = doSelectSql($query);
 			if (count($result) ==0 )
 				{
-				$message = _JOMRES_WARNINGS_TARIFFS_NOTARIFFS;
+				$message = jr_gettext('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS',_JOMRES_WARNINGS_TARIFFS_NOTARIFFS);
 				return $this->construct_warning($message);
 				}
 			}
@@ -101,7 +101,7 @@ class jomres_sanity_check
 		
 		if ($this->jrConfig['editingModeAffectsAllProperties'] == "1" &&  $tmpBookingHandler->user_settings['editing_on'] == true && $thisJRUser->superPropertyManager)
 			{
-			$message = _JOMRES_WARNINGS_GLOBALEDITINGMODE;
+			$message = jr_gettext('_JOMRES_WARNINGS_GLOBALEDITINGMODE',_JOMRES_WARNINGS_GLOBALEDITINGMODE);
 			return $this->construct_warning($message);
 			
 			
@@ -114,7 +114,7 @@ class jomres_sanity_check
 		$published = get_showtime('this_property_published');
 		if (isset($published) && $published != "1" && $thisJRUser->userIsManager)
 			{
-			$message = _JOMRES_SANITY_CHECK_NOT_PUBLISHED;
+			$message = jr_gettext('_JOMRES_SANITY_CHECK_NOT_PUBLISHED',_JOMRES_SANITY_CHECK_NOT_PUBLISHED);
 			return $this->construct_warning($message);
 			}
 		}

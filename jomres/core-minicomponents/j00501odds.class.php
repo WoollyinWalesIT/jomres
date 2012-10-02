@@ -43,14 +43,14 @@ class j00501odds {
 			return;
 		$lists=$componentArgs['lists'];
 		$editIconSize=$componentArgs['editIconSize'];
-		$configurationPanel->startPanel(_JOMRES_COM_A_ODDS);
+		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_ODDS",_JOMRES_COM_A_ODDS));
 
-		$configurationPanel->setleft(_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT);
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT));
 		$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
-		$configurationPanel->setright(_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC);
+		$configurationPanel->setright(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC));
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft(_JOMRES_COM_CONFIGCOUNTRIES);
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES",_JOMRES_COM_CONFIGCOUNTRIES));
 		$configurationPanel->setmiddle(configCountries());
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
@@ -59,17 +59,17 @@ class j00501odds {
 			{
 			$threashold_dropdown = jomresHTML::integerSelectList( 0,100,1, 'cfg_cancellation_threashold','class="inputbox" size="1"', (int)$mrConfig['cancellation_threashold']);
 
-			$configurationPanel->setleft(_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD",_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD));
 			$configurationPanel->setmiddle($threashold_dropdown);
-			$configurationPanel->setright(_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC",_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC));
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_VISITORSCANBOOKONLINE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_VISITORSCANBOOKONLINE",_JOMRES_COM_A_VISITORSCANBOOKONLINE));
 			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
-			$configurationPanel->setright(_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC",_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK",_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK));
 			$configurationPanel->setmiddle($lists['registeredUsersOnlyCanBook']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

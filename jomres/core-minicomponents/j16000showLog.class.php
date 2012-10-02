@@ -40,11 +40,11 @@ class j16000showLog
 		$output['JOMRESSESSION']='jomressession';
 		$output['TASK']='task';
 		$output['REQUESTURI']='requesturi';
-		$output['MESSAGE']=JOMRES_COM_A_MESSAGE;
+		$output['MESSAGE']=jr_gettext('JOMRES_COM_A_MESSAGE',JOMRES_COM_A_MESSAGE);
 
 		if (!AJAXCALL)
 			{
-			$output['DELETE']=_JOMRES_COM_MR_ROOM_DELETE;
+			$output['DELETE']=jr_gettext('_JOMRES_COM_MR_ROOM_DELETE',_JOMRES_COM_MR_ROOM_DELETE);
 			$output['DELETELINK']=JOMRES_SITEPAGE_URL_ADMIN.'&task=clearLog&logfile='.$logfile;
 			$output['LIVESITE']=get_showtime('live_site');
 			$output['BACKLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=listLogs">'._JOMRES_COM_MR_BACK.'</a>';

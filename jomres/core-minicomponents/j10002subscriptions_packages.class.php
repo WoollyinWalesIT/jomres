@@ -31,7 +31,7 @@ class j10002subscriptions_packages
 
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_subscription_packages', 'ViewDatabase.png', _JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION" , "income generation" ,false,false),false,true);
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=list_subscription_packages', 'ViewDatabase.png',jr_gettext( "_JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE" , _JRPORTAL_SUBSCRIPTIONS_PACKAGES_TITLE ,false,false) ,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION ,false,false));
 			}
 		}
 	

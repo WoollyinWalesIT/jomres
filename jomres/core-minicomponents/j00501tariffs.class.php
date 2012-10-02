@@ -52,7 +52,7 @@ class j00501tariffs {
 		if (!isset($mrConfig['margin']) || empty($mrConfig['margin']) )
 			$mrConfig['margin']="0.00";
 
-		$configurationPanel->startPanel(_JOMRES_COM_A_TARIFFS);
+		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_TARIFFS",_JOMRES_COM_A_TARIFFS));
 		
 		if ($jrConfig['useGlobalCurrency'] !="1")
 			{
@@ -62,52 +62,41 @@ class j00501tariffs {
 			$c_codes = new currency_codes($mrConfig['property_currencycode']);
 
 			$dropdown = $c_codes->makeCodesDropdown();
-			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYCODE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_CURRENCYCODE",_JOMRES_COM_A_CURRENCYCODE));
 			$configurationPanel->setmiddle($dropdown);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			/*
-			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYSYMBOL);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_currency" value="'.$mrConfig['currency'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_CURRENCYSYMBOL_DESC);
-			$configurationPanel->insertSetting();
-
-			$configurationPanel->setleft(_JOMRES_COM_A_CURRENCYCODE);
-			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_currencyCode" value="'.$mrConfig['currencyCode'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_CURRENCYCODE_DESC);
-			$configurationPanel->insertSetting();
-			*/
 			}
 			
 		if ($mrConfig['is_real_estate_listing']==0)
 			{
 			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 				{
-				$configurationPanel->setleft(JOMRES_COM_A_TARIFFMODE);
+				$configurationPanel->setleft(jr_gettext("JOMRES_COM_A_TARIFFMODE",JOMRES_COM_A_TARIFFMODE));
 				$configurationPanel->setmiddle($tariffModeDD);
-				$configurationPanel->setright(JOMRES_COM_A_TARIFFMODE_DESC);
+				$configurationPanel->setright(jr_gettext("JOMRES_COM_A_TARIFFMODE_DESC",JOMRES_COM_A_TARIFFMODE_DESC));
 				$configurationPanel->insertSetting();
 					
-				$configurationPanel->setleft(_JOMRES_CURRENCYFORMAT);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_CURRENCYFORMAT",_JOMRES_CURRENCYFORMAT));
 				$configurationPanel->setmiddle($cformatdropdown);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 
-				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_MODEL);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_TARIFFS_MODEL",_JOMRES_COM_A_TARIFFS_MODEL));
 				$configurationPanel->setmiddle($tariffModelsDropdown);
-				$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_MODEL_DESC);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_TARIFFS_MODEL_DESC",_JOMRES_COM_A_TARIFFS_MODEL_DESC));
 				$configurationPanel->insertSetting();
 				}
 			
-			$configurationPanel->setleft(_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
+			$configurationPanel->setleft(jr_gettext("_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE",_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE));
 			$configurationPanel->setmiddle( taxrates_makerateDropdown( array(),$mrConfig['accommodation_tax_code'] ,'cfg_accommodation_tax_code' ));
 			$configurationPanel->setright('');
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_TAXINCLUSIVE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_TAXINCLUSIVE",_JOMRES_COM_A_TAXINCLUSIVE));
 			$configurationPanel->setmiddle($lists['prices_inclusive']);
-			$configurationPanel->setright(_JOMRES_COM_A_TAXINCLUSIVE_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_TAXINCLUSIVE_DESC",_JOMRES_COM_A_TAXINCLUSIVE_DESC));
 			$configurationPanel->insertSetting();
 			}
 			
@@ -120,61 +109,61 @@ class j00501tariffs {
 				{
 				if ($mrConfig['wholeday_booking'] == "1")
 					{
-					$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY);
+					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY",_JOMRES_COM_A_TARIFFS_PER_WHOLEDAY));
 					$configurationPanel->setmiddle($lists['perPersonPerNight']);
-					$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY);
+					$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY",_JOMRES_COM_A_TARIFFS_PER_DESC_WHOLEDAY));
 					$configurationPanel->insertSetting();
 					}
 				else
 					{
-					$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_PER);
+					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_TARIFFS_PER",_JOMRES_COM_A_TARIFFS_PER));
 					$configurationPanel->setmiddle($lists['perPersonPerNight']);
-					$configurationPanel->setright(_JOMRES_COM_A_TARIFFS_PER_DESC);
+					$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_TARIFFS_PER_DESC",_JOMRES_COM_A_TARIFFS_PER_DESC));
 					$configurationPanel->insertSetting();
 					}
 				}
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT",_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT));
 			$configurationPanel->setmiddle($lists['chargeDepositYesNo']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST",_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST));
 			$configurationPanel->setmiddle($lists['depositIsOneNight']);
-			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC",_JOMRES_COM_A_DEPOSIT_FIRSTNIGHTCOST_DESC));
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE",_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE));
 			$configurationPanel->setmiddle($lists['depositIsPercentage']);
-			$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC",_JOMRES_COM_A_DEPOSIT_ISPERCENTAGE_DESC));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_VALUE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_VALUE",_JOMRES_COM_A_DEPOSIT_VALUE));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_depositValue" value="'.$mrConfig['depositValue'].'" />');
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE",_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE));
 			$configurationPanel->setmiddle($lists['use_variable_deposits']);
 			if ($mrConfig['wholeday_booking'] == "1")
-				$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY",_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC_WHOLEDAY));
 			else
-				$configurationPanel->setright(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC",_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_VARIABLE_DESC));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS",_JOMRES_COM_A_DEPOSIT_CHARGEDEPOSIT_NUMBEROFDAYS));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_variable_deposit_threashold" value="'.$mrConfig['variable_deposit_threashold'].'" />');
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_CHARGING_CONFIG);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CHARGING_CONFIG",_JOMRES_COM_CHARGING_CONFIG));
 			$configurationPanel->setmiddle($paymentAmounts);
-			$configurationPanel->setright(_JOMRES_COM_CHARGING_CONFIG_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_CHARGING_CONFIG_DESC",_JOMRES_COM_CHARGING_CONFIG_DESC));
 			$configurationPanel->insertSetting();
 
 			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 				{
-				$configurationPanel->setleft(_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP",_JOMRES_COM_A_DEPOSIT_DEPOSITROUNDUP));
 				$configurationPanel->setmiddle($lists['roundupDepositYesNo']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();

@@ -371,10 +371,12 @@ class basic_property_details
 			foreach ($propertyData as $data)
 				{
 				set_showtime('property_uid',$data->propertys_uid);
+				set_showtime('property_type',$this->all_property_types[(int)$data->ptype_id]);
 				$countryname=getSimpleCountry($data->property_country);
 				$customTextObj->get_custom_text_for_property($data->propertys_uid);
 				
 				$this->untranslated_property_names[$data->propertys_uid]=$data->property_name;
+				
 				
 				$this->multi_query_result[$data->propertys_uid]['propertys_uid'] 					= $data->propertys_uid;
 				$this->multi_query_result[$data->propertys_uid]['property_name'] 					= jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME',$data->property_name,$editable,false);

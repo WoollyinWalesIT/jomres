@@ -24,15 +24,15 @@ class j10002manual_online
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN."&task=manual", 'Help.png', jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)" ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help" ,false,false),$external = false);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN."&task=manual", 'Help.png', jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , _JOMRES_CUSTOMCODE_MANUAL ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP ,false,false),$external = false);
 		}
 
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP);
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MANUAL" , _JOMRES_CUSTOMCODE_MANUAL);
 
 		foreach ($output as $o)
 			{
