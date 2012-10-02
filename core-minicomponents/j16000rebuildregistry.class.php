@@ -30,26 +30,26 @@ class j16000rebuildregistry
 		if (!using_bootstrap())
 			{
 			if ($registry->error_detected)
-				echo _JOMRES_REGISTRYREBUILD_FAILURE;
+				echo jr_gettext('_JOMRES_REGISTRYREBUILD_FAILURE',_JOMRES_REGISTRYREBUILD_FAILURE);
 			else
-				echo _JOMRES_REGISTRYREBUILD_SUCCESS;
+				echo jr_gettext('_JOMRES_REGISTRYREBUILD_SUCCESS',_JOMRES_REGISTRYREBUILD_SUCCESS);
 			echo '<br />';
-			echo _JOMRES_REGISTRYREBUILD_NOTES;
+			echo jr_gettext('_JOMRES_REGISTRYREBUILD_NOTES',_JOMRES_REGISTRYREBUILD_NOTES);
 			}
 		else
 			{
 			if ($registry->error_detected)
 				echo '
 				<div class="alert alert-block alert-error">
-					<h4 class="alert-heading">'._JOMRES_REGISTRYREBUILD_FAILURE.'</h4>
-					<p>'._JOMRES_REGISTRYREBUILD_NOTES.'</p>
+					<h4 class="alert-heading">'.jr_gettext('_JOMRES_REGISTRYREBUILD_FAILURE',_JOMRES_REGISTRYREBUILD_FAILURE).'</h4>
+					<p>'.jr_gettext('_JOMRES_REGISTRYREBUILD_NOTES',_JOMRES_REGISTRYREBUILD_NOTES).'</p>
 				</div>
 				';
 			else
 				echo '
 				<div class="alert alert-block alert-success">
-					<h4 class="alert-heading">'._JOMRES_REGISTRYREBUILD_SUCCESS.'</h4>
-					<p>'._JOMRES_REGISTRYREBUILD_NOTES.'</p>
+					<h4 class="alert-heading">'.jr_gettext('_JOMRES_REGISTRYREBUILD_SUCCESS',_JOMRES_REGISTRYREBUILD_SUCCESS).'</h4>
+					<p>'.jr_gettext('_JOMRES_REGISTRYREBUILD_NOTES',_JOMRES_REGISTRYREBUILD_NOTES).'</p>
 				</div>
 				';
 			}

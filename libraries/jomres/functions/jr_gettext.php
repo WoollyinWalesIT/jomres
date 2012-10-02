@@ -13,6 +13,29 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jr_define($constant,$string)
+	{
+	$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
+	$jomres_language_definitions->set_language(get_showtime('lang'));
+	$jomres_language_definitions->set_property_type(get_showtime('property_type'));
+	$jomres_language_definitions->define($constant,$string);
+	}
+
+function jr_get_defined($constant,$default='')
+	{
+	if (!defined($constant))
+		{
+		$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
+		$jomres_language_definitions->set_language(get_showtime('lang'));
+		$jomres_language_definitions->set_property_type(get_showtime('property_type'));
+		$result = $jomres_language_definitions->get_defined($constant);
+		if (is_null($result) && $default != '')
+			$result = $default;
+		return $result;
+		}
+	else
+		return constant($constant);
+	}
 
 function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	{
@@ -23,10 +46,8 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		$text_bucket = array();
 	if (isset($text_bucket[$property_uid][$theConstant][$okToEdit]))
 		return $text_bucket[$property_uid][$theConstant][$okToEdit];
-	
+
 	$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
-	
-	
 	$customTextArray = $customTextObj->get_custom_text();
 
 	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -55,8 +76,9 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		$accessLevel=$thisJRUser->accesslevel;
 	else
 		$accessLevel=0;
-	$theText=$theValue;
-	$defaultText="";
+	
+	$theText=jr_get_defined($theConstant,$theValue);
+
 	$br="";
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
@@ -69,8 +91,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			}
 		else
 			{
-			$theText=$theValue;
-			$defaultText=$theValue;
+			$theText=jr_get_defined($theConstant,$theValue);
 			}
 		}
 	//$theText=jomres_reconvertString($theText);
@@ -95,7 +116,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				$theText="xxxxxxxxx";
 			$indexphp="index.php";
 			$title=' title="'._JOMRES_COM_MR_VRCT_ROOM_LINKTEXT.'" ';
-			//$defaultText=substr($defaultText,0,100);
 
 			if ($isLink)
 				{

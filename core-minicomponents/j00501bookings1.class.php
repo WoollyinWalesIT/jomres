@@ -49,120 +49,80 @@ class j00501bookings1 {
 		$booking_form_daily_weekly_monthly=$componentArgs['booking_form_daily_weekly_monthly'];
 		
 		
-		$configurationPanel->startPanel(_JOMRES_COM_A_BOOKING);
+		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_BOOKING",_JOMRES_COM_A_BOOKING));
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_ROOMMSLIST_STYLE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_ROOMMSLIST_STYLE",_JOMRES_ROOMMSLIST_STYLE));
 			$configurationPanel->setmiddle($booking_form_rooms_list_style);
-			$configurationPanel->setright(_JOMRES_ROOMMSLIST_STYLE_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_ROOMMSLIST_STYLE_DESC",_JOMRES_ROOMMSLIST_STYLE_DESC));
 			$configurationPanel->insertSetting();
 			}
 			
-		$configurationPanel->setleft(_JOMRES_WHOLEDAY_TITLE);
+		$configurationPanel->setleft(jr_gettext("_JOMRES_WHOLEDAY_TITLE",_JOMRES_WHOLEDAY_TITLE));
 		$configurationPanel->setmiddle($lists['wholeday_booking']);
-		$configurationPanel->setright(_JOMRES_WHOLEDAY_DESC);
+		$configurationPanel->setright(jr_gettext("_JOMRES_WHOLEDAY_DESC",_JOMRES_WHOLEDAY_DESC));
 		$configurationPanel->insertSetting();
 			
 
 			
 		if ($mrConfig['wholeday_booking'] == "1")
 			{
-			$configurationPanel->setleft(_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY",_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WHOLEDAY));
 			$configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 		
-			$configurationPanel->setleft(_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY",_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY",_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY));
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY",_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig['mindaysbeforearrival'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY",_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC_WHOLEDAY));
 			$configurationPanel->insertSetting();
 			}
 		else
 			{
 			
-			$configurationPanel->setleft(_JOMRES_BOOKINGFORM_PRICINGOUTPUT);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_BOOKINGFORM_PRICINGOUTPUT",_JOMRES_BOOKINGFORM_PRICINGOUTPUT));
 			$configurationPanel->setmiddle($booking_form_daily_weekly_monthly);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 		
-			$configurationPanel->setleft(_JOMRES_COM_A_MINIMUMINTERVAL);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL",_JOMRES_COM_A_MINIMUMINTERVAL));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_MINIMUMINTERVAL_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_DESC",_JOMRES_COM_A_MINIMUMINTERVAL_DESC));
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING",_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig['mindaysbeforearrival'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC",_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_DESC));
 			$configurationPanel->insertSetting();
 			}
 
-		$configurationPanel->setleft(_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE);
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE",_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPE));
 		$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_defaultNumberOfFirstGuesttype" size="5" value="'.$mrConfig['defaultNumberOfFirstGuesttype'].'" />');
-		$configurationPanel->setright(_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC);
+		$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC",_JOMRES_COM_A_DEFAULTNUMBEROFFIRSTGUESTTYPEDESC));
 		$configurationPanel->insertSetting();
 		
 		
-		$configurationPanel->setleft(_JOMRES_COM_A_EXTRAS);
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_EXTRAS",_JOMRES_COM_A_EXTRAS));
 		$configurationPanel->setmiddle($lists['showExtras']);
-		$configurationPanel->setright(_JOMRES_COM_A_EXTRAS_DESC);
+		$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_EXTRAS_DESC",_JOMRES_COM_A_EXTRAS_DESC));
 		$configurationPanel->insertSetting();
 		
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
 			if ( $mrConfig['singleRoomProperty'] != "1" )
 				{
-				
-/* 				Disabled as 6.6.6 has the rooms list templatised and easily edited.
-
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE);
-				$configurationPanel->setmiddle($lists['showRoomImageInBookingFormOverlib']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-				
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE);
-				$configurationPanel->setmiddle($lists['showRoomTypeImageInBookingForm']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-				
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNO);
-				$configurationPanel->setmiddle($lists['bookingform_roomlist_showroomno']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWROOMNAME);
-				$configurationPanel->setmiddle($lists['bookingform_roomlist_showroomname']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWDISABLED);
-				$configurationPanel->setmiddle($lists['bookingform_roomlist_showdisabled']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWMAXPEOPLE);
-				$configurationPanel->setmiddle($lists['bookingform_roomlist_showmaxpeople']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting(); */
-				
-				/*
-				$configurationPanel->setleft(_JOMRES_COM_A_BOOKINGFORM_SHOWTARIFFTITLE);
-				$configurationPanel->setmiddle($lists['bookingform_roomlist_showtarifftitle']);
-				$configurationPanel->setright();
-				$configurationPanel->insertSetting();
-				*/
-				
-				$configurationPanel->setleft(_JOMRES_COM_A_SMOKING);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SMOKING",_JOMRES_COM_A_SMOKING));
 				$configurationPanel->setmiddle($lists['showSmoking']);
-				$configurationPanel->setright(_JOMRES_COM_A_SMOKING_DESC);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SMOKING_DESC",_JOMRES_COM_A_SMOKING_DESC));
 				$configurationPanel->insertSetting();
 				
 				
-				$configurationPanel->setleft(_JOMRES_COM_A_SMOKING_OPTION);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SMOKING_OPTION",_JOMRES_COM_A_SMOKING_OPTION));
 				$configurationPanel->setmiddle($smokingOptionDropdownList);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
@@ -170,15 +130,15 @@ class j00501bookings1 {
 			}
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO",_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO));
 			$configurationPanel->setmiddle($lists['limitAdvanceBookingsYesNo']);
 			if ($mrConfig['wholeday_booking'] == "1")
-				$configurationPanel->setright(_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY",_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC_WHOLEDAY));
 			else
-				$configurationPanel->setright(_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC",_JOMRES_COM_A_ADVANCEBOOKINGSLIMITYESNO_DESC));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS",_JOMRES_COM_A_ADVANCEBOOKINGSLIMITDAYS));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" size="5" name="cfg_advanceBookingsLimit" value="'.$mrConfig['advanceBookingsLimit'].'">');
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
@@ -188,31 +148,31 @@ class j00501bookings1 {
 			{
 			if ($mrConfig['wholeday_booking'] == "1")
 				{
-				$configurationPanel->setleft(_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY",_JOMRES_COM_A_SHOWDEPARTUREINPUT_WHOLEDAY));
 				$configurationPanel->setmiddle($lists['showdepartureinput']);
-				$configurationPanel->setright(_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY",_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC_WHOLEDAY));
 				$configurationPanel->insertSetting();
 				}
 			else
 				{
-				$configurationPanel->setleft(_JOMRES_COM_A_SHOWDEPARTUREINPUT);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SHOWDEPARTUREINPUT",_JOMRES_COM_A_SHOWDEPARTUREINPUT));
 				$configurationPanel->setmiddle($lists['showdepartureinput']);
-				$configurationPanel->setright(_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC",_JOMRES_COM_A_SHOWDEPARTUREINPUT_DESC));
 				$configurationPanel->insertSetting();
 				}
 			}
 			
 		if ( $mrConfig['singleRoomProperty'] != "1" )
 			{
-			$configurationPanel->setleft(_JOMRES_COM_LIMITROOMSLIST);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_LIMITROOMSLIST",_JOMRES_COM_LIMITROOMSLIST));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" size="5" name="cfg_returnRoomsLimit" value="'.$mrConfig['returnRoomsLimit'].'">');
-			$configurationPanel->setright(_JOMRES_COM_LIMITROOMSLIST_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_LIMITROOMSLIST_DESC",_JOMRES_COM_LIMITROOMSLIST_DESC));
 			$configurationPanel->insertSetting();
 			}
 			
-		$configurationPanel->setleft(_JOMRES_COM_WEEKENDDAYS);
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_WEEKENDDAYS",_JOMRES_COM_WEEKENDDAYS));
 		$configurationPanel->setmiddle($weekenddayDropdown);
-		$configurationPanel->setright(_JOMRES_COM_WEEKENDDAYS_DESC);
+		$configurationPanel->setright(jr_gettext("_JOMRES_COM_WEEKENDDAYS_DESC",_JOMRES_COM_WEEKENDDAYS_DESC));
 		$configurationPanel->insertSetting();
 
 		$configurationPanel->endPanel();

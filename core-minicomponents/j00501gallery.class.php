@@ -43,10 +43,10 @@ class j00501gallery {
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
 			$mrConfig=getPropertySpecificSettings();
-			$configurationPanel->startPanel(_JOMRES_COM_A_GALLERYLINK);
-			$configurationPanel->setleft(_JOMRES_COM_A_GALLERYLINK);
+			$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_GALLERYLINK",_JOMRES_COM_A_GALLERYLINK));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_GALLERYLINK",_JOMRES_COM_A_GALLERYLINK));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="50" name="cfg_galleryLink" value="'.$mrConfig['galleryLink'].'" />');
-			$configurationPanel->setright(_JOMRES_COM_A_GALLERYLINK_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_GALLERYLINK_DESC",_JOMRES_COM_A_GALLERYLINK_DESC));
 			$configurationPanel->insertSetting();
 			$configurationPanel->endPanel();
 			}

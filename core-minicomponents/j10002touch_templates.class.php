@@ -25,14 +25,14 @@ class j10002touch_templates
 			}
 
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=touch_templates', 'EditText.png', _JOMRES_TOUCHTEMPLATES,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , "languages" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=touch_templates', 'EditText.png', jr_gettext( "_JOMRES_TOUCHTEMPLATES" , _JOMRES_TOUCHTEMPLATES),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES ,false,false));
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , "languages");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES);
 
 		foreach ($output as $o)
 			{

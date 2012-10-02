@@ -25,15 +25,15 @@ class j16000listTemplates
 			}
 		$output=array();
 
-		$output['TITLE']=_JOMRES_COM_TEMPLATEEDITING_TITLE;
-		$output['INSTRUCTIONS']=_JOMRES_COM_TEMPLATEEDITING_DESC;
+		$output['TITLE']=jr_gettext("_JOMRES_COM_TEMPLATEEDITING_TITLE",_JOMRES_COM_TEMPLATEEDITING_TITLE);
+		$output['INSTRUCTIONS']=jr_gettext("_JOMRES_COM_TEMPLATEEDITING_DESC",_JOMRES_COM_TEMPLATEEDITING_DESC);
 		
-		$output['HTEMPLATENAME']=_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME;
-		$output['HCUSTOMISED']=_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED;
-		$output['HLAST_EDITED_DB']=_JOMRES_LASTEDITED_DB;
-		$output['HLAST_EDITED_DISK']=_JOMRES_LASTEDITED_DISK;
-		$output['HLAST_WARNINGICON']=_JOMRES_LASTEDITED_WARNINGICON;
-		$output['EDITWARNINGNOTE']=_JOMRES_LASTEDITED_WARNING;
+		$output['HTEMPLATENAME']=jr_gettext("_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME",_JOMRES_COM_TEMPLATEEDITING_TEMPLATENAME);
+		$output['HCUSTOMISED']=jr_gettext("_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED",_JOMRES_COM_TEMPLATEEDITING_HASBEENCUSTOMISED);
+		$output['HLAST_EDITED_DB']=jr_gettext("_JOMRES_LASTEDITED_DB",_JOMRES_LASTEDITED_DB);
+		$output['HLAST_EDITED_DISK']=jr_gettext("_JOMRES_LASTEDITED_DISK",_JOMRES_LASTEDITED_DISK);
+		$output['HLAST_WARNINGICON']=jr_gettext("_JOMRES_LASTEDITED_WARNINGICON",_JOMRES_LASTEDITED_WARNINGICON);
+		$output['EDITWARNINGNOTE']=jr_gettext("_JOMRES_LASTEDITED_WARNING",_JOMRES_LASTEDITED_WARNING);
 		
 		$custom_templates =jomres_singleton_abstract::getInstance('jomres_custom_template_handler');
 
@@ -57,9 +57,9 @@ class j16000listTemplates
 				natsort($docs);
 				$r=array();
 				
-				$r['EDITED']=_JOMRES_COM_MR_NO;
+				$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO);
 				if ($custom_templates->hasThisTemplateBeenCustomised("jomrescss.css"))
-					$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
+					$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES)."</b>";
 				if (!using_bootstrap())
 					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
 				else
@@ -72,7 +72,7 @@ class j16000listTemplates
 					if ($doc != "jomrescss.css" && $doc != "srch.html")
 						{
 						$r=array();
-						$r['EDITED']=_JOMRES_COM_MR_NO;
+						$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO);
 						if ($custom_templates->hasThisTemplateBeenCustomised($doc))
 							{
 							$r['WARNINGICON']="";
@@ -87,7 +87,7 @@ class j16000listTemplates
 								}
 							else
 								$r['LAST_EDITED_DB'] = _JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE;
-							$r['EDITED']="<b>"._JOMRES_COM_MR_YES."</b>";
+							$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES)."</b>";
 							}
 						$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
 						if ($counter%2)
@@ -103,7 +103,7 @@ class j16000listTemplates
 
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL));
 		$jrtb .= $jrtbar->spacer();
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;

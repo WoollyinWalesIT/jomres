@@ -24,14 +24,14 @@ class j10002stats
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showstats', 'ChartBarTrend.png', _JRPORTAL_STATS_PATETITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS" , "reports/statistics" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=showstats', 'ChartBarTrend.png',jr_gettext( "_JRPORTAL_STATS_PATETITLE" , _JRPORTAL_STATS_PATETITLE ,false,false) ,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS ,false,false));
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS" , "reports/statistics");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS" ,_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS);
 
 		foreach ($output as $o)
 			{

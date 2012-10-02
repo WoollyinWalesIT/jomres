@@ -31,10 +31,10 @@ class j16000edit_taxrate {
 			$rate->getTaxRate();
 			}
 		
-		$output['PAGETITLE']=_JRPORTAL_TAX_RATE_EDIT;
-		$output['HCODE']=_JRPORTAL_TAXRATES_CODE;
-		$output['HDESCRIPTION']=_JRPORTAL_TAXRATES_DESCRIPTION;
-		$output['HRATE']=_JRPORTAL_TAXRATES_RATE;
+		$output['PAGETITLE']=jr_gettext('_JRPORTAL_TAX_RATE_EDIT',_JRPORTAL_TAX_RATE_EDIT);
+		$output['HCODE']=jr_gettext('_JRPORTAL_TAXRATES_CODE',_JRPORTAL_TAXRATES_CODE);
+		$output['HDESCRIPTION']=jr_gettext('_JRPORTAL_TAXRATES_DESCRIPTION',_JRPORTAL_TAXRATES_DESCRIPTION);
+		$output['HRATE']=jr_gettext('_JRPORTAL_TAXRATES_RATE',_JRPORTAL_TAXRATES_RATE);
 		
 		$output['ID']=$rate->id;
 		$output['CODE']=$rate->code;
@@ -48,7 +48,7 @@ class j16000edit_taxrate {
 		if ($id>0)
 			$jrtb .= $jrtbar->toolbarItem('delete',JOMRES_SITEPAGE_URL_ADMIN."&task=delete_taxrate".jomresURLToken()."&no_html=1&id=".$id,'');
 		else
-			echo _JRPORTAL_TAXRATES_CANNOTDELETE;
+			echo jr_gettext('_JRPORTAL_TAXRATES_CANNOTDELETE',_JRPORTAL_TAXRATES_CANNOTDELETE);
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 

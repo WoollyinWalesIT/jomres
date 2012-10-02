@@ -48,7 +48,7 @@ class j16000showstats
 
 		$output['STATOPTIONS']=$statoptions;
 		$output['LIVESITE']=get_showtime('live_site');
-		$output['PAGETITLE']	= _JRPORTAL_STATS_PATETITLE;
+		$output['PAGETITLE']	= jr_gettext('_JRPORTAL_STATS_PATETITLE',_JRPORTAL_STATS_PATETITLE);
 
 		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 		

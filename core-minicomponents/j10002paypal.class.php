@@ -23,14 +23,14 @@ class j10002paypal
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=paypal_settings', 'paypal.png', _JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS" , "payment methods" ,false,false),false,true);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=paypal_settings', 'paypal.png',jr_gettext( "_JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE" , _JRPORTAL_INVOICES_PAYPAL_SETTINGS_TITLE ,false) ,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS ,false,false) );
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS" , "payment methods");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS);
 
 		foreach ($output as $o)
 			{

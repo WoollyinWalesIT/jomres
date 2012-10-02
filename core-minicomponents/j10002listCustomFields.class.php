@@ -22,8 +22,9 @@ class j10002listCustomFields
 			{
 			$this->template_touchable=false; return;
 			}
+			return;
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listCustomFields', 'Prompt.png', _JOMRES_COM_CUSTOMFIELDS_TITLE,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS" , "developer tools" ,false,false),false,true);
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listCustomFields', 'Prompt.png', jr_gettext( "_JOMRES_COM_CUSTOMFIELDS_TITLE" , _JOMRES_COM_CUSTOMFIELDS_TITLE ,false,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS ,false,false));
 		}
 	
 	

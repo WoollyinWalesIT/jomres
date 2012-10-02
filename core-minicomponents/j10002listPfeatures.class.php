@@ -24,14 +24,14 @@ class j10002listPfeatures
 			$this->template_touchable=true; return;
 			}
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures', 'propertyFeatures.png', _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure" ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=listPfeatures', 'propertyFeatures.png',jr_gettext( "_JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK" , _JOMRES_COM_MR_VRCT_PROPERTYFEATURES_HEADER_LINK ,false,false) ,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE ,false,false));
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE);
 
 		foreach ($output as $o)
 			{

@@ -40,19 +40,19 @@ class j00501suppliments {
 		$lists=$componentArgs['lists'];
 		if ($mrConfig['singleRoomProperty'] != "1" )
 			{
-			$configurationPanel->startPanel(_JOMRES_COM_A_SUPPLIMENTS);
+			$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_SUPPLIMENTS",_JOMRES_COM_A_SUPPLIMENTS));
 
-			$configurationPanel->setleft(_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON",_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON));
 			$configurationPanel->setmiddle($lists['singlePersonSuppliment']);
-			$configurationPanel->setright(_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC",_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_DESC));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE",_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE));
 			$configurationPanel->setmiddle($lists['supplimentChargeIsPercentage']);
-			$configurationPanel->setright(_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC);
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC",_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_ISPERCENTAGE_DESC));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST",_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON_COST));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox"  size="5" name="cfg_singlePersonSupplimentCost" value="'.$mrConfig['singlePersonSupplimentCost'].'" />');
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

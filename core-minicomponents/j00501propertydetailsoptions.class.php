@@ -39,16 +39,16 @@ class j00501propertydetailsoptions {
 		$jrConfig=$siteConfig->get();
 		$mrConfig=getPropertySpecificSettings();
 		$lists=$componentArgs['lists'];
-		$configurationPanel->startPanel(_JOMRES_PATHWAY_PROPERTYDETAILS);
+		$configurationPanel->startPanel(jr_gettext("_JOMRES_PATHWAY_PROPERTYDETAILS",_JOMRES_PATHWAY_PROPERTYDETAILS));
 		
 		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 			{
-			$configurationPanel->setleft(_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE",_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWINLINE));
 			$configurationPanel->setmiddle($lists['showSlideshowInline']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK",_JOMRES_COM_A_SLIDESHOWS_SHOWSLIDESHOWLINK));
 			$configurationPanel->setmiddle($lists['showSlideshowLink']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
@@ -58,42 +58,42 @@ class j00501propertydetailsoptions {
 			{
 			if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) && $mrConfig['singleRoomProperty'] != "1" )
 				{
-				$configurationPanel->setleft(_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS",_JOMRES_COM_A_LISTROOMSINPROPERTYDETAILS));
 				$configurationPanel->setmiddle($lists['roomslistinpropertydetails']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 				
-				$configurationPanel->setleft(_JOMRES_COM_A_SHOWROOMSLISTLINK);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SHOWROOMSLISTLINK",_JOMRES_COM_A_SHOWROOMSLISTLINK));
 				$configurationPanel->setmiddle($lists['showRoomsListingLink']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 				}
 
-			$configurationPanel->setleft(_JOMRES_SHOWGOOGLECURRENCYLINKS);
+			$configurationPanel->setleft(jr_gettext("_JOMRES_SHOWGOOGLECURRENCYLINKS",_JOMRES_SHOWGOOGLECURRENCYLINKS));
 			$configurationPanel->setmiddle($lists['showGoogleCurrencyLink']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 				
 			if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 				{
-				$configurationPanel->setleft(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR",_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR));
 				$configurationPanel->setmiddle($lists['showAvailabilityCalendar']);
-				$configurationPanel->setright(_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC);
+				$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC",_JOMRES_COM_A_SHOWAVILABILITY_CALENDAR_DESC));
 				$configurationPanel->insertSetting();
 				
-				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE",_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE));
 				$configurationPanel->setmiddle($lists['showTariffsInline']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 				
-				$configurationPanel->setleft(_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK);
+				$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK",_JOMRES_COM_A_TARIFFS_SHOWTARIFFSLINK));
 				$configurationPanel->setmiddle($lists['showTariffsLink']);
 				$configurationPanel->setright();
 				$configurationPanel->insertSetting();
 				
-				$configurationPanel->setleft(JOMRES_COM_A_VERBOSETARIFFINTO);
+				$configurationPanel->setleft(jr_gettext("JOMRES_COM_A_VERBOSETARIFFINTO",JOMRES_COM_A_VERBOSETARIFFINTO));
 				$configurationPanel->setmiddle($lists['verbosetariffinfo']);
-				$configurationPanel->setright(JOMRES_COM_A_VERBOSETARIFFINTO_DESC);
+				$configurationPanel->setright(jr_gettext("JOMRES_COM_A_VERBOSETARIFFINTO_DESC",JOMRES_COM_A_VERBOSETARIFFINTO_DESC));
 				$configurationPanel->insertSetting();
 
 				}

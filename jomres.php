@@ -297,7 +297,9 @@ if ($property_uid >0)
 if (isset($property_uid) && !empty($property_uid))
 	{
 	$customTextObj->get_custom_text_for_property($property_uid);
-	$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+	$current_property_details->gather_data($property_uid);
+	set_showtime('property_type',$current_property_details->property_type);
 	}
 
 init_javascript();

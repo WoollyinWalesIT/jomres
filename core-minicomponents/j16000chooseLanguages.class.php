@@ -23,8 +23,8 @@ class j16000chooseLanguages
 			$this->template_touchable=false; return;
 			}
 		$output=array();
-		$output['PAGETITLE']=_JOMRES_COM_CHOOSELANGUAGES;
-		$output['INFO']=_JOMRES_COM_CHOOSELANGUAGES_INFO;
+		$output['PAGETITLE']=jr_gettext("_JOMRES_COM_CHOOSELANGUAGES",_JOMRES_COM_CHOOSELANGUAGES);
+		$output['INFO']=jr_gettext("_JOMRES_COM_CHOOSELANGUAGES_INFO",_JOMRES_COM_CHOOSELANGUAGES_INFO);
 		$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
 		$langDropdownFile = JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS."langDropdown.php";
 		if (file_exists($langDropdownFile) )

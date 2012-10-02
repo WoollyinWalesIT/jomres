@@ -29,10 +29,10 @@ class j16000list_taxrates
 		$pageoutput=array();
 		$rows=array();
 		
-		$output['PAGETITLE']=_JRPORTAL_TAXRATES_TITLE;
-		$output['HCODE']=_JRPORTAL_TAXRATES_CODE;
-		$output['HDESCRIPTION']=_JRPORTAL_TAXRATES_DESCRIPTION;
-		$output['HRATE']=_JRPORTAL_TAXRATES_RATE;
+		$output['PAGETITLE']=jr_gettext('_JRPORTAL_TAXRATES_TITLE',_JRPORTAL_TAXRATES_TITLE);
+		$output['HCODE']=jr_gettext('_JRPORTAL_TAXRATES_CODE',_JRPORTAL_TAXRATES_CODE);
+		$output['HDESCRIPTION']=jr_gettext('_JRPORTAL_TAXRATES_DESCRIPTION',_JRPORTAL_TAXRATES_DESCRIPTION);
+		$output['HRATE']=jr_gettext('_JRPORTAL_TAXRATES_RATE',_JRPORTAL_TAXRATES_RATE);
 		
 		foreach ($rates as $rate)
 			{
