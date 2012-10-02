@@ -32,6 +32,12 @@ function make_datatable(div_id,pagetitle,livesite) {
 		"sPaginationType": "bootstrap",
 		"sDom": "<'row-fluid'<'span4'l><'span4'T><'span4'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
 		"sWrapper": "dataTables_wrapper form-inline",
+       "fnStateSave": function (oSettings, oData) {
+            localStorage.setItem( 'DataTables', JSON.stringify(oData) );
+        },
+        "fnStateLoad": function (oSettings) {
+            return JSON.parse( localStorage.getItem('DataTables') );
+        },
 		"oTableTools": {
 			"sSwfPath": livesite+"/jomres/javascript/copy_cvs_xls_pdf.swf",
 			"aButtons": [
