@@ -34,14 +34,14 @@ class j00010reception_option_01_switch_property {
 			{
 			$this->template_touchable=TRUE; return;
 			}
-		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=switch_active_property", 'switch_property.png', jr_gettext('_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY',_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard" ,false,false) );
+		$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=switch_active_property", 'switch_property.png', jr_gettext('_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY',_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME ,false,false) );
 		}
 	
 	function touch_template_language()
 		{
 		$output=array();
 
-		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard");
+		$output[]	= jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME);
 		$output[]	= jr_gettext( "_JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY" , _JOMRES_ROBBED_PORTALUI_SWITCH_PROPERTY);
 
 		foreach ($output as $o)

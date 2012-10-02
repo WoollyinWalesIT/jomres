@@ -39,7 +39,7 @@ class j00011manager_option_09_myproperties {
 		$jrConfig=$siteConfig->get();
 
 		if ($jrConfig['is_single_property_installation'] == "0")
-			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), 'listProperties.png', jr_gettext('_JOMRES_MYPROPERTIES',_JOMRES_MYPROPERTIES,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard",false,false),false,false );
+			$this->cpanelButton=jomres_mainmenu_option(jomresURL(JOMRES_SITEPAGE_URL."&task=listyourproperties"), 'listProperties.png', jr_gettext('_JOMRES_MYPROPERTIES',_JOMRES_MYPROPERTIES,false,false),null,jr_gettext("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , _JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME,false,false),false,false );
 		}
 	
 	function touch_template_language()
