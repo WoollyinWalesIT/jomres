@@ -585,6 +585,10 @@ function get_property_module_data($property_uid_array)
 			{
 			$property_data = $property_data_array[$property_uid];
 			$mrConfig=getPropertySpecificSettings($property_uid);
+			
+			$current_property_details->gather_data($property_uid);
+			
+			set_showtime('property_type',$current_property_details->property_type);
 			set_showtime('property_uid',$property_uid);
 			$customTextObj->get_custom_text_for_property($property_uid);
 
@@ -1174,7 +1178,7 @@ function getIntegratedSearchModuleVals()
 function getThisMonthName($monthNumber,$editable=true)
 	{
 	$monthNumber=$monthNumber-1;
-	$mName=constant('_JRPORTAL_MONTHS_LONG_'.$monthNumber);
+	$mName=constant(jr_gettext('_JRPORTAL_MONTHS_LONG_'.$monthNumber,'_JRPORTAL_MONTHS_LONG_'.$monthNumber));
 	$thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.$monthNumber,$mName,$editable);
 	return $thisMonthName;
 	}
@@ -2285,29 +2289,29 @@ function hotelSettings()
 	if ($mrConfig['newTariffModels'] != "1" && $mrConfig['newTariffModels'] != "2")	// backward compatablity for pre-2.5 users who haven't yet visited General Configuration and clicked Save
 		$mrConfig['newTariffModels'] = "1";
 	$tariffModels=array();
-	$tariffModels[] = jomresHTML::makeOption(1, _JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF);
-	$tariffModels[] = jomresHTML::makeOption(2, _JOMRES_COM_A_TARIFFS_MODEL_AVERAGES);
+	$tariffModels[] = jomresHTML::makeOption(1, jr_gettext("_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF",_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF));
+	$tariffModels[] = jomresHTML::makeOption(2, jr_gettext("_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES",_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES));
 	$tariffModelsDropdown= jomresHTML::selectList($tariffModels, 'cfg_newTariffModels', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['newTariffModels']);
 
 	$weekDays=array();
-	$weekDays[] = jomresHTML::makeOption(1, _JOMRES_COM_MR_WEEKDAYS_MONDAY);
-	$weekDays[] = jomresHTML::makeOption(2, _JOMRES_COM_MR_WEEKDAYS_TUESDAY);
-	$weekDays[] = jomresHTML::makeOption(3, _JOMRES_COM_MR_WEEKDAYS_WEDNESDAY);
-	$weekDays[] = jomresHTML::makeOption(4, _JOMRES_COM_MR_WEEKDAYS_THURSDAY);
-	$weekDays[] = jomresHTML::makeOption(5, _JOMRES_COM_MR_WEEKDAYS_FRIDAY);
-	$weekDays[] = jomresHTML::makeOption(6, _JOMRES_COM_MR_WEEKDAYS_SATURDAY);
-	$weekDays[] = jomresHTML::makeOption(0, _JOMRES_COM_MR_WEEKDAYS_SUNDAY);
+	$weekDays[] = jomresHTML::makeOption(1,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_MONDAY",_JOMRES_COM_MR_WEEKDAYS_MONDAY) );
+	$weekDays[] = jomresHTML::makeOption(2,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_TUESDAY",_JOMRES_COM_MR_WEEKDAYS_TUESDAY) );
+	$weekDays[] = jomresHTML::makeOption(3,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY",_JOMRES_COM_MR_WEEKDAYS_WEDNESDAY) );
+	$weekDays[] = jomresHTML::makeOption(4,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_THURSDAY",_JOMRES_COM_MR_WEEKDAYS_THURSDAY) );
+	$weekDays[] = jomresHTML::makeOption(5,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY) );
+	$weekDays[] = jomresHTML::makeOption(6,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY) );
+	$weekDays[] = jomresHTML::makeOption(0,jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY",_JOMRES_COM_MR_WEEKDAYS_SUNDAY) );
 
 	$weekendDays=array();
-	$weekendDays[] = jomresHTML::makeOption("5", _JOMRES_COM_MR_WEEKDAYS_FRIDAY);
-	$weekendDays[] = jomresHTML::makeOption("6", _JOMRES_COM_MR_WEEKDAYS_SATURDAY);
-	$weekendDays[] = jomresHTML::makeOption("0", _JOMRES_COM_MR_WEEKDAYS_SUNDAY);
-	$weekendDays[] = jomresHTML::makeOption("4,5", _JOMRES_COM_MR_WEEKDAYS_THURSDAY.', '._JOMRES_COM_MR_WEEKDAYS_FRIDAY);
-	$weekendDays[] = jomresHTML::makeOption("4,5,6",_JOMRES_COM_MR_WEEKDAYS_THURSDAY.', '._JOMRES_COM_MR_WEEKDAYS_FRIDAY.', '._JOMRES_COM_MR_WEEKDAYS_SATURDAY);
-	$weekendDays[] = jomresHTML::makeOption("4,5,6,0",_JOMRES_COM_MR_WEEKDAYS_THURSDAY.', '._JOMRES_COM_MR_WEEKDAYS_FRIDAY.', '._JOMRES_COM_MR_WEEKDAYS_SATURDAY.', '._JOMRES_COM_MR_WEEKDAYS_SUNDAY);
-	$weekendDays[] = jomresHTML::makeOption("5,6", _JOMRES_COM_MR_WEEKDAYS_FRIDAY.', '._JOMRES_COM_MR_WEEKDAYS_SATURDAY);
-	$weekendDays[] = jomresHTML::makeOption("5,6,0", _JOMRES_COM_MR_WEEKDAYS_FRIDAY.', '._JOMRES_COM_MR_WEEKDAYS_SATURDAY.', '._JOMRES_COM_MR_WEEKDAYS_SUNDAY);
-	$weekendDays[] = jomresHTML::makeOption("6,0", _JOMRES_COM_MR_WEEKDAYS_SATURDAY.', '._JOMRES_COM_MR_WEEKDAYS_SUNDAY);
+	$weekendDays[] = jomresHTML::makeOption("5", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY));
+	$weekendDays[] = jomresHTML::makeOption("6", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY));
+	$weekendDays[] = jomresHTML::makeOption("0", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY",_JOMRES_COM_MR_WEEKDAYS_SUNDAY));
+	$weekendDays[] = jomresHTML::makeOption("4,5", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_THURSDAY",_JOMRES_COM_MR_WEEKDAYS_THURSDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY));
+	$weekendDays[] = jomresHTML::makeOption("4,5,6",jr_gettext("_JOMRES_COM_MR_WEEKDAYS_THURSDAY",_JOMRES_COM_MR_WEEKDAYS_THURSDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY));
+	$weekendDays[] = jomresHTML::makeOption("4,5,6,0",jr_gettext("_JOMRES_COM_MR_WEEKDAYS_THURSDAY",_JOMRES_COM_MR_WEEKDAYS_THURSDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY",_JOMRES_COM_MR_WEEKDAYS_SUNDAY));
+	$weekendDays[] = jomresHTML::makeOption("5,6", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY));
+	$weekendDays[] = jomresHTML::makeOption("5,6,0", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_FRIDAY",_JOMRES_COM_MR_WEEKDAYS_FRIDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY",_JOMRES_COM_MR_WEEKDAYS_SUNDAY));
+	$weekendDays[] = jomresHTML::makeOption("6,0", jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SATURDAY",_JOMRES_COM_MR_WEEKDAYS_SATURDAY).', '.jr_gettext("_JOMRES_COM_MR_WEEKDAYS_SUNDAY",_JOMRES_COM_MR_WEEKDAYS_SUNDAY));
 
 	$jsInputDateFormats=array();
 	$jsInputDateFormats[] =	jomresHTML::makeOption("%d/%m/%Y", "01/02/2006 - 1st February 2006");
@@ -2325,19 +2329,19 @@ function hotelSettings()
 	$weekenddayDropdown= jomresHTML::selectList($weekendDays, 'cfg_weekenddays', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['weekenddays']);
 
 	$depAmounts=array();
-	$depAmounts[]= jomresHTML::makeOption( '0', _JOMRES_COM_CHARGING_DEPOSIT );
-	$depAmounts[]= jomresHTML::makeOption( '1', _JOMRES_COM_CHARGING_FULLAMT );
+	$depAmounts[]= jomresHTML::makeOption( '0',jr_gettext("_JOMRES_COM_CHARGING_DEPOSIT",_JOMRES_COM_CHARGING_DEPOSIT)  );
+	$depAmounts[]= jomresHTML::makeOption( '1',jr_gettext("_JOMRES_COM_CHARGING_FULLAMT",_JOMRES_COM_CHARGING_FULLAMT)  );
 	$paymentAmounts= jomresHTML::selectList($depAmounts, 'cfg_depAmount', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['depAmount']);
 
 	if (!isset($mrConfig['tariffmode']))
 		$mrConfig['tariffmode']=1;
 	$tariffMode=array();
-	$tariffMode[]= jomresHTML::makeOption( '0', JOMRES_COM_A_TARIFFMODE_NORMAL );
+	$tariffMode[]= jomresHTML::makeOption( '0', jr_gettext("JOMRES_COM_A_TARIFFMODE_NORMAL",JOMRES_COM_A_TARIFFMODE_NORMAL) );
 
 	if (isset($MiniComponents->registeredClasses['04006rooms_config_advanced']))
 		{
-		$tariffMode[]= jomresHTML::makeOption( '2', JOMRES_COM_A_TARIFFMODE_TARIFFTYPES );
-		$tariffMode[]= jomresHTML::makeOption( '1', JOMRES_COM_A_TARIFFMODE_ADVANCED );
+		$tariffMode[]= jomresHTML::makeOption( '2', jr_gettext("JOMRES_COM_A_TARIFFMODE_TARIFFTYPES",JOMRES_COM_A_TARIFFMODE_TARIFFTYPES) );
+		$tariffMode[]= jomresHTML::makeOption( '1', jr_gettext("JOMRES_COM_A_TARIFFMODE_ADVANCED",JOMRES_COM_A_TARIFFMODE_ADVANCED) );
 		}
 	$tariffModeDD= jomresHTML::selectList($tariffMode, 'cfg_tariffmode', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmode']);
 
@@ -2349,8 +2353,8 @@ function hotelSettings()
 	if (!isset($mrConfig['booking_form_rooms_list_style']))
 		$mrConfig['booking_form_rooms_list_style'] = "1";
 	$booking_form_rooms_list = array();
-	$booking_form_rooms_list[] = jomresHTML::makeOption( '1', _JOMRES_ROOMMSLIST_STYLE_CLASSIC );
-	$booking_form_rooms_list[] = jomresHTML::makeOption( '2', _JOMRES_ROOMMSLIST_STYLE_ROOMTYPES );
+	$booking_form_rooms_list[] = jomresHTML::makeOption( '1', jr_gettext("_JOMRES_ROOMMSLIST_STYLE_CLASSIC",_JOMRES_ROOMMSLIST_STYLE_CLASSIC) );
+	$booking_form_rooms_list[] = jomresHTML::makeOption( '2', jr_gettext("_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES",_JOMRES_ROOMMSLIST_STYLE_ROOMTYPES) );
 	$booking_form_rooms_list_style = jomresHTML::selectList( $booking_form_rooms_list, 'cfg_booking_form_rooms_list_style', 'size="1" class="inputbox"', 'value', 'text', $mrConfig['booking_form_rooms_list_style']);
 
 	$fixedArrivalDatesRecurring = jomresHTML::integerSelectList( 01, 208, 1, 'cfg_fixedArrivalDatesRecurring', 'size="1" class="inputbox"', $mrConfig['fixedArrivalDatesRecurring'], "%02d" );
@@ -2359,11 +2363,11 @@ function hotelSettings()
 		$mrConfig['booking_form_daily_weekly_monthly'] = "D";
 	$pricingOutput=array();
 	if ($mrConfig['wholeday_booking'] == "1")
-		$pricingOutput[]= jomresHTML::makeOption( 'D', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY );
+		$pricingOutput[]= jomresHTML::makeOption( 'D', jr_gettext("_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY",_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY_WHOLEDAY) );
 	else
-		$pricingOutput[]= jomresHTML::makeOption( 'D', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY );
-	$pricingOutput[]= jomresHTML::makeOption( 'W', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY );
-	$pricingOutput[]= jomresHTML::makeOption( 'M', _JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY );
+		$pricingOutput[]= jomresHTML::makeOption( 'D', jr_gettext("_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY",_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY) );
+	$pricingOutput[]= jomresHTML::makeOption( 'W', jr_gettext("_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY",_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY) );
+	$pricingOutput[]= jomresHTML::makeOption( 'M', jr_gettext("_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY",_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY) );
 	$booking_form_daily_weekly_monthly= jomresHTML::selectList($pricingOutput, 'cfg_booking_form_daily_weekly_monthly', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['booking_form_daily_weekly_monthly']);
 
 	//$lists['tariffmodel']= jomresHTML::selectList( $tariffmodels, 'cfg_tariffmodel', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['tariffmodel'] );
@@ -2496,7 +2500,7 @@ function hotelSettings()
 	?>
 
 		<form action="<?php echo JOMRES_SITEPAGE_URL; ?>" method="post" name="adminForm">
-		<h2 class="page-header"><?php echo _JOMRES_COM_MR_GENERALCONFIGDESC; ?></h2>
+		<h2 class="page-header"><?php echo jr_gettext("_JOMRES_COM_MR_GENERALCONFIGDESC",_JOMRES_COM_MR_GENERALCONFIGDESC); ?></h2>
 	<?php
 
 	$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
@@ -4191,7 +4195,7 @@ function makeJsGraphOutput($graphLabels,$graphValues,$type="hBar",$legend,$div='
 function getMonthName($monthNo)
 	{
 	$monthNo=intval($monthNo);
-	return constant ('_JRPORTAL_MONTHS_LONG_'.$monthNo);
+	return constant (jr_gettext('_JRPORTAL_MONTHS_LONG_'.$monthNo,'_JRPORTAL_MONTHS_LONG_'.$monthNo) );
 	}
 
 function makeImageValid($imageName="")
@@ -4512,10 +4516,10 @@ function invoices_makeInvoiceStatusDropdown( $selected='0' )
 	$statusOptions=array();
 	$statusDropdown="";
 	$statuses=array();
-	$statuses[0]=_JRPORTAL_INVOICES_STATUS_UNPAID;
-	$statuses[1]=_JRPORTAL_INVOICES_STATUS_PAID;
-	$statuses[2]=_JRPORTAL_INVOICES_STATUS_CANCELLED;
-	$statuses[3]=_JRPORTAL_INVOICES_STATUS_PENDING;
+	$statuses[0]=jr_gettext("_JRPORTAL_INVOICES_STATUS_UNPAID",_JRPORTAL_INVOICES_STATUS_UNPAID);
+	$statuses[1]=jr_gettext("_JRPORTAL_INVOICES_STATUS_PAID",_JRPORTAL_INVOICES_STATUS_PAID);
+	$statuses[2]=jr_gettext("_JRPORTAL_INVOICES_STATUS_CANCELLED",_JRPORTAL_INVOICES_STATUS_CANCELLED);
+	$statuses[3]=jr_gettext("_JRPORTAL_INVOICES_STATUS_PENDING",_JRPORTAL_INVOICES_STATUS_PENDING);
 
 	foreach($statuses as $key=>$val)
 		{
@@ -5017,8 +5021,8 @@ function editCustomText()
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 	$output['MOSCONFIGLIVESITE']=get_showtime('live_site');
-	$output['HCURRENTTEXT']=_JOMRES_COM_A_EDITING_CURRENTTEXT;
-	$output['HNEWTEXT']=_JOMRES_COM_A_EDITING_NEWTEXT;
+	$output['HCURRENTTEXT']=jr_gettext("_JOMRES_COM_A_EDITING_CURRENTTEXT",_JOMRES_COM_A_EDITING_CURRENTTEXT);
+	$output['HNEWTEXT']=jr_gettext("_JOMRES_COM_A_EDITING_NEWTEXT",_JOMRES_COM_A_EDITING_NEWTEXT);
 	$output['PROPERTYUID']=$property_uid;
 	$output['THECONSTANT']=$theConstant;
 	$output['CURRENTTEXT']=$theText;
@@ -5126,7 +5130,7 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 		}
 	//echo $query;
 	if ($audit)
-		$audit=_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT;
+		$audit=jr_gettext("_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT",_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT);
 		
 	doInsertSql($query,$audit);
 	//$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
