@@ -102,7 +102,7 @@ class jrportal_crate_functions // Functions supplied as a class so that they can
 			{
 			$options[] = jomresHTML::makeOption( $v['id'], $v['title'] );
 			}
-		return jomresHTML::selectList( $options, "crates[$idx]",' size="1"', 'value', 'text', $id);
+		return jomresHTML::selectList( $options, "crates[$idx]",' size="1"', 'value', 'text', $id,false);
 		}
 
 
