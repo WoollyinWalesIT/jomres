@@ -32,7 +32,7 @@ function showSiteConfig(  )
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
-	$jrtb .= $jrtbar->customToolbarItem('saveSiteConfig',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveSiteConfig",$image);
+	$jrtb .= $jrtbar->customToolbarItem('saveSiteConfig',$link,jr_gettext(_JOMRES_COM_MR_SAVE,"_JOMRES_COM_MR_SAVE",false),$submitOnClick=true,$submitTask="saveSiteConfig",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,'');
 	$jrtb .= $jrtbar->endTable();
 
