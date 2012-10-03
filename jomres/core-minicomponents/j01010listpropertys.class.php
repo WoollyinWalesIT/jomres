@@ -320,9 +320,9 @@ class j01010listpropertys {
 						$property_deets=array();
 						set_showtime('property_uid',$property->propertys_uid);
 						
-						$current_property_details->gather_data($property->propertys_uid); // This data should already have been collected by the multi query select that's allready been run. We're doing this here to find the property type set we can set showtime property_type and import the property type specific language strings where available.
+						$current_property_details->gather_data($property->propertys_uid); // This data should already have been collected by the multi query select that's already been run. We're doing this here to find the property type set we can set showtime property_type and import the property type specific language strings where available.
 						set_showtime('property_type',$current_property_details->property_type);
-						
+
 						$customTextObj->get_custom_text_for_property($property->propertys_uid);
 
 						$property_deets=$MiniComponents->triggerEvent('00042',array('property_uid'=>$property->propertys_uid) );
@@ -574,6 +574,8 @@ class j01010listpropertys {
 						unset($cache);
 						}
 					$property_details[]=$property_deets;
+					$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
+					$jomres_language_definitions->reset_lang_and_property_type();
 					}
 
 				if (!$data_only)
