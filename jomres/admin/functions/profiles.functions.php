@@ -23,17 +23,17 @@ function editProfile()
 	$userid = jomresGetParam( $_REQUEST, 'id', 0 );
 
 	$yesno = array();
-	$yesno[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO );
-	$yesno[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES );
+	$yesno[] = jomresHTML::makeOption( '0', jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO) );
+	$yesno[] = jomresHTML::makeOption( '1', jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES) );
 	
 	$accessLevels = array();
-	$accessLevels[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION );
-	$accessLevels[] = jomresHTML::makeOption( '2', _JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN );
+	$accessLevels[] = jomresHTML::makeOption( '1', jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION",_JOMRES_COM_MR_ASSIGNUSER_LEVEL_RECEPTION) );
+	$accessLevels[] = jomresHTML::makeOption( '2', jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN",_JOMRES_COM_MR_ASSIGNUSER_LEVEL_ADMIN) );
 	
-	$output['INSTRUCTIONS']=_JOMRES_PROFILEEDIT_INSTRUCTIONS;
-	$output['HSUPERPROP']=_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER;
-	$output['HACCESSLEVEL']=_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL;
-	$output['_JOMRES_EDIT_PROFILE']=_JOMRES_EDIT_PROFILE;
+	$output['INSTRUCTIONS']=jr_gettext("_JOMRES_PROFILEEDIT_INSTRUCTIONS",_JOMRES_PROFILEEDIT_INSTRUCTIONS);
+	$output['HSUPERPROP']=jr_gettext("_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER",_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER);
+	$output['HACCESSLEVEL']=jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL",_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL);
+	$output['_JOMRES_EDIT_PROFILE']=jr_gettext("_JOMRES_EDIT_PROFILE",_JOMRES_EDIT_PROFILE);
 	
 	$query="SELECT access_level,pu,apikey FROM #__jomres_managers WHERE userid = ".$userid. " LIMIT 1";
 	$managerDetails  = doSelectSql($query);
@@ -48,7 +48,7 @@ function editProfile()
 	$output['SUPERPROP']=$superPropertyManagerOutput;
 	$output['ACCESSLEVEL']=$accessLevelOutput;
 	$output['APIKEY']=$apikey;
-	$output['NEWAPIKEY_LINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=new_manager_api_key&no_html=1&id='.$userid.'">'._JOMRES_APIKEY_REMAKE.'</a>';
+	$output['NEWAPIKEY_LINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=new_manager_api_key&no_html=1&id='.$userid.'">'.jr_gettext("",jr_gettext("_JOMRES_APIKEY_REMAKE",_JOMRES_APIKEY_REMAKE)).'</a>';
 	
 	$output['ID']=$userid;
 	
@@ -112,14 +112,14 @@ function editProfile()
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = get_showtime('live_site')."/".JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres";
-	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="saveProfile",$image);
+	$jrtb .= $jrtbar->customToolbarItem('saveProfile',$link,jr_gettext("_JOMRES_COM_MR_SAVE",_JOMRES_COM_MR_SAVE),$submitOnClick=true,$submitTask="saveProfile",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=managers_choose",'');
 	$jrtb .= $jrtbar->endTable();
 	$output['JOMRESTOOLBAR']=$jrtb;
 	
 	$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
-	$output['_JRPORTAL_PROPERTIES_PROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
-	$output['_JOMRES_SHOWPROFILES_USERSWITHACCESS']=_JOMRES_SHOWPROFILES_USERSWITHACCESS;
+	$output['_JRPORTAL_PROPERTIES_PROPERTYNAME']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYNAME",_JRPORTAL_PROPERTIES_PROPERTYNAME);
+	$output['_JOMRES_SHOWPROFILES_USERSWITHACCESS']=jr_gettext("_JOMRES_SHOWPROFILES_USERSWITHACCESS",_JOMRES_SHOWPROFILES_USERSWITHACCESS);
 	$output['TOTALINLISTPLUSONE']=count($rows)+1;
 	
 	

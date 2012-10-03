@@ -36,7 +36,7 @@ function publishPropertyType()
 		$query="UPDATE #__jomres_ptypes SET `published`='0' WHERE id = '$id'";
 	else
 		$query="UPDATE #__jomres_ptypes SET `published`='1' WHERE id = '$id'";
-	if (doInsertSql($query, FALSE)) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",_JOMRES_COM_PTYPES_SAVED) ;
+	if (doInsertSql($query, FALSE)) jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",jr_gettext("_JOMRES_COM_PTYPES_SAVED",_JOMRES_COM_PTYPES_SAVED)) ;
 	}
 
 /**
@@ -49,12 +49,12 @@ function editPropertyType()
 	$id = jomresGetParam( $_GET, 'id', 0 );
 	$ptypeData=array();
 	$output=array();
-	$output['PAGETITLE'] =_JOMRES_COM_PTYPES_LIST_TITLE_EDIT;
-	$output['HPTYPE'] =_JOMRES_COM_PTYPES_PTYPE;
-	$output['HPTYPE_DESC'] =_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR;
-	$output['HPUBLISHED']=_JOMRES_COM_MR_VRCT_PUBLISHED;
-	$output['FURTHER']=_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER;
-	$output['JOMRES_SITEPAGE_URL_ADMIN']=JOMRES_SITEPAGE_URL_ADMIN;
+	$output['PAGETITLE'] =jr_gettext("_JOMRES_COM_PTYPES_LIST_TITLE_EDIT",_JOMRES_COM_PTYPES_LIST_TITLE_EDIT);
+	$output['HPTYPE'] =jr_gettext("_JOMRES_COM_PTYPES_PTYPE",_JOMRES_COM_PTYPES_PTYPE);
+	$output['HPTYPE_DESC'] =jr_gettext("_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR",_JOMRES_PROPERTYSPECIFIC_LANGUAGESUBDIR);
+	$output['HPUBLISHED']=jr_gettext("_JOMRES_COM_MR_VRCT_PUBLISHED",_JOMRES_COM_MR_VRCT_PUBLISHED);
+	$output['FURTHER']=jr_gettext("_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER",_JOMRES_COM_PTYPES_PTYPE_DESC_FURTHER);
+	$output['JOMRES_SITEPAGE_URL_ADMIN']=jr_gettext("JOMRES_SITEPAGE_URL_ADMIN",JOMRES_SITEPAGE_URL_ADMIN);
 	
 	
 	$output['PTYPE']="";
@@ -78,7 +78,7 @@ function editPropertyType()
 	$jrtb  = $jrtbar->startTable();
 	$image = $jrtbar->makeImageValid("/jomres/images/jomresimages/small/Save.png");
 	$link = JOMRES_SITEPAGE_URL_ADMIN;
-	$jrtb .= $jrtbar->customToolbarItem('savePropertyType',$link,_JOMRES_COM_MR_SAVE,$submitOnClick=true,$submitTask="savePropertyType",$image);
+	$jrtb .= $jrtbar->customToolbarItem('savePropertyType',$link,jr_gettext("_JOMRES_COM_MR_SAVE",_JOMRES_COM_MR_SAVE),$submitOnClick=true,$submitTask="savePropertyType",$image);
 	$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",'');
 	$jrtb .= $jrtbar->endTable();
 	
@@ -116,7 +116,7 @@ function savePropertyType()
 		$query="INSERT INTO #__jomres_ptypes (`ptype`,`ptype_desc`) VALUES ('$ptype','$ptype_desc')";
 
 	if (!doInsertSql($query,FALSE)) echo "Nope";
-	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",_JOMRES_COM_PTYPES_SAVED);
+	jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",jr_gettext("_JOMRES_COM_PTYPES_SAVED",_JOMRES_COM_PTYPES_SAVED));
 	}
 
 /**
@@ -138,7 +138,7 @@ function deletePropertyType()
 			if (count($ptypeList)>0)
 				{
 				$success=false;
-				echo _JOMRES_COM_PTYPES_UNABLETO_DELETE."<br>";
+				echo jr_gettext("_JOMRES_COM_PTYPES_UNABLETO_DELETE",_JOMRES_COM_PTYPES_UNABLETO_DELETE)."<br>";
 				}
 			else
 				{
@@ -148,7 +148,7 @@ function deletePropertyType()
 			}
 		}
 	if ($success)
-		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",_JOMRES_COM_PTYPES_DELETED);
+		jomresRedirect( JOMRES_SITEPAGE_URL_ADMIN."&task=listPropertyTypes",jr_gettext("_JOMRES_COM_PTYPES_DELETED",_JOMRES_COM_PTYPES_DELETED));
 	}
 
 ?>
