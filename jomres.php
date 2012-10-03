@@ -297,9 +297,6 @@ if ($property_uid >0)
 if (isset($property_uid) && !empty($property_uid))
 	{
 	$customTextObj->get_custom_text_for_property($property_uid);
-	$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
-	$current_property_details->gather_data($property_uid);
-	set_showtime('property_type',$current_property_details->property_type);
 	}
 
 init_javascript();
@@ -1004,7 +1001,10 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 				}
 		break;
 		}
-
+	
+	$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
+	$jomres_language_definitions->reset_lang_and_property_type();
+	
 	if (!$no_html)
 		{
 		$MiniComponents->triggerEvent('00061'); // Run out of trigger points. Illogically now, 60 triggers the top template, 61 the bottom template.

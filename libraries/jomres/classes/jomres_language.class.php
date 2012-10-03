@@ -118,18 +118,18 @@ class jomres_language
 			if ( $jrConfig['language_context'] != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php'))
 				require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php');
 			elseif ( $jrConfig['language_context'] != "" && file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.$this->lang.'.php'))
-					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.'en-GB.php');
-				elseif (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php'))
+				require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$jrConfig['language_context'].JRDS.'en-GB.php');
+			elseif (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php'))
+				{
+				require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php');
+				}
+			else
+				{
+				if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
 					{
-					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.$this->lang.'.php');
-					}
-					else
-						{
-						if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php'))
-							{
-							require(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
-							} //else no language file available... don't include it either...
-						}
+					require(JOMRESPATH_BASE.JRDS.'language'.JRDS.'en-GB.php');
+					} //else no language file available... don't include it either...
+				}
 			}
 		}
 
