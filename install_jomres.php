@@ -79,12 +79,18 @@ if (componentsIntegrationExists())
 	{
 	migrate();
 	}
-
+	$functionChecksPassed = true;
 	$folderChecksPassed=true;
 	
 	if (file_exists(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_pre_installation.php"))
 		require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_pre_installation.php");
-
+	
+	if (!function_exists('import_countries'))
+		{
+		if (!AUTO_UPGRADE) echo  "<h1>Error, the Jomres function import_countries does not exist.</h1><br/> This means that you've probably got a customised version of the Jomres file countries.php in your /jomres/remote_plugins/custom_code directory.<br/>Jomres has new country and region handling functionality, which makes your customised version of countries.php obsolete, please delete it then reload this page.";
+			$functionChecksPassed=false;
+		}
+	
 	if (!is_dir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS) )
 		{
 		if (!@mkdir(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."sessions".JRDS)) 
@@ -164,7 +170,7 @@ if (componentsIntegrationExists())
 			}
 		}
 
-if ($folderChecksPassed && ACTION != "Migration") 
+if ($folderChecksPassed && $functionChecksPassed && ACTION != "Migration") 
 	{
 	$trashtables=jomresGetParam($_POST,'trashtables',0,'integer');
 	$manual_install_confirmation=jomresGetParam($_POST,'manual_install_confirmation',"");
@@ -206,7 +212,10 @@ if ($folderChecksPassed && ACTION != "Migration")
 				copyImages();
 
 				insertPortalTables();
-
+				
+				import_countries();
+				import_regions();
+				
 				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_installation.php");
 				showCompletedText();
 				}
@@ -219,6 +228,10 @@ if ($folderChecksPassed && ACTION != "Migration")
 				if (!AUTO_UPGRADE) echo  "Data already installed, no need to re-create it<br>";
 				doTableUpdates();
 				updateImages();
+				
+				import_countries();
+				import_regions();
+				
 				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
 				showCompletedText();
 				}
@@ -446,8 +459,55 @@ function doTableUpdates()
 	if (!checkExtraServicesTaxtax_codeColExists() )
 		alterExtraServicesTaxtax_codeCol();
 	
+	if (!checkCountriesTableExists() )
+		createCountriesTable();
+	
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function createCountriesTable()
+	{
+	if (!AUTO_UPGRADE) echo  "Creating _jomres_countries table<br>";
+		$query="CREATE TABLE IF NOT EXISTS `#__jomres_countries` (
+		`id` int(11) auto_increment,
+		`countrycode` VARCHAR(2),
+		`countryname` VARCHAR(255),
+		PRIMARY KEY	(`id`)
+		) ";
+	$result=doInsertSql($query,"");
+	if (!$result )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table _jomres_countries </b><br>";
+		}
+		
+	if (!AUTO_UPGRADE) echo  "Creating _jomres_regions table<br>";
+		$query="CREATE TABLE IF NOT EXISTS `#__jomres_regions` (
+		`id` int(11) auto_increment,
+		`countrycode` VARCHAR(2),
+		`regionname` VARCHAR(255),
+		PRIMARY KEY	(`id`)
+		) ";
+	$result=doInsertSql($query,"");
+	if (!$result )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error creating table table _jomres_countries </b><br>";
+		}
+	}
+
+function checkCountriesTableExists()
+	{
+	global $jomresConfig_db;
+	$tablesFound=false;
+	$query="SHOW TABLES";
+	$result=doSelectSql($query,$mode=FALSE);
+	$string="Tables_in_".$jomresConfig_db;
+	foreach ($result as $r)
+		{
+		if (strstr($r->$string, '_jomres_countries') || strstr($r->$string, '_jomres_countries') )
+			return true;
+		}
+	return false;
 	}
 
 function checkExtraServicesTaxtax_codeColExists()
@@ -1591,14 +1651,25 @@ function copyImages()
 
 function showCompletedText()
 	{
-	$fullurl = str_replace("/jomres/install_jomres.php","", $_SERVER['HTTP_REFERER']);
+	list($path, $args) = explode("?", $_SERVER['REQUEST_URI']);
+	$_URI = explode("/", $path);
+
+	array_shift($_URI);
+	$_URI=array_slice($_URI,0,count($_URI)-2);
+	array_unshift ($_URI,$_SERVER['SERVER_NAME'] );
 	
-	if (strstr(JOMRES_SITEPAGE_URL_ADMIN,$fullurl))  // We'll add this because installing on SA the url is already set, whereas in Joomla it's not. as SA gets live site from the config and uses it
-		$fullurl="";
+	$administrator_url="http://".implode("/",$_URI)."/administrator/index.php?option=com_jomres";
+	
 	if (!AUTO_UPGRADE) echo  '<br>Thank you for installing Jomres. You may now go to your CMS\'s administrator area and configure Jomres<br>';
 	if (!AUTO_UPGRADE) echo  '<br>Please remember to delete the file <i>install_jomres.php</i> from your jomres folder<br>';
 	if (!AUTO_UPGRADE) echo  '<br>If you wish you can go straight to your Jomres install and start editing your property. To enable the property manager functionality log in as "admin" (for Joomla users) or "administrator" (for Standalone users) and go to your site profiles and assign a frontend user as a property manager.<br>';
 	if (!AUTO_UPGRADE) echo  '<br><h3>Please remember, to configure your property you need to log into the frontend as the administrator user, you cannot configure propertys via the administrator area.</h3><br>';
+	if (!AUTO_UPGRADE) echo  '<script>
+		setTimeout(function() {
+		window.location.href = "'.$administrator_url.'";
+		}, 5000);
+</script>';
+
 	}
 
 
@@ -2565,6 +2636,9 @@ function createJomresTables()
 	)";
 	if (!doInsertSql($query))
 		{ if (!AUTO_UPGRADE) echo  "Failed to run query: ".$query."<br/>"; }
+		
+	if (!checkCountriesTableExists() )
+		createCountriesTable();
 	}
 
 function insertSampleData()
