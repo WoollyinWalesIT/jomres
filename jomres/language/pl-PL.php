@@ -1902,3 +1902,8 @@ jr_define( "_JOMRES_EDIT_REGION_ID" , "Region id");
 jr_define( "_JOMRES_EDIT_REGION_COUNTRYCODE" , "Country code");
 jr_define( "_JOMRES_EDIT_REGION_REGIONNAME" , "Region name");
 
+
+jr_define( "_JOMRES_COM_LISTCOUNTRIES" , "List countries");
+jr_define( "_JOMRES_COM_LISTREGIONS" , "List regions");
+jr_define( "_JOMRES_EXPORT_DEFINITIONS" , "Export definitions");
+jr_define( "_JOMRES_EXPORT_DEFINITIONS_INFO" , "This feature allows you to export translations that have been built up using the Language Translation feature. It will build up a text field with all of the data required to build a new language file, all you need to do is copy and paste this output into a new language file that you can put onto a new Jomres based server, or if you want to contribute back to the Jomres community.");
