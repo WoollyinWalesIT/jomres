@@ -110,22 +110,34 @@ class j16000miscdefinesfortouchtemplating
 		
 		$query = "SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname";
 		$countryList = doSelectSql($query);
-		if (count($countryList > 0))
+		if (count($countryList) > 0)
 			{
 			foreach ($countryList as $country)
 				{
-				output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_COUNTRIES_".$country->id,$country->countryname);
+				$output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_COUNTRIES_".$country->id,$country->countryname);
 				}
 			}
 
 		$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
 		$regionList = doSelectSql($query);
-		if (count($regionList > 0))
+		if (count($regionList) > 0)
 			{
 			foreach ($regionList as $region)
 				{
 				$output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname);
 				}
+			}
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		$language_context = $jrConfig['language_context'];
+		
+		$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
+		
+		$all_context_definitions = $jomres_language_definitions->definitions[get_showtime('lang')][$language_context];
+		foreach($all_context_definitions as $const=>$def)
+			{
+			$output[]		=jr_gettext( $const,$def );
 			}
 		
 		foreach ($output as $o)
