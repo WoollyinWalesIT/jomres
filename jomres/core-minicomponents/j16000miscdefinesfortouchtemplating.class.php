@@ -108,20 +108,23 @@ class j16000miscdefinesfortouchtemplating
 		
 		$output[]		= jr_gettext('_JOMRES_ALTERNATIVE_SEARCH_RESULT',_JOMRES_ALTERNATIVE_SEARCH_RESULT);
 		
-		$countryCodes=countryCodesArray();
-		foreach ($countryCodes as $k=>$v)
+		$query = "SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname";
+		$countryList = doSelectSql($query);
+		if (count($countryList > 0))
 			{
-			$output[]		= jr_gettext('_JOMRES_CUSTOMTEXT_COUNTRYNAMES_'.$k,$v);
-			}
-		
-		$FIPS=regionNamesArray();
-		foreach ($FIPS as $countryCode=>$v)
-			{
-			//echo getSimpleCountry($countryCode)."<br/>";
-			sort($v);
-			foreach ($v as $key=>$val)
+			foreach ($countryList as $country)
 				{
-				$output[]		= jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$countryCode."_".$key,$val) ;
+				output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_COUNTRIES_".$country->id,$country->countryname);
+				}
+			}
+
+		$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
+		$regionList = doSelectSql($query);
+		if (count($regionList > 0))
+			{
+			foreach ($regionList as $region)
+				{
+				$output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname);
 				}
 			}
 		
