@@ -1934,3 +1934,14 @@ jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices"
 jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings");
 jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" , "misc");
 jr_define( "_JOMRES_PROPERTYCONFIG_SRPS" , "SRPs");
+
+jr_define( "_JOMRES_EDIT_COUNTRY_TITLE" , "Edit country");
+jr_define( "_JOMRES_EDIT_COUNTRY_ID" , "Country id");
+jr_define( "_JOMRES_EDIT_COUNTRY_COUNTRYCODE" , "Country code");
+jr_define( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME" , "Country name");
+
+jr_define( "_JOMRES_EDIT_REGION_TITLE" , "Edit region");
+jr_define( "_JOMRES_EDIT_REGION_ID" , "Region id");
+jr_define( "_JOMRES_EDIT_REGION_COUNTRYCODE" , "Country code");
+jr_define( "_JOMRES_EDIT_REGION_REGIONNAME" , "Region name");
+
