@@ -26,7 +26,7 @@ class jomres_regions
 		{
 		$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
 		$regionList = doSelectSql($query);
-		if (count($regionList > 0))
+		if (count($regionList) > 0)
 			{
 			foreach ($regionList as $region)
 				{

@@ -26,7 +26,7 @@ class jomres_countries
 		{
 		$query = "SELECT id,countrycode,countryname FROM #__jomres_countries ORDER BY countryname";
 		$countryList = doSelectSql($query);
-		if (count($countryList > 0))
+		if (count($countryList) > 0)
 			{
 			foreach ($countryList as $country)
 				{
