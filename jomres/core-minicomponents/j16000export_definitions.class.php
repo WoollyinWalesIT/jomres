@@ -23,7 +23,8 @@ class j16000export_definitions
 			{
 			$this->template_touchable=true; return;
 			}
-		echo jr_gettext("_JOMRES_EXPORT_DEFINITIONS_INFO",_JOMRES_EXPORT_DEFINITIONS_INFO,false,false)."<br/><br/>";
+		echo "<h2 class=\"page-header\">Export language file definitions</h2>";
+		echo "<p>".jr_gettext("_JOMRES_EXPORT_DEFINITIONS_INFO",_JOMRES_EXPORT_DEFINITIONS_INFO,false,false)."</p>";
 		
 		$definitions = array();
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
@@ -32,7 +33,7 @@ class j16000export_definitions
 		
 		$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
 		
-		$all_context_definitions = $jomres_language_definitions->definitions[get_showtime('lang')][$language_context];
+		$all_context_definitions = $jomres_language_definitions->definitions[$language_context];
 		
 		foreach($all_context_definitions as $const=>$def)
 			{
