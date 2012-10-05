@@ -21,7 +21,7 @@ class j00061a_poweredby {
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=true; return;
+			$this->template_touchable=false; return;
 			}
 		if (AJAXCALL)
 			return;

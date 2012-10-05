@@ -21,7 +21,7 @@ class j10002asamodule_report
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=true; return;
+			$this->template_touchable=false; return;
 			}
 		// Currently disabled, until we decide if this is a good idea
 		//return;
