@@ -50,21 +50,21 @@ class j16000touch_templates
 		
 		
 		echo "<hr>";
-		$query="SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes WHERE property_uid = 0";
+		$query="SELECT room_classes_uid,room_class_abbv FROM #__jomres_room_classes WHERE property_uid = 0 ";
 		$roomtypes= doSelectSql($query);
 		foreach($roomtypes as $rType)
 			{
 			$roomtype_abbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.$rType->room_classes_uid,		stripslashes($rType->room_class_abbv) );
-			$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rType->room_classes_uid,		stripslashes($rType->room_class_full_desc) );
+			//$roomtype_desc = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.$rType->room_classes_uid,		stripslashes($rType->room_class_full_desc) );
 			//echo '<img src="'.get_showtime('live_site').'/'.$rType->image.'" />'; // Do not re-enable this line, if you do then Jomres will not 'hold' the current language because for some reason showtime triggers the creation of a phantom session file in the root directory.
 			echo "&nbsp;";
 			echo $roomtype_abbv;
-			echo "&nbsp;";
-			echo $roomtype_desc;
+			//echo "&nbsp;";
+			//echo $roomtype_desc;
 			echo "<br/>";
 			}
 		echo "<hr>";
-		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc,image FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
+		$query = "SELECT hotel_features_uid,hotel_feature_abbv,hotel_feature_full_desc FROM #__jomres_hotel_features WHERE property_uid = '0' ORDER BY hotel_feature_abbv ";
 		$propertyFeaturesList= doSelectSql($query);
 		foreach($propertyFeaturesList as $propertyFeature)
 			{

@@ -41,12 +41,12 @@ class jomres_language_definitions
 	
 	function define($constant,$string)
 		{
-		$this->definitions[$this->lang][$this->ptype][$constant] = $string;
+		$this->definitions[$this->ptype][$constant] = $string;
 		}
 
 	function get_defined($constant)
 		{
-		if (!isset($this->definitions[$this->lang][$this->ptype]))
+		if (!isset($this->definitions[$this->ptype]))
 			{
 			if (file_exists(JOMRESPATH_BASE.JRDS.'language'.JRDS.strtolower($this->ptype).JRDS.$this->lang.'.php'))
 				{
@@ -54,10 +54,10 @@ class jomres_language_definitions
 				}
 			}
 
-		if (isset($this->definitions[$this->lang][$this->ptype][$constant]))
-			return $this->definitions[$this->lang][$this->ptype][$constant];
+		if (isset($this->definitions[$this->ptype][$constant]))
+			return $this->definitions[$this->ptype][$constant];
 		else
-			return $this->definitions[$this->lang][$this->language_context][$constant];
+			return $this->definitions[$this->language_context][$constant];
 		
 		}
 		
