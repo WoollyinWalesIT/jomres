@@ -2,20 +2,17 @@
 <script type="text/javascript">
 <!--
 jomresJquery(document).ready(function() {
-	make_datatable('admin_list_countries','{PAGETITLE}','{LIVESITE}');
-} );
-jomresJquery(function() {
-	var $toolbar_content = jomresJquery('#toolbar').html();
-	var $content = $toolbar_content + jomresJquery('#filter_invoices').html();
-	jomresJquery('#toolbar').html($content);
-	jomresJquery('#filter_invoices').empty();
+	var oTable = jomresJquery('#admin_list_countries').dataTable({
+		"bJQueryUI": true,
+		"bStateSave": true,
+		"sPaginationType": "full_numbers"
 	});
+} );
 //-->
 </script>
-<h2 class="page-header">{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
+<h2>{_JOMRES_EDIT_COUNTRY_TITLE}</h2>
 {JOMRESTOOLBAR}
-
-<table id="admin_list_countries" width="100%" class="table table-striped">
+<table id="admin_list_countries" class="ui-widget-content ui-corner-all" border="0" width="100%">
 	<thead>
 		<tr>
 			<th></th>
@@ -26,7 +23,7 @@ jomresJquery(function() {
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td><a href="{EDIT_URL}" class="btn"><i class="icon-edit"></i> {EDIT_TEXT}</a></td>
+			<td><a href="{EDIT_URL}">{COMMON_EDIT}</a></td>
 			<td>{COUNTRYNAME}</td>
 			<td>{COUNTRYCODE}</td>
 		</tr>

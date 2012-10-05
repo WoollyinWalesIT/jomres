@@ -50,7 +50,6 @@ class j16000list_regions
 				$r['COUNTRYNAME']=getSimpleCountry($region['countrycode']);
 				
 				$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_region&id='.$region['id'].'">'.$editIcon.'</a>';
-				$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
 				$r['EDIT_URL']=JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_region&id='.$region['id'];
 				$rows[]=$r;
 				}

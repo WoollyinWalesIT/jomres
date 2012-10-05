@@ -1,26 +1,21 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
-<h2 class="page-header">{_JOMRES_EDIT_REGION_TITLE}</h2>
-<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm" class="form-horizontal">
+<h2>{_JOMRES_EDIT_REGION_TITLE}</h2>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
-	<fieldset>
-		<div class="control-group">
-		<label class="control-label" for="country_code">{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</label>
-			<div class="controls">
-				{COUNTRYDROPDOWN}
-			</div> 
-		</div>
-
-		<div class="control-group">
-		<label class="control-label" for="country_name">{_JOMRES_EDIT_REGION_REGIONNAME}</label>
-			<div class="controls">
-				<input class="input-large" type="text" name="regionname" value="{REGIONNAME}" />
-			</div> 
-		</div>
-
-		<input type="hidden" name="id" value="{ID}" />
-		<input type="hidden" name="option" value="com_jomres" />
-		<input type="hidden" name="task" value="save_region" />
-		<input type="hidden" name="no_html" value="1" />
-	</fieldset>
+<form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
+<table class="ui-widget-content ui-corner-all" width="100%">
+	<tr>
+		<td width="30%">{_JOMRES_EDIT_COUNTRY_COUNTRYNAME}</td>
+		<td>{COUNTRYDROPDOWN}</td>
+	</tr>
+	<tr>
+		<td>{_JOMRES_EDIT_REGION_REGIONNAME}</td>
+		<td><input class="inputbox" size="40" type="text" name="regionname" value="{REGIONNAME}" /></td>
+	</tr>
+</table>
+<input type="hidden" name="id" value="{ID}" />
+<input type="hidden" name="option" value="com_jomres" />
+<input type="hidden" name="task" value="save_region" />
+<input type="hidden" name="no_html" value="1" />
 </form>
 </patTemplate:tmpl>
