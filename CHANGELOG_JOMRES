@@ -1,3 +1,39 @@
+Jomres 7.1.0
+
+Fundamentally changed how language strings are used in Jomres. We no longer use "define"d strings, instead strings are added through a new Jomres function jr_define. This allows us much more flexibility in how languages are used within the system. 
+Added new countries and region functionality, allows users to add/edit/remove countries and regions without editing the countries.php file, as old countries/regions are now imported into the db.
+Improved Language Translations feature, using newly created language handling functionality. Language Translations now allows you to customise ALL language strings from language files, for the current language context.
+Added a new feature that allows you to export definitions created using the Language Translations page as a new file.
+
+Tweaked custom template handler so that it works with bootstrap.
+Modified countries.php to update the status of Netherland Antilles (now defunct). Added CW, AW and BQ, but will leave AN in-situ for now as existing customers will be using that.
+Removed a check for tmpl in the url that stops the Availability link from being shown.
+Some bootstrap tweaks that fix issues with BS 2.1 and hidden-phone definitions. Fixes table layout problems caused by J3B2 going to BS2.1
+Changed how property name is found when generating property list in guest's list bookings.
+Improved the new auto-detect the guest's country in the booking form feature, by allowing the property manager to define if this option should be used, or if the property manager should set the default country manually.
+Modified common scripts in patTemplate, added a new variable COMMON_SOURCE_SCRIPT, which a user can add to a template file to help them figure out which script is calling that template.
+Commented out some redundant code from the plugin manager templates.
+Undid a previous change that was designed to allow free searching without setting module search options, as it was causing module output to be changed in undesired ways.
+Full access control switch hidden in site config. People don't read what it does before enabling it. Basic access control still available.
+Modified the composite property details notabs template to make it more obvious how data can be constructed.
+Changed how urls are detected at startup, as Joomla's SEF plugins will mangle some urls.
+Added list_normalmode_roomtariffs.html in the frontend dirs to the obsolete files list.
+Added trim() to save property name 
+Updated Polish lang files and countries.php to reflect Poland's 16 regions.
+Fixed an issue where live scrolling was only scrolling once, due to a bug introduced in a v6.6.6 change.
+Added a hidden input to site config that will automatically change the chosen mainmenu layout to "alternate" so that upgraders will be forced to use the new bootstrap main menu.
+Re-enabled management view now that J3 has been released.
+Updated jquery and jquery ui to 1.8.2 and 1.8.23 respectively to allow them to work alongside Joomla 3's jquery functionality.
+Fixed some incorrect paths to template dirs for obsolete file checking, and removed some older .js files that are no longer used.
+Added some changes so that plugin descriptions work on click in plugin manager.
+Added radio button js to management bottom.
+Updated basic_property_details to include property type string.
+Updated a variety of output strings to ensure they're passed through jr_gettext
+Small tweak to ensure that Jomres doesn't try to apply radio buttons to commission rate dropdown.
+Added j00501editingmode.class.php to the obsolete file list.
+Added a space between subject and hotel name in contact owner page.
+
+
 Jomres 7.0.2
 
 Added a couple of small changes to ensure that Jomres will install on Joomla 3, Beta 1.
