@@ -182,8 +182,16 @@ class jomSearch {
 			$activeCountriesList=doSelectSql($query);
 			$tmpCountryArray=array();
 			
-			$allLegitimateRegions = regionNamesArray();
-			
+			//$allLegitimateRegions = regionNamesArray(); // Replaced by following ...
+			$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
+			$regionList = doSelectSql($query);
+			if (count($regionList > 0))
+				{
+				foreach ($regionList as $region)
+					{
+					$allLegitimateRegions =jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname);
+					}
+				}
 			
 			//$this->prep['country'][$this->searchAll]=array('countrycode'=>$this->searchAll,'countryname'=>$this->searchAll);
 			$tmpCountryArray[]=$this->searchAll;
