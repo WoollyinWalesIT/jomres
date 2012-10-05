@@ -76,28 +76,28 @@ class j06002my_commission_invoices
 
 
 					
-				$output['PAGETITLE']=_JRPORTAL_INVOICES_TITLE;
-				$output['HUSER']=_JRPORTAL_INVOICES_USER;
-				$output['HSTATUS']=_JRPORTAL_INVOICES_STATUS;
-				$output['HRAISED']=_JRPORTAL_INVOICES_RAISED;
-				$output['HDUE']=_JRPORTAL_INVOICES_DUE;
-				$output['HPAID']=_JRPORTAL_INVOICES_STATUS_PAID;
-				$output['HSUBSCRIPTION']=_JRPORTAL_INVOICES_SUBSCRIPTION;
-				$output['HINITTOTAL']=_JRPORTAL_INVOICES_INITTOTAL;
-				$output['HRECURTOTAL']=_JRPORTAL_INVOICES_RECUR_TOTAL;
-				$output['HFREQ']=_JRPORTAL_INVOICES_RECUR_FREQUENCY;
-				$output['HDOM']=_JRPORTAL_INVOICES_RECUR_DOMONTH;
-				$output['HCURRENCYCODE']=_JRPORTAL_INVOICES_CURRENCYCODE;
+				$output['PAGETITLE']=jr_gettext("_JRPORTAL_INVOICES_TITLE",_JRPORTAL_INVOICES_TITLE);
+				$output['HUSER']=jr_gettext("_JRPORTAL_INVOICES_USER",_JRPORTAL_INVOICES_USER);
+				$output['HSTATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS",_JRPORTAL_INVOICES_STATUS);
+				$output['HRAISED']=jr_gettext("_JRPORTAL_INVOICES_RAISED",_JRPORTAL_INVOICES_RAISED);
+				$output['HDUE']=jr_gettext("_JRPORTAL_INVOICES_DUE",_JRPORTAL_INVOICES_DUE);
+				$output['HPAID']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PAID",_JRPORTAL_INVOICES_STATUS_PAID);
+				$output['HSUBSCRIPTION']=jr_gettext("_JRPORTAL_INVOICES_SUBSCRIPTION",_JRPORTAL_INVOICES_SUBSCRIPTION);
+				$output['HINITTOTAL']=jr_gettext("_JRPORTAL_INVOICES_INITTOTAL",_JRPORTAL_INVOICES_INITTOTAL);
+				$output['HRECURTOTAL']=jr_gettext("_JRPORTAL_INVOICES_RECUR_TOTAL",_JRPORTAL_INVOICES_RECUR_TOTAL);
+				$output['HFREQ']=jr_gettext("_JRPORTAL_INVOICES_RECUR_FREQUENCY",_JRPORTAL_INVOICES_RECUR_FREQUENCY);
+				$output['HDOM']=jr_gettext("_JRPORTAL_INVOICES_RECUR_DOMONTH",_JRPORTAL_INVOICES_RECUR_DOMONTH);
+				$output['HCURRENCYCODE']=jr_gettext("_JRPORTAL_INVOICES_CURRENCYCODE",_JRPORTAL_INVOICES_CURRENCYCODE);
 
 				if (!using_bootstrap())
 					{
 					//if ($thisJRUser->userIsManager)
 						//{
-						$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices">'._JOMRES_FRONT_ROOMSMOKING_EITHER.'</a>';
-						$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=unpaid">'._JRPORTAL_INVOICES_STATUS_UNPAID.'</a>';
-						$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=paid">'._JRPORTAL_INVOICES_STATUS_PAID.'</a>';
-						$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=cancelled">'._JRPORTAL_INVOICES_STATUS_CANCELLED.'</a>';
-						$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=pending">'._JRPORTAL_INVOICES_STATUS_PENDING.'</a>';
+						$output['TASK_FILTER_ANY']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices">'.jr_gettext("_JOMRES_FRONT_ROOMSMOKING_EITHER",_JOMRES_FRONT_ROOMSMOKING_EITHER).'</a>';
+						$output['TASK_FILTER_UNPAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=unpaid">'.jr_gettext("_JRPORTAL_INVOICES_STATUS_UNPAID",_JRPORTAL_INVOICES_STATUS_UNPAID).'</a>';
+						$output['TASK_FILTER_PAID']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=paid">'.jr_gettext("_JRPORTAL_INVOICES_STATUS_PAID",_JRPORTAL_INVOICES_STATUS_PAID).'</a>';
+						$output['TASK_FILTER_CANCELLED']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=cancelled">'.jr_gettext("_JRPORTAL_INVOICES_STATUS_CANCELLED",_JRPORTAL_INVOICES_STATUS_CANCELLED).'</a>';
+						$output['TASK_FILTER_PENDING']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=my_commission_invoices&status=pending">'.jr_gettext("_JRPORTAL_INVOICES_STATUS_PENDING",_JRPORTAL_INVOICES_STATUS_PENDING).'</a>';
 						//}
 					//else
 //						{
@@ -116,15 +116,15 @@ class j06002my_commission_invoices
 				else
 					{
 					$output['TASK_FILTER_ANY']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices';
-					$output['_JOMRES_FRONT_ROOMSMOKING_EITHER']=_JOMRES_FRONT_ROOMSMOKING_EITHER;
+					$output['_JOMRES_FRONT_ROOMSMOKING_EITHER']=jr_gettext("_JOMRES_FRONT_ROOMSMOKING_EITHER",_JOMRES_FRONT_ROOMSMOKING_EITHER);
 					$output['TASK_FILTER_UNPAID']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=unpaid';
-					$output['_JRPORTAL_INVOICES_STATUS_UNPAID']=_JRPORTAL_INVOICES_STATUS_UNPAID;
+					$output['_JRPORTAL_INVOICES_STATUS_UNPAID']=jr_gettext("_JRPORTAL_INVOICES_STATUS_UNPAID",_JRPORTAL_INVOICES_STATUS_UNPAID);
 					$output['TASK_FILTER_PAID']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=paid';
-					$output['_JRPORTAL_INVOICES_STATUS_PAID']=_JRPORTAL_INVOICES_STATUS_PAID;
+					$output['_JRPORTAL_INVOICES_STATUS_PAID']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PAID",_JRPORTAL_INVOICES_STATUS_PAID);
 					$output['TASK_FILTER_CANCELLED']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=cancelled';
-					$output['_JRPORTAL_INVOICES_STATUS_CANCELLED']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
+					$output['_JRPORTAL_INVOICES_STATUS_CANCELLED']=jr_gettext("_JRPORTAL_INVOICES_STATUS_CANCELLED",_JRPORTAL_INVOICES_STATUS_CANCELLED);
 					$output['TASK_FILTER_PENDING']=JOMRES_SITEPAGE_URL.'&task=my_commission_invoices&status=pending';
-					$output['_JRPORTAL_INVOICES_STATUS_PENDING']=_JRPORTAL_INVOICES_STATUS_PENDING;
+					$output['_JRPORTAL_INVOICES_STATUS_PENDING']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PENDING",_JRPORTAL_INVOICES_STATUS_PENDING);
 					}
 					
 				foreach ($invoices as $invoice)
@@ -162,20 +162,20 @@ class j06002my_commission_invoices
 						$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
 						$r['USER']=$user_deets['name'];
 						if ($invoice['status'] == "0")
-							$r['STATUS']=_JRPORTAL_INVOICES_STATUS_UNPAID;
+							$r['STATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS_UNPAID",_JRPORTAL_INVOICES_STATUS_UNPAID);
 						elseif ($invoice['status'] == "1")
-							$r['STATUS']=_JRPORTAL_INVOICES_STATUS_PAID;
+							$r['STATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PAID",_JRPORTAL_INVOICES_STATUS_PAID);
 							elseif ($invoice['status'] == "2")
-								$r['STATUS']=_JRPORTAL_INVOICES_STATUS_CANCELLED;
+								$r['STATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS_CANCELLED",_JRPORTAL_INVOICES_STATUS_CANCELLED);
 								else
-									$r['STATUS']=_JRPORTAL_INVOICES_STATUS_PENDING;
+									$r['STATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PENDING",_JRPORTAL_INVOICES_STATUS_PENDING);
 						$r['RAISED']=$invoice['raised_date'];
 						$r['DUE']=$invoice['due_date'];
 						$r['PAID']=$invoice['paid'];
 						if ($invoice['subscription'] == "1")
-							$r['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
+							$r['SUBSCRIPTION']=jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES);
 						else
-							$r['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
+							$r['SUBSCRIPTION']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO);
 						$r['INITTOTAL']		=output_price($invoice['init_total'],$invoice['currencycode']);
 						$r['RECURTOTAL']	=output_price($invoice['recur_total'],$invoice['currencycode']);
 						$r['FREQ']			=$invoice['recur_frequency'];
@@ -191,7 +191,7 @@ class j06002my_commission_invoices
 	
 						$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
 						$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
-						$r['EDIT_URL']=JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_invoice&id='.$invoice['id'];
+						$r['EDIT_URL']=JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'];
 						$rows[]=$r;
 						}
 					}

@@ -180,8 +180,8 @@ class j02220listguests {
 		$output['SURNAMEDROPDOWN']=filterForm('surnameFirstChars',$surnames,"");
 		
 		$yesno = array();
-		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=1"), _JOMRES_HISTORIC_GUESTS_SHOW );
-		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=0"), _JOMRES_HISTORIC_GUESTS_NOSHOW );
+		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=1"), jr_gettext('_JOMRES_HISTORIC_GUESTS_SHOW',_JOMRES_HISTORIC_GUESTS_SHOW) );
+		$yesno[] = jomresHTML::makeOption( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests&all_guests=0"), jr_gettext('_JOMRES_HISTORIC_GUESTS_NOSHOW',_JOMRES_HISTORIC_GUESTS_NOSHOW) );
 		$output['HISTORIC_GUESTS_DROPDOWN']=jomresHTML::selectList( $yesno, 'all_guests','onchange="window.open(this.options[this.selectedIndex].value,\'_top\')"', 'value', 'text', (int)$_REQUEST['all_guests']);
 		
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
