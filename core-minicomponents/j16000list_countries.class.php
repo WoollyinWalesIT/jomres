@@ -47,7 +47,6 @@ class j16000list_countries
 			$r['COUNTRYNAME']=$country['countryname'];
 			$r['COUNTRYCODE']=$country['countrycode'];
 			$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_country&id='.$country['id'].'">'.$editIcon.'</a>';
-			$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
 			$r['EDIT_URL']=JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_country&id='.$country['id'];
 			$rows[]=$r;
 			}
