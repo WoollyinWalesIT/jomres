@@ -161,9 +161,9 @@ class j06005view_invoice {
 		$output['RAISED']=$invoice->raised_date;
 		$output['DUE']=$invoice->due_date;
 		if ($invoice->subscription == "1")
-			$output['SUBSCRIPTION']=_JOMRES_COM_MR_YES;
+			$output['SUBSCRIPTION']=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
 		else
-			$output['SUBSCRIPTION']=_JOMRES_COM_MR_NO;
+			$output['SUBSCRIPTION']=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 		$output['INITTOTAL']=output_price($invoice->init_total,$invoice->currencycode,true,true);
 		$output['RECURTOTAL']=output_price($invoice->recur_total,$invoice->currencycode,false,true);
 		$output['FREQ']=$invoice->recur_frequency;
@@ -200,7 +200,7 @@ class j06005view_invoice {
 					{
 					$ip=array();
 					$immediate_pay=array();
-					$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
+					$ip['IMMEDIATE']	=jr_gettext('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY);
 					$ip['INV_ID']	=$invoice->id;
 					$ip['LIVESITE']=get_showtime('live_site').'/';
 					$ip['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
@@ -211,7 +211,7 @@ class j06005view_invoice {
 				{
 				$ip=array();
 				$immediate_pay=array();
-				$ip['IMMEDIATE']	=_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY;
+				$ip['IMMEDIATE']	=jr_gettext('_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY',_JRPORTAL_INVOICES_IMMEDIATEPAYMENT_PLEASEPAY);
 				$ip['INV_ID']	=$invoice->id;
 				$ip['LIVESITE']=get_showtime('live_site').'/';
 				$ip['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
