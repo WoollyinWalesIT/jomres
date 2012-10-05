@@ -1885,7 +1885,7 @@ jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main");
 jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED" , "Getting started");
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance");
-jr_define( "_JOMRES_CUSTOMCODE_ACCESSCONTROL" , "system maintenance");
+jr_define( "_JOMRES_CUSTOMCODE_ACCESSCONTROL" , "Access Control");
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS" , "developer tools");
 jr_define( "_JOMRES_CUSTOMCODE_ASAMODULE" , "ASAModule" );
 jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , "languages");
