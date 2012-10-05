@@ -21,7 +21,7 @@ class j16000export_definitions
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		if ($MiniComponents->template_touch)
 			{
-			$this->template_touchable=true; return;
+			$this->template_touchable=false; return;
 			}
 		echo "<h2 class=\"page-header\">Export language file definitions</h2>";
 		echo "<p>".jr_gettext("_JOMRES_EXPORT_DEFINITIONS_INFO",_JOMRES_EXPORT_DEFINITIONS_INFO,false,false)."</p>";

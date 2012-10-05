@@ -134,7 +134,7 @@ class j16000miscdefinesfortouchtemplating
 		
 		$jomres_language_definitions =jomres_singleton_abstract::getInstance('jomres_language_definitions');
 		
-		$all_context_definitions = $jomres_language_definitions->definitions[get_showtime('lang')][$language_context];
+		$all_context_definitions = $jomres_language_definitions->definitions[$language_context];
 		foreach($all_context_definitions as $const=>$def)
 			{
 			$output[]		=jr_gettext( $const,$def );
