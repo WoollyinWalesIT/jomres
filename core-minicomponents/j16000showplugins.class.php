@@ -386,12 +386,12 @@ class j16000showplugins
 				$r['CHANGELOG'] ='';
 				if ($rp['change_log'] != '' )
 					{
-					$r['CHANGELOG'] = '<a class="btn" id="changelog_'.$rp['name'].'" rel="popover" title="Changelog" data-content="'.$rp['change_log'].'">Changelog</a>';
+					$r['CHANGELOG'] = '<script> jomresJquery(function () { jomresJquery("#changelog_'.$rp['name'].'").popover(); }); </script><a class="btn" id="changelog_'.$rp['name'].'" rel="popover" title="Changelog" data-content="'.$rp['change_log'].'">Changelog</a>';
 					}
 				$r['HIGHLIGHT'] = '';
 				if ($rp['highlight'] != '' )
 					{
-					$r['HIGHLIGHT'] = '<a class="btn btn-warning" id="highlight_'.$rp['name'].'" rel="popover" title="Warning" data-content="'.$rp['highlight'].'">Warning</a>';
+					$r['HIGHLIGHT'] = '<script> jomresJquery(function () { jomresJquery("#highlight_'.$rp['name'].'").popover(); }); </script><a class="btn btn-warning" id="highlight_'.$rp['name'].'" rel="popover" title="Warning" data-content="'.$rp['highlight'].'">Warning</a>';
 					}
 				}
 			$readable_name = ucwords(" ".str_replace("_"," ",$rp['name']));
