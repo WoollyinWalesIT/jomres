@@ -147,7 +147,7 @@ if (!AJAXCALL)
 	else
 		{
 		$output['VIEWURL'] = get_showtime('liv_site').$_SERVER['REQUEST_URI'].'&tmpl=component';
-		$output['VIEWTEXT'] = _JOMRES_COM_MANAGEMENTVIEW_MANAGMENT;
+		$output['VIEWTEXT'] = jr_gettext("_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT",_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT,false);
 		}
 	
 	$output['LANGDROPDOWN'] ='';
