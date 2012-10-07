@@ -128,9 +128,9 @@ class j99997generate_mainmenu {
 		$output['MENUITEM_LANGDROPDOWN']				= get_showtime("menuitem_langdropdown");
 		
 		
-		$output['_JOMRES_CONTROLPANEL']=_JOMRES_CONTROLPANEL;
-		$output['_JOMRES_MENU_SHOW']=_JOMRES_MENU_SHOW;
-		$output['_JOMRES_MENU_HIDE']=_JOMRES_MENU_HIDE;
+		$output['_JOMRES_CONTROLPANEL']=jr_gettext("_JOMRES_CONTROLPANEL",_JOMRES_CONTROLPANEL,false);
+		$output['_JOMRES_MENU_SHOW']=jr_gettext("_JOMRES_MENU_SHOW",_JOMRES_MENU_SHOW,false);
+		$output['_JOMRES_MENU_HIDE']=jr_gettext("_JOMRES_MENU_HIDE",_JOMRES_MENU_HIDE,false);
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
