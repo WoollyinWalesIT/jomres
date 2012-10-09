@@ -24,6 +24,10 @@ $MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
+$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
+$jomreslang->get_language();
+$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
+
 $MiniComponents->triggerEvent('00003');
 
 $tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
@@ -31,9 +35,7 @@ $tmpBookingHandler->initBookingSession(get_showtime('jomressession'));
 $jomressession  = $tmpBookingHandler->getJomressession();
 
 $showSearchOptions=true;
-$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
-$jomreslang->get_language();
-$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
+
 
 if (!defined('JOMRES_IMAGELOCATION_ABSPATH'))
 	{
