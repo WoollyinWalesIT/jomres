@@ -25,7 +25,7 @@ class j06000subscribed
 			}
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		
-		echo _JRPORTAL_SUBSCRIBERS_SUBSCRIBED;
+		echo jr_gettext('_JRPORTAL_SUBSCRIBERS_SUBSCRIBED',_JRPORTAL_SUBSCRIBERS_SUBSCRIBED,false);
 		
 		/*
 		$package_id		= (int)jomresGetParam( $_REQUEST, 'id', 0 );

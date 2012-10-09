@@ -62,7 +62,7 @@ class j02250showaudit {
 			if ($owner!="%")
 				{
 				
-				if ($owner==_JOMRES_MR_AUDIT_UNKNOWNUSER)
+				if ($owner==jr_gettext('_JOMRES_MR_AUDIT_UNKNOWNUSER',_JOMRES_MR_AUDIT_UNKNOWNUSER,FALSE))
 					$userid = '0';
 				else
 					{

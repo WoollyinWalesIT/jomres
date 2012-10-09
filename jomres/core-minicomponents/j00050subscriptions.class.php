@@ -40,7 +40,7 @@ class j00050subscriptions {
 			$MiniComponents->specificEvent('00013',"list_usersinvoices"); // Custom task
 			if (subscribers_thisUserIsASubscriber())
 				{
-				echo _JRPORTAL_SUBSCRIBERS_SUBSCRIBED;
+				echo jr_gettext("_JRPORTAL_SUBSCRIBERS_SUBSCRIBED",_JRPORTAL_SUBSCRIBERS_SUBSCRIBED);
 				}
 			}
 		}

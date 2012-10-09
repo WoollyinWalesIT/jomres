@@ -142,7 +142,7 @@ if (!AJAXCALL)
 	if (isset($_REQUEST['tmpl']) ) 
 		{
 		$output['VIEWURL'] = get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY.'/index.php?'.remove_querystring_var("tmpl");
-		$output['VIEWTEXT'] = _JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW;
+		$output['VIEWTEXT'] = jr_gettext("_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW",_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW,false);
 		}
 	else
 		{

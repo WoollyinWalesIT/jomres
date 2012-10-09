@@ -281,7 +281,7 @@ if ($property_uid >0)
 		{
 		jr_import('jomres_sanity_check');
 		$warning = new jomres_sanity_check(false);
-		echo $warning->construct_warning(_JOMRES_PROPERTYNOTOUBLISHED);
+		echo $warning->construct_warning(jr_gettext('_JOMRES_PROPERTYNOTOUBLISHED',_JOMRES_PROPERTYNOTOUBLISHED,false));
 		unset($property_uid);
 		$task="";
 		set_showtime('task',"");
@@ -502,14 +502,14 @@ if (get_showtime('numberOfPropertiesInSystem')>0)
 			if ( $thisJRUser->userIsRegistered || $jrConfig['full_access_control'] == "1" )
 				$MiniComponents->triggerEvent('02300');
 			else
-				echo _JOMRES_REGISTRATION_NOTALLOWED;
+				echo jr_gettext('_JOMRES_REGISTRATION_NOTALLOWED',_JOMRES_REGISTRATION_NOTALLOWED,false);
 		break;
 		#########################################################################################
 		case 'registerProp_step2':
 			if ( $thisJRUser->userIsRegistered || $jrConfig['full_access_control'] == "1" )
 				$MiniComponents->triggerEvent('02310');
 			else
-				echo _JOMRES_REGISTRATION_NOTALLOWED;
+				echo jr_gettext('_JOMRES_REGISTRATION_NOTALLOWED',_JOMRES_REGISTRATION_NOTALLOWED,false);
 		break;
 		#########################################################################################
 		case 'saveRegisterProp':

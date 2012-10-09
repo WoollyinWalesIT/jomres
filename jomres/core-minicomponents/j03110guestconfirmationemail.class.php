@@ -240,7 +240,7 @@ class j03110guestconfirmationemail {
 			foreach ($allCustomFields as $f)
 				{
 				$formfieldname = $f['fieldname']."_".$f['uid'];
-				$custom_field_output[]=array("DESCRIPTION"=>jr_gettext(JOMRES_CUSTOMTEXT.$f['uid'],$f['description']),"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
+				$custom_field_output[]=array("DESCRIPTION"=>jr_gettext('JOMRES_CUSTOMTEXT'.$f['uid'],$f['description']),"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
 				}
 			}
 			
@@ -260,7 +260,7 @@ class j03110guestconfirmationemail {
 		if ($email_when_done)
 			{
 			$text=$tmpl->getParsedTemplate();
-			jomres_audit($text,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+			jomres_audit($text,jr_gettext('_JOMRES_MR_AUDIT_BOOKED_ROOM',_JOMRES_MR_AUDIT_BOOKED_ROOM,false));
 			$query="SELECT email FROM #__jomres_guests WHERE guests_uid = '".(int)$guests_uid."' LIMIT 1";
 			if ($mrConfig['errorCheckingShowSQL']) echo $query."<br>";
 			$userEmail =doSelectSql($query);

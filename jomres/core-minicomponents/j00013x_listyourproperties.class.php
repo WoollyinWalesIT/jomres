@@ -36,10 +36,10 @@ class j00013x_listyourproperties
 				{
 				$allowedProperties = subscribers_getAvailablePropertySlots($thisJRUser->id);
 				$existingProperties = subscribers_getManagersPublishedProperties($thisJRUser->id);
-				echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1.$allowedProperties._JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2;
-				echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4.count($existingProperties)._JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5;
+				echo jr_gettext('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1',_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES1,false).$allowedProperties.jr_gettext('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2',_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES2,false);
+				echo jr_gettext('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4',_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES4,false).count($existingProperties).jr_gettext('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5',_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES5,false);
 				if ($allowedProperties == $existingProperties)
-					echo _JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3;
+					echo jr_gettext('_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3',_JRPORTAL_SUBSCRIBERS_AVAILABLE_PROPERTIES3,false);
 				}
 			}
 		$rows=array();
@@ -57,12 +57,12 @@ class j00013x_listyourproperties
 		$query="SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);
 		$jomresPropertyList=doSelectSql($query);
-		$output['PAGETITLE']=_JRPORTAL_CPANEL_LISTPROPERTIES;
+		$output['PAGETITLE']=jr_gettext('_JRPORTAL_CPANEL_LISTPROPERTIES',_JRPORTAL_CPANEL_LISTPROPERTIES,false);;
 		$output['TOTALINLISTPLUSONE']=count($crateList);
-		$output['HPROPERTYNAME']=_JRPORTAL_PROPERTIES_PROPERTYNAME;
-		$output['HPROPERTYADDRESS']=_JRPORTAL_PROPERTIES_PROPERTYADDRESS;
-		$output['HCRATE_DROPDOWN']=_JRPORTAL_CRATE_VALUE;
-		$output['LEGEND']=_JRPORTAL_PROPERTIES_LEGEND;
+		$output['HPROPERTYNAME']=jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYNAME',_JRPORTAL_PROPERTIES_PROPERTYNAME,false);;
+		$output['HPROPERTYADDRESS']=jr_gettext('_JRPORTAL_PROPERTIES_PROPERTYADDRESS',_JRPORTAL_PROPERTIES_PROPERTYADDRESS,false);;
+		$output['HCRATE_DROPDOWN']=jr_gettext('_JRPORTAL_CRATE_VALUE',_JRPORTAL_CRATE_VALUE,false);;
+		$output['LEGEND']=jr_gettext('_JRPORTAL_PROPERTIES_LEGEND',_JRPORTAL_PROPERTIES_LEGEND,false);;
 		foreach($jomresPropertyList as $p)
 			{
 			$r=array();

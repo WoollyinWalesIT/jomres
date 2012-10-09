@@ -28,7 +28,7 @@ class j10002pseudocron
 		if ($jrConfig['advanced_site_config'] == 1)
 			{
 			$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=pseudocron', 'cron.png',jr_gettext( "_JOMRES_COM_A_CRON_TITLE" , _JOMRES_COM_A_CRON_TITLE) ,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS ,false,false));
+			$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=pseudocron', 'cron.png',jr_gettext( "_JOMRES_COM_A_CRON_TITLE" , _JOMRES_COM_A_CRON_TITLE,false,false) ,"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS ,false,false));
 			}
 		}
 	

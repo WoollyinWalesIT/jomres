@@ -184,7 +184,7 @@ class jomres_access_control
 		$mode_options[] = jomresHTML::makeOption( 'nobody' ,		$this->levels['nobody']);
 
 		$javascript = 'onChange="change_access_level(\''.$minicomp['eventPoint'].$minicomp['eventName'].'\',this.value)";';
-		return jomresHTML::selectList( $mode_options, '',' AUTOCOMPLETE="OFF" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
+		return jomresHTML::selectList( $mode_options, '',' autocomplete="off" class="inputbox" size="1" '.$javascript.'', 'value', 'text', $current_level);
 		
 		}
 	

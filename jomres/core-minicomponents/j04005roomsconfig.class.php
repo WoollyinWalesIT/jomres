@@ -181,9 +181,9 @@ class j04005roomsconfig {
 				}
 
 			if ($mrConfig['tariffChargesStoredWeeklyYesNo']=="1")
-				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK;
+				$output['RATETEXT']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK,FALSE);
 			else
-				$output['RATETEXT']=_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY;
+				$output['RATETEXT']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERDAY,FALSE);
 			$output['ROOMRATEPERDAY']='<input class="input-mini" type="number" name="roomrateperday" value="'.$allTariffsForRoomType[$type_id]['roomrateperday'].'" />';
 			$output['MAX_PEOPLE']='<input class="input-mini" type="text" name="max_people" value="'.$roomTypesArray[$type_id]['max_people'].'" />';
 			$rows=array();

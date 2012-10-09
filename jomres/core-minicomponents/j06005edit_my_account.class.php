@@ -112,7 +112,7 @@ class j06005edit_my_account {
 			$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
 			
 			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
-			$output['_JOMRES_REVIEWS_SUBMIT'] = _JOMRES_REVIEWS_SUBMIT;
+			$output['_JOMRES_REVIEWS_SUBMIT'] = jr_gettext('_JOMRES_REVIEWS_SUBMIT',_JOMRES_REVIEWS_SUBMIT,false);
 			$output['PAGETITLE']=jr_gettext('_JOMRES_MY_ACCOUNT_EDIT',_JOMRES_MY_ACCOUNT_EDIT,false,false);
 
 			$pageoutput[]=$output;

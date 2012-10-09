@@ -136,7 +136,7 @@ class j02220listguests {
 				$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 				$jrtb  = $jrtbar->startTable();
 				$rw=array();
-				$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,$editable=false,$isLink=true) ;
+				$text=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_LINKTEXT',_JOMRES_COM_MR_LISTTARIFF_LINKTEXT,false,true) ;
 				$link=JOMRES_SITEPAGE_URL.'&task=editGuest&guestUid='.($guest->guests_uid);
 				$targetTask='bookGuestIn';
 				$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$image);
@@ -149,7 +149,7 @@ class j02220listguests {
 				if (array_key_exists($guest->guests_uid,$invoices) && (int)$guest->guests_uid != 0)
 					{
 					$jrtb  = $jrtbar->startTable();
-					$text=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,$editable=false,$isLink=true) ;
+					$text=jr_gettext('_JOMRES_MANAGER_SHOWINVOICES',_JOMRES_MANAGER_SHOWINVOICES,false,true) ;
 					$link=JOMRES_SITEPAGE_URL.'&task=list_guests_invoices&id='.($guest->guests_uid);
 					$targetTask='';
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$text,$submitOnClick=false,$submitTask="",$invoice_image);
@@ -187,7 +187,7 @@ class j02220listguests {
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
 		
-		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,$editable=false,$isLink=true) ;
+		$text=jr_gettext('_JOMRES_COM_MR_NEWGUEST',_JOMRES_COM_MR_NEWGUEST,false,true) ;
 		$link=JOMRES_SITEPAGE_URL.'&task=editGuest';
 		$targetTask='editGuest';
 		$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/guestAdd.png';

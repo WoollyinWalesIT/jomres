@@ -82,8 +82,8 @@ class j06000cron_invoice
 				$invoice_handler->mark_invoice_pending();
 				
 				$users_email = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($key );
-				$subject = _JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT;
-				$message = _JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE." ".JOMRES_SITEPAGE_URL_NOSEF."&task=view_invoice&id=".$invoice_handler->id;
+				$subject = jr_gettext('_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT',_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_SUBJECT,false);
+				$message = jr_gettext('_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE',_JRPORTAL_INVOICES_COMMISSION_INVOICE_RAISED_EMAIL_MESSAGE,false)." ".JOMRES_SITEPAGE_URL_NOSEF."&task=view_invoice&id=".$invoice_handler->id;
 
 				if (!jomresMailer( get_showtime('mailfrom'), get_showtime('sitename') , $users_email[$key]['email'], $subject,$message,$mode=0))
 					error_logging('Failure in sending commission invoice email to property manager. Target address: '.$users_email.' Subject'.$subject);

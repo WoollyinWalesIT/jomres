@@ -187,7 +187,7 @@ class j04900saveproperty {
 				`room_class_abbv`,`room_class_full_desc`,`property_uid` )
 				VALUES
 				('CHANGE ME','CHANGE ME','".(int)$newPropId."')";
-				$rmTypeId=doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE);
+				$rmTypeId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE',_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE,FALSE));
 
 				}
 			else
@@ -213,7 +213,7 @@ class j04900saveproperty {
 			VALUES
 			('".(int)$rmTypeId."','".(int)$newPropId."','CHANGE ME','N/A',
 			'N/A','0','10','0')";
-			if (!doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM))
+			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM',_JOMRES_MR_AUDIT_INSERT_ROOM,FALSE)))
 				trigger_error ("Unable to insert into rooms table, mysql db failure", E_USER_ERROR);
 			importSettings($newPropId);
 			addPropertyUidToUsersProperties($newPropId);

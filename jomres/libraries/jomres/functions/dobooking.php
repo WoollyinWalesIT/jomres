@@ -465,7 +465,7 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 			else
 				$fielddata['DEFAULT_VALUE']	= $f['default_value'];
 			$fielddata['UID'] 				= $f['uid'];
-			$fielddata['DESCRIPTION']		= jr_gettext(JOMRES_CUSTOMTEXT.$f['uid'],$f['description']);
+			$fielddata['DESCRIPTION']		= jr_gettext('JOMRES_CUSTOMTEXT'.$f['uid'],$f['description']);
 			
 			$fielddata['REQUIRED']			= "&nbsp;";
 			if ($f['required'] =="1")

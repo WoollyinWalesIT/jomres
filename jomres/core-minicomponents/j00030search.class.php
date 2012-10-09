@@ -642,7 +642,7 @@ class j00030search {
 						{
 						foreach ($sch->prep['ptypes'] as $ptype)
 							{
-							$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],jomres_decode($ptype['ptype']),false,false);
+							$ptypeAbbv=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.$ptype['id'],jomres_decode($ptype['ptype']),false,false);
 							
 							$ptypeArray[]= jomresHTML::makeOption( $ptype['id'], $ptypeAbbv);
 							}
@@ -654,7 +654,7 @@ class j00030search {
 					$r="";
 					foreach ($sch->prep['ptypes'] as $ptype)
 						{
-						$ptypeAbbv=jr_gettext(_JOMRES_CUSTOMTEXT_PROPERTYTYPE.$ptype['id'],jomres_decode($ptype['ptype']),true,true);
+						$ptypeAbbv=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.$ptype['id'],jomres_decode($ptype['ptype']),true,true);
 						//echo $ptypeAbbv;
 						$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&ptype='.$ptype['id']);
 						$link=jomresURL($l);

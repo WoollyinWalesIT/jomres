@@ -36,7 +36,7 @@ class j06000canc_subscribed
 		//error_logging(  "Jruser id =".$thisJRUser->id);
 		if ($subscription->cms_user_id == $thisJRUser->id)
 			{
-			echo _JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE;
+			echo jr_gettext('_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE',_JRPORTAL_SUBSCRIBERS_CANCED_SUBSCRIBE,false);
 			$subscription->deleteSubscription();
 			}
 		else

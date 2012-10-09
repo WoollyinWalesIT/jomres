@@ -122,7 +122,7 @@ class j03100hotelconfirmationemail {
 			{
 			$useremail=stripslashes($email->email);
 			}
-		$subject=_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE.stripslashes($propertyName)." ".$cartnumber;
+		$subject=jr_gettext('_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE',_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE,false).stripslashes($propertyName)." ".$cartnumber;
 
 		$output=array();
 		if (strlen($specialReqs)>0)
@@ -195,7 +195,7 @@ class j03100hotelconfirmationemail {
 			foreach ($allCustomFields as $f)
 				{
 				$formfieldname = $f['fieldname']."_".$f['uid'];
-				$custom_field_output[]=array("DESCRIPTION"=>jr_gettext(JOMRES_CUSTOMTEXT.$f['uid'],$f['description']),"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
+				$custom_field_output[]=array("DESCRIPTION"=>jr_gettext('JOMRES_CUSTOMTEXT'.$f['uid'],$f['description']),"VALUE"=>$tmpBookingHandler->tmpbooking[$formfieldname]);
 				}
 			}
 	

@@ -248,7 +248,7 @@ class j04000roomsconfig {
 				$feature['BUTTONS']= $jrtb;
 				$feature['EDIT_URL']=jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;featureUid=".($roomFeature->room_features_uid));
 				$feature['COPY_URL']=jomresURL(JOMRES_SITEPAGE_URL."&task=editRoomFeature&amp;featureUid=".($roomFeature->room_features_uid)."&clone=1");
-				$feature['FEATURE']=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION.$roomFeature->room_features_uid,$roomFeature->feature_description);
+				$feature['FEATURE']=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.$roomFeature->room_features_uid,$roomFeature->feature_description);
 				$roomFeaturesRowInfo[]=$feature;
 				}
 			
@@ -315,7 +315,7 @@ class j04000roomsconfig {
 			$contentPanel->setcontent('<table><tr>
 			<td>');
 			$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
-			$contentPanel->setcontent(_JOMRES_COM_MR_VRCT_PROPERTY_TYPE.$jrtb." ".$roomClassAbbv);
+			$contentPanel->setcontent('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE'.$jrtb." ".$roomClassAbbv);
 			$contentPanel->setcontent('</td>
 			</tr></table>');
 			}

@@ -3612,9 +3612,9 @@ function gatewayPostage($outgoingURL,$postage,$method="post")
 	</script>
 	<?php
 		echo "<html>\n";
-		echo "<head><title>".JOMRES_PHRASE_PROCESSING."</title></head>\n";
+		echo "<head><title>".jr_gettext('JOMRES_PHRASE_PROCESSING',JOMRES_PHRASE_PROCESSING,false)."</title></head>\n";
 		echo "<body onLoad=\"document.form.submit();\">\n";
-		echo "<center><h3>".JOMRES_PHRASE_PROCESSING."</h3></center>\n";
+		echo "<center><h3>".jr_gettext('JOMRES_PHRASE_PROCESSING',JOMRES_PHRASE_PROCESSING,false)."</h3></center>\n";
 		echo "<form method=\"".$method."\" name=\"form\" action=\"".$outgoingURL."\">\n";
 	foreach ($postage as $name => $value)
 		{

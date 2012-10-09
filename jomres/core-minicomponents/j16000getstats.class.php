@@ -25,7 +25,7 @@ class j16000getstats
 		
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=showstats",_JRPORTAL_CANCEL);
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN."&task=showstats",jr_gettext('_JRPORTAL_CANCEL',_JRPORTAL_CANCEL,false));
 		$jrtb .= $jrtbar->endTable();
 		echo $jrtb;
 

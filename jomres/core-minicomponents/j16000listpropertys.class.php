@@ -27,7 +27,7 @@ class j16000listpropertys
 		$jrConfig=$siteConfig->get();
 		
 		$rows=array();
-		$editIcon	='<IMG SRC="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon">';
+		$editIcon	='<img src="'.get_showtime('live_site').'/jomres/images/jomresimages/small/EditItem.png" border="0" alt="editicon" />';
 		//require_once(JOMRESCONFIG_ABSOLUTE_PATH.'/includes/pageNavigation.php');
 
 		jr_import('jrportal_crate_functions');

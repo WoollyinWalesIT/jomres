@@ -57,9 +57,9 @@ class j16000listTemplates
 				natsort($docs);
 				$r=array();
 				
-				$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO);
+				$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO,false);
 				if ($custom_templates->hasThisTemplateBeenCustomised("jomrescss.css"))
-					$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES)."</b>";
+					$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES,false)."</b>";
 				if (!using_bootstrap())
 					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
 				else
@@ -72,7 +72,7 @@ class j16000listTemplates
 					if ($doc != "jomrescss.css" && $doc != "srch.html")
 						{
 						$r=array();
-						$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO);
+						$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO,false);
 						if ($custom_templates->hasThisTemplateBeenCustomised($doc))
 							{
 							$r['WARNINGICON']="";
@@ -83,10 +83,10 @@ class j16000listTemplates
 							if ($r['LAST_EDITED_DB'] != "0000-00-00 00:00:00")
 								{
 								if ($r['LAST_EDITED_DISK'] > $r['LAST_EDITED_DB'])
-									$r['WARNINGICON']=_JOMRES_LASTEDITED_WARNINGICON_TEXT;
+									$r['WARNINGICON']=jr_gettext("_JOMRES_LASTEDITED_WARNINGICON_TEXT",_JOMRES_LASTEDITED_WARNINGICON_TEXT,false);
 								}
 							else
-								$r['LAST_EDITED_DB'] = _JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE;
+								$r['LAST_EDITED_DB'] = jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE",_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE,false);
 							$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES)."</b>";
 							}
 						$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
@@ -103,7 +103,7 @@ class j16000listTemplates
 
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL));
+		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL,false));
 		$jrtb .= $jrtbar->spacer();
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;

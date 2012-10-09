@@ -66,7 +66,7 @@ class j04020saveroom {
 				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				$query="INSERT INTO #__jomres_rooms (`room_classes_uid`,`propertys_uid`,`room_features_uid`,`room_name`,`room_number`,`room_floor`,`room_disabled_access`,`max_people`,`smoking`,`singleperson_suppliment`)VALUES ('".(int)$roomClasses."',".(int)$defaultProperty.",'$featuresList','$room_name','$room_number','$room_floor','".(int)$disabledAccess."','".(int)$max_people."','".(int)$smoking."','".$singleperson_suppliment."')";
-				if (doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM)) returnToPropertyConfig($saveMessage);
+				if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM',_JOMRES_MR_AUDIT_INSERT_ROOM,FALSE))) returnToPropertyConfig($saveMessage);
 				trigger_error ("Sql error when saving new room", E_USER_ERROR);
 				}
 			else

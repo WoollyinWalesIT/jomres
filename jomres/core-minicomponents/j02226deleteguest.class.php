@@ -65,7 +65,7 @@ class j02226deleteguest {
 			//	echo "No bookings to delete";
 			$query="DELETE FROM #__jomres_guests WHERE guests_uid = '".(int)$guestUid."' AND property_uid = '".(int)$defaultProperty."'";
 			//echo $query;
-			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_GUEST',_JOMRES_MR_AUDIT_DELETE_GUEST,FALSE))) trigger_error (_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST, E_USER_ERROR);
+			if (!doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_DELETE_GUEST',_JOMRES_MR_AUDIT_DELETE_GUEST,FALSE))) trigger_error (jr_gettext('_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST',_JOMRES_FRONT_DELETEGUEST_UNABLETODELETEGUEST,FALSE), E_USER_ERROR);
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=listguests"), $saveMessage );
 			}
 		else
