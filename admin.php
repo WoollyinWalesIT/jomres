@@ -24,6 +24,7 @@ $MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 $siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 $jrConfig=$siteConfig->get();
 
+$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
 $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language();
 $customTextObj =jomres_singleton_abstract::getInstance('custom_text');
