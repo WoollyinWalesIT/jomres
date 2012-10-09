@@ -121,7 +121,7 @@ class j03100adminconfirmationemail {
 			{
 			$useremail=stripslashes($email->email);
 			}
-		$subject=_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE.stripslashes($propertyName)." ".$cartnumber;
+		$subject=jr_gettext('_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE',_JOMRES_FRONT_MR_EMAIL_SUBJECT_INTERNETBOOKINGMADE,false).stripslashes($propertyName)." ".$cartnumber;
 
 		$output=array();
 		$output['ISO']=_ISO;

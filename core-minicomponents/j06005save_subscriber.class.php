@@ -47,7 +47,7 @@ class j06005save_subscriber
 			if ( $package_id == 0 )
 				{
 				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-				$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID);
+				$jomres_messaging->set_message(jr_gettext('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID',_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID,false));
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 				exit;
 				}
@@ -56,7 +56,7 @@ class j06005save_subscriber
 			if (!array_key_exists($package_id,$all_packages))
 				{
 				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-				$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID);
+				$jomres_messaging->set_message(jr_gettext('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID',_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_NOPACKAGEID,false));
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 				exit;
 				}
@@ -78,7 +78,7 @@ class j06005save_subscriber
 						if ($package_id == (int)$sub['package_id'] && (int)$sub['status'] < 2)
 							{
 							$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
-							$jomres_messaging->set_message(_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE);
+							$jomres_messaging->set_message(jr_gettext('_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE',_JRPORTAL_SUBSCRIPTIONS_SUBSCRIBING_ERROR_ALREADYSUBSCRIBEDTOFREEBIE,false));
 							jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=list_subscription_packages"), "" );
 							exit;
 							}
@@ -149,7 +149,7 @@ class j06005save_subscriber
 					$line_item_data = array (
 						'tax_code_id'=>$package->tax_code_id,
 						'name'=>$package->name,
-						'description'=>$package->description." ".$package->property_limit." "._JOMCOMP_MYUSER_PUBLISHEDPROPERTIES,
+						'description'=>$package->description." ".$package->property_limit." ".jr_gettext('_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES',_JOMCOMP_MYUSER_PUBLISHEDPROPERTIES,false),
 						'init_price'=>number_format($subscription->trial_amount,2),
 						'init_qty'=>"1",
 						'init_discount'=>"0",

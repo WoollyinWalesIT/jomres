@@ -42,7 +42,7 @@ class j04050saveroomtype {
 			{
 			$saveMessage=jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT',_JOMRES_COM_MR_VRCT_ROOMTYPES_SAVE_INSERT,FALSE);
 			$query="INSERT INTO #__jomres_room_classes (`room_class_abbv`,`room_class_full_desc`,`property_uid` )VALUES ('$room_class_abbv','$room_class_full_desc','".(int)$defaultProperty."')";
-			if (doInsertSql($query,_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE))
+			if (doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE',_JOMRES_MR_AUDIT_INSERT_ROOM_TYPE,FALSE)))
 				returnToPropertyConfig($saveMessage);
 			trigger_error ("Unable to insert into room type table, mysql db failure", E_USER_ERROR);
 			}

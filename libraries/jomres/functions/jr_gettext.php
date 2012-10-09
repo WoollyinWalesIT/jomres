@@ -115,7 +115,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
 				$theText="xxxxxxxxx";
 			$indexphp="index.php";
-			$title=' title="'._JOMRES_COM_MR_VRCT_ROOM_LINKTEXT.'" ';
+			$title=' title="'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false).'" ';
 
 			if ($isLink)
 				{
@@ -138,13 +138,13 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 						else
 							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace&no_html=1", ';
 						echo "	{
-							indicator : '".JOMRES_WORD_SAVING."',
+							indicator : '".jr_gettext('JOMRES_WORD_SAVING',JOMRES_WORD_SAVING,false)."',
 							id			: 'theConstant',
 							name		: 'newtext',
 							type		: 'textarea',
 							cancel		: 'x',
 							submit		: 'OK',
-							tooltip		: '".htmlspecialchars(_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT)."',
+							tooltip		: '".htmlspecialchars(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false))."',
 							height		: '20',
 							width		: '200',
 							style		: 'inherit'

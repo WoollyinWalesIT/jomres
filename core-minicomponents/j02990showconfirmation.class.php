@@ -122,7 +122,7 @@ class j02990showconfirmation {
 				$tmpBookingHandler->saveCustomFields($allCustomFields);
 				
 				$fielddata = array();
-				$fielddata['DESCRIPTION']		= jr_gettext(JOMRES_CUSTOMTEXT.$f['uid'],$f['description']);
+				$fielddata['DESCRIPTION']		= jr_gettext('JOMRES_CUSTOMTEXT'.$f['uid'],$f['description']);
 				$fielddata['VALUE']				=jomresGetParam( $_POST, $formfieldname, '' );
 				
 				if ($required == "1" && strlen($_POST[$formfieldname])== 0)

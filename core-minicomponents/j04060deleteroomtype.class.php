@@ -45,7 +45,7 @@ class j04060deleteroomtype {
 		if (count($propertyFeaturesList))
 			{
 			$safeToDelete=FALSE;
-			trigger_error (_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS, E_USER_ERROR);
+			trigger_error (jr_gettext('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS',_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS,FALSE), E_USER_ERROR);
 			echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS',_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS,FALSE)."'); ; </script>\n";
 			}
 		$query="SELECT roomclass_uid FROM #__jomres_rates WHERE roomclass_uid = '".(int)$roomClassUid."' AND property_uid = '".(int)$defaultProperty."' LIMIT 1";
@@ -53,7 +53,7 @@ class j04060deleteroomtype {
 		if (count($propertyFeaturesList))
 			{
 			$safeToDelete=FALSE;
-			trigger_error (_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS, E_USER_ERROR);
+			trigger_error (jr_gettext('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS',_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS,FALSE), E_USER_ERROR);
 			echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS',_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS,FALSE)."'); ; </script>\n";
 			}
 	 	if ($safeToDelete)

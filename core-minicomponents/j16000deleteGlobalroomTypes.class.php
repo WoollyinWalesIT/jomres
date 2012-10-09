@@ -29,14 +29,14 @@ class j16000deleteGlobalroomTypes
 			{
 			foreach ($idarray as $id)
 				{
-				$saveMessage=_JOMRES_COM_MR_ROOMCLASS_DELETED;
+				$saveMessage=jr_gettext('_JOMRES_COM_MR_ROOMCLASS_DELETED',_JOMRES_COM_MR_ROOMCLASS_DELETED,false);
 				// First we need to check that the feature isn't recorded against any tariffs. If it is, we can't move forward
 				$query="SELECT  roomclass_uid FROM #__jomres_rates WHERE roomclass_uid='".(int)$id."'";
 				$rtList =doSelectSql($query);
 				if (count($rtList)>0)
 					{
 					$success=false;
-			 		echo _JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS." Room type id: ".$id."<br>";
+			 		echo jr_gettext('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS',_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS,false)." Room type id: ".$id."<br>";
 					}
 			 	else
 			 		{

@@ -94,7 +94,7 @@ class j10001control_panel
 					if ($best_before_expired)
 						{
 						$output['HIGHLIGHT'] = (using_bootstrap() ? "alert alert-error" :"ui-state-error");
-						$output['ALERT'] = _JOMRES_VERSIONCHECK_VERSIONWARNING;
+						$output['ALERT'] = jr_gettext(_JOMRES_VERSIONCHECK_VERSIONWARNING,'_JOMRES_VERSIONCHECK_VERSIONWARNING',false);
 						$output['EFFECT'] = "<script>jomresJquery(document).ready(function() { jomresJquery( \"#version_check_warning\" ).effect( 'highlight' ); });</script> ";
 						}
 					}
@@ -239,7 +239,7 @@ function control_panel_writability_tests()
 	{
 	$test_output = '';
 	$foldersToTestForWritability=array();
-	if (_JOMRES_DETECTED_CMS == "joomla15")
+	if (_JOMRES_DETECTED_CMS != "jomressa")
 		$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'modules'.JRDS;
 	$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS;
 	$foldersToTestForWritability[]=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'sessions'.JRDS;

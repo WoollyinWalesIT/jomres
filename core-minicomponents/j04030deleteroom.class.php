@@ -48,8 +48,8 @@ class j04030deleteroom {
 		if (count($roomList)>0)
 			{
 			//echo "<script> alert('". jr_gettext('_JOMRES_COM_MR_ROOM_UNABLETODELETE',_JOMRES_COM_MR_ROOM_UNABLETODELETE,FALSE)."'); ; </script>\n";
-			//trigger_error (_JOMRES_COM_MR_ROOM_UNABLETODELETE, E_USER_ERROR);
-			echo _JOMRES_COM_MR_ROOM_UNABLETODELETE;
+			//trigger_error (jr_gettext('_JOMRES_COM_MR_ROOM_UNABLETODELETE',_JOMRES_COM_MR_ROOM_UNABLETODELETE,FALSE), E_USER_ERROR);
+			echo jr_gettext('_JOMRES_COM_MR_ROOM_UNABLETODELETE',_JOMRES_COM_MR_ROOM_UNABLETODELETE,FALSE);
 			}
 		else
 			{

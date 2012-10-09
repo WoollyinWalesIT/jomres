@@ -162,7 +162,7 @@ class j00015viewproperty
 			$property['HTELEPHONE']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE);
 			$property['HFAX']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_FAX);
 			$property['HMAPPINGLINK']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK);
-			$property['HDESCRIPTION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION,$editable=true,$isLink=true);
+			$property['HDESCRIPTION']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_PROPDESCRIPTION,true,true);
 			$property['HCHECKINTIMES']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_CHECKINTIMES);
 			$property['HAREAACTIVITIES']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AREAACTIVITIES);
 			$property['HDRIVINGDIRECTIONS']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_DRIVINGDIRECTIONS);
@@ -183,7 +183,7 @@ class j00015viewproperty
 			$property['TITLE_TARIFF']				=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_TITLE',_JOMRES_COM_MR_LISTTARIFF_TITLE,false,false);
 
 			$property['COM_A_BASICTEMPLATE_SHOWADDRESS']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS',_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS);
-			$property['COM_A_BASICTEMPLATE_SHOWDETAILS']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS',_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS,$editable=true,$isLink=true);
+			$property['COM_A_BASICTEMPLATE_SHOWDETAILS']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS',_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS,true,true);
 			$property['COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE',_JOMRES_COM_A_BASICTEMPLATE_SHOWADDRESS_TITLE,FALSE);
 			$property['COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE']=jr_gettext('_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE',_JOMRES_COM_A_BASICTEMPLATE_SHOWDETAILS_TITLE,FALSE);
 
@@ -201,7 +201,7 @@ class j00015viewproperty
 					{
 					$link				=	array();
 					$link['LINK'] = jomresURL(JOMRES_SITEPAGE_URL."&task=showTariffs&property_uid=$property_uid".$output_now);
-					$link ['TEXT']=jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,$editable=false,$isLink=false);
+					$link ['TEXT']=jr_gettext('_JOMRES_FRONT_TARIFFS',_JOMRES_FRONT_TARIFFS,false,false);
 					$tariffslink[]		= 	$link;
 					}
 				}
@@ -209,7 +209,7 @@ class j00015viewproperty
 				{
 				$link				=	array();
 				$link['LINK'] = jomresURL(JOMRES_SITEPAGE_URL."&task=slideshow&property_uid=$property_uid".$output_now);
-				$link ['TEXT']=jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,$editable=false,$isLink=false);
+				$link ['TEXT']=jr_gettext('_JOMRES_FRONT_SLIDESHOW',_JOMRES_FRONT_SLIDESHOW,false,false);
 				$slideshowlink[]	= 	$link;
 				}
 			if ($mrConfig['galleryLink']!="")
@@ -234,7 +234,7 @@ class j00015viewproperty
 				if(filter_var($mappinglink, FILTER_VALIDATE_URL) === TRUE)
 					{
 					$link['LINK'] = jomresURL($mappinglink);
-					$link ['TEXT']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,$editable=false,$isLink=false);
+					$link ['TEXT']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_MAPPINGLINK,false,false);
 					$mappinglink[]		= 	$link;
 					}
 				}
@@ -275,7 +275,7 @@ class j00015viewproperty
 					{
 					$link				=	array();
 					$link['LINK']=jomresURL(JOMRES_SITEPAGE_URL."&task=showRoomsListing&property_uid=$property_uid".$output_now);
-					$link['TEXT']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,$editable=false,$isLink=false);
+					$link['TEXT']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_TITLE',_JOMRES_COM_MR_QUICKRES_STEP2_TITLE,false,false);
 					$roomslistlink[]	= 	$link;
 					}
 				}

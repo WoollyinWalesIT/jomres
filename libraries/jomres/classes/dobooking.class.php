@@ -604,7 +604,7 @@ class dobooking
 		$roomFeats =doSelectSql($query);
 		foreach ($roomFeats as $c)
 			{
-			$fd=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION.$c->room_features_uid,$c->feature_description,false,false);
+			$fd=jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.$c->room_features_uid,$c->feature_description,false,false);
 			$this->allFeatureDetails[$c->room_features_uid]=array('room_features_uid'=>$c->room_features_uid,'feature_description'=>$fd);
 			}
 		}
@@ -1898,9 +1898,9 @@ class dobooking
 	function  makeSmokingOutput($smoking)
 		{
 		$smokingOpts = array();
-		$smokingOpts[] = jomresHTML::makeOption( '1', _JOMRES_COM_MR_YES);
-		$smokingOpts[] = jomresHTML::makeOption( '0', _JOMRES_COM_MR_NO);
-		$smokingOpts[] = jomresHTML::makeOption( '2', _JOMRES_FRONT_ROOMSMOKING_EITHER);
+		$smokingOpts[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,false));
+		$smokingOpts[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,false));
+		$smokingOpts[] = jomresHTML::makeOption( '2', jr_gettext('_JOMRES_FRONT_ROOMSMOKING_EITHER',_JOMRES_FRONT_ROOMSMOKING_EITHER,false));
 		$smokingDropdown = jomresHTML::selectList( $smokingOpts, 'smoking', 'size="1" class="input-medium" onchange="getResponse_particulars(\'smoking\',this.value);" ', 'value', 'text', $smoking );
 		return $smokingDropdown;
 		}
@@ -3221,17 +3221,17 @@ class dobooking
 			}
 
 		//$guest_deets['COUNTRY']=createSimpleCountriesDropdown($guest_country);
-		$guest_deets['HFIRSTNAME']=jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME',_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME);
-		$guest_deets['HSURNAME']= jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_SURNAME',_JOMRES_FRONT_MR_DISPGUEST_SURNAME);
-		$guest_deets['HHOUSENO']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL) ;
-		$guest_deets['HSTREET']=jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL) ;
-		$guest_deets['HTOWN']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL);
-		$guest_deets['HPOSTCODE']=jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL) ;
-		$guest_deets['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION);
-		$guest_deets['HCOUNTRY']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY);
-		$guest_deets['HTEL']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL);
-		$guest_deets['HMOBILE']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL);
-		$guest_deets['HEMAIL']= jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
+		$guest_deets['HFIRSTNAME']=jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME',_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME,false);
+		$guest_deets['HSURNAME']= jr_gettext('_JOMRES_FRONT_MR_DISPGUEST_SURNAME',_JOMRES_FRONT_MR_DISPGUEST_SURNAME,false);
+		$guest_deets['HHOUSENO']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_HOUSE_EXPL,false) ;
+		$guest_deets['HSTREET']=jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_STREET_EXPL,false) ;
+		$guest_deets['HTOWN']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_TOWN_EXPL,false);
+		$guest_deets['HPOSTCODE']=jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_POSTCODE_EXPL,false) ;
+		$guest_deets['HREGION']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false);
+		$guest_deets['HCOUNTRY']= jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false);
+		$guest_deets['HTEL']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_LANDLINE_EXPL,false);
+		$guest_deets['HMOBILE']= jr_gettext('_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL',_JOMRES_FRONT_MR_EB_GUEST_JOMRES_MOBILE_EXPL,false);
+		$guest_deets['HEMAIL']= jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL,false);
 
 
 		$guest_deets['EXISTINGID']=$guests_uid;
@@ -4441,7 +4441,7 @@ class dobooking
 				if ($this->cfg_singleRoomProperty == "0" )
 					{
 					if (count($roomAndTariffArray)==0 && count($this->requestedRoom)==0 )
-						$return_output='<div class="ui-state-highlight">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE',_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE."</div>");
+						$return_output='<div class="ui-state-highlight">'.jr_gettext('_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE',_JOMRES_FRONT_MR_QUICKRES_STEP2_NOROOMSINRANGE,false)."</div>";
 					else
 						$return_output="";
 					}
@@ -4528,7 +4528,7 @@ class dobooking
 				$room_and_tariff_outputIds_string .= $tariff_and_roomtypes['roomTariffOutputId'][$i-1].",";
 				$rooms_list_style_dropdown[] = jomresHTML::makeOption( $room_and_tariff_outputIds_string,  sprintf("%02d",$i) );
 				}
-			$dropdown_output[$tariff_id]['dropdown'] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="input-mini" size="1"  AUTOCOMPLETE="OFF" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
+			$dropdown_output[$tariff_id]['dropdown'] = jomresHTML::selectList($rooms_list_style_dropdown, 'fred', 'class="input-mini" size="1"  autocomplete="off" onchange="getResponse_multiroom_select(\'multiroom_select\',this.value);"', 'value', 'text', $already_selected_string);
 			$dropdown_output[$tariff_id]['room_type']=$tariff_and_roomtypes['room_type'];
 			$dropdown_output[$tariff_id]['tariff_title']=$tariff_and_roomtypes['tariff_title'];
 			$dropdown_output[$tariff_id]['room_price_inc_tax']=output_price($tariff_and_roomtypes['room_price_inc_tax']);
@@ -4726,7 +4726,7 @@ class dobooking
 		$room_features_uid=$room['room_features_uid'];
 		$room_disabled_access=$room['room_disabled_access'];
 		$smoking=$room['smoking'];
-		$classAbbv =$this->sanitiseOutput(jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$room_classes_uid,$this->allRoomClasses[$room_classes_uid]['room_class_abbv'],false,false));
+		$classAbbv =$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION'.$room_classes_uid,$this->allRoomClasses[$room_classes_uid]['room_class_abbv'],false,false));
 
 
 		$room_image=getImageForProperty("room",$this->property_uid,$roomUid);
@@ -5105,9 +5105,9 @@ class dobooking
 				{
 				$this->resetPricingOutput=true;
 				if ($mrConfig['wholeday_booking'] == "1")
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2).' '.($this->stayDays-1)));
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2,false).' '.($this->stayDays-1)));
 				else
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2).' '.$this->stayDays));
+					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2,false).' '.$this->stayDays));
 				}
 			if (count($this->requestedRoom)==0 && $this->getSingleRoomPropertyStatus())
 				{
@@ -5569,7 +5569,7 @@ class dobooking
 			$this->setGuestPopupMessage($feedback);
 			$this->addBookingNote("Coupon feedback",$feedback);
 			
-			$note = _JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." ".$this->coupon_id." / ".$this->coupon_code." / "._JRPORTAL_COUPONS_AMOUNT." ".$this->coupon_discount_value." / ";
+			$note = jr_gettext('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE',_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE,false)." ".$this->coupon_id." / ".$this->coupon_code." / ".jr_gettext('_JRPORTAL_COUPONS_AMOUNT',_JRPORTAL_COUPONS_AMOUNT,false)." ".$this->coupon_discount_value." / ";
 			foreach ($this->coupon_details as $k=>$v)
 				{
 				$note .= $k." - ".$v." :: ";
@@ -5578,7 +5578,7 @@ class dobooking
 			}
 		else
 			{
-			$note =_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE." N/A ";
+			$note =jr_gettext('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE',_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE,false)." N/A ";
 			$this->addBookingNote("Coupon",$note);
 			}
 
@@ -5592,7 +5592,7 @@ class dobooking
 			$this->setErrorLog("makeNightlyRoomCharges:: New room value ".$this->room_total );
 			$this->echo_populate_div( $this->sanitiseOutput('; populateDiv("personal_discount","'.output_price($percentage_to_remove).'")'));
 			$note = jr_gettext('_JOMRES_PERSONAL_DISCOUNT',_JOMRES_PERSONAL_DISCOUNT,false,false)." ".output_price($percentage_to_remove);
-			$this->addBookingNote(_JOMRES_PERSONAL_DISCOUNT,$note);
+			$this->addBookingNote(jr_gettext('_JOMRES_PERSONAL_DISCOUNT',_JOMRES_PERSONAL_DISCOUNT,false),$note);
 			}
 		else
 			$this->setErrorLog("makeNightlyRoomCharges:: Guest does not benefit from any discount");
@@ -5614,7 +5614,7 @@ class dobooking
 				$percentage_to_remove = ($this->room_total/100)*(int)$res->discount;
 				$this->room_total = $this->room_total - $percentage_to_remove;
 				$note = jr_gettext('_JOMRES_PARTNER_DISCOUNT',_JOMRES_PARTNER_DISCOUNT,false,false)." ".output_price($percentage_to_remove);
-				$this->addBookingNote(_JOMRES_PARTNER_DISCOUNT,$note);
+				$this->addBookingNote(jr_gettext('_JOMRES_PARTNER_DISCOUNT',_JOMRES_PARTNER_DISCOUNT,false),$note);
 				$this->setGuestPopupMessage($note);
 				}
 			}
@@ -6253,24 +6253,24 @@ class dobooking
 					if ( !isset($tmpBookingHandler->tmpbooking["wisepricediscount"]) )
 						$tmpBookingHandler->addNewBookingField("wisepricediscount");
 					$roomtype=$d['roomType'];
-					$roomtype_abbr=$this->sanitiseOutput(jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomtype,$this->allRoomClasses[$roomtype]['room_class_abbv'],false,false));
+					$roomtype_abbr=$this->sanitiseOutput(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION'.$roomtype,$this->allRoomClasses[$roomtype]['room_class_abbv'],false,false));
 					$roomrate=$d['roomrate'];
 					$roomrate_foroutput= $roomrate+(($roomrate/100)*$this->accommodation_tax_rate);
 					$discountedate_foroutput= $d['discountedRate']+(($d['discountedRate']/100)*$this->accommodation_tax_rate);
 					//$discountedRate=$d['discountedRate'];
-					$discountOutput.= ' '.$roomtype_abbr._JOMCOMP_WISEPRICE_HASBEENDISCOUNTED.output_price($roomrate_foroutput)._JOMCOMP_WISEPRICE_TO.output_price($discountedate_foroutput).' <br/>';
+					$discountOutput.= ' '.$roomtype_abbr.jr_gettext('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED',_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED,false).output_price($roomrate_foroutput).jr_gettext('_JOMCOMP_WISEPRICE_TO',_JOMCOMP_WISEPRICE_TO,false).output_price($discountedate_foroutput).' <br/>';
 					$tmpBookingHandler->updateBookingField("wisepricediscount",$discountOutput);
 					$discountsForTmpdata[]=array("type"=>"MRP","roomtypeabbr"=>$roomtype_abbr,"discountfrom"=>output_price($roomrate),"discountto"=>output_price($d['discountedRate']));
 					$tmpBookingHandler->saveBookingData();
 					}
 				else
-					$tmpBookingHandler->updateBookingField("wisepricediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
+					$tmpBookingHandler->updateBookingField("wisepricediscount",jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',_JOMCOMP_WISEPRICE_NOTDISCOUNTED,false));
 				}
 			$tmpBookingHandler->updateBookingField("discounts",$discountsForTmpdata);
 			}
 		else
 			{
-			$tmpBookingHandler->updateBookingField("wisepricediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
+			$tmpBookingHandler->updateBookingField("wisepricediscount",jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',_JOMCOMP_WISEPRICE_NOTDISCOUNTED,false));
 			$this->echo_populate_div( '; populateDiv("discount","")');
 			}
 		$this->echo_populate_div('; populateDiv("discount","'.$discountOutput.'")');
@@ -6634,7 +6634,7 @@ class dobooking
 				$this->room_total=$this->room_total-$discount;
 				$this->total_discount=$discount;
 				$this->setErrorLog("<b>calcLastMinuteDiscount:: Room total modified to: ".$this->room_total."</b>");
-				$disc_txt=_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1.' '._JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2.': '.output_price($discount);
+				$disc_txt=jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1',_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION1,false).' '.jr_gettext('_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2',_JOMCOMP_LASTMINUTE_BOOKINGCONFIRMATION2,false).': '.output_price($discount);
 				$this->echo_populate_div('; populateDiv("discount","'.$disc_txt.'")');
 				$tmpBookingHandler->updateBookingField("lastminutediscount",$disc_txt );
 				$tmpBookingHandler->updateBookingField("booking_discounted",true );
@@ -6643,14 +6643,14 @@ class dobooking
 			else
 				{
 				$this->echo_populate_div('; populateDiv("discount","&nbsp;")');
-				$tmpBookingHandler->updateBookingField("lastminutediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
+				$tmpBookingHandler->updateBookingField("lastminutediscount",jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',_JOMCOMP_WISEPRICE_NOTDISCOUNTED,false));
 				}
 			$tmpBookingHandler->updateBookingField("discounts",$discountsForTmpdata);
 			}
 		else
 			{
 			$this->echo_populate_div('; populateDiv("discount","&nbsp;")');
-			$tmpBookingHandler->updateBookingField("lastminutediscount",_JOMCOMP_WISEPRICE_NOTDISCOUNTED);
+			$tmpBookingHandler->updateBookingField("lastminutediscount",jr_gettext('_JOMCOMP_WISEPRICE_NOTDISCOUNTED',_JOMCOMP_WISEPRICE_NOTDISCOUNTED,false));
 			}
 		$tmpBookingHandler->saveBookingData();
 		}

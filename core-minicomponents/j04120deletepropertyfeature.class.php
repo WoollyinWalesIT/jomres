@@ -50,7 +50,7 @@ class j04120deletepropertyfeature {
 			}
 	 	if (!$safeToDelete)
 			{
-			trigger_error (_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE, E_USER_ERROR);
+			trigger_error (jr_gettext('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE',_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE,FALSE), E_USER_ERROR);
 	 		echo "<script> alert('".jr_gettext('_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE',_JOMRES_COM_MR_PROPERTYFEATURE_UNABLETODELETE,FALSE)."'); ; </script>\n";
 			}
 	 	else

@@ -80,7 +80,7 @@ class jomres_dashboard
 	*/
 	function getMonthAndYearOutput()
 		{
-		$output='<table border=1 cellpadding=1 cellspacing=0>';
+		$output='<table border="1" cellpadding="1" cellspacing="0">';
 		$output.='<tr><th>' . strftime( "%B",$this->stdate) . ' ' . strftime( "%Y",$this->stdate) . '</th></tr>';
 		$output.="</table>";
 		return $output;

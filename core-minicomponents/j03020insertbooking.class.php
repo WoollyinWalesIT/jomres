@@ -449,7 +449,7 @@ class j03020insertbooking {
 
 					if (count($rates_uids)>1)
 						$rates_uids=array_unique($rates_uids);
-					jomres_audit($cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+					jomres_audit($cartnumber,jr_gettext('_JOMRES_MR_AUDIT_BOOKED_ROOM',_JOMRES_MR_AUDIT_BOOKED_ROOM,false));
 					}
 				
 				$componentArgs=array();
@@ -478,7 +478,7 @@ class j03020insertbooking {
 					$MiniComponents->triggerEvent('03200',$componentArgs); // post insert booking functionality
 					}
 				
-				jomres_audit("Cart number ".$cartnumber,_JOMRES_MR_AUDIT_BOOKED_ROOM);
+				jomres_audit("Cart number ".$cartnumber,jr_gettext('_JOMRES_MR_AUDIT_BOOKED_ROOM',_JOMRES_MR_AUDIT_BOOKED_ROOM,false));
 				$this->insertBookingEventValues['cartnumber']=$cartnumber;
 				$this->insertBookingEventValues['tempBookingDataList']=$tempBookingDataList;
 				$this->insertBookingEventValues['guestDetails']=$guestDetails;

@@ -41,7 +41,7 @@ class j00009user_option_01_listbookings {
 			$guestEntries=doSelectSql($query);
 			if (count($guestEntries)>0)
 				{
-				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=mulistbookings", '', jr_gettext('_JOMCOMP_MYUSER_LISTBOOKINGS',_JOMCOMP_MYUSER_LISTBOOKINGS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" ,_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT) );
+				$this->cpanelButton=jomres_mainmenu_option(JOMRES_SITEPAGE_URL."&task=mulistbookings", '', jr_gettext('_JOMCOMP_MYUSER_LISTBOOKINGS',_JOMCOMP_MYUSER_LISTBOOKINGS,false,false),null,jr_gettext( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" ,_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT,false,false) );
 				}
 			}
 		}

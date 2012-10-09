@@ -1257,18 +1257,18 @@ function listMosUsers_html($userRowInfo,$option)
 		<form action="<?php echo JOMRES_SITEPAGE_URL_ADMIN; ?>" method="POST" name="adminForm">
 		<table class="ui-widget-content ui-corner-all" border="0" width="75%">
 		<tr>
-			<th class="ui-widget-header ui-corner-all" colspan="9"><?php echo _JOMRES_COM_MR_ASSIGNUSER_TITLE; ?></th>
+			<th class="ui-widget-header ui-corner-all" colspan="9"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_TITLE,'_JOMRES_COM_MR_ASSIGNUSER_TITLE',false); ?></th>
 		</tr>
 		<tr>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_ID; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_NAME; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_USERNAME; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS; ?></th>
-			<th class="ui-widget-header ui-corner-all"><?php echo _JOMRES_COM_USERIS_SUPERPROPERTYMANAGER; ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_ID,'_JOMRES_COM_MR_ASSIGNUSER_ID',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_NAME,'_JOMRES_COM_MR_ASSIGNUSER_NAME',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_USERNAME,'_JOMRES_COM_MR_ASSIGNUSER_USERNAME',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER,'_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDHOTELUSER',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL,'_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDDEFAULTHOTEL',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS,'_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL,'_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDACCESSLEVEL',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS,'_JOMRES_COM_MR_ASSIGNUSER_AUTHORISEDCHANGETHIS',false); ?></th>
+			<th class="ui-widget-header ui-corner-all"><?php echo jr_gettext(_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER,'_JOMRES_COM_USERIS_SUPERPROPERTYMANAGER',false); ?></th>
 		</tr>
 				<?php echo $userRowInfo; ?>
 		</table>
