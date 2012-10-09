@@ -1,3 +1,8 @@
+Jomres 7.1.1
+
+Added more strings to be parsed through the jr_gettext function.
+Fixed another bootstrap bug where changelog and warning popups weren't showing.
+
 Jomres 7.1.0
 
 Fundamentally changed how language strings are used in Jomres. We no longer use "define"d strings, instead strings are added through a new Jomres function jr_define. This allows us much more flexibility in how languages are used within the system. 
