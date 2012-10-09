@@ -97,7 +97,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	//$theText=jomres_reconvertString($theText);
 	if (isset($thisJRUser))
 		{
-		if ($_REQUEST['task']=="touch_templates" && $thisJRUser->userIsManager)
+		if ( ($_REQUEST['task']=="touch_templates" || $_REQUEST['task']=="translate_locales" || $_REQUEST['task']=="translate_lang_file_strings") && $thisJRUser->userIsManager)
 			{
 			$property_uid=0;
 			$jrConfig['editinplace']=1;
@@ -133,8 +133,8 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 						echo '
 							<script type="text/javascript">
 						jomresJquery(document).ready(function() {';
-						if ($_REQUEST['task']=="touch_templates")
-							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&no_html=1", ';
+						if ($_REQUEST['task']=="touch_templates" || $_REQUEST['task']=="translate_locales" || $_REQUEST['task']=="translate_lang_file_strings")
+							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&no_html=1&lang='.get_showtime("lang").'", ';
 						else
 							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace&no_html=1", ';
 						echo "	{

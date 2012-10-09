@@ -22,16 +22,13 @@ class j16000touch_templates
 			{
 			$this->template_touchable=false; return;
 			}
-			
-		echo '<h2>'.jr_gettext("_JOMRES_TOUCHTEMPLATES",_JOMRES_TOUCHTEMPLATES).'</h2>';
-		
+		if (!translation_user_check()) return;
+		echo '<h2>'.jr_gettext("_JOMRES_TOUCHTEMPLATES",_JOMRES_TOUCHTEMPLATES,false).'</h2>';
 		echo "<br/><h3>".get_showtime('lang')."</h3><br/>";
-		
-		
-		
-		$thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
-		
+		$jomreslang = $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
+		echo $jomreslang->get_languageselection_dropdown();
 		echo "<hr>";
+		
 		$packages=subscriptions_packages_getallpackages();
 		if (count($packages)>0)
 			{

@@ -13,6 +13,20 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function translation_user_check()
+	{
+	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+	if (!$thisJRUser->userIsManager || !$thisJRUser->superPropertyManager)
+		{
+		if (using_bootstrap())
+			echo '<div class="alert alert-error">'.jr_gettext("_JOMRES_COM_NOTAMANAGER",_JOMRES_COM_NOTAMANAGER,false).'</div>';
+		else
+			echo '<div class="ui-state-error">'.jr_gettext("_JOMRES_COM_NOTAMANAGER",_JOMRES_COM_NOTAMANAGER,false).'</div>';
+		return false;
+		}
+	return true;
+	}
+	
 function no_search_results()
 	{
 	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
