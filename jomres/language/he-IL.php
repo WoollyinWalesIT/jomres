@@ -815,10 +815,10 @@ jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL','רוב העסקים יחשבו �
 ערך הסף של הימים מגדיר את מספר הימים עד ליום ההגעה לפני שהמחירים מתואמים על ידי תכונה זו,
 ואז אופציית האחוזים מאפשרת להגדיר את אחוז החדרים שיכולים להיות זמינים לפני שהנחה מסוימת נתנת.');
 jr_define('_JOMCOMP_WISEPRICE_THREASHOLD','מרווח ( מספר הימים מיום ההגעה להיום)');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10','אחוז תפוסה < 10%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25','אחוז תפוסה < 25%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50','אחוז תפוסה < 50%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75','אחוז תפוסה< 75%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10','אחוז תפוסה  10%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25','אחוז תפוסה 25%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50','אחוז תפוסה 50%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75','אחוז תפוסה75%');
 jr_define('_JOMCOMP_WISEPRICE_DISCOUNT','הנחה %');
 jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED',' אחרי הנחה מ - ');
 jr_define('_JOMCOMP_WISEPRICE_TO',' אל ');
