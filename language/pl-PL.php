@@ -825,10 +825,10 @@ jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL','Większość firm będzie cenę 
 					Ilość określa liczbę dni, w jakim musi mieścić się data przyjazdu zanim ceny pokoi zostaną regulowane przez tę funkcję. Opcje umożliwiają skonfigurowanie procentu pokoi, które mogą być dostępne przed zastosowaniem danego rabatu.');
 
 jr_define('_JOMCOMP_WISEPRICE_THREASHOLD','Ilość dni (liczba dni pomiędzy datą przyjazdu i dniem dzisiejszym)');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10','Pokoje zajęte w < 10%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25','Pokoje zajęte w < 25%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50','Pokoje zajęte w < 50%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75','Pokoje zajęte w < 75%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10','Pokoje zajęte w 10%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25','Pokoje zajęte w 25%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50','Pokoje zajęte w 50%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75','Pokoje zajęte w 75%');
 jr_define('_JOMCOMP_WISEPRICE_DISCOUNT','Rabat %');
 jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED',' została odrzucona z ');
 jr_define('_JOMCOMP_WISEPRICE_TO',' do ');
