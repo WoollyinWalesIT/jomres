@@ -1,3 +1,10 @@
+Jomres 7.1.2
+
+Added JOOMLA30 to the list of CMSs that allow us to use JFactory::getLanguage to detect the current language.
+Changed the point that we trigger jomres_language to detect the current language in the administrator area.
+Broke translation functionality into two new pages, translate locales and translate lang file strings. Added a new feature to check whether the user's a super property manager before attempting to use the translation features, and added the language dropdown to the three translation pages.
+Discovered that new language file translation feature doesn't like the < symbol in language file definitions. Forced to modify those definitions to remove the <.
+
 Jomres 7.1.1
 
 Added more strings to be parsed through the jr_gettext function.
