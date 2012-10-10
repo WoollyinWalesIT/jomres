@@ -25,7 +25,7 @@ class j10002export_definitions
 			}
 
 		$htmlFuncs =jomres_singleton_abstract::getInstance('html_functions');
-		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=export_definitions', 'EditText.png', jr_gettext( "_JOMRES_EXPORT_DEFINITIONS" , _JOMRES_EXPORT_DEFINITIONS),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES ,false,false));
+		$this->cpanelButton=$htmlFuncs->cpanelButton(JOMRES_SITEPAGE_URL_ADMIN.'&task=export_definitions', 'EditText.png', jr_gettext( "_JOMRES_EXPORT_DEFINITIONS" , _JOMRES_EXPORT_DEFINITIONS,false),"/jomres/images/jomresimages/small/",jr_gettext( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , _JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES ,false,false));
 		}
 	
 	function touch_template_language()
