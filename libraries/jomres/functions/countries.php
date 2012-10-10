@@ -629,7 +629,7 @@ function import_countries()
 function import_regions()
 	{
 	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
-	if (count($jomres_countries->regions)==0)
+	if (count($jomres_regions->regions)==0)
 		{
 		$query = '
 			INSERT INTO #__jomres_regions 
