@@ -25,19 +25,21 @@ class j16000editinplace
 			}
 		$customText = jomresGetParam( $_POST, 'newtext', '','string' );
 		$theConstant =filter_var($_POST['theConstant'],FILTER_SANITIZE_SPECIAL_CHARS);
+		$lang = jomresGetParam( $_REQUEST, 'lang', '' );
+		
 
-		$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = 0 AND language = '".get_showtime('lang')."'";
+		$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = 0 AND language = '".$lang."'";
 		$textList=doSelectSql($query);
 		if (strlen($customText)==0)
 			{
-			$query="DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = 0 AND language = '".get_showtime('lang')."'";
+			$query="DELETE FROM	#__jomres_custom_text WHERE constant = '".$theConstant."' AND property_uid = 0 AND language = '".$lang."'";
 			}
 		else
 			{
 			if (count($textList)<1)
-				$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$customText."',0,'".get_showtime('lang')."')";
+				$query="INSERT INTO #__jomres_custom_text (`constant`,`customtext`,`property_uid`,`language`) VALUES ('".$theConstant."','".$customText."',0,'".$lang."')";
 			else
-				$query="UPDATE #__jomres_custom_text SET `customtext`='".$customText."' WHERE constant = '".$theConstant."' AND property_uid = 0 AND language = '".get_showtime('lang')."'";
+				$query="UPDATE #__jomres_custom_text SET `customtext`='".$customText."' WHERE constant = '".$theConstant."' AND property_uid = 0 AND language = '".$lang."'";
 			}
 		if (doInsertSql($query))
 			echo jomres_decode($customText);
