@@ -122,11 +122,19 @@ if ( isset($_REQUEST['topoff']) )
 	}
 
 $lang=substr(get_showtime('lang'),0,2);
-	
+// For administrator area Jomres lang switching
+$lang_param = '';
+if (isset($_REQUEST['jomreslang']))
+	{
+	$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
+	if (array_key_exists($_REQUEST['jomreslang'],$jomreslang->datepicker_crossref))
+		$lang_param .= "&jomreslang=".$_REQUEST['jomreslang'].'&admin_language='.$_REQUEST['jomreslang'];
+	}
+
 define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang.$tmpl);
 define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&jrajax=1&no_html=1&Itemid=".$jomresItemid."&lang=".$lang);
-define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl);
-define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&jrajax=1&format=raw&no_html=1");
+define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl.$lang_param);
+define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&jrajax=1&format=raw&no_html=1".$lang_param);
 
 if (class_exists('JFactory'))
 	{

@@ -28,6 +28,15 @@ $thisJRUser=$MiniComponents->triggerEvent('00002'); // Register user
 $jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 $jomreslang->get_language();
 $customTextObj =jomres_singleton_abstract::getInstance('custom_text');
+if (isset($_REQUEST['jomreslang']))
+	{
+	$lang_switcher_lang = jomresGetParam( $_REQUEST, 'jomreslang', '' );
+	if (array_key_exists($lang_switcher_lang,$jomreslang->datepicker_crossref))
+		{
+		set_showtime('lang',$lang_switcher_lang);
+		$customTextObj->reset_current_lang($lang_switcher_lang);
+		}
+	}
 
 $MiniComponents->triggerEvent('00003');
 
@@ -154,7 +163,7 @@ if (!AJAXCALL)
 		}
 	
 	$output['LANGDROPDOWN'] ='';
-	if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30")
+	//if (_JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30") // previously the switcher didn't work in J2.5/J3 so we disabled it from the output. 7.1.4 changes indicate that we've found a way around those problems, so we'll now enable it in those versions. We'll leave this line in-situ for now in case we need to step back from that and disable the lang dropdown in 2.5/3 in the future.
 		$output['LANGDROPDOWN'] = $jomreslang->get_languageselection_dropdown();
 					
 	$output['BACKTOTOP']=jr_gettext('BACKTOTOP',BACKTOTOP,false);
