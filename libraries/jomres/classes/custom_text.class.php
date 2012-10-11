@@ -28,7 +28,13 @@ class custom_text
 		$this->xcustom_text();
 		$this->get_custom_text_for_all_properties();
 		}
-
+	
+	public function reset_current_lang($lang)
+		{
+		$this->lang = $lang;
+		$this->xcustom_text();
+		}
+	
 	public static function getInstance()
 		{
 		if (!self::$configInstance)
