@@ -100,7 +100,7 @@
 					<td>{LASTUPDATE}</td>
 					<td>
 						<a class="btn btn-info" id="{PLUGIN_NAME}" rel="popover" title="{PLUGIN_NAME}" data-content="{PLUGIN_DESC}">Description</a>
-						<script> jomresJquery(function () { jomresJquery("#{PLUGIN_NAME}").popover(); }); </script>
+						<script> jomresJquery(function () { jomresJquery("#{PLUGIN_NAME}").popover({trigger: 'hover'}); }); </script>
 						<!-- {PLUGIN_DESC}<br/> Temp commented out, seems that since J3b1 the popover code has changed and this no longer works -->
 						<a href="{MANUAL_LINK}" target="_blank" class="{MANUAL_CLASS}">{MANUAL_TEXT}</a> 
 						<a href="{DEMO_LINK}" target="_blank" class="{DEMO_CLASS}">{DEMO_TEXT}</a>
