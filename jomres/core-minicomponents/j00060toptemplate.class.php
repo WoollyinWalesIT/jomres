@@ -80,10 +80,15 @@ class j00060toptemplate {
 					}
 				}
 			
-			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
-				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
-			elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
-				$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
+			if (using_bootstrap())
+				{
+				if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.png'))
+					$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.png';
+				elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
+					$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
+				else
+					$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
+				}
 			else
 				$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
 			
