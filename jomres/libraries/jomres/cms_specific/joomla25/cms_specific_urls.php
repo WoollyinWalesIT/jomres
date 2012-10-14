@@ -128,7 +128,7 @@ if (isset($_REQUEST['jomreslang']))
 	{
 	$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
 	if (array_key_exists($_REQUEST['jomreslang'],$jomreslang->datepicker_crossref))
-		$lang_param .= "&jomreslang=".$_REQUEST['jomreslang'].'&admin_language='.$_REQUEST['jomreslang'];
+		$lang_param .= "&jomreslang=".$_REQUEST['jomreslang'];
 	}
 
 define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang.$tmpl);
