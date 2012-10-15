@@ -89,7 +89,8 @@ class j16000listbookings
 
 	function bc_is_even($int_str)
 		{
-		if (strlen($int_str)>0)
+		return (int)!($int_str & 1);
+/* 		if (strlen($int_str)>0)
 			{
 			if (bcmod($int_str, 2)==='0')
 				return true;
@@ -97,7 +98,7 @@ class j16000listbookings
 				return false;
 			}
 		else	// error
-			return 0;
+			return 0; */
 		}
 
 	// This must be included in every Event/Mini-component
