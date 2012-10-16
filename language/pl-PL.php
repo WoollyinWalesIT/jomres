@@ -8,7 +8,7 @@
 * @copyright	2005-2012 Vince Wooll
 * Jomres is currently available for use in all personal or commercial projects under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly. 
 * @Polska adaptacja Patryk Doering - http://www.rekinet.pl - kontakt@rekinet.pl
-* @Aktualizacja wersji językowej z 12-09-2012r.
+* @Aktualizacja wersji językowej z 10-10-2012r.
 **/
 
 ##################################################################
@@ -576,7 +576,7 @@ jr_define('_JOMRES_COM_PROPERTYLISTDESC_DESC',"Podaj ilość znaków wyświetlan
 jr_define('_JOMRES_COM_A_DATEFORMATSTYLE','Własny format daty');
 jr_define('_JOMRES_COM_A_DATEFORMATSTYLE_DESC','Ustaw na Tak, jeżeli chcesz ustalić format daty zgodnie z funkcją date() (Zobacz <a href="http://www.php.net/manual/en/function.date.php">Tutaj</a>). Ustaw na Nie, jeżeli chcesz użyć formatu funkcji strftime() (zobacz <a href="http://www.php.net/manual/en/function.strftime.php">Tutaj</a> np. %b %d %Y .');
 jr_define('_JOMRES_COM_MR_VRCT_PUBLISH','Kliknij aby opublikować ofertę w portalu');
-jr_define('_JOMRES_COM_MR_VRCT_UNPUBLISH','Cofnij publikację oferty z portalu');
+jr_define('_JOMRES_COM_MR_VRCT_UNPUBLISH','Wycofaj publikację');
 jr_define('_JOMRES_A_GLOBALROOMTYPES','Używaj globalnych typów pokoi');
 jr_define('_JOMRES_A_GLOBALROOMTYPES_DESC','Ustaw na Tak, jeżeli chcesz aby wszystkie oferty używały tylko typów pokoi zdefiniowanych przez administratora.  Należy ustawić na Tak, jeżeli ma być możliwe wyszukiwanie wg typów pokoi.');
 jr_define('_JOMRES_A_GLOBALROOMTYPES_INFO','Aby przypisać ikonę do typu pokoju, należy uprzednio zapisać ikony typów pokoi do katalogu /images/stories/jomres/rmtypes/ na serwerze.');
@@ -825,10 +825,10 @@ jr_define('_JOMCOMP_WISEPRICE_TITLE_DESC_FULL','Większość firm będzie cenę 
 					Ilość określa liczbę dni, w jakim musi mieścić się data przyjazdu zanim ceny pokoi zostaną regulowane przez tę funkcję. Opcje umożliwiają skonfigurowanie procentu pokoi, które mogą być dostępne przed zastosowaniem danego rabatu.');
 
 jr_define('_JOMCOMP_WISEPRICE_THREASHOLD','Ilość dni (liczba dni pomiędzy datą przyjazdu i dniem dzisiejszym)');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10','Pokoje zajęte w 10%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25','Pokoje zajęte w 25%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50','Pokoje zajęte w 50%');
-jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75','Pokoje zajęte w 75%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE10','Pokoje zajęte w < 10%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE25','Pokoje zajęte w < 25%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE50','Pokoje zajęte w < 50%');
+jr_define('_JOMCOMP_WISEPRICE_PERCENTAGE75','Pokoje zajęte w < 75%');
 jr_define('_JOMCOMP_WISEPRICE_DISCOUNT','Rabat %');
 jr_define('_JOMCOMP_WISEPRICE_HASBEENDISCOUNTED',' została odrzucona z ');
 jr_define('_JOMCOMP_WISEPRICE_TO',' do ');
@@ -1842,72 +1842,62 @@ jr_define('_JOMRES_BOOTSTRAPSWITCH_FRONTEND',"Użyj szablonów Jomres Bootstrap 
 jr_define('_JOMRES_BOOTSTRAPSWITCH_ADMINISTRATOR',"Użyj szablonów Jomres Bootstrap na zapleczu?");
 jr_define('_JOMRES_ALTERNATIVE_SEARCH_RESULTS',"Oto kilka alternatywnych opcji, które warto rozważyć.");
 jr_define('_JOMRES_BEEZ_WARNING',"Uwaga! Twój szablon na froncie jest aktualnie ustawiony na Beez3. Należy pamiętać, że nasze szablony nie są kompatybilne z Beez3 i radzimy przełączyć szablon witryny na szablon Bootstrapped np. Protostar.");
-
-jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT',"Auto-detect guest's country?");
-jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC',"The system will try to automatically detect the guest's country, if they haven't booked before. You can set this option to No, and define the country you'd prefer to appear in the booking form, in the next option.");
-
-
-jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES" , "About Jomres");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN" , "1 main");
-jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED" , "Getting started");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE" , "system maintenance");
-jr_define( "_JOMRES_CUSTOMCODE_ACCESSCONTROL" , "Access Control");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS" , "developer tools");
-jr_define( "_JOMRES_CUSTOMCODE_ASAMODULE" , "ASAModule" );
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES" , "languages");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION" , "income generation");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING" , "accounting");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS" , "bookings");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE" , "site structure");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT" , "user management");
-jr_define( "_JOMRES_CUSTOMCODE_MANUAL" , "Manual (online)");
-jr_define( "_JOMRES_CUSTOMCODE_MYACCOUNTONLINE" , "My Account (online)");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS" , "scheduled tasks");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL" , "portal functionality");
-jr_define( "_JOMRES_CUSTOMCODE_PLUGINMANAGER" , "Plugin manager");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION" , "integration");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS" , "reports/statistics");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES" , "taxes");
-jr_define( "_JOMRES_CUSTOMCODE_SUPPORT_TICKETS" , "Tickets (online)");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP" , "help");
-jr_define( "_JOMRES_CUSTOMCODE_UPGRADES" , "Upgrades");
-jr_define( "_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS" , "payment methods");
-
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT" , "Tariff default");
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT_DESC" , "This only applies to new tariffs");
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW" , "Years to show");
-jr_define( "_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW_DESC" , "Defines the number of years to show when editing a tariff type");
-
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT" , "account details");
-jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',"Login");
-jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT',"Logout");
-jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', "search");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME" , "dashboard");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK" , "reserve");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS" , "management");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING" , "invoices");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS" , "settings");
-jr_define( "_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC" , "misc");
-jr_define( "_JOMRES_PROPERTYCONFIG_SRPS" , "SRPs");
-
-jr_define( "_JOMRES_EDIT_COUNTRY_TITLE" , "Edit country");
-jr_define( "_JOMRES_EDIT_COUNTRY_ID" , "Country id");
-jr_define( "_JOMRES_EDIT_COUNTRY_COUNTRYCODE" , "Country code");
-jr_define( "_JOMRES_EDIT_COUNTRY_COUNTRYNAME" , "Country name");
-
-jr_define( "_JOMRES_EDIT_REGION_TITLE" , "Edit region");
-jr_define( "_JOMRES_EDIT_REGION_ID" , "Region id");
-jr_define( "_JOMRES_EDIT_REGION_COUNTRYCODE" , "Country code");
-jr_define( "_JOMRES_EDIT_REGION_REGIONNAME" , "Region name");
-
-
-jr_define( "_JOMRES_COM_LISTCOUNTRIES" , "List countries");
-jr_define( "_JOMRES_COM_LISTREGIONS" , "List regions");
-jr_define( "_JOMRES_EXPORT_DEFINITIONS" , "Export definitions");
-jr_define( "_JOMRES_EXPORT_DEFINITIONS_INFO" , "This feature allows you to export translations that have been built up using the Language Translation feature. It will build up a text field with all of the data required to build a new language file, all you need to do is copy and paste this output into a new language file that you can put onto a new Jomres based server, or if you want to contribute back to the Jomres community.");
-
-jr_define( "_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS" , "Translate locales");
-jr_define( "_JOMRES_COM_TRANSLATE_LANGUAGEFILES" , "Translate lang file strings");
-jr_define( "_JOMRES_COM_NOTAMANAGER" , "Error, the user you're logged in as is not a super manager within Jomres, you will not be able to use this feature until you've used the Show Profiles feature to make yourself BOTH a manager and a Super manager. This is a security feature.");
+jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT',"Automatyczne wykrywanie kraju użytkownika?");
+jr_define('_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC',"System automatycznie wykryje kraj użytkownika w formularzu rezerwacji. Możesz ustawić tę opcję na Nie i określić domyślny kraj pojawiający się w formularzu rezerwacji wybierając go w następnej opcji.");
+jr_define("_JOMRES_CUSTOMCODE_SUPPORT_ABOUTJOMRES","O Jomres");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP","Pomoc");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAIN","1 Główne");
+jr_define("_JOMRES_CUSTOMCODE_SUPPORT_GETTINGSTARTED","Szybki start");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_MAINTENANCE","Konserwacja systemu");
+jr_define("_JOMRES_CUSTOMCODE_ACCESSCONTROL","Kontrola dostępu");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_DEVELOPERS","Narzędzia programisty");
+jr_define("_JOMRES_CUSTOMCODE_ASAMODULE","ASAModule");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_LANGUAGES","Wersje językowe");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_INCOME_GENERATION","Generowanie dochodu");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_ACCOUNTING","Księgowość");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_BOOKINGS","Rezerwacje");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_STRUCTURE","Struktura serwisu");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_USERMANAGEMENT","Zarządzanie użytkownikami");
+jr_define("_JOMRES_CUSTOMCODE_MANUAL","Instrukcja (on-line)");
+jr_define("_JOMRES_CUSTOMCODE_MYACCOUNTONLINE","Moje konto (on-line)");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_CRONJOBS","Zaplanowane zadania");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_PORTAL","Funkcjonalność portalu");
+jr_define("_JOMRES_CUSTOMCODE_PLUGINMANAGER","Plugin manager");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_INTEGRATION","Integracje");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_STATS","Raporty i statystyki");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_TAXES","Podatki");
+jr_define("_JOMRES_CUSTOMCODE_SUPPORT_TICKETS","Wsparcie (on-line)");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_HELP","Pomoc");
+jr_define("_JOMRES_CUSTOMCODE_UPGRADES","Aktualizację");
+jr_define("_JOMRES_CUSTOMCODE_MENUCATEGORIES_GATEWAYS","Metody płatności");
+jr_define("_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT","Taryfa domyślna");
+jr_define("_JOMRES_TARIFFTYPES_MISCSETTINGS_DEFAULT_DESC","Dotyczy to tylko nowych taryf.");
+jr_define("_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW","Ilość lat");
+jr_define("_JOMRES_TARIFFTYPES_MISCSETTINGS_YEARSTOSHOW_DESC","Określa ilość lat widocznych podczas edycji taryf.");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING","Faktury");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT","Dane konta");
+jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGIN',"Zaloguj");
+jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_LOGOUT',"Wyloguj");
+jr_define('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', "Szukaj");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_HOME","Recepcja");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_BOOK","Księga rezerwacji");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_PMS","Manager");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_ACCOUNTING","Faktury");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_SETTINGS","Ustawienia");
+jr_define("_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MISC","Raportowanie");
+jr_define("_JOMRES_PROPERTYCONFIG_SRPS","SRPs");
+jr_define("_JOMRES_EDIT_COUNTRY_TITLE","Edytuj kraj");
+jr_define("_JOMRES_EDIT_COUNTRY_ID","ID kraju");
+jr_define("_JOMRES_EDIT_COUNTRY_COUNTRYCODE","Kod kraju");
+jr_define("_JOMRES_EDIT_COUNTRY_COUNTRYNAME","Nazwa kraju");
+jr_define("_JOMRES_EDIT_REGION_TITLE","Edytuj region");
+jr_define("_JOMRES_EDIT_REGION_ID","ID regionu");
+jr_define("_JOMRES_EDIT_REGION_COUNTRYCODE","Kod kraju");
+jr_define("_JOMRES_EDIT_REGION_REGIONNAME","Nazwa regionu");
+jr_define("_JOMRES_COM_LISTCOUNTRIES","Lista krajów");
+jr_define("_JOMRES_COM_LISTREGIONS","Lista regionów");
+jr_define("_JOMRES_EXPORT_DEFINITIONS","Eksport tłumaczeń");
+jr_define("_JOMRES_EXPORT_DEFINITIONS_INFO","Funkcja ta pozwala na eksport tłumaczeń języka, które zostały zbudowane przy użyciu funkcji tłumaczeń. W polu edycyjnym wyświetlone zostaną wszystkie dane wymagane do stworzenia nowego pliku językowego, wszystko co musisz zrobić, to skopiować i wkleić zawartość pola do nowego pliku językowego, który następnie można umieścić na serwerze.");
+jr_define("_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS","Tłumaczenie lokalizacji");
+jr_define("_JOMRES_COM_TRANSLATE_LANGUAGEFILES","Tłumaczenie ciągów plików");
+jr_define("_JOMRES_COM_NOTAMANAGER","Błąd! Nie jesteś zalogowany jako Super Manager. Jest to funkcja bezpieczeństwa.");
