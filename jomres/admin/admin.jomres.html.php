@@ -793,6 +793,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
 					<th width="60%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_EXPLANATION,'_JOMRES_COM_A_EXPLANATION',false).'</th>
 			</tr>
+			<tr valign="middle" class="even">
+				<td valign="middle">'.jr_gettext(_JOMRES_COM_LAYOUTS_DEFAULT,'_JOMRES_COM_LAYOUTS_DEFAULT',false).'</td>
+				<td valign="middle">'.$layouts.'</td>
+				<td valign="middle"></td>
+			</tr>
 			<tr valign="middle" class="odd">
 				<td valign="middle">'.jr_gettext(_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS,'_JOMRES_A_GLOBAL_SEARCHOPTION_PEOPLENUMBERS',false).'</td>
 				<td valign="middle">'.$guestnumbersearchDropdownList.'</td>

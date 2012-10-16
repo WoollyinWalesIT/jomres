@@ -251,5 +251,5 @@ $jrConfig['html_purifier_allowed_tags'] = "p,b,strong,a[href],i";
 $jrConfig['inputs_allowing_html'] = "property_description property_checkin_times property_area_activities property_driving_directions property_airports property_othertransport property_policies_disclaimers";
 
 $jrConfig['property_details_in_tabs'] = "1";
-
+$jrConfig['property_list_layout_default'] = "list";
 ?>

@@ -46,7 +46,7 @@ class j01010listpropertys {
 		$customTextObj =jomres_singleton_abstract::getInstance('custom_text');
 		
 		if (is_null($tmpBookingHandler->tmpsearch_data['current_property_list_layout']))
-			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = "list";
+			$tmpBookingHandler->tmpsearch_data['current_property_list_layout'] = $jrConfig['property_list_layout_default'];
 
 		$property_list_layouts = get_showtime('property_list_layouts');
 		if (count($property_list_layouts) ==1)

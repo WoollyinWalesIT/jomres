@@ -1901,3 +1901,5 @@ jr_define("_JOMRES_EXPORT_DEFINITIONS_INFO","Funkcja ta pozwala na eksport tłum
 jr_define("_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS","Tłumaczenie lokalizacji");
 jr_define("_JOMRES_COM_TRANSLATE_LANGUAGEFILES","Tłumaczenie ciągów plików");
 jr_define("_JOMRES_COM_NOTAMANAGER","Błąd! Nie jesteś zalogowany jako Super Manager. Jest to funkcja bezpieczeństwa.");
+
+jr_define( "_JOMRES_COM_LAYOUTS_DEFAULT" , "Property list default layout");
