@@ -1942,3 +1942,5 @@ jr_define( "_JOMRES_EXPORT_DEFINITIONS_INFO" , "This feature allows you to expor
 jr_define( "_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS" , "Translate locales");
 jr_define( "_JOMRES_COM_TRANSLATE_LANGUAGEFILES" , "Translate lang file strings");
 jr_define( "_JOMRES_COM_NOTAMANAGER" , "Error, the user you're logged in as is not a super manager within Jomres, you will not be able to use this feature until you've used the Show Profiles feature to make yourself BOTH a manager and a Super manager. This is a security feature.");
+
+jr_define( "_JOMRES_COM_LAYOUTS_DEFAULT" , "Property list default layout");
