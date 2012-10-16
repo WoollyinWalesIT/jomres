@@ -37,7 +37,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts)
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
