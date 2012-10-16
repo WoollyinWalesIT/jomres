@@ -530,9 +530,9 @@ class j02990showconfirmation {
 				{
 				
 				$booking_parts['_JOMRES_CART_OR']			=jr_gettext('_JOMRES_CART_OR',_JOMRES_CART_OR);
-				$booking_parts['_JOMRES_SAVEFORLATER']		='<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false).'" class="button" onclick="return confirmation_validate(true);" />';
+				$booking_parts['_JOMRES_SAVEFORLATER']		='<input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="'.jr_gettext('_JOMRES_CART_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false).'" class="button" onclick="return confirmation_validate(true);" />';
 				$cartoutput = array();
-				$cartoutput[] = array("_JOMRES_SAVEFORLATER"=>jr_gettext('_JOMRES_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false),"_JOMRES_CART_OR"=>$booking_parts['_JOMRES_CART_OR']);
+				$cartoutput[] = array("_JOMRES_SAVEFORLATER"=>jr_gettext('_JOMRES_CART_SAVEFORLATER',_JOMRES_CART_SAVEFORLATER,false,false),"_JOMRES_CART_OR"=>$booking_parts['_JOMRES_CART_OR']);
 				
 				}
 			}
