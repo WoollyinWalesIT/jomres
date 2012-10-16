@@ -21,7 +21,6 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 #
  */
  
-header('Content-type: text/html; utf-8');
 
 $tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 $bookingDeets=gettempBookingdata();
