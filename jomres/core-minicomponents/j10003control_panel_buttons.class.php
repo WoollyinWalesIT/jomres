@@ -41,7 +41,7 @@ class j10003control_panel_buttons {
 		$control_panel_buttons_categorised = array();
 		foreach ($control_panel_buttons as $button)
 			{
-			$category=strtolower($button['category']);
+			$category=jr_strtolower($button['category']);
 			$order = $button['order'];
 			$control_panel_buttons_categorised[$category][]=$button;
 			}
