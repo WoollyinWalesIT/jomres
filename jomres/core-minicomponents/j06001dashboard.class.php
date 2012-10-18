@@ -23,8 +23,11 @@ class j06001dashboard extends jomres_dashboard
 			{
 			$this->template_touchable=false; return;
 			}
-		
+		//
 		$property_uid = $componentArgs['property_uid'];
+		if (is_null($property_uid))
+			$property_uid = getDefaultProperty();
+		
 		$this->show_legend=false;
 		if (isset($componentArgs['show_legend']))
 			$this->show_legend = $componentArgs['show_legend'];
@@ -32,7 +35,7 @@ class j06001dashboard extends jomres_dashboard
 		$this->show_date_dropdown = false;
 		if (isset($componentArgs['show_date_dropdown']))
 			$this->show_date_dropdown = $componentArgs['show_date_dropdown'];
-		
+
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!in_array($property_uid,$thisJRUser->authorisedProperties))
 			return;
