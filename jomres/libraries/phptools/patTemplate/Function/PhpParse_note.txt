@@ -1,0 +1,10 @@
+Example usage : 
+
+<patTemplate:PhpParse>
+$i = 0;
+while( $i < 10 )
+{
+  echo "This is line $i.<br />";
+  $i++;
+}
+</patTemplate:PhpParse>
