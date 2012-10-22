@@ -3290,14 +3290,19 @@ function listGateways()
  * Shows the dropdown for selecting the property type in the edit property function
 #
 */
-function getPropertyTypeDropdown($propertyType="",$all=false)
+function getPropertyTypeDropdown($propertyType="",$all=false,$empty_ok=false)
 	{
+	
 	$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
 	$ptypeList = doSelectSql($query);
 	if (count($ptypeList)>0)
 		{
+		$ptypeOptions = array();
 		if ($all)
 			$ptypeOptions[]=jomresHTML::makeOption( 0, jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false));
+		if ($empty_ok)
+			$ptypeOptions[]=jomresHTML::makeOption( 0,' ');
+		
 		foreach ($ptypeList as $ptype)
 			{
 			$ptypeOptions[]=jomresHTML::makeOption( $ptype->id,stripslashes(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.$ptype->id,$ptype->ptype,false,false)) );
