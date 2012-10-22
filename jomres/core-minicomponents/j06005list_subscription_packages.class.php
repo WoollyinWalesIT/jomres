@@ -73,7 +73,7 @@ class j06005list_subscription_packages
 			$r['FULLAMOUNT']	=output_price($package['full_amount'],$jrConfig['globalCurrencyCode']);
 			$r['ROOMSLIMIT']	=$package['rooms_limit'];
 			$r['PROPERTYLIMIT']	=$package['property_limit'];
-			$r['SUBSCRIBE']		='<a href="'.JOMRES_SITEPAGE_URL.'&task=subscribe&id='.$package['id'].'">'._JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE.'</a>';
+			$r['SUBSCRIBE']		='<a href="'.JOMRES_SITEPAGE_URL.'&task=subscribe&id='.$package['id'].'">'.jr_gettext('_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE',_JRPORTAL_SUBSCRIPTIONS_PACKAGES_SUBSCRIBE,false).'</a>';
 			$rows[]=$r;
 			}
 
