@@ -24,9 +24,9 @@ class j16000delete_template
 			}
 		if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 		
-		$templatename		= jomresGetParam( $_REQUEST, 'templatename', '' );
+		$id		= jomresGetParam( $_REQUEST, 'id', '' );
 
-		$query = "DELETE FROM  #__jomres_custom_templates WHERE `template_name`= '".$templatename."'";
+		$query = "DELETE FROM  #__jomres_custom_templates WHERE `uid`= '".$id."'";
 		$result = doInsertSql($query,'');
 		
 		if ($templatename=="jomrescss.css")
