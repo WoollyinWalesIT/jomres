@@ -32,8 +32,6 @@ class jomres_custom_template_handler
 		{
 		if (!$specific_path)
 			$this->default_template_files_folder = JOMRES_TEMPLATEPATH_FRONTEND;
-		
-		$this->custom_template = array();
 		$this->getAllCustomTemplates();
 		}
 
@@ -42,35 +40,39 @@ class jomres_custom_template_handler
 		if (!isset($this->custom_templates))
 			{
 			$this->custom_templates=array();
-			$query = "SELECT template_name,value FROM #__jomres_custom_templates";
+			$query = "SELECT uid,template_name,value,ptype_id FROM #__jomres_custom_templates";
 			$templates = doSelectSql($query);
 			if (count($templates)>0)
 				{
 				foreach ($templates as $t)
 					{
-					$this->custom_templates[$t->template_name]=array('template_name'=>$t->template_name);
+					$this->custom_templates[$t->template_name][$t->uid]=array('template_name'=>$t->template_name,'ptype_id'=>$t->ptype_id,"id"=>$t->uid);
 					}
 				}
 			}
-		else
-			$this->custom_templates=$jomres_custom_templates;
 		}
 
-	function hasThisTemplateBeenCustomised($templatename)
+	function hasThisTemplateBeenCustomised($templatename,$ptype_id = null)
 		{
-		if (array_key_exists($templatename,$this->custom_templates) )
-			return true;
+		foreach ($this->custom_templates as $record_template_name=>$val)
+			{
+			foreach ($val as $record_id=>$record)
+				{
+				if ($record_template_name == $templatename && $record['ptype_id'] == $ptype_id)
+					return true;
+				}
+			}
 		return false;
 		}
 	
-	function getTemplateData($templatename)
+	function getTemplateData($templatename,$ptype_id = 0)
 		{
 		$cssFile="jomrescss.css";
 		if (using_bootstrap())
 			$cssFile="jomrescss_bootstrap.css";
-		if ($this->hasThisTemplateBeenCustomised($templatename))
+		if ($this->hasThisTemplateBeenCustomised($templatename,$ptype_id))
 			{
-			$query = "SELECT value FROM #__jomres_custom_templates WHERE `template_name` = '".$templatename."'";
+			$query = "SELECT value,ptype_id FROM #__jomres_custom_templates WHERE `template_name` = '".$templatename."' AND `ptype_id`='".(int)$ptype_id."' ";
 			$templates = doSelectSql($query);
 			if (count($templates)>0)
 				{
