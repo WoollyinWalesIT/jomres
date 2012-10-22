@@ -32,6 +32,7 @@ class jomres_custom_template_handler
 		{
 		if (!$specific_path)
 			$this->default_template_files_folder = JOMRES_TEMPLATEPATH_FRONTEND;
+		$this->temp_ptype_id = null; // After checking to see if a template's been customised, we'll need to store the ptype found in case it's 0 (zero) which means the template's for all properties
 		$this->getAllCustomTemplates();
 		}
 
@@ -52,27 +53,45 @@ class jomres_custom_template_handler
 			}
 		}
 
-	function hasThisTemplateBeenCustomised($templatename,$ptype_id = null)
+	function hasThisTemplateBeenCustomised($templatename,$ptype_id = 0)
 		{
+		// Cycle the custom templates. Here we're working on the assumption that the property type has a customised template
 		foreach ($this->custom_templates as $record_template_name=>$val)
 			{
 			foreach ($val as $record_id=>$record)
 				{
 				if ($record_template_name == $templatename && $record['ptype_id'] == $ptype_id)
+					{
+					$this->temp_ptype_id = $record['ptype_id'];
 					return true;
+					}
 				}
 			}
+		// What if it doesn't? Here we'll look for a customised template for that template name, but property type id of 0. If it exists, we'll return true. It's a fallback to allow us to find the templates that should work on all property types.
+ 		foreach ($this->custom_templates as $record_template_name=>$val)
+			{
+			foreach ($val as $record_id=>$record)
+				{
+				if ($record_template_name == $templatename && $record['ptype_id'] == 0)
+					{
+					$this->temp_ptype_id = $record['ptype_id'];
+					return true;
+					}
+				}
+			} 
+			
 		return false;
 		}
-	
+
 	function getTemplateData($templatename,$ptype_id = 0)
 		{
 		$cssFile="jomrescss.css";
 		if (using_bootstrap())
 			$cssFile="jomrescss_bootstrap.css";
-		if ($this->hasThisTemplateBeenCustomised($templatename,$ptype_id))
+		$customised = $this->hasThisTemplateBeenCustomised($templatename,$ptype_id);
+		if ($customised)
 			{
-			$query = "SELECT value,ptype_id FROM #__jomres_custom_templates WHERE `template_name` = '".$templatename."' AND `ptype_id`='".(int)$ptype_id."' ";
+			$query = "SELECT value,ptype_id FROM #__jomres_custom_templates WHERE `template_name` = '".$templatename."' AND `ptype_id`='".(int)$this->temp_ptype_id."' ";
 			$templates = doSelectSql($query);
 			if (count($templates)>0)
 				{
