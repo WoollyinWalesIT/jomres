@@ -462,8 +462,32 @@ function doTableUpdates()
 	if (!checkCountriesTableExists() )
 		createCountriesTable();
 	
+	if (!checkCustomtemplatesPtypeidColExists() )
+		alterCustomtemplatesPtypeidCol();
+	
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function alterCustomtemplatesPtypeidCol()
+	{
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_custom_templates table adding ptype_id column<br>";
+	$query = "ALTER TABLE `#__jomres_custom_templates` ADD `ptype_id` INT( 11 ) DEFAULT '0' NOT NULL AFTER `value` ";
+	if (!doInsertSql($query,'') )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_custom_templates ptype_id</b><br>";
+		}
+	}
+
+function checkCustomtemplatesPtypeidColExists()
+	{
+	$query="SHOW COLUMNS FROM #__jomres_custom_templates LIKE 'ptype_id'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
 	}
 
 function createCountriesTable()
@@ -3598,6 +3622,7 @@ function addNewTables()
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`template_name` VARCHAR( 255 ) ,
 		`value` TEXT NULL,
+		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		PRIMARY KEY ( `uid` )
 		) ";
 	if (!doInsertSql($query))
