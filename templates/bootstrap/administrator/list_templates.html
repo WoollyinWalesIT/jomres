@@ -1,4 +1,5 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+
 <h2 class="page-header">{TITLE}</h2>
 <p>{INSTRUCTIONS}</p>
 <p>{EDITWARNINGNOTE}</p>
@@ -6,21 +7,27 @@
 <table class="table table-striped" width="100%" >
 	<thead>
 		<tr>
+			<th></th>
 			<th>{HTEMPLATENAME}</th>
 			<th class="hidden-phone">{HCUSTOMISED}</th>
 			<th class="hidden-phone">{HLAST_EDITED_DISK}</th>
 			<th class="hidden-phone">{HLAST_EDITED_DB}</th>
 			<th class="hidden-phone">{HLAST_WARNINGICON}</th>
+			<th>{HPTYPE}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<patTemplate:tmpl name="rows" unusedvars="nbsp">
 		<tr>
-			<td>{EDITLINK}</td>
+			<td>
+				{EDIT_LINKS}
+			</td>
+			<td>{TEMPLATENAME}</td>
 			<td class="hidden-phone">{EDITED}</td>
 			<td class="hidden-phone">{LAST_EDITED_DISK}</td>
 			<td class="hidden-phone">{LAST_EDITED_DB}</td>
 			<td class="hidden-phone">{WARNINGICON}</td>
+			<td>{PROPERTY_TYPE}</td>
 		</tr>
 		</patTemplate:tmpl>
 	</tbody>

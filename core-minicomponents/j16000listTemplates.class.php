@@ -25,6 +25,18 @@ class j16000listTemplates
 			}
 		$output=array();
 
+		$this->all_property_types = array();
+		$query="SELECT id,ptype FROM #__jomres_ptypes";
+		$propertytypes =doSelectSql($query);
+		if (count($propertytypes)>0)
+			{
+			$this->all_property_types[0]=jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false);
+			foreach ($propertytypes as $pt)
+				{
+				$this->all_property_types[$pt->id]=$pt->ptype;
+				}
+			}
+		
 		$output['TITLE']=jr_gettext("_JOMRES_COM_TEMPLATEEDITING_TITLE",_JOMRES_COM_TEMPLATEEDITING_TITLE);
 		$output['INSTRUCTIONS']=jr_gettext("_JOMRES_COM_TEMPLATEEDITING_DESC",_JOMRES_COM_TEMPLATEEDITING_DESC);
 		
@@ -34,6 +46,7 @@ class j16000listTemplates
 		$output['HLAST_EDITED_DISK']=jr_gettext("_JOMRES_LASTEDITED_DISK",_JOMRES_LASTEDITED_DISK);
 		$output['HLAST_WARNINGICON']=jr_gettext("_JOMRES_LASTEDITED_WARNINGICON",_JOMRES_LASTEDITED_WARNINGICON);
 		$output['EDITWARNINGNOTE']=jr_gettext("_JOMRES_LASTEDITED_WARNING",_JOMRES_LASTEDITED_WARNING);
+		$output['HPTYPE'] =jr_gettext('_JOMRES_COM_PTYPES_PTYPE',_JOMRES_COM_PTYPES_PTYPE);
 		
 		$custom_templates =jomres_singleton_abstract::getInstance('jomres_custom_template_handler');
 
@@ -69,33 +82,83 @@ class j16000listTemplates
 				$counter=0;
 				foreach ($docs as $doc)
 					{
-					if ($doc != "jomrescss.css" && $doc != "srch.html")
+					if ($doc != "jomrescss.css" && $doc != "srch.html" && trim($doc) != "")
 						{
-						$r=array();
-						$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO,false);
-						if ($custom_templates->hasThisTemplateBeenCustomised($doc))
+						if (array_key_exists($doc,$custom_templates->custom_templates))
 							{
-							$r['WARNINGICON']="";
-							$r['LAST_EDITED_DISK'] = date ("Y-m-d H:i:s", filemtime($frontendTemplatesFolder.JRDS.$doc));
-							
-							$query = "SELECT last_edited FROM #__jomres_custom_templates WHERE `template_name` = '".$doc."'";
-							$r['LAST_EDITED_DB'] = doSelectSql($query,1);
-							if ($r['LAST_EDITED_DB'] != "0000-00-00 00:00:00")
+							foreach ($custom_templates->custom_templates[$doc] as $customised)
 								{
-								if ($r['LAST_EDITED_DISK'] > $r['LAST_EDITED_DB'])
-									$r['WARNINGICON']=jr_gettext("_JOMRES_LASTEDITED_WARNINGICON_TEXT",_JOMRES_LASTEDITED_WARNINGICON_TEXT,false);
+								$r=array();
+								$r['WARNINGICON']="";
+								$r['LAST_EDITED_DISK'] = date ("Y-m-d H:i:s", filemtime($frontendTemplatesFolder.JRDS.$doc));
+								
+								$query = "SELECT `last_edited` FROM #__jomres_custom_templates WHERE `uid` = ".(int)$customised['id']."";
+								$r['LAST_EDITED_DB'] = doSelectSql($query,1);
+								if ($r['LAST_EDITED_DB'] != "0000-00-00 00:00:00")
+									{
+									if ($r['LAST_EDITED_DISK'] > $r['LAST_EDITED_DB'])
+										$r['WARNINGICON']=jr_gettext("_JOMRES_LASTEDITED_WARNINGICON_TEXT",_JOMRES_LASTEDITED_WARNINGICON_TEXT,false);
+									}
+								else
+									$r['LAST_EDITED_DB'] = jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE",_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE,false);
+								$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES)."</b>";
+								$r['TEMPLATENAME']=$doc;
+								$ptype_id = $customised['ptype_id'];
+								$r['PROPERTY_TYPE']=$this->all_property_types[$ptype_id];
+								if ($counter%2)
+									$r['CLASS']="even";
+								else
+									$r['CLASS']="odd";
+								
+								
+								$o=array();
+								$p=array();
+								$o['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'].'">'.jr_gettext('COMMON_EDIT',COMMON_EDIT,false).'</a>' ;
+								$o['COPYLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'].'&copy=1">'.jr_gettext('COMMON_COPY',COMMON_COPY,false).'</a>' ;
+								$o['NEWLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'" class="btn">'.jr_gettext('COMMON_NEW',COMMON_NEW,false).'</a>' ;
+								$o['DELETELINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN."&task=delete_template&no_html=1&id=".$customised['id'].'" class="btn">'.jr_gettext('COMMON_DELETE',COMMON_DELETE,false).'</a>' ;
+								$o['EDITURL']= JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'];
+								$o['COPYURL']= JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'].'&copy=1';
+								$o['NEWURL']= JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc;
+								$o['DELETEURL']= JOMRES_SITEPAGE_URL_ADMIN."&task=delete_template&no_html=1&id=".$customised['id'];
+								$p[]=$o;
+								$tmpl = new patTemplate();
+								$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+								$tmpl->readTemplatesFromInput( 'list_templates_edit_dropdown_edit.html');
+								$tmpl->addRows( 'pageoutput',$p);
+								$editlinks=$tmpl->getParsedTemplate();
+								$r['EDIT_LINKS']=$editlinks;
+
+								$rows[]=$r;
+								$counter++;
 								}
-							else
-								$r['LAST_EDITED_DB'] = jr_gettext("_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE",_JOMRES_COM_MR_ASSIGNUSER_NOTAPPLICABLE,false);
-							$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES)."</b>";
 							}
-						$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
-						if ($counter%2)
-							$r['CLASS']="even";
 						else
-							$r['CLASS']="odd";
-						$rows[]=$r;
-						$counter++;
+							{
+							$r=array();
+							$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO,false);
+
+							$r['TEMPLATENAME']=$doc;
+							if ($counter%2)
+								$r['CLASS']="even";
+							else
+								$r['CLASS']="odd";
+							
+							$o=array();
+							$p=array();
+							$o['NEWLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'">'.$doc.'</a>' ;
+							$o['NEWURL']= JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc;
+							$p[]=$o;
+							$tmpl = new patTemplate();
+							$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+							$tmpl->readTemplatesFromInput( 'list_templates_edit_dropdown_new.html');
+							$tmpl->addRows( 'pageoutput',$p);
+							$editlinks=$tmpl->getParsedTemplate();
+							$r['EDIT_LINKS']=$editlinks;
+							
+							$rows[]=$r;
+							$counter++;
+							}
 						}
 					}
 				}
