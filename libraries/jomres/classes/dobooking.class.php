@@ -4008,198 +4008,39 @@ class dobooking
 	 */
 	function getTariffsForRoomUids($freeRoomsArray)
 		{
+		$this->build_tariff_to_date_map ();
 		$roomAndTariffArray=array();
-		//$this->setErrorLog("getTariffsForRoomUids::Number of elements in the freeRoomsArray at tariff checking: ".count($freeRoomsArray)."&nbsp;&nbsp;If this is empty then there are no free rooms on this date" );
-		//$this->setErrorLog("getTariffsForRoomUids::The variable freeRoomsArray is type ".gettype($freeRoomsArray) );
-		//$this->setErrorLog("getTariffsForRoomUids::It contains this many elements:  ".count($freeRoomsArray) );
-		$numberOfRoomsAlreadySelected = count($this->requestedRoom);
+		$already_found_tariffs = array();
 		$collectedTariffs=array();
 		if (count($freeRoomsArray)>0 && is_array($freeRoomsArray)  )
 			{
-			$dateRangeIncludesWeekend=$this->dateRangeIncludesWeekends();
-			$dateRangeIsAllWeekends=$this->dateRangeIsAllWeekends();
-			//$counter=0;
-			
 			$unixArrivalDate = $this->getMkTime($this->arrivalDate);
+			$unixDepartureDate = $this->getMkTime($this->departureDate);
 			
 			foreach ($freeRoomsArray as $room_uid)
 				{
 				$rateDeets=$this->getTariffsForRoomUidByClass($room_uid);
-				//$this->setErrorLog("getTariffsForRoomUids::room uid:  ".serialize($room_uid) );
-				//$this->setErrorLog("getTariffsForRoomUids::rate deets:  ".serialize($rateDeets) );
 				foreach ($rateDeets as $tariff)
 					{
-					$rates_uid = $tariff->rates_uid;
-					//$this->setErrorLog("getTariffsForRoomUids::Checking current tariff uid:  ".$rates_uid);
-					$rate_title = stripslashes($tariff->rate_title);
-					//$rate_description = stripslashes($tariff->rate_description);
-					//$roomrateperday = stripslashes($tariff->roomrateperday);
-					$mindays = $tariff->mindays;
-					$maxdays = $tariff->maxdays;
-					$minpeople = $tariff->minpeople;
-					$maxpeople = $tariff->maxpeople;
-					//$ignore_pppn = $tariff->ignore_pppn;
-					$allow_we = $tariff->allow_we;
-					$weekendonly = $tariff->weekendonly;
-					$tariff_dayofweek = $tariff->dayofweek;
-
-					$validFrom = $tariff->validfrom;
-					$validTo = $tariff->validto;
-					$stayDays=$this->getStayDays();
-					$totalInParty=$this->getTotalInParty();
-
-					if (!isset($tariff->minrooms_alreadyselected) || $tariff->minrooms_alreadyselected =="" )
-						$minrooms_alreadyselected = 0;
-					else
-						$minrooms_alreadyselected = $tariff->minrooms_alreadyselected;
-					if (!isset($tariff->maxrooms_alreadyselected) || $tariff->maxrooms_alreadyselected =="" )
-						$maxrooms_alreadyselected = 100;
-					else
-						$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
-					//$minrooms_alreadyselected = $tariff->minrooms_alreadyselected;
-					//$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
-					//$this->setErrorLog("Tariff mxrooms : ".serialize($tariff));
-
-					// $date_elements  = explode("/",$this->arrivalDate);
-					// $unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
-					// $date_elements  = explode("/",$validFrom);
-					// $unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					// $date_elements  = explode("/",$validTo);
-					// $unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					
-                    $unixValidFromDate = $this->getMkTime($validFrom);
-                    $unixValidToDate= $this->getMkTime($validTo);
-					
-					$datesValid=FALSE;
-					$stayDaysValid=FALSE;
-					$numberPeopleValid=FALSE;
-					$roomsAlreadySelectedTests=FALSE;
-
-					//$weekendOnlyCheck=false;
-					//$this->setErrorLog(" " );
-					//$this->setErrorLog("getTariffsForRoomUids::Tariff title : ".$rate_title);
-					//$this->setErrorLog("getTariffsForRoomUids::Number of rooms already selected:".$numberOfRoomsAlreadySelected." Min rooms setting ".$minrooms_alreadyselected." max rooms setting ".$maxrooms_alreadyselected );
-					if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
+					if ( (float)$tariff->roomrateperday > 0)
 						{
-						//$this->setErrorLog("getTariffsForRoomUids:: Passed test 1" );
-						$roomsAlreadySelectedTests=TRUE;
-						}
-					else
-						{
-						if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
+						$datesValid 				= $this->filter_tariffs_on_dates				($tariff,$unixArrivalDate,$unixDepartureDate);// Does the tariff's from/to dates fall within the booking's dates? There will be some overlap here if we use Advanced or Micromanage mode. That's where the tariff_to_date_map will come into play
+						$stayDaysValid 				= $this->filter_tariffs_staydays				($tariff); // This will also use the map, it'll help to calculate also the minimum interval
+						$roomsAlreadySelectedTests	= $this->filter_tariffs_alreadyselectedcheck	($tariff);// If the tariff can only be selected when N number of rooms have already been selected?
+						$numberPeopleValid 			= $this->filter_tariffs_peoplenumbercheck		($tariff);// If the total number of people in the booking fall within the tariff's min/max people range?
+						$dowCheck 					= $this->filter_tariffs_dowcheck				($tariff);// Does the tariff allow selections on the arrival date's day of week?
+						
+						if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
 							{
-							//$this->setErrorLog("getTariffsForRoomUids:: Passed test 2" );
-							$roomsAlreadySelectedTests=TRUE;
-							}
-						}
-
-					//$this->setErrorLog(" " );
-					//$this->setErrorLog("getTariffsForRoomUids::Unix arrival date".$unixArrivalDate." Unix valid from".$unixValidFromDate." Unix valid to".$unixValidToDate."");
-					//$this->setErrorLog("getTariffsForRoomUids::Arrival date ".date("Y/m/d",$unixArrivalDate )."  -- Valid from".date("Y/m/d",$unixValidFromDate )." Valid to".date("Y/m/d",$unixValidToDate )."");
-
-					if ($unixArrivalDate >= $unixValidFromDate && $unixArrivalDate <= $unixValidToDate )
-						{
-						$datesValid=TRUE;
-						if ($datesValid)
-							$datesValid = $this->check_other_dates_for_this_tariff_type_valid($rates_uid,$date_range_array);  // This is a further check of the tariff, we'll scan the rest of the tariffs associated with this tariff and see if any of the dates are 0 for this period. If the are, then false will be returned
-						}
-
-					if ( $stayDays >= $mindays && $stayDays <= $maxdays )
-						$stayDaysValid=TRUE;
-
-					if ( $totalInParty > 0 )
-						{
-						if ($totalInParty >= $minpeople && $totalInParty <= $maxpeople)
-							$numberPeopleValid=TRUE;
-						}
-					else
-						$numberPeopleValid=TRUE;
-
-					$dowCheck =TRUE;
-					if ($allow_we == "0" && $dateRangeIncludesWeekend)
-						{
-						//$this->setErrorLog("getTariffsForRoomUids::Allow WE =1 and dateRangeIncludesWeekend");
-				 		$dowCheck =FALSE;
-						}
-
-					if ($weekendonly == "1" && $dateRangeIsAllWeekends)
-						$dowCheck =TRUE;
-					else
-						{
-						if ($weekendonly == "1" && !$dateRangeIsAllWeekends)
-							{
-
-							$dowCheck =FALSE;
-							}
-						}
-
-					//$this->setErrorLog("getTariffsForRoomUids::Day of week check, tariff dow = ".$tariff_dayofweek );
-					//$this->setErrorLog("getTariffsForRoomUids::Day of week check, arrival date dow =".$this->getDayOfWeek($unixArrivalDate));
-					if ($tariff_dayofweek < 7 )
-						{
-						if ( $this->getDayOfWeek($this->arrivalDate) == $tariff_dayofweek)
-							{
-							$dowCheck =TRUE;
-							//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> TRUE </b>");
-							}
-						else
-							{
-							$dowCheck =FALSE;
-							//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> FALSE </b>");
-							}
-						}
-
-/* 					if ($roomsAlreadySelectedTests)
-						$this->setErrorLog("getTariffsForRoomUids::roomsAlreadySelectedTests = true");
-					else
-						$this->setErrorLog("getTariffsForRoomUids::roomsAlreadySelectedTests <b>not</b> passed");
-
-					if ($datesValid)
-						$this->setErrorLog("getTariffsForRoomUids::Dates valid");
-					else
-						$this->setErrorLog("getTariffsForRoomUids::Dates <b>not</b> valid");
-					if ($stayDaysValid)
-						$this->setErrorLog("getTariffsForRoomUids::Staydays valid");
-					else
-						$this->setErrorLog("getTariffsForRoomUids::Staydays <b>not</b> valid");
-					$this->setErrorLog("getTariffsForRoomUids::People numbers: Maxdays".$maxdays." Min days ".$minpeople." Total in party: ".$totalInParty);
-					if ($numberPeopleValid)
-						$this->setErrorLog("getTariffsForRoomUids::People numbers valid");
-					else
-						$this->setErrorLog("getTariffsForRoomUids::People numbers <b>not</b> valid");
-					if ($dowCheck)
-						$this->setErrorLog("getTariffsForRoomUids::Day of week valid");
-					else
-						$this->setErrorLog("getTariffsForRoomUids::Day of week <b>not</b> valid");
- */
-					$this->check_other_dates_for_this_tariff_type_valid($tariff_uid,$date_range_array);
-
-					if ($datesValid && !$stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
-						$collectedTariffs[]=$tariff->mindays;
-
-					if ($this->tariffModel == "1")
-						{
-						if ( (float)$tariff->roomrateperday > 0)
-							{
-							if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
+							$rates_uid = $tariff->rates_uid;
+							$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$rates_uid][0];
+							if (!isset($already_found_tariffs[$tariff_type_id." ".$room_uid]))
 								{
+								$already_found_tariffs[$tariff_type_id." ".$room_uid]=1; // Without this there will be duplicates returned to the rooms list in the booking form
 								$roomAndTariffArray[]=array($room_uid,$rates_uid);
 								}
 							}
 						}
-					else
-						{
-						if ( (float)$tariff->roomrateperday > 0)
-							{
-							if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
-								{
-
-								$roomAndTariffArray[]=array($room_uid,$rates_uid);
-								}
-							}
-						}
-					//
 					}
 				}
 			}
@@ -4207,22 +4048,232 @@ class dobooking
 			$this->setErrorLog("getTariffsForRoomUids::count(freeRoomsArray) = 0");
 		$this->setErrorLog("--------------------------------------------");
 
-		if ( count($collectedTariffs) >0 && count($roomAndTariffArray) == 0 ) // We found a number of tariffs where the only thing that didn't match was the stay days.
+		return $roomAndTariffArray;
+		}
+	
+	
+	
+	function filter_tariffs_on_dates($tariff,$unixArrivalDate,$unixDepartureDate)
+		{
+		$mrConfig=getPropertySpecificSettings();
+		$validFrom = $tariff->validfrom;
+		$validTo = $tariff->validto;
+		
+		$unixValidFromDate = $this->getMkTime($validFrom);
+		$unixValidToDate= $this->getMkTime($validTo);
+		
+		$mindays = $tariff->mindays;
+		$maxdays = $tariff->maxdays;
+		
+		$datesValid=FALSE;
+		if ( $mrConfig['tariffmode']=="2") // This is really a cursory check. Most of the time there will be/should be prices covering every day in the period in question, but if not we'll find out here
 			{
-			sort($collectedTariffs);
-			$this->mininterval=$collectedTariffs[0];
-			$this->setErrorLog("getTariffsForRoomUids::Minimum interval is set to ".$this->mininterval);
+			$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff->rates_uid][0];
+			$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+			$stayDays=$this->getStayDays();
+			$datesValid=TRUE;
 			}
 		else
 			{
-			$this->mininterval=$this->cfg_minimuminterval;
-			
+			if ($unixArrivalDate >= $unixValidFromDate && $unixArrivalDate <= $unixValidToDate )
+				{
+				$datesValid=TRUE;
+				}
 			}
-		return $roomAndTariffArray;
+		return $datesValid;
+		}
+	
+	function build_tariff_to_date_map ()
+		{
+		$this->simple_tariff_to_date_map = array();
+		$this->micromanage_tarifftype_to_date_map = array();
+		
+		$mrConfig=getPropertySpecificSettings();
+		
+		// for testing
+		//$this->dateRangeString = "2012/10/30,2012/10/31,2012/11/01,2012/11/02";
+		//$mrConfig['tariffmode']="1";
+		
+		$dateRangeArray=explode(",",$this->dateRangeString);
+		
+		foreach ($this->allPropertyTariffs as $tariff)
+			{
+			
+			$tariff_uid=$tariff['rates_uid'];
+			if ( $mrConfig['tariffmode']=="2")
+				{
+				$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff_uid][0];
+				
+				// Now we can get all of the tariff uids that are associated with this tariff type
+				$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+				// We'll build a map of the dates in this booking, cross referenced to the tariff uids, and the prices
+				foreach ($all_associated_tariff_ids as $t_id)
+					{
+					$tariff_info = $this->allPropertyTariffs[$t_id];
+					$start = new DateTime($tariff_info['validfrom']);
+					$interval = new DateInterval('P1D');
+					$end = new DateTime($tariff_info['validto'].' 23:59:59');
+					$period = new DatePeriod($start, $interval, $end);
+					foreach ($period as $date) 
+						{
+						$d = $date->format('Y/m/d');
+						if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']))
+							$this->micromanage_tarifftype_to_date_map[$tariff_type_id][$d]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid'],"tariff_type_id"=>$tariff_type_id);
+						}
+					}
+				}
+			else // this section might be (almost certainly is) superfluous
+				{
+				$tariff_info = $this->allPropertyTariffs[$tariff_uid];
+				$start = new DateTime($tariff_info['validfrom']);
+				$interval = new DateInterval('P1D');
+				$end = new DateTime($tariff_info['validto'].' 23:59:59');
+				$period = new DatePeriod($start, $interval, $end);
+		
+				foreach ($period as $date) 
+					{
+					$d = $date->format('Y/m/d');
+					if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']) )
+						$this->simple_tariff_to_date_map[$d][$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
+					}
+				}
+			}
+		}
+	
+	function filter_tariffs_staydays($tariff)
+		{
+		$mrConfig=getPropertySpecificSettings();
+		$stayDays=$this->getStayDays();
+		$stayDaysValid=FALSE;
+		
+		$maxdays = $tariff->maxdays;
+		
+		if ( $mrConfig['tariffmode']=="2")
+			{
+			// We've been passed the tariff, we now need to find the tariff type for this tariff, then find all related tariffs
+			$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff->rates_uid][0];
+			$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+			
+			$mindays = 1;
+			foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+				{
+				foreach ($dates as $d)
+					{
+					if ($d['tariff_type_id'] == $tariff_type_id)
+						{
+						if ((int)$d['mindays'] > $mindays)
+							$mindays = (int)$d['mindays'];
+						}
+					}
+				}
+			
+			if ($mindays < $this->mininterval)
+				$this->mininterval = $mindays;
+			
+			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
+				$stayDaysValid=TRUE;
+			}
+		else
+			{
+			$mindays = $tariff->mindays;
+			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
+				$stayDaysValid=TRUE;
+			}
+		return $stayDaysValid;
+		}
+	
+	function filter_tariffs_alreadyselectedcheck($tariff)
+		{
+		$numberOfRoomsAlreadySelected = count($this->requestedRoom);
+		$roomsAlreadySelectedTests=FALSE;
+		if (!isset($tariff->minrooms_alreadyselected) || $tariff->minrooms_alreadyselected =="" )
+			$minrooms_alreadyselected = 0;
+		else
+			$minrooms_alreadyselected = $tariff->minrooms_alreadyselected;
+		if (!isset($tariff->maxrooms_alreadyselected) || $tariff->maxrooms_alreadyselected =="" )
+			$maxrooms_alreadyselected = 100;
+		else
+			$maxrooms_alreadyselected = $tariff->maxrooms_alreadyselected;
+
+		if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
+			{
+			//$this->setErrorLog("getTariffsForRoomUids:: Passed test 1" );
+			$roomsAlreadySelectedTests=TRUE;
+			}
+		else
+			{
+			if ($numberOfRoomsAlreadySelected >= $minrooms_alreadyselected && $numberOfRoomsAlreadySelected < $maxrooms_alreadyselected)
+				{
+				//$this->setErrorLog("getTariffsForRoomUids:: Passed test 2" );
+				$roomsAlreadySelectedTests=TRUE;
+				}
+			}
+		return $roomsAlreadySelectedTests;
+		}
+	
+	function filter_tariffs_peoplenumbercheck($tariff)
+		{
+		$numberPeopleValid=FALSE;
+		
+		$totalInParty=$this->getTotalInParty();
+		$minpeople = $tariff->minpeople;
+		$maxpeople = $tariff->maxpeople;
+		
+		if ( $totalInParty > 0 )
+			{
+			if ($totalInParty >= $minpeople && $totalInParty <= $maxpeople)
+				$numberPeopleValid=TRUE;
+			}
+		else
+			$numberPeopleValid=TRUE;
+		
+		return $numberPeopleValid;
 		}
 
+	function filter_tariffs_dowcheck($tariff)
+		{
+		$dateRangeIncludesWeekend=$this->dateRangeIncludesWeekends();
+		$dateRangeIsAllWeekends=$this->dateRangeIsAllWeekends();
+		
+		$allow_we = $tariff->allow_we;
+		$weekendonly = $tariff->weekendonly;
+		$tariff_dayofweek = $tariff->dayofweek;
+		
+		$dowCheck =TRUE;
+		if ($allow_we == "0" && $dateRangeIncludesWeekend)
+			{
+			//$this->setErrorLog("getTariffsForRoomUids::Allow WE =1 and dateRangeIncludesWeekend");
+			$dowCheck =FALSE;
+			}
 
+		if ($weekendonly == "1" && $dateRangeIsAllWeekends)
+			$dowCheck =TRUE;
+		else
+			{
+			if ($weekendonly == "1" && !$dateRangeIsAllWeekends)
+				{
+				$dowCheck =FALSE;
+				}
+			}
 
+		//$this->setErrorLog("getTariffsForRoomUids::Day of week check, tariff dow = ".$tariff_dayofweek );
+		//$this->setErrorLog("getTariffsForRoomUids::Day of week check, arrival date dow =".$this->getDayOfWeek($unixArrivalDate));
+		if ($tariff_dayofweek < 7 )
+			{
+			if ( $this->getDayOfWeek($this->arrivalDate) == $tariff_dayofweek)
+				{
+				$dowCheck =TRUE;
+				//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> TRUE </b>");
+				}
+			else
+				{
+				$dowCheck =FALSE;
+				//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> FALSE </b>");
+				}
+			}
+		return $dowCheck;
+		}
+/* 
 	function check_other_dates_for_this_tariff_type_valid($tariff_uid,$date_range_array)  // We're looking for min intervals for all tariffs where the tariff has already been seen to probably match. Now let's look at the rest of the tariffs over this period and see if the price is still valid. If the price is == 0 then it's not a match.
 		{
 		$tariff_valid = true;
@@ -4309,7 +4360,7 @@ class dobooking
 		return $tariff_valid;
 		}
 
-
+ */
 
 	/**
 	#
@@ -5046,34 +5097,6 @@ class dobooking
 		$roomRow['HEADER_ROOMTYPE']=$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) );
 		return array_merge($roomRow,$tariffStuff);
 		
-		// Depreciated n 6.6.6
-		// $room_imageTH="";
-		// if ($this->cfg_showRoomImageInBookingFormOverlib)
-			// $room_imageTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE',_JOMRES_COM_A_BOOKINGFORM_SHOWROOMIMAGE,false,false) )."</td>";
-		// $room_imagetypeTH="";
-		// if ($this->cfg_showRoomTypeImageInBookingForm)
-			// $room_imagetypeTH="<td>".$this->sanitiseOutput(jr_gettext('_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOMTYPES_HEADER_LINK,false,false) )."</td>";
-		
-		
-		// $return_output='<tr>';
-			// $return_output.='<td>&nbsp;</td>';
-			// if ($this->cfg_bookingform_roomlist_showroomno == "1")
-				// $return_output.='<td>'.$roomRow['HEADER_ROOMNUMBER'].'</td>';
-			// $return_output.=''.$room_imageTH.'';
-			// $return_output.=''.$room_imagetypeTH.'';
-			// if ($this->cfg_bookingform_roomlist_showroomname == "1")
-				// $return_output.='<td>'.$roomRow['HEADER_ROOMNAME'].'</td>';
-			// $return_output.='<td>'.$roomRow['HEADER_ROOMTYPE'].'</th>';
-			// if ($this->cfg_tariffmode != 0)
-				// $return_output.='<td>'.$tariffStuff['HTITLE'].'</td>';
-			// $return_output.='<td>'.$tariffStuff['HRATEPERNIGHT'].'</td>';
-			// if ($this->cfg_bookingform_roomlist_showdisabled == "1")
-				// $return_output.='<td>'.$roomRow['HEADER_DISABLEDACCESS'].'</td>';
-			// if ($this->cfg_bookingform_roomlist_showmaxpeople == "1")
-				// $return_output.='<td>'.$roomRow['HEADER_MAXPEOPLE'].'</td>';
-			// $return_output.='</tr>';
-
-		// return $return_output;
 		}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5098,7 +5121,12 @@ class dobooking
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 
 		// Let's see if the form is ready to be booked.
-
+		
+		//$this->build_tariff_to_date_map ();
+// $all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+// foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+//var_dump($this->micromanage_tarifftype_to_date_map);exit;
+$this->setPopupMessage("Min days". $this->mininterval);
 		if (get_showtime('include_room_booking_functionality'))
 			{
 			if ($this->stayDays < $this->mininterval && !$amend_contract )
@@ -6350,6 +6378,7 @@ class dobooking
 		{
 		$mrConfig=getPropertySpecificSettings();
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+		
 		if ( $mrConfig['tariffmode']=="2")
 			{
 			$this->setErrorLog("setAverageRate : going to te_setAverageRate");
@@ -6476,14 +6505,10 @@ class dobooking
 	 */
 	function te_setAverageRate()
 		{
-		$mrConfig=getPropertySpecificSettings();
-		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$this->setErrorLog("te_setAverageRate:: Started");
-		$dateRangeArray=explode(",",$this->dateRangeString);
-		$tariffsArray=array();
-		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
-		$total=0.00;
-		$stayDays=$this->stayDays;
+		$mrConfig=getPropertySpecificSettings();
+		
+		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$disc=array();
 		if (!isset($mrConfig['wisepriceactive']) || empty($mrConfig['wisepriceactive']) )
 			$mrConfig['wisepriceactive']='0';
@@ -6492,7 +6517,19 @@ class dobooking
 		$wisepricethreshold = (int)$mrConfig['wisepricethreshold'];
 		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
 		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
+		
 		$roomsOfType=array();
+		$dateRangeArray=explode(",",$this->dateRangeString);
+		$stayDays=$this->stayDays;
+		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
+		
+		$total=0.00;
+		
+	// May need to use these in the future. Currently (Oct 2012) this section is a pig to maintain, but it works. If we need to change it at any time, we could probably use the micromanage_tarifftype_to_date_map to simplify this section
+//$this->build_tariff_to_date_map ();
+// $all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+// foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+//var_dump($this->micromanage_tarifftype_to_date_map);exit;
 
 		foreach ($this->requestedRoom as $rt)
 			{
@@ -6544,6 +6581,7 @@ class dobooking
 								if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) )
 									$pass=true;
 								}
+							
 							if($pass)
 								{
 								$this->setErrorLog("te_setAverageRate::Number of rooms of this type : ".$roomsOfType[$rate->roomclass_uid]);
