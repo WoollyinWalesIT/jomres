@@ -4011,7 +4011,7 @@ class dobooking
 		$this->build_tariff_to_date_map ();
 		$roomAndTariffArray=array();
 		$already_found_tariffs = array();
-		$collectedTariffs=array();
+		$this->tariff_types_min_days=array();
 		if (count($freeRoomsArray)>0 && is_array($freeRoomsArray)  )
 			{
 			$unixArrivalDate = $this->getMkTime($this->arrivalDate);
@@ -4040,6 +4040,10 @@ class dobooking
 								$roomAndTariffArray[]=array($room_uid,$rates_uid);
 								}
 							}
+						elseif ($datesValid && !$stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests) // Everything passed except the number of days in the booking
+							{
+							
+							}
 						}
 					}
 				}
@@ -4047,11 +4051,65 @@ class dobooking
 		else
 			$this->setErrorLog("getTariffsForRoomUids::count(freeRoomsArray) = 0");
 		$this->setErrorLog("--------------------------------------------");
-
+		
+ 		if (count($roomAndTariffArray)==0)
+			{
+			$this->mininterval = 1000;
+			foreach ($this->tariff_types_min_days as $mindays)
+				{
+				if ($mindays < $this->mininterval)
+					$this->mininterval = $mindays;
+				}
+			}
+		
 		return $roomAndTariffArray;
 		}
 	
 	
+	function filter_tariffs_staydays($tariff)
+		{
+		$mrConfig=getPropertySpecificSettings();
+		$stayDays=$this->getStayDays();
+		$stayDaysValid=FALSE;
+		
+		$maxdays = $tariff->maxdays;
+		
+		if ( $mrConfig['tariffmode']=="2")
+			{
+			// We've been passed the tariff, we now need to find the tariff type for this tariff, then find all related tariffs
+			$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff->rates_uid][0];
+			$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+			
+			$mindays = 1;
+			foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+				{
+				foreach ($dates as $d)
+					{
+					if ($d['tariff_type_id'] == $tariff_type_id)
+						{
+						if ((int)$d['mindays'] > $mindays)
+							{
+							$this->tariff_types_min_days[$tariff_type_id] = (int)$d['mindays'];
+							$mindays = (int)$d['mindays'];
+							}
+						}
+					}
+				}
+			
+			if ($mindays < $this->mininterval)
+				$this->mininterval = $mindays;
+			
+			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
+				$stayDaysValid=TRUE;
+			}
+		else
+			{
+			$mindays = $tariff->mindays;
+			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
+				$stayDaysValid=TRUE;
+			}
+		return $stayDaysValid;
+		}
 	
 	function filter_tariffs_on_dates($tariff,$unixArrivalDate,$unixDepartureDate)
 		{
@@ -4082,48 +4140,7 @@ class dobooking
 			}
 		return $datesValid;
 		}
-	
-	function filter_tariffs_staydays($tariff)
-		{
-		$mrConfig=getPropertySpecificSettings();
-		$stayDays=$this->getStayDays();
-		$stayDaysValid=FALSE;
-		
-		$maxdays = $tariff->maxdays;
-		
-		if ( $mrConfig['tariffmode']=="2")
-			{
-			// We've been passed the tariff, we now need to find the tariff type for this tariff, then find all related tariffs
-			$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff->rates_uid][0];
-			$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
-			
-			$mindays = 1;
-			foreach ($this->micromanage_tarifftype_to_date_map as $dates)
-				{
-				foreach ($dates as $d)
-					{
-					if ($d['tariff_type_id'] == $tariff_type_id)
-						{
-						if ((int)$d['mindays'] > $mindays)
-							$mindays = (int)$d['mindays'];
-						}
-					}
-				}
-			
-			if ($mindays < $this->mininterval)
-				$this->mininterval = $mindays;
-			
-			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
-				$stayDaysValid=TRUE;
-			}
-		else
-			{
-			$mindays = $tariff->mindays;
-			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
-				$stayDaysValid=TRUE;
-			}
-		return $stayDaysValid;
-		}
+
 	
 	function filter_tariffs_alreadyselectedcheck($tariff)
 		{
@@ -5121,11 +5138,6 @@ class dobooking
 
 		// Let's see if the form is ready to be booked.
 		
-		//$this->build_tariff_to_date_map ();
-// $all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
-// foreach ($this->micromanage_tarifftype_to_date_map as $dates)
-//var_dump($this->micromanage_tarifftype_to_date_map);exit;
-$this->setPopupMessage("Min days". $this->mininterval);
 		if (get_showtime('include_room_booking_functionality'))
 			{
 			if ($this->stayDays < $this->mininterval && !$amend_contract )
@@ -5135,7 +5147,31 @@ $this->setPopupMessage("Min days". $this->mininterval);
 					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1_WHOLEDAY,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2,false).' '.($this->stayDays-1)));
 				else
 					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2,false).' '.$this->stayDays));
+					
+				if ( $mrConfig['tariffmode']=="2")
+					{
+					$this->build_tariff_to_date_map ();
+					foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+						{
+						
+						$prices = array();
+						foreach ($dates as $date)
+							{
+							$prices[$date['mindays']]=$date['price'];
+							}
+						//var_dump($prices);
+						foreach ($prices as $key=>$val)
+							{
+							if ($this->cfg_perPersonPerNight =="1")
+								$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN ,false);
+							else
+								$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN ,false);
+							echo ';jomresJquery.jGrowl(\''.jr_gettext('_JOMRES_STAYFORAMINIMUMOF',_JOMRES_STAYFORAMINIMUMOF ,false)." ".$key." ".jr_gettext('_JOMRES_NIGHTSFOR',_JOMRES_NIGHTSFOR ,false)." ".output_price($val).$pernight.'\', { life: 20000 });';
+							}
+						}
+					}
 				}
+			
 			if (count($this->requestedRoom)==0 && $this->getSingleRoomPropertyStatus())
 				{
 				$this->resetPricingOutput=true;
