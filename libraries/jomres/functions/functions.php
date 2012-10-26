@@ -1190,13 +1190,13 @@ function getIntegratedSearchModuleVals()
 
 
 function getThisMonthName($monthNumber,$editable=true)
-	{
-	$monthNumber=$monthNumber-1;
-	$mName=constant(jr_gettext('_JRPORTAL_MONTHS_LONG_'.$monthNumber,'_JRPORTAL_MONTHS_LONG_'.$monthNumber));
-	$thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.$monthNumber,$mName,$editable);
-	return $thisMonthName;
-	}
-
+	 {
+	 $monthNumber=intval($monthNumber-1);
+	 $mName=jr_gettext('_JRPORTAL_MONTHS_LONG_'.$monthNumber,'_JRPORTAL_MONTHS_LONG_'.$monthNumber);
+	 $thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.$monthNumber,$mName,$editable);
+	 return $thisMonthName;
+	 }
+ 
 function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$params='',$remote_plugin_component_folder="c",$remote_plugin_administrator_folder="a",$remote_plugin_module_folder="m",$remote_plugin_mambot_folder="b")
 	{
 
