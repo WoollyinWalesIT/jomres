@@ -1,4 +1,4 @@
-<?php
+g<?php
 /**
 * Core file
 * @author Vince Wooll <sales@jomres.net>
@@ -4083,63 +4083,6 @@ class dobooking
 		return $datesValid;
 		}
 	
-	function build_tariff_to_date_map ()
-		{
-		$this->simple_tariff_to_date_map = array();
-		$this->micromanage_tarifftype_to_date_map = array();
-		
-		$mrConfig=getPropertySpecificSettings();
-		
-		// for testing
-		//$this->dateRangeString = "2012/10/30,2012/10/31,2012/11/01,2012/11/02";
-		//$mrConfig['tariffmode']="1";
-		
-		$dateRangeArray=explode(",",$this->dateRangeString);
-		
-		foreach ($this->allPropertyTariffs as $tariff)
-			{
-			
-			$tariff_uid=$tariff['rates_uid'];
-			if ( $mrConfig['tariffmode']=="2")
-				{
-				$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff_uid][0];
-				
-				// Now we can get all of the tariff uids that are associated with this tariff type
-				$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
-				// We'll build a map of the dates in this booking, cross referenced to the tariff uids, and the prices
-				foreach ($all_associated_tariff_ids as $t_id)
-					{
-					$tariff_info = $this->allPropertyTariffs[$t_id];
-					$start = new DateTime($tariff_info['validfrom']);
-					$interval = new DateInterval('P1D');
-					$end = new DateTime($tariff_info['validto'].' 23:59:59');
-					$period = new DatePeriod($start, $interval, $end);
-					foreach ($period as $date) 
-						{
-						$d = $date->format('Y/m/d');
-						if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']))
-							$this->micromanage_tarifftype_to_date_map[$tariff_type_id][$d]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid'],"tariff_type_id"=>$tariff_type_id);
-						}
-					}
-				}
-			else // this section might be (almost certainly is) superfluous
-				{
-				$tariff_info = $this->allPropertyTariffs[$tariff_uid];
-				$start = new DateTime($tariff_info['validfrom']);
-				$interval = new DateInterval('P1D');
-				$end = new DateTime($tariff_info['validto'].' 23:59:59');
-				$period = new DatePeriod($start, $interval, $end);
-		
-				foreach ($period as $date) 
-					{
-					$d = $date->format('Y/m/d');
-					if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']) )
-						$this->simple_tariff_to_date_map[$d][$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
-					}
-				}
-			}
-		}
-	
 	function filter_tariffs_staydays($tariff)
 		{
 		$mrConfig=getPropertySpecificSettings();
@@ -4361,7 +4304,63 @@ class dobooking
 		}
 
  */
-
+	function build_tariff_to_date_map ()
+		{
+		$this->simple_tariff_to_date_map = array();
+		$this->micromanage_tarifftype_to_date_map = array();
+		
+		$mrConfig=getPropertySpecificSettings();
+		
+		// for testing
+		//$this->dateRangeString = "2012/10/30,2012/10/31,2012/11/01,2012/11/02";
+		//$mrConfig['tariffmode']="1";
+		
+		$dateRangeArray=explode(",",$this->dateRangeString);
+		
+		foreach ($this->allPropertyTariffs as $tariff)
+			{
+			
+			$tariff_uid=$tariff['rates_uid'];
+			if ( $mrConfig['tariffmode']=="2")
+				{
+				$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff_uid][0];
+				
+				// Now we can get all of the tariff uids that are associated with this tariff type
+				$all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
+				// We'll build a map of the dates in this booking, cross referenced to the tariff uids, and the prices
+				foreach ($all_associated_tariff_ids as $t_id)
+					{
+					$tariff_info = $this->allPropertyTariffs[$t_id];
+					$start = new DateTime($tariff_info['validfrom']);
+					$interval = new DateInterval('P1D');
+					$end = new DateTime($tariff_info['validto'].' 23:59:59');
+					$period = new DatePeriod($start, $interval, $end);
+					foreach ($period as $date) 
+						{
+						$d = $date->format('Y/m/d');
+						if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']))
+							$this->micromanage_tarifftype_to_date_map[$tariff_type_id][$d]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid'],"tariff_type_id"=>$tariff_type_id);
+						}
+					}
+				}
+/* 			else // this section might be (almost certainly is) superfluous
+				{
+				$tariff_info = $this->allPropertyTariffs[$tariff_uid];
+				$start = new DateTime($tariff_info['validfrom']);
+				$interval = new DateInterval('P1D');
+				$end = new DateTime($tariff_info['validto'].' 23:59:59');
+				$period = new DatePeriod($start, $interval, $end);
+		
+				foreach ($period as $date) 
+					{
+					$d = $date->format('Y/m/d');
+					if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']) )
+						$this->simple_tariff_to_date_map[$d][$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
+					}
+				} */
+			}
+		}
+		
 	/**
 	#
 	 * Limits the number of rooms that can be displayed if the config option returnRoomsLimit is set to greater than 0
