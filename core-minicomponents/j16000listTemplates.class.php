@@ -45,7 +45,7 @@ class j16000listTemplates
 		$output['HLAST_EDITED_DB']=jr_gettext("_JOMRES_LASTEDITED_DB",_JOMRES_LASTEDITED_DB);
 		$output['HLAST_EDITED_DISK']=jr_gettext("_JOMRES_LASTEDITED_DISK",_JOMRES_LASTEDITED_DISK);
 		$output['HLAST_WARNINGICON']=jr_gettext("_JOMRES_LASTEDITED_WARNINGICON",_JOMRES_LASTEDITED_WARNINGICON);
-		$output['EDITWARNINGNOTE']=jr_gettext("_JOMRES_LASTEDITED_WARNING",_JOMRES_LASTEDITED_WARNING);
+		$output['EDITWARNINGNOTE']=jr_gettext("_JOMRES_LASTEDITED_WARNING_72",_JOMRES_LASTEDITED_WARNING_72);
 		$output['HPTYPE'] =jr_gettext('_JOMRES_COM_PTYPES_PTYPE',_JOMRES_COM_PTYPES_PTYPE);
 		
 		$custom_templates =jomres_singleton_abstract::getInstance('jomres_custom_template_handler');
