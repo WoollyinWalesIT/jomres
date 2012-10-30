@@ -1877,6 +1877,7 @@ function createJomresTables()
 		`uid` INT( 11 ) NOT NULL AUTO_INCREMENT ,
 		`template_name` VARCHAR( 255 ) ,
 		`value` TEXT NULL,
+		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		`last_edited` datetime,
 		PRIMARY KEY ( `uid` )
 		) ";
