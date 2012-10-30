@@ -29,8 +29,8 @@ function JomresBuildRoute(&$query)
 		$items		= $menu->getItems('componentid', $component->id);
 	}
 
-	if ($route_query['task'] == "dobooking" && isset($route_query['remus']) )
-		return array();
+	// if ($route_query['task'] == "dobooking" && isset($route_query['remus']) )
+		// return array();
 	
 	if (isset($route_query['property_uid']) || isset($route_query['selectedProperty']))
 		{
