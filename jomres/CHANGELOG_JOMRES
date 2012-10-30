@@ -1,3 +1,28 @@
+Jomres 7.2
+
+Modified the booking engine to make use of greater flexability offered by upcoming changes to the advanced/micromanage plugin when configuring minimum day settings. The new micromanage functionality allows you to set minimum days for individual days, in the same way that you set individual day's prices.
+Added functionality that allows us to have Property Type specific templates.
+Added a work-in-progress Thai language file to the Core system.
+
+Changed a call to strtolower to jr_strtolower. Affects categories of the administrator area main menu, ensuring that non-latin characters are lowered correctly.
+Tweak to ensure that users clicking on the dashboard link actually see the dashboard.
+Added icons and minor layout tweaks to property details buttons.
+Adding an experimental php parser function to patTemplate lib.
+Updated codemirror lib to v2.34
+Added old codemirror scripts to obsolete file list.
+Modified obsolete_files_wrapper.html so that obsolete files list is collapsed by default. BS only.
+Modified delete template to delete by id instead of template name.
+Modified the getPropertyTypeDropdown function to allow blanks in the dropdown list.
+Added a property type column to the custom templates table on installation/upgrade.
+Modified how the custom template handler works, so that it's able to support property type specific templates.
+Modified the getThisMonthName function. Solved a problem where month names are not displayed in the default dashboard
+Improved feedback from booking engine to ensure that if the minimum interval isn't reached, then a message is shown. Provided popups to give users hints to how many days they should book for to get certain prices.
+Improved list templates page to clarify new functionality's instructions.
+Commented out two lines in the router that're causing J3 to throw an error when clicking on dashboard dates. Works around a minor-ish bug in J3.
+Modified the Weak input filtering process slightly, apostrophes are changed to Right Acutes.
+Added an mb_ucwords and jr_ucwords pair of functions.
+Modified the administrator area generate control panel script to us jr_ucwords.
+
 Jomres 7.1.4
 
 Added a new feature so that site managers can configure the default property list view through the site config - search options tab.
