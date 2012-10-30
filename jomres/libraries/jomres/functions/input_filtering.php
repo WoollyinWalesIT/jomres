@@ -208,7 +208,8 @@ function jomresGetParam($request,$element,$def=null,$mask='')	// variable type n
 					}
 				else
 					{
-					$clean = $dirty;
+					
+					$clean = str_replace("'","&#180;",$dirty);
 					}
 				}
 			else
