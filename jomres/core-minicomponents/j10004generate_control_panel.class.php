@@ -74,7 +74,7 @@ class j10004generate_control_panel {
 				}
 
 			$pageoutput = array();
-			$output['CATEGORY']=ucwords($category);
+			$output['CATEGORY']=jr_ucwords($category);
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
 			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
