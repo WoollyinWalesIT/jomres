@@ -34,11 +34,17 @@ class patTemplate_Reader_Jomres extends patTemplate_Reader
 			if ($templatename != "srch.html" && $templatename != "index.html")
 				{
 				$property_uid = (int)get_showtime('property_uid');
-				$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
-				$current_property_details->gather_data($property_uid);
+				if ($property_uid > 0)
+					{
+					$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+					$current_property_details->gather_data($property_uid);
+					$property_type = $current_property_details->ptype_id;
+					}
+				else
+					$property_type = 0;
 				if (file_exists($custom_templates->default_template_files_folder.JRDS.$templatename) && !isset($_REQUEST['nocustomtemplate']) ) // One security flag to ensure that the template's valid, and one to allow us to disable customised templates via the url if desired.
 					{
-					$content= $custom_templates->getTemplateData($templatename,$current_property_details->ptype_id);
+					$content= $custom_templates->getTemplateData($templatename,$property_type);
 					}
 				else
 					$content=file_get_contents($default_root.JRDS.$templatename );
