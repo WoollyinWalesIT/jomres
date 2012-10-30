@@ -1784,14 +1784,19 @@ jr_define("_JOMRES_COM_TRANSLATE_COUNTRIESREGIONS","Translate locales");
 jr_define("_JOMRES_COM_TRANSLATE_LANGUAGEFILES","Translate lang file strings");
 jr_define("_JOMRES_COM_NOTAMANAGER","Error, the user you're logged in as is not a super manager within Jomres, you will not be able to use this feature until you've used the Show Profiles feature to make yourself BOTH a manager and a Super manager. This is a security feature.");
 jr_define("_JOMRES_COM_LAYOUTS_DEFAULT","Property list default layout");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR","Microsoft translator");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_SETTINGS","Microsoft translator settings");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_SETTINGS_APIKEY","Client secret");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_SETTINGS_CLIENTID","Client ID");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_SETTINGS_INFO","This plugin allows you to use the Microsoft Translator service to help you to import automatic translations into your system. You can see information about the service at https://datamarket.azure.com/dataset/bing/microsofttranslator It allows you up to 2,000,000 characters per month for free. Each Jomres language file is approximately 200,000 characters so in theory you could translate up to 10 language files a month. Once you've signed up for the service you need to go to your account at https://datamarket.azure.com/account and view your applications (https://datamarket.azure.com/developer/applications/). Create a new application, using settings similar to those in the image below. The Request URI isn't actually needed by the translation feature but nevertheless you need to enter a URI in that field (don't forget the https://). Click Save and finally, enter the Client ID and Client Secret in the inputs below and save.");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_INSTRUCTIONS","Choose the languages you're going to translate from and to. Next choose the string you want a translation for and click 'Get translation'. The software will query Microsoft's translation service for a translation and then populate a field so that you can edit the translation if you want, before saving the translation.");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_SOURCELANG","ภาษาต้นฉบับ");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_DESTLANG","ภาษาใหม่");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_GETTRANSLATION","แปล");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_SAVETRANSLATION","บันทึกการแปล");
-jr_define("_JOMRES_MISCROSOFT_TRANSLATOR_ERRORSAME","ข้อผิดพลาด แหล่งที่มา และปลายทางของภาษาเหมือนกัน");
+
+
+jr_define('_JOMRES_LASTEDITED_WARNING_72','Jomres uses templates to construct it\'s output. If you are a designer this makes changing the look and feel of Jomres easy, you don\'t need to edit any of the code, you just need to edit the template\'s markup. This Template Editing feature allows you to create your own customised versions of these Jomres templates. <br/>
+<br/>
+When you customise a template you have the option to make the customisation specific to all property types, or a specific property type. For example the NGM Random module plugin uses the basic_module_output.html template to construct layout. As a result you can create different customisations of the basic_module_output.html template for different property types.  <br/>
+<br/>
+If a template has not been edited before, then you can create a new customisation of that template by selecting the New option alongside it. When you click on New you\'re taken to a new page where you can edit that template. The initial layout is taken from the template stored in the /jomres/templates/xxx/frontend directory, when you click Save then your customisations are saved to the database and when Jomres uses that template it will use the markup stored in the database, not the markup stored in the /jomres/templates/xxx/frontend template. This ensures that customisations are not overwritten when you upgrade your Jomres installation.<br/>
+<br/>
+Once a template has been customised you have more options. You can create a New copy of the original template (as above), you can Copy a customisation to a new template customisation, so for example if you\'ve already customised basic_module_output.html for hotels, then you can copy that customisation to a new customisation for a new property type, like cars. You can Edit an existing customisation, or you can Delete it. When you delete a customisation, providing there isn\'t another customisation of that template then Jomres will go back to using the template in /jomres/templates/xxx/frontend. This is useful if you\'ve edited a template but don\'t like the changes you\'ve made. You can delete the customisations and start again at the original template.<br/>
+<br/>
+Jomres is constantly evolving and core templates are often updated/modified. If you use the Template Editing feature these updated templates will not overwrite your customisations, however this may also mean that your customisations may not use new features in those core templates. As we have no way of analysing your customisations you may or may not benefit from those changes. The Template Editing feature will look at the last modified dates of the files in the /jomres/templates/xxx/frontend directory and if it detects that a template file\'s last modified date is newer than the template you have stored in the database then Jomres will warn you of that fact. It doesn\'t necessarily mean that you need to update your template customisation however, that\'s up to you to decide if you need to do that'); // Updated template editing information to correspond with changes to 7.2.0 and it's template editing changes related to property type templates
+
+jr_define( "_JOMRES_STAYFORAMINIMUMOF" , "Stay for a minimum of");
+jr_define( "_JOMRES_NIGHTSFOR" , " nights for ");
+
+
