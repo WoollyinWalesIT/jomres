@@ -6781,7 +6781,7 @@ class dobooking
 		}
 
 	private static $mktimes = array();
-		private function getMkTime($date) 
+		function getMkTime($date) 
 			{
 			if(!isset(self::$mktimes[$date])) 
 				{
