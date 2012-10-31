@@ -35,7 +35,9 @@ class j06001dashboard extends jomres_dashboard
 		$this->show_date_dropdown = false;
 		if (isset($componentArgs['show_date_dropdown']))
 			$this->show_date_dropdown = $componentArgs['show_date_dropdown'];
-
+		elseif (get_showtime("task")=="dashboard")
+			$this->show_date_dropdown = true;
+		
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (!in_array($property_uid,$thisJRUser->authorisedProperties))
 			return;
