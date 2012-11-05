@@ -4008,6 +4008,7 @@ class dobooking
 	 */
 	function getTariffsForRoomUids($freeRoomsArray)
 		{
+		$mrConfig=getPropertySpecificSettings();
 		$this->build_tariff_to_date_map ();
 		$roomAndTariffArray=array();
 		$already_found_tariffs = array();
@@ -4030,9 +4031,10 @@ class dobooking
 						$numberPeopleValid 			= $this->filter_tariffs_peoplenumbercheck		($tariff);// If the total number of people in the booking fall within the tariff's min/max people range?
 						$dowCheck 					= $this->filter_tariffs_dowcheck				($tariff);// Does the tariff allow selections on the arrival date's day of week?
 						
+						$rates_uid = $tariff->rates_uid;
 						if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
 							{
-							$rates_uid = $tariff->rates_uid;
+							
 							$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$rates_uid][0];
 							if (!isset($already_found_tariffs[$tariff_type_id." ".$room_uid]))
 								{
@@ -4040,9 +4042,13 @@ class dobooking
 								$roomAndTariffArray[]=array($room_uid,$rates_uid);
 								}
 							}
-						elseif ($datesValid && !$stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests) // Everything passed except the number of days in the booking
+						elseif ($datesValid && !$stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests && $mrConfig['tariffmode']=="1") // Everything passed except the number of days in the booking
 							{
-							
+							$mindays = $this->simple_tariff_to_date_map[$rates_uid]['mindays'];
+							if ($mindays < $this->mininterval)
+								{
+								$this->mininterval = $mindays;
+								}
 							}
 						}
 					}
@@ -4052,9 +4058,9 @@ class dobooking
 			$this->setErrorLog("getTariffsForRoomUids::count(freeRoomsArray) = 0");
 		$this->setErrorLog("--------------------------------------------");
 		
- 		if (count($roomAndTariffArray)==0)
+ 		if (count($roomAndTariffArray)==0 && $mrConfig['tariffmode']=="2")
 			{
-			$this->mininterval = 1000;
+			$this->mininterval = 1000; // We MUST reset the minimum interval here, as it's going to be recalculated.
 			foreach ($this->tariff_types_min_days as $mindays)
 				{
 				if ($mindays < $this->mininterval)
@@ -4360,7 +4366,7 @@ class dobooking
 						}
 					}
 				}
-/* 			else // this section might be (almost certainly is) superfluous
+ 			else
 				{
 				$tariff_info = $this->allPropertyTariffs[$tariff_uid];
 				$start = new DateTime($tariff_info['validfrom']);
@@ -4372,9 +4378,9 @@ class dobooking
 					{
 					$d = $date->format('Y/m/d');
 					if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']) )
-						$this->simple_tariff_to_date_map[$d][$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
+						$this->simple_tariff_to_date_map[$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
 					}
-				} */
+				}
 			}
 		}
 		
