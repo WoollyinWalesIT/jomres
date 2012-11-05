@@ -90,7 +90,7 @@ class jomres_currency_format
 				$retData=number_format($number, 2,  ',', ' ');
 				break;
 			case '6':
-				$retData=number_format($number);
+				$retData=number_format($number, 0,  '', '');
 				break;
 			default:
 				$retData=number_format($number, 2, '.', ',');
