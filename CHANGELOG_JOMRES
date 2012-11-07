@@ -1,3 +1,11 @@
+
+Jomres 7.2.1
+
+Removed a private class definition that was causing errors.
+Tweaked the dashboard minicomponent to ensure that the date dropdown is shown if we're actually running the dashboard task.
+Fixed an issue where Advanced tariff editing mode tariffs are showing that the min interval needs to be 1000 days.
+Tweaked the currency format class so that the integer only price shows correctly on all server configurations.
+
 Jomres 7.2
 
 Modified the booking engine to make use of greater flexability offered by upcoming changes to the advanced/micromanage plugin when configuring minimum day settings. The new micromanage functionality allows you to set minimum days for individual days, in the same way that you set individual day's prices.
