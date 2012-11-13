@@ -13,7 +13,35 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-//debug_print_backtrace();
+
+// Good ol' 1and1
+$tmp = substr(strstr(get_showtime('host'), ':'), 1);
+$port=null;
+$socket=null;
+$host='';
+if (!empty($tmp))
+	{
+	// Get the port number or socket name
+	if (is_numeric($tmp))
+		{
+		$port = $tmp;
+		}
+	else
+		{
+		$socket = $tmp;
+		}
+	// Extract the host name only
+	$host = substr(get_showtime('host'), 0, strlen(get_showtime('host')) - (strlen($tmp) + 1));
+	}
+
+// This will take care of the following notation: ":3306"
+if ($host == '')
+	{
+	$host = get_showtime('host');
+	}
+set_showtime('host',$host);
+set_showtime('port',$port);
+set_showtime('socket',$socket);
 
 class jomres_database
 	{
@@ -32,7 +60,10 @@ class jomres_database
 		$this->dbtype = get_showtime('dbtype');
 		if ( $this->dbtype == "mysqli" )
 			{
-			$this->link = mysqli_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysqli_error($this->link));
+			if (get_showtime("socket")=='/tmp/mysql5.sock')
+				$this->link = mysqli_connect(get_showtime('host'), get_showtime('user'),  get_showtime('password'), null, get_showtime('port'), get_showtime('socket')) or die('Could not connect ' . mysqli_error($this->link));
+			else
+				$this->link = mysqli_connect(get_showtime('host'),get_showtime('user'),get_showtime('password')) or die('Could not connect ' . mysqli_error($this->link));
 			mysqli_select_db($this->link, get_showtime('db')) or die('Could not select database');
 			mysqli_query($this->link, "SET CHARACTER SET utf8");
 			mysqli_query($this->link, "SET NAMES utf8");
