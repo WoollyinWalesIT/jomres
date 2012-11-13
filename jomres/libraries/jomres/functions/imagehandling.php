@@ -97,7 +97,7 @@ function uploadPropertyImage()
 	{
 	if (!jomresCheckToken()) {trigger_error ("Invalid token", E_USER_ERROR);}
 	$defaultProperty=getDefaultProperty();
-	$saveMessage=_JOMRES_FILE_UPDATED;
+	$saveMessage=jr_gettext('_JOMRES_FILE_UPDATED',_JOMRES_FILE_UPDATED,FALSE);
 
 	$uploadedImage	=	$_FILES['image']['name'];
 	$filename= split("\.", $_FILES['image']['name']);
