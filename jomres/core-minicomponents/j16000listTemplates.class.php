@@ -50,6 +50,7 @@ class j16000listTemplates
 		
 		$custom_templates =jomres_singleton_abstract::getInstance('jomres_custom_template_handler');
 
+		$cssFolder = JOMRESPATH_BASE.JRDS.'css';
 		$frontendTemplatesFolder=JOMRES_TEMPLATEPATH_FRONTEND;
 		$d = @dir($frontendTemplatesFolder);
 		$docs = array();
@@ -68,21 +69,25 @@ class j16000listTemplates
 			if (count($docs)>0)
 				{
 				natsort($docs);
-				$r=array();
 				
-				$r['EDITED']=jr_gettext("_JOMRES_COM_MR_NO",_JOMRES_COM_MR_NO,false);
-				if ($custom_templates->hasThisTemplateBeenCustomised("jomrescss.css"))
-					$r['EDITED']="<b>".jr_gettext("_JOMRES_COM_MR_YES",_JOMRES_COM_MR_YES,false)."</b>";
-				if (!using_bootstrap())
-					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss.css">jomrescss.css</a>' ;
+				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+				$jrConfig=$siteConfig->get();
+				if (_JOMRES_DETECTED_CMS == "joomla30")
+					$css_file = 'jomrescss_bootstrap.css' ;
 				else
-					$r['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile=jomrescss_bootstrap.css">jomrescss_bootstrap.css</a>' ;
-				$rows[]=$r;
+					{
+					if ($jrConfig['use_bootstrap_in_frontend'] == "1")
+						$css_file = 'jomrescss_bootstrap.css' ;
+					else
+						$css_file = 'jomrescss.css' ;
+					}
 				
+				array_unshift($docs,$css_file);
+
 				$counter=0;
 				foreach ($docs as $doc)
 					{
-					if ($doc != "jomrescss.css" && $doc != "srch.html" && trim($doc) != "")
+					if ( $doc != "srch.html" && trim($doc) != "")
 						{
 						if (array_key_exists($doc,$custom_templates->custom_templates))
 							{
@@ -90,7 +95,11 @@ class j16000listTemplates
 								{
 								$r=array();
 								$r['WARNINGICON']="";
-								$r['LAST_EDITED_DISK'] = date ("Y-m-d H:i:s", filemtime($frontendTemplatesFolder.JRDS.$doc));
+								
+								if ($doc != "jomrescss_bootstrap.css" && $doc != "jomrescss.css")
+									$r['LAST_EDITED_DISK'] = date ("Y-m-d H:i:s", filemtime($frontendTemplatesFolder.JRDS.$doc));
+								else
+									$r['LAST_EDITED_DISK'] = date ("Y-m-d H:i:s", filemtime($cssFolder.JRDS.$doc));
 								
 								$query = "SELECT `last_edited` FROM #__jomres_custom_templates WHERE `uid` = ".(int)$customised['id']."";
 								$r['LAST_EDITED_DB'] = doSelectSql($query,1);
@@ -114,6 +123,7 @@ class j16000listTemplates
 								$o=array();
 								$p=array();
 								$o['EDITLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'].'">'.jr_gettext('COMMON_EDIT',COMMON_EDIT,false).'</a>' ;
+								
 								$o['COPYLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'].'&copy=1">'.jr_gettext('COMMON_COPY',COMMON_COPY,false).'</a>' ;
 								$o['NEWLINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc.'" class="btn">'.jr_gettext('COMMON_NEW',COMMON_NEW,false).'</a>' ;
 								$o['DELETELINK']= '<a href="'.JOMRES_SITEPAGE_URL_ADMIN."&task=delete_template&no_html=1&id=".$customised['id'].'" class="btn">'.jr_gettext('COMMON_DELETE',COMMON_DELETE,false).'</a>' ;
@@ -121,10 +131,14 @@ class j16000listTemplates
 								$o['COPYURL']= JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&id='.$customised['id'].'&copy=1';
 								$o['NEWURL']= JOMRES_SITEPAGE_URL_ADMIN.'&task=edit_template&jomresTemplateFile='.$doc;
 								$o['DELETEURL']= JOMRES_SITEPAGE_URL_ADMIN."&task=delete_template&no_html=1&id=".$customised['id'];
+
 								$p[]=$o;
 								$tmpl = new patTemplate();
 								$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-								$tmpl->readTemplatesFromInput( 'list_templates_edit_dropdown_edit.html');
+								if ($doc != "jomrescss_bootstrap.css" && $doc != "jomrescss.css")
+									$tmpl->readTemplatesFromInput( 'list_templates_edit_dropdown_edit.html');
+								else
+									$tmpl->readTemplatesFromInput( 'list_templates_edit_dropdown_edit_css.html');
 								$tmpl->addRows( 'pageoutput',$p);
 								$editlinks=$tmpl->getParsedTemplate();
 								$r['EDIT_LINKS']=$editlinks;

@@ -31,7 +31,28 @@ class jomres_custom_template_handler
 	function jomres_custom_template_handler($specific_path=false)
 		{
 		if (!$specific_path)
-			$this->default_template_files_folder = JOMRES_TEMPLATEPATH_FRONTEND;
+			{
+			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+			$jrConfig=$siteConfig->get();
+			if (_JOMRES_DETECTED_CMS == "joomla30")
+				$this->using_bootstrap = true;
+			else
+				{
+				if ($jrConfig['use_bootstrap_in_frontend'] == "1")
+					$this->using_bootstrap = true;
+				else
+					$this->using_bootstrap = false;
+				}
+			
+			if ($this->using_bootstrap)
+				$this->default_template_files_folder = JOMRESPATH_BASE.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend';
+			else
+				$this->default_template_files_folder = JOMRESPATH_BASE.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'frontend';
+			}
+		else
+			{
+			$this->default_template_files_folder =$specific_path;
+			}
 		$this->temp_ptype_id = null; // After checking to see if a template's been customised, we'll need to store the ptype found in case it's 0 (zero) which means the template's for all properties
 		$this->getAllCustomTemplates();
 		}
@@ -86,7 +107,7 @@ class jomres_custom_template_handler
 	function getTemplateData($templatename,$ptype_id = 0)
 		{
 		$cssFile="jomrescss.css";
-		if (using_bootstrap())
+		if ($this->using_bootstrap)
 			$cssFile="jomrescss_bootstrap.css";
 		$customised = $this->hasThisTemplateBeenCustomised($templatename,$ptype_id);
 		if ($customised)

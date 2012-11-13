@@ -44,7 +44,13 @@ class j00021colourscheme
 				jomres_cmsspecific_addheaddata("css",JOMRES_CSSRELPATH,"jomrescss.css");
 			}
 		else
-			jomres_cmsspecific_addheaddata("css",JOMRES_CSSRELPATH,"jomrescss_bootstrap.css");
+			{
+			if (file_exists(JOMRESPATH_BASE.JRDS."temp".JRDS."jomrescss_bootstrap.css") )
+				jomres_cmsspecific_addheaddata("css",'jomres/temp/',"jomrescss_bootstrap.css");
+			else
+				jomres_cmsspecific_addheaddata("css",JOMRES_CSSRELPATH,"jomrescss_bootstrap.css");
+			}
+			
 		}
 
 	/**
