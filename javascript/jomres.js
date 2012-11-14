@@ -106,7 +106,7 @@ function bind_data_toggle()
 			property_uid = jomresJquery(this).attr('property_uid');
 			property_name = jomresJquery(this).attr('property_name');
 			
-			loader = '<img src="'+path_to_jomres_dir+'/jomres/images/ajax_animation/broken_circle.gif" alt="ajax_animation_image" />';
+			loader = '';
 			jomresJquery('#module_'+random_identifier+'_popup').html(loader);
 			e.preventDefault();
 			jomresJquery.get(module_pop_ajax_url+property_uid, function(data) {
