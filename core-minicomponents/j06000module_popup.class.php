@@ -44,7 +44,7 @@ class j06000module_popup
 			$output['THUMBNAIL']=getThumbnailForImage($property_image);
 			if (!$output['THUMBNAIL'])
 				$output['THUMBNAIL']=$property_image;
-			
+
 			$price_output = get_property_price_for_display_in_lists($property_uid);
 			$output['PRICE_PRE_TEXT']	=	$price_output['PRE_TEXT'];
 			$output['PRICE_PRICE']		=	$price_output['PRICE'];
@@ -95,8 +95,11 @@ class j06000module_popup
 				$output['PROPERTY_IMAGE_LARGE']=  get_showtime('live_site')."/jomres/images/noimage.gif";
 				$output['PROPERTY_IMAGE_MEDIUM']= get_showtime('live_site')."/jomres/images/noimage.gif";
 				$output['PROPERTY_IMAGE_SMALL']=  get_showtime('live_site')."/jomres/images/noimage.gif";
-
 				}
+
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.JRDS.$property_uid.JRDS.'gif'.JRDS.'medium_thumb.gif'))
+				$output['PROPERTY_IMAGE_MEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/medium_thumb.gif";
+			
 			$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 			$rt= doSelectSql($query);
 			if (count($rt)>0)

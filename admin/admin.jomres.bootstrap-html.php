@@ -103,6 +103,17 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		-->
 		<tr>
+			 <td>'.jr_gettext(_JOMRES_PROPERTYLIST_IMAGESASGIFS,'_JOMRES_PROPERTYLIST_IMAGESASGIFS',false).'</td>
+			 <td>'.$lists['make_gifs_from_slideshows'].'</td>
+			 <td></td>
+		</tr>
+		<tr>
+			 <td>'.jr_gettext(_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY,'_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY',false).'</td>
+			 <td>'.$lists['only_featured_properties_as_gifs'].'</td>
+			 <td></td>
+		</tr>
+		
+		<tr>
 			 <td>'.jr_gettext(_JOMRES_BOOTSTRAPSWITCH_FRONTEND,'_JOMRES_BOOTSTRAPSWITCH_FRONTEND',false).'</td>
 			 <td>'.$lists['use_bootstrap_in_frontend'].'</td>
 			 <td>'.jr_gettext(_JOMRES_BOOTSTRAPSWITCH_INFO,'_JOMRES_BOOTSTRAPSWITCH_INFO',false).'</td>
