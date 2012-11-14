@@ -1939,3 +1939,6 @@ Jomres is constantly evolving and core templates are often updated/modified. If 
 jr_define( "_JOMRES_STAYFORAMINIMUMOF" , "Stay for a minimum of");
 jr_define( "_JOMRES_NIGHTSFOR" , " nights for ");
 
+
+jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS" , "Property list images, show the property image as a gif if slideshow images are available.");
+jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY" , "Show as GIFs only if the property is a featured property.");
