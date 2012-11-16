@@ -194,6 +194,7 @@ function uploadPropertyImage()
 
 	if ($uploadedImage)
 		$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH);
+		
 	if ($checkedImage)
 		{
 		jr_import('jomres_cache');

@@ -74,6 +74,23 @@ class j06005save_my_account {
 			$query="UPDATE #__jomres_guests SET `firstname`='$firstname',`surname`='$surname',`house`='$house',`street`='$street',`town`='$town',`county`='$region',`country`='$country',`postcode`='$postcode',`tel_landline`='$landline',`tel_mobile`='$mobile',`tel_fax`='$fax',`email`='$email' WHERE mos_userid = ".(int)$thisJRUser->id;
 			doInsertSql($query,'');
 			}
+		
+		if (count($_FILES)==1)
+			{
+			if(!is_dir(JOMRES_IMAGELOCATION_ABSPATH.'userimages'))
+				mkdir(JOMRES_IMAGELOCATION_ABSPATH.'userimages');
+			
+			$uploadedImage	=	$_FILES['image']['name'];
+			$filename= split("\.", $_FILES['image']['name']);
+			$numExtensions=(count($filename))-1;
+			$fileExt=$filename[$numExtensions];
+			$newFileName="userimage_".(int)$thisJRUser->id.".".$fileExt;
+
+			if ($uploadedImage)
+				{
+				$checkedImage=uploadImageFromPost('image',$newFileName,JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS);
+				}
+			}
 		jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=edit_my_account"));
 		}
 
