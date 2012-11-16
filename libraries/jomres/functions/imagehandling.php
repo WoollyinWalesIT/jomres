@@ -14,7 +14,93 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
+function gif_builder($property_uid)
+	{
+	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+	$jrConfig=$siteConfig->get();
+	
+	$build_gif=false;
+	
+	$gif_dir = JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS.'gif'.JRDS;
+	$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH.JRDS.$property_uid.JRDS.'joomla'.JRDS.'small';
+	$images = scandir_getfiles($thumbs_dir);
+	
+	$result['SMALL']='';
+	$result['MEDIUM']='';
 
+	if (file_exists($gif_dir.'slideshow_lib.php'))
+		{
+		$data = file_get_contents($gif_dir.'slideshow_lib.php');
+		$original_image_library=unserialize($data);
+		if ($images != $original_image_library)
+			$build_gif=true;
+		}
+	
+	if (!is_dir($gif_dir))
+		$build_gif=true;
+	
+	if ($build_gif && count($images) > 0)
+		{
+		require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'sybio'.JRDS.'gifCreator'.JRDS.'GifCreator.php');
+
+		if (!is_dir($gif_dir))
+			{
+			$result = mkdir($gif_dir);
+			}
+		$arr = array();
+		$durations = array();
+		foreach ($images as $i)
+			{
+			$arr[]=file_get_contents($thumbs_dir.JRDS.$i);
+			$durations[] = rand(500, 700);
+			}
+		$gc = new GifCreator();
+		$gc->create($arr, $durations, 0);
+		$gifBinary = $gc->getGif();
+		file_put_contents($gif_dir.'small_thumb.gif', $gifBinary);
+		
+		// Might as well make the medium animated gif while we're at it
+		$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH.JRDS.$property_uid.JRDS.'joomla'.JRDS.'medium';
+		$images = scandir_getfiles($thumbs_dir);
+		$arr = array();
+		foreach ($images as $i)
+			{
+			$arr[]=file_get_contents($thumbs_dir.JRDS.$i);
+			}
+		$gc = new GifCreator();
+		$gc->create($arr, $durations, 0);
+		$gifBinary = $gc->getGif();
+		file_put_contents($gif_dir.'medium_thumb.gif', $gifBinary);
+		
+		file_put_contents($gif_dir.'slideshow_lib.php', serialize($images));
+
+		if (in_array($property_uid,$featured_properties) && $jrConfig['only_featured_properties_as_gifs']=="1" )
+			{
+			$result['SMALL']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/small_thumb.gif";
+			$result['MEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/medium_thumb.gif";
+			}
+		elseif ($jrConfig['only_featured_properties_as_gifs']=="0")
+			{
+			$result['SMALL']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/small_thumb.gif";
+			$result['MEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/medium_thumb.gif";
+			}
+		}
+	elseif (file_exists($gif_dir.'small_thumb.gif'))
+		{
+		if (in_array($property_uid,$featured_properties) && $jrConfig['only_featured_properties_as_gifs']=="1" )
+			{
+			$result['SMALL']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/small_thumb.gif";
+			$result['MEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/medium_thumb.gif";
+			}
+		elseif ($jrConfig['only_featured_properties_as_gifs']=="0")
+			{
+			$result['SMALL']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/small_thumb.gif";
+			$result['MEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/medium_thumb.gif";
+			}
+		}
+	return $result;
+	}
+	
 /**
 #
  * Deletes an image

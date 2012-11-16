@@ -547,87 +547,15 @@ class j01010listpropertys {
 							$jrConfig['only_featured_properties_as_gifs']="1";
 							}
 						
-						$gif_dir = JOMRES_IMAGELOCATION_ABSPATH.JRDS.$property->propertys_uid.JRDS.'gif';
-						// For testing, removes the /gif dir
-						// emptyDir($gif_dir);
-						// rmdir($gif_dir);
-						//exit;
+						
 						
 						if ($jrConfig['make_gifs_from_slideshows'] =="1")
 							{
-							$build_gif=false;
-							$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH.JRDS.$property->propertys_uid.JRDS.'joomla'.JRDS.'small';
-							$images = scandir_getfiles($thumbs_dir);
-							if (file_exists($gif_dir.JRDS.'slideshow_lib.php'))
+							$result = gif_builder($property->propertys_uid);
+							if ($result['SMALL'] != "")
 								{
-								$data = file_get_contents($gif_dir.JRDS.'slideshow_lib.php');
-								$original_image_library=unserialize($data);
-								if ($images != $original_image_library)
-									$build_gif=true;
-								}
-							
-							if (!is_dir($gif_dir))
-								$build_gif=true;
-							
-							if ($build_gif && count($images) > 0)
-								{
-								require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'sybio'.JRDS.'gifCreator'.JRDS.'GifCreator.php');
-
-								if (!is_dir($gif_dir))
-									{
-									$result = mkdir($gif_dir);
-									}
-								$arr = array();
-								$durations = array();
-								foreach ($images as $i)
-									{
-									$arr[]=file_get_contents($thumbs_dir.JRDS.$i);
-									$durations[] = rand(500, 700);
-									}
-								$gc = new GifCreator();
-								$gc->create($arr, $durations, 0);
-								$gifBinary = $gc->getGif();
-								file_put_contents($gif_dir.JRDS.'small_thumb.gif', $gifBinary);
-								
-								// Might as well make the medium animated gif while we're at it
-								$thumbs_dir = JOMRES_IMAGELOCATION_ABSPATH.JRDS.$property->propertys_uid.JRDS.'joomla'.JRDS.'medium';
-								$images = scandir_getfiles($thumbs_dir);
-								$arr = array();
-								foreach ($images as $i)
-									{
-									$arr[]=file_get_contents($thumbs_dir.JRDS.$i);
-									}
-								$gc = new GifCreator();
-								$gc->create($arr, $durations, 0);
-								$gifBinary = $gc->getGif();
-								file_put_contents($gif_dir.JRDS.'medium_thumb.gif', $gifBinary);
-								
-								file_put_contents($gif_dir.JRDS.'slideshow_lib.php', serialize($images));
-
-								if (in_array($property->propertys_uid,$featured_properties) && $jrConfig['only_featured_properties_as_gifs']=="1" )
-									{
-									$property_deets['IMAGETHUMB']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/small_thumb.gif";
-									$property_deets['IMAGEMEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/medium_thumb.gif";
-									}
-								elseif ($jrConfig['only_featured_properties_as_gifs']=="0")
-									{
-									$property_deets['IMAGETHUMB']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/small_thumb.gif";
-									$property_deets['IMAGEMEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/medium_thumb.gif";
-									}
-
-								}
-							elseif (file_exists($gif_dir.JRDS.'small_thumb.gif'))
-								{
-								if (in_array($property->propertys_uid,$featured_properties) && $jrConfig['only_featured_properties_as_gifs']=="1" )
-									{
-									$property_deets['IMAGETHUMB']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/small_thumb.gif";
-									$property_deets['IMAGEMEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/medium_thumb.gif";
-									}
-								elseif ($jrConfig['only_featured_properties_as_gifs']=="0")
-									{
-									$property_deets['IMAGETHUMB']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/small_thumb.gif";
-									$property_deets['IMAGEMEDIUM']=JOMRES_IMAGELOCATION_RELPATH.$property->propertys_uid."/gif/medium_thumb.gif";
-									}
+								$property_deets['IMAGETHUMB']=$result['SMALL'];
+								$property_deets['IMAGEMEDIUM']=$result['MEDIUM'];
 								}
 							}
 						$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("imagethumb"=>$property_deets['IMAGETHUMB'],"width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
