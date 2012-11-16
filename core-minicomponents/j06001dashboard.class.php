@@ -31,6 +31,8 @@ class j06001dashboard extends jomres_dashboard
 		$this->show_legend=false;
 		if (isset($componentArgs['show_legend']))
 			$this->show_legend = $componentArgs['show_legend'];
+		elseif (get_showtime("task")=="dashboard")
+			$this->show_legend = true;
 		
 		$this->show_date_dropdown = false;
 		if (isset($componentArgs['show_date_dropdown']))
