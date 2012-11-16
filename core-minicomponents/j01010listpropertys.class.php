@@ -489,7 +489,12 @@ class j01010listpropertys {
 						$property_deets['PROPERTYTOWN']= html_entity_decode($ptown);
 						$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
 						$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
-						$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
+						
+						if (strlen($propertyDesc) > (int)$jrConfig['propertyListDescriptionLimit'])
+							$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
+						else
+							$property_deets['PROPERTYDESC']= $propertyDesc;
+						
 						$property_deets['IMAGE']=$property_image;
 						
 						$property_deets['IMAGETHUMB']=getThumbnailForImage($property_deets['IMAGE']);
