@@ -55,9 +55,14 @@ class j06005edit_my_account {
 		$output['LANDLINE']='';
 		$output['MOBILE']='';
 		$output['EMAIL']=$user_details[$thisJRUser->id]['email'];
-
+		
+		$output['IMAGE']=get_showtime('live_site')."/jomres/images/noimage.gif";
+		
 		if ($thisJRUser->id > 0)
 			{
+			if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS."userimage_".(int)$thisJRUser->id.".jpg"))
+				$output['IMAGE']=JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int)$thisJRUser->id.'_thumbnail.jpg';
+			
 			$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$thisJRUser->id." LIMIT 1";
 			$guestData =doSelectSql($query);
 			$numberOfReturns=count($guestData);
