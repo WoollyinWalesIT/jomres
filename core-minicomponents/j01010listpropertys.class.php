@@ -552,8 +552,8 @@ class j01010listpropertys {
 							$jrConfig['only_featured_properties_as_gifs']="1";
 							}
 						
-						
-						
+						$property_deets['AGENT_LINK']=make_agent_link($property->propertys_uid);
+
 						if ($jrConfig['make_gifs_from_slideshows'] =="1")
 							{
 							$result = gif_builder($property->propertys_uid);
@@ -563,6 +563,7 @@ class j01010listpropertys {
 								$property_deets['IMAGEMEDIUM']=$result['MEDIUM'];
 								}
 							}
+						
 						$property_deets['TOOLTIP_IMAGE']=jomres_makeTooltip("property_image".$property->propertys_uid,"",$property_deets['IMAGE'],$property_deets['IMAGE'],"","imageonly",$type_arguments=array("imagethumb"=>$property_deets['IMAGETHUMB'],"width"=>$sizes['thwidth'],"height"=>$sizes['thheight'],"border"=>0));
 						if ($output_lowest)
 							$property_deets['LOWESTPRICE']=$price;

@@ -13,6 +13,63 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function build_property_manager_xref_array()
+	{
+	$query="SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref";
+	$managersToPropertyList = doSelectSql($query);
+	$arr=array();
+	if (count($managersToPropertyList) > 0)
+		{
+		foreach ($managersToPropertyList as $x)
+			{
+			if (!array_key_exists($x->property_uid,$arr))
+				$arr[$x->property_uid]=$x->manager_id;
+			}
+		}
+	set_showtime('property_manager_xref',$arr);
+	return $arr;
+	}
+
+function make_agent_link($property_id=0)
+	{
+	$property_manager_xref=get_showtime('property_manager_xref');
+	if (is_null($property_manager_xref))
+		{
+		$property_manager_xref = build_property_manager_xref_array();
+		}
+
+	if (!array_key_exists($property_id,$property_manager_xref))
+		{
+		return '';
+		}
+
+	if ($property_id == 0)
+		return '';
+
+	$output = array();
+	$pageoutput =  array();
+
+	$manager_id = $property_manager_xref[$property_id];
+
+	$output['IMAGE']=get_showtime('live_site')."/jomres/images/noimage.gif";
+	if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'userimages'.JRDS."userimage_".(int)$manager_id."_thumbnail.jpg"))
+		$output['IMAGE']=JOMRES_IMAGELOCATION_RELPATH.'userimages/userimage_'.(int)$manager_id.'_thumbnail.jpg';
+
+	$output['URL'] = jomresURL( JOMRES_SITEPAGE_URL."&task=view_agent&id=".$manager_id) ;
+
+	$pageoutput[] =$output;
+	$tmpl = new patTemplate();
+	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+	$tmpl->addRows( 'pageoutput',$pageoutput);
+	$tmpl->readTemplatesFromInput( 'agent_link.html' );
+	return $tmpl->getParsedTemplate();
+	}
+
+function make_agent_info($manager_id)
+	{
+
+	}
+
 function translation_user_check()
 	{
 	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
@@ -26,7 +83,7 @@ function translation_user_check()
 		}
 	return true;
 	}
-	
+
 function no_search_results()
 	{
 	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
@@ -52,7 +109,7 @@ function using_bootstrap()
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	
+
 	if (!isset($jrConfig['use_bootstrap_in_frontend']))
 		{
 		if (_JOMRES_DETECTED_CMS == "joomla30")
@@ -66,7 +123,7 @@ function using_bootstrap()
 			$jrConfig['use_bootstrap_in_frontend'] = "0";
 			}
 		}
-	
+
 	if (jomres_cmsspecific_areweinadminarea())
 		{
 		if ($jrConfig['use_bootstrap_in_admin'] == "1")
@@ -81,16 +138,16 @@ function using_bootstrap()
 		else
 			return false;
 		}
-	 
-/* 	 
+
+/*
 	// J3 administrator area, we use bootstrap
 	if (_JOMRES_DETECTED_CMS == "joomla30" && jomres_cmsspecific_areweinadminarea() )
 		return true;
-	
+
 	// Joomla 1.5 or 2.5, if we're in admin area, don't use bootstrap
 	if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS != "joomla30")
 		return false;
-		
+
 	// Now we let the site manager decide if we're using BS
 
 	if ($jrConfig['use_bootstrap']=="0")
@@ -106,7 +163,7 @@ function init_javascript()
 	if (!AJAXCALL )
 		{
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
-		$MiniComponents->triggerEvent('00004'); 
+		$MiniComponents->triggerEvent('00004');
 		}
 	}
 
@@ -157,7 +214,7 @@ function get_property_price_for_display_in_lists($property_uid)
 	$multiplier = 1;
 	if (!isset($mrConfig['booking_form_daily_weekly_monthly'])) // This shouldn't be needed, as the setting is automatically pulled from jomres_config.php, but there's always one weird server...
 		$mrConfig['booking_form_daily_weekly_monthly'] = "D";
-	
+
 	switch ($mrConfig['booking_form_daily_weekly_monthly'])
 		{
 		case "D":
@@ -213,7 +270,7 @@ function get_property_price_for_display_in_lists($property_uid)
 					$price=output_price ($current_property_details->get_gross_accommodation_price($pricesFromArray[$property_uid],$property_uid) * $multiplier,"",true,true);
 				else
 					$price=output_price ($pricesFromArray[$property_uid] * $multiplier,"",true,true);
-					
+
 				if ($mrConfig['tariffChargesStoredWeeklyYesNo'] == "1" && $mrConfig['tariffmode'] == "1")
 					$post_text = "&nbsp;".jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK',_JOMRES_COM_MR_LISTTARIFF_ROOMRATEPERWEEK);
 				else
@@ -376,7 +433,7 @@ function admins_first_run($manual_trigger = false)
 				{
 				echo '<h3>Getting Started with Jomres</h3>';
 				}
-			
+
 			}
 		else
 			echo '<div id = "first_run" title="Welcome to Jomres, Joomla\'s favourite hotel booking system">';
@@ -385,7 +442,7 @@ function admins_first_run($manual_trigger = false)
 			$class = "ui-state-highlight";
 		else
 			$class = "alert";
-		
+
 		if (!$manual_trigger)
 			echo '<p class="'.$class.'">This appears to be the first time you\'ve used Jomres* so here is a little reading material you will probably want to look at.</p>';
 
@@ -399,7 +456,7 @@ function admins_first_run($manual_trigger = false)
 			$class = "";
 			$style="";
 			}
-		
+
 		echo '
 		<div class="modal-body">
 		<div class="'.$class.'" style="width:100%;">
@@ -427,7 +484,7 @@ function admins_first_run($manual_trigger = false)
 			$class = "ui-state-highlight";
 		else
 			$class = "alert alert-info";
-		
+
 		if (!$manual_trigger)
 			echo ' <div class="'.$class.'">If you\'ve used Jomres before or are happy exploring the manual on your own just click the big X at the top right of this popup and we won\'t bother you again.</div>';
 
@@ -444,12 +501,12 @@ function admins_first_run($manual_trigger = false)
 	// else
 		// {
 		// $count = (int)file_get_contents ($logfile);
-		
+
 		// if (!using_bootstrap())
 			// $class = "ui-state-highlight";
 		// else
 			// $class = "alert alert-info";
-		
+
 		// if ($count == $threshold)
 			// {
 			// echo '<div id = "jed" style="display:none;" title="Review Jomres on the Joomla Extension Directory">';
@@ -457,7 +514,7 @@ function admins_first_run($manual_trigger = false)
 			// echo '<p class="'.$class.'">This is the one and only time you will see this feedback request (unless you delete <i>"'.$logfile.'"</i>).</p>';
 			// echo '</div>';
 			// echo '<script>jomresJquery( "#jed" ).dialog({width:500,modal:true});</script>';
-			
+
 			// }
 		// }
 
@@ -599,9 +656,9 @@ function get_property_module_data($property_uid_array)
 			{
 			$property_data = $property_data_array[$property_uid];
 			$mrConfig=getPropertySpecificSettings($property_uid);
-			
+
 			$current_property_details->gather_data($property_uid);
-			
+
 			set_showtime('property_type',$current_property_details->property_type);
 			set_showtime('property_uid',$property_uid);
 			$customTextObj->get_custom_text_for_property($property_uid);
@@ -937,7 +994,7 @@ function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = tr
 		{
 		$c_codes = new currency_codes($currencycode);
 		$symbols = $c_codes->getSymbol();
-		
+
 		if ($price > 0.00 || $zeroOK)
 			{
 			$price = $currfmt->get_formatted($price);
@@ -1196,7 +1253,7 @@ function getThisMonthName($monthNumber,$editable=true)
 	 $thisMonthName=jr_gettext('_JOMRES_CUSTOMTEXT_'.$monthNumber,$mName,$editable);
 	 return $thisMonthName;
 	 }
- 
+
 function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$params='',$remote_plugin_component_folder="c",$remote_plugin_administrator_folder="a",$remote_plugin_module_folder="m",$remote_plugin_mambot_folder="b")
 	{
 
@@ -1272,7 +1329,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 					}
 				$result=doInsertSql($query,"");
 				}
-				
+
 			if ($result)
 				{
 				//echo "Moving contents of ".$module_xml_source." to ".$module_target."<br/>";
@@ -1461,7 +1518,7 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 	{
 	include(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'jomres_config.php');
 	$current_version = $mrConfig['version'];
-		
+
 	if ($serverType == "plugin")
 		$updateServer="http://plugins.jomres4.net";
 	else
@@ -2481,10 +2538,10 @@ function hotelSettings()
 	$lists['prices_inclusive']							= jomresHTML::selectList( $yesno, 'cfg_prices_inclusive', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['prices_inclusive'] );
 	$lists['wholeday_booking']							= jomresHTML::selectList( $yesno, 'cfg_wholeday_booking', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['wholeday_booking'] );
 	$lists['depositIsOneNight']							= jomresHTML::selectList( $yesno, 'cfg_depositIsOneNight', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['depositIsOneNight'] );
-	
+
 	if (!isset($mrConfig['auto_detect_country_for_booking_form']))
 		$mrConfig['auto_detect_country_for_booking_form'] = "1";
-	
+
 	$lists['auto_detect_country_for_booking_form']		= jomresHTML::selectList( $yesno, 'cfg_auto_detect_country_for_booking_form', 'class="inputbox" size="1"', 'value', 'text', $mrConfig['auto_detect_country_for_booking_form'] );
 
 
@@ -2752,15 +2809,15 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		//$clear_checkbox_js = '<input type="checkbox" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'setDate\' , null );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'setDate\' , null );" /> '.$clear;
 		$clear_checkbox_js = '<input type="checkbox" name="nodates" value="1" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'isDisabled\' )?jomresJquery(\'#'.$uniqueID.'\').datepicker( \'enable\' ):jomresJquery(\'#'.$uniqueID.'\').datepicker( \'disable\' );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'isDisabled\' )?jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'enable\' ):jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'disable\' );" /> '.$clear;
 		}
-	
+
 	$size = " size=\"10\" ";
 	$input_class="";
 	if (using_bootstrap())
-		{ 
+		{
 		$size="";
 		$input_class=" input-small ";
 		}
-	
+
 	$output .= '<script type="text/javascript">
 	jomresJquery(function() {
 		jomresJquery("#'.$uniqueID.'").datepicker( {
@@ -2811,7 +2868,7 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 	$br="";
 	if ($fieldName == "departureDate" && $jrConfig['use_cleardate_checkbox'] == "1")
 		$br = "<br/>";
-	
+
 	$pageoutput[]=array("INPUT"=>$output,"CHECKBOX"=>$clear_checkbox_js,"BR"=>$br);
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
@@ -3292,7 +3349,7 @@ function listGateways()
 */
 function getPropertyTypeDropdown($propertyType="",$all=false,$empty_ok=false)
 	{
-	
+
 	$query="SELECT id, ptype FROM #__jomres_ptypes WHERE published = '1' ORDER BY `order` ASC";
 	$ptypeList = doSelectSql($query);
 	if (count($ptypeList)>0)
@@ -3302,7 +3359,7 @@ function getPropertyTypeDropdown($propertyType="",$all=false,$empty_ok=false)
 			$ptypeOptions[]=jomresHTML::makeOption( 0, jr_gettext('_JOMRES_SEARCH_ALL',_JOMRES_SEARCH_ALL,false,false));
 		if ($empty_ok)
 			$ptypeOptions[]=jomresHTML::makeOption( 0,' ');
-		
+
 		foreach ($ptypeList as $ptype)
 			{
 			$ptypeOptions[]=jomresHTML::makeOption( $ptype->id,stripslashes(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.$ptype->id,$ptype->ptype,false,false)) );
@@ -3371,7 +3428,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	$gor=genericOr($contract_ids,'contract_uid');
 	$query="SELECT * FROM #__jomres_contracts WHERE property_uid = '".(int)$defaultProperty."' AND ".$gor;
 	$booking_data = doSelectSql($query);
-	
+
 	$output=array();
 	$output['PAGETITLE']=$title;
 	$output['IMG_PENDING']=$img_pending;
@@ -3380,14 +3437,14 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 	$output['IMG_LATE']=$img_late;
 	$output['IMG_DEPARTTODAY']=$img_departtoday;
 	$output['IMG_STILLHERE']=$img_stillhere;
-	
+
 	$output['TEXT_PENDING']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_PENDING',_JOMRES_COM_MR_VIEWBOOKINGS_PENDING);
 	$output['TEXT_ARRIVETODAY']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY',_JOMRES_COM_MR_VIEWBOOKINGS_ARRIVETODAY);
 	$output['TEXT_RESIDENT']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT',_JOMRES_COM_MR_VIEWBOOKINGS_RESIDENT);
 	$output['TEXT_LATE']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_LATE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_LATE',_JOMRES_COM_MR_VIEWBOOKINGS_LATE);
 	$output['TEXT_DEPARTTODAY']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY',_JOMRES_COM_MR_VIEWBOOKINGS_DEPARTTODAY);
 	$output['TEXT_STILLHERE']=$mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE_WHOLEDAY):  jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE',_JOMRES_COM_MR_VIEWBOOKINGS_STILLHERE);
-	
+
 	$output['_JOMRES_COM_MR_VIEWBOOKINGS_STATUS']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS',_JOMRES_COM_MR_VIEWBOOKINGS_STATUS);
 	$output['_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME']=jr_gettext('_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME',_JOMRES_COM_MR_VIEWBOOKINGS_SURNAME);
 	$output['_JOMRES_COM_MR_EDITBOOKINGTITLE']=jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE);
@@ -3437,7 +3494,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		$r['EDIT_LINK']= '<a href="'.jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) ).'" class="btn btn-info"><i class="icon-edit icon-white"></i> '.jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE,false).'</a>';
 		$r['EDIT_URL']= jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );
 		$r['EDIT_TEXT']=jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE,false);
-		
+
 		$r['FIRSTNAME']=$row->firstname;
 		$r['SURNAME']=$row->surname;
 		$r['BOOKING_NO']=$row->tag;
@@ -3450,7 +3507,7 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		}
 
 	$pageoutput[]=$output;
-	
+
 	$tmpl = new patTemplate();
 	$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
 	$tmpl->readTemplatesFromInput( 'list_property_bookings.html');
@@ -4897,14 +4954,14 @@ function parseFloat($ptString) {
 
 
 
-function scandir_getdirectories($path) 
+function scandir_getdirectories($path)
 	{
 	$data = array();
-	foreach(scandir($path) as $dir) 
+	foreach(scandir($path) as $dir)
 		{
-		if(is_dir($path . $dir)) 
+		if(is_dir($path . $dir))
 			{
-			if ($dir != "." && $dir != "..") 
+			if ($dir != "." && $dir != "..")
 				{
 				$data[] =$dir;
 				}
@@ -4913,25 +4970,25 @@ function scandir_getdirectories($path)
 	return $data;
 	}
 
-function scandir_getfiles($path,$extension = false) 
+function scandir_getfiles($path,$extension = false)
 	{
 	$data = array();
-	foreach(scandir($path) as $file) 
+	foreach(scandir($path) as $file)
 		{
-		if(is_file($path .JRDS. $file)) 
+		if(is_file($path .JRDS. $file))
 			{
 			if (!$extension)
 				$data[] =$file;
 			else
 				{
-				$filename = strtolower($file) ; 
-				$exts = explode(".", $filename) ; 
-				$n = count($exts)-1; 
+				$filename = strtolower($file) ;
+				$exts = explode(".", $filename) ;
+				$n = count($exts)-1;
 				$exts = $exts[$n];
 				if ($exts == $extension)
 					$data[] = $file;
 				}
-			} 
+			}
 		}
 	return $data;
 	}
@@ -4988,7 +5045,7 @@ function jomres_decode($string)
 	$string= str_replace ("&#62;",">", $string);
 	$string= str_replace ("&lt;","<", $string);
 	$string= str_replace ("&gt;",">", $string);
-	
+
 	$string = str_replace( "\xe2\x80\xa8",'', $string); // Strip out some naughty little ascii line seperators that are absolute devils to remove if you're not looking for them. They'll break your javascript.
 	//$string = str_replace ("&#39;","'",$string);
 	return $string;
@@ -5112,18 +5169,18 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	{
 	$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
-	
+
 	$jrConfig=$siteConfig->get();
 	$testStr= trim(strip_tags_except($theValue));
 	$crsEtc=array("\t","\n","\r");
 	$testStr=str_replace($crsEtc,"",$testStr);
-	if (strlen($testStr)==0 
-			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION" 
-			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES" 
-			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES" 
-			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS" 
-			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS" 
-			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT" 
+	if (strlen($testStr)==0
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION"
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES"
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES"
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS"
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS"
+			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT"
 			&& $theConstant != "_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS" )
 		return false;
 	if (!isset($property_uid))
@@ -5150,7 +5207,7 @@ function updateCustomText($theConstant,$theValue,$audit=TRUE,$property_uid=null)
 	//echo $query;
 	if ($audit)
 		$audit=jr_gettext("_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT",_JOMRES_MR_AUDIT_UPDATECUSTOMTEXT);
-		
+
 	doInsertSql($query,$audit);
 	//$query="SELECT customtext FROM #__jomres_custom_text WHERE constant = '".$theConstant."' and property_uid = '".(int)$property_uid."' AND language = '".get_showtime('lang')."'";
 	//echo doSelectSql($query,1);
@@ -5274,7 +5331,7 @@ if ( !function_exists('gregoriantojd') )
 		return $c + $d + $e + $f - 1524.5 + 0.5;
 		}
 	}
-	
+
 
 
 
@@ -5320,7 +5377,7 @@ function jomresURL($link, $ssl=2)
 	if (!$jrConfig['isInIframe'] )
 		{
 		$link=jomres_cmsspecific_makeSEF_URL($link);
-		
+
 		// As we've dropped support for "ssl in the booking form" in 4.7, these lines are no longer applicable.
 		// if ($ssl == 1)
 			// $link	= str_replace("http://","https://",$link);
@@ -5405,7 +5462,7 @@ class dummy_params_class
 	return $userDeets;
 	}
 
-/* 
+/*
 function jomres_search_dir($path, $pattern)
 	{
 	global $jomres_dir_contents;
@@ -5434,7 +5491,7 @@ function jomres_search_dir($path, $pattern)
 	return $jomres_dir_contents;
 	}
  */
- 
+
  // This function is used by jomresGetParam and is called after a parameter is called (typically an input string) has been sanitised. It allows us to reconvert some code, such as &lt;br/&gt; back to <br/>
 // The string will already have been cleaned by filter var sanitize string.
 /* function jomres_reconvertString($clean)
@@ -5450,7 +5507,7 @@ function jomres_search_dir($path, $pattern)
 	return $clean;
 	}
  */
-	
+
 
 /**
 #
@@ -5548,7 +5605,7 @@ function jomres_check_email_address($email)
 	return $txt;
 	}
  */
-	
+
 /**
 #
  * depreciated
@@ -5570,7 +5627,7 @@ function jomres_check_email_address($email)
 #
 */
 
-/* 
+/*
 function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 	{
 	if (isset($_REQUEST['dataonly']))
@@ -5660,7 +5717,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 	<?php
 	}
  */
-	
+
 
 /**
 #
@@ -5724,7 +5781,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 		}
 	}
  */
-	
+
 
 /**
 #
@@ -5758,7 +5815,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 		}
 	}
  */
-	
+
 /**
 #
  * Validates a url passed from the configuration while saving
@@ -5777,7 +5834,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 	return $url;
 	}
  */
-	
+
 /**
 #
  * Creates and echos the calendar month dropdown
@@ -5826,7 +5883,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 	return $listTxt;
 	}
  */
-	
+
 /**
 #
  *  Creates the javascript calendar css selection dropdown
@@ -5850,7 +5907,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 	return $listTxt;
 	}
  */
-	
+
 	/**
 	 * This method creates a standard cpanel button
 	 *
@@ -5871,7 +5928,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 		<?php
 	} */
 
-	
+
 /* if (!function_exists('is_iPhone'))
 	{
 	function is_iPhone($agent='')
@@ -5891,7 +5948,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 		}
 	}
  */
-	
+
 /* function editCustomTextAll()
 	{
 	$mrConfig=getPropertySpecificSettings();
@@ -5952,7 +6009,7 @@ function showArrivaldateJS($dformat,$javascriptFunctionName,$randomID)
 		}
 	}
  */
-	
+
 /* function mailJomresdotnet($message)
 	{
 	if (jomresGetDomain() != "localhost")
