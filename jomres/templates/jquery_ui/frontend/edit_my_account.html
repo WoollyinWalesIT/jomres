@@ -49,7 +49,7 @@ jomresJquery(document).ready(function(){
 	</tr>
 </table>
 <br />
-<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform">
+<form action="{JOMRES_SITEPAGE_URL}" method="post" id="reviewForm" name="adminform" enctype="multipart/form-data">
 <table width="100%" border="0" class="ui-widget-content ui-corner-all">
 	<tr>
 		<td width="30%"><label for="firstname">{HFIRSTNAME}</label></td>
@@ -95,6 +95,14 @@ jomresJquery(document).ready(function(){
 		<td><label for="review_title">{HEMAIL}</label></td>
 		<td><input name="email" type="text" size="20" value="{EMAIL}" class="inputbox required " /></td>
 	</tr>
+	
+	<tr>
+		<label class="control-label" for="image">Image</label>
+		<div class="controls">
+			<input type='file' name='image'/><span class="help-inline"><img src="{IMAGE}"/></span>
+		</div>
+	</tr>
+
 	<tr>
 		<td colspan="2"><input type="submit" value="{_JOMRES_REVIEWS_SUBMIT}" class="fg-button ui-state-default ui-corner-all"/></td>
 	</tr>
