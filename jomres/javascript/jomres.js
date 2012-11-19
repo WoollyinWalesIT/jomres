@@ -104,15 +104,16 @@ function bind_data_toggle()
 		jomresJquery('[data-toggle="modal"]').click(function(e) {
 			random_identifier = jomresJquery(this).attr('random_identifier');
 			property_uid = jomresJquery(this).attr('property_uid');
-			property_name = jomresJquery(this).attr('property_name');
-			
-			loader = '';
-			jomresJquery('#module_'+random_identifier+'_popup').html(loader);
-			e.preventDefault();
-			jomresJquery.get(module_pop_ajax_url+property_uid, function(data) {
-				result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>'+property_name+'</h4></div><div class="modal-body">'+data+'</div>';
-				jomresJquery('#module_'+random_identifier+'_popup').html(result);
-				});
+			if (property_uid != undefined) {
+				property_name = jomresJquery(this).attr('property_name');
+				loader = '';
+				jomresJquery('#module_'+random_identifier+'_popup').html(loader);
+				e.preventDefault();
+				jomresJquery.get(module_pop_ajax_url+property_uid, function(data) {
+					result = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">x</button><h4>'+property_name+'</h4></div><div class="modal-body">'+data+'</div>';
+					jomresJquery('#module_'+random_identifier+'_popup').html(result);
+					});
+				}
 			});
 		});
 	}
