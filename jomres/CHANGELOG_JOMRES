@@ -1,3 +1,16 @@
+jomres 7.2.3
+
+Added a new feature where property list images are shown as gifs if configuration set to show them, and there are slideshow images. There is also an option to only show featured properties as gifs.
+Modified edit my account functionality to allow uploading of images for users.
+Added a feature where users can list properties for specific property managers (task is called view_agent). A new image in the property list quick info (taken from the image uploaded via the Edit my Account feature) links to a list of all of the manager's properties.
+
+
+Removed the loading animation for bootstrap modal popups. Ugly.
+A small fix for the dashboard to show the half images when clicking the dashboard menu also otherwise it shows the half images only when logged in and going to the default jomres page.
+Modified property list so that if property description is shorter than the description limit, then ... is not shown.
+Tweaked a module popup js function to ensure it only triggers if the property uid is set.
+
+
 Jomres 7.2.2
 
 Added functionality to the database handler that'll allow us to cope with 1and1's socket settings.
