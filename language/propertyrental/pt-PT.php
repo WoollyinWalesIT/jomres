@@ -1943,3 +1943,7 @@ jr_define( "_JOMRES_NIGHTSFOR" , " nights for ");
 
 jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS" , "Property list images, show the property image as a gif if slideshow images are available.");
 jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY" , "Show as GIFs only if the property is a featured property.");
+
+jr_define( "_JOMRES_AGENT" , "Agent");
+jr_define( "_JOMRES_AGENT_DETAILS" , "Agent details");
+jr_define( "_JOMRES_AGENT_LISTINGS" , "Agent's listings");
