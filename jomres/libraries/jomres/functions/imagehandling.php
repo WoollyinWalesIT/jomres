@@ -19,6 +19,9 @@ function gif_builder($property_uid)
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
 	
+	$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+	$featured_properties = $tmpBookingHandler->tmpsearch_data['featured_properties'];
+
 	$build_gif=false;
 	
 	$gif_dir = JOMRES_IMAGELOCATION_ABSPATH.$property_uid.JRDS.'gif'.JRDS;
@@ -38,7 +41,7 @@ function gif_builder($property_uid)
 	
 	if (!is_dir($gif_dir))
 		$build_gif=true;
-	
+
 	if ($build_gif && count($images) > 0)
 		{
 		require_once(JOMRESPATH_BASE.JRDS.'libraries'.JRDS.'sybio'.JRDS.'gifCreator'.JRDS.'GifCreator.php');
@@ -87,6 +90,7 @@ function gif_builder($property_uid)
 		}
 	elseif (file_exists($gif_dir.'small_thumb.gif'))
 		{
+
 		if (in_array($property_uid,$featured_properties) && $jrConfig['only_featured_properties_as_gifs']=="1" )
 			{
 			$result['SMALL']=JOMRES_IMAGELOCATION_RELPATH.$property_uid."/gif/small_thumb.gif";

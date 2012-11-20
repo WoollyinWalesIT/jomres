@@ -300,6 +300,8 @@ class j01010listpropertys {
 			$class_counter=0;
 			
 			$featured_properties = get_showtime("featured_properties");
+			if (count($featured_properties)>0) // only store the featured properties if their count is > 0. That's because featured properties are only set in non-ajax calls. If it's an ajax called, we don't want to set the featured properties to null
+				$tmpBookingHandler->tmpsearch_data['featured_properties'] = $featured_properties;
 			
 			if (count($propertyDeets) >0)
 				{
@@ -337,7 +339,7 @@ class j01010listpropertys {
 						$stars=$property->stars;
 						$propertyDesc=strip_tags(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION',$property->property_description,false,false ));
 						
-						if (in_array($property->propertys_uid,$featured_properties))
+						if (in_array($property->propertys_uid))
 							{
 							if (!isset($jrConfig['featured_listings_emphasis']))
 								$jrConfig['featured_listings_emphasis'] = "";
@@ -539,23 +541,16 @@ class j01010listpropertys {
 						if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 							$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
 
-						// $query="SELECT ptype FROM #__jomres_ptypes WHERE `id` = '".(int)$property->ptype_id."' LIMIT 1";
-						// $ptype = doSelectSql($query,1);
-						// $property_deets['PROPERTY_TYPE'] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$property->ptype_id,$ptype,false,false);
-						
 						$property_deets['PROPERTY_TYPE'] = $property_types[(int)$property->ptype_id];
 						$property_deets['PROPERTY_TYPE_SEARCH_URL'] = jomresURL( JOMRES_SITEPAGE_URL."&amp;task=search&amp;ptype=".$property->ptype_id);
 						
 						if (!isset($jrConfig['make_gifs_from_slideshows']))
-							{
 							$jrConfig['make_gifs_from_slideshows']="1";
-							$jrConfig['only_featured_properties_as_gifs']="1";
-							}
 						
 						$property_deets['AGENT_LINK']=make_agent_link($property->propertys_uid);
 						
 						$property_deets['_JOMRES_AGENT']=jr_gettext("_JOMRES_AGENT",_JOMRES_AGENT);
-						
+
 						if ($jrConfig['make_gifs_from_slideshows'] =="1")
 							{
 							$result = gif_builder($property->propertys_uid);
