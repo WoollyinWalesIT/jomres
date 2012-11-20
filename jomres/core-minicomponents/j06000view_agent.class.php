@@ -23,6 +23,12 @@ class j06000view_agent
 			{
 			$this->template_touchable=false; return;
 			}
+		
+		$MiniComponents->triggerEvent('01004',$componentArgs); // optional
+		$MiniComponents->triggerEvent('01005',$componentArgs); // optional
+		$MiniComponents->triggerEvent('01006',$componentArgs); // optional
+		$MiniComponents->triggerEvent('01007',$componentArgs); // optional
+		
 		$output=array();
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
@@ -61,6 +67,8 @@ class j06000view_agent
 		$output['HMOBILE']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_MOBILE',_JOMRES_COM_MR_DISPGUEST_MOBILE);
 		$output['HFAX']=jr_gettext('_JOMRES_COM_MR_DISPGUEST_FAX',_JOMRES_COM_MR_DISPGUEST_FAX);
 		$output['HEMAIL']=jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL',_JOMRES_COM_MR_EB_GUEST_JOMRES_EMAIL_EXPL);
+		$output['_JOMRES_AGENT_DETAILS']=jr_gettext('_JOMRES_AGENT_DETAILS',_JOMRES_AGENT_DETAILS);
+		$output['_JOMRES_AGENT_LISTINGS']=jr_gettext('_JOMRES_AGENT_LISTINGS',_JOMRES_AGENT_LISTINGS);
 
 		$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$thisJRUser->id." LIMIT 1";
 		$managerData =doSelectSql($query);
