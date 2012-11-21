@@ -170,8 +170,8 @@ function jomres_cmsspecific_getTextEditor($name, $content, $hiddenField, $width,
 function jomres_cmsspecific_setlanguage($lang)
 	{
 	// These need testing
-	SetCookie($_COOKIE['jfcookie']['lang'], $lang, time()+60*60);
-	$_COOKIE['jfcookie']['lang']= $lang;
+	//SetCookie($_COOKIE['jfcookie']['lang'], $lang, time()+60*60);
+	//$_COOKIE['jfcookie']['lang']= $lang;
 	}
 
 function jomres_cmsspecific_getcurrentusers_id()
