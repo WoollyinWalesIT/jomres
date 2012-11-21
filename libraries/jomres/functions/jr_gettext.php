@@ -94,6 +94,19 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$theText=jr_get_defined($theConstant,$theValue);
 			}
 		}
+		
+	
+	if (isset($thisJRUser))
+		{
+		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
+		$componentArgs = array(
+		'constant'=>$theConstant,
+		'property_uid'=>$property_uid,
+		'text_to_translate'=>$theText
+		);
+		$MiniComponents->triggerEvent('05100',$componentArgs);
+		}
+	
 	//$theText=jomres_reconvertString($theText);
 	if (isset($thisJRUser))
 		{
