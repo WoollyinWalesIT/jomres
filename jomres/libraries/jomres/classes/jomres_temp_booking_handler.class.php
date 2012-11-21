@@ -268,7 +268,7 @@ class jomres_temp_booking_handler
 	function close_jomres_session()
 		{
 		$data=array('IP'=>$_SERVER,'tmpbooking'=>$this->tmpbooking,'cart_data'=>$this->cart_data,'tmpguest'=>$this->tmpguest,'tmpsearch_data'=>$this->tmpsearch_data,'tmplang'=>$this->tmplang,'user_settings'=>$this->user_settings);
-		if (!is_null($this->sessionfile)) // In certain circumstances the session file might not have been created (typically administrator area functionality)
+		if (isset($this->sessionfile)) // In certain circumstances the session file might not have been created (typically administrator area functionality)
 			file_put_contents($this->sessionfile, serialize($data));
 		}
 
