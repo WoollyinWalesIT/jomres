@@ -163,7 +163,7 @@ class jomres_language
 		return $langfiles;
 		}
 		
-	function get_languageselection_dropdown()
+	function get_languageselection_dropdown($config_option = false,$default_lang = "")
 		{
 		$task = get_showtime('task');
 		if ($this->showLangDropdown != "1" && $task != "touch_templates" && !jomres_cmsspecific_areweinadminarea() )
@@ -190,9 +190,6 @@ class jomres_language
 			$langfileexplode=explode(".",$filename);
 			$langshortcode =  $langfileexplode[0];
 			$langlong=$langfile_crossref[$langshortcode];
-			//if (!array_key_exists($langshortcode, $langfile_crossref))
-			//	$langlong = $langshortcode;
-			
 			$tempOptions[$langshortcode]=$langlong;
 			}
 
@@ -202,12 +199,31 @@ class jomres_language
 			$langfile_options[] = jomresHTML::makeOption( $key , $val );
 			}
 		
-		$javascript = "onchange=\"this.form.submit();\"";
-		$dropdown = jomresHTML::selectList( $langfile_options, 'jomreslang','class="inputbox" size="1" '.$javascript.'', 'value', 'text', $this->lang);
 		
-		$selecthtml = '<form action="" method="post" name="jomreslang">';
+		if (!$config_option)
+			{
+			$javascript = "onchange=\"this.form.submit();\"";
+			$input_name = 'jomreslang';
+			}
+		else
+			{
+			$javascript = '';
+			$input_name = 'cfg_property_language';
+			}
+		
+		if ($default_lang != '' && array_key_exists($default_lang, $langfile_crossref) )
+			$lang = $default_lang;
+		else
+			$lang = $this->lang;
+		
+		$dropdown = jomresHTML::selectList( $langfile_options, $input_name,'class="inputbox" size="1" '.$javascript.'', 'value', 'text', $lang);
+		
+		$selecthtml ='';
+		if (!$config_option)
+			$selecthtml = '<form action="" method="post" name="jomreslang">';
 		$selecthtml.= $dropdown;
-		$selecthtml.= '</form>';
+		if (!$config_option)
+			$selecthtml.= '</form>';
 		return $selecthtml;
 		}
 		
