@@ -41,10 +41,20 @@ class j00501odds {
 		$mrConfig=getPropertySpecificSettings();
 		if ($mrConfig['is_real_estate_listing']==1)
 			return;
+			
+		if (!isset($mrConfig['property_language']))
+			$mrConfig['property_language']="en-GB";
+		
 		$lists=$componentArgs['lists'];
 		$editIconSize=$componentArgs['editIconSize'];
 		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_ODDS",_JOMRES_COM_A_ODDS));
-
+		
+		$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
+		$configurationPanel->setleft(jr_gettext("_JOMRES_PROPERTY_LANG",_JOMRES_PROPERTY_LANG));
+		$configurationPanel->setmiddle($jomreslang->get_languageselection_dropdown(true,$mrConfig['property_language']));
+		$configurationPanel->setright(jr_gettext("_JOMRES_PROPERTY_LANG_DESC",_JOMRES_PROPERTY_LANG_DESC));
+		$configurationPanel->insertSetting();
+		
 		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT));
 		$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
 		$configurationPanel->setright(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC));
