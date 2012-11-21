@@ -608,7 +608,7 @@ function get_remote_ip_number()
 	}
 
 // Intended as a utility function used by Jomres modules to display information about a property in modules
-function get_property_module_data($property_uid_array)
+function get_property_module_data($property_uid_array,$alt_template_path='',$alt_template_name='')
 	{
 	// for testing
 	//$property_uid_array = array(1,12,43,14);
@@ -689,14 +689,20 @@ function get_property_module_data($property_uid_array)
 
 			$pageoutput = array($property_data);
 			$tmpl = new patTemplate();
-			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			if ($alt_template_path !='')
+				$tmpl->setRoot( $alt_template_path );
+			else
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			if (count($property_data_array[$property_uid]['room_types'])>0)
 				$tmpl->addRows( 'room_types',$property_data_array[$property_uid]['room_types']);
 			if (count($property_data_array[$property_uid]['room_features'])>0)
 				$tmpl->addRows( 'room_features',$property_data_array[$property_uid]['room_features']);
-
-			$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
+			
+			if ($alt_template_name != '')
+				$tmpl->readTemplatesFromInput( $alt_template_name );
+			else
+				$tmpl->readTemplatesFromInput( 'basic_module_output.html' );
 			$res[$property_uid]['template'] = $tmpl->getParsedTemplate();
 			$res[$property_uid]['data'] = $property_data;
 			}
