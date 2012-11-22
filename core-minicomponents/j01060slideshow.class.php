@@ -113,7 +113,10 @@ class j01060slideshow {
 			}
 		else
 			{
-			$this->retVals['slideshow']=jr_gettext('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES',_JOMRES_COM_A_SLIDESHOWS_NOIMAGES,'');
+			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
+				$this->retVals['slideshow']='<img src="'.get_showtime('live_site').'/jomres/uploadedimages/'.$property_uid.'_property_'.$property_uid.'.jpg" />';
+			else
+				$this->retVals['slideshow']=jr_gettext('_JOMRES_COM_A_SLIDESHOWS_NOIMAGES',_JOMRES_COM_A_SLIDESHOWS_NOIMAGES,'');
 			}
 		
 		
