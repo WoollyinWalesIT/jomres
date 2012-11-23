@@ -189,6 +189,6 @@ $mrConfig['auto_detect_country_for_booking_form']='1';
 $jrConfig['make_gifs_from_slideshows']="1";
 $jrConfig['only_featured_properties_as_gifs']="1";
 
-$jrConfig['property_language']="1";
+$mrConfig['property_language']="en-GB";
 
 ?>
