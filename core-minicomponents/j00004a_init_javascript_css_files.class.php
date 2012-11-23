@@ -105,9 +105,7 @@ class j00004a_init_javascript_css_files {
 		
 		set_showtime("jquery.cookee.js","jquery.cookee.js");
 		set_showtime("jquery.cookee.js.relpath","jomres/javascript/");
-		
 
-		
 		set_showtime("heartbeat.js","heartbeat.js");
 		set_showtime("heartbeat.js.relpath","jomres/javascript/");
 		
@@ -162,6 +160,12 @@ class j00004a_init_javascript_css_files {
 		set_showtime("misc_url_definitions.js",$ls."_".get_showtime('lang')."_misc_url_definitions.js"); // We need to include some javascript which could normally be echo'd into the page, but due to the fact that it might be included by Jomres proper, as well as plugins, we'll instead create it's own .js file, and use the host CMS to insert it into the head.
 		set_showtime("misc_url_definitions.js.abspath",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."temp".JRDS);
 		set_showtime("misc_url_definitions.js.relpath","jomres/temp/");
+		
+		set_showtime("jomres_consolidated_files.js","jomres_consolidated_files.js");
+		set_showtime("jomres_consolidated_files.js.relpath","jomres/javascript/");
+		
+		set_showtime("jomres_consolidated_files_min.js","jomres_consolidated_files_min.js");
+		set_showtime("jomres_consolidated_files_min.js.relpath","jomres/javascript/");
 		}
 
 	/**
