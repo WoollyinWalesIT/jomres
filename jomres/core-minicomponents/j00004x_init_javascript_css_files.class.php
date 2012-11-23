@@ -67,7 +67,7 @@ class j00004x_init_javascript_css_files {
 					jomres_cmsspecific_addheaddata("css",get_showtime("jquery.ui.theme.relpath"),get_showtime("jquery.ui.theme"),$skip=true);
 
 				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.rating.css.relpath"),get_showtime("jquery.rating.css"),true);
-				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.ui.potato.menu.css.relpath"),get_showtime("jquery.ui.potato.menu.css"));
+				
 
 				if (jomres_cmsspecific_areweinadminarea())
 					{
@@ -87,21 +87,28 @@ class j00004x_init_javascript_css_files {
 					}
 
 				jomres_cmsspecific_addheaddata("javascript",get_showtime("datepicker_localisation_file.relpath"),get_showtime("datepicker_localisation_file"),true);
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.js.relpath"),get_showtime("jquery.cookee.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.for_tabs.js.relpath"),get_showtime("jquery.cookee.for_tabs.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("heartbeat.js.relpath"),get_showtime("heartbeat.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.bt.js.relpath"),get_showtime("jquery.bt.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.hoverIntent.js.relpath"),get_showtime("jquery.hoverIntent.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.rating.js.relpath"),get_showtime("jquery.rating.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.validate.js.relpath"),get_showtime("jquery.validate.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("excanvas.js.relpath"),get_showtime("excanvas.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.chainedSelects.js.relpath"),get_showtime("jquery.chainedSelects.js"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.ui.potato.menu.js.relpath"),get_showtime("jquery.ui.potato.menu.js"));
+				
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.js.relpath"),get_showtime("jquery.cookee.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.for_tabs.js.relpath"),get_showtime("jquery.cookee.for_tabs.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("heartbeat.js.relpath"),get_showtime("heartbeat.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.bt.js.relpath"),get_showtime("jquery.bt.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.hoverIntent.js.relpath"),get_showtime("jquery.hoverIntent.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.rating.js.relpath"),get_showtime("jquery.rating.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.validate.js.relpath"),get_showtime("jquery.validate.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("excanvas.js.relpath"),get_showtime("excanvas.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.chainedSelects.js.relpath"),get_showtime("jquery.chainedSelects.js"));
+				
 				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
 
-				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.easing.compatibility.js.relpath"),get_showtime("jquery.easing.compatibility.js"));
-					
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.easing.compatibility.js.relpath"),get_showtime("jquery.easing.compatibility.js"));
+
+				// This contains the contents of the commented out scripts above, all in one file
+				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jomres_consolidated_files.js.relpath"),get_showtime("jomres_consolidated_files.js"));
+				
+				// And this is that file, minified
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("jomres_consolidated_files_min.js.relpath"),get_showtime("jomres_consolidated_files_min.js"));
+				
 				if ($thisJRUser->userIsRegistered)
 					{
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js"));
@@ -113,12 +120,14 @@ class j00004x_init_javascript_css_files {
 				
 				if (using_bootstrap())
 					{
-					jomres_cmsspecific_addheaddata("javascript",get_showtime("DT_bootstrap.js.relpath"),get_showtime("DT_bootstrap.js"));
-					
 					jomres_cmsspecific_addheaddata("css",get_showtime("DT_bootstrap.css.relpath"),get_showtime("DT_bootstrap.css"));
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("DT_bootstrap.js.relpath"),get_showtime("DT_bootstrap.js"));
 					}
-				
+				else
+					{
+					jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.ui.potato.menu.js.relpath"),get_showtime("jquery.ui.potato.menu.js"));
+					jomres_cmsspecific_addheaddata("css",get_showtime("jquery.ui.potato.menu.css.relpath"),get_showtime("jquery.ui.potato.menu.css"));
+					}
 				$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 				$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 				
