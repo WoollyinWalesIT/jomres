@@ -68,7 +68,7 @@ class j06000ui_availability_calendar
 			foreach ($booking_dates as $date=>$count)
 				{
 				// This might need to be checked later, let's get the infrastructure in place first.
-				if ($count == $this->rooms_full)
+				if ($count >= $this->rooms_full)
 					$full_dates[] = $date;
 				if ($count <= $this->rooms_full-1  && $count >= $this->rooms_threequarter )
 					$threequarter_dates[] = $date;
