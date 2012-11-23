@@ -1932,3 +1932,7 @@ jr_define( "_JOMRES_PROPERTYLIST_IMAGESASGIFS_FEATURED_ONLY" , "Show as GIFs onl
 jr_define( "_JOMRES_AGENT" , "Agent");
 jr_define( "_JOMRES_AGENT_DETAILS" , "Agent details");
 jr_define( "_JOMRES_AGENT_LISTINGS" , "Agent's listings");
+
+jr_define( "_JOMRES_PROPERTY_LANG" , "Property language");
+jr_define( "_JOMRES_PROPERTY_LANG_DESC" , "The default language of this property.");
+
