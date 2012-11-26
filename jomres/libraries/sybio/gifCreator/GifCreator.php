@@ -86,7 +86,7 @@ class GifCreator
     {
 		if (!is_array($frames) && !is_array($GIF_tim)) {
             
-            throw new \Exception($this->version.': '.$this->errors['ERR00']);
+            throw new Exception($this->version.': '.$this->errors['ERR00']);
 		}
         
 		$this->loop = ($loop > -1) ? $loop : 0;
@@ -119,7 +119,7 @@ class GifCreator
                  
 			} else { // Fail
                 
-                throw new \Exception($this->version.': '.$this->errors['ERR02'].' ('.$mode.')');
+                throw new Exception($this->version.': '.$this->errors['ERR02'].' ('.$mode.')');
 			}
             
             if ($i == 0) {
@@ -129,7 +129,7 @@ class GifCreator
             
 			if (substr($this->frameSources[$i], 0, 6) != 'GIF87a' && substr($this->frameSources[$i], 0, 6) != 'GIF89a') {
 			 
-                throw new \Exception($this->version.': '.$i.' '.$this->errors['ERR01']);
+                throw new Exception($this->version.': '.$i.' '.$this->errors['ERR01']);
 			}
             
 			for ($j = (13 + 3 * (2 << (ord($this->frameSources[$i] { 10 }) & 0x07))), $k = TRUE; $k; $j++) {
@@ -140,7 +140,7 @@ class GifCreator
                     
 						if ((substr($this->frameSources[$i], ($j + 3), 8)) == 'NETSCAPE') {
                             
-                            throw new \Exception($this->version.': '.$this->errors['ERR03'].' ('.($i + 1).' source).');
+                            throw new Exception($this->version.': '.$this->errors['ERR03'].' ('.($i + 1).' source).');
 						}
                         
 					break;
