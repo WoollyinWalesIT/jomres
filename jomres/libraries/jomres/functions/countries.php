@@ -173,47 +173,39 @@ function createCountriesDropdown($selectedCountry,$input_name = "country",$inclu
 	return $countryDropdown;
 	}
 
-#
-/**
-#
- * Creates an array of country codes to regions
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
+
 function setupRegions($countryCode="GB",$currentRegion="Pembrokeshire")
 	{
-	$currentRegion=jomres_decode($currentRegion);
-
 	$regionArray = array();
 	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
 	foreach ($jomres_regions->regions as $region)
 		{
 		if ($region['countrycode']  == $countryCode)
-			$regionArray[]=$region['regionname'];
+			$regionArray[$region['id']]=$region['regionname'];
 		}
-	
+
+	if (!is_numeric($currentRegion))// This allows us to transition from using region names in the dropdown's value field, to region ids.
+		{
+		foreach ($regionArray as $id=>$r)
+			{
+			if ($r == $currentRegion)
+				$currentRegion = $id;
+			}
+		}
+	else
+		$currentRegion=jomres_decode($currentRegion);
+
 	$regionDropdown="";
 	if (count($regionArray)>0)
 		{
-		sort($regionArray);
-		$regionDropdown = '<span><select id="region" class="inputbox" name="region">';
-		$number_of_regions = count($regionArray);
-		for ($i=0, $n=$number_of_regions; $i < $n; $i++)
+		natcasesort($regionArray);
+		foreach ($regionArray as $k=>$v)
 			{
-			$loopedRegion=jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$countryCode."_".$i,$regionArray[$i],false,false) ;
-			if ($currentRegion != "" && $currentRegion==$loopedRegion)
-				$selected="selected";
-			else
-				$selected="";
-			$regionDropdown .= "<option  value=\"".$loopedRegion."\" ".$selected.">".$loopedRegion."</option>";
+			$regions[]=jomresHTML::makeOption( $k, $v );
 			}
-		$regionDropdown.="</select></span>";
+		$regionDropdown= jomresHTML::selectList($regions, 'region', 'class="inputbox"', 'value', 'text', $currentRegion);
 		}
+
 	return $regionDropdown;
 	}
 

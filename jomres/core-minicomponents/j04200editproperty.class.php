@@ -146,9 +146,15 @@ class j04200editproperty {
 					$output['PROPERTY_POLICIES_DISCLAIMERS']='<textarea class="inputbox" cols="70" rows="5" name="property_policies_disclaimers">'.$property_policiesdisclaimers.'</textarea>';
 					}
 				$propertyFeatures=$property->property_features;
-				$propertyRegion=$property->property_region;
+				
 				if (empty($selectedCountry))
 					$selectedCountry=$property->property_country;
+				
+				if (is_numeric($property->property_region))
+					$propertyRegion = jr_gettext('_JOMRES_CUSTOMTEXT_REGIONNAMES_'.$selectedCountry."_".$property->property_region,$property->property_region,false,false) ;
+				else
+					$propertyRegion=$property->property_region;
+
 				}
 			}
 		else // Probably superfluous
