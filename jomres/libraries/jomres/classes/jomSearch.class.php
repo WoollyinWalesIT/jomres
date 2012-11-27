@@ -939,13 +939,20 @@ function prepGeographicSearch()
 		{
 		$r=array();
 		$r['postcode']=$location->property_postcode;
-		$r['region']=$location->property_region;
+		if (is_numeric($location->property_region))
+			{
+			$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+			$r['region']			=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$location->property_region,$jomres_regions->regions[$location->property_region]['regionname'],false,false);
+			}
+		else
+			$r['region']			=$location->property_region;
 		$r['country']=$location->property_country;
 		$r['countryname']=$allCountries[$r['country']];
 		$r['property_town']=$location->property_town;
 		if (!empty($r['property_town']) )
 			$allPropertyLocations[]=$r;
 		}
+		
 	$result['propertyLocations']=$allPropertyLocations;
 	return $result;
 	}
