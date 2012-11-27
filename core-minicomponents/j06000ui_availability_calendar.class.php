@@ -81,10 +81,12 @@ class j06000ui_availability_calendar
 				}
 			}
 		
+		$random_identifier = generateJomresRandomString(10);
+		
 		$quarter_output ='';
 		if (count($quarter_dates)>0)
 			{
-			$quarter_output = "var quarter_dates = [";
+			$quarter_output = "var quarter_dates_".$random_identifier." = [";
 			foreach ($quarter_dates as $date)
 				{
 				$quarter_output .= "'".$date."',";
@@ -96,7 +98,7 @@ class j06000ui_availability_calendar
 		$half_output = '';
 		if (count($half_dates)>0)
 			{
-			$half_output = "var half_dates = [";
+			$half_output = "var half_dates_".$random_identifier." = [";
 			foreach ($half_dates as $date)
 				{
 				$half_output .= '"'.$date.'",';
@@ -108,7 +110,7 @@ class j06000ui_availability_calendar
 		$threequarter_output ='';
 		if (count($threequarter_dates)>0)
 			{
-			$threequarter_output = "var threequarter_dates = [";
+			$threequarter_output = "var threequarter_dates_".$random_identifier." = [";
 			foreach ($threequarter_dates as $date)
 				{
 				$threequarter_output .= "'".$date."',";
@@ -117,10 +119,12 @@ class j06000ui_availability_calendar
 			$threequarter_output .= "];";
 			}
 		
+		
+		
 		$full_output = "";
 		if (count($full_dates)>0)
 			{
-			$full_output = "var full_dates = [";
+			$full_output = "var full_dates_".$random_identifier." = [";
 			foreach ($full_dates as $date)
 				{
 				$full_output .= "'".$date."',";
@@ -129,7 +133,7 @@ class j06000ui_availability_calendar
 			$full_output .= "];";
 			}
 		
-		$random_identifier = generateJomresRandomString(10);
+		
 		
 		$inline_calendar = '
 			<script>
@@ -137,9 +141,9 @@ class j06000ui_availability_calendar
 			'.$half_output.'
 			'.$threequarter_output.'
 			'.$full_output.'
-			var booking_form_url = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&pdetails_cal=1&selectedProperty='.$property_uid.'&arrivalDate=";
+			var booking_form_url_'.$random_identifier.' = "'.JOMRES_SITEPAGE_URL_NOSEF.'&task=dobooking&pdetails_cal=1&selectedProperty='.$property_uid.'&arrivalDate=";
 			
-			function highlightDays(date)
+			function highlightDays_'.$random_identifier.'(date)
 				{
 				var year, month, day, currDate;
 				// compile current date
@@ -154,24 +158,24 @@ class j06000ui_availability_calendar
 					}
 				currDate = String(year+\'/\'+month+\'/\'+day);
 				// is date in the specialDays?
-				if (\'undefined\'!=typeof(quarter_dates)){
-					if (jomresJquery.inArray(currDate, quarter_dates) >= 0) {
+				if (\'undefined\'!=typeof(quarter_dates_'.$random_identifier.')){
+					if (jomresJquery.inArray(currDate, quarter_dates_'.$random_identifier.') >= 0) {
 						return [true, \'calendar_background_quarter\'];
 						}
 					}
-				if (\'undefined\'!=typeof(half_dates)){
+				if (\'undefined\'!=typeof(half_dates_'.$random_identifier.')){
 				
-					if (jomresJquery.inArray(currDate, half_dates) >= 0) {
+					if (jomresJquery.inArray(currDate, half_dates_'.$random_identifier.') >= 0) {
 						return [true, \'calendar_background_half\'];
 						}
 					}
-				if (\'undefined\'!=typeof(threequarter_dates)){
-					if (jomresJquery.inArray(currDate, threequarter_dates) >= 0) {
+				if (\'undefined\'!=typeof(threequarter_dates_'.$random_identifier.')){
+					if (jomresJquery.inArray(currDate, threequarter_dates_'.$random_identifier.') >= 0) {
 						return [true, \'calendar_background_threequarter\'];
 						}
 					}
-				if (\'undefined\'!=typeof(full_dates)){
-					if (jomresJquery.inArray(currDate, full_dates) >= 0) {
+				if (\'undefined\'!=typeof(full_dates_'.$random_identifier.')){
+					if (jomresJquery.inArray(currDate, full_dates_'.$random_identifier.') >= 0) {
 						return [true, \'calendar_background_full\'];
 						}
 					}
@@ -182,10 +186,10 @@ class j06000ui_availability_calendar
 				jomresJquery( "#'.$random_identifier.'" ).datepicker({
 					"dateFormat" : "yy/mm/dd",
 					"minDate": 0,
-					beforeShowDay: highlightDays,
+					beforeShowDay: highlightDays_'.$random_identifier.',
 					onSelect: function(){
 						var selected = jomresJquery( this ).val() ;
-						window.location = booking_form_url+selected;
+						window.location = booking_form_url_'.$random_identifier.'+selected;
 						}
 					});
 				});
