@@ -362,26 +362,6 @@ function updateImages()
 			
 			
 		}
-		
-			// if (count($docs)>0)
-				// {
-				// sort($docs);
-				// foreach ($docs as $doc)
-					// {
-					// $listdir=$jrePath.$doc.JRDS;
-					// $dr = @dir($listdir);
-					// if($dr)
-						// {
-						// while (FALSE !== ($entry = $dr->read()))
-							// {
-							// $filename = $entry;
-							// $this->registerComponentFile($listdir,$filename,"component");
-							// }
-						// $dr->close();
-						// }
-					// }
-				// }
-		//}
 	}
 	
 function doTableUpdates()
@@ -465,10 +445,69 @@ function doTableUpdates()
 	if (!checkCustomtemplatesPtypeidColExists() )
 		alterCustomtemplatesPtypeidCol();
 	
+	//migrate_region_names();
+	
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+
+/*
+Added a new "migrate region names to region ids" function, but will leave it disabled for now. New Jomres functionality forces us to store region names as the database region ids, however we don't want this new functionality to negatively impact users with existing data so search functionality has been updated to search both region names and region ids in the jomres_propertys table. For now we BELIEVE that this will be sufficient to provide a painless upgrade, however we'll keep this migration function in our back pockets in case we find that users benefit from migrating their properties to region ids.
+*/
+function migrate_region_names()
+	{
+	$query = "SELECT propertys_uid,property_region FROM #__jomres_propertys";
+	$result = doSelectSql($query);
+	if (count($result)>0)
+		{
+		
+		/*
+		UPDATE #__jomres_propertys
+			SET property_region = CASE propertys_uid
+				WHEN 1 THEN 3
+				WHEN 2 THEN 4
+				WHEN 3 THEN 5
+			END
+		WHERE propertys_uid IN (1,2,3)
+		*/
+		$query = '
+		UPDATE #__jomres_propertys
+			SET property_region = CASE propertys_uid
+				';
+		$property_uids_array=array();
+		foreach ($result as $property)
+			{
+			if (!is_numeric($property->property_region))
+				{
+				$region_id = find_region_id($property->property_region);
+				if (!is_null($region_id))
+					{
+					$query .= "WHEN ".(int)$property->propertys_uid." THEN ".(int)$region_id.'
+			';
+					
+					$property_uids_array[]=$property->propertys_uid;
+					}
+				}
+			}
+		if (count($property_uids_array)>0)
+			{
+			$in_str = ' 
+			END
+				WHERE propertys_uid IN (';
+			foreach ($property_uids_array as $id)
+				{
+				$in_str .= $id.",";
+				}
+			$in_str = substr($in_str, 0, -1).")";
+			if (doInsertSql($query.$in_str,'') )
+				echo "Updated property regions to property region ids";
+			else
+				echo "Failed to update property regions to property region ids";
+			}
+		}
+	}
+	
 function alterCustomtemplatesPtypeidCol()
 	{
 	if (!AUTO_UPGRADE) echo  "Editing __jomres_custom_templates table adding ptype_id column<br>";
