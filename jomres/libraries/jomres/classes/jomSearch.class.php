@@ -226,10 +226,12 @@ class jomSearch {
 				{
 				if (!in_array($region->property_region,$tmpRegionArray) )
 					{
-					$this->prep['region'][]=array('region'=>$region->property_region);
-					$tmpRegionArray[]=$region->property_region;
+					$this->prep['region'][]=array('region'=>find_region_name($region->property_region));
+					$tmpRegionArray[]=find_region_name($region->property_region);
 					}
 				}
+			$tmpRegionArray=array_unique ($tmpRegionArray);
+			
 			}
 		if (in_array("town",$this->searchOptions) )
 			{
@@ -424,12 +426,17 @@ class jomSearch {
 	 */
 	function jomSearch_region()
 		{
-		$filter=$this->filter['region'];
 		$this->makeOrs();
 		$property_ors=$this->ors;
 		if(!empty($this->filter['region']) && $property_ors )
 			{
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']."' $property_ors AND published='1' ORDER BY property_name ";
+			$region_id = find_region_id($this->filter['region']);
+			if (!is_null($region_id))
+				$this->filter['region'] .= "' OR property_region = ".(int)$region_id."";
+			else
+				$this->filter['region'] .= "'";
+			
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']." $property_ors AND published='1' ORDER BY property_name ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else

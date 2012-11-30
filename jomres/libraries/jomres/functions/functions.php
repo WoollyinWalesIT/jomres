@@ -13,6 +13,37 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+ function find_region_name($region_id)
+	{
+	if (!is_numeric($region_id)) // It's already NOT numeric
+		return $region_id;
+	
+	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	foreach ($jomres_regions->regions as $r)
+		{
+		if ($r['id']  == $region_id)
+			return $r['regionname'];
+		}
+	return null;
+	}
+
+function find_region_id($region)
+	{
+	if (is_numeric($region)) // It's already numeric
+		return $region;
+	
+	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	foreach ($jomres_regions->regions as $r)
+		{
+		if (strcasecmp ( $r['regionname'],$region)==0)
+			{
+			return (int)$r['id'];
+			}
+		}
+	return null;
+	}
+
+
 function build_property_manager_xref_array()
 	{
 	$query="SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref";
