@@ -81,7 +81,7 @@ class j02272publishprop {
 							}
 						}
 					else
-						echo _JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH;
+						echo jr_gettext('_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH',_JRPORTAL_SUBSCRIBERS_CANNOT_PUBLISH,FALSE);
 					}
 				else
 					{
