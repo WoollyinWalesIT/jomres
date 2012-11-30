@@ -96,7 +96,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		}
 		
 	
-	if (isset($thisJRUser))
+/* 	if (isset($thisJRUser))
 		{
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$componentArgs = array(
@@ -105,7 +105,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		'text_to_translate'=>$theText
 		);
 		$MiniComponents->triggerEvent('05100',$componentArgs);
-		}
+		} */
 	
 	//$theText=jomres_reconvertString($theText);
 	if (isset($thisJRUser))
