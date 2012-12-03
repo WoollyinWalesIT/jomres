@@ -48,16 +48,28 @@
 	<tr>
 		<td><strong>{HDAYSSTAYING}</strong></td>
 		<td>{DAYSSTAYING}</td>
-		<td colspan="2">{TOWN}, {COUNTY}, {POSTCODE}</td>
+		<td colspan="2">{TOWN}, {COUNTY}, {POSTCODE}, {COUNTRY}</td>
 	</tr>
+	<patTemplate:tmpl name="room_info">
+	<tr>
+		<td>{HROOM_NAME}</td>
+		<td>{ROOM_NAME}</td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td>{HROOM_NUMBER}</td>
+		<td>{ROOM_NUMBER}</td>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	</patTemplate:tmpl>
 	<tr>
 		<td><strong>{HTOTALINPARTY}</strong></td>
 		<td>{TOTALINPARTY}</td>
-		<td colspan="2">{COUNTRY}</td>
+		<td colspan="2">{HTEL}: {LANDLINE}</td>
 	</tr>
 	<tr>
 		<td colspan="2"><strong>{PROPERTYNAME} - {HROOMSBOOKED} - {NUMROOMS}</strong></td>
-		<td colspan="2">{HTEL}: {LANDLINE}</td>
+		<td colspan="2">{HMOBILE}: {MOBILE}</td>
 	</tr>
 	<tr>
 		<td colspan="2" valign="top">
@@ -65,7 +77,7 @@
 		{FULLDESC}<br />
 		</patTemplate:tmpl>
 		</td>
-		<td colspan="2" valign="top">{HMOBILE}: {MOBILE}</td>
+		<td colspan="2" valign="top"></td>
 	</tr>
 	<!--<tr>
 		<td colspan="4" class="jomres_message">{ALLOCATION}</td>

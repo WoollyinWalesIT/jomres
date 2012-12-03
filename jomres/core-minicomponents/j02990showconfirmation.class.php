@@ -194,6 +194,7 @@ class j02990showconfirmation {
 		$room_name		=	"";
 		$prevroomclass	=	0;
 
+		$room_info = array();
 		foreach ($roomList as $room)
 			{
 			$roomtype 			=	array();
@@ -203,6 +204,8 @@ class j02990showconfirmation {
 				$roomNumber	   .=	', '.$room->room_number;
 			$room_name		   .=	$room->room_name;
 			$room_classes_uid	=	$room->room_classes_uid;
+			
+			$room_info[]=array("ROOM_NAME"=>$room_name,"ROOM_NUMBER"=>$room->room_number,"HROOM_NAME"=>jr_gettext("_JOMRES_COM_MR_EB_ROOM_NAME"),"HROOM_NUMBER"=>jr_gettext("_JOMRES_COM_MR_EB_ROOM_NUMBER") );
 
 			if ($room_classes_uid != $prevroomclass)
 				{
@@ -574,6 +577,7 @@ class j02990showconfirmation {
 		$tmpl->addRows( 'booking_extras', $booking_extras);
 		$tmpl->addRows( 'booking_extratext', $extrastext);
 		$tmpl->addRows( 'booking_rooms', $booking_rooms);
+		$tmpl->addRows( 'room_info', $room_info);
 		$tmpl->addRows( 'cartoutput', $cartoutput);
 		if (isset($gatewayDeets) && count($gatewayDeets)>0)
 			{

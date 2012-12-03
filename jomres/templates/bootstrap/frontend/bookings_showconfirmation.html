@@ -71,10 +71,29 @@
 				</div>
 				<div class="span6">
 					<patTemplate:tmpl name="booking_rooms">
-						{FULLDESC}<br />
+						{FULLDESC}
 					</patTemplate:tmpl>
+
 				</div>
 			</div>
+			<patTemplate:tmpl name="room_info">
+			<div class="row-fluid">
+				<div class="span6">
+					<strong>{HROOM_NAME}</strong>
+				</div>
+				<div class="span6">
+					{ROOM_NAME}
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<strong>{HROOM_NUMBER}</strong>
+				</div>
+				<div class="span6">
+					{ROOM_NUMBER}
+				</div>
+			</div>
+			</patTemplate:tmpl>
 		</div>
 		<div class="span6 well">
 			<h3 class="page-header">{AJAXFORM_ADDRESS}</h3>
