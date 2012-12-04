@@ -61,6 +61,13 @@ class j16000addplugin
 		$this->key_valid = $key_validation->key_valid;
 
 		if ($thirdparty)
+			{
+			$formElement=$_FILES['pluginfile'];
+			$blowdedUp = explode(".",$formElement['name']);
+			$pluginName = $blowdedUp[0];
+			}
+		
+		if ($thirdparty)
 			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'remote_plugins'.JRDS;
 		else
 			$remote_pluginsDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
@@ -70,9 +77,7 @@ class j16000addplugin
 			$error_messsage["ERROR"]="Error, no plugin name passed";
 			if ($autoupgrade) return false; 
 			}
-		
-		
-		
+
 		if (!is_dir($remote_pluginsDirPath) )
 			{
 			if (!mkdir($remote_pluginsDirPath))
@@ -103,8 +108,7 @@ class j16000addplugin
 			}
 		
 		$updateDirPath=JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'updates'.JRDS.$pluginName.JRDS;
-		
-		
+
 		
 		if (is_dir($updateDirPath."unpacked") )
 			{
@@ -146,6 +150,7 @@ class j16000addplugin
 			$formElement=$_FILES['pluginfile'];
 			$blowdedUp = explode(".",$formElement['name']);
 			$pluginName = $blowdedUp[0];
+
 			if ($formElement['name']!="")
 				{
 				if (strstr($formElement['name'],"-") ) 
@@ -174,6 +179,7 @@ class j16000addplugin
 				$error_messsage["ERROR"]=$errorDesc;
 				if ($autoupgrade) return false;
 				}
+			
 			}
 		else
 			{
