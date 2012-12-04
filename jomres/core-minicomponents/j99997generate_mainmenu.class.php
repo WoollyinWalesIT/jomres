@@ -83,6 +83,21 @@ class j99997generate_mainmenu {
 				if (array_key_exists('task',$url_params))
 					{
 					$button_task=$url_params['task'];
+					
+					$r['BADGES']='';
+					$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($button_task);
+					if (count($items_requiring_attention)>0)
+						{
+						foreach ($items_requiring_attention as $colour=>$number)
+							{
+							$tmpl = new patTemplate();
+							$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+							$tmpl->readTemplatesFromInput( 'menu_badge_'.$colour.'.html' );
+							$tmpl->addRows( 'items_requiring_attention', array(array("NUMBER"=>$number)));
+							$r['BADGES'] .= $tmpl->getParsedTemplate();
+							}
+						}
+					
 					if ($button_task==jomresGetParam( $_REQUEST, 'task', "" ))
 						{
 						if (!using_bootstrap())
