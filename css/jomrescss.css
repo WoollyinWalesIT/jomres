@@ -110,3 +110,64 @@ a.rescal:hover{background-color: white;color: black;}
 #all {font-size: 12px !important;background: none;border: 0 none;}
 #main ul {list-style-type: none !important;margin:0 !important;padding:0 !important;}
 #main {padding:0 !important;}
+
+.badge {
+    border: 1px solid white;
+    border-radius: 12px;
+    box-shadow: 1px 1px 1px black;
+    color: white;
+    font: bold 12px/9px Helvetica, Verdana, Tahoma;
+    height: 12px;
+    padding: 2px 3px 0 3px;
+    text-align: center;
+    min-width: 8px;
+}
+
+.badge_red {
+	background-color: #B94A48;
+    background:	radial-gradient( 1px -11px, circle, white 8%, #B94A48 26px );
+	background:	-moz-radial-gradient( 1px -11px, circle, white 8%, #B94A48 26px );
+	background:	-ms-radial-gradient( 1px -11px, circle, white 8%, #B94A48 26px );
+	background:	-o-radial-gradient( 1px -11px, circle, white 8%, #B94A48 26px );
+	background:	-webkit-radial-gradient( 1px -11px, circle, white 8%, #B94A48 26px );
+}
+.badge_black {
+	background-color: #333333;
+    background:	radial-gradient( 1px -11px, circle, white 8%, #333333 26px );
+	background:	-moz-radial-gradient( 1px -11px, circle, white 8%, #333333 26px );
+	background:	-ms-radial-gradient( 1px -11px, circle, white 8%, #333333 26px );
+	background:	-o-radial-gradient( 1px -11px, circle, white 8%, #333333 26px );
+	background:	-webkit-radial-gradient( 1px -11px, circle, white 8%, #333333 26px );
+}
+.badge_blue {
+	background-color: #3A87AD;
+    background:	radial-gradient( 1px -11px, circle, white 8%, #3A87AD 26px );
+	background:	-moz-radial-gradient( 1px -11px, circle, white 8%, #3A87AD 26px );
+	background:	-ms-radial-gradient( 1px -11px, circle, white 8%, #3A87AD 26px );
+	background:	-o-radial-gradient( 1px -11px, circle, white 8%, #3A87AD 26px );
+	background:	-webkit-radial-gradient( 1px -11px, circle, white 8%, #3A87AD 26px );
+}
+.badge_green {
+	background-color: #468847;
+    background:	radial-gradient( 1px -11px, circle, white 8%, #468847 26px );
+	background:	-moz-radial-gradient( 1px -11px, circle, white 8%, #468847 26px );
+	background:	-ms-radial-gradient( 1px -11px, circle, white 8%, #468847 26px );
+	background:	-o-radial-gradient( 1px -11px, circle, white 8%, #468847 26px );
+	background:	-webkit-radial-gradient( 1px -11px, circle, white 8%, #468847 26px );
+}
+.badge_grey {
+	background-color: #999999;
+    background:	radial-gradient( 1px -11px, circle, white 8%, #999999 26px );
+	background:	-moz-radial-gradient( 1px -11px, circle, white 8%, #999999 26px );
+	background:	-ms-radial-gradient( 1px -11px, circle, white 8%, #999999 26px );
+	background:	-o-radial-gradient( 1px -11px, circle, white 8%, #999999 26px );
+	background:	-webkit-radial-gradient( 1px -11px, circle, white 8%, #999999 26px );
+}
+.badge_orange {
+	background-color: #F89406;
+    background:	radial-gradient( 1px -11px, circle, white 8%, #F89406 26px );
+	background:	-moz-radial-gradient( 1px -11px, circle, white 8%, #F89406 26px );
+	background:	-ms-radial-gradient( 1px -11px, circle, white 8%, #F89406 26px );
+	background:	-o-radial-gradient( 1px -11px, circle, white 8%, #F89406 26px );
+	background:	-webkit-radial-gradient( 1px -11px, circle, white 8%, #F89406 26px );
+}
