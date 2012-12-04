@@ -132,7 +132,7 @@ class j16000showplugins
 					{
 					if (file_exists($jrePath.$entry.JRDS."plugin_info.php"))
 						{
-						include($jrePath.$entry.JRDS."plugin_info.php");
+						include_once($jrePath.$entry.JRDS."plugin_info.php");
 						$cname= "plugin_info_".$entry;
 						if (class_exists($cname))
 							{
@@ -161,7 +161,7 @@ class j16000showplugins
 					{
 					if (file_exists($jrcPath.$entry.JRDS."plugin_info.php"))
 						{
-						include($jrcPath.$entry.JRDS."plugin_info.php");
+						include_once($jrcPath.$entry.JRDS."plugin_info.php");
 						$cname= "plugin_info_".$entry;
 						if (class_exists($cname))
 							{
