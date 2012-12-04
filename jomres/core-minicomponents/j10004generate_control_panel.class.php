@@ -59,6 +59,24 @@ class j10004generate_control_panel {
 					else
 						$r['disabled_class']= 'disabled';
 					}
+					
+				$r['BADGES']='';
+				$bang = explode("task=",$r['link']);
+				$items_requiring_attention = get_number_of_items_requiring_attention_for_menu_option($bang[1]);
+				if (count($items_requiring_attention)>0)
+					{
+					foreach ($items_requiring_attention as $colour=>$number)
+						{
+						
+						$tmpl = new patTemplate();
+						$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+						$tmpl->readTemplatesFromInput( 'menu_badge_'.$colour.'.html' );
+						$tmpl->addRows( 'items_requiring_attention', array(array("NUMBER"=>$number)));
+						$r['BADGES'] .= $tmpl->getParsedTemplate();
+						}
+					}
+				
+			
 				parse_str($val['link'],$url_params);
 				$button_task=$url_params['task'];
 				if ($button_task==jomresGetParam( $_REQUEST, 'task', "" ))
