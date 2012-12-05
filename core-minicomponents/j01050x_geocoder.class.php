@@ -117,8 +117,8 @@ class j01050x_geocoder {
 				{
 				define (UPDATE_POSITION_FUNCTION_EXISTS,1);
 				$output['UPDATEMARKERPOSITION']="function updateMarkerPosition(latLng) {
-		jomresJquery('#lat').val(latLng.lat(5) );
-		jomresJquery('#lng').val(latLng.lng(5) );
+		jomresJquery('#lat').val(latLng.lat().toFixed(7));
+		jomresJquery('#lng').val(latLng.lng(5).toFixed(7));
 					}";
 				}
 			}
