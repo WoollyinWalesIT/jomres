@@ -1942,3 +1942,17 @@ jr_define( "_JOMRES_AGENT_LISTINGS" , "Agent's listings");
 jr_define( "_JOMRES_PROPERTY_LANG" , "Property language");
 jr_define( "_JOMRES_PROPERTY_LANG_DESC" , "The default language of this property.");
 
+
+jr_define( "_JOMRES_APPROVALS_CONFIG_TITLE" , "Automatically approve new properties");
+jr_define( "_JOMRES_APPROVALS_CONFIG_DESC" , "If you set this option to No then you will need to manually approve new properties. Until a property has been approved it cannot be published by a Manager/Super property manager.");
+jr_define( "_JOMRES_APPROVALS_MENU_NAME" , "Approvals");
+jr_define( "_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL" , "Properties awaiting approval");
+jr_define( "_JOMRES_APPROVALS_PROPERTIES_NO_AWAITING_APPROVAL" , "No properties are awaiting approval");
+jr_define( "_JOMRES_APPROVALS_APPROVE" , "Approve property");
+jr_define( "_JOMRES_APPROVALS_REVIEW" , "Review property");
+jr_define( "_JOMRES_APPROVALS_NOT_APPROVED_YET" , "This property has not been approved yet. Once it has been approved you will be able to publish it.");
+jr_define( "_JOMRES_APPROVALS_CANNOT_PUBLISH" , "Sorry, you cannot publish this property as it has not been approved yet.");
+jr_define( "_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT" , "A new property requires approval");
+jr_define( "_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT" , "A property has been added to the system which requires your approval. Click the link to view the properties awaiting approval list : ");
+jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT" , "Your property has been approved");
+jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT" , "Congratulations, your property has been approved, please click the following link to view the property's control panel : ");
