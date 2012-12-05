@@ -1759,7 +1759,7 @@ function mailer_get_css()
 Allows us to work independantly of Joomla or Mambo's emailers
 */
 
-function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode=0)
+function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode=1)
 	{
 	$jomresConfig_smtpauth=get_showtime('smtpauth');
 	$jomresConfig_smtphost=get_showtime('smtphost');
@@ -1836,6 +1836,12 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	$mail->Mailer		= $jomresConfig_mailer;
 
 	$body				= preg_replace("[\\\]",'',$body);
+	
+	if ($mode==1 && !strstr($body,'<meta http-equiv="Content-Type" content="text/html; utf-8" />') )
+		{
+		$body = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body);
+		}
+	
 	if (get_showtime('smtpauth') == "1")
 		{
 		$mail->SMTPAuth="1";
@@ -4300,13 +4306,11 @@ function sendAdminEmail($subject,$message)
 		}
 	$message .= "\n\n\nPost details follow (may not be applicable to email) ";
 	foreach ($_POST as $key => $value) { $message .= "\n$key: $value"; }
-	$adminName = $jomresConfig_fromname;
-	$adminEmail = $jomresConfig_mailfrom;
 
 	$admins=jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id);
 	foreach ( $admins AS $admin )
 		{
-		jomresMailer($adminEmail, $adminName, $admin['email'], $subject, $message);
+		jomresMailer($jomresConfig_mailfrom, $jomresConfig_fromname, $admin['email'], $subject, $message);
 		}
 	}
 
