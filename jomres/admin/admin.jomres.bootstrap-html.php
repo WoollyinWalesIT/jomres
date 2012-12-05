@@ -133,6 +133,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td>'.$lists['use_cookie_policy'].'</td>
 			<td>'.jr_gettext(_JOMRES_COOKIEPOLICY_DESC,'_JOMRES_COOKIEPOLICY_DESC',false).'</td>
 		</tr>
+		
+		<tr>
+			<td>'.jr_gettext(_JOMRES_APPROVALS_CONFIG_TITLE).'</td>
+			<td>'.$lists['automatically_approve_new_properties'].'</td>
+			<td>'.jr_gettext(_JOMRES_APPROVALS_CONFIG_DESC).'</td>
+		</tr>
+		
 		<tr>
 			<td>'.jr_gettext(_JOMRES_DEFAULT_LAT_STARTPOINT,'_JOMRES_DEFAULT_LAT_STARTPOINT',false).'</td>
 			<td><input type="text" class="input-large" name="cfg_default_lat" value="'.$jrConfig['default_lat'].'" /></td>

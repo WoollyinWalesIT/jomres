@@ -260,6 +260,12 @@ function showSiteConfig(  )
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
 	$lists['property_details_in_tabs']				= jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['property_details_in_tabs'] );
 	
+	if (!isset($jrConfig['automatically_approve_new_properties']))
+		$jrConfig['automatically_approve_new_properties']="1";
+	
+	$lists['automatically_approve_new_properties']	= jomresHTML::selectList( $yesno, 'cfg_automatically_approve_new_properties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['automatically_approve_new_properties'] );
+	
+	
 	if (!isset($jrConfig['make_gifs_from_slideshows']))
 		{
 		$jrConfig['make_gifs_from_slideshows']="1";

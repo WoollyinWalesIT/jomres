@@ -184,6 +184,7 @@ class basic_property_details
 				$this->property_othertransport	=$this->multi_query_result[$this->property_uid]['property_othertransport'];
 				$this->property_policies_disclaimers=$this->multi_query_result[$this->property_uid]['property_policies_disclaimers'];
 				$this->apikey					=$this->multi_query_result[$this->property_uid]['apikey'];
+				$this->approved					=$this->multi_query_result[$this->property_uid]['approved'];
 			}
 		else
 			{
@@ -244,6 +245,7 @@ class basic_property_details
 				$this->property_othertransport	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',trim(stripslashes($data->property_othertransport)),$editable,false));
 				$this->property_policies_disclaimers=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',trim(stripslashes($data->property_policies_disclaimers)),$editable,false));
 				$this->apikey					=$data->apikey;
+				$this->approved					=(bool)$data->approved;
 				}
 			}
 
@@ -425,6 +427,7 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['property_othertransport']			=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT',$data->property_othertransport,$editable,false));
 				$this->multi_query_result[$data->propertys_uid]['property_policies_disclaimers']	=jomres_cmsspecific_parseByBots(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS',$data->property_policies_disclaimers,$editable,false));
 				$this->multi_query_result[$data->propertys_uid]['apikey']							=$data->apikey;
+				$this->multi_query_result[$data->propertys_uid]['approved']							=(bool)$data->approved;
 				}
 
 			$temp_rooms = array();

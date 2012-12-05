@@ -26,15 +26,36 @@ class j16000ajax_list_properties_awaiting_approval
 		
 		$property_uid	= jomresGetParam( $_REQUEST, 'property_uid', 0 );
 
-		$curl_handle=curl_init();
-		curl_setopt($curl_handle,CURLOPT_URL,JOMRES_SITEPAGE_URL_NOSEF."&tmpl=component&is_wrapped=1&task=viewproperty&topoff=1&popup=1&property_uid=".$property_uid);
-		curl_setopt($curl_handle,CURLOPT_TIMEOUT, 8);
-		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-		$page = curl_exec($curl_handle);
-		curl_close($curl_handle);
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->gather_data($property_uid);
+		
+		$output=array();
+		
+		$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
+		
+		$output['property_name']			=$current_property_details->property_name;
+		$output['property_street']			=$current_property_details->property_street;
+		$output['property_town']			=$current_property_details->property_town;
+		$output['property_postcode']		=$current_property_details->property_postcode;
+		$output['property_region']			=$current_property_details->property_region;
+		$output['property_country']			=$current_property_details->property_country;
+		$output['property_tel']				=$current_property_details->property_tel;
+		$output['property_email']			=$current_property_details->property_email;
+		
+		$output['property_description']		=$current_property_details->property_description;
+		$output['property_checkin_times']	=$current_property_details->property_checkin_times;
+		$output['property_area_activities']	=$current_property_details->property_area_activities;
+		$output['property_driving_directions']=$current_property_details->property_driving_directions;
+		$output['property_airports']		=$current_property_details->property_airports;
+		$output['property_othertransport']	=$current_property_details->property_othertransport;
+		$output['property_policies_disclaimers']=$current_property_details->property_policies_disclaimers;
 
-		echo $page;
+		$pageoutput[]=$output;
+		$tmpl = new patTemplate();
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+		$tmpl->readTemplatesFromInput( 'preview_property.html');
+		$tmpl->addRows( 'pageoutput',$pageoutput);
+		$tmpl->displayParsedTemplate();
 		}
 
 
