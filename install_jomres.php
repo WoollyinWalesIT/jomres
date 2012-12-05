@@ -447,11 +447,36 @@ function doTableUpdates()
 	
 	//migrate_region_names();
 	
+	if (!checkPropertysApprovedColExists() )
+		alterPropertysApprovedCol();
+	
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
 	}
 
+function alterPropertysApprovedCol()
+	{
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_propertys table adding approved column<br>";
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `approved`  BOOL NOT NULL DEFAULT '1' AFTER `timestamp` ";
+	if (!doInsertSql($query,'') )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_propertys approved</b><br>";
+		}
+	}
 
+
+function checkPropertysApprovedColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'approved'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
+	}
+	
 /*
 Added a new "migrate region names to region ids" function, but will leave it disabled for now. New Jomres functionality forces us to store region names as the database region ids, however we don't want this new functionality to negatively impact users with existing data so search functionality has been updated to search both region names and region ids in the jomres_propertys table. For now we BELIEVE that this will be sufficient to provide a painless upgrade, however we'll keep this migration function in our back pockets in case we find that users benefit from migrating their properties to region ids.
 */
@@ -2560,6 +2585,7 @@ function createJomresTables()
 		`metatitle` VARCHAR(150),
 		`metadescription` VARCHAR(150),
 		`timestamp` DATETIME,
+		`approved`  BOOL NOT NULL DEFAULT '1',
 		PRIMARY KEY(`propertys_uid`)
 		) ";
 	if (!doInsertSql($query))
