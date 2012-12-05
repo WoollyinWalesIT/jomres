@@ -41,51 +41,51 @@ class j16000list_properties_awaiting_approval
 			}
 		else
 			{
-		$managers = array();
-		$query = "SELECT * FROM #__jomres_managers";
-		$result = doSelectSql($query);
-		if (count($result)>0)
-			{
-			foreach ($result as $r)
+			$managers = array();
+			$query = "SELECT * FROM #__jomres_managers";
+			$result = doSelectSql($query);
+			if (count($result)>0)
 				{
-				$managers[$r->userid]=$r->username;
+				foreach ($result as $r)
+					{
+					$managers[$r->userid]=$r->username;
+					}
 				}
-			}
-		
-		
-		$output['PAGETITLE']=jr_gettext("_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL",_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL);
-		$output['TOTALINLISTPLUSONE']=count($crateList);
-		$output['HPROPERTYNAME']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYNAME",_JRPORTAL_PROPERTIES_PROPERTYNAME);
-		$output['HPROPERTYADDRESS']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYADDRESS",_JRPORTAL_PROPERTIES_PROPERTYADDRESS);
-		$counter=0;
-		
-		foreach($jomresPropertyList as $k=>$p)
-			{
-			$r=array();
-
-			$r['_JOMRES_APPROVALS_REVIEW']=jr_gettext("_JOMRES_APPROVALS_REVIEW");
-			$r['_JOMRES_APPROVALS_APPROVE']=jr_gettext("_JOMRES_APPROVALS_APPROVE");
-
-			$r['PROPERTYNAME']=getPropertyName($p['id']);
-			$r['PROPERTY_UID']=$p['id'];
-			$r['PROPERTYADDRESS']=jomres_decode($p['property_street']).', '.jomres_decode($p['property_town']).', '.jomres_decode($p['property_region']).', '.jomres_decode($p['property_country']).', '.$p['property_postcode'];
 			
-			$rows[]=$r;
-			}
+			
+			$output['PAGETITLE']=jr_gettext("_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL",_JOMRES_APPROVALS_PROPERTIES_AWAITING_APPROVAL);
+			$output['TOTALINLISTPLUSONE']=count($crateList);
+			$output['HPROPERTYNAME']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYNAME",_JRPORTAL_PROPERTIES_PROPERTYNAME);
+			$output['HPROPERTYADDRESS']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYADDRESS",_JRPORTAL_PROPERTIES_PROPERTYADDRESS);
+			$counter=0;
+			
+			foreach($jomresPropertyList as $k=>$p)
+				{
+				$r=array();
 
-		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
-		$jrtb  = $jrtbar->startTable();
-		$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL));
-		$jrtb .= $jrtbar->endTable();
-		$output['JOMRESTOOLBAR']=$jrtb;
+				$r['_JOMRES_APPROVALS_REVIEW']=jr_gettext("_JOMRES_APPROVALS_REVIEW");
+				$r['_JOMRES_APPROVALS_APPROVE']=jr_gettext("_JOMRES_APPROVALS_APPROVE");
 
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-		$tmpl->readTemplatesFromInput( 'list_properties_awaiting_approval.html');
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->addRows( 'rows',$rows);
-		$tmpl->displayParsedTemplate();
+				$r['PROPERTYNAME']=getPropertyName($p['id']);
+				$r['PROPERTY_UID']=$p['id'];
+				$r['PROPERTYADDRESS']=jomres_decode($p['property_street']).', '.jomres_decode($p['property_town']).', '.jomres_decode($p['property_region']).', '.jomres_decode($p['property_country']).', '.$p['property_postcode'];
+				
+				$rows[]=$r;
+				}
+
+			$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
+			$jrtb  = $jrtbar->startTable();
+			$jrtb .= $jrtbar->toolbarItem('cancel',JOMRES_SITEPAGE_URL_ADMIN,jr_gettext("_JRPORTAL_CANCEL",_JRPORTAL_CANCEL));
+			$jrtb .= $jrtbar->endTable();
+			$output['JOMRESTOOLBAR']=$jrtb;
+
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+			$tmpl->readTemplatesFromInput( 'list_properties_awaiting_approval.html');
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->addRows( 'rows',$rows);
+			$tmpl->displayParsedTemplate();
 			}
 		}
 

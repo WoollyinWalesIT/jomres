@@ -67,12 +67,14 @@ class j10004generate_control_panel {
 					{
 					foreach ($items_requiring_attention as $colour=>$number)
 						{
-						
-						$tmpl = new patTemplate();
-						$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
-						$tmpl->readTemplatesFromInput( 'menu_badge_'.$colour.'.html' );
-						$tmpl->addRows( 'items_requiring_attention', array(array("NUMBER"=>$number)));
-						$r['BADGES'] .= $tmpl->getParsedTemplate();
+						if ($number>0)
+							{
+							$tmpl = new patTemplate();
+							$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
+							$tmpl->readTemplatesFromInput( 'menu_badge_'.$colour.'.html' );
+							$tmpl->addRows( 'items_requiring_attention', array(array("NUMBER"=>$number)));
+							$r['BADGES'] .= $tmpl->getParsedTemplate();
+							}
 						}
 					}
 				

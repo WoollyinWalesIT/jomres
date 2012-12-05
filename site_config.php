@@ -253,5 +253,5 @@ $jrConfig['inputs_allowing_html'] = "property_description property_checkin_times
 $jrConfig['property_details_in_tabs'] = "1";
 $jrConfig['property_list_layout_default'] = "list";
 
-$jrConfig['automatically_approve_new_properties'] = "0";
+$jrConfig['automatically_approve_new_properties'] = "1";
 ?>

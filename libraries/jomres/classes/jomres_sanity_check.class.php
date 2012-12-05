@@ -31,6 +31,7 @@ class jomres_sanity_check
 
 	function do_sanity_checks()
 		{
+		$this->warnings .=$this->check_approved();
 		$this->warnings .=$this->check_suspended();
 		$this->warnings .= $this->checks_guest_types_pppn();
 		if ($this->mrConfig['is_real_estate_listing']==0)
@@ -49,6 +50,17 @@ class jomres_sanity_check
 		return $warning;
 		}
 		
+	function check_approved()
+		{
+		$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+		$current_property_details->gather_data(get_showtime("property_uid"));
+		if (!$current_property_details->approved)
+			{
+			$message = jr_gettext('_JOMRES_APPROVALS_NOT_APPROVED_YET',_JOMRES_APPROVALS_NOT_APPROVED_YET);
+			return $this->construct_warning($message);
+			}
+		}
+	
 	function check_suspended()
 		{
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
