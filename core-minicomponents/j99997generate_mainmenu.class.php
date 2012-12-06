@@ -92,7 +92,7 @@ class j99997generate_mainmenu {
 							{
 							$tmpl = new patTemplate();
 							$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
-							$tmpl->readTemplatesFromInput( 'menu_badge_'.$colour.'.html' );
+							$tmpl->readTemplatesFromInput( 'frontend_menu_badge_'.$colour.'.html' );
 							$tmpl->addRows( 'items_requiring_attention', array(array("NUMBER"=>$number)));
 							$r['BADGES'] .= $tmpl->getParsedTemplate();
 							}
