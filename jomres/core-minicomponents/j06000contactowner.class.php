@@ -155,11 +155,21 @@ class j06000contactowner {
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+		if (isset($componentArgs['custom_path_to_template']))
+			{
+			if (file_exists($componentArgs['custom_path_to_template'].'contact_owner.html'))
+				$tmpl->setRoot( $componentArgs['custom_path_to_template']);
+			else
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+			}
+		else
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		if ($oktosend)
 			$tmpl->readTemplatesFromInput( 'contact_owner_sent.html');
 		else
+			{
 			$tmpl->readTemplatesFromInput( 'contact_owner.html');
+			}
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 
 		if (isset($componentArgs['noshownow']))
