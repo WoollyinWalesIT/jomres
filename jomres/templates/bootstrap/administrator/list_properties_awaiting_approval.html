@@ -24,35 +24,32 @@ function approve_property(property_uid)
 //-->
 </script>
 
+<h2 class="page-header">Properties requiring approval</h2>
 <form action="{JOMRES_SITEPAGE_URL_ADMIN}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
 <div class="row-fluid">
-	<div class="span3">
-		<table class="table table-striped" width="100%">
-			<thead>
-				<tr>
-					<th>{HPROPERTYNAME}</th>
-					<th >{HPROPERTYADDRESS}</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<patTemplate:tmpl name="rows" unusedvars="nbsp">
-				<tr id = "tablerow_{PROPERTY_UID}">
-					<td>{VIEWLINK}{PROPERTYNAME}</td>
-					<td>{PROPERTYADDRESS}</td>
-					<td>
-						<input type="button" name="review" value="{_JOMRES_APPROVALS_REVIEW}" onClick="review_property({PROPERTY_UID});" class="btn btn-info"/>
-						<input type="button" name="review" value="{_JOMRES_APPROVALS_APPROVE}" onClick="approve_property({PROPERTY_UID});" class="btn btn-success"/>
-					</td>
-				</tr>
-				</patTemplate:tmpl>
-			</tbody>
-		</table>
+	<div class="span6">
+		<div class="row-striped">
+			<div class="row-fluid">
+				<div class="span4"><strong>{HPROPERTYNAME}</strong></div>
+				<div class="span4"><strong>{HPROPERTYADDRESS}</strong></div>
+				<div class="span4"></div>
+			</div>
+			<patTemplate:tmpl name="rows" unusedvars="nbsp">
+			<div class="row-fluid" id = "tablerow_{PROPERTY_UID}">
+				<div class="span3">{VIEWLINK}{PROPERTYNAME}</div>
+				<div class="span4">{PROPERTYADDRESS}</div>
+				<div class="span5 pull-right">
+					<input type="button" name="review" value="{_JOMRES_APPROVALS_REVIEW}" onClick="review_property({PROPERTY_UID});" class="btn btn-info"/>
+					<input type="button" name="review" value="{_JOMRES_APPROVALS_APPROVE}" onClick="approve_property({PROPERTY_UID});" class="btn btn-success"/>
+				</div>
+			</div>
+			</patTemplate:tmpl>
+		</div>
 	</div>
-	<div class="span8">
+	<div class="span6">
 		<div id="property_preview">
-			
+		
 		</div>
 	</div>
 </div>

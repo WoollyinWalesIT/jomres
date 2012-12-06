@@ -20,13 +20,6 @@ function approve_property(property_uid)
 		jomresJquery('#tablerow_'+property_uid).remove();
 		});
 	}
-jomresJquery(document).ready(function() {
-	var oTable = jomresJquery('#list_properties_awaiting_approval').dataTable({
-		"bJQueryUI": true,
-		"bStateSave": true,
-		"sPaginationType": "full_numbers"
-	});
-} );
 //-->
 </script>
 
@@ -36,12 +29,12 @@ jomresJquery(document).ready(function() {
 <table width="100%" border="0">
 	<tr>
 		<td width="50%" valign="top">
-			<table id="list_properties_awaiting_approval" width="100%">
+			<table class="ui-widget-content ui-corner-all" width="100%">
 				<thead>
 					<tr>
-						<th>{HPROPERTYNAME}</th>
-						<th>{HPROPERTYADDRESS}</th>
-						<th></th>
+						<th class="ui-state-default">{HPROPERTYNAME}</th>
+						<th class="ui-state-default">{HPROPERTYADDRESS}</th>
+						<th class="ui-state-default"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,7 +52,7 @@ jomresJquery(document).ready(function() {
 			</table>
 		</td>
 		<td valign="top">
-			<div id="property_preview" class="ui-widget-content ui-corner-all">
+			<div id="property_preview">
 				
 			</div>
 		</td>
