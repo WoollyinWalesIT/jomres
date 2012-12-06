@@ -134,11 +134,16 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle">'.jr_gettext(_JOMRES_COOKIEPOLICY_DESC,'_JOMRES_COOKIEPOLICY_DESC',false).'</td>
 		</tr>
 		<tr valign="middle" class="odd">
+			<td valign="middle">'.jr_gettext(_JOMRES_APPROVALS_CONFIG_TITLE).'</td>
+			<td valign="middle">'.$lists['automatically_approve_new_properties'].'</td>
+			<td valign="middle">'.jr_gettext(_JOMRES_APPROVALS_CONFIG_DESC).'</td>
+		</tr>
+		<tr valign="middle" class="even">
 			<td valign="middle">'.jr_gettext(_JOMRES_DEFAULT_LAT_STARTPOINT,'_JOMRES_DEFAULT_LAT_STARTPOINT',false).'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_lat" value="'.$jrConfig['default_lat'].'" /></td>
 			<td valign="middle">'.jr_gettext(_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC,'_JOMRES_DEFAULT_LATLONGSTARTPOINT_DESC',false).'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			<td valign="middle">'.jr_gettext(_JOMRES_DEFAULT_LONG_STARTPOINT,'_JOMRES_DEFAULT_LONG_STARTPOINT',false).'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_default_long" value="'.$jrConfig['default_long'].'" /></td>
 			<td valign="middle"></td>
@@ -148,7 +153,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 		if (!using_bootstrap())
 			{
-			$contentPanel->setcontent('<tr valign="middle" class="odd">
+			$contentPanel->setcontent('<tr valign="middle" class="even">
 				<td valign="middle">'.jr_gettext(_JOMRES_JQUERYTHEME,'_JOMRES_JQUERYTHEME',false).'</td>
 				<td valign="middle">'.$jqueryUIthemesDropdownList.'</td>
 				<td valign="middle">'.jr_gettext(_JOMRES_JQUERYTHEME_DESC,'_JOMRES_JQUERYTHEME_DESC',false).'</td>
