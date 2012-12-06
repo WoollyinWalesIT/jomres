@@ -118,7 +118,7 @@ a.rescal:hover{background-color: white;color: black;}
     color: white;
     font: bold 12px/9px Helvetica, Verdana, Tahoma;
     height: 12px;
-    padding: 2px 3px 0 3px;
+    padding: 2px 4px 0;
     text-align: center;
     min-width: 8px;
 }
