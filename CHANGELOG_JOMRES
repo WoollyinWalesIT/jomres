@@ -1,4 +1,43 @@
-jomres 7.2.3
+Jomres 7.2.4
+
+Added a new feature that property managers can use to manually approve newly created properties. Until a property has been approved a manager/super manager cannot publish/unpublish a property.
+Added new functionality to add badges to administrator menu, and three new scripts to generate items requiring attention badge numbers.
+Added a feature to the booking engine that allows Jintour to set the "fully booked dates" javascript array, effectively allowing Jintour to block off calendar dates in the booking form calendar for those dates that don't have a tour available.
+Created two new js files, a consolidation js file and an minified version of that file. Many of our .js files have been static for a long time so it makes sense to consolidate those files into one, smaller file.
+Added commented out code to contact owner template to show you how you can theme the captcha code.
+Modified the booking engine, if using micromanage, then any tariff where zero appears as one of the prices, then the entire tariff type (micromanage tariff) is excluded as a possible choice.
+
+Added a clearfix to the bootstrap basic module output so that the module layout works properly.
+Added a super secret, never to be mentioned option to the get_property_module_data so that a calling script can define template paths and template names.
+Modified the method that builds the language dropdown so that it can also be used as a configuration option.
+Added a configuration option to property config - misc to allow us to set the default language for the property. Not used as yet, but there are plans to use it later.
+Added a new 05100 optional minicomponent trigger to the end run of jr_gettext. Currently disabled.
+Disabled some joomfish cookie settings as they're N/A in J3.
+Modified how the session file is detected.
+Modified the slideshow script. If the slideshow images haven't been uploaded, but the main property image exists, then use that instead.
+Fixed a bug where new users couldn't be created in J3 when creating bookings.
+jrportal's js file consolidated into jomres.js
+ui_availability_calendar modified slightly to take into account the possibility of room numbers being changed.
+Modified jomres/jomres_config.php to add a new option "property language" and set the default to en-GB.
+Modified how regions are constructed as dropdowns, changes the region stored in the DB from the region name to it's ID. Makes cross/language functionality work in the edit property page.
+Tweaked the GifCreator to ensure that we're not throwing exceptions to the global scope as we're not using the namespacing.
+Updated the prepGeographicSearch function to use translated numeric ids in regions.
+Added a missing definition's jr_gettext call to the editpfeature admin script.
+Updated ui availability calendar so that it uses random ids, meaning that more than one ui calendar can be used on a page at a time.
+Added a clearfix to improve the basic module wrapper display.
+Added a missing jr_gettext to the published property feedback message.
+Updated the Polish lang files, many thanks Patryk.
+Modified the search functionality to search for both region ids and region names in the propertys  table.
+Added a new "migrate region names to region ids" function, but will leave it disabled for now. New Jomres functionality forces us to store region names as the database region ids, however we don't want this new functionality to negatively impact users with existing data so search functionality has been updated to search both region names and region ids in the jomres_propertys table. For now we BELIEVE that this will be sufficient to provide a painless upgrade, however we'll keep this migration function in our back pockets in case we find that users benefit from migrating their properties to region ids.
+Added room name and number information to confirmation page.
+Modified the add plugin functionality. While testing plugin updates it's occasionally necessary to install them through the third party installer to test table update functionality, however previous to this change it wasn't possible to do.
+Modified showplugins to use include_once instead of include, as new functionality might end up with scripts including the plugin info scripts several times.
+Modified the mailer to change email body's to html so that urls can be linked properly, but only if the email doesn't already content http-equiv code.
+Added a change to geocoder to limit the number of decimals used to define the property's location. Without this some properties generate long strings which are too long for the lat/long columns in #__jomres_propertys
+
+
+
+Jomres 7.2.3
 
 Added a new feature where property list images are shown as gifs if configuration set to show them, and there are slideshow images. There is also an option to only show featured properties as gifs.
 Modified edit my account functionality to allow uploading of images for users.
