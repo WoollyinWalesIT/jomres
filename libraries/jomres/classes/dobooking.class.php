@@ -695,16 +695,34 @@ class dobooking
 
 	function get_fullybooked_dates()
 		{
-		$total_number_of_rooms = count($this->allPropertyRooms);
 		$fully_booked_dates = array();
-		foreach ($this->allBookings as $date=>$bookings)
+		$MiniComponents =jomres_getSingleton('mcHandler');
+		if ($MiniComponents->eventFileExistsCheck('05060'))
 			{
-			$number_of_bookings_this_date = count($bookings);
-			if ( $number_of_bookings_this_date == $total_number_of_rooms)
+			$result = $MiniComponents->triggerEvent('05060',$this);
+			if ($result['plugin_manages_fully_booked_dates'])
 				{
-				//$tmpdate = str_replace("/","-", $date);
-				$tmpdate = date('Y-n-j', strtotime($date));
-				$fully_booked_dates[]=$tmpdate;
+				$booked_dates=$result['fully_booked_dates'];
+				foreach ($booked_dates as $date)
+					{
+					$tmpdate = date('Y-n-j', strtotime($date));
+					$fully_booked_dates[]=$tmpdate;
+					}
+				}
+			}
+		if (!isset($result['plugin_manages_fully_booked_dates']))
+			{
+			$total_number_of_rooms = count($this->allPropertyRooms);
+			
+			foreach ($this->allBookings as $date=>$bookings)
+				{
+				$number_of_bookings_this_date = count($bookings);
+				if ( $number_of_bookings_this_date == $total_number_of_rooms)
+					{
+					//$tmpdate = str_replace("/","-", $date);
+					$tmpdate = date('Y-n-j', strtotime($date));
+					$fully_booked_dates[]=$tmpdate;
+					}
 				}
 			}
 		return $fully_booked_dates;
