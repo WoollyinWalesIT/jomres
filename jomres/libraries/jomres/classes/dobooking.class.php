@@ -2264,8 +2264,8 @@ class dobooking
 	function checkDepartureDate($departureDate)
 		{
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
-		$this->setErrorLog("checkDepartureDate::Checking Departure date ".$departureDate);
-		$this->setErrorLog("checkDepartureDate::Booker class ".$this->booker_class);
+		//$this->setErrorLog("checkDepartureDate::Checking Departure date ".$departureDate);
+		//$this->setErrorLog("checkDepartureDate::Booker class ".$this->booker_class);
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 		/*
 		if ($this->booker_class == "100")
@@ -2440,7 +2440,7 @@ class dobooking
 		{
 		$rangeDaysOfWeek=array();
 		$weekendDays=$this->cfg_weekenddays;
-		$this->setErrorLog("dateRangeIsAllWeekends:: Weekend days ".serialize($weekendDays) );
+		//$this->setErrorLog("dateRangeIsAllWeekends:: Weekend days ".serialize($weekendDays) );
 		$tmpWEarray=array();
 		foreach ($weekendDays as $val)
 			{
@@ -2457,18 +2457,18 @@ class dobooking
 			}
 		sort($weekendDays);
 		sort($rangeDaysOfWeek);
-		$this->setErrorLog("dateRangeIsAllWeekends:: weekendDays ".serialize($weekendDays) );
-		$this->setErrorLog("dateRangeIsAllWeekends:: rangeDaysOfWeek ".serialize($rangeDaysOfWeek) );
+		//$this->setErrorLog("dateRangeIsAllWeekends:: weekendDays ".serialize($weekendDays) );
+		//$this->setErrorLog("dateRangeIsAllWeekends:: rangeDaysOfWeek ".serialize($rangeDaysOfWeek) );
 
 		foreach ($rangeDaysOfWeek as $rdow)
 			{
 			if (!in_array($rdow,$weekendDays))
 				{
-				$this->setErrorLog("dateRangeIsAllWeekends:: <b>Not</b> all days are weekend days" );
+				//$this->setErrorLog("dateRangeIsAllWeekends:: <b>Not</b> all days are weekend days" );
 				return false;
 				}
 			}
-		$this->setErrorLog("dateRangeIsAllWeekends:: All days are weekend days");
+		//$this->setErrorLog("dateRangeIsAllWeekends:: All days are weekend days");
 		return true;
 		}
 
@@ -4032,7 +4032,7 @@ class dobooking
 		$already_found_tariffs = array();
 		$this->tariff_types_min_days=array();
 		$dateRangeArray=explode(",",$this->dateRangeString);
-		
+		$this->setErrorLog("--------------------------------------------");
 		if (count($freeRoomsArray)>0 && is_array($freeRoomsArray)  )
 			{
 			$unixArrivalDate = $this->getMkTime($this->arrivalDate);
@@ -4050,6 +4050,7 @@ class dobooking
 					$dowCheck 					= $this->filter_tariffs_dowcheck				($tariff);// Does the tariff allow selections on the arrival date's day of week?
 					
 					$rates_uid = $tariff->rates_uid;
+					$this->setErrorLog("getTariffsForRoomUids:: Checking tariff id ". $rates_uid." " );
 					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
 						{
 						$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$rates_uid][0];
@@ -4088,7 +4089,8 @@ class dobooking
 							
 							if ($pass_price_check)
 								{
-								$already_found_tariffs[$tariff_type_id." ".$room_uid]=1; // Without this there will be duplicates returned to the rooms list in the booking form
+								if ($mrConfig['tariffmode']=="2")
+									$already_found_tariffs[$tariff_type_id." ".$room_uid]=1; // Without this there will be duplicates returned to the rooms list in the booking form
 								$roomAndTariffArray[]=array($room_uid,$rates_uid);
 								}
 							
@@ -4167,6 +4169,8 @@ class dobooking
 			if ( $stayDays >= $mindays && $stayDays <= $maxdays )
 				$stayDaysValid=TRUE;
 			}
+		if (!$stayDaysValid)
+			$this->setErrorLog("filter_tariffs_staydays:: Stay days not valid for tariff uid ".$tariff->rates_uid );
 		return $stayDaysValid;
 		}
 	
@@ -4197,6 +4201,8 @@ class dobooking
 				$datesValid=TRUE;
 				}
 			}
+		if (!$datesValid)
+			$this->setErrorLog("filter_tariffs_on_dates:: Dates not valid for tariff uid ".$tariff->rates_uid );
 		return $datesValid;
 		}
 
@@ -4227,6 +4233,8 @@ class dobooking
 				$roomsAlreadySelectedTests=TRUE;
 				}
 			}
+		if (!$roomsAlreadySelectedTests)
+			$this->setErrorLog("filter_tariffs_alreadyselectedcheck:: Tariff already selected tariff uid ".$tariff->rates_uid );
 		return $roomsAlreadySelectedTests;
 		}
 	
@@ -4245,7 +4253,8 @@ class dobooking
 			}
 		else
 			$numberPeopleValid=TRUE;
-		
+		if (!$numberPeopleValid)
+			$this->setErrorLog("filter_tariffs_peoplenumbercheck:: People numbers don't match for tariff uid ".$tariff->rates_uid );
 		return $numberPeopleValid;
 		}
 
@@ -4290,6 +4299,8 @@ class dobooking
 				//$this->setErrorLog("getTariffsForRoomUids::Day of week check, <b> FALSE </b>");
 				}
 			}
+		if (!$dowCheck)
+			$this->setErrorLog("filter_tariffs_dowcheck:: Day of week check failed for tariff uid ".$tariff->rates_uid );
 		return $dowCheck;
 		}
 /* 
@@ -4786,7 +4797,7 @@ class dobooking
 		else
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE',_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE,false,false));
 
-		if ($this->tariffModel == "2")
+		if ($this->tariffModel == "2" && $mrConfig['tariffmode']=="2" )
 			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
 
 		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
@@ -4947,6 +4958,7 @@ class dobooking
 		$output['MINPEOPLE']=$this->sanitiseOutput($tariff['minpeople']);
 		$output['MAXPEOPLE']=$this->sanitiseOutput($tariff['maxpeople']);
 		$output['RATEPERNIGHT']=$this->sanitiseOutput($tariff['roomrateperday']);
+		
 		$output['TARIFF_ROOMTYPE']=$tariff['roomclass_uid'];
 
 		if (empty($this->cfg_ratemultiplier) )
