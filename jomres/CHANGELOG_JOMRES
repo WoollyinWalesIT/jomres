@@ -1,3 +1,8 @@
+Jomres 7.2.5
+
+Modified the new badge generation script, stop it from showing on the add plugin page as that script already uses plugin info scripts and an error will be generated and the plugin will not install.
+
+
 Jomres 7.2.4
 
 Added a new feature that property managers can use to manually approve newly created properties. Until a property has been approved a manager/super manager cannot publish/unpublish a property.
