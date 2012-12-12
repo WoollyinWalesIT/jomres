@@ -990,8 +990,8 @@ function output_price($value,$currencycode="",$do_conversion = true,$zeroOK = tr
 
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
-	if ($jrConfig['use_conversion_feature'] != "1")
-		$do_conversion = false;
+	// if ($jrConfig['use_conversion_feature'] != "1")
+		// $do_conversion = false;
 
 	$mrConfig=getPropertySpecificSettings();
 	$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');

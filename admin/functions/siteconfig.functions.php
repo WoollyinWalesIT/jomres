@@ -241,7 +241,7 @@ function showSiteConfig(  )
 	$lists['advanced_site_config']					= jomresHTML::selectList( $yesno, 'cfg_advanced_site_config', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['advanced_site_config'] );
 	$lists['load_jquery_ui']						= jomresHTML::selectList( $yesno, 'cfg_load_jquery_ui', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery_ui'] );
 	$lists['load_jquery_ui_css']					= jomresHTML::selectList( $yesno, 'cfg_load_jquery_ui_css', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['load_jquery_ui_css'] );
-	$lists['use_conversion_feature']				= jomresHTML::selectList( $yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_conversion_feature'] );
+	//$lists['use_conversion_feature']				= jomresHTML::selectList( $yesno, 'cfg_use_conversion_feature', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_conversion_feature'] );
 	$lists['javascript_caching_enabled']			= jomresHTML::selectList( $yesno, 'cfg_javascript_caching_enabled', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['javascript_caching_enabled'] );
 	$lists['booking_form_modal_popup']				= jomresHTML::selectList( $yesno, 'cfg_booking_form_modal_popup', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['booking_form_modal_popup'] );
 	$lists['booking_form_totals_panel_as_slider']	= jomresHTML::selectList( $yesno, 'cfg_booking_form_totals_panel_as_slider', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['booking_form_totals_panel_as_slider'] );
