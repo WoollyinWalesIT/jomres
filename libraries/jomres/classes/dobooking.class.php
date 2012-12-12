@@ -719,8 +719,40 @@ class dobooking
 				$number_of_bookings_this_date = count($bookings);
 				if ( $number_of_bookings_this_date == $total_number_of_rooms)
 					{
-					//$tmpdate = str_replace("/","-", $date);
 					$tmpdate = date('Y-n-j', strtotime($date));
+					$fully_booked_dates[]=$tmpdate;
+					}
+				}
+			$all_tariffs_are_specific_days_of_week = true;
+			foreach ($this->allPropertyTariffs as $tariff)
+				{
+				if ($tariff['dayofweek'] == 7)
+					$all_tariffs_are_specific_days_of_week = false;
+				}
+			if ($all_tariffs_are_specific_days_of_week)
+				{
+				$days_of_week_allowed = array();
+				foreach ($this->allPropertyTariffs as $tariff)
+					{
+					$days_of_week_allowed[] = $tariff['dayofweek'];
+					
+					}
+				$days_of_week_allowed = array_unique($days_of_week_allowed);
+				$start = date("Y/m/d");
+				$end= date("Y/m/d",strtotime("+4 years"));
+				$dates= $this->findDateRangeForDates($start,$end);
+				$count = count($dates);
+				for ($i=0;$i<=$count;$i++)
+					{
+					$date=$dates[$i];
+					$day_of_week_of_date = $this->getDayOfWeek($date);
+					if (in_array($day_of_week_of_date,$days_of_week_allowed))
+						unset($dates[$i]);
+					
+					}
+				foreach ($dates as $d)
+					{
+					$tmpdate = date('Y-n-j', strtotime($d));
 					$fully_booked_dates[]=$tmpdate;
 					}
 				}
