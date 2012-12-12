@@ -374,6 +374,8 @@ class j01010listpropertys {
 							$property_deets['REVIEWS']								='';
 							}
 						
+						//$property_deets['AVAILABILITY_CALENDAR'] = $MiniComponents->specificEvent('06000','ui_availability_calendar',array('property_uid'=>$property->propertys_uid,'return_calendar'=>"1",'noshowlegend'=>1) );
+						
 						$no_image_image = get_showtime('live_site')."/jomres/images/noimage.gif";
 						$property_image=get_showtime('live_site')."/jomres/images/noimage.gif";
 						if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property->propertys_uid."_property_".$property->propertys_uid.".jpg") )
