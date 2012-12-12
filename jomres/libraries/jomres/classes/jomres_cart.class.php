@@ -38,8 +38,8 @@ class jomres_cart
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		$do_conversion = true;
-		if ($jrConfig['use_conversion_feature'] != "1")
-			$do_conversion = false;
+		// if ($jrConfig['use_conversion_feature'] != "1")
+			// $do_conversion = false;
 		
 		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		jr_import('jomres_currency_conversion');
