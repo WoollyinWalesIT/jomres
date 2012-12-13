@@ -31,17 +31,24 @@ class j06002editinplace
 		$jrConfig=$siteConfig->get();
 		$property_uid=(int)getDefaultProperty();
 		if ($jrConfig['allowHTMLeditor'] == "1")
-			$customText = jomresGetParam( $_POST, 'newtext', "" , _MOS_ALLOWHTML );
+			$customText = jomresGetParam( $_POST, 'value', "" , _MOS_ALLOWHTML );
 		else
-			$customText = jomresGetParam( $_POST, 'newtext', '','string' );
+			$customText = jomresGetParam( $_POST, 'value', '','string' );
 
-		$theConstant =filter_var($_POST['theConstant'],FILTER_SANITIZE_SPECIAL_CHARS);
+		$theConstant =filter_var($_POST['pk'],FILTER_SANITIZE_SPECIAL_CHARS);
 
 		$result=updateCustomText($theConstant,$customText,$property_uid);
+		$result=false;
 		if ($result)
+			{
+			header("Status: 200");
 			echo jomres_decode($customText);
+			}
 		else
+			{
+			header("Status: 500");
 			echo "Something burped";
+			}
 		}
 
 
