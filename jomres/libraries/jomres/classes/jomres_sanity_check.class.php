@@ -45,7 +45,7 @@ class jomres_sanity_check
 	function construct_warning($message)
 		{
 		$warning = "";
-		$warning .=jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON',_JOMRES_WARNINGS_DANGERWILLROBINSON);
+		$warning .=jr_gettext('_JOMRES_WARNINGS_DANGERWILLROBINSON',_JOMRES_WARNINGS_DANGERWILLROBINSON,false);
 		$warning .=$message."<br/>";
 		return $warning;
 		}
@@ -56,7 +56,7 @@ class jomres_sanity_check
 		$current_property_details->gather_data(get_showtime("property_uid"));
 		if (!$current_property_details->approved)
 			{
-			$message = jr_gettext('_JOMRES_APPROVALS_NOT_APPROVED_YET',_JOMRES_APPROVALS_NOT_APPROVED_YET);
+			$message = jr_gettext('_JOMRES_APPROVALS_NOT_APPROVED_YET',_JOMRES_APPROVALS_NOT_APPROVED_YET,false);
 			return $this->construct_warning($message);
 			}
 		}
@@ -67,7 +67,7 @@ class jomres_sanity_check
 		$published = get_showtime('this_property_published');
 		if ($thisJRUser->userIsSuspended)
 			{
-			$message = jr_gettext('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED',_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED);
+			$message = jr_gettext('_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED',_JOMRES_SUSPENSIONS_MANAGER_SUSPENDED,false);
 			return $this->construct_warning($message);
 			}
 		}
@@ -81,7 +81,7 @@ class jomres_sanity_check
 			$result = doSelectSql($query);
 			if ( (int)$this->mrConfig['perPersonPerNight'] == 1 && count($result) ==0 )
 				{
-				$message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES',_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES);
+				$message = jr_gettext('_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES',_JOMRES_WARNINGS_PERPERSONPERNIGHT_NOGUESTTYPES,false);
 				return $this->construct_warning($message);
 				}
 			}
@@ -99,7 +99,7 @@ class jomres_sanity_check
 			$result = doSelectSql($query);
 			if (count($result) ==0 )
 				{
-				$message = jr_gettext('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS',_JOMRES_WARNINGS_TARIFFS_NOTARIFFS);
+				$message = jr_gettext('_JOMRES_WARNINGS_TARIFFS_NOTARIFFS',_JOMRES_WARNINGS_TARIFFS_NOTARIFFS,false);
 				return $this->construct_warning($message);
 				}
 			}
@@ -113,7 +113,7 @@ class jomres_sanity_check
 		
 		if ($this->jrConfig['editingModeAffectsAllProperties'] == "1" &&  $tmpBookingHandler->user_settings['editing_on'] == true && $thisJRUser->superPropertyManager)
 			{
-			$message = jr_gettext('_JOMRES_WARNINGS_GLOBALEDITINGMODE',_JOMRES_WARNINGS_GLOBALEDITINGMODE);
+			$message = jr_gettext('_JOMRES_WARNINGS_GLOBALEDITINGMODE',_JOMRES_WARNINGS_GLOBALEDITINGMODE,false);
 			return $this->construct_warning($message);
 			
 			
@@ -126,7 +126,7 @@ class jomres_sanity_check
 		$published = get_showtime('this_property_published');
 		if (isset($published) && $published != "1" && $thisJRUser->userIsManager)
 			{
-			$message = jr_gettext('_JOMRES_SANITY_CHECK_NOT_PUBLISHED',_JOMRES_SANITY_CHECK_NOT_PUBLISHED);
+			$message = jr_gettext('_JOMRES_SANITY_CHECK_NOT_PUBLISHED',_JOMRES_SANITY_CHECK_NOT_PUBLISHED,false);
 			return $this->construct_warning($message);
 			}
 		}

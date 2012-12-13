@@ -348,11 +348,11 @@ class basic_property_details
 		
 		
 
-	public function gather_data_multi( $property_uids=array() )
+	public function gather_data_multi( $property_uids=array(),$editable=false )
 		{
 		$no_html=get_showtime('no_html');
 		$popup=get_showtime('popup');
-		$editable = true;
+		//$editable = true;
 		if ($no_html == "1" || $popup == "1")
 			$editable = false;
 		

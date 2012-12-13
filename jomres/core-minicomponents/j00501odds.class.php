@@ -47,20 +47,20 @@ class j00501odds {
 		
 		$lists=$componentArgs['lists'];
 		$editIconSize=$componentArgs['editIconSize'];
-		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_ODDS",_JOMRES_COM_A_ODDS));
+		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_ODDS",_JOMRES_COM_A_ODDS,false));
 		
 		$jomreslang =jomres_singleton_abstract::getInstance('jomres_language');
-		$configurationPanel->setleft(jr_gettext("_JOMRES_PROPERTY_LANG",_JOMRES_PROPERTY_LANG));
+		$configurationPanel->setleft(jr_gettext("_JOMRES_PROPERTY_LANG",_JOMRES_PROPERTY_LANG,false));
 		$configurationPanel->setmiddle($jomreslang->get_languageselection_dropdown(true,$mrConfig['property_language']));
-		$configurationPanel->setright(jr_gettext("_JOMRES_PROPERTY_LANG_DESC",_JOMRES_PROPERTY_LANG_DESC));
+		$configurationPanel->setright(jr_gettext("_JOMRES_PROPERTY_LANG_DESC",_JOMRES_PROPERTY_LANG_DESC,false));
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT));
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT,false));
 		$configurationPanel->setmiddle($lists['auto_detect_country_for_booking_form']);
-		$configurationPanel->setright(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC));
+		$configurationPanel->setright(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC",_JOMRES_COM_CONFIGCOUNTRIES_AUTODETECT_DESC,false));
 		$configurationPanel->insertSetting();
 		
-		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES",_JOMRES_COM_CONFIGCOUNTRIES));
+		$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CONFIGCOUNTRIES",_JOMRES_COM_CONFIGCOUNTRIES,false));
 		$configurationPanel->setmiddle(configCountries());
 		$configurationPanel->setright();
 		$configurationPanel->insertSetting();
@@ -69,17 +69,17 @@ class j00501odds {
 			{
 			$threashold_dropdown = jomresHTML::integerSelectList( 0,100,1, 'cfg_cancellation_threashold','class="inputbox" size="1"', (int)$mrConfig['cancellation_threashold']);
 
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD",_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD",_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD,false));
 			$configurationPanel->setmiddle($threashold_dropdown);
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC",_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC));
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC",_JOMRES_COM_A_ODDS_CANCELLATION_THREASHOLD_DESC,false));
 			$configurationPanel->insertSetting();
 			
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_VISITORSCANBOOKONLINE",_JOMRES_COM_A_VISITORSCANBOOKONLINE));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_VISITORSCANBOOKONLINE",_JOMRES_COM_A_VISITORSCANBOOKONLINE,false));
 			$configurationPanel->setmiddle($lists['visitorscanbookonline']);
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC",_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC));
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC",_JOMRES_COM_A_VISITORSCANBOOKONLINE_DESC,false));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK",_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK",_JOMRES_COM_A_REGISTEREDUSERSONLYBOOK,false));
 			$configurationPanel->setmiddle($lists['registeredUsersOnlyCanBook']);
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();

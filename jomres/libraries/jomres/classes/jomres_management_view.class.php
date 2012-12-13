@@ -33,12 +33,12 @@ class jomres_management_view
 		if ( !$is_mobile)
 			{
 			if (isset($_REQUEST['tmpl']) )
-				$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'.jr_gettext("_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW",_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW).'</a>';
+				$response = ' <a href="'.get_showtime('live_site').'/index.php?'.$this->remove_querystring_var("tmpl").'">'.jr_gettext("_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW",_JOMRES_COM_MANAGEMENTVIEW_SITEPREVIEW,false).'</a>';
 			else
 				{
 				$request_uri = str_replace("&amp;","&",$_SERVER['REQUEST_URI']);
 				$request_uri = str_replace("&","&amp;",$request_uri);
-				$response = '<a href="'.get_showtime('liv_site').$request_uri.$connector.'tmpl=component">'.jr_gettext("_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT",_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT).'</a>';
+				$response = '<a href="'.get_showtime('liv_site').$request_uri.$connector.'tmpl=component">'.jr_gettext("_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT",_JOMRES_COM_MANAGEMENTVIEW_MANAGMENT,false).'</a>';
 				}
 			}
 		return $response;

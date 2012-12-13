@@ -133,15 +133,12 @@ class j04000roomsconfig {
 					$newRoomClassButton=$jrtb;
 					}
 				}
-			$newPropertyFeatureButton="";
-			if ($jrConfig['useGlobalPFeatures']!="1")
-				{
-				$jrtb  = $jrtbar->startTable();
-				$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature"),jr_gettext('_JOMRES_COM_MR_NEWPROPERTYFEATURE',_JOMRES_COM_MR_NEWPROPERTYFEATURE,FALSE) );
-				$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
-				$jrtb .= $jrtbar->endTable();
-				$newPropertyFeatureButton=$jrtb;
-				}
+
+			$jrtb  = $jrtbar->startTable();
+			$jrtb .= $jrtbar->toolbarItem('new',jomresURL(JOMRES_SITEPAGE_URL."&task=editPropertyFeature"),jr_gettext('_JOMRES_COM_MR_NEWPROPERTYFEATURE',_JOMRES_COM_MR_NEWPROPERTYFEATURE,FALSE) );
+			$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL),'');
+			$jrtb .= $jrtbar->endTable();
+			$newPropertyFeatureButton=$jrtb;
 
 			$roomRowInfo =array();
 			foreach($roomsList as $room)
@@ -265,7 +262,7 @@ class j04000roomsconfig {
 		$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 		$defaultProperty=$thisJRUser->defaultproperty;
 		$currentProperty=getDefaultProperty();
-		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE)."</h2>";
+		echo '<h2 class="page-header">'.jr_gettext('_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE',_JOMRES_COM_MR_VIEWROOMSPROPERTYCONFIG_TITLE,false)."</h2>";
 		jr_import('jomres_content_tabs');
 		$contentPanel = new jomres_content_tabs();
 		$contentPanel->startTabs();
@@ -282,14 +279,14 @@ class j04000roomsconfig {
 			$output=array();
 			$pageoutput = array();
 			
-			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK);
-			$output['_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS);
-			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME);
-			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER);
-			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR);
-			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS);
-			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE);
-			$output['_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK',_JOMRES_COM_MR_VRCT_ROOM_HEADER_LINK,false);
+			$output['_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS',_JOMRES_COM_MR_LISTTARIFF_ROOMCLASS,false);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NAME,false);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER',_JOMRES_COM_MR_VRCT_ROOM_HEADER_NUMBER,false);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR',_JOMRES_COM_MR_VRCT_ROOM_HEADER_FLOOR,false);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS',_JOMRES_COM_MR_VRCT_ROOM_HEADER_DISABLEDACCESS,false);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE',_JOMRES_COM_MR_VRCT_ROOM_HEADER_MAXPEOPLE,false);
+			$output['_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING']=jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING',_JOMRES_COM_MR_QUICKRES_STEP2_ROOMSMOKING,false);
 		
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();
@@ -334,8 +331,8 @@ class j04000roomsconfig {
 			$output=array();
 			$pageoutput = array();
 			
-			$output['_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT);
-			$output['_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT',_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT);
+			$output['_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false);
+			$output['_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT']=jr_gettext('_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT',_JOMRES_COM_MR_VRCT_ROOMFEATURES_HEADER_INPUT,false);
 
 			$pageoutput[]=$output;
 			$tmpl = new patTemplate();

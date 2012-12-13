@@ -48,38 +48,38 @@ class j00501avlcal {
 			$jsInputFormatDropdownList=$componentArgs['jsInputFormatDropdownList'];
 
 			//
-			$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_AVLCAL",_JOMRES_COM_A_AVLCAL));
+			$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_AVLCAL",_JOMRES_COM_A_AVLCAL,false));
 			
 			if ($mrConfig['is_real_estate_listing']==0)
 				{
 				if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
 					{
-					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SHOWONLYAVLCAL",_JOMRES_COM_A_SHOWONLYAVLCAL));
+					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_SHOWONLYAVLCAL",_JOMRES_COM_A_SHOWONLYAVLCAL,false));
 					$configurationPanel->setmiddle($lists['showOnlyAvailabilityCalendar']);
-					$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SHOWONLYAVLCAL_DESC",_JOMRES_COM_A_SHOWONLYAVLCAL_DESC));
+					$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_SHOWONLYAVLCAL_DESC",_JOMRES_COM_A_SHOWONLYAVLCAL_DESC,false));
 					$configurationPanel->insertSetting();
 					}
 				if ($mrConfig['showOnlyAvailabilityCalendar'] == "1")
 					{
-					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_MONTHSTOSHOW",_JOMRES_COM_MONTHSTOSHOW));
+					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_MONTHSTOSHOW",_JOMRES_COM_MONTHSTOSHOW,false));
 					$configurationPanel->setmiddle('<input type="text" class="inputbox" size="5" name="cfg_CalendarMonthsToShow" value="'.$mrConfig['CalendarMonthsToShow'].'"/>');
-					$configurationPanel->setright(jr_gettext("_JOMRES_COM_MONTHSTOSHOW_DESC",_JOMRES_COM_MONTHSTOSHOW_DESC));
+					$configurationPanel->setright(jr_gettext("_JOMRES_COM_MONTHSTOSHOW_DESC",_JOMRES_COM_MONTHSTOSHOW_DESC,false));
 					$configurationPanel->insertSetting();
 
-					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_MONTHS_STARTOFYEAR",_JOMRES_COM_MONTHS_STARTOFYEAR));
+					$configurationPanel->setleft(jr_gettext("_JOMRES_COM_MONTHS_STARTOFYEAR",_JOMRES_COM_MONTHS_STARTOFYEAR,false));
 					$configurationPanel->setmiddle($lists['calstartfrombeginningofyear']);
-					$configurationPanel->setright(jr_gettext("_JOMRES_COM_MONTHS_STARTOFYEAR_DESC",_JOMRES_COM_MONTHS_STARTOFYEAR_DESC));
+					$configurationPanel->setright(jr_gettext("_JOMRES_COM_MONTHS_STARTOFYEAR_DESC",_JOMRES_COM_MONTHS_STARTOFYEAR_DESC,false));
 					$configurationPanel->insertSetting();
 					}
 				}
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DATEFORMATSTYLE",_JOMRES_COM_A_DATEFORMATSTYLE));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DATEFORMATSTYLE",_JOMRES_COM_A_DATEFORMATSTYLE,false));
 			$configurationPanel->setmiddle($lists['dateFormatStyle']);
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DATEFORMATSTYLE_DESC",_JOMRES_COM_A_DATEFORMATSTYLE_DESC));
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_DATEFORMATSTYLE_DESC",_JOMRES_COM_A_DATEFORMATSTYLE_DESC,false));
 			$configurationPanel->insertSetting();
 
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CALENDAROUTPUT",_JOMRES_COM_CALENDAROUTPUT));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_CALENDAROUTPUT",_JOMRES_COM_CALENDAROUTPUT,false));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" size="10" name="cfg_cal_output" value="'.$mrConfig['cal_output'].'" />');
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_CALENDAROUTPUT_DESC",_JOMRES_COM_CALENDAROUTPUT_DESC));
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_CALENDAROUTPUT_DESC",_JOMRES_COM_CALENDAROUTPUT_DESC,false));
 			$configurationPanel->insertSetting();
 			
 			$configurationPanel->endPanel();

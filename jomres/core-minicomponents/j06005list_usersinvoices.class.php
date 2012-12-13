@@ -57,7 +57,7 @@ class j06005list_usersinvoices
 			$pageoutput=array();
 			$rows=array();
 
-			$output['PAGETITLE']=jr_gettext('_JRPORTAL_INVOICES_TITLE',_JRPORTAL_INVOICES_TITLE);
+			$output['PAGETITLE']=jr_gettext('_JRPORTAL_INVOICES_TITLE',_JRPORTAL_INVOICES_TITLE,false);
 			$output['HUSER']=jr_gettext('_JRPORTAL_INVOICES_USER',_JRPORTAL_INVOICES_USER);
 			$output['HSTATUS']=jr_gettext('_JRPORTAL_INVOICES_STATUS',_JRPORTAL_INVOICES_STATUS);
 			$output['HRAISED']=jr_gettext('_JRPORTAL_INVOICES_RAISED',_JRPORTAL_INVOICES_RAISED);

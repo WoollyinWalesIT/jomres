@@ -55,7 +55,7 @@ class j06002listyourproperties
 		$query="SELECT propertys_uid,property_name,property_street,property_town,property_region,property_country,property_postcode,published,apikey
 		FROM #__jomres_propertys ".$clause." LIMIT ".count($mp);
 		$jomresPropertyList=doSelectSql($query);
-		$output['PAGETITLE']=jr_gettext("_JRPORTAL_CPANEL_LISTPROPERTIES",_JRPORTAL_CPANEL_LISTPROPERTIES);
+		$output['PAGETITLE']=jr_gettext("_JRPORTAL_CPANEL_LISTPROPERTIES",_JRPORTAL_CPANEL_LISTPROPERTIES,false);
 		$output['TOTALINLISTPLUSONE']=count($crateList);
 		$output['HPROPERTYNAME']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYNAME",_JRPORTAL_PROPERTIES_PROPERTYNAME);
 		$output['HPROPERTYADDRESS']=jr_gettext("_JRPORTAL_PROPERTIES_PROPERTYADDRESS",_JRPORTAL_PROPERTIES_PROPERTYADDRESS);

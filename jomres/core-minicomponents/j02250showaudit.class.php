@@ -140,7 +140,7 @@ class j02250showaudit {
 		$output['USERFILTER']=$usernameDropdown;
 		$output['OPERATIONFILTER']=$operationDropdown;
 
-		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_A_AUDITING_SHOWING',_JOMRES_COM_A_AUDITING_SHOWING);
+		$output['PAGETITLE']=jr_gettext('_JOMRES_COM_A_AUDITING_SHOWING',_JOMRES_COM_A_AUDITING_SHOWING,false);
 
 		$jrtbar =jomres_singleton_abstract::getInstance('jomres_toolbar');
 		$jrtb  = $jrtbar->startTable();
