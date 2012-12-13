@@ -45,16 +45,16 @@ class j00501gateways {
 			$lists=$componentArgs['lists'];
 			$gatewayNames=$componentArgs['gatewayNames'];
 
-			$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_GATEWAYLIST",_JOMRES_COM_A_GATEWAYLIST));
+			$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_GATEWAYLIST",_JOMRES_COM_A_GATEWAYLIST,false));
 
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_GATEWAY_USEGATEWAYS",_JOMRES_COM_A_GATEWAY_USEGATEWAYS));
+			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_GATEWAY_USEGATEWAYS",_JOMRES_COM_A_GATEWAY_USEGATEWAYS,false));
 			$configurationPanel->setmiddle($lists['useOnlinepayment']);
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_GATEWAY_USEGATEWAYS_DESC",_JOMRES_COM_A_GATEWAY_USEGATEWAYS_DESC));
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_GATEWAY_USEGATEWAYS_DESC",_JOMRES_COM_A_GATEWAY_USEGATEWAYS_DESC,false));
 			$configurationPanel->insertSetting();
 
 			$configurationPanel->setleft();
 			$configurationPanel->setmiddle();
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_GATEWAY_ENABLED",_JOMRES_COM_A_GATEWAY_ENABLED));
+			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_GATEWAY_ENABLED",_JOMRES_COM_A_GATEWAY_ENABLED,false));
 			$configurationPanel->insertSetting();
 
 			$MiniComponents->triggerEvent('00509',$componentArgs);

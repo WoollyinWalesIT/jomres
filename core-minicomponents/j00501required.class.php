@@ -43,7 +43,7 @@ class j00501required {
 		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
 		if (($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) )
 			{
-			$configurationPanel->startPanel(jr_gettext("_JOMRES_REQUIREDFIELDS",_JOMRES_REQUIREDFIELDS));
+			$configurationPanel->startPanel(jr_gettext("_JOMRES_REQUIREDFIELDS",_JOMRES_REQUIREDFIELDS,false));
 
 			$configurationPanel->setleft(jr_gettext("_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME",_JOMRES_FRONT_MR_DISPGUEST_FIRSTNAME));
 			$configurationPanel->setmiddle($lists['bookingform_requiredfields_name']);

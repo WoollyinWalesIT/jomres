@@ -58,7 +58,7 @@ class j06001list_guests_invoices
 				$rows=array();
 				$basic_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				
-				$output['PAGETITLE']=jr_gettext("_JRPORTAL_INVOICES_TITLE",_JRPORTAL_INVOICES_TITLE);
+				$output['PAGETITLE']=jr_gettext("_JRPORTAL_INVOICES_TITLE",_JRPORTAL_INVOICES_TITLE,false);
 				$output['HUSER']=jr_gettext("_JRPORTAL_INVOICES_USER",_JRPORTAL_INVOICES_USER);
 				$output['HSTATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS",_JRPORTAL_INVOICES_STATUS);
 				$output['HRAISED']=jr_gettext("_JRPORTAL_INVOICES_RAISED",_JRPORTAL_INVOICES_RAISED);

@@ -121,6 +121,17 @@ class j00004a_init_javascript_css_files {
 		set_showtime("jquery.validate.js","jquery.validate.js");
 		set_showtime("jquery.validate.js.relpath","jomres/javascript/");
 		
+		
+		// Bootstrap toggle buttons
+		if (using_bootstrap())
+			{
+			set_showtime("jquery.toggle.buttons.js","jquery.toggle.buttons.js");
+			set_showtime("bootstrap-toggle-buttons.js.relpath","jomres/javascript/bootstrap-toggle-buttons/js/");
+			
+			set_showtime("jquery.toggle.buttons.css","jquery.toggle.buttons.css");
+			set_showtime("jquery.toggle.buttons.css.relpath","jomres/javascript/bootstrap-toggle-buttons/css/");
+			}
+		
 		if (!using_bootstrap())
 			{
 			set_showtime("x-editable.js","jqueryui-editable.min.js");

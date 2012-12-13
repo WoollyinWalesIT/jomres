@@ -1171,7 +1171,7 @@ class dobooking
 			//$output['CURRENCY_SYMBOL']		=$mrConfig['currency'];
 			$output['BILLING_TOTALINPARTY']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY',_JOMRES_AJAXFORM_BILLING_TOTALINPARTY));
 			$output['AJAXFORM_PARTICULARS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS',_JOMRES_AJAXFORM_PARTICULARS));
-			$output['AJAXFORM_PARTICULARS_DESC']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS_DESC',_JOMRES_AJAXFORM_PARTICULARS_DESC,false));
+			$output['AJAXFORM_PARTICULARS_DESC']=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_PARTICULARS_DESC',_JOMRES_AJAXFORM_PARTICULARS_DESC));
 			$output['AJAXFORM_AVAILABLE']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_AVAILABLE',_JOMRES_AJAXFORM_AVAILABLE));
 			$output['AJAXFORM_ADDRESS']			=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ADDRESS',_JOMRES_AJAXFORM_ADDRESS));
 			$output['AJAXFORM_ADDRESS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_ADDRESS_DESC',_JOMRES_AJAXFORM_ADDRESS_DESC,false));
@@ -1429,7 +1429,11 @@ class dobooking
 			foreach ($this->allRoomFeatures as $feature_id=>$feature)
 				{
 				$arr = array();
-				$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" AUTOCOMPLETE="OFF"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
+				if (!using_bootstrap())
+					$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" AUTOCOMPLETE="OFF"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
+				else
+					$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" AUTOCOMPLETE="OFF"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
+				
 				$arr['DESCRIPTION']= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$feature_id,$feature);
 				$this->room_feature_checkboxes[] = $arr;
 				}
