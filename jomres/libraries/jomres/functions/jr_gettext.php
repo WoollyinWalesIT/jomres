@@ -126,7 +126,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 		if ($thisJRUser->userIsManager && ($editing || ($jrConfig['editingModeAffectsAllProperties'] == "1" && $thisJRUser->superPropertyManager == true ) ) && $okToEdit && ($accessLevel ==2))
 			{
 			if (strlen(trim($theText))==0 || strtolower(trim($theText)) == "<span></span>" || strtolower(trim($theText)) == "<span> </span>" || strtolower(trim($theText)) == "<span>  </span>")
-				$theText="xxxxxxxxx";
+				$theText="";
 			$indexphp="index.php";
 			$title=' title="'.jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false).'" ';
 
@@ -140,37 +140,46 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 				{
 				if ($jrConfig['editinplace']==1 && $_REQUEST['no_html'] != '1' )
 					{
-					if (!defined('JOMRESJQUERY_EDITINPLACE'))
-						{
-						define("JOMRESJQUERY_EDITINPLACE",1);
-						echo '
-							<script type="text/javascript">
-						jomresJquery(document).ready(function() {';
-						if ($_REQUEST['task']=="touch_templates" || $_REQUEST['task']=="translate_locales" || $_REQUEST['task']=="translate_lang_file_strings")
-							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&no_html=1&lang='.get_showtime("lang").'", ';
-						else
-							echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace&no_html=1", ';
-						echo "	{
-							indicator : '".jr_gettext('JOMRES_WORD_SAVING',JOMRES_WORD_SAVING,false)."',
-							id			: 'theConstant',
-							name		: 'newtext',
-							type		: 'textarea',
-							cancel		: 'x',
-							submit		: 'OK',
-							tooltip		: '".htmlspecialchars(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false))."',
-							height		: '20',
-							width		: '200',
-							style		: 'inherit'
-							});
-						});
-						</script>
-						";
-						}
-					if (using_bootstrap())
-						$theText='<span class="jqueryeditable label label-important" id="'.$theConstant.'" >'.jomres_remove_HTML($theText,'').'</span>';
-					else
-						$theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.htmlspecialchars($theText).'</div></span>';
+					// replaced with x-editable code below
+					// if (!defined('JOMRESJQUERY_EDITINPLACE'))
+						// {
+						// define("JOMRESJQUERY_EDITINPLACE",1);
+						// echo '
+							// <script type="text/javascript">
+						// jomresJquery(document).ready(function() {';
+						// if ($_REQUEST['task']=="touch_templates" || $_REQUEST['task']=="translate_locales" || $_REQUEST['task']=="translate_lang_file_strings")
+							// echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&no_html=1&lang='.get_showtime("lang").'", ';
+						// else
+							// echo 'jomresJquery(".jqueryeditable").editable("'.JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace&no_html=1", ';
+						// echo "	{
+							// indicator : '".jr_gettext('JOMRES_WORD_SAVING',JOMRES_WORD_SAVING,false)."',
+							// id			: 'theConstant',
+							// name		: 'newtext',
+							// type		: 'textarea',
+							// cancel		: 'x',
+							// submit		: 'OK',
+							// tooltip		: '".htmlspecialchars(jr_gettext('_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT',_JOMRES_COM_MR_VRCT_ROOM_LINKTEXT,false))."',
+							// height		: '20',
+							// width		: '200',
+							// style		: 'inherit'
+							// });
+						// });
+						// </script>
+						// ";
+						// }
+					// if (using_bootstrap())
+						// $theText='<span class="jqueryeditable label label-important" id="'.$theConstant.'" >'.jomres_remove_HTML($theText,'').'</span>';
+					// else
+						// $theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.htmlspecialchars($theText).'</div></span>';
 					
+					if ($_REQUEST['task']=="touch_templates" || $_REQUEST['task']=="translate_locales" || $_REQUEST['task']=="translate_lang_file_strings")
+						$url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&no_html=1&lang='.get_showtime("lang");
+					else
+						$url = JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace&no_html=1';
+					
+					$theText='<a href="#" id="'.$theConstant.'" data-type="text" data-pk="'.$theConstant.'" data-url="'.$url.'" data-original-title="'.htmlspecialchars($theText).'">'.htmlspecialchars($theText).'</a>
+					<script>jomresJquery(\'#'.$theConstant.'\').editable();</script>';
+
 					}
 				else
 					{

@@ -23,8 +23,8 @@ class j16000editinplace
 			{
 			$this->template_touchable=false; return;
 			}
-		$customText = jomresGetParam( $_POST, 'newtext', '','string' );
-		$theConstant =filter_var($_POST['theConstant'],FILTER_SANITIZE_SPECIAL_CHARS);
+		$customText = jomresGetParam( $_POST, 'value', '','string' );
+		$theConstant =filter_var($_POST['pk'],FILTER_SANITIZE_SPECIAL_CHARS);
 		$lang = jomresGetParam( $_REQUEST, 'lang', '' );
 		
 
