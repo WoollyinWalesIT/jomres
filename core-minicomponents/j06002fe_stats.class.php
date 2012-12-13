@@ -27,7 +27,6 @@ class j06002fe_stats
 		if (!$thisJRUser->userIsManager)
 			return;
 		echo '<script language="javascript" type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/graphs.js"></script>';
-		echo '<script language="javascript" type="text/javascript" src="'.get_showtime('live_site').'/jomres/javascript/jrportal.js"></script>';
 		$defaultProperty=getDefaultProperty();
 		$MiniComponents->specificEvent('16000','viewproperty',array('id'=>$defaultProperty));
 		}
