@@ -40,14 +40,19 @@ class j16000translate_locales
 				$output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_COUNTRIES_".$country->id,$country->countryname);
 				}
 			}
-
-		$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
-		$regionList = doSelectSql($query);
-		if (count($regionList) > 0)
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if ($jrConfig['region_names_are_translatable'] =="1")
 			{
-			foreach ($regionList as $region)
+			$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
+			$regionList = doSelectSql($query);
+			if (count($regionList) > 0)
 				{
-				$output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname);
+				foreach ($regionList as $region)
+					{
+					$output[]		=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname);
+					}
 				}
 			}
 		

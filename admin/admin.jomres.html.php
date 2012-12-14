@@ -71,17 +71,17 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>');
 		
 		$contentPanel->setcontent('
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'.jr_gettext(_JOMRES_COM_ADVANCED_SITE_CONFIG,'_JOMRES_COM_ADVANCED_SITE_CONFIG',false).'</td>
 			<td valign="middle">'.$lists['advanced_site_config'].'</td>
 			<td valign="middle">'.jr_gettext(_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC,'_JOMRES_COM_ADVANCED_SITE_CONFIG_DESC',false).'</td>
 		</tr>
-		<tr valign="middle" class="even">
+		<tr valign="middle" class="odd">
 			 <td valign="middle">'.jr_gettext(_JOMRES_MENU_SHOW_TITLE,'_JOMRES_MENU_SHOW_TITLE',false).'</td>
 			 <td valign="middle">'.$lists['alternate_mainmenu'].'</td>
 			 <td valign="middle">'.jr_gettext(_JOMRES_MENU_SHOW_DESC,'_JOMRES_MENU_SHOW_DESC',false).'</td>
 		</tr>
-		<tr valign="middle" class="odd">
+		<tr valign="middle" class="even">
 			<td valign="middle">'.jr_gettext(_JOMRES_SUPPORTKEY,'_JOMRES_SUPPORTKEY',false).'</td>
 			<td valign="middle"><input type="text" class="inputbox" size="30" name="cfg_licensekey" value="'.$licensekey.'" /></td>
 			<td valign="middle">'.jr_gettext(_JOMRES_SUPPORTKEY_DESC,'_JOMRES_SUPPORTKEY_DESC',false).'</td>
@@ -98,6 +98,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td valign="middle"></td>
 		</tr>
 		-->
+		<tr valign="middle" class="odd">
+			 <td>'.jr_gettext(_JOMRES_REGION_TRANSLATION_SWITCH_TITLE,'_JOMRES_REGION_TRANSLATION_SWITCH_TITLE',false).'</td>
+			 <td>'.$lists['region_names_are_translatable'].'</td>
+			 <td>'.jr_gettext(_JOMRES_REGION_TRANSLATION_SWITCH_DESC,'_JOMRES_REGION_TRANSLATION_SWITCH_DESC',false).'</td>
+		</tr>
 		<tr valign="middle" class="even">
 			 <td>'.jr_gettext(_JOMRES_PROPERTYLIST_IMAGESASGIFS,'_JOMRES_PROPERTYLIST_IMAGESASGIFS',false).'</td>
 			 <td>'.$lists['make_gifs_from_slideshows'].'</td>

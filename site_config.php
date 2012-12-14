@@ -254,4 +254,5 @@ $jrConfig['property_details_in_tabs'] = "1";
 $jrConfig['property_list_layout_default'] = "list";
 
 $jrConfig['automatically_approve_new_properties'] = "1";
+$jrConfig['region_names_are_translatable'] = "0";
 ?>

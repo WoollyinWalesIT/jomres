@@ -1982,3 +1982,6 @@ jr_define( "_JOMRES_APPROVALS_ADMIN_EMAIL_SUBJECT" , "A new property requires ap
 jr_define( "_JOMRES_APPROVALS_ADMIN_EMAIL_CONTENT" , "A property has been added to the system which requires your approval. Click the link to view the properties awaiting approval list : ");
 jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT" , "Your property has been approved");
 jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT" , "Congratulations, your property has been approved, please click the following link to view the property's control panel : ");
+
+jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_TITLE" , "Region names are translatable");
+jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "Unless you're running a very fast server you are advised to leave this set to No. Due to the large number of region names, region name translation takes up a lot of memory which can slow your search results down.");
