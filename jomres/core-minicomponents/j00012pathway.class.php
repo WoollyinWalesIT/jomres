@@ -57,7 +57,15 @@ class j00012pathway {
 			return;
 		if (AJAXCALL)
 			return;
-
+		
+		// We can't show the pathway if editing mode is enabled, 
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+		if (!isset($tmpBookingHandler->user_settings['editing_on']))
+			$tmpBookingHandler->user_settings['editing_on']= false;
+		
+		if ($tmpBookingHandler->user_settings['editing_on'])
+			return;
+		
 		$jomresPathway =jomres_singleton_abstract::getInstance('jomres_pathway');
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
