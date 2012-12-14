@@ -54,7 +54,7 @@ class jomres_performance_monitor
 		{
 		$ut = $this->getmicrotime();
 		$mem_usage = memory_get_usage  (TRUE );
-		$this->log[$point]=array('ut'=>$ut,'usage'=>$mem_usage);
+		$this->log[][$point]=array('ut'=>$ut,'usage'=>$mem_usage);
 		}
 		
 	public function set_sqlquery_log($query)
@@ -78,24 +78,28 @@ class jomres_performance_monitor
 			return;
 		if (!$this->show_results)
 			return;
-		while(list($key, $time) = each($this->log))
+		foreach ($this->log as $log)
 			{
-			$ut=$time['ut'];
-			$usage=$time['usage'];
-			$norm_mem = $this->get_normalised_memory_usage($usage);
-			
-			print "<b>".$key." - ".$ut." sec.</b><br/>";
-			print "Memory usage ".$norm_mem." ( ".$usage." )<br/>";
-			if (isset($last_ut))
+			while(list($key, $time) = each($log))
 				{
-				$time_diff = $this->diff_microtime($last_ut,$ut);
-				print "Diff ".$time_diff." sec.<br/>";
+				
+				$ut=$time['ut'];
+				$usage=$time['usage'];
+				$norm_mem = $this->get_normalised_memory_usage($usage);
+				
+				print "<b>".$key." - ".$ut." sec.</b><br/>";
+				print "Memory usage ".$norm_mem." ( ".$usage." )<br/>";
+				if (isset($last_ut))
+					{
+					$time_diff = $this->diff_microtime($last_ut,$ut);
+					print "Diff ".$time_diff." sec.<br/>";
+					}
+				else
+					{
+					$first_time = $ut;
+					}
+				$last_ut = $ut;
 				}
-			else
-				{
-				$first_time = $ut;
-				}
-			$last_ut = $ut;
 			}
 		$time_diff = $this->diff_microtime($first_time,$ut);
 		print "Total Runtime ".sprintf('%01.2f', $time_diff)." sec.<br/>";
