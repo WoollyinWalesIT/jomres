@@ -77,8 +77,6 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 	else
 		$accessLevel=0;
 	
-	$theText=jr_get_defined($theConstant,$theValue);
-
 	$br="";
 	if (get_showtime('task')=="editCustomTextAll")
 		$br="<br>";
@@ -94,7 +92,8 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 			$theText=jr_get_defined($theConstant,$theValue);
 			}
 		}
-		
+	else
+		$theText=jr_get_defined($theConstant,$theValue);
 	
 /* 	if (isset($thisJRUser))
 		{
