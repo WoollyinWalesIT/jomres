@@ -24,16 +24,27 @@ class jomres_regions
 	
 	function get_regions()
 		{
+		$performance_monitor =jomres_singleton_abstract::getInstance('jomres_performance_monitor');
+		$performance_monitor->set_point("Setting up regions. Let's ensure we're not doing this more than once.");
+		
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		if (!isset($jrConfig['region_names_are_translatable']))
+			$jrConfig['region_names_are_translatable'] = 0;
+		
 		$query = "SELECT id,countrycode,regionname FROM #__jomres_regions ORDER BY countrycode,regionname";
 		$regionList = doSelectSql($query);
 		if (count($regionList) > 0)
 			{
 			foreach ($regionList as $region)
 				{
-				$this->regions[$region->id] = array("id"=>$region->id,"countrycode"=>$region->countrycode,"regionname"=>jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname,false,false));
+				if ($jrConfig['region_names_are_translatable'] == 1)
+					$this->regions[$region->id] = array("id"=>$region->id,"countrycode"=>$region->countrycode,"regionname"=>jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$region->id,$region->regionname,false,false));
+				else
+					$this->regions[$region->id] = array("id"=>$region->id,"countrycode"=>$region->countrycode,"regionname"=>$region->regionname);
 				}
 			}
-		//var_dump($this->regions);exit;
+		$performance_monitor->set_point("Region generation done.");
 		return $this->regions;
 		}
 	

@@ -263,6 +263,8 @@ function showSiteConfig(  )
 	if (!isset($jrConfig['automatically_approve_new_properties']))
 		$jrConfig['automatically_approve_new_properties']="1";
 	
+	$lists['region_names_are_translatable']				= jomresHTML::selectList( $yesno, 'cfg_region_names_are_translatable', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['region_names_are_translatable'] );
+	
 	$lists['automatically_approve_new_properties']	= jomresHTML::selectList( $yesno, 'cfg_automatically_approve_new_properties', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['automatically_approve_new_properties'] );
 	
 	

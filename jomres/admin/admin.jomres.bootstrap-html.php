@@ -102,6 +102,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			<td></td>
 		</tr>
 		-->
+		
+		<tr>
+			 <td>'.jr_gettext(_JOMRES_REGION_TRANSLATION_SWITCH_TITLE,'_JOMRES_REGION_TRANSLATION_SWITCH_TITLE',false).'</td>
+			 <td>'.$lists['region_names_are_translatable'].'</td>
+			 <td>'.jr_gettext(_JOMRES_REGION_TRANSLATION_SWITCH_DESC,'_JOMRES_REGION_TRANSLATION_SWITCH_DESC',false).'</td>
+		</tr>
+		
 		<tr>
 			 <td>'.jr_gettext(_JOMRES_PROPERTYLIST_IMAGESASGIFS,'_JOMRES_PROPERTYLIST_IMAGESASGIFS',false).'</td>
 			 <td>'.$lists['make_gifs_from_slideshows'].'</td>
