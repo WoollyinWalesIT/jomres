@@ -18,12 +18,7 @@ function JomresBuildRoute(&$query)
 	if (!defined('_JOMRES_INITCHECK'))
 		define('_JOMRES_INITCHECK', 1 );
 	global $thisJRUser;
-	if (file_exists(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php'))
-		require_once(JPATH_BASE.DS.'jomres'.DS.'core-plugins'.DS.'alternative_init'.DS.'alt_init.php');
-	elseif (file_exists(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php') )
-		require_once(JPATH_BASE.DS.'jomres'.DS.'remote_plugins'.DS.'alternative_init'.DS.'alt_init.php');
-	else
-		require_once(JPATH_BASE.DS.'jomres'.DS.'integration.php');
+	require_once(JPATH_BASE.DS.'jomres'.DS.'integration.php');
 
 	$jrConfig					=	getSiteSettings();
 	$segments = array();
@@ -134,19 +129,19 @@ function JomresBuildRoute(&$query)
 		$segments[] = $jrConfig['sef_task_alias_search'];
 		if (isset($route_query['town']))
 			{
-			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN;
+			$segments[] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false);
 			$segments[] = JomresFilterString($route_query['town']);
 			unset( $route_query['town'] );
 			}
 		if (isset($route_query['region']))
 			{
-			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION;
+			$segments[] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false);
 			$segments[] = JomresFilterString($route_query['region']);
 			unset( $route_query['region'] );
 			}
 		if (isset($route_query['country']))
 			{
-			$segments[] = _JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY;
+			$segments[] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false);
 			$segments[] = JomresFilterString($route_query['country']);
 			unset( $route_query['country'] );
 			}
