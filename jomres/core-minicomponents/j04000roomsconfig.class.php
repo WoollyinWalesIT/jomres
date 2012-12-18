@@ -311,8 +311,8 @@ class j04000roomsconfig {
 			$jrtb .= $jrtbar->endTable();
 			$contentPanel->setcontent('<table><tr>
 			<td>');
-			$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,		stripslashes($roomClass->room_class_abbv),false,false);
-			$contentPanel->setcontent(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE',_JOMRES_COM_MR_VRCT_PROPERTY_TYPE,false).$jrtb." ".$roomClassAbbv);
+			$roomClassAbbv = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$original_room_classes_uid,$room_class_abbv,false,false);
+			$contentPanel->setcontent(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE',_JOMRES_COM_MR_VRCT_PROPERTY_TYPE,false).$jrtb."<br/>".$roomClassAbbv);
 			$contentPanel->setcontent('</td>
 			</tr></table>');
 			}
