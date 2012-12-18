@@ -480,6 +480,12 @@ if ($field != "heartbeat" && $field != "show_log")
 		$errorLog=$bkg->getErrorLog();
 		}
 	echo '; populateDiv("room_allocations","'.$bkg->getRoomAllocationOutput().'");';
+	if ( $bkg->getOkToBook() )
+		{
+		$allocation_popup=$bkg->getRoomAllocationOutput();
+		if ($allocation_popup != "")
+		echo '; jomresJquery.jGrowl(\''.$allocation_popup.'\', { life: 30000 });';
+		}
 	$bkg->setErrorLogFirst($ajrq);
 	$bkg->storeBookingDetails();
 	}

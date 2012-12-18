@@ -585,12 +585,7 @@ class dobooking
 		//$this->setErrorLog(serialize($tariffs) );
 		foreach ($tariffs as $t)
 			{
-			$roomrate = $t->roomrateperday;
-			if ($mrConfig['prices_inclusive'] == 1)
-				{
-				$divisor	= ($this->accommodation_tax_rate/100)+1;
-				$roomrate=$roomrate/$divisor;
-				}
+			$roomrate = $this->get_nett_price($t->roomrateperday,$this->accommodation_tax_rate);
 			$this->allPropertyTariffs[$t->rates_uid] = array('rates_uid'=>$t->rates_uid,'rate_title'=>$t->rate_title,'rate_description'=>$t->rate_description,'validfrom'=>$t->validfrom,'validto'=>$t->validto,
 			'roomrateperday'=>$roomrate,'mindays'=>$t->mindays,'maxdays'=>$t->maxdays,'minpeople'=>$t->minpeople,'maxpeople'=>$t->maxpeople,'roomclass_uid'=>$t->roomclass_uid,
 			'ignore_pppn'=>$t->ignore_pppn,'allow_ph'=>$t->allow_ph,'allow_we'=>$t->allow_we,'weekendonly'=>$t->weekendonly,'dayofweek'=>$t->dayofweek,'minrooms_alreadyselected'=>$t->minrooms_alreadyselected,'maxrooms_alreadyselected'=>$t->maxrooms_alreadyselected);
@@ -6228,6 +6223,12 @@ class dobooking
 	 */
 	function getRoomAllocationOutput()
 		{
+		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
+		if (count($numberOfGuestTypes) ==0)
+			return '';
+		if ($this->cfg_perPersonPerNight=="0")
+			return '';
+		
 		$text_room = jr_gettext('_JOMRES_ROOMALLOCATIONS_ROOM',_JOMRES_ROOMALLOCATIONS_ROOM,false,false);
 		$text_guests = jr_gettext('_JOMRES_ROOMALLOCATIONS_GUESTS',_JOMRES_ROOMALLOCATIONS_GUESTS,false,false);
 		$text_information = jr_gettext('_JOMRES_ROOMALLOCATIONS_INFORMATION',_JOMRES_ROOMALLOCATIONS_INFORMATION,false,false);
@@ -6239,6 +6240,7 @@ class dobooking
 			{
 			$rm_id = $key;
 			$number_of_guests = $val['number_allocated'];
+			$price = output_price( $this->get_gross_price( $val['price_per_night']*$val['number_allocated'] , $this->accommodation_tax_rate));
 			$room_number = "";
 			$room_name="";
 
@@ -6246,7 +6248,7 @@ class dobooking
 				{
 				$room_type_id = $this->allPropertyRooms[$rm_id]['room_classes_uid'];
 				$room_type = $this->allRoomClasses[$room_type_id]['room_class_abbv'];
-				$output .="<tr><td>".$text_room." : ".$room_type."</td><td>X</td><td>".$number_of_guests." ".$text_guests."</td></tr>";
+				$output .="<tr><td>".$text_room." : ".$room_type."</td><td>X</td><td>".$number_of_guests." ".$text_guests." ".$price."</td></tr>";
 				}
 			else
 				{
@@ -6254,7 +6256,7 @@ class dobooking
 					$room_number=$this->allPropertyRooms[$rm_id]['room_number'];
 				if ($this->cfg_bookingform_roomlist_showroomname == "1")
 					$room_name=$this->allPropertyRooms[$rm_id]['room_name'];
-				$output .="<tr><td>".$text_room." : ".$room_number." ".$room_name."</td><td>X</td><td>".$number_of_guests." ".$text_guests."</td></tr>";
+				$output .="<tr><td>".$text_room." : ".$room_number." ".$room_name."</td><td>X</td><td>".$number_of_guests." ".$text_guests." ".$price."</td></tr>";
 				}
 			}
 		// Don't let there be a carriage return in this output string, otherwise the javascript will bork.
@@ -6663,143 +6665,108 @@ class dobooking
 			$mrConfig['wisepricethreshold']='60';
 		$wisepricethreshold = (int)$mrConfig['wisepricethreshold'];
 		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
-		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
 		
-		$roomsOfType=array();
+		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
 		$dateRangeArray=explode(",",$this->dateRangeString);
 		$stayDays=$this->stayDays;
-		$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
-		
-		$total=0.00;
-		
-	// May need to use these in the future. Currently (Oct 2012) this section is a pig to maintain, but it works. If we need to change it at any time, we could probably use the micromanage_tarifftype_to_date_map to simplify this section
-//$this->build_tariff_to_date_map ();
-// $all_associated_tariff_ids = $this->all_tariff_types_to_tariff_id_xref[$tariff_type_id];
-// foreach ($this->micromanage_tarifftype_to_date_map as $dates)
-//var_dump($this->micromanage_tarifftype_to_date_map);exit;
+		$this->build_tariff_to_date_map ();
 
+		
 		foreach ($this->requestedRoom as $rt)
 			{
+			$calculated_price_per_room_per_day =0.00;
 			$rm=explode("^",$rt);
 			$tariff_id=$rm[1];
-
+			$room_id = $rm[0];
+			
 			$query = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE tariff_id = ".(int)$tariff_id;
-			$this->setErrorLog("te_setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".$query);
-			$tarifftypeids = doSelectSql($query);
-
-			if (count($tarifftypeids)>0)
+			//$this->setErrorLog("te_setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".$query);
+			$tarifftypeid = doSelectSql($query,1);
+			
+			if ($tarifftypeid != false)
 				{
-				foreach ($tarifftypeids as $t)
+				$dates = $this->micromanage_tarifftype_to_date_map[$tarifftypeid];
+				$cumulative_price = 0.00;
+				foreach ($dateRangeArray as $date)
 					{
-					$query="SELECT tariff_id FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id ='".$t->tarifftype_id."'";
-					$this->setErrorLog("setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".$query);
-					$allTariffIds = doSelectSql($query);
-					$this->setErrorLog("setAverageRate::Querying __jomcomp_tarifftype_rate_xref table ".serialize($allTariffIds));
-					$xreffed=array();
-					foreach ($allTariffIds as $xref)
-						{
-						$xreffed[]=$xref->tariff_id;
-						}
-					$gor=genericOr($xreffed,'rates_uid');
-					$query="SELECT `rates_uid`,`validfrom` ,`validto`,`mindays`,`maxdays`,minpeople,maxpeople,`roomrateperday`,roomclass_uid FROM #__jomres_rates WHERE ".$gor;
-					$this->setErrorLog("te_setAverageRate::Querying rates table ".$query);
-					$rateList = doSelectSql($query);
-					foreach ($rateList as $rate)
-						{
-						$date_elements  = explode("/",$rate->validfrom);
-						$unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-						$date_elements  = explode("/",$rate->validto);
-						$unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-						//$rates[]=array('validfrom'=>$unixValidFromDate,'validto'=>$unixValidToDate,'roomrateperday'=>$rate->roomrateperday,'rates_uid'=>$rate->rates_uid);
-						foreach ($dateRangeArray as $date )
-							{
-							$pass=false;
-							$this->setErrorLog("te_setAverageRate::Searching date ".$date.' on current tariff uid: '.$rate->rates_uid);
-							$date_elements  = explode("/",$date);
-							$unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
-							if (count($numberOfGuestTypes) >0)
-								{
-								if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) && ($this->total_in_party >= $rate->minpeople &&  $this->total_in_party <= $rate->maxpeople ) )
-									$pass=true;
-								}
-							else
-								{
-								if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) )
-									$pass=true;
-								}
-							
-							if($pass)
-								{
-								$this->setErrorLog("te_setAverageRate::Number of rooms of this type : ".$roomsOfType[$rate->roomclass_uid]);
-
-								if ( count($datesTilBooking) <= $wisepricethreshold && $mrConfig['wisepriceactive'] == "1")
-									{
-									$tmpRate = $rate->roomrateperday;
-									if ($mrConfig['prices_inclusive'] == 1)
-										{
-										$divisor	= ($this->accommodation_tax_rate/100)+1;
-										$tmpRate=$tmpRate/$divisor;
-										}
-									//$tmpRate=$rate->roomrateperday;
-									$roomType=$rate->roomclass_uid;
-									$percentageBooked=$this->getPercentageOfRoomsBookedForRoomtype($rate->roomclass_uid);
-									$r= $this->getDiscountedRoomrate ($tmpRate,$percentageBooked);
-									$total=$total+$r;
-									$isDiscounted=false;
-									if ($r < $tmpRate)
-										{
-										$isDiscounted=true;
-										$tmpBookingHandler->updateBookingField("booking_discounted",true );
-										}
-									$disc[$roomType]=array(
-										"roomrate"=>$tmpRate,
-										"discountedRate"=>$r,
-										"roomType"=>$rate->roomclass_uid,
-										"isDiscounted"=>$isDiscounted,
-										);
-									$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
-									$tmpBookingHandler->saveBookingData();
-									}
-								else
-									{
-									$tmp_rate = $rate->roomrateperday;
-									if ($mrConfig['prices_inclusive'] == 1)
-										{
-										$divisor	= ($this->accommodation_tax_rate/100)+1;
-										$tmp_rate=$tmp_rate/$divisor;
-										}
-									$this->setErrorLog("te_setAverageRate::Rejigging room rate from ".$rate->roomrateperday." to  ".$tmp_rate*$roomsOfType[$rate->roomclass_uid]);
-									//$tmp_rate=$rate->roomrateperday;
-									//$tmp_rate=$tmp_rate*$roomsOfType[$rate->roomclass_uid];
-									$total+=$tmp_rate;
-									}
-								$this->setErrorLog("te_setAverageRate::Setting  ".$rid.'_'.$date.' to '.$total);
-								//$total+=$rate->roomrateperday ;
-								$this->setErrorLog("te_setAverageRate::Cumulative total  ".$total);
-								}
-							else
-								$this->setErrorLog("te_setAverageRate::Tariff id failed to pass checks ".$total);
-							}
-						}
+					$cumulative_price += $dates[$date]['price'];
 					}
+				
+				$basic_room_rate = $cumulative_price/$stayDays;
+				
+				if ( count($datesTilBooking) <= $wisepricethreshold && $mrConfig['wisepriceactive'] == "1")
+					{
+					$roomType=$this->allPropertyTariffs[$tariff_id]['roomclass_uid'];
+					$percentageBooked=$this->getPercentageOfRoomsBookedForRoomtype($roomType);
+					
+					$r= $this->getDiscountedRoomrate ($basic_room_rate,$percentageBooked);
+					//$this->setPopupMessage("Discount rate ".$r);
+					$old_room_rate = $basic_room_rate;
+					
+					$isDiscounted=false;
+					if ($r < $basic_room_rate)
+						{
+						$isDiscounted=true;
+						$tmpBookingHandler->updateBookingField("booking_discounted",true );
+						}
+					$disc[$roomType]=array(
+						"roomrate"=>$old_room_rate,
+						"discountedRate"=>$r,
+						"roomType"=>$roomType,
+						"isDiscounted"=>$isDiscounted,
+						);
+					$basic_room_rate=$r;
+					$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
+					$tmpBookingHandler->saveBookingData();
+					}
+				$this->room_allocations[$room_id]['price_per_night']=$basic_room_rate;
 				}
 			}
-		$this->setErrorLog( "te_setAverageRate::Total = ".$total. " Number of days = ".$this->stayDays.' Number of rooms '.count($this->requestedRoom) );
-		$rpn=($total/$stayDays)/count($this->requestedRoom);
-		//$rpn=($total/count($this->requestedRoom))/$stayDays;
-		// No longer appropriate for this method, as Micromanage mode makes dates stored weekly redundant.
-/* 		if ($this->cfg_tariffChargesStoredWeeklyYesNo=="1")
+		
+		$total=0.00;
+		$total_number_of_guests = 0;
+		foreach ($this->room_allocations as $room)
 			{
-			$this->setErrorLog("te_setAverageRate::Tariffs are stored weekly ");
-			$rpn=$rpn/7;
-			} */
-		$this->rate_pernight=$rpn;
-		$this->setErrorLog("te_setAverageRate::Setting average rate ".$rpn );
+			if ($this->cfg_perPersonPerNight=="0")
+				{
+				$per_night = $room['price_per_night'];
+				$total += $per_night;
+				}
+			else
+				{
+				$per_night = $room['price_per_night']*$room['number_allocated'];
+				$total_number_of_guests += $room['number_allocated'];
+				$total += $per_night;
+				}
+			}
+		
+		if ($this->cfg_perPersonPerNight=="1")
+			$this->rate_pernight = $total/$total_number_of_guests;
+		else
+			$this->rate_pernight = $total/count($this->room_allocations);
+
+		
+		$this->setErrorLog("te_setAverageRate::Setting average rate ".$this->rate_pernight );
 		$this->setErrorLog("te_setAverageRate:: Ended");
 		return true;
 		}
-
+	
+	function get_nett_price($price,$tax_rate)
+		{
+		$mrConfig=getPropertySpecificSettings();
+		if ($mrConfig['prices_inclusive'] == 1)
+			{
+			$divisor	= ($tax_rate/100)+1;
+			$price=$price/$divisor;
+			}
+		return $price;
+		}
+		
+	function get_gross_price($price,$tax_rate)
+		{
+		$tax=( $price/100 )*$tax_rate;
+		return $price+$tax;
+		}
 
 	function calcLastMinuteDiscount()
 		{
