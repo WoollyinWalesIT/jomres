@@ -113,9 +113,16 @@ class j00004x_init_javascript_css_files {
 					{
 					//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jeditable.js.relpath"),get_showtime("jquery.jeditable.js")); // replaced with x-editable below
 
-					jomres_cmsspecific_addheaddata("javascript",get_showtime("x-editable.js.relpath"),get_showtime("x-editable.js"));
-					jomres_cmsspecific_addheaddata("css",get_showtime("x-editable.css.relpath"),get_showtime("x-editable.css"));
-
+					$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
+					if (!isset($tmpBookingHandler->user_settings['editing_on']))
+						$tmpBookingHandler->user_settings['editing_on']= false;
+			
+					if ($tmpBookingHandler->user_settings['editing_on'] == true || jomres_cmsspecific_areweinadminarea())
+						{
+						jomres_cmsspecific_addheaddata("javascript",get_showtime("x-editable.js.relpath"),get_showtime("x-editable.js"));
+						jomres_cmsspecific_addheaddata("css",get_showtime("x-editable.css.relpath"),get_showtime("x-editable.css"));
+						}
+					
 					jomres_cmsspecific_addheaddata("css",get_showtime("TableTools_JUI.css.relpath"),get_showtime("TableTools_JUI.css"));
 					jomres_cmsspecific_addheaddata("css",get_showtime("tables_jui.css.relpath"),get_showtime("tables_jui.css"));
 					jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.dataTables.min.js.relpath"),get_showtime("jquery.dataTables.min.js"));
