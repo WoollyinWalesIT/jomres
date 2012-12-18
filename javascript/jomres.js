@@ -554,6 +554,7 @@ A potential guest opens a tab to Property A's booking form, then another tab to 
 
 */
 function show_log(lastfield) {
+	jomresJquery('#jGrowl').jGrowl('close');
 	// var form_property_uid = jomresJquery("#booking_form_property_uid").val();
 	// jomresJquery.get(ajaxurl+'&task=handlereq',{ field: "property_uid_check",'value': form_property_uid },
 		// function(data){
