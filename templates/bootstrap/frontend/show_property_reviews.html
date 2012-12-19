@@ -43,7 +43,17 @@ function confirm_review(rating_id,state)
 		{_JOMRES_REVIEWS_THANKS_FOR_REVIEW}
 	</div>
 </div>
-<h2>{_JOMRES_REVIEWS_AVERAGE_RATING} {AVERAGE_RATING} - {_JOMRES_REVIEWS_TOTAL_VOTES} {NUMBER_OF_REVIEWS}</h2>
+<div itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+	<h2>
+		<span itemprop="itemreviewed">{PROPERTY_NAME}</span><!-- hotel name --> 
+		{_JOMRES_REVIEWS_AVERAGE_RATING} 
+		<span itemprop="average">{AVERAGE_RATING}</span><!-- average rating --> - 
+		<span itemprop="count">{_JOMRES_REVIEWS_TOTAL_VOTES}</span><!-- number of reviews --> 
+		{NUMBER_OF_REVIEWS}
+	</h2>
+	<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
+</div>
+
 <patTemplate:tmpl name="rows" unusedvars="strip">
 <div class="page-header">
 	<div class="row-fluid">
