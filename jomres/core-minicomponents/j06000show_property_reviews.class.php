@@ -55,6 +55,9 @@ class j06000show_property_reviews
 		
 		if ($jrConfig['use_reviews'] == "1" && $property_uid > 0)
 			{
+			$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
+			$current_property_details->gather_data($property_uid);
+			
 			$output = array();
 			$pageoutput = array();
 			$rows = array();
@@ -70,6 +73,8 @@ class j06000show_property_reviews
 			$output['_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW']=jr_gettext('_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW',_JOMRES_REVIEWS_NUMBER_DISAGREE_WITHREVIEW,false,false);
 			$output['_JOMRES_REVIEWS_THANKS_FOR_CONFIRM']=jr_gettext('_JOMRES_REVIEWS_THANKS_FOR_CONFIRM',_JOMRES_REVIEWS_THANKS_FOR_CONFIRM,false,false);
 			$output['_JOMRES_REVIEWS_ALREADY_CONFIRMED']=jr_gettext('_JOMRES_REVIEWS_ALREADY_CONFIRMED',_JOMRES_REVIEWS_ALREADY_CONFIRMED,false,false);
+			
+			$output['PROPERTY_NAME']=$current_property_details->property_name;
 			
 			$output['_JOMRES_REVIEWS_THANKS_FOR_REVIEW']="";
 			$output['SHOW_THANKS']="false";
