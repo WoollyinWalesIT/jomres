@@ -4059,6 +4059,8 @@ class dobooking
 		$already_found_tariffs = array();
 		$this->tariff_types_min_days=array();
 		$dateRangeArray=explode(",",$this->dateRangeString);
+		$filtered_out_type_type_ids=array();
+		$this->setErrorLog("getTariffsForRoomUids:: tariff map ".serialize($this->micromanage_tarifftype_to_date_map) );
 		$this->setErrorLog("--------------------------------------------");
 		if (count($freeRoomsArray)>0 && is_array($freeRoomsArray)  )
 			{
@@ -4081,7 +4083,7 @@ class dobooking
 					if ($datesValid && $stayDaysValid && $numberPeopleValid && $dowCheck && $roomsAlreadySelectedTests)
 						{
 						$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$rates_uid][0];
-						if (!isset($already_found_tariffs[$tariff_type_id." ".$room_uid]))
+						if (!isset($already_found_tariffs[$tariff_type_id." ".$room_uid]) && !in_array($tariff_type_id,$filtered_out_type_type_ids) )
 							{
 							$pass_price_check=true;
 							if ($mrConfig['tariffmode']=="2")// If tariffmode = 2, we need to finally scan $this->micromanage_tarifftype_to_date_map, to ensure that all dates have a price set
@@ -4090,7 +4092,7 @@ class dobooking
 									$pass_price_check=false;
 								else
 									{
-									$this->setErrorLog("getTariffsForRoomUids:: tariff map ".serialize($this->micromanage_tarifftype_to_date_map) );
+									
 									foreach ($this->micromanage_tarifftype_to_date_map as $dates)
 										{
 										$this->setErrorLog("getTariffsForRoomUids:: Count dates ".count($dates)." Count daterange array ". count($dateRangeArray)." " );
@@ -4103,10 +4105,11 @@ class dobooking
 											{
 											foreach ($dates as $d)
 												{
-												if ((float)$d['price'] ==0)
+												if ((float)$d['price'] ==0 && $d['tariff_type_id'] == $tariff_type_id)
 													{
 													$pass_price_check=false;
 													$this->setErrorLog("getTariffsForRoomUids:: Removing a tariff as at least one other tariff in the series is set to 0. Tariff type id = ".$tariff_type_id );
+													$filtered_out_type_type_ids[]=$tariff_type_id;
 													}
 												}
 											}
