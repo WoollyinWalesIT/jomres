@@ -4807,6 +4807,8 @@ class dobooking
 	 */
 	function makeRoomOverlibdata($roomUid,$tariffUid,$roomTariffOutputId,$roomTariffOutputText,$removing=false)
 		{
+		$mrConfig=getPropertySpecificSettings();
+
 		if ($this->cfg_booking_form_rooms_list_style == "2")
 			{
 			if (!isset($this->rooms_list_style_roomstariffs))
@@ -4825,7 +4827,9 @@ class dobooking
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE',_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE,false,false));
 
 		if ($this->tariffModel == "2" && $mrConfig['tariffmode']=="2" )
+			{
 			$tariffStuff['RATEPERNIGHT']=$this->estimate_AverageRate($roomUid,$tariffUid);
+			}
 
 		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
 		$this->room_type_style_output[$tariffUid]['room_price_inc_tax'] = $room_price_inc_tax;
@@ -5034,60 +5038,21 @@ class dobooking
 		$roomsOfType[$room_type]=1;
 		$tariffsArray = array($tariffUid);
 		$gor=genericOr($tariffsArray,'tariff_id');
-		$query = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE ".$gor;
+		$query = "SELECT tarifftype_id FROM #__jomcomp_tarifftype_rate_xref WHERE ".$gor. " LIMIT 1";
 		$tarifftypeids = doSelectSql($query);
 
 		if (count($tarifftypeids)>0)  // Micromanage mode tariffs
 			{
 			foreach ($tarifftypeids as $t)
 				{
-				$query="SELECT tariff_id FROM #__jomcomp_tarifftype_rate_xref WHERE tarifftype_id ='".$t->tarifftype_id."'";
-				$allTariffIds = doSelectSql($query);
-				$xreffed=array();
-				foreach ($allTariffIds as $xref)
+				$dates = $this->micromanage_tarifftype_to_date_map[$t->tarifftype_id];
+				$cumulative_price = 0.00;
+				foreach ($dateRangeArray as $date)
 					{
-					$xreffed[]=$xref->tariff_id;
+					$cumulative_price += $dates[$date]['price'];
 					}
-				$gor=genericOr($xreffed,'rates_uid');
-				$query="SELECT `rates_uid`,`validfrom` ,`validto`,`mindays`,`maxdays`,minpeople,maxpeople,`roomrateperday`,roomclass_uid FROM #__jomres_rates WHERE ".$gor;
-				$rateList = doSelectSql($query);
-
-				foreach ($rateList as $rate)
-					{
-					// $date_elements  = explode("/",$rate->validfrom);
-					// $unixValidFromDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-					// $date_elements  = explode("/",$rate->validto);
-					// $unixValidToDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-
-					$unixValidFromDate = $this->getMkTime($rate->validfrom);
-					$unixValidToDate  =  $this->getMkTime($rate->validto);
-					
-					foreach ($dateRangeArray as $date )
-						{
-						$pass=false;
-						// $date_elements  = explode("/",$date);
-						// $unixDay = mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-						$unixDay  =  $this->getMkTime($date);
-						if (count($numberOfGuestTypes) >0)
-							{
-							if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) && ($this->total_in_party >= $rate->minpeople &&  $this->total_in_party <= $rate->maxpeople ) )
-								$pass=true;
-							}
-						else
-							{
-							if($unixDay <= $unixValidToDate && $unixDay >= $unixValidFromDate && ($stayDays >= $rate->mindays &&  $stayDays <= $rate->maxdays ) )
-								$pass=true;
-							}
-
-						if($pass)
-							{
-							$tmp_rate = $this->allPropertyTariffs[$rate->rates_uid]['roomrateperday'];
-							$total+=$tmp_rate ;
-							}
-						//else
-							//$this->setErrorLog("estimate_AverageRate::Tariff id failed to pass checks ".$total);
-						}
-					}
+				
+				$total = $cumulative_price;
 				}
 			}
 		else
