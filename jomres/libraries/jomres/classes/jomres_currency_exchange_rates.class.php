@@ -175,6 +175,7 @@ class jomres_currency_exchange_rates
 			.$currencyQuery.'&f=sl1d1t1ban&e=.csv';
 		$c = curl_init($url);
 		curl_setopt($c, CURLOPT_HEADER, 0);
+		curl_setopt($c, CURLOPT_USERAGENT,'Jomres');
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 		$csv = curl_exec($c);
 		

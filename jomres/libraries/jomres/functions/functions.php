@@ -434,6 +434,7 @@ function jomres_make_image_popup( $title = "", $image = "", $image_rel_path = ""
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $image_rel_path.$image);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch,CURLOPT_USERAGENT,'Jomres');
 		$data = curl_exec($ch);
 		$resource = imagecreatefromstring($data);
 		$modal_width = imagesx($resource)+30;
@@ -587,6 +588,7 @@ function query_shop($request = '' )
 		$curl_handle=curl_init();
 		curl_setopt($curl_handle,CURLOPT_URL,'http://license-server.jomres.net/shop/index.php?'.$request);
 		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+		curl_setopt($curl_handle,CURLOPT_USERAGENT,'Jomres');
 		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
 		$response = curl_exec($curl_handle);
 		curl_close($curl_handle);
@@ -1590,6 +1592,7 @@ function queryUpdateServer($script,$queryString,$serverType="plugin")
 		$curl_handle=curl_init();
 		curl_setopt($curl_handle,CURLOPT_URL,$updateServer."/".$script."?".$queryString."&jomresver=".$current_version);
 		curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
+		curl_setopt($curl_handle,CURLOPT_USERAGENT,'Jomres');
 		curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
 		$response = trim(curl_exec($curl_handle));
 		curl_close($curl_handle);

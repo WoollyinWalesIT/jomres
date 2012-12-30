@@ -129,21 +129,21 @@ function JomresBuildRoute(&$query)
 		$segments[] = $jrConfig['sef_task_alias_search'];
 		if (isset($route_query['town']))
 			{
-			$segments[] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false);
+			$segments[] = JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false));
 			$segments[] = JomresFilterString($route_query['town']);
-			unset( $route_query['town'] );
+			unset($route_query['town']);
 			}
 		if (isset($route_query['region']))
 			{
-			$segments[] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false);
+			$segments[] = JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false));
 			$segments[] = JomresFilterString($route_query['region']);
-			unset( $route_query['region'] );
+			unset($route_query['region']);
 			}
 		if (isset($route_query['country']))
 			{
-			$segments[] = jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false);
+			$segments[] = JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false));
 			$segments[] = JomresFilterString($route_query['country']);
-			unset( $route_query['country'] );
+			unset($route_query['country']);
 			}
 		if (isset($route_query['send']))
 			unset( $route_query['send'] );
@@ -180,10 +180,13 @@ function JomresParseRoute($segments)
 				$vars['selectedProperty'] = $segments[2];
 			break;
 		case $jrConfig['sef_task_alias_search']:
-			$searchParam = strtolower($segments[1]);
+			$searchParam = $segments[1];
 			$vars['send'] = "Search";
 			$vars['calledByModule'] = 'mod_jomsearch_m0';
-			$vars[$searchParam] = $segments[2];
+			if($searchParam==JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false))) $searchParam= 'town';
+			if($searchParam==JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false))) $searchParam= 'country';
+			if($searchParam==JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false))) $searchParam= 'region';
+			$vars[$searchParam] = JomresFilterString($segments[2]);
 			break;
 		case 'showTariffs':
 			$vars['task'] = "showTariffs";

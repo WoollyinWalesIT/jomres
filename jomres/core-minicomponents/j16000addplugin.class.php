@@ -211,6 +211,7 @@ class j16000addplugin
 
 				curl_setopt($curl_handle, CURLOPT_FILE, $file_handle);
 				curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+				curl_setopt($curl_handle, CURLOPT_USERAGENT,'Jomres');
 					
 				$result=curl_exec($curl_handle);
 				curl_close($curl_handle);

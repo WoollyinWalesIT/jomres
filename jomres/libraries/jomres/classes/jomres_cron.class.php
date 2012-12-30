@@ -229,6 +229,7 @@ class jomres_cron
 					$request = JOMRES_SITEPAGE_URL_ADMIN_AJAX."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch,CURLOPT_USERAGENT,'Jomres');
 					curl_setopt($ch, CURLOPT_URL, $request);
 					curl_setopt($ch, CURLOPT_PORT, 80);
 					curl_setopt($ch,CURLOPT_TIMEOUT,1); 

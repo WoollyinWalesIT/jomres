@@ -51,6 +51,7 @@ class jrportal_sms_clickatellhandler
 		$ch = curl_init();
 		curl_setopt($ch,CURLOPT_URL,$this->clickatell_api_url.$fields_string);
 		curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,2);
+		curl_setopt($ch,CURLOPT_USERAGENT,'Jomres');
 		curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  // Without this the response is true, whereas we want the actual contents of the response
 		//execute post
 		$result = curl_exec($ch);

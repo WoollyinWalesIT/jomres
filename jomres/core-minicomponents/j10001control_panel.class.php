@@ -44,6 +44,7 @@ class j10001control_panel
 			{
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres4.net/versions.php");
+			curl_setopt($curl_handle,CURLOPT_USERAGENT,'Jomres');
 			curl_setopt($curl_handle,CURLOPT_TIMEOUT, 8);
 			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
 			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
@@ -151,6 +152,7 @@ class j10001control_panel
 			{
 			$curl_handle=curl_init();
 			curl_setopt($curl_handle,CURLOPT_URL,"http://updates.jomres4.net/news.php");
+			curl_setopt($curl_handle,CURLOPT_USERAGENT,'Jomres');
 			curl_setopt($curl_handle,CURLOPT_TIMEOUT, 8);
 			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
 			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);

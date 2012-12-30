@@ -250,6 +250,7 @@ class j04200editproperty {
 			curl_setopt($curl_handle,CURLOPT_URL,$url);
 			curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
 			curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
+			curl_setopt($curl_handle,CURLOPT_USERAGENT,'Jomres');
 			$response = trim(curl_exec($curl_handle));
 			curl_close($curl_handle);
 			$decoded = json_decode($response);
