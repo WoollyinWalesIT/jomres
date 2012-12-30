@@ -326,6 +326,7 @@ class jomres_gateway_handler
 			$ch=curl_init();
 			curl_setopt($ch,CURLOPT_URL,"https://".$host);
 			curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,2);
+			curl_setopt($ch,CURLOPT_USERAGENT,'Jomres');
 			curl_setopt($ch,CURLOPT_POST,count($this->ipn_data));
 			curl_setopt($ch,CURLOPT_POSTFIELDS,$post_string);
 			curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, FALSE);

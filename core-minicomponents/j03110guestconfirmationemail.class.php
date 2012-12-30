@@ -183,7 +183,7 @@ class j03110guestconfirmationemail {
 		$output['GUESTNAME']=stripslashes($firstname)." ".stripslashes($surname);
 		$output['QUESTIONS']=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS',_JOMRES_FRONT_GUEST_EMAIL_TEXT_ANYQUESTIONS,FALSE,FALSE);
 		$output['TELEPHONE']=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE',_JOMRES_FRONT_GUEST_EMAIL_TEXT_TELEPHONE,FALSE,FALSE)." ".$propertyTel;
-		$output['EMAIL']=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL',_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL,FALSE,FALSE)." <a href=\"mailto:$hotelemail?subject="._JOMRES_BOOKING_NUMBER." ".$cartnumber." \">".$hotelemail."</a>";
+		$output['EMAIL']=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL',_JOMRES_FRONT_GUEST_EMAIL_TEXT_EMAIL,FALSE,FALSE)." <a href=\"mailto:$hotelemail?subject=".jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE,FALSE)." ".$cartnumber." \">".$hotelemail."</a>";
 		$output['SUMMARY']=jr_gettext('_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY',_JOMRES_FRONT_GUEST_EMAIL_TEXT_SUMMARY,FALSE,FALSE);
 
 		$output['HBOOKINGNO']=jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER,FALSE,FALSE);

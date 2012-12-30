@@ -113,6 +113,7 @@ class j16000updates
 				}
 			$curl_handle = curl_init($updateFile);
 			curl_setopt($curl_handle, CURLOPT_FILE, $out);
+			curl_setopt($curl_handle, CURLOPT_USERAGENT,'Jomres');
 			curl_setopt($curl_handle, CURLOPT_HEADER, 0);
 			curl_setopt($curl_handle, CURLOPT_URL, $updateFile);
 			curl_exec($curl_handle);
