@@ -789,7 +789,11 @@ class j00030search {
 			if ($showButton==true)
 				{
 				$output['SEARCHBLURB']	=jr_gettext('_JOMRES_FRONT_MR_SEARCH_HERE',_JOMRES_FRONT_MR_SEARCH_HERE);
-				$output['THEBUTTON']='<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false).'" class="button" />';
+				if (!using_bootstrap())
+					$output['THEBUTTON']='<input type="submit" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false).'" class="button" />';
+				else
+					$output['THEBUTTON']='<input type="submit" class="btn btn-primary" name="send" value="'.jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON,false).'" />';
+				
 				}
 
 			$pageoutput[]=$output;
