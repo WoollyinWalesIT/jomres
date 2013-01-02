@@ -1,3 +1,36 @@
+Jomres 7.2.6
+
+Modified booking engine so that the duplicate tariff id check is only done for micromanage tariffs, so that Advanced tariffs, duplicates are returned to the booking form.
+Tweaked the price calculation so that the estimate is only performed on micromanaged tariffs in average mode. 
+Minor changes to logging to make the booking form log more readable.
+Modified output of booking details to reflect a paid invoice's status.
+Small tweak to rooms list normal mode tariff editing page.
+Added commented out code to show how to add that availability calendar to the property list.
+Removed the option to enable/disable currency conversion
+Added new code that looks at all tariffs for a property. If ALL tariffs have a specific arrival day of the week set, then the booking calendar popup will only allow those days of the week to be chosen.
+Added x-editable to Jomres, which will replace the older editable jquery plugin, as it works with both jq ui and bootstrap.
+Removed a defunct call to jrportal.js from fe_stats.
+A raft of changes to support new inline text editing functionality. Reduces the number of items that can be changed through the editing mode, to make the feature more user friendly (and less error prone due to mis-use).
+Edit show room details so that room name isn't translatable in tabs.
+Tweaked the performance monitor to use multiple points with the same name.
+Tweaked the pathway to not show if editing mode is enabled.
+Tweaked the basic_property_details property details queries to provide a small performance improvement.
+Modified the jr_gettext function to call the jr_get_defined function less often.
+Added a feature to allow us to switch off region name translation functionality. Due to there being something like 4,000 region names in the db, translation of regions can take up a great deal of memory. Slower machines may suffer so we'll offer people the option to forgo this feature,and it's switched off by default.
+Tweaked the J1.5 router.php to ensure that it uses jr_gettext when building urls.
+Modified the booking engine, improved how pricing is calculated by making use of the room allocations and tariff map arrays, which are new. Makes the te_setAverageRate method much more readable.
+Added some js to the booking form's javascript to close old growl popups before new ones are shown.
+Tweaked the new editing mode scripts to ensure .js and .css files are only added to head if editing mode is on (cos the .css file borks the jq ui calendar css, among other reasons).
+Added property type to srp's property type tab.
+Tweaked bootstrap editable to remove datepicker related css.
+Modified the reviews template to include microdata.
+Tweaked the tariff estimation code to let it use new functionality to provide pricing estimates.
+Improved the booking engine and how tariff types are filtered out to ensure that only the appropriate tariff types are filtered out on room prices being zero.
+Added CURL agent to CURL calls.
+Modified the search button so that it will use a bootstrapped button when bootstrap enabled. (Search modules).
+Updated copyright information.
+
+
 Jomres 7.2.5
 
 Modified the new badge generation script, stop it from showing on the add plugin page as that script already uses plugin info scripts and an error will be generated and the plugin will not install.
