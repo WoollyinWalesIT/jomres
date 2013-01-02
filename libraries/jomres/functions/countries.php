@@ -4,7 +4,7 @@
 * @author Vince Wooll <sales@jomres.net>
 * @version Jomres 7
 * @package Jomres
-* @copyright	2005-2012 Vince Wooll
+* @copyright	2005-2013 Vince Wooll
 * Jomres (tm) PHP files are released under both MIT and GPL2 licenses. This means that you can choose the license that best suits your project, and use it accordingly, however all images, css and javascript which are copyright Vince Wooll are not GPL licensed and are not freely distributable. 
 **/
 
@@ -13,18 +13,6 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-#
-/**
-#
- * Passed the country code, will return the country name
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
 function getSimpleCountry($selectedCountry)
 	{
 	$jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
@@ -44,18 +32,7 @@ function getSimpleCountry($selectedCountry)
 	return $countryName;
 	}
 
-#
-/**
-#
- * Creates the country selection dropdown for the property settings default country option
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
+
 function configCountries()
 	{
 	global $mrConfig;
@@ -131,18 +108,6 @@ function limitCountriesDropdown()
 	}
 	
 	
-#
-/**
-#
- * Creates the countries dropdown
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
 function createCountriesDropdown($selectedCountry,$input_name = "country",$include_onchange = true)
 	{
 	$jomres_countries = jomres_singleton_abstract::getInstance('jomres_countries');
@@ -209,7 +174,6 @@ function setupRegions($countryCode="GB",$currentRegion="Pembrokeshire")
 	return $regionDropdown;
 	}
 
-// Old tunisian data // "TN" => array("Al Qasrayn","Al Qayrawan","Jundubah","Qafsah","Al Kaf","Al Mahdiyah","Al Munastir","Bajah","Banzart","Nabul","Silyanah","Susah","Aryanah","Bin","Madanin","Qabis","Qibili","Safaqis","Sidi Bu Zayd","Tatawin","Tawzar","Tunis","Zaghwan"),
 
 function regionNamesArray()
 	{
@@ -410,17 +374,8 @@ function regionNamesArray()
 	);
 	return $FIPS;
 	}
-/**
-#
- * Creates an array of country names
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
+
+
 function countryNameArray()
 	{
 	$countryNames = array(
@@ -486,17 +441,8 @@ function countryCodesArray()
 		}
 	return $codes;
 	}
-/**
-#
- * Creates an array of country codes to country names
-#
- * @author Vince Wooll <jomres@woollyinwales.co.uk>
-#
- * @version 2.6
-#
-* @copyright  2005-2006 Vince Wooll
-#
- */
+
+	
 function old_countryCodesArray($translate=true)
 	{
 	$countryCodes = array(
