@@ -697,6 +697,37 @@ class jomres_obsolete_file_handling
 			{
 			$this->add_obs_file($file);
 			}
+		
+		$this->add_obs_file($this->dir_javascript.'jquery-ui-1.8.23.custom.min.js');
+		
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'black-tie'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'blitzer'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'bootstrap'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'cupertino'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'dark-hive'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'dot-luv'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'eggplant'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'excite-bike'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'flick'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'hot-sneaks'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'humanity'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'le-frog'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'mint-choc'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'overcast'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'pepper-grinder'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'redmond'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'smoothness'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'south-street'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'start'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'sunny'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'swanky-purse'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'trontastic'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'ui-darkness'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'ui-lightness'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'vader'.JRDS.'jquery-ui-1.8rc3.custom.css');
+		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'jomres'.JRDS.'jquery-ui-1.8.16.custom.css');
+		
+		
 		}
 	
 	function add_obs_file($path_and_file)
