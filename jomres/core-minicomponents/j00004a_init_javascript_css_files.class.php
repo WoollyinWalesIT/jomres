@@ -41,16 +41,23 @@ class j00004a_init_javascript_css_files {
 		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 		$jrConfig=$siteConfig->get();
 		if (!isset($jrConfig['jquery_ui_theme_detected']))
-			$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui-1.8.16.custom.css";
+			$jrConfig['jquery_ui_theme_detected'] = "jomres^jquery-ui.css";
 		
 		$themeArr = explode ("^",$jrConfig['jquery_ui_theme_detected']);
 		$subdir = $themeArr[0];
 		$filename = $themeArr[1];
+		
+		// 7.2.7 jq ui theme update means the .css filename's been changed. We'll check the current setting, if it includes 'custom' then it's an older setting and we'll change the filename automatically to jquery-ui.css
+		if (strpos($filename,"custom"))
+			{
+			$filename = "jquery-ui.css";
+			}
+		
 		if (isset($themeArr[2]))
 			$themePath = $themeArr[2]."/";
 		else
 			$themePath = 'jomres/css/jquery_ui_themes/'.$subdir.'/';
-		
+
 		set_showtime("jquery.ui.theme",$filename);
 		set_showtime("jquery.ui.theme.relpath",$themePath);
 		
@@ -81,10 +88,9 @@ class j00004a_init_javascript_css_files {
 			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
 			}
 		
-		set_showtime("jquery.ui.js","jquery-ui-1.8.23.custom.min.js");
+		set_showtime("jquery.ui.js","jquery-ui-1.9.2.custom.min.js");
 		set_showtime("jquery.ui.js.relpath",'jomres/javascript/');
-
-			
+		
 		set_showtime("jquery.rating.css",'jquery.rating.css');
 		set_showtime("jquery.rating.css.relpath",'jomres/css/');
 		
