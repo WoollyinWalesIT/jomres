@@ -1,3 +1,8 @@
+Jomres 7.2.7
+
+Updated jquery ui javascript and css libraries to 1.9.2 as that's required by the new edit in place functionality.
+
+
 Jomres 7.2.6
 
 Modified booking engine so that the duplicate tariff id check is only done for micromanage tariffs, so that Advanced tariffs, duplicates are returned to the booking form.
