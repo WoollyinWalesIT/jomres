@@ -4143,11 +4143,14 @@ class dobooking
 			
  		if (count($roomAndTariffArray)==0 && $mrConfig['tariffmode']=="2")
 			{
-			$this->mininterval = 1000; // We MUST reset the minimum interval here, as it's going to be recalculated.
-			foreach ($this->tariff_types_min_days as $mindays)
+			if (count($this->tariff_types_min_days)>0)
 				{
-				if ($mindays < $this->mininterval)
-					$this->mininterval = $mindays;
+				$this->mininterval = 1000; // We MUST reset the minimum interval here, as it's going to be recalculated.
+				foreach ($this->tariff_types_min_days as $mindays)
+					{
+					if ($mindays < $this->mininterval)
+						$this->mininterval = $mindays;
+					}
 				}
 			}
 		
