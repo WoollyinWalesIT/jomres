@@ -6331,6 +6331,40 @@ class dobooking
 		if (!isset($mrConfig['wisepricethreshold']) || empty($mrConfig['wisepricethreshold']) )
 			$mrConfig['wisepricethreshold']='60';
 		$wisepricethreshold = (int)$mrConfig['wisepricethreshold'];
+		
+		
+		// If flat rate is set, but they're using micromanage then the tariff previously selected will be wrong. Instead of correcting that elsewhere (because of how complex the system is), we'll instead quickly go through the tariff map
+		// and rebuild the $this->requestedRoom with the correct tariff uid, as this is an edge-case. MOST users will want to be using Average mode, if they're using Micromanage.
+		// This problem appeared beause an SRP was using flat rate. Because the room/tariff combo is automatically selected the system didn't have a chance to find the correct tariff uid for the selected room.
+		
+		if ($mrConfig['tariffmode']=="2") // micromanage
+			{
+			$dateRangeArray=explode(",",$this->dateRangeString);
+			$first_date = $dateRangeArray[0];
+			$tmp = array();
+			foreach ($this->requestedRoom as $key=>$room_tariff)
+				{
+				$currentTariffsArray=explode("^",$room_tariff);
+				$room_uid = $currentTariffsArray[0];
+				$tariff_uid = $currentTariffsArray[1];
+				// Now we need to find the tariff type
+				foreach ($this->allPropertyTariffs as $tariff)
+					{
+					if ($tariff['rates_uid']==$tariff_uid)
+						{
+						$tariff_type_id = $this->all_tariff_id_to_tariff_type_xref[$tariff_uid][0];
+						break;
+						}
+					}
+				// Now that we've found the tariff type, we can find the correct tariff uid for the first date in the range
+				$rates_uid = $this->micromanage_tarifftype_to_date_map[$tariff_type_id][$first_date]['rates_uid'];
+				$tmp[$key]=$room_uid."^".$rates_uid;
+				}
+			// Having found the correct tariffs, we can rebuild requestedRoom with the correct tariff uid(s)
+			$this->requestedRoom = $tmp;
+			}
+		
+		
 		foreach ($this->requestedRoom as $rt)
 			{
 			$currentTariffsArray=explode("^",$rt);
