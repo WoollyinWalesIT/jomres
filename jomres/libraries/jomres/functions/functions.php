@@ -2422,7 +2422,7 @@ function hotelSettings()
 	$smokingOptions[]=jomresHTML::makeOption( '2', jr_gettext('_JOMRES_FRONT_ROOMSMOKING_EITHER',_JOMRES_FRONT_ROOMSMOKING_EITHER,FALSE) );
 
 	if ($mrConfig['newTariffModels'] != "1" && $mrConfig['newTariffModels'] != "2")	// backward compatablity for pre-2.5 users who haven't yet visited General Configuration and clicked Save
-		$mrConfig['newTariffModels'] = "1";
+		$mrConfig['newTariffModels'] = "2";
 	$tariffModels=array();
 	$tariffModels[] = jomresHTML::makeOption(1, jr_gettext("_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF",_JOMRES_COM_A_TARIFFS_MODEL_SINGLETARIFF,false));
 	$tariffModels[] = jomresHTML::makeOption(2, jr_gettext("_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES",_JOMRES_COM_A_TARIFFS_MODEL_AVERAGES,false));
