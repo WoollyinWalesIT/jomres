@@ -11,7 +11,6 @@ Also possibly available to the template :
 {HMAXDAYS} e.g.  'Maximum days'
 {HMINPEEPS} e.g.  'Min people'
 </patTemplate:comment>
-
 <table class="table table-striped" width="100%">
 	<thead>
 		<tr>
@@ -31,7 +30,7 @@ Also possibly available to the template :
 	<tbody>
 		<patTemplate:tmpl name="rows">
 		<tr>
-			<td class="hidden-phone"><div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn btn-primary btn-small" title="{CAPTION}"><i class="icon-plus-2 icon-white"></i><!--{CAPTION}--></a></div></td>
+			<td class="hidden-phone"><div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i class="{ICON} icon-white"></i><!--{CAPTION}--></a></div></td>
 			<td class="hidden-phone"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );">{ROOMNUMBER}</a></td>
 			<td class="hidden-phone"><img src="{ROOM_IMAGE}" height="30" width="30"/></td>
 			<td class="hidden-phone"><img src="{ROOM_TYPE_IMAGE}" height="30" width="30"/></td>
@@ -41,7 +40,7 @@ Also possibly available to the template :
 			<td class="hidden-phone">{FORMATTED_PRICE}</td>
 			<td class="hidden-phone"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{DISABLEDACCESS}</a></td>
 			<td class="hidden-phone"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' ); ">{MAXPEOPLE_INROOM}</a></td>
-			<td class="hidden-desktop hidden-tablet"><div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn btn-primary btn-small" title="{CAPTION}"><i class="icon-plus-2 icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} - {FORMATTED_PRICE}</div></td>
+			<td class="hidden-desktop hidden-tablet"><div id="{ROOMTARIFFOUTPUTID}"><a href="javascript:void(0);" onclick="getResponse_rooms('requestedRoom','{ROOMTARIFFOUTPUTID}' );" class="btn {BUTTON_CLASS} btn-small" title="{CAPTION}"><i class="{ICON}  icon-white"></i><!--{CAPTION}--></a> <!--{ROOMNAME}-->{ROOMTYPE} - {FORMATTED_PRICE}</div></td>
 		</tr>
 		</patTemplate:tmpl>
 	</tbody>

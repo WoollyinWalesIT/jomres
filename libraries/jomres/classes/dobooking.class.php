@@ -3727,9 +3727,7 @@ class dobooking
 			$tmpl->readTemplatesFromInput( 'booking_form_classic_roomslist.html');
 			$template_output = $tmpl->getParsedTemplate();
 			$return_output .=$template_output;
-					
-				//$return_output .= $rm;
-			//	}
+
 			$return_output .='</div></div>';
 			}
 		return $return_output;
@@ -4825,9 +4823,17 @@ class dobooking
 		$tariffStuff=$this->GetTariffDetails($tariffUid);
 		$roomStuff=$this->GetRoomDetails($roomUid);
 		if (!$removing)
+			{
+			$roomStuff['ICON']='icon-plus-2';
+			$roomStuff['BUTTON_CLASS']='btn-success';
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION',_JOMRES_AJAXFORM_CLICKHERECAPTION,false,false));
+			}
 		else
+			{
+			$roomStuff['ICON']='icon-minus-2';
+			$roomStuff['BUTTON_CLASS']='btn-danger';
 			$caption=sanitiseOverlibOutput(jr_gettext('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE',_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE,false,false));
+			}
 
 		if ($this->tariffModel == "2" && $mrConfig['tariffmode']=="2" )
 			{
