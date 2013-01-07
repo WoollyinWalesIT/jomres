@@ -3051,26 +3051,18 @@ function insertGuestDeets($jomressession)
 	$guests_uid		=(int)$xCustomers['guests_uid'];
 	$mos_userid		=(int)$xCustomers['mos_userid'];
 	$existing_id	=(int)$xCustomers['existing_id'];
-	$email		=	getEscaped($xCustomers['email']);
-	$firstname	=	getEscaped($xCustomers['firstname']);
-	$surname	=	getEscaped($xCustomers['surname']);
-	$house		=	getEscaped($xCustomers['house']);
-	$street		=	getEscaped($xCustomers['street']);
-	$town		=	getEscaped($xCustomers['town']);
-	$region		=	getEscaped($xCustomers['region']);
-	$country	=	getEscaped($xCustomers['country']);
-	$postcode	=	getEscaped($xCustomers['postcode']);
-	$landline	=	getEscaped($xCustomers['tel_landline']);
-	$mobile		=	getEscaped($xCustomers['tel_mobile']);
+	$email		=	$xCustomers['email'];
+	$firstname	=	$xCustomers['firstname'];
+	$surname	=	$xCustomers['surname'];
+	$house		=	$xCustomers['house'];
+	$street		=	$xCustomers['street'];
+	$town		=	$xCustomers['town'];
+	$region		=	$xCustomers['region'];
+	$country	=	$xCustomers['country'];
+	$postcode	=	$xCustomers['postcode'];
+	$landline	=	$xCustomers['tel_landline'];
+	$mobile		=	$xCustomers['tel_mobile'];
 	$property_uid=	(int)$tmpBookingHandler->getBookingPropertyId($tmpBookingHandler);
-
-	$ccard_no	=	getEscaped($xCustomers['ccard_no']);
-	$ccard_issued=	getEscaped($xCustomers['ccard_issued']);
-	$ccard_expiry=	getEscaped($xCustomers['ccard_expiry']);
-	$ccard_iss_no=	getEscaped($xCustomers['ccard_iss_no']);
-	$ccard_name	=	getEscaped($xCustomers['ccard_name']);
-	$ccv		=	getEscaped($xCustomers['ccv']);
-	$type		=	getEscaped($xCustomers['type']);
 
 	$defaultProperty=getDefaultProperty();
 	if (!$userIsManager && $thisJRUser->id >0)
