@@ -84,7 +84,7 @@ class j00004a_init_javascript_css_files {
 		
 		if (_JOMRES_DETECTED_CMS != "joomla30")
 			{
-			set_showtime("jquery.core.js",'jquery-1.8.3.js');
+			set_showtime("jquery.core.js",'jquery-1.8.2.min.js');
 			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
 			}
 		
