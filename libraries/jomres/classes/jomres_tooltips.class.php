@@ -29,6 +29,13 @@ class jomres_tooltips
 		//$this->browser = $browser->BROWSER_AGENT;
 		
 		$this->positions = "most";
+		echo '
+		<script>
+		jomresJquery(function() {
+			jomresJquery( ".jomres_bt_tooltip_features" ).tipsy({html: true,fade: true,gravity: \'sw\',delayOut: 1000});
+		});
+		</script>
+		';
 		//$this->positions = "bottom";
 		}
 
@@ -55,179 +62,71 @@ class jomres_tooltips
 			{
 			case "ajaxpage":
 				$url=$type_arguments["url"];
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="" ';
+
+				$output=array();
+				$pageoutput=array();
 					
-				$div_string.='>'.$div_content.'</div>
-					<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-						cornerRadius: 10,        
-						strokeWidth: 0,
-						shadow: true,     //only shown in new browser
-						shadowOffsetX: 3,
-						shadowOffsetY: 3,
-						shadowBlur: 8,
-						shadowColor: \'rgba(0,0,0,.9)\',
-						shadowOverlap: false,
-						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\'most\'],
-						ajaxPath: \''.$url.'\',
-						width: \'auto\',
-						closeWhenOthersOpen: true,
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: 
-							{
-							color: \'#FFFFFF\'
-							},
-						hoverIntentOpts: {
-							interval: 500,
-							timeout: 1000
-							}
-						});</script>
-					';
+				$output['TITLE']=$div_content;
+				$output['DESCRIPTION']=$div_content;
+
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'tooltip_ajaxpage.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$div_string=$tmpl->getParsedTemplate();
 			break;
 			case "infoimage":
-				if (isset($type_arguments["width"]))
-					$width=$type_arguments["width"];
-				if (isset($type_arguments["height"]))
-					$height=$type_arguments["height"];
-				if (isset($type_arguments["border"]))
-					$border=$type_arguments["border"];
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="jomres_bt_tooltip" ';
-					
-				$div_string.=' title="'.$hover_content.'"><img src="'.get_showtime('live_site').'/jomres/images/SymbolInformation.png" alt="Information tooltip"';
-				if (isset($type_arguments["width"]))
-					$div_string.='width="'.$width.'" ';
-				if (isset($type_arguments["height"]))
-					$div_string.='height="'.$height.'" ';
-				if (isset($type_arguments["border"]))
-					$div_string.='border="'.$border.'"';
-				$div_string.=' alt="infoimage"/></div>';
-				$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-						activeClass: \'tooltip_bubble_width\',
-						cornerRadius: 10,
-						strokeWidth: 0,
-						shadow: true,     //only shown in new browser
-						shadowOffsetX: 3,
-						shadowOffsetY: 3,
-						shadowBlur: 8,
-						shadowColor: \'rgba(0,0,0,.9)\',
-						shadowOverlap: false,
-						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\''.$this->positions.'\'],
-						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: 
-							{
-							color: \'#F9FB61\'
-							}
-						});
-					</script>
-					';
+				$output=array();
+				$pageoutput=array();
+				
+				$output['TITLE']=$hover_content;
+				$output['IMAGE']='/jomres/images/SymbolInformation.png';
+				$output['WIDTH']=$width;
+				$output['HEIGHT']=$height;
+				$output['BORDER']=$border;
+				
+
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'tooltip_infoimage.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$div_string=$tmpl->getParsedTemplate();
+				
 			break;
 			case "warning":
-				if (isset($type_arguments["width"]))
-					$width=$type_arguments["width"];
-				if (isset($type_arguments["height"]))
-					$height=$type_arguments["height"];
-				if (isset($type_arguments["border"]))
-					$border=$type_arguments["border"];
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="jomres_bt_tooltip" ';
-					
-				$div_string.=' title="'.$hover_content.'"><img src="'.get_showtime('live_site').'/jomres/images/warning.png" alt="Warning tooltip"';
-				if (isset($type_arguments["width"]))
-					$div_string.='width="'.$width.'" ';
-				if (isset($type_arguments["height"]))
-					$div_string.='height="'.$height.'" ';
-				if (isset($type_arguments["border"]))
-					$div_string.='border="'.$border.'"';
-				$div_string.=' alt="warningimage"/></div>';
-				$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-						activeClass: \'tooltip_bubble_width\',
-						cornerRadius: 10,
-						strokeWidth: 0,
-						shadow: true,     //only shown in new browser
-						shadowOffsetX: 3,
-						shadowOffsetY: 3,
-						shadowBlur: 8,
-						shadowColor: \'rgba(0,0,0,.9)\',
-						shadowOverlap: false,
-						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\''.$this->positions.'\'],
-						positions:        [\'right\',\'left\',\'top\',\'bottom\',\'most\'],
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: 
-							{
-							color: \'#F9FB61\'
-							}
-						});
-					</script>
-					';
+				$output=array();
+				$pageoutput=array();
+
+				$output['THUMBNAIL']=$imagethumb;
+				$output['WARNING']=$hover_content;
+				
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'tooltip_warning.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$div_string=$tmpl->getParsedTemplate();
+				
 			break;
 			case "imageonly":
 				$imagethumb=false;
 				if (isset($type_arguments["imagethumb"]))
 					$imagethumb=$type_arguments["imagethumb"];
 
-				// if (isset($type_arguments["width"]))
-					// $width=$type_arguments["width"];
-				// if (isset($type_arguments["height"]))
-					// $height=$type_arguments["height"];
-				if (isset($type_arguments["border"]))
-					$border=$type_arguments["border"];
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="jomres_bt_tooltip_imageonly" ';
-					
-				if (!$imagethumb)
-					{
-					$div_string.=' ><img src="'.$div_content.'" ';
-					// if (isset($type_arguments["width"]))
-						// $div_string.='width="'.$width.'" ';
-					// if (isset($type_arguments["height"]))
-						// $div_string.='height="'.$height.'" ';
-					if (isset($type_arguments["border"]))
-						$div_string.='border="'.$border.'"';
-						$div_string.=' alt="image"/></div>';
-					}
-				else
-					{
-					$div_string.=' ><img src="'.$imagethumb.'" ';
-					if (isset($type_arguments["border"]))
-						$div_string.='border="'.$border.'"';
-						$div_string.=' alt="thumbimage"/></div>';
-					}
-					
-					$div_string.='<script type="text/javascript">jomresJquery("#'.$div.'").bt(\'<b>'.$hover_title.'</b><hr /><img src="'.$div_content.'" >\', 
-						{
-						cornerRadius: 10,        
-						strokeWidth: 0,
-						shadow: true,     //only shown in new browser
-						shadowOffsetX: 3,
-						shadowOffsetY: 3,
-						shadowBlur: 8,
-						shadowColor: \'rgba(0,0,0,.9)\',
-						shadowOverlap: false,
-						noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-						positions: [\''.$this->positions.'\'],
-						width: \'auto\',
-						fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-						cssStyles: {color: \'#FFFFFF\', fontWeight: \'bold\'}
-						});
-					</script>
-					';
+				$output=array();
+				$pageoutput=array();
+
+				$output['THUMBNAIL']=$imagethumb;
+				$output['IMAGE']=$hover_content;
+				
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'tooltip_imageonly.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$div_string=$tmpl->getParsedTemplate();
 			break;
 			case "room_type":
 				if (!isset($type_arguments["use_javascript"]))
@@ -235,40 +134,20 @@ class jomres_tooltips
 				$use_javascript = $type_arguments["use_javascript"];
 				if ($use_javascript)
 					{
-					$div_string.='<div id="'.$div.'"';
-					if (strlen($class)>0)
-						$div_string.=' class="'.$class.'" ';
-					else
-						$div_string.=' class="jomres_bt_tooltip_room_type" ';
-						
-					// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
-					/*
-					if ($this->browser == "IE")
-						$positions = "most";
-					else
-						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
-					*/
+					$output=array();
+					$pageoutput=array();
 					
-					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" alt="'.$hover_title.'" /></div>
-						<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-							cornerRadius: 10,        
-							strokeWidth: 0,
-							shadow: true,     //only shown in new browser
-							shadowOffsetX: 3,
-							shadowOffsetY: 3,
-							shadowBlur: 8,
-							shadowColor: \'rgba(0,0,0,.9)\',
-							shadowOverlap: false,
-							noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-							positions: [\''.$this->positions.'\'],
-							width: \'200px\',
-							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-							cssStyles: 
-								{
-								color: \'#F9FB61\'
-								}
-							});</script>
-						';
+					$output['TITLE']=$hover_title;
+					$output['DESCRIPTION']=$hover_content;
+					$output['IMAGE']=$div_content;
+					
+
+					$pageoutput[]=$output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'tooltip_room_type.html' );
+					$tmpl->addRows( 'pageoutput', $pageoutput );
+					$div_string=$tmpl->getParsedTemplate();
 					}
 				else
 					{
@@ -286,40 +165,19 @@ class jomres_tooltips
 				$use_javascript = $type_arguments["use_javascript"];
 				if ($use_javascript)
 					{
-					$div_string.='<div id="'.$div.'"';
-					if (strlen($class)>0)
-						$div_string.=' class="'.$class.'" ';
-					else
-						$div_string.=' class="jomres_bt_tooltip_features" ';
-
-					// Mootools causes it's own usual set of problems (see beginning of class) so we'll disable this feature.
-					/*
-					if ($this->browser == "IE")
-						$positions = "most";
-					else
-						$positions = "bottom";  // The mickey mouse browser doesn't like "bottom" as a position, so we'll change that to MOST if in IE.
-					*/
-					$div_string.=' title="<b>'.$hover_title.'</b><hr />'.$hover_content.'"><img src="'.get_showtime('live_site')."/".$div_content.'" alt="'.$hover_title.'"/></div>
-						<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-							cornerRadius: 10,        
-							strokeWidth: 0,
-							shadow: true,     //only shown in new browser
-							shadowOffsetX: 3,
-							shadowOffsetY: 3,
-							shadowBlur: 8,
-							shadowColor: \'rgba(0,0,0,.9)\',
-							shadowOverlap: false,
-							noShadowOpts: {strokeStyle: \'#999\', strokeWidth: 2},
-							positions: [\''.$this->positions.'\'],
-							width: \'200px\',
-							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-							cssStyles: 
-								{
-								color: \'#F9FB61\'
-								}
-							});
-						</script>
-						';
+					$output=array();
+					$pageoutput=array();
+					
+					$output['TITLE']=$hover_title;
+					$output['DESCRIPTION']=$hover_content;
+					$output['IMAGE']=$div_content;
+					
+					$pageoutput[]=$output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'tooltip_property_feature.html' );
+					$tmpl->addRows( 'pageoutput', $pageoutput );
+					$div_string=$tmpl->getParsedTemplate();
 					}
 				else
 					{

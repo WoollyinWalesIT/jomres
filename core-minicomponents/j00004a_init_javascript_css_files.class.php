@@ -84,7 +84,7 @@ class j00004a_init_javascript_css_files {
 		
 		if (_JOMRES_DETECTED_CMS != "joomla30")
 			{
-			set_showtime("jquery.core.js",'jquery-1.8.2.min.js');
+			set_showtime("jquery.core.js",'jquery-1.8.3.js');
 			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
 			}
 		
@@ -128,6 +128,12 @@ class j00004a_init_javascript_css_files {
 		set_showtime("jquery.validate.js.relpath","jomres/javascript/");
 		
 		
+		set_showtime("jquery.tipsy.js","jquery.tipsy.js");
+		set_showtime("jquery.tipsy.js.relpath","jomres/javascript/");
+			
+		set_showtime("tipsy.css","tipsy.css");
+		set_showtime("tipsy.css.relpath","jomres/css/");
+			
 		// Bootstrap toggle buttons
 		if (using_bootstrap())
 			{
