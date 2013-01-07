@@ -91,7 +91,6 @@ class j00004x_init_javascript_css_files {
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.js.relpath"),get_showtime("jquery.cookee.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.cookee.for_tabs.js.relpath"),get_showtime("jquery.cookee.for_tabs.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("heartbeat.js.relpath"),get_showtime("heartbeat.js"));
-				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.bt.js.relpath"),get_showtime("jquery.bt.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.hoverIntent.js.relpath"),get_showtime("jquery.hoverIntent.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.rating.js.relpath"),get_showtime("jquery.rating.js"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.validate.js.relpath"),get_showtime("jquery.validate.js"));
@@ -100,6 +99,10 @@ class j00004x_init_javascript_css_files {
 				
 				jomres_cmsspecific_addheaddata("css",get_showtime("jquery.jgrowl.css.relpath"),get_showtime("jquery.jgrowl.css"));
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.jgrowl.js.relpath"),get_showtime("jquery.jgrowl.js"));
+				
+				// Tipsy tooltips were added to Jomres 7.2.8 because beautytips don't work in jquery 1.9.2
+				jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.tipsy.js.relpath"),get_showtime("jquery.tipsy.js"));
+				jomres_cmsspecific_addheaddata("css",get_showtime("tipsy.css.relpath"),get_showtime("tipsy.css"));
 
 				//jomres_cmsspecific_addheaddata("javascript",get_showtime("jquery.easing.compatibility.js.relpath"),get_showtime("jquery.easing.compatibility.js"));
 
@@ -142,6 +145,8 @@ class j00004x_init_javascript_css_files {
 				$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 				$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 				
+				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jquery.tipsy.js');
+				jomres_cmsspecific_addheaddata("css",'jomres/javascript/','tipsy.css');
 				
 				if (!file_exists(get_showtime("module_popup.js.abspath").get_showtime("module_popup.js")))
 					{
