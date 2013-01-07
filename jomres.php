@@ -1045,6 +1045,17 @@ if (get_showtime('javascript_caching_enabled'))
 	$MiniComponents->triggerEvent('99999',$componentArgs); // Javascript and CSS caching
 	}
 
+// After updating jquery ui to 1.9.3 we started seeing a problem where the entire site would be reloaded into the jquery tabs.
+// http://stackoverflow.com/questions/13837304/jquery-ui-non-ajax-tab-loading-whole-website-into-itself
+// according to http://bugs.jqueryui.com/ticket/7822 this problem will not be "fixed" in jquery, so we'll need to remove the base tag from Joomla's output
+// This page http://www.jelte.nl/nieuws/24-joomla-remove-base-href suggests removing the base tag for SEO reasons
+// More reading https://groups.google.com/forum/?fromgroups=#!topic/joomla-devel/HOHzzne5HYo
+if (this_cms_is_joomla())
+	{
+	$document =& JFactory::getDocument();
+	$document->setBase(null);
+	}
+
 endrun();
 
 if (defined("JOMRES_RETURNDATA") )
