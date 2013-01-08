@@ -48,10 +48,9 @@ function confirm_review(rating_id,state)
 		<span itemprop="itemreviewed">{PROPERTY_NAME}</span><!-- hotel name --> 
 		{_JOMRES_REVIEWS_AVERAGE_RATING} 
 		<span itemprop="average">{AVERAGE_RATING}</span><!-- average rating --> - 
-		<span itemprop="count">{_JOMRES_REVIEWS_TOTAL_VOTES}</span><!-- number of reviews --> 
-		{NUMBER_OF_REVIEWS}
+		{_JOMRES_REVIEWS_TOTAL_VOTES} 
+		<span itemprop="count">{NUMBER_OF_REVIEWS}</span><!-- number of reviews -->
 	</h2>
-	<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
 </div>
 
 <patTemplate:tmpl name="rows" unusedvars="strip">
