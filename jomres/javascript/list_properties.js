@@ -49,6 +49,7 @@ function lastAddedLiveFunc()
 			var bol = jomresJquery("input[type=checkbox][name=compare]:checked").length >= 3;
 			jomresJquery("input[type=checkbox][name=compare]").not(":checked").attr("disabled",bol);
 			last_scrolled_id = id;
+			jomresJquery( ".jomres_bt_tooltip_features" ).tipsy({html: true,fade: true,gravity: 'sw',delayOut: 100});
 			//console.log(last_scrolled_id);
 			});
 		}
