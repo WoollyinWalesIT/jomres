@@ -337,7 +337,7 @@ class j01010listpropertys {
 						$featureList=array();
 						$ptown=stripslashes($property->property_town);
 						$stars=$property->stars;
-						$propertyDesc=strip_tags(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION',$property->property_description,false,false ));
+						$propertyDesc=strip_tags(jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION',$property->property_description,false,false )));
 						
 						if (in_array($property->propertys_uid))
 							{
