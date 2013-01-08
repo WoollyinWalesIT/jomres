@@ -210,7 +210,7 @@ function JomresParseRoute($segments)
 function JomresFilterString($dirtyString)
 	{
 	$stripCharsArray=array(',','~','!','@','%','^','*','(',')','+','<','>',':',';','{','}','[',']','---','--','-','..,','.',' ');
-	$cleanStringForURL=str_replace($stripCharsArray,'_',$dirtyString);
+	$cleanStringForURL=str_replace($stripCharsArray,' ',$dirtyString);
 	return $cleanStringForURL;
 	}
 
