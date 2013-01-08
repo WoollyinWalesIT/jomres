@@ -215,7 +215,7 @@ class jomSearch {
 			}
 		if (in_array("region",$this->searchOptions) )
 			{
-			$query = "SELECT property_region,property_country FROM #__jomres_propertys WHERE published = '1' ORDER BY property_region ASC";
+			$query = "SELECT DISTINCT property_region,property_country FROM #__jomres_propertys WHERE published = '1' ORDER BY property_region ASC";
 			$activeRegionsList=doSelectSql($query);
 			$tmpRegionArray=array();
 
