@@ -23,20 +23,6 @@ class jomres_tooltips
 	function jomres_tooltips()
 		{
 		$this->divs=array();
-		// Previous to v4.2.1 we used a browser check to determine which browser we were on. If IE then use "most" position, else use "bottom". Subsequentially it seems that mootools will cause an error in the jquery beautytips library if included preventing the popup from showing, therefore we'll change the default to "most", and individual site managers can change the position here to "bottom" if they so require
-		// It's a shame as the popup looks much better when below the feature icons, but there you have it. Software development is often more about compromise than anything else.
-		//$browser = new browser();
-		//$this->browser = $browser->BROWSER_AGENT;
-		
-		$this->positions = "most";
-		echo '
-		<script>
-		jomresJquery(function() {
-			jomresJquery( ".jomres_bt_tooltip_features" ).tipsy({html: true,fade: true,gravity: \'sw\',delayOut: 1000});
-		});
-		</script>
-		';
-		//$this->positions = "bottom";
 		}
 
 	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments)
