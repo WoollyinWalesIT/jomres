@@ -6,7 +6,7 @@ var jomresJquery = jQuery.noConflict();
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
 jomresJquery(function() {
-	jomresJquery( ".jomres_bt_tooltip_features" ).tipsy({html: true,fade: true,gravity: 'sw',delayOut: 1000});
+	jomresJquery( ".jomres_bt_tooltip_features" ).tipsy({html: true,fade: true,gravity: 'sw',delayOut: 100});
 });
 
 jomresJquery.fn.fadeThenSlideToggle = function(speed, easing, callback) {
