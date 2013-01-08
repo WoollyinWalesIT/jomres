@@ -5,6 +5,10 @@ var jomresJquery = jQuery.noConflict();
 
 if (navigator.appName == 'Microsoft Internet Explorer') window.onerror=Block_Error;function Block_Error(){return true;};
 
+jomresJquery(function() {
+	jomresJquery( ".jomres_bt_tooltip_features" ).tipsy({html: true,fade: true,gravity: 'sw',delayOut: 1000});
+});
+
 jomresJquery.fn.fadeThenSlideToggle = function(speed, easing, callback) {
   if (this.is(":hidden")) {
     // temp disabled, we'll use fade in/out for now as sliding doesn't work on ipad
