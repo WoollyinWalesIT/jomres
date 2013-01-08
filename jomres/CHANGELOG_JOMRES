@@ -1,3 +1,20 @@
+Jomres 7.2.8
+
+Set the default tariff model to Average.
+Tweaked flat rate pricing to ensure that the correct tariff uid is selected internally if the property uses Flat rates but micromanage tariff editing.
+Modified the booking engine so that the add room and remove room buttons have different icons and colours. (Bootstrap only)
+Tweaked the booking engine to deal with an obscure minimum interval issue.
+Modified the non-verbose tariff script to show less data, makes the tariff list more readable in the property details/tariffs tab.
+Fixed a missing span in the show reviews template.
+Added a change that removes Joomla's "base" tag from the page's output. We've updated jquery ui to 1.9.2 and it's tab generation code has changed. The base url is used and if the base url is wrong then the tabs will reload the entire site's content. This tweak gives us forward compatability for when J3's jq ui library is updated to 1.9.x, so that's nice.
+Added some wells around the rooms list to improve the output in bootstrap, and we now hide the available rooms div if there aren't any available rooms.
+Removed some input filtering that was duplicating some filtering that'd already been done and causing apostrophe's to not be entered properly into the db.
+Removed a condition that prevented the availability calendar from showing in the booking page.
+Changed the tooltip class as the older beauty tips no longer work in Jq ui 1.9.x
+Moved tooltip trigger code into jomres.js
+Improved layout of list templates, and tweaked the show reviews page so that google will render the microformat data.
+
+
 Jomres 7.2.7
 
 Updated jquery ui javascript and css libraries to 1.9.2 as that's required by the new edit in place functionality.
