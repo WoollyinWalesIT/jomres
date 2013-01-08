@@ -445,7 +445,7 @@ function doTableUpdates()
 	if (!checkCustomtemplatesPtypeidColExists() )
 		alterCustomtemplatesPtypeidCol();
 	
-	//migrate_region_names();
+	migrate_region_names();
 	
 	if (!checkPropertysApprovedColExists() )
 		alterPropertysApprovedCol();
