@@ -90,7 +90,7 @@ class j00017SRPavailabilitycalendar {
 			if (using_bootstrap())
 				$this->retVals.='<div class="well" style="margin-bottom: 10px;">';
 			else
-				$this->retVals.='<div class="class="ui-widget-content ui-corner-all"" style="margin-bottom: 10px;">';
+				$this->retVals.='<div class="ui-widget-content ui-corner-all" style="margin-bottom: 10px;">';
 			$this->retVals.='<table width="100%">
 							<tr >';
 							if (using_bootstrap())
