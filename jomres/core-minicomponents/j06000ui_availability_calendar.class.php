@@ -31,15 +31,31 @@ class j06000ui_availability_calendar
 		$property_uid = get_showtime('property_uid');
 		if (isset($_REQUEST['property_uid']) && $_REQUEST['property_uid'] !="0")
 			$property_uid =(int)$_REQUEST['property_uid'];
-
-		$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."'";
-		$this->numberOfRoomsInProperty=count(doSelectSql($query));
-
-		$mrConfig=getPropertySpecificSettings($property_uid);
 		
-		$firstDayOfTheCurrentMonth=date("Y/m/d", strtotime(date('m').'/01/'.date('Y').' 00:00:00'));
-		$query="SELECT date FROM #__jomres_room_bookings WHERE property_uid = '".(int)$property_uid."' AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".$firstDayOfTheCurrentMonth."', '%Y/%m/%d') ";
-		$bookings = doSelectSql($query);
+		if (get_showtime('is_jintour_property'))
+			{
+			$booked_dates = $MiniComponents->specificEvent('05060','jintour',array('property_uid'=>$property_uid,'start'=>true,'end'=>true));
+			$booking_array_elements = $booked_dates['fully_booked_dates'];
+			// We need to convert these to object, as this is an adaption of the following condition where the db is queried
+			$bookings = array();
+			foreach ($booking_array_elements as $elem)
+				{
+				$o = new stdClass();
+				$o->date = $elem;
+				$bookings[]=$o;
+				}
+			}
+		else
+			{
+			$query="SELECT room_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."'";
+			$this->numberOfRoomsInProperty=count(doSelectSql($query));
+
+			$mrConfig=getPropertySpecificSettings($property_uid);
+			
+			$firstDayOfTheCurrentMonth=date("Y/m/d", strtotime(date('m').'/01/'.date('Y').' 00:00:00'));
+			$query="SELECT date FROM #__jomres_room_bookings WHERE property_uid = '".(int)$property_uid."' AND DATE_FORMAT(`date`, '%Y/%m/%d') >= DATE_FORMAT('".$firstDayOfTheCurrentMonth."', '%Y/%m/%d') ";
+			$bookings = doSelectSql($query);
+			}
 
 		$this->rooms_empty=0;
 		$this->rooms_quarter=(($this->numberOfRoomsInProperty/100)*.25)*100;
