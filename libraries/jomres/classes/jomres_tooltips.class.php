@@ -177,23 +177,18 @@ class jomres_tooltips
 					}
 			break;
 			default:
-				$div_string.='<div id="'.$div.'"';
-				if (strlen($class)>0)
-					$div_string.=' class="'.$class.'" ';
-				else
-					$div_string.=' class="jomres_bt_tooltip" ';
+				$output=array();
+				$pageoutput=array();
 					
-				$div_string.=' title="'.$hover_content.'">'.$div_content.'</div>
-					<script type="text/javascript">jomresJquery("#'.$div.'").bt({
-							width: \'600px\',
-							fill: "rgba(0, 0, 0, '.$beautyTip_opacity.')",
-
-							cssStyles: 
-								{
-								color: \'#F9FB61\'
-								}
-						});</script>
-					';
+				$output['TEXT']=$div_content;
+				$output['CONTENT']=$hover_content;
+					
+				$pageoutput[]=$output;
+				$tmpl = new patTemplate();
+				$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+				$tmpl->readTemplatesFromInput( 'tooltip.html' );
+				$tmpl->addRows( 'pageoutput', $pageoutput );
+				$div_string=$tmpl->getParsedTemplate();
 			break;
 			}
 		return $div_string;
