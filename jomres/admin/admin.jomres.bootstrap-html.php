@@ -516,6 +516,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				<td>'.$currency_codes_dropdown.'</td>
 				<td>&nbsp;</td>
 			</tr>
+			<tr> 
+				<td>'.jr_gettext(_JOMRES_CONVERSION_TITLE,'_JOMRES_CONVERSION_TITLE',false).'</td> 
+				<td>'.$lists['use_conversion_feature'].'</td> 
+				<td>'.jr_gettext(_JOMRES_CONVERSION_TITLE_DESC,'_JOMRES_CONVERSION_TITLE_DESC',false).'</td> 
+			</tr>
 			<tr>
 				<td>'.jr_gettext(_JOMRES_IP_DETECTION_API_KEY_TITLE,'_JOMRES_IP_DETECTION_API_KEY_TITLE',false).'</td>
 				<td><input type="text" class="input-large" name="cfg_geolocation_api_key" value="'.$jrConfig['geolocation_api_key'].'" /></td>
