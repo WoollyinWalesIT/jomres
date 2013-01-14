@@ -494,6 +494,8 @@ class j01010listpropertys {
 						$property_deets['PROPERTYREGION']= html_entity_decode(stripslashes($propertyContactArray[4]));
 						$property_deets['PROPERTYCOUNTRY']= html_entity_decode(stripslashes(getSimpleCountry($propertyContactArray[5])));
 						
+						$property_deets['TELEPHONE_NUMBER']= html_entity_decode($current_property_details->property_tel);
+						
 						if (strlen($propertyDesc) > (int)$jrConfig['propertyListDescriptionLimit'])
 							$property_deets['PROPERTYDESC']= jr_substr($propertyDesc,0,$jrConfig['propertyListDescriptionLimit'])."...";
 						else
