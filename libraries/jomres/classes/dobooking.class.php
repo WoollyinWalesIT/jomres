@@ -6345,6 +6345,7 @@ class dobooking
 		// If flat rate is set, but they're using micromanage then the tariff previously selected will be wrong. Instead of correcting that elsewhere (because of how complex the system is), we'll instead quickly go through the tariff map
 		// and rebuild the $this->requestedRoom with the correct tariff uid, as this is an edge-case. MOST users will want to be using Average mode, if they're using Micromanage.
 		// This problem appeared beause an SRP was using flat rate. Because the room/tariff combo is automatically selected the system didn't have a chance to find the correct tariff uid for the selected room.
+		$this->build_tariff_to_date_map ();
 		
 		if ($mrConfig['tariffmode']=="2") // micromanage
 			{
