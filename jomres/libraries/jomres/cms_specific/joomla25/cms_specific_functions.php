@@ -13,6 +13,15 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
+// Date is sent in format YYYY/mm/dd, e.g. 2013/
+function jomres_cmsspecific_output_date($date,$format=false)
+	{
+	if (!$format)
+		$format=JText::_('DATE_FORMAT_LC');
+	$result = JHTML::_('date', $date, $format);
+	return $result;
+	}
+
 function jomres_cmsspecific_getregistrationlink()
 	{
 	return jomresURL(get_showtime('live_site')."/index.php?option=com_users&view=registration");
