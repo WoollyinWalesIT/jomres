@@ -3145,13 +3145,23 @@ function insertGuestDeets($jomressession)
 function outputDate($thedate)
 	{
 	// Assumes the date $theDate comes from the system in the format YYYY/mm/dd
-	$mrConfig=getPropertySpecificSettings();
-	$date_elements	= explode("/",$thedate);
-	$unixDate= adodb_mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
-	if ($mrConfig['dateFormatStyle']=="1")
-		$formattedDate=date($mrConfig['cal_output'],$unixDate);
+	
+	if (function_exists('jomres_cmsspecific_output_date'))
+		{
+		$thedate = str_replace("/","-",$thedate);
+		
+		$formattedDate = jomres_cmsspecific_output_date($thedate);
+		}
 	else
-		$formattedDate=strftime($mrConfig['cal_output'], $unixDate);
+		{
+		$mrConfig=getPropertySpecificSettings();
+		$date_elements	= explode("/",$thedate);
+		$unixDate= adodb_mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
+		if ($mrConfig['dateFormatStyle']=="1")
+			$formattedDate=date($mrConfig['cal_output'],$unixDate);
+		else
+			$formattedDate=strftime($mrConfig['cal_output'], $unixDate);
+		}
 	return $formattedDate;
 	}
 
