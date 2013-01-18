@@ -45,9 +45,13 @@ function confirm_review(rating_id,state)
 </div>
 <div itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
 	<h2>
-		<span itemprop="itemreviewed">{PROPERTY_NAME}</span><!-- hotel name --> 
-		{_JOMRES_REVIEWS_AVERAGE_RATING} 
-		<span itemprop="average">{AVERAGE_RATING}</span><!-- average rating --> - 
+		<span itemprop="itemreviewed">{PROPERTY_NAME}</span><!-- hotel name -->  
+		<span itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
+		{_JOMRES_REVIEWS_AVERAGE_RATING}
+			<span itemprop="average">{AVERAGE_RATING}</span> 
+         	<meta itemprop="best" content="10"/>  
+      		<meta itemprop="worst" content="1"/>
+		</span><!-- average rating --> - 
 		{_JOMRES_REVIEWS_TOTAL_VOTES} 
 		<span itemprop="count">{NUMBER_OF_REVIEWS}</span><!-- number of reviews -->
 	</h2>
