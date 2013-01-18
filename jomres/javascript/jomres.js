@@ -859,7 +859,7 @@ function dobooking_validate(){
 	};
 
 function submitBooking(){
-	document.ajaxform.action = livesite+"&task=confirmbooking"
+	document.ajaxform.action = livesite;
 	document.ajaxform.submit();
 	};
 	

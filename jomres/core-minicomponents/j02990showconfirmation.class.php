@@ -522,10 +522,10 @@ class j02990showconfirmation {
 				}
 			}
 		$booking_parts['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
-		$booking_parts['PROCESSURL']=JOMRES_SITEPAGE_URL.'&task=processpayment';
-		$booking_parts['PROCESSURL_SAVETOCART']=JOMRES_SITEPAGE_URL.'&task=save_booking_to_cart';
-		$booking_parts['BOOKINGFORMURL']=JOMRES_SITEPAGE_URL.'&task=dobooking&selectedProperty='.$bookingDeets['property_uid'].'';
-		
+		$booking_parts['PROCESSURL']=jomresURL(JOMRES_SITEPAGE_URL."&task=processpayment");
+		$booking_parts['PROCESSURL_SAVETOCART']=jomresURL(JOMRES_SITEPAGE_URL."&task=save_booking_to_cart");
+		$booking_parts['BOOKINGFORMURL']=jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$bookingDeets['property_uid']);
+
 		if (isset($MiniComponents->registeredClasses['06000show_cart']) )
 			{
 			
