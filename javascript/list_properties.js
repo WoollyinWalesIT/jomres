@@ -35,7 +35,7 @@ function lastAddedLiveFunc()
 	{
 	id = jomresJquery(".jomres_property_list_propertywrapper:last").attr("id");
 	if (id != last_scrolled_id){
-		var animation='<div id="animation"><img src="jomres/images/ajax_animation/broken_circle.gif" /></div>';
+		var animation='<div id="animation"><img src="'+path_to_jomres_dir+'jomres/images/ajax_animation/broken_circle.gif" /></div>';
 		jomresJquery(".jomres_property_list_propertywrapper:last").after(animation);
 		jomresJquery.get(live_site_ajax+"&task=ajax_list_properties&nofollowtmpl&lastID="+id,
 			function(data){
