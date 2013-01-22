@@ -194,7 +194,7 @@ class basic_property_details
 			if ($no_html == "1" || $popup == "1")
 				$editable = false;
 
-			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_email`,`published`,`ptype_id`,
+			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
 `stars`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
 
 			$propertyData=doSelectSql($query);
@@ -375,7 +375,7 @@ class basic_property_details
 			{
 			$gor=genericOr($property_uids,'propertys_uid');
 			
-			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_email`,`published`,`ptype_id`,
+			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
 `stars`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE ".$gor;
 			
 			$propertyData=doSelectSql($query);
