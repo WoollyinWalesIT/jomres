@@ -1,3 +1,19 @@
+Jomres 7.2.9
+
+Modified a previously removed switch. Put it back in, but changed how it works. Previously we'd removed the "Enable currency conversion" option, because for the shopping cart to work the conversion functionality ALWAYS has to be enabled. Some people didn't like this as they only wanted prices output in one currency, nnn.nn instead of nnn.nn (nnn.nn). To get around this user conflict we've re-added the switch, but changed what it effects. Instead of using it to switch off the conversion functionality internally, we'll leave the functionality enabled, instead we're simply using it to tell the "output_price" function to not output the price in the nnn.nn (nnn.nn) format.
+Added some code to ensure that tooltips show correctly in module popups in bootstrap.
+Fixed a css class bug in the srp calendar. Thanks David!
+Tweaked the UI availability calendar so that Jintour can block out dates.
+Added default tooltip popup code for new tooltip class.
+Modified flat rate functionality, ensured that the tariff map is always created when calculating prices.
+Tweaked list properties script to add telephone number to output.
+Added functionality to support having a cms specific output date class that'll use the Joomla language file's settings instead of property configuration settings.
+Updated microdata in show_property_reviews.html
+Tweaked a path to a loading gif.
+Tweaked a few urls in the Jomres code to ensure they're parsed through jomresURL function.
+Updated the Spanish language files, many thanks David.
+
+
 Jomres 7.2.8
 
 Set the default tariff model to Average.
