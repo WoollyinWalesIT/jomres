@@ -4846,7 +4846,7 @@ class dobooking
 		$room_price_inc_tax = $this->calculateRoomPriceIncVat($tariffStuff['RATEPERNIGHT']);
 		$this->room_type_style_output[$tariffUid]['room_price_inc_tax'] = $room_price_inc_tax;
 
-		$tariffStuff['FORMATTED_PRICE']=output_price($room_price_inc_tax);
+		$tariffStuff['FORMATTED_PRICE']=output_price($this->get_rate_per_night_converted_to_output_period($room_price_inc_tax));
 		$tariffStuff['ROOMTARIFFOUTPUTID']=$roomTariffOutputId;
 		$tariffStuff['CAPTION']=$caption;
 		
