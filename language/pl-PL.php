@@ -3794,3 +3794,5 @@ jr_define("_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT","Gratulacje, oferta została
 jr_define("_JOMRES_REGION_TRANSLATION_SWITCH_TITLE","Tłumaczenie nazwy regionu");
 
 jr_define("_JOMRES_REGION_TRANSLATION_SWITCH_DESC","Jeśli używasz bardzo szybkiego serwera możesz wybrać wartość Nie. Ze względu na dużą liczbę nazw regionów, ich tłumaczenie zajmuje dużo pamięci, która może spowolnić uzyskiwanie wyników wyszukiwania.");
+
+jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Guest booked out.");

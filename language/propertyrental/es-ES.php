@@ -1989,3 +1989,5 @@ jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT" , "Felicidades, su propieda
 
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_TITLE" , "Los nombres de las regiones son traducibles");
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "A menos que tenga un servidor muy rápido le aconsejamos dejar marcado esta opción como NO. Debido a el amplio número de nombres de regiones, la traducción de dichos nombres ocupa una gran cantidad de memorios que puede ralentizar sus resultados de búsqueda.");
+
+jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Guest booked out.");

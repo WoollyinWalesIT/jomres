@@ -1957,3 +1957,5 @@ jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT" , "Congratulations, your pr
 
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_TITLE" , "Region names are translatable");
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "Unless you're running a very fast server you are advised to leave this set to No. Due to the large number of region names, region name translation takes up a lot of memory which can slow your search results down.");
+
+jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Guest booked out.");
