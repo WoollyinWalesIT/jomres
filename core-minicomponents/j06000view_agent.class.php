@@ -70,7 +70,7 @@ class j06000view_agent
 		$output['_JOMRES_AGENT_DETAILS']=jr_gettext('_JOMRES_AGENT_DETAILS',_JOMRES_AGENT_DETAILS);
 		$output['_JOMRES_AGENT_LISTINGS']=jr_gettext('_JOMRES_AGENT_LISTINGS',_JOMRES_AGENT_LISTINGS);
 
-		$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$thisJRUser->id." LIMIT 1";
+		$query="SELECT firstname,surname,house,street,town,county,country,postcode,tel_landline,tel_mobile,email FROM #__jomres_guest_profile WHERE cms_user_id = ".(int)$manager_id." LIMIT 1";
 		$managerData =doSelectSql($query);
 		
 		if (count($managerData)>0)
