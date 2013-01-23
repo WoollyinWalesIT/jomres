@@ -2,6 +2,7 @@
 .big-price{font-weight:bold;font-size:150%;display:block;line-height:120%;}
 .align-center{text-align:center;}
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
+.jomres_dashboard a.jomres_bt_tooltip_features{padding:0;}
 .property_details_buttons {min-width: 219px !important;}
 #jomres_content_area{padding-bottom:20px;}
 .jomres_message{color:#ff0000;}

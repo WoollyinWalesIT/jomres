@@ -39,6 +39,7 @@ button.fg-button { width:auto; overflow:visible; }
 .property-desc p {margin-bottom: 15px;margin-top: 10px;}
 .property-desc {margin-bottom: 15px;margin-top: 10px;}
 .jomres_bt_tooltip_features, .jomres_bt_tooltip_room_type, .jomres_bt_tooltip_imageonly {float: left;padding: 5px;}
+.jomres_dashboard a.jomres_bt_tooltip_features{padding:0;}
 .jomres_message {color: #cc0000;font-size: 11px;}
 .float-left {float:left;}
 .float-right {float:right;}

@@ -27,6 +27,16 @@ class j06001dashboard extends jomres_dashboard
 		$property_uid = $componentArgs['property_uid'];
 		if (is_null($property_uid))
 			$property_uid = getDefaultProperty();
+			
+		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+		if (!in_array($property_uid,$thisJRUser->authorisedProperties))
+			return;
+		
+		$this->property_uid		= $property_uid;
+		
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		if ($mrConfig['is_real_estate_listing']==1)
+			return;
 		
 		$this->show_legend=false;
 		if (isset($componentArgs['show_legend']))
@@ -39,16 +49,9 @@ class j06001dashboard extends jomres_dashboard
 			$this->show_date_dropdown = $componentArgs['show_date_dropdown'];
 		elseif (get_showtime("task")=="dashboard")
 			$this->show_date_dropdown = true;
+		if ($mrConfig['singleRoomProperty'] =="1")
+			$this->show_date_dropdown = false;
 		
-		$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
-		if (!in_array($property_uid,$thisJRUser->authorisedProperties))
-			return;
-		
-		$this->property_uid		= $property_uid;
-		
-		$mrConfig=getPropertySpecificSettings($this->property_uid);
-		if ($mrConfig['is_real_estate_listing']==1)
-			return;
 		jr_import('jomres_cache');
 		$cache = new jomres_cache("dashboard",$this->property_uid,false);
 		$cacheContent = $cache->readCache();
@@ -168,7 +171,7 @@ class j06001dashboard extends jomres_dashboard
 		$i=1;
 		while ($i <= $monthsToShow)
 			{
-			$output.="<table style=\"table-layout:fixed;font-size: 11px;line-height: 16px;border-collapse: inherit;border-spacing: 1px;\">";
+			$output.='<table class="jomres_dashboard" style="table-layout:fixed;font-size: 11px;line-height: 14px;border-collapse: inherit;border-spacing: 1px;">';
 			foreach ($this->roomsArray as $room)
 				{
 				$n=1;
@@ -322,10 +325,10 @@ class j06001dashboard extends jomres_dashboard
 		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 		
-		$style="style='overflow:hidden;white-space:nowrap;height:$height; padding-top:$paddingtop; padding-bottom:$paddingbottom; padding-left:$paddingleft; padding-right:$paddingright; padding:$padding;'";
-		$width_height = "width=16px height=16px";
+		$style='style="overflow:hidden;white-space:nowrap;padding:'.$padding.';"';
+		$width_height = 'width="16" height="16"';
 		
-		$output.='<td align="center" '.$style.' valign="middle" bgcolor="'.$bgcolor.'"  '.$width_height.'>';
+		$output.='<td align="center" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.'>';
 		
 		if ($dobookingLink /* && !$pastDate */)
 			{
@@ -421,7 +424,7 @@ class j06001dashboard extends jomres_dashboard
 						switch($bgcolor)
 							{
 							case $cfg_inbgcolor: 		/* PROVISIONAL to AVAILABLE ==DEPARTURE== */
-								echo "YELLOW/GREEN....";
+								//echo "YELLOW/GREEN....";
 								$output='<td align="center" class="date_ProvisionalToAvailable" '.$style.' valign="middle" bgcolor="'.$bgcolor.'" '.$width_height.' >';
 								break;
 							case $cfg_occupiedcolour:  	/* PROVISIONAL to BOOKED */
@@ -500,8 +503,7 @@ class j06001dashboard extends jomres_dashboard
 				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
 				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
 
-				$output.=jomres_makeTooltip(date ("d",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresValidateUrl(jomresURL($viewbookinglink)).'">'.(date ("d",$currdate)).'</a>',"")."</td>
-				";
+				$output.=jomres_makeTooltip(date ("d",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresValidateUrl(jomresURL($viewbookinglink)).'">'.(date ("d",$currdate)).'</a>',"")."</td>";
 				}
 			else
 				{
