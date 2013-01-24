@@ -503,7 +503,7 @@ class j06001dashboard extends jomres_dashboard
 				$guest_uid=$this->contracts[$contract_uid]['guest_uid'];
 				$content=$this->guestInfo[$guest_uid]['firstname'].' '.$this->guestInfo[$guest_uid]['surname']."<br/><hr/>".outputDate($this->contracts[$contract_uid]['arrival']).'-'.outputDate($this->contracts[$contract_uid]['departure']);
 
-				$output.=jomres_makeTooltip(date ("d",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,'<a href="'.jomresValidateUrl(jomresURL($viewbookinglink)).'">'.(date ("d",$currdate)).'</a>',"")."</td>";
+				$output.=jomres_makeTooltip(date ("d",$currdate)."_".$contract_uid."_".$guest_uid,'',$content,date ("d",$currdate),"","dashboard_tooltip","",jomresValidateUrl(jomresURL($viewbookinglink)))."</td>";
 				}
 			else
 				{
