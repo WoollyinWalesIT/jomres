@@ -25,7 +25,7 @@ class jomres_tooltips
 		$this->divs=array();
 		}
 
-	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments)
+	function generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments,$url)
 		{
 		$hover_content = filter_var($hover_content,FILTER_SANITIZE_SPECIAL_CHARS);
 		$keeplooking=true;
@@ -162,6 +162,37 @@ class jomres_tooltips
 					$tmpl = new patTemplate();
 					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 					$tmpl->readTemplatesFromInput( 'tooltip_property_feature.html' );
+					$tmpl->addRows( 'pageoutput', $pageoutput );
+					$div_string=$tmpl->getParsedTemplate();
+					}
+				else
+					{
+					$div_string.='<div id="'.$div.'"';
+					if (strlen($class)>0)
+						$div_string.=' class="'.$class.'" >';
+					else
+						$div_string.=' class="jomres_bt_tooltip_features" >';
+					$div_string.='<img src="'.get_showtime('live_site')."/".$div_content.'" /><b>'.$hover_title.'</b></div>';
+					
+					}
+			break;
+			case "dashboard_tooltip":
+				if (!isset($type_arguments["use_javascript"]))
+					$type_arguments["use_javascript"] = true;
+				$use_javascript = $type_arguments["use_javascript"];
+				if ($use_javascript)
+					{
+					$output=array();
+					$pageoutput=array();
+					
+					$output['TEXT']=$div_content;
+					$output['CONTENT']=$hover_content;
+					$output['URL']=$url;
+					
+					$pageoutput[]=$output;
+					$tmpl = new patTemplate();
+					$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
+					$tmpl->readTemplatesFromInput( 'tooltip_dashboard.html' );
 					$tmpl->addRows( 'pageoutput', $pageoutput );
 					$div_string=$tmpl->getParsedTemplate();
 					}

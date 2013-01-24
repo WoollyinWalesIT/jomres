@@ -139,13 +139,13 @@ function no_search_results()
 	return $MiniComponents->specificEvent('06000','no_search_results');
 	}
 
-function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array())
+function jomres_makeTooltip($div,$hover_title="",$hover_content="",$div_content="",$class="",$type="",$type_arguments=array(),$url="#")
 	{
 	// Uncomment the following line to tell Jomres to show the images and descriptions side by side, instead of using the jquery tooltip.
 	//$type_arguments['use_javascript']=false;
 	$jomres_tooltips =jomres_singleton_abstract::getInstance('jomres_tooltips');
 	//$jomres_tooltips = new jomres_tooltips();
-	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments);
+	return $jomres_tooltips->generate_tooltip($div,$hover_title,$hover_content,$div_content,$class,$type,$type_arguments,$url);
 	}
 
 function endrun()
