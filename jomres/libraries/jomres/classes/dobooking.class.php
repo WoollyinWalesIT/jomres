@@ -5229,7 +5229,7 @@ class dobooking
 				else
 					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2,false).' '.$this->stayDays));
 					
-				if ( $mrConfig['tariffmode']=="2")
+				if ( $mrConfig['tariffmode']=="2" && $this->jrConfig['useJomresMessaging'] == '1' )
 					{
 					$this->build_tariff_to_date_map ();
 					foreach ($this->micromanage_tarifftype_to_date_map as $dates)
