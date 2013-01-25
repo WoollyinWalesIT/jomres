@@ -483,8 +483,8 @@ if ($field != "heartbeat" && $field != "show_log")
 	if ( $bkg->getOkToBook() )
 		{
 		$allocation_popup=$bkg->getRoomAllocationOutput();
-		if ($allocation_popup != "")
-		echo '; jomresJquery.jGrowl(\''.$allocation_popup.'\', { life: 30000 });';
+		if ($allocation_popup != ""&& $bkg->jrConfig['useJomresMessaging'] == '1')
+			echo '; jomresJquery.jGrowl(\''.$allocation_popup.'\', { life: 30000 });';
 		}
 	$bkg->setErrorLogFirst($ajrq);
 	$bkg->storeBookingDetails();
