@@ -295,7 +295,7 @@ class j01010listpropertys {
 			$property_types = array();
 			foreach ($ptypes as $p)
 				{
-				$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPES'.(int)$p->id,$p->ptype,false,false);
+				$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int)$p->id,$p->ptype,false,false);
 				}
 			$class_counter=0;
 			
