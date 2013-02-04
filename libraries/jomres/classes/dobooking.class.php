@@ -4091,7 +4091,7 @@ class dobooking
 								else
 									{
 									
-									foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+									foreach ($this->micromanage_tarifftype_to_date_map[$tariff_type_id] as $dates)
 										{
 										$this->setErrorLog("getTariffsForRoomUids:: Count dates ".count($dates)." Count daterange array ". count($dateRangeArray)." " );
 										if (count($dates) != count($dateRangeArray)) // There are more dates in the date range array than there are valid tariffs. This means that during the map building phase we passed the date of the last tariff found
