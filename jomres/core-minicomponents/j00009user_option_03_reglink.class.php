@@ -43,7 +43,7 @@ class j00009user_option_03_reglink {
 	function touch_template_language()
 		{
 		$output=array();
-		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION',_JOMRES_CUSTOMCODE_JOMRESMAINMENU_RECEPTION_MYACCOUNT);
+		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION',_JOMRES_CUSTOMCODE_JOMRESMAINMENU_REGISTRATION);
 
 		foreach ($output as $o)
 			{
