@@ -53,7 +53,7 @@ function find_region_id($region)
 	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
 	foreach ($jomres_regions->regions as $r)
 		{
-		if (strcasecmp ( $r['regionname'],$region)==0)
+		if (strcasecmp ( jomres_cmsspecific_stringURLSafe($r['regionname']),$region)==0)
 			{
 			return (int)$r['id'];
 			}
@@ -61,7 +61,7 @@ function find_region_id($region)
 	return null;
 	}
 
-
+ 
 function build_property_manager_xref_array()
 	{
 	$query="SELECT property_uid,manager_id FROM #__jomres_managers_propertys_xref";

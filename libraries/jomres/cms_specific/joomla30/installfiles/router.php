@@ -127,19 +127,19 @@ function JomresBuildRoute(&$query)
 		if (isset($route_query['town']))
 			{
 			$segments[] = JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false));
-			$segments[] = JomresFilterString($route_query['town']);
+			$segments[] = JFilterOutput::stringURLSafe($route_query['town']);
 			unset($route_query['town']);
 			}
 		if (isset($route_query['region']))
 			{
 			$segments[] = JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false));
-			$segments[] = JomresFilterString($route_query['region']);
+			$segments[] = JFilterOutput::stringURLSafe($route_query['region']);
 			unset($route_query['region']);
 			}
 		if (isset($route_query['country']))
 			{
 			$segments[] = JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false));
-			$segments[] = JomresFilterString($route_query['country']);
+			$segments[] = JFilterOutput::stringURLSafe($route_query['country']);
 			unset($route_query['country']);
 			}
 		if (isset($route_query['send']))
@@ -186,7 +186,7 @@ function JomresParseRoute($segments)
 			if($searchParam==JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN,false))) $searchParam= 'town';
 			if($searchParam==JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY,false))) $searchParam= 'country';
 			if($searchParam==JFilterOutput::stringURLSafe(jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,false))) $searchParam= 'region';
-			$vars[$searchParam] = JomresFilterString($segments[2]);
+			$vars[$searchParam] = JFilterOutput::stringURLSafe($segments[2]);
 			break;
 		case 'showTariffs':
 			$vars['task'] = "showTariffs";
@@ -206,12 +206,4 @@ function JomresParseRoute($segments)
 		}
 	return $vars;
 	}
-	
-function JomresFilterString($dirtyString)
-	{
-	$stripCharsArray=array(',','~','!','@','%','^','*','(',')','+','<','>',':',';','{','}','[',']','---','--','-','..,','.',' ');
-	$cleanStringForURL=strtolower(str_replace($stripCharsArray,' ',$dirtyString));
-	return $cleanStringForURL;
-	}
-
 ?>
