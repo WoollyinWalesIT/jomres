@@ -132,6 +132,8 @@ class j06000contactowner {
 			$MiniComponents->triggerEvent('03500'); // Optional, eg for affiliate schemes offering pay-per-lead
 			$subject = jr_gettext("_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT",_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT,false)." ".$output['GUEST_NAME']." ".jr_gettext("_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING",_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_REGARDING,false)." ".$current_property_details->property_name;
 			$output['THANKS'] =jr_gettext('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS',_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS);
+			$output['ENQUIRY'].='<br />Email: '.$output['GUEST_EMAIL'];
+			
 			$target_email = $current_property_details->property_email;
 			if ($jrConfig['contact_owner_emails_to_alternative'] == "1")
 				$target_email = $jrConfig['contact_owner_emails_to_alternative_email'] ;
