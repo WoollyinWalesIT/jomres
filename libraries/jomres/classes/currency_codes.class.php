@@ -421,7 +421,7 @@ class currency_codes
 			'LYD'=>array("pre"=>"ل.د","post"=>""),
 			'LTL'=>array("pre"=>"Lt","post"=>""),
 			'MOP'=>array("pre"=>"MOP$","post"=>""),
-			'MGA'=>array("pre"=>"FMG","post"=>""),
+			'MGA'=>array("pre"=>"Ar","post"=>""),
 			'MWK'=>array("pre"=>"MK","post"=>""),
 			'MYR'=>array("pre"=>"RM","post"=>""),
 			'MVR'=>array("pre"=>".ރ","post"=>""),
