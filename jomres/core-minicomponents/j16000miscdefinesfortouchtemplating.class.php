@@ -97,8 +97,8 @@ class j16000miscdefinesfortouchtemplating
 		$output[]		= jr_gettext('COMMON_HOME',COMMON_HOME);
 		$output[]		=jr_gettext('COMMON_NEW',COMMON_NEW);
 
-		$output[]		= jr_gettext('COMMON_FULLSCREENVIEW',COMMON_FULLSCREENVIEW);
-		$output[]		= jr_gettext('COMMON_NORMALVIEW',COMMON_NORMALVIEW);
+		//$output[]		= jr_gettext('COMMON_FULLSCREENVIEW',COMMON_FULLSCREENVIEW);
+		//$output[]		= jr_gettext('COMMON_NORMALVIEW',COMMON_NORMALVIEW);
 		
 		$output[]		= jr_gettext('COMMON_ACTION',COMMON_ACTION);
 		$output[]		= jr_gettext('COMMON_VIEW',COMMON_VIEW);
@@ -106,7 +106,7 @@ class j16000miscdefinesfortouchtemplating
 		$output[]		= jr_gettext('COMMON_EDIT',COMMON_EDIT);
 		$output[]		= jr_gettext('COMMON_COPY',COMMON_COPY);
 		
-		$output[]		= jr_gettext('_JOMRES_ALTERNATIVE_SEARCH_RESULT',_JOMRES_ALTERNATIVE_SEARCH_RESULT);
+		$output[]		= jr_gettext('_JOMRES_ALTERNATIVE_SEARCH_RESULTS',_JOMRES_ALTERNATIVE_SEARCH_RESULTS);
 		
 		foreach ($output as $o)
 			{
