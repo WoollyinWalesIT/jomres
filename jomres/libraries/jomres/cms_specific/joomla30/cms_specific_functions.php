@@ -491,3 +491,9 @@ function jomres_cmsspecific_parseByBots($str)
 	$output= $obj->text;
 	return $output;
 	}
+
+function jomres_cmsspecific_stringURLSafe($str)
+	{
+	$str=JFilterOutput::stringURLSafe($str);
+	return $str;
+	}

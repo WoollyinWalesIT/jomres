@@ -393,3 +393,9 @@ function jomres_cmsspecific_parseByBots($str)
 	$output= $obj->text;
 	return $output;
 	}
+
+// Effectively a dummy function. The J2.5 and J3 versions of this script use some Joomla code to filter urls, which installations of Jomres will utilise. We'll not be including that code in J1.5 installations as it's no longer formally supported, however we don't want existing installations to crash with a fatal error, so we have this dummy function here.
+function jomres_cmsspecific_stringURLSafe($str)
+	{
+	return $str;
+	}

@@ -430,12 +430,14 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($this->filter['region']) && $property_ors )
 			{
+			$this->filter['region']=jomres_cmsspecific_stringURLSafe($this->filter['region']);
 			$region_id = find_region_id($this->filter['region']);
 			if (!is_null($region_id))
 				$this->filter['region'] .= "' OR property_region = ".(int)$region_id."";
 			else
 				$this->filter['region'] .= "'";
 			
+			$this->filter['region']=str_replace("-","%",$this->filter['region']);
 			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']." $property_ors AND published='1' ORDER BY property_name ";
 			$this->resultBucket=doSelectSql($query);
 			}
@@ -456,6 +458,8 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
+			$filter=jomres_cmsspecific_stringURLSafe($filter);
+			$filter=str_replace("-","%",$filter);
 			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
 			$this->resultBucket=doSelectSql($query);
 			}
@@ -506,22 +510,22 @@ class jomSearch {
 			foreach ($words as $word)
 				{
 				$wheres2 = array();
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(`customtext`) LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(`customtext`)  LIKE '%$word%'";
-				$wheres2[] = "`constant` = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(`customtext`)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_NAME' AND LOWER(a.customtext) LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_STREET' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_TOWN' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_PROPERTY_POSTCODE' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_CHECKINTIMES' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AREAACTIVITIES' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DIRECTIONS' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_AIRPORTS' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_OTHERTRANSPORT' AND LOWER(a.customtext)  LIKE '%$word%'";
+				$wheres2[] = "a.constant = '_JOMRES_CUSTOMTEXT_ROOMTYPE_DISCLAIMERS' AND LOWER(a.customtext)  LIKE '%$word%'";
 				$wheres[] = implode( ' OR ', $wheres2 );
 				}
 			$where = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheres ) . ')';
-			$query="SELECT property_uid FROM #__jomres_custom_text ";
-			$query.=" WHERE ( $where ) ";
+			$query="SELECT a.property_uid FROM #__jomres_custom_text a, #__jomres_propertys b ";
+			$query.=" WHERE ( $where ) AND ( a.property_uid = b.propertys_uid AND b.published = '1' )";
 			$set2 = doSelectSql($query);
 			
 			$result = array();
