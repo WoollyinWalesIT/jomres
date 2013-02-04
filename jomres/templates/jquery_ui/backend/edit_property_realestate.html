@@ -8,7 +8,7 @@ span.required {color:red;}
 function OnChange(dropdown)
 	{	
 	var myindex	= dropdown.selectedIndex
-	var baseURL= "{JOMRES_SITEPAGE_URL}&amp;task=editProperty"
+	var baseURL= "{JOMRES_SITEPAGE_URL}&task=editProperty"
 	top.location.href = baseURL + "&propertyUid={PROPERTYUID}&selectedCountry="+dropdown.options[myindex].value;
 	return true;
 	}
