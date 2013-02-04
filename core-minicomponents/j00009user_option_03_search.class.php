@@ -41,7 +41,7 @@ class j00009user_option_03_search {
 		{
 		$output=array();
 		$output[]		=jr_gettext('_JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH', _JOMRES_CUSTOMCODE_JOMRESMAINMENU_SEARCH);
-		$output[]		=jr_gettext('_JOMRES_MAINMENU_SEARCH',_JOMRES_MAINMENU_SEARCH);
+		$output[]		=jr_gettext('_JOMRES_SEARCH_BUTTON',_JOMRES_SEARCH_BUTTON);
 		
 		
 
