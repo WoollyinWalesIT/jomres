@@ -494,6 +494,12 @@ function jomres_cmsspecific_parseByBots($str)
 
 function jomres_cmsspecific_stringURLSafe($str)
 	{
-	$str=JFilterOutput::stringURLSafe($str);
-	return $str;
+	$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
+	if (!strstr($scriptname,'install_jomres.php'))
+		{
+		$str=JFilterOutput::stringURLSafe($str);
+		return $str;
+		}
+	else
+		return null;
 	}
