@@ -3631,7 +3631,13 @@ function getPropertyAddressForPrint($propertyUid)
 		$property_street=jomres_decode($data->property_street);
 		$property_town=jomres_decode($data->property_town);
 		$property_postcode=jomres_decode($data->property_postcode);
-		$property_region=jomres_decode($data->property_region);
+		if (is_numeric($data->property_region))
+			{
+			$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+			$property_region=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$data->property_region,$jomres_regions->regions[$data->property_region]['regionname'],$editable,false);
+			}
+		else
+			$property_region=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
 		$property_country=jomres_decode($data->property_country);
 		$property_tel=$data->property_tel;
 		$property_fax=$data->property_fax;
