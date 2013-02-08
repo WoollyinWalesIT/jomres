@@ -299,7 +299,7 @@ class j00030search {
 				$output['HSTARS']					=jr_gettext('_JOMRES_SEARCH_STARS',_JOMRES_SEARCH_STARS,false);
 				}
 		
-			$output['JOMRES_SITEPAGE_URL_NOSEF'] = jomresURL(JOMRES_SITEPAGE_URL);
+			$output['SUBMITURL'] = jomresURL(JOMRES_SITEPAGE_URL);
 			$output['FORMNAME']=$jomresSearchFormname;
 
 
