@@ -299,9 +299,7 @@ class j00030search {
 				$output['HSTARS']					=jr_gettext('_JOMRES_SEARCH_STARS',_JOMRES_SEARCH_STARS,false);
 				}
 		
-			$output['LIVESITE']=get_showtime('live_site');
-			$nossl			  = str_replace("https://","http://",get_showtime('live_site'));
-			$output['LIVESITELINK'] =  $nossl;
+			$output['JOMRES_SITEPAGE_URL_NOSEF'] = jomresURL(JOMRES_SITEPAGE_URL);
 			$output['FORMNAME']=$jomresSearchFormname;
 
 
