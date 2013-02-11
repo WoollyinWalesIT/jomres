@@ -217,7 +217,7 @@ class j03100hotelconfirmationemail {
 			$text=$tmpl->getParsedTemplate();
 			if ($mrConfig['errorChecking'])  echo $text;
 			$result=false;
-			if (!jomresMailer( $useremail, $propertyName, $hotelemail, $subject, $text,$mode=1))
+			if (!jomresMailer( $useremail, $output['FIRSTNAME'].' '.$output['SURNAME'], $hotelemail, $subject, $text,$mode=1))
 				error_logging('Failure in sending confirmation email to hotel. Target address: '.$hotelemail.' Subject'.$subject);
 			}
 		else
