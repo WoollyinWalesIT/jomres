@@ -324,68 +324,107 @@ class j06005muviewbooking {
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
-		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM',_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM,FALSE));
-		$contentPanel->setcontent('<table>');
-		if ($roomBooking_black_booking=="1")
-			$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK);
-		else if ($roomBooking_reception_booking=="1")
-				$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION);
-			else
-				$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET);
-		$contentPanel->setcontent('
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL).'</td>
-				<td>'.$bookingType.'</td>
-			</tr>
-			<tr>
-				<td><hr></td>
-				<td><hr></td>
-			</tr>');
-		foreach ($rmInfo as $ri)
+		$rooms_tab_replacement = get_showtime('rooms_tab_replacement');
+		if (is_null($rooms_tab_replacement))
 			{
-			if ($ri['rInfo_room_disabled_access']=="1")
-				$disabledAccess=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
-			else
-				$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
+			$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM',_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM,FALSE));
+			$contentPanel->setcontent('<table>');
+			if ($roomBooking_black_booking=="1")
+				$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK);
+			else if ($roomBooking_reception_booking=="1")
+					$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION);
+				else
+					$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET);
 			$contentPanel->setcontent('
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME',_JOMRES_COM_MR_EB_ROOM_NAME).'</td>
-				<td>'.$ri['rInfo_name'].'</td>
-			</tr>
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER).'</td>
-				<td>'.$ri['rInfo_number'].'</td>
-			</tr>
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR',_JOMRES_COM_MR_EB_ROOM_FLOOR).'</td>
-				<td>'.$ri['rInfo_room_floor'].'</td>
-			</tr>
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_DISABLED',_JOMRES_COM_MR_EB_ROOM_DISABLED).'</td>
-				<td>'.$disabledAccess.'</td>
-			</tr>
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE',_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE).'</td>
-				<td>'.$ri['rInfo_max_people'].'</td>
-			</tr>
-			<tr>');
-			$rit=$ri['rInfo_type'];
-			$query="SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$rit."'";
-			$type=doSelectSql($query,1);
-			$contentPanel->setcontent('
-				<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV',_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV).'</td>
-				<td>'.$type .'</td>
-			</tr>
-			<tr>
-				<td><hr></td>
-				<td><hr></td>
-			</tr>');
+				<tr>
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL).'</td>
+					<td>'.$bookingType.'</td>
+				</tr>
+				<tr>
+					<td><hr></td>
+					<td><hr></td>
+				</tr>');
+			foreach ($rmInfo as $ri)
+				{
+				if ($ri['rInfo_room_disabled_access']=="1")
+					$disabledAccess=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
+				else
+					$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
+				$contentPanel->setcontent('
+				<tr>
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME',_JOMRES_COM_MR_EB_ROOM_NAME).'</td>
+					<td>'.$ri['rInfo_name'].'</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER).'</td>
+					<td>'.$ri['rInfo_number'].'</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR',_JOMRES_COM_MR_EB_ROOM_FLOOR).'</td>
+					<td>'.$ri['rInfo_room_floor'].'</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_DISABLED',_JOMRES_COM_MR_EB_ROOM_DISABLED).'</td>
+					<td>'.$disabledAccess.'</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE',_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE).'</td>
+					<td>'.$ri['rInfo_max_people'].'</td>
+				</tr>
+				<tr>');
+				$rit=$ri['rInfo_type'];
+				$query="SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$rit."'";
+				$type=doSelectSql($query,1);
+				$contentPanel->setcontent('
+					<td>'.jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV',_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV).'</td>
+					<td>'.$type .'</td>
+				</tr>
+				<tr>
+					<td><hr></td>
+					<td><hr></td>
+				</tr>');
+				}
+			$contentPanel->setcontent('</table>');
 			}
-		$contentPanel->setcontent('</table>');
+		else
+			{
+			$room_tab_name = jr_gettext('_JINTOUR_REGPROP_MANAGEMENTPROCESS_TOURS',_JINTOUR_REGPROP_MANAGEMENTPROCESS_TOURS,FALSE);
+			$room_template = $rooms_tab_replacement;
+			$contentPanel->startPanel($room_tab_name);
+			$contentPanel->setcontent($room_template);
+			}
+			
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
 		$otherServiceTotal=0.00;
+		
+		if (is_null($rooms_tab_replacement))
+			{
+			$nights = '
+			<tr>
+				<td>'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS).'</td>
+				<td>'.count(explode(",",$booking_date_range_string) ).'</td>
+			</tr>
+			';
+			$sps = '
+			<tr>
+				<td>'.jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON).'</td>
+				<td>'.output_price($single_person_suppliment).'</td>
+			</tr>
+			';
+			$customer_types ='
+			<tr>
+				<td><hr></td>
+				<td><hr></td>
+			</tr>
+			<tr>
+				<td>'.jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES',_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES).'</td>
+				<td>&nbsp;</td>
+			</tr>
+			';
+			}
+			
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT',_JOMRES_COM_MR_EDITBOOKING_TAB_PAYMENT,FALSE));
 		$contentPanel->setcontent('<table>
 			<tr>
@@ -400,34 +439,26 @@ class j06005muviewbooking {
 			<td>'.jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL',_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL).'</td>
 				<td>'.output_price($booking_contract_total).'</td>
 			</tr>
-			<tr>
-			<td>'.jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS).'</td>
-				<td>'.count(explode(",",$booking_date_range_string) ).'</td>
-			</tr>
+			'.$nights.'
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF).'</td>
 				<td>'.$booking_deposit_ref.'</td>
 			</tr>
-			<tr>
-				<td>'.jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON).'</td>
-				<td>'.output_price($single_person_suppliment).'</td>
-			</tr>
+			'.$sps.'
 			<tr>
 				<td>'.jr_gettext('_JOMRES_COM_FRONT_ROOMTAX',_JOMRES_COM_FRONT_ROOMTAX).'</td>
 				<td>'.output_price($tax).'</td>
 			</tr>
-			<tr>
-				<td><hr></td>
-				<td><hr></td>
-			</tr>
-			<tr>
-				<td>'.jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES',_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES).'</td>
-				<td>&nbsp;</td>
-			</tr>');
-		foreach ($guesttypeOutput as $type)
+
+			'.$customer_types
+			);
+		if (is_null($rooms_tab_replacement))
 			{
-			$contentPanel->setcontent('<tr><td>'.$type['title'].'</td>');
-			$contentPanel->setcontent('<td>'.$type['qty'].'&nbsp;'.'</td></tr>');
+			foreach ($guesttypeOutput as $type)
+				{
+				$contentPanel->setcontent('<tr><td>'.$type['title'].'</td>');
+				$contentPanel->setcontent('<td>'.$type['qty'].'&nbsp;'.'</td></tr>');
+				}
 			}
 		$contentPanel->setcontent('
 			<tr>
