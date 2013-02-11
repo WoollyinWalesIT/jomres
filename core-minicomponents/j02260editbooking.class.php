@@ -260,29 +260,33 @@ class j02260editbooking {
 					$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HAMENDBOOKING'],$submitOnClick=false,$submitTask="",$image);
 					add_menu_option ( '&task=amendBooking&no_html=1&contractUid='.$booking_contract_uid,null,$output['HAMENDBOOKING'],null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
 					}
-				if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
+				if (get_showtime('include_room_booking_functionality'))
 					{
-					if (!$bookedin)
+					if ($bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 						{
-						$output['HBOOKGUESTIN']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true) ;
-						$link=JOMRES_SITEPAGE_URL.'&task=bookGuestIn&contract_uid='.$booking_contract_uid;
-						$targetTask='bookGuestIn';
-						$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
-						$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTIN'],$submitOnClick=false,$submitTask="",$image);
-						add_menu_option ( '&task=bookGuestIn&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
-						$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelBooking&contract_uid=$booking_contract_uid"),'');
-						add_menu_option ( '&task=cancelBooking&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
-						}
-					else
-						{
-						$output['HBOOKGUESTOUT']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,$editable=false,$isLink=true) ;
-						$link=JOMRES_SITEPAGE_URL.'&task=bookGuestOut&dueDepart='.$booking_contract_uid;
-						$targetTask='bookGuestOut';
-						$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
-						$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTOUT'],$submitOnClick=false,$submitTask="",$image);
-						add_menu_option ( '&task=bookGuestOut&dueDepart='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
+						if (!$bookedin)
+							{
+							$output['HBOOKGUESTIN']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true) ;
+							$link=JOMRES_SITEPAGE_URL.'&task=bookGuestIn&contract_uid='.$booking_contract_uid;
+							$targetTask='bookGuestIn';
+							$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestIn.png';
+							$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTIN'],$submitOnClick=false,$submitTask="",$image);
+							add_menu_option ( '&task=bookGuestIn&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
+							$jrtb .= $jrtbar->toolbarItem('cancelbooking',jomresURL(JOMRES_SITEPAGE_URL."&task=cancelBooking&contract_uid=$booking_contract_uid"),'');
+							add_menu_option ( '&task=cancelBooking&contract_uid='.$booking_contract_uid,null, jr_gettext('_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING',_JOMRES_COM_MR_EB_GUEST_JOMRES_CANCELBOOKING,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
+							}
+						else
+							{
+							$output['HBOOKGUESTOUT']=jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTOUT,$editable=false,$isLink=true) ;
+							$link=JOMRES_SITEPAGE_URL.'&task=bookGuestOut&dueDepart='.$booking_contract_uid;
+							$targetTask='bookGuestOut';
+							$image='/jomres/images/jomresimages/'.$jrtbar->imageSize.'/BookGuestOut.png';
+							$jrtb .= $jrtbar->customToolbarItem($targetTask,$link,$output['HBOOKGUESTOUT'],$submitOnClick=false,$submitTask="",$image);
+							add_menu_option ( '&task=bookGuestOut&dueDepart='.$booking_contract_uid,null, jr_gettext('_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN',_JOMRES_FRONT_MR_MENU_ADMIN_BOOKAGUESTIN,$editable=false,$isLink=true),null, jr_gettext("_JOMRES_COM_MR_EDITBOOKINGTITLE",_JOMRES_COM_MR_EDITBOOKINGTITLE));
+							}
 						}
 					}
+				
 				if (!$booking_deposit_paid && $bookingData[0]->bookedout != "1" && $bookingData[0]->cancelled != "1")
 					{
 					$jrtb .= $jrtbar->toolbarItem('enterdeposit',jomresURL(JOMRES_SITEPAGE_URL."&task=editDeposit&contractUid=$booking_contract_uid"),'');
@@ -419,59 +423,68 @@ class j02260editbooking {
 		$pageoutput=array();
 		
 		
-		
-		if ($roomBooking_black_booking=="1")
-			$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK);
-		else if ($roomBooking_reception_booking=="1")
-				$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION);
-			else
-				$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET);
-		
-		$output['_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL);
-		$output['BOOKINGTYPE']=$bookingType;
-		$output['_JOMRES_COM_MR_ASSIGNUSER_USERNAME']=jr_gettext('_JOMRES_COM_MR_ASSIGNUSER_USERNAME',_JOMRES_COM_MR_ASSIGNUSER_USERNAME);
-		$output['BOOKERSUSERNAME']=$bookersUsername;
-		
-		$rows=array();
-		foreach ($rmInfo as $ri)
+		$rooms_tab_replacement = get_showtime('rooms_tab_replacement');
+		if (is_null($rooms_tab_replacement))
 			{
-			$r=array();
-			if ($ri['rInfo_room_disabled_access']=="1")
-				$disabledAccess=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
-			else
-				$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
+			if ($roomBooking_black_booking=="1")
+				$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_BLACK);
+			else if ($roomBooking_reception_booking=="1")
+					$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_RECEPTION);
+				else
+					$bookingType=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_INTERNET);
 			
-			$rit=$ri['rInfo_type'];
-			$query="SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$rit."'";
-			$type=doSelectSql($query,1);
+			$output['_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL',_JOMRES_COM_MR_EB_ROOM_BOOKINGTYPE_EXPL);
+			$output['BOOKINGTYPE']=$bookingType;
+			$output['_JOMRES_COM_MR_ASSIGNUSER_USERNAME']=jr_gettext('_JOMRES_COM_MR_ASSIGNUSER_USERNAME',_JOMRES_COM_MR_ASSIGNUSER_USERNAME);
+			$output['BOOKERSUSERNAME']=$bookersUsername;
 			
-			$r['_JOMRES_COM_MR_EB_ROOM_NAME']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME',_JOMRES_COM_MR_EB_ROOM_NAME);
-			$r['RINFO_NAME']=$ri['rInfo_name'];
-			$r['_JOMRES_COM_MR_LISTTARIFF_RATETITLE']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE',_JOMRES_COM_MR_LISTTARIFF_RATETITLE);
-			$r['RINFO_TARIFF']=$ri['rInfo_tariff'];
-		
-			$r['_JOMRES_COM_MR_EB_ROOM_NUMBER']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER);
-			$r['RINFO_NUMBER']=$ri['rInfo_number'];
-			$r['_JOMRES_COM_MR_EB_ROOM_FLOOR']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR',_JOMRES_COM_MR_EB_ROOM_FLOOR);
-			$r['RINFO_ROOM_FLOOR']=$ri['rInfo_room_floor'];
+			$rows=array();
+			foreach ($rmInfo as $ri)
+				{
+				$r=array();
+				if ($ri['rInfo_room_disabled_access']=="1")
+					$disabledAccess=jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES);
+				else
+					$disabledAccess=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
+				
+				$rit=$ri['rInfo_type'];
+				$query="SELECT room_class_abbv FROM #__jomres_room_classes WHERE room_classes_uid = '".(int)$rit."'";
+				$type=doSelectSql($query,1);
+				
+				$r['_JOMRES_COM_MR_EB_ROOM_NAME']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NAME',_JOMRES_COM_MR_EB_ROOM_NAME);
+				$r['RINFO_NAME']=$ri['rInfo_name'];
+				$r['_JOMRES_COM_MR_LISTTARIFF_RATETITLE']=jr_gettext('_JOMRES_COM_MR_LISTTARIFF_RATETITLE',_JOMRES_COM_MR_LISTTARIFF_RATETITLE);
+				$r['RINFO_TARIFF']=$ri['rInfo_tariff'];
+			
+				$r['_JOMRES_COM_MR_EB_ROOM_NUMBER']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_NUMBER',_JOMRES_COM_MR_EB_ROOM_NUMBER);
+				$r['RINFO_NUMBER']=$ri['rInfo_number'];
+				$r['_JOMRES_COM_MR_EB_ROOM_FLOOR']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_FLOOR',_JOMRES_COM_MR_EB_ROOM_FLOOR);
+				$r['RINFO_ROOM_FLOOR']=$ri['rInfo_room_floor'];
 
-			$r['_JOMRES_COM_MR_EB_ROOM_DISABLED']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_DISABLED',_JOMRES_COM_MR_EB_ROOM_DISABLED);
-			$r['DISABLEDACCESS']=$disabledAccess;
-			$r['_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE',_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE);
-			$r['RINFO_MAX_PEOPLE']=$ri['rInfo_max_people'];
+				$r['_JOMRES_COM_MR_EB_ROOM_DISABLED']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_DISABLED',_JOMRES_COM_MR_EB_ROOM_DISABLED);
+				$r['DISABLEDACCESS']=$disabledAccess;
+				$r['_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE',_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE);
+				$r['RINFO_MAX_PEOPLE']=$ri['rInfo_max_people'];
 
-			$r['_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV',_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV);
-			$r['TYPE']=$type;
-			$rows[]=$r;
+				$r['_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV']=jr_gettext('_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV',_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV);
+				$r['TYPE']=$type;
+				$rows[]=$r;
+				}
+
+			$pageoutput[]=$output;
+			$tmpl = new patTemplate();
+			$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+			$tmpl->readTemplatesFromInput( 'edit_booking_tabcontents_room.html');
+			$tmpl->addRows( 'pageoutput',$pageoutput);
+			$tmpl->addRows( 'rows',$rows);
+			$room_template = $tmpl->getParsedTemplate();
+			$room_tab_name = jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM',_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM,FALSE);
 			}
-
-		$pageoutput[]=$output;
-		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
-		$tmpl->readTemplatesFromInput( 'edit_booking_tabcontents_room.html');
-		$tmpl->addRows( 'pageoutput',$pageoutput);
-		$tmpl->addRows( 'rows',$rows);
-		$room_template = $tmpl->getParsedTemplate();
+		else
+			{
+			$room_tab_name = jr_gettext('_JINTOUR_REGPROP_MANAGEMENTPROCESS_TOURS',_JINTOUR_REGPROP_MANAGEMENTPROCESS_TOURS,FALSE);
+			$room_template = $rooms_tab_replacement;
+			}
 		
 		
 		$output=array();
@@ -479,13 +492,16 @@ class j02260editbooking {
 
 		$nights = $mrConfig['wholeday_booking'] == "1" ? jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY',_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS_WHOLEDAY,false,false): jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS', _JOMRES_COM_MR_QUICKRES_STEP4_STAYDAYS,false,false);
 		
-		$guest_type_rows  = array();
-		foreach ($guesttypeOutput as $type)
+		if (get_showtime('include_room_booking_functionality'))
 			{
-			$r=array();
-			$r['GUEST_TYPE_TITLE']=$type['title'];
-			$r['GUEST_TYPE_QTY']=$type['qty'];
-			$guest_type_rows[]=$r;
+			$guest_type_rows  = array();
+			foreach ($guesttypeOutput as $type)
+				{
+				$r=array();
+				$r['GUEST_TYPE_TITLE']=$type['title'];
+				$r['GUEST_TYPE_QTY']=$type['qty'];
+				$guest_type_rows[]=$r;
+				}
 			}
 		
 		$extras_rows = array();
@@ -564,15 +580,22 @@ class j02260editbooking {
 		$output['BOOKING_DEPOSIT_REQUIRED']= output_price($booking_deposit_required) ;
 		$output['_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL']= jr_gettext('_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL',_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL) ;
 		$output['BOOKING_CONTRACT_TOTAL']= output_price($booking_contract_total) ;
-		$output['HNIGHTS']= $nights ;
-		$output['NUM_NIGHTS']= count(explode(",",$booking_date_range_string) ) ;
+		
 		$output['_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF']= jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF',_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF) ;
 		$output['BOOKING_DEPOSIT_REF']= $booking_deposit_ref ;
-		$output['_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON']= jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON) ;
-		$output['SINGLE_PERSON_SUPPLIMENT']= output_price($single_person_suppliment) ;
+		
+		if (get_showtime('include_room_booking_functionality')) // Jintour property bookings will probably not want to show this information, so we won't add it
+			{
+			$output['HNIGHTS']= $nights ;
+			$output['NUM_NIGHTS']= count(explode(",",$booking_date_range_string) ) ;
+			$output['_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON']= jr_gettext('_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON',_JOMRES_COM_A_SUPPLIMENTS_SINGLEPERSON) ;
+			$output['SINGLE_PERSON_SUPPLIMENT']= output_price($single_person_suppliment) ;
+			$output['_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES']= jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES',_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES) ;
+			}
+		
 		$output['_JOMRES_COM_FRONT_ROOMTAX']= jr_gettext('_JOMRES_COM_FRONT_ROOMTAX',_JOMRES_COM_FRONT_ROOMTAX) ;
 		$output['TAX']= output_price($tax) ;
-		$output['_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES']= jr_gettext('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES',_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES) ;
+		
 		$output['_JOMRES_COM_MR_EXTRA_TITLE']= jr_gettext('_JOMRES_COM_MR_EXTRA_TITLE',_JOMRES_COM_MR_EXTRA_TITLE) ;
 		$output['_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE']= jr_gettext('_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE',_JOMRES_COM_MR_QUICKRES_STEP4_TOTALINVOICE) ;
 		$output['EXTRASOPTIONSVALUE']= output_price($extrasOptionsValue) ;
@@ -609,7 +632,7 @@ class j02260editbooking {
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
 
-		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM',_JOMRES_COM_MR_EDITBOOKING_TAB_ROOM,FALSE));
+		$contentPanel->startPanel($room_tab_name);
 		$contentPanel->setcontent($room_template);
 		$contentPanel->insertContent();
 		$contentPanel->endPanel();
