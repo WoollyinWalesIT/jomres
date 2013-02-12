@@ -15,7 +15,7 @@ defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
 
-$mrConfig['version']='7.2.9';
+$mrConfig['version']='7.2.10';
 
 $mrConfig['newTariffModels'] = "2";
 $mrConfig['singlePersonSuppliment']='0';
