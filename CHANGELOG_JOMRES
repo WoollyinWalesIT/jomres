@@ -1,3 +1,34 @@
+Jomres 7.2.10
+
+Added queries and html to templates to ensure that the property's fax number is captured in the edit property pages.
+Modified the booking engine to ensure prices are output in the price estimate according to the day/week/month settings.
+Improved the new tooltips popups by using a new css class. Also removed month picker dropdown if property is an SRP
+Fixed a bug where agent details weren't showing correctly.
+Added a new language string to language files.
+Improved dashboard tooltip classes.
+Modified some popup output to ensure that they obey the "Use Jomres Messaging" switch.
+Fixed some incorrect definition names in the reg link and search class menu options.
+Fixed a typo that prevented property type names being translated in list properties.
+Updated some missing strings for touch templating.
+Modified sent emails. Added the guest's email address to email text so that those users who's system setup will not allow guest emails to be set as the return email address will still see the guest's email in the body of the message, and use that.
+Updated the version of datatables used by Jomres.
+Changed the Madagascan currency symbol.
+Modified how chains of tariffs are found, fixes a case where tariff counts for days weren't done correctly internally. This part of the code is used to determine if the tariff map has dates for all days in the booking's date range.
+Tweaked the BS Cookie template.
+Changed how some routing is done, changed our code to ensure it uses the same code that Joomla uses (j2.5 & j3) to aid string comparisons. Improves searching on translated region names.
+Improved edit property templates, added inputs for fax numbers.
+Corrected a lang definition name used in touch templates.
+Removed Joomla 1.6 and 1.7 cms specific functionality. These versions of Joomla are no longer supported and Jomres will not run in them.
+Tweaked some new functions to ensure we check to see which script is running first. If we're running the installer some Joomla functions will not be available.
+Resolved an issue where regions were showing as region ids in confirmation letters.
+Changed how search form submission urls are generated, helping to make Jomres even more SEF friendly.
+Changed the template array index for the submission url to SUBMITURL
+Changed the confirmation email to the hotel to set the From name to be the guest's name, not the hotel's.
+Added some changes to allow Jintour to insert a tab into the edit booking page, for both managers views, and guest's views.
+
+
+
+
 Jomres 7.2.9
 
 Modified a previously removed switch. Put it back in, but changed how it works. Previously we'd removed the "Enable currency conversion" option, because for the shopping cart to work the conversion functionality ALWAYS has to be enabled. Some people didn't like this as they only wanted prices output in one currency, nnn.nn instead of nnn.nn (nnn.nn). To get around this user conflict we've re-added the switch, but changed what it effects. Instead of using it to switch off the conversion functionality internally, we'll leave the functionality enabled, instead we're simply using it to tell the "output_price" function to not output the price in the nnn.nn (nnn.nn) format.
