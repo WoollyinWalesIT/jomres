@@ -69,9 +69,23 @@ class j01009a_filterproperties
 			#########################################################################################
 			case '3':
 				$gor=genericOr($propertys_uids,'propertys_uid');
-				$query = "SELECT propertys_uid, property_region FROM #__jomres_propertys WHERE $gor ORDER BY property_region";
-				$uids = doSelectSql($query);
-				foreach ($uids as $u)
+				$query = "SELECT propertys_uid, property_region FROM #__jomres_propertys WHERE $gor ";
+				$regions = doSelectSql($query);
+				foreach ($regions as $r)
+					{
+					if (is_numeric($r->property_region))
+						{
+						$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+						$r->property_region=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$r->property_region,$jomres_regions->regions[$r->property_region]['regionname'],$editable,false);
+						}
+					else
+						$r->property_region=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$r->property_region,$editable,false);
+					}
+				usort($regions, function($a, $b)
+					{
+					return strcmp($a->property_region, $b->property_region);
+					});
+				foreach ($regions as $u)
 					$this->propertys_uids[] = $u->propertys_uid;
 			break;
 			#########################################################################################
