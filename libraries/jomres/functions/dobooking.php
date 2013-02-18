@@ -528,7 +528,12 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 
 	$output['PANELPOSITION']=(int)$jrConfig['booking_form_totalspanel_position'];
 	$output['BOOKINGFORMWIDTH']=(int)$jrConfig['booking_form_width'];
+	$output['EMAIL_ALREADY_INUSE']=jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE',_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE,false,false);
 	
+	$output['EMAIL_INPUT_DISABLED'] = '';
+	if ($thisJRUser->userIsRegistered && $output['EMAIL'] != '' && !$thisJRUser->userIsManager)
+		$output['EMAIL_INPUT_DISABLED'] = 'disabled';
+	 
 	$output['DEPOSIT_CLASS'] = '';
 	if (isset($output['DEPOSIT'])) // Need this to stop the booking form totals panel from showing a thick line if the deposit option is disabled
 		{

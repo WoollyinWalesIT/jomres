@@ -141,12 +141,14 @@ class dobooking
 		$this->rebuildIgnoreList		= array();
 		$this->currentField				="";
 		$this->singlePersonSupplimentCalculated = false;
+		$this->email_address_can_be_used = true;
 
 		$bookingDeets=$this->getTmpBookingData();
 
 		$this->setErrorLog( "Queried session data for existing booking" );
 		if (count($bookingDeets) >0 )
 			{
+			$this->email_address_can_be_used= $bookingDeets['email_address_can_be_used'];
 			$this->rr						= $bookingDeets['requestedRoom'];
 			$this->rate_pernight			= $bookingDeets['rate_pernight'];
 			$this->vt						= $bookingDeets['variancetypes'];
@@ -517,6 +519,9 @@ class dobooking
 
 		$tmpBookingHandler->tmpbooking["show_extras"]					= $this->cfg_showExtras;
 		$tmpBookingHandler->tmpbooking["property_currencycode"]			= $this->property_currencycode;
+		$tmpBookingHandler->tmpbooking["email_address_can_be_used"]		= $this->email_address_can_be_used;
+		
+		
 
 		$tmpBookingHandler->saveBookingData();
 		}
@@ -2969,7 +2974,7 @@ class dobooking
 	 */
 	function setGuest_email($value)
 		{
-		$this->email=$value;
+		$this->email=trim($value);
 		}
 
 	/**
@@ -5212,6 +5217,14 @@ class dobooking
 
 		// Let's see if the form is ready to be booked.
 		
+		if (count($this->requestedRoom) > 0 && $this->email != '' )
+			{
+			if (!$this->email_address_can_be_used)
+				{
+				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE',_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE,false,false)));
+				}
+			}
+		
 		if (get_showtime('include_room_booking_functionality'))
 			{
 			if ($this->mininterval == 1000) // Probably a tariff wasn't found
@@ -5219,8 +5232,8 @@ class dobooking
 				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_SRP_WEHAVENOVACANCIES',_JOMRES_SRP_WEHAVENOVACANCIES,false,false)));
 				$this->resetPricingOutput=true;
 				}
-			
-			if ($this->stayDays < $this->mininterval && !$amend_contract && $this->mininterval < 1000 )
+
+			if ($this->stayDays < $this->mininterval && !$amend_contract && $this->mininterval < 1000 && count($this->requestedRoom) ==0 )
 				{
 				$this->resetPricingOutput=true;
 				if ($mrConfig['wholeday_booking'] == "1")
@@ -5277,14 +5290,15 @@ class dobooking
 				$this->resetPricingOutput=true;
 				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_ARRIVALDATE_INVALID,false,false)));
 				}
-			if (!$this->checkDepartureDate($this->departureDate) )
-				{
-				$this->resetPricingOutput=true;
-				if ($mrConfig['wholeday_booking'] == "1")
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY,false,false)));
-				else
-					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID,false,false)));
-				}
+			
+			// if (!$this->checkDepartureDate($this->departureDate) )
+				// {
+				// $this->resetPricingOutput=true;
+				// if ($mrConfig['wholeday_booking'] == "1")
+					// $this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID_WHOLEDAY,false,false)));
+				// else
+					// $this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID',_JOMRES_BOOKINGFORM_MONITORING_DEPARTUREDATE_INVALID,false,false)));
+				// }
 
 			$numberOfGuestTypes=$this->getVariantsOfType("guesttype");
 			foreach ($numberOfGuestTypes as $r)
@@ -5356,6 +5370,8 @@ class dobooking
 				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_SELECT',_JOMRES_AJAXFORM_EXTRAS_SELECT,false,false)));
 			}
 
+		$this->setPopupMessage("");
+		
 		if ( $this->getMonitoringNumberOfMessages() == 0)
 			$this->ok_to_book				= true;
 		}
@@ -6880,5 +6896,79 @@ class dobooking
 				}
 			return self::$mktimes[$date];
 			}
+			
+	
+	// This function is designed to check with the Jomres system to see if the email address this user is trying to use can be used.
+	// Scenario :
+	// If the system is configured to create a new user when a booking is made, then naturally the first time an email address is used, a new user is created.
+	// If, then, somebody else comes along and tries to use the same email address a booking isn't correctly made.
+	// This function will ping the handlereq task, sending the email address. handlereq will look to see if the system is configured to create new users. If it is, and the current user isn't logged in
+	// but the email address is already in use by another user, then the booking form will not enable the submit button and the current user will be prompted to either log in, or use another email address.
+
+	// If the system is not configured to create new users then a new Joomla user isn't created anyway, in which case Jomres will simply return that it's ok to use the email address
+	// Managers can re-use email addresses
+	
+	function email_usage_check($email)
+		{
+		$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
+		$jrConfig=$siteConfig->get();
+		$thisJRUser=jomres_getSingleton('jr_user');
+		
+		if (trim($email)=='') // Presumably, we're at the start of the booking and the email address hasn't been filled yet
+			$this->email_address_can_be_used = true;
+		
+		if ($thisJRUser->userIsManager) // Managers can re-use email addresses of guests.
+			{
+			$this->email_address_can_be_used = true;
+			}
+		else
+			{
+			if ($jrConfig['useNewusers']=="0") // We don't create new users on bookings from non-registered bookers, so it's ok to re-use an email address.
+				{
+				$this->email_address_can_be_used = true;
+				}
+			else
+				{
+				// We're going to ensure that registered users can't use another registered user's email.
+				$all_users  = jomres_cmsspecific_getCMSUsers();
+				$email_found = false;
+				foreach ($all_users as $user_id=>$user)
+					{
+					if ($user['email']==$email)
+						{
+						$email_found = true;
+						}
+					}
+				
+				if ($email_found)
+					{
+					if ($thisJRUser->userIsRegistered)
+						{
+						$users_id = jomres_cmsspecific_getcurrentusers_id();
+						$stored_email = $all_users[$users_id]['email'];
+						if ($stored_email == $email)
+							{
+							$this->email_address_can_be_used = true;
+							}
+						else
+							{
+							$this->email_address_can_be_used = false;
+							}
+						}
+					else
+						{
+						$this->email_address_can_be_used = false;
+						}
+					}
+				else
+					{
+					$this->email_address_can_be_used = true;
+					}
+				}
+			}
+
+		unset($all_users);
+		return $this->email_address_can_be_used;
+		}
 	}
 ?>

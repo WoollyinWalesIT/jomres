@@ -52,7 +52,7 @@ $firstrun= getEscaped( $firstrun );
 
 $retText="";
 
-$doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email","property_uid_check");
+$doNotRebuildRoomsListOnTheseFieldsArray=array("addressstring","existingCustomers","firstname","surname","house","street","town","region","country","postcode","tel_landline","tel_mobile","email","property_uid_check","email_usage_check");
 $MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 $bkg =$MiniComponents->triggerEvent('05000'); // Create the booking object
 $isSingleRoomProperty=$bkg->getSingleRoomPropertyStatus();
@@ -70,6 +70,24 @@ if ($property_uid_check != $pid)
 ob_start();
 switch ($field)
 	{
+	case "email_usage_check":
+		$ajrq="ajrq:::email_usage_check";
+		$bkg->writeToLogfile("Checking that email address is ok to use");
+		$value=$bkg->sanitiseInput("string",$value);
+		$bkg->setGuest_email($value);
+		if ($value != '')
+			{
+			$bkg->email_usage_check($value);
+			if (!$bkg->email_address_can_be_used)
+				{
+				$bkg->setOkToBook(false);
+				echo "false";
+				}
+			else
+				echo "true";
+			}
+		exit;
+	break;
 	case "override":
 		$ajrq="ajrq:::override";
 		$value=$bkg->sanitiseInput("string",$value);
@@ -363,7 +381,7 @@ if (!in_array($field,$doNotRebuildRoomsListOnTheseFieldsArray) && isset($field) 
 	bookingformlistRooms($isSingleRoomProperty,$bkg);
 	}
 
-if ($field != "heartbeat" && $field != "show_log")
+if ($field != "heartbeat" && $field != "show_log" && $field != "email_usage_check")
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -378,8 +396,7 @@ if ($field != "heartbeat" && $field != "show_log")
 		$bkg->setOkToBook(false);
 		$bkg->writeToLogfile("Lastfield ".$lastfield);
 		$bkg->setErrorLog("Lastfield ".$lastfield);
-		
-		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
+
 		if (!in_array($lastfield,$doNotRebuildRoomsListOnTheseFieldsArray) )
 			{
 			$bkg->resetTotals();
@@ -458,10 +475,15 @@ if ($field != "heartbeat" && $field != "show_log")
 	$bkg->monitorBookingStatus();
 	if ($bkg->resetPricingOutput)
 		$bkg->outputZeroPrices();
+		
+	$disable_address = 'true';
+	if ($field == "email_usage_check" )
+		$disable_address = 'false';
+	
 	if ( $bkg->getOkToBook() )
 		{
 		echo $oktobookClass;
-		echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage(true);';
+		echo '; populateDiv("messages","'.$bkg->sanitiseOutput(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false)).'"); checkSelectRoomMessage(true,"'.$disable_address.'");';
 		echo $bkg->setGuestPopupMessage(jr_gettext('_JOMRES_FRONT_MR_REVIEWBOOKING',_JOMRES_FRONT_MR_REVIEWBOOKING,false,false));
 		echo "; enableSubmitButton(document.ajaxform.confirmbooking); "; // Added timeout because if a user clicks on this button too soon they'll get taken to the review booking before oktobook has been saved, therefore getting themselves redirected back to here
 		}
@@ -469,10 +491,16 @@ if ($field != "heartbeat" && $field != "show_log")
 		{
 		$messagesClass=$errorClass;
 		echo $messagesClass;
-		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage(false);';
+		echo '; populateDiv("messages","'.$bkg->sanitiseOutput($bkg->monitorGetFirstMessage() ).'"); checkSelectRoomMessage(false,"'.$disable_address.'");';
 		if ($firstrun != "1")
 			echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
+			
+		
+			echo ';jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);';
+			
 		echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
+		
+		
 		
 		}
 	if ($bkg->getErrorLog()!="" && $bkg->errorChecking() )
