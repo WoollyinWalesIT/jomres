@@ -3796,3 +3796,5 @@ jr_define("_JOMRES_REGION_TRANSLATION_SWITCH_TITLE","Tłumaczenie nazwy regionu"
 jr_define("_JOMRES_REGION_TRANSLATION_SWITCH_DESC","Jeśli używasz bardzo szybkiego serwera możesz wybrać wartość Nie. Ze względu na dużą liczbę nazw regionów, ich tłumaczenie zajmuje dużo pamięci, która może spowolnić uzyskiwanie wyników wyszukiwania.");
 
 jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Guest booked out.");
+
+jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE','Sorry, that email address is already in use. If this is your email address, please ensure you have logged in before attempting to book.');

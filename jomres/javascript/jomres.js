@@ -544,6 +544,9 @@ function getResponse_guest() {
 	url = ajaxurl+'&task=handlereq&property_uid_check='+form_property_uid+'';
 	result =checkaddressfields();
 
+
+	
+	
 	if (result){
 		var addressString= firstname+"~"+surname+"~"+house+"~"+street+"~"+town+"~"+region+"~"+postcode+"~"+country+"~"+tel_landline+"~"+tel_mobile+"~"+eemail;
 		jomresJquery.get(url,{ field: 'addressstring','value': addressString },
@@ -609,15 +612,15 @@ function buildAvailable(string)
 		}
 	};
 	
-function checkSelectRoomMessage(oktobook){
+function checkSelectRoomMessage(oktobook,disable_address){
 		if (!oktobook ){
 			if (rooms_list_enabled)
 				{
 				if (show_extras == true)
 					jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 0.1);
-				jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
+				if (disable_address)
+					jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 0.1);
 				jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 0.1);
-				//jomresJquery("#totals_container").delay(800).fadeTo("slow", 0.1);
 				jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 0.1);
 				}
 			}
@@ -626,7 +629,6 @@ function checkSelectRoomMessage(oktobook){
 				jomresJquery("#extrascontainer").delay(800).fadeTo("slow", 1);
 			jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);
 			jomresJquery("#bookingform_footer").delay(800).fadeTo("slow", 1);
-			//jomresJquery("#totals_container").delay(800).fadeTo("slow", 1);
 			jomresJquery("#accommodation_container").delay(800).fadeTo("slow", 1);
 			}
 	};
@@ -829,6 +831,8 @@ function checkaddressfields(){
 		setInputFillToErrorColour("#tel_mobile");
 		pass = false;
 		}
+	
+
 	if (validation_email && eemail.length == 0 ){
 		setInputFillToErrorColour("#eemail");
 		pass = false;

@@ -359,13 +359,13 @@ function jomres_cmsspecific_getSearchModuleParameters($moduleName="")
 function jomres_cmsspecific_getCMSUsers()
 	{
 	$users=array();
-	$query="SELECT id,name,username FROM #__users";
+	$query="SELECT id,name,username,email FROM #__users";
 	$userList = doSelectSql($query);
 	if (count($userList)>0)
 		{
 		foreach ($userList as $u)
 			{
-			$users[$u->id]=array("id"=>$u->id,"username"=>$u->username);
+			$users[$u->id]=array("id"=>$u->id,"username"=>$u->username,"email"=>$u->email);
 			}
 		}
 	return $users;
