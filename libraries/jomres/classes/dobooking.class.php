@@ -5219,6 +5219,7 @@ class dobooking
 		
 		if (count($this->requestedRoom) > 0 && $this->email != '' )
 			{
+			$this->email_usage_check($this->email);
 			if (!$this->email_address_can_be_used)
 				{
 				$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE',_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE,false,false)));
