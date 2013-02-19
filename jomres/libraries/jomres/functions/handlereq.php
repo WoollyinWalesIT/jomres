@@ -80,13 +80,12 @@ switch ($field)
 			$bkg->email_usage_check($value);
 			if (!$bkg->email_address_can_be_used)
 				{
-				$bkg->setOkToBook(false);
+				//$bkg->setOkToBook(false);
 				echo "false";
 				}
 			else
 				echo "true";
 			}
-		exit;
 	break;
 	case "override":
 		$ajrq="ajrq:::override";
