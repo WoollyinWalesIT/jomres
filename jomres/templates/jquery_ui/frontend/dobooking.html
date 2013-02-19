@@ -5,6 +5,20 @@
   position: relative;
 }
 /*body{font-size:12px !important;}*/
+label.valid {
+    width: 24px;
+    height: 24px;
+    background: url("{LIVE_SITE}/jomres/images/valid.png") center center no-repeat;
+    display: inline-block;
+    text-indent: -9999px;
+    }
+
+label.error {
+    font-weight: bold;
+    color: red;
+    padding: 2px 8px;
+    margin-top: 2px;
+    }
 </style>
 <script type="text/javascript">
 <!--
@@ -122,12 +136,12 @@ jomresJquery(document).ready(function() {
 	  },
 	  
 	highlight: function(label) {
-		jomresJquery(label).closest('.control-group').addClass('error');
+		jomresJquery(label).closest('.inputbox').addClass('error');
 		},
 	success: function(label) {
 		label
 		.text('OK!').addClass('valid')
-		.closest('.control-group').addClass('success');
+		.closest('.inputbox').addClass('success');
 		}
 	});
 	
