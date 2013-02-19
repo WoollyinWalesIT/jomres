@@ -241,7 +241,7 @@ class j02190confirmationform {
 		$pageoutput[]=$output;
 
 		$tmpl = new patTemplate();
-		$tmpl->setRoot( JOMRES_TEMPLATEPATH_BACKEND );
+		$tmpl->setRoot( JOMRES_TEMPLATEPATH_FRONTEND );
 		$tmpl->readTemplatesFromInput( 'confirmation_letter.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'rows',$rows);
