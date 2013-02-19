@@ -37,6 +37,10 @@ class jomres_obsolete_file_handling
 		$this->dir_templates_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'backend'.JRDS;
 		$this->dir_templates_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'administrator'.JRDS;
 		
+		$this->dir_templates_jqueryui_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_jqueryui_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
+		$this->dir_templates_jqueryui_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator'.JRDS;
+		
 		$this->dir_templates_bootstrap_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
 		$this->dir_templates_bootstrap_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
 		$this->dir_templates_bootstrap_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator'.JRDS;
@@ -727,7 +731,8 @@ class jomres_obsolete_file_handling
 		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'vader'.JRDS.'jquery-ui-1.8rc3.custom.css');
 		$this->add_obs_file($this->dir_css.JRDS.'jquery_ui_themes'.JRDS.'jomres'.JRDS.'jquery-ui-1.8.16.custom.css');
 		
-		
+		$this->add_obs_file($this->dir_templates_jqueryui_backend.JRDS.'confirmation_letter.html');
+		$this->add_obs_file($this->dir_templates_bootstrap_backend.JRDS.'confirmation_letter.html');
 		}
 	
 	function add_obs_file($path_and_file)
