@@ -152,7 +152,7 @@ define("JOMRES_SITEPAGE_URL_RAW",get_showtime('live_site')."/index.php?option=co
 
 */
 
-define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&lang=".$lang.$tmpl);
+define("JOMRES_SITEPAGE_URL_NOSEF",get_showtime('live_site')."/index.php?option=com_jomres&Itemid=".$jomresItemid."&lang=".$lang.$tmpl);
 define("JOMRES_SITEPAGE_URL_AJAX",get_showtime('live_site').'/'."index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1&Itemid=".$jomresItemid."&lang=".$lang);
 define("JOMRES_SITEPAGE_URL_ADMIN",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres".$tmpl.$lang_param);
 define("JOMRES_SITEPAGE_URL_ADMIN_AJAX",get_showtime('live_site').'/'.JOMRES_ADMINISTRATORDIRECTORY."/index.php?option=com_jomres&tmpl=component&format=raw&jrajax=1".$lang_param);
