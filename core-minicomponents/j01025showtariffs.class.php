@@ -107,16 +107,23 @@ class j01025showtariffs {
 			 		{
 					$r=array();
 					
-					if ($tariff->rate_title != $previous_tariff_title && $roomClassAbbv != $previous_room_type)
+					if ($mrConfig['tariffmode']=="2" || $mrConfig['tariffmode'] == "1")
 						{
-						if ($mrConfig['tariffmode']=="2")
+						if ($tariff->rate_title != $previous_tariff_title) 
+							{
 							$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[$tariff->rates_uid],stripslashes($tariff->rate_title) );
-						else
-							$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
-						
+							$r['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
+							$r['ROOMCLASSABBV']=$roomClassAbbv;
+							$r['ROOMCLASSFULLDESC']=$roomClassFullDesc;
+							$r['MINPEOPLE']=$tariff->minpeople;
+							$r['MAXPEOPLE']=$tariff->maxpeople;
+							}
+						}
+					else
+						{
+						$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
 						$r['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
 						$r['ROOMCLASSABBV']=$roomClassAbbv;
-						$r['ROOMCLASSFULLDESC']=$roomClassFullDesc;
 						$r['MINPEOPLE']=$tariff->minpeople;
 						$r['MAXPEOPLE']=$tariff->maxpeople;
 						}
