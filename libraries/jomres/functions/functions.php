@@ -295,10 +295,16 @@ function get_property_price_for_display_in_lists($property_uid)
 		{
 		$pricesFromArray=array();
 		$searchDate = date("Y/m/d");
+		$tmpBookingHandler =jomres_singleton_abstract::getInstance('jomres_temp_booking_handler');
 		if (isset($_REQUEST['arrivalDate']) && $_REQUEST['arrivalDate'] != "" )
 			{
 			$searchDate	=	JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
 			}
+		elseif (isset ($tmpBookingHandler->tmpsearch_data['jomsearch_availability']) )
+			{
+			$searchDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
+			}
+		
 		$query = "SELECT property_uid, roomrateperday FROM #__jomres_rates WHERE property_uid = ".(int)$property_uid." AND DATE_FORMAT('".$searchDate."', '%Y/%m/%d') BETWEEN DATE_FORMAT(`validfrom`, '%Y/%m/%d') AND DATE_FORMAT(`validto`, '%Y/%m/%d') AND roomrateperday > '0' ";
 		$tariffList = doSelectSql($query);
 		if (count($tariffList) > 0)
