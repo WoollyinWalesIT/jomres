@@ -86,7 +86,7 @@ class j06000module_popup
 
 			if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."uploadedimages".JRDS.$property_uid."_property_".$property_uid.".jpg") )
 				{
-				$output['PROPERTY_IMAGE_LARGE']= JOMRES_IMAGELOCATION_RELPATH.$property_image;
+				$output['PROPERTY_IMAGE_LARGE']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid.".jpg";
 				$output['PROPERTY_IMAGE_MEDIUM']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail_med.jpg";
 				$output['PROPERTY_IMAGE_SMALL']= JOMRES_IMAGELOCATION_RELPATH.$property_uid."_property_".$property_uid."_thumbnail.jpg";
 				}
