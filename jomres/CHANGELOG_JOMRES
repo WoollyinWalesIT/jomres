@@ -1,3 +1,19 @@
+Jomres 7.2.11
+
+Added new functionality to disallow re-use of email addresses if the system is configured to create new users when bookings are made.
+
+Improved how some tariff type filtering is done in the booking form.
+Filter properties script updated to work with translatable region names.
+Tweaks to guest list invoices minicomponent.
+Prettified validation in jq ui booking templates.
+Updated the version of jquery validate we use
+Added itemid to sitepage no sef url.
+Backend confirmation letter moved from backend to frontend, so that the Template Editing feature can be used to style it.
+Modified show tariffs 01025 script. Allows us to differentiate between Normal and Micromanage modes to tweak the layout slightly.
+Fixed the path to the large image in the module popup script.
+Tweaked the get_property_price_for_display_in_lists function so that it also checks the temp booking details variable for an arrival date. Ensures that prices shown in properties loaded by live scrolling feature show the correct price based on the date of the previous search.
+
+
 Jomres 7.2.10
 
 Added queries and html to templates to ensure that the property's fax number is captured in the edit property pages.
