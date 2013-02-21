@@ -197,7 +197,10 @@ class j01010listpropertys {
 
 					// Tariffs
 					// Believe this section is depreciated, however we'll leave it in-situ for now, as people may be using it. Will leave it for some months until we can be reasonably confident that people are now using the get_property_price_for_display_in_lists function instead.
-					$pricesFromArray=array();
+					
+					// Disabled for 7.2.11 on 21/2/2013
+					
+/* 					$pricesFromArray=array();
 					$maxPeopleArray = array();
 					$searchDate = date("Y/m/d");
 					if (isset($_REQUEST['arrivalDate']))
@@ -221,7 +224,7 @@ class j01010listpropertys {
 							elseif ($maxPeopleArray[$t->property_uid] < $t->maxpeople)
 								$maxPeopleArray[$t->property_uid]=$t->maxpeople;
 							}
-						}
+						} */
 
 					// Room types
 					$rtArray=array();
