@@ -37,9 +37,9 @@ class jomres_obsolete_file_handling
 		$this->dir_templates_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'backend'.JRDS;
 		$this->dir_templates_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jomres'.JRDS.'administrator'.JRDS;
 		
-		$this->dir_templates_jqueryui_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
-		$this->dir_templates_jqueryui_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
-		$this->dir_templates_jqueryui_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'administrator'.JRDS;
+		$this->dir_templates_jqueryui_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'frontend'.JRDS;
+		$this->dir_templates_jqueryui_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'backend'.JRDS;
+		$this->dir_templates_jqueryui_administrator =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'jquery_ui'.JRDS.'administrator'.JRDS;
 		
 		$this->dir_templates_bootstrap_frontend =  JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'frontend'.JRDS;
 		$this->dir_templates_bootstrap_backend = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'templates'.JRDS.'bootstrap'.JRDS.'backend'.JRDS;
