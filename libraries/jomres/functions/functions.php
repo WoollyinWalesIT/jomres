@@ -300,7 +300,7 @@ function get_property_price_for_display_in_lists($property_uid)
 			{
 			$searchDate	=	JSCalConvertInputDates(jomresGetParam( $_REQUEST, 'arrivalDate', "" ));
 			}
-		elseif (isset ($tmpBookingHandler->tmpsearch_data['jomsearch_availability']) )
+		elseif (isset ($tmpBookingHandler->tmpsearch_data) && trim($tmpBookingHandler->tmpsearch_data) != '' )
 			{
 			$searchDate	=$tmpBookingHandler->tmpsearch_data['jomsearch_availability'];
 			}
