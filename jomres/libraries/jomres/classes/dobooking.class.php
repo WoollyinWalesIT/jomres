@@ -2654,7 +2654,10 @@ class dobooking
 				$num_period = $ratepernight;
 				break;
 			case "W":
-				$num_period = $ratepernight * 7;
+				if ($this->cfg_tariffmode=="1" && $this->cfg_tariffChargesStoredWeeklyYesNo=="1")
+				 $num_period=$ratepernight;
+				else
+				 $num_period=$ratepernight * 7;
 				break;
 			case "M":
 				$month = date("m",$this->unixArrivalDate);
@@ -5124,7 +5127,10 @@ class dobooking
 				$rpn=$rpn;
 				break;
 			case "W":
-				$rpn=$rpn * 7;
+				if ($this->cfg_tariffmode=="1" && $this->cfg_tariffChargesStoredWeeklyYesNo=="1")
+				 $rpn=$rpn;
+				else
+				 $rpn=$rpn * 7;
 				break;
 			case "M":
 				$month = date("m",$this->unixArrivalDate);
