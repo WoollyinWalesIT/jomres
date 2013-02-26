@@ -61,6 +61,17 @@ if (!strstr($scriptname,'install_jomres.php'))
 		
 		$jomresConfig_live_site="http://".implode("/",$_URI);
 		}
+	
+	$thisSvrName=$_SERVER['SERVER_NAME'];
+	$dmn=str_replace("http://","",$thisSvrName);
+	if (stristr ($dmn,".xn--",$dmn)) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server
+		{
+		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php');
+		$IDN = new idna_convert();
+		$decoded = $IDN->decode($dmn);
+		$new = str_replace($dmn,$decoded,$jomresConfig_live_site);
+		$jomresConfig_live_site=$new;
+		}
 	}
 	
 $jomresConfig_live_site=str_replace("/administrator/","",$jomresConfig_live_site);
