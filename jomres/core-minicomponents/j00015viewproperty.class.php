@@ -148,7 +148,7 @@ class j00015viewproperty
 				}
 			else
 				{
-				$roomtypes[]=array('ROOM_TYPE'=>$current_property_details->property_type);
+				$roomtypes[]=array('ROOM_TYPE'=>$current_property_details->property_type_title);
 				}
 
 
