@@ -102,24 +102,25 @@ class j00015viewproperty
 
 			$rtRows=array();
 			$roomtypes=array();
-			//if ($mrConfig['singleRoomProperty'] != "1")
-			//	{
-				
-				$RoomClassAbbvs = array();
-				$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
-				$roomsClassList =doSelectSql($query);
-				foreach ($roomsClassList as $roomClass)
-					{
-					$RoomClassAbbvs[(int)$roomClass->room_classes_uid] = array( 
-						'abbv'=>
-						jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false),
-						'desc'=>
-						jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_full_desc),false,false),
-						'image'=>
-						$roomClass->image
-						);
-					}
-				$property['HRTYPES']	=	"";
+
+			$RoomClassAbbvs = array();
+			$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,image FROM #__jomres_room_classes";
+			$roomsClassList =doSelectSql($query);
+			foreach ($roomsClassList as $roomClass)
+				{
+				$RoomClassAbbvs[(int)$roomClass->room_classes_uid] = array( 
+					'abbv'=>
+					jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_abbv),false,false),
+					'desc'=>
+					jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_DESC'.(int)$roomClass->room_classes_uid,stripslashes($roomClass->room_class_full_desc),false,false),
+					'image'=>
+					$roomClass->image
+					);
+				}
+			
+			$property['HRTYPES']	=	"";
+			if (!get_showtime('is_jintour_property'))
+				{
 				$query="SELECT room_classes_uid FROM #__jomres_rooms WHERE propertys_uid = '".(int)$property_uid."' ";
 				$rt= doSelectSql($query);
 				if (count($rt)>0)
@@ -144,7 +145,12 @@ class j00015viewproperty
 							}
 						}
 					}
-			//	}
+				}
+			else
+				{
+				$roomtypes[]=array('ROOM_TYPE'=>$current_property_details->property_type);
+				}
+
 
 			if ($mrConfig['showSlideshowInline']=="1" && ($jrConfig['slideshowLocation'] == 1 || $jrConfig['slideshowLocation'] == 3 ))
 				{
