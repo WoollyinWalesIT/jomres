@@ -230,6 +230,8 @@ class basic_property_details
 				$this->published				=(int)$data->published;
 				$this->ptype_id					=(int)$data->ptype_id;
 				$this->property_type			=$this->all_property_types[(int)$data->ptype_id];
+				$this->property_type_title		=$this->all_property_type_titles[(int)$data->ptype_id];
+
 
 				$this->stars					=(int)$data->stars;
 				$this->lat						=$data->lat;
@@ -413,6 +415,7 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['published'] 						=(int)$data->published;
 				$this->multi_query_result[$data->propertys_uid]['ptype_id'] 						=(int)$data->ptype_id;
 				$this->multi_query_result[$data->propertys_uid]['property_type']					=$this->all_property_types[(int)$data->ptype_id];
+				$this->multi_query_result[$data->propertys_uid]['property_type_title']				=$this->all_property_type_titles[(int)$data->ptype_id];
 				
 				$this->multi_query_result[$data->propertys_uid]['stars'] 							=(int)$data->stars;
 				$this->multi_query_result[$data->propertys_uid]['lat']								=$data->lat;
@@ -508,13 +511,15 @@ class basic_property_details
 	private function get_all_property_types()
 		{
 		$this->all_property_types = array();
-		$query="SELECT id,ptype_desc FROM #__jomres_ptypes";
+		$this->all_property_type_titles = array();
+		$query="SELECT id,ptype,ptype_desc FROM #__jomres_ptypes";
 		$propertytypes =doSelectSql($query);
 		if (count($propertytypes)>0)
 			{
 			foreach ($propertytypes as $pt)
 				{
 				$this->all_property_types[$pt->id]=$pt->ptype_desc;
+				$this->all_property_type_titles[$pt->id]=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int)$pt->id,$pt->ptype,false,false);
 				}
 			}
 		}
