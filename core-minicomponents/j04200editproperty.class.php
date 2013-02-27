@@ -282,8 +282,9 @@ class j04200editproperty {
 		$output['HAIRPORTS']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_AIRPORTS);
 		$output['HOTHERTRANSPORT']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_OTHERTRANSPORT);
 		$output['HPOLICIESDISCLAIMERS']=jr_gettext('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS',_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POLICIESDISCLAIMERS);
-
-		$output['CHANGECOUNTRYWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY',_JOMRES_EDITPROPERTY_SELECTCOUNTRY,false);
+		
+		if ($jrConfig['limit_property_country'] == "0")
+			$change_country_warning =array('CHANGECOUNTRYWARNING'=>jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY',_JOMRES_EDITPROPERTY_SELECTCOUNTRY,false));
 		$output['SAVEBEFOREUPLOADWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD',_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD,false);
 		$output['_JOMRES_METADESCRIPTION']=jr_gettext('_JOMRES_METADESCRIPTION',_JOMRES_METADESCRIPTION,false);
 		$output['_JOMRES_METATITLE']=jr_gettext('_JOMRES_METATITLE',_JOMRES_METATITLE,false);
@@ -300,15 +301,6 @@ class j04200editproperty {
 		$jrtb .= $jrtbar->toolbarItem('cancel',jomresURL(JOMRES_SITEPAGE_URL."&task=propertyadmin"),'');
 		$usersProperties=$thisJRUser->authorisedPropertyDetails;
 
-		//if (!function_exists('botJRHP') && !JOMRES_SINGLEPROPERTY && count($usersProperties) > 1)
-		//	$jrtb .= $jrtbar->toolbarItem('delete',jomresURL(JOMRES_SITEPAGE_URL."&task=deleteProperty".jomresURLToken().""),'');
-		//else
-		//	{
-		//	if (JOMRES_GUESTLIMIT==50)
-		//		$output['DELETEWARNING']=_JOMRES_EDITPROPERTY_CONNOTDELETE1." "._JOMRES_EDITPROPERTY_CONNOTDELETE2;
-		//	else
-		//		$output['DELETEWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_CONNOTDELETE1',_JOMRES_EDITPROPERTY_CONNOTDELETE1);
-		//	}
 		$jrtb .= $jrtbar->endTable();
 		$output['JOMRESTOOLBAR']=$jrtb;
 
@@ -340,6 +332,8 @@ class j04200editproperty {
 			$tmpl->readTemplatesFromInput( 'edit_property.html');
 		$tmpl->addRows( 'pageoutput',$pageoutput);
 		$tmpl->addRows( 'delimg_rows',$delimg_rows);
+		$tmpl->addRows( 'change_country_warning',$change_country_warning);
+		
 		if ($jrConfig['useGlobalPFeatures']=="1")
 			$tmpl->addRows( 'globalPfeatures',$globalPfeatures);
 		$tmpl->displayParsedTemplate();

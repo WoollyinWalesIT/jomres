@@ -15,7 +15,9 @@ function OnChange(dropdown)
 //-->
 </script>
 <h2>{PAGETITLE}</h2>
+<patTemplate:tmpl name="change_country_warning"  type="simpleCondition" requiredVars="changecountrywarning"
 <p class="ui-state-highlight">{CHANGECOUNTRYWARNING}</p>
+</patTemplate:tmpl>
 <p>{DELETEWARNING}</p>
 <form action="{JOMRES_SITEPAGE_URL}" method="post" name="adminForm">
 {JOMRESTOOLBAR}
