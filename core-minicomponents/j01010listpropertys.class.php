@@ -135,8 +135,13 @@ class j01010listpropertys {
 			jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/',"jquery.livequery.js");
 
 			if ($jrConfig['is_single_property_installation']=="1")
-				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0]), "" );
-
+				{
+				$arrival_clause = '';
+				if (isset($_REQUEST['arrivalDate']))
+					$arrival_clause = "&arrivalDate=".$_REQUEST['arrivalDate'];
+				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=dobooking&selectedProperty=".$propertys_uids[0].$arrival_clause), "" );
+				}
+			
 			if (count($propertys_uids) >0)
 				{
 				$header_output = array();
