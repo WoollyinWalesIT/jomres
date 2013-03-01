@@ -61,8 +61,8 @@ class j06002my_commission_invoices
 				}
 			
 
-			if (count($invoices)>0)
-				{
+			//if (count($invoices)>0)
+				//{
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
@@ -204,7 +204,7 @@ class j06002my_commission_invoices
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->addRows( 'rows',$rows);
 				$tmpl->displayParsedTemplate();
-				}
+				//}
 			}
 		}
 	
