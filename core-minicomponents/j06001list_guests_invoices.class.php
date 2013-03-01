@@ -51,8 +51,8 @@ class j06001list_guests_invoices
 
 			$invoices=invoices_getinvoicesfor_jomresuserid_byproperty_uid($id,$stat,$defaultProperty);
 			
-			if (count($invoices)>0)
-				{
+			//if (count($invoices)>0)
+				//{
 				$output=array();
 				$pageoutput=array();
 				$rows=array();
@@ -125,6 +125,8 @@ class j06001list_guests_invoices
 					$r['CURRENCYCODE']	=$invoice['currencycode'];
 
 					$r['EDITLINK']='<a href="'.JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'].'">'.$infoIcon.'</a>';
+					$r['EDIT_TEXT']=jr_gettext('COMMON_VIEW',COMMON_VIEW,false);
+					$r['EDIT_URL']=JOMRES_SITEPAGE_URL.'&task=view_invoice&id='.$invoice['id'];
 					$rows[]=$r;
 					}
 				$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
@@ -137,7 +139,7 @@ class j06001list_guests_invoices
 				$tmpl->addRows( 'pageoutput',$pageoutput);
 				$tmpl->addRows( 'rows',$rows);
 				$tmpl->displayParsedTemplate();
-				}
+				//}
 			}
 		}
 	
