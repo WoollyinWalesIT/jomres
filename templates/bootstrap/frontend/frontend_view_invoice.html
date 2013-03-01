@@ -1,11 +1,11 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
 <div class="well">
 	<patTemplate:tmpl name="viewbooking_link" type="simpleCondition" requiredVars="viewbooking_text">
-		<a href="{VIEWBOOKING_LINK}" class="btn" target="_blank"><i class="icon-info-sign icon-white"></i> {VIEWBOOKING_TEXT}</a>
+		<a href="{VIEWBOOKING_LINK}" class="btn"><i class="icon-edit icon-white"></i> {VIEWBOOKING_TEXT}</a>
 	</patTemplate:tmpl>
 		<a  href="{PRINTLINK}" class="btn" target="_blank"><i class="icon-print"></i> {PRINTTEXT}</a>
 	<patTemplate:tmpl name="markaspaid_link" type="simpleCondition" requiredVars="markaspaid_text">
-		<a href="{MARKASPAID_LINK}" class="btn" target="_blank"><i class="icon-ok"></i> {MARKASPAID_TEXT}</a>
+		<a href="{MARKASPAID_LINK}" class="btn"><i class="icon-ok"></i> {MARKASPAID_TEXT}</a>
 	</patTemplate:tmpl>
 </div>
 <h2 class="page-header">{HINVOICENO}: {ID}</h2>
