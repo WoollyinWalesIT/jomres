@@ -168,7 +168,7 @@ class jomres_toolbar_bootstrap
 		if (strpos($image,'CopyItem.png'))
 			$icon = 'icon-share';
 		if (strpos($image,'ViewArchive.png'))
-			$icon = 'icon-folder-close';
+			$icon = 'icon-archive';
 		
 		//var_dump($image." ".$icon);
 		
