@@ -81,10 +81,14 @@ class j01009a_filterproperties
 					else
 						$r->property_region=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$r->property_region,$editable,false);
 					}
-				usort($regions, function($a, $b)
+				
+				function cmp($a, $b)
 					{
 					return strcmp($a->property_region, $b->property_region);
-					});
+					}
+					
+				usort($regions, "cmp");
+				
 				foreach ($regions as $u)
 					$this->propertys_uids[] = $u->propertys_uid;
 			break;
