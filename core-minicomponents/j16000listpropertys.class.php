@@ -45,7 +45,14 @@ class j16000listpropertys
 		$jomresPropertyList = array();
 		foreach ($result as $r)
 			{
-			$jomresPropertyList[$r->propertys_uid] = array("id"=>$r->propertys_uid,"property_street"=>$r->property_street,"property_town"=>$r->property_town,"property_region"=>$r->property_region,"property_country"=>$r->property_country,"property_postcode"=>$r->property_postcode);
+			if (is_numeric($r->property_region))
+				{
+				$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+				$property_region=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$r->property_region,$jomres_regions->regions[$r->property_region]['regionname'],$editable,false);
+				}
+			else
+				$property_region=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$r->property_region,$r->property_region,$editable,false);
+			$jomresPropertyList[$r->propertys_uid] = array("id"=>$r->propertys_uid,"property_street"=>$r->property_street,"property_town"=>$r->property_town,"property_region"=>$property_region,"property_country"=>$r->property_country,"property_postcode"=>$r->property_postcode);
 			}
 		
 		$portalPropertyList=$propertyFunctions->getAllPortalProperties();
