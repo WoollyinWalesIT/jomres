@@ -31,11 +31,18 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 			{
 			foreach ($result as $r)
 				{
+				if (is_numeric($r->property_region))
+					{
+					$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+					$property_region=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$r->property_region,$jomres_regions->regions[$r->property_region]['regionname'],$editable,false);
+					}
+				else
+					$property_region=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$r->property_region,$r->property_region,$editable,false);
 				$retResult[$r->propertys_uid]['id']=$r->propertys_uid ;
 				$retResult[$r->propertys_uid]['property_name']=stripslashes($r->property_name);
 				$retResult[$r->propertys_uid]['property_street']=stripslashes($r->property_street);
 				$retResult[$r->propertys_uid]['property_town']=stripslashes($r->property_town);
-				$retResult[$r->propertys_uid]['property_region']=stripslashes($r->property_region);
+				$retResult[$r->propertys_uid]['property_region']=stripslashes($property_region);
 				$retResult[$r->propertys_uid]['property_country']=$r->property_country;
 				$retResult[$r->propertys_uid]['property_postcode']=stripslashes($r->property_postcode);
 				$retResult[$r->propertys_uid]['published']=$r->published ;
@@ -75,11 +82,18 @@ class jrportal_property_functions // Functions supplied as a class so that they 
 			{
 			foreach ($result as $r)
 				{
+				if (is_numeric($r->property_region))
+					{
+					$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+					$property_region=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$r->property_region,$jomres_regions->regions[$r->property_region]['regionname'],$editable,false);
+					}
+				else
+					$property_region=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$r->property_region,$r->property_region,$editable,false);
 				$retResult[$r->propertys_uid]['id']=$r->propertys_uid ;
 				$retResult[$r->propertys_uid]['property_name']=$r->property_name ;
 				$retResult[$r->propertys_uid]['property_street']=$r->property_street ;
 				$retResult[$r->propertys_uid]['property_town']=$r->property_town ;
-				$retResult[$r->propertys_uid]['property_region']=$r->property_region ;
+				$retResult[$r->propertys_uid]['property_region']=$property_region ;
 				$retResult[$r->propertys_uid]['property_country']=$r->property_country ;
 				$retResult[$r->propertys_uid]['property_postcode']=$r->property_postcode ;
 				$retResult[$r->propertys_uid]['published']=$r->published ;

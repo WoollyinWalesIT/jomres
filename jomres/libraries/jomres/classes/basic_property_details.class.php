@@ -219,7 +219,7 @@ class basic_property_details
 					$this->property_region			=jr_gettext("_JOMRES_CUSTOMTEXT_REGIONS_".$data->property_region,$jomres_regions->regions[$data->property_region]['regionname'],$editable,false);
 					}
 				else
-					$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION',$data->property_region,$editable,false);
+					$this->property_region			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_REGION'.$data->property_region,$data->property_region,$editable,false);
 
 				$this->property_country			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_COUNTRY',$countryname,$editable,false);
 				$this->property_country_code	= $data->property_country;
@@ -519,7 +519,7 @@ class basic_property_details
 			foreach ($propertytypes as $pt)
 				{
 				$this->all_property_types[$pt->id]=$pt->ptype_desc;
-				$this->all_property_type_titles[$pt->id]=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int)$pt->id,$pt->ptype,false,false);
+						$this->all_property_type_titles[$pt->id]=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int)$pt->id,$pt->ptype,false,false);
 				}
 			}
 		}
