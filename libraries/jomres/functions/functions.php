@@ -3565,8 +3565,9 @@ function showLiveBookings( $contractsList,$title,$arrivaldateDropdown)
 		$r['EDIT_URL']= jomresURL(JOMRES_SITEPAGE_URL."&task=editBooking&contract_uid=".($row->contract_uid ) );
 		$r['EDIT_TEXT']=jr_gettext('_JOMRES_COM_MR_EDITBOOKINGTITLE',_JOMRES_COM_MR_EDITBOOKINGTITLE,false);
 
-		$r['FIRSTNAME']=$row->firstname;
-		$r['SURNAME']=$row->surname;
+		$r['FIRSTNAME']=jomres_decode($row->firstname);
+		$r['SURNAME']=jomres_decode($row->surname);
+  
 		$r['BOOKING_NO']=$row->tag;
 		$r['ARRIVALDATE']=outputDate($row->arrival);
 		if ($mrConfig['showdepartureinput'] == "1")
