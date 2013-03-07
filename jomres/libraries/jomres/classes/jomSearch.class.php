@@ -430,15 +430,18 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($this->filter['region']) && $property_ors )
 			{
-			$this->filter['region']=jomres_cmsspecific_stringURLSafe($this->filter['region']);
-			$region_id = find_region_id($this->filter['region']);
-			if (!is_null($region_id))
-				$this->filter['region'] .= "' OR property_region = ".(int)$region_id."";
-			else
-				$this->filter['region'] .= "'";
-			
-			$this->filter['region']=str_replace("-","%",$this->filter['region']);
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']." $property_ors AND published='1' ORDER BY property_name ";
+			if ($filter!='%')
+				{
+				$this->filter['region']=jomres_cmsspecific_stringURLSafe($this->filter['region']);
+				$region_id = find_region_id($this->filter['region']);
+				if (!is_null($region_id))
+					$this->filter['region'] .= "' OR property_region = ".(int)$region_id."";
+				else
+					$this->filter['region'] .= "'";
+				
+				$this->filter['region']=str_replace("-","%",$this->filter['region']);
+				}
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_region LIKE '".$this->filter['region']." $property_ors AND published='1' ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
@@ -458,9 +461,12 @@ class jomSearch {
 		$property_ors=$this->ors;
 		if(!empty($filter) && $property_ors )
 			{
-			$filter=jomres_cmsspecific_stringURLSafe($filter);
-			$filter=str_replace("-","%",$filter);
-			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town LIKE '$filter' $property_ors AND published='1' ORDER BY property_name";
+			if ($filter!='%')
+				{
+				$filter=jomres_cmsspecific_stringURLSafe($filter);
+				$filter=str_replace("-","%",$filter);
+				}
+			$query="SELECT propertys_uid FROM #__jomres_propertys WHERE property_town LIKE '$filter' $property_ors AND published='1' ";
 			$this->resultBucket=doSelectSql($query);
 			}
 		else
