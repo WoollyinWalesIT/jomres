@@ -1,3 +1,29 @@
+Jomres 7.2.12
+
+Fixed an incorrect file path in the obsolete file handler.
+Fixed filters in show invoices scripts.
+Tweaked a new condition that causes some prices to be set to POA if arrival/departure dates are never shown in search module inputs.
+Made a small change to the booking engine so that if tariffChargesStoredWeeklyYesNo is to yes, and tariff mode is set to Advanced, then prices will be output correctly. Adds a distinction for those users who've swapped from tariff charges stored weekly/advanced to Micromanage mode. The option is not valid for micromanage users.
+Added some part-translated Swedish language files to the Jomres Core system. Many thanks Marinhio, hopefully this will save you hassle when you next upgrade :)
+Added functionality to allow Jomres to detect if we're on a punycode (IDN) url, and to convert urls internally to adapt. Without that adaptation ajax will not work in IE because IE thinks that you're attempting cross browser scripting.
+Added a space before a string in discount output.
+Tweaked output of property details main tab so that Tour properties show the property type text instead of the non-existent room type icons.
+Removed not required text from the show tariffs templates.
+Improved code that adds property type names to property details main tab so that the property type is translated.
+Tweaked list properties. If the installation is set to be a single property installation then as before we will redirect straight to the booking form, however we'll append arrivalDate if it's in the $_REQUEST global variable.
+Tweaked edit property page so that the change country warning isn't shown when the site is configured to limit registrations to just one property.
+Added a missing <tr> to jq ui dobooking_srp.html
+Changed how filter properties works. A couple of users have reported that their installations are reporting that PHP5.3 specific functionality is triggering a fatal error on their installations. PHP5.3 should support anonymous functions, however it appears that some installations don't and report a fatal error so we've tweaked some new sorting code to resolve that.
+Fixed a faulty link in list guests invoices script.
+Layout tweak to list commission invoices script.
+Replaced an icon in the bootstrap toolbar class.
+Added jomresDecode to guest's names to allow apostrophes to show properly.
+Added a few more tweaks regarding region name translations.
+New functionality to render safe urls has broken searching for All regions/towns in the built-in search feature, so we've added a clause to resolve that.
+Jquery ui badges mis-behave when using gradient backgrounds, so we've removed the gradients.
+Tweaked a javascript void in the cookies.html template so that it doesn't report an error.
+
+
 Jomres 7.2.11
 
 Added new functionality to disallow re-use of email addresses if the system is configured to create new users when bookings are made.
