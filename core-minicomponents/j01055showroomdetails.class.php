@@ -147,7 +147,7 @@ class j01055showroomdetails {
 				$counter++;
 				}
 			$headers[]=$headersList;
-//var_dump($headers);exit;
+
 			$tmpl = new patTemplate();
 			if ($featurelist[0])
 				$tmpl->addRows( 'room_features',$featurelist );
