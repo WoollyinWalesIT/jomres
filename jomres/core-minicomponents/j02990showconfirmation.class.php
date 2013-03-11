@@ -202,7 +202,7 @@ class j02990showconfirmation {
 				$roomNumber		=	$room->room_number;
 			else
 				$roomNumber	   .=	', '.$room->room_number;
-			$room_name		   .=	$room->room_name;
+			$room_name		   =	$room->room_name;
 			$room_classes_uid	=	$room->room_classes_uid;
 			
 			$room_info[]=array("ROOM_NAME"=>$room_name,"ROOM_NUMBER"=>$room->room_number,"HROOM_NAME"=>jr_gettext("_JOMRES_COM_MR_EB_ROOM_NAME"),"HROOM_NUMBER"=>jr_gettext("_JOMRES_COM_MR_EB_ROOM_NUMBER") );
