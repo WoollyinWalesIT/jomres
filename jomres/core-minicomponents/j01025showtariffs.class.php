@@ -80,6 +80,7 @@ class j01025showtariffs {
 			$date_elements  = explode("/",$today);
 			$unixTodaysDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 			$counter=0;
+			$previous_tariff_title='';
 			foreach ($tariffsList as $tariff)
 				{
 				$tariffRoomClass=$tariff->roomclass_uid;
@@ -109,9 +110,12 @@ class j01025showtariffs {
 					
 					if ($mrConfig['tariffmode']=="2" || $mrConfig['tariffmode'] == "1")
 						{
-						if ($tariff->rate_title != $previous_tariff_title) 
+						if ($tariff->rate_title != $previous_tariff_title)
 							{
-							$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[$tariff->rates_uid],stripslashes($tariff->rate_title) );
+							if (!is_null($tariff_tarifftypes_xref[$tariff->rates_uid]))
+								$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE_TARIFFTYPE_ID'.$tariff_tarifftypes_xref[$tariff->rates_uid],stripslashes($tariff->rate_title) );
+							else
+								$r['TITLE']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFF_TITLE'.$tariff->rates_uid,stripslashes($tariff->rate_title) );
 							$r['DESC']=jr_gettext('_JOMRES_CUSTOMTEXT_TARIFFDESC'.$tariff->rates_uid,stripslashes($tariff->rate_description) );
 							$r['ROOMCLASSABBV']=$roomClassAbbv;
 							$r['ROOMCLASSFULLDESC']=$roomClassFullDesc;
