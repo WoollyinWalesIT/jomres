@@ -1,4 +1,30 @@
 <patTemplate:tmpl name="pageoutput" unusedvars="strip">
+<script type="text/javascript">
+<!--
+var plugins_to_upgrade = '{PLUGINS_TO_UPGRADE}';
+
+
+function upgrade_core_plugins()
+	{
+	plugins = plugins_to_upgrade.split(",");
+	for (var i = 0, l = plugins.length; i < l; i++) {
+		plugin = plugins[i];
+		if (plugin != '')
+			{
+			jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin='+plugin+'&autoupgrade=1',success: function(data)
+					{
+					console.log(data);
+					}, async: false
+				});
+			}
+		}
+	window.location.reload();
+	}
+//-->
+</script>
+
+
+
 <h2 class="page-header">{PAGETITLE}</h2>
 <style>
 .fixed-dialog{
@@ -72,6 +98,9 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="coreplugins">
+			<patTemplate:tmpl name="plugins_require_upgrade" type="simpleCondition" requiredVars="upgrade_text">
+			<a href ="javascript:void(0);" onclick="upgrade_core_plugins()" class="btn btn-primary btn-large" >{UPGRADE_TEXT}</a>
+			</patTemplate:tmpl>
 			<table width="100%" class="table">
 				<tr>
 					<th>Name</th>

@@ -260,7 +260,9 @@ class j16000showplugins
 		$externalPluginTypes=array("component","module","mambot");
 
 		$jomresdotnet_plugins = array();
-
+		
+		$plugins_needing_upgrading = array();
+		
 		foreach ($remote_plugins as $rp)
 			{
 			$r=array();
@@ -290,6 +292,7 @@ class j16000showplugins
 				$r['UNINSTALL_TEXT'] = $uninstallText;
 				if ($rp['version'] > $installed_plugins[$plugin_name]['version'])
 					{
+					$plugins_needing_upgrading[] = $plugin_name;
 					$installAction=$upgrade_text;
 					$row_class='ui-state-error';
 					}
@@ -499,7 +502,11 @@ class j16000showplugins
 			
 			$jomresdotnet_plugins[]=$r;
 			}
-
+		
+		
+		$output['PLUGINS_TO_UPGRADE']=implode(",",$plugins_needing_upgrading);
+		$plugins_require_upgrade[]['upgrade_text']='Upgrade all Core plugins';
+		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
 		$tmpl->setRoot( JOMRES_TEMPLATEPATH_ADMINISTRATOR );
@@ -507,6 +514,7 @@ class j16000showplugins
 		$tmpl->addRows( 'bronze_users', $bronze_users );
 		$tmpl->addRows( 'thirdpartyplugins', $thirdpartyplugins );
 		$tmpl->addRows( 'jomresdotnet_plugins', $jomresdotnet_plugins );
+		$tmpl->addRows( 'plugins_require_upgrade', $plugins_require_upgrade );
 
 		$tmpl->readTemplatesFromInput( 'plugin_manager.html' );
 		$tmpl->displayParsedTemplate();
