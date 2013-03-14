@@ -359,7 +359,7 @@ class j16000addplugin
 				}
 			
 			$plugin_installed_successfully = false;
-			
+
 			$result=dirmv($updateDirPath."unpacked", $remote_pluginsDirPath.$pluginName, true, $funcloc = "/");
 			if ($result['success'])
 				{
@@ -452,6 +452,7 @@ class j16000addplugin
 			$tmpl->readTemplatesFromInput( 'plugin_installation_result.html' );
 			$tmpl->displayParsedTemplate();
 			}
+		else echo "1";
 		}
 
 	// This must be included in every Event/Mini-component
