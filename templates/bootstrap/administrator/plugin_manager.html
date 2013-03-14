@@ -13,7 +13,7 @@ function upgrade_core_plugins()
 			{
 			jomresJquery.ajax({ url: '{JOMRES_SITEPAGE_URL_ADMIN_AJAX}&task=addplugin&plugin='+plugin+'&autoupgrade=1',success: function(data)
 					{
-					console.log(data);
+					//console.log(data);
 					}, async: false
 				});
 			}
