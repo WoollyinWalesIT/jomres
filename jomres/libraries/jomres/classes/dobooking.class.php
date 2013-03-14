@@ -92,7 +92,7 @@ class dobooking
 		$this->referrer					= "";
 		$this->error_log				= "";
 		$this->total_in_party			= 0;
-		$this->mininterval				= 1;
+		$this->mininterval				= 9999;
 		$this->unixArrivalDate			= null;
 		$this->unixDepartureDate		= null;
 		$this->beds_available = 0;
@@ -194,9 +194,9 @@ class dobooking
 			//if ($this->booker_class == "100")
 			//	$this->mininterval				= 1;
 			//else
-				$this->mininterval				= $bookingDeets['mininterval'];
-			if ($this->mininterval == 0)
-				$this->mininterval = 1;
+				// $this->mininterval				= $bookingDeets['mininterval'];
+			// if ($this->mininterval == 0)
+				// $this->mininterval = 1;
 			$this->amend_contract			= $bookingDeets['amend_contract'];
 			$this->coupon_id				= $bookingDeets['coupon_id'];
 			$this->coupon_code				= $bookingDeets['coupon_code'];
@@ -5248,28 +5248,42 @@ class dobooking
 				else
 					$this->setMonitoring($this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT1,false,false)).' '.$this->mininterval.' '.$this->sanitiseOutput(jr_gettext('_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2',_JOMRES_BOOKINGFORM_MONITORING_BOOKING_TOO_SHORT2,false).' '.$this->stayDays));
 					
-				if ( $mrConfig['tariffmode']=="2" && $this->jrConfig['useJomresMessaging'] == '1' )
+				if ($this->jrConfig['useJomresMessaging'] == '1')
 					{
 					$this->build_tariff_to_date_map ();
-					foreach ($this->micromanage_tarifftype_to_date_map as $dates)
+					if ( $mrConfig['tariffmode']=="2" )
 						{
-						
-						$prices = array();
-						foreach ($dates as $date)
+						foreach ($this->micromanage_tarifftype_to_date_map as $dates)
 							{
-							$prices[$date['mindays']]=$date['price'];
-							}
-						//var_dump($prices);
-						foreach ($prices as $key=>$val)
-							{
-							if ($val > 0)
+							
+							$prices = array();
+							foreach ($dates as $date)
 								{
-								if ($this->cfg_perPersonPerNight =="1")
-									$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN ,false);
-								else
-									$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN ,false);
-								echo ';jomresJquery.jGrowl(\''.jr_gettext('_JOMRES_STAYFORAMINIMUMOF',_JOMRES_STAYFORAMINIMUMOF ,false)." ".$key." ".jr_gettext('_JOMRES_NIGHTSFOR',_JOMRES_NIGHTSFOR ,false)." ".output_price($val).$pernight.'\', { life: 20000 });';
+								$prices[$date['mindays']]=$date['price'];
 								}
+							foreach ($prices as $key=>$val)
+								{
+								if ($val > 0)
+									{
+									if ($this->cfg_perPersonPerNight =="1")
+										$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN ,false);
+									else
+										$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN ,false);
+									echo ';jomresJquery.jGrowl(\''.jr_gettext('_JOMRES_STAYFORAMINIMUMOF',_JOMRES_STAYFORAMINIMUMOF ,false)." ".$key." ".jr_gettext('_JOMRES_NIGHTSFOR',_JOMRES_NIGHTSFOR ,false)." ".output_price($val).$pernight.'\', { life: 20000 });';
+									}
+								}
+							}
+						}
+					
+					if ( $mrConfig['tariffmode']=="1")
+						{
+						foreach ($this->simple_tariff_to_date_map as $tariff)
+							{
+							if ($this->cfg_perPersonPerNight =="1")
+								$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PPPN',_JOMRES_FRONT_TARIFFS_PPPN ,false);
+							else
+								$pernight = jr_gettext('_JOMRES_FRONT_TARIFFS_PN',_JOMRES_FRONT_TARIFFS_PN ,false);
+							echo ';jomresJquery.jGrowl(\''.jr_gettext('_JOMRES_STAYFORAMINIMUMOF',_JOMRES_STAYFORAMINIMUMOF ,false)." ".$tariff['mindays']." ".jr_gettext('_JOMRES_NIGHTSFOR',_JOMRES_NIGHTSFOR ,false)." ".output_price($tariff['price'])." ".$pernight.'\', { life: 20000 });';
 							}
 						}
 					}
