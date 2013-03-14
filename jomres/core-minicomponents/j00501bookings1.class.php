@@ -72,10 +72,10 @@ class j00501bookings1 {
 			$configurationPanel->setright();
 			$configurationPanel->insertSetting();
 		
-			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY",_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY,false));
-			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
-			$configurationPanel->setright(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY",_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY,false));
-			$configurationPanel->insertSetting();
+			// $configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY",_JOMRES_COM_A_MINIMUMINTERVAL_WHOLEDAY,false));
+			// $configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_minimuminterval" size="5" value="'.$mrConfig['minimuminterval'].'" />');
+			// $configurationPanel->setright(jr_gettext("_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY",_JOMRES_COM_A_MINIMUMINTERVAL_DESC_WHOLEDAY,false));
+			// $configurationPanel->insertSetting();
 			
 			$configurationPanel->setleft(jr_gettext("_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY",_JOMRES_COM_A_DAYSBEFOREFIRSTBOOKING_WHOLEDAY,false));
 			$configurationPanel->setmiddle('<input type="text" class="inputbox" name="cfg_mindaysbeforearrival" size="5" value="'.$mrConfig['mindaysbeforearrival'].'" />');
