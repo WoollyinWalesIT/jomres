@@ -279,7 +279,7 @@ function showSiteConfig(  )
 	
 	if (!isset($jrConfig['use_bootstrap_in_frontend']))
 		{
-		if (_JOMRES_DETECTED_CMS == "joomla30")
+		if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 			{
 			$jrConfig['use_bootstrap_in_admin'] = "1";
 			$jrConfig['use_bootstrap_in_frontend'] = "1";

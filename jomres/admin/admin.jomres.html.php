@@ -121,7 +121,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		</tr>
 		');
 		
-		if (_JOMRES_DETECTED_CMS == "joomla30" )
+		if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 			{
 			$contentPanel->setcontent('
 			<tr valign="middle" class="odd">

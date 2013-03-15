@@ -161,7 +161,7 @@ function using_bootstrap()
 
 	if (!isset($jrConfig['use_bootstrap_in_frontend']))
 		{
-		if (_JOMRES_DETECTED_CMS == "joomla30")
+		if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 			{
 			$jrConfig['use_bootstrap_in_admin'] = "1";
 			$jrConfig['use_bootstrap_in_frontend'] = "1";
@@ -187,22 +187,6 @@ function using_bootstrap()
 		else
 			return false;
 		}
-
-/*
-	// J3 administrator area, we use bootstrap
-	if (_JOMRES_DETECTED_CMS == "joomla30" && jomres_cmsspecific_areweinadminarea() )
-		return true;
-
-	// Joomla 1.5 or 2.5, if we're in admin area, don't use bootstrap
-	if (jomres_cmsspecific_areweinadminarea() && _JOMRES_DETECTED_CMS != "joomla30")
-		return false;
-
-	// Now we let the site manager decide if we're using BS
-
-	if ($jrConfig['use_bootstrap']=="0")
-		return false;
-	if ($jrConfig['use_bootstrap']=="1")
-		return true; */
 
 	return false;
 	}
@@ -1382,7 +1366,7 @@ function install_external_plugin($plugin_name,$plugin_type,$mambot_type='',$para
 					VALUES
 					('".$plugin_name."','','','0','position-0','0','0000-00-00 00:00:00','0','mod_".$plugin_name."','0','1','".$params."')";
 					}
-				elseif ( _JOMRES_DETECTED_CMS == "joomla30" )
+				elseif ( _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31" )
 					{
 					$query="INSERT INTO #__modules
 					(
@@ -5104,7 +5088,7 @@ function scandir_getfiles_recursive($directory, $recursive = true, $listDirs = f
 
 function this_cms_is_joomla()
 	{
-	if ( (_JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30" ))
+	if ( (_JOMRES_DETECTED_CMS != "joomla15" && _JOMRES_DETECTED_CMS != "joomla16" && _JOMRES_DETECTED_CMS != "joomla17" && _JOMRES_DETECTED_CMS != "joomla25" && _JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31" ))
 		return false;
 	return true;
 	}
