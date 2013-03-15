@@ -131,7 +131,7 @@ jr_define('_JOMRES_COM_MR_VRCT_ROOMTYPES_LINKTEXT','تم التعديل');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_NAME','الإسم');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_STREET','العنوان');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TOWN','المدينة');
-jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION','المنطقة')
+jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION','المنطقة');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_COUNTRY','البلد');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_POSTCODE','الرمز البريدي');
 jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_TELEPHONE','الهاتف');
@@ -283,7 +283,7 @@ jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETE','حذف نوع المنشاءاه');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_ROOMS','غير قادر على حذف نوع المنشاءاه, بسبب وجودها في احد المنشاءات. قم بتغير نوع المنشاءه والمحاولة مره اخرى.');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_UNABLETODELETE_TARIFFS','غير قادر على حذف نوع المنشاءاه, بسبب وجودها مع تعرفه سعر. حاول ربط السعر بنوع اخر وحاول الحذف مجددا');
 jr_define('_JOMRES_COM_MR_ROOMCLASS_DELETED','تم حذف نوع المنشاءه');
-jr_define('_JOMRES_COM_MR_PROPERTY_DELETE','حذف منشاءاه')
+jr_define('_JOMRES_COM_MR_PROPERTY_DELETE','حذف منشاءاه');
 jr_define('_JOMRES_COM_MR_PROPERTY_DELETED','تم حذف منشاءاه');
 jr_define('_JOMRES_COM_MR_PROPERTY_DELETE_NORIGHTS','ليس لديك الصلاحية الكافية لحذف منشاءه');
 jr_define('_JOMRES_COM_A_UPLOADS_IMAGES_WIDTH_LARGE','Image width after Jomres resizes uploaded images');
@@ -368,7 +368,7 @@ jr_define('_JOMRES_MR_AUDIT_LISTING_DATE','التارخ');
 jr_define('_JOMRES_MR_AUDIT_LISTING_TIME','الوقت');
 jr_define('_JOMRES_MR_AUDIT_LISTING_USER','إسم المستخدم');
 jr_define('_JOMRES_MR_AUDIT_LISTING_OPERATION','العملية');
-jr_define('_JOMRES_MR_AUDIT_LISTING_VIEWSQL','عرض التفاصيل')
+jr_define('_JOMRES_MR_AUDIT_LISTING_VIEWSQL','عرض التفاصيل');
 jr_define('_JOMRES_MR_AUDIT_LISTING_FILTER_DATE','فرز بالتاريخ');
 jr_define('_JOMRES_MR_AUDIT_LISTING_FILTER_USERNAME','فرز بإسم المستخدم');
 jr_define('_JOMRES_MR_AUDIT_LISTING_FILTER_OPERATION','فرز بنوع العملية');jr_define('_JOMRES_COM_MR_VIEWBOOKINGS_STATUS','الحالة');
@@ -707,7 +707,7 @@ jr_define('_JOMRES_COM_WEEKENDDAYS_DESC','تعيين أيام نهاية الأ�
 jr_define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY','حدد بلدك قبل إضافة أي معلومات المنشاءة');
 jr_define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','حفظ التغييرات فندقك قبل تحميل صورة الفندق');
 jr_define('_JOMRES_TARIFFSFROM','إبتداءً من  ');
-jr_define('_JOMRES_SEARCH_ALL','الجميع')
+jr_define('_JOMRES_SEARCH_ALL','الجميع');
 jr_define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','البحث بالبلد');
 jr_define('_JOMRES_SEARCH_GEO_REGIONSEARCH','البحث بالمنطقة');
 jr_define('_JOMRES_SEARCH_GEO_TOWNSEARCH','البحث بالمدينة');
@@ -991,7 +991,7 @@ jr_define('_JOMRES_COM_MR_VRCT_PROPERTY_TYPE_INFO','اختر نوع منشاءت
 jr_define('_JOMRES_COM_LOGGING','Jomres logging');
 jr_define('_JOMRES_COM_LOGGING_WARNING','These options allow you to enable/disable logging within Jomres. Error logging is always enabled, but other logs such as Booking, Gateway, System and Request logs can be switched on and off. You are advised that <b>the ability to enable this logging is provided purely as a way of making debugging easier but it carries a big security risk</b> as it is easy for outside users to view your logs without being authorised therefore you are advised to leave it switched off most of the time. If you have enabled logging, then when you have disabled it, you should also ensure that the <i>'.JOMRESPATH_BASE.JRDS.'temp'.JRDS.'</i> folder does not contain any old log files. Note that enabling logging will also significantly slow your sytem down as it collects a lot of information.');
 jr_define('_JOMRES_COM_LOGGING_BOOKING','تسجيل نموذج الحجز (Booking engine logs) ');
-jr_define('_JOMRES_COM_LOGGING_GATEWAY','سجلات بوابة الدفع الخارجية (eg paypal etc) ')
+jr_define('_JOMRES_COM_LOGGING_GATEWAY','سجلات بوابة الدفع الخارجية (eg paypal etc) ');
 jr_define('_JOMRES_COM_LOGGING_REQUEST','سجل الطلبات (all incoming server requests)');
 jr_define('_JOMRES_COM_LOGGING_SYSTEM','النظام (misc log) ');
 jr_define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (mainly for recording commission etc) ');
