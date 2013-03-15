@@ -72,7 +72,7 @@ class j16000listTemplates
 				
 				$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 				$jrConfig=$siteConfig->get();
-				if (_JOMRES_DETECTED_CMS == "joomla30")
+				if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 					$css_file = 'jomrescss_bootstrap.css' ;
 				else
 					{

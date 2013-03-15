@@ -26,6 +26,11 @@ if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'libraries'.JRDS.'cms'.JRDS.'ver
 		define("_JOMRES_DETECTED_CMS","joomla30");
 		define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
 		}
+	if ($jversion->RELEASE == '3.1')
+		{
+		define("_JOMRES_DETECTED_CMS","joomla31");
+		define("_JOMRES_DETECTED_CMS_SPECIFIC_FILES",JOMRESCONFIG_ABSOLUTE_PATH.JRDS."jomres".JRDS."libraries".JRDS."jomres".JRDS."cms_specific".JRDS._JOMRES_DETECTED_CMS.JRDS);
+		}
 	}
 else
 	{

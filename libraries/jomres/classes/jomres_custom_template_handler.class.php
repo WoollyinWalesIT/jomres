@@ -34,7 +34,7 @@ class jomres_custom_template_handler
 			{
 			$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 			$jrConfig=$siteConfig->get();
-			if (_JOMRES_DETECTED_CMS == "joomla30")
+			if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 				$this->using_bootstrap = true;
 			else
 				{
