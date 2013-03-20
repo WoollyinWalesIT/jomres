@@ -167,17 +167,9 @@ class j01070showpropertyheader
 				
 				if ($mrConfig['galleryLink']!="")
 					{
-					// if(filter_var($mrConfig['galleryLink'], FILTER_VALIDATE_URL) === TRUE) Not using this as it doesn't seem to work
-					if (function_exists('filter_var'))
-						$mrConfig['galleryLink'] = filter_var($mrConfig['galleryLink'], FILTER_SANITIZE_URL);
-					else
-						$mrConfig['galleryLink'] = jomresURL($mrConfig['galleryLink']);
-	
-					$output['GALLERYLINK']= preg_replace("
-						#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie",
-						"'<a href=\"$1\" target=\"_blank\" itemprop=\"url\" >$3</a>$4'",
-						$mrConfig['galleryLink']
-						);
+					$output['GALLERYLINK']=str_replace("&#38;#38;amp;","&",filter_var($mrConfig['galleryLink'], FILTER_SANITIZE_URL));
+					$domain = parse_url(str_replace("&#38;#38;amp;","&",filter_var($mrConfig['galleryLink'], FILTER_SANITIZE_URL)));
+					$output['GALLERYDOMAIN']=$domain['host'];
 					}
 
 				$pageoutput[]=$output;
