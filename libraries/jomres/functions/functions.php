@@ -2858,8 +2858,9 @@ function generateDateInput($fieldName,$dateValue,$myID=FALSE,$siteConfig=FALSE,$
 		{
 		$arr_date_unique_id = str_replace("_XXX","",$uniqueID);
 		$clear = jr_gettext('_JOMRES_CLEARDATES',_JOMRES_CLEARDATES);
+		$rand_id=generateJomresRandomString(10);
 		//$clear_checkbox_js = '<input type="checkbox" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'setDate\' , null );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'setDate\' , null );" /> '.$clear;
-		$clear_checkbox_js = '<input type="checkbox" name="nodates" value="1" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'isDisabled\' )?jomresJquery(\'#'.$uniqueID.'\').datepicker( \'enable\' ):jomresJquery(\'#'.$uniqueID.'\').datepicker( \'disable\' );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'isDisabled\' )?jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'enable\' ):jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'disable\' );" /> '.$clear;
+		$clear_checkbox_js = '<input type="checkbox" name="nodates" value="1" id="'.$rand_id.'" onClick="jomresJquery(\'#'.$uniqueID.'\').datepicker( \'isDisabled\' )?jomresJquery(\'#'.$uniqueID.'\').datepicker( \'enable\' ):jomresJquery(\'#'.$uniqueID.'\').datepicker( \'disable\' );jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'isDisabled\' )?jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'enable\' ):jomresJquery(\'#'.$arr_date_unique_id.'\').datepicker( \'disable\' );" /> '.$clear;
 		}
 
 	$size = " size=\"10\" ";
