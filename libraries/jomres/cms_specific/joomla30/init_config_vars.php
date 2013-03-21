@@ -64,7 +64,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 	
 	$thisSvrName=$_SERVER['SERVER_NAME'];
 	$dmn=str_replace("http://","",$thisSvrName);
-	if (stristr ($dmn,".xn--",$dmn)) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server
+	if (stristr ($dmn,".xn--",$dmn) && !strpos($_SERVER['SCRIPT_NAME'],"administrator") ) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server. We check to see if we're in the admin area because our one and only client with an umlat in the domain name has found that the redirect function doesn't work in the administrator area if the domain's been converted.
 		{
 		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php');
 		$IDN = new idna_convert();
