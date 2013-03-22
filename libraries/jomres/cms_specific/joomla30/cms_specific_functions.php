@@ -497,7 +497,11 @@ function jomres_cmsspecific_stringURLSafe($str)
 	$scriptname=str_replace("/","",$_SERVER['PHP_SELF']);
 	if (!strstr($scriptname,'install_jomres.php'))
 		{
-		$str=JFilterOutput::stringURLSafe($str);
+		$config = JFactory::getConfig();
+		if ($config->getValue('config.unicodeslugs')=='1')
+			$str=JFilterOutput::stringURLUnicodeSlug($str);
+		else
+			$str=JFilterOutput::stringURLSafe($str);
 		return $str;
 		}
 	else
