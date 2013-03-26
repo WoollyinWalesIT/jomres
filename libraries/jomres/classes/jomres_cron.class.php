@@ -224,15 +224,26 @@ class jomres_cron
 			$jomresConfig_secret = get_showtime('secret');
 			if (count($this->dueJobs) > 0)
 				{
+				$thisSvrName=get_showtime('live_site');
+				if(preg_match('/[^\x20-\x7f]/', $thisSvrName)) 
+					{
+					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php');
+					$IDN = new idna_convert();
+					$encoded = $IDN->encode($thisSvrName);
+					$new = str_replace($thisSvrName,$encoded,JOMRES_SITEPAGE_URL_AJAX);
+					$livesite=$new;
+					}
 				foreach ($this->dueJobs as $job)
 					{
-					$request = JOMRES_SITEPAGE_URL_AJAX."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
+					$request = $livesite."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch,CURLOPT_USERAGENT,'Jomres');
 					curl_setopt($ch, CURLOPT_URL, $request);
+					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'XGET');
 					curl_setopt($ch, CURLOPT_PORT, 80);
-					curl_setopt($ch,CURLOPT_TIMEOUT,1); 
+					curl_setopt($ch,CURLOPT_TIMEOUT,1);
+					curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type: text/html; charset=utf-8'));
 					$curl_output=curl_exec($ch);
 					curl_close($ch);
 					$this->updateJob_lastran($job['id'],$job['job_name'],$this->now );
