@@ -251,7 +251,7 @@ class j00017SRPavailabilitycalendar {
 		
 		$this->retVals.="\n<table class=\"rescal\" cellspacing=\"0\">\n";
 		if (using_bootstrap())
-			$this->retVals.="<tr>\n<th class=\"alert alert-info\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
+			$this->retVals.="<tr>\n<th class=\"alert-info\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		else
 			$this->retVals.="<tr>\n<th class=\"ui-widget-header ui-corner-all\" colspan=\"7\" height=\"$height\"><font face=\"$face\" size=\"$size\">" . $thisMonthName . " " . strftime( "%Y",$stdate) . "</font></th>\n</tr>\n";
 		if ($jrConfig['calendarstartofweekday'] == "1")
