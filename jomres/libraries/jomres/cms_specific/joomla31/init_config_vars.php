@@ -63,7 +63,7 @@ if (!strstr($scriptname,'install_jomres.php'))
 		}
 	
 	$thisSvrName=$_SERVER['SERVER_NAME'];
-	if (stristr ($thisSvrName,"xn--",$thisSvrName)) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server
+	if (stristr ($thisSvrName,"xn--",$thisSvrName)&& !strpos($_SERVER['SCRIPT_NAME'],"administrator")) // Is and IDN domain, we need to convert the url to utf8 otherwise we won't be able to use ajax on this server
 		{
 		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php');
 		$IDN = new idna_convert();
