@@ -1,3 +1,25 @@
+Jomres 7.2.13
+
+Added Joomla 3.1 specific changes. Jomres now works on Joomla 3.1 (beta1, as that's what's available right now).
+Added a new button to allow upgrading of all Core plugins on one button click.
+Small fix for room names in confirmation page, room were displayed concatenated like name1, name1name2, name1name2name3 and so on instead of name1, name2, name3.
+Template fixes, missing / in printable_invoice.html and a /td that shouldn't be in frontend_view_invoice.html in bootstrap.
+Tweaked the property list so that if an array's index is null, we find the tariff name through another route.
+Changed a url in the cron class to ensure curl calls are sent to the frontend, not the backend.
+Fixed a typo that incorrectly set a variable (popup).
+Used new simple_tariff_to_date_map variable to provide feedback on properties that use Advanced tariff editing mode, to tell people that they need to select a longer booking.
+Disabled the minimum interval input, as it's no longer appropriate due to changes in how the booking engine figures out minimum intervals.
+Further tweaks to IDN handling code to ensure that curl calls for cron jobs work as expected.
+Changed how the External Link is constructed in the property header, and how it's displayed in the header template(s).
+Added a random id to the js date picker so that jquery can use that id to reset the checkbox.
+Cleaned up a couple of inputs in edit/register property types to change an input type (templates)
+Modified idna url functionality to allow us to choose which method of encoding a url we use (stringURLUnicodeSlug), depending on Joomla's settings.
+
+
+French lang files updated, many thanks Vincent.
+Added Arabic language file to Jomres core.
+
+
 Jomres 7.2.12
 
 Fixed an incorrect file path in the obsolete file handler.
