@@ -57,7 +57,7 @@ class jomresHTML
 
 	function selectList( $arr, $name, $attribs, $key, $text, $default=NULL, $use_bootstrap_radios=true )
 		{
-		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone","existingCustomers","management_process","all_guests","force[]");
+		$not_for_these_dropdowns = array("jomreslang","jomres_editing_mode","user_timezone","existingCustomers","management_process","all_guests","force[]","guestnumber");
 		if (!$use_bootstrap_radios)
 			$not_for_these_dropdowns[] = $name;
 		
