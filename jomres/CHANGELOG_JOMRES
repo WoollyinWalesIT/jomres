@@ -1,3 +1,8 @@
+Jomres 7.2.14
+
+Fixed a bug introduced in the last version that was introduced by some new functionality that helps us deal with IDNs.
+Tweaked the position of a patTemplate tag in the plugin manager.
+
 Jomres 7.2.13
 
 Added Joomla 3.1 specific changes. Jomres now works on Joomla 3.1 (beta1, as that's what's available right now).
