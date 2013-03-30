@@ -121,6 +121,7 @@ class j00012pathway {
 					$pathwayArray[]=$tasks['town'];
 					$pathwayArray[]=$tasks['viewproperty'];
 					$pathwayArray[]=$tasks['dobooking'];
+				break;
 				case 'showTariffs':
 					$pathwayArray[]=$tasks['country'];
 					$pathwayArray[]=$tasks['region'];
