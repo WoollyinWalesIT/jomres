@@ -82,7 +82,7 @@ class j00004a_init_javascript_css_files {
 		
 		$management_view=jomresGetParam($_REQUEST,'tmpl',false);
 		
-		if (_JOMRES_DETECTED_CMS != "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
+		if (_JOMRES_DETECTED_CMS != "joomla30" && _JOMRES_DETECTED_CMS != "joomla31")
 			{
 			set_showtime("jquery.core.js",'jquery-1.8.2.min.js');
 			set_showtime("jquery.core.js.relpath",'jomres/javascript/');
