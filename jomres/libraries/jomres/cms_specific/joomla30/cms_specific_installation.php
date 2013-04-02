@@ -137,7 +137,7 @@ if ($folderChecksPassed)
 			`img`,`template_style_id`,`params`,`lft`,
 			`rgt`,`home`,`language`,`client_id`
 			) VALUES (
-			'mainmenu','Jomres','Jomres','Jomres',
+			'main','Jomres','Jomres','Jomres',
 			'','index.php?option=com_jomres','component',1,
 			1,1,".$component_id.",
 			0,'0000-00-00 00:00:00',0,1,
