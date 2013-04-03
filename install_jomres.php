@@ -592,7 +592,7 @@ function checkCountriesTableExists()
 	$string="Tables_in_".$jomresConfig_db;
 	foreach ($result as $r)
 		{
-		if (strstr($r->$string, '_jomres_countries') || strstr($r->$string, '_jomres_countries') )
+		if (strstr($r->$string, '_jomres_countries') || strstr($r->$string, '_jomres_regions') )
 			return true;
 		}
 	return false;
