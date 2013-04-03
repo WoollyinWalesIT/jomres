@@ -92,7 +92,7 @@ class dobooking
 		$this->referrer					= "";
 		$this->error_log				= "";
 		$this->total_in_party			= 0;
-		$this->mininterval				= 9999;
+		$this->mininterval				= 1;
 		$this->unixArrivalDate			= null;
 		$this->unixDepartureDate		= null;
 		$this->beds_available = 0;
