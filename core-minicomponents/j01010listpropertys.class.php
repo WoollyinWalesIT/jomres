@@ -347,7 +347,7 @@ class j01010listpropertys {
 						$stars=$property->stars;
 						$propertyDesc=strip_tags(jomres_decode(jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPE_DESCRIPTION',$property->property_description,false,false )));
 						
-						if (in_array($property->propertys_uid))
+						if (in_array($property->propertys_uid, $featured_properties))
 							{
 							if (!isset($jrConfig['featured_listings_emphasis']))
 								$jrConfig['featured_listings_emphasis'] = "";
