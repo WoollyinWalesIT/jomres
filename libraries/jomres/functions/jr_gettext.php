@@ -171,7 +171,7 @@ function jr_gettext($theConstant,$theValue,$okToEdit=TRUE,$isLink=FALSE)
 					// else
 						// $theText='<span class="jomrestexteditable"><div class="jqueryeditable" id="'.$theConstant.'" >'.htmlspecialchars($theText).'</div></span>';
 					
-					if ($_REQUEST['task']=="touch_templates" || $_REQUEST['task']=="translate_locales" || $_REQUEST['task']=="translate_lang_file_strings")
+					if (jomres_cmsspecific_areweinadminarea())
 						$url = JOMRES_SITEPAGE_URL_ADMIN_AJAX.'&task=editinplace&no_html=1&lang='.get_showtime("lang");
 					else
 						$url = JOMRES_SITEPAGE_URL_AJAX.'&task=editinplace&no_html=1';
