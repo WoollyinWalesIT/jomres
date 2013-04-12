@@ -470,7 +470,7 @@ jr_define('_JOMRES_FRONT_TARIFFS_ROOMTYPE','Szobatípus');
 jr_define('_JOMRES_FRONT_TARIFFS_STARTS','Érv. ettől');
 jr_define('_JOMRES_FRONT_TARIFFS_ENDS','Érv. eddig');
 jr_define('_JOMRES_FRONT_TARIFFS_PPPN','/fő /nap');
-jr_define('_JOMRES_FRONT_TARIFFS_PN','/nap');
+jr_define('_JOMRES_FRONT_TARIFFS_PN','nap');
 jr_define('_JOMRES_FRONT_TARIFFS_NOTWEEKEND','A hétvégéken kívül');
 jr_define('_JOMRES_FRONT_TARIFFS_MINDAYS','Minimum napok');
 jr_define('_JOMRES_FRONT_TARIFFS_MAXDAYS','Maximum napok');
@@ -541,8 +541,8 @@ jr_define('_JOMRES_A_ICON','Ikon');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION','Válassza ki a keresési módot, amit használni akar.');
 jr_define('_JOMRES_FRONT_NORESULTS','<b>A keresés nem hozott eredményt. Kérjük adjon meg új keresési feltételeket és próbálja újra.</b>');
 jr_define('_JOMRES_AREYOUSURE','Biztos ezt akarja tenni?');
-jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','On-line szállásfoglalás');
-jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Lefoglalom!');
+jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Foglaljon most!');
+jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Foglaljon most!');
 jr_define('_JOMRES_COM_MR_DISPGUEST_CCV','Biztonsági szám');
 //v1.4c
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE','Árak megjelenítése szalagban?');
@@ -718,12 +718,12 @@ jr_define('_JOMRES_COM_WEEKENDDAYS','Hétvége napjai');
 jr_define('_JOMRES_COM_WEEKENDDAYS_DESC','Állítsa be a hétvége napjait. A hétvégét magába foglaló/kizáró tarifák e szerint jelenítik meg a szobalistát.');
 jr_define('_JOMRES_EDITPROPERTY_SELECTCOUNTRY','Válassza ki az országot, mielőtt bármely más mezőt kitöltene');
 jr_define('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD','Save your property changes before uploading a property image');
-jr_define('_JOMRES_TARIFFSFROM','Legkedvezőbb ár - ');
+jr_define('_JOMRES_TARIFFSFROM','Árak');
 jr_define('_JOMRES_SEARCH_ALL','Összes');
-jr_define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','<label>Keresés ország szerint</label>');
-jr_define('_JOMRES_SEARCH_GEO_REGIONSEARCH','<label>Keresés megye szerint</label>');
-jr_define('_JOMRES_SEARCH_GEO_TOWNSEARCH','<label>Keresés város szerint</label>');
-jr_define('_JOMRES_SEARCH_FEATURE_INFO','<label>Keresés tulajdonság szerint</label>');
+jr_define('_JOMRES_SEARCH_GEO_COUNTRYSEARCH','Keresés ország szerint');
+jr_define('_JOMRES_SEARCH_GEO_REGIONSEARCH','Keresés megye szerint');
+jr_define('_JOMRES_SEARCH_GEO_TOWNSEARCH','Keresés város szerint');
+jr_define('_JOMRES_SEARCH_FEATURE_INFO','Keresés tulajdonság szerint');
 jr_define('_JOMRES_SEARCH_BUTTON','Keresés');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_INFO','Enter a search word into the box and press the button.');
 jr_define('_JOMRES_SEARCH_DESCRIPTION_LABEL','Szavak keresése: ');
@@ -922,7 +922,7 @@ if (!defined('_PN_END'))
 	jr_define('_PN_END','End');
 if (!defined('_PN_RESULTS'))
 	jr_define('_PN_RESULTS','Results');
-jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Note that this is not a booking form, instead you are sending an email.<br/>Please enter the message you\'d like to send to ');
+jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_TITLE','Felhívjuk figyelmét, hogy ezzel még nem történt meg a foglalás.<br />Kérjük erősítse meg e-mail üzenetben. Az üzenetét ide írja ');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL','Kapcsolat');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_SUBJECT','Property enquiry from ');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_THANKS','Thank you for your enquiry, your message has been sent to the property\'s contact email address, and copied to your own address for your records. They will respond to you as soon as possible with their reply.');
@@ -931,7 +931,7 @@ jr_define('_JOMRES_FRONT_MR_MENU_CAPTCHA_MSG1','Type the characters that you see
 jr_define('_JOMRES_FRONT_MR_MENU_CAPTCHA_MSG2','I cannot read the characters. Generate a ');
 jr_define('_JOMRES_FRONT_MR_MENU_CAPTCHA_BUTTONTEXT','Send');
 jr_define('_JOMRES_FRONT_MR_MENU_CAPTCHA_REFRESHBUTTONTEXT','new image');
-jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Enquiry');
+jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_ENQUIRY','Kérdez');
 jr_define('_JOMRES_BOOKINGFORM_LOOKRIGHT','Please select your required accommodation from the list on the right');
 jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS','Min rooms already selected');
 jr_define('_JOMRES_COM_MR_EB_ROOM_MINROOMS_DESC','Minimum number of rooms already selected in booking before tariff/room type combo can be offered. Allows you to have discounted tariffs when more than N rooms are already selected. ');
@@ -1011,7 +1011,7 @@ jr_define('_JOMRES_COM_LOGGING_GATEWAY','Gateway logs (eg paypal etc) ');
 jr_define('_JOMRES_COM_LOGGING_REQUEST','Request log (all incoming server requests)');
 jr_define('_JOMRES_COM_LOGGING_SYSTEM','System (misc log) ');
 jr_define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (mainly for recording commission etc) ');
-jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Your enquiry...');
+jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Kérdése van...');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Foglalási űrlap megjeleníti a szoba típus képét');
 jr_define('_JOMRES_COM_A_LISTLIMIT','Szállás lista limit');
 jr_define('_JOMRES_COM_A_LISTLIMIT_DESC','The number of propertys to show on a page after a search');
@@ -1124,7 +1124,7 @@ jr_define('_JRPORTAL_INVOICES_PAYPAL_SETTINGS_OVERRIDE_DESC',"If the paypal sett
 jr_define('_JRPORTAL_INVOICES_SHOWINVOICES',"Számláim megjelenítése");
 jr_define('_JRPORTAL_COUPONS_TITLE',"Kedvezmény kuponok");
 jr_define('_JRPORTAL_COUPONS_DESC',"Discount codes can be generated and passed onto guests as an incentive to make bookings. Valid from and to dates refer to the dates that a booking can be made on, not the dates of the booking itself.");
-jr_define('_JRPORTAL_COUPONS_CODE',"Coupon code");
+jr_define('_JRPORTAL_COUPONS_CODE',"Kupon kód");
 jr_define('_JRPORTAL_COUPONS_VALIDFROM',"Valid from");
 jr_define('_JRPORTAL_COUPONS_VALIDTO',"Valid to");
 jr_define('_JRPORTAL_COUPONS_AMOUNT',"Discount amount");
@@ -1132,11 +1132,11 @@ jr_define('_JRPORTAL_COUPONS_ISPERCENTAGE',"Discount is a percentage");
 jr_define('_JRPORTAL_COUPONS_ROOMONLY',"Room only");
 jr_define('_JRPORTAL_COUPONS_ROOMONLY_DESC',"Discount is only applied to the cost of the room. If No, then the discount is applied to the entire cost of the booking.");
 jr_define('_JRPORTAL_COUPONS_SQLERROR',"Sql error when trying to delete/insert a coupon");
-jr_define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','If you have a coupon code, please enter it into the box and click the "Save coupon" link to save the coupon details against your booking.');
-jr_define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Save coupon');
+jr_define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','Ha van kuponja, kérjük írja be a mezőbe és kattinson a "Kupon mentése" gombra, hogy mentésre kerüljenek a kuponadatok a foglalásához .');
+jr_define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Kupon mentése');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED','Coupon saved against booking');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND','Coupon number not found');
-jr_define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Coupon discount value');
+jr_define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Kupon értéke');
 jr_define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Booking discounted. Coupon code/discount value/coupon settings : ');
 jr_define('_JOMRES_COM_CACHING','Use the Jomres caching feature?');
 jr_define('_JOMRES_COM_CACHING_DESC','Set this to No to disable the Jomres caching feature.');
@@ -1165,11 +1165,9 @@ jr_define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER',"Notification mob
 jr_define('_JRPORTAL_SMS_CLICKATELL_NOTIFICATION_MOBILENUMBER_DESC',"Please use the format 'Country code, mobile number'. For example a UK based mobile number would be something like '447979123456'. Leave this blank if you don't want any notification emails sent to your mobile phone.");
 jr_define('_JRPORTAL_SMS_CLICKATELL_TABTITLE',"SMS");
 jr_define('_JRPORTAL_SMS_CLICKATELL_INSTRUCTIONS',"
-<br/>
-<br/>
+<br/><br/>
 <b>Obviously, you cannot use/test this gateway from localhost, you'll need to do that on a 'live' server.</b>
-<br/>
-<br/>
+<br/><br/>
 In order to use the Clickatell gateway you need a Clickatell account and at least one registered connection (API sub-product instance) between your application and our gateway. Each connection
 method is known as a sub-product. Here's how:<br/>
 <br/>
@@ -1296,7 +1294,7 @@ jr_define('_JOMRES_ADMIN_REGISTRATION_LIMITPROPERTY_COUNTRY','Properties are loc
 jr_define('_JOMRES_JQUERYTHEME','Jquery theme');
 jr_define('_JOMRES_JQUERYTHEME_DESC','Choose a jquery theme to use for the property details tabs.');
 jr_define('_JOMRES_PROPERTYNOTOUBLISHED','We are sorry, but that property is not currently available.');
-jr_define('_JOMRES_REVIEWS','Vélemények');
+jr_define('_JOMRES_REVIEWS','Értékelések');
 jr_define('_JOMRES_REVIEWS_TITLE','Vélemény címe');
 jr_define('_JOMRES_REVIEWS_DATE','dátuma ');
 jr_define('_JOMRES_REVIEWS_NOREVIEWS','Még nincsenek vélemények erről a szálláshelyről.');
@@ -1566,16 +1564,14 @@ jr_define('_JOMRES_BOOKINGORM_MODALPOPUP','Show the booking form in a modal popu
 jr_define('_JOMRES_BOOKINGORM_MODALPOPUP_DESC','If the option to show the booking form in the property details is set to No, then when the booking form page is opened Jomres can show the booking form in a modal popup. This allows you to include much more information in the booking form without overwhelming the customer by having too many elements on the screen (as they\'re hidden behind the popup)');
 jr_define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION','Totals panel location');
 jr_define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC','In the booking form the totals panel needs different settings depending on the template. For example, on the Jomres Joomla template a setting of 712 works well, however on Milkyway a setting of circa 1500 is more suitablem, particularly if you do not have the modal popup feature enabled. It\'s likely that you\'ll need to experiment with different settings to find something that works well in your chosen template. ');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Accomodation ex tax');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Accomodation inc tax');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Szállás adó nélkül');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Szállás adóval ');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM','Rooms tax:');
 jr_define('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM','Szállásfoglalás');
-
 jr_define('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS','Vissza a szálláshely leírásához');
 jr_define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT','Automatikusan kiválasztva?');
 jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Egyenleg (előleg befizetése után)');
 jr_define('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER','Filter resources based on their features.');
-
 jr_define('_JOMRES_DATEPERIOD_LATESTBOOKING','Latest booking');
 jr_define('_JOMRES_DATEPERIOD_SECOND','second');
 jr_define('_JOMRES_DATEPERIOD_MINUTE','minute');
@@ -1713,10 +1709,10 @@ jr_define('_JOMRES_ACCESS_CONTROL_CONFIG_DESC',"Set this option to Yes to enable
 jr_define('_JOMRES_ACCESS_CONTROL_DESC_ADDENDUM',"Note, however, this these settings do not control the underlying scripts that they connect to, so for example if you set <i>00009user_option_03_search</i> to 'Manager' a user who knows Jomres can still call j06000search.class.php by entering http://www.domain.com/index.php?option=com_jomres&task=search in their browser's address bar. This is intentional, as this Menu Access control simply controls what can be seen in the Jomres Main Menu. If you need tighter controls then set the Site Config -> Full Access Control option to Yes and revisit the Menu Access Control option.");
 jr_define('_JOMRES_ACCESS_CONTROL_TITLE_FULL',"Full Access control");
 jr_define('_JOMRES_ACCESS_CONTROL_DESC_FULL',"<strong>This feature is for advanced users only. If you do not know what it is for, and don't have a specific reason to use it, please return to Site Configuration and set the Full Access Control option to No.</strong><br/>
-	This feature allows you to control who can access which minicomponents (with some exceptions that are hard coded into the system). If the access level next to a script's name is set to Default, then with the Full Access Control option set to Yes <strong>anybody</strong> can access scripts that they should not be able to access therefore if you intend to use this feature you MUST set the access control level for <strong>every</strong> Jomres minicomponent listed here. If you do not know what these minicomponents do, then we strongly advise you to not use this feature at all.<br/>
-	In Jomres access levels follow a pyramid, so Super Property Managers are greater than Managers. In short Super Manager > Manager > Receptionist > Registered > Unregistered. So, if a Registered user has access to a minicomponent, so do Receptionists,  Managers and Super Managers.<br/>
-	Note that you cannot control administrator area minicomponents. Anybody in the administrator area is considered to be a trusted user in that they should not be blocked from accessing any script (especially this one).
-	");
+This feature allows you to control who can access which minicomponents (with some exceptions that are hard coded into the system). If the access level next to a script's name is set to Default, then with the Full Access Control option set to Yes <strong>anybody</strong> can access scripts that they should not be able to access therefore if you intend to use this feature you MUST set the access control level for <strong>every</strong> Jomres minicomponent listed here. If you do not know what these minicomponents do, then we strongly advise you to not use this feature at all.<br/>
+In Jomres access levels follow a pyramid, so Super Property Managers are greater than Managers. In short Super Manager > Manager > Receptionist > Registered > Unregistered. So, if a Registered user has access to a minicomponent, so do Receptionists,  Managers and Super Managers.<br/>
+Note that you cannot control administrator area minicomponents. Anybody in the administrator area is considered to be a trusted user in that they should not be blocked from accessing any script (especially this one).
+");
 jr_define('_JOMRES_ACCESS_CONTROL_SANITYCHECK_WARNING',"Warning! You have full access control enabled, however we have counted the access control settings and compared them to the number of minicomponents that should be controlled, and the two do not match up, therefore you may have some scripts that are not controlled. This could be a security issue and you are urged to resolve this at once by visiting the Access Control feature and checking that the appropriate levels have been applied.");
 
 jr_define('_JOMRES_SHOWPROFILES_USERSWITHACCESS',"Users with admin rights to this property");
@@ -1767,16 +1763,16 @@ jr_define('_JOMRES_CSS_CACHING_DESC',"");
 
 jr_define('_JOMRES_JSCALENDAR_USECLEARCHECKBOX',"Search calendars show the clear dates checkbox?");
 
-jr_define('_JOMRES_PROPERTYLIST_LAYOUT_LIST',"List view");
-jr_define('_JOMRES_PROPERTYLIST_LAYOUT_TILE',"Photo view");
+jr_define('_JOMRES_PROPERTYLIST_LAYOUT_LIST',"Lista nézet ");
+jr_define('_JOMRES_PROPERTYLIST_LAYOUT_TILE',"Fotó nézet ");
 
-jr_define('_JOMRES_COMPARE',"Compare");
+jr_define('_JOMRES_COMPARE',"Összehasonlítás ");
 jr_define('_JOMRES_REMOVE',"Remove");
 jr_define('_JOMRES_RETURN_TO_RESULTS',"Return to search results");
 
-jr_define('_JOMRES_ADDTOSHORTLIST',"Add to shortlist");
-jr_define('_JOMRES_REMOVEFROMSHORTLIST',"Remove from shortlist");
-jr_define('_JOMRES_VIEWSHORTLIST',"View your shortlist");
+jr_define('_JOMRES_ADDTOSHORTLIST',"Listához adás");
+jr_define('_JOMRES_REMOVEFROMSHORTLIST',"Eltávolítás a listáról");
+jr_define('_JOMRES_VIEWSHORTLIST',"Saját lista nézet ");
 
 jr_define('_JOMRES_COOKIEPOLICY_TITLE',"Cookie Policy");
 jr_define('_JOMRES_COOKIEPOLICY_DESC',"EU Legislation requires that all websites that use cookies request permission from site visitors to store cookies.
@@ -1860,7 +1856,7 @@ jr_define('_JOMRES_INPUTFILTERING_INPUTS_DESC',"You can define which form inputs
 jr_define('_JOMRES_PROPERTYDETAILS_INTABS_TITLE',"Property details in tabs?");
 jr_define('_JOMRES_PROPERTYDETAILS_INTABS_DESC',"Set this option to show property details in tabs. Set it to no to show them without tabs.");
 
-jr_define('COMMON_PRINT',"Print");
+jr_define('COMMON_PRINT',"Nyomtatás");
 
 jr_define('COMMON_EDIT',"Edit");
 jr_define('COMMON_COPY',"Copy");

@@ -76,13 +76,13 @@ define("_JOMRES_COM_MR_EB_ROOM_MAXPEOPLE"," Massimo occupanti consentito");
 define("_JOMRES_COM_MR_EB_ROOM_CLASS_ABBV","Tipo di camera");
 define("_JOMRES_COM_MR_EB_ROOM_CLASS_DESC","Descrizione tipo camera");
 define("_JOMRES_COM_MR_EB_ROOM_FEATURES_LIST","Elenco delle caratteristiche della camera");
-define("_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID","Deposito pagato");
-define("_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE","Immetti deposito");
+define("_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID","Acconto pagato");
+define("_JOMRES_COM_MR_EB_PAYM_DEPOSIT_PAID_UPDATE","Immetti acconto");
 define("_JOMRES_COM_MR_EB_PAYM_CONTRACT_TOTAL","Totale da pagare");
 define("_JOMRES_COM_MR_EB_PAYM_DEPOSIT_REF","Rif. deposito");
 define("_JOMRES_COM_MR_EB_PAYM_BOOKINGNUMBER","Numero prenotazione");
-define("_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED","Deposito");
-define("_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE","Deposito salvato");
+define("_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED","Acconto");
+define("_JOMRES_COM_MR_EB_PAYM_DEPOSITSAVEMESSAGE","Acconto salvato");
 // Modificare lingua
 define("_JOMRES_COM_MR_QUICKRES_STEP2_TITLE","Camere disponibile");
 define("_JOMRES_COM_MR_QUICKRES_STEP2_PROPERTYNAME","struttura");
@@ -543,8 +543,8 @@ jr_define('_JOMRES_A_ICON','Icona');
 jr_define('_JOMRES_A_GLOBAL_SEARCHOPTION','Seleziona il plugin di ricerca che vuoi usare.');
 jr_define('_JOMRES_FRONT_NORESULTS','<b>La tua ricerca non ha fornito risultati. Ti preghiamo di modificarne i parametri e provare ancora.</b>');
 jr_define('_JOMRES_AREYOUSURE','Confermi');
-jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Prenota');
-jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Prenota questa struttura');
+jr_define('_JOMRES_FRONT_MR_MENU_BOOKAROOM','Conferma la prenotazione ora!');
+jr_define('_JOMRES_FRONT_MR_MENU_BOOKTHISPROPERTY','Conferma la prenotazione ora!');
 jr_define('_JOMRES_COM_MR_DISPGUEST_CCV','Numero di sicurezza');
 //v1.4c
 jr_define('_JOMRES_COM_A_TARIFFS_SHOWTARIFFSINLINE','Mostrare tariffe in linea');
@@ -585,7 +585,7 @@ jr_define('_JOMRES_A_GLOBALROOMTYPES_DESC','Impostare su SI se vogliamo forzare 
 jr_define('_JOMRES_A_GLOBALROOMTYPES_INFO','Per assegnare una immagine a questo tipo stanza dobbiamo prima caricare una immagine nella cartella /images/stories/jomres/rmtypes/. ');
 jr_define('_JOMRES_COM_INPUTERROR_BACKGROUND','Errore inserimento colore di sfondo');
 jr_define('_JOMRES_COM_CONFIGCOUNTRIES','Form predefinita per nazione');
-jr_define('_JOMRES_JAVASCRIPT_','Eementi evidenziati in rosso sono richiesti.');
+jr_define('_JOMRES_JAVASCRIPT_','Elementi evidenziati in rosso sono richiesti.');
 jr_define('_JOMRES_COM_SELFREGISTRATION','Gli utenti possono registrare le proprie strutture');
 jr_define('_JOMRES_COM_SELFREGISTRATION_DESC','Impostare su SI se vogliamo che gli utenti siano in grado di registrare le proprie strutture senza il nostro intervento.');
 jr_define('_JOMRES_REGISTRATION_INSTRUCTIONS_STEP1','Inserire Regione e Nazione della vostra struttura.');
@@ -626,8 +626,8 @@ jr_define('_JOMRES_AJAXFORM_BILLING_ROOM_TOTAL','Totale:');
 jr_define('_JOMRES_AJAXFORM_BILLING_EXTRAS','Extra:');
 jr_define('_JOMRES_AJAXFORM_BILLING_TAX','Tasse:');
 jr_define('_JOMRES_AJAXFORM_BILLING_DISCOUNT','Sconto:');
-jr_define('_JOMRES_AJAXFORM_BILLING_TOTAL','Toatel generale:');
-jr_define('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY','Ospite');
+jr_define('_JOMRES_AJAXFORM_BILLING_TOTAL','Totale generale:');
+jr_define('_JOMRES_AJAXFORM_BILLING_TOTALINPARTY','Ospiti');
 jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION','Clicca adesso per aggiungere la stanza dalla tua selezione');
 jr_define('_JOMRES_AJAXFORM_CLICKHERECAPTION_REMOVE','Clicca adesso per rimuovere la stanza dalla tua selezione');
 jr_define('_JOMRES_CONFIG_VARIANCES_CUSTOMERTYPES','Tipi ospite');
@@ -911,12 +911,12 @@ jr_define('_JOMRES_COM_JOMRESEMAILCHECK_DESC',"Forza un controllo accurato sulle
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_TOTAL',"Totale pernottamento ");
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_NIGHTS',"notte(i) a ");
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERROOM',"per camera ");
-jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Incrementa totale pernottamento ");
+jr_define('_JOMRES_AJAXFORM_EXTRAS_TOTAL',"Totale servizi aggiuntivi");
 jr_define('_JOMRES_AJAXFORM_PRICE_SUMMARY',"Riepilogo prezzo ");
 jr_define('_JOMRES_CONFIRMATION_ALERT',"Prego Leggere ed accettare ");
-jr_define('_JOMRES_CONFIRMATION_HEADER',"Riepilogo della tua prenotazione visualizzato in basso.<br /> Per effettuare qualche cambiamento, cliccare nel pulsante di annullamento prenotazione. ");
+jr_define('_JOMRES_CONFIRMATION_HEADER',"Riepilogo della tua prenotazione visualizzato in basso.<br />Per effettuare qualche cambiamento, cliccare nel pulsante di modifica prenotazione. ");
 jr_define('_JOMRES_CONFIRMATION_AMENDTEXT',"Se hai bisogno di cambiare qualsiasi informazione mostrata sopra clicca qui ");
-jr_define('_JOMRES_CONFIRMATION_AMEND',"Annulla Prenotazione ");
+jr_define('_JOMRES_CONFIRMATION_AMEND',"Modifica prenotazione");
 jr_define('_JOMRES_CONFIRMATION_SPECIALS',"Inserire qualsiasi richiesta speciale nel box in basso. ");
 jr_define('_JOMRES_CONFIRMATION_TERMS_PRETEXT',"Confermo che le informazioni sopra sono corrette e accetto il ");
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_PERPERSON',"per persona per notte ");
@@ -1150,7 +1150,7 @@ jr_define('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS','Se hai un codice sconto, inser
 jr_define('_JOMRES_AJAXFORM_COUPON_APPLYBUTTON','Salva codice sconto');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONSAVED','Codice sconto salvato');
 jr_define('_JOMRES_AJAXFORM_COUPON_COUPONNOTFOUND','Codice sconto non valido');
-jr_define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Valore Sconto');
+jr_define('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE','Valore sconto');
 jr_define('_JOMRES_AJAXFORM_COUPON_BOOKINGNOTE','Prenotazione scontata. Codice sconto/valore sconto/impostazioni codice sconto : ');
 jr_define('_JOMRES_COM_CACHING','Usa la opzione caching di Jomres?');
 jr_define('_JOMRES_COM_CACHING_DESC','Seleziona NO per disabilitare la funzione caching di Jomres.');
@@ -1384,7 +1384,7 @@ jr_define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS','Visualizza il modulo
 jr_define('_JOMRES_COM_A_SHOWBOOKINGFORMINPROPERTYDETAILS_DESC','Seleziona SI per visualizzare il modulo di prenotazione nella scheda struttura. Se selezioni No, un link apparir&Agrave; nella scheda della struttura invece che puntare al modulo di prenotazione.');
 jr_define('_JOMRES_COM_A_TAXINCLUSIVE','Le tariffe sono comprensive di tasse?');
 jr_define('_JOMRES_COM_A_TAXINCLUSIVE_DESC','Le tariffe sono Tasse-incluse? Seleziona SI o NO.');
-jr_define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS','Tasse extra:');
+jr_define('_JOMRES_AJAXFORM_BILLING_TAX_EXTRAS','Tasse servizi:');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DAYSOFWEEK','Il campo giorno della settimana permette di fissare una tariffa per un dato giorno della settimana, una volta cliccato il pulsante del giorno della settimana tutti i giorni della stessa avranno la tariffa stabilita  in precedenza.');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES','I selettori data e l&acute;imput di tariffa permettono di fissare una tariffa per un determinato periodo. Scegli una data di inizio e una di fine, inserisci la tariffa e clicca il pulsante Configura Tariffe.');
 jr_define('_JOMRES_MICROMANAGE_PICKER_DATERANGES_START','Data di inizio');
@@ -1530,10 +1530,10 @@ jr_define('_JOMRES_SORTORDER_PRICE_ASC','Price (lowest first)');
 // 4.7.6
 
 jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT','Price summary and estimates should be priced as per night/per week/per month?');
-jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY','Per night');
-jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY','Per week');
-jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY','Per month');
-jr_define('_JOMRES_BOOKINGFORM_PERPERSON','Per person');
+jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_DAILY','a notte');
+jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_WEEKLY','a settimana');
+jr_define('_JOMRES_BOOKINGFORM_PRICINGOUTPUT_MONTHLY','al mese');
+jr_define('_JOMRES_BOOKINGFORM_PERPERSON','a persona');
 
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_WEEKS','week(s) at ');
 jr_define('_JOMRES_AJAXFORM_ACCOMMODATION_MONTHS','month(s) at ');
@@ -1584,29 +1584,29 @@ jr_define('_JOMRES_BOOKINGORM_MODALPOPUP','Show the booking form in a modal popu
 jr_define('_JOMRES_BOOKINGORM_MODALPOPUP_DESC','If the option to show the booking form in the property details is set to No, then when the booking form page is opened Jomres can show the booking form in a modal popup. This allows you to include much more information in the booking form without overwhelming the customer by having too many elements on the screen (as they\'re hidden behind the popup)');
 jr_define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION','Totals panel location');
 jr_define('_JOMRES_BOOKINGORM_TOTALSPANEL_LOCATION_DESC','In the booking form the totals panel needs different settings depending on the template. For example, on the Jomres Joomla template a setting of 712 works well, however on Milkyway a setting of circa 1500 is more suitablem, particularly if you do not have the modal popup feature enabled. It\'s likely that you\'ll need to experiment with different settings to find something that works well in your chosen template. ');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Accomodation ex tax');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Accomodation inc tax');
-jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM','Rooms tax:');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_EX_TAX','Alloggio tasse escluse');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_INC_TAX','Alloggio tasse incluse');
+jr_define('_JOMRES_AJAXFORM_BILLING_TAX_ACCOM','Tassa di alloggio:');
 jr_define('_JOMRES_AJAXFORM_BUTTON_OPEN_BOOKINGFORM','Open the booking form');
 
 jr_define('_JOMRES_AJAXFORM_BUTTON_BACK_TO_PROPERTY_DETAILS','Back to property details');
 jr_define('_JOMRES_COM_MR_EXTRA_AUTO_SELECT','Automatically Selected?');
-jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Balance (after deposit paid)');
+jr_define('_JOMRES_BOOKINGORM_ROOMTOTAL_BALANCE','Resto da pagare');
 
 jr_define('_JOMRES_BOOKINGORM_ROOMFEATURE_FILTER','Filter resources based on their features.');
 
-jr_define('_JOMRES_DATEPERIOD_LATESTBOOKING','Latest booking');
-jr_define('_JOMRES_DATEPERIOD_SECOND','second');
-jr_define('_JOMRES_DATEPERIOD_MINUTE','minute');
-jr_define('_JOMRES_DATEPERIOD_HOUR','hour');
-jr_define('_JOMRES_DATEPERIOD_DAY','day');
-jr_define('_JOMRES_DATEPERIOD_WEEK','week');
-jr_define('_JOMRES_DATEPERIOD_MONTH','month');
-jr_define('_JOMRES_DATEPERIOD_YEAR','year');
+jr_define('_JOMRES_DATEPERIOD_LATESTBOOKING','Ultima prenotazione');
+jr_define('_JOMRES_DATEPERIOD_SECOND','secondi');
+jr_define('_JOMRES_DATEPERIOD_MINUTE','minuti');
+jr_define('_JOMRES_DATEPERIOD_HOUR','ore');
+jr_define('_JOMRES_DATEPERIOD_DAY','giorni');
+jr_define('_JOMRES_DATEPERIOD_WEEK','settimane');
+jr_define('_JOMRES_DATEPERIOD_MONTH','mesi');
+jr_define('_JOMRES_DATEPERIOD_YEAR','anni');
 jr_define('_JOMRES_DATEPERIOD_DECADE','decade');
-jr_define('_JOMRES_DATEPERIOD_S','s');
-jr_define('_JOMRES_DATEPERIOD_AGO','ago');
-jr_define('_JOMRES_DATEPERIOD_FROMNOW','from now');
+jr_define('_JOMRES_DATEPERIOD_S',' ');
+jr_define('_JOMRES_DATEPERIOD_AGO','fa');
+jr_define('_JOMRES_DATEPERIOD_FROMNOW','da ora');
 
 jr_define('_JOMRES_WHOLEDAY_TITLE','Bookings are for whole days?');
 jr_define('_JOMRES_WHOLEDAY_DESC','By default the system bookings resources out by the night, so a booking from the first of January '.date("Y",strtotime("next year")).' to the 2nd of January '.date("Y",strtotime("next year")).' covers just one night. If you set this option to Yes, however, then the booking will cover entire days instead, so a booking on those days would cover both days and the customer would be billed for two days.');
@@ -1879,7 +1879,7 @@ jr_define('_JOMRES_INPUTFILTERING_INPUTS_DESC',"You can define which form inputs
 jr_define('_JOMRES_PROPERTYDETAILS_INTABS_TITLE',"Property details in tabs?");
 jr_define('_JOMRES_PROPERTYDETAILS_INTABS_DESC',"Set this option to show property details in tabs. Set it to no to show them without tabs.");
 
-jr_define('COMMON_PRINT',"Print");
+jr_define('COMMON_PRINT',"Stampa");
 
 jr_define('COMMON_EDIT',"Edit");
 jr_define('COMMON_COPY',"Copy");
