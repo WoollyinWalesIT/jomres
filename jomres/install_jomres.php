@@ -170,6 +170,21 @@ if (componentsIntegrationExists())
 			}
 		}
 
+// Have to do this automatically otherwise Jomres will never run when upgrading from v2.5 to v3.x of joomla
+if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
+	{
+	$result = true;
+	if (file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php'))
+		{
+		$result = unlink(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php');
+		}
+	if (!$result)
+		{
+		echo "<div class=\"alert alert-error\">Error, tried to delete <strong>".JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS.'admin.jomres.php'."</strong> however file permissions prevent this from happening. You MUST delete this file before you can continue with the upgrade. This file is not used by Joomla 3.x+</div>";
+		$folderChecksPassed = false;
+		}
+	}
+
 if ($folderChecksPassed && $functionChecksPassed && ACTION != "Migration") 
 	{
 	$trashtables=jomresGetParam($_POST,'trashtables',0,'integer');
@@ -221,6 +236,7 @@ if ($folderChecksPassed && $functionChecksPassed && ACTION != "Migration")
 				}
 			elseif (ACTION == "Upgrade") // Upgrading
 				{
+
 				define('ACTION',"Upgrade");
 				jr_import('minicomponent_registry');
 				$registry = new minicomponent_registry(true);
@@ -231,7 +247,7 @@ if ($folderChecksPassed && $functionChecksPassed && ACTION != "Migration")
 				
 				import_countries();
 				import_regions();
-				
+
 				require_once(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."cms_specific_upgrade.php");
 				showCompletedText();
 				}

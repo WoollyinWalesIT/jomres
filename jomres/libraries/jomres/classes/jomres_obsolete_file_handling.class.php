@@ -49,6 +49,9 @@ class jomres_obsolete_file_handling
 		$this->dir_images_large = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'large'.JRDS;
 		$this->dir_images_small = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'images'.JRDS.'jomresimages'.JRDS.'small'.JRDS;
 		
+		$this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS;
+		$this->dir_components = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS;
+		
 		}
 
 	function ready_to_go()
@@ -733,6 +736,10 @@ class jomres_obsolete_file_handling
 		
 		$this->add_obs_file($this->dir_templates_jqueryui_backend.JRDS.'confirmation_letter.html');
 		$this->add_obs_file($this->dir_templates_bootstrap_backend.JRDS.'confirmation_letter.html');
+		
+		if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
+			$this->add_obs_file($this->dir_components_administrator.'admin.jomres.php');
+		//var_dump($this->dir_components_administrator.'admin.jomres.php');exit;
 		}
 	
 	function add_obs_file($path_and_file)
