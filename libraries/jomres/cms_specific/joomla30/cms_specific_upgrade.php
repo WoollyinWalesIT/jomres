@@ -19,3 +19,8 @@ defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowe
 			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."components".JRDS."com_jomres".JRDS."router.php 
 			automatically, please do this manually through FTP</h1><br/>";
 
+	if (!copy(_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php", 	JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.php"))
+		echo "<h1>Error, unable to copy ".
+			_JOMRES_DETECTED_CMS_SPECIFIC_FILES."installfiles".JRDS."admin.jomres.php to ".
+			JOMRESCONFIG_ABSOLUTE_PATH.JRDS."administrator".JRDS."components".JRDS."com_jomres".JRDS."jomres.php 
+			automatically, please do this manually through FTP</h1><br/>";
