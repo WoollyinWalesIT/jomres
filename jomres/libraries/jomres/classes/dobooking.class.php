@@ -6253,7 +6253,10 @@ class dobooking
 			{
 			$rm_id = $key;
 			$number_of_guests = $val['number_allocated'];
-			$price = output_price( $this->get_gross_price( $val['price_per_night']*$val['number_allocated'] , $this->accommodation_tax_rate));
+			if (isset($val['price_per_night']))
+				$price = output_price( $this->get_gross_price( $val['price_per_night']*$val['number_allocated'] , $this->accommodation_tax_rate));
+			else
+				$price="";
 			$room_number = "";
 			$room_name="";
 
@@ -6269,6 +6272,7 @@ class dobooking
 					$room_number=$this->allPropertyRooms[$rm_id]['room_number'];
 				if ($this->cfg_bookingform_roomlist_showroomname == "1")
 					$room_name=$this->allPropertyRooms[$rm_id]['room_name'];
+				$this->setPopupMessage();
 				$output .="<tr><td>".$text_room." : ".$room_number." ".$room_name."</td><td>X</td><td>".$number_of_guests." ".$text_guests." ".$price."</td></tr>";
 				}
 			}
