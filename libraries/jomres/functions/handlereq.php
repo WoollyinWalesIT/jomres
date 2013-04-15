@@ -390,7 +390,7 @@ if ($field != "heartbeat" && $field != "show_log" && $field != "email_usage_chec
 	
 	$arrivalDate=$bkg->getArrivalDate();
 	$departureDate=$bkg->getDepartureDate();
-	if ($bkg->checkArrivalDate($arrivalDate) && $bkg->checkDepartureDate($departureDate) )
+	if ($bkg->checkArrivalDate($arrivalDate))
 		{
 		$bkg->setOkToBook(false);
 		$bkg->writeToLogfile("Lastfield ".$lastfield);
