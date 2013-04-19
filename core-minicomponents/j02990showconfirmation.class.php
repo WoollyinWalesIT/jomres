@@ -67,7 +67,8 @@ class j02990showconfirmation {
 		$tmpBookingHandler->updateGuestField('postcode', jomresGetParam($_POST,'postcode','') );
 		$tmpBookingHandler->updateGuestField('tel_mobile', jomresGetParam($_POST,'tel_mobile','') );
 		$tmpBookingHandler->updateGuestField('tel_landline', jomresGetParam($_POST,'tel_landline','') );
-		$tmpBookingHandler->updateGuestField('email', jomresGetParam($_POST,'eemail','') );
+		if (!$thisJRUser->userIsRegistered)
+			$tmpBookingHandler->updateGuestField('email', jomresGetParam($_POST,'eemail','') );
 		
 		
 
