@@ -5121,24 +5121,7 @@ class dobooking
 			$rpn=$rpn/7;
 			}
 		
-		switch ($this->cfg_booking_form_daily_weekly_monthly)
-			{
-			case "D":
-				$rpn=$rpn;
-				break;
-			case "W":
-				if ($this->cfg_tariffmode=="1" && $this->cfg_tariffChargesStoredWeeklyYesNo=="1")
-				 $rpn=$rpn;
-				else
-				 $rpn=$rpn * 7;
-				break;
-			case "M":
-				$month = date("m",$this->unixArrivalDate);
-				$year = date("Y",$this->unixArrivalDate);
-				$num = cal_days_in_month(CAL_GREGORIAN, $month,$year); 
-				$rpn=$rpn * $num;
-				break;
-			}
+		$rpn = $this->get_rate_per_night_converted_to_output_period($rpn);
 		
 		return $rpn;
 		}
