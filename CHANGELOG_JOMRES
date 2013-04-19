@@ -1,3 +1,23 @@
+Jomres 7.2.15
+
+Fixed the breadcrumb repeating problem. Thanks Raphael Vilela.
+Changed the name of the administrator menu used in installation into the administrator area.
+Improved a condition that prevents Jomres from loading the jquery core js files if we're running J3.0 or J3.1
+Fixed a typo that checks for region or country table existence in the installer.
+Added a page-header class definition to booking form template (bootstrap).
+Changed an initialising option that defines minimum interval as an intentionally abnormally high figure, to 1.
+Changed how jr_gettext figures out if we're in the administrator area.
+Updated German, Italian and Hungarian lang files with some new improvements.
+Tweaked property list to ensure that the featured listing class is used properly.
+Added new code to help users who're upgrading from J2.5 to J3.x. Modified the installer to remove admin.jomres.php and install jomres.php to the administrator/components/com_jomres directory. If you upgrade from J2.5, you will find that you cannot access jomres.php until you run the 7.2.15 version of install_jomres.php
+Tidied up a line in the javascript minicomponent that no longer makes sense within the context of J2.5/3.0.
+Removed a redundant check that was causing the price summary to sometimes not show due to the order that the minimum interval is calculated.
+Tweaked the booking class to show the price in the allocation popup only if a price variable is set and the tariff mode is Average.
+Added a caveat in the show confirmation script so that the email address is only updated if the user isn't registered.
+Tweaked output so that booking form summary "number of days/weeks" etc is updated correctly. Previously, if Advanced tariff editing is used, and prices stored weekly option is set to yes, the "weekly" price would in fact show the nightly price. A little confusing so this will clarify that output.
+Tweaked a method so that pricing output figuring is done by an already existing method.
+
+
 Jomres 7.2.14
 
 Fixed a bug introduced in the last version that was introduced by some new functionality that helps us deal with IDNs.
