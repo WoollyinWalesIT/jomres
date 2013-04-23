@@ -1958,3 +1958,5 @@ jr_define("_JOMRES_REGION_TRANSLATION_SWITCH_DESC", "Om du kör en mycket snabb 
 jr_define("_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT", "Gäst fullbokad.");
 
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE','Tyvärr, den e-postadressen används redan. Om detta är din e-postadress, se till att du har loggat in innan du försöker boka.');
+
+jr_define( "JOMRES_TAPTOCALL" , "Tap to call");

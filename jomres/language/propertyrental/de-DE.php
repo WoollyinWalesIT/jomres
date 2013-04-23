@@ -2040,3 +2040,5 @@ jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "Nur für schnelle Server 
 jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Gast ausgebucht.");
 
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE','Entschuldigung, diese e-Mail Adresse wird bereits benutzt. Wenn das Ihre e-Mail Adresse ist, bitte versichern sie sich, dass sie eingeloggt sind bevor sie buchen.');
+
+jr_define( "JOMRES_TAPTOCALL" , "Tap to call");

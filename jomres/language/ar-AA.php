@@ -1849,3 +1849,5 @@ jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_SUBJECT" , "تم اعتماد الم
 jr_define( "_JOMRES_APPROVALS_MANAGER_EMAIL_CONTENT" , "تهانينا، تمت الموافقة على الفندق الخاص بك، يرجى الضغط على الرابط التالي لمشاهدة لوحة التحكم الفندق: ");
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_TITLE" , "اسماء المناطق قابلة للترجمة");
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "إلا إذا كنت تقوم بتشغيل خادم سريع جدا وينصح لك لترك هذه المجموعة إلى لا ونظرا لعدد كبير من الأسماء المنطقة، والمنطقة الترجمة اسم يستغرق الكثير من الذاكرة التي يمكن أن يبطئ نتائج البحث الخاص بك إلى أسفل.");
+
+jr_define( "JOMRES_TAPTOCALL" , "Tap to call");
