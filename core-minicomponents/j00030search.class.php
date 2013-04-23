@@ -462,7 +462,7 @@ class j00030search {
 						foreach ($sch->prep['region'] as $region)
 							{
 							$t = str_replace("&#39;","'",$region['region']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-							$region_id=find_region_id($t);
+							$region_id=find_region_id(jomres_cmsspecific_stringURLSafe($t));
 							$region_name = find_region_name($t);
 							$regionArray[]= jomresHTML::makeOption( $region_id, jomres_decode($region_name));
 							}
@@ -475,7 +475,7 @@ class j00030search {
 						foreach ($sch->prep['region'] as $region)
 							{
 							$t = str_replace("&#39;","'",$region['region']);  // This is important. php will not pass back, eg Sant&#39;Antimo, it will only pass back Sant, therefore we need to convert the &#39; to a ' to be shown in the url. When jomresGetParam runs it'll convert the ' back to &#39; and the search will run successfully.
-							$region_id=find_region_id($t);
+							$region_id=find_region_id(jomres_cmsspecific_stringURLSafe($t));
 							$region_name = find_region_name($t);
 							$l=htmlspecialchars(JOMRES_SITEPAGE_URL.'&calledByModule='.$calledByModule.'&region='.$region_id);
 							$link=jomresURL($l);
