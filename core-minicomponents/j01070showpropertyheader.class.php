@@ -171,6 +171,8 @@ class j01070showpropertyheader
 					$domain = parse_url(str_replace("&#38;#38;amp;","&",filter_var($mrConfig['galleryLink'], FILTER_SANITIZE_URL)));
 					$output['GALLERYDOMAIN']=$domain['host'];
 					}
+				
+				$output['JOMRES_TAPTOCALL']=jr_gettext("JOMRES_TAPTOCALL",JOMRES_TAPTOCALL,false,false);
 
 				$pageoutput[]=$output;
 				$tmpl = new patTemplate();

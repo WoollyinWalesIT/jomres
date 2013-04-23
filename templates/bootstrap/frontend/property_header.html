@@ -9,10 +9,14 @@
 				<span itemprop="region">{REGION}</span>, 
 				<span itemprop="postal-code">{POSTCODE}</span>, 
 				<span itemprop="country_name">{COUNTRY}</span><br />
-				{HTELEPHONE} 
-				<span itemprop="tel">{TELEPHONE}</span>,
-				{HFAX}
-				{FAX}
+				<span class = "visible-tablet visible-desktop">
+					{HTELEPHONE} <span itemprop="tel"><strong>{TELEPHONE}</strong></span>,
+					{HFAX}, <strong>{FAX}</strong>
+				</span>
+				<span class = "hidden-tablet hidden-desktop">
+					<br/>
+					<a href=”tel:{TELEPHONE}″ class=" btn btn-success" itemprop="tel" >{JOMRES_TAPTOCALL} {TELEPHONE} <i class="icon-chevron-right"></i></a>
+				</span>
 			</span>
 		</div>
 	</address>
