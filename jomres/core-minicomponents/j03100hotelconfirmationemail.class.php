@@ -165,7 +165,14 @@ class j03100hotelconfirmationemail {
 		
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
 		$output['DEPOSIT']		=	output_price($deposit_required);
-
+		
+		$output['HOUSE']=$guestDetails['house'];
+		$output['STREET']=$guestDetails['street'];
+		$output['TOWN']=$guestDetails['town'];
+		$output['REGION']=$guestDetails['region'];
+		$output['COUNTRY']=$guestDetails['country'];
+		$output['POSTCODE']=$guestDetails['postcode'];
+		
 		$guestDetails = getGuestDetailsForContract($componentArgs['contract_uid']);
 		$rows=array();
 		if (count($guestDetails)>0)
