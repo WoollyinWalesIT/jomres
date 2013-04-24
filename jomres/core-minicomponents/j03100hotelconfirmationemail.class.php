@@ -38,7 +38,6 @@ class j03100hotelconfirmationemail {
 		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 		$tempBookingDataList=$componentArgs['tempBookingDataList'];
 		$cartnumber=$componentArgs['cartnumber'];
-		$guestDetails=$componentArgs['guestDetails'];
 		$guests_uid=$componentArgs['guests_uid'];
 		$property_uid=(int)$componentArgs['property_uid'];
 		$arrivalDate=$componentArgs['arrivalDate'];
@@ -166,12 +165,14 @@ class j03100hotelconfirmationemail {
 		$output['HDEPOSIT']		=	jr_gettext('_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED',_JOMRES_COM_MR_EB_PAYM_DEPOSITREQUIRED);
 		$output['DEPOSIT']		=	output_price($deposit_required);
 		
-		$output['HOUSE']=$guestDetails['house'];
-		$output['STREET']=$guestDetails['street'];
-		$output['TOWN']=$guestDetails['town'];
-		$output['REGION']=$guestDetails['region'];
-		$output['COUNTRY']=$guestDetails['country'];
-		$output['POSTCODE']=$guestDetails['postcode'];
+		$guestObject=$componentArgs['guestDetails'];
+		
+		$output['HOUSE']	=$guestObject->house;
+		$output['STREET']	=$guestObject->street;
+		$output['TOWN']		=$guestObject->town;
+		$output['REGION']	=$guestObject->region;
+		$output['COUNTRY']	=$guestObject->country;
+		$output['POSTCODE']	=$guestObject->postcode;
 		
 		$guestDetails = getGuestDetailsForContract($componentArgs['contract_uid']);
 		$rows=array();
