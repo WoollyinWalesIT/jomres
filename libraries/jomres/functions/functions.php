@@ -13,7 +13,29 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-
+genericLike($idArray,$fieldToSearch,$idArrayisInteger=true)
+	{
+	$newArr=array();
+	foreach ($idArray as $id)
+		{
+		$newArr[]=$id;
+		}
+	$idArray=$newArr;
+	$txt=" ( `".$fieldToSearch."` LIKE ";
+	for ($i=0, $n=count($idArray); $i < $n; $i++)
+		{
+		if ($idArrayisInteger)
+			$id=(int)$idArray[$i];
+		else
+			$id=$idArray[$i];
+		$txt .= " '%$id%' ";
+		if ($i < count($idArray)-1)
+			$txt .= " OR `".$fieldToSearch."` LIKE ";
+		}
+	$txt .= " ) ";
+	return $txt;
+	}
+ 
 function get_number_of_items_requiring_attention_for_menu_option($task)
 	{
 	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
