@@ -13,7 +13,7 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
-genericLike($idArray,$fieldToSearch,$idArrayisInteger=true)
+function genericLike($idArray,$fieldToSearch,$idArrayisInteger=true)
 	{
 	$newArr=array();
 	foreach ($idArray as $id)
