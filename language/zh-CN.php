@@ -1011,7 +1011,7 @@ jr_define('_JOMRES_COM_LOGGING_WARNING','These options allow you to enable/disab
 jr_define('_JOMRES_COM_LOGGING_BOOKING','Booking form logging (Booking engine logs) ');
 jr_define('_JOMRES_COM_LOGGING_GATEWAY','Gateway logs (eg paypal etc) ');
 jr_define('_JOMRES_COM_LOGGING_REQUEST','Request log (all incoming server requests)');
-jr_define('_JOMRES_COM_LOGGING_SYSTEM','System (misc log) ');
+jr_define('_JOMRES_COM_LOGGING_SYSTEM','Misc ');
 jr_define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (mainly for recording commission etc) ');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Your enquiry...');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Booking form room list show room type image');
