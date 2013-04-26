@@ -2042,3 +2042,8 @@ jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Gast ausgebucht.");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE','Entschuldigung, diese e-Mail Adresse wird bereits benutzt. Wenn das Ihre e-Mail Adresse ist, bitte versichern sie sich, dass sie eingeloggt sind bevor sie buchen.');
 
 jr_define( "JOMRES_TAPTOCALL" , "Tap to call");
+
+jr_define( "JOMRES_NEWREVIEW_SUBJECT" , "New review for ");
+jr_define( "JOMRES_NEWREVIEW_MESSAGE" , "A new review has been left for ");
+jr_define( "JOMRES_NEWREPORT_SUBJECT" , "New Report");
+jr_define( "JOMRES_NEWREPORT_MESSAGE" , "A review has been reported for ");

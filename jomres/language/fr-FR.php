@@ -1900,3 +1900,8 @@ jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "Sauf si vous utilisez un 
 jr_define( "_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT" , "Livre d'or.");
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE','Désolé, cette adresse e-mail est déjà utilisée. Si il s\'agit de votre adresse de courriel, veuillez vous assurer que vous avez connecté avant d\'essayer de réserver.');
 jr_define( "JOMRES_TAPTOCALL" , "Tap to call");
+
+jr_define( "JOMRES_NEWREVIEW_SUBJECT" , "New review for ");
+jr_define( "JOMRES_NEWREVIEW_MESSAGE" , "A new review has been left for ");
+jr_define( "JOMRES_NEWREPORT_SUBJECT" , "New Report");
+jr_define( "JOMRES_NEWREPORT_MESSAGE" , "A review has been reported for ");
