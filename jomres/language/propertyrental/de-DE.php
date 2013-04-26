@@ -1062,7 +1062,7 @@ jr_define('_JOMRES_COM_LOGGING_WARNING','Diese Funktion aktiviert/deaktiviert da
 jr_define('_JOMRES_COM_LOGGING_BOOKING','Buchungs Logs (Formular Logs) ');
 jr_define('_JOMRES_COM_LOGGING_GATEWAY','Gateway Logs (z.B. Paypal etc) ');
 jr_define('_JOMRES_COM_LOGGING_REQUEST','Anfrage Log (alle eingehenden Serveranfragen)');
-jr_define('_JOMRES_COM_LOGGING_SYSTEM','System (verschiedene Logs) ');
+jr_define('_JOMRES_COM_LOGGING_SYSTEM','verschiedene Logs');
 jr_define('_JOMRES_COM_LOGGING_JRPORTAL','JR Portal (vor allem für die Zusammenstellung der Provisionen, etc) ');
 jr_define('_JOMRES_FRONT_MR_MENU_CONTACTHOTEL_YOUR_ENQUIRY','Ihre Frage...');
 jr_define('_JOMRES_COM_A_BOOKINGFORM_SHOWROOMTYPEIMAGE','Raumauflistung Buchungsformular nach Raumtyp-Bild angezeigt');
