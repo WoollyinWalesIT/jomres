@@ -505,7 +505,10 @@ class j16000showplugins
 		
 		
 		$output['PLUGINS_TO_UPGRADE']=implode(",",$plugins_needing_upgrading);
-		$plugins_require_upgrade[]['upgrade_text']='Upgrade all Core plugins';
+		
+		if ($this->key_valid)
+			$plugins_require_upgrade[]['upgrade_text']='Upgrade all Core plugins';
+		
 		
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
