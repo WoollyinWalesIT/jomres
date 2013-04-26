@@ -33,6 +33,13 @@ class j06005save_review_report
 			$Reviews = new jomres_reviews();
 			$Reviews->save_review_report($rating_id,$report);
 			$property_uid = $Reviews->get_property_uid_for_rating_id($rating_id);
+			
+			$property_name = getPropertyName($property_uid);
+			$subject = jr_gettext("JOMRES_NEWREPORT_SUBJECT","JOMRES_NEWREPORT_SUBJECT",false)." ".$property_name;
+			$message = jr_gettext("JOMRES_NEWREPORT_MESSAGE","JOMRES_NEWREPORT_MESSAGE",false)." ".$property_name."  ".JOMRES_SITEPAGE_URL_ADMIN."&task=view_property_reviews&property_uid=".(int)$property_uid."  <br/><br/>";
+			sendAdminEmail($subject,$message);
+			
+			
 			jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&property_uid=".$property_uid,"" ));
 			exit;
 			}

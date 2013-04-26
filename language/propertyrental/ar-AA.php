@@ -1851,3 +1851,8 @@ jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_TITLE" , "اسماء المناط�
 jr_define( "_JOMRES_REGION_TRANSLATION_SWITCH_DESC" , "إلا إذا كنت تقوم بتشغيل خادم سريع جدا وينصح لك لترك هذه المجموعة إلى لا ونظرا لعدد كبير من الأسماء المنطقة، والمنطقة الترجمة اسم يستغرق الكثير من الذاكرة التي يمكن أن يبطئ نتائج البحث الخاص بك إلى أسفل.");
 
 jr_define( "JOMRES_TAPTOCALL" , "Tap to call");
+
+jr_define( "JOMRES_NEWREVIEW_SUBJECT" , "New review for ");
+jr_define( "JOMRES_NEWREVIEW_MESSAGE" , "A new review has been left for ");
+jr_define( "JOMRES_NEWREPORT_SUBJECT" , "New Report");
+jr_define( "JOMRES_NEWREPORT_MESSAGE" , "A review has been reported for ");

@@ -1967,3 +1967,8 @@ jr_define('_JOMRES_FRONT_MR_BOOKOUT_GUESTBOOKEDOUT','Gäst avbokad.');
 jr_define('_JOMRES_BOOKINGFORM_MONITORING_EMAIL_ALREADY_IN_USE','Tyvärr, e-postadressen används redan. Om detta är din e-postadress, se till att du har loggat in innan du försöker boka.');
 
 jr_define( "JOMRES_TAPTOCALL" , "Tap to call");
+
+jr_define( "JOMRES_NEWREVIEW_SUBJECT" , "New review for ");
+jr_define( "JOMRES_NEWREVIEW_MESSAGE" , "A new review has been left for ");
+jr_define( "JOMRES_NEWREPORT_SUBJECT" , "New Report");
+jr_define( "JOMRES_NEWREPORT_MESSAGE" , "A review has been reported for ");

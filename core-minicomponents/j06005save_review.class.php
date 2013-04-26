@@ -87,6 +87,11 @@ class j06005save_review
 				$jomres_messaging =jomres_singleton_abstract::getInstance('jomres_messages');
 				$jomres_messaging->set_message($saveMessage);
 				
+				$property_name = getPropertyName($property_uid);
+				$subject = jr_gettext("JOMRES_NEWREVIEW_SUBJECT","JOMRES_NEWREVIEW_SUBJECT",false)." ".$property_name;
+				$message = jr_gettext("JOMRES_NEWREVIEW_MESSAGE","JOMRES_NEWREVIEW_MESSAGE",false)." ".$property_name."  ".JOMRES_SITEPAGE_URL_ADMIN."&task=view_property_reviews&property_uid=".(int)$property_uid." <br/><br/>";
+				sendAdminEmail($subject,$message);
+				
 				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL."&task=viewproperty&ja=1&property_uid=".$property_uid) ,"" );
 				exit;
 				}
