@@ -521,7 +521,7 @@ function migrate_region_names()
 			{
 			if (!is_numeric($property->property_region))
 				{
-				$region_id = find_region_id($property->property_region);
+				$region_id = installer_find_region_id($property->property_region);
 				if (!is_null($region_id))
 					{
 					$query .= "WHEN ".(int)$property->propertys_uid." THEN ".(int)$region_id.'
@@ -547,6 +547,24 @@ function migrate_region_names()
 				echo "Failed to update property regions to property region ids";
 			}
 		}
+	}
+	
+// The functions.php version of this function has recently had a call to a Joomla function added. This creates a problem during installation. Rather than making the find_region_id ALWAYS check for the existence of the CMS specific function every time it's run, we'll duplicate the function here instead. find_region_id has the potential to be called many times, so the fewer calls we can make to check if a function exists when 99.99999% if the time it does, the less load we're creating.
+
+function installer_find_region_id($region)
+	{
+	if (is_numeric($region)) // It's already numeric
+		return $region;
+	
+	$jomres_regions = jomres_singleton_abstract::getInstance('jomres_regions');
+	foreach ($jomres_regions->regions as $r)
+		{
+		if (strcasecmp ( $r['regionname'],$region)==0)
+			{
+			return (int)$r['id'];
+			}
+		}
+	return null;
 	}
 	
 function alterCustomtemplatesPtypeidCol()
