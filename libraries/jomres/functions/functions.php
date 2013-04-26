@@ -4310,7 +4310,7 @@ function property_header($property_uid)
  * Sends emails to admins
 #
 */
-function sendAdminEmail($subject,$message)
+function sendAdminEmail($subject,$message, $send_post = false)
 	{
 	$jomresConfig_mailfrom=get_showtime('mailfrom');
 	$jomresConfig_fromname=get_showtime('fromname');
@@ -4329,9 +4329,13 @@ function sendAdminEmail($subject,$message)
 		$m=print_r($message);
 		$message=$m;
 		}
-	$message .= "\n\n\nPost details follow (may not be applicable to email) ";
-	foreach ($_POST as $key => $value) { $message .= "\n$key: $value"; }
-
+		
+	if ($send_post)
+		{
+		$message .= "\n\n\nPost details follow (may not be applicable to email) ";
+		foreach ($_POST as $key => $value) { $message .= "\n$key: $value"; }
+		}
+	
 	$admins=jomres_cmsspecific_getCMS_users_admin_getalladmins_ids($id);
 	foreach ( $admins AS $admin )
 		{
