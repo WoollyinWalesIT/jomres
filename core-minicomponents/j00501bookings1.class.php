@@ -50,7 +50,7 @@ class j00501bookings1 {
 		
 		
 		$configurationPanel->startPanel(jr_gettext("_JOMRES_COM_A_BOOKING",_JOMRES_COM_A_BOOKING,false));
-		if ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager)
+		if ( ($jrConfig['minimalconfiguration']!="1" || $thisJRUser->superPropertyManager) &&  $mrConfig['singleRoomProperty'] != "1" )
 			{
 			$configurationPanel->setleft(jr_gettext("_JOMRES_ROOMMSLIST_STYLE",_JOMRES_ROOMMSLIST_STYLE,false));
 			$configurationPanel->setmiddle($booking_form_rooms_list_style);
