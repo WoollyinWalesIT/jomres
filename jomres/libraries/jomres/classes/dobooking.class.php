@@ -2098,6 +2098,13 @@ class dobooking
 		$this->unixArrivalDate= mktime(0,0,0,$date_elements[1],$date_elements[2],$date_elements[0]);
 		if ( $this->cfg_fixedPeriodBookings == "1")
 			{
+			$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
+			$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
+			if ($amend_contract && $this->stayDays == "")
+				{
+				$this->stayDays=$this->dateDiff($tmpBookingHandler->tmpbooking['amend_contract_arrival'],$tmpBookingHandler->tmpbooking['amend_contract_departure']);
+				}
+			
 			$departureDate=$this->getFixedPeriodDepartureDate($this->stayDays);
 			$this->setErrorLog("setArrivalDate::Property uses fixed periods, so setting departure date to: ".$departureDate);
 			$this->setDepartureDate($departureDate);
