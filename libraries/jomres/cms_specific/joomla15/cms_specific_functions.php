@@ -13,6 +13,11 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+function jomres_cmsspecific_getsessionid()
+	{
+	return $_SESSION['sessionid'];
+	}
+
 function jomres_cmsspecific_getregistrationlink()
 	{
 	return jomresURL(get_showtime('live_site')."/index.php?option=com_user&view=register");
