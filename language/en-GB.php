@@ -1966,3 +1966,4 @@ jr_define( "JOMRES_NEWREVIEW_MESSAGE" , "A new review has been left for ");
 jr_define( "JOMRES_NEWREPORT_SUBJECT" , "New Report");
 jr_define( "JOMRES_NEWREPORT_MESSAGE" , "A review has been reported for ");
 
+jr_define( "JOMRES_NON_REGISTERED_USER" , "Non registered user");
