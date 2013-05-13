@@ -1,3 +1,26 @@
+Jomres 7.2.16
+
+Updated jQuery library to jQuery 2 as it's faster. Downside of this is that older versions of IE (6/7/8) and v old versions of Firefox etc are no longer supported. We will watch the tickets to see if we need to add jQ 1.9 and an administrator area switch that'll allow those older browsers to work.
+Modified save review and save report so that admin emails are sent when a review or report is entered. 
+Added a tap to call button to the (bootstrap) property header template, which is viewable when on a phone. Allows phone users to call hotels directly.
+Updated the plugin manager so that the "update all plugins" button will only show if the license key is valid.
+Added guest address information to the hotel booking email. This has been added only to the output array, it hasn't been added to the template itself, it's for designers to use if they wish.
+
+Added country/region/town to the jomresHTML class to prevent Bootstrapped pages from trying to make them into Yes/No buttons.
+Passed region through cms specific string safe function to aid searching translated region names.
+Added a new helper function genericLike.
+Added a new find region id function to the installer, specifically for the installer. The functions.php version of this function has recently had a call to a Joomla function added. This creates a problem during installation. Rather than making the find_region_id ALWAYS check for the existence of the CMS specific function every time it's run, we'll duplicate the function here instead. find_region_id has the potential to be called many times, so the fewer calls we can make to check if a function exists when 99.99999% if the time it does, the less load we're creating.
+Added a flag to the send admin emails function that switches off the contents of $_POST.
+Updated Swedish language files.
+Tweaked language for the System log name, the security scanner I use to check the safety of language files throws a false positive on it's old name of System log. Changed to Misc now.
+Tweaked the Booking Rooms tab to hide the rooms list style if the property is an SRP.
+Tweaked the booking engine slightly. When amending a booking, SRPs with fixed period bookings and fixed arrival dates were finding that the stay day period wasn't set, forcing users to reselect the appropriate number of days for the booking before they could proceed. Used some built in variables to reset the stay days in the event that this happens.
+Fixed a minor bug with the Add Review label for input set 4.
+Changed how session ids are used. These are used to build our own session data, and we've added a cms specific function so that we can reuse J2.5+ session ids instead of the PHP session.
+Added old Jomres SA files to the obsolete files list. Nothing's been done to this in quite some time, as everybody uses Joomla.
+Improved how the booker's username is added to the database when a booking is created.
+
+
 Jomres 7.2.15
 
 Fixed the breadcrumb repeating problem. Thanks Raphael Vilela.
