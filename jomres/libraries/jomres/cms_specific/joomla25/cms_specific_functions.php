@@ -13,6 +13,12 @@
 defined( '_JOMRES_INITCHECK' ) or die( 'Direct Access to this file is not allowed.' );
 // ################################################################
 
+function jomres_cmsspecific_getsessionid()
+	{
+	$session = & JFactory::getSession();
+	return $session_id = $session->getId();
+	}
+
 // Date is sent in format YYYY/mm/dd, e.g. 2013/
 function jomres_cmsspecific_output_date($date,$format=false)
 	{
