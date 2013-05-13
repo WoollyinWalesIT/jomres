@@ -245,8 +245,6 @@ class jomres_temp_booking_handler
 			}
 
 		$this->jomressession=$this->part;
-		if (!isset($_REQUEST['jrajax']))
-			echo " Jomres session ".$this->jomressession;
 		
 		$hash = sha1($secret.$this->part);
 		$this->sessionfile=$this->session_directory.$hash.".txt";
