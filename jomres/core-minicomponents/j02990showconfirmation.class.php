@@ -47,16 +47,8 @@ class j02990showconfirmation {
 			$tmpBookingHandler->addNewBookingField("confirmationSeen");
 		$tmpBookingHandler->updateBookingField("confirmationSeen",true);
 
-		// if (isset($_REQUEST['override_room_total']) && $thisJRUser->userIsManager && !$amend_contract)
-			// $tmpBookingHandler->updateBookingField("room_total",(float)$_REQUEST['override_room_total']  );
-		// if (isset($_REQUEST['override_deposit']) && $thisJRUser->userIsManager && !$amend_contract)
-			// $tmpBookingHandler->updateBookingField("deposit_required",(float)$_REQUEST['override_deposit']  );
-		
 		$tmpBookingHandler->saveBookingData();
-		if ( !isset($tmpBookingHandler->tmpbooking["bookersUsername"]) )
-			$tmpBookingHandler->addNewBookingField("bookersUsername");
-		$tmpBookingHandler->updateBookingField("bookersUsername",$thisJRUser->username);
-
+		
 		$tmpBookingHandler->updateGuestField('firstname', jomresGetParam($_POST,'firstname','') );
 		$tmpBookingHandler->updateGuestField('surname', jomresGetParam($_POST,'surname','') );
 		$tmpBookingHandler->updateGuestField('house', jomresGetParam($_POST,'house','') );
@@ -70,8 +62,6 @@ class j02990showconfirmation {
 		if (!$thisJRUser->userIsRegistered)
 			$tmpBookingHandler->updateGuestField('email', jomresGetParam($_POST,'eemail','') );
 		
-		
-
 		$currfmt = jomres_singleton_abstract::getInstance('jomres_currency_format');
 
 		// Trigger point
@@ -133,7 +123,6 @@ class j02990showconfirmation {
 				}
 			}
 		$tmpBookingHandler->saveBookingData();
-		
 
 		$booking_parts['PROPERTYNAME'] = getPropertyName($bookingDeets['property_uid']);
 
