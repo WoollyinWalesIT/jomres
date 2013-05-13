@@ -250,35 +250,13 @@ class j03020insertbooking {
 				}
 			else
 				{
-				$result = jomres_cmsspecific_createNewUserOnBooking();
+				$new_user_id = jomres_cmsspecific_createNewUserOnBooking();
 
 				$guests_uid=insertGuestDeets(get_showtime('jomressession'));
-
-				//var_dump($guests_uid);exit;
-					
-				// Disabled for v4.7.6
-				// We will try to use the first 10 chars of the jomressession as our booking number. If we can't use it then we'll find a random number and append it to the end.
-				// $session10Chars= substr(get_showtime('jomressession'), 0, 10);
-				// $cartnumber=$session10Chars;
-				// First let's generate a random number for our shopping cart.
-				// if (!$usejomressessionasCartid)
-					// {
-					// $keeplooking=true;
-					// while ($keeplooking):
-						// $query="SELECT contract_uid FROM #__jomres_contracts WHERE tag like '".$cartnumber."' LIMIT 1";
-						// $bklist=doSelectSql($query);
-						// if (count($bklist)==0)
-							// $keeplooking=false;
-						// $cartnumber=mt_rand ( 10000000,99999999 );
-					// endwhile;
-					// }
-				// else
-					// $cartnumber=get_showtime('jomressession');
-					
+				
 				$cartnumber=get_booking_number();
 				
 				gateway_log("j03020insertbooking :: Setting cart number. ".$cartnumber ." for ".get_showtime('jomressession'));
-
 				
 				foreach ($tempBookingDataList as $tempBookingData)
 					{
@@ -299,11 +277,24 @@ class j03020insertbooking {
 					$discount=$tempBookingData->discounts;
 					$room_total=$tempBookingData->room_total;
 					$tax=$tempBookingData->tax;
-					$bookersUsername=$tempBookingData->bookersUsername;
 					$coupon_id=$tempBookingData->coupon_id;
-					if (strlen($bookersUsername) == 0)
-						$bookersUsername="ANONYMOUS";
-					
+
+					$thisJRUser=jomres_singleton_abstract::getInstance('jr_user');
+					if ($thisJRUser->userIsRegistered) // The user is already registered
+						{
+						$user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($thisJRUser->id);
+						$bookersUsername = $user[$thisJRUser->id]['username'];
+						}
+					elseif($new_user_id > 0 && !$thisJRUser->userIsRegistered)// If a new user isn't created, then $new_user_id will be -1. The idea here is to get the new username of the newly created users
+						{
+						$user = jomres_cmsspecific_getCMS_users_frontend_userdetails_by_id($new_user_id);
+						$bookersUsername = $user[$new_user_id]['username'];
+						}
+					else // Booked by a non-logged in user
+						{
+						$bookersUsername = jr_gettext("JOMRES_NON_REGISTERED_USER",JOMRES_NON_REGISTERED_USER,false);;
+						}
+
 					// The extras quantites is passed with ALL extra uids and default quanties. At this point we will strip out the extra uid that weren't actually selected before adding the serialized extras quantities to the db
 					$tmpextrasquantities = array();
 					$currentExtras=explode(",",$extras);
