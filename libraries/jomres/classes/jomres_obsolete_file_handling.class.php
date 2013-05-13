@@ -739,7 +739,13 @@ class jomres_obsolete_file_handling
 		
 		if (_JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 			$this->add_obs_file($this->dir_components_administrator.'admin.jomres.php');
-		//var_dump($this->dir_components_administrator.'admin.jomres.php');exit;
+
+		$files_old_jomressa = scandir_getfiles_recursive($this->dir_libraries.'jomres'.JRDS.'cms_specific'.JRDS.'jomressa');
+		foreach ($files_old_jomressa as $file)
+			{
+			$this->add_obs_file($file);
+			}
+		
 		}
 	
 	function add_obs_file($path_and_file)
