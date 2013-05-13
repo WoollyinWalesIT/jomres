@@ -1900,7 +1900,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 	foreach ($emails as $to)
 		{
 		if (strlen($to)>0)
-			$mail->AddAddress($to,$to);
+			$mail->AddAddress($to);
 		}
 
 	if(!$mail->Send())
