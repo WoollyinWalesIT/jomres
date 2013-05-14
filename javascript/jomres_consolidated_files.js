@@ -700,11 +700,21 @@ jQuery.cookie = function (key, value, options) {
 	};
 })(jQuery);
 
+/*
+ ### jQuery Star Rating Plugin v4.11 - 2013-03-14 ###
+ * Home: http://www.fyneworks.com/jquery/star-rating/
+ * Code: http://code.google.com/p/jquery-star-rating-plugin/
+ *
+	* Licensed under http://en.wikipedia.org/wiki/MIT_License
+ ###
+*/
 
-(function($) {
+/*# AVOID COLLISIONS #*/
+;if(window.jQuery) (function($){
+/*# AVOID COLLISIONS #*/
 	
 	// IE6 Background Image Fix
-	if ($.browser.msie) try { document.execCommand("BackgroundImageCache", false, true)} catch(e) { };
+	if ((!$.support.opacity && !$.support.style)) try { document.execCommand("BackgroundImageCache", false, true)} catch(e) { };
 	// Thanks to http://www.visualjquery.com/rating/rating_redux.html
 	
 	// plugin initialization
@@ -750,7 +760,7 @@ jQuery.cookie = function (key, value, options) {
 			// FIX: http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=23
 			var raters = context.data('rating');
 			if(!raters || raters.call!=$.fn.rating.calls) raters = { count:0, call:$.fn.rating.calls };
-			var rater = raters[eid];
+			var rater = raters[eid] || context.data('rating'+eid);
 			
 			// if rater is available, verify that the control still exists
 			if(rater) control = rater.data('rating');
@@ -763,7 +773,7 @@ jQuery.cookie = function (key, value, options) {
 			else{
 				// create new control if first star or control element was removed/replaced
 				
-				// Initialize options for this raters
+				// Initialize options for this rater
 				control = $.extend(
 					{}/* new object */,
 					options || {} /* current call options */,
@@ -782,22 +792,25 @@ jQuery.cookie = function (key, value, options) {
 				rater.addClass('rating-to-be-drawn');
 				
 				// Accept readOnly setting from 'disabled' property
-				if(input.attr('disabled')) control.readOnly = true;
+				if(input.attr('disabled') || input.hasClass('disabled')) control.readOnly = true;
+				
+				// Accept required setting from class property (class='required')
+				if(input.hasClass('required')) control.required = true;
 				
 				// Create 'cancel' button
 				rater.append(
 					control.cancel = $('<div class="rating-cancel"><a title="' + control.cancel + '">' + control.cancelValue + '</a></div>')
-					.mouseover(function(){
+					.on('mouseover',function(){
 						$(this).rating('drain');
 						$(this).addClass('star-rating-hover');
 						//$(this).rating('focus');
 					})
-					.mouseout(function(){
+					.on('mouseout',function(){
 						$(this).rating('draw');
 						$(this).removeClass('star-rating-hover');
 						//$(this).rating('blur');
 					})
-					.click(function(){
+					.on('click',function(){
 					 $(this).rating('select');
 					})
 					.data('rating', control)
@@ -805,8 +818,8 @@ jQuery.cookie = function (key, value, options) {
 				
 			}; // first element of group
 			
-			// insert rating star
-			var star = $('<div class="star-rating rater-'+ control.serial +'"><a title="' + (this.title || this.value) + '">' + this.value + '</a></div>');
+			// insert rating star (thanks Jan Fanslau rev125 for blind support https://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=125)
+			var star = $('<div role="text" aria-label="'+ this.title +'" class="star-rating rater-'+ control.serial +'"><a title="' + (this.title || this.value) + '">' + this.value + '</a></div>');
 			rater.append(star);
 			
 			// inherit attributes from input element
@@ -837,15 +850,15 @@ jQuery.cookie = function (key, value, options) {
 			 // Enable hover css effects
 				star.addClass('star-rating-live')
 				 // Attach mouse events
-					.mouseover(function(){
+					.on('mouseover',function(){
 						$(this).rating('fill');
 						$(this).rating('focus');
 					})
-					.mouseout(function(){
+					.on('mouseout',function(){
 						$(this).rating('draw');
 						$(this).rating('blur');
 					})
-					.click(function(){
+					.on('click',function(){
 						$(this).rating('select');
 					})
 				;
@@ -854,11 +867,18 @@ jQuery.cookie = function (key, value, options) {
 			// set current selection
 			if(this.checked)	control.current = star;
 			
+			// set current select for links
+			if(this.nodeName=="A"){
+    if($(this).hasClass('selected'))
+     control.current = star;
+   };
+			
 			// hide input element
 			input.hide();
 			
 			// backward compatibility, form element to plugin
-			input.change(function(){
+			input.on('change.rating',function(event){
+				if(event.selfTriggered) return false;
     $(this).rating('select');
    });
 			
@@ -875,6 +895,7 @@ jQuery.cookie = function (key, value, options) {
 			rater.data('rating', control);
 			star.data('rating', control);
 			context.data('rating', raters);
+			context.data('rating'+eid, rater); // required for ajax forms
   }); // each element
 		
 		// Initialize ratings (first draw)
@@ -917,7 +938,7 @@ jQuery.cookie = function (key, value, options) {
 			if(control.readOnly) return;
 			// Reset all stars and highlight them up to this element
 			this.rating('drain');
-			this.prevAll().andSelf().filter('.rater-'+ control.serial).addClass('star-rating-hover');
+			this.prevAll().addBack().filter('.rater-'+ control.serial).addClass('star-rating-hover');
 		},// $.fn.rating.fill
 		
 		drain: function() { // drain all the stars.
@@ -933,12 +954,9 @@ jQuery.cookie = function (key, value, options) {
 			// Clear all stars
 			this.rating('drain');
 			// Set control value
-			if(control.current){
-				control.current.data('rating.input').attr('checked','checked');
-				control.current.prevAll().andSelf().filter('.rater-'+ control.serial).addClass('star-rating-on');
-			}
-			else
-			 $(control.inputs).removeAttr('checked');
+			var current = $( control.current );//? control.current.data('rating.input') : null );
+			var starson = current.length ? current.prevAll().addBack().filter('.rater-'+ control.serial) : null;
+			if(starson)	starson.addClass('star-rating-on');
 			// Show/hide 'cancel' button
 			control.cancel[control.readOnly || control.required?'hide':'show']();
 			// Add/remove read-only classes to remove hand pointer
@@ -950,57 +968,49 @@ jQuery.cookie = function (key, value, options) {
 		
 		
 		select: function(value,wantCallBack){ // select a value
-					
-					// ***** MODIFICATION *****
-					// Thanks to faivre.thomas - http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=27
-					//
-					// ***** LIST OF MODIFICATION *****
-					// ***** added Parameter wantCallBack : false if you don't want a callback. true or undefined if you want postback to be performed at the end of this method'
-					// ***** recursive calls to this method were like : ... .rating('select') it's now like .rating('select',undefined,wantCallBack); (parameters are set.)
-					// ***** line which is calling callback
-					// ***** /LIST OF MODIFICATION *****
-			
 			var control = this.data('rating'); if(!control) return this;
 			// do not execute when control is in read-only mode
 			if(control.readOnly) return;
 			// clear selection
 			control.current = null;
 			// programmatically (based on user input)
-			if(typeof value!='undefined'){
+			if(typeof value!='undefined' || this.length>1){
 			 // select by index (0 based)
 				if(typeof value=='number')
  			 return $(control.stars[value]).rating('select',undefined,wantCallBack);
 				// select by literal value (must be passed as a string
-				if(typeof value=='string')
+				if(typeof value=='string'){
 					//return
 					$.each(control.stars, function(){
+ 					//console.log($(this).data('rating.input'), $(this).data('rating.input').val(), value, $(this).data('rating.input').val()==value?'BINGO!':'');
 						if($(this).data('rating.input').val()==value) $(this).rating('select',undefined,wantCallBack);
 					});
+					// don't break the chain
+  			return this;
+				};
 			}
-			else
+			else{
 				control.current = this[0].tagName=='INPUT' ?
 				 this.data('rating.star') :
 					(this.is('.rater-'+ control.serial) ? this : null);
-
+			};
 			// Update rating control state
 			this.data('rating', control);
 			// Update display
 			this.rating('draw');
-			// find data for event
-			var input = $( control.current ? control.current.data('rating.input') : null );
+			// find current input and its sibblings
+			var current = $( control.current ? control.current.data('rating.input') : null );
+			var lastipt = $( control.inputs ).filter(':checked');
+			var deadipt = $( control.inputs ).not(current);
+			// check and uncheck elements as required
+			deadipt.prop('checked',false);//.removeAttr('checked');
+			current.prop('checked',true);//.attr('checked','checked');
+			// trigger change on current or last selected input
+			$(current.length? current : lastipt ).trigger({ type:'change', selfTriggered:true });
 			// click callback, as requested here: http://plugins.jquery.com/node/1655
-					
-					// **** MODIFICATION *****
-					// Thanks to faivre.thomas - http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=27
-					//
-					//old line doing the callback :
-					//if(control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
-					//
-					//new line doing the callback (if i want :)
-					if((wantCallBack ||wantCallBack == undefined) && control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
-					//to ensure retro-compatibility, wantCallBack must be considered as true by default
-					// **** /MODIFICATION *****
-					
+			if((wantCallBack || wantCallBack == undefined) && control.callback) control.callback.apply(current[0], [current.val(), $('a', control.current)[0]]);// callback event
+			// don't break the chain
+			return this;
   },// $.fn.rating.select
 		
 		
@@ -1049,24 +1059,24 @@ jQuery.cookie = function (key, value, options) {
 			//NB.: These don't need to be pre-defined (can be undefined/null) so let's save some code!
 			//half:     false,         // just a shortcut to control.split = 2
 			//required: false,         // disables the 'cancel' button so user can only select one of the specified values
-			//readOnly: false,         // disable rating plugin interaction/ values cannot be changed
-			//focus:    function(){},  // executed when stars are focused
+			//readOnly: false,         // disable rating plugin interaction/ values cannot be.one('change',		//focus:    function(){},  // executed when stars are focused
 			//blur:     function(){},  // executed when stars are focused
 			//callback: function(){},  // executed when a star is clicked
  }; //} });
 	
 	/*--------------------------------------------------------*/
 	
-	/*
-		### Default implementation ###
-		The plugin will attach itself to file inputs
-		with the class 'multi' when the page loads
-	*/
-	$(function(){
-	 $('input[type=radio].star').rating();
-	});
-
+	
+	  // auto-initialize plugin
+				$(function(){
+				 $('input[type=radio].star').rating();
+				});
+	
+	
+/*# AVOID COLLISIONS #*/
 })(jQuery);
+/*# AVOID COLLISIONS #*/
+
 
 /**
  * jQuery Validation Plugin 1.9.0
@@ -3316,22 +3326,55 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 	});
   });
 };
-
 /**
- * jGrowl 1.2.4
+ * jGrowl 1.2.12
  *
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
  * Written by Stan Lemon <stosh1985@gmail.com>
- * Last updated: 2009.12.13
+ * Last updated: 2013.02.14
  *
- * jGrowl is a jQuery plugin implementing unobtrusive userland notifications.  These 
+ * jGrowl is a jQuery plugin implementing unobtrusive userland notifications.  These
  * notifications function similarly to the Growl Framework available for
  * Mac OS X (http://growl.info).
  *
  * To Do:
  * - Move library settings to containers and allow them to be changed per container
+ *
+ * Changes in 1.2.13
+ * - Fixed clearing interval when the container shuts down
+ *
+ * Changes in 1.2.12
+ * - Added compressed versions using UglifyJS and Sqwish
+ * - Improved README with configuration options explanation
+ * - Added a source map
+ *
+ * Changes in 1.2.11
+ * - Fix artifacts left behind by the shutdown method and text-cleanup
+ *
+ * Changes in 1.2.10
+ * - Fix beforeClose to be called in click event
+ *
+ * Changes in 1.2.9
+ * - Fixed BC break in jQuery 2.0 beta
+ *
+ * Changes in 1.2.8
+ * - Fixes for jQuery 1.9 and the MSIE6 check, note that with jQuery 2.0 support
+ *   jGrowl intends to drop support for IE6 altogether
+ *
+ * Changes in 1.2.6
+ * - Fixed js error when a notification is opening and closing at the same time
+ *
+ * Changes in 1.2.5
+ * - Changed wrapper jGrowl's options usage to "o" instead of $.jGrowl.defaults
+ * - Added themeState option to control 'highlight' or 'error' for jQuery UI
+ * - Ammended some CSS to provide default positioning for nested usage.
+ * - Changed some CSS to be prefixed with jGrowl- to prevent namespacing issues
+ * - Added two new options - openDuration and closeDuration to allow
+ *   better control of notification open and close speeds, respectively
+ *   Patch contributed by Jesse Vincet.
+ * - Added afterOpen callback.  Patch contributed by Russel Branca.
  *
  * Changes in 1.2.4
  * - Fixed IE bug with the close-all button
@@ -3412,12 +3455,16 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
  * - Namespaced all events
  */
 (function($) {
+	/** Compatibility holdover for 1.9 to check IE6 **/
+	var $ie6 = (function(){
+		return false === $.support.boxModel && $.support.objectAll && $.support.leadingWhitespace;
+	})();
 
 	/** jGrowl Wrapper - Establish a base jGrowl Container for compatibility with older releases. **/
 	$.jGrowl = function( m , o ) {
 		// To maintain compatibility with older version that only supported one instance we'll create the base container.
-		if ( $('#jGrowl').size() == 0 ) 
-			$('<div id="jGrowl"></div>').addClass($.jGrowl.defaults.position).appendTo('body');
+		if ( $('#jGrowl').size() == 0 )
+			$('<div id="jGrowl"></div>').addClass( (o && o.position) ? o.position : $.jGrowl.defaults.position ).appendTo('body');
 
 		// Create a notification on the container.
 		$('#jGrowl').jGrowl(m,o);
@@ -3430,8 +3477,6 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 			var args = arguments;
 
 			return this.each(function() {
-				var self = this;
-
 				/** Create a jGrowl Instance on the Container if it does not exist **/
 				if ( $(this).data('jGrowl.instance') == undefined ) {
 					$(this).data('jGrowl.instance', $.extend( new $.fn.jGrowl(), { notifications: [], element: null, interval: null } ));
@@ -3452,65 +3497,77 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 
 		/** Default JGrowl Settings **/
 		defaults: {
-			pool: 			0,
-			header: 		'',
-			group: 			'',
-			sticky: 		false,
-			position: 		'top-right', // Is this still needed?
-			glue: 			'after',
-			theme: 			'default',
-			corners: 		'10px',
-			check: 			250,
-			life: 			3000,
-			speed: 			'normal',
-			easing: 		'swing',
-			closer: 		true,
-			closeTemplate: '&times;',
-			closerTemplate: '<div>[ close all ]</div>',
-			log: 			function(e,m,o) {},
-			beforeOpen: 	function(e,m,o) {},
-			open: 			function(e,m,o) {},
-			beforeClose: 	function(e,m,o) {},
-			close: 			function(e,m,o) {},
-			animateOpen: 	{
-				opacity: 	'show'
+			pool:				0,
+			header:				'',
+			group:				'',
+			sticky:				false,
+			position: 			'top-right',
+			glue:				'after',
+			theme:				'default',
+			themeState:			'highlight',
+			corners:			'10px',
+			check:				250,
+			life:				3000,
+			closeDuration: 		'normal',
+			openDuration: 		'normal',
+			easing: 			'swing',
+			closer: 			true,
+			closeTemplate: 		'&times;',
+			closerTemplate: 	'<div>[ close all ]</div>',
+			log:				function() {},
+			beforeOpen:			function() {},
+			afterOpen:			function() {},
+			open:				function() {},
+			beforeClose: 		function() {},
+			close:				function() {},
+			animateOpen: 		{
+				opacity:	 'show'
 			},
-			animateClose: 	{
-				opacity: 	'hide'
+			animateClose: 		{
+				opacity:	 'hide'
 			}
 		},
-		
+
 		notifications: [],
-		
+
 		/** jGrowl Container Node **/
-		element: 	null,
-	
+		element:	 null,
+
 		/** Interval Function **/
 		interval:   null,
-		
+
 		/** Create a Notification **/
-		create: 	function( message , o ) {
+		create:	 function( message , o ) {
 			var o = $.extend({}, this.defaults, o);
 
+			/* To keep backward compatibility with 1.24 and earlier, honor 'speed' if the user has set it */
+			if (typeof o.speed !== 'undefined') {
+				o.openDuration = o.speed;
+				o.closeDuration = o.speed;
+			}
+
 			this.notifications.push({ message: message , options: o });
-			
+
 			o.log.apply( this.element , [this.element,message,o] );
 		},
-		
-		render: 		function( notification ) {
+
+		render:		 function( notification ) {
 			var self = this;
 			var message = notification.message;
 			var o = notification.options;
 
-			var notification = $(
-				'<div class="jGrowl-notification' + 
-				((o.group != undefined && o.group != '') ? ' ' + o.group : '') + '">' +
-				'<div class="close">' + o.closeTemplate + '</div>' +
-				'<div class="header">' + o.header + '</div>' +
-				'<div>' + message + '</div></div>'
-			).data("jGrowl", o).addClass(o.theme).children('div.close').bind("click.jGrowl", function() {
-				$(this).parent().trigger('jGrowl.close');
-			}).parent();
+			// Support for jQuery theme-states, if this is not used it displays a widget header
+			o.themeState = (o.themeState == '') ? '' : 'ui-state-' + o.themeState;
+
+			var notification = $('<div/>')
+				.addClass('jGrowl-notification ' + o.themeState + ' ui-corner-all' + ((o.group != undefined && o.group != '') ? ' ' + o.group : ''))
+				.append($('<div/>').addClass('jGrowl-close').html(o.closeTemplate))
+				.append($('<div/>').addClass('jGrowl-header').html(o.header))
+				.append($('<div/>').addClass('jGrowl-message').html(message))
+				.data("jGrowl", o).addClass(o.theme).children('div.jGrowl-close').bind("click.jGrowl", function() {
+					$(this).parent().trigger('jGrowl.beforeClose');
+				})
+				.parent();
 
 
 			/** Notification Actions **/
@@ -3519,50 +3576,56 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 			}).bind("mouseout.jGrowl", function() {
 				$('div.jGrowl-notification', self.element).data("jGrowl.pause", false);
 			}).bind('jGrowl.beforeOpen', function() {
-				if ( o.beforeOpen.apply( notification , [notification,message,o,self.element] ) != false ) {
+				if ( o.beforeOpen.apply( notification , [notification,message,o,self.element] ) !== false ) {
 					$(this).trigger('jGrowl.open');
 				}
 			}).bind('jGrowl.open', function() {
-				if ( o.open.apply( notification , [notification,message,o,self.element] ) != false ) {
+				if ( o.open.apply( notification , [notification,message,o,self.element] ) !== false ) {
 					if ( o.glue == 'after' ) {
 						$('div.jGrowl-notification:last', self.element).after(notification);
 					} else {
 						$('div.jGrowl-notification:first', self.element).before(notification);
 					}
-					
-					$(this).animate(o.animateOpen, o.speed, o.easing, function() {
+
+					$(this).animate(o.animateOpen, o.openDuration, o.easing, function() {
 						// Fixes some anti-aliasing issues with IE filters.
-						if ($.browser.msie && (parseInt($(this).css('opacity'), 10) === 1 || parseInt($(this).css('opacity'), 10) === 0))
+						if ($.support.opacity === false)
 							this.style.removeAttribute('filter');
 
-						$(this).data("jGrowl").created = new Date();
+						if ( $(this).data("jGrowl") !== null ) // Happens when a notification is closing before it's open.
+							$(this).data("jGrowl").created = new Date();
+
+						$(this).trigger('jGrowl.afterOpen');
 					});
 				}
+			}).bind('jGrowl.afterOpen', function() {
+				o.afterOpen.apply( notification , [notification,message,o,self.element] );
 			}).bind('jGrowl.beforeClose', function() {
-				if ( o.beforeClose.apply( notification , [notification,message,o,self.element] ) != false )
+				if ( o.beforeClose.apply( notification , [notification,message,o,self.element] ) !== false )
 					$(this).trigger('jGrowl.close');
 			}).bind('jGrowl.close', function() {
 				// Pause the notification, lest during the course of animation another close event gets called.
 				$(this).data('jGrowl.pause', true);
-				$(this).animate(o.animateClose, o.speed, o.easing, function() {
-					$(this).remove();
-					var close = o.close.apply( notification , [notification,message,o,self.element] );
-
-					if ( $.isFunction(close) )
-						close.apply( notification , [notification,message,o,self.element] );
+				$(this).animate(o.animateClose, o.closeDuration, o.easing, function() {
+					if ( $.isFunction(o.close) ) {
+						if ( o.close.apply( notification , [notification,message,o,self.element] ) !== false )
+							$(this).remove();
+					} else {
+						$(this).remove();
+					}
 				});
 			}).trigger('jGrowl.beforeOpen');
-		
+
 			/** Optional Corners Plugin **/
-			if ( $.fn.corner != undefined ) $(notification).corner( o.corners );
+			if ( o.corners != '' && $.fn.corner != undefined ) $(notification).corner( o.corners );
 
 			/** Add a Global Closer if more than one notification exists **/
-			if ( $('div.jGrowl-notification:parent', self.element).size() > 1 && 
-				 $('div.jGrowl-closer', self.element).size() == 0 && this.defaults.closer != false ) {
-				$(this.defaults.closerTemplate).addClass('jGrowl-closer').addClass(this.defaults.theme)
+			if ( $('div.jGrowl-notification:parent', self.element).size() > 1 &&
+				 $('div.jGrowl-closer', self.element).size() == 0 && this.defaults.closer !== false ) {
+				$(this.defaults.closerTemplate).addClass('jGrowl-closer ' + this.defaults.themeState + ' ui-corner-all').addClass(this.defaults.theme)
 					.appendTo(self.element).animate(this.defaults.animateOpen, this.defaults.speed, this.defaults.easing)
 					.bind("click.jGrowl", function() {
-						$(this).siblings().children('div.close').trigger("click.jGrowl");
+						$(this).siblings().trigger("jGrowl.beforeClose");
 
 						if ( $.isFunction( self.defaults.closer ) ) {
 							self.defaults.closer.apply( $(this).parent()[0] , [$(this).parent()[0]] );
@@ -3574,17 +3637,17 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 		/** Update the jGrowl Container, removing old jGrowl notifications **/
 		update:	 function() {
 			$(this.element).find('div.jGrowl-notification:parent').each( function() {
-				if ( $(this).data("jGrowl") != undefined && $(this).data("jGrowl").created != undefined && 
-					 ($(this).data("jGrowl").created.getTime() + $(this).data("jGrowl").life)  < (new Date()).getTime() && 
-					 $(this).data("jGrowl").sticky != true && 
-					 ($(this).data("jGrowl.pause") == undefined || $(this).data("jGrowl.pause") != true) ) {
+				if ( $(this).data("jGrowl") != undefined && $(this).data("jGrowl").created !== undefined &&
+					 ($(this).data("jGrowl").created.getTime() + parseInt($(this).data("jGrowl").life))  < (new Date()).getTime() &&
+					 $(this).data("jGrowl").sticky !== true &&
+					 ($(this).data("jGrowl.pause") == undefined || $(this).data("jGrowl.pause") !== true) ) {
 
 					// Pause the notification, lest during the course of animation another close event gets called.
 					$(this).trigger('jGrowl.beforeClose');
 				}
 			});
 
-			if ( this.notifications.length > 0 && 
+			if ( this.notifications.length > 0 &&
 				 (this.defaults.pool == 0 || $(this.element).find('div.jGrowl-notification:parent').size() < this.defaults.pool) )
 				this.render( this.notifications.shift() );
 
@@ -3598,28 +3661,31 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 		/** Setup the jGrowl Notification Container **/
 		startup:	function(e) {
 			this.element = $(e).addClass('jGrowl').append('<div class="jGrowl-notification"></div>');
-			this.interval = setInterval( function() { 
-				$(e).data('jGrowl.instance').update(); 
-			}, this.defaults.check);
-			
-			if ($.browser.msie && parseInt($.browser.version) < 7 && !window["XMLHttpRequest"]) {
+			this.interval = setInterval( function() {
+				$(e).data('jGrowl.instance').update();
+			}, parseInt(this.defaults.check));
+
+			if ($ie6) {
 				$(this.element).addClass('ie6');
 			}
 		},
 
 		/** Shutdown jGrowl, removing it and clearing the interval **/
 		shutdown:   function() {
-			$(this.element).removeClass('jGrowl').find('div.jGrowl-notification').remove();
-			clearInterval( this.interval );
+			$(this.element).removeClass('jGrowl')
+				.find('div.jGrowl-notification').trigger('jGrowl.close')
+				.parent().empty()
+
+			clearInterval(this.interval);
 		},
-		
-		close: 	function() {
+
+		close:	 function() {
 			$(this.element).find('div.jGrowl-notification').each(function(){
 				$(this).trigger('jGrowl.beforeClose');
 			});
 		}
 	});
-	
+
 	/** Reference the Defaults Object for compatibility with older versions of jGrowl **/
 	$.jGrowl.defaults = $.fn.jGrowl.prototype.defaults;
 
