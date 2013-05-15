@@ -260,6 +260,11 @@ function showSiteConfig(  )
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
 	$lists['property_details_in_tabs']				= jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['property_details_in_tabs'] );
 	
+	if (!isset($jrConfig['jquery18_2_switch']))
+		$jrConfig['jquery18_2_switch'] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
+		
+	$lists['jquery18_2_switch']						= jomresHTML::selectList( $yesno, 'cfg_jquery18_2_switch', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['jquery18_2_switch'] );
+	
 	if (!isset($jrConfig['automatically_approve_new_properties']))
 		$jrConfig['automatically_approve_new_properties']="1";
 	

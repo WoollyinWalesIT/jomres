@@ -290,6 +290,11 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td>'.jr_gettext(_JOMRES_ACCESS_CONTROL_CONFIG_DESC,'_JOMRES_ACCESS_CONTROL_CONFIG_DESC',false).'</td>
 			</tr>-->
 			<tr>
+				<td>'.jr_gettext(JOMRES_JQUERY18_2,'JOMRES_JQUERY18_2',false).'</td>
+				<td>'.$lists['jquery18_2_switch'].'</td>
+				<td>'.jr_gettext(JOMRES_JQUERY18_2_DESC,'JOMRES_JQUERY18_2_DESC',false).'</td>
+			</tr>
+			<tr>
 				<td>'.jr_gettext(_JOMRES_CONFIG_JQUERY,'_JOMRES_CONFIG_JQUERY',false).'</td>
 				<td>'.$lists['load_jquery'].'</td>
 				<td>'.jr_gettext(_JOMRES_CONFIG_JQUERY_DESC,'_JOMRES_CONFIG_JQUERY_DESC',false).'</td>
