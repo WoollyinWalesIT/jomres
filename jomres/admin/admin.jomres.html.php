@@ -288,26 +288,31 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				 <td valign="middle">'.jr_gettext(_JOMRES_ACCESS_CONTROL_CONFIG_DESC,'_JOMRES_ACCESS_CONTROL_CONFIG_DESC',false).'</td>
 			</tr>-->
 			<tr valign="middle" class="even">
+				<td valign="middle">'.jr_gettext(JOMRES_JQUERY18_2,'JOMRES_JQUERY18_2',false).'</td>
+				<td valign="middle">'.$lists['jquery18_2_switch'].'</td>
+				<td valign="middle">'.jr_gettext(JOMRES_JQUERY18_2_DESC,'JOMRES_JQUERY18_2_DESC',false).'</td>
+			</tr>
+			<tr valign="middle" class="odd">
 				<td valign="middle">'.jr_gettext(_JOMRES_CONFIG_JQUERY,'_JOMRES_CONFIG_JQUERY',false).'</td>
 				<td valign="middle">'.$lists['load_jquery'].'</td>
 				<td valign="middle">'.jr_gettext(_JOMRES_CONFIG_JQUERY_DESC,'_JOMRES_CONFIG_JQUERY_DESC',false).'</td>
 			</tr>
-			<tr valign="middle" class="odd">
+			<tr valign="middle" class="even">
 				<td valign="middle">'.jr_gettext(_JOMRES_CONFIG_JQUERY_UI_CSS,'_JOMRES_CONFIG_JQUERY_UI_CSS',false).'</td>
 				<td valign="middle">'.$lists['load_jquery_ui_css'].'</td>
 				<td valign="middle">'.jr_gettext(_JOMRES_CONFIG_JQUERY_UI_CSS_DESC,'_JOMRES_CONFIG_JQUERY_UI_CSS_DESC',false).'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'.jr_gettext(_JOMRES_CONFIG_JQUERY_UI,'_JOMRES_CONFIG_JQUERY_UI',false).'</td>
 				<td valign="middle">'.$lists['load_jquery_ui'].'</td>
 				<td valign="middle">'.jr_gettext(_JOMRES_CONFIG_JQUERY_UI_DESC,'_JOMRES_CONFIG_JQUERY_UI_DESC',false).'</td>
 			</tr>
-			<!--<tr valign="middle" class="odd">
+			<!--<tr valign="middle" class="even">
 				<td valign="middle">'.jr_gettext(_JOMRES_JAVASCRIPT_CACHING_TITLE,'_JOMRES_JAVASCRIPT_CACHING_TITLE',false).'</td>
 				<td valign="middle">'.$lists['javascript_caching_enabled'].'</td>
 				<td valign="middle">'.jr_gettext(_JOMRES_JAVASCRIPT_CACHING_DESC,'_JOMRES_JAVASCRIPT_CACHING_DESC',false).'</td>
 			</tr>
-			<tr valign="middle" class="even">
+			<tr valign="middle" class="odd">
 				<td valign="middle">'.jr_gettext(_JOMRES_CSS_CACHING_TITLE,'_JOMRES_CSS_CACHING_TITLE',false).'</td>
 				<td valign="middle">'.$lists['css_caching_enabled'].'</td>
 				<td valign="middle">'.jr_gettext(_JOMRES_CSS_CACHING_DESC,'_JOMRES_CSS_CACHING_DESC',false).'</td>
