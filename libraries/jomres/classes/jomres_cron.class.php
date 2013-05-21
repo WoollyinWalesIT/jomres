@@ -247,7 +247,7 @@ class jomres_cron
 					$curl_output=curl_exec($ch);
 					curl_close($ch);
 					$this->updateJob_lastran($job['id'],$job['job_name'],$this->now );
-					$this->debug[]="Triggered ".(string)$job['job_name']. " at ".strftime("%H:%M %w/%m/%Y", $this->now);
+					$this->debug[]="Triggered ".(string)$job['job_name']. " at ".strftime("%H:%M %d/%m/%Y", $this->now);
 					$this->unlockJob($job['id']);
 					}
 				}
@@ -391,7 +391,7 @@ class jomres_cron
 		{
 		if (count($this->debug)>0 && $this->config['logging'] == "1" )
 			{
-			$data=strftime("%H:%M %w/%m/%Y", $this->now)."<br />";
+			$data=strftime("%H:%M %d/%m/%Y", $this->now)."<br />";
 			foreach ($this->debug as $str)
 				{
 				$data.= $str."<br/>";
