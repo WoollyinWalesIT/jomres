@@ -252,7 +252,8 @@ class dobooking
 
 
 		$mrConfig=getPropertySpecificSettings($this->property_uid);
-
+		
+		$this->mrConfig 			= $mrConfig;
 		if (isset($mrConfig['margin']) && !empty($mrConfig['margin']) )
 			$this->margin									= $mrConfig['margin'];
 		else
@@ -376,7 +377,7 @@ class dobooking
 		if (is_null($this->smoking) || strlen($this->smoking) == 0)
 			$this->smoking					= $this->cfg_defaultSmokingOption;
 
-		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		$mrConfig = $this->mrConfig;
 		$this->accommodation_tax_rate = 0.0;
 		if (isset($mrConfig['accommodation_tax_code']) && (int)$mrConfig['accommodation_tax_code'] >0)
 			{
@@ -563,20 +564,10 @@ class dobooking
 
 	function getAllTariffsData()
 		{
-		$mrConfig=getPropertySpecificSettings($this->property_uid);
-		//$arrival_ts=str_replace("/","-",$this->arrivalDate);
+		$mrConfig = $this->mrConfig;
 		$arrivalDate_ts  = str_replace("/","-",$this->arrivalDate);
 		$departureDate_ts = str_replace("/","-",$this->departureDate);
 
-		// Commented this out as initialising the arrival dates doesn't work and validfrom_ts and validto_ts aren't initially set. Means the booking form opens to an invalid date message, even if it's valid, and consequentially the rooms list isn't populated right off the bat.
-		/*
-		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
-			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
-			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
-			FROM #__jomres_rates WHERE property_uid = '$this->property_uid'
-			AND `validfrom_ts`<='$departureDate_ts'
-			AND `validto_ts`>='$arrivalDate_ts'";
-		*/
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
@@ -660,7 +651,7 @@ class dobooking
 
 	function get_all_tariff_types()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		if ( $mrConfig['tariffmode']=="2")
 			{
 			$this->all_tariff_types_to_tariff_id_xref = array();
@@ -969,7 +960,7 @@ class dobooking
 	 */
 	function makeExtras($selectedProperty)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$extra_details=array();
 		$third_party_extras=array();
 		if ($mrConfig['showExtras']=="1")
@@ -1116,7 +1107,7 @@ class dobooking
 		 */
 		function makeOutputText()
 			{
-			$mrConfig=getPropertySpecificSettings();
+			$mrConfig = $this->mrConfig;
 
 			$tax_output = "";
 			if ($this->accommodation_tax_rate > 0)
@@ -1695,7 +1686,7 @@ class dobooking
 	 */
 	function makeCustomerTypes($selectedProperty)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$cust=array();
 		$query="SELECT `id`,`type`,`maximum` FROM `#__jomres_customertypes` where property_uid = '$selectedProperty' AND published = '1' ORDER BY `order`";
 		$exList =doSelectSql($query);
@@ -2357,7 +2348,7 @@ class dobooking
 			$date_elements  = explode("/",$this->today);
 			$interval=(int)$this->mininterval;
 			
-			$mrConfig=getPropertySpecificSettings();
+			$mrConfig = $this->mrConfig;
 		if	($mrConfig['wholeday_booking'] == "1")
 				$interval=$interval-1;
 			$unixTomorrowsDate= mktime(0,0,0,$date_elements[1],$date_elements[2]+$interval,$date_elements[0]);
@@ -2606,7 +2597,7 @@ class dobooking
 	 */
 	function setStayDays()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		if ($mrConfig['wholeday_booking'] == "1")
 			{
 			if ( $this->cfg_fixedPeriodBookings == "1")
@@ -3084,7 +3075,7 @@ class dobooking
 	 */
 	function makeRequiredIcons()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$output=array();
 		$icon="*";
 		$output['VALIDATION_FIRSTNAME']="false";
@@ -4066,7 +4057,7 @@ class dobooking
 	 */
 	function getTariffsForRoomUids($freeRoomsArray)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$this->build_tariff_to_date_map ();
 		$roomAndTariffArray=array();
 		$already_found_tariffs = array();
@@ -4174,7 +4165,7 @@ class dobooking
 	
 	function filter_tariffs_staydays($tariff)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$stayDays=$this->getStayDays();
 		$stayDaysValid=FALSE;
 		
@@ -4221,7 +4212,7 @@ class dobooking
 	
 	function filter_tariffs_on_dates($tariff,$unixArrivalDate,$unixDepartureDate)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$validFrom = $tariff->validfrom;
 		$validTo = $tariff->validto;
 		
@@ -4352,7 +4343,7 @@ class dobooking
 	function check_other_dates_for_this_tariff_type_valid($tariff_uid,$date_range_array)  // We're looking for min intervals for all tariffs where the tariff has already been seen to probably match. Now let's look at the rest of the tariffs over this period and see if the price is still valid. If the price is == 0 then it's not a match.
 		{
 		$tariff_valid = true;
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		//$this->setErrorLog("check_other_dates_for_this_tariff_type_valid::Stay days ".$this->stayDays);
 		if ( $mrConfig['tariffmode']=="2")
 			{
@@ -4441,7 +4432,7 @@ class dobooking
 		$this->simple_tariff_to_date_map = array();
 		$this->micromanage_tarifftype_to_date_map = array();
 		
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		
 		// for testing
 		//$this->dateRangeString = "2012/10/30,2012/10/31,2012/11/01,2012/11/02";
@@ -4825,7 +4816,7 @@ class dobooking
 	 */
 	function makeRoomOverlibdata($roomUid,$tariffUid,$roomTariffOutputId,$roomTariffOutputText,$removing=false)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 
 		if ($this->cfg_booking_form_rooms_list_style == "2")
 			{
@@ -4977,7 +4968,7 @@ class dobooking
 	 */
 	function GetTariffDetails($tariffUid)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$tariff =$this->allPropertyTariffs[$tariffUid];
 
 		$output['HTITLE']=$this->sanitiseOutput(jr_gettext('_JOMRES_FRONT_TARIFFS_TITLE',_JOMRES_FRONT_TARIFFS_TITLE,false,false));
@@ -5135,7 +5126,7 @@ class dobooking
 
 	function makeTariffHeaders()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$return_output="";
 		if ($this->cfg_singleRoomProperty == "1" )
 			return $return_output;
@@ -5207,7 +5198,7 @@ class dobooking
 	 */
 	function monitorBookingStatus()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$amend_contract =  $tmpBookingHandler->getBookingFieldVal("amend_contract");
 
@@ -5559,7 +5550,7 @@ class dobooking
 		{
 		$result=$this->getVariantsOfType("guesttype");
 		$this->setErrorLog("setGuestTypeVariantValues::Found variants of guesttype: ".count($result) );
-		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		$mrConfig = $this->mrConfig;
 		if (count($result) > 0 )
 			{
 			$ratePerNight=$this->rate_pernight;
@@ -5797,7 +5788,7 @@ class dobooking
 		// Bypassing all the other calculations, if the price has been over-ridden, we'll just set the room total here instead.
 		if ($thisJRUser->userIsManager && $this->override_room_total > 0)
 			{
-			$mrConfig=getPropertySpecificSettings($this->property_uid);
+			$mrConfig = $this->mrConfig;
 			$tmpRate = $this->override_room_total;
 			if ($mrConfig['prices_inclusive'] == 1)
 				{
@@ -5852,7 +5843,7 @@ class dobooking
 	function calcExtras()
 		{
 		$this->extra_taxs=array();
-		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		$mrConfig = $this->mrConfig;
 		$extrasTotal=0.00;
 		//$this->setErrorLog("calcExtras: Current extras: ".$this->extras);
 		if (!empty($this->extras) )
@@ -6095,7 +6086,7 @@ class dobooking
 			$this->single_person_suppliment = $this->single_person_suppliment + $suppliment;
 			}
 
-/* 		$mrConfig=getPropertySpecificSettings();
+/* 		$mrConfig = $this->mrConfig;
 		if ($mrConfig['prices_inclusive'] == 1)
 			{
 			$divisor	= ($this->accommodation_tax_rate/100)+1;
@@ -6116,7 +6107,7 @@ class dobooking
 	 */
 	function calcDeposit()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$datesTilBooking=$this->findDateRangeForDates($this->today,$this->arrivalDate);
 		$this->setErrorLog("calcDeposit::Use variable deposits : ".$mrConfig['use_variable_deposits'] );
 		$this->setErrorLog("calcDeposit::Variable deposit threashold : ".(int) $mrConfig['variable_deposit_threashold'] );
@@ -6356,7 +6347,7 @@ class dobooking
 	 */
 	function setFlatRate()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$disc=array();
 		$tmpBookingHandler->updateBookingField("wiseprice_discount",$disc );
@@ -6529,7 +6520,7 @@ class dobooking
 
 	function getDiscountedRoomrate ($roomrate,$percentagebooked,$roomType)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$this->setErrorLog("getDiscountedRoomrate:: Started");
 		if (!isset($mrConfig['wiseprice10discount']) || empty($mrConfig['wiseprice10discount']) )
 			$mrConfig['wiseprice10discount']='30';
@@ -6567,7 +6558,7 @@ class dobooking
 	 */
 	function setAverageRate()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		
 		if ( $mrConfig['tariffmode']=="2")
@@ -6697,7 +6688,7 @@ class dobooking
 	function te_setAverageRate()
 		{
 		$this->setErrorLog("te_setAverageRate:: Started");
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		$disc=array();
@@ -6795,7 +6786,7 @@ class dobooking
 	
 	function get_nett_price($price,$tax_rate)
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		if ($mrConfig['prices_inclusive'] == 1)
 			{
 			$divisor	= ($tax_rate/100)+1;
@@ -6812,7 +6803,7 @@ class dobooking
 
 	function calcLastMinuteDiscount()
 		{
-		$mrConfig=getPropertySpecificSettings();
+		$mrConfig = $this->mrConfig;
 		$tmpBookingHandler =jomres_getSingleton('jomres_temp_booking_handler');
 		if ($mrConfig['lastminuteactive'] == '1')
 			{
