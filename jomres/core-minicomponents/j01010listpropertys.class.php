@@ -298,13 +298,6 @@ class j01010listpropertys {
 			$current_property_details->get_property_name_multi($propertys_uids);
 			$current_property_details->gather_data_multi($propertys_uids);
 
-			$query="SELECT id,ptype FROM #__jomres_ptypes";
-			$ptypes = doSelectSql($query);
-			$property_types = array();
-			foreach ($ptypes as $p)
-				{
-				$property_types[$p->id] =jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTYTYPE'.(int)$p->id,$p->ptype,false,false);
-				}
 			$class_counter=0;
 			
 			$featured_properties = get_showtime("featured_properties");
@@ -553,7 +546,7 @@ class j01010listpropertys {
 						if (file_exists(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg"))
 							$sizes=getImagesSize(JOMRES_IMAGELOCATION_ABSPATH.$property->propertys_uid."_property_".$property->propertys_uid.".jpg");
 
-						$property_deets['PROPERTY_TYPE'] = $property_types[(int)$property->ptype_id];
+						$property_deets['PROPERTY_TYPE'] = $current_property_details->property_type_title;
 						$property_deets['PROPERTY_TYPE_SEARCH_URL'] = jomresURL( JOMRES_SITEPAGE_URL."&amp;task=search&amp;ptype=".$property->ptype_id);
 						
 						if (!isset($jrConfig['make_gifs_from_slideshows']))

@@ -167,6 +167,7 @@ class basic_property_details
 				$this->published				=$this->multi_query_result[$this->property_uid]['published'];
 				$this->ptype_id					=$this->multi_query_result[$this->property_uid]['ptype_id'];
 				$this->property_type			=$this->multi_query_result[$this->property_uid]['property_type'];
+				$this->property_type_title		=$this->multi_query_result[$this->property_uid]['property_type_title'];
 				$this->stars					=$this->multi_query_result[$this->property_uid]['stars'];
 				$this->lat						=$this->multi_query_result[$this->property_uid]['lat'];
 				$this->long						=$this->multi_query_result[$this->property_uid]['long'];
