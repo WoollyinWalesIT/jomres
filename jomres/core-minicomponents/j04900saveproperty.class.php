@@ -130,6 +130,7 @@ class j04900saveproperty {
 
 		$property_type					= jomresGetParam( $_POST, 'propertyType', 0 );
 		$property_stars					= jomresGetParam( $_POST, 'stars', 0 );
+		$property_superior					= jomresGetParam( $_POST, 'superior', 0 );
 		$features_list					= jomresGetParam( $_POST, 'features_list', "" );
 		$pid							= jomresGetParam( $_POST, 'pid', array() );
 
@@ -275,6 +276,7 @@ class j04900saveproperty {
 				`metatitle`='$metatitle',
 				`metadescription`='$metadescription',
 				`stars`='".(int)$property_stars."',
+				`superior`='".(int)$property_superior."',
 				".$apiclause."
 				`ptype_id`='".(int)$property_type."'
 				WHERE propertys_uid='".(int)$propertyUid."'";
