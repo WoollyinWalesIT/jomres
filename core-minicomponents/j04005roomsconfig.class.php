@@ -58,7 +58,7 @@ class j04005roomsconfig {
 		$query = "SELECT room_uid,room_classes_uid,propertys_uid,room_features_uid,room_name,room_number,room_floor,room_disabled_access,max_people,smoking FROM #__jomres_rooms WHERE propertys_uid = '".(int)$defaultProperty."' ORDER BY room_number ";
 		$roomsList =doSelectSql($query);
 
-		$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid FROM #__jomres_room_classes  WHERE property_uid = '0' AND ".$genericOrClasses." ORDER BY room_class_abbv ";
+		$query = "SELECT room_classes_uid,room_class_abbv,room_class_full_desc,property_uid,srp_only FROM #__jomres_room_classes  WHERE property_uid = '0' AND ".$genericOrClasses." ORDER BY room_class_abbv ";
 		$roomsClassList =doSelectSql($query);
 
 		$query = "SELECT propertys_uid,property_name,property_street,property_town,property_postcode,property_region,property_country,property_tel,property_fax,property_email,property_features,published,apikey FROM #__jomres_propertys  WHERE propertys_uid = '".(int)$defaultProperty."' ORDER BY property_name ";
@@ -137,29 +137,32 @@ class j04005roomsconfig {
 			$rows=array();
 			foreach ($roomsClassList as $roomType) // First we need to gather some information about tariffs & rooms
 				{
-				$roomtype_id=$roomType->room_classes_uid;
-				$r=array();
-				//$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomType->room_classes_uid, $roomType->room_class_abbv);
-				$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomType->room_classes_uid,		stripslashes($roomType->room_class_abbv),false,false);
-						
-				$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
-				$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 300, 1, "numberofRooms[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
-				$r['ROOMRATEPERDAY']='<input class="input-mini" type="number" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
-				$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
-				$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
-				$existingrooms="";
-				$counter=1;
-				$numberOfExistingRooms=count($roomTypesArray[$roomType->room_classes_uid]['existingrooms']);
-
-				foreach ( $roomTypesArray[$roomType->room_classes_uid]['existingrooms'] as $id)
+				if ($roomType->srp_only!=1)
 					{
-					$existingrooms.=$id;
-					if ($counter<$numberOfExistingRooms)
-						$existingrooms.=",";
-					$counter++;
+					$roomtype_id=$roomType->room_classes_uid;
+					$r=array();
+					//$roomtype_abbr=jr_gettext(_JOMRES_CUSTOMTEXT_ROOMCLASS_DESCRIPTION.$roomType->room_classes_uid, $roomType->room_class_abbv);
+					$roomtype_abbr = jr_gettext('_JOMRES_CUSTOMTEXT_ROOMTYPES_ABBV'.(int)$roomType->room_classes_uid,		stripslashes($roomType->room_class_abbv),false,false);
+							
+					$r['ROOM_CLASS_ABBV'] = $roomtype_abbr;
+					$r['ROOMNUMBERDROPDOWN'] = jomresHTML::integerSelectList( 00, 300, 1, "numberofRooms[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomtype_id]['counter'], "%02d" );
+					$r['ROOMRATEPERDAY']='<input class="input-mini" type="number" name="roomrateperday['.$roomtype_id.']" value="'.$allTariffsForRoomType[$roomType->room_classes_uid]['roomrateperday'].'" />';
+					$r['MAX_PEOPLE_ROOM']=jomresHTML::integerSelectList( 00, 100, 1, "max_people[$roomtype_id]", 'class="input-mini"', $roomTypesArray[$roomType->room_classes_uid]['max_people'], "%02d" );
+					$r['MAX_PEOPLE_TARIFF']= jomresHTML::integerSelectList( 01, 100, 1, "maxpeople_tariff[$roomtype_id]", 'class="input-mini"', $allTariffsForRoomType[$roomtype_id]['maxpeople'], "%02d" );
+					$existingrooms="";
+					$counter=1;
+					$numberOfExistingRooms=count($roomTypesArray[$roomType->room_classes_uid]['existingrooms']);
+	
+					foreach ( $roomTypesArray[$roomType->room_classes_uid]['existingrooms'] as $id)
+						{
+						$existingrooms.=$id;
+						if ($counter<$numberOfExistingRooms)
+							$existingrooms.=",";
+						$counter++;
+						}
+					$r['existingrooms']='<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.$existingrooms.'" />';
+					$rows[]=$r;
 					}
-				$r['existingrooms']='<input type="hidden" name="existingrooms['.$roomtype_id.']" value="'.$existingrooms.'" />';
-				$rows[]=$r;
 				}
 				
 			$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL;
