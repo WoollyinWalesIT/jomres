@@ -1969,3 +1969,6 @@ jr_define( "JOMRES_NON_REGISTERED_USER" , "Non registered user");
 
 jr_define( "JOMRES_JQUERY18_2" , "Use Jquery 2.x?");
 jr_define( "JOMRES_JQUERY18_2_DESC" , "Jquery 2.x is faster than previous implementations of jQuery, however it lacks certain things like $.browser and support for IE6/7/8 and older Firefox and Safari browsers. If you're seeing javascript errors on your page, or if your template/other plugins (like slideshows) use older versions of jQuery then you should set this option to No. ");
+
+jr_define( "JOMRES_SUPERIOR" , "Superior");
+jr_define( "JOMRES_SUPERIOR_S" , "(S)");

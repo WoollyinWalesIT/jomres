@@ -169,6 +169,7 @@ class basic_property_details
 				$this->property_type			=$this->multi_query_result[$this->property_uid]['property_type'];
 				$this->property_type_title		=$this->multi_query_result[$this->property_uid]['property_type_title'];
 				$this->stars					=$this->multi_query_result[$this->property_uid]['stars'];
+				$this->superior					=$this->multi_query_result[$this->property_uid]['superior'];
 				$this->lat						=$this->multi_query_result[$this->property_uid]['lat'];
 				$this->long						=$this->multi_query_result[$this->property_uid]['long'];
 				$this->metatitle				=$this->multi_query_result[$this->property_uid]['metatitle'];
@@ -196,7 +197,7 @@ class basic_property_details
 				$editable = false;
 
 			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
+`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
 
 			$propertyData=doSelectSql($query);
 
@@ -235,6 +236,7 @@ class basic_property_details
 
 
 				$this->stars					=(int)$data->stars;
+				$this->superior					=(int)$data->superior;
 				$this->lat						=$data->lat;
 				$this->long						=$data->long;
 				$this->metatitle				=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
@@ -384,7 +386,7 @@ class basic_property_details
 			$gor=genericOr($property_uids,'propertys_uid');
 			
 			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE ".$gor;
+`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE ".$gor;
 			
 			$propertyData=doSelectSql($query);
 
@@ -424,6 +426,8 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['property_type_title']				=$this->all_property_type_titles[(int)$data->ptype_id];
 				
 				$this->multi_query_result[$data->propertys_uid]['stars'] 							=(int)$data->stars;
+				$this->multi_query_result[$data->propertys_uid]['superior'] 						=(int)$data->superior;
+				
 				$this->multi_query_result[$data->propertys_uid]['lat']								=$data->lat;
 				$this->multi_query_result[$data->propertys_uid]['long']								=$data->long;
 				$this->multi_query_result[$data->propertys_uid]['metatitle']						=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);

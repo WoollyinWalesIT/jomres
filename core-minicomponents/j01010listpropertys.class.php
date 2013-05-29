@@ -391,6 +391,10 @@ class j01010listpropertys {
 								}
 							$starslink.="";
 							}
+						
+						$property_deets['SUPERIOR']='';
+						if ($current_property_details->superior == 1)
+							$property_deets['SUPERIOR']=jr_gettext('JOMRES_SUPERIOR_S',JOMRES_SUPERIOR_S);
 
 						$propertyFeaturesArray=explode(",",($property->property_features));
 

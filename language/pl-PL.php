@@ -1925,3 +1925,6 @@ jr_define("JOMRES_NON_REGISTERED_USER","Użytkownik nie zarejestrowany");
 jr_define("JOMRES_JQUERY18_2","Użyć jQuery 2.x?");
 
 jr_define("JOMRES_JQUERY18_2_DESC","Jquery 2.x jest szybsze niż poprzednie implementacje, jednak brakuje tu pewnych rzeczy. Wsparcie dla IE6/7/8 i starszych przeglądarek Firefox i Safari nie jest oferowane. Jeśli widzisz błędy JavaScript na stronie, lub jeśli szablon/wtyczki (takie jak pokazy slajdów) używają starszych wersji jQuery należy ustawić tę opcję na Nie.");
+
+jr_define( "JOMRES_SUPERIOR" , "Superior");
+jr_define( "JOMRES_SUPERIOR_S" , "(S)");

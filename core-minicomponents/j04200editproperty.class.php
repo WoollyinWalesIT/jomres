@@ -62,25 +62,29 @@ class j04200editproperty {
 			property_tel ,property_fax,property_email,property_features,property_key,
 			property_description,property_checkin_times,
 			property_area_activities,property_driving_directions,property_airports,
-			property_othertransport,property_policies_disclaimers,stars,ptype_id,`lat`,`long`,`metatitle`,`metadescription`
+			property_othertransport,property_policies_disclaimers,stars,superior,ptype_id,`lat`,`long`,`metatitle`,`metadescription`
 			FROM #__jomres_propertys WHERE  propertys_uid  = '".(int)$propertyUid."' LIMIT 1";
 			$propertyList =doSelectSql($query);
 			foreach($propertyList as $property)
 				{
-				$starsDropDownList = '<span ><select id="stars" class="inputbox" style="border:0px" name="stars">';
+				$stars_arr = array();
 				for ($i=0, $n=7; $i <= $n; $i++)
 					{
-					if ($i==($property->stars))
-						$selected="selected";
-					else
-						$selected="";
-					$starsDropDownList .= "<option value=\"".$i."\" ".$selected.">".$i."</option>";
+					$stars_arr[] = jomresHTML::makeOption( $i, $i );
 					}
-				$starsDropDownList.="</select></span>";
+				
+				$starsDropDownList = jomresHTML::selectList( $stars_arr, 'stars', 'size="1" class="inputbox"', 'value', 'text', $property->stars);
+				
 				$ptypeid=$property->ptype_id;
-
+				
 				$current_property_details =jomres_singleton_abstract::getInstance('basic_property_details');
 				$output['PROPERTY_NAME'] =$current_property_details->get_property_name($propertyUid);
+				
+				$yesno = array();
+				$yesno[] = jomresHTML::makeOption( '0', jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO,FALSE) );
+				$yesno[] = jomresHTML::makeOption( '1', jr_gettext('_JOMRES_COM_MR_YES',_JOMRES_COM_MR_YES,FALSE) );
+				$output['SUPERIOR_DROPDOWN']=jomresHTML::selectList( $yesno, 'superior', 'class="inputbox" size="1"', 'value', 'text', $property->superior );
+				$output['HSUPERIOR'] = jr_gettext('JOMRES_SUPERIOR',JOMRES_SUPERIOR);
 				
 				//$output['PROPERTY_NAME']=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_NAME', getEscaped($property->property_name),false,false);
 				$output['PROPERTY_STREET']=html_entity_decode ($property->property_street);

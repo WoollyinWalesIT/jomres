@@ -68,6 +68,12 @@ class j01070showpropertyheader
 						}
 					$starslink.="";
 					}
+				
+				if ($current_property_details->superior == 1)
+					$output['SUPERIOR']=jr_gettext('JOMRES_SUPERIOR_S',JOMRES_SUPERIOR_S);
+				else
+					$output['SUPERIOR']='';
+				
 				$output['IMAGE']=getImageForProperty("property",$property_uid,$property_uid);
 				$output['IMAGETHUMB']=getThumbnailForImage($output['IMAGE'],true);
 				if (!$output['IMAGETHUMB'])

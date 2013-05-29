@@ -466,8 +466,33 @@ function doTableUpdates()
 	if (!checkPropertysApprovedColExists() )
 		alterPropertysApprovedCol();
 	
+	if (!checkPropertysSuperiorColExists() )
+		alterPropertysSuperiorCol();
+
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+function alterPropertysSuperiorCol()
+	{
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_propertys table adding superior column<br>";
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `superior` TINYINT( 1 ) DEFAULT '0' NOT NULL AFTER `stars` ";
+	if (!doInsertSql($query,'') )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_propertys superior</b><br>";
+		}
+	}
+
+function checkPropertysSuperiorColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'superior'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
 	}
 
 function alterPropertysApprovedCol()
@@ -2612,6 +2637,7 @@ function createJomresTables()
 		`property_key` VARCHAR( 255 ) NULL,
 		`published` TINYINT( 1 ) DEFAULT '0' NOT NULL,
 		`stars` int,
+		`superior` TINYINT( 1 ) DEFAULT '0' NOT NULL,
 		`ptype_id` INT( 11 ) DEFAULT '0' NOT NULL,
 		`apikey` CHAR( 255 ) NULL DEFAULT NULL,
 		`lat` VARCHAR(12) NULL,
