@@ -265,10 +265,15 @@ class basic_property_details
 			// $this->classAbbvs[(int)$roomClass->room_classes_uid]['image'] = $roomClass->image;
 			// }
 		
+		$mrConfig=getPropertySpecificSettings($this->property_uid);
+		if ($mrConfig['singleRoomProperty'] ==  '0')
+			$srp_only=0;
+		else
+			$srp_only=1;
 		if (!isset($this->this_property_room_classes))
 			{
 			$this->this_property_room_classes = array();
-			$query = "SELECT roomtype_id FROM #__jomres_roomtypes_propertytypes_xref WHERE propertytype_id =".(int)$this->ptype_id;
+			$query = "SELECT a.roomtype_id FROM #__jomres_roomtypes_propertytypes_xref a, #__jomres_room_classes b WHERE a.propertytype_id =".(int)$this->ptype_id." AND (a.roomtype_id = b.room_classes_uid AND b.srp_only = '".$srp_only."' )";
 			$roomtypes =doSelectSql($query);
 			foreach ($roomtypes as $roomClass)
 				{
