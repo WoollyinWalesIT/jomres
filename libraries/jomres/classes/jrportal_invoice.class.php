@@ -200,6 +200,23 @@ class jrportal_invoice
 		else
 			return false;
 		}
+		
+		
+	function get_invoice_booking_number()
+		{
+		if ( (int)$this->contract_id > 0 )
+			{
+			$query = "SELECT tag FROM #__jomres_contracts WHERE contract_uid = ".(int)$this->contract_id;
+			$result=doSelectSql($query,1);
+			if ($result)
+				return $result;
+			else
+				return false;
+			}
+		else
+			return false;
+		}
+		
 	}
 
 ?>
