@@ -1928,3 +1928,7 @@ jr_define("JOMRES_JQUERY18_2_DESC","Jquery 2.x jest szybsze niż poprzednie impl
 
 jr_define( "JOMRES_SUPERIOR" , "Superior");
 jr_define( "JOMRES_SUPERIOR_S" , "(S)");
+
+jr_define( "JOMRES_GRANDTOTAL_EX_TAX" , "Grand total (ex tax) : ");
+jr_define( "JOMRES_GRANDTOTAL_INC_TAX" , "Grand total (inc tax) : ");
+jr_define( "JOMRES_GRANDTOTAL_TOTAL_TAX" , "Total tax : ");

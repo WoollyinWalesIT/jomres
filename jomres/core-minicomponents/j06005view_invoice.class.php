@@ -58,7 +58,6 @@ class j06005view_invoice {
 			
 			if ( (int)$invoice->contract_id > 0 && $invoice->is_commission == 0 ) // It's a guest's invoice being viewed either by the guest or a property manager for the appropriate property
 				{
-				
 				if ($thisJRUser->userIsManager)
 					{
 					$property_uid=getDefaultProperty();
@@ -221,6 +220,11 @@ class j06005view_invoice {
 			
 		$lineitems=invoices_getalllineitems_forinvoice($id);
 		$counter=0;
+		
+		$grand_total_inc_tax = 0.0;
+		$grand_total_ex_tax = 0.0;
+		$grand_total_tax = 0.0;
+		
 		if (count($lineitems)>0)
 			{
 			foreach ($lineitems as $li)
@@ -245,11 +249,31 @@ class j06005view_invoice {
 				$r['COUNTER']			=$counter;
 				$counter++;
 				$r['CURRENCYCODE']=$invoice->currencycode;
+				
+				$grand_total_inc_tax = $grand_total_inc_tax + $li['init_total_inclusive'];
+				$grand_total_ex_tax = $grand_total_ex_tax + $li['init_total'];
+				
+				$tax = ($li['init_total_inclusive']/100)*$li['tax_rate'];
+				$grand_total_tax = $grand_total_tax + $tax;
+				
 				$rows[]=$r;
 				}
 			}
+		
+		$output['JOMRES_GRANDTOTAL_TOTAL_TAX']		=	jr_gettext('JOMRES_GRANDTOTAL_TOTAL_TAX',JOMRES_GRANDTOTAL_TOTAL_TAX);
+		$output['JOMRES_GRANDTOTAL_EX_TAX']			=	jr_gettext('JOMRES_GRANDTOTAL_EX_TAX',JOMRES_GRANDTOTAL_EX_TAX); 
+		$output['JOMRES_GRANDTOTAL_INC_TAX']		=	jr_gettext('JOMRES_GRANDTOTAL_INC_TAX',JOMRES_GRANDTOTAL_INC_TAX);
+		
+		$output['GRAND_TOTAL_INC_TAX']				=	output_price($grand_total_inc_tax,$invoice->currencycode,false,true);
+		$output['GRAND_TOTAL_EX_TAX']				=	output_price($grand_total_ex_tax,$invoice->currencycode,false,true);
+		$output['GRAND_TOTAL_TAX']					=	output_price($grand_total_tax,$invoice->currencycode,false,true);
 
-		$output['JOMRES_SITEPAGE_URL']=JOMRES_SITEPAGE_URL_NOSEF;
+		
+		$output['BOOKING_NUMBER']					=	$invoice->get_invoice_booking_number();
+		if ($output['BOOKING_NUMBER'])
+			$output['_JOMRES_BOOKING_NUMBER']			=	jr_gettext('_JOMRES_BOOKING_NUMBER',_JOMRES_BOOKING_NUMBER);
+		
+		$output['JOMRES_SITEPAGE_URL']				=	JOMRES_SITEPAGE_URL_NOSEF;
 
 		$pageoutput[]=$output;
 		$tmpl = new patTemplate();
