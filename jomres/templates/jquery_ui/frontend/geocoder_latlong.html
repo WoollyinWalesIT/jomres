@@ -16,6 +16,13 @@ function init_map_{RANDOM_IDENTIFIER}()
 		zoom: 12,
 		{DISABLE_UI}
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		styles:[{
+			featureType:"poi",
+			elementType:"labels",
+			stylers:[{
+				visibility:"off"
+				}]
+			}]
 		};
 	
 	var map = new google.maps.Map(document.getElementById("map_{RANDOM_IDENTIFIER}"),
