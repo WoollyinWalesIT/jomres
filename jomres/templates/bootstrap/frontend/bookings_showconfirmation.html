@@ -7,13 +7,15 @@
 			{
 			if (usecart)
 				{
+				document.bookingForm.cart.disabled=true;
 				document.bookingForm.action = "{PROCESSURL_SAVETOCART}";
 				}
 			else
 				{
+				document.bookingForm.send.disabled=true;
 				document.bookingForm.action = "{PROCESSURL}";
 				}
-			
+
 			return true;
 			}
 		else
@@ -24,6 +26,7 @@
 		}
 	function editbooking()
 		{
+		document.bookingForm.amend.disabled=true;
 		document.bookingForm.action = "{BOOKINGFORMURL}";
 		}
 //-->
@@ -237,7 +240,7 @@
 	<div class="form-actions">
 		<input type="submit" id="send" name="send" value="{THEBUTTON}" class="btn btn-primary" onclick="return confirmation_validate(false);" /> 
 		<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR} 
-		<input class="btn" type="submit" id="send" name="send" value="{_JOMRES_SAVEFORLATER}" class="btn" onclick="return confirmation_validate(true);" /> 
+		<input class="btn" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" class="btn" onclick="return confirmation_validate(true);" /> 
 		</patTemplate:tmpl>
 	</div>
 </form>

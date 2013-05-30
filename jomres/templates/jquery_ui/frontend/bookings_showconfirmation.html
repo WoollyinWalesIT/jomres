@@ -7,13 +7,15 @@
 			{
 			if (usecart)
 				{
+				document.bookingForm.cart.disabled=true;
 				document.bookingForm.action = "{PROCESSURL_SAVETOCART}";
 				}
 			else
 				{
+				document.bookingForm.send.disabled=true;
 				document.bookingForm.action = "{PROCESSURL}";
 				}
-			
+
 			return true;
 			}
 		else
@@ -24,6 +26,7 @@
 		}
 	function editbooking()
 		{
+		document.bookingForm.amend.disabled=true;
 		document.bookingForm.action = "{BOOKINGFORMURL}";
 		}
 //-->
@@ -132,7 +135,7 @@
 <table width="100%" border="0">	
 	<tr>
 		<td>{AMENDTEXT}</td>
-		<td style="text-align:right;"><input type="submit" value="{AMEND}"   class="fg-button ui-state-default ui-corner-all" onclick="editbooking();"/></td>
+		<td style="text-align:right;"><input type="submit" value="{AMEND}" class="fg-button ui-state-default ui-corner-all" onclick="editbooking();"/></td>
 	</tr>
 </table>
 <br />
@@ -175,7 +178,7 @@
 			
 		</td>
 		<td style="text-align:right;">
-			<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR} <input class="fg-button ui-state-default ui-corner-all" type="submit" id="send" name="send" value="{_JOMRES_SAVEFORLATER}" class="button" onclick="return confirmation_validate(true);" /></patTemplate:tmpl>
+			<patTemplate:tmpl name="cartoutput" type="simpleCondition" requiredVars="_jomres_saveforlater"> {_JOMRES_CART_OR} <input class="fg-button ui-state-default ui-corner-all" type="submit" id="cart" name="cart" value="{_JOMRES_SAVEFORLATER}" class="button" onclick="return confirmation_validate(true);" /></patTemplate:tmpl>
 		</td>
 	</tr>
 </table>
