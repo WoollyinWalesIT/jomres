@@ -51,7 +51,7 @@ class jomres_currency_exchange_rates
 				$update_exchange_rates = true;
 				elseif (count ($current_rates->rates) == 0)
 					$update_exchange_rates = true;
-				
+
 		if ($update_exchange_rates)
 			{
 			$this->update_exchange_rates();
@@ -86,10 +86,9 @@ class jomres_currency_exchange_rates
 		if (!$this->feature_enabled)
 			return;
 		$expired = false;
-		$last_modified = filemtime  ( $this->exchange_rate_classfile );
-		$today = time();
-		$seconds_timediff = $today - $last_modified;
-		if ($seconds_timediff>86400)
+		$last_modified = date("Y/m/d",filemtime  ( $this->exchange_rate_classfile ));
+		$today = date("Y/m/d",time());
+		if ($today != $last_modified)
 			$expired = true;
 		return $expired;
 		}
@@ -136,6 +135,7 @@ class jomres_currency_exchange_rates
 		{
 		if (!$this->feature_enabled)
 			return;
+			
 		if (count($this->rates)==0)
 			return false;
 		$lines = '$this->rates = array();
@@ -161,10 +161,7 @@ class jomres_currency_exchange_rates
 				'.$lines.'
 				}
 			}';
-
-		$fp=fopen($this->exchange_rate_classfile,'w');
-		fwrite($fp, $string);
-		fclose($fp);
+		file_put_contents($this->exchange_rate_classfile, $string);
 		}
 	
 	function get_exchange_rates_csv($currencyQuery)
@@ -177,6 +174,7 @@ class jomres_currency_exchange_rates
 		curl_setopt($c, CURLOPT_HEADER, 0);
 		curl_setopt($c, CURLOPT_USERAGENT,'Jomres');
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c,CURLOPT_TIMEOUT,2000);
 		$csv = curl_exec($c);
 		
 		curl_close($c);
