@@ -564,14 +564,12 @@ class dobooking
 
 	function getAllTariffsData()
 		{
-		$mrConfig = $this->mrConfig;
-		$arrivalDate_ts  = str_replace("/","-",$this->arrivalDate);
-		$departureDate_ts = str_replace("/","-",$this->departureDate);
-
 		$query="SELECT `rates_uid`,`rate_title`,`rate_description`,`validfrom`,`validto`,
 			`roomrateperday`,`mindays`,`maxdays`,`minpeople`,`maxpeople`,`roomclass_uid`,
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
-			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
+			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' 
+			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
+			AND DATE_FORMAT(`validfrom`, '%Y/%m/%d') <= DATE_FORMAT('".$this->departureDate."', '%Y/%m/%d')
 			";
 		
 		$tariffs =doSelectSql($query);
@@ -580,7 +578,7 @@ class dobooking
 		//$this->setErrorLog("Finding tariffs");
 		//$this->setErrorLog($query);
 		//$this->setErrorLog(serialize($tariffs) );
-		
+
 		$interval = new DateInterval('P1D');
 		foreach ($tariffs as $t)
 			{
@@ -590,6 +588,7 @@ class dobooking
 			'roomrateperday'=>$roomrate,'mindays'=>$t->mindays,'maxdays'=>$t->maxdays,'minpeople'=>$t->minpeople,'maxpeople'=>$t->maxpeople,'roomclass_uid'=>$t->roomclass_uid,
 			'ignore_pppn'=>$t->ignore_pppn,'allow_ph'=>$t->allow_ph,'allow_we'=>$t->allow_we,'weekendonly'=>$t->weekendonly,'dayofweek'=>$t->dayofweek,'minrooms_alreadyselected'=>$t->minrooms_alreadyselected,'maxrooms_alreadyselected'=>$t->maxrooms_alreadyselected,'tariff_dates'=>$dates);
 			}
+
 		}
 
 	function getAllRoomFeatureDetails()
