@@ -574,17 +574,21 @@ class dobooking
 			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
 			";
 		
-		//$this->setErrorLog("getAllTariffsData:: ".$query );
 		$tariffs =doSelectSql($query);
+
+		//$this->setErrorLog("getAllTariffsData:: ".$query );
 		//$this->setErrorLog("Finding tariffs");
 		//$this->setErrorLog($query);
 		//$this->setErrorLog(serialize($tariffs) );
+		
+		$interval = new DateInterval('P1D');
 		foreach ($tariffs as $t)
 			{
 			$roomrate = $this->get_nett_price($t->roomrateperday,$this->accommodation_tax_rate);
+			$dates = $this->get_periods($t->validfrom,$t->validto.' 23:59:59',$interval);
 			$this->allPropertyTariffs[$t->rates_uid] = array('rates_uid'=>$t->rates_uid,'rate_title'=>$t->rate_title,'rate_description'=>$t->rate_description,'validfrom'=>$t->validfrom,'validto'=>$t->validto,
 			'roomrateperday'=>$roomrate,'mindays'=>$t->mindays,'maxdays'=>$t->maxdays,'minpeople'=>$t->minpeople,'maxpeople'=>$t->maxpeople,'roomclass_uid'=>$t->roomclass_uid,
-			'ignore_pppn'=>$t->ignore_pppn,'allow_ph'=>$t->allow_ph,'allow_we'=>$t->allow_we,'weekendonly'=>$t->weekendonly,'dayofweek'=>$t->dayofweek,'minrooms_alreadyselected'=>$t->minrooms_alreadyselected,'maxrooms_alreadyselected'=>$t->maxrooms_alreadyselected);
+			'ignore_pppn'=>$t->ignore_pppn,'allow_ph'=>$t->allow_ph,'allow_we'=>$t->allow_we,'weekendonly'=>$t->weekendonly,'dayofweek'=>$t->dayofweek,'minrooms_alreadyselected'=>$t->minrooms_alreadyselected,'maxrooms_alreadyselected'=>$t->maxrooms_alreadyselected,'tariff_dates'=>$dates);
 			}
 		}
 
@@ -4454,36 +4458,66 @@ class dobooking
 				foreach ($all_associated_tariff_ids as $t_id)
 					{
 					$tariff_info = $this->allPropertyTariffs[$t_id];
-					$start = new DateTime($tariff_info['validfrom']);
-					$interval = new DateInterval('P1D');
-					$end = new DateTime($tariff_info['validto'].' 23:59:59');
-					$period = new DatePeriod($start, $interval, $end);
-					foreach ($period as $date) 
+					if (isset($tariff_info['tariff_dates']))
 						{
-						$d = $date->format('Y/m/d');
-						if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']))
-							$this->micromanage_tarifftype_to_date_map[$tariff_type_id][$d]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid'],"tariff_type_id"=>$tariff_type_id);
+						$dates = $tariff_info['tariff_dates'];
+						foreach ($dates as $d) 
+							{
+							if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']))
+								$this->micromanage_tarifftype_to_date_map[$tariff_type_id][$d]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid'],"tariff_type_id"=>$tariff_type_id);
+							}
 						}
 					}
 				}
  			else
 				{
 				$tariff_info = $this->allPropertyTariffs[$tariff_uid];
-				$start = new DateTime($tariff_info['validfrom']);
-				$interval = new DateInterval('P1D');
-				$end = new DateTime($tariff_info['validto'].' 23:59:59');
-				$period = new DatePeriod($start, $interval, $end);
-		
-				foreach ($period as $date) 
+				if (isset($tariff_info['tariff_dates']))
 					{
-					$d = $date->format('Y/m/d');
-					if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']) )
-						$this->simple_tariff_to_date_map[$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
+					$dates = $tariff_info['tariff_dates'];
+					foreach ($dates as $d) 
+						{
+						if (in_array($d,$dateRangeArray) && isset($tariff_info['roomrateperday']) )
+							$this->simple_tariff_to_date_map[$tariff_uid]=array("price"=>$tariff_info['roomrateperday'],"mindays"=>$tariff_info['mindays'],"rates_uid"=>$tariff_info['rates_uid']);
+						}
 					}
 				}
 			}
 		}
 		
+		
+	// This function is slower than the one that uses dateInterval. I will leave it in-situ as a reminder not to use it :)
+	/*
+	function get_periods($start,$end)
+		{
+		$current = strtotime($start);
+		$last = strtotime($end);
+		while( $current <= $last ) 
+			{
+			$dates[] = date('Y/m/d', $current);
+			$current = strtotime('+1 day', $current);
+			}
+		return $dates;
+		}
+	*/
+ 
+	function get_periods($start,$end,$interval=null)
+		{
+		$start = new DateTime($start);
+		$end = new DateTime($end);
+		if (is_null($interval))
+			$interval = new DateInterval('P1D');
+		
+		$period = new DatePeriod($start, $interval, $end);
+		$dates = array();
+		foreach ($period as $date) 
+			{
+			$d = $date->format('Y/m/d');
+			$dates[] = $d;
+			}
+		return $dates;
+		}
+
 	/**
 	#
 	 * Limits the number of rooms that can be displayed if the config option returnRoomsLimit is set to greater than 0
