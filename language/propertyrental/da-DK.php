@@ -2013,3 +2013,14 @@ jr_define( "JOMRES_SUPERIOR_S" , "(S)");
 jr_define( "JOMRES_GRANDTOTAL_EX_TAX" , "Grand total (ex tax) : ");
 jr_define( "JOMRES_GRANDTOTAL_INC_TAX" , "Grand total (inc tax) : ");
 jr_define( "JOMRES_GRANDTOTAL_TOTAL_TAX" , "Total tax : ");
+
+jr_define( "JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL" , "Type the two words: ");
+jr_define( "JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO" , "Enter what you hear: ");
+jr_define( "JOMRES_RECAPTCHA_PLAY_AGAIN" , "Replay the audio track ");
+jr_define( "JOMRES_RECAPTCHA_CANT_HEAR_THIS" , "Download the track in MP3 format");
+jr_define( "JOMRES_RECAPTCHA_VISUAL_CHALLENGE" , "Visual mode");
+jr_define( "JOMRES_RECAPTCHA_AUDIO_CHALLENGE" , "Audio mode");
+jr_define( "JOMRES_RECAPTCHA_REFRESH_BTN" , "Refresh");
+jr_define( "JOMRES_RECAPTCHA_HELP_BTN" , "Help");
+jr_define( "JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN" , "Sorry, that was incorrect. Please try again.");
+
