@@ -569,7 +569,6 @@ class dobooking
 			`ignore_pppn`,`allow_ph`,`allow_we`,`weekendonly`,`dayofweek`,`minrooms_alreadyselected`,`maxrooms_alreadyselected`
 			FROM #__jomres_rates WHERE property_uid = '$this->property_uid' 
 			AND DATE_FORMAT(`validto`, '%Y/%m/%d') >= DATE_FORMAT('".$this->today."', '%Y/%m/%d')
-			AND DATE_FORMAT(`validfrom`, '%Y/%m/%d') <= DATE_FORMAT('".$this->departureDate."', '%Y/%m/%d')
 			";
 		
 		$tariffs =doSelectSql($query);
@@ -578,7 +577,7 @@ class dobooking
 		//$this->setErrorLog("Finding tariffs");
 		//$this->setErrorLog($query);
 		//$this->setErrorLog(serialize($tariffs) );
-
+		
 		$interval = new DateInterval('P1D');
 		foreach ($tariffs as $t)
 			{
