@@ -279,12 +279,15 @@ if ($property_uid >0)
 	{
 	if (!$thisJRUser->userIsManager && $published == 0 && $task != "")
 		{
-		jr_import('jomres_sanity_check');
-		$warning = new jomres_sanity_check(false);
-		echo $warning->construct_warning(jr_gettext('_JOMRES_PROPERTYNOTOUBLISHED',_JOMRES_PROPERTYNOTOUBLISHED,false));
-		unset($property_uid);
-		$task="";
-		set_showtime('task',"");
+		if (!AJAXCALL)
+			{
+			jr_import('jomres_sanity_check');
+			$warning = new jomres_sanity_check(false);
+			echo $warning->construct_warning(jr_gettext('_JOMRES_PROPERTYNOTOUBLISHED',_JOMRES_PROPERTYNOTOUBLISHED,false));
+			unset($property_uid);
+			$task="";
+			set_showtime('task',"");
+			}
 		}
 	if ($thisJRUser->userIsManager && $thisJRUser->currentproperty != $property_uid && in_array($property_uid,$thisJRUser->authorisedProperties) )
 		{
