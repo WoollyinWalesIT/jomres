@@ -90,12 +90,23 @@ function echeck(str) {
 		}
 	return true
 	}
-//-->
-</script>
-<script type="text/javascript">
+
 var RecaptchaOptions = {
+	custom_translations : {
+		instructions_visual : "{JOMRES_RECAPTCHA_INSTRUCTIONS_VISUAL}",
+		instructions_audio : "{JOMRES_RECAPTCHA_INSTRUCTIONS_AUDIO}",
+		play_again : "{JOMRES_RECAPTCHA_PLAY_AGAIN}",
+		cant_hear_this : "{JOMRES_RECAPTCHA_CANT_HEAR_THIS}",
+		visual_challenge : "{JOMRES_RECAPTCHA_VISUAL_CHALLENGE}",
+		audio_challenge : "{JOMRES_RECAPTCHA_AUDIO_CHALLENGE}",
+		refresh_btn : "{JOMRES_RECAPTCHA_REFRESH_BTN}",
+		help_btn : "{JOMRES_RECAPTCHA_HELP_BTN}",
+		incorrect_try_again : "{JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN}",
+		},
+	lang : 'en', // Unavailable while writing this code (just for audio challenge)
 	theme : 'clean' //can be changed to 'red','white','blackglass'
 };
+//-->
 </script>
 <h2 class="page-header">{PAGETITLE}</h2>
 <p>{SUBJECT}</p>
