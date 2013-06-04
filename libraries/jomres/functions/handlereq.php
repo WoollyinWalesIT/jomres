@@ -497,7 +497,7 @@ if ($field != "heartbeat" && $field != "show_log" && $field != "email_usage_chec
 			echo $bkg->setGuestPopupMessage($bkg->monitorGetFirstMessage());
 			
 		
-			echo ';jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);';
+			//echo ';jomresJquery("#bookingform_address").delay(800).fadeTo("slow", 1);';
 			
 		echo '; disableSubmitButton(document.ajaxform.confirmbooking); ';
 		
