@@ -6103,11 +6103,11 @@ class dobooking
 
 
 
-			if ($allRoomsMaxPeople[$rm_id]['max_people']>1 && $allocation['number_allocated']==1)
+			if ($allRoomsMaxPeople[$rm_id]>1 && $allocation['number_allocated']==1)
 				$this->room_allocations[$rm_id]['suppliment']=$suppliment;
 			else
 				$this->room_allocations[$rm_id]['suppliment']=0.00;
-			$this->setErrorLog('calcSinglePersonSuppliment::$allRoomsMaxPeople[$rm_id][\'max_people\']>1 && $allocation[\'number_allocated\']==1: '.$this->room_allocations[$rm_id]['suppliment'] );
+			$this->setErrorLog('calcSinglePersonSuppliment::$allRoomsMaxPeople[$rm_id]>1 && $allocation[\'number_allocated\']==1: '.$this->room_allocations[$rm_id]['suppliment'] );
 
 			}
 
