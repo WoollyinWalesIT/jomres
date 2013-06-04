@@ -224,13 +224,13 @@ class jomres_cron
 			$jomresConfig_secret = get_showtime('secret');
 			if (count($this->dueJobs) > 0)
 				{
-				$thisSvrName=get_showtime('live_site');
-				if(preg_match('/[^\x20-\x7f]/', $thisSvrName)) 
+				$livesite=get_showtime('live_site');
+				if(preg_match('/[^\x20-\x7f]/', $livesite)) 
 					{
 					require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'idna_converter'.JRDS.'idna_convert.class.php');
 					$IDN = new idna_convert();
-					$encoded = $IDN->encode($thisSvrName);
-					$new = str_replace($thisSvrName,$encoded,JOMRES_SITEPAGE_URL_AJAX);
+					$encoded = $IDN->encode($livesite);
+					$new = str_replace($livesite,$encoded,JOMRES_SITEPAGE_URL_AJAX);
 					$livesite=$new;
 					}
 				foreach ($this->dueJobs as $job)
