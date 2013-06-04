@@ -37,7 +37,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts,$mapWeatherTempGradDropdownList)
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -326,7 +326,55 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();
 	
-
+	$contentPanel->startPanel(jr_gettext(JOMRES_GOOGLE_MAPS,'JOMRES_GOOGLE_MAPS',false));
+	$contentPanel->setcontent('
+		<table class="table table-striped" width="100%">
+			<thead>
+				<tr>
+					<th colspan="3">'.jr_gettext(JOMRES_GOOGLE_MAPS_INFO,'JOMRES_GOOGLE_MAPS_INFO',false).'</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAPS_POIS,'JOMRES_GOOGLE_MAPS_POIS',false).'</td>
+					<td>'.$lists['gmap_pois'].'</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_WEATHER,'JOMRES_GOOGLE_MAP_OPTION_WEATHER',false).'</td>
+					<td>'.$lists['gmap_layer_weather'].'</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD,'JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD',false).'</td>
+					<td>'.$mapWeatherTempGradDropdownList.'</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_PANORAMIO,'JOMRES_GOOGLE_MAP_OPTION_PANORAMIO',false).'</td>
+					<td>'.$lists['gmap_layer_panoramio'].'</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_TRANSIT,'JOMRES_GOOGLE_MAP_OPTION_TRANSIT',false).'</td>
+					<td>'.$lists['gmap_layer_transit'].'</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_TRAFFIC,'JOMRES_GOOGLE_MAP_OPTION_TRAFFIC',false).'</td>
+					<td>'.$lists['gmap_layer_traffic'].'</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_BICYCLING,'JOMRES_GOOGLE_MAP_OPTION_BICYCLING',false).'</td>
+					<td>'.$lists['gmap_layer_bicycling'].'</td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>');
+	$contentPanel->insertContent();
+	$contentPanel->endPanel();
+		
 	if ($jrConfig['advanced_site_config'] == 1)
 		{
 		if (!isset($jrConfig['html_purifier_allowed_tags']))

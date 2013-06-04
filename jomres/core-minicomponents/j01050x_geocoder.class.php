@@ -100,6 +100,62 @@ class j01050x_geocoder {
 			else return; // If we're editing it's ok to use the default data. If we're not, it isn't and it's best to simply not show the map at all
 			}
 
+		if (!isset($jrConfig['gmap_layer_weather']))
+			{
+			$jrConfig['gmap_layer_weather'] = "1";
+			$jrConfig['gmap_layer_panoramio'] = "0";
+			$jrConfig['gmap_layer_transit'] = "0";
+			$jrConfig['gmap_layer_traffic'] = "0";
+			$jrConfig['gmap_layer_bicycling'] = "0";
+			$jrConfig['gmap_layer_temperature_grad'] = "CELCIUS";
+			}
+		
+		if ($jrConfig['gmap_layer_weather'] == "1")
+			$output['WEATHER_LAYER'] .='
+			var weatherLayer = new google.maps.weather.WeatherLayer({
+				temperatureUnits: google.maps.weather.TemperatureUnit.'.$jrConfig['gmap_layer_temperature_grad'].'
+				});
+				weatherLayer.setMap(map);
+			';
+
+		if ($jrConfig['gmap_layer_panoramio'] == "1")
+			$output['PANORAMIO_LAYER'] .='
+				var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
+				panoramioLayer.setMap(map);
+			';
+			
+			
+		if ($jrConfig['gmap_layer_transit'] == "1")
+			$output['TRANSIT_LAYER'] .='
+				var transitLayer = new google.maps.TransitLayer();
+				transitLayer.setMap(map);
+			';
+			
+			
+		if ($jrConfig['gmap_layer_traffic'] == "1")
+			$output['TRAFFIC_LAYER'] .='
+				var trafficLayer = new google.maps.TrafficLayer();
+				trafficLayer.setMap(map);
+			';
+			
+		if ($jrConfig['gmap_layer_bicycling'] == "1")
+			$output['BICYCLING_LAYER'] .='
+				var bikeLayer = new google.maps.BicyclingLayer();
+				bikeLayer.setMap(map);
+			';
+		
+		if ($jrConfig['gmap_pois'] == "0")
+			$output['SUPPRESS_POIS'] .='
+			,
+		styles:[{
+			featureType:"poi",
+			elementType:"labels",
+			stylers:[{
+				visibility:"off"
+				}]
+			}]
+			';
+		
 		if ($editing)
 			{
 			$output['DRAGABLE'] = ',

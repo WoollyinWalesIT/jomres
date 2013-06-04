@@ -257,4 +257,13 @@ $jrConfig['automatically_approve_new_properties'] = "1";
 $jrConfig['region_names_are_translatable'] = "0";
 
 $jrConfig['jquery18_2_switch'] = "0";
-?>
+
+$jrConfig['gmap_pois'] = "0";
+
+$jrConfig['gmap_layer_weather'] = "1";
+$jrConfig['gmap_layer_panoramio'] = "0";
+$jrConfig['gmap_layer_transit'] = "0";
+$jrConfig['gmap_layer_traffic'] = "0";
+$jrConfig['gmap_layer_bicycling'] = "0";
+$jrConfig['gmap_layer_temperature_grad'] = "CELCIUS";
+
