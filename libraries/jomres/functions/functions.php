@@ -238,7 +238,27 @@ function add_gmaps_source($sensor=0)
 		$s = "false";
 		if ($sensor == 1)
 			$s = "true";
-		echo '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor='.$s.'&amp;key='.$jrConfig['google_maps_api_key'].'&amp;language='.$shortcode.'"></script>';
+		
+		$libraries = '';
+		
+		if (!isset($jrConfig['gmap_layer_weather']))
+			{
+			$jrConfig['gmap_layer_weather'] = "1";
+			$jrConfig['gmap_layer_panoramio'] = "0";
+			$jrConfig['gmap_layer_transit'] = "0";
+			$jrConfig['gmap_layer_traffic'] = "0";
+			$jrConfig['gmap_layer_bicycling'] = "0";
+			}
+		
+		if ($jrConfig['gmap_layer_weather'] == "1")
+			$libraries .='weather,';
+		if ($jrConfig['gmap_layer_panoramio'] == "1")
+			$libraries .='panoramio';
+		
+		if ($libraries != '')
+			$libraries = '&libraries='.$libraries;
+		
+		echo '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor='.$s.'&amp;key='.$jrConfig['google_maps_api_key'].'&amp;language='.$shortcode.$libraries.'"></script>';
 		}
 	}
 

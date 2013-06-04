@@ -2023,3 +2023,18 @@ jr_define( "JOMRES_RECAPTCHA_REFRESH_BTN" , "Refresh");
 jr_define( "JOMRES_RECAPTCHA_HELP_BTN" , "Help");
 jr_define( "JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN" , "Sorry, that was incorrect. Please try again.");
 
+
+jr_define( "JOMRES_GOOGLE_MAPS" , "Google map options");
+jr_define( "JOMRES_GOOGLE_MAPS_INFO" , "These layer options are mainly specific to maps in property lists and the property details page. If enabled, only the Weather layer will be shown in the extended maps plugin as including too many options on a larger map makes it extremely slow.");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER" , "Use weather and cloud layer? ");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD" , "Farenheit or Celcius? ");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS" , "Celcius");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT" , "Farenheit");
+
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_PANORAMIO" , "Use Panoramio layer?");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRANSIT" , "Use transit layer?");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_TRAFFIC" , "Use traffic layer?");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_BICYCLING" , "Use bicycling layer?");
+
+jr_define( "JOMRES_GOOGLE_MAPS_POIS" , "Enable Gmap Points of Interest (including possibly your competitors)?");
+

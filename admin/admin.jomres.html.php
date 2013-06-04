@@ -37,7 +37,7 @@ function controlPanel($version)
  * Outputs the site configuration panel
 #
  */
-function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts)
+function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts,$mapWeatherTempGradDropdownList)
 	{
 	$siteConfig = jomres_singleton_abstract::getInstance('jomres_config_site_singleton');
 	$jrConfig=$siteConfig->get();
@@ -322,6 +322,55 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		<tr valign="middle">
 			<th colspan="3">&nbsp;</th>
 		</tr>
+		</table>');
+	$contentPanel->insertContent();
+	$contentPanel->endPanel();
+	
+	$contentPanel->startPanel(jr_gettext(JOMRES_GOOGLE_MAPS,'JOMRES_GOOGLE_MAPS',false));
+	$contentPanel->setcontent('
+		<table class="table table-striped" width="100%">
+			<thead>
+				<tr>
+					<th width="20%" class="ui-state-default">'.jr_gettext(JOMRES_GOOGLE_MAPS_INFO,'JOMRES_GOOGLE_MAPS_INFO',false).'</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr valign="middle" class="odd">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAPS_POIS,'JOMRES_GOOGLE_MAPS_POIS',false).'</td>
+					<td valign="middle">'.$lists['gmap_pois'].'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="even">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_WEATHER,'JOMRES_GOOGLE_MAP_OPTION_WEATHER',false).'</td>
+					<td valign="middle">'.$lists['gmap_layer_weather'].'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="odd">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD,'JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD',false).'</td>
+					<td valign="middle">'.$mapWeatherTempGradDropdownList.'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="even">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_PANORAMIO,'JOMRES_GOOGLE_MAP_OPTION_PANORAMIO',false).'</td>
+					<td valign="middle">'.$lists['gmap_layer_panoramio'].'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="odd">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_TRANSIT,'JOMRES_GOOGLE_MAP_OPTION_TRANSIT',false).'</td>
+					<td valign="middle">'.$lists['gmap_layer_transit'].'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="even">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_TRAFFIC,'JOMRES_GOOGLE_MAP_OPTION_TRAFFIC',false).'</td>
+					<td valign="middle">'.$lists['gmap_layer_traffic'].'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+				<tr valign="middle" class="odd">
+					<td valign="middle">'.jr_gettext(JOMRES_GOOGLE_MAP_OPTION_BICYCLING,'JOMRES_GOOGLE_MAP_OPTION_BICYCLING',false).'</td>
+					<td valign="middle">'.$lists['gmap_layer_bicycling'].'</td>
+					<td valign="middle">&nbsp;</td>
+				</tr>
+			</tbody>
 		</table>');
 	$contentPanel->insertContent();
 	$contentPanel->endPanel();

@@ -138,6 +138,11 @@ function showSiteConfig(  )
 	$geosearchList[] = jomresHTML::makeOption( 'region', jr_gettext(_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION,'_JOMRES_COM_MR_VRCT_PROPERTY_HEADER_REGION',false) );
 	$geosearchDropdownList = jomresHTML::selectList($geosearchList, 'cfg_integratedSearch_geosearchtype', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['integratedSearch_geosearchtype']);
 
+	$mapWeatherTempGrad = array();
+	$mapWeatherTempGrad[] = jomresHTML::makeOption( 'CELCIUS', jr_gettext(JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS,'JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS',false) );
+	$mapWeatherTempGrad[] = jomresHTML::makeOption( 'FARENHEIT', jr_gettext(JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT,'JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT',false) );
+	$mapWeatherTempGradDropdownList = jomresHTML::selectList($mapWeatherTempGrad, 'cfg_gmap_layer_temperature_grad', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_layer_temperature_grad']);
+	
 	$calendarStartDays = array();
 	$calendarStartDays[] = jomresHTML::makeOption( '1', jr_gettext(_JOMRES_COM_MR_WEEKDAYS_SUNDAY,'_JOMRES_COM_MR_WEEKDAYS_SUNDAY',false) );
 	$calendarStartDays[] = jomresHTML::makeOption( '2', jr_gettext(_JOMRES_COM_MR_WEEKDAYS_MONDAY,'_JOMRES_COM_MR_WEEKDAYS_MONDAY',false) );
@@ -260,6 +265,13 @@ function showSiteConfig(  )
 	$lists['use_jomres_own_editor']					= jomresHTML::selectList( $yesno, 'cfg_use_jomres_own_editor', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_jomres_own_editor'] );
 	$lists['property_details_in_tabs']				= jomresHTML::selectList( $yesno, 'cfg_property_details_in_tabs', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['property_details_in_tabs'] );
 	
+	$lists['gmap_layer_weather']					= jomresHTML::selectList( $yesno, 'cfg_gmap_layer_weather', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_layer_weather'] );
+	$lists['gmap_layer_panoramio']					= jomresHTML::selectList( $yesno, 'cfg_gmap_layer_panoramio', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_layer_panoramio'] );
+	$lists['gmap_layer_transit']					= jomresHTML::selectList( $yesno, 'cfg_gmap_layer_transit', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_layer_transit'] );
+	$lists['gmap_layer_traffic']					= jomresHTML::selectList( $yesno, 'cfg_gmap_layer_traffic', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_layer_traffic'] );
+	$lists['gmap_layer_bicycling']					= jomresHTML::selectList( $yesno, 'cfg_gmap_layer_bicycling', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_layer_bicycling'] );
+	$lists['gmap_pois']								= jomresHTML::selectList( $yesno, 'cfg_gmap_pois', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['gmap_pois'] );
+	
 	if (!isset($jrConfig['jquery18_2_switch']))
 		$jrConfig['jquery18_2_switch'] = 0; // By default the 19_2 switch will be set to No, so that jq 1.8 will be loaded.
 		
@@ -299,7 +311,7 @@ function showSiteConfig(  )
 	$lists['use_bootstrap_in_admin']				= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_admin', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap_in_admin'] );
 	$lists['use_bootstrap_in_frontend']				= jomresHTML::selectList( $yesno, 'cfg_use_bootstrap_in_frontend', 'class="inputbox" size="1"', 'value', 'text', $jrConfig['use_bootstrap_in_frontend'] );
 	
-	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts);
+	HTML_jomres::showSiteConfig( $jrConfig, $lists,$jsInputFormatDropdownList,$licensekey,$jrtb,$langDropdown,$geosearchDropdownList,$currency_codes_dropdown,$jqueryUIthemesDropdownList,$sortArrayDropdown,$calendarStartDaysDropdownList,$language_context_dropdown,$guestnumbersearchDropdownList,$filtering_level_dropdown,$layouts,$mapWeatherTempGradDropdownList);
 	}
 
 /**
