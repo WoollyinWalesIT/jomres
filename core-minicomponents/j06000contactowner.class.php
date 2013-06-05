@@ -52,7 +52,10 @@ class j06000contactowner {
 		if (isset($componentArgs['property_uid']))
 			$property_uid = intval($componentArgs['property_uid']);
 		else
+			{
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'selectedProperty', 0 ) );
+			jomres_cmsspecific_setmetadata("robots","noindex,nofollow");
+			}
 		if (isset($_POST['property_uid']) )
 			$property_uid = intval( jomresGetParam( $_REQUEST, 'property_uid', 0 ) );
 		if ($property_uid == 0 )

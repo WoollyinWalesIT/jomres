@@ -34,6 +34,7 @@ class j05020dobooking {
 			{
 			$this->template_touchable=true; return;
 			}
+		
 		require_once(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'libraries'.JRDS.'jomres'.JRDS.'functions'.JRDS.'dobooking.php');
 		
 		$property_uid = get_showtime('property_uid');
@@ -51,6 +52,10 @@ class j05020dobooking {
 				//showRoomDetails("all",$property_uid);
 				}
 			}
+		
+		if (!defined("DOBOOKING_IN_DETAILS"))
+			jomres_cmsspecific_setmetadata("robots","noindex,nofollow");
+		
 		}
 
 	function touch_template_language()

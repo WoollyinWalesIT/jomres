@@ -344,7 +344,7 @@ function jomres_cmsspecific_setmetadata($meta,$data)
 			$document->setMetaData('keywords',$data);
 		break;
 		default:
-			
+			$document->setMetaData($meta,$data);
 		break;
 		}
 	}
