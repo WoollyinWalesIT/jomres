@@ -329,10 +329,13 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	$contentPanel->startPanel(jr_gettext(JOMRES_GOOGLE_MAPS,'JOMRES_GOOGLE_MAPS',false));
 	$contentPanel->setcontent('
 		<table class="table table-striped" width="100%">
+			<p>'.jr_gettext(JOMRES_GOOGLE_MAPS_INFO,'JOMRES_GOOGLE_MAPS_INFO',false).'</p>
 			<thead>
-				<tr>
-					<th width="20%" class="ui-state-default">'.jr_gettext(JOMRES_GOOGLE_MAPS_INFO,'JOMRES_GOOGLE_MAPS_INFO',false).'</th>
-				</tr>
+			<tr>
+					<th width="20%" class="ui-state-default">&nbsp;</th>
+					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
+					<th width="60%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_EXPLANATION,'_JOMRES_COM_A_EXPLANATION',false).'</th>
+			</tr>
 			</thead>
 			<tbody>
 				<tr valign="middle" class="odd">
