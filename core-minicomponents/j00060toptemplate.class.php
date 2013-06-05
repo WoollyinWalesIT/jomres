@@ -47,8 +47,8 @@ class j00060toptemplate {
 			$editing_mode =jomres_singleton_abstract::getInstance('jomres_editing_mode');
 			$result = $editing_mode->make_editing_mode_dropdown();
 			if ($result)
-				$output['EDITING_MODE_DROPDOWN']=$result;
-			set_showtime("menuitem_editing_mode_dropdown",$output['EDITING_MODE_DROPDOWN']);
+				$editing_dropdown[]['EDITING_MODE_DROPDOWN']=$result;
+			set_showtime("menuitem_editing_mode_dropdown",$editing_dropdown[0]['EDITING_MODE_DROPDOWN']);
 			if (_JOMRES_DETECTED_CMS == "joomla15" || _JOMRES_DETECTED_CMS == "joomla16" || _JOMRES_DETECTED_CMS == "joomla17" || _JOMRES_DETECTED_CMS == "joomla25" || _JOMRES_DETECTED_CMS == "joomla30" || _JOMRES_DETECTED_CMS == "joomla31")
 				{
 				if ($thisJRUser->userIsManager)
@@ -73,7 +73,7 @@ class j00060toptemplate {
 						{
 						$output['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
 						$date = new DateTime(null, new DateTimeZone($thisJRUser->users_timezone));
-						$output['TIMEZONEBLURB']= outputDate(date_format($date, "Y/m/d"))." ".date_format($date, "H:i:s");
+						$timezone_dropdown[]['TIMEZONEBLURB']= outputDate(date_format($date, "Y/m/d"))." ".date_format($date, "H:i:s");
 						}
 					set_showtime("menuitem_timezone_dropdown",$output['TIMEZONE_DROPDOWN']);
 					set_showtime("menuitem_timezoneblurb",$output['TIMEZONEBLURB']);
@@ -96,8 +96,8 @@ class j00060toptemplate {
 			$output['NEXT']=jr_gettext('_PN_NEXT',_PN_NEXT,false,false);
 			$output['PREVIOUS']=jr_gettext('_PN_PREVIOUS',_PN_PREVIOUS,false,false);
 		
-			$output['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
-			set_showtime("menuitem_langdropdown",$output['LANGDROPDOWN']);
+			$lang_dropdown[]['LANGDROPDOWN']=$jomreslang->get_languageselection_dropdown();
+			set_showtime("menuitem_langdropdown",$lang_dropdown[0]['LANGDROPDOWN']);
 			$output['BACKLINK']='<a href="javascript:history.go(-1)">'.jr_gettext('_JOMRES_COM_MR_BACK',_JOMRES_COM_MR_BACK).'</a>';
 			$output['LIVESITE']=get_showtime('live_site');
 			$output['DATEPICKERLANG']=JOMRESDATEPICKERLANG;
@@ -143,6 +143,11 @@ class j00060toptemplate {
 				$tmpl->readTemplatesFromInput( 'top.html');
 			$tmpl->addRows( 'pageoutput',$pageoutput);
 			$tmpl->addRows( 'messages',$messaging);
+			
+			$tmpl->addRows( 'timezone_dropdown',$timezone_dropdown);
+			$tmpl->addRows( 'lang_dropdown',$lang_dropdown);
+			$tmpl->addRows( 'editing_dropdown',$editing_dropdown);
+			
 			$tmpl->addRows( 'sticky_messages',$sticky_messaging);
 			$tmpl->displayParsedTemplate();
 			$pageoutput=array();
