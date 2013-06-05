@@ -154,8 +154,13 @@ class j01070showpropertyheader
 					jomres_cmsspecific_setmetadata("title",jomres_decode($property_name));
 					}
 
-				jomres_cmsspecific_setmetadata('description',stripslashes($current_property_details->metadescription));
-				jomres_cmsspecific_setmetadata('keywords',$current_property_details->property_town.", ".$current_property_details->property_region.", ".$current_property_details->property_country);
+				if (strlen($current_property_details->metadescription)>0)
+					jomres_cmsspecific_setmetadata('description',stripslashes($current_property_details->metadescription));
+				
+				if (strlen($current_property_details->metakeywords)>0)
+					jomres_cmsspecific_setmetadata("keywords",jomres_decode($current_property_details->metakeywords));
+				else
+					jomres_cmsspecific_setmetadata('keywords',$current_property_details->property_town.", ".$current_property_details->property_region.", ".$current_property_details->property_country);
 
 				$output['STARS']=$starslink;
 				$output['PROPERTY_NAME'] = $current_property_details->property_name;

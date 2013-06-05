@@ -174,6 +174,7 @@ class basic_property_details
 				$this->long						=$this->multi_query_result[$this->property_uid]['long'];
 				$this->metatitle				=$this->multi_query_result[$this->property_uid]['metatitle'];
 				$this->metadescription			=$this->multi_query_result[$this->property_uid]['metadescription'];
+				$this->metakeywords				=$this->multi_query_result[$this->property_uid]['metakeywords'];
 				$this->property_features		=$this->multi_query_result[$this->property_uid]['property_features'];
 				$this->property_mappinglink		=$this->multi_query_result[$this->property_uid]['property_mappinglink'];
 				$this->real_estate_property_price = $this->multi_query_result[$this->property_uid]['real_estate_property_price'];
@@ -197,7 +198,7 @@ class basic_property_details
 				$editable = false;
 
 			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
+`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE propertys_uid = '".$this->property_uid."' LIMIT 1";
 
 			$propertyData=doSelectSql($query);
 
@@ -241,6 +242,7 @@ class basic_property_details
 				$this->long						=$data->long;
 				$this->metatitle				=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
 				$this->metadescription			=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$data->metadescription,false,false);
+				$this->metakeywords				=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS',$data->metakeywords,false,false);
 				$this->property_features		=$data->property_features;
 				$this->property_mappinglink		=$data->property_mappinglink;
 				$this->real_estate_property_price = $data->property_key;
@@ -386,7 +388,7 @@ class basic_property_details
 			$gor=genericOr($property_uids,'propertys_uid');
 			
 			$query="SELECT `propertys_uid`,`property_name`,`property_street`,`property_town`,`property_postcode`,`property_region`,`property_country`,`property_tel`,`property_fax`,`property_email`,`published`,`ptype_id`,
-`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE ".$gor;
+`stars`,`superior`,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`,`property_features`,`property_mappinglink`,`property_key`,`property_description`,`property_checkin_times`,`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,`apikey`,`approved` FROM #__jomres_propertys WHERE ".$gor;
 			
 			$propertyData=doSelectSql($query);
 
@@ -432,6 +434,7 @@ class basic_property_details
 				$this->multi_query_result[$data->propertys_uid]['long']								=$data->long;
 				$this->multi_query_result[$data->propertys_uid]['metatitle']						=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$data->metatitle,false,false);
 				$this->multi_query_result[$data->propertys_uid]['metadescription']					=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$data->metadescription,false,false);
+				$this->multi_query_result[$data->propertys_uid]['metakeywords']						=jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS',$data->metakeywords,false,false);
 				$this->multi_query_result[$data->propertys_uid]['property_features']				=$data->property_features;
 				$this->multi_query_result[$data->propertys_uid]['property_mappinglink']				=$data->property_mappinglink;
 				$this->multi_query_result[$data->propertys_uid]['real_estate_property_price']		=$data->property_key;

@@ -65,6 +65,7 @@ class j04900saveproperty {
 		$property_email					= jomresGetParam( $_POST, 'property_email', "" );
 		$metatitle						= jomresGetParam( $_POST, 'metatitle', "" );
 		$metadescription				= jomresGetParam( $_POST, 'metadescription', "" );
+		$metakeywords					= jomresGetParam( $_POST, 'metakeywords', "" );
 		$price							= jomresGetParam( $_POST, 'price','' );
 		
 		$lat							= parseFloat(jomresGetParam( $_POST, 'lat', '' ));
@@ -164,14 +165,14 @@ class j04900saveproperty {
 					`property_region`,`property_country`,`property_postcode`,`property_tel`,`property_fax`,
 					`property_email`,`property_features`,
 					`property_description`,`property_checkin_times`,`property_area_activities`,
-					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,property_key,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`)
+					`property_driving_directions`,`property_airports`,`property_othertransport`,`property_policies_disclaimers`,property_key,ptype_id,apikey,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`)
 					VALUES
 					('$property_name','$property_street',
 					'$property_town','$property_region','$property_country','$property_postcode','$property_tel',
 					'$property_fax','$property_email','$featuresList',
 					'$property_description','$property_checkin_times','$property_area_activities',
 					'$property_driving_directions','$property_airports','$property_othertransport',
-					'$property_policies_disclaimers','".(float)$price."','".(int)$property_type."','$apikey','".$lat."','".$long."','".$metatitle."','".$metadescription."'
+					'$property_policies_disclaimers','".(float)$price."','".(int)$property_type."','$apikey','".$lat."','".$long."','".$metatitle."','".$metadescription."','".$metakeywords."'
 					)";
 			$newPropId=doInsertSql($query,jr_gettext('_JOMRES_MR_AUDIT_INSERT_PROPERTY',_JOMRES_MR_AUDIT_INSERT_PROPERTY,FALSE));
 			
@@ -232,6 +233,7 @@ class j04900saveproperty {
 
 			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE",$metatitle,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION",$metadescription,TRUE);
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS",$metakeywords,TRUE);
 
 			returnToPropertyConfig($saveMessage);
 			}
@@ -275,6 +277,7 @@ class j04900saveproperty {
 				`long`='$long',
 				`metatitle`='$metatitle',
 				`metadescription`='$metadescription',
+				`metakeywords`='$metakeywords',
 				`stars`='".(int)$property_stars."',
 				`superior`='".(int)$property_superior."',
 				".$apiclause."
@@ -297,6 +300,7 @@ class j04900saveproperty {
 			
 			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE",$metatitle,TRUE);
 			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION",$metadescription,TRUE);
+			updateCustomText("_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS",$metakeywords,TRUE);
 			
 			jomresRedirect(JOMRES_SITEPAGE_URL."&task=editProperty&propertyUid=".$propertyUid);
 			}
