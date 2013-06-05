@@ -1943,3 +1943,5 @@ jr_define( "JOMRES_GOOGLE_MAP_OPTION_BICYCLING" , "Use bicycling layer?");
 
 jr_define( "JOMRES_GOOGLE_MAPS_POIS" , "Enable Gmap Points of Interest (including possibly your competitors)?");
 
+
+jr_define( "_JOMRES_METAKEYWORDS" , "Meta Keywords");

@@ -469,8 +469,34 @@ function doTableUpdates()
 	if (!checkPropertysSuperiorColExists() )
 		alterPropertysSuperiorCol();
 
+	if (!checkPropertysMetakeywordsColExists() )
+		alterPropertysMetakeywordsCol();
+
 	if (_JOMRES_DETECTED_CMS == "joomla15" )
 		checkJoomlaComponentsTableInCaseJomresHasBeenUninstalled();
+	}
+
+
+function alterPropertysMetakeywordsCol()
+	{
+	if (!AUTO_UPGRADE) echo  "Editing __jomres_propertys table adding metakeywords column<br>";
+	$query = "ALTER TABLE `#__jomres_propertys` ADD `metakeywords` TEXT NULL AFTER `metadescription` ";
+	if (!doInsertSql($query,'') )
+		{
+		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_propertys metakeywords</b><br>";
+		}
+	}
+
+function checkPropertysMetakeywordsColExists()
+	{
+	$guestsTimestampInstalled=true;
+	$query="SHOW COLUMNS FROM #__jomres_propertys LIKE 'metakeywords'";
+	$result=doSelectSql($query);
+	if (count($result)>0)
+		{
+		return true;
+		}
+	return false;
 	}
 
 function alterPropertysSuperiorCol()
@@ -482,7 +508,6 @@ function alterPropertysSuperiorCol()
 		if (!AUTO_UPGRADE) echo  "<b>Error, unable to add __jomres_propertys superior</b><br>";
 		}
 	}
-
 function checkPropertysSuperiorColExists()
 	{
 	$guestsTimestampInstalled=true;
@@ -2644,6 +2669,7 @@ function createJomresTables()
 		`long` VARCHAR(12) NULL,
 		`metatitle` VARCHAR(150),
 		`metadescription` VARCHAR(150),
+		`metakeywords` TEXT NULL,
 		`timestamp` DATETIME,
 		`approved`  BOOL NOT NULL DEFAULT '1',
 		PRIMARY KEY(`propertys_uid`)

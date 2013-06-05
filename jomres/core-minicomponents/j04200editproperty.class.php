@@ -62,7 +62,7 @@ class j04200editproperty {
 			property_tel ,property_fax,property_email,property_features,property_key,
 			property_description,property_checkin_times,
 			property_area_activities,property_driving_directions,property_airports,
-			property_othertransport,property_policies_disclaimers,stars,superior,ptype_id,`lat`,`long`,`metatitle`,`metadescription`
+			property_othertransport,property_policies_disclaimers,stars,superior,ptype_id,`lat`,`long`,`metatitle`,`metadescription`,`metakeywords`
 			FROM #__jomres_propertys WHERE  propertys_uid  = '".(int)$propertyUid."' LIMIT 1";
 			$propertyList =doSelectSql($query);
 			foreach($propertyList as $property)
@@ -112,6 +112,7 @@ class j04200editproperty {
 				$output['PRICE']=$property->property_key;
 				$output['METATITLE']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METATITLE',$property->metatitle,false,false));
 				$output['METADESCRIPTION']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METADESCRIPTION',$property->metadescription,false,false));
+				$output['METAKEYWORDS']=html_entity_decode(jr_gettext('_JOMRES_CUSTOMTEXT_PROPERTY_METAKEYWORDS',$property->metakeywords,false,false));
 
 				if (!isset($jrConfig['allowHTMLeditor']) )
 					$jrConfig['allowHTMLeditor']="1";
@@ -291,6 +292,7 @@ class j04200editproperty {
 			$change_country_warning =array('CHANGECOUNTRYWARNING'=>jr_gettext('_JOMRES_EDITPROPERTY_SELECTCOUNTRY',_JOMRES_EDITPROPERTY_SELECTCOUNTRY,false));
 		$output['SAVEBEFOREUPLOADWARNING']=jr_gettext('_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD',_JOMRES_EDITPROPERTY_SAVEBEFOREUPLOAD,false);
 		$output['_JOMRES_METADESCRIPTION']=jr_gettext('_JOMRES_METADESCRIPTION',_JOMRES_METADESCRIPTION,false);
+		$output['_JOMRES_METAKEYWORDS']=jr_gettext('_JOMRES_METAKEYWORDS',_JOMRES_METAKEYWORDS,false);
 		$output['_JOMRES_METATITLE']=jr_gettext('_JOMRES_METATITLE',_JOMRES_METATITLE,false);
 		$output['LATLONG_DESC']=jr_gettext('_JOMRES_LATLONG_DESC',_JOMRES_LATLONG_DESC,false);
 
