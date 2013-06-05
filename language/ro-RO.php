@@ -2030,7 +2030,7 @@ jr_define( "JOMRES_RECAPTCHA_INCORRECT_TRY_AGAIN" , "Sorry, that was incorrect. 
 
 jr_define( "JOMRES_GOOGLE_MAPS" , "Google map options");
 jr_define( "JOMRES_GOOGLE_MAPS_INFO" , "These layer options are mainly specific to maps in property lists and the property details page. If enabled, only the Weather layer will be shown in the extended maps plugin as including too many options on a larger map makes it extremely slow.");
-jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER" , "Use weather and cloud layer? ");
+jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER" , "Use weather layer?");
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_GRAD" , "Farenheit or Celcius? ");
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_CELCIUS" , "Celcius");
 jr_define( "JOMRES_GOOGLE_MAP_OPTION_WEATHER_FARENHEIT" , "Farenheit");
