@@ -29,6 +29,7 @@ input[class^="jomres_te_"] {width: 25px !important;}
 	.photoview-image img{height:130px;}
 }
 #toolbar .btn-primary{width: 148px;}
+.superior {font-size:16px;font-style:italic;}
 /* Availability Calendar */
 .calendar_background_quarter a, td.calendar_background_quarter{ background: #B1FB17 !important; }
 .calendar_background_half a, td.calendar_background_half{ background: #FFFC17 !important; }
