@@ -63,7 +63,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		$contentPanel->startTabs();
 		$contentPanel->startPanel(jr_gettext('_JOMRES_A_TABS_MISC',_JOMRES_A_TABS_MISC,FALSE));
 		$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
+		<table width="100%" class="jradmin_table" border="0">
 		<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -424,7 +424,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		{
 		$contentPanel->startPanel(jr_gettext('_JOMRES_MOBILE_SETTINGS',_JOMRES_MOBILE_SETTINGS,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -457,7 +457,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		{
 		$contentPanel->startPanel(jr_gettext('_JOMRES_PATHWAY_BOOKINGFORM',_JOMRES_PATHWAY_BOOKINGFORM,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -521,7 +521,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		{
 		$contentPanel->startPanel(jr_gettext('_JRPORTAL_ROI_TAB',_JRPORTAL_ROI_TAB,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -565,7 +565,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		
 		$contentPanel->startPanel(jr_gettext('_JOMRES_CURRENCYCONVERSION_TAB',_JOMRES_CURRENCYCONVERSION_TAB,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -603,7 +603,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 	
 		$contentPanel->startPanel(jr_gettext('_JOMRES_REVIEWS',_JOMRES_REVIEWS,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -662,7 +662,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 	$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JSCALENDAR',_JOMRES_COM_A_JSCALENDAR,FALSE));
 	$contentPanel->setcontent('
-		<table  class="jradmin_table" border="0">
+		<table width="100%" class="jradmin_table" border="0">
 		<tr valign="middle" class="even">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -695,9 +695,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		{
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE',_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
-				<td valign="top" colspan="3">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC',false).'</td>
+				<td valign="top" colspan="3"><p>'.jr_gettext(_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC,'_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC',false).'</p></td>
 			</tr>
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -817,7 +817,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_JOMRES_FILE_UPLOADS',_JOMRES_COM_A_JOMRES_FILE_UPLOADS,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -867,7 +867,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		{
 		$contentPanel->startPanel(jr_gettext('JOMRES_COM_A_SEARCHOPTIONSTAB',JOMRES_COM_A_SEARCHOPTIONSTAB,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -919,7 +919,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		
 		$contentPanel->startPanel(jr_gettext('_JOMRES_DEBUGGING_TAB',_JOMRES_DEBUGGING_TAB,FALSE));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -949,7 +949,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		
 		$contentPanel->startPanel(jr_gettext(_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE,"_JOMRES_CONFIG_ALTERNATE_SMTP_TITLE",false));
 		$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 			<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -1008,7 +1008,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 				{
 				$contentPanel->startPanel("SEF");
 				$contentPanel->setcontent('
-				<table  class="jradmin_table" border="0">
+				<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -1126,9 +1126,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			// Logging configuration
 			$contentPanel->startPanel(jr_gettext(_JOMRES_COM_LOGGING,'_JOMRES_COM_LOGGING',false));
 			$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
-					<td valign="top" colspan="3">'.jr_gettext(_JOMRES_COM_LOGGING_WARNING,'_JOMRES_COM_LOGGING_WARNING',false).'</td>
+					<td valign="top" colspan="3"><p>'.jr_gettext(_JOMRES_COM_LOGGING_WARNING,'_JOMRES_COM_LOGGING_WARNING',false).'</p></td>
 				</tr>
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
@@ -1169,7 +1169,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 
 			$contentPanel->startPanel(jr_gettext(_JOMRES_COM_YOURBUSINESS,'_JOMRES_COM_YOURBUSINESS',false));
 			$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
 					<th width="20%" class="ui-state-default">'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_CURRENT_SETTINGS',false).'</th>
@@ -1235,9 +1235,9 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			
 			$contentPanel->startPanel(jr_gettext(RECAPTCHA_TITLE,'RECAPTCHA_TITLE',false));
 			$contentPanel->setcontent('
-			<table  class="jradmin_table" border="0">
+			<table width="100%" class="jradmin_table" border="0">
 				<tr valign="middle">
-					<td valign="top" colspan="3">'.RECAPTCHA_INFO.'</td>
+					<td valign="top" colspan="3"><p>'.jr_gettext(RECAPTCHA_INFO,'RECAPTCHA_INFO',false).'</p></td>
 				</tr>
 				<tr valign="middle">
 					<th width="20%" class="ui-state-default">&nbsp;</th>
