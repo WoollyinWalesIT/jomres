@@ -259,6 +259,7 @@ class jomres_language
 		$langs['th-TH']="Thai";
 		$langs['sv-SE']="Svenska";
 		$langs['ar-AA']="العربية الموحدة";
+		$langs['ca-ES']="Catalan";
 		
 		$language_plugins = get_showtime('language_plugins');
 		if (count($language_plugins) > 0 )
@@ -305,6 +306,7 @@ class jomres_language
 		$langs['th']='th-TH';
 		$langs['sv']='sv-SE';
 		$langs['ar']='ar-AA';
+		$langs['ca']='ca-ES';
 		
 		$language_plugins = get_showtime('language_plugins');
 		if (count($language_plugins) > 0 )
@@ -356,7 +358,8 @@ class jomres_language
 		$langs['th-TH']="th";
 		$langs['sv-SE']="sv";
 		$langs['ar-AA']="ar";
-
+		$langs['ca-ES']="ca";
+		
 		$language_plugins = get_showtime('language_plugins');
 		if (count($language_plugins) > 0 )
 			{
