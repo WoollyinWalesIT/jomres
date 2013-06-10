@@ -62,6 +62,11 @@ if ( isset($_REQUEST['is_wrapped']) )
 if (!isset($jrConfig['full_access_control']))
 	$jrConfig['full_access_control'] = "0";
 
+if ( isset($_REQUEST['tmpl']) && $_REQUEST['tmpl']=="component" )
+	{
+	jomres_cmsspecific_setmetadata("robots","noindex,nofollow");
+	}
+ 
 $MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 
 $MiniComponents->triggerEvent('00003'); // 
