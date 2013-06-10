@@ -32,7 +32,8 @@ class j10001control_panel
 		
 		$output['LIVESITE']=get_showtime('live_site');
 		$output['WRITABILITY_TESTS']=control_panel_writability_tests();
-
+		$output['MAX_INPUT_VARS_CHECK']=max_input_vars_test();
+		
 		$configfile = JOMRESPATH_BASE.JRDS."jomres_config.php";  // This is to pull in the Jomres version from mrConfig
 		include($configfile);
 
@@ -161,7 +162,7 @@ class j10001control_panel
 			}
 		
 		if (empty($buffer))
-			$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest Jomres news, is there a firewall preventing communication with http://updates.jomres4.net ?<p>";
+			$output['LATEST_JOMRES_VERSION'] .= "Sorry, could not get latest Jomres news, is there a firewall or slow internet connection preventing communication with http://updates.jomres4.net ?<p>";
 		else
 			{
 			$news_rows = array();
@@ -207,6 +208,18 @@ class j10001control_panel
 		{
 		return $this->cpanelButton;
 		}	
+	}
+	
+function max_input_vars_test()
+	{
+	$response = '';
+	$max_vars = (int)ini_get('max_input_vars');
+	if ($max_vars  < 1001 ) // The default is 1000 on most installations
+		{
+		$highlight = (using_bootstrap() ? "alert alert-info" :"ui-state-highlight");
+		$response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"http://stackoverflow.com/questions/10303714/php-max-input-vars\" target=\"_blank\">This page on Stackoverflow </a>has  more information.</div>";
+		}
+	return $response;
 	}
 	
 function plugin_check()
