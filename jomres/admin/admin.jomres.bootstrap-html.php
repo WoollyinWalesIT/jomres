@@ -683,7 +683,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 		{
 		$contentPanel->startPanel(jr_gettext('_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE',_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE,FALSE));
 		$contentPanel->setcontent('
-			<p>'.jr_gettext(_JOMRES_COM_A_CURRENT_SETTINGS,'_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC',false).'</p>
+			<p>'.jr_gettext(_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC,'_JOMRES_COM_A_INTEGRATEDSEARCH_TITLE_DESC',false).'</p>
 			<table class="table table-striped" width="100%">
 			<thead>
 			<tr>
@@ -1227,7 +1227,7 @@ function showSiteConfig( $jrConfig, &$lists,$jsInputFormatDropdownList,$licensek
 			
 			$contentPanel->startPanel(jr_gettext(RECAPTCHA_TITLE,'RECAPTCHA_TITLE',false));
 			$contentPanel->setcontent('
-			<p>'.RECAPTCHA_INFO.'</p>
+			<p>'.jr_gettext(RECAPTCHA_INFO,'RECAPTCHA_INFO',false).'</p>
 			<table class="table table-striped" width="100%">
 				<thead>
 				<tr>
