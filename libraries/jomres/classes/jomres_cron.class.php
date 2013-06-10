@@ -235,7 +235,7 @@ class jomres_cron
 					}
 				foreach ($this->dueJobs as $job)
 					{
-					$request = $livesite."&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
+					$request = $livesite."/index.php?option=com_jomres&tmpl=component&jrajax=1&no_html=1&task=cron_".$job['job_name']."&secret=".$jomresConfig_secret;
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch,CURLOPT_USERAGENT,'Jomres');
