@@ -212,11 +212,12 @@ class j10001control_panel
 	
 function max_input_vars_test()
 	{
+	$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 	$response = '';
 	$max_vars = (int)ini_get('max_input_vars');
-	if ($max_vars  < 1001 ) // The default is 1000 on most installations
+	if ($max_vars  < 1001 && isset($MiniComponents->registeredClasses['00005advanced_micromanage_tariff_editing_modes']) ) // The default is 1000 on most installations
 		{
-		$highlight = (using_bootstrap() ? "alert alert-info" :"ui-state-highlight");
+		$highlight = (using_bootstrap() ? "alert" :"ui-state-highlight");
 		$response = "<div class='".$highlight."'>Please note, your max_input_vars setting seems to be set to 1000, which is the default setting. If you're using the Micromanage tariff editing mode and wish to save prices for more than a year in advance, we recommend that you change this setting to 3000 or more. <a href=\"http://stackoverflow.com/questions/10303714/php-max-input-vars\" target=\"_blank\">This page on Stackoverflow </a>has  more information.</div>";
 		}
 	return $response;
