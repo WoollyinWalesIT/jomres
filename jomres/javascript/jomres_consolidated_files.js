@@ -3557,7 +3557,7 @@ jomresJquery.fn.chainSelect = function( target, url, settings )
 			var o = notification.options;
 
 			// Support for jQuery theme-states, if this is not used it displays a widget header
-			o.themeState = (o.themeState == '') ? '' : 'ui-state-' + o.themeState;
+			//o.themeState = (o.themeState == '') ? '' : 'ui-state-' + o.themeState; // Commented out as causes problems in bootstrap
 
 			var notification = $('<div/>')
 				.addClass('jGrowl-notification ' + o.themeState + ' ui-corner-all' + ((o.group != undefined && o.group != '') ? ' ' + o.group : ''))
