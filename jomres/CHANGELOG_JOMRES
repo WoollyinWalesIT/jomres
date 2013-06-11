@@ -1,3 +1,45 @@
+Jomres 7.2.18
+
+Added a new site configuration tab that allows you to enable/disable Google map layers. The choices are Weather/Traffic/Transit/Bicycle & Panoramio. You can also use the same tab to enable/disable the default POIs.
+Modified Jomres to add an S after the property header and property list stars, to indicate Superior properties. Added code to make this distinction when editing the property details page.
+Added some tweaks to the booking confirmation form to prevent users double clicking the submit button.
+Added lines that clarify grand total tax, and grand total ex and inc tax, and the booking number, to the frontend invoice output.
+Added options to gmaps to disable the POI layer (so that potential guests can't see your competition on the map).
+Added custom language strings to the recaptcha contact_owner.html templates, lang files and minicomponent.
+Added metakeywords option to edit property details.
+Added noindex,nofollow to the contact owner and booking form pages to prevent spidering on specific pages. Also added code that allows more meta tags if we wish.
+Added a function that allows us to get invoices for multiple properties.
+Added the Catalan language to the system.
+Added a warning RE max input vars to the control panel.
+
+Added new language definitions to Polish language file, many thanks Patryk.
+Tweaked how the cron log is shown. dd was actually the week number, now it's the date.
+Replaced calls for the function that calls mrConfig with a reference to this->mrConfig. (Booking engine).
+Fixed a path to some images in the ratings css.
+Added a check to see if JRAJAX is already defined before defining it.
+Added some code to check and see if the input filter class already exists.
+Modified the basic property details class so that we can pass the property type to the property list.
+Tweaked the room type list in Normal editing mode so that SRP and MRP room types are only shown when appropriate.
+Added a change to the basic_property_details class so that only room types for this MRP/SRP are pulled out. Makes listing room types when editing tariffs clearer.
+Updated our star image to be a larger, golden star.
+Improved the exchange rate class file so that it doesn't try to download exchange rates so often.
+Modified some code to reduce the amount of times a tariff's periods are called to speed up generation of the rooms list.
+Modified sanity check code to see if it's an ajax call. If it is, there's no point in running the check.
+Removed a superfluous semi-colon that IE10 has taken a dislike to in the booking engine.
+Fixed a bug where if max people in a room was > 10, the single person suppliment wouldn't be set correctly.
+Modified edit_my_account.html template to improve responsive layout.
+Changed Ukrainian currency code from UAG to UAH
+Tweaked handlereq so that the address fades in once, not twice, when a room has been selected.
+Tweaked jomres_cron to take into account new IDN related changes, specifically in relation to non-IDN domains.
+Added thead/tbody to list_bookings.html to resolve a javascript issue with tableTools javascript.
+Modified top template generation so that if lang/timezone/editing mode dropdowns are not available then space at the top isn't used up.
+Resized the star image and introduced a small css change to make the S in superior match it's related star in property header.
+Fixed recaptcha configuration tab information text.
+Fixed an issue where Cron jobs weren't always being triggered correctly.
+Improved the backend list invoices script to show guest names, even if the bookers are not registered users.
+Improved the growl javascript popup, fixed an issue where the css gradient for jq ui wasn't showing properly, giving a two tone look to the popup if it takes up more than a couple of lines.
+
+
 Jomres 7.2.17
 
 Added a new switch to allow users to swap between jq 1.8 and jq 2.x
