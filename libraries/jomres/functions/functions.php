@@ -4503,6 +4503,7 @@ function invoices_getallinvoices($dec,$status=null)
 			{
 			$invoices[$r->id]['id']=$r->id;
 			$invoices[$r->id]['cms_user_id']=$r->cms_user_id;
+			$invoices[$r->id]['guest_id']=$r->guest_id;
 			$invoices[$r->id]['status']=$r->status;
 			$invoices[$r->id]['raised_date']=$r->raised_date;
 			$invoices[$r->id]['due_date']=$r->due_date;
