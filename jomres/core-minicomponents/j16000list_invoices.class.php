@@ -50,9 +50,32 @@ class j16000list_invoices
 			break;
 			}
 
-		//_JRPORTAL_INVOICES_ISSUE
-
 		$invoices=invoices_getallinvoices(true,$stat);
+		
+		
+		$guest_ids = array();
+		foreach ($invoices as $inv)
+			{
+			$id = $inv['guest_id'];
+			$guest_ids[$id]=$id;
+			}
+		
+		$guest_clause = genericOr($guest_ids,'guests_uid');
+		
+		$guests = array();
+		$query="SELECT guests_uid,firstname,surname,mos_userid  FROM #__jomres_guests  WHERE ".$guest_clause;
+		$guestList =doSelectSql($query);
+		if (count($guestList)>0)
+			{
+			foreach ($guestList as $guest)
+				{
+				$guests[$guest->guests_uid]['guests_uid']=$guest->guests_uid;
+				$guests[$guest->guests_uid]['firstname']=$guest->firstname;
+				$guests[$guest->guests_uid]['surname']=$guest->surname;
+				$guests[$guest->guests_uid]['cms_user_id']=$guest->mos_userid;
+				}
+			}
+		
 		$output=array();
 		$pageoutput=array();
 		$rows=array();
@@ -100,6 +123,8 @@ class j16000list_invoices
 			$output['_JRPORTAL_INVOICES_STATUS_PENDING']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PENDING",_JRPORTAL_INVOICES_STATUS_PENDING);
 			}
 		
+		$already_found_users = array();
+		
 		foreach ($invoices as $invoice)
 			{
 			$r=array();
@@ -120,10 +145,29 @@ class j16000list_invoices
 				}
 			$r['ITEMS']=$item_name_string;
 
-			$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($invoice['cms_user_id']);
+			if ($invoice['cms_user_id'] > 0) // We prefer, where possible, to get the _current_ user details, rather than those stored when the booking was made, as it's possible that their details have been changed since the booking was taken, however as the system allows users to make bookings without registering we also need to be able to fall back to the guest's table names if the guest is an unregistered user.
+				{
+				$cms_user_id = $invoice['cms_user_id'];
+				if (!isset($already_found_users[$cms_user_id]))
+					{
+					$user_deets=$user_obj->getJoomlaUserDetailsForJoomlaId($cms_user_id);
+					$already_found_users[$cms_user_id] = $user_deets;
+					}
+				else
+					$user_deets = $already_found_users[$cms_user_id];
+				}
+			else
+				{
+				if ($invoice['guest_id'] > 0)
+					$guest_name = $guests[$invoice['guest_id']]['firstname']." ".$guests[$invoice['guest_id']]['surname'];
+				else
+					$guest_name = jr_gettext("_JOMRES_MR_AUDIT_UNKNOWNUSER",_JOMRES_MR_AUDIT_UNKNOWNUSER);
+				$user_deets=array('cms_user_id'=>0,'name'=>$guest_name);
+				}
 
-			if (strlen($user_deets['name'])==0)
-				$r['USER']=jr_gettext("_JOMRES_MR_AUDIT_UNKNOWNUSER",_JOMRES_MR_AUDIT_UNKNOWNUSER);
+
+			if ($invoice['cms_user_id']==0)
+				$r['USER']=$user_deets['name'];
 			else
 				$r['USER']='<a href="'.JOMRES_SITEPAGE_URL_ADMIN.'&task=list_usersinvoices&id='.$invoice['cms_user_id'].'">'.$user_deets['name'].'</a>';
 			if ($invoice['status'] == "0")
