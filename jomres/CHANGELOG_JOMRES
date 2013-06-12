@@ -1,3 +1,7 @@
+Jomres 7.2.19
+
+Reversed the previous change that prevents double clicking as it does not work on Chrome. Special release for this as it's a fairly major issue.
+
 Jomres 7.2.18
 
 Added a new site configuration tab that allows you to enable/disable Google map layers. The choices are Weather/Traffic/Transit/Bicycle & Panoramio. You can also use the same tab to enable/disable the default POIs.
