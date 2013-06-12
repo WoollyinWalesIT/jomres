@@ -145,9 +145,6 @@ class j00004x_init_javascript_css_files {
 				$MiniComponents =jomres_singleton_abstract::getInstance('mcHandler');
 				$colourSchemeDataArray=$MiniComponents->triggerEvent('00021',$componentArgs); // Get the colour scheme
 				
-				jomres_cmsspecific_addheaddata("javascript",'jomres/javascript/','jquery.tipsy.js');
-				jomres_cmsspecific_addheaddata("css",'jomres/javascript/','tipsy.css');
-				
 				if (!file_exists(get_showtime("module_popup.js.abspath").get_showtime("module_popup.js")))
 					{
 					$module_popup_str = '
