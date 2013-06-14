@@ -219,6 +219,7 @@ class j06005view_invoice {
 			}
 			
 		$lineitems=invoices_getalllineitems_forinvoice($id);
+
 		$counter=0;
 		
 		$grand_total_inc_tax = 0.0;
@@ -250,12 +251,15 @@ class j06005view_invoice {
 				$counter++;
 				$r['CURRENCYCODE']=$invoice->currencycode;
 				
-				$grand_total_inc_tax = $grand_total_inc_tax + $li['init_total_inclusive'];
-				$grand_total_ex_tax = $grand_total_ex_tax + $li['init_total'];
-				
-				$tax = ($li['init_total_inclusive']/100)*$li['tax_rate'];
-				$grand_total_tax = $grand_total_tax + $tax;
-				
+				if ($li['init_total_inclusive'] >= 0)
+					{
+					$grand_total_inc_tax = $grand_total_inc_tax + $li['init_total_inclusive'];
+					$grand_total_ex_tax = $grand_total_ex_tax + $li['init_total'];
+					
+					$tax = ($li['init_total_inclusive']/100)*$li['tax_rate'];
+					$grand_total_tax = $grand_total_tax + $tax;
+					}
+					
 				$rows[]=$r;
 				}
 			}
