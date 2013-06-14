@@ -322,7 +322,7 @@ class j06001dashboard extends jomres_dashboard
 		
 		$output="";
 		$bookinglink=JOMRES_SITEPAGE_URL.'&amp;task=dobooking&amp;selectedProperty='.$this->property_uid.'&amp;arrivalDate='.JSCalmakeInputDates(date("Y/m/d",$currdate));
-		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid;
+		$viewbookinglink=JOMRES_SITEPAGE_URL.'&amp;task=editBooking&amp;contract_uid='.$contract_uid.'&thisProperty='.$this->property_uid;
 		$basicFont='<div style="style=color:'.$fcolor.'; '.$border.' ">';
 		
 		$style='style="overflow:hidden;white-space:nowrap;padding:'.$padding.';"';
