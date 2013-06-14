@@ -47,10 +47,20 @@ class j00002usermanagement {
 			jr_import('jomres_cache');
 			$cache = new jomres_cache();
 			$cache->trashCacheForUser($thisJRUser->userid);
+			$new_url = get_showtime('live_site').'/index.php?';
+			foreach ($_REQUEST as $key=>$val)
+				{
+				if ($key != 'thisProperty')
+					{
+					$new_url .= $key.'='.$val.'&';
+					}
+				}
+
+			
 			if ($thisJRUser->userIsManager==TRUE && $thisProperty>0)
 				{
 				$thisJRUser->set_currentproperty($thisProperty);
-				jomresRedirect( jomresURL(JOMRES_SITEPAGE_URL) );
+				jomresRedirect( jomresURL($new_url) );
 				}
 			}
 		if ($thisJRUser->currentproperty == 0 && $thisJRUser->userIsManager)
