@@ -67,16 +67,16 @@ class j00060toptemplate {
 					
 					set_showtime("menuitem_management_view_dropdown",$output['MANAGEMENT_VIEW_DROPDOWN']);
 					
-					$output['TIMEZONE_DROPDOWN'] = '';
-					$output['TIMEZONEBLURB']= '';
+					$output['TIMEZONE_DROPDOWN']='';
+					$output['TIMEZONEBLURB']='';
 					if ($jrConfig['use_timezone_switcher'] == "1")
 						{
-						$output['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
+						$timezone_dropdown[0]['TIMEZONE_DROPDOWN']=$tz->get_dropdown();
 						$date = new DateTime(null, new DateTimeZone($thisJRUser->users_timezone));
-						$timezone_dropdown[]['TIMEZONEBLURB']= outputDate(date_format($date, "Y/m/d"))." ".date_format($date, "H:i:s");
+						$timezone_dropdown[0]['TIMEZONEBLURB']= outputDate(date_format($date, "Y/m/d"))." ".date_format($date, "H:i:s");
 						}
-					set_showtime("menuitem_timezone_dropdown",$output['TIMEZONE_DROPDOWN']);
-					set_showtime("menuitem_timezoneblurb",$output['TIMEZONEBLURB']);
+					set_showtime("menuitem_timezone_dropdown",$timezone_dropdown[0]['TIMEZONE_DROPDOWN']);
+					set_showtime("menuitem_timezoneblurb",$timezone_dropdown[0]['TIMEZONEBLURB']);
 					}
 				}
 			
@@ -87,7 +87,7 @@ class j00060toptemplate {
 				elseif (file_exists(JOMRES_IMAGELOCATION_ABSPATH.'logo.jpg'))
 					$output['LOGO_RELATIVE_URL']=JOMRES_IMAGELOCATION_RELPATH.'/logo.jpg';
 				else
-					$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';
+					$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/logo.png';
 				}
 			else
 				$output['LOGO_RELATIVE_URL']=get_showtime('live_site').'/jomres/images/jrlogo.png';

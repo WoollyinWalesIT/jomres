@@ -12,15 +12,15 @@ var jomres_using_bootstrap = '{USING_BOOTSTRAP}';
 <h2>{PROPERTYNAME}</h2>
 <div style="text-align:right;width:100%;">
 	<div>{MANAGEMENT_VIEW_DROPDOWN}</div>
-	<div>{TIMEZONEBLURB}</div>
 	<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
+	<div>{TIMEZONEBLURB}</div>
 	<div style="width:280px;;float:right;">{TIMEZONE_DROPDOWN}</div>
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
-	<div style="width:160px;float:right;">{EDITING_MODE_DROPDOWN}</div>
+	<div style="width:160px;float:right;">{LANGDROPDOWN}</div>
 	</patTemplate:tmpl>
 	<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
-	<div style="width:160px;float:right;">{LANGDROPDOWN}</div>
+	<div style="width:160px;float:right;">{EDITING_MODE_DROPDOWN}</div>
 	</patTemplate:tmpl>
 </div>
 

@@ -62,10 +62,16 @@ body {
 	<div class="row-fluid">
 		<div class="span2">
 			<h4 class="page-header" style="margin-top:20px;">Tools</h4>
-			{EDITING_MODE_DROPDOWN}
-			{LANGDROPDOWN}
+			<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
+			<p>{EDITING_MODE_DROPDOWN}</p>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
+			<p>{LANGDROPDOWN}</p>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
 			<p>{TIMEZONEBLURB}</p>
-			{TIMEZONE_DROPDOWN}
+			<p>{TIMEZONE_DROPDOWN}</p>
+			</patTemplate:tmpl>
 		</div>
 		<div class="span10">
 			<div id="jomres_content_area"> <!-- opens the jomres content area -->

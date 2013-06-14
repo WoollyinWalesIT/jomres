@@ -17,13 +17,18 @@ body {
 			<a href="http://www.jomres.net" target="_blank"><img src="{LOGO_RELATIVE_URL}" alt="Jomres logo"/></a>
 		</td>
 		<td align="right" valign="top" width="70%">
-			
 			<div>{MANAGEMENT_VIEW_DROPDOWN}</div>
 			<div>&nbsp;</div>
+			<patTemplate:tmpl name="timezone_dropdown" type="simpleCondition" requiredVars="timezoneblurb">
 			<div>{TIMEZONEBLURB}</div>
 			<div style="width:280px;;float:right;">{TIMEZONE_DROPDOWN}</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="editing_dropdown" type="simpleCondition" requiredVars="editing_mode_dropdown">
 			<div style="width:160px;float:right;">{EDITING_MODE_DROPDOWN}</div>
+			</patTemplate:tmpl>
+			<patTemplate:tmpl name="lang_dropdown" type="simpleCondition" requiredVars="langdropdown">
 			<div style="width:160px;float:right;">{LANGDROPDOWN}</div>
+			</patTemplate:tmpl>
 		</td>
 	</tr>
 </table>
