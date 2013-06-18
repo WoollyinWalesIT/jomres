@@ -17,6 +17,11 @@ define('_COMPONENT_JOMRES_INTEGRATIONCALLED','1');
 global $jomresPath,$license_key,$jomresConfig_absolute_path,$MiniComponents;
 global $mrConfig,$jrConfig,$jomres_systemLog_path;
 
+// Specifically for IE's developer's tools. If the dev tool isn't specifically set to always pull data from servers, then Jomres pages and data will be cached, causing false data to be returned/output to the page.
+// Unfortunately, we need to be pragmatic. We can't tell every user who comes to the site to F12 - change cache settings, so we need to disable caching through these headers :(
+header("Expires: " . gmdate("D, d M Y H:i:s", time()-1000 ) . " GMT");
+header("Cache-Control: no-cache, no-store");
+header("Pragma: no-cache");
 
 if (!defined('JOMRESPATH_BASE'))
 	{
