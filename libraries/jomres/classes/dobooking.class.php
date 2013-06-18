@@ -1063,7 +1063,7 @@ class dobooking
 				//	$clickUnlock='jomresJquery(\'#'."quantity".$ex->uid.'\').removeAttr(\'disabled\'); ';
 				if ($model['force']!="1")
 					{
-					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' AUTOCOMPLETE="OFF"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
+					$extra_deets['INPUTBOX']='<input id="extras_'.$ex->uid.'" type="checkbox" name="extras['.$ex->uid.']" value="'.$ex->uid.'" '.$checked.' autocomplete="off"  onClick="'.$clickUnlock.'getResponse_extras(\'extras\',this.value,'.$ex->uid.');" />';
 					}
 				else
 					{
@@ -1073,7 +1073,7 @@ class dobooking
 					}
 				$extra_deets['FIELDNAME']='extras['.$ex->uid.']';
 				if ($ex->maxquantity > 1)
-					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="input-mini"  AUTOCOMPLETE="OFF" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
+					$extra_deets['INPUTBOX']=$extra_deets['INPUTBOX']."&nbsp;&nbsp;".jomresHTML::integerSelectList( 01, $ex->maxquantity, 1, "quantity".$ex->uid, 'size="1" class="input-mini"  autocomplete="off" disabled=" " onchange="getResponse_extrasquantity(\'extrasquantity\',this.value,'.$ex->uid.');"', $extraDefaultQuantity, "%02d", $use_bootstrap_radios = false );
 
 				$extra_deets['AJAXFORM_EXTRAS']		=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS',_JOMRES_AJAXFORM_EXTRAS));
 				$extra_deets['AJAXFORM_EXTRAS_DESC']	=$this->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_EXTRAS_DESC',_JOMRES_AJAXFORM_EXTRAS_DESC,false));
@@ -1422,7 +1422,7 @@ class dobooking
 			foreach ($this->allRoomFeatures as $feature_id=>$feature)
 				{
 				$arr = array();
-				$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" AUTOCOMPLETE="OFF"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
+				$arr['INPUTBOX']='<input id="'.$feature_id.'" type="checkbox" name="room_features['.$feature_id.']" value="'.$feature_id.'" autocomplete="off"  onClick="getResponse_room_features(\'room_features\',this.value,'.$feature_id.');" />';
 				$arr['DESCRIPTION']= jr_gettext('_JOMRES_CUSTOMTEXT_ROOMFEATURE_DESCRIPTION'.(int)$feature_id,$feature);
 				$this->room_feature_checkboxes[] = $arr;
 				}
