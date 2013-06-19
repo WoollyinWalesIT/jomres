@@ -13,6 +13,24 @@
 defined( '_JOMRES_INITCHECK' ) or die( '' );
 // ################################################################
 
+
+function jomres_make_qr_code ($string = "", $format = "text")
+	{
+	jr_import('jomres_qr_code');
+	if (!class_exists('QRcode')) // Triggers the importing of the qrcode library.
+		{
+		$qr = new jomres_qr_code();
+		}
+	if ($string == "")
+		return false;
+	$filename = md5($string);
+	if (!file_exists(JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'qr_code_'.$filename.'.png'))
+		QRcode::png($string, JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'qr_code_'.$filename.'.png', 'L', 4, 2);
+	
+	return array("relative_path"=>get_showtime('live_site')."/jomres/temp/".'qr_code_'.$filename.'.png',"absolute_path"=>JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'temp'.JRDS.'qr_code_'.$filename.'.png');
+	}
+
+
 function genericLike($idArray,$fieldToSearch,$idArrayisInteger=true)
 	{
 	$newArr=array();
@@ -1794,7 +1812,7 @@ function mailer_get_css()
 Allows us to work independantly of Joomla or Mambo's emailers
 */
 
-function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode=1)
+function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode=1, $attachments = array() )
 	{
 	$jomresConfig_smtpauth=get_showtime('smtpauth');
 	$jomresConfig_smtphost=get_showtime('smtphost');
@@ -1872,6 +1890,7 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 
 	$body				= preg_replace("[\\\]",'',$body);
 	
+	
 	if ($mode==1 && !strstr($body,'<meta http-equiv="Content-Type" content="text/html; utf-8" />') )
 		{
 		$body = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $body);
@@ -1915,6 +1934,23 @@ function jomresMailer( $from, $jomresConfig_sitename, $to, $subject, $body,$mode
 		}
 
 	//	$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+	
+	
+	if (count($attachments)>0)
+		{
+		foreach ($attachments as $attachment)
+			{
+			switch ($attachment['type']) // Use a switch as it allows us to expand this later if we wish
+				{
+				case 'image':
+					$image_path = $attachment['image_path'];
+					$cid = $attachment['CID'];
+					$mail->AddEmbeddedImage($image_path, $cid, 'office_qr_code.png');
+					$mail->Body = 'Your <b>HTML</b> with an embedded Image: <img src="cid:office_qr_code"> Here is an image!';
+				break;
+				}
+			}
+		}
 
 	$mail->MsgHTML($body);
 	foreach ($emails as $to)
