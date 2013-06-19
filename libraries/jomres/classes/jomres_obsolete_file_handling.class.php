@@ -51,7 +51,7 @@ class jomres_obsolete_file_handling
 		
 		$this->dir_components_administrator = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.JOMRES_ADMINISTRATORDIRECTORY.JRDS.'components'.JRDS.'com_jomres'.JRDS;
 		$this->dir_components = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'components'.JRDS.'com_jomres'.JRDS;
-		
+		$this->dir_core_plugins = JOMRESCONFIG_ABSOLUTE_PATH.JRDS.'jomres'.JRDS.'core-plugins'.JRDS;
 		}
 
 	function ready_to_go()
@@ -746,6 +746,18 @@ class jomres_obsolete_file_handling
 			$this->add_obs_file($file);
 			}
 		
+		$files_old_qr_code_library = scandir_getfiles_recursive($this->dir_core_plugins.'qr_code_lib'.JRDS.'library');
+		foreach ($files_old_qr_code_library as $file)
+			{
+			$this->add_obs_file($file);
+			}
+		$this->add_obs_file($this->dir_core_plugins.'qr_code_lib'.JRDS.'j00001qr_code_lib.class.php');
+		
+		$phpmailer_5_1 = scandir_getfiles_recursive($this->dir_libraries.'PHPMailer_v5.1');
+		foreach ($phpmailer_5_1 as $file)
+			{
+			$this->add_obs_file($file);
+			}
 		}
 	
 	function add_obs_file($path_and_file)
