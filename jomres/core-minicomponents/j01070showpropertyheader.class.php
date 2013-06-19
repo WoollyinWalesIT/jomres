@@ -144,7 +144,8 @@ class j01070showpropertyheader
 						}
 					}
 				///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					
+				
+				//meta data
 				if (strlen($current_property_details->metatitle)>0)
 					jomres_cmsspecific_setmetadata("title",jomres_decode($current_property_details->metatitle));
 				else
@@ -161,6 +162,14 @@ class j01070showpropertyheader
 					jomres_cmsspecific_setmetadata("keywords",jomres_decode($current_property_details->metakeywords));
 				else
 					jomres_cmsspecific_setmetadata('keywords',$current_property_details->property_town.", ".$current_property_details->property_region.", ".$current_property_details->property_country);
+				
+				//Facebook meta data
+				jomres_cmsspecific_addcustomtag('<meta property="og:url" content="'.jomres_cmsspecific_currenturl().'" />');
+				jomres_cmsspecific_addcustomtag('<meta property="og:type" content="article" />');
+				jomres_cmsspecific_addcustomtag('<meta property="og:title" content="'. $current_property_details->property_name .'" />');
+				jomres_cmsspecific_addcustomtag('<meta property="og:description" content="'. jr_substr(strip_tags(jomres_decode($current_property_details->property_description)),0,200).'...'.'" />');
+				jomres_cmsspecific_addcustomtag('<meta property="og:image" content="'.$output['IMAGETHUMB'].'" />');
+				
 
 				$output['STARS']=$starslink;
 				$output['PROPERTY_NAME'] = $current_property_details->property_name;
