@@ -182,6 +182,8 @@ class j06001list_property_invoices
 								$r['STATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS_CANCELLED",_JRPORTAL_INVOICES_STATUS_CANCELLED);
 								else
 									$r['STATUS']=jr_gettext("_JRPORTAL_INVOICES_STATUS_PENDING",_JRPORTAL_INVOICES_STATUS_PENDING);
+						if (is_null($r['USER']))
+							$r['USER'] = $r['GUEST'];
 						$r['RAISED']=$invoice['raised_date'];
 						$r['DUE']=$invoice['due_date'];
 						$r['PAID']=$invoice['paid'];

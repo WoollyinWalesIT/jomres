@@ -124,7 +124,7 @@ class j06005view_invoice {
 		$output['HDUE']=jr_gettext('_JRPORTAL_INVOICES_DUE',_JRPORTAL_INVOICES_DUE);
 		$output['HSUBSCRIPTION']=jr_gettext('_JRPORTAL_INVOICES_SUBSCRIPTION',_JRPORTAL_INVOICES_SUBSCRIPTION);
 		$output['HINITTOTAL']=jr_gettext('_JRPORTAL_INVOICES_INITTOTAL',_JRPORTAL_INVOICES_INITTOTAL);
-		$output['HRECURTOTAL']=jr_gettext('_JRPORTAL_INVOICES_RECUR_TOTAL',_JRPORTAL_INVOICES_RECUR_TOTAL);
+		
 		$output['HFREQ']=jr_gettext('_JRPORTAL_INVOICES_RECUR_FREQUENCY',_JRPORTAL_INVOICES_RECUR_FREQUENCY);
 		$output['HDOM']=jr_gettext('_JRPORTAL_INVOICES_RECUR_DOMONTH',_JRPORTAL_INVOICES_RECUR_DOMONTH);
 		$output['HCURRENCYCODE']=jr_gettext('_JRPORTAL_INVOICES_CURRENCYCODE',_JRPORTAL_INVOICES_CURRENCYCODE);
@@ -164,7 +164,9 @@ class j06005view_invoice {
 		else
 			$output['SUBSCRIPTION']=jr_gettext('_JOMRES_COM_MR_NO',_JOMRES_COM_MR_NO);
 		$output['INITTOTAL']=output_price($invoice->init_total,$invoice->currencycode,true,true);
-		$output['RECURTOTAL']=output_price($invoice->recur_total,$invoice->currencycode,false,true);
+		
+		
+		
 		$output['FREQ']=$invoice->recur_frequency;
 		$output['CURRENCYCODE']=$invoice->currencycode;
 		
@@ -178,10 +180,25 @@ class j06005view_invoice {
 		$output['HLI_INIT_TOTAL']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL',_JRPORTAL_INVOICES_LINEITEMS_INIT_TOTAL);
 		$output['HLI_INIT_TOTAL_INCLUSIVE']=jr_gettext('_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX',_JOMRES_LINEITEM_TOTAL_INCLUDINGTAX);
 		
-		$output['HLI_RECUR_PRICE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE',_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE);
-		$output['HLI_RECUR_QTY']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY',_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY);
-		$output['HLI_RECUR_DISCOUNT']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT',_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT);
-		$output['HLI_RECUR_TOTAL']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL',_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL);
+		if ((float)$invoice->recur_total > 0.00)
+			{
+
+			$recurtotal = array();
+			$recurtotal[0]['RECURTOTAL']=output_price($invoice->recur_total,$invoice->currencycode,false,true);
+			
+			$hrecurtotal = array();
+			$hrecurtotal[0]['HRECURTOTAL']=jr_gettext('_JRPORTAL_INVOICES_RECUR_TOTAL',_JRPORTAL_INVOICES_RECUR_TOTAL);
+			
+			$hli_recur_price = array();
+			$hli_recur_price_a = array();
+			$hli_recur_price_a['HLI_RECUR_PRICE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE',_JRPORTAL_INVOICES_LINEITEMS_RECUR_PRICE);
+			$hli_recur_price_a['HLI_RECUR_QTY']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY',_JRPORTAL_INVOICES_LINEITEMS_RECUR_QTY);
+			$hli_recur_price_a['HLI_RECUR_DISCOUNT']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT',_JRPORTAL_INVOICES_LINEITEMS_RECUR_DISCOUNT);
+			$hli_recur_price_a['HLI_RECUR_TOTAL']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL',_JRPORTAL_INVOICES_LINEITEMS_RECUR_TOTAL);
+			$hli_recur_price[] = $hli_recur_price_a;
+			
+			}
+		
 		$output['HLI_TAX_CODE']=_JRPORTAL_INVOICES_LINEITEMS_TAX_CODE;
 		$output['HLI_TAX_DESCRIPTION']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION',_JRPORTAL_INVOICES_LINEITEMS_TAX_DESCRIPTION);
 		$output['HLI_TAX_RATE']=jr_gettext('_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE',_JRPORTAL_INVOICES_LINEITEMS_TAX_RATE);
@@ -239,10 +256,16 @@ class j06005view_invoice {
 				$r['LI_INIT_DISCOUNT']	=output_price($li['init_discount'],$invoice->currencycode,false,true);
 				$r['LI_INIT_TOTAL']		=output_price($li['init_total'],$invoice->currencycode,false,true);
 				$r['LI_INIT_TOTAL_INCLUSIVE']	=output_price($li['init_total_inclusive'],$invoice->currencycode,false,true);
-				$r['LI_RECUR_PRICE']	=output_price($li['recur_price'],$invoice->currencycode,false,true);
-				$r['LI_RECUR_QTY']		=$li['recur_qty'];
-				$r['LI_RECUR_DISCOUNT']	=output_price($li['recur_discount'],$invoice->currencycode,false,true);
-				$r['LI_RECUR_TOTAL']	=output_price($li['recur_total'],$invoice->currencycode,false,true);
+				
+				
+				if ((float)$invoice->recur_total > 0.00)
+					{
+					$r['LI_RECUR_PRICE']	=output_price($li['recur_price'],$invoice->currencycode,false,true);
+					$r['LI_RECUR_QTY']		=$li['recur_qty'];
+					$r['LI_RECUR_DISCOUNT']	=output_price($li['recur_discount'],$invoice->currencycode,false,true);
+					$r['LI_RECUR_TOTAL']	=output_price($li['recur_total'],$invoice->currencycode,false,true);
+					}
+
 				$r['LI_TAX_CODE']		=$li['tax_code'];
 				$r['LI_TAX_DESCRIPTION']=$li['tax_description'];
 				$r['LI_TAX_RATE']		=$li['tax_rate'];
@@ -290,6 +313,10 @@ class j06005view_invoice {
 		$tmpl->addRows( 'rows',$rows);
 		$tmpl->addRows( 'markaspaid_link',$markaspaid_link);
 		$tmpl->addRows( 'viewbooking_link',$viewbooking_link);
+		
+		$tmpl->addRows( 'hli_recur_price',$hli_recur_price);
+		$tmpl->addRows( 'recurtotal',$recurtotal);
+		$tmpl->addRows( 'hrecurtotal',$hrecurtotal);
 		
 		if ($invoice->subscription == 0 && $invoice->init_total > 0.00)
 			{

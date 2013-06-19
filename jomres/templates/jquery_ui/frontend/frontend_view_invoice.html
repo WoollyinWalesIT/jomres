@@ -48,7 +48,11 @@
 		<th class="ui-state-default">{HSUBSCRIPTION}</th>
 		<th class="ui-state-default">{HCURRENCYCODE}</th>
 		<th class="ui-state-default">{HINITTOTAL}</th>
+		
+		<patTemplate:tmpl name="hrecurtotal" type="simpleCondition" requiredVars="hrecurtotal">
 		<th class="ui-state-default">{HRECURTOTAL}</th>
+		</patTemplate:tmpl>
+		
 	</tr>
 	<tr>
 		<td>{STATUS}</td>
@@ -57,7 +61,11 @@
 		<td>{SUBSCRIPTION}</td>
 		<td>{CURRENCYCODE}</td>
 		<td><div id="init_grand_total">{INITTOTAL}</div></td>
+		
+		<patTemplate:tmpl name="recurtotal" type="simpleCondition" requiredVars="recurtotal">
 		<td><div id="recur_grand_total">{RECURTOTAL}</div></td>
+		</patTemplate:tmpl>
+		
 	</tr>
 </table>
 <h3>{LIPAGETITLE}</h3>
@@ -69,10 +77,14 @@
 		<th class="ui-state-default">{HLI_INIT_DISCOUNT}</th>
 		<th class="ui-state-default">{HLI_INIT_TOTAL}</th>
 		<th class="ui-state-default">{HLI_INIT_TOTAL_INCLUSIVE}</th>
+		
+		<patTemplate:tmpl name="hli_recur_price" type="simpleCondition" requiredVars="hli_recur_price">
 		<th class="ui-state-default">{HLI_RECUR_PRICE}</th>
 		<th class="ui-state-default">{HLI_RECUR_QTY}</th>
 		<th class="ui-state-default">{HLI_RECUR_DISCOUNT}</th>
 		<th class="ui-state-default">{HLI_RECUR_TOTAL}</th>
+		</patTemplate:tmpl>
+		
 		<th class="ui-state-default">{HLI_TAX_DESCRIPTION}</th>
 		<th class="ui-state-default">{HLI_TAX_RATE}</th>
 	</tr>
@@ -84,10 +96,13 @@
 		<td>{LI_INIT_DISCOUNT}</td>
 		<td>{LI_INIT_TOTAL}</td>
 		<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+		
+		<patTemplate:sub condition="li_recur_price">
 		<td>{LI_RECUR_PRICE}</td>
 		<td>{LI_RECUR_QTY}</td>
 		<td>{LI_RECUR_DISCOUNT}</td>
 		<td>{LI_RECUR_TOTAL}</td>
+		</patTemplate:sub>
 		<td>{LI_TAX_DESCRIPTION}</td>
 		<td>{LI_TAX_RATE}%</td>
 	</tr>
