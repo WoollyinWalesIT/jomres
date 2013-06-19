@@ -513,3 +513,15 @@ function jomres_cmsspecific_stringURLSafe($str)
 	else
 		return null;
 	}
+
+function jomres_cmsspecific_addcustomtag($data)
+	{
+	$data=jomres_decode($data);
+ 	$document =& JFactory::getDocument();
+	$document->addCustomTag($data);
+	}
+
+function jomres_cmsspecific_currenturl()
+	{
+	return JURI::current();
+	}
