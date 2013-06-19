@@ -66,7 +66,9 @@
 			<th class="hidden-phone">{HSUBSCRIPTION}</th>
 			<th class="hidden-phone">{HCURRENCYCODE}</th>
 			<th>{HINITTOTAL}</th>
+			<patTemplate:tmpl name="hrecurtotal" type="simpleCondition" requiredVars="hrecurtotal">
 			<th>{HRECURTOTAL}</th>
+			</patTemplate:tmpl>
 		</tr>
 	</thead>
 	<tbody>
@@ -77,7 +79,10 @@
 			<td class="hidden-phone">{SUBSCRIPTION}</td>
 			<td class="hidden-phone">{CURRENCYCODE}</td>
 			<td><div id="init_grand_total">{INITTOTAL}</div></td>
+			
+			<patTemplate:tmpl name="recurtotal" type="simpleCondition" requiredVars="recurtotal">
 			<td><div id="recur_grand_total">{RECURTOTAL}</div></td>
+			</patTemplate:tmpl>
 		</tr>
 	</tbody>
 </table>
@@ -92,11 +97,14 @@
 			<th class="hidden-phone">{HLI_INIT_DISCOUNT}</th>
 			<th class="hidden-phone">{HLI_INIT_TOTAL}</th>
 			<th>{HLI_INIT_TOTAL_INCLUSIVE}</th>
+			<patTemplate:tmpl name="hli_recur_price" type="simpleCondition" requiredVars="hli_recur_price">
 			<th class="hidden-phone">{HLI_RECUR_PRICE}</th>
 			<th>{HLI_RECUR_QTY}</th>
 			<th class="hidden-phone">{HLI_RECUR_DISCOUNT}</th>
 			<th>{HLI_RECUR_TOTAL}</th>
 			<th class="hidden-phone">{HLI_TAX_DESCRIPTION}</th>
+			</patTemplate:tmpl>
+			
 			<th>{HLI_TAX_RATE}</th>
 		</tr>
 	</thead>
@@ -109,11 +117,13 @@
 			<td class="hidden-phone">{LI_INIT_DISCOUNT}</td>
 			<td class="hidden-phone">{LI_INIT_TOTAL}</td>
 			<td>{LI_INIT_TOTAL_INCLUSIVE}</td>
+			<patTemplate:sub condition="li_recur_price">
 			<td class="hidden-phone">{LI_RECUR_PRICE}</td>
 			<td>{LI_RECUR_QTY}</td>
 			<td class="hidden-phone">{LI_RECUR_DISCOUNT}</td>
 			<td>{LI_RECUR_TOTAL}</td>
 			<td class="hidden-phone">{LI_TAX_DESCRIPTION}</td>
+			</patTemplate:sub>
 			<td>{LI_TAX_RATE}%</td>
 		</tr>
 		</patTemplate:tmpl>
