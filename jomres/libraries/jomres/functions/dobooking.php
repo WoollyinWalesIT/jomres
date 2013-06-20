@@ -190,7 +190,10 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 		$coupon_output['COUPON_INSTRUCTIONS']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS',_JOMRES_AJAXFORM_COUPON_INSTRUCTIONS));
 		$coupon_output_totals['COUPON_DISCOUNT_VALUE']=$bkg->sanitiseOutput(jr_gettext('_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE',_JOMRES_AJAXFORM_COUPON_DISCOUNTVALUE));
 		
-		$coupon_output['COUPON_CODE']="";
+		$coupon = jomresGetParam( $_REQUEST, "coupon", '' );
+		
+		$coupon_output['COUPON_CODE']=$coupon;
+		
 		if ($amend_contract && isset($_REQUEST['contractuid']) && $thisJRUser->userIsManager && in_array( (int)$selectedProperty,$thisJRUser->authorisedProperties) )
 			{
 			$query = "SELECT coupon_id FROM #__jomres_contracts WHERE contract_uid = ".(int)$_REQUEST['contractuid']."";
@@ -203,6 +206,12 @@ function dobooking($selectedProperty,$thisdate=false,$remus)
 				$coupon_output['COUPON_CODE']=$coupon_code;
 				}
 			}
+		else
+			{
+			
+			$bkg->saveCoupon($coupon);
+			}
+
 		$coupons[] = $coupon_output;
 		$coupons_totals[] = $coupon_output_totals;
 		}
